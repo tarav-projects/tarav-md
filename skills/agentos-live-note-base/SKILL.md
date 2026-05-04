@@ -7,10 +7,12 @@ description: Define the live-note protocol for path and filename conventions. Us
 
 Minimal protocol for live notes.
 
+This skill operationalizes live-note naming and location behavior derived from `notes/index/103-File.Numbering.Protocol.md`. The index note is the durable design source; this skill is workflow guidance.
+
 ## Scope
 - This skill defines only live-note location and naming.
 - This skill does not define note body structure.
-- This skill follows the current `Notes.Numbering.Protocol` direction, but does not claim the repository is fully migrated to project-wide numbering yet.
+- This skill follows the current `File.Numbering.Protocol` direction, but does not claim the repository is fully migrated to project-wide numbering yet.
 
 ## Live Note Protocol
 - Live notes must be stored in `notes/live/`.

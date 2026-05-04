@@ -7,6 +7,8 @@ description: Define the live-scripts protocol for path and filename conventions 
 
 Minimal protocol for live scripts.
 
+This skill operationalizes live-script naming and location behavior derived from `notes/index/103-File.Numbering.Protocol.md` and the `Live.Scripts` registry concept. The index is the durable design source; this skill is workflow guidance.
+
 ## Scope
 - Define only live-script location and naming.
 - Do not define script body/content structure.

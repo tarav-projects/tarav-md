@@ -7,6 +7,8 @@ description: Define, review, or extend Agentos numeric filename protocols and pr
 
 Minimal protocol for Agentos-managed numeric filename workflows.
 
+This skill operationalizes `notes/index/103-File.Numbering.Protocol.md`. The index note is the durable design source; this skill provides reusable workflow guidance for agents.
+
 ## Scope
 
 - Define shared numbering mechanics, not document body structure.
