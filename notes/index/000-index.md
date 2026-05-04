@@ -23,6 +23,11 @@ Canonical TOC and orientation note for `notes/index/`.
 
 - `001-Agentic.Development.Workflow.md` — entry-point concept note for the agentic development subsystem inside Agentos.
 
+### Migrated Agentos Index Surface
+
+- `migrated-agentos-index/` — copied legacy index notes from `agentos/notes/index/`; filenames and numeric handles are preserved for migration review before redesign/consolidation.
+
 ### Live Design Artifacts
 
 - `../live/500-agentos-agentic-framework-design-summary.md` — converged redesign summary, accepted decisions, and execution direction.
+- `../live/503-agentos-md-migration-inventory.md` — migration inventory and initial classification for the copied Agentos markdown surface.
