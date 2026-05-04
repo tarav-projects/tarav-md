@@ -21,22 +21,25 @@ This skill operationalizes `notes/index/103-File.Numbering.Protocol.md`. The ind
 - `NNN` is zero-padded to a fixed width, currently `3`.
 - Numeric prefixes are stable handles, so the meaningful title may change while the number remains fixed.
 - A numbering domain is defined by:
-  - the scan root include path
+  - the project-relative target path
   - the filename pattern matched by the allocator
-  - the minimum floor
-  - any reserved prefix range policy
+  - the allocation range
+  - any manually assigned reserved prefix table
   - whether numbers must be unique only inside the domain or across a broader project surface
-- The numbering source is only the files inside that domain that match the configured `NNN-` prefix pattern.
+- For Agentos project-aware allocation, the numbering source is the configured project scan scope for numbered surfaces, filtered by the resolved target route.
 
 ## Allocator Behavior
 
-- `agentos prefix next` scans files under the requested `--include` paths.
-- It extracts prefixes using the filename regex `^(\d{width})-`.
-- It ignores files that do not begin with a valid zero-padded numeric prefix.
+- `agentos prefix next --target <path>` resolves the current `Agentos.Project`, loads the project prefix policy, and allocates for the project-relative target path.
+- It scans the configured project numbered-surface scope. The current default includes are `notes` and `dev/live`.
+- It extracts ordinary allocated prefixes using the filename regex `^(\d{width})-`.
+- It ignores files that do not begin with a valid zero-padded ordinary prefix.
+- Reserved prefixes are manually assigned fixed-role prefixes, not ordinary allocator output.
 - It returns:
-  - `minimum` if no eligible prefixes exist
-  - otherwise `max(existing eligible prefixes) + 1`
+  - the selected route lower bound if no eligible prefixes exist
+  - otherwise `max(existing eligible prefixes in the selected route range) + 1`
 - This is append-only allocation, not gap-filling allocation.
+- Legacy scanner mode still exists for old low-level calls without `--target`, but project-aware target mode is the preferred Agentos workflow.
 
 ## Stability Rules
 
@@ -52,7 +55,8 @@ This skill operationalizes `notes/index/103-File.Numbering.Protocol.md`. The ind
 - Each domain `base` skill must define its own:
   - location
   - filename pattern
-  - numbering source
+  - target path
+  - numbering source or project scan-scope assumption
   - floor or reserved range
   - uniqueness scope
   - exact `agentos prefix next` command, if allocation is automated
@@ -61,19 +65,20 @@ This skill operationalizes `notes/index/103-File.Numbering.Protocol.md`. The ind
 ## Cross-Domain Coordination
 
 - Some systems need numbers to be unique across a broader surface than one folder.
-- Example: Agentos notes are moving toward project-wide md-surface uniqueness, where the same note number should not identify different notes in different note folders.
-- Current `agentos prefix next` behavior is still include-path based. Until a domain has project-wide allocation/checking support, domain skills should document any broader uniqueness expectation and require inspection or deterministic checks when relevant.
+- Example: Agentos notes use project-wide md-surface allocation, where the same ordinary note number should not identify different ordinary files in different numbered surfaces.
+- Current `agentos prefix next --target ...` supports project-aware allocation. Full project-wide diagnostics such as duplicate reports, range violations, and reserved-prefix consistency checks remain future `prefix doctor` or equivalent work.
 
 ## Workflow For A New Numbered Artifact Type
 
 1. Decide the domain root and canonical filename extension.
 2. Decide whether the domain is human-managed, agent-managed, or split by range.
 3. Pick a minimum floor and any reserved range policy.
-4. Define the numbering source as a concrete glob-like file family, for example `notes/live/NNN-*.md`.
+4. Define the target path and numbering source, for example `--target notes/live` using the project numbered-surface scan policy.
 5. Add a domain base protocol skill or base spec that states:
    - location
    - filename pattern
-   - numbering source
+   - target path
+   - numbering source or project scan-scope assumption
    - floor or reserved range
    - uniqueness scope
    - exact `agentos prefix next` command, if allocation is automated
@@ -83,7 +88,7 @@ This skill operationalizes `notes/index/103-File.Numbering.Protocol.md`. The ind
 
 ## Review Checklist
 
-- Is the include path narrow enough to avoid cross-domain collisions?
+- Is the target path routed to the intended range?
 - Does the filename pattern use the same width as the allocator?
 - Does the protocol state the exact numbering source?
 - Is the minimum floor explicit?
