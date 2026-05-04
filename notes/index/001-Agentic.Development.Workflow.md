@@ -42,4 +42,5 @@ It defines the coordinated working model that lets humans and agents collaborate
 ## Read Next
 
 - `000-index.md` for the current surface map.
-- `../live/500-agentos-agentic-framework-design-summary.md` for the current converged redesign direction.
+- `ontology.md` for registered Agentos concepts.
+- `100-Agentos.Index.Notes.md` for the durable concept-note subsystem and SSOT rule.

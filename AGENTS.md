@@ -2,13 +2,15 @@
 
 ## Purpose
 
-`agentos-md` is the design workspace for consolidating the agentic framework layer of Agentos.
+`agentos-md` is the markdown implementation of the Agentos project.
 
-The goal here is to redesign and clarify the core agent-facing philosophy, workflow primitives, specs, and skill surfaces used to develop projects with agents.
+It owns `Md.Surface:Agentos`, including the durable index notes, live notes, skills, and markdown coordination surfaces used to define and operate the Agentos agentic framework.
 
-## Intent
+## Surface Rules
 
-- Define a coherent model for the Agentos agentic framework.
-- Redesign workflow primitives from a clean surface instead of extending legacy structure by default.
-- Develop updated specs and skill surfaces that can later be integrated back into the broader Agentos project.
-- Keep the focus on clarity, composability, and durable agent-human collaboration patterns.
+- `notes/index/` is the active `Design.Target.Model:Agentos` surface.
+- Use `notes/index/ontology.md` for registered concept names and concept lookup.
+- Do not treat closed live design sessions as active authority; use them as provenance only.
+- Do not turn `AGENTS.md` into a progress tracker or design log.
+- Durable design truth belongs in `notes/index/`.
+- Development instructions and local workflow reminders can live here when they help agents work safely.

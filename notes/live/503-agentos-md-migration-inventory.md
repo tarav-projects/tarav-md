@@ -8,12 +8,12 @@ Migration objective:
 
 - make `agentos-md` the markdown implementation of the Agentos project
 - treat `agentos-md` as the home for `Design.Target.Model:Agentos`
-- keep `agentos` focused on the Python CLI/backend implementation surface
+- keep `agentos-py` focused on the Python CLI/backend implementation surface
 - migrate first, redesign after the old design surface is present
 
 ## Source Inventory
 
-Current `agentos` markdown/design-bearing surface:
+Current migrated source markdown/design-bearing surface:
 
 - `AGENTS.md`
 - `README.md`
@@ -27,8 +27,8 @@ Current `agentos` markdown/design-bearing surface:
 
 The first migration pass copied all files from:
 
-- source: `agentos/notes/index/*.md`
-- destination: `agentos-md/notes/index/migrated-agentos-index/`
+- source: `agentos-py/notes/index/*.md`
+- destination: `agentos-md/notes/live/migrated-agentos-index/`
 
 Files copied:
 
@@ -48,6 +48,7 @@ Numbering rule:
 - original filenames and numeric handles were preserved
 - no renumbering was performed
 - the migrated folder is a transitional holding surface, not the final consolidated index structure
+- the folder was moved under `notes/live/` after the first promotion pass so legacy evidence does not remain inside the active index root
 
 ## Migrated Skill Surface
 
@@ -73,7 +74,7 @@ Initial classification:
 
 Already stable enough to use as migration input:
 
-- `004-Agentos.Project.md`
+- `004-Agentos.Project.md` -> promoted into `notes/index/105-Agentos.Project.md`
 - `006-Session.Model.md`
 - `007-Chatlas.Standard.Model.Contract.md`
 
@@ -82,15 +83,18 @@ Legacy but useful:
 - `000-index.md`
 - `001-chat-session-interface.md`
 - `002-Tara.Integration.Ontology.md`
-- `003-Agentos.Mission.md`
-- `005-Agentos.Skills.md`
+- `003-Agentos.Mission.md` -> promoted into `notes/index/107-Agentos.Mission.md`
+- `005-Agentos.Skills.md` -> promoted into `notes/index/106-Agentos.Skills.md`
 
 Needs consolidation:
 
-- `003-Agentos.Mission.md`
-- `005-Agentos.Skills.md`
 - `006-Session.Model.md`
 - `007-Chatlas.Standard.Model.Contract.md`
+
+Promoted but may need later detail review:
+
+- `003-Agentos.Mission.md`
+- `005-Agentos.Skills.md`
 
 Implementation-specific or status-like material that may belong outside the final index:
 
@@ -101,9 +105,9 @@ Implementation-specific or status-like material that may belong outside the fina
 
 Next likely sources:
 
-- active `agentos/notes/live/*.md`
-- archived `agentos/notes/live/archived/*.md`
-- deprecated index-note skills under `agentos/_DEPRECATED/`
+- active `agentos-py/notes/live/*.md`
+- archived `agentos-py/notes/live/archived/*.md`
+- deprecated index-note skills under `agentos-py/_DEPRECATED/`
 - root `AGENTS.md` and `README.md`
 
 Expected handling:
@@ -115,5 +119,6 @@ Expected handling:
 
 ## End Log
 
-- 2026-05-04: Created initial migration inventory and copied `agentos/notes/index/*.md` into `agentos-md`.
+- 2026-05-04: Created initial migration inventory and copied `agentos-py/notes/index/*.md` into `agentos-md`.
 - 2026-05-04: Copied active skills from `agentos-py/skills/` into `agentos-md/skills/` with exact path preservation.
+- 2026-05-04: Promoted `Agentos.Project`, `Agentos.Skills`, and `Agentos.Mission` into active index notes; moved legacy migrated index evidence to `notes/live/migrated-agentos-index/`.

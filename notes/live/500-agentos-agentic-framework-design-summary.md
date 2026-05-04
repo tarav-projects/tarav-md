@@ -52,16 +52,15 @@ Reason: the architectural split is agreed, but the umbrella term may still chang
 - Detailed filesystem layout inside `agentos-md` is deferred.
 Reason: the initial need is the design workspace and artifact home; exact internal structure should follow the subsystem and workflow definitions.
 
-- Migration strategy back into the broader `agentos` codebase is deferred.
+- Migration strategy back into the broader `agentos-py` codebase is deferred.
 Reason: the redesign should converge first before deciding how and when each surface becomes canonical in the main project.
 
 ## Relevant Files Or Surfaces
 
-- `/Users/pereiro/projects/agentos-project/agentos/.agentos/project.json`
-- `/Users/pereiro/projects/agentos-project/agentos/skills/`
-- `/Users/pereiro/projects/agentos-project/agentos/notes/index/`
-- `/Users/pereiro/projects/agentos-project/agentos/notes/live/`
-- `/Users/pereiro/projects/agentos-project/agentos/dev/live/`
+- `/Users/pereiro/projects/agentos-project/agentos-py/.agentos/project.json`
+- `/Users/pereiro/projects/agentos-project/agentos-py/`
+- `/Users/pereiro/projects/agentos-project/agentos-md/skills/`
+- `/Users/pereiro/projects/agentos-project/agentos-md/notes/index/`
 - `/Users/pereiro/projects/agentos-project/agentos-md/notes/live/`
 
 ## Open Questions
