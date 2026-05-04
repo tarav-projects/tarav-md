@@ -25,7 +25,7 @@ Canonical TOC and orientation note for `notes/index/`.
 
 - `001-Agentic.Development.Workflow.md` — entry-point concept note for the agentic development subsystem inside Agentos.
 - `100-Agentos.Index.Notes.md` — durable concept-note subsystem and SSOT rule for Agentos-style projects.
-- `101-Md.Surface.md` — markdown-implemented project surface and the role of `Md.Surface:Agentos`.
+- `101-Md.Surface.md` — markdown-implemented project surface and parameterized surfaces such as `Md.Surface:Agentos.Stack`.
 - `102-Dotted.Notation.md` — dotted concept names and parameterized notation such as `Maintenance.System:Agentos`.
 - `103-File.Numbering.Protocol.md` — stable numeric filename handles and current Agentos range model.
 - `104-Maintenance.System.md` — diagnosis-first maintenance model for project surfaces.

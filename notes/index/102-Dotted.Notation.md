@@ -68,7 +68,7 @@ Examples:
 - `Maintenance.System:Agentos`
 - `Maintenance.System:Example.Project`
 - `Project.CLI:Agentos`
-- `Md.Surface:Agentos`
+- `Md.Surface:Agentos.Stack`
 
 Parameterized references may appear as examples or references in the ontology registry, but they are not canonical ontology entries by default unless a separate instance-registry concept is introduced later.
 
@@ -82,4 +82,3 @@ Parameterized references may appear as examples or references in the ontology re
 ## Provenance
 
 Promoted from the closed design session at `../live/501-agentos-index-notes-design-session.md`.
-

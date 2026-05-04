@@ -10,9 +10,25 @@ This registry is for orientation and concept lookup. It records what concepts ex
 
 Agentos is an operating system for agent-oriented work: a modular but integrated set of conventions, workflows, tools, notes, skills, and public surfaces for developing and using projects with agents.
 
+### Agentos.Stack
+
+`Agentos.Stack` is the abstract Agentos model a project can adopt: project identity, notes, skills, public surfaces, maintenance, CLI hooks, ontology, live surfaces, and related workflow primitives.
+
+### Agentos.Implementation
+
+`Agentos.Implementation` is the concrete implementation of Agentos itself. It includes components such as `agentos-md`, `agentos-py`, and future repos or packages that implement the Agentos framework.
+
 ### Agentos.Project
 
-`Agentos.Project` defines project identity and targeting for project-scoped Agentos behavior. A project exists when its root contains `.agentos/project.json`. See `105-Agentos.Project.md`.
+`Agentos.Project` is a concrete project that adopts `Agentos.Stack`. It is detected by `.agentos/project.json` and can be inspected by Agentos commands and workflows. See `105-Agentos.Project.md`.
+
+### Agentos.Project:agentos-py
+
+`Agentos.Project:agentos-py` means `agentos-py` viewed as a concrete project adopting the Agentos project model.
+
+### Agentos.Implementation:agentos-py
+
+`Agentos.Implementation:agentos-py` means `agentos-py` viewed as part of the concrete implementation of Agentos.
 
 ### Agentos.Skills
 
@@ -48,9 +64,13 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 `Md.Surface` is the markdown-implemented part of a project: the system as expressed through notes, skills, and other markdown-defined coordination surfaces. See `101-Md.Surface.md`.
 
-### Md.Surface:Agentos
+### Md.Surface:Agentos.Stack
 
-`Md.Surface:Agentos` is the markdown part of Agentos itself, currently centered in `agentos-md` and including notes, skills, and related markdown coordination surfaces.
+`Md.Surface:Agentos.Stack` is the markdown design surface for the abstract Agentos stack model, currently centered in `agentos-md` and including notes, skills, and related markdown coordination surfaces.
+
+### Md.Surface:Agentos.Implementation
+
+`Md.Surface:Agentos.Implementation` is the markdown surface about the concrete implementation of Agentos itself when that needs to be distinguished from the abstract stack model.
 
 ### Agentos.Index.Notes
 
