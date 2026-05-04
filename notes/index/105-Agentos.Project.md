@@ -45,17 +45,18 @@ The same repository can be both an `Agentos.Project:*` and an `Agentos.Implement
 
 ## Project Targeting
 
-Commands that support project targeting have two entry paths:
+Project-aware commands must use explicit project targeting.
 
-- implicit discovery by parent-walking from `cwd`
-- explicit targeting through `--project`
+The minimal explicit form is bare `--project`, which means the current directory is the intended project target.
 
 Explicit targeting rules:
 
 - `--project <path>` targets that path
 - bare `--project` targets the current directory
 
-The resolved target is a `project target`. Command policy decides whether it must already be an existing project.
+Implicit parent-walk discovery is still part of the discovery system, but project-aware commands should not silently target a project through omitted `--project`.
+
+The resolved explicit target is a `project target`. Command policy decides whether it must already be an existing project.
 
 ## Project.Discovery.System
 
@@ -84,6 +85,8 @@ Name assertion should not silently select an unrelated project by global search.
 
 Implicit parent-walk discovery is convenient but can be ambiguous in nested workspaces. When the target surface may live inside a directory that is not itself an initialized `Agentos.Project`, callers should prefer explicit `--project <path>` and verify the resolved project root.
 
+Project-aware commands must not silently target a project through omitted `--project`. They should require at least bare `--project` and reserve implicit discovery for declared read-only discovery or diagnostic surfaces.
+
 ## Command Policy Boundary
 
 After resolving a project target, each command decides what is allowed.
@@ -98,6 +101,7 @@ Safety rule:
 
 - implicit discovery failure must not auto-initialize a project
 - project creation requires explicit user targeting or another explicit creation command
+- project-aware commands must require explicit `--project`, with bare `--project` as the current-directory target
 
 ## Boundaries
 
