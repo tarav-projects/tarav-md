@@ -51,6 +51,8 @@ This skill operationalizes the durable design model in `notes/index/`; it is not
   - `100-499`: rolling index notes
   - `500-999`: rolling other notes
 - New rolling index notes should use `100-499`
+- Allocate new ordinary index-note prefixes with `agentos prefix next --project-base <project-root-basename> --target notes/index`; do not assign them by manual inspection.
+- Use `--project /path/to/project --project-base <project-root-basename>` when calling from outside the intended project tree. Do not use `--project .` in nested workspaces unless `.` is the actual project root.
 - Existing pre-migration index notes with lower prefixes should keep their assigned numbers
 - Note numbers should be unique across the project md surface, not only inside `notes/index/`
 - Example: `100-Agentos.Index.Notes.md`

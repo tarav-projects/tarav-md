@@ -72,20 +72,15 @@ Discovery may resolve a project in three related ways:
 
 - implicit discovery: parent-walk from a start path until an `Agentos.Project.Marker` is found
 - explicit targeting: resolve the given `--project <path>` as the intended project target
-- name assertion: require the resolved project to match `project=<project-name>`
+- basename assertion: require the resolved project root basename to match `--project-base <basename>`
 
 Bare `--project` means the current directory is the explicit target.
 
-A project name assertion is primarily a safety check. It should match either:
-
-- a project name declared in `.agentos/project.json`, when the marker provides one
-- otherwise, the basename of the resolved project root
-
-Name assertion should not silently select an unrelated project by global search. Without a project registry, it verifies the project that discovery already resolved.
+`--project-base` is primarily a safety check. It checks `resolved_project.root.name`, not marker-level `project_name`, and should not silently select an unrelated project by global search. Without a project registry, it verifies the project that discovery already resolved.
 
 Implicit parent-walk discovery is convenient but can be ambiguous in nested workspaces. When the target surface may live inside a directory that is not itself an initialized `Agentos.Project`, callers should prefer explicit `--project <path>` and verify the resolved project root.
 
-Project-aware commands must not silently target a project through omitted `--project`. They should require at least bare `--project` and reserve implicit discovery for declared read-only discovery or diagnostic surfaces.
+Project-aware commands must not silently target a project when every project selector is omitted. They should require at least one explicit selector: `--project`, `--project-base`, or both.
 
 ## Command Policy Boundary
 

@@ -40,7 +40,7 @@ Live-script implications:
 
 ## Migration Status
 
-- Current CLI allocation is project-aware through `agentos prefix next --project <project> --target dev/live`.
+- Current CLI allocation is project-aware through `agentos prefix next --project-base <project-root-basename> --target dev/live`.
 - The default project prefix policy scans numbered Agentos surfaces under `notes` and `dev/live`, then allocates from the rolling `500-999` route for `dev/live`.
 - Full consistency checks for duplicate numeric prefixes, range violations, and reserved-prefix drift are future `prefix doctor` or equivalent work.
 
@@ -56,16 +56,19 @@ Live-script implications:
 - Allocation route: `500-999`.
 - Target: `dev/live`.
 - Default project scan scope: `notes` and `dev/live`.
+- If `agentos prefix` fails, stop and ask the user how to resolve the project target. Do not assign a live-script prefix by manual inspection.
 
 ## Usage
-Run from the initialized Agentos project root:
+Preferred project target, when the caller is inside the intended project tree:
 
 ```sh
-agentos prefix next --project . --target dev/live
+agentos prefix next --project-base <project-root-basename> --target dev/live
 ```
 
-Explicit project target:
+Explicit project path target, when the caller is outside the intended project tree:
 
 ```sh
-agentos prefix next --project /path/to/repo --target dev/live
+agentos prefix next --project /path/to/project --project-base <project-root-basename> --target dev/live
 ```
+
+In nested workspaces or sibling repositories, do not use `--project .` unless `.` is the actual initialized project root. Use `--project-base` so the allocation fails if the wrong project was resolved.
