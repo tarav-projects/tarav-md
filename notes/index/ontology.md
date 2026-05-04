@@ -22,9 +22,21 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 `Agentos.Project` is a concrete project that adopts `Agentos.Stack`. It is detected by `.agentos/project.json` and can be inspected by Agentos commands and workflows. See `105-Agentos.Project.md`.
 
+### Agentos.Project.Marker
+
+`Agentos.Project.Marker` is the canonical filesystem proof that a directory is an `Agentos.Project`: `.agentos/project.json`. See `105-Agentos.Project.md`.
+
 ### Agentos.Project:agentos-py
 
 `Agentos.Project:agentos-py` means `agentos-py` viewed as a concrete project adopting the Agentos project model.
+
+### Project.Discovery.System
+
+`Project.Discovery.System` resolves commands and workflows to an `Agentos.Project` target while separating project identity, discovery mechanics, and command policy. See `105-Agentos.Project.md`.
+
+### Agentos.Project.Doctor
+
+`Agentos.Project.Doctor` is a diagnosis-first workflow for evaluating how well a concrete `Agentos.Project:<target>` conforms to `Agentos.Stack`. See `108-Agentos.Project.Doctor.md`.
 
 ### Agentos.Implementation:agentos-py
 
@@ -169,6 +181,18 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 ### Maintenance.System:Agentos
 
 `Maintenance.System:Agentos` is the Agentos instance of `Maintenance.System`, likely centered on an `agentos-project-doctor` skill and `agentos doctor ...` CLI checks.
+
+### Doctor.Check
+
+`Doctor.Check` is one test-like evaluation inside a doctor workflow. It returns a structured outcome such as `pass`, `fail`, `warn`, `skip`, or `unknown`, with evidence.
+
+### Doctor.CLI
+
+`Doctor.CLI` is the deterministic executable doctor layer. It runs repeatable checks and should be useful by itself for humans, shell scripts, CI, and skills.
+
+### Doctor.Skill
+
+`Doctor.Skill` is the agentic doctor layer. It can define checks, call `Doctor.CLI`, interpret mixed results, and synthesize diagnosis reports.
 
 ### File.Numbering.Protocol
 

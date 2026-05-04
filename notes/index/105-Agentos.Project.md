@@ -18,6 +18,18 @@ Rules:
 - `.agentos/config.json` may provide project-local config, but it does not define project existence.
 - exported agent folders, skill depots, `.agents/`, `.claude/`, and similar surfaces do not define an `Agentos.Project`.
 
+## Agentos.Project.Marker
+
+`Agentos.Project.Marker` is the canonical filesystem proof that a directory is an `Agentos.Project`.
+
+The marker is:
+
+```txt
+.agentos/project.json
+```
+
+The marker owns project identity. Project config, skill depots, notes, `.agents/`, `.claude/`, and other Agentos-looking surfaces may indicate adoption, but they do not prove project identity by themselves.
+
 ## Naming Boundary
 
 `Agentos.Project` means a project that adopts Agentos.
@@ -44,6 +56,33 @@ Explicit targeting rules:
 - bare `--project` targets the current directory
 
 The resolved target is a `project target`. Command policy decides whether it must already be an existing project.
+
+## Project.Discovery.System
+
+`Project.Discovery.System` is the Agentos mechanism for resolving a command or workflow to an `Agentos.Project` target.
+
+It separates three concerns:
+
+- project identity: whether a directory is an `Agentos.Project`
+- project discovery: how a target path resolves to a project root
+- command policy: what a command is allowed to do after resolution
+
+Discovery may resolve a project in three related ways:
+
+- implicit discovery: parent-walk from a start path until an `Agentos.Project.Marker` is found
+- explicit targeting: resolve the given `--project <path>` as the intended project target
+- name assertion: require the resolved project to match `project=<project-name>`
+
+Bare `--project` means the current directory is the explicit target.
+
+A project name assertion is primarily a safety check. It should match either:
+
+- a project name declared in `.agentos/project.json`, when the marker provides one
+- otherwise, the basename of the resolved project root
+
+Name assertion should not silently select an unrelated project by global search. Without a project registry, it verifies the project that discovery already resolved.
+
+Implicit parent-walk discovery is convenient but can be ambiguous in nested workspaces. When the target surface may live inside a directory that is not itself an initialized `Agentos.Project`, callers should prefer explicit `--project <path>` and verify the resolved project root.
 
 ## Command Policy Boundary
 
@@ -72,6 +111,8 @@ Safety rule:
 ## Related Concepts
 
 - `Project.CLI`
+- `Project.Discovery.System`
+- `Agentos.Project.Marker`
 - `Agentos.Skills`
 - `Maintenance.System`
 - `Public.Surface`

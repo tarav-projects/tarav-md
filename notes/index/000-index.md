@@ -32,6 +32,7 @@ Canonical TOC and orientation note for `notes/index/`.
 - `105-Agentos.Project.md` — project identity and targeting model for project-scoped Agentos behavior.
 - `106-Agentos.Skills.md` — skill selection, routing, and import model.
 - `107-Agentos.Mission.md` — lightweight mission coordination surface for named blocks of work.
+- `108-Agentos.Project.Doctor.md` — diagnosis-first workflow for checking `Agentos.Project:<target>` conformance to `Agentos.Stack`.
 
 ### Ontology
 
