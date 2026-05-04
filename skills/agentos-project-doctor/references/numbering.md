@@ -1,0 +1,37 @@
+# Numbering Checks
+
+Check obvious `File.Numbering.Protocol` issues in active numbered surfaces.
+
+## Active Surfaces
+
+Initial scope:
+
+- `notes/index/`
+- `notes/live/`
+- `dev/live/`
+
+Do not include archived or migrated evidence unless the check is explicitly about migration state.
+
+## Deterministic Checks
+
+For active surfaces:
+
+- find files beginning with `NNN-` or reserved `NNN.` forms
+- detect duplicate numeric prefixes within each active surface
+- flag obvious range violations:
+  - `000-099`: reserved files
+  - `100-499`: rolling index notes
+  - `500-999`: rolling other files such as live notes and live scripts
+
+## Agentic Checks
+
+- Decide whether a duplicate belongs to active surface conflict or harmless legacy evidence.
+- Treat transitional migration evidence carefully.
+
+## Expected Findings
+
+- `fail`: duplicate numeric prefixes identify different active files in the same active surface.
+- `warn`: active files appear outside expected ranges.
+- `info`: numbering is partially migrated but intentionally transitional.
+- `pass`: no obvious duplicate or range issues in active surfaces checked.
+
