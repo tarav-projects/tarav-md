@@ -27,6 +27,10 @@ Canonical TOC and orientation note for `notes/index/`.
 
 - `migrated-agentos-index/` — copied legacy index notes from `agentos/notes/index/`; filenames and numeric handles are preserved for migration review before redesign/consolidation.
 
+### Migrated Skill Surface
+
+- `../../skills/` — copied active skills from `agentos-py/skills/`; paths are preserved for migration review before redesign/consolidation.
+
 ### Live Design Artifacts
 
 - `../live/500-agentos-agentic-framework-design-summary.md` — converged redesign summary, accepted decisions, and execution direction.

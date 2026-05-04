@@ -49,6 +49,26 @@ Numbering rule:
 - no renumbering was performed
 - the migrated folder is a transitional holding surface, not the final consolidated index structure
 
+## Migrated Skill Surface
+
+The second migration pass copied all active skill files from:
+
+- source: `agentos-py/skills/`
+- destination: `agentos-md/skills/`
+
+Copy result:
+
+- 43 files copied
+- directory structure and filenames preserved
+- source and destination trees match exactly at copy time
+
+Initial classification:
+
+- active public Agentos skills: copied for later redesign/consolidation
+- active artifact/design/session skills: copied as current behavior surfaces
+- skill references and agent configs: copied as supporting md-surface material
+- Python packaging/runtime ownership is deferred to a later implementation pass
+
 ## Initial Classification
 
 Already stable enough to use as migration input:
@@ -83,7 +103,6 @@ Next likely sources:
 
 - active `agentos/notes/live/*.md`
 - archived `agentos/notes/live/archived/*.md`
-- active `agentos/skills/**`
 - deprecated index-note skills under `agentos/_DEPRECATED/`
 - root `AGENTS.md` and `README.md`
 
@@ -97,3 +116,4 @@ Expected handling:
 ## End Log
 
 - 2026-05-04: Created initial migration inventory and copied `agentos/notes/index/*.md` into `agentos-md`.
+- 2026-05-04: Copied active skills from `agentos-py/skills/` into `agentos-md/skills/` with exact path preservation.
