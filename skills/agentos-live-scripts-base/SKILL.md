@@ -40,7 +40,7 @@ Live-script implications:
 
 ## Migration Status
 
-- Current CLI allocation is project-aware through `agentos prefix next --target dev/live`.
+- Current CLI allocation is project-aware through `agentos prefix next --project <project> --target dev/live`.
 - The default project prefix policy scans numbered Agentos surfaces under `notes` and `dev/live`, then allocates from the rolling `500-999` route for `dev/live`.
 - Full consistency checks for duplicate numeric prefixes, range violations, and reserved-prefix drift are future `prefix doctor` or equivalent work.
 
@@ -58,13 +58,13 @@ Live-script implications:
 - Default project scan scope: `notes` and `dev/live`.
 
 ## Usage
-Run inside an initialized Agentos project:
+Run from the initialized Agentos project root:
 
 ```sh
-agentos prefix next --target dev/live
+agentos prefix next --project . --target dev/live
 ```
 
-Optional explicit project target:
+Explicit project target:
 
 ```sh
 agentos prefix next --project /path/to/repo --target dev/live

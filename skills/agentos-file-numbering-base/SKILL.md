@@ -30,7 +30,12 @@ This skill operationalizes `notes/index/103-File.Numbering.Protocol.md`. The ind
 
 ## Allocator Behavior
 
-- `agentos prefix next --target <path>` resolves the current `Agentos.Project`, loads the project prefix policy, and allocates for the project-relative target path.
+- `agentos prefix next --project <project> --target <path>` resolves the explicit `Agentos.Project`, loads the project prefix policy, and allocates for the project-relative target path.
+- Project-aware target mode requires explicit `--project`. Use bare `--project` only when the current working directory is the intended Agentos project root; otherwise pass the project path.
+- Numbered artifact prefixes must be allocated with `agentos prefix`; do not assign ordinary prefixes by manual inspection.
+- If `agentos prefix` fails, stop and ask the user how to resolve the project or numbering surface. Do not fall back to inspection.
+- In nested workspaces, verify that the resolved `project_root` is the intended numbered surface. Use `--project /path/to/project` to disambiguate; if the named path is not an initialized `Agentos.Project`, stop and ask the user.
+- If the intended artifact surface is not an initialized `Agentos.Project`, stop and ask whether to initialize it, target a parent project explicitly, or use another project root.
 - It scans the configured project numbered-surface scope. The current default includes are `notes` and `dev/live`.
 - It extracts ordinary allocated prefixes using the filename regex `^(\d{width})-`.
 - It ignores files that do not begin with a valid zero-padded ordinary prefix.
@@ -66,14 +71,14 @@ This skill operationalizes `notes/index/103-File.Numbering.Protocol.md`. The ind
 
 - Some systems need numbers to be unique across a broader surface than one folder.
 - Example: Agentos notes use project-wide md-surface allocation, where the same ordinary note number should not identify different ordinary files in different numbered surfaces.
-- Current `agentos prefix next --target ...` supports project-aware allocation. Full project-wide diagnostics such as duplicate reports, range violations, and reserved-prefix consistency checks remain future `prefix doctor` or equivalent work.
+- Current `agentos prefix next --project ... --target ...` supports project-aware allocation. Full project-wide diagnostics such as duplicate reports, range violations, and reserved-prefix consistency checks remain future `prefix doctor` or equivalent work.
 
 ## Workflow For A New Numbered Artifact Type
 
 1. Decide the domain root and canonical filename extension.
 2. Decide whether the domain is human-managed, agent-managed, or split by range.
 3. Pick a minimum floor and any reserved range policy.
-4. Define the target path and numbering source, for example `--target notes/live` using the project numbered-surface scan policy.
+4. Define the target path and numbering source, for example `--project . --target notes/live` using the project numbered-surface scan policy.
 5. Add a domain base protocol skill or base spec that states:
    - location
    - filename pattern
@@ -89,6 +94,8 @@ This skill operationalizes `notes/index/103-File.Numbering.Protocol.md`. The ind
 ## Review Checklist
 
 - Is the target path routed to the intended range?
+- Has `agentos prefix next --project ... --target ...` been run successfully for this exact allocation?
+- Does the resolved project root match the intended artifact surface, or was `--project` supplied explicitly?
 - Does the filename pattern use the same width as the allocator?
 - Does the protocol state the exact numbering source?
 - Is the minimum floor explicit?

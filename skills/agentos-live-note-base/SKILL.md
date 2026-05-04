@@ -38,7 +38,7 @@ Live-note implications:
 
 ## Migration Status
 
-- Current CLI allocation is project-aware through `agentos prefix next --target notes/live`.
+- Current CLI allocation is project-aware through `agentos prefix next --project <project> --target notes/live`.
 - The default project prefix policy scans numbered Agentos surfaces under `notes` and `dev/live`, then allocates from the rolling `500-999` route for `notes/live`.
 - Reserved names such as `010.TODOS.md` are manually assigned fixed-role prefixes. They are part of the numbering system but not ordinary allocator output.
 - Full consistency checks for duplicate numeric prefixes, range violations, and reserved-prefix drift are future `prefix doctor` or equivalent work.
@@ -53,13 +53,13 @@ Live-note implications:
 - Default project scan scope: `notes` and `dev/live`.
 
 ## Usage
-Run inside an initialized Agentos project:
+Run from the initialized Agentos project root:
 
 ```sh
-agentos prefix next --target notes/live
+agentos prefix next --project . --target notes/live
 ```
 
-Optional explicit project target:
+Explicit project target:
 
 ```sh
 agentos prefix next --project /path/to/repo --target notes/live
