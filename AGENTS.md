@@ -4,7 +4,7 @@
 
 `agentos-md` is the markdown implementation of the Agentos project.
 
-It owns `Md.Surface:Agentos`, including the durable index notes, live notes, skills, and markdown coordination surfaces used to define and operate the Agentos agentic framework.
+It owns `Md.Surface:Agentos.Stack`, including the durable index notes, live notes, skills, and markdown coordination surfaces used to define and operate the Agentos agentic framework.
 
 ## Surface Rules
 
