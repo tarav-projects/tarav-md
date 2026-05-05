@@ -13,7 +13,7 @@ Canonical TOC and orientation note for `notes/index/`.
 
 ## How To Read It
 
-- Start with `001-Agentic.Development.Workflow.md`.
+- Start with `001-Agentos.Hugentic.Flow.md`.
 - Use `ontology.md` when you need the current concept map or registered dotted names.
 - Use the numbered concept notes for durable definitions, rules, and boundaries.
 - Use migrated legacy notes only as migration evidence until their durable signal has been promoted or explicitly superseded.
@@ -23,7 +23,7 @@ Canonical TOC and orientation note for `notes/index/`.
 
 ### Core Concept Notes
 
-- `001-Agentic.Development.Workflow.md` — entry-point concept note for the agentic development subsystem inside Agentos.
+- `001-Agentos.Hugentic.Flow.md` — entry-point concept note for the human-agent project-development subsystem inside Agentos.
 - `100-Agentos.Index.Notes.md` — durable concept-note subsystem and SSOT rule for Agentos-style projects.
 - `101-Md.Surface.md` — markdown-implemented project surface and parameterized surfaces such as `Md.Surface:Agentos.Stack`.
 - `102-Dotted.Notation.md` — dotted concept names and parameterized notation such as `Maintenance.System:Agentos`.

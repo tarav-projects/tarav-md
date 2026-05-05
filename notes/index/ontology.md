@@ -50,9 +50,55 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 `Agentos.Mission` is a lightweight coordination surface for named blocks of work. It is opt-in coordination, not a full project-management system. See `107-Agentos.Mission.md`.
 
-### Agentic.Development.Workflow
+### Hugentic
 
-`Agentic.Development.Workflow` is the Agentos subsystem for developing projects with agents through recognizable surfaces, durable traces, and repeatable workflows rather than one-off ad hoc behavior. See `001-Agentic.Development.Workflow.md`.
+`Hugentic` describes a system, surface, workflow, or project designed for the human-agentic interface: humans and agents coordinating, exchanging context, making decisions, and co-working through explicit surfaces.
+
+### Agentos.Soft.Subsystem
+
+`Agentos.Soft.Subsystem` is a named responsibility area inside `Agentos.Stack`. It is an orientation surface, not a hard ownership container; components may participate in multiple soft subsystems.
+
+### Agentos.Subsystem.Model
+
+`Agentos.Subsystem.Model` defines how Agentos subsystems are named, documented, related, and represented as overlapping conceptual responsibility areas rather than folder, repo, package, or command ownership boundaries.
+
+### Agentos.Subsystem.Registry
+
+`Agentos.Subsystem.Registry` is the subsystem namespace/subregistry inside `Agentos.Index.Ontology.Registry`. It gives a low-resolution map of subsystem concepts and can live as a `## Subsystems` section or a linked-out index note if it grows.
+
+## Subsystems
+
+### Agentos.Hugentic.Flow
+
+`Agentos.Hugentic.Flow` is the human-agent project-development subsystem. It includes workflows and surfaces such as design sessions, durable index notes, live notes, TODO notes, project doctor passes, artifact handoffs, and related workflow skills. See `001-Agentos.Hugentic.Flow.md`.
+
+### Agentos.Project.System
+
+`Agentos.Project.System` is the subsystem for project identity, discovery, targeting, and project-scoped Agentos behavior. See `105-Agentos.Project.md`.
+
+### Agentos.Skill.System
+
+`Agentos.Skill.System` is the subsystem for reusable agent behaviors, skill routing, profile selection, import, and project-local skill depots. See `106-Agentos.Skills.md`.
+
+### Agentos.CLI.System
+
+`Agentos.CLI.System` is the subsystem for deterministic command surfaces that support humans, agents, scripts, and other Agentos workflows.
+
+### Agentos.Chatlas
+
+`Agentos.Chatlas` is the subsystem for working with chat-session data as a durable project resource for continuity, audit, and history-aware workflows.
+
+### Agentos.Tape.System
+
+`Agentos.Tape.System` is the subsystem for tape-like durable traces and structured records used by Agentos workflows.
+
+### Agentos.Forum
+
+`Agentos.Forum` is the subsystem for shared local communication surfaces that support multi-agent or asynchronous coordination.
+
+### Agentos.Iterante
+
+`Agentos.Iterante` is the subsystem for iterative agent execution workflows that can support or automate Agentos work.
 
 ### Design.Target.Model
 
