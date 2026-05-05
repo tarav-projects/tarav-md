@@ -13,8 +13,8 @@ Canonical TOC and orientation note for `notes/index/`.
 
 ## How To Read It
 
-- Start with `001-Agentos.Hugentic.Flow.md`.
-- Use `ontology.md` when you need the current concept map or registered dotted names.
+- Start with `109-Agentos.Hugentic.Flow.md`.
+- Use `001-ontology.md` when you need the current concept map or registered dotted names.
 - Use the numbered concept notes for durable definitions, rules, and boundaries.
 - Use migrated legacy notes only as migration evidence until their durable signal has been promoted or explicitly superseded.
 - Expect this surface to grow by adding high-signal concept notes, not by turning the index into a long manual or progress tracker.
@@ -23,7 +23,7 @@ Canonical TOC and orientation note for `notes/index/`.
 
 ### Core Concept Notes
 
-- `001-Agentos.Hugentic.Flow.md` — entry-point concept note for the human-agent project-development subsystem inside Agentos.
+- `109-Agentos.Hugentic.Flow.md` — entry-point concept note for the human-agent project-development subsystem inside Agentos.
 - `100-Agentos.Index.Notes.md` — durable concept-note subsystem and SSOT rule for Agentos-style projects.
 - `101-Md.Surface.md` — markdown-implemented project surface and parameterized surfaces such as `Md.Surface:Agentos.Stack`.
 - `102-Dotted.Notation.md` — dotted concept names and parameterized notation such as `Maintenance.System:Agentos`.
@@ -33,10 +33,11 @@ Canonical TOC and orientation note for `notes/index/`.
 - `106-Agentos.Skills.md` — skill selection, routing, and import model.
 - `107-Agentos.Mission.md` — lightweight mission coordination surface for named blocks of work.
 - `108-Agentos.Project.Doctor.md` — diagnosis-first workflow for checking `Agentos.Project:<target>` conformance to `Agentos.Stack`.
+- `110-Agentos.Canvas.md` — visual human/agent collaboration surface built on Obsidian Canvas files; Graph.Model, Inline.Note.Style, and CLI.
 
 ### Ontology
 
-- `ontology.md` — low-resolution registry of named Agentos concepts and links to fuller notes.
+- `001-ontology.md` — reserved low-resolution registry of named Agentos concepts and links to fuller notes.
 
 ### Migrated Skill Surface
 

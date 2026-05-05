@@ -14,7 +14,7 @@ This skill operationalizes:
 - `notes/index/108-Agentos.Project.Doctor.md`
 - `notes/index/105-Agentos.Project.md`
 - `notes/index/104-Maintenance.System.md`
-- `notes/index/ontology.md`
+- `notes/index/001-ontology.md`
 
 If this skill conflicts with `notes/index/`, the index wins and this skill should be updated.
 

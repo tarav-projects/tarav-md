@@ -54,7 +54,7 @@ If a source outside `notes/index/` is repeatedly being used as durable design tr
 - `Index.Block`: a high-signal block carrying one steering idea
 - `Index.Note.Style`: the desired mature note shape
 - `Agentos.Index.Writing.Principles`: judgment about what is worth preserving
-- `Agentos.Index.Ontology.Registry`: the low-resolution concept inventory
+- `Agentos.Index.Ontology.Registry`: the low-resolution concept inventory; `001-ontology.md` is its reserved entrypoint, and additional ontology files use ordinary dynamically allocated prefixes
 - `Agentos.Ontology.Workflows`: the workflows around concept emergence, lookup, registration, promotion, rename, and maintenance
 
 ## Maintenance State
@@ -82,4 +82,3 @@ This is note maintenance, not project progress tracking.
 ## Provenance
 
 Promoted from the closed design session at `../live/501-agentos-index-notes-design-session.md`.
-

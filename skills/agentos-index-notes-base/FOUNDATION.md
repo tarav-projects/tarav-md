@@ -28,7 +28,7 @@ This skill operationalizes the durable design model in `notes/index/`; it is not
 ## Finding the Index
 
 - In `agentos-md`, the index lives at `notes/index/`.
-- Use `notes/index/000-index.md` for routing and `notes/index/ontology.md` for registered concepts.
+- Use `notes/index/000-index.md` for routing and `notes/index/001-ontology.md` for registered concepts.
 - Other projects may declare their index location and structure in `AGENTS.md`.
 - If an index location cannot be found, ask the user in interactive mode or note the absence in autonomous reports.
 
@@ -60,7 +60,7 @@ This skill operationalizes the durable design model in `notes/index/`; it is not
 ## Ontology Behavior
 
 - Dotted names signal concepts.
-- Use `ontology.md` when concept identity matters.
+- Use `001-ontology.md` when concept identity matters.
 - Registry lookup is opportunistic, not mandatory for every task.
 - If the user uses an approximate or old concept name during design work, check the registry and introduce the registered name when useful.
 - Do not turn ordinary work into ontology maintenance when concept identity is not relevant.

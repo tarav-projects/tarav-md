@@ -12,7 +12,7 @@ Use this skill as the operational baseline for all `agentos-index-notes-*` skill
 The durable design source of truth is `notes/index/`, especially:
 
 - `notes/index/100-Agentos.Index.Notes.md`
-- `notes/index/ontology.md`
+- `notes/index/001-ontology.md`
 - `notes/index/102-Dotted.Notation.md`
 
 ## Workflow

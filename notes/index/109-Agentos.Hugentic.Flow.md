@@ -55,6 +55,7 @@ It does not own the full CLI, Chatlas, Tape, Forum, Iterante, or project identit
 - `skills/` packages reusable behaviors, especially workflow skills for adoption, maintenance, consolidation, and operation.
 - `notes/live/` captures in-progress design and working state.
 - `notes/index/` holds durable high-signal concept notes and steering constraints.
+- `notes/canvas/` holds visual collaboration surfaces for humans and agents. See `110-Agentos.Canvas.md`.
 - `dev/live/` or equivalent live-script surfaces support executable exploration when needed.
 - Durable artifacts such as design summaries capture converged decisions for later implementation or coordination.
 
@@ -119,7 +120,7 @@ A subsystem note should define the subsystem, explain its responsibility and bou
 ## Read Next
 
 - `000-index.md` for the current surface map.
-- `ontology.md` for registered Agentos concepts.
+- `001-ontology.md` for registered Agentos concepts.
 - `100-Agentos.Index.Notes.md` for the durable concept-note subsystem and SSOT rule.
 
 ## Provenance

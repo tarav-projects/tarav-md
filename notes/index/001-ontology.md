@@ -70,7 +70,7 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 ### Agentos.Hugentic.Flow
 
-`Agentos.Hugentic.Flow` is the human-agent project-development subsystem. It includes workflows and surfaces such as design sessions, durable index notes, live notes, TODO notes, project doctor passes, artifact handoffs, and related workflow skills. See `001-Agentos.Hugentic.Flow.md`.
+`Agentos.Hugentic.Flow` is the human-agent project-development subsystem. It includes workflows and surfaces such as design sessions, durable index notes, live notes, TODO notes, project doctor passes, artifact handoffs, and related workflow skills. See `109-Agentos.Hugentic.Flow.md`.
 
 ### Agentos.Project.System
 
@@ -116,6 +116,36 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 `Design.Implementation.CoEvolution` is the development dynamic where design understanding and implementation reshape each other. Progress means co-developing `Design.Target.Model` and `Current.Implementation`.
 
+## Canvas Surfaces
+
+### Agentos.Canvas
+
+`Agentos.Canvas` is a visual surface for human/agent collaboration, built on Obsidian `.canvas` files. Canvas files live in `notes/canvas/`. See `110-Agentos.Canvas.md`.
+
+### Agentos.Canvas.Graph.Model
+
+`Agentos.Canvas.Graph.Model` is the semantic graph language for Agentos Canvas files: TID.Pair identity, implicit types, edge rendering modes, topology constraints, and linter rules. See `110-Agentos.Canvas.md`.
+
+### TID.Pair
+
+`TID.Pair` is the atomic identity primitive for Agentos Canvas entities: a `type: id` declaration (e.g. `node: my-cli`, `edge: cli-to-missions`). May generalize beyond canvas as a common Agentos identity pattern.
+
+### Labeled.Edge
+
+`Labeled.Edge` is the compact edge rendering mode in `Agentos.Canvas.Graph.Model`: a direct canvas edge whose label string is its TID verbatim. See `110-Agentos.Canvas.md`.
+
+### Card.Edge
+
+`Card.Edge` is the expanded edge rendering mode in `Agentos.Canvas.Graph.Model`: a reified relationship expressed as a full inline note card (`node → edge card → node`). See `110-Agentos.Canvas.md`.
+
+### Canvas.Inline.Note.Style
+
+`Canvas.Inline.Note.Style` defines the required format for inline text nodes in Agentos Canvas files: `Md.Block` structure with a mandatory TID.Pair blockquote. See `110-Agentos.Canvas.md`.
+
+### Agentos.Canvas.CLI
+
+`Agentos.Canvas.CLI` is the CLI surface for agent interaction with canvas files. Entry point: `agentos canvas`. See `110-Agentos.Canvas.md`.
+
 ## Markdown Surfaces
 
 ### Md.Surface
@@ -156,7 +186,7 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 ### Agentos.Index.Ontology.Registry
 
-`Agentos.Index.Ontology.Registry` is the maintained concept inventory for an Agentos index surface. The default registry file is `ontology.md`; larger projects may split into additional `*-ontology.md` files.
+`Agentos.Index.Ontology.Registry` is the maintained concept inventory for an Agentos index surface. The reserved ontology entrypoint is `001-ontology.md`; additional ontology files should use ordinary dynamically allocated numeric prefixes.
 
 ### Agentos.Ontology.Workflows
 
@@ -212,7 +242,7 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 ### Usage.Skill
 
-`Usage.Skill` is a public usage surface that explains what a project is, what public interfaces it exposes, and how an external agent or user should use them.
+`Usage.Skill` is a public documentation skill for how to use a project. In Agentos-style projects, its hard facts derive from `Agentos.Index.Notes`. See `106-Agentos.Skills.md`.
 
 ### Canonical.Reference.Implementation
 

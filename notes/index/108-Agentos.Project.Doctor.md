@@ -70,7 +70,7 @@ Good skill-owned checks include:
 - whether derived surfaces drift from `Agentos.Index.Notes`
 - whether findings should become TODOs, issue reports, or implementation requests
 
-Mixed checks combine both layers. For example, `Doctor.CLI` can list dotted names missing from `ontology.md`, while `Doctor.Skill` judges whether those names are concepts, incidental prose, or migration debt.
+Mixed checks combine both layers. For example, `Doctor.CLI` can list dotted names missing from `001-ontology.md`, while `Doctor.Skill` judges whether those names are concepts, incidental prose, or migration debt.
 
 ## Diagnosis Workflow
 
@@ -105,7 +105,7 @@ Useful initial checks:
 - `.agentos/project.json` exists when the target claims to be an `Agentos.Project`
 - `AGENTS.md` exists when agent workflow guidance is expected
 - `notes/index/000-index.md` exists when index notes are present
-- `notes/index/ontology.md` exists when dotted concepts are used
+- `notes/index/001-ontology.md` exists when dotted concepts are used
 - `notes/live/010.TODOS.md` exists when live notes are used
 - skills exist or are intentionally absent
 - numbered files avoid obvious duplicate prefixes in active numbered surfaces
@@ -127,4 +127,3 @@ Useful initial checks:
 - `Doctor.CLI`
 - `Doctor.Skill`
 - `Agentos.Index.Notes`
-

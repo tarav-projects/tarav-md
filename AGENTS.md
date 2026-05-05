@@ -9,7 +9,7 @@ It owns `Md.Surface:Agentos.Stack`, including the durable index notes, live note
 ## Surface Rules
 
 - `notes/index/` is the active `Design.Target.Model:Agentos` surface.
-- Use `notes/index/ontology.md` for registered concept names and concept lookup.
+- Use `notes/index/001-ontology.md` for registered concept names and concept lookup.
 - Do not treat closed live design sessions as active authority; use them as provenance only.
 - Do not turn `AGENTS.md` into a progress tracker or design log.
 - Durable design truth belongs in `notes/index/`.
