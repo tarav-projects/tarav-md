@@ -14,65 +14,52 @@ Canvas is not a replacement for markdown surfaces — it is a complement. It exp
 
 Canvas files live in `notes/canvas/`, a sibling directory to `notes/live/` and `notes/index/`.
 
-## Agentos.Canvas.Graph.Model
+## Two-Layer Architecture
 
-`Agentos.Canvas.Graph.Model` is the semantic graph language for Agentos Canvas files.
+A single `.canvas` file contains two layers:
 
-### TID.Pair
+- **Model layer** — extra JSON fields Obsidian ignores. Owns topology (what exists, how it connects) and domain metadata.
+- **Canvas layer** — what Obsidian reads. Owns text content, positions, sizes, colors.
 
-The atomic identity primitive is the **TID.Pair**: a `type: id` declaration.
+Obsidian preserves unknown JSON fields on nodes, edges, and at the top level. This allows the model layer to live inside the same file with no separate model file.
 
-```
-node: my-cli
-edge: cli-to-missions
-```
+### SSOT By Concern
 
-Every entity in a canvas has a TID. Types are implicit — derived from context or declared inline.
+| Concern | Authority |
+|---|---|
+| Topology (cards, relationships) | Model layer |
+| Domain semantics (types, metadata) | Model layer |
+| Text content | Canvas layer |
+| Positions, sizes, colors | Canvas layer |
 
-### Implicit Types
+### Text Lifecycle
 
-- Node card → type `node` (declared via `> node: <id>` blockquote)
-- Edge card → type `edge` (declared via `> edge: <id>` blockquote)
-- Labeled edge → type `edge`, id is the label string verbatim
-- File node → type derived by CLI from relative file path
+Model → CLI migrate → canvas. One-way. The model is the staging area for text, the canvas is the final home. Both having text for the same card at the same time is an error (unless forced with a flag).
 
-### Edge Rendering Modes
+### Type Lifecycle
 
-Two modes, same graph-model citizen:
+Type lives in both layers permanently. Model declares it, canvas has it in the TID.Pair blockquote. Mismatch → linter error, agent resolves based on context.
 
-- **Labeled.Edge** — compact: label is the full TID (id = label verbatim). Direction via `fromEnd`/`toEnd`.
-- **Card.Edge** — expanded: full inline note card with `> edge: <id>`. Richer content capacity. Direction via `fromEnd`/`toEnd`.
+### CLI Role
 
-At the graph level they are identical. The difference is content capacity only.
+- **`lint`** — read-only validation of model↔canvas consistency.
+- **`sync`** — forward-pass model→canvas resolution. If the path is clear (model card with no canvas node, model edge-relationship with no canvas edge), it applies automatically. Ambiguous cases are reported, not resolved.
 
-### Direction
+## Canvas.Card
 
-Expressed via `fromEnd` / `toEnd` on any edge. No separate direction vocabulary — the canvas JSON fields are the model.
+The visual primitive — a card on the canvas. "Card" is the visual term; "node" is reserved for graph-level semantics.
 
-### Topology Constraint
+### Card.ID
 
-No naked direct edges. Every direct edge between two node cards must be a Labeled.Edge (label required). If no label fits, promote to a Card.Edge.
+Identity via TID.Pair.
 
-### Connector Label Rule
+### Card.Type
 
-Card.Edge connectors (between a node card and an edge card) must carry no label or `*`. Any other label is a linting error.
+Type via TID.Pair. Domain-defined — Agentos.Canvas does not impose type names. In a flow graph a card might be `step: validate-input`; in an architecture graph, `module: auth`.
 
-### Linter Rules (v1)
+### Card.Text
 
-1. Every entity has a valid, unique TID.
-2. Every direct edge between two node cards must have a non-empty, non-`*` label.
-3. Every edge connected to an edge card must have no label or `*`.
-4. Card.Edge connectors must form a consistent directed path — the edge card is a relay, not a sink or source:
-   - `node -> edge.card <- node` — error (sink)
-   - `node <- edge.card -> node` — error (source)
-   - `node -> edge.card -- node` — error (mixed)
-   - `node -- edge.card -> node` — error (mixed)
-
-## Canvas.Inline.Note.Style
-
-`Canvas.Inline.Note.Style` defines the required format for inline text nodes in Agentos Canvas files.
-
-Inline text nodes follow `Md.Block` structure with a mandatory TID.Pair declaration:
+Text content lives on the canvas layer. Follows `Md.Block` structure with a TID.Pair declaration:
 
 ```md
 ## Block title
@@ -80,24 +67,45 @@ Inline text nodes follow `Md.Block` structure with a mandatory TID.Pair declarat
 - rest of the block
 ```
 
-- The `## heading` is the label; the `> type: <id>` blockquote is the TID.Pair.
-- Applies only to inline text nodes. File nodes declare no TID inside the file — the CLI derives it from the path.
-- Inline notes are valid plain markdown, readable outside Obsidian.
-- Analogous to `Index.Block` for index notes.
+### Card.Relationship
+
+Relationships between cards. The model declares them; the linter checks that the canvas satisfies them.
+
+| Relationship | Meaning | Linter checks |
+|---|---|---|
+| `edge` | Flow connection, rendered as a canvas edge | Canvas has an edge between the cards |
+| `adjacent` | Cards touch borders | Canvas positions: bounds touch |
+| `contains` | One card inside another | Canvas positions: child fits within parent |
+
+New relationship types can be added as new linter rules without changing the architecture.
+
+## Edge Rendering
+
+### Labeled.Edge
+
+Compact: the edge label is the full identity (id = label verbatim). Direction via `fromEnd`/`toEnd`.
+
+### Card.Edge
+
+Expanded: a full card with its own TID.Pair. Richer content capacity. Connected to other cards with `*` or unlabeled connectors. Direction via `fromEnd`/`toEnd`.
+
+At the graph level they are identical. The difference is content capacity only.
+
+### Direction
+
+Expressed via `fromEnd` / `toEnd` on any edge. No separate direction vocabulary — the canvas JSON fields are the model.
 
 ## Agentos.Canvas.CLI
 
 Entry point: `agentos canvas`.
 
-## CLI.Normalization
-
-The CLI surfaces a uniform object for each node and edge regardless of rendering mode (card vs label, file vs inline). Design TBD.
+Current commands: `init`, `show`, `add-card`, `add-edge`, `place`, `sync`, `lint`.
 
 ## Visual Conventions
 
-- **Node cards** — default color.
 - **Edge cards** — color `"6"` (purple) to visually distinguish them as connective tissue.
 
 ## Provenance
 
-Promoted from the closed design session at `../live/501-agentos-canvas-design-session.md`.
+- Promoted from design session at `../live/501-agentos-canvas-design-session.md`.
+- Updated with two-layer model and domain primitives from `../live/510-agentos-canvas-model-design-session.md`.

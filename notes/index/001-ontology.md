@@ -124,31 +124,43 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 ### Agentos.Canvas
 
-`Agentos.Canvas` is a visual surface for human/agent collaboration, built on Obsidian `.canvas` files. Canvas files live in `notes/canvas/`. See `110-Agentos.Canvas.md`.
+`Agentos.Canvas` is a visual surface for human/agent collaboration, built on Obsidian `.canvas` files. A single `.canvas` file contains two layers: a model layer (topology, domain semantics) and a canvas layer (text, positions, colors). Canvas files live in `notes/canvas/`. See `110-Agentos.Canvas.md`.
 
-### Agentos.Canvas.Graph.Model
+### Canvas.Card
 
-`Agentos.Canvas.Graph.Model` is the semantic graph language for Agentos Canvas files: TID.Pair identity, implicit types, edge rendering modes, topology constraints, and linter rules. See `110-Agentos.Canvas.md`.
+`Canvas.Card` is the visual primitive — a card on the canvas. "Card" is the visual term; "node" is reserved for graph-level semantics. See `110-Agentos.Canvas.md`.
+
+### Card.ID
+
+`Card.ID` is the identity of a card, expressed as a TID.Pair.
+
+### Card.Type
+
+`Card.Type` is the domain-defined type of a card, expressed as a TID.Pair. Lives in both model and canvas layers; mismatches are linter errors. See `110-Agentos.Canvas.md`.
+
+### Card.Text
+
+`Card.Text` is the text content of a card. Lives on the canvas layer. Follows `Md.Block` structure with a TID.Pair declaration. Migrated from model to canvas via CLI. See `110-Agentos.Canvas.md`.
+
+### Card.Relationship
+
+`Card.Relationship` is a declared relationship between cards. The model declares it; the linter checks that the canvas satisfies it. Types: `edge` (flow connection), `adjacent` (cards touch borders), `contains` (card inside another). See `110-Agentos.Canvas.md`.
 
 ### TID.Pair
 
-`TID.Pair` is the atomic identity primitive for Agentos Canvas entities: a `type: id` declaration (e.g. `node: my-cli`, `edge: cli-to-missions`). May generalize beyond canvas as a common Agentos identity pattern.
+`TID.Pair` is the atomic identity primitive: a `type: id` declaration (e.g. `step: validate-input`, `module: auth`). Types are domain-defined, not imposed by Agentos.Canvas. May generalize beyond canvas as a common Agentos identity pattern.
 
 ### Labeled.Edge
 
-`Labeled.Edge` is the compact edge rendering mode in `Agentos.Canvas.Graph.Model`: a direct canvas edge whose label string is its TID verbatim. See `110-Agentos.Canvas.md`.
+`Labeled.Edge` is the compact edge rendering mode: a direct canvas edge whose label string is its identity verbatim. See `110-Agentos.Canvas.md`.
 
 ### Card.Edge
 
-`Card.Edge` is the expanded edge rendering mode in `Agentos.Canvas.Graph.Model`: a reified relationship expressed as a full inline note card (`node → edge card → node`). See `110-Agentos.Canvas.md`.
-
-### Canvas.Inline.Note.Style
-
-`Canvas.Inline.Note.Style` defines the required format for inline text nodes in Agentos Canvas files: `Md.Block` structure with a mandatory TID.Pair blockquote. See `110-Agentos.Canvas.md`.
+`Card.Edge` is the expanded edge rendering mode: a reified relationship expressed as a full card with its own TID.Pair. See `110-Agentos.Canvas.md`.
 
 ### Agentos.Canvas.CLI
 
-`Agentos.Canvas.CLI` is the CLI surface for agent interaction with canvas files. Entry point: `agentos canvas`. See `110-Agentos.Canvas.md`.
+`Agentos.Canvas.CLI` is the CLI surface for agent and human programmatic interaction with canvas files. Entry point: `agentos canvas`. See `110-Agentos.Canvas.md`.
 
 ## Markdown Surfaces
 
