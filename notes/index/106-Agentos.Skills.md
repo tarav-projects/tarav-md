@@ -64,23 +64,21 @@ Command roles:
 - `import --force` rebuilds the managed symlink layer without deleting conflicting non-symlink entries
 - `status` compares depots against selected skills
 
+## Usage.Surface
+
+`Usage.Surface` is the usage-useful subset of `Public.Surface`: the surfaces that help external agents and humans understand how to use a project. It includes skills, CLI help, index notes, and other documentation surfaces.
+
 ## Usage.Skill
 
-`Usage.Skill` is a public documentation skill for how to use a project.
+`Usage.Skill` is a special-purpose, usage-centric skill designed primarily as documentation. Skills exist on a spectrum of how usage-centric they were designed to be; a `Usage.Skill` is at the documentation end.
 
-- It is an independent documentation surface.
+- It is an independent documentation surface, not the design SSOT.
 - Its hard facts derive from `Agentos.Index.Notes`.
 - No project-design-relevant fact should live only in a `Usage.Skill`.
-- It may organize project usage around practical questions, workflows, examples, commands, and safe operating boundaries instead of mirroring the structure of `Agentos.Index.Notes`.
+- It may organize usage around practical questions, workflows, examples, commands, and safe operating boundaries rather than mirroring the index structure.
 - It can explain, summarize, and compile index truth for practical use.
 
-A standard minimal `Usage.Skill` may be mostly pointers:
-
-- where the project index lives
-- where its table of contents lives
-- where concept lookup lives
-- whether the project surfaces a CLI
-- which surfaces to read for deeper context
+The master `Usage.Skill` of a project coordinates and curates its `Usage.Surface`. It routes to whichever surface best answers a given question: skills, CLI help, or index notes. It is the opinionated entry point for external agents.
 
 ## Boundaries
 

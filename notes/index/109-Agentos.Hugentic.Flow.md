@@ -67,11 +67,13 @@ Current components include:
 - `Agentos.Project.Doctor`, the diagnosis-first workflow for evaluating how well a project conforms to `Agentos.Stack`.
 - `Agentos.Dev.Notes`, the internal development markdown surface for project work.
 - `TODOS.Note`, the lightweight reserved live note for deferred work.
+- `ISSUES.Note`, the lightweight reserved live note for issue-shaped active work.
+- `Agentos.AGENTS.md`, the project-local Agentos instruction surface for custom natural-language workflow guidance.
 - `Live.Scripts`, the script-shaped working surface for executable or executable-looking exploration.
 - Design-session and design-summary artifacts, which support convergence from discussion into durable design or implementation.
 - Implementation-request and issue-report artifacts, which support follow-up implementation and maintenance work.
 - Hugentic Flow workflow skills such as `agentos-design-discussion`, `agentos-design-session`, `agentos-design-implementation`, `agentos-project-doctor`, and artifact skills.
-- Markdown coordination guidance such as `AGENTS.md`, when used as local agent workflow guidance rather than design authority.
+- Markdown coordination guidance such as root `AGENTS.md` and `.agentos/AGENTS.md`, when used as local agent workflow guidance rather than design authority.
 
 Component lists are orientation surfaces, not ownership manifests. The same component can participate in more than one `Agentos.Soft.Subsystem`.
 
@@ -85,6 +87,7 @@ Important surfaces include:
 - `notes/live/`
 - `skills/`
 - `AGENTS.md`
+- `.agentos/AGENTS.md`
 
 ## Subsystem Notes
 
@@ -98,6 +101,7 @@ A subsystem note should define the subsystem, explain its responsibility and bou
 - `Agentos.Index.Notes`, because it changes the human workflow by making design intent durable and browsable, and changes the agent workflow by making the index the design SSOT and concept lookup surface.
 - `Agentos.Project.Doctor`, because it changes the human workflow by producing report-first project diagnosis, and changes the agent workflow through structured checks, evidence, and no-fix default behavior.
 - `TODOS.Note`, because it changes the human workflow by giving a common parking surface for deferred work, and changes the agent workflow by avoiding hidden reminders or chat-only TODOs.
+- `ISSUES.Note`, because it changes the human workflow by giving a common parking surface for active issues, and changes the agent workflow by avoiding hidden issue tracking or chat-only issue memory.
 
 ## Related Subsystems
 

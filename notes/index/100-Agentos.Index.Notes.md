@@ -56,6 +56,8 @@ If a source outside `notes/index/` is repeatedly being used as durable design tr
 - `Agentos.Index.Writing.Principles`: judgment about what is worth preserving
 - `Agentos.Index.Ontology.Registry`: the low-resolution concept inventory; `001-ontology.md` is its reserved entrypoint, and additional ontology files use ordinary dynamically allocated prefixes
 - `Agentos.Ontology.Workflows`: the workflows around concept emergence, lookup, registration, promotion, rename, and maintenance
+- `Ontology.Namespace`: an explicit organizing view over ontology concepts; namespaces can overlap and are not inferred from dotted notation alone
+- `Ontology.Integration.Hook`: a namespace for external concepts consumed locally, including local interpretation, mode, constraints, or mappings
 
 ## Maintenance State
 

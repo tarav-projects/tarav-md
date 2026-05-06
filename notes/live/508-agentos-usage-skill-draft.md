@@ -3,153 +3,96 @@
 ```md
 ---
 name: agentos-usage
-description: Use when working in an Agentos project or when you need a practical entrypoint for understanding how to use the Agentos project surfaces.
+description: Use when working in or with an Agentos project and you need a minimal orientation to the Agentos universe.
 ---
 
 # Agentos Usage
 
-Practical entrypoint for using an Agentos project.
+Minimal orientation to the Agentos universe for agents working in or with an Agentos project.
 
-This skill explains where to look, which surfaces matter, and how to avoid common authority and targeting mistakes. It is a usage surface, not the design source of truth.
+The durable design truth about Agentos lives in its index notes, not in this skill.
 
-## When To Use
+## What Agentos Is
 
-Use this skill when:
+Agentos is an operating system for agent-oriented work: conventions, surfaces, skills, and CLI tools for developing and using projects with agents and humans together. A typical use is during human/agent co-development of a project — the Hugentic workflow.
 
-- working inside a project that adopts Agentos
-- trying to understand the project's public surfaces
-- deciding where durable project knowledge lives
-- deciding whether a directory is an `Agentos.Project`
-- using Agentos commands or skills against a project target
+## The Surfaces
 
-Do not use this skill as a substitute for project-specific instructions, current user directions, or the project's durable index notes.
+An `Agentos.Project` is a folder which contains `.agentos/project.json`. That file is the canonical project identity marker. Agentos-looking folders (`notes/`, `skills/`, `.agents/`) are not proof by themselves.
 
-## First Steps
+Inside a project, the main surfaces are:
 
-1. Read the current user request.
-2. Read local `AGENTS.md` files that apply to the workspace.
-3. Check whether the target is an Agentos project by looking for:
+**Index** — `notes/index/`
+The durable design-truth surface. Concept notes, ontology, and stable decisions live here. Start with `000-index.md` and `001-ontology.md`.
 
-```txt
-.agentos/project.json
-```
+**Live Notes** — `notes/live/`
+The working surface. Active design sessions, TODOs, reports, and handoffs. Not authority — durable signal gets promoted to the index.
 
-4. If the task needs project design context, use the project index:
+**Skills** — `skills/`
+Reusable agent workflows. Imported into a project as managed symlinks via the Agentos CLI. See `agentos skills`
 
-```txt
-notes/index/000-index.md
-```
+**CLI** — `agentos`
+The project CLI for deterministic operations, checks, and maintenance. Use `agentos --help` to discover commands.
 
-5. If the task needs concept lookup, use:
+## Minimal Usage Guide
+
+### Orienting in a project
+
+Read the project index to understand what the project is and what design decisions have been made:
 
 ```txt
-notes/index/001-ontology.md
+notes/index/000-index.md    # table of contents and router
+notes/index/001-ontology.md # concept lookup
 ```
 
-## Authority Order
+Use `001-ontology.md` first when you need to resolve a named concept.
 
-When sources disagree, use this order:
+### Live notes lifecycle
 
-1. Current user instructions.
-2. Applicable `AGENTS.md` instructions.
-3. Durable project index notes in `notes/index/`.
-4. Project usage skills and other public documentation surfaces.
-5. Live notes, issue reports, design sessions, and implementation artifacts as evidence.
-
-Closed live design sessions are provenance, not active authority.
-
-## Common Project Surfaces
-
-### Project Identity
-
-```txt
-.agentos/project.json
-```
-
-This is the canonical marker that a directory is an `Agentos.Project`.
-
-Agentos-looking folders do not define project identity by themselves. Do not treat these as proof of an Agentos project:
-
-```txt
-.agents/
-.claude/
-skills/
-notes/
-```
-
-### Project Index
-
-```txt
-notes/index/
-```
-
-The project index is the durable design-truth surface.
-
-Start with:
-
-```txt
-notes/index/000-index.md
-notes/index/001-ontology.md
-```
-
-### Live Notes
-
-```txt
-notes/live/
-```
-
-Live notes are working surfaces for temporary coordination, active design sessions, TODOs, reports, or handoffs. Promote durable design truth into `notes/index/`.
-
-### Skills
-
-```txt
-skills/
-```
-
-Skills are reusable agent workflows. They operationalize behavior, but major design concepts should not live only in skills.
-
-### Project CLI
-
-If the project exposes a CLI, prefer documented project commands for deterministic operations, checks, transformations, and maintenance workflows.
-
-For Agentos project commands, prefer explicit project targeting when available.
-
-## Project Targeting
-
-Agentos project-aware commands should target projects explicitly.
-
-Typical forms:
+Live notes are created for a working session and promoted when they produce durable signal. Use `agentos` to allocate the next prefix:
 
 ```sh
-agentos <command> --project <path>
-agentos <command> --project
+agentos live-note --project
 ```
 
-Bare `--project` means the current directory is the intended project target.
+Durable design truth belongs in `notes/index/`, not in live notes.
 
-Do not silently initialize or modify an Agentos project just because implicit discovery failed.
+→ `agentos-live-note-base` skill
 
-## Safe Operating Rules
+### Project doctor pass
 
-- Do not treat copied skills, agent folders, or assistant config folders as project identity.
-- Do not turn index notes into progress trackers.
-- Do not treat closed live notes as current design authority.
-- Do not assume Agentos implementation repositories define required structure for every Agentos-adopting project.
-- Do not add project-design-relevant facts only to usage documentation.
-- When a usage skill and the project index conflict, prefer the project index.
+Run a doctor pass to check how well a project conforms to the Agentos stack model. Report-only by default.
 
-## Deeper Context
-
-For Agentos's own markdown surface, the usual durable entrypoints are:
-
-```txt
-notes/index/000-index.md
-notes/index/001-ontology.md
-notes/index/101-Md.Surface.md
-notes/index/105-Agentos.Project.md
-notes/index/106-Agentos.Skills.md
-notes/index/108-Agentos.Project.Doctor.md
+```sh
+agentos doctor --project
 ```
 
-Use the ontology first when you need to resolve a named concept. Use the numbered notes when you need the durable design details behind that concept.
+→ `agentos-project-doctor` skill
+
+### Skills import
+
+Sync the selected skill catalog into the project depots:
+
+```sh
+agentos skills import --project
+agentos skills status --project
+```
+
+→ `106-Agentos.Skills.md` for the full source and profile model
+
+## Where To Find More
+
+| Subject | Surface |
+|---|---|
+| Hugentic workflow overview | `notes/index/109-Agentos.Hugentic.Flow.md` |
+| Project identity and targeting | `notes/index/105-Agentos.Project.md` |
+| Skills system | `notes/index/106-Agentos.Skills.md` |
+| Index notes system | `agentos-index-notes-base` skill |
+| Live notes | `agentos-live-note-base` skill |
+| Project doctor | `agentos-project-doctor` skill |
+| Design sessions | `agentos-design-discussion` skill |
+| File numbering protocol | `agentos-file-numbering-base` skill |
+| Concept lookup | `notes/index/001-ontology.md` |
+| Full index | `notes/index/000-index.md` |
+| CLI commands | `agentos --help` |
 ```

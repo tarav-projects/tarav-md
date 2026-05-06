@@ -6,6 +6,10 @@
 
 It owns `Md.Surface:Agentos.Stack`, including the durable index notes, live notes, skills, and markdown coordination surfaces used to define and operate the Agentos agentic framework.
 
+## Orientation
+
+Load the `agentos-usage` skill at the start of a session for a minimal orientation to the Agentos universe and its surfaces.
+
 ## Surface Rules
 
 - `notes/index/` is the active `Design.Target.Model:Agentos` surface.

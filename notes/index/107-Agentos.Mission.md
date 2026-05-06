@@ -60,12 +60,14 @@ Examples:
 - implementation plans live in live notes or implementation artifacts
 - specs and durable concepts live in index notes
 - deferred reminders live in `TODOS.Note`
+- active issue capture can live in `ISSUES.Note`
 - durable issues can live in issue-report artifacts
 
 ## Related Concepts
 
 - `Agentos.Index.Notes`
 - `TODOS.Note`
+- `ISSUES.Note`
 - `Agentos.Dev.Notes`
 - `Public.Surface`
 - `Project.CLI`

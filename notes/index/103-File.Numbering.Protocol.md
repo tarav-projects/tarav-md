@@ -54,6 +54,7 @@ For Agentos, `agentos prefix` already exists as a deterministic helper. The desi
 - `notes/index/000-index.md` is a reserved routing note.
 - `notes/index/001-ontology.md` is the reserved ontology registry entrypoint.
 - `notes/live/010.TODOS.md` is a reserved TODO note.
+- `notes/live/011.ISSUES.md` is a reserved issues note.
 - new stable index notes should use `100-499`.
 - ordinary live notes should use `500-999`.
 - ordinary live scripts should use `500-999`.
@@ -63,6 +64,7 @@ For Agentos, `agentos prefix` already exists as a deterministic helper. The desi
 - `Reserved.Notes`
 - `Agentos.Index.Notes`
 - `TODOS.Note`
+- `ISSUES.Note`
 - `Live.Scripts`
 - `Project.CLI`
 

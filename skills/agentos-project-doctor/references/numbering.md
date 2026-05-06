@@ -17,6 +17,7 @@ Do not include archived or migrated evidence unless the check is explicitly abou
 For active surfaces:
 
 - find files beginning with `NNN-` or reserved `NNN.` forms
+- identify active files that are not numbered and not clearly reserved
 - detect duplicate numeric prefixes within each active surface
 - flag obvious range violations:
   - `000-099`: reserved files
@@ -31,7 +32,7 @@ For active surfaces:
 ## Expected Findings
 
 - `fail`: duplicate numeric prefixes identify different active files in the same active surface.
+- `warn`: active files are unnumbered without a clear reserved-role reason.
 - `warn`: active files appear outside expected ranges.
 - `info`: numbering is partially migrated but intentionally transitional.
 - `pass`: no obvious duplicate or range issues in active surfaces checked.
-

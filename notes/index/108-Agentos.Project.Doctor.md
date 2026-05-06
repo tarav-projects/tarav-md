@@ -68,6 +68,7 @@ Good skill-owned checks include:
 - whether the project appears to partially adopt Agentos and what that implies
 - whether dotted concepts are meaningful enough to require registry attention
 - whether derived surfaces drift from `Agentos.Index.Notes`
+- whether the project's `Usage.Surface` is coherent and derives hard facts from the index
 - whether findings should become TODOs, issue reports, or implementation requests
 
 Mixed checks combine both layers. For example, `Doctor.CLI` can list dotted names missing from `001-ontology.md`, while `Doctor.Skill` judges whether those names are concepts, incidental prose, or migration debt.
@@ -96,19 +97,50 @@ The doctor should distinguish:
 
 A project can be partially adopting Agentos. Missing surfaces are not automatically failures; they become findings when they conflict with declared adoption, observed usage, or the desired model for the target.
 
+## Optional Surface Policy
+
+`Agentos.Project` requires `.agentos/project.json`.
+
+Other Agentos surfaces are optional by default at the level of project capability adoption.
+
+This means:
+
+- if a project does not use a capability, the absence of that surface is not a finding
+- if a project does use a capability through a near-standard, overlapping, or off-protocol alternative, the doctor should warn that the project is not using the canonical Agentos surface
+- if the canonical Agentos surface is adopted, the doctor should enforce that surface's internal protocol
+
+The doctor should therefore ask two questions for optional surfaces:
+
+1. is this capability present at all?
+2. if yes, is the project using the canonical Agentos surface for it?
+
+Examples:
+
+- no `skills/` and no skill-like workflow packages: no finding
+- skill-like workflow packages exist outside `skills/`: warn about overlapping or nonstandard skill surfaces
+- no `notes/index/`: no finding if the project does not appear to use an index-like durable design surface
+- durable index-like design/reference notes exist outside `notes/index/`: warn about overlapping or nonstandard index-surface adoption
+- `notes/live/TODOS.md` instead of `notes/live/010.TODOS.md`: warn because the capability is present through a near-standard reserved-note alternative
+- `notes/live/ISSUES.md` instead of `notes/live/011.ISSUES.md`: warn because the capability is present through a near-standard reserved-note alternative
+
+Absence alone is not enough for a warning on optional surfaces. Findings should come from broken mandatory identity, malformed adopted surfaces, overlapping near-standard alternatives, or conflicting authority between adopted surfaces.
+
 ## Initial Agentos Project Checks
 
 The first scope should stay modest.
 
 Useful initial checks:
 
-- `.agentos/project.json` exists when the target claims to be an `Agentos.Project`
-- `AGENTS.md` exists when agent workflow guidance is expected
-- `notes/index/000-index.md` exists when index notes are present
-- `notes/index/001-ontology.md` exists when dotted concepts are used
-- `notes/live/010.TODOS.md` exists when live notes are used
-- skills exist or are intentionally absent
+- `.agentos/project.json` exists and parses as JSON for every target being evaluated as an `Agentos.Project`
+- `AGENTS.md` exists at the project root, unless the target clearly establishes a different root-guidance convention
+- `notes/index/000-index.md` exists when `notes/index/` is adopted
+- `notes/index/001-ontology.md` exists when `notes/index/` is adopted
+- `000-index.md` and `001-ontology.md` are checked for staleness relative to the active index surface
+- TODO notes are optional; when a TODO note exists under `notes/live/`, it uses the reserved `notes/live/010.TODOS.md` path
+- issue notes are optional; when an issues note exists under `notes/live/`, it uses the reserved `notes/live/011.ISSUES.md` path
+- skills are optional; when skill-like workflow packages exist, canonical Agentos skills should live in `skills/`
 - numbered files avoid obvious duplicate prefixes in active numbered surfaces
+- active adopted numbered surfaces avoid unnumbered files unless the file is clearly reserved or intentionally outside the numbering protocol
 - durable design truth is not only in skills, live notes, or `AGENTS.md`
 
 ## Relation To Maintenance.System

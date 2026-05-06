@@ -33,14 +33,14 @@ Live-note implications:
 
 - Ordinary agent-created live notes should use `500-999`.
 - Reserved live notes may use fixed values in `000-099`.
-- Example reserved live note: `notes/live/010.TODOS.md`.
+- Example reserved live notes: `notes/live/010.TODOS.md`, `notes/live/011.ISSUES.md`.
 - Note numbers should be unique across the project md surface, not only inside `notes/live/`.
 
 ## Migration Status
 
 - Current CLI allocation is project-aware through `agentos prefix next --project-base <project-root-basename> --target notes/live`.
 - The default project prefix policy scans numbered Agentos surfaces under `notes` and `dev/live`, then allocates from the rolling `500-999` route for `notes/live`.
-- Reserved names such as `010.TODOS.md` are manually assigned fixed-role prefixes. They are part of the numbering system but not ordinary allocator output.
+- Reserved names such as `010.TODOS.md` and `011.ISSUES.md` are manually assigned fixed-role prefixes. They are part of the numbering system but not ordinary allocator output.
 - Full consistency checks for duplicate numeric prefixes, range violations, and reserved-prefix drift are future `prefix doctor` or equivalent work.
 
 ## Prefix CLI

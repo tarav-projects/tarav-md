@@ -16,6 +16,7 @@ Rules:
 
 - `.agentos/project.json` is the canonical marker for project existence.
 - `.agentos/config.json` may provide project-local config, but it does not define project existence.
+- `.agentos/AGENTS.md` may provide project-local Agentos instructions, but it does not define project existence.
 - exported agent folders, skill depots, `.agents/`, `.claude/`, and similar surfaces do not define an `Agentos.Project`.
 
 ## Agentos.Project.Marker
@@ -29,6 +30,20 @@ The marker is:
 ```
 
 The marker owns project identity. Project config, skill depots, notes, `.agents/`, `.claude/`, and other Agentos-looking surfaces may indicate adoption, but they do not prove project identity by themselves.
+
+## Agentos.AGENTS.md
+
+`Agentos.AGENTS.md` is the project-local natural-language Agentos instruction surface:
+
+```txt
+.agentos/AGENTS.md
+```
+
+It is human-writable and can contain project-specific guidance for Agentos workflows and skills.
+
+Skills may load it when custom local instructions or interpretation guidance matter. The surface is general Agentos project guidance, not a doctor-specific config file.
+
+`.agentos/AGENTS.md` does not define project identity. The identity marker remains `.agentos/project.json`.
 
 ## Naming Boundary
 
@@ -112,9 +127,11 @@ Safety rule:
 - `Project.CLI`
 - `Project.Discovery.System`
 - `Agentos.Project.Marker`
+- `Agentos.AGENTS.md`
 - `Agentos.Skills`
 - `Maintenance.System`
 - `Public.Surface`
+- `Usage.Surface`
 - `Agentos.Stack`
 - `Agentos.Implementation`
 

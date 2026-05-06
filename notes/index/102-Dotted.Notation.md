@@ -11,6 +11,7 @@ A dotted name is a signal that the phrase refers to a concept, not just casual p
 - Dot depth is flexible and should be natural to the concept.
 - Dots provide context, but they are not a strict hierarchy or namespace system.
 - The definition and relationships live in notes and registry entries, not in the name alone.
+- `Ontology.Namespace` must be explicit; do not infer a namespace from a dotted prefix alone.
 
 Examples:
 
@@ -76,6 +77,7 @@ Parameterized references may appear as examples or references in the ontology re
 
 - `Agentos.Index.Ontology.Registry`
 - `Agentos.Ontology.Workflows`
+- `Ontology.Namespace`
 - `Stub.Convention`
 - `Maintenance.System`
 

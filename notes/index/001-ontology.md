@@ -26,6 +26,10 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 `Agentos.Project.Marker` is the canonical filesystem proof that a directory is an `Agentos.Project`: `.agentos/project.json`. See `105-Agentos.Project.md`.
 
+### Agentos.AGENTS.md
+
+`Agentos.AGENTS.md` is the project-local natural-language Agentos instruction surface at `.agentos/AGENTS.md`. Humans can write it directly, and Agentos skills may load it when they need project-specific custom instructions or local interpretation guidance. See `105-Agentos.Project.md`.
+
 ### Agentos.Project:agentos-py
 
 `Agentos.Project:agentos-py` means `agentos-py` viewed as a concrete project adopting the Agentos project model.
@@ -64,13 +68,13 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 ### Agentos.Subsystem.Registry
 
-`Agentos.Subsystem.Registry` is the subsystem namespace/subregistry inside `Agentos.Index.Ontology.Registry`. It gives a low-resolution map of subsystem concepts and can live as a `## Subsystems` section or a linked-out index note if it grows.
+`Agentos.Subsystem.Registry` is an `Ontology.Namespace` inside `Agentos.Index.Ontology.Registry` for organizing concepts related to Agentos internal subsystem structure. It gives a low-resolution map of subsystem concepts and can live as a `## Subsystems` section or a linked-out index note if it grows.
 
 ## Subsystems
 
 ### Agentos.Hugentic.Flow
 
-`Agentos.Hugentic.Flow` is the human-agent project-development subsystem. It includes workflows and surfaces such as design sessions, durable index notes, live notes, TODO notes, project doctor passes, artifact handoffs, and related workflow skills. See `109-Agentos.Hugentic.Flow.md`.
+`Agentos.Hugentic.Flow` is the human-agent project-development subsystem. It includes workflows and surfaces such as design sessions, durable index notes, live notes, TODO notes, issues notes, project doctor passes, artifact handoffs, and related workflow skills. See `109-Agentos.Hugentic.Flow.md`.
 
 ### Agentos.Project.System
 
@@ -188,6 +192,14 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 `Agentos.Index.Ontology.Registry` is the maintained concept inventory for an Agentos index surface. The reserved ontology entrypoint is `001-ontology.md`; additional ontology files should use ordinary dynamically allocated numeric prefixes.
 
+### Ontology.Namespace
+
+`Ontology.Namespace` is an explicit bounded organizing view over ontology concepts. Namespaces are not inferred from dotted notation, are not exclusive ownership containers, and may overlap or share concepts.
+
+### Ontology.Integration.Hook
+
+`Ontology.Integration.Hook` is an `Ontology.Namespace` where one project records external concepts it consumes from another project's ontology, plus local interpretation, implementation mode, constraints, or mappings.
+
 ### Agentos.Ontology.Workflows
 
 `Agentos.Ontology.Workflows` describes how concepts emerge, get named, enter the registry, receive dedicated notes, get renamed, and are maintained through agent discussion and maintenance work.
@@ -202,11 +214,15 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 ### Reserved.Notes
 
-`Reserved.Notes` are notes with fixed system roles and stable discovery expectations, such as `notes/index/000-index.md` and `notes/live/010.TODOS.md`.
+`Reserved.Notes` are notes with fixed system roles and stable discovery expectations, such as `notes/index/000-index.md`, `notes/live/010.TODOS.md`, and `notes/live/011.ISSUES.md`.
 
 ### TODOS.Note
 
 `TODOS.Note` is a lightweight reserved live note for parking TODO blocks and deferred work without turning the index into progress tracking.
+
+### ISSUES.Note
+
+`ISSUES.Note` is a lightweight reserved live note for parking issue-shaped active work such as defects, investigations, and unresolved problems without turning the index into progress tracking.
 
 ### Live.Scripts
 
@@ -240,9 +256,13 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 `Public.Surface` is the set of stable project-facing surfaces that agents and humans can rely on, such as a project CLI, usage skills, index notes, and documented artifacts.
 
+### Usage.Surface
+
+`Usage.Surface` is the usage-useful subset of `Public.Surface`: the surfaces that help external agents and humans understand how to use a project. It includes skills, CLI help, index notes, and other documentation surfaces. Not every surface in `Public.Surface` is equally usage-centric by design. See `106-Agentos.Skills.md`.
+
 ### Usage.Skill
 
-`Usage.Skill` is a public documentation skill for how to use a project. In Agentos-style projects, its hard facts derive from `Agentos.Index.Notes`. See `106-Agentos.Skills.md`.
+`Usage.Skill` is a special-purpose, usage-centric skill designed primarily as documentation. Skills exist on a spectrum of how usage-centric they were designed to be; a `Usage.Skill` is at the documentation end. The master `Usage.Skill` of a project coordinates and curates its `Usage.Surface` — it is the opinionated entry point for external agents. Its hard facts derive from `Agentos.Index.Notes`. See `106-Agentos.Skills.md`.
 
 ### Canonical.Reference.Implementation
 
