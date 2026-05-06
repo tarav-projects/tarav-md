@@ -79,6 +79,10 @@ Policy baseline:
 
 Load references based on the observed target surfaces and near-standard alternatives.
 
+Target-local guidance:
+
+- Load `.agentos/AGENTS.md` from the target project when it exists.
+
 Always load:
 
 - `references/project-identity.md`
@@ -86,10 +90,8 @@ Always load:
 
 Load when relevant:
 
-- `.agentos/AGENTS.md` from the target project when it exists.
 - `references/index-notes.md` when `notes/index/` exists or the project appears to use an index-like durable design surface.
-- `references/ontology-registry.md` when `notes/index/` exists or dotted concepts appear in an index-like durable design surface.
-- `references/ontology-registry.md` when integration ontology files, namespace notes, or cross-project concept declarations appear.
+- `references/ontology-registry.md` when `notes/index/` exists, dotted concepts appear in an index-like durable design surface, or integration ontology files, namespace notes, or cross-project concept declarations appear.
 - `references/reserved-notes.md` when `notes/live/` exists or a near-standard live TODO/issues note alternative appears.
 - `references/numbering.md` when numbered files exist in active Agentos surfaces or in near-standard overlapping alternatives.
 - `references/authority-drift.md` when `AGENTS.md`, `skills/`, `notes/live/`, or `notes/index/` exist.
