@@ -18,10 +18,14 @@ Canvas files live in `notes/canvas/`, a sibling directory to `notes/live/` and `
 
 A single `.canvas` file contains two layers:
 
-- **Model layer** — extra JSON fields Obsidian ignores. Owns topology (what exists, how it connects) and domain metadata.
-- **Canvas layer** — what Obsidian reads. Owns text content, positions, sizes, colors.
+- **Model layer** — a top-level `_model` key in the canvas JSON. Obsidian ignores it. Owns topology (what exists, how it connects) and domain metadata.
+- **Canvas layer** — what Obsidian reads (`nodes`, `edges`). Owns text content, positions, sizes, colors.
 
-Obsidian preserves unknown JSON fields on nodes, edges, and at the top level. This allows the model layer to live inside the same file with no separate model file.
+Obsidian preserves unknown JSON fields on nodes, edges, and at the top level. This allows the model layer to live inside the same file under `_model` with no separate model file.
+
+### Model Format
+
+The `_model` format is the single JSON schema for model data. It is used both inside `.canvas` files (under the `_model` key) and as the input format for `agentos canvas init`. No separate input format exists — init takes a model file directly.
 
 ### SSOT By Concern
 
@@ -40,9 +44,17 @@ Model → CLI migrate → canvas. One-way. The model is the staging area for tex
 
 Type lives in both layers permanently. Model declares it, canvas has it in the TID.Pair blockquote. Mismatch → linter error, agent resolves based on context.
 
+### Linter As Protocol
+
+The linter defines canvas validity. A canvas file is well-formed if and only if the linter passes. The linter is not a validator sitting beside the protocol — it *is* the protocol implementation.
+
+Adding a rule to the linter adds a rule to the protocol. Removing a rule removes it.
+
+The standard agent workflow is: edit → lint → fix → lint → repeat until clean. The linter is the termination condition.
+
 ### CLI Role
 
-- **`lint`** — read-only validation of model↔canvas consistency.
+- **`lint`** — read-only. The protocol implementation.
 - **`sync`** — forward-pass model→canvas resolution. If the path is clear (model card with no canvas node, model edge-relationship with no canvas edge), it applies automatically. Ambiguous cases are reported, not resolved.
 
 ## Canvas.Card
@@ -79,11 +91,17 @@ Relationships between cards. The model declares them; the linter checks that the
 
 New relationship types can be added as new linter rules without changing the architecture.
 
-## Edge Rendering
+## Edge Identity
+
+Every edge label must be a valid TID.Pair (`type: id`). This is enforced by the linter.
+
+A TID.Pair on an edge **implies** a card — it does not require one. If a card with the same TID.Pair exists, it is the elaboration of that edge concept. TID.Pairs can repeat across edges (same relationship used in multiple places).
+
+This enables cross-type references: a `skill: deploy-auth` card can exist as a node and also appear as an edge label on a flow, meaning "this step is prompted by that skill."
 
 ### Labeled.Edge
 
-Compact: the edge label is the full identity (id = label verbatim). Direction via `fromEnd`/`toEnd`.
+Compact: the edge label is a TID.Pair. Direction via `fromEnd`/`toEnd`.
 
 ### Card.Edge
 
@@ -95,11 +113,33 @@ At the graph level they are identical. The difference is content capacity only.
 
 Expressed via `fromEnd` / `toEnd` on any edge. No separate direction vocabulary — the canvas JSON fields are the model.
 
+## Canvas.Renderer
+
+`Canvas.Renderer` is the subsystem responsible for all canvas layer mutations: positions, sizes, colors. It is the only authorized surface for intentional layout changes.
+
+### Separation of concerns
+
+- **Canvas commands** own model layer operations (topology, semantics). They write canvas nodes and edges only as a side-effect of model changes, at creation time only. They never modify existing positions or sizes.
+- **Canvas.Renderer** owns canvas layer operations. Layout is its domain.
+
+### Layout ownership
+
+Two properties have different ownership:
+
+| Property | Owner | CLI default |
+|---|---|---|
+| `x`, `y` | User / Renderer | Never overwritten |
+| `width`, `height` | User / Renderer | Set at card creation; never overwritten after |
+
+### Renderer design intent
+
+The renderer starts basic and grows with the model. A future renderer can use model relationships — adjacency, containment, flow — to cascade layout changes: moving a card moves its adjacent neighbors, resizing a container reflows its children. Configuration controls which cascades apply, making it safe to invoke in specific workflow contexts.
+
 ## Agentos.Canvas.CLI
 
 Entry point: `agentos canvas`.
 
-Current commands: `init`, `show`, `add-card`, `add-edge`, `place`, `sync`, `lint`.
+Current commands: `init`, `show`, `add-card`, `add-edge`, `sync`, `lint`.
 
 ## Visual Conventions
 

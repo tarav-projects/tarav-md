@@ -152,11 +152,15 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 ### Labeled.Edge
 
-`Labeled.Edge` is the compact edge rendering mode: a direct canvas edge whose label string is its identity verbatim. See `110-Agentos.Canvas.md`.
+`Labeled.Edge` is the compact edge rendering mode: a direct canvas edge whose label is a TID.Pair. The TID.Pair implies a card but does not require one. See `110-Agentos.Canvas.md`.
 
 ### Card.Edge
 
 `Card.Edge` is the expanded edge rendering mode: a reified relationship expressed as a full card with its own TID.Pair. See `110-Agentos.Canvas.md`.
+
+### Canvas.Renderer
+
+`Canvas.Renderer` is the subsystem responsible for all intentional canvas layer mutations: positions, sizes, colors. Separates layout concerns from model concerns. See `110-Agentos.Canvas.md`.
 
 ### Agentos.Canvas.CLI
 
