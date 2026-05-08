@@ -54,8 +54,10 @@ The standard agent workflow is: edit → lint → fix → lint → repeat until 
 
 ### CLI Role
 
-- **`lint`** — read-only. The protocol implementation.
-- **`sync`** — forward-pass model→canvas resolution. If the path is clear (model card with no canvas node, model edge-relationship with no canvas edge), it applies automatically. Ambiguous cases are reported, not resolved.
+**`render`** is the compiler: `model + old canvas → new canvas`. It is both the protocol check and the applicator.
+
+- `agentos canvas render --file ...` — dry run. Reports errors and pending actions without writing.
+- `agentos canvas render --file ... --apply` — compiles the model into the canvas. Creates nodes, rebuilds edges, updates labels, migrates text from model to canvas. Layout (positions, sizes, colors) is inherited from the old canvas for existing cards.
 
 ## Canvas.Card
 
@@ -105,7 +107,7 @@ Compact: the edge label is a TID.Pair. Direction via `fromEnd`/`toEnd`.
 
 ### Card.Edge
 
-Expanded: a full card with its own TID.Pair. Richer content capacity. Connected to other cards with `*` or unlabeled connectors. Direction via `fromEnd`/`toEnd`.
+Expanded: a full card with its own TID.Pair. Richer content capacity. Connectors use proper TID.Pair labels like any other edge. Direction via `fromEnd`/`toEnd`.
 
 At the graph level they are identical. The difference is content capacity only.
 
@@ -139,7 +141,7 @@ The renderer starts basic and grows with the model. A future renderer can use mo
 
 Entry point: `agentos canvas`.
 
-Current commands: `init`, `show`, `add-card`, `add-edge`, `sync`, `lint`.
+Current commands: `init`, `show`, `add-card`, `add-edge`, `render`.
 
 ## Visual Conventions
 
