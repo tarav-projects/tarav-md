@@ -34,6 +34,7 @@ Canonical TOC and orientation note for `notes/index/`.
 - `107-Agentos.Mission.md` — lightweight mission coordination surface for named blocks of work.
 - `108-Agentos.Project.Doctor.md` — diagnosis-first workflow for checking `Agentos.Project:<target>` conformance to `Agentos.Stack`.
 - `110-Agentos.Canvas.md` — visual human/agent collaboration surface built on Obsidian Canvas files; Graph.Model, Inline.Note.Style, and CLI.
+- `111-Design.Session.md` — scoped human-agent convergence surface that stages design target fragments, TODO design, and execution plans.
 
 ### Ontology
 

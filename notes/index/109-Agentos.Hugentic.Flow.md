@@ -41,6 +41,7 @@ It explains how humans and agents collaborate during project work: how they capt
 - Hugentic Flow sits on top of that base as a higher-level subsystem.
 - The subsystem is defined by capabilities and workflow primitives, not by a rigid folder checklist or ownership manifest.
 - Its surfaces are composable and opt-in, but they are also dependency-aware and designed to integrate cleanly.
+- `Design.Session` is the Hugentic Flow surface for scoped human-agent design convergence: it turns exploratory discussion into staged target design, TODO design, and execution plans while preserving user-gated alignment.
 - A component belongs to Hugentic Flow when it meaningfully changes both sides of the collaboration workflow: how the human works and how the agent works.
 - Hugentic Flow is an `Agentos.Soft.Subsystem`: a conceptual responsibility area, not a hard ownership container.
 
@@ -70,6 +71,7 @@ Current components include:
 - `ISSUES.Note`, the lightweight reserved live note for issue-shaped active work.
 - `Agentos.AGENTS.md`, the project-local Agentos instruction surface for custom natural-language workflow guidance.
 - `Live.Scripts`, the script-shaped working surface for executable or executable-looking exploration.
+- `Design.Session`, the scoped convergence surface for turning human-agent discussion into staged core design, TODO design, and execution plans.
 - Design-session and design-summary artifacts, which support convergence from discussion into durable design or implementation.
 - Implementation-request and issue-report artifacts, which support follow-up implementation and maintenance work.
 - Hugentic Flow workflow skills such as `agentos-design-discussion`, `agentos-design-session`, `agentos-design-implementation`, `agentos-project-doctor`, and artifact skills.
@@ -97,7 +99,7 @@ A subsystem note should define the subsystem, explain its responsibility and bou
 
 ## Canonical Examples
 
-- `agentos-design-session`, because it changes the human workflow through externalized design state and user-gated decisions, and changes the agent workflow through explicit session state, item tracking, and capture discipline.
+- `Design.Session`, because it changes the human workflow through externalized design state and user-gated decisions, and changes the agent workflow through explicit session state, item tracking, and capture discipline.
 - `Agentos.Index.Notes`, because it changes the human workflow by making design intent durable and browsable, and changes the agent workflow by making the index the design SSOT and concept lookup surface.
 - `Agentos.Project.Doctor`, because it changes the human workflow by producing report-first project diagnosis, and changes the agent workflow through structured checks, evidence, and no-fix default behavior.
 - `TODOS.Note`, because it changes the human workflow by giving a common parking surface for deferred work, and changes the agent workflow by avoiding hidden reminders or chat-only TODOs.

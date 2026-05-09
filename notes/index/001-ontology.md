@@ -120,6 +120,48 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 `Design.Implementation.CoEvolution` is the development dynamic where design understanding and implementation reshape each other. Progress means co-developing `Design.Target.Model` and `Current.Implementation`.
 
+## Design Sessions
+
+### Design.Session
+
+`Design.Session` is a scoped human-agent convergence surface for design work. It stages design target fragments, TODO design, and execution plans while preserving user-gated alignment. See `111-Design.Session.md`.
+
+### Design.Session.Core.Design
+
+`Design.Session.Core.Design` is the conceptual design layer of a design session. It captures named concepts, meanings, behaviors, relationships, open questions, and settled judgments; it is like a staged fragment of `Design.Target.Model`. See `111-Design.Session.md`.
+
+### Design.Session.TODO.Design
+
+`Design.Session.TODO.Design` is the task-design layer of a design session. It defines what should be done about the core design to move `Current.Implementation` closer to the staged target fragment. See `111-Design.Session.md`.
+
+### Design.Session.Exec.Plan
+
+`Design.Session.Exec.Plan` is the execution layer of a design session. It contains the concrete plan or agent loop for applying TODO design to `Current.Implementation`. See `111-Design.Session.md`.
+
+### Design.Alignment.Core
+
+`Design.Alignment.Core` is the set of design judgments that have been surfaced and explicitly settled with the user. See `111-Design.Session.md`.
+
+### Design.Open.Space
+
+`Design.Open.Space` is all design material that has not been settled into `Design.Alignment.Core`. See `111-Design.Session.md`.
+
+### Delegation.Frontier
+
+`Delegation.Frontier` is the current boundary between `Design.Alignment.Core` and `Design.Open.Space`; it describes the settled/open shape of the design state. See `111-Design.Session.md`.
+
+### Alignment.Sufficiency
+
+`Alignment.Sufficiency` is the agent's judgment of whether enough relevant human alignment has been settled for the current task. It is an agent-side expectation, not a user gate. See `111-Design.Session.md`.
+
+### User.Gated.Writing
+
+`User.Gated.Writing` means the agent may prepare changes, but must present the exact proposed text or diff before writing. See `111-Design.Session.md`.
+
+### User.Gated.Trigger
+
+`User.Gated.Trigger` means the write path begins only after an explicit user trigger. See `111-Design.Session.md`.
+
 ## Canvas Surfaces
 
 ### Agentos.Canvas

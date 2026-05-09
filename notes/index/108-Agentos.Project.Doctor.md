@@ -116,8 +116,9 @@ The doctor should therefore ask two questions for optional surfaces:
 
 Examples:
 
-- no `skills/` and no skill-like workflow packages: no finding
-- skill-like workflow packages exist outside `skills/`: warn about overlapping or nonstandard skill surfaces
+- no root-project `skills/` and no root-project skill-like workflow packages: no finding
+- nested `skills/` directories inside clear subprojects, apps, packages, or submodules: no finding by themselves
+- nested skill-like workflow packages that appear to provide root-project guidance, conflict with root `skills/`, or create unclear root authority/discovery: warn about overlapping or nonstandard skill surfaces
 - no `notes/index/`: no finding if the project does not appear to use an index-like durable design surface
 - durable index-like design/reference notes exist outside `notes/index/`: warn about overlapping or nonstandard index-surface adoption
 - `notes/live/TODOS.md` instead of `notes/live/010.TODOS.md`: warn because the capability is present through a near-standard reserved-note alternative
@@ -138,7 +139,9 @@ Useful initial checks:
 - `000-index.md` and `001-ontology.md` are checked for staleness relative to the active index surface
 - TODO notes are optional; when a TODO note exists under `notes/live/`, it uses the reserved `notes/live/010.TODOS.md` path
 - issue notes are optional; when an issues note exists under `notes/live/`, it uses the reserved `notes/live/011.ISSUES.md` path
-- skills are optional; when skill-like workflow packages exist, canonical Agentos skills should live in `skills/`
+- skills are optional; root-project Agentos-style skills should live in root `skills/`
+- nested `skills/` directories inside clear subprojects, apps, packages, or submodules are valid subproject-local skill surfaces and are not findings by themselves
+- warn only when a nested skill surface appears to provide root-project guidance, conflicts with root `skills/`, or creates unclear authority/discovery from the evaluated project root
 - numbered files avoid obvious duplicate prefixes in active numbered surfaces
 - active adopted numbered surfaces avoid unnumbered files unless the file is clearly reserved or intentionally outside the numbering protocol
 - durable design truth is not only in skills, live notes, or `AGENTS.md`

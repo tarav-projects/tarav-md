@@ -45,6 +45,7 @@ Examples:
 - `Agentos.Dev.Notes` should explain internal development work without becoming a competing design SSOT.
 - `AGENTS.md` can route and remind agents, but durable design rules should be promoted into the index.
 - skills can operationalize workflows, but they should not be the only place where major design concepts are defined.
+- `Design.Session` artifacts can stage and refine design material before durable truth is promoted into `Agentos.Index.Notes`.
 
 If a source outside `notes/index/` is repeatedly being used as durable design truth, that material should probably be promoted into `Agentos.Index.Notes`.
 
