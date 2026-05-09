@@ -201,8 +201,9 @@ The first doctor scope should include these lower-level checks:
 - `skills/` is optional by capability adoption.
   - If the project does not define project-local skills, no finding.
   - `.agents/skills` and `.claude/skills` may exist as valid runtime depots and are not findings by themselves when they are symlinked imported depots.
-  - If project-local Agentos-style skills exist, they should live in `skills/`.
-  - If project-local skill packages exist elsewhere in a near-standard way, warn about overlapping or nonstandard alternatives.
+  - Project-root Agentos-style skills should live in `<project-root>/skills/`.
+  - Nested `skills/` directories inside clear subprojects, apps, packages, or submodules are valid subproject-local skill surfaces and are not findings by themselves.
+  - Warn only when a nested skill surface appears to provide root-project guidance, conflicts with root `skills/`, or creates unclear authority/discovery from the evaluated project root.
   - If `.agents/skills` or `.claude/skills` are materialized as local non-symlink directories in a way that blurs imported-depot vs project-local authority, warn.
 - `dev/live/` is optional by capability adoption.
   - If absent, no finding.
