@@ -48,6 +48,14 @@ Use the same lightweight item states as design-session work:
 
 `closed` means sufficient for the session. It does not mean the concept is globally finished or frozen.
 
+## Item Scope
+
+Items are the selected conceptual focus set for this session. They are not a registry of every relevant concept in the ontology.
+
+An item may be new design material, an old concept being revisited, a refinement of an existing index concept, a relationship, a boundary, a behavior, or an unresolved question.
+
+The item section should be self-contained enough to understand the design work done in this session without replaying the chat or chasing every referenced index note. References are allowed, but the session's actual contribution should live in the item section itself or elsewhere in the same `Core.Design` file.
+
 ## Writing Guidance
 
 Write concept material here, not task execution detail.
@@ -73,6 +81,6 @@ Use `#### Usage History` when it helps explain why a concept exists, how it was 
 
 ## Boundaries
 
-Do not put concrete implementation steps here. Put task objectives, validation, and boundaries in `TODO.Design`; put ordered execution steps in `Exec.Plan`.
+Do not put concrete implementation steps here. Put task objectives, validation, and boundaries in `TODO.Design`; put implementation handoff, vertical slices, ordered work when useful, and acceptance signals in `Impl.Req`.
 
 Do not turn the file into a transcript. Capture the durable concept shape and the current settled/open state.

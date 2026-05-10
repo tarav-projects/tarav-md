@@ -47,9 +47,9 @@ A TODO design item should usually capture:
 - boundaries and not-to-do items
 - open questions that affect execution readiness
 
-This layer is where implementation philosophy becomes task shape: vertical slices, feedback loops, tests, review points, source-of-truth evidence, and constraints that should guide later execution.
+This layer is where implementation philosophy becomes task shape: vertical slices, feedback loops, tests, review points, source-of-truth evidence, and constraints that should guide later implementation.
 
-`TODO.Design` may mention files, commands, or tests when they are part of task understanding, but it should not become the ordered step plan. Put ordered steps in `Exec.Plan`.
+`TODO.Design` may mention files, commands, or tests when they are part of task understanding, but it should not become the implementation handoff. Put concrete scope, vertical slices, ordered work when useful, validation, risks, and acceptance signals in `Impl.Req`.
 
 ## Relationship To Core.Design
 

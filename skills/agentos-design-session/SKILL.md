@@ -1,15 +1,15 @@
 ---
 name: agentos-design-session
-description: "Coordinate a layered Design.Session for non-linear human-agent design convergence. Use when design work needs externalized state, explicit alignment/open-space tracking, TODO design, or execution planning. Layers on top of agentos-design-discussion."
+description: "Coordinate a composable Design.Session for non-linear human-agent design convergence. Use when design work needs externalized state, explicit alignment/open-space tracking, TODO design, or implementation-request handoff. Builds on agentos-design-discussion."
 ---
 
 # Design Session
 
-Coordinate a layered `Design.Session`: a scoped human-agent convergence surface for moving from exploratory discussion into core design, TODO design, and execution plans.
+Coordinate a composable `Design.Session`: a scoped human-agent convergence surface for moving from exploratory discussion into core design, TODO design, and implementation requests.
 
 The durable model is `notes/index/111-Design.Session.md`. Read it when available and treat this skill as the operational workflow for that indexed concept.
 
-This skill layers on `agentos-design-discussion` for conversational behavior and adds artifact maintenance, facilitation, alignment/open-space tracking, layer transitions, and user-gating of session state.
+This skill builds on `agentos-design-discussion` for conversational behavior and adds artifact maintenance, facilitation, alignment/open-space tracking, component transitions, and user-gating of session state.
 
 ## Trigger Boundary
 
@@ -18,7 +18,7 @@ Use this skill when:
 - The user explicitly starts a design session.
 - A design discussion grows complex enough that multiple topics need tracking.
 - The user wants externalized, user-gated state for a design conversation.
-- The user wants to move from concept design into TODO design or execution planning.
+- The user wants to move from concept design into TODO design or implementation-request handoff.
 - Upgrading from `agentos-design-discussion` when scope expands.
 
 Do not use it for quick, focused design discussions (use `agentos-design-discussion`), implementation work, or structured interviews.
@@ -35,7 +35,7 @@ Always load all `references/*.md` files. They contain detailed protocols for:
 
 - `core-design.md` — `*-core-design.md` artifact role, structure, and writing guidance.
 - `todo-design.md` — `*-todo-design.md` artifact role, structure, and writing guidance.
-- `exec-plan.md` — `*-exec-plan.md` artifact role, structure, and writing guidance.
+- `impl-req.md` — how a session produces or feeds an implementation request.
 - `session-status.md` — status report format, next-item selection criteria.
 - `uncommitted-work.md` — tracking uncommitted discussion, continue semantics.
 - `capture-audit.md` — chat-to-artifact sync verification.
@@ -45,24 +45,58 @@ Always load all `references/*.md` files. They contain detailed protocols for:
 Prefer this flow:
 
 ```txt
-Core.Design -> TODO.Design -> Exec.Plan
+Core.Design -> TODO.Design -> Impl.Req
 ```
 
-This is not a rigid waterfall. It is an authority and dependency direction: execution should be downstream of explicit design/alignment material.
+This is not a rigid waterfall. It is an authority and dependency direction: implementation should be downstream of explicit design/alignment material.
 
-### Layers
+### Components
 
 - `Design.Session.Core.Design` — conceptual design layer; stages a fragment of `Design.Target.Model`.
 - `Design.Session.TODO.Design` — task-design layer; defines how to move `Current.Implementation` closer to the staged target fragment.
-- `Design.Session.Exec.Plan` — concrete execution layer; plans the actual work derived from TODO design.
+- `Impl.Req` — implementation-request artifact; carries execution-facing scope, constraints, vertical slices, ordered work when useful, validation, risks, review points, and deviation triggers.
 
-A session may use one, two, or three files depending on scope:
+A session may use one, two, or three surfaces depending on scope:
 
 - `*-core-design.md`
 - `*-todo-design.md`
-- `*-exec-plan.md`
+- `*-impl-req.md`
 
-Do not create a layer just because it exists in the model. Create or update a layer when the conversation needs that layer.
+Do not create a component just because it exists in the model. Create or update a component when the conversation needs that component.
+
+The components can be used independently. A session may only produce `Core.Design`, start with `TODO.Design` when core alignment already exists, or produce an `Impl.Req` directly when enough design alignment is already available.
+
+## Workflow Rhythm
+
+A `Design.Session` is a discussion/interview/convergence workflow with artifact consolidation points:
+
+```txt
+explicit invocation
+-> propose session frame
+-> user approves artifact creation
+-> explore/design non-linearly
+-> focus on an item/topic
+-> converge enough for now
+-> propose capture/state change/action
+-> user approves writes
+-> return to the big picture
+-> choose next focus
+-> close, transition, or spawn implementation artifact on user direction
+```
+
+The agent is responsible for keeping the process organized. The user decides what is sufficient, what is settled, and where to go deeper.
+
+Core design is the natural starting gravity because Agentos designs first in ontology/index space and then moves toward implementation. Still, the session may scale a topic across components in whatever order the work requires.
+
+## Items
+
+Items are the selected focus set for a session component. They are not a registry of every relevant concept or task.
+
+Items may be completely new or may revisit existing concepts, notes, tasks, or decisions. In `Core.Design`, an item represents the design work this session has done around that selected concept or topic. In `TODO.Design`, an item represents task/action design work derived from the design.
+
+`Impl.Req` is not item-focused by default. It uses the implementation-request format and guidance from `agentos-artifact-impl-req`.
+
+The item set grows naturally as the session reveals what needs focused design work. Each item should contain only the amount of design the user thinks is sufficient for the current session pass.
 
 ## Agent Roles
 
@@ -82,10 +116,10 @@ Same as `agentos-design-discussion`:
 Additionally:
 
 - Track which items are being discussed and notice when the conversation moves between topics.
-- Track which layer is active: `Core.Design`, `TODO.Design`, or `Exec.Plan`.
+- Track which component is active: `Core.Design`, `TODO.Design`, or `Impl.Req`.
 - Distinguish settled design material from `Design.Open.Space`.
 - Notice when user-settled material should be captured in `Design.Alignment.Core`.
-- Notice when discussion has moved from core design into TODO design, or from TODO design into execution planning.
+- Notice when discussion has moved from core design into TODO design, or from TODO design into implementation-request handoff.
 - Use `Alignment.Sufficiency` to provide well-timed recommendations, warnings, or status notes without treating the agent's judgment as a user gate.
 - Notice when new topics emerge that should be added to the plan. After 2-3 exchanges on an unlisted topic, proactively suggest adding it.
 - Notice when a topic has converged enough to move to `converging`, or suggest closing.
@@ -110,9 +144,9 @@ Session work has separate gates:
 ### Starting A Session
 
 1. Confirm with the user that a design session is appropriate.
-2. Identify the initial layer. Default to `Core.Design` unless the user is explicitly designing work to do or an execution plan.
+2. Identify the initial component. Default to `Core.Design` unless the user is explicitly designing work to do or requesting implementation.
 3. Propose the initial Motivation and Items Index in chat. Do not create the file yet.
-4. On user approval, create the appropriate layer file.
+4. On user approval, create the appropriate component artifact.
 5. Begin discussion on the first open item or let the user choose.
 
 ### During The Session
@@ -121,12 +155,14 @@ Session work has separate gates:
 2. Periodically surface facilitation observations:
    - "This feels like a new topic — should I add it to the plan?"
    - "I think [item] is converging — close it or keep going?"
-   - "This sounds like TODO design now — should I capture it in the TODO layer?"
+   - "This sounds like TODO design now — should I capture it in the TODO component?"
+   - "This looks ready for an impl-req — should I draft one from the current design?"
    - "We can proceed, but alignment is still thin on [axis]; I can keep decisions conservative unless you want to settle that first."
    - "We've been on this adjacent topic for a while — worth its own item, or part of [existing item]?"
 3. Update session artifacts only on user approval.
 4. Items don't need to be discussed in order — follow the conversation's natural flow.
-5. Keep execution planning downstream of `Core.Design` and `TODO.Design` unless the user explicitly chooses to proceed from open space.
+5. Keep implementation-request handoff downstream of `Core.Design` and `TODO.Design` unless the user explicitly chooses to proceed from open space.
+6. After a meaningful capture, closure, or action, return to the big picture and help the user choose the next focus.
 
 ### Closing Items
 
@@ -156,11 +192,11 @@ A session ends when:
 - All items are closed.
 - The user explicitly ends it.
 - The user asks to produce a different artifact (e.g., `design-summary`, `impl-req`).
-- The user asks to execute an `Exec.Plan` or otherwise switches to implementation.
+- The user asks to execute an `Impl.Req` or otherwise switches to implementation.
 
 On ending:
 - Suggest an End Log entry summarizing: items closed, items still open, any deferred work.
-- Brief "what's next" nudge: suggest the most natural follow-up (e.g. "promote these concepts into index notes", "draft TODO design", "produce an exec plan", "start implementation", or simply "this can rest as reference").
+- Brief "what's next" nudge: suggest the most natural follow-up (e.g. "promote these concepts into index notes", "draft TODO design", "produce an impl-req", "start implementation", or simply "this can rest as reference").
 
 ## Upgrade From Design Discussion
 
@@ -173,7 +209,7 @@ When a `design-discussion` grows complex:
 ## Interaction Rules
 
 - All discussion happens in chat — the artifacts are the externalized state, not the conversation medium.
-- Use artifacts as the durable state. Do not rely on fragile chat memory when a session decision, TODO design, or execution plan should be reusable.
+- Use artifacts as the durable state. Do not rely on fragile chat memory when a session decision, TODO design, or implementation request should be reusable.
 - Keep facilitation observations brief and natural. Don't interrupt flow for minor state updates.
 - When proposing document changes, be specific but concise.
 - Don't force linear progression through items — follow the conversation.

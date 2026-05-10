@@ -15,18 +15,18 @@ Produce a short report — do not auto-update the artifacts:
 Capture audit:
 - Core.Design / [item]: [missing concept, judgment, correction, relation, open space]
 - TODO.Design / [item]: [missing objective, evidence, guidance, validation, boundary]
-- Exec.Plan / [section]: [missing step, command, check, risk, deviation]
+- Impl.Req / [section]: [missing requested change, slice, step, command, check, risk, deviation]
 - [new]: [concept/task/plan material mentioned but not yet placed]
 ```
 
 If nothing is missing: "Capture audit: document is in sync."
 
-Audit against the layer model:
+Audit against the component model:
 
 - settled design material should be in `Core.Design`
 - unsettled significant design material should be visible as open space
 - task objectives, validation, evidence, and boundaries should be in `TODO.Design`
-- concrete ordered steps and checks should be in `Exec.Plan`
+- implementation-ready scope, vertical slices, ordered work when useful, checks, risks, and acceptance signals should be in `Impl.Req`
 - user-gated writes or settlements should not be treated as captured unless the user explicitly approved them
 
 ## After The Report
