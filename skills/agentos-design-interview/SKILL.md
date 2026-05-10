@@ -100,31 +100,32 @@ When `/agentos-design-interview` is called without a referenced document or clea
 
 ### Phase 2: Question Loop
 
+**One question at a time.** Present a single question per turn. Do not show the next question until the user signals readiness (e.g., "next", "next question", "continue", "go on", or similar).
+
 For each item requiring clarification:
 
-1. Select the highest-leverage unresolved questions first.
+1. Select the highest-leverage unresolved question.
 2. Select the appropriate question template (currently: `options-decision`)
-3. Print the question using the template format — all in plain chat text
+3. Print ONE question using the template format — all in plain chat text
 4. Number questions sequentially (1, 2, 3...)
 5. Wait for user reply
 
 User replies with:
-- Option letters (e.g., "a", "1b, 2a")
-- "feedback" followed by answers
-- Direct answers referencing question numbers
-- Additional context
+- Option letter (e.g., "a", "b")
+- "feedback" followed by their view
+- Direct answer in plain text
+- Additional context or discussion
 
 After each reply:
-- Acknowledge decisions made
+- Acknowledge the decision or input
 - If user picked `x0`: restate with richer context
-- If user picked `x1`: decide and state the decision, continue
-- If user picked `x2`: discuss openly only for that topic, call out tradeoffs, update the current recommendation, then resolve the question or resume the loop
+- If user picked `x1`: decide and state the decision
+- If user picked `x2`: discuss openly — call out tradeoffs, explore the topic, update recommendation. Stay in discussion until the user resolves it or says "next"
 - If user picked `x3`: regenerate content options for the same question
-- If ambiguity does not block useful progress, state the working assumption and continue
-- Ask follow-up questions only when the answer materially changes the design direction
-- Continue the loop
+- If the user provides feedback or wants to discuss: engage in free-form conversation about the current question. Do NOT move to the next question until the user explicitly signals readiness.
+- When the user says "next", "next question", "continue", or similar → present the next question
 
-**Keep rounds short**: 2–4 questions maximum per round.
+**Pacing**: one question per turn. Allow discussion depth on each question before advancing.
 
 ### Phase 3: Exit
 

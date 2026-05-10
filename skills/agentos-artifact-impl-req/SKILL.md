@@ -33,6 +33,8 @@ Use this skill when:
 - Prefer references to files, notes, commands, or surfaces over pasted code.
 - Do not include large file fragments or long code excerpts.
 - Prefer implementation-shaping context over implementation detail.
+- Prefer vertical slices when the work is complex enough: thin end-to-end changes that produce an observable result through an interface, artifact boundary, test, command, or reviewable state.
+- Include ordered work when useful, but keep the artifact focused on the request and validation contract rather than a progress diary.
 - Be flexible about exact headings when needed, but keep the same semantic coverage.
 - Do not write an `impl-req` automatically. Only write one on explicit user request.
 
@@ -59,6 +61,8 @@ One sentence describing the current state of the request.
 
 ## Acceptance Signals
 
+## Implementation Shape
+
 ## Relevant Files Or Surfaces
 
 ## Open Questions
@@ -72,6 +76,7 @@ One sentence describing the current state of the request.
 
 - `Impl-Req State` is a plain-language one-sentence state note, not a fixed status enum.
 - `Relevant Files Or Surfaces` may include code paths, notes, commands, or spec surfaces.
+- `Implementation Shape` should capture vertical slices, sequencing, validation loops, risks, review points, or deviation triggers when they materially help another agent implement the request.
 - `Related Impl-Reqs` should call out predecessors, follow-ups, or superseded requests.
 - `End Log` is append-only. Add concise dated notes at the end as work progresses.
 
