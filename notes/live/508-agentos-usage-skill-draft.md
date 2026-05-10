@@ -90,7 +90,7 @@ agentos skills status --project
 | Index notes system | `agentos-index-notes-base` skill |
 | Live notes | `agentos-live-note-base` skill |
 | Project doctor | `agentos-project-doctor` skill |
-| Design sessions | `agentos-design-discussion` skill |
+| Design sessions | `agentos-design-session` skill |
 | File numbering protocol | `agentos-file-numbering-base` skill |
 | Concept lookup | `notes/index/001-ontology.md` |
 | Full index | `notes/index/000-index.md` |
