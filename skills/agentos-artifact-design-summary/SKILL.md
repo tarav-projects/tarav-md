@@ -18,7 +18,7 @@ Use this skill when:
 ## Purpose
 
 - A `design-summary` captures converged design decisions in a form that can guide implementation, coordinate agents, or serve as a durable reference.
-- It is the written-down version of a `design-discussion` convergence output.
+- It is the written-down version of a design-session convergence output.
 - Treat design summaries as durable coordination artifacts, not discussion transcripts.
 
 ## Location And Naming

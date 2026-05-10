@@ -163,7 +163,7 @@ Each source entry should capture:
 - `why-it-matters`: main working skill collection with real trigger descriptions, workflow structure, and packaging choices
 - `best-for`: `SKILL.md` structure, `agents/openai.yaml` patterns, progressive disclosure, validation conventions, full skill-stack design
 - `caveats`: contains a mix of mature, experimental, and copied skills; compare before imitating
-- `search-hints`: `skill-creator`, `design-discussion`, `codebase-general-cleanup`, `codebase-quality-review`, `index-*`
+- `search-hints`: `skill-creator`, `design-session`, `codebase-general-cleanup`, `codebase-quality-review`, `index-*`
 
 ## agentos-project-skills
 
@@ -173,4 +173,4 @@ Each source entry should capture:
 - `why-it-matters`: Agentos md-surface skill patterns that may not yet be reflected in the home skill set
 - `best-for`: discussion-driven designs, task miners, in-progress conventions, and side-by-side comparison against home skills
 - `caveats`: may diverge from home copies; some entries are partial or project-specific
-- `search-hints`: `design-discussion`, `design-interview`, `todo-miner`, `tasks001-*`, `index-*`
+- `search-hints`: `design-session`, `todo-miner`, `tasks001-*`, `index-*`

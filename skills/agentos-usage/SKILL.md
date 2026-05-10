@@ -58,9 +58,9 @@ Use `001-ontology.md` first when you need to resolve a named concept.
 
 ### Design sessions
 
-Use design session skills to run structured or free-form design conversations. They track topics, record converged decisions, and produce durable outputs for promotion to the index.
+Use the design session skill to run structured or free-form design conversations. It tracks topics, records converged decisions, and produces durable outputs for promotion to the index.
 
-→ `agentos-design-discussion` skill
+→ `agentos-design-session` skill
 
 ### Live notes lifecycle
 
@@ -110,7 +110,7 @@ agentos skills status --project
 | Index notes system | `agentos-index-notes-base` skill |
 | Live notes | `agentos-live-note-base` skill |
 | Project doctor | `agentos-project-doctor` skill |
-| Design sessions | `agentos-design-discussion` skill |
+| Design sessions | `agentos-design-session` skill |
 | File numbering protocol | `agentos-file-numbering-base` skill |
 | Concept lookup | `notes/index/001-ontology.md` |
 | Full index | `notes/index/000-index.md` |

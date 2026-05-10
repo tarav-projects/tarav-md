@@ -1,6 +1,6 @@
 ---
 name: agentos-design-implementation
-description: Guide disciplined implementation of a design or plan. Auto-loads when asked to implement a converged design, build from a spec, or execute a plan. Pairs with agentos-design-discussion.
+description: Guide disciplined implementation of a design or plan. Auto-loads when asked to implement a converged design, build from a spec, or execute a plan. Pairs with agentos-design-session.
 ---
 
 # Design Implementation
@@ -12,10 +12,10 @@ Translate a design or plan into code through disciplined, incremental execution.
 Use this skill when:
 
 - The user says "implement", "build this", "let's build it", "execute the plan", or similar.
-- A converged design from `agentos-design-discussion` is being acted on.
+- A converged design from `agentos-design-session` is being acted on.
 - The user provides a clear spec or plan and asks for implementation.
 
-Do not use it for exploratory design (use `agentos-design-discussion`), debugging, or open-ended refactoring.
+Do not use it for exploratory design (use `agentos-design-session`), debugging, or open-ended refactoring.
 
 ## References
 
@@ -32,14 +32,25 @@ This skill separates orchestration (this file) from knowledge (reference files).
 
 To extend this skill, add a new file under `references/` and document its loading condition here. Keep each reference file short and opinionated — a curated list, not a tutorial.
 
+## Recommended Skills
+
+Load these before starting implementation work:
+
+- **`agentos-usage`** — minimal Agentos orientation (CLI, skills, index routing). Load when working inside an Agentos project.
+- **`agentos-index-activate`** — activates the index runtime so you ground on project concepts. Load when the project has `notes/index/`.
+- **`agentos-artifact-impl-req`** — understands impl-req format. Load when the input is an impl-req.
+- **`agentos-artifact-design-summary`** — understands design-summary format. Load when the input is a design summary.
+
+These are recommendations, not hard requirements. Use judgment — skip what's clearly irrelevant to the current task.
+
 ## Core Workflow
 
 ### 1. Orientation
 
 Before writing code:
 
-- If the input is an `impl-req` or `design-summary` artifact, load the relevant artifact skill (`agentos-artifact-impl-req`, `agentos-artifact-design-summary`) to understand the format.
-- Re-read the source artifact or instruction. Treat any previous read as potentially stale.
+- Load recommended skills (see above) based on the task context.
+- If the input is an `impl-req` or `design-summary` artifact, re-read it now. Treat any previous read as potentially stale.
 - Restate what is being implemented in design-level prose. Do not print code during the understanding step.
 - Read existing code in the target area. Understand what is already there.
 - Propose a chunked execution order: small, independently verifiable units of work.
@@ -61,7 +72,7 @@ If the implementation reveals that the design does not fit reality:
 
 - **Stop.** Do not silently adapt or invent workarounds.
 - Flag the deviation to the user with a concrete description of the mismatch.
-- Propose options: adjust the design, adjust the implementation, or revisit in `agentos-design-discussion`.
+- Propose options: adjust the design, adjust the implementation, or revisit in `agentos-design-session`.
 - Wait for user direction before continuing.
 
 ### 4. Completion
@@ -102,7 +113,7 @@ If these conflict, newer explicit user direction wins. If the codebase appears t
 ## Interaction Model
 
 - Keep updates brief. Status after each chunk, not running commentary.
-- If the user starts questioning the design mid-implementation, suggest switching back to `agentos-design-discussion` rather than redesigning inline.
+- If the user starts questioning the design mid-implementation, suggest switching back to `agentos-design-session` rather than redesigning inline.
 - Flag blockers immediately rather than guessing around them.
 
 ## Example Prompts That Should Trigger This Skill

@@ -23,8 +23,8 @@ Canvas is not a replacement for markdown surfaces — it expresses structure and
 - Numeric prefixes are stable handles and must not be changed after assignment.
 - Gaps are allowed. Do not renumber existing files to fill gaps.
 - Note numbers should be unique across the project md surface, not only inside `notes/canvas/`.
-- Allocate the next prefix via `agentos prefix next --project-base <project-root-basename> --target notes/canvas`.
-- If `agentos prefix` fails, stop and ask the user how to resolve the project target. Do not assign a prefix by manual inspection.
+- Allocate the next prefix via `agentos stdlib prefix next --project-base <project-root-basename> --target notes/canvas`.
+- If `agentos stdlib prefix` fails, stop and ask the user how to resolve the project target. Do not assign a prefix by manual inspection.
 
 ## Obsidian Canvas Format
 

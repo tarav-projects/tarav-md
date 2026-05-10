@@ -114,7 +114,7 @@ Useful deterministic commands may include:
 - `python3 -m json.tool <file>` for JSON validity
 - `find` for numbered files
 - `rg` for dotted concepts and authority-drift evidence
-- `agentos prefix next --project-base <project-root-basename> --target <surface>` only for allocation context, not as a doctor verdict
+- `agentos stdlib prefix next --project-base <project-root-basename> --target <surface>` only for allocation context, not as a doctor verdict
 
 ## Check Outcome Model
 

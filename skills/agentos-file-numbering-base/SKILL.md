@@ -12,7 +12,7 @@ This skill operationalizes `notes/index/103-File.Numbering.Protocol.md`. The ind
 ## Scope
 
 - Define shared numbering mechanics, not document body structure.
-- Centralize how `agentos prefix next` relates to numbered artifact protocols.
+- Centralize how `agentos stdlib prefix next` relates to numbered artifact protocols.
 - Define only the base numbering rules that domain-specific `base` skills inherit.
 
 ## Shared Numbering Rules
@@ -30,10 +30,10 @@ This skill operationalizes `notes/index/103-File.Numbering.Protocol.md`. The ind
 
 ## Allocator Behavior
 
-- `agentos prefix next --project-base <project-root-basename> --target <path>` discovers the `Agentos.Project` from `pwd`, asserts the resolved project root basename, loads the project prefix policy, and allocates for the project-relative target path.
+- `agentos stdlib prefix next --project-base <project-root-basename> --target <path>` discovers the `Agentos.Project` from `pwd`, asserts the resolved project root basename, loads the project prefix policy, and allocates for the project-relative target path.
 - Project-aware target mode requires an explicit project selector: `--project`, `--project-base`, or both. Prefer `--project-base` when the caller is already inside the intended project tree; use `--project <path> --project-base <basename>` when outside the tree.
-- Numbered artifact prefixes must be allocated with `agentos prefix`; do not assign ordinary prefixes by manual inspection.
-- If `agentos prefix` fails, stop and ask the user how to resolve the project or numbering surface. Do not fall back to inspection.
+- Numbered artifact prefixes must be allocated with `agentos stdlib prefix`; do not assign ordinary prefixes by manual inspection.
+- If `agentos stdlib prefix` fails, stop and ask the user how to resolve the project or numbering surface. Do not fall back to inspection.
 - In nested workspaces, verify that the resolved `project_root` is the intended numbered surface. Use `--project-base <basename>` for discovery from `pwd`, or `--project /path/to/project --project-base <basename>` to disambiguate from outside the tree; do not use `--project .` unless `.` is the actual initialized project root.
 - If the intended artifact surface is not an initialized `Agentos.Project`, stop and ask whether to initialize it, target a parent project explicitly, or use another project root.
 - It scans the configured project numbered-surface scope. The current default includes are `notes` and `dev/live`.
@@ -64,14 +64,14 @@ This skill operationalizes `notes/index/103-File.Numbering.Protocol.md`. The ind
   - numbering source or project scan-scope assumption
   - floor or reserved range
   - uniqueness scope
-  - exact `agentos prefix next` command, if allocation is automated
+  - exact `agentos stdlib prefix next` command, if allocation is automated
 - This skill owns only the shared numbering semantics that all those domain skills inherit.
 
 ## Cross-Domain Coordination
 
 - Some systems need numbers to be unique across a broader surface than one folder.
 - Example: Agentos notes use project-wide md-surface allocation, where the same ordinary note number should not identify different ordinary files in different numbered surfaces.
-- Current `agentos prefix next --project-base ... --target ...` supports project-aware allocation with project root basename assertion. Full project-wide diagnostics such as duplicate reports, range violations, and reserved-prefix consistency checks remain future `prefix doctor` or equivalent work.
+- Current `agentos stdlib prefix next --project-base ... --target ...` supports project-aware allocation with project root basename assertion. Full project-wide diagnostics such as duplicate reports, range violations, and reserved-prefix consistency checks remain future `prefix doctor` or equivalent work.
 
 ## Workflow For A New Numbered Artifact Type
 
@@ -86,7 +86,7 @@ This skill operationalizes `notes/index/103-File.Numbering.Protocol.md`. The ind
    - numbering source or project scan-scope assumption
    - floor or reserved range
    - uniqueness scope
-   - exact `agentos prefix next` command, if allocation is automated
+   - exact `agentos stdlib prefix next` command, if allocation is automated
    - stability rule: gaps allowed, no renumbering
 6. Ensure the domain protocol stays focused on numbering/location only, unless it intentionally owns broader structure.
 7. Update this skill only if the shared numbering model changes, not merely because a new domain was added.
@@ -94,7 +94,7 @@ This skill operationalizes `notes/index/103-File.Numbering.Protocol.md`. The ind
 ## Review Checklist
 
 - Is the target path routed to the intended range?
-- Has `agentos prefix next --project-base ... --target ...` been run successfully for this exact allocation?
+- Has `agentos stdlib prefix next --project-base ... --target ...` been run successfully for this exact allocation?
 - Does the resolved project root and project-base assertion match the intended artifact surface?
 - Does the filename pattern use the same width as the allocator?
 - Does the protocol state the exact numbering source?
@@ -102,7 +102,7 @@ This skill operationalizes `notes/index/103-File.Numbering.Protocol.md`. The ind
 - Is the human-vs-agent range policy explicit?
 - Is the uniqueness scope explicit?
 - Does the protocol explicitly allow gaps and forbid renumbering?
-- Does the protocol include the exact `agentos prefix next` command when automation exists?
+- Does the protocol include the exact `agentos stdlib prefix next` command when automation exists?
 
 ## Non-goals
 
