@@ -51,6 +51,31 @@ This layer is where implementation philosophy becomes task shape: vertical slice
 
 `TODO.Design` may mention files, commands, or tests when they are part of task understanding, but it should not become the implementation handoff. Put concrete scope, vertical slices, ordered work when useful, validation, risks, and acceptance signals in `Impl.Req`.
 
+## Negative Decisions And Out Of Scope
+
+TODO design should preserve important boundaries on the work to be done.
+
+Capture what should not be done when it affects implementation direction, task scope, or validation. This includes:
+
+- tasks intentionally deferred
+- implementation paths the user rejected
+- refactors that are tempting but outside the current request
+- files, concepts, or components that should not be touched
+- assumptions that are allowed only for this task pass
+
+Good TODO boundaries make the task safer for another agent to execute without reopening the design conversation.
+
+Prefer concise entries:
+
+```txt
+Out of scope:
+- Do not redesign unrelated skills in this pass.
+- Do not redesign the full live-note protocol while updating Design.Session.
+
+Deferred:
+- Later, decide whether deprecated discussion/interview material should be mined for more examples.
+```
+
 ## Relationship To Core.Design
 
 Every TODO design item should be grounded in core design, even when the relationship is implicit.

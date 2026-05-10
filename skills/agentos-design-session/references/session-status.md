@@ -32,6 +32,9 @@ Open Space:
 Sufficiency:
   [agent judgment of whether enough alignment exists for the current next move]
 
+Evidence basis:
+  [only if useful: user instruction, active artifact, codebase state, or stable project surface]
+
 Suggest closing:
   - [item] — [why: saturated / no new ground / sufficient for session]
 
@@ -53,6 +56,7 @@ Recommendation: [N] — [short reason].
 - Uncommitted lists surface/item discussion not yet captured in the artifacts. Say "none" if clean.
 - Open Space lists significant unsettled design material only. Do not list every possible unanswered question.
 - Sufficiency is the agent's judgment, not a user gate. Keep it short and practical.
+- Evidence basis should support the sufficiency judgment when the next move materially affects design direction, task shape, or implementation handoff. Omit it when it would add noise.
 - Suggest closing lists items the agent thinks are ready to close (saturated, no new ground, sufficient). Omit section if none.
 - Next suggests up to 3 items with one-line rationale. Include a recommendation.
 - Keep it scannable. The user may call this repeatedly.

@@ -1,6 +1,6 @@
 ---
 name: agentos-design-session
-description: "Coordinate a composable Design.Session for non-linear human-agent design convergence. Use when design work needs externalized state, explicit alignment/open-space tracking, TODO design, or implementation-request handoff. Builds on agentos-design-discussion."
+description: "Coordinate a composable Design.Session for non-linear human-agent design convergence. Use when design work needs an alignment exercise, one-question-at-a-time pacing, externalized state, TODO design, or implementation-request handoff."
 ---
 
 # Design Session
@@ -9,23 +9,23 @@ Coordinate a composable `Design.Session`: a scoped human-agent convergence surfa
 
 The durable model is `notes/index/111-Design.Session.md`. Read it when available and treat this skill as the operational workflow for that indexed concept.
 
-This skill builds on `agentos-design-discussion` for conversational behavior and adds artifact maintenance, facilitation, alignment/open-space tracking, component transitions, and user-gating of session state.
+This skill combines alignment-question pacing with design discussion behavior and adds artifact maintenance, facilitation, alignment/open-space tracking, component transitions, and user-gating of session state.
 
 ## Trigger Boundary
 
 Use this skill when:
 
 - The user explicitly starts a design session.
+- Design work needs alignment through a guided one-question-at-a-time flow.
 - A design discussion grows complex enough that multiple topics need tracking.
 - The user wants externalized, user-gated state for a design conversation.
 - The user wants to move from concept design into TODO design or implementation-request handoff.
-- Upgrading from `agentos-design-discussion` when scope expands.
+- The user asks to discuss, interview, align, or converge on a design.
 
-Do not use it for quick, focused design discussions (use `agentos-design-discussion`), implementation work, or structured interviews.
+Do not use it for implementation work or generic status/reporting outside design work.
 
 ## Dependencies
 
-- `agentos-design-discussion` — for conversational behavior and discussion principles.
 - `agentos-live-note-base` — for file location and naming.
 - `notes/index/111-Design.Session.md` — durable indexed model when present.
 
@@ -33,6 +33,8 @@ Do not use it for quick, focused design discussions (use `agentos-design-discuss
 
 Always load all `references/*.md` files. They contain detailed protocols for:
 
+- `discussion.md` — design discussion behavior inside an active alignment question.
+- `interview.md` — one-question-at-a-time alignment loop and `Alignment.Space` guidance.
 - `core-design.md` — `*-core-design.md` artifact role, structure, and writing guidance.
 - `todo-design.md` — `*-todo-design.md` artifact role, structure, and writing guidance.
 - `impl-req.md` — how a session produces or feeds an implementation request.
@@ -74,19 +76,23 @@ A `Design.Session` is a discussion/interview/convergence workflow with artifact 
 explicit invocation
 -> propose session frame
 -> user approves artifact creation
--> explore/design non-linearly
--> focus on an item/topic
--> converge enough for now
+-> agent asks one highest-leverage alignment question
+-> discuss freely inside that question
+-> converge enough for now or identify open space
 -> propose capture/state change/action
 -> user approves writes
--> return to the big picture
--> choose next focus
+-> user asks for next/continue
+-> agent asks the next highest-leverage alignment question
 -> close, transition, or spawn implementation artifact on user direction
 ```
+
+Fundamental rule: the agent controls organization; the user controls advancement.
 
 The agent is responsible for keeping the process organized. The user decides what is sufficient, what is settled, and where to go deeper.
 
 Core design is the natural starting gravity because Agentos designs first in ontology/index space and then moves toward implementation. Still, the session may scale a topic across components in whatever order the work requires.
+
+A `Design.Session` is an alignment exercise paced by one agent-selected question at a time. The agent chooses the highest-leverage unresolved question and must include a recommended answer or direction. The user controls advancement: the agent may suggest moving to another question, but must not present the next full question until the user explicitly asks for it.
 
 ## Items
 
@@ -102,14 +108,24 @@ The item set grows naturally as the session reveals what needs focused design wo
 
 The agent operates in two simultaneous roles:
 
+### Alignment Questioner
+
+- Control organization, not advancement: keep the alignment path coherent, but wait for the user to advance to the next full question.
+- Bootstrap the session when needed with one useful opener, such as "What are we designing?" or "What references should anchor this session?"
+- Select the highest-leverage unresolved question from `Alignment.Space`.
+- Ask one question at a time.
+- Include the agent's recommended answer or direction with every question.
+- Explore codebase, notes, artifacts, transcripts, or other references instead of asking the user when the question can be answered from evidence.
+- Do not present the next full question until the user explicitly asks for it.
+
 ### Discussant
 
-Same as `agentos-design-discussion`:
-
-- Propose concrete ideas, critique constructively, surface tradeoffs.
-- Maintain delta updates, don't repeat the same framing.
-- Balance exploration and convergence.
-- Pressure-test proposals lightly.
+- Propose concrete ideas, critique constructively, and surface tradeoffs.
+- Update only the impacted design section or active question.
+- Add only the most useful 1-2 high-leverage points per round.
+- Surface open risks and lightweight pressure tests.
+- Avoid repeating the same framing.
+- Stay in discussion around the active question until the user resolves it, parks it, or asks for the next question.
 
 ### Facilitator
 
@@ -145,24 +161,28 @@ Session work has separate gates:
 
 1. Confirm with the user that a design session is appropriate.
 2. Identify the initial component. Default to `Core.Design` unless the user is explicitly designing work to do or requesting implementation.
-3. Propose the initial Motivation and Items Index in chat. Do not create the file yet.
+3. Propose the session frame in chat: motivation, active component, likely references, and initial focus set if known. Do not create the file yet.
 4. On user approval, create the appropriate component artifact.
-5. Begin discussion on the first open item or let the user choose.
+5. Ask the first alignment question. If context is vague, bootstrap with one opener before narrowing.
 
 ### During The Session
 
-1. Discuss items following `agentos-design-discussion` principles.
-2. Periodically surface facilitation observations:
+1. Ask one alignment question, including a recommended answer or direction.
+2. Discuss that question using the behavior in `references/discussion.md`.
+3. Track settled material, rejected options, assumptions, references, implications, and open space in `Alignment.Space`.
+4. Periodically surface facilitation observations:
    - "This feels like a new topic — should I add it to the plan?"
    - "I think [item] is converging — close it or keep going?"
    - "This sounds like TODO design now — should I capture it in the TODO component?"
    - "This looks ready for an impl-req — should I draft one from the current design?"
    - "We can proceed, but alignment is still thin on [axis]; I can keep decisions conservative unless you want to settle that first."
    - "We've been on this adjacent topic for a while — worth its own item, or part of [existing item]?"
-3. Update session artifacts only on user approval.
-4. Items don't need to be discussed in order — follow the conversation's natural flow.
-5. Keep implementation-request handoff downstream of `Core.Design` and `TODO.Design` unless the user explicitly chooses to proceed from open space.
-6. After a meaningful capture, closure, or action, return to the big picture and help the user choose the next focus.
+5. Update session artifacts only on user approval.
+6. Items don't need to be discussed in order — follow the conversation's natural flow.
+7. Keep implementation-request handoff downstream of `Core.Design` and `TODO.Design` unless the user explicitly chooses to proceed from open space.
+8. When the session rejects a path or defines scope boundaries, preserve the negative decision in the relevant component. Negative decisions are not noise; they prevent stale ideas from being reintroduced as open options.
+9. After a meaningful capture, closure, or action, return to the big picture and help the user choose the next focus.
+10. If the next highest-leverage question is clear, say so briefly, but wait for the user to ask for `next`, `continue`, or equivalent before presenting it.
 
 ### Closing Items
 
@@ -198,13 +218,17 @@ On ending:
 - Suggest an End Log entry summarizing: items closed, items still open, any deferred work.
 - Brief "what's next" nudge: suggest the most natural follow-up (e.g. "promote these concepts into index notes", "draft TODO design", "produce an impl-req", "start implementation", or simply "this can rest as reference").
 
-## Upgrade From Design Discussion
+## Upgrade From Lightweight Discussion
 
-When a `design-discussion` grows complex:
+When a lightweight design discussion grows complex:
 
 - The agent may suggest: "This is getting multi-threaded — want to upgrade to a design session so we can track the topics?"
 - If the user agrees, create the appropriate session artifact capturing the current state of the discussion (topics identified so far, any decisions already made).
 - Continue from there.
+
+## Compatibility
+
+`agentos-design-session` is the preferred skill for new Agentos design work. Standalone design discussion and design interview behavior should be treated as internal behavior of this skill unless the user explicitly asks for a legacy/simple mode.
 
 ## Interaction Rules
 
@@ -213,17 +237,30 @@ When a `design-discussion` grows complex:
 - Keep facilitation observations brief and natural. Don't interrupt flow for minor state updates.
 - When proposing document changes, be specific but concise.
 - Don't force linear progression through items — follow the conversation.
+- Don't force linear progression through questions — choose the highest-leverage unresolved question, then wait for the user to explicitly advance.
 - The plan is a tool for the human, not a constraint on the discussion.
 
 ## Evidence Priority
-
-Same as `agentos-design-discussion`:
 
 1. The user's current explicit directions.
 2. Accepted design decisions from the current session (closed items).
 3. The active session artifacts' current state.
 4. Current codebase state and diffs.
-5. Relevant index notes, especially `111-Design.Session.md`.
+5. Stable project surfaces such as index notes, project `AGENTS.md`, active skills, CLI help, documented spec surfaces, or other source-of-truth project artifacts.
+
+## Evidence-Backed Judgment
+
+The agent should try to ground its recommendations, warnings, sufficiency judgments, and capture proposals in evidence.
+
+Valid evidence includes:
+
+- direct user instructions or approvals
+- accepted decisions from the current session
+- active session artifacts
+- current codebase state and diffs
+- stable project surfaces such as index notes, project `AGENTS.md`, active skills, CLI help, documented spec surfaces, or other source-of-truth project artifacts
+
+Evidence does not replace judgment. The agent should still recommend an answer or direction, but should make clear what the recommendation is based on when the decision materially affects the design, task shape, or implementation handoff.
 
 ## Example Prompts That Should Trigger This Skill
 
@@ -231,6 +268,9 @@ Same as `agentos-design-discussion`:
 - "this needs a session" (in context of design work)
 - "upgrade to a session"
 - "let's track these topics"
+- "let's discuss" (when the subject is design work)
+- "interview me" (when the subject is design work)
+- "align on this design"
 
 ## Exit Condition
 

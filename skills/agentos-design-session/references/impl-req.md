@@ -13,7 +13,7 @@ Good implementation-request material includes:
 - concrete requested change
 - source design inputs and relevant surfaces
 - constraints and invariants
-- vertical slices when the work is complex enough
+- vertical slices as the preferred implementation shape
 - ordered work when useful
 - validation commands, checks, or review expectations
 - risks and deviation triggers
@@ -21,16 +21,38 @@ Good implementation-request material includes:
 
 ## Vertical Slices
 
-Prefer vertical slices when possible.
+Vertical slices are fundamental to `Impl.Req`.
 
-A vertical slice is a thin end-to-end change that produces something observable through a relevant interface, artifact boundary, test, command, or reviewable state. It should be small enough to validate, but complete enough to exercise the important path through the system.
+A vertical slice is a small end-to-end change that exercises the full useful path for one behavior or artifact outcome. It is not a layer-by-layer task.
 
-Use vertical slices to avoid broad, unverified implementation plans. Each slice should state:
+Avoid horizontal plans like:
+
+```txt
+1. Add all schema changes.
+2. Add all service logic.
+3. Add all UI.
+4. Test later.
+```
+
+That delays feedback. The implementation can look busy for a long time while still proving nothing about whether the intended behavior works.
+
+Prefer a slice shaped like:
+
+```txt
+When X happens, Y is observable, and Z checks it.
+```
+
+The observable result can be a passing behavior test, command output, changed artifact, visible UI state, API response, reviewable file/data state, or clear manual QA result.
+
+Use vertical slices to turn broad design intent into implementation work that can be checked quickly. Each slice should state:
 
 - what changes
+- which path through the system or artifact surface it exercises
 - what observable result should exist afterward
 - how the result will be checked
 - what design or task assumption it validates
+
+Horizontal work is allowed only when it is truly enabling infrastructure that cannot be made observable yet. If a horizontal step is necessary, name why and pair it with the earliest possible vertical slice.
 
 ## Relationship To TODO.Design
 
