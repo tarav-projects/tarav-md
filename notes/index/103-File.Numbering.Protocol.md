@@ -41,7 +41,7 @@ The same numeric prefix should not identify two different addressable files insi
 
 The protocol should be aided by `Project.CLI`.
 
-For Agentos, `agentos prefix` already exists as a deterministic helper. The desired direction is project-wide checking and allocation support for numbered surfaces, including:
+For Agentos, `agentos stdlib prefix` already exists as a deterministic helper. The desired direction is project-wide checking and allocation support for numbered surfaces, including:
 
 - duplicate numeric prefixes
 - range violations

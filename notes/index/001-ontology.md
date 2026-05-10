@@ -144,11 +144,15 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 ### Design.Session.Impl.Req
 
-`Design.Session.Impl.Req` is the implementation-request component produced or fed by a design session. It carries execution-facing responsibilities such as scope, constraints, vertical slices, ordered work when useful, validation, risks, review points, and deviation triggers. See `111-Design.Session.md`.
+`Design.Session.Impl.Req` is the implementation-request component produced or fed by a design session. It carries execution-facing responsibilities such as scope, constraints, vertical slices, ordered work when useful, validation, risks, review points, and deviation triggers. Vertical slices are fundamental to this component: they are small end-to-end changes that produce observable feedback instead of layer-by-layer work that delays validation. See `111-Design.Session.md`.
 
 ### Design.Alignment.Core
 
 `Design.Alignment.Core` is the set of design judgments that have been surfaced and explicitly settled with the user. See `111-Design.Session.md`.
+
+### Alignment.Space
+
+`Alignment.Space` is the working map of a design session's alignment state: settled answers, unresolved questions, assumptions, rejected options, references, taste and judgment, downstream implications, and open material. See `111-Design.Session.md`.
 
 ### Design.Open.Space
 
@@ -297,6 +301,106 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 ### Stub.Convention
 
 `Stub.Convention` allows incomplete index entries only when they still contain minimal durable signal: a real concept boundary, short definition, explicit incompleteness, and useful direction for future work.
+
+## Index Runtime
+
+### Soft.Programming.Language
+
+`Soft.Programming.Language` is the framing for what the Agentos Index IS: "soft" because the syntax is natural language; "programming" because it has execution semantics. The index is a program for cognitive operations that humans and agents run against.
+
+### Alignment.Surface
+
+`Alignment.Surface` is the primary purpose of the index: the shared ground where human and agent align on what things mean. The index exists precisely at the interface — not storage, but shared grounding.
+
+### Index.Call
+
+`Index.Call` is the execution primitive of the index. Initiated by a trigger, processed through the `Index.Eval.Loop`. The agent evaluates context to decide dispatch intensity.
+
+### Index.Call.Trigger
+
+`Index.Call.Trigger` is the mechanism that initiates an `Index.Call`. Types: `Dotted.Name.Trigger` (primary), `Agent.Reasoning.Trigger` (proactive), `Explicit.Query.Trigger` (CLI/skill).
+
+### Dotted.Name.Trigger
+
+`Dotted.Name.Trigger` is the primary trigger for `Index.Call` — fired when a human uses `Dotted.Notation` in conversation, signaling a concept that should be grounded.
+
+### Agent.Reasoning.Trigger
+
+`Agent.Reasoning.Trigger` fires `Index.Calls` during the agent's own reasoning when it needs grounding on a concept.
+
+### Index.Eval.Loop
+
+`Index.Eval.Loop` is the 5-step sequential pipeline that processes an `Index.Call`: Name.Resolution → Retrieval+Grounding → Gap.Detection → Suggestion → Parking.
+
+### Index.Runtime.Semantics
+
+`Index.Runtime.Semantics` is the execution behavior of the index when active: concepts are loaded, resolved, grounded, and gaps are detected in real time during conversation.
+
+### Index.Activation
+
+`Index.Activation` is the opt-in mechanism that turns on `Index.Runtime.Semantics` for a session. Handled by `agentos-index-activate`.
+
+### Index.Name.Resolution
+
+`Index.Name.Resolution` is the subsystem and skill for resolving approximate or unknown names against the index. Fully agentic for MVP — uses whole block content and chat context.
+
+### Unresolved.Index.Name
+
+`Unresolved.Index.Name` is the result when an `Index.Call` cannot resolve a name — parked in session working list for later resolution.
+
+### Dotted.Name.Detection
+
+`Dotted.Name.Detection` defines the recognition rules for `Dotted.Names` in conversation: capitalized words joined by dots, always two+ parts, with exclusions for abbreviations, filenames, URLs.
+
+### User.Gated.Index
+
+`User.Gated.Index` defines two explicit gates for index writes: `Write.Trigger.Gated` (user initiates) and `Content.Verbatim.Gated` (user approves exact wording).
+
+### Write.Trigger.Gated
+
+`Write.Trigger.Gated` means the user must explicitly initiate write flows to the index — the agent never starts writing on its own.
+
+### Content.Verbatim.Gated
+
+`Content.Verbatim.Gated` means the user must approve the exact wording of each block before it is committed to the index.
+
+### Bullet.Point.Sentence
+
+`Bullet.Point.Sentence` is THE writing style for the entire index: bullet-pointed sentences, one idea per line, lowercase start, no period, indentation for sub-points.
+
+### Index.Block.Syntax
+
+`Index.Block.Syntax` is the structural convention for writing `Index.Blocks` — the "type system" of the index. Universal block shape: Heading → Fundamentals → Extra → Index section.
+
+### Index.Block.Fundamentals
+
+`Index.Block.Fundamentals` is the essential content of an `Index.Block` — bullet-point sentences that define what the concept IS (~600 chars). Not a special section; it IS the block body.
+
+### Stable.Surface
+
+`Stable.Surface` is a durable, authoritative surface where a specific facet of project knowledge lives. The index links to all `Stable.Surfaces`, making the full system navigable.
+
+### Index.CLI
+
+`Index.CLI` is the CLI surface for deterministic index operations — the "compiler" of the index. Entry point: `agentos index`. Currently: `agentos index doctor`.
+
+### Emergence.Signal
+
+`Emergence.Signal` is the detection of a new concept during `Gap.Detection` in the `Index.Eval.Loop` — triggers a suggestion to capture.
+
+## Index Skill Architecture
+
+### Skill.Package
+
+`Skill.Package` is a reusable packaging pattern: one `Main.Skill` with `references/`, plus lightweight `Alias.Skills` as exported interfaces. See `113-Skill.Package.md`.
+
+### Alias.Skill
+
+`Alias.Skill` is a lightweight skill that exists as an exported interface of a `Skill.Package` — short intro + pointer to the relevant reference file.
+
+### Variable.Notation
+
+`Variable.Notation` expresses a family of names using angle brackets: `<Variable>.Name` means "any name of this form."
 
 ## Naming And References
 

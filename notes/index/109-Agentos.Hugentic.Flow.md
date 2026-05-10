@@ -74,7 +74,7 @@ Current components include:
 - `Design.Session`, the scoped convergence surface for turning human-agent discussion into staged core design, TODO design, and implementation requests.
 - Core-design, TODO-design, and design-summary artifacts, which support convergence from discussion into durable design or implementation.
 - Implementation-request and issue-report artifacts, which support follow-up implementation and maintenance work.
-- Hugentic Flow workflow skills such as `agentos-design-discussion`, `agentos-design-session`, `agentos-design-implementation`, `agentos-project-doctor`, and artifact skills.
+- Hugentic Flow workflow skills such as `agentos-design-session`, `agentos-design-implementation`, `agentos-project-doctor`, and artifact skills.
 - Markdown coordination guidance such as root `AGENTS.md` and `.agentos/AGENTS.md`, when used as local agent workflow guidance rather than design authority.
 
 Component lists are orientation surfaces, not ownership manifests. The same component can participate in more than one `Agentos.Soft.Subsystem`.

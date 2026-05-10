@@ -10,6 +10,8 @@ In Agentos, development is a convergence process: humans and agents progressivel
 
 `Design.Session` manages a scoped part of that convergence. It gives the human a place to settle design judgment, gives the agent a place to track open space and sufficiency, and gives implementation a path from design into action.
 
+`Design.Session` is an alignment exercise paced by one agent-selected question at a time. The agent chooses the highest-leverage unresolved question and must recommend an answer or direction; the user controls advancement to the next question. Between questions, the session behaves like a design discussion. Consolidated alignment is captured into the active session artifacts.
+
 ## Components
 
 A design session is a system of composable convergence surfaces:
@@ -26,6 +28,8 @@ A design session is a system of composable convergence surfaces:
 
 `Impl.Req` is the implementation-request artifact that carries execution-facing work out of the session. It contains the concrete scope, constraints, ordered work when useful, vertical slices, validation, risks, review points, and deviation triggers needed to apply TODO design to `Current.Implementation`.
 
+Vertical slices are fundamental to `Impl.Req`. A vertical slice is a small end-to-end change that exercises the full useful path for one behavior or artifact outcome, producing something observable through an interface, artifact boundary, test, command, UI state, API response, reviewable state, or manual QA step. This avoids horizontal plans that complete one layer at a time and delay feedback until late in the work.
+
 The usual flow is:
 
 ```txt
@@ -41,6 +45,8 @@ The components can be used independently. A session may produce only `Core.Desig
 The usual session rhythm is to move from the big picture into focused item work, consolidate useful convergence into artifacts, and return to the big picture to choose the next focus.
 
 ## Alignment State
+
+`Alignment.Space` is the working map of the session's alignment state. It includes settled answers, unresolved questions, active assumptions, rejected or superseded options, relevant references, user taste and judgment, downstream implications, and material that remains in `Design.Open.Space`.
 
 `Design.Alignment.Core` is the set of design judgments that have been surfaced and explicitly settled with the user.
 
@@ -74,7 +80,7 @@ These gates are separate:
 
 Design work should precede implementation work. The session should make enough design/alignment material explicit before treating implementation as routine execution.
 
-Implementation requests produced from design sessions should prefer vertical slices when possible: thin end-to-end changes that can be verified through a relevant interface, artifact boundary, or observable behavior.
+Implementation requests produced from design sessions should prefer vertical slices: thin end-to-end changes that can be verified through a relevant interface, artifact boundary, or observable behavior. If horizontal enabling work is unavoidable, it should be named as such and paired with the earliest possible vertical slice.
 
 Implementation requests should include feedback loops. Feedback can be tests, type checks, manual QA, artifact inspection, review, user approval, or interface behavior checks.
 

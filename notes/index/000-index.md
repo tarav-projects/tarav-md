@@ -36,6 +36,7 @@ Canonical TOC and orientation note for `notes/index/`.
 - `108-Agentos.Project.Doctor.md` — diagnosis-first workflow for checking `Agentos.Project:<target>` conformance to `Agentos.Stack`.
 - `110-Agentos.Canvas.md` — visual human/agent collaboration surface built on Obsidian Canvas files; Graph.Model, Inline.Note.Style, and CLI.
 - `111-Design.Session.md` — scoped human-agent convergence surface that stages design target fragments, TODO design, and implementation requests.
+- `113-Skill.Package.md` — reusable packaging pattern for complex skill subsystems: Main.Skill + Alias.Skills.
 
 ### Ontology
 
