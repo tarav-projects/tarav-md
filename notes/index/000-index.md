@@ -24,6 +24,7 @@ Canonical TOC and orientation note for `notes/index/`.
 ### Core Concept Notes
 
 - `109-Agentos.Hugentic.Flow.md` — entry-point concept note for the human-agent project-development subsystem inside Agentos.
+- `112-Agentos.Agent.md` — agent actor, instance, provider-agent, and agent/session/subsystem field-boundary model.
 - `100-Agentos.Index.Notes.md` — durable concept-note subsystem and SSOT rule for Agentos-style projects.
 - `101-Md.Surface.md` — markdown-implemented project surface and parameterized surfaces such as `Md.Surface:Agentos.Stack`.
 - `102-Dotted.Notation.md` — dotted concept names and parameterized notation such as `Maintenance.System:Agentos`.
@@ -34,7 +35,7 @@ Canonical TOC and orientation note for `notes/index/`.
 - `107-Agentos.Mission.md` — lightweight mission coordination surface for named blocks of work.
 - `108-Agentos.Project.Doctor.md` — diagnosis-first workflow for checking `Agentos.Project:<target>` conformance to `Agentos.Stack`.
 - `110-Agentos.Canvas.md` — visual human/agent collaboration surface built on Obsidian Canvas files; Graph.Model, Inline.Note.Style, and CLI.
-- `111-Design.Session.md` — scoped human-agent convergence surface that stages design target fragments, TODO design, and execution plans.
+- `111-Design.Session.md` — scoped human-agent convergence surface that stages design target fragments, TODO design, and implementation requests.
 
 ### Ontology
 

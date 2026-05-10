@@ -54,6 +54,14 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 `Agentos.Mission` is a lightweight coordination surface for named blocks of work. It is opt-in coordination, not a full project-management system. See `107-Agentos.Mission.md`.
 
+### Agentos.Agent
+
+`Agentos.Agent` is the Agentos concept for an agent actor as modeled by the system: a provider-backed or locally defined actor with configured identity, capabilities, homes, runtime behavior, and provider-native surfaces. See `112-Agentos.Agent.md`.
+
+### Agent.Instance
+
+`Agent.Instance` is one instantiated `Agentos.Agent` object. It denotes the realized agent object Agentos can list, select, run, inspect, or ask for provider-native capabilities; it is not the overloaded legacy `agent.instances[]` config record. See `112-Agentos.Agent.md`.
+
 ### Hugentic
 
 `Hugentic` describes a system, surface, workflow, or project designed for the human-agentic interface: humans and agents coordinating, exchanging context, making decisions, and co-working through explicit surfaces.
@@ -124,7 +132,7 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 ### Design.Session
 
-`Design.Session` is a scoped human-agent convergence surface for design work. It stages design target fragments, TODO design, and execution plans while preserving user-gated alignment. See `111-Design.Session.md`.
+`Design.Session` is a scoped human-agent convergence surface for design work. It stages design target fragments, TODO design, and implementation requests while preserving user-gated alignment. See `111-Design.Session.md`.
 
 ### Design.Session.Core.Design
 
@@ -134,9 +142,9 @@ Agentos is an operating system for agent-oriented work: a modular but integrated
 
 `Design.Session.TODO.Design` is the task-design layer of a design session. It defines what should be done about the core design to move `Current.Implementation` closer to the staged target fragment. See `111-Design.Session.md`.
 
-### Design.Session.Exec.Plan
+### Design.Session.Impl.Req
 
-`Design.Session.Exec.Plan` is the execution layer of a design session. It contains the concrete plan or agent loop for applying TODO design to `Current.Implementation`. See `111-Design.Session.md`.
+`Design.Session.Impl.Req` is the implementation-request component produced or fed by a design session. It carries execution-facing responsibilities such as scope, constraints, vertical slices, ordered work when useful, validation, risks, review points, and deviation triggers. See `111-Design.Session.md`.
 
 ### Design.Alignment.Core
 
