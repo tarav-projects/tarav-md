@@ -1,3 +1,4 @@
+<!-- FILE MIGRATED -->
 # Agentos.Index.Notes
 
 `Agentos.Index.Notes` is the durable concept-note subsystem of an Agentos-style project.

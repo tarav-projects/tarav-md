@@ -1,3 +1,4 @@
+<!-- FILE MIGRATED -->
 # Dotted.Notation
 
 `Dotted.Notation` identifies named concepts in an ontology surface.
