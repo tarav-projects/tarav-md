@@ -1,13 +1,13 @@
 ---
 name: agentos-session-zip-transcript
-description: Resolve a chat session from a session id, session URI, or provider-agnostic query, extract its conversation with `agentos chatlas`, and return a compressed transcript artifact. Use when the user wants prior session context loaded in a smaller form that preserves full user turns but not the exact original assistant wording.
+description: Resolve a chat session from a session id, session URI, or provider-agnostic query, extract its conversation with `agentos chatlas`, write a compressed transcript live note, and return a short manifest. Use when the user wants prior session context loaded in a smaller form that preserves full user turns but not the exact original assistant wording.
 ---
 
 # Session Zip Transcript
 
-Return a compressed transcript for a prior chat session.
+Write a compressed transcript live note for a prior chat session and return a short manifest.
 
-This skill must run as an agent by default, not inline in the caller context. `agentos chatlas` handles deterministic resolution and extraction from the maintained chat dataset. The agent always compresses the transcript before returning it.
+This skill must run as an agent by default, not inline in the caller context. `agentos chatlas` handles deterministic resolution and extraction from the maintained chat dataset. The agent always compresses the transcript before writing the live-note artifact.
 
 ## Trigger Boundary
 
@@ -44,7 +44,8 @@ Hold the output to this quality bar:
 1. Resolve the session.
 2. Extract the conversation transcript.
 3. Compress the transcript in-agent.
-4. Return only the compressed transcript artifact.
+4. Write the compressed transcript to `notes/live/` in the owning Agentos.Project.
+5. Return only a short manifest pointing to the live note.
 
 ## Missing Input
 
@@ -184,9 +185,44 @@ Examples:
 - Good: `Found 46 likely heartbeat sessions; current reused session: 6a5c95ab-...; 2 extra debugging sessions.`
 - Bad: a 46-line session id dump when the exact full list is not required to preserve the conversation outcome.
 
-## Step 4: Return The Artifact
+## Step 4: Resolve The Live Note Target
 
-The returned artifact must be self-describing. Start it with this notice or equivalent wording:
+Write the compressed transcript to `notes/live/` in the Agentos.Project that owns the resumed work context.
+
+If the owning project is not clear, stop and return this short failure shape:
+
+```text
+Could not write the compressed transcript because the owning Agentos.Project is unclear.
+Retry from inside the intended project or provide the exact Agentos.Project root.
+```
+
+Do not guess between sibling projects. Do not write to the umbrella repository root unless it is explicitly the intended project.
+
+Allocate the live-note prefix with:
+
+```bash
+agentos stdlib prefix next --project-base <project-root-basename> --target notes/live
+```
+
+Use an explicit project path when needed:
+
+```bash
+agentos stdlib prefix next --project <project-root> --project-base <project-root-basename> --target notes/live
+```
+
+If prefix allocation fails, stop and report the failure. Do not assign a prefix by manual inspection.
+
+Write to:
+
+```text
+notes/live/NNN-session-zip-transcript-<short-session-id>.md
+```
+
+Use the first 8 characters of the source session id for `<short-session-id>` when a session id is available. If the path already exists, stop and report the collision instead of overwriting.
+
+## Step 5: Write The Artifact
+
+The live-note artifact must be self-describing. Start it with this notice or equivalent wording:
 
 ```text
 [compressed transcript]
@@ -206,7 +242,7 @@ extracted-via: agentos chatlas export --view zip-transcript --format json
 
 When both a session id and URI are available, include both. Treat these as first-class provenance data, not optional decoration.
 
-Then emit the transcript in a stable turn-based format:
+Then emit the transcript in the live-note file using a stable turn-based format:
 
 ```text
 [user]
@@ -216,12 +252,32 @@ Then emit the transcript in a stable turn-based format:
 <compressed assistant content>
 ```
 
+## Step 6: Return The Manifest
+
+Return a short manifest, not the transcript body, unless the user explicitly asks to paste the artifact inline.
+
+Preferred manifest shape:
+
+```text
+[compressed transcript manifest]
+path: <project-relative-notes-live-path>
+source-session-id: <session-id>
+source-session-uri: <resolved-uri>
+resolved-via: agentos chatlas query --include-match
+extracted-via: agentos chatlas export --view zip-transcript --format json
+turn-count: <number>
+artifact-size-bytes: <number>
+```
+
 ## Output Requirements
 
-- Return the compressed transcript artifact itself, not a prose summary about it.
-- Keep the artifact plain and readable.
+- Default: return only the compressed transcript manifest.
+- Inline exception: return the compressed transcript artifact itself only when the user explicitly asks to paste it inline.
+- Keep the artifact and manifest plain and readable.
 - If extraction fails, report the failure briefly instead of fabricating output.
 - If resolution is ambiguous, stop before extraction.
+- If the owning Agentos.Project is unclear, stop before writing.
+- Never overwrite an existing live note path.
 
 ## Session Content Sensitivity
 
