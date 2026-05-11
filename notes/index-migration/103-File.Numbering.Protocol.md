@@ -1,3 +1,4 @@
+<!-- FILE MIGRATED -->
 # File.Numbering.Protocol
 
 `File.Numbering.Protocol` defines numeric filename conventions for stable, addressable files in project surfaces.

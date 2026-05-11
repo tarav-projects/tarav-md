@@ -1,5 +1,6 @@
 # Agentos.Skills
 
+<!-- FILE MIGRATED -->
 `Agentos.Skills` defines skill selection, routing, and import behavior for Agentos projects.
 
 It is the contract between global routing config, project-local profile selection, source expansion, selected skills, and imported skill depots.

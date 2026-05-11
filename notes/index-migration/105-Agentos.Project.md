@@ -1,5 +1,6 @@
 # Agentos.Project
 
+<!-- FILE MIGRATED -->
 `Agentos.Project` defines project identity and targeting for a concrete project adopting the `Agentos.Stack` model.
 
 It is the small contract that lets Agentos commands and workflows decide what counts as a project, what directory a command targets, and when a command may require an existing initialized project.

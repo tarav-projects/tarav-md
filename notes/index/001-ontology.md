@@ -54,3 +54,60 @@
 
 - `Dotted.Parameterized.Notation` identifies a target or instance of a named concept without creating a new concept
 - see `116-Dotted.Notation.md`
+
+****
+
+## File.Numbering.Protocol
+
+- `File.Numbering.Protocol` defines numeric filename conventions for stable, addressable files in project surfaces
+- see `117-File.Numbering.Protocol.md`
+
+****
+
+## Maintenance.System
+
+- `Maintenance.System` defines how a project surface is diagnosed over time
+- see `118-Maintenance.System.md`
+
+****
+
+## Agentos.Project
+
+- `Agentos.Project` is a concrete project that adopts the `Agentos.Stack` model
+- see `119-Agentos.Project.md`
+
+****
+
+## Agentos.AGENTS.md
+
+- `Agentos.AGENTS.md` is the project-local natural-language instruction surface at `.agentos/AGENTS.md`
+- see `119-Agentos.Project.md`
+
+****
+
+## Project.Discovery.System
+
+- `Project.Discovery.System` resolves a command or workflow to an `Agentos.Project` target
+- see `119-Agentos.Project.md`
+
+****
+
+## Agentos.Skills
+
+- `Agentos.Skills` defines skill selection, routing, and import behavior for Agentos projects
+- see `120-Agentos.Skills.md`
+
+****
+
+## Usage.Surface
+
+- `Usage.Surface` is the usage-useful subset of `Public.Surface`
+- see `120-Agentos.Skills.md`
+
+****
+
+## Usage.Skill
+
+- `Usage.Skill` is a special-purpose, usage-centric skill designed primarily as documentation
+- see `120-Agentos.Skills.md`
+

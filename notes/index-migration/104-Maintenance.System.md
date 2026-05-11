@@ -1,3 +1,4 @@
+<!-- FILE MIGRATED -->
 # Maintenance.System
 
 `Maintenance.System` defines how a project surface is diagnosed over time.
