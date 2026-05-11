@@ -100,13 +100,12 @@ agentos chatlas export "<resolved-uri>" --view zip-transcript --format json
 
 Use JSON `zip-transcript` extraction unless the user explicitly asks for another supported export view.
 
-Interpret the export as the Chatlas session model:
+Interpret the export as the compact Chatlas zip transcript:
 
-- Use `chat.messages` as the primary ordered turn source.
-- Preserve message roles from the structured payload.
-- Convert text content blocks to plain turn text before compression.
-- `zip-transcript` already filters to visible user/assistant text content only; do not expect images, encrypted content, opaque reasoning, tool payloads, or normalization metadata to be present.
-- Use `event_refs` on messages only as lightweight provenance when needed; do not reconstruct the full event tape.
+- Use `turns` as the primary ordered turn source.
+- Preserve turn roles from the structured payload.
+- Use each turn's `text` field as the plain turn text before compression.
+- `zip-transcript` already filters to visible user/assistant text content only; do not expect raw event tape, message ids, source refs, images, encrypted content, opaque reasoning, tool payloads, or normalization metadata to be present.
 
 ## Step 3: Compress In-Agent
 

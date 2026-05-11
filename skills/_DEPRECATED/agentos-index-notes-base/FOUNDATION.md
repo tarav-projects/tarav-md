@@ -34,9 +34,9 @@ This skill operationalizes the durable design model in `notes/index/`; it is not
 
 ## Block Extraction Protocol
 
-- For markdown block extraction, use `agentos mdblocks blocks` from the terminal.
-- For companion block references, use `agentos mdblocks links`.
-- For deterministic retrieval by query, use `agentos mdblocks find --query ...`.
+- For markdown block extraction, use `agentos stdlib mdblocks blocks` from the terminal.
+- For companion block references, use `agentos stdlib mdblocks links`.
+- For deterministic retrieval by query, use `agentos stdlib mdblocks find --query ...`.
 - Prefer these commands over ad-hoc manual parsing from raw file reads when block-level analysis is the task.
 
 ## Index File Naming
@@ -51,7 +51,7 @@ This skill operationalizes the durable design model in `notes/index/`; it is not
   - `100-499`: rolling index notes
   - `500-999`: rolling other notes
 - New rolling index notes should use `100-499`
-- Allocate new ordinary index-note prefixes with `agentos prefix next --project-base <project-root-basename> --target notes/index`; do not assign them by manual inspection.
+- Allocate new ordinary index-note prefixes with `agentos stdlib prefix next --project-base <project-root-basename> --target notes/index`; do not assign them by manual inspection.
 - Use `--project /path/to/project --project-base <project-root-basename>` when calling from outside the intended project tree. Do not use `--project .` in nested workspaces unless `.` is the actual project root.
 - Existing pre-migration index notes with lower prefixes should keep their assigned numbers
 - Note numbers should be unique across the project md surface, not only inside `notes/index/`

@@ -83,7 +83,7 @@ View guidance:
 - `user`: visible user-authored messages only
 - `replay`: visible messages plus lightweight tool-call replay data
 - `events`: canonical event tape with derived projections emptied
-- `zip-transcript`: minimal session header plus visible user/assistant text messages only
+- `zip-transcript`: compact session header plus ordered `turns` with visible user/assistant text only
 
 ## When To Use `chat debug`
 
