@@ -31,16 +31,22 @@ Before starting a migration session, load:
 The migration uses the `agentos-index-writer` protocol:
 
 ```
-1. Agent picks next un-migrated block from notes/index-migration/
-2. Agent proposes rewritten block in Index.Block.Syntax:
+1. Agent reads next un-migrated source file from notes/index-migration/
+2. Agent proposes new blocks in Index.Block.Syntax:
    - Bullet.Point.Sentence style
    - **** separators
    - 25-line ceiling
-   - ### index section (findability, related)
    - H2 heading as Dotted.Name where appropriate
-3. User approves, requests changes, or skips
-4. Agent writes approved block into notes/index/
-5. Agent marks source block as <!-- MIGRATED --> in index-migration/
+3. Agent identifies ALL Dotted.Names present in the source file and discusses each:
+   - should it become its own block, a sub-point, or be dropped?
+   - no Dotted.Name should pass through unaddressed
+4. User approves, requests changes, or skips each block
+5. Agent writes approved blocks into notes/index/
+6. Agent re-reads the source file and reports what was left out:
+   - section by section, what wasn't captured in the new blocks
+   - explicit delta: "source said X, new blocks don't cover it"
+6. User decides per leftover: capture it, drop it, or note it
+7. Agent marks source file as <!-- FILE MIGRATED --> in index-migration/
 ```
 
 This is `Content.Verbatim.Gated` — the user sees and approves every block before it's written.
