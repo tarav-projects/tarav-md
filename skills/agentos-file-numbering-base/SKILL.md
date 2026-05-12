@@ -31,7 +31,7 @@ This skill operationalizes `notes/index/103-File.Numbering.Protocol.md`. The ind
 ## Allocator Behavior
 
 - `agentos stdlib prefix next --project-base <project-root-basename> --target <path>` discovers the `Agentos.Project` from `pwd`, asserts the resolved project root basename, loads the project prefix policy, and allocates for the project-relative target path.
-- Project-aware target mode requires an explicit project selector: `--project`, `--project-base`, or both. Prefer `--project-base` when the caller is already inside the intended project tree; use `--project <path> --project-base <basename>` when outside the tree.
+- Use `--project /path/to/project --project-base <project-root-basename> --target <path>` when outside the intended project tree.
 - Numbered artifact prefixes must be allocated with `agentos stdlib prefix`; do not assign ordinary prefixes by manual inspection.
 - If `agentos stdlib prefix` fails, stop and ask the user how to resolve the project or numbering surface. Do not fall back to inspection.
 - In nested workspaces, verify that the resolved `project_root` is the intended numbered surface. Use `--project-base <basename>` for discovery from `pwd`, or `--project /path/to/project --project-base <basename>` to disambiguate from outside the tree; do not use `--project .` unless `.` is the actual initialized project root.
@@ -44,7 +44,6 @@ This skill operationalizes `notes/index/103-File.Numbering.Protocol.md`. The ind
   - the selected route lower bound if no eligible prefixes exist
   - otherwise `max(existing eligible prefixes in the selected route range) + 1`
 - This is append-only allocation, not gap-filling allocation.
-- Legacy scanner mode still exists for old low-level calls without `--target`, but project-aware target mode is the preferred Agentos workflow.
 
 ## Stability Rules
 

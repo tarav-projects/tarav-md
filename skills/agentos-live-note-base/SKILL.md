@@ -66,4 +66,4 @@ Explicit project path target, when the caller is outside the intended project tr
 agentos stdlib prefix next --project /path/to/project --project-base <project-root-basename> --target notes/live
 ```
 
-In nested workspaces or sibling repositories, do not use `--project .` unless `.` is the actual initialized project root. Use `--project-base` so the allocation fails if the wrong project was resolved.
+In nested workspaces or sibling repositories, do not use `--project .` unless `.` is the actual initialized project root. Use `--project-base` so allocation fails if the wrong project was resolved.
