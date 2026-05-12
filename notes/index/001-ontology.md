@@ -157,6 +157,5 @@
 
 ## Design.Index.Block
 
-- `Design.Index.Block` is a `Complete.Index.Block` used in `Design.Session` artifacts
+- `Design.Index.Block` is a session-local `Complete.Index.Block` used in `Design.Session` artifacts
 - see `114-Agentos.Index.Notes.md`
-

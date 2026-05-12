@@ -13,8 +13,10 @@ Produce a short report — do not auto-update the artifacts:
 
 ```
 Capture audit:
-- Core.Design / [item]: [missing concept, judgment, correction, relation, open space]
-- TODO.Design / [item]: [missing objective, evidence, guidance, validation, boundary]
+- Design.Index / [concept] / fundamentals: [missing fundamental, judgment, correction, relation, open space]
+- Design.Index / [concept] / appendix: [missing rationale, example, tradeoff, explanation, pressure test]
+- Design.Index / [concept] / meta: [missing source, state, open question, stale marker, alignment issue]
+- Session.Notes / [section]: [missing open question, reference, assumption, parked idea]
 - Impl.Req / [section]: [missing requested change, slice, step, command, check, risk, deviation]
 - [new]: [concept/task/plan material mentioned but not yet placed]
 ```
@@ -23,9 +25,11 @@ If nothing is missing: "Capture audit: document is in sync."
 
 Audit against the component model:
 
-- settled design material should be in `Core.Design`
-- unsettled significant design material should be visible as open space
-- task objectives, validation, evidence, and boundaries should be in `TODO.Design`
+- compact settled or working concept fundamentals should be in `Design.Index` fundamentals
+- explanation, rationale, examples, pressure tests, tradeoffs, rejected alternatives, and design depth should be in `Design.Index` appendix
+- concept-level session mechanics should be in `Design.Index` meta
+- unsettled significant design material should be visible in `Session.Notes`
+- task-shaped observations can stay in `Session.Notes` until they are ready for an `Impl.Req`
 - implementation-ready scope, vertical slices, ordered work when useful, checks, risks, and acceptance signals should be in `Impl.Req`
 - user-gated writes or settlements should not be treated as captured unless the user explicitly approved them
 

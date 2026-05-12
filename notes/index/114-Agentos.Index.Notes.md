@@ -93,6 +93,11 @@
 
 ## Design.Index.Block
 
-- `Design.Index.Block` is a `Complete.Index.Block` used in `Design.Session` artifacts
-- adds `### meta` for session mechanics (status, promotion candidates, etc.) — separate from concept content
-- at promotion time: fundamentals compress into `Index.Block`, appendix material goes to `Index.Appendix.Block`, meta gets dropped
+- `Design.Index.Block` is a session-local `Complete.Index.Block` used in `Design.Session` artifacts
+- captures the relevant conceptual value produced by session discussion about a subject concept
+- fundamentals have the same semantic role as `Index.Block` fundamentals
+    - draft quality may vary during the session, but the meaning target is the same
+- inherits `### appendix` from `Complete.Index.Block`
+    - carries extended conceptual value: examples, rationale, pressure tests, tradeoffs, rejected alternatives, design depth
+- adds `### meta` for session mechanics: status, sources, open questions, promotion notes, stale or misaligned markers
+- at promotion time: fundamentals compress into `Index.Block`, appendix material goes to `Index.Appendix.Block`, meta gets dropped or is used as workflow state

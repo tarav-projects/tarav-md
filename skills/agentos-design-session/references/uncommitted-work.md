@@ -6,11 +6,12 @@ The agent tracks this internally — no formal computation needed. It knows what
 
 Uncommitted work may belong to:
 
-- `Core.Design`
-- `TODO.Design`
+- `Design.Index`
+- `Session.Notes`
+- `Session.Log`
 - `Impl.Req`
-- a specific item inside one of those components
-- cross-component notes such as an unresolved transition or dependency
+- a specific concept, section, question, or handoff
+- cross-section notes such as an unresolved transition or dependency
 
 ## When To Surface
 
@@ -26,4 +27,4 @@ When the user says "continue" / "what's next" / "now what":
 2. If the user declines (or nothing uncommitted): show session status + next item suggestions.
 3. If resuming a previously discussed item: briefly recall where we left off.
 
-Prefer finishing uncommitted capture before moving from `Core.Design` to `TODO.Design`, or from `TODO.Design` to `Impl.Req`, unless the user explicitly wants to defer capture.
+Prefer finishing uncommitted capture before moving from concept alignment into implementation handoff, unless the user explicitly wants to defer capture.

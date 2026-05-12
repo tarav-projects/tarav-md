@@ -6,6 +6,21 @@ Fundamental rule: the agent controls organization; the user controls advancement
 
 The agent chooses the highest-leverage unresolved question and keeps the alignment path organized. The agent may suggest that the next question is ready, but must not present the next full question until the user explicitly asks for `next`, `continue`, `next question`, `go on`, or equivalent.
 
+In `Session.Runtime.Loop`, asking the next full design question is a `Session.Maintenance.Turn`. Turn switching is user-gated.
+
+## Canonical Flow
+
+```txt
+agent asks one design question
+-> user/agent discuss until convergence, parking, or rejection
+-> user/agent consolidate the result
+-> update state if useful and approved
+-> user asks for next/continue
+-> agent asks one next design question
+```
+
+During discussion, the agent remains in `User.Assistant.Turn`: follow the user's thread, respond directly, and surface important alignment issues only when they materially affect the discussion.
+
 ## Alignment.Space
 
 `Alignment.Space` is the working map of the session's alignment state.
@@ -18,10 +33,10 @@ Track:
 - rejected or superseded options
 - relevant references
 - user taste and judgment
-- implications for `Core.Design`, `TODO.Design`, or `Impl.Req`
-- material that belongs in `Design.Open.Space`
+- implications for `Design.Index`, `Session.Notes`, or `Impl.Req`
+- material that belongs in open space
 
-`Alignment.Space` is not automatically written verbatim. Consolidate it into the active artifacts when it becomes useful durable state and the user approves the write.
+`Alignment.Space` is not automatically written verbatim. Consolidate it into the session artifact when it becomes useful working state and the user approves the write.
 
 ## Question Selection
 
@@ -32,7 +47,7 @@ Prefer questions that:
 - unlock multiple downstream choices
 - clarify user taste, authority, or scope
 - separate settled material from open space
-- determine whether work belongs in `Core.Design`, `TODO.Design`, or `Impl.Req`
+- determine whether work belongs in `Design.Index`, `Session.Notes`, or `Impl.Req`
 - identify relevant references or evidence
 - prevent likely implementation drift
 
@@ -88,3 +103,5 @@ Write it?
 ```
 
 Only write after user approval. Keep the capture proportional to what the user considers sufficient for the current pass.
+
+After capture, do not automatically ask the next full question. State that the next question is ready when useful, then wait for the user to ask for it.

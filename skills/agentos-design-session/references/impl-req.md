@@ -1,12 +1,12 @@
 # Impl.Req Component
 
-`Impl.Req` is the implementation-request component of a `Design.Session`.
+`Impl.Req` is the implementation-request handoff produced by a `Design.Session`.
 
 It replaces a separate session-local execution-plan artifact. When a session produces implementation work, use the `agentos-artifact-impl-req` skill and write a `*-impl-req.md` artifact.
 
 ## Role
 
-`Impl.Req` translates `Core.Design` and `TODO.Design` into implementation-ready guidance.
+`Impl.Req` translates the current design-session artifact into implementation-ready guidance.
 
 Good implementation-request material includes:
 
@@ -54,11 +54,11 @@ Use vertical slices to turn broad design intent into implementation work that ca
 
 Horizontal work is allowed only when it is truly enabling infrastructure that cannot be made observable yet. If a horizontal step is necessary, name why and pair it with the earliest possible vertical slice.
 
-## Relationship To TODO.Design
+## Relationship To Design Session
 
-`TODO.Design` defines what action should be taken and why. It may include objectives, evidence, validation expectations, boundaries, and readiness questions.
+`Design.Index` defines the conceptual background: concept fundamentals, appendix material, and concept-level session meta. `Session.Notes` may contain task-shaped observations, readiness questions, validation hints, and boundaries that are not yet execution-ready.
 
-`Impl.Req` is the handoff surface for doing the work. It should not reopen core design silently. If implementation planning reveals that `Core.Design` or `TODO.Design` does not fit reality, surface the mismatch and return to the relevant design surface.
+`Impl.Req` is the handoff surface for doing the work. It should not reopen design silently. If implementation planning reveals that the session design does not fit reality, surface the mismatch and return to the relevant section before proceeding.
 
 ## Boundaries
 
