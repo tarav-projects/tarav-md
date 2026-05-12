@@ -15,3 +15,4 @@
 - `119-Agentos.Project.md` — project identity, marker, and discovery system
 - `120-Agentos.Skills.md` — skill routing, usage surface, usage skill
 - `121-Design.Session.md` — convergence surface, runtime loop, backends
+- `124-Development.Model.md` — design target model, current implementation, progress gradient, co-evolution

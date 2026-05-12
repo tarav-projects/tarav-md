@@ -297,3 +297,5 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
 - settled Design.Session as staging area for Stable.Surface changes — strong signal for change, not a stable surface itself
 - drafted and wrote `121-Design.Session.md` — Design.Session, Session.Runtime.Loop, InChat.Design.Session, Artifact.Design.Session
 - updated `000-index.md` and `001-ontology.md` with new entries
+- drafted and wrote `124-Development.Model.md` — Design.Target.Model, Current.Implementation, Progress.Gradient, Design.Implementation.CoEvolution
+- updated `000-index.md` and `001-ontology.md` with 124 entries

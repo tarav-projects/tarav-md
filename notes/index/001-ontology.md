@@ -187,3 +187,31 @@
 
 - `Artifact.Design.Session` is the file-backed `Design.Session` backend — state lives in a `Live.Note`
 - see `121-Design.Session.md`
+
+****
+
+## Design.Target.Model
+
+- `Design.Target.Model` is the current explicit design model of a system — distributed across surfaces, with the index as discovery layer
+- see `124-Development.Model.md`
+
+****
+
+## Current.Implementation
+
+- `Current.Implementation` is the current realized state of a system
+- see `124-Development.Model.md`
+
+****
+
+## Progress.Gradient
+
+- `Progress.Gradient` is the current best direction of movement between `Current.Implementation` and `Design.Target.Model`
+- see `124-Development.Model.md`
+
+****
+
+## Design.Implementation.CoEvolution
+
+- `Design.Implementation.CoEvolution` is the development dynamic where design and implementation reshape each other
+- see `124-Development.Model.md`
