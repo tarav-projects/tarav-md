@@ -99,9 +99,10 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
 ### Design.Session.File.Plan
 
 - `Design.Session` concept family will be indexed across three files:
-  - `121-Design.Session.md` — container: `Design.Session`, sub-concepts: `User.Gated.Trigger`, `User.Gated.Writing`, `Session.Runtime.Loop` (`User.Assistant.Turn`, `Session.Maintenance.Turn`), `InChat.Design.Session`, `Artifact.Design.Session`
-  - `122-Alignment.Space.md` — container: `Alignment.Space`, sub-concepts: `Design.Alignment.Core`, `Design.Open.Space`, `Delegation.Frontier`, `Alignment.Sufficiency`
+  - `121-Design.Session.md` — container: `Design.Session`, sub-concepts: `Session.Runtime.Loop` (`User.Assistant.Turn`, `Session.Maintenance.Turn`), `InChat.Design.Session`, `Artifact.Design.Session`
+  - `122-Alignment.Space.md` — container: `Alignment.Space`, sub-concepts: `Design.Alignment.Core`, `Design.Open.Space`, `Delegation.Frontier`, `Alignment.Sufficiency`, `Hard.Evidence`
   - `123-Impl.Req.md` — container: `Impl.Req`, sub-concepts: `Vertical.Slice`, `Deep.Modules`, `No.Legacy.Allowed`, (more later)
+- `User.Gated.Trigger` and `User.Gated.Writing` go to `100-Agentos.Surfaces.md` — they are general surface-authority concepts
 - old source `111-Design.Session.md` is architecturally stale but its alignment-state concepts are alive
 - old Core.Design / TODO.Design split is dead
 - `Design.Index` and `Design.Index.Block` stay in `114` — they are index-notes concepts, not Design.Session concepts
@@ -109,6 +110,117 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
 #### meta
 
 - status: settled
+- evidence:
+  - user confirmed gates are general, not Design.Session-specific
+  - user chose `100-Agentos.Surfaces.md` as home for gates (option C)
+  - user confirmed `Hard.Evidence` belongs in `122`
+
+### Design.Session.Fundamentals
+
+- `Design.Session` is a scoped human-agent convergence surface for design work
+- the session does real work (design, problem-solving, issue resolution) while progressively enriching alignment between user and agent
+- the interview loop (question → discussion → consolidation) is the fundamental strategy: direct questions produce evidence of alignment, consolidation makes it durable
+- the agent maintains session progress and content; the user controls advancement and settles material
+- session content aims to be `Hard.Evidence`-based as much as possible — evidence-based arguments have priority over agent assumptions
+- the goal is to fill `Design.Alignment.Core` with evidence-based facts — more is welcome, but the core alignment space is the priority
+- the interview protocol (one question at a time, agent organizes, user advances, agent recommends) belongs in the parent `Design.Session` fundamentals, not in `Session.Runtime.Loop`
+
+#### meta
+
+- status: settled
+- evidence:
+  - user confirmed convergence wording
+  - user clarified alignment is the method, not the purpose — the session does real work
+  - user defined `Hard.Evidence.Based` and its priority
+  - user confirmed goals stay in fundamentals, not a separate sub-concept
+
+### Hard.Evidence.In.Meta
+
+- `Design.Index.Block` `#### meta` sections can include an `evidence:` list
+- the evidence entries are summary pointers to where the evidence lives, not the evidence itself
+- the agent should have access to the evidence and can check it at any time
+- format is lightweight and trust-based — no need to be super specific
+
+```md
+#### meta
+
+- status: settled
+- evidence:
+  - user reply (this session)
+  - `agentos index doctor` output confirmed no conflicts
+```
+
+#### meta
+
+- status: settled
+- evidence:
+  - user confirmed format and lightweight approach
+
+### User.Gates.Placement
+
+- `User.Gated.Trigger` and `User.Gated.Writing` are general surface-authority concepts, not Design.Session-specific
+- they belong in `100-Agentos.Surfaces.md` alongside `Stable.Surface.Equal.Authority`
+- Design.Session uses them but does not own them
+
+#### meta
+
+- status: settled
+- evidence:
+  - user confirmed gates are general
+  - user selected option C (`100-Agentos.Surfaces.md`) over Alignment.Space or a new note
+
+### Session.Runtime.Loop.Design
+
+- `Session.Runtime.Loop` is the general workflow the agent tries to make the session follow
+- main flow: `Design.Alignment.Question` → `Design.Enrichment.Discussion` → `Design.Consolidation` → ...
+- interruptions are named branches that pause the main flow at any point
+- `User.Assistant.Turn` — user drives, agent follows (`Design.Enrichment.Discussion` phase)
+- `Session.Maintenance.Turn` — agent drives one session move (`Design.Alignment.Question`, `Design.Consolidation`, state update)
+- mode switching is user-gated — agent may suggest, never silently switch
+- `Design.Status.Report` — structured checkpoint that summarizes session state
+  - delta-oriented: reactive to context, don't repeat still-valid reported state
+  - serves multiple roles: status checkpoint, consolidation output, session state summary
+  - works in both `InChat.Design.Session` and `Artifact.Design.Session`
+  - used sparingly at natural consolidation points
+  - in InChat sessions, `Design.Consolidation` = printing a `Design.Status.Report`
+- `Session.Interruptions` — catalog of named branches the user can take:
+  - `Capture.Audit`, `Consolidation.Plan`, `Artifact.Upgrade`, `Impl.Req.Handoff`, `Session.Split`, `Close.Topic`, `Park.Topic`
+- the interruption catalog gives the user a vocabulary to communicate with the agent — each name triggers a known response shape
+- after an interruption, return to the main flow unless the user chooses another move
+
+#### meta
+
+- status: settled
+- evidence:
+  - user confirmed framing: main flow + interruptions as branches
+  - user named the steps: Design.Alignment.Question, Design.Enrichment.Discussion, Design.Consolidation
+  - user promoted Design.Status.Report out of interruptions into Session.Runtime.Loop
+  - skill `session-interruptions.md` already catalogs the interruptions operationally
+
+### Design.Session.Backends
+
+- `InChat.Design.Session` and `Artifact.Design.Session` are two backends for the same session
+- both run the same `Session.Runtime.Loop` — the backend doesn't change the workflow, only where consolidated state is captured
+- upgrade path: InChat → Artifact when state becomes too large, important, or needs future handoff — upgrade is user-gated, never automatic
+- `InChat.Design.Session` — default backend
+  - the chat is the substrate, the agent organizes it into design-session form
+  - flexibility is the priority — no file overhead, no formal sections required every turn
+  - the agent must always track session state even when not printing it
+  - design state lives across explicit chat turns and strategic `Design.Status.Report` prints
+  - can't waste tokens on session organization overhead — the agent needs to actually work
+- `Artifact.Design.Session` — file-backed backend
+  - state lives in a `*-design-session.md` file
+  - durable, handoff-ready
+  - adds `Session.Notes` and `Session.Log` to `Session.Abstract` and `Design.Index`
+  - artifact writes are user-gated
+
+#### meta
+
+- status: settled
+- evidence:
+  - user confirmed backends are conceptually clear
+  - user defined InChat essence: flexibility, chat as substrate, strategic reports
+  - user confirmed Design.Status.Report works in both backends with same properties
 
 ### Index.Block.Body.Rationale
 
@@ -139,3 +251,12 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
 - updated artifact structure: `Session.Index` → `Design.Index`, `Session.Docs` removed, blocks converted to `Design.Index.Block` format
 - parked `Agentos.Mission` (107) — superseded by Iterante
 - settled file plan for Design.Session concept family: 121 (Design.Session), 122 (Alignment.Space), 123 (Impl.Req)
+- settled Design.Session fundamentals wording — convergence surface, interview loop, alignment enrichment as method not purpose
+- settled `Hard.Evidence` as general concept, placed in `122-Alignment.Space.md`
+- settled `User.Gated.Trigger` / `User.Gated.Writing` move to `100-Agentos.Surfaces.md`
+- settled evidence-in-meta format for `Design.Index.Block` — lightweight summary pointers
+- settled interview protocol lives in parent `Design.Session` fundamentals, not in `Session.Runtime.Loop`
+- updated `Design.Session.File.Plan` — removed gates from 121, added `Hard.Evidence` to 122
+- settled `Session.Runtime.Loop` framing — main flow (Design.Alignment.Question → Design.Enrichment.Discussion → Design.Consolidation) with interruption branches as user vocabulary
+- settled `Design.Status.Report` as `Session.Runtime.Loop` sub-concept — promoted out of interruptions
+- settled `InChat.Design.Session` and `Artifact.Design.Session` backend concepts
