@@ -38,12 +38,9 @@ Protocol: `517-index-migration-protocol.md`
 
 ****
 
-## Pending: Index.Block link-out rule
+## Resolved: Index.Block link-out rule
 
-- when an `Index.Block` is created for a meaningful part of the system, it must exist but can link out
-- the index must have at least a block for any meaningful concept, but blocks can link out rather than define everything inline
-- skills and other surfaces can own the source of truth — the index links to them
-- pending: add this to an `Index.Block` block when that concept is migrated or created
+- captured in `Index.Block` and `Index.Block.Outlinks` blocks in `114-Agentos.Index.Notes.md`
 
 ****
 

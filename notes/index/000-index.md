@@ -2,9 +2,11 @@
 
 - structural index for `notes/index/`
 - for concepts see `001-ontology.md`
+- for surfaces see `002-surfaces.md`
 
 ## Notes
 
+- `100-Agentos.Surfaces.md` — surface design: Stable.Surface, Natural.Placement
 - `114-Agentos.Index.Notes.md` — durable concept-note subsystem and writing principles
 - `115-Md.Surface.md` — markdown layer qualifier
 - `116-Dotted.Notation.md` — dotted naming convention and parameterized notation

@@ -111,3 +111,52 @@
 - `Usage.Skill` is a special-purpose, usage-centric skill designed primarily as documentation
 - see `120-Agentos.Skills.md`
 
+****
+
+## Project.Surfaces
+
+- `Project.Surfaces` is a built-in `Ontology.Namespace` for the surfaces the index covers
+- see `002-surfaces.md`
+
+****
+
+## Stable.Surface
+
+- `Stable.Surface` is a durable, authoritative surface where a specific facet of project knowledge lives
+- see `100-Agentos.Surfaces.md`
+
+****
+
+## Natural.Placement
+
+- `Natural.Placement` is the principle that each surface holds the facet of a concept that is natural to its function
+- see `100-Agentos.Surfaces.md`
+
+****
+
+## Index.Concept.Coverage
+
+- the index is the collection point for all `Named.Concepts` in the project's stable surfaces
+- see `114-Agentos.Index.Notes.md`
+
+****
+
+## Complete.Index.Block
+
+- `Complete.Index.Block` is an `Index.Block` with an `### appendix` section for extended material
+- see `114-Agentos.Index.Notes.md`
+
+****
+
+## Index.Appendix.Block
+
+- `Index.Appendix.Block` is an appendix-only block hosted at `notes/appendix/`
+- see `114-Agentos.Index.Notes.md`
+
+****
+
+## Design.Index.Block
+
+- `Design.Index.Block` is a `Complete.Index.Block` used in `Design.Session` artifacts
+- see `114-Agentos.Index.Notes.md`
+
