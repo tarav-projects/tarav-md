@@ -159,3 +159,31 @@
 
 - `Design.Index.Block` is a session-local `Complete.Index.Block` used in `Design.Session` artifacts
 - see `114-Agentos.Index.Notes.md`
+
+****
+
+## Design.Session
+
+- `Design.Session` is a scoped human-agent convergence surface for design work
+- see `121-Design.Session.md`
+
+****
+
+## Session.Runtime.Loop
+
+- `Session.Runtime.Loop` is the general workflow the agent tries to make a `Design.Session` follow
+- see `121-Design.Session.md`
+
+****
+
+## InChat.Design.Session
+
+- `InChat.Design.Session` is the default `Design.Session` backend — state lives in chat
+- see `121-Design.Session.md`
+
+****
+
+## Artifact.Design.Session
+
+- `Artifact.Design.Session` is the file-backed `Design.Session` backend — state lives in a `Live.Note`
+- see `121-Design.Session.md`

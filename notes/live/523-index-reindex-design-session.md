@@ -295,3 +295,5 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
 - settled `InChat.Design.Session` and `Artifact.Design.Session` backend concepts
 - settled `Design.Target.Model` family: DTM (expanded — distributed model, index as discovery layer), Current.Implementation, Progress.Gradient (project never finished), Design.Implementation.CoEvolution — proposed for `124-Development.Model.md`
 - settled Design.Session as staging area for Stable.Surface changes — strong signal for change, not a stable surface itself
+- drafted and wrote `121-Design.Session.md` — Design.Session, Session.Runtime.Loop, InChat.Design.Session, Artifact.Design.Session
+- updated `000-index.md` and `001-ontology.md` with new entries
