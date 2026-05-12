@@ -124,6 +124,11 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
 - session content aims to be `Hard.Evidence`-based as much as possible — evidence-based arguments have priority over agent assumptions
 - the goal is to fill `Design.Alignment.Core` with evidence-based facts — more is welcome, but the core alignment space is the priority
 - the interview protocol (one question at a time, agent organizes, user advances, agent recommends) belongs in the parent `Design.Session` fundamentals, not in `Session.Runtime.Loop`
+- `Design.Session` is a staging area for `Stable.Surface` changes — session content is expected to become part of stable surfaces through implementation
+- the move from design session state to stable surface is the implementation — can happen multiple ways: other agents read the artifact and implement in parallel, session emits `Impl.Req`s, direct surface updates from the session
+- not a `Stable.Surface` itself — a strong signal for change that provides a clear substrate to align implementation against
+- optimized for high-signal alignment data — can support operational work (migration, triage) when it produces alignment, but should not become a general-purpose work log
+- does not replace index notes or skills — those are the destinations
 
 #### meta
 
@@ -133,6 +138,7 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
   - user clarified alignment is the method, not the purpose — the session does real work
   - user defined `Hard.Evidence.Based` and its priority
   - user confirmed goals stay in fundamentals, not a separate sub-concept
+  - user confirmed staging area framing — design session as strong signal for change, not a stable surface
 
 ### Hard.Evidence.In.Meta
 
@@ -222,6 +228,32 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
   - user defined InChat essence: flexibility, chat as substrate, strategic reports
   - user confirmed Design.Status.Report works in both backends with same properties
 
+### Development.Model.Design
+
+- the Agentos development philosophy is built on four foundational concepts: `Design.Target.Model`, `Current.Implementation`, `Progress.Gradient`, `Design.Implementation.CoEvolution`
+- these are upstream of `Design.Session` and upstream of `Surfaces` — they describe how Agentos thinks about development itself
+- proposed file: `124-Development.Model.md`
+- `Design.Target.Model` — the current explicit design model of a system
+  - does not live only in the index — the index is a map of that model and holds part of its content
+  - other surfaces hold design data too: `Index.Appendix`, skills, etc.
+  - the index is still the entry point for building the design model because it links out to the other surfaces
+  - DTM is a distributed model, with the index as the discovery layer
+- `Current.Implementation` — the current realized state of a system; may live in code, CLI, skills, data, notes, or any combination
+- `Progress.Gradient` — the current best direction of movement between `Current.Implementation` and `Design.Target.Model`
+  - the project is never finished — working is moving in the direction of the gradient
+  - being unfinished is acceptable when a credible gradient exists
+  - related to but distinct from `Placement.Balance` (spatial equilibrium) — `Progress.Gradient` is directional/temporal
+- `Design.Implementation.CoEvolution` — design and implementation reshape each other; progress means co-developing both
+
+#### meta
+
+- status: settled
+- evidence:
+  - user confirmed all four concepts are alive and fundamental
+  - user corrected DTM: does not live only in the index, index is the map and discovery layer
+  - user confirmed Progress.Gradient semantic: project is never finished, working = moving along the gradient
+  - `Natural.Placement` and `Placement.Balance` already in `100-Agentos.Surfaces.md`
+
 ### Index.Block.Body.Rationale
 
 - if an example or code is in a block body, it's fundamental to understanding the concept
@@ -236,6 +268,7 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
 
 - migration progress: source files 100-106 processed, 107 parked, 108-110 + 112-113 pending triage
 - 111 (Design.Session) being reindexed as 121-123
+- `Design.Target.Model` family triaged: all four concepts alive, proposed for `124-Development.Model.md`
 - `--project-base` must be used with all `agentos stdlib prefix next` calls — discovered during session
 - correct invocation: `agentos stdlib prefix next --project /Users/pereiro/projects/agentos-project/agentos-md --project-base agentos-md --target <target>`
 
@@ -260,3 +293,5 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
 - settled `Session.Runtime.Loop` framing — main flow (Design.Alignment.Question → Design.Enrichment.Discussion → Design.Consolidation) with interruption branches as user vocabulary
 - settled `Design.Status.Report` as `Session.Runtime.Loop` sub-concept — promoted out of interruptions
 - settled `InChat.Design.Session` and `Artifact.Design.Session` backend concepts
+- settled `Design.Target.Model` family: DTM (expanded — distributed model, index as discovery layer), Current.Implementation, Progress.Gradient (project never finished), Design.Implementation.CoEvolution — proposed for `124-Development.Model.md`
+- settled Design.Session as staging area for Stable.Surface changes — strong signal for change, not a stable surface itself
