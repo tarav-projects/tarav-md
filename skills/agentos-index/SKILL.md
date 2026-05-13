@@ -23,6 +23,7 @@ This is the `Main.Skill` of the index `Skill.Package`. It contains the full desi
 | `references/core-model.md` | what the index IS — Soft.Programming.Language, Alignment.Surface, SSOT rule, Stable.Surfaces |
 | `references/eval-loop.md` | Index.Call, triggers, Index.Eval.Loop pipeline, activation, runtime semantics |
 | `references/block-syntax.md` | Index.Block, Index.Block.Syntax, Bullet.Point.Sentence, Index.Note, size constraints |
+| `references/appendix.md` | Index.Appendix, Index.Appendix.Block, placement, promotion, routing |
 | `references/naming.md` | Dotted.Notation, detection rules, parameterized and variable notation |
 | `references/ontology.md` | Ontology.Registry, namespaces, workflows (emergence → registration → promotion) |
 | `references/maintenance.md` | maintenance model, promotion, low-friction capture, Stub.Convention |
@@ -38,6 +39,7 @@ This skill package exports the following `Alias.Skills`:
 - `agentos-index-resolution` — resolve approximate names against the index
 - `agentos-index-writer` — user-gated write path to the index
 - `agentos-index-doctor` — index health review and diagnosis
+- `agentos-index-appendix-base` — appendix surface protocol for `notes/appendix/`
 
 All alias skills point back to the relevant reference file in this skill.
 

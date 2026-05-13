@@ -43,6 +43,13 @@ Each alias skill is a directory under `skills/` with a single `SKILL.md` that:
 - **key constraint**: diagnosis-first, reports issues with evidence, does not auto-fix
 - **size target**: ~40-60 lines
 
+### agentos-index-appendix-base
+
+- **role**: define and operate the appendix surface protocol for `notes/appendix/`
+- **reference**: `agentos-index/references/appendix.md`
+- **key constraint**: appendix is stable opt-in depth, not a parallel concept authority
+- **size target**: ~70-110 lines
+
 ## Regeneration
 
 These alias skills are derived artifacts. If the reference files change, the alias skills can be regenerated from this install.md.

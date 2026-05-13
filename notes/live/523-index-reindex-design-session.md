@@ -254,6 +254,62 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
   - user confirmed Progress.Gradient semantic: project is never finished, working = moving along the gradient
   - `Natural.Placement` and `Placement.Balance` already in `100-Agentos.Surfaces.md`
 
+### Impl.Req.Artifact.Structure
+
+- `Impl.Req` artifact uses four sections: `Impl.Abstract`, `Impl.Index`, `Execution.Plan`, `Impl.Log`
+- `Impl.Abstract` is fully agent-maintained — the agent must evaluate changes to it on each design change
+- `Impl.Index` uses `Design.Index.Block` format — same block format, evidence tracking, and alignment semantics
+- fundamentals produced through focused implementation-scoped alignment discussion
+- `Execution.Plan` structured as ordered vertical slices with validation and status
+- `Impl.Log` for implementer progress tracking
+
+#### meta
+
+- status: settled
+- evidence:
+  - user chose `Impl.Index` name over `Design.Index` for implementation scope
+  - user confirmed artifact structure should align with Design.Session format
+  - user confirmed `Impl.Abstract` is fully agent-maintained
+
+### Impl.Req.Agent.Chain
+
+- three-agent chain: `conceptual.designer.agent` → `impl.designer.agent` → `impl.executer.agent`
+- each can be one or several agents
+- all agents should have `Development.Principles` loaded
+- `impl.executer.agent` runs minimal re-alignment from `Impl.Index` before starting
+- multiple `Impl.Req` can spawn from one design session for different parts
+
+#### meta
+
+- status: settled
+- evidence:
+  - user defined the three-agent chain and re-alignment step
+  - user confirmed Impl.Req as Alignment.Surface for implementation
+
+### Development.Principles.File.Plan
+
+- `Deep.Modules`, `Agent.Navigable.Codebase`, and other shared development quality principles will move to `125-Development.Principles.md`
+- these are not Impl.Req-specific — they are shared principles loaded by all agents in the implementation chain
+- `Vertical.Slice`, `No.Legacy.Allowed`, `Test.At.Boundaries` stay in `123` as they are both principles and Impl.Req structural guidance
+
+#### meta
+
+- status: settled
+- evidence:
+  - user distinguished local/every-impl principles from high-level/occasional principles
+  - user confirmed both impl-req writer and executor must have principles loaded
+
+### No.Legacy.Override
+
+- `No.Legacy.Allowed` can only be overridden by an explicit statement
+- ignoring this is one of the main causes of poor quality implementation results
+
+#### meta
+
+- status: settled
+- evidence:
+  - user stated this as a key quality constraint
+
 ### Index.Block.Body.Rationale
 
 - if an example or code is in a block body, it's fundamental to understanding the concept
@@ -299,3 +355,12 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
 - updated `000-index.md` and `001-ontology.md` with new entries
 - drafted and wrote `124-Development.Model.md` — Design.Target.Model, Current.Implementation, Progress.Gradient, Design.Implementation.CoEvolution
 - updated `000-index.md` and `001-ontology.md` with 124 entries
+- drafted and wrote `123-Impl.Req.md` — Impl.Req (implementation plan design surface), Vertical.Slice, No.Legacy.Allowed, Test.At.Boundaries, Deep.Modules, Agent.Navigable.Codebase
+- updated `000-index.md` and `001-ontology.md` with 123 entries
+- expanded `Vertical.Slice` fundamentals in `123-Impl.Req.md` and created `notes/appendix/123-Impl.Req.md` with appendix
+- settled Impl.Req artifact structure: Impl.Abstract (agent-maintained), Impl.Index, Execution.Plan, Impl.Log
+- settled three-agent chain: conceptual.designer → impl.designer → impl.executer
+- settled Impl.Req as Alignment.Surface for implementation — fundamentals produced through focused discussion
+- settled Deep.Modules and Agent.Navigable.Codebase move to `125-Development.Principles.md`
+- settled No.Legacy.Allowed override requires explicit statement — ignoring it is a main cause of poor quality
+- removed Deep.Modules and Agent.Navigable.Codebase from `123-Impl.Req.md`

@@ -190,6 +190,48 @@
 
 ****
 
+## Impl.Req
+
+- `Impl.Req` is an implementation-request artifact — a surface for designing and tracking an implementation plan
+- see `123-Impl.Req.md`
+
+****
+
+## Vertical.Slice
+
+- `Vertical.Slice` is the preferred shape of implementation work — thin end-to-end changes
+- see `123-Impl.Req.md`
+
+****
+
+## No.Legacy.Allowed
+
+- `No.Legacy.Allowed` is an implementation constraint: do not leave stale state behind
+- see `123-Impl.Req.md`
+
+****
+
+## Test.At.Boundaries
+
+- `Test.At.Boundaries` is the testing guidance: test through public interfaces, not implementation details
+- see `123-Impl.Req.md`
+
+****
+
+## Deep.Modules
+
+- `Deep.Modules` is an architectural principle: small interface, hidden complexity
+- see `125-Development.Principles.md` (pending)
+
+****
+
+## Agent.Navigable.Codebase
+
+- `Agent.Navigable.Codebase` is the structural principle that code should be organized so agents can explore naturally
+- see `125-Development.Principles.md` (pending)
+
+****
+
 ## Design.Target.Model
 
 - `Design.Target.Model` is the current explicit design model of a system — distributed across surfaces, with the index as discovery layer

@@ -9,7 +9,7 @@
 ### Current Agentos range model
 
 - `000-099`: reserved files with fixed system roles
-- `100-499`: rolling index notes
+- `100-499`: rolling index and appendix notes
 - `500-999`: rolling other files (live notes, live scripts)
 
 ### CLI support
