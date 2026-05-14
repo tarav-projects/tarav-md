@@ -343,6 +343,13 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
 - `Design.Alignment.Core` → `Alignment.Hugentic.Axis:Design`
 - `Design.Open.Space` → sparse region of `Conceptual.Space`
 
+#### Phase Semantic Roots
+
+- `What.Design` — phase 1, working on the conceptual model (was `Fundamentals Design`)
+- `How.Design` — phase 2, planning the path to reach it (was `Implementation Design`)
+- `Impl.Exec` — phase 3, walking the path (was `Implementation Execution`)
+- concept names build from these roots (e.g. `What.Design.Session`, `Alignment.Loop:What`)
+
 #### Concept Eliminations
 
 - `Alignment.Focus` — replaced by `Alignment.Hugentic.Axis`
@@ -367,6 +374,7 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
   - user confirmed Alignment.Hugentic.Axis replaces Alignment.Focus and Design.Alignment.Core
   - user confirmed Alignment.Agentic.Axis for agent-autonomous dimensions
   - user confirmed Design.Implementation.CoEvolution and Progress.Gradient keep but redefine from fundamentals
+  - user confirmed phase semantic roots: What.Design, How.Design, Impl.Exec
 
 ### Development.Principles.File.Plan
 

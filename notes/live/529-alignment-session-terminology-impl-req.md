@@ -9,7 +9,32 @@
 
 ## Impl.Index
 
-(to be filled during alignment discussion)
+### 121.Renames
+
+- `121-Design.Session.md` block renames:
+  - `Design.Session` → `What.Design.Session`
+  - `Session.Runtime.Loop` → `Alignment.Loop:What`
+  - `InChat.Design.Session` → `Alignment.Backend:InChat:What`
+  - `Artifact.Design.Session` → `Alignment.Backend:Artifact:What`
+- internal reference updates:
+  - `Design.Alignment.Question` → `Alignment.Question:What`
+  - `Design.Enrichment.Discussion` → `Alignment.Discussion:What`
+  - `Design.Consolidation` → `Alignment.Consolidation:What`
+  - `User.Assistant.Turn` → `Alignment.User.Turn`
+  - `Session.Maintenance.Turn` → `Alignment.Maintenance.Turn`
+  - `Design.Alignment.Core` → `Alignment.Hugentic.Axis:What`
+- add reference to general `Alignment.Session` pattern (new note)
+
+### 123.Renames
+
+- `123-Impl.Req.md` updates:
+  - line 11: `Design.Alignment.Question → Design.Enrichment.Discussion → Design.Consolidation` → `Alignment.Question:How → Alignment.Discussion:How → Alignment.Consolidation:How`
+  - line 24-28 agent chain: `conceptual.designer.agent` → `What.Design` phase language, `Design.Session` → `What.Design.Session`, "minimal re-alignment discussion" → `Alignment.Loop:Exec (light)`
+
+### 001.Renames
+
+- `001-ontology.md` updates:
+  - `Session.Runtime.Loop` → `Alignment.Loop`, point to new general note (e.g. `126-Alignment.Session.md`)
 
 ## Execution.Plan
 
