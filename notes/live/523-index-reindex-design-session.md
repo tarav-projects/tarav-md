@@ -290,22 +290,69 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
 
 - `Alignment.Session` is a general pattern available to hugentic workflows for human-agent alignment
 - not a mandatory base — a pattern workflows can use and specialize
-- the core loop has three steps, parameterized by workflow context:
-  - `Alignment.Question` — agent selects highest-leverage unresolved question
-  - `Alignment.Discussion` — human-agent convergence on the active question
-  - `Alignment.Consolidation` — capture convergence into the active surfaces
+
+#### Conceptual.Space
+
+- `Conceptual.Space` is the common space all surfaces live in — every design decision, implementation choice, naming convention is a dimension
+- synonym: `Alignment.Space`
+- each surface occupies a region in this space
+- alignment is the process of moving two points/objects in this space closer together
+- settled = high density, evidence-backed region
+- open = low density, known but unexplored
+- rejected = explicitly excluded
+
+#### Alignment Types
+
+- `Forward.Alignment` — moving the design point to a new place in the `Conceptual.Space` (adding features, evolving design)
+- `Internal.Alignment` — for a given design state, moving all other surfaces to follow the design point (keeping surfaces in sync)
+- `Hugentic.Alignment` — bringing human and agent to shared understanding of where they are and where they're going in the space
+
+#### Axis Model
+
+- `Alignment.Hugentic.Axis` — dimensions of the `Conceptual.Space` that need human-agent convergence; each workflow defines its own set
+- `Alignment.Agentic.Axis` — dimensions the agent can resolve autonomously
+- replaces the old `Alignment.Focus` concept — the hugentic axes *are* the focus
+- replaces `Design.Alignment.Core` — which was the design-session-specific set of hugentic axes
+
+#### Alignment.Loop
+
+- `Alignment.Loop` — the machinery for achieving `Hugentic.Alignment` along the `Alignment.Hugentic.Axis`
+- three steps, parameterized by workflow: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`
 - parameterized naming: `Alignment.Question:Design`, `Alignment.Question:Impl`, `Alignment.Question:Exec`
-- two turn modes:
-  - `Alignment.User.Turn` — user drives, agent follows
-  - `Alignment.Maintenance.Turn` — agent drives, picks one move
-  - turn switching is user-gated (general rule)
-- `Alignment.Backend` — two variants:
-  - `InChat` — state lives in chat, printed and refreshed
-  - `Artifact` — state lives in a file, chat may have uncommitted deltas
-  - not all workflows offer both
-- `Alignment.Space` — working map of settled, open, rejected, assumed state
-  - same concept everywhere, different surfaces tracked per workflow
-- "Realignment" dropped as a separate concept — lightweight alignment is just a qualified `Alignment.Loop` (e.g. light) on the particular workflow
+- "Realignment" dropped as prefix — lightweight alignment is just a qualified `Alignment.Loop` (e.g. light)
+
+#### Turn Modes
+
+- `Alignment.User.Turn` — user drives, agent follows
+- `Alignment.Maintenance.Turn` — agent drives, picks one move
+- turn switching is user-gated (general rule)
+
+#### Alignment.Backend
+
+- two variants: `InChat` (state in chat) / `Artifact` (state in file)
+- not all workflows offer both
+
+#### Concept Merges
+
+- `Session.Runtime.Loop` → `Alignment.Loop:Design`
+- `Design.Alignment.Question` / `Design.Enrichment.Discussion` / `Design.Consolidation` → `Alignment.Question:Design` / `Alignment.Discussion:Design` / `Alignment.Consolidation:Design`
+- `User.Assistant.Turn` / `Session.Maintenance.Turn` → `Alignment.User.Turn` / `Alignment.Maintenance.Turn`
+- `InChat.Design.Session` / `Artifact.Design.Session` → `Alignment.Backend:InChat:Design` / `Alignment.Backend:Artifact:Design`
+- `Impl.Alignment.Loop` → `Alignment.Loop:Impl`
+- `Realignment.Loop` → `Alignment.Loop:Exec` (light)
+- `Design.Alignment.Core` → `Alignment.Hugentic.Axis:Design`
+- `Design.Open.Space` → sparse region of `Conceptual.Space`
+
+#### Concept Eliminations
+
+- `Alignment.Focus` — replaced by `Alignment.Hugentic.Axis`
+- `Realignment` as prefix — dropped
+
+#### Concept Redefinitions (keep, redefine from fundamentals)
+
+- `Design.Implementation.CoEvolution` — the rhythm of `Forward.Alignment` then `Internal.Alignment`, co-developing design and implementation surfaces
+- `Progress.Gradient` — the combined direction of `Forward.Alignment` + `Internal.Alignment` at any point
+- `Conceptual.Space` is primary, `Alignment.Space` is synonym
 
 #### meta
 
@@ -315,6 +362,11 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
   - user confirmed parameterized naming over concept explosion
   - user confirmed Alignment.User.Turn / Alignment.Maintenance.Turn as the two turn concepts
   - user confirmed dropping Realignment — qualify as light on the workflow instead
+  - user confirmed Conceptual.Space as the common space, Alignment.Space as synonym
+  - user confirmed three alignment types: Forward, Internal, Hugentic
+  - user confirmed Alignment.Hugentic.Axis replaces Alignment.Focus and Design.Alignment.Core
+  - user confirmed Alignment.Agentic.Axis for agent-autonomous dimensions
+  - user confirmed Design.Implementation.CoEvolution and Progress.Gradient keep but redefine from fundamentals
 
 ### Development.Principles.File.Plan
 
