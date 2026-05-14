@@ -37,3 +37,11 @@
 - the system is balanced when moving content from one surface to another would feel less natural than its current placement
 - a diagnostic signal: if you can imagine content fitting better in another surface, the system is not yet balanced
 - complementary to `Natural.Placement` — natural placement is the principle, placement balance is the resulting state
+
+****
+
+## Surface.Link.Directionality
+
+- `Public.Surface` (skills) can be referenced from `Local.Surface` (index notes), not the reverse
+- skills must not point to index notes — local agents discover index data through index workflows (e.g. `agentos-index-activate`, `agentos-index-trigger`)
+- see appendix `125-Agentos.Surfaces.md`
