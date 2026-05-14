@@ -34,8 +34,6 @@ Always load:
 - `references/interview.md`
 - `references/discussion.md`
 
-Load `notes/index/121-Design.Session.md` when available and useful. Do not block if it is absent.
-
 ## Backend Routing
 
 Use `InChat.Design.Session` by default:

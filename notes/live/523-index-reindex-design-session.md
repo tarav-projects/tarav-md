@@ -286,6 +286,36 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
   - user defined the three-agent chain and re-alignment step
   - user confirmed Impl.Req as Alignment.Surface for implementation
 
+### Alignment.Session.Design
+
+- `Alignment.Session` is a general pattern available to hugentic workflows for human-agent alignment
+- not a mandatory base — a pattern workflows can use and specialize
+- the core loop has three steps, parameterized by workflow context:
+  - `Alignment.Question` — agent selects highest-leverage unresolved question
+  - `Alignment.Discussion` — human-agent convergence on the active question
+  - `Alignment.Consolidation` — capture convergence into the active surfaces
+- parameterized naming: `Alignment.Question:Design`, `Alignment.Question:Impl`, `Alignment.Question:Exec`
+- two turn modes:
+  - `Alignment.User.Turn` — user drives, agent follows
+  - `Alignment.Maintenance.Turn` — agent drives, picks one move
+  - turn switching is user-gated (general rule)
+- `Alignment.Backend` — two variants:
+  - `InChat` — state lives in chat, printed and refreshed
+  - `Artifact` — state lives in a file, chat may have uncommitted deltas
+  - not all workflows offer both
+- `Alignment.Space` — working map of settled, open, rejected, assumed state
+  - same concept everywhere, different surfaces tracked per workflow
+- "Realignment" dropped as a separate concept — lightweight alignment is just a qualified `Alignment.Loop` (e.g. light) on the particular workflow
+
+#### meta
+
+- status: working
+- evidence:
+  - user confirmed general pattern, not mandatory base
+  - user confirmed parameterized naming over concept explosion
+  - user confirmed Alignment.User.Turn / Alignment.Maintenance.Turn as the two turn concepts
+  - user confirmed dropping Realignment — qualify as light on the workflow instead
+
 ### Development.Principles.File.Plan
 
 - `Deep.Modules`, `Agent.Navigable.Codebase`, and other shared development quality principles will move to `125-Development.Principles.md`
