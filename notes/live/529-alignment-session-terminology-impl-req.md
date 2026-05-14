@@ -36,6 +36,32 @@
 - `001-ontology.md` updates:
   - `Session.Runtime.Loop` → `Alignment.Loop`, point to new general note (e.g. `126-Alignment.Session.md`)
 
+### hugentics-designer.SKILL.Renames
+
+- `skills/hugentics-designer/SKILL.md` updates:
+  - frontmatter + intro: `Design.Session` → `What.Design.Session`
+  - `first phase` → `What.Design phase`
+  - loop steps: `Design.Alignment.Question → Design.Enrichment.Discussion → Design.Consolidation` → `Alignment.Question:What → Alignment.Discussion:What → Alignment.Consolidation:What`
+  - `Session.Runtime.Loop` → `Alignment.Loop:What`
+  - `InChat.Design.Session` → `Alignment.Backend:InChat:What`
+  - `Artifact.Design.Session` → `Alignment.Backend:Artifact:What`
+  - `User.Assistant.Turn` → `Alignment.User.Turn`
+  - `Session.Maintenance.Turn` → `Alignment.Maintenance.Turn`
+  - general pattern reference: point to `agentos-hugentics` (not index notes — skills are Public.Surfaces, index notes are Local.Surfaces)
+
+### hugentics-impl-designer.SKILL.Renames
+
+- `skills/hugentics-impl-designer/SKILL.md` updates:
+  - frontmatter: `Impl.Alignment.Loop` → `Alignment.Loop:How`
+  - `second phase` → `How.Design phase`
+  - `Impl.Alignment.Loop` → `Alignment.Loop:How`
+  - `Session.Runtime.Loop` → `Alignment.Loop` (general reference)
+  - `Impl.Alignment.Question` → `Alignment.Question:How`
+  - `Impl.Enrichment.Discussion` → `Alignment.Discussion:How`
+  - `Impl.Consolidation` → `Alignment.Consolidation:How`
+  - `design session` / `Design.Session` → `What.Design.Session`
+  - `fundamentals design` → `What.Design`
+
 ## Execution.Plan
 
 ### Index Notes
