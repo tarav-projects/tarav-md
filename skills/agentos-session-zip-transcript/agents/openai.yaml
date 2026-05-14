@@ -1,4 +1,4 @@
 interface:
   display_name: "agentos-session-zip-transcript"
-  short_description: "Resolve, extract, and compress a prior chat session into a self-described live-note artifact"
-  default_prompt: "Run this skill as a separate agent by default. Load `references/subagent-workflow.md` from the skill directory and follow it. Given a session id, session URI, or session query, resolve, export, compress, and write the compressed transcript to `notes/live/` in the owning Agentos.Project. If the owning Agentos.Project is unclear, stop and complain instead of guessing. Return only the short manifest unless inline output was explicitly requested."
+  short_description: "Resolve a prior chat session and return the Chatlas zip-transcript-agent-summary artifact path"
+  default_prompt: "Run this skill as a separate agent by default. Use a small model by default; for Codex prefer `gpt-5.4-mini`. Load `chatlas-usage/references/producer-zip-transcript-agent-summary.md` and follow it. Given an option-based Chatlas selector for one session, ensure `zip-transcript`, then ensure `zip-transcript-agent-summary`, and return only the path to the fresh `summary.json` artifact unless diagnostics were explicitly requested."

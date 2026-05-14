@@ -16,6 +16,7 @@ Prefer `agentos chatlas ...` for normal session workflows. Use `agentos chat deb
 - Aggregate dataset stats: `agentos chatlas stats`
 - Export standard-model views: `agentos chatlas export`
 - Export raw artifacts: `agentos chatlas raw path` / `agentos chatlas raw export`
+- Consume or produce materialized views: `agentos chatlas views`
 
 ## Working Rules
 
@@ -84,6 +85,25 @@ View guidance:
 - `replay`: visible messages plus lightweight tool-call replay data
 - `events`: canonical event tape with derived projections emptied
 - `zip-transcript`: compact session header plus ordered `turns` with visible user/assistant text only
+
+## Views Workflow
+
+Use `agentos chatlas views ...` when the task needs a cached/materialized Chatlas view artifact.
+
+Common patterns:
+
+```bash
+agentos chatlas views list
+agentos chatlas views status --view <view-name> <selector-options>
+agentos chatlas views get --view <view-name> <selector-options>
+agentos chatlas views path --view <view-name> <selector-options>
+```
+
+External view producers must load the matching producer reference before writing staged artifacts.
+
+Producer references:
+
+- `references/producer-zip-transcript-agent-summary.md`
 
 ## When To Use `chat debug`
 

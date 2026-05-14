@@ -50,34 +50,33 @@ Name items by intent ("Design the session-status skill"), not by implementation 
 - Meta-tasks about the conversation itself.
 - Speculative ideas that were never adopted.
 
-### Item states
-Keep it simple:
-- **done**: completed in this session.
-- **open**: not yet completed.
-- **suggested**: agent-proposed task derived from session direction. The agent may add these to the list when the session naturally points toward a next step. These are proposals, not commitments — the user accepts them by acting on them.
-
 ## Default Output Shape
 
 ```
 [Session title — plain text, no markdown]
 
-## Todo
-- [x] done item — brief description
-- [ ] open item — brief description → next action
-- [ ] suggested: derived task → next action
+DONE
+- item — brief description
+- item — brief description
 
-## Context
+OPEN
+- item — brief description → next action
+- item — brief description → next action
+
+SUGGESTIONS
+- derived task → next action
+
+CONTEXT
 - one sentence bullet
 - one sentence bullet
 ```
 
 ### Format rules
 - **Session title**: plain text line, under 10 words, naming the current focus. No `**bold**`, no `#` heading, no markdown formatting. Brackets optional.
-- **Checkboxes only**: done items use `- [x]`, open/suggested use `- [ ]`. No other bullet styles in the todo list.
+- **Sections**: group items by state — `DONE`, `OPEN`, `SUGGESTIONS`. Use `CONTEXT` for session orientation. Omit empty sections unless omission would hide a meaningful "none".
 - **Item shape**: `short name — brief description` for done items. `short name — brief description → next action` for open/suggested. The em dash `—` separates name from description. The arrow `→` separates description from next action. Every open/suggested item MUST have a `→` clause — if you can't name a next action, the item isn't concrete enough to list.
 - **One line per item**: no nested bullets, no multi-line items. If it needs two lines to explain, it's too detailed.
-- **Whitespace**: blank line between title and `## Todo`, blank line between `## Todo` and `## Context`. No blank lines between list items.
-- **Empty sections**: if there are no done items or no open items, omit that part of the list rather than showing an empty section.
+- **Whitespace**: blank line between title and first section. No blank lines between items within a section.
 
 ### Done item pruning
 - Show at most 3–5 recent done items that inform current work.
