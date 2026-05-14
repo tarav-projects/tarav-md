@@ -75,8 +75,8 @@ For session interruptions:
 
 - load `references/session-interruptions.md`
 - then load the specific interruption reference:
-  - status request -> `references/status-report.md`
-  - capture audit -> `references/capture-audit.md`
+  - status request -> `trigger-hugentic-status`
+  - capture audit -> `trigger-capture-audit`
   - consolidation request -> `references/discussion.md` and `references/consolidation-plan-example.md`
   - artifact upgrade -> `references/artifact-session.md` and `references/artifact.md`
   - implementation handoff -> `references/impl-req.md`
