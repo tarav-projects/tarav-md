@@ -1,6 +1,6 @@
 # Design.Index
 
-`Design.Index` is the conceptual background of the current `Design.Session`.
+`Design.Index` is the conceptual background of the current `What.Design.Session`.
 
 It captures the relevant conceptual value produced by the session so the agent and user can keep the design grounded while the discussion continues.
 
@@ -48,8 +48,8 @@ Use `meta` for session mechanics about the concept, such as state, sources, open
 
 `Design.Index` is session state.
 
-In `InChat.Session`, the agent may print refreshed `Design.Index` blocks and let the user correct, accept, or park them.
+In `Alignment.Backend:InChat:What`, the agent may print refreshed `Design.Index` blocks and let the user correct, accept, or park them.
 
-In `Artifact.Session`, updates are artifact writes and require the artifact user gate.
+In `Alignment.Backend:Artifact:What`, updates are artifact writes and require the artifact user gate.
 
 Actual Agentos Index writes remain governed by the Agentos Index write workflow.

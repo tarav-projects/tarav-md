@@ -14,6 +14,8 @@
 - `118-Maintenance.System.md` — diagnosis-first maintenance model
 - `119-Agentos.Project.md` — project identity, marker, and discovery system
 - `120-Agentos.Skills.md` — skill routing, usage surface, usage skill
-- `121-Design.Session.md` — convergence surface, runtime loop, backends
+- `121-Design.Session.md` — What.Design.Session, Alignment.Loop:What, backends
+- `127-Alignment.Session.md` — Alignment.Session container, Conceptual.Space, Alignment.Loop, axes, turns, backends
 - `123-Impl.Req.md` — implementation requests, vertical slices, testing, development principles
 - `124-Development.Model.md` — design target model, current implementation, progress gradient, co-evolution
+- `126-Chatlas.Query.md` — Chatlas query surfaces and normalized query envelope

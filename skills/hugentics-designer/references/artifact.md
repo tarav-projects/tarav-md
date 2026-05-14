@@ -1,6 +1,6 @@
 # Design Session Artifact
 
-`*-design-session.md` is the file artifact used by `Artifact.Session`.
+`*-design-session.md` is the file artifact used by `Alignment.Backend:Artifact:What`.
 
 It is the externalized state of the session: conceptual background, working notes, and event log in one file.
 

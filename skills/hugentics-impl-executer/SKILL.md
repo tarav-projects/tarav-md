@@ -1,6 +1,6 @@
 ---
 name: hugentics-impl-executer
-description: "impl.executer.agent workflow master — load and execute Impl.Req artifacts through disciplined, incremental implementation. Covers realignment loop, deviation handling, and execution references."
+description: "impl.executer.agent workflow master — load and execute Impl.Req artifacts through disciplined, incremental implementation. Covers Alignment.Loop:Exec, deviation handling, and execution references."
 ---
 
 # Hugentics Impl Executer
@@ -38,15 +38,15 @@ Load these before starting implementation work:
 - **`agentos-index-activate`** — activates the index runtime. Load when the project has `notes/index/`.
 - **`artifact-impl-req`** — understands impl-req format. Load when the input is an impl-req.
 
-## Realignment Loop
+## Alignment.Loop:Exec
 
 Before execution, the agent runs a minimal re-alignment discussion to recover/double-check alignment:
 
-- `Realignment.Question` — review the `Impl.Index`, check understanding, surface ambiguities
-- `Realignment.Discussion` — discuss final touches, clarify constraints, resolve open questions
-- `Realignment.Consolidation` — update `Impl.Req` with adjustments, then proceed to execution
+- `Alignment.Question:Exec` — review the `Impl.Index`, check understanding, surface ambiguities
+- `Alignment.Discussion:Exec` — discuss final touches, clarify constraints, resolve open questions
+- `Alignment.Consolidation:Exec` — update `Impl.Req` with adjustments, then proceed to execution
 
-The realignment loop is lighter than the full `Impl.Alignment.Loop` — it is a recovery check, not a full design pass.
+The `Alignment.Loop:Exec` is lighter than the full `Alignment.Loop:How` — it is a recovery check, not a full design pass.
 
 ## Core Workflow
 

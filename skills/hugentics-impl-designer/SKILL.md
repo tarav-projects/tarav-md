@@ -1,6 +1,6 @@
 ---
 name: hugentics-impl-designer
-description: "impl.designer.agent workflow master — design implementation plans and produce Impl.Req artifacts. Covers the Impl.Alignment.Loop and artifact format."
+description: "impl.designer.agent workflow master — design implementation plans and produce Impl.Req artifacts. Covers the Alignment.Loop:How and artifact format."
 ---
 
 # Hugentics Impl Designer
@@ -15,13 +15,13 @@ This skill is activated by the `trigger-impl-req` trigger skill, or when the use
 
 Can be triggered from a design session (`Impl.Req.Handoff` interruption) or independently from any context where implementation guidance is needed.
 
-## Impl.Alignment.Loop
+## Alignment.Loop:How
 
-Similar to the `Session.Runtime.Loop` but scoped to implementation concerns:
+The `How.Design` specialization of `Alignment.Loop`, scoped to implementation concerns:
 
-- `Impl.Alignment.Question` — drive toward implementation design, enrich the `Impl.Index` with `Hard.Evidence`-based facts
-- `Impl.Enrichment.Discussion` — discuss implementation concerns
-- `Impl.Consolidation` — update `Impl.Req` artifact
+- `Alignment.Question:How` — drive toward implementation design, enrich the `Impl.Index` with `Hard.Evidence`-based facts
+- `Alignment.Discussion:How` — discuss implementation concerns
+- `Alignment.Consolidation:How` — update `Impl.Req` artifact
 
 The loop continues until the implementation design is sufficiently aligned for execution.
 
@@ -91,7 +91,7 @@ When an `Impl.Req` is written to correct drift from an accepted design:
 
 - `conceptual.designer.agent` → `impl.designer.agent` → `impl.executer.agent`
 - This skill covers the middle agent
-- Input may come from a `Design.Session` artifact, a design summary, or direct user request
+- Input may come from a `What.Design.Session` artifact, a design summary, or direct user request
 - Output is an `Impl.Req` artifact ready for the `impl.executer.agent`
 - All agents should have `Development.Principles` loaded
 

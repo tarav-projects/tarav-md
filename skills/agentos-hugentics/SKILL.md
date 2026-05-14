@@ -11,9 +11,9 @@ Single entry point to the hugentic workflow system. This skill maps the landscap
 
 The Hugentic Harness is the integrated standard workflow that connects three phases of agentic work:
 
-1. **Fundamentals Design** — scoped human-agent convergence on what to build (`Main.Designer.Agent`)
-2. **Implementation Design** — fork toward implementation, produce an `Impl.Req` artifact (`impl.designer.agent`)
-3. **Implementation Execution** — load and execute the `Impl.Req` (`impl.executer.agent`)
+1. **What.Design** — scoped human-agent convergence on what to build (`Main.Designer.Agent`)
+2. **How.Design** — fork toward implementation, produce an `Impl.Req` artifact (`impl.designer.agent`)
+3. **Impl.Exec** — load and execute the `Impl.Req` (`impl.executer.agent`)
 
 Each phase has a named agent role, a workflow master skill with full instructions, and a trigger skill for activation.
 
@@ -21,15 +21,15 @@ Each phase has a named agent role, a workflow master skill with full instruction
 
 | Phase | Agent | Workflow Master | Trigger |
 |---|---|---|---|
-| Fundamentals Design | `Main.Designer.Agent` | `hugentics-designer` | `trigger-design-session` |
-| Implementation Design | `impl.designer.agent` | `hugentics-impl-designer` | `trigger-impl-req` |
-| Implementation Execution | `impl.executer.agent` | `hugentics-impl-executer` | `trigger-impl-execution` |
+| What.Design | `Main.Designer.Agent` | `hugentics-designer` | `trigger-design-session` |
+| How.Design | `impl.designer.agent` | `hugentics-impl-designer` | `trigger-impl-req` |
+| Impl.Exec | `impl.executer.agent` | `hugentics-impl-executer` | `trigger-impl-execution` |
 
 ## Artifacts
 
 | Artifact | Pointer Skill | Defined In |
 |---|---|---|
-| `Artifact.Design.Session` | `artifact-design-session` | `hugentics-designer` |
+| `Alignment.Backend:Artifact:What` | `artifact-design-session` | `hugentics-designer` |
 | `Impl.Req` | `artifact-impl-req` | `hugentics-impl-designer` |
 | `design-summary` | `artifact-design-summary` | owner TBD |
 | `issue-report` | `artifact-issue-report` | owner TBD |
@@ -62,8 +62,9 @@ All agents in the harness should have `Development.Principles` loaded. These inc
 
 See `notes/index/123-Impl.Req.md` and `notes/index/125-Development.Principles.md` (pending) for details.
 
-## Related Subsystems
+## Related Concepts
 
+- **Alignment.Session** — the general alignment model; see `references/alignment-session.md`
 - **Index** — `agentos-index` skill, independent subsystem for durable design truth
 - **Orientation** — `agentos-usage` skill, general Agentos entry point (lists this skill)
 

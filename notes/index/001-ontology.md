@@ -113,6 +113,23 @@
 
 ****
 
+## Chatlas.Query.Surface
+
+- `Chatlas.Query.Surface` is the Chatlas session discovery interface family
+- `chatlas index query` is the base index-row selection surface
+- `chatlas query` is the higher-level session query surface that extends index selection with later query layers
+- see `126-Chatlas.Query.md`
+
+****
+
+## Chatlas.Query.Envelope
+
+- `Chatlas.Query.Envelope` is the normalized top-level JSON response shape shared by Chatlas query surfaces
+- it separates query phase counts from row projection
+- see `126-Chatlas.Query.md`
+
+****
+
 ## Project.Surfaces
 
 - `Project.Surfaces` is a built-in `Ontology.Namespace` for the surfaces the index covers
@@ -162,30 +179,37 @@
 
 ****
 
-## Design.Session
+## Alignment.Session
 
-- `Design.Session` is a scoped human-agent convergence surface for design work
+- `Alignment.Session` is a shallow container for the general concepts that compose an alignment session
+- see `127-Alignment.Session.md`
+
+****
+
+## What.Design.Session
+
+- `What.Design.Session` is a scoped human-agent convergence surface for design work — the `What.Design` specialization of `Alignment.Session`
 - see `121-Design.Session.md`
 
 ****
 
-## Session.Runtime.Loop
+## Alignment.Loop
 
-- `Session.Runtime.Loop` is the general workflow the agent tries to make a `Design.Session` follow
+- `Alignment.Loop` is the general workflow machinery for human-agent convergence: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`
+- see `127-Alignment.Session.md`
+
+****
+
+## Alignment.Backend:InChat:What
+
+- `Alignment.Backend:InChat:What` is the default `What.Design.Session` backend — state lives in chat
 - see `121-Design.Session.md`
 
 ****
 
-## InChat.Design.Session
+## Alignment.Backend:Artifact:What
 
-- `InChat.Design.Session` is the default `Design.Session` backend — state lives in chat
-- see `121-Design.Session.md`
-
-****
-
-## Artifact.Design.Session
-
-- `Artifact.Design.Session` is the file-backed `Design.Session` backend — state lives in a `Live.Note`
+- `Alignment.Backend:Artifact:What` is the file-backed `What.Design.Session` backend — state lives in a `Live.Note`
 - see `121-Design.Session.md`
 
 ****

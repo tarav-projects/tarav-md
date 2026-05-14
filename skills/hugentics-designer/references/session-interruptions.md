@@ -28,9 +28,9 @@ Use `discussion.md` usage histories and `consolidation-plan-example.md`.
 
 ### Artifact.Upgrade
 
-The user asks to persist the session, or the agent recommends upgrading from `InChat.Session` to `Artifact.Session`.
+The user asks to persist the session, or the agent recommends upgrading from `Alignment.Backend:InChat:What` to `Alignment.Backend:Artifact:What`.
 
-Use `artifact-session.md`.
+Use `backend-artifact.md`.
 
 ### Impl.Req.Handoff
 
@@ -42,7 +42,7 @@ Use `impl-req.md`.
 
 The session has become too long, crossed into a different design target, or has separate threads with different lifecycles.
 
-Use `artifact-session.md` split guidance when an artifact exists.
+Use `backend-artifact.md` split guidance when an artifact exists.
 
 ### Close.Topic
 

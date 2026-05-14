@@ -35,7 +35,7 @@ They do not mean:
 - update artifacts
 - close or park the topic
 - run a status report
-- enter `Session.Maintenance.Turn`
+- enter `Alignment.Maintenance.Turn`
 
 ### Consolidation Requests
 

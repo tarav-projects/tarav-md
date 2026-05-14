@@ -1,12 +1,12 @@
 # Interview
 
-A `Design.Session` is an alignment exercise paced by one agent-selected question at a time.
+A `What.Design.Session` is an alignment exercise paced by one agent-selected question at a time.
 
 Fundamental rule: the agent controls organization; the user controls advancement.
 
 The agent chooses the highest-leverage unresolved question and keeps the alignment path organized. The agent may suggest that the next question is ready, but must not present the next full question until the user explicitly asks for `next`, `continue`, `next question`, `go on`, or equivalent.
 
-In `Session.Runtime.Loop`, asking the next full design question is a `Session.Maintenance.Turn`. Turn switching is user-gated.
+In `Alignment.Loop:What`, asking the next full design question is an `Alignment.Maintenance.Turn`. Turn switching is user-gated.
 
 ## Canonical Flow
 
@@ -19,11 +19,11 @@ agent asks one design question
 -> agent asks one next design question
 ```
 
-During discussion, the agent remains in `User.Assistant.Turn`: follow the user's thread, respond directly, and surface important alignment issues only when they materially affect the discussion.
+During discussion, the agent remains in `Alignment.User.Turn`: follow the user's thread, respond directly, and surface important alignment issues only when they materially affect the discussion.
 
-## Alignment.Space
+## Conceptual.Space
 
-`Alignment.Space` is the working map of the session's alignment state.
+`Conceptual.Space` is the working map of the session's alignment state.
 
 Track:
 
@@ -36,7 +36,7 @@ Track:
 - implications for `Design.Index`, `Session.Notes`, or `Impl.Req`
 - material that belongs in open space
 
-`Alignment.Space` is not automatically written verbatim. Consolidate it into the session artifact when it becomes useful working state and the user approves the write.
+`Conceptual.Space` is not automatically written verbatim. Consolidate it into the session artifact when it becomes useful working state and the user approves the write.
 
 ## Question Selection
 

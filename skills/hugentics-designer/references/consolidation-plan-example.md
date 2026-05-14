@@ -54,14 +54,14 @@ Here is how I would consolidate the current alignment.
 Consolidation plan:
 
 - File: none
-  Surface: `InChat.Session` / `Design.Index`
+  Surface: `Alignment.Backend:InChat:What` / `Design.Index`
   Concepts to update:
   - `Concept.One`: refresh fundamentals around [specific point].
   - `Concept.One` / `appendix`: add rationale for [decision] and pressure argument around [tradeoff].
   Why: this is the conceptual result of the discussion.
 
 - File: none
-  Surface: `Artifact.Session`
+  Surface: `Alignment.Backend:Artifact:What`
   Action: optional upgrade.
   Why: use this only if the user wants the current alignment persisted.
 
@@ -71,7 +71,7 @@ Consolidation plan:
   Why: this is design convergence, not implementation handoff.
 
 Recommendation:
-Refresh `InChat.Session` / `Design.Index` first.
+Refresh `Alignment.Backend:InChat:What` / `Design.Index` first.
 
 Approval request:
 OK to draft the exact in-chat consolidation?

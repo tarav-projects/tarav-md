@@ -1,13 +1,13 @@
-# Design.Session
+# What.Design.Session
 
-## Design.Session
+## What.Design.Session
 
-- `Design.Session` is a scoped human-agent convergence surface for design work
+- `What.Design.Session` is a scoped human-agent convergence surface for design work — the `What.Design` specialization of `Alignment.Session`
 - the session does real work (design, problem-solving, issue resolution) while progressively enriching alignment between user and agent
-- the interview loop (`Design.Alignment.Question` → `Design.Enrichment.Discussion` → `Design.Consolidation`) is the fundamental strategy: direct questions produce evidence of alignment, consolidation makes it durable
+- the interview loop (`Alignment.Question:What` → `Alignment.Discussion:What` → `Alignment.Consolidation:What`) is the fundamental strategy: direct questions produce evidence of alignment, consolidation makes it durable
 - the agent maintains session progress and content; the user controls advancement and settles material
 - session content aims to be `Hard.Evidence`-based as much as possible — evidence-based arguments have priority over agent assumptions
-- the goal is to fill `Design.Alignment.Core` with evidence-based facts — more is welcome, but the core alignment space is the priority
+- the goal is to fill `Alignment.Hugentic.Axis:What` with evidence-based facts — more is welcome, but the core alignment space is the priority
 - a staging area for `Stable.Surface` changes — session content is expected to become part of stable surfaces through implementation
 - the move from design session state to stable surface is the implementation — can happen multiple ways: other agents read the artifact and implement in parallel, session emits `Impl.Req`s, direct surface updates from the session
 - not a `Stable.Surface` itself — a strong signal for change that provides a clear substrate to align implementation against
@@ -16,20 +16,20 @@
 
 ****
 
-## Session.Runtime.Loop
+## Alignment.Loop:What
 
-- `Session.Runtime.Loop` is the general workflow the agent tries to make the session follow
-- main flow: `Design.Alignment.Question` → `Design.Enrichment.Discussion` → `Design.Consolidation` → ...
+- `Alignment.Loop:What` is the `What.Design` specialization of `Alignment.Loop` — the general workflow the agent tries to make the session follow
+- main flow: `Alignment.Question:What` → `Alignment.Discussion:What` → `Alignment.Consolidation:What` → ...
 - interruptions are named branches that pause the main flow at any point
-- `User.Assistant.Turn` — user drives, agent follows (`Design.Enrichment.Discussion` phase)
-- `Session.Maintenance.Turn` — agent drives one session move (`Design.Alignment.Question`, `Design.Consolidation`, state update)
+- `Alignment.User.Turn` — user drives, agent follows (`Alignment.Discussion:What` phase)
+- `Alignment.Maintenance.Turn` — agent drives one session move (`Alignment.Question:What`, `Alignment.Consolidation:What`, state update)
 - mode switching is user-gated — agent may suggest, never silently switch
 - `Design.Status.Report` — structured checkpoint that summarizes session state
     - delta-oriented: reactive to context, don't repeat still-valid reported state
     - serves multiple roles: status checkpoint, consolidation output, session state summary
-    - works in both `InChat.Design.Session` and `Artifact.Design.Session`
+    - works in both `Alignment.Backend:InChat:What` and `Alignment.Backend:Artifact:What`
     - used sparingly at natural consolidation points
-    - in InChat sessions, `Design.Consolidation` = printing a `Design.Status.Report`
+    - in InChat sessions, `Alignment.Consolidation:What` = printing a `Design.Status.Report`
 - `Session.Interruptions` — catalog of named branches the user can take:
     - `Capture.Audit`, `Consolidation.Plan`, `Artifact.Upgrade`, `Impl.Req.Handoff`, `Session.Split`, `Close.Topic`, `Park.Topic`
 - the interruption catalog gives the user a vocabulary to communicate with the agent — each name triggers a known response shape
@@ -37,9 +37,9 @@
 
 ****
 
-## InChat.Design.Session
+## Alignment.Backend:InChat:What
 
-- `InChat.Design.Session` is the default `Design.Session` backend — state lives in chat
+- `Alignment.Backend:InChat:What` is the default `What.Design.Session` backend — state lives in chat
 - the chat is the substrate, the agent organizes it into design-session form
 - flexibility is the priority — no file overhead, no formal sections required every turn
 - the agent must always track session state even when not printing it
@@ -48,11 +48,11 @@
 
 ****
 
-## Artifact.Design.Session
+## Alignment.Backend:Artifact:What
 
-- `Artifact.Design.Session` is the file-backed `Design.Session` backend — state lives in a `*-design-session.md` `Live.Note`
+- `Alignment.Backend:Artifact:What` is the file-backed `What.Design.Session` backend — state lives in a `*-design-session.md` `Live.Note`
 - durable, handoff-ready
 - adds `Session.Notes` and `Session.Log` to `Session.Abstract` and `Design.Index`
 - artifact writes are user-gated
 - upgrade path: InChat → Artifact when state becomes too large, important, or needs future handoff — upgrade is user-gated, never automatic
-- both backends run the same `Session.Runtime.Loop` — the backend doesn't change the workflow, only where consolidated state is captured
+- both backends run the same `Alignment.Loop:What` — the backend doesn't change the workflow, only where consolidated state is captured
