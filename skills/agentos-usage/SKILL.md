@@ -56,11 +56,17 @@ notes/index/001-ontology.md # concept lookup
 
 Use `001-ontology.md` first when you need to resolve a named concept.
 
+### Hugentic workflows
+
+The Hugentic Harness integrates design, implementation design, and implementation execution workflows. Load the harness entry point for the full workflow map.
+
+→ `agentos-hugentics` skill
+
 ### Design sessions
 
-Use the design session skill to run structured or free-form design conversations. It tracks topics, records converged decisions, and produces durable outputs for promotion to the index.
+Use the design session trigger to start a structured design conversation. It tracks topics, records converged decisions, and produces durable outputs for promotion to the index.
 
-→ `agentos-design-session` skill
+→ `trigger-design-session` skill
 
 ### Live notes lifecycle
 
@@ -104,13 +110,14 @@ agentos skills status --project
 
 | Subject | Surface |
 |---|---|
+| Hugentic Harness (workflows) | `agentos-hugentics` skill |
 | Hugentic workflow overview | `notes/index/109-Agentos.Hugentic.Flow.md` |
 | Project identity and targeting | `notes/index/105-Agentos.Project.md` |
 | Skills system | `notes/index/106-Agentos.Skills.md` |
 | Index notes system | `agentos-index-notes-base` skill |
 | Live notes | `agentos-live-note-base` skill |
 | Project doctor | `agentos-project-doctor` skill |
-| Design sessions | `agentos-design-session` skill |
+| Design sessions | `trigger-design-session` skill |
 | File numbering protocol | `agentos-file-numbering-base` skill |
 | Concept lookup | `notes/index/001-ontology.md` |
 | Full index | `notes/index/000-index.md` |

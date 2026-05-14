@@ -10,7 +10,7 @@ Activates the `impl.executer.agent` workflow for loading and executing an `Impl.
 ## When To Fire
 
 - User approves an `Impl.Req` and says "implement this", "execute the plan", "build this"
-- User invokes `trigger-impl-execution` or `agentos-design-implementation`
+- User invokes `trigger-impl-execution`
 
 ## What To Load
 

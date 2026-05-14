@@ -9,8 +9,8 @@ Activates the `Main.Designer.Agent` workflow for scoped human-agent design conve
 
 ## When To Fire
 
-- User says "let's start a design session", "let's design X", "let's discuss X"
-- User invokes `agentos-design-session` or `trigger-design-session`
+- User says "let's start a design session", "let's design X", "start a design-session"
+- User invokes `trigger-design-session`
 - User says "continue the design-session"
 
 ## What To Load

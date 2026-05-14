@@ -11,7 +11,7 @@ Activates the `impl.designer.agent` workflow for designing an implementation pla
 
 - User says "let's plan the implementation", "create an impl-req", "make an impl-req"
 - User triggers `Impl.Req.Handoff` interruption from a design session
-- User invokes `trigger-impl-req` or `agentos-artifact-impl-req`
+- User invokes `trigger-impl-req`
 
 ## What To Load
 

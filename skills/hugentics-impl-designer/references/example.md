@@ -5,69 +5,55 @@ Example only. Adapt the exact wording and section weight to the current request.
 ```md
 # Tara Mobile Design Realignment - impl-req
 
-## Impl-Req State
+## Impl.Abstract
 
-Ready for implementation. User and designer agreed on the realignment scope; no known
-blockers remain.
+- **scope:** realign the home screen implementation with the accepted design — remove the extra entry action, preserve accepted section order and navigation model
+- **status:** ready for implementation
+- **source:** design discussion drift detected during revision scan
 
-## User Intent
+## Impl.Index
 
-Bring the current screen flow back in line with the intended design while preserving the
-accepted navigation model.
+### Screen.Entry.Action.Alignment
 
-## Why This Exists
+- the accepted design specifies one clear primary entry action on the home screen
+- the current implementation introduced a second entry action that was not part of the accepted design
+- the layout now sends mixed signals about the primary flow
+- the extra action must be removed; the accepted reordered sections must remain intact
+- preserving existing data wiring unless the layout change requires modifying it
 
-The implemented screen drifted from the agreed design discussion. The user wants a focused
-realignment request that another agent can execute without replaying the full conversation.
+### Navigation.Model.Preservation
 
-## Current Situation
+- the accepted navigation model must not change as part of this realignment
+- no unrelated screens should be redesigned
+- visual polish, analytics, and text copy outside the affected screen are out of scope
 
-The current implementation includes the new section order, but it also introduced a second
-entry action that was not part of the accepted design. The layout now sends mixed signals
-about the primary flow.
+## Execution.Plan
 
-## Requested Change
+### Slice 1 — Remove extra entry action
 
-Remove the extra entry action and restore one clear primary action. Keep the reordered
-sections and the accepted screen grouping.
+- remove the second entry action from the home screen
+- path: home screen widget tree → action buttons → primary action
+- observable: the screen exposes exactly one primary entry action
+- check: visual inspection + existing navigation tests pass
+- status: not started
 
-## Constraints And Invariants
+### Slice 2 — Verify section order preserved
 
-- Preserve the accepted navigation model.
-- Do not redesign unrelated screens.
-- Keep existing data wiring intact unless the current layout depends on changing it.
+- confirm the accepted reordered sections remain intact after the action removal
+- path: home screen layout → section list
+- observable: sections appear in the accepted order
+- check: visual inspection + screenshot comparison with accepted design
+- status: not started
 
-## Out Of Scope
+## Impl.Log
 
-- Visual polish outside the affected screen
-- Analytics changes
-- Text copy revisions unrelated to the realignment
-
-## Acceptance Signals
-
-- The screen exposes one clear primary entry action.
-- The accepted reordered sections remain intact.
-- No unrelated navigation behavior changes.
+- 2026-04-16: Designer created this note after revision scan found drift between accepted design intent and current implementation.
+- 2026-04-17: Implementer confirmed understanding with the user before editing. Execution not started yet.
+```
 
 ## Relevant Files Or Surfaces
 
+This example references:
+
 - `apps/tara_mobile/lib/screens/home_screen.dart`
-- `notes/live/540-home-screen-design-impl-req.md`
-- current branch diff for the affected screen
-
-## Open Questions
-
-- None at the time of writing.
-
-## Related Impl-Reqs
-
-- `notes/live/540-home-screen-design-impl-req.md` - earlier request that the new note
-  refines
-
-## End Log
-
-- 2026-04-16: Designer created this note after revision scan found drift between accepted
-  design intent and current implementation.
-- 2026-04-17: Implementer confirmed understanding with the user before editing. Execution
-  not started yet.
-```
+- `notes/live/540-home-screen-design-impl-req.md` — earlier request that this note refines

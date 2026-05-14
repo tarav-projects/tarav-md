@@ -2,7 +2,7 @@
 
 `Impl.Req` is the implementation-request handoff produced by a `Design.Session`.
 
-It replaces a separate session-local execution-plan artifact. When a session produces implementation work, use the `agentos-artifact-impl-req` skill and write a `*-impl-req.md` artifact.
+It replaces a separate session-local execution-plan artifact. When a session produces implementation work, activate the `trigger-impl-req` skill to hand off to the `hugentics-impl-designer` workflow, which defines the full `Impl.Req` artifact format and design process.
 
 ## Role
 
