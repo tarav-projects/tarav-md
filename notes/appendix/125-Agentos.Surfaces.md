@@ -1,6 +1,6 @@
 # Agentos.Surfaces — Appendix
 
-Paired with `notes/index/100-Agentos.Surfaces.md`.
+Paired with `notes/index/100-index.md`.
 
 ## Surface.Link.Directionality
 

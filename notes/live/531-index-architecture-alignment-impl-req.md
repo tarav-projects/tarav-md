@@ -13,7 +13,7 @@
 - `Kernel.Writing` and `Kernel.Block` are new base concepts — they don't exist in the index yet
 - `Kernel.Block` defines the universal structure: fundamentals + `### appendix` + `### meta`
 - all block types derive from `Kernel.Block` — this must be established before revising dependent concepts
-- target note: new block in `114-Agentos.Index.Notes.md` or a dedicated note
+- target note: new block in `100-index.md` or a dedicated flat file
 - ontology entries needed in `001-ontology.md`
 
 ### Block.Structure.Revision
@@ -30,8 +30,8 @@
 - location stays `notes/appendix/`
 - discovery is implicit — agents check if the file exists by convention, no outlink required
 - existing files to rename:
-    - `125-Agentos.Surfaces.md` → determine concept name
-    - `125-Development.Principles.md` → determine concept name
+    - `notes/appendix/125-Agentos.Surfaces.md` → determine concept name
+    - `notes/appendix/125-Development.Principles.md` → determine concept name
 - `Index.Appendix.Block` as a separate concept is removed
 
 ### Ontology.System.Introduction
@@ -50,9 +50,9 @@
 
 ### Slice 1 — Introduce Kernel.Writing and Kernel.Block in the index
 
-- add `Kernel.Writing` and `Kernel.Block` blocks to `114-Agentos.Index.Notes.md`
+- add `Kernel.Writing` and `Kernel.Block` blocks to the last flat index file
 - add ontology entries in `001-ontology.md`
-- path: `notes/index/114` → `notes/index/001-ontology.md`
+- path: flat index files → `notes/index/001-ontology.md`
 - observable: both concepts exist as `Index.Blocks` with fundamentals
 - check: blocks match the design session definitions
 - status: not started
@@ -63,7 +63,7 @@
 - remove `Complete.Index.Block` block from `114` and `001-ontology.md`
 - remove `Index.Block.Outlinks` block from `114` and `001-ontology.md`
 - revise `Design.Index.Block` to reference `Kernel.Block`
-- path: `notes/index/114` → `notes/index/001-ontology.md`
+- path: flat index files → `notes/index/001-ontology.md`
 - observable: no references to `Complete.Index.Block` or `### outlinks` as a separate section in live index
 - check: grep for removed terms returns zero hits in `notes/index/`
 - status: not started

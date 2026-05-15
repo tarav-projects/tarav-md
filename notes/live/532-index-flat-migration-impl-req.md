@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **scope:** migrate all concept blocks from semantic index files to flat anonymous files; update routing in 000-index.md; retire semantic files
-- **status:** ready for implementation
+- **status:** complete
 - **source:** design session `notes/live/530-index-system-revisit-design-session.md` — flat index architecture decision
 - **constraint:** no concept loss — every block that exists today must exist after migration
 - **dependency:** execute BEFORE 531 (conceptual changes) — 531 operates on the new flat structure
@@ -39,7 +39,7 @@
 - path: `notes/index/1*.md` → `notes/index/100-index.md` ... `103-index.md`
 - observable: all concept blocks exist in flat files
 - check: count of H2 blocks in new files matches count in old files
-- status: not started
+- status: done
 
 ### Slice 2 — Update 000-index.md routing table
 
@@ -48,7 +48,7 @@
 - path: `notes/index/000-index.md`
 - observable: every concept in the index has a routing entry
 - check: every H2 heading in flat files has a corresponding entry in `000-index.md`
-- status: not started
+- status: done
 
 ### Slice 3 — Retire semantic files
 
@@ -57,7 +57,7 @@
 - path: `notes/index/`
 - observable: only `000-index.md`, `001-ontology.md`, `002-surfaces.md`, and `1XX-index.md` flat files remain
 - check: no references to retired filenames in remaining index files
-- status: not started
+- status: done
 
 ### Slice 4 — Update ontology entries that reference old filenames
 
@@ -66,8 +66,15 @@
 - path: `notes/index/001-ontology.md`
 - observable: all "see" references in ontology resolve to existing files
 - check: grep for retired filenames returns zero hits
-- status: not started
+- status: done
 
 ## Impl.Log
 
 - 2026-05-15: Impl.Req created — flat index migration, prerequisite for 531
+- 2026-05-15: Implementation complete — all 4 slices executed
+    - 59 blocks migrated from 14 semantic files into 3 flat files (100-index.md: 20, 101-index.md: 20, 102-index.md: 19)
+    - 000-index.md rewritten as concept→file routing table
+    - 14 semantic files deleted
+    - all "see" references in 001-ontology.md, 002-surfaces.md, and flat files updated to point to new flat files
+    - one appendix reference preserved as-is: `125-Agentos.Surfaces.md` in Surface.Link.Directionality (appendix renaming is 531 scope)
+    - zero retired filenames remain in index files (verified by grep)
