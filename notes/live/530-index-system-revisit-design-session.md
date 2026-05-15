@@ -6,7 +6,7 @@
 - active focus: skill map agreed, per-item protocol defined, ready to start Layer 1
 - references: notes/index/ (agentos-md), index-related skills
 - state: active
-- next: item 3 — Index.Block
+- next: item 3 — Index.Block (continue)
 
 ## Design.Index
 
@@ -54,6 +54,41 @@
 - current 114 wording needs revision: "durable concept-note subsystem" → Stable.Surface framing
 - "main alignment surface" role is an enrichment over current source material
 
+### Kernel.Writing
+
+- a writing philosophy for capturing concepts directly and completely
+- each line aims to describe a fundamental dimension of the concept — the view is multi-faceted
+- lines are orthogonal — no redundancy, each fact is independent
+- language is direct — no superfluous words, every word earns its place
+- coverage over compression — losing a fundamental dimension is more costly than an extra line
+- space constraints are external — the surface determines the budget, not the philosophy
+- `Kernel.Block` is the writing object that embodies `Kernel.Writing`
+
+#### meta
+
+- status: new concept — emerged from item 3 (Index.Block) review
+- extracted from writing principles previously conflated with Index.Block
+- Index.Block, Index.Appendix.Block, Design.Index.Block are implementations of Kernel.Block with different space constraints
+
+### Index.Block
+
+- the `Kernel.Block` implementation for `Agentos.Index.Notes`
+- the loadable unit of meaning in the index — anchored by a heading that names the concept using `Dotted.Notation`
+- `Kernel.Writing` at maximum compression — conceptual completeness under tight space constraints
+- three layers: heading (identity) → body (bullet-point sentences) → sections (`### index`, `### outlinks`)
+- must carry enough signal for an agent to reason correctly about the concept
+
+#### appendix
+
+- the writing philosophy behind Index.Block is not specific to the index — it's Kernel.Writing applied with index-specific space constraints
+- previously all writing principles lived in 114-Agentos.Index.Notes.md tied to the index surface — Kernel.Writing extraction separates the philosophy from the surface
+
+#### meta
+
+- status: reviewed — design change: extracted Kernel.Writing as base concept
+- Index.Block is now defined as Kernel.Block + index space constraints, not as a standalone philosophy
+- 114 needs revision to reference Kernel.Writing instead of defining writing principles inline
+
 ## Session.Notes
 
 ### Per-Item Protocol
@@ -70,7 +105,7 @@ For each skill map item:
 #### Layer 1 — Identity & Foundation
 - [x] 1. Agentos.Index — what the index IS (SPL concept) — confirmed + enrichment: needs own namespace and block; micro-prompts fundamental; appendix: SPL framing, five channels, semantic computation
 - [x] 2. Agentos.Index.Notes — Stable.Surface, implementation of the index (`114`) — wording correction: not "subsystem" but peer Stable.Surface; four roles identified; main alignment surface enrichment
-- [ ] 3. Index.Block — fundamental semantic unit (`114`)
+- [x] 3. Index.Block — fundamental semantic unit (`114`) — design change: extracted Kernel.Writing as base writing philosophy; Index.Block redefined as Kernel.Block + index space constraints; new concepts: Kernel.Writing, Kernel.Block
 
 #### Layer 2 — Naming & Addressing
 - [ ] 4. Dotted.Notation (`116`)
@@ -115,3 +150,4 @@ For each skill map item:
 - per-item protocol defined: test → align → react → capture
 - item 1 (Agentos.Index) reviewed — Design.Index.Block captured
 - item 2 (Agentos.Index.Notes) reviewed — Design.Index.Block captured; wording correction + enrichment
+- item 3 (Index.Block) reviewed — design change: Kernel.Writing and Kernel.Block extracted as new base concepts
