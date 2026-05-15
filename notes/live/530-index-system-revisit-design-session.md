@@ -6,7 +6,7 @@
 - active focus: skill map agreed, per-item protocol defined, ready to start Layer 1
 - references: notes/index/ (agentos-md), index-related skills
 - state: active
-- next: item 6 — File.Numbering.Protocol
+- next: item 7 — Index.Note / Index.Ontology.Note
 
 ## Design.Index
 
@@ -126,7 +126,7 @@ For each skill map item:
 #### Layer 2 — Naming & Addressing
 - [x] 4. Dotted.Notation (`116`) — confirmed as-is
 - [x] 5. Dotted.Parameterized.Notation (`116`) — confirmed as-is
-- [ ] 6. File.Numbering.Protocol (`117`)
+- [x] 6. File.Numbering.Protocol (`117`) — confirmed as-is
 
 #### Layer 3 — Structure & Organization
 - [ ] 7. Index.Note / Index.Ontology.Note (`000`, `001`)
@@ -169,3 +169,4 @@ For each skill map item:
 - item 3 (Index.Block) reviewed — design change: Kernel.Writing and Kernel.Block extracted as new base concepts
 - block zoo simplified: Kernel.Block as base (fundamentals + appendix + meta), Complete.Index.Block removed, ### index and ### outlinks absorbed into ### meta
 - items 4-5 (Dotted.Notation, Dotted.Parameterized.Notation) confirmed as-is
+- item 6 (File.Numbering.Protocol) confirmed as-is
