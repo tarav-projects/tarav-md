@@ -2,70 +2,79 @@
 
 ## Impl.Abstract
 
-- **scope:** new `agentos chatlas produce` command — launches an agent to produce an external chatlas view, supporting batch operation over query results
-- **status:** slices 1-3 (v1 single-session) implemented, multi-session iteration in progress
+- **scope:** two commands — `chatlas produce` (universal produce) and `chatlas run-produce` (agentic batch runner)
+- **status:** v1 single-session agent-spawning implemented under `chatlas produce`, needs refactor into the two-command split
 - **source:** design discussion — chatlas produce feature, session context
 
-The goal is a thin CLI launcher: run a query, pass results to the view's prompt iterator, run one agent per yielded prompt as a terminal process. The agent operates the full stage-produce-commit cycle exactly like any external operator.
+Two commands with distinct roles:
 
-No Python-side artifact parsing, no output capture, no orchestration beyond prompt building and sequential iteration.
+- **`chatlas produce`** — universal produce. Internal views: produces programmatically. External views: outputs the production prompt to the terminal. No agent spawning. Works as a building block for any agent or workflow.
+- **`chatlas run-produce`** — chatlas-managed agentic batch runner. Runs a query, iterates prompts from the view, spawns one agent per prompt sequentially as terminal processes.
 
 ## Impl.Index
 
-### Core.Concept
+### Two.Command.Split
 
-- `chatlas produce` is a CLI command that automates external view production by delegating to an agent
-- the agent is the operator — it runs the existing stage/produce/commit workflow via CLI commands
-- the Python side only builds prompts and launches processes
-- `process_mode="terminal"` — agent output goes straight to the terminal, no capture
+- `chatlas produce` is the prompt surface — it answers "what needs doing"
+  - internal view: runs `workflow.produce(context)` directly (programmatic production, already exists)
+  - external view: calls the view's prompt builder and prints the prompt to stdout
+  - no agent provider args, no agent spawning
+  - usable by any agent — an agent calls `agentos chatlas produce`, reads the prompt, acts on it
+  - single-session selectors (same as existing view commands)
+- `chatlas run-produce` is the execution surface — it answers "do it with this agent"
+  - takes `--agent-provider`, `--profile`, `--model`
+  - runs a query (same args as `chatlas query`) → N rows
+  - passes rows to the view's prompt iterator → yields prompts
+  - for each prompt: resolves agent, runs as terminal process (`process_mode="terminal"`)
+  - single-session is just the N=1 case
 
-### Query.Driven.Selection
+### Produce.On.Workflow
 
-- `chatlas produce` accepts the same query arguments as `chatlas query` — this is the session selection mechanism
-- the query returns N rows
-- rows are passed to the view's prompt iterator
-- there is one path: query → rows → prompt iterator → sequential agent runs
-- single-session is just the N=1 case, no special handling
+- the existing `produce(context)` method on `ChatlasViewWorkflow` stays as-is for internal views
+- for external views, `produce(context)` currently raises `CliError` — this changes to return the prompt string instead
+- the view protocol gains a `produce_prompts(rows) -> Iterator[str]` for the multi-row batch path used by `run-produce`
+- `produce` (single) and `produce_prompts` (batch) are related but distinct:
+  - `produce` works from a resolved context (single session, used by `chatlas produce` CLI)
+  - `produce_prompts` works from raw query rows (N sessions, used by `chatlas run-produce` CLI)
+  - for external views, `produce_prompts` yields one prompt per row — each prompt is what `produce` would return for that row
 
-### Prompt.Iterator.On.View
+### Prompt.Shape
 
-- each `ChatlasViewWorkflow` that supports agent production defines `produce_prompts(rows) -> Iterator[str]`
-- the iterator receives the query result rows and yields one prompt per unit of work
-- the view decides the mapping — for `zip-transcript-agent-summary`, it yields one prompt per row
-- other views could yield differently (e.g., batch, skip already-fresh, etc.)
-- the prompt tells the agent which skill/reference to load and which session to target
 - for `zip-transcript-agent-summary`, the prompt points at `chatlas-usage/references/producer-zip-transcript-agent-summary.md`
-- views that do not support produce raise `CliError`
+- includes the session selector flags derived from the row (`--identity-hash` preferred)
+- `_session_selector_flags()` helper converts row fields to CLI flags
 
-### Agent.Resolution
+### Agent.Resolution (run-produce only)
 
-- `chatlas produce` takes `--agent-provider` (and optionally `--profile`, `--model`) to resolve the agent
+- `chatlas run-produce` takes `--agent-provider` (and optionally `--profile`, `--model`) to resolve the agent
 - uses existing `resolve_agent()` from `agent/providers.py`
 - uses existing `AgentCommandConfig` and `AgentRunConfig` from `agent/run_runtime.py`
 - `interaction_mode="non_interactive"` since the prompt is fully specified
 
-### CLI.Shape
+### CLI.Shapes
 
-- command: `agentos chatlas produce --view <view-name> --agent-provider <provider> [query selectors] [--model ...] [--profile ...] [--dry-run]`
-- query selectors: same set as `chatlas query` (`--uri`, `--identity-hash`, `--session-id`, `--updated-after`, `--limit`, etc.)
-- `--dry-run`: show the prompts and agent commands without executing
-- returns 0 if all agent runs succeed, non-zero otherwise
+- `agentos chatlas produce --view <view-name> [session selectors] [--explain]`
+  - internal view: produces and prints result (JSON)
+  - external view: prints the production prompt
+- `agentos chatlas run-produce --view <view-name> --agent-provider <provider> [query selectors] [--model ...] [--profile ...] [--dry-run]`
+  - query selectors: same set as `chatlas query`
+  - `--dry-run`: show prompts and agent commands without executing
+  - returns 0 if all agent runs succeed, non-zero otherwise
 
 ### Existing.Infra.Reuse
 
 - `resolve_agent()` — agent resolution from config
 - `agent.run(command_config, run_config)` — terminal process execution
 - `agent.run_dry(command_config)` — dry run support
-- query selectors — same `_add_chatlas_index_selector_arguments` and `_chatlas_index_selector_kwargs` helpers
-- the existing producer reference at `chatlas-usage/references/producer-zip-transcript-agent-summary.md` already describes the full agent workflow
-- the existing `SKILL.md` at `agentos-session-zip-transcript` already describes the caller contract and subagent prompt shape
+- `_ensure_available()` — already handles internal produce path
+- query selectors — `_add_chatlas_index_selector_arguments` and `_chatlas_index_selector_kwargs`
+- producer reference at `chatlas-usage/references/producer-zip-transcript-agent-summary.md`
 
 ### Selector.To.Prompt
 
-- the prompt iterator needs to convert each row's fields into CLI flag strings for the agent
-- the agent will use these flags in its own `agentos chatlas views ...` commands
-- the selectors come from index row fields like `identity_hash`, `uri`, `session_id`
+- prompt builder converts row fields into CLI flag strings for the agent
 - prefer `--identity-hash` when available as it is the most stable selector
+- `_session_selector_flags()` helper already implemented
 
 ## Execution.Plan
 
@@ -76,48 +85,60 @@ No Python-side artifact parsing, no output capture, no orchestration beyond prom
 - added `_session_selector_flags()` helper
 - **changes:** `agentos-py/src/agentos/chatlas/views/core.py`
 
-### Slice 2 — `chatlas_produce` orchestrator function (done, needs update)
+### Slice 2 — `chatlas_produce` orchestrator + CLI (done, needs refactor)
 
-- added `chatlas_produce()` in `chatlas/views/core.py`
-- currently uses `_context_from_selector` (single-session path)
-- **needs update:** replace with query-based multi-row path and prompt iterator loop
+- added `chatlas_produce()` and CLI `produce` subcommand with agent-spawning
+- **needs refactor:** split into `produce` (no agent) and `run-produce` (with agent)
 
-### Slice 3 — CLI wiring (done, needs update)
+### Slice 3 — Refactor `chatlas produce` to universal produce
 
-- added `produce` subcommand with `--agent-provider`, `--profile`, `--model`, `--dry-run`, session selectors
-- **needs update:** selectors should match `chatlas query` capabilities, not just single-session selectors
-
-### Slice 4 — Refactor: prompt iterator and multi-session loop
-
-- rename `build_produce_prompt` to `produce_prompts` on the `ChatlasViewWorkflow` protocol
-- signature: `produce_prompts(rows: list[dict]) -> Iterator[str]`
-- `ZipTranscriptAgentSummaryWorkflow.produce_prompts` yields one prompt per row
-- `ZipTranscriptWorkflow.produce_prompts` raises `CliError`
-- update `chatlas_produce()` orchestrator:
-  - accept query result rows instead of single-session selectors
-  - resolve the workflow
-  - call `workflow.produce_prompts(rows)` to get the iterator
-  - loop: for each prompt, build `AgentCommandConfig`, run agent, track results
-  - return summary with per-session exit codes
-- update CLI handler to run the query first, then pass rows to `chatlas_produce()`
+- remove agent-spawning from `chatlas_produce()`
+- for internal views: call `_ensure_available(context)` — returns the view result (already works)
+- for external views: call `workflow.build_produce_prompt(context)` — return the prompt
+- update CLI: remove `--agent-provider`, `--profile`, `--model`, `--dry-run` from `produce`
+- keep session selectors (single-session, same as `chatlas views get`)
+- output: JSON with view result (internal) or prompt string (external)
 - **changes:** `chatlas/views/core.py`, `chatlas/commands.py`
-- **validation:** `--dry-run` with `--limit 3` shows 3 prompts; live run processes sessions sequentially
+- **validation:** `agentos chatlas produce --view zip-transcript --session-id <id>` produces programmatically; `agentos chatlas produce --view zip-transcript-agent-summary --session-id <id>` prints the prompt
 
-### Slice 5 — End-to-end validation
+### Slice 4 — Add `produce_prompts` iterator to workflow protocol
 
-- run `agentos chatlas produce --view zip-transcript-agent-summary --agent-provider codex --profile codex-main --model gpt-5.4-mini --session-id <id>` — single session
-- run `agentos chatlas produce --view zip-transcript-agent-summary --agent-provider claude-code --updated-after 2026-05-14 --limit 3` — batch of 3
-- confirm view state is `fresh` for each processed session
+- add `produce_prompts(rows: list[dict]) -> Iterator[str]` to `ChatlasViewWorkflow` protocol
+- `ZipTranscriptAgentSummaryWorkflow.produce_prompts` yields one prompt per row (reuses `_session_selector_flags`)
+- `ZipTranscriptWorkflow.produce_prompts` raises `CliError` (internal views don't need batch agent production)
+- **changes:** `chatlas/views/core.py`
+- **validation:** calling `produce_prompts` with 3 rows yields 3 prompt strings
+
+### Slice 5 — Add `chatlas run-produce` command
+
+- add `chatlas_run_produce()` orchestrator function
+  - takes: view name, provider, profile, model, query result rows, dry_run, cwd
+  - resolves the workflow
+  - calls `workflow.produce_prompts(rows)` → iterator
+  - for each prompt: resolve agent, build `AgentCommandConfig`, run as terminal process
+  - track per-prompt exit codes, return summary
+- add `run-produce` CLI subcommand under `chatlas_subparsers`
+  - arguments: `--view`, `--agent-provider`, `--profile`, `--model`, `--dry-run`, query selectors (same as `chatlas query`)
+  - handler runs the query, passes rows to `chatlas_run_produce()`
+- **changes:** `chatlas/views/core.py`, `chatlas/views/__init__.py`, `chatlas/commands.py`
+- **validation:** `agentos chatlas run-produce --view zip-transcript-agent-summary --agent-provider claude-code --dry-run --limit 3` shows 3 prompts and commands
+
+### Slice 6 — End-to-end validation
+
+- `agentos chatlas produce --view zip-transcript --session-id <id>` — internal produce
+- `agentos chatlas produce --view zip-transcript-agent-summary --session-id <id>` — prints prompt
+- `agentos chatlas run-produce --view zip-transcript-agent-summary --agent-provider codex --profile codex-main --model gpt-5.4-mini --session-id <id>` — single session agent run
+- `agentos chatlas run-produce --view zip-transcript-agent-summary --agent-provider claude-code --updated-after 2026-05-14 --limit 3` — batch of 3
 - **validation:** all targeted sessions show `fresh` state after completion
 
 ## Impl.Log
 
-### 2026-05-15 — Slices 1-3 (v1 single-session)
+### 2026-05-15 — Slices 1-2 (v1 single-session agent-spawning)
 
-Implemented initial version with single-session support:
+Implemented initial version with single-session agent-spawning under `chatlas produce`:
 - `build_produce_prompt()` on protocol + both workflows
 - `chatlas_produce()` orchestrator with terminal agent execution
-- CLI wiring as `agentos chatlas produce` with `--agent-provider` (renamed from `--provider` to avoid conflict with chatlas provider selector)
+- CLI wiring as `agentos chatlas produce` with `--agent-provider`
 - `_session_selector_flags()` helper for identity_hash/uri/session_id preference
 - dry-run and live run tested successfully against real sessions
-- pending: refactor to multi-session prompt iterator (slice 4)
+- pending: refactor into two-command split (`produce` + `run-produce`)
