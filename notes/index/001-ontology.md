@@ -42,13 +42,29 @@
 
 ## Index.Architecture
 
-- `Index.Architecture` defines the two scopes of the index system: `Global.Index.Scope` and `Extended.Index.Scope`
-- `Global.Index.Scope` — `notes/index/`, lean and complete, one `Kernel.Block:Index` per concept, always loadable as minimum context
-- `Extended.Index.Scope` — `notes/appendix/`, extended material, loaded on demand
-- appendix files are named by concept: `Concept.Name-appendix.md` — no numbering, the `Dotted.Name` is the handle
-- appendix discovery is implicit — an agent checks if `notes/appendix/Concept.Name-appendix.md` exists without needing an outlink
-- appendix files are `Kernel.Writing` with relaxed space constraints — not a dump, meaningful data
-- created on demand — no empty files, no pre-planning
+- `Index.Architecture` is the structural design of the Agentos Index — also an `Ontology.Namespace`
+- see `103-index.md`
+
+****
+
+## Flat.Index.Architecture
+
+- `Flat.Index.Architecture` is the file-level design: anonymous flat containers, append-only writing, routing table
+- see `103-index.md`
+
+****
+
+## Global.Index.Scope
+
+- `Global.Index.Scope` is the always-loaded layer of the index — `notes/index/`
+- see `103-index.md`
+
+****
+
+## Extended.Index.Scope
+
+- `Extended.Index.Scope` is the on-demand layer of the index — `notes/appendix/`
+- see `103-index.md`
 
 ****
 
