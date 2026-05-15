@@ -1,26 +1,24 @@
-# Alignment.Session
+# Alignment.Model
 
-## Alignment.Session
+## Forward.Alignment
 
-- `Alignment.Session` is a shallow container — when these concepts run together in a session, that's an Alignment.Session
-- no behavioral protocol of its own — each workflow specialization defines its own `Alignment.Hugentic.Axes` and behavioral detail
-- lists and relates the general concepts that compose an alignment session
+- `Forward.Alignment` is moving the design point to a new place in the `Conceptual.Space` — adding features, evolving design, exploring new territory
+- the creative act of development: deciding where to go next
 
-### concepts
+****
 
-- `Conceptual.Space` — the abstract space where alignment occurs; the set of all possible design decisions (`Alignment.Space` is a synonym)
-- `Alignment.Hugentic.Axis` — a dimension that needs human-agent convergence; each workflow defines its own set
-- `Alignment.Agentic.Axis` — a dimension the agent resolves autonomously
-- `Alignment.Loop` — the machinery: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`; parameterized by workflow phase (`:What`, `:How`, `:Exec`)
-- `Alignment.User.Turn` — user drives, agent follows
-- `Alignment.Maintenance.Turn` — agent drives one session move
-- `Alignment.Backend` — where session state lives: `InChat` or `Artifact`
+## Internal.Alignment
 
-### phase semantic roots
+- `Internal.Alignment` is keeping all surfaces in sync at the current design state
+- for a given design point, moving all other surfaces to follow it
+- the maintenance act of development: ensuring coherence across code, index, skills, docs
 
-- `What.Design` — phase 1, working on the conceptual model
-- `How.Design` — phase 2, planning the path
-- `Impl.Exec` — phase 3, walking the path
+****
+
+## Hugentic.Alignment
+
+- `Hugentic.Alignment` is bringing human and agent to shared understanding of where they are and where they're going in the `Conceptual.Space`
+- the convergence act: achieved through `Alignment.Loop` cycles
 
 ****
 
@@ -77,3 +75,29 @@
 - `Alignment.Backend:InChat` — state lives in chat, no file overhead
 - `Alignment.Backend:Artifact` — state lives in a file-backed artifact, durable and handoff-ready
 - parameterized by phase: `Alignment.Backend:InChat:What`, `Alignment.Backend:Artifact:What`, etc.
+
+****
+
+## Hard.Evidence
+
+- `Hard.Evidence` is the principle that evidence-based arguments have priority over agent assumptions during alignment work
+- concrete evidence: user instructions, inspected codebase state, active session artifacts, stable project surfaces
+- alignment sessions aim to be `Hard.Evidence`-based — more is welcome, but the core alignment axes are the priority
+
+****
+
+## Alignment.Session
+
+- `Alignment.Session` is a shallow container — when these concepts run together in a session, that's an Alignment.Session
+- no behavioral protocol of its own — each workflow specialization defines its own `Alignment.Hugentic.Axes` and behavioral detail
+- lists and relates the general concepts that compose an alignment session
+
+### concepts
+
+- `Conceptual.Space`, `Alignment.Hugentic.Axis`, `Alignment.Agentic.Axis`, `Alignment.Loop`, `Alignment.User.Turn`, `Alignment.Maintenance.Turn`, `Alignment.Backend`
+
+### phase semantic roots
+
+- `What.Design` — phase 1, working on the conceptual model
+- `How.Design` — phase 2, planning the path
+- `Impl.Exec` — phase 3, walking the path

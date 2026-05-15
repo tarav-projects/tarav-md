@@ -20,15 +20,13 @@
 
 ## Progress.Gradient
 
-- `Progress.Gradient` is the current best direction of movement between `Current.Implementation` and `Design.Target.Model`
+- `Progress.Gradient` is the combined direction of `Forward.Alignment` + `Internal.Alignment` at any point
 - the project is never finished — working is moving in the direction of the gradient
 - being unfinished is acceptable when a credible gradient exists
-- related to but distinct from `Placement.Balance` (spatial equilibrium across surfaces) — `Progress.Gradient` is directional/temporal
 
 ****
 
 ## Design.Implementation.CoEvolution
 
-- `Design.Implementation.CoEvolution` is the development dynamic where design understanding and implementation reshape each other
-- progress means co-developing `Design.Target.Model` and `Current.Implementation`
-- neither side is frozen — implementation reveals design gaps, design reshapes implementation direction
+- `Design.Implementation.CoEvolution` is the development rhythm of `Forward.Alignment` then `Internal.Alignment`, co-developing design and implementation surfaces
+- neither side is frozen — moving forward reveals alignment gaps, aligning surfaces reshapes direction

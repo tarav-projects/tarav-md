@@ -15,7 +15,8 @@
 - `119-Agentos.Project.md` — project identity, marker, and discovery system
 - `120-Agentos.Skills.md` — skill routing, usage surface, usage skill
 - `121-Design.Session.md` — What.Design.Session, Alignment.Loop:What, backends
-- `127-Alignment.Session.md` — Alignment.Session container, Conceptual.Space, Alignment.Loop, axes, turns, backends
-- `123-Impl.Req.md` — implementation requests, vertical slices, testing, development principles
+- `127-Alignment.Model.md` — alignment types, Conceptual.Space, axes, Alignment.Loop, turns, backends, Alignment.Session
+- `123-Impl.Req.md` — implementation requests, artifact structure, agent chain
+- `125-Development.Principles.md` — Deep.Modules, Agent.Navigable.Codebase, Vertical.Slice, No.Legacy.Allowed, Test.At.Boundaries
 - `124-Development.Model.md` — design target model, current implementation, progress gradient, co-evolution
 - `126-Chatlas.Query.md` — Chatlas query surfaces and normalized query envelope

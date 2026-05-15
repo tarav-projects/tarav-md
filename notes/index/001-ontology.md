@@ -179,10 +179,38 @@
 
 ****
 
+## Forward.Alignment
+
+- `Forward.Alignment` is moving the design point to a new place in the `Conceptual.Space`
+- see `127-Alignment.Model.md`
+
+****
+
+## Internal.Alignment
+
+- `Internal.Alignment` is keeping all surfaces in sync at the current design state
+- see `127-Alignment.Model.md`
+
+****
+
+## Hugentic.Alignment
+
+- `Hugentic.Alignment` is bringing human and agent to shared understanding in the `Conceptual.Space`
+- see `127-Alignment.Model.md`
+
+****
+
+## Hard.Evidence
+
+- `Hard.Evidence` is the principle that evidence-based arguments have priority over agent assumptions during alignment work
+- see `127-Alignment.Model.md`
+
+****
+
 ## Alignment.Session
 
 - `Alignment.Session` is a shallow container for the general concepts that compose an alignment session
-- see `127-Alignment.Session.md`
+- see `127-Alignment.Model.md`
 
 ****
 
@@ -196,7 +224,7 @@
 ## Alignment.Loop
 
 - `Alignment.Loop` is the general workflow machinery for human-agent convergence: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`
-- see `127-Alignment.Session.md`
+- see `127-Alignment.Model.md`
 
 ****
 
@@ -224,35 +252,35 @@
 ## Vertical.Slice
 
 - `Vertical.Slice` is the preferred shape of implementation work — thin end-to-end changes
-- see `123-Impl.Req.md`
+- see `125-Development.Principles.md`
 
 ****
 
 ## No.Legacy.Allowed
 
 - `No.Legacy.Allowed` is an implementation constraint: do not leave stale state behind
-- see `123-Impl.Req.md`
+- see `125-Development.Principles.md`
 
 ****
 
 ## Test.At.Boundaries
 
 - `Test.At.Boundaries` is the testing guidance: test through public interfaces, not implementation details
-- see `123-Impl.Req.md`
+- see `125-Development.Principles.md`
 
 ****
 
 ## Deep.Modules
 
 - `Deep.Modules` is an architectural principle: small interface, hidden complexity
-- see `125-Development.Principles.md` (pending)
+- see `125-Development.Principles.md`
 
 ****
 
 ## Agent.Navigable.Codebase
 
 - `Agent.Navigable.Codebase` is the structural principle that code should be organized so agents can explore naturally
-- see `125-Development.Principles.md` (pending)
+- see `125-Development.Principles.md`
 
 ****
 
@@ -272,12 +300,12 @@
 
 ## Progress.Gradient
 
-- `Progress.Gradient` is the current best direction of movement between `Current.Implementation` and `Design.Target.Model`
+- `Progress.Gradient` is the combined direction of `Forward.Alignment` + `Internal.Alignment` at any point
 - see `124-Development.Model.md`
 
 ****
 
 ## Design.Implementation.CoEvolution
 
-- `Design.Implementation.CoEvolution` is the development dynamic where design and implementation reshape each other
+- `Design.Implementation.CoEvolution` is the development rhythm of `Forward.Alignment` then `Internal.Alignment`, co-developing design and implementation surfaces
 - see `124-Development.Model.md`

@@ -60,7 +60,7 @@ All agents in the harness should have `Development.Principles` loaded. These inc
 - `Deep.Modules` — small interface, hidden complexity
 - `Agent.Navigable.Codebase` — code organized for agent exploration
 
-See `notes/index/123-Impl.Req.md` and `notes/index/125-Development.Principles.md` (pending) for details.
+See `notes/index/125-Development.Principles.md` for definitions, `notes/index/123-Impl.Req.md` for how they apply to impl-req work.
 
 ## Related Concepts
 

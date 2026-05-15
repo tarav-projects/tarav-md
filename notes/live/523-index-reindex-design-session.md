@@ -318,7 +318,7 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
 
 - `Alignment.Loop` — the machinery for achieving `Hugentic.Alignment` along the `Alignment.Hugentic.Axis`
 - three steps, parameterized by workflow: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`
-- parameterized naming: `Alignment.Question:Design`, `Alignment.Question:Impl`, `Alignment.Question:Exec`
+- parameterized naming: `Alignment.Question:What`, `Alignment.Question:How`, `Alignment.Question:Exec`
 - "Realignment" dropped as prefix — lightweight alignment is just a qualified `Alignment.Loop` (e.g. light)
 
 #### Turn Modes
@@ -334,13 +334,13 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
 
 #### Concept Merges
 
-- `Session.Runtime.Loop` → `Alignment.Loop:Design`
-- `Design.Alignment.Question` / `Design.Enrichment.Discussion` / `Design.Consolidation` → `Alignment.Question:Design` / `Alignment.Discussion:Design` / `Alignment.Consolidation:Design`
+- `Session.Runtime.Loop` → `Alignment.Loop:What`
+- `Design.Alignment.Question` / `Design.Enrichment.Discussion` / `Design.Consolidation` → `Alignment.Question:What` / `Alignment.Discussion:What` / `Alignment.Consolidation:What`
 - `User.Assistant.Turn` / `Session.Maintenance.Turn` → `Alignment.User.Turn` / `Alignment.Maintenance.Turn`
-- `InChat.Design.Session` / `Artifact.Design.Session` → `Alignment.Backend:InChat:Design` / `Alignment.Backend:Artifact:Design`
-- `Impl.Alignment.Loop` → `Alignment.Loop:Impl`
+- `InChat.Design.Session` / `Artifact.Design.Session` → `Alignment.Backend:InChat:What` / `Alignment.Backend:Artifact:What`
+- `Impl.Alignment.Loop` → `Alignment.Loop:How`
 - `Realignment.Loop` → `Alignment.Loop:Exec` (light)
-- `Design.Alignment.Core` → `Alignment.Hugentic.Axis:Design`
+- `Design.Alignment.Core` → `Alignment.Hugentic.Axis:What`
 - `Design.Open.Space` → sparse region of `Conceptual.Space`
 
 #### Phase Semantic Roots
@@ -363,7 +363,7 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
 
 #### meta
 
-- status: working
+- status: settled — promoted into `127-Alignment.Model.md`, implemented via impl-req 529
 - evidence:
   - user confirmed general pattern, not mandatory base
   - user confirmed parameterized naming over concept explosion
