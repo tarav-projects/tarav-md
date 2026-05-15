@@ -6,7 +6,7 @@
 - active focus: skill map agreed, per-item protocol defined, ready to start Layer 1
 - references: notes/index/ (agentos-md), index-related skills
 - state: active
-- next: item 3 — Index.Block (continue)
+- next: item 6 — File.Numbering.Protocol
 
 ## Design.Index
 
@@ -58,36 +58,52 @@
 
 - a writing philosophy for capturing concepts directly and completely
 - each line aims to describe a fundamental dimension of the concept — the view is multi-faceted
-- lines are orthogonal — no redundancy, each fact is independent
-- language is direct — no superfluous words, every word earns its place
+- lines aim to be orthogonal — avoid redundancy, prefer independent facts
+- language is direct — prefer concise expression, avoid superfluous words
+- completeness over clarity — every fundamental dimension has at least evidence in the block, even if not fully explained
 - coverage over compression — losing a fundamental dimension is more costly than an extra line
+- a `Kernel.Block` positions a concept in the `Conceptual.Space` — an agent reading it can reconstruct the full context
 - space constraints are external — the surface determines the budget, not the philosophy
 - `Kernel.Block` is the writing object that embodies `Kernel.Writing`
+
+### Kernel.Block
+
+- the base writing object of `Kernel.Writing`
+- structure: fundamentals (conceptual) + `### appendix` (extended conceptual) + `### meta` (non-conceptual)
+- the dividing rule: fundamentals and appendix are about the concept; meta is about the block itself
+- meta covers: outlinks, findability, status, open questions, session mechanics — anything non-conceptual
+- all block types in the system are parameterizations of `Kernel.Block` placed in specific surfaces with specific constraints
+
+#### appendix
+
+- replaces `Complete.Index.Block` — the appendix + meta structure is now part of the base, not an extension
+- absorbs `### index` (findability) and `### outlinks` (surface links) into `### meta`
+- block zoo after simplification:
+    - `Index.Block` — `Kernel.Block` in `notes/index/`, tight space constraints
+    - `Index.Appendix.Block` — appendix-only fragment in `notes/appendix/`, paired with an Index.Block
+    - `Design.Index.Block` — session-local `Kernel.Block` in a design artifact
+- removed: `Complete.Index.Block` — redundant now that Kernel.Block includes appendix + meta
 
 #### meta
 
 - status: new concept — emerged from item 3 (Index.Block) review
 - extracted from writing principles previously conflated with Index.Block
-- Index.Block, Index.Appendix.Block, Design.Index.Block are implementations of Kernel.Block with different space constraints
+- Index.Block, Index.Appendix.Block, Design.Index.Block are parameterizations of Kernel.Block
 
 ### Index.Block
 
-- the `Kernel.Block` implementation for `Agentos.Index.Notes`
-- the loadable unit of meaning in the index — anchored by a heading that names the concept using `Dotted.Notation`
-- `Kernel.Writing` at maximum compression — conceptual completeness under tight space constraints
-- three layers: heading (identity) → body (bullet-point sentences) → sections (`### index`, `### outlinks`)
+- `Kernel.Block` placed in `Agentos.Index.Notes` — the loadable unit of meaning in the index
+- anchored by a heading that names the concept using `Dotted.Notation`
+- `Kernel.Writing` at tight space constraints — conceptual completeness under compression
 - must carry enough signal for an agent to reason correctly about the concept
-
-#### appendix
-
-- the writing philosophy behind Index.Block is not specific to the index — it's Kernel.Writing applied with index-specific space constraints
-- previously all writing principles lived in 114-Agentos.Index.Notes.md tied to the index surface — Kernel.Writing extraction separates the philosophy from the surface
+- inherits fundamentals + `### appendix` + `### meta` from `Kernel.Block`
 
 #### meta
 
-- status: reviewed — design change: extracted Kernel.Writing as base concept
-- Index.Block is now defined as Kernel.Block + index space constraints, not as a standalone philosophy
-- 114 needs revision to reference Kernel.Writing instead of defining writing principles inline
+- status: reviewed — design change: redefined as Kernel.Block parameterization
+- `### index` and `### outlinks` absorbed into `### meta`
+- `Complete.Index.Block` removed — Kernel.Block already includes appendix + meta
+- 114 needs revision to reference Kernel.Writing and Kernel.Block
 
 ## Session.Notes
 
@@ -108,8 +124,8 @@ For each skill map item:
 - [x] 3. Index.Block — fundamental semantic unit (`114`) — design change: extracted Kernel.Writing as base writing philosophy; Index.Block redefined as Kernel.Block + index space constraints; new concepts: Kernel.Writing, Kernel.Block
 
 #### Layer 2 — Naming & Addressing
-- [ ] 4. Dotted.Notation (`116`)
-- [ ] 5. Dotted.Parameterized.Notation (`116`)
+- [x] 4. Dotted.Notation (`116`) — confirmed as-is
+- [x] 5. Dotted.Parameterized.Notation (`116`) — confirmed as-is
 - [ ] 6. File.Numbering.Protocol (`117`)
 
 #### Layer 3 — Structure & Organization
@@ -151,3 +167,5 @@ For each skill map item:
 - item 1 (Agentos.Index) reviewed — Design.Index.Block captured
 - item 2 (Agentos.Index.Notes) reviewed — Design.Index.Block captured; wording correction + enrichment
 - item 3 (Index.Block) reviewed — design change: Kernel.Writing and Kernel.Block extracted as new base concepts
+- block zoo simplified: Kernel.Block as base (fundamentals + appendix + meta), Complete.Index.Block removed, ### index and ### outlinks absorbed into ### meta
+- items 4-5 (Dotted.Notation, Dotted.Parameterized.Notation) confirmed as-is
