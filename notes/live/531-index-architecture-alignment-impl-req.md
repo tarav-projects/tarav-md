@@ -20,7 +20,7 @@
 
 - `### index` and `### outlinks` are absorbed into `### meta`
 - `Complete.Index.Block` is removed — `Kernel.Block` already includes appendix + meta
-- `Index.Block.Outlinks` section in `114` is removed — outlinks are now part of `### meta`
+- `Index.Block.Outlinks` section in `100-index.md` is removed — outlinks are now part of `### meta`
 - `Design.Index.Block` revise to reference `Kernel.Block` instead of `Complete.Index.Block`
 - dividing rule: fundamentals and appendix are conceptual; meta is non-conceptual
 
@@ -43,7 +43,7 @@
 
 ### Wording.Revision
 
-- "durable concept-note subsystem" → Stable.Surface framing in `000-index.md`, `114`, `001-ontology.md`
+- "durable concept-note subsystem" → Stable.Surface framing in `000-index.md`, `100-index.md`, `001-ontology.md`
 - `Agentos.Index.Notes` description must reflect the four roles: conceptual implementation, discovery, development surface, main alignment surface
 
 ## Execution.Plan
@@ -59,9 +59,9 @@
 
 ### Slice 2 — Revise Index.Block and remove Complete.Index.Block
 
-- revise `Index.Block` in `114` to reference `Kernel.Block`, remove `### index`/`### outlinks` → `### meta`
-- remove `Complete.Index.Block` block from `114` and `001-ontology.md`
-- remove `Index.Block.Outlinks` block from `114` and `001-ontology.md`
+- revise `Index.Block` in `100-index.md` to reference `Kernel.Block`, remove `### index`/`### outlinks` → `### meta`
+- remove `Complete.Index.Block` block from `100-index.md` and `001-ontology.md`
+- remove `Index.Block.Outlinks` block from `100-index.md` and `001-ontology.md`
 - revise `Design.Index.Block` to reference `Kernel.Block`
 - path: flat index files → `notes/index/001-ontology.md`
 - observable: no references to `Complete.Index.Block` or `### outlinks` as a separate section in live index
@@ -89,7 +89,7 @@
 
 ### Slice 5 — Wording revision and skill alignment
 
-- revise "durable concept-note subsystem" wording in `000-index.md`, `114`, `001-ontology.md`
+- revise "durable concept-note subsystem" wording in `000-index.md`, `100-index.md`, `001-ontology.md`
 - update `agentos-index-writer` — `### index` handling → `### meta`
 - update `agentos-index/references/block-syntax.md` — `### index` → `### meta`
 - update `agentos-index` SKILL.md reference table
