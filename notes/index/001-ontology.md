@@ -200,6 +200,24 @@
 
 ****
 
+## Agentos.Soft.Subsystem
+
+- `Agentos.Soft.Subsystem` is a conceptual responsibility area, not a hard ownership container
+- a more or less defined set of concepts that interact together with a clear responsibility
+- components can participate in multiple soft subsystems
+- component lists are orientation surfaces, not ownership manifests
+- examples: Hugentic Workflows, the Index system, the Canvas system
+
+****
+
+## Hugentic.Concept
+
+- `Hugentic` is a foundational qualifier: a system, surface, workflow, or tool designed for the human-agentic interface
+- the test: a hugentic thing meaningfully changes both sides — how the human works and how the agent works
+- if it only changes one side, it's a human tool or an agent tool, not hugentic
+
+****
+
 ## Hard.Evidence
 
 - `Hard.Evidence` is the principle that evidence-based arguments have priority over agent assumptions during alignment work
