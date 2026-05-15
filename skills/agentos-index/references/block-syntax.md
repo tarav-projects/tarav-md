@@ -1,11 +1,12 @@
 # Block Syntax
 
-## Index.Block
+## Kernel.Block:Index
 
-- `Index.Block` is the fundamental semantic unit of the index — the loadable unit of meaning
+- `Kernel.Block:Index` is `Kernel.Block` placed in `notes/index/` — the loadable unit of meaning in the index
 - the smallest node in the index knowledge graph
 - the unit loaded into agent context during `Index.Eval.Loop`
 - anchored by a heading (H2-H6) that names the concept using `Dotted.Notation`
+- aliases: `Index.Block`, `Global.Block`
 
 A block must be:
 
@@ -18,12 +19,12 @@ A block must be:
 
 1. **Heading** — identity (the `Dotted.Name`)
 2. **Fundamentals** (= the body) — bullet-point sentences, the concept's essential content
-3. **Extra** (optional) — examples, code, clarifying material when fundamentals alone aren't enough
-4. **Index section** (optional) — findability, related, operational meta
+3. **Appendix** (optional `### appendix`) — extended conceptual material
+4. **Meta** (optional `### meta`) — aliases, findability, outlinks, status — anything non-conceptual
 
 - fundamentals aren't a special section — they're just what the block IS
 - the block is fundamentals by default — the whole body is bullet-point sentences
-- extra material is additive — examples, diagrams, code appear below for clarity
+- the dividing rule: fundamentals and appendix are about the concept; meta is about the block itself
 - blank lines separate bullet paragraphs — each group is a logical unit
 - the 25-line ceiling forces compression — if you can't fit it, split the block
 
@@ -51,9 +52,10 @@ A block must be:
 
 [optional: examples, code, etc.]
 
-### index
+### meta
 
-- findability: [aliases, keywords, approximate names]
+- aliases: [shorter names for this concept]
+- findability: [keywords, approximate names]
 - related: `Related.Concept.One`, `Related.Concept.Two`
 ```
 
@@ -63,8 +65,9 @@ A block must be:
 |---|---|---|
 | **Heading** (H2-H6) | required | identity — names the concept |
 | **Fundamentals** | required | grounding — bullet-point sentences, essential content (~600 chars) |
-| **Extra** | optional | depth — examples, code, clarifying material |
-| **Index section** | optional | meta — findability, related, operational |
+| **Extra** | optional | examples, code, clarifying material |
+| **Appendix** | optional | depth — extended conceptual material |
+| **Meta** | optional | non-conceptual — aliases, findability, outlinks, status |
 
 ### Size constraint
 

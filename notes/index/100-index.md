@@ -42,18 +42,17 @@
 
 - `Public.Surface` (skills) can be referenced from `Local.Surface` (index notes), not the reverse
 - skills must not point to index notes — local agents discover index data through index workflows (e.g. `agentos-index-activate`, `agentos-index-trigger`)
-- see appendix `125-Agentos.Surfaces.md`
+- see appendix `Agentos.Surfaces-appendix.md`
 
 ****
 
 ## Agentos.Index.Notes
 
-- `Agentos.Index.Notes` is the durable concept-note subsystem of an Agentos-style project
+- `Agentos.Index.Notes` is one of the `Stable.Surfaces` of an Agentos-style project — the `notes/index/*.md` files
 - implements the `Agentos.Index` — a `Soft.Programming.Language` for project knowledge
-- the `Alignment.Surface` between humans and agents — shared ground for what things mean
-- contains `Named.Concepts` written in `Index.Blocks`, organized in `Index.Notes`, registered in the `Ontology.Registry`
+- four roles: conceptual implementation of the system, discovery and navigation index, development surface, main alignment surface
+- contains `Named.Concepts` written in `Kernel.Block:Index` blocks, organized in flat index files, registered in the `Ontology.Registry`
 - agents execute the index at runtime through the `Index.Eval.Loop` — resolving names, loading blocks, detecting gaps
-- lives at `notes/index/` with numbered concept notes, each centered on one concept or tight cluster
 
 ****
 
@@ -84,69 +83,50 @@
 
 ****
 
-## Index.Block
+## Kernel.Block:Index
 
-- `Index.Block` is the fundamental semantic unit of the index — the loadable unit of meaning
+- `Kernel.Block:Index` is `Kernel.Block` placed in `notes/index/` — the loadable unit of meaning in the index
 - anchored by a heading (H2–H6) that names the concept using `Dotted.Notation`
+- `Kernel.Writing` at tight space constraints — conceptual completeness under compression
 - must carry enough signal for an agent to reason correctly about the concept
 - the index must have at least a block for any meaningful concept in the system
     - blocks can link out to other surfaces rather than define everything inline
-- three layers: heading (identity) → body (bullet-point sentences) → sections (`### index`, `### outlinks`)
-- `### index` — findability hints and related concepts (populated on evidence of search misses)
-- `### outlinks` — where else the concept is treated across surfaces
-- compressed fundamentals only, space-constrained — for extended material see `Complete.Index.Block`
+- inherits fundamentals + `### appendix` + `### meta` from `Kernel.Block`
+
+### meta
+
+- aliases: `Index.Block`, `Global.Block`
 
 ****
 
-## Index.Block.Outlinks
+## Kernel.Block:Appendix
 
-- `Index.Block.Outlinks` is a fixed section (`### outlinks`) in an `Index.Block`
-- maps where else the concept is treated across surfaces — the discovery path from index to distributed facets
-- a maintenance surface — keep current as the concept grows across surfaces
-- if empty, leave a placeholder: `(no outlinks yet — add links to other surfaces where this concept is treated)`
-
-### example
-
-```
-### outlinks
-
-- skill: `agentos-index-writer` — operational write loop
-- docs: `notes/docs/NNN-whatever.md` — extended design
-- code: `agentos_py/index/writer.py` — implementation
-```
-
-****
-
-## Complete.Index.Block
-
-- `Complete.Index.Block` is an `Index.Block` with an `### appendix` section for extended material
-- the fundamentals part is equivalent to an `Index.Block` — same meaning, same restrictions
-- `### appendix` — examples, use cases, reasoning, pros/cons, extended design material
-    - no line count constraint, line length limit still applies
-
-****
-
-## Index.Appendix.Block
-
-- `Index.Appendix.Block` is an appendix-only block hosted at `notes/appendix/`
-- no fundamentals — those live in the `Index.Block` at `notes/index/`
+- `Kernel.Block:Appendix` is `Kernel.Block` placed in `notes/appendix/` — extended material for a concept
+- `Kernel.Writing` at relaxed space constraints — depth over compression
 - extended material: examples, use cases, reasoning, pros/cons, design depth
-    - no line count constraint, line length limit still applies
 - a `Stable.Surface` — maintained, not throwaway
 - not part of `Context.Minimal.Surface` — agents reach it only on explicit need
+- discovery is implicit — agents check if `notes/appendix/Concept.Name-appendix.md` exists
+
+### meta
+
+- aliases: `Appendix.Block`
 
 ****
 
-## Design.Index.Block
+## Kernel.Block:Design.Session
 
-- `Design.Index.Block` is a session-local `Complete.Index.Block` used in `Design.Session` artifacts
+- `Kernel.Block:Design.Session` is `Kernel.Block` used in `Design.Session` artifacts — session-local concept capture
 - captures the relevant conceptual value produced by session discussion about a subject concept
-- fundamentals have the same semantic role as `Index.Block` fundamentals
+- fundamentals have the same semantic role as `Kernel.Block:Index` fundamentals
     - draft quality may vary during the session, but the meaning target is the same
-- inherits `### appendix` from `Complete.Index.Block`
-    - carries extended conceptual value: examples, rationale, pressure tests, tradeoffs, rejected alternatives, design depth
-- adds `### meta` for session mechanics: status, sources, open questions, promotion notes, stale or misaligned markers
-- at promotion time: fundamentals compress into `Index.Block`, appendix material goes to `Index.Appendix.Block`, meta gets dropped or is used as workflow state
+- `### appendix` carries extended conceptual value: examples, rationale, pressure tests, tradeoffs, rejected alternatives
+- `### meta` covers session mechanics: status, sources, open questions, promotion notes
+- at promotion time: fundamentals compress into `Kernel.Block:Index`, appendix material goes to `Kernel.Block:Appendix`, meta is dropped
+
+### meta
+
+- aliases: `Design.Session.Block`, `Design.Index.Block`
 
 ****
 

@@ -45,7 +45,7 @@ For each block to write or modify:
 
 ## Block Format
 
-All writes must follow `Index.Block.Syntax`:
+All writes must follow `Kernel.Block:Index` syntax:
 
 ```markdown
 ## Dotted.Name
@@ -54,8 +54,9 @@ All writes must follow `Index.Block.Syntax`:
 - [fundamental statement]
     - [qualification]
 
-### index
+### meta
 
+- aliases: [shorter names]
 - findability: [keywords]
 - related: `Related.Name`
 ```

@@ -12,4 +12,4 @@ Paired with `notes/index/100-index.md`.
 - the skill document is portable and can't link back to the index
 - but local agents have access to both skills and index — they use index workflows (e.g. `agentos-index-activate`, `agentos-index-trigger`) to discover index data alongside the skill
 - the agent bridges both worlds; the skill stays self-contained
-- example: `hugentics-designer` (skill) references `agentos-hugentics` (skill) for the general alignment model, not `126-Alignment.Session.md` (index note). A local agent running the skill can still access `126` through index workflows.
+- example: `hugentics-designer` (skill) references `agentos-hugentics` (skill) for the general alignment model, not an index note directly. A local agent running the skill can still access index concepts through index workflows.

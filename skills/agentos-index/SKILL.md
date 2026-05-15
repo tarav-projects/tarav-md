@@ -13,7 +13,7 @@ This is the `Main.Skill` of the index `Skill.Package`. It contains the full desi
 
 - the index is a `Soft.Programming.Language` — soft syntax (natural language), programming semantics (execution behavior)
 - it is the `Alignment.Surface` between humans and agents — the shared ground where both sides align on what things mean
-- it contains `Named.Concepts` written in `Index.Blocks`, organized in `Index.Notes`, registered in the `Ontology.Registry`
+- it contains `Named.Concepts` written in `Kernel.Block:Index` blocks, organized in flat index files, registered in the `Ontology.Registry`
 - agents execute the index at runtime through the `Index.Eval.Loop` — resolving names, loading blocks, detecting gaps
 
 ## References
@@ -22,8 +22,8 @@ This is the `Main.Skill` of the index `Skill.Package`. It contains the full desi
 |---|---|
 | `references/core-model.md` | what the index IS — Soft.Programming.Language, Alignment.Surface, SSOT rule, Stable.Surfaces |
 | `references/eval-loop.md` | Index.Call, triggers, Index.Eval.Loop pipeline, activation, runtime semantics |
-| `references/block-syntax.md` | Index.Block, Index.Block.Syntax, Bullet.Point.Sentence, Index.Note, size constraints |
-| `references/appendix.md` | Index.Appendix, Index.Appendix.Block, placement, promotion, routing |
+| `references/block-syntax.md` | Kernel.Block:Index, Index.Block.Syntax, Bullet.Point.Sentence, Index.Note, size constraints |
+| `references/appendix.md` | Index.Appendix, Kernel.Block:Appendix, placement, promotion, file convention |
 | `references/naming.md` | Dotted.Notation, detection rules, parameterized and variable notation |
 | `references/ontology.md` | Ontology.Registry, namespaces, workflows (emergence → registration → promotion) |
 | `references/maintenance.md` | maintenance model, promotion, low-friction capture, Stub.Convention |

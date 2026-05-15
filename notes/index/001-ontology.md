@@ -20,10 +20,51 @@
 
 ****
 
+## Ontology.Registry
+
+- `Ontology.Registry` is the conceptual layer of the index that gives the full list of registered concepts
+- one of the overlays on `notes/index/` — same files, different concern than file navigation
+- `001-ontology.md` is the entry point that coordinates the registry
+- organized through `Ontology.Namespaces` — multiple views over the same set of concepts
+- a concept can have multiple blocks across namespaces, focusing on different aspects
+
+****
+
+## Ontology.Namespace
+
+- `Ontology.Namespace` is an explicit bounded organizing view over ontology concepts
+- namespaces share concepts — the same concept can appear in multiple namespaces
+- a namespace is a concept itself — has a `Dotted.Name`, a `Kernel.Block:Index`, and can have an appendix file
+- a namespace appendix file can contain multiple `Kernel.Block:Appendix` entries — concept views focused on that namespace's semantics
+- coordinated from `001-ontology.md` — can be sections there or links to separate files
+
+****
+
+## Index.Architecture
+
+- `Index.Architecture` defines the two scopes of the index system: `Global.Index.Scope` and `Extended.Index.Scope`
+- `Global.Index.Scope` — `notes/index/`, lean and complete, one `Kernel.Block:Index` per concept, always loadable as minimum context
+- `Extended.Index.Scope` — `notes/appendix/`, extended material, loaded on demand
+- appendix files are named by concept: `Concept.Name-appendix.md` — no numbering, the `Dotted.Name` is the handle
+- appendix discovery is implicit — an agent checks if `notes/appendix/Concept.Name-appendix.md` exists without needing an outlink
+- appendix files are `Kernel.Writing` with relaxed space constraints — not a dump, meaningful data
+- created on demand — no empty files, no pre-planning
+
+****
+
+## Agentos.Index
+
+- `Agentos.Index` is a `Soft.Programming.Language` for project knowledge — a library of micro-prompts invoked by naming
+- manipulates the agent's context window — by controlling what enters context, you control how the agent reasons
+- enables semantic computation: composing concepts, finding contradictions, detecting design weakness
+- also an `Ontology.Namespace` — groups the concepts that define the index system itself
+
+****
+
 ## Agentos.Index.Notes
 
-- `Agentos.Index.Notes` is the durable concept-note subsystem of an Agentos-style project
-- implements the `Agentos.Index` — a `Soft.Programming.Language` for project knowledge
+- `Agentos.Index.Notes` is one of the `Stable.Surfaces` of an Agentos-style project — the implementation of the `Agentos.Index`
+- four roles: conceptual implementation, discovery index, development surface, main alignment surface
 - see `100-index.md`
 
 ****
@@ -158,23 +199,26 @@
 
 ****
 
-## Complete.Index.Block
+## Kernel.Block:Index
 
-- `Complete.Index.Block` is an `Index.Block` with an `### appendix` section for extended material
+- `Kernel.Block:Index` is `Kernel.Block` in `notes/index/` — the loadable unit of meaning in the index
+- aliases: `Index.Block`, `Global.Block`
 - see `100-index.md`
 
 ****
 
-## Index.Appendix.Block
+## Kernel.Block:Appendix
 
-- `Index.Appendix.Block` is an appendix-only block hosted at `notes/appendix/`
+- `Kernel.Block:Appendix` is `Kernel.Block` in `notes/appendix/` — extended concept material
+- aliases: `Appendix.Block`
 - see `100-index.md`
 
 ****
 
-## Design.Index.Block
+## Kernel.Block:Design.Session
 
-- `Design.Index.Block` is a session-local `Complete.Index.Block` used in `Design.Session` artifacts
+- `Kernel.Block:Design.Session` is `Kernel.Block` in session artifacts — session-local concept capture
+- aliases: `Design.Session.Block`, `Design.Index.Block`
 - see `100-index.md`
 
 ****
@@ -326,4 +370,19 @@
 ## Design.Implementation.CoEvolution
 
 - `Design.Implementation.CoEvolution` is the development rhythm of `Forward.Alignment` then `Internal.Alignment`, co-developing design and implementation surfaces
+- see `102-index.md`
+
+****
+
+## Kernel.Writing
+
+- `Kernel.Writing` is a writing philosophy for capturing concepts directly and completely
+- see `102-index.md`
+
+****
+
+## Kernel.Block
+
+- `Kernel.Block` is the base writing object of `Kernel.Writing` — fundamentals + `### appendix` + `### meta`
+- all block types are parameterizations: `Kernel.Block:Index`, `Kernel.Block:Appendix`, `Kernel.Block:Design.Session`
 - see `102-index.md`

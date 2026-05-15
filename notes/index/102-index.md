@@ -207,3 +207,28 @@
 - Row projection is intentionally independent from the envelope:
   - `agentos chatlas index query` returns full index rows
   - `agentos chatlas query` returns normalized session rows by default
+
+****
+
+## Kernel.Writing
+
+- `Kernel.Writing` is a writing philosophy for capturing concepts directly and completely
+- each line aims to describe a fundamental dimension of the concept — the view is multi-faceted
+- lines aim to be orthogonal — avoid redundancy, prefer independent facts
+- language is direct — prefer concise expression, avoid superfluous words
+- completeness over clarity — every fundamental dimension has at least evidence in the block, even if not fully explained
+- coverage over compression — losing a fundamental dimension is more costly than an extra line
+- a `Kernel.Block` positions a concept in the `Conceptual.Space` — an agent reading it can reconstruct the full context
+- space constraints are external — the surface determines the budget, not the philosophy
+- `Kernel.Block` is the writing object that embodies `Kernel.Writing`
+
+****
+
+## Kernel.Block
+
+- `Kernel.Block` is the base writing object of `Kernel.Writing`
+- structure: fundamentals (conceptual) + `### appendix` (extended conceptual) + `### meta` (non-conceptual)
+- the dividing rule: fundamentals and appendix are about the concept; meta is about the block itself
+- meta covers: aliases, outlinks, findability, status, open questions, session mechanics — anything non-conceptual
+- all block types in the system are parameterizations of `Kernel.Block` placed in specific surfaces with specific constraints
+- parameterized using `Dotted.Parameterized.Notation`: `Kernel.Block:Index`, `Kernel.Block:Appendix`, `Kernel.Block:Design.Session`
