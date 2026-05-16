@@ -95,3 +95,20 @@
 - this is a feature, not a deficiency — precision costs space and maintenance, common sense is free — trust the LLM
 - the entire index is built on `Soft.Semantics.Concept` — it's what makes a `Soft.Programming.Language` possible
 - when a concept feels incomplete, ask: would an LLM figure this out? If yes, it's complete enough
+
+****
+
+## Hugentic.Concept
+
+- `Hugentic` is a foundational qualifier: a system, surface, workflow, or tool designed for the human-agentic interface
+- the test: a hugentic thing meaningfully changes both sides — how the human works and how the agent works
+- if it only changes one side, it's a human tool or an agent tool, not hugentic
+
+****
+
+## Index.000.Note
+
+- `Index.000.Note` is the entry point of the flat index — `000-index.md`
+- contains the concept→file routing table: maps every `Dotted.Name` to its flat file
+- always loaded by agents — the first file read when activating the index
+- maps the file structure, not the conceptual model — for concepts, load the blocks directly
