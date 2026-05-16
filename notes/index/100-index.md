@@ -148,7 +148,7 @@
 - a dotted name is a signal that the phrase refers to a concept, not casual prose
 - every name has at least two parts; dot depth is flexible and natural to the concept
 - dots provide context but are not a strict hierarchy — definition and relationships live in notes and registry entries, not the name
-- `Ontology.Namespace` must be explicit; do not infer a namespace from a dotted prefix alone
+- `Explicit.Namespace` must be explicit; do not infer a namespace from a dotted prefix alone
 - a dotted name can appear before it is registered
     - agents infer concept maturity from the repository: prose-only, registry entry, or dedicated note
 - registry lookup is opportunistic, not mandatory — use it when concept identity matters, avoid turning ordinary work into ontology maintenance

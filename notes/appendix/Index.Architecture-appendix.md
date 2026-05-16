@@ -4,7 +4,7 @@
 - placement friction slows writing and creates false groupings that age poorly
 - flat anonymous files eliminate the decision: append to the last file, done
 - the routing table (`000-index.md`) absorbs the cost — one place to update, always loaded
-- organizing is a separate concern handled by `Ontology.Namespaces` — a concept can belong to multiple namespaces without moving between files
+- organizing is a separate concern handled by `Concept.Scoping` — a concept can belong to multiple namespaces without moving between files
 - splitting an overfull file is deferred to maintenance — not a writing concern
 
 ****
@@ -41,4 +41,4 @@
 - `Kernel.Writing` defines how to capture a concept — the philosophy is surface-independent
 - space constraints are external — the surface determines the budget, not the philosophy
 - the same writing discipline applies everywhere: index, appendix, session artifacts, etc.
-- organizing happens through `Ontology.Namespaces`, not through file structure or writing decisions
+- organizing happens through `Concept.Scoping`, not through file structure or writing decisions

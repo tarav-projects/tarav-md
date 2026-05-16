@@ -13,7 +13,7 @@
 
 - `Index.Ontology.Note` is the concept-space map of the Agentos index
 - low-resolution registry: records what concepts exist, gives each a compact definition, points to fuller notes
-- organized by `Ontology.Namespaces` — multiple overlapping views over the same concepts
+- organized by `Explicit.Namespaces` — multiple overlapping views over the same concepts
 - a concept lives in one file (routed by `Index.Note`) but can appear in multiple namespaces here
 - not the place for deep treatment — that lives in concept notes
 - reserved at `001-ontology.md` — stable path, always the entry point for concept lookup
@@ -25,24 +25,35 @@
 - `Ontology.Registry` is the conceptual layer of the index that gives the full list of registered concepts
 - one of the overlays on `notes/index/` — same files, different concern than file navigation
 - `001-ontology.md` is the entry point that coordinates the registry
-- organized through `Ontology.Namespaces` — multiple views over the same set of concepts
+- organized through `Explicit.Namespaces` — multiple views over the same set of concepts
 - a concept can have multiple blocks across namespaces, focusing on different aspects
 
 ****
 
-## Ontology.Namespace
+## Concept.Scoping
 
-- `Ontology.Namespace` is an explicit bounded organizing view over ontology concepts
-- namespaces share concepts — the same concept can appear in multiple namespaces
-- a namespace is a concept itself — has a `Dotted.Name`, a `Kernel.Block:Index`, and can have an appendix file
-- a namespace appendix file can contain multiple `Kernel.Block:Appendix` entries — concept views focused on that namespace's semantics
-- coordinated from `001-ontology.md` — can be sections there or links to separate files
+- `Concept.Scoping` is the general mechanism: any concept can scope other concepts through its appendix file
+- see `103-index.md`
+
+****
+
+## Explicit.Namespace
+
+- `Explicit.Namespace` is a concept that intentionally organizes a view over a set of related concepts
+- see `103-index.md`
+
+****
+
+## Agentos.Index.System
+
+- `Agentos.Index.System` is the top concept for the index — a `Soft.Programming.Language` for project knowledge
+- see `103-index.md`
 
 ****
 
 ## Index.Architecture
 
-- `Index.Architecture` is the structural design of the Agentos Index — also an `Ontology.Namespace`
+- `Index.Architecture` is the structural design of the Agentos Index — an `Explicit.Namespace`
 - see `103-index.md`
 
 ****
@@ -73,7 +84,7 @@
 - `Agentos.Index` is a `Soft.Programming.Language` for project knowledge — a library of micro-prompts invoked by naming
 - manipulates the agent's context window — by controlling what enters context, you control how the agent reasons
 - enables semantic computation: composing concepts, finding contradictions, detecting design weakness
-- also an `Ontology.Namespace` — groups the concepts that define the index system itself
+- also an `Explicit.Namespace` — groups the concepts that define the index system itself
 
 ****
 
@@ -189,7 +200,7 @@
 
 ## Project.Surfaces
 
-- `Project.Surfaces` is a built-in `Ontology.Namespace` for the surfaces the index covers
+- `Project.Surfaces` is a built-in `Explicit.Namespace` for the surfaces the index covers
 - see `002-surfaces.md`
 
 ****
@@ -387,6 +398,20 @@
 
 - `Design.Implementation.CoEvolution` is the development rhythm of `Forward.Alignment` then `Internal.Alignment`, co-developing design and implementation surfaces
 - see `102-index.md`
+
+****
+
+## Surface.Concept
+
+- `Surface.Concept` is the base idea behind all surfaces — an interface over a subset of a project
+- see `103-index.md`
+
+****
+
+## Soft.Semantics.Concept
+
+- `Soft.Semantics.Concept` is the principle that concepts are intentionally under-specified because the consumer (an LLM) has common sense
+- see `103-index.md`
 
 ****
 
