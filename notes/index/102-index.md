@@ -220,6 +220,8 @@
 - coverage over compression — losing a fundamental dimension is more costly than an extra line
 - a `Kernel.Block` positions a concept in the `Conceptual.Space` — an agent reading it can reconstruct the full context
 - space constraints are external — the surface determines the budget, not the philosophy
+- the filter: capture material that changes future judgment
+- useful material can enter before it has mature structure — capture first, polish later
 - `Kernel.Block` is the writing object that embodies `Kernel.Writing`
 
 ****

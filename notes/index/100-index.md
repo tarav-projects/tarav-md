@@ -1,9 +1,10 @@
 ## Stable.Surface
 
 - `Stable.Surface` is a durable, authoritative surface where a specific facet of project knowledge lives
+- the "stable" contract: the content aims to be maintained, current, and trustworthy
 - all `Stable.Surfaces` have equal authority — no surface is positioned as more important than another
 - misalignments between surfaces are resolved context-dependently, not by a fixed hierarchy
-- the system must be aligned — drift is a problem to solve, not a hierarchy to invoke
+- drift between stable surfaces is the target of `Internal.Alignment` — a problem to detect and resolve
 
 ****
 
@@ -19,13 +20,14 @@
 - `Natural.Placement` is the principle that each surface holds the facet of a concept that is natural to its function
 - the full description of a concept is distributed across surfaces — each complements the others
     - index → conceptual grounding (what it is, why, how it connects) and discovery (where to find it)
-    - docs → extended design rationale, narrative, depth
+    - appendix → extended depth, rationale, scoped views through `Concept.Scoping`
     - skills → operational behavior, workflows
     - code → the implementation itself (the code IS the description)
 - each surface should mostly contain what the other surfaces don't
 - a well-maintained system has no drift between surfaces AND has content balanced by the nature of each surface
 - content that feels unnatural in a surface is probably misplaced
 - the anti-pattern is duplication across surfaces — the pattern is complementary coverage
+- minimal duplication is allowed when a surface needs self-sufficiency — e.g. a skill repeating just enough context to be usable without loading the index
 
 ****
 
@@ -33,16 +35,19 @@
 
 - `Placement.Balance` is the equilibrium state of content across surfaces
 - the system is balanced when moving content from one surface to another would feel less natural than its current placement
-- a diagnostic signal: if you can imagine content fitting better in another surface, the system is not yet balanced
+- diagnostic signal: if you find yourself needing the same content in two different surfaces and linking is not possible, the system is unbalanced
 - complementary to `Natural.Placement` — natural placement is the principle, placement balance is the resulting state
 
 ****
 
 ## Surface.Link.Directionality
 
-- `Public.Surface` (skills) can be referenced from `Local.Surface` (index notes), not the reverse
-- skills must not point to index notes — local agents discover index data through index workflows (e.g. `agentos-index-activate`, `agentos-index-trigger`)
-- see appendix `Agentos.Surfaces-appendix.md`
+- `Surface.Link.Directionality` defines which surfaces can reference which
+- `Local.Surface` can reference `Public.Surface` — not the reverse
+- `Public.Surface` must be self-contained — it cannot depend on local project knowledge
+- `Local.Surface` has access to everything — it bridges public and local naturally
+- this constraint exists because public surfaces are distributable — they must work outside the project
+- when the full dependency project is available (`Project.Dev.Install`), the local/public boundary shifts — local surfaces of the dependency become reachable too
 
 ****
 
@@ -56,30 +61,12 @@
 
 ****
 
-## Agentos.Index.Writing.Principles
-
-- `Agentos.Index.Writing.Principles` defines what belongs in durable index notes
-- index notes capture material that changes future judgment
-- all index content is organized as `Named.Concepts` in `Index.Blocks`
-    - a concept can carry rationale, constraints, boundaries, reusable patterns, naming conventions, steering rules, consequences, or exclusions
-    - but it is always a named block — not loose prose, not unstructured material
-- index notes should NOT become transcripts, changelogs, progress dashboards, task lists, or implementation dumps
-- first priority is preserving important knowledge where future agents can find it
-    - useful material can enter before it has mature structure
-    - `Index.Note.Style` is a convergence target, not a gate that blocks capture
-
-****
-
 ## Index.Concept.Coverage
 
-- the index is the collection point for all `Named.Concepts` in the project's stable surfaces
+- `Index.Concept.Coverage` is the goal that the index covers all `Named.Concepts` in the project
 - any `Dotted.Name` that appears in a stable surface should have an index entry
-- each concept block must carry enough signal for an agent to reason correctly — not just a pointer
-- the index is the first line of context for agents
-- blocks can link out to other surfaces rather than define everything inline
-    - skills, docs, and other surfaces can own the source of truth of a topic
-- concepts can emerge anywhere — authors use `Dotted.Notation` naturally in their work without worrying about index maintenance
-    - the system detects new `Named.Concepts` and triggers index updates separately
+- concepts can emerge anywhere — authors use `Dotted.Notation` naturally without worrying about index maintenance
+- the system detects new `Named.Concepts` and triggers index updates separately
 
 ****
 
@@ -92,6 +79,7 @@
 - the index must have at least a block for any meaningful concept in the system
     - blocks can link out to other surfaces rather than define everything inline
 - inherits fundamentals + `### appendix` + `### meta` from `Kernel.Block`
+- index blocks should NOT become transcripts, changelogs, progress dashboards, task lists, or implementation dumps
 
 ### meta
 
@@ -132,13 +120,8 @@
 
 ## Md.Surface
 
-- `Md.Surface` is a qualifier for the markdown layer of a target
-- when applied to a project, it means the set of `.md` files in that project
-- any `.md` file is part of the surface: notes, skills, `AGENTS.md`, READMEs, live notes, index notes
-- parameterized to scope: `Md.Surface:Agentos` means all `.md` files in the Agentos project
-    - `Md.Surface:Agentos.Stack` narrows to the abstract stack model
-    - `Md.Surface:Agentos.Implementation` narrows to the concrete implementation
-- not all `.md` files define the project — some are operational, some are temporary, some are coordination
+- `Md.Surface` is the markdown layer of a project — the set of `.md` files
+- parameterized to scope: `Md.Surface:Agentos`, `Md.Surface:Agentos.Stack`
 
 ****
 
@@ -190,14 +173,9 @@
 ## Maintenance.System
 
 - `Maintenance.System` defines how a project surface is diagnosed over time
-- diagnosis-first, not fix-first — report issues with evidence, then the user decides on follow-up
-- checks can be agentic (judgment-based), CLI-supported (deterministic), or mixed
-- usually has two aligned surfaces: a doctor skill for agentic diagnosis, a project CLI for deterministic checks
+- diagnosis-first, not fix-first — report issues with evidence, then the user decides
 - parameterized: `Maintenance.System:Agentos` is the Agentos instance
-- reports must be evidence-based — the agent declares the evidence for each finding
-    - suggestions without evidence are valid, but must be explicitly marked as such
-- boundary: finds and reports issues — not primarily a fixer, progress tracker, or background automation
-    - fixes are separate, explicit workflows — maintenance findings often require design judgment
+- reports must be evidence-based — suggestions without evidence must be marked as such
 
 ****
 

@@ -112,3 +112,21 @@
 - contains the concept→file routing table: maps every `Dotted.Name` to its flat file
 - always loaded by agents — the first file read when activating the index
 - maps the file structure, not the conceptual model — for concepts, load the blocks directly
+
+****
+
+## Inline.Relatedness
+
+- `Inline.Relatedness` is the principle that related concepts should be mentioned in context, not in a separate section
+- if a concept comes up naturally in the writing, the `Dotted.Name` mention is enough
+- if the relationship is relevant but doesn't come up naturally, add a `Concept.Cite`: `[Concept.X, Concept.Y]`
+- the cite goes inline — next to the line or idea it relates to, just like academic paper citations
+- this keeps the concept graph navigable from within the block itself — an agent reading it sees the connections in place
+
+****
+
+## Project.Surfaces
+
+- `Project.Surfaces` is a `BuiltIn.Namespace` — an expected interface in every project's ontology
+- can be empty — populated as surfaces are identified
+- custom surfaces are formally exposed as scoped blocks: `Project.Surfaces/Surface.X`
