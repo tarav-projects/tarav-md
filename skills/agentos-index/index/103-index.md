@@ -106,12 +106,12 @@
 
 ****
 
-## Index.000.Note
+## Index.Router
 
-- `Index.000.Note` is the entry point of the flat index — `000-index.md`
-- contains the concept→file routing table: maps every `Dotted.Name` to its flat file
-- always loaded by agents — the first file read when activating the index
-- maps the file structure, not the conceptual model — for concepts, load the blocks directly
+- `Index.Router` is the compressed entry point of the index — always loaded, always first
+- two instances: `000-index.md` (public, in the `Project.Index.Skill`) and `001-index.md` (local, in `notes/index/`)
+- two routing sections: concept routing (every `Dotted.Name` → flat file) and file routing (important project files for research)
+- entries can have a one sentence explanation — but depth lives in the blocks themselves
 
 ****
 
@@ -145,10 +145,11 @@
 ## Index.Runtime
 
 - `Index.Runtime` is the behavioral program installed in an agent at `Index.Activation` — how to operate the index
-- covers: architecture, reading, writing, research, naming, gaps, escalation
+- covers: architecture, reading, writing, research, gaps, detection, footer
 - once loaded, the agent knows how to navigate, interpret, contribute to, and reason with the index
 - the runtime is the skill instructions — it's behavioral, not data
 - `Index.Notes` are the data the runtime operates on
+- operational detail: `references/runtime.md`
 
 ****
 

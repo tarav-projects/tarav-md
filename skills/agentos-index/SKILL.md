@@ -20,6 +20,7 @@ This is the `Main.Skill` of the index `Skill.Package`. It contains the full desi
 
 | Reference | Covers |
 |---|---|
+| `references/runtime.md` | Index.Runtime — architecture, reading, writing, research, gaps, detection, footer |
 | `references/core-model.md` | what the index IS — Soft.Programming.Language, Alignment.Surface, SSOT rule, Stable.Surfaces |
 | `references/eval-loop.md` | Index.Call, triggers, Index.Eval.Loop pipeline, activation, runtime semantics |
 | `references/block-syntax.md` | Kernel.Block:Index, Index.Block.Syntax, Bullet.Point.Sentence, Index.Note, size constraints |
