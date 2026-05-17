@@ -12,7 +12,7 @@
 - dot depth is flexible and natural to the concept
 - dots provide context but are not a strict hierarchy
 - definitions and relationships live in blocks, not in the name alone
-- `Ontology.Namespace` must be explicit; do not infer from prefix
+- `Explicit.Namespace` must be declared; do not infer from prefix
 
 ****
 

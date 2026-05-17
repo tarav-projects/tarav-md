@@ -14,7 +14,7 @@ This skill operationalizes:
 - `notes/index/108-Agentos.Project.Doctor.md`
 - `notes/index/105-Agentos.Project.md`
 - `notes/index/104-Maintenance.System.md`
-- `notes/index/001-ontology.md`
+- `skills/agentos-index/index/000-index.md`
 
 If this skill conflicts with `notes/index/`, the index wins and this skill should be updated.
 
@@ -189,10 +189,9 @@ The first doctor scope should include these lower-level checks:
 - `notes/index/` is optional by capability adoption.
   - If index-like durable design/reference behavior is absent, no finding.
   - If index-like behavior exists outside `notes/index/`, warn about overlapping or nonstandard alternatives.
-  - If `notes/index/` is adopted, missing `notes/index/000-index.md` or `notes/index/001-ontology.md` is a protocol failure.
-  - When those reserved index files exist, check whether they appear stale relative to the active index surface.
-  - Extra ontology namespace or integration-hook files are valid when routed from `notes/index/001-ontology.md`.
-  - If an ontology namespace or integration-hook file exists but `001-ontology.md` does not route to it, treat it as an unrouted/stale ontology surface rather than as a replacement ontology entrypoint.
+  - If `notes/index/` is adopted, missing `notes/index/000-index.md` is a protocol failure.
+  - When the routing table exists, check whether it appears stale relative to the active index surface.
+  - If a public index exists at `skills/agentos-index/index/`, check that `notes/index/000-index.md` points to it.
 - `notes/live/` is optional by capability adoption.
   - If absent, no finding.
   - If live-note behavior exists through near-standard alternatives, warn.

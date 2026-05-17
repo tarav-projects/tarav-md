@@ -11,7 +11,7 @@ The code-to-index mapping:
 
 - **variable declaration** → naming a concept with `Dotted.Notation`
 - **function call** → `Index.Call` — triggered by a `Dotted.Name` or agent reasoning
-- **symbol table** → `001-ontology.md` — the registry of known names
+- **symbol table** → `000-index.md` routing table — the registry of known names
 - **module** → `Index.Note` — a cluster of related definitions
 - **function body** → `Index.Block` — the loadable unit of meaning
 - **type system** → `Index.Block.Syntax` — structural conventions for writing blocks

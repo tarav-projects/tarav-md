@@ -13,7 +13,7 @@ This is the `Main.Skill` of the index `Skill.Package`. It contains the full desi
 
 - the index is a `Soft.Programming.Language` — soft syntax (natural language), programming semantics (execution behavior)
 - it is the `Alignment.Surface` between humans and agents — the shared ground where both sides align on what things mean
-- it contains `Named.Concepts` written in `Kernel.Block:Index` blocks, organized in flat index files, registered in the `Ontology.Registry`
+- it contains `Named.Concepts` written in `Kernel.Block:Index` blocks, organized in flat index files
 - agents execute the index at runtime through the `Index.Eval.Loop` — resolving names, loading blocks, detecting gaps
 
 ## References
@@ -25,7 +25,7 @@ This is the `Main.Skill` of the index `Skill.Package`. It contains the full desi
 | `references/block-syntax.md` | Kernel.Block:Index, Index.Block.Syntax, Bullet.Point.Sentence, Index.Note, size constraints |
 | `references/appendix.md` | Index.Appendix, Kernel.Block:Appendix, placement, promotion, file convention |
 | `references/naming.md` | Dotted.Notation, detection rules, parameterized and variable notation |
-| `references/ontology.md` | Ontology.Registry, namespaces, workflows (emergence → registration → promotion) |
+| `references/ontology.md` | Concept.Scoping, Explicit.Namespace, concept lifecycle, index surface layout |
 | `references/maintenance.md` | maintenance model, promotion, low-friction capture, Stub.Convention |
 | `references/gating.md` | User.Gated.Index, write gates, write loop, agentos-index-writer behavior |
 | `references/install.md` | instructions for creating Alias.Skills from this Skill.Package |
@@ -39,7 +39,7 @@ This skill package exports the following `Alias.Skills`:
 - `agentos-index-resolution` — resolve approximate names against the index
 - `agentos-index-writer` — user-gated write path to the index
 - `agentos-index-doctor` — index health review and diagnosis
-- `agentos-index-appendix-base` — appendix surface protocol for `notes/appendix/`
+- `agentos-index-appendix-base` — appendix surface protocol for `appendix/`
 
 All alias skills point back to the relevant reference file in this skill.
 

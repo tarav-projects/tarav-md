@@ -38,8 +38,7 @@ For each block to write or modify:
 
 ## Write Operations
 
-- **new concept registration** — add entry to `001-ontology.md`
-- **new block creation** — add block to existing or new note
+- **new block creation** — add block to existing or new flat index file
 - **block update** — modify existing block
 - **new note creation** — create new index note (allocate prefix with `agentos stdlib prefix next`)
 

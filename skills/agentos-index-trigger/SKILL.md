@@ -15,7 +15,7 @@ Full design reference: `agentos-index/references/eval-loop.md`
 Watch user messages AND your own reasoning for `Dotted.Names` and fire the `Index.Eval.Loop`:
 
 1. Detect `Dotted.Names` — capitalized words joined by dots, 2+ parts
-2. Resolve against `001-ontology.md` — exact or approximate match
+2. Resolve against `000-index.md` routing table — find the concept's flat file and load it
 3. If resolved → load block fundamentals, ground the conversation
 4. If unresolved → park as `Unresolved.Index.Name`
 5. Report in footer: `> Index: loaded ... | unresolved: ...`

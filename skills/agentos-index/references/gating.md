@@ -63,7 +63,7 @@ All accepted → commit to index
 
 ### MVP behavior (fully agentic)
 
-- reads `000-index.md` and `001-ontology.md` as entry points
+- reads `000-index.md` as routing entry point
 - follows its instincts from there — scans blocks, reads notes as needed
 - uses the **whole block** for matching, not just the `findability:` field
 - uses the **whole chat context** for discovery — the Dotted.Name is the trigger, but resolution uses surrounding conversation and common sense

@@ -1,6 +1,6 @@
 ---
 name: agentos-index-activate
-description: "Bootstrap the Agentos Index runtime for a session. Reads 000-index.md and 001-ontology.md, activates the Index.Eval.Loop, and loads agentos-index-trigger for ongoing detection."
+description: "Bootstrap the Agentos Index runtime for a session. Reads 000-index.md routing table, activates the Index.Eval.Loop, and loads agentos-index-trigger for ongoing detection."
 ---
 
 # agentos-index-activate
@@ -12,7 +12,7 @@ Full design reference: `agentos-index/references/eval-loop.md`
 
 ## What This Does
 
-- reads `notes/index/000-index.md` and `notes/index/001-ontology.md` to establish minimal index context
+- reads `index/000-index.md` routing table to establish minimal index context
 - may read additional index notes relevant to the current task context
 - activates `Index.Eval.Loop` behavior for the rest of the session
 - loads `agentos-index-trigger` for ongoing `Dotted.Name` detection
@@ -33,7 +33,7 @@ NOT triggers: abbreviations (`e.g.`), filenames (`file.txt`), URLs, lowercase do
 
 When a `Dotted.Name` is detected or you need grounding:
 
-1. **Resolve** — match against ontology registry (`001-ontology.md`)
+1. **Resolve** — match against routing table (`000-index.md`), load the concept's flat file
 2. **Ground** — load relevant `Index.Block` fundamentals into context
 3. **Detect gaps** — if unresolved: park as `Unresolved.Index.Name`
 4. **Suggest** — if same name recurs 3+ times, suggest registration to user

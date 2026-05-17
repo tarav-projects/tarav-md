@@ -14,7 +14,10 @@ When `notes/live/` exists:
 When `notes/index/` exists:
 
 - check for `notes/index/000-index.md`
-- check for `notes/index/001-ontology.md`
+
+When `skills/agentos-index/index/` exists:
+
+- check for `skills/agentos-index/index/000-index.md`
 
 ## Agentic Checks
 
@@ -28,8 +31,7 @@ When `notes/index/` exists:
 
 ## Expected Findings
 
-- `fail`: active `notes/index/` exists but reserved index router is missing.
-- `fail`: active `notes/index/` exists but reserved ontology registry file is missing.
+- `fail`: active index exists but reserved routing table is missing.
 - `warn`: a TODO note exists under `notes/live/` but does not use the reserved `010.TODOS.md` path.
 - `warn`: an issues note exists under `notes/live/` but does not use the reserved `011.ISSUES.md` path.
 - `skip`: relevant note surface is absent.

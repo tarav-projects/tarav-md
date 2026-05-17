@@ -45,7 +45,7 @@ Each alias skill is a directory under `skills/` with a single `SKILL.md` that:
 
 ### agentos-index-appendix-base
 
-- **role**: define and operate the appendix surface protocol for `notes/appendix/`
+- **role**: define and operate the appendix surface protocol for `appendix/`
 - **reference**: `agentos-index/references/appendix.md`
 - **key constraint**: appendix is stable opt-in depth, not a parallel concept authority
 - **size target**: ~70-110 lines

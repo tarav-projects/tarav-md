@@ -1,6 +1,6 @@
 ---
 name: agentos-index-appendix-base
-description: Define and operate the Agentos Index appendix protocol for `notes/appendix/`. Use when creating, updating, routing, promoting, or reviewing appendix notes or `Kernel.Block:Appendix` blocks.
+description: Define and operate the Agentos Index appendix protocol for `appendix/`. Use when creating, updating, routing, promoting, or reviewing appendix notes or `Kernel.Block:Appendix` blocks.
 ---
 
 # Agentos Index Appendix Base
@@ -11,8 +11,8 @@ This skill derives from `skills/agentos-index/references/appendix.md` and the du
 
 ## Scope
 
-- This skill defines only the `notes/appendix/` surface protocol.
-- It does not define concepts independently from `notes/index/`.
+- This skill defines only the `appendix/` surface protocol.
+- It does not define concepts independently from the index.
 - It does not replace `agentos-index`, `agentos-index-writer`, or `agentos-index-doctor`.
 - It keeps appendix work anchored to paired `Kernel.Block:Index` blocks.
 
@@ -25,8 +25,8 @@ This skill derives from `skills/agentos-index/references/appendix.md` and the du
 
 ## Placement Rules
 
-- Fundamentals belong in `notes/index/` as `Kernel.Block:Index`.
-- Appendix depth belongs in `notes/appendix/` as `Kernel.Block:Appendix`.
+- Fundamentals belong in `index/` as `Kernel.Block:Index`.
+- Appendix depth belongs in `appendix/` as `Kernel.Block:Appendix`.
 - Operational workflow belongs in skills.
 - Exact mechanical behavior belongs in code and CLI help.
 - Temporary session state belongs in live notes.
@@ -47,11 +47,11 @@ Do not use appendix notes for transcripts, changelogs, task lists, dashboards, o
 
 ## File Protocol
 
-- Appendix notes live in `notes/appendix/`.
+- Appendix notes live in `appendix/`.
 - Canonical filename shape is `Concept.Name-appendix.md`.
 - The concept name in the filename is the `Dotted.Name` of the owning concept or concept cluster.
 - No numeric prefix — the `Dotted.Name` is the stable handle.
-- Discovery is implicit — agents check if `notes/appendix/Concept.Name-appendix.md` exists by convention.
+- Discovery is implicit — agents check if `appendix/Concept.Name-appendix.md` exists by convention.
 - No outlink from the index block is required for discovery.
 - Created on demand — no empty files, no pre-planning.
 
@@ -64,7 +64,7 @@ Do not use appendix notes for transcripts, changelogs, task lists, dashboards, o
 
 ## Promotion
 
-When promoting from `Kernel.Block:Design.Session`:
+When promoting from `Kernel.Block:Design`:
 
 - fundamentals compress into the paired `Kernel.Block:Index`
 - `### appendix` material promotes to `Kernel.Block:Appendix`

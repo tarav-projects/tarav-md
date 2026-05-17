@@ -15,9 +15,8 @@ The durable design truth about Agentos lives in its index notes, not in this ski
 
 This skill derives from:
 
-- `notes/index/106-Agentos.Skills.md` (Usage.Surface and Usage.Skill definitions)
-- `notes/index/001-ontology.md` (concept registry)
-- `notes/index/109-Agentos.Hugentic.Flow.md` (Hugentic workflow overview)
+- `skills/agentos-index/index/` (public index — concept definitions)
+- `skills/agentos-index/appendix/` (public appendix — extended depth)
 
 If this skill conflicts with `notes/index/`, the index wins.
 
@@ -31,8 +30,8 @@ An `Agentos.Project` is a directory with `.agentos/project.json`. That file is t
 
 Inside a project, the main surfaces are:
 
-**Index** — `notes/index/`
-The durable design-truth surface. Concept notes, ontology, and stable decisions live here. Start with `000-index.md` and `001-ontology.md`.
+**Index** — `skills/agentos-index/index/` (public) + `notes/index/` (local)
+The durable design-truth surface. Concept notes and stable decisions live here. Start with `000-index.md` routing table.
 
 **Live Notes** — `notes/live/`
 The working surface. Active design sessions, TODOs, reports, and handoffs. Not authority — durable signal gets promoted to the index.
@@ -50,11 +49,11 @@ The project CLI for deterministic operations, checks, and maintenance. Use `agen
 Read the project index to understand what the project is and what design decisions have been made:
 
 ```txt
-notes/index/000-index.md    # table of contents and router
-notes/index/001-ontology.md # concept lookup
+skills/agentos-index/index/000-index.md    # routing table (public index entry point)
+notes/index/000-index.md                   # local index entry point (points to public)
 ```
 
-Use `001-ontology.md` first when you need to resolve a named concept.
+Use `000-index.md` routing table to find and load concept blocks.
 
 ### Hugentic workflows
 
@@ -111,14 +110,13 @@ agentos skills status --project
 | Subject | Surface |
 |---|---|
 | Hugentic Harness (workflows) | `agentos-hugentics` skill |
-| Hugentic workflow overview | `notes/index/109-Agentos.Hugentic.Flow.md` |
-| Project identity and targeting | `notes/index/105-Agentos.Project.md` |
-| Skills system | `notes/index/106-Agentos.Skills.md` |
+| Hugentic workflow overview | `agentos-hugentics` skill |
+| Project identity and targeting | index: `Agentos.Project` block |
+| Skills system | index: `Agentos.Skills` block |
 | Index notes system | `agentos-index-notes-base` skill |
 | Live notes | `agentos-live-note-base` skill |
 | Project doctor | `agentos-project-doctor` skill |
 | Design sessions | `trigger-design-session` skill |
 | File numbering protocol | `agentos-file-numbering-base` skill |
-| Concept lookup | `notes/index/001-ontology.md` |
-| Full index | `notes/index/000-index.md` |
+| Index routing | `skills/agentos-index/index/000-index.md` |
 | CLI commands | `agentos --help` |

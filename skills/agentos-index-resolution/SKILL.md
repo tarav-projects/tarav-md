@@ -18,7 +18,7 @@ Full design reference: `agentos-index/references/gating.md` (Index.Name.Resoluti
 
 ## MVP Behavior (fully agentic)
 
-1. Read `000-index.md` and `001-ontology.md` as entry points
+1. Read `000-index.md` as routing entry point
 2. Follow your instincts from there — scan blocks, read notes as needed
 3. Use the **whole block** for matching, not just the `findability:` field
 4. Use the **whole chat context** for discovery — the `Dotted.Name` is the trigger, but resolution uses surrounding conversation and common sense

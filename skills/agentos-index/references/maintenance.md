@@ -18,7 +18,7 @@ Maintenance passes are the index equivalent of compilation:
 - **registry sync**: adding new concepts, updating stale entries
 - **promotion**: pulling durable truth from other surfaces
 - **stub resolution**: expanding stubs or removing empty ones
-- **index routing**: keeping `000-index.md` and `001-ontology.md` current
+- **index routing**: keeping `000-index.md` routing table current
 
 ### What maintenance is NOT
 

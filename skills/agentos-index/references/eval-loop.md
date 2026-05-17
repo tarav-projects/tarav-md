@@ -120,7 +120,7 @@ Trigger → Index.Call → Index.Eval.Loop:
 ```
 AGENTS.md: "Load the agentos-index-activate skill at the start of a session."
     → agentos-index-activate loads
-    → bootstrap: reads 000-index.md + 001-ontology.md (minimal context)
+    → bootstrap: reads 000-index.md routing table (minimal context)
     → activates Index.Eval.Loop behavior for the session
     → loads agentos-index-trigger for ongoing detection
 ```

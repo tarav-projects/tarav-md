@@ -1,102 +1,63 @@
 # Ontology
 
-## Ontology.Registry
+## Concept.Scoping
 
-- `001-ontology.md` is the symbol table of the index
-- the official entry point to the ontology — the registry of all named concepts
-- the primary lookup surface for `Index.Name.Resolution`
-
-### Two navigation trees
-
-- `000-index.md` — entry point to the file organization (which notes exist, where to start reading)
-- `001-ontology.md` — entry point to the ontological organization (which concepts exist, how they relate)
-- these are complementary views of the same knowledge graph
-
-### Role
-
-- low-resolution concept inventory
-- compact definitions (1-3 sentences per concept)
-- pointers to fuller notes when they exist
-- the lookup surface for `Index.Name.Resolution`
-- organized into `Ontology.Namespaces`
-
-### The knowledge graph view
-
-- the index is ultimately a knowledge graph
-- blocks are the smallest nodes
-- notes are clusters of related nodes
-- the ontology registry is the entry point to the graph
-- all content should evolve to be under a named concept
+- `Concept.Scoping` is the general mechanism: any concept can scope other concepts through its appendix file
+- an appendix file can contain blocks for other concepts, viewed through the host concept's lens
+- notation: `Concept.B/Concept.A` — Concept.A as seen from Concept.B's scope
 
 ****
 
-## Ontology.Namespace
+## Explicit.Namespace
 
-- `Ontology.Namespace` is an explicit bounded organizing view over ontology concepts
-- namespaces are not inferred from dotted notation
-- namespaces are not exclusive ownership containers
-- may overlap — a concept can appear in multiple namespaces
-- must be explicitly declared
-- can multiply freely from `001-ontology.md` as the entry point
-
-### Ontology.Integration.Hook
-
-- a namespace where one project records external concepts it consumes from another project's ontology
-- includes local interpretation, implementation mode, constraints, or mappings
+- `Explicit.Namespace` is a concept that intentionally organizes a view over a set of related concepts
+- the mechanics are `Concept.Scoping` — the difference is intent: this concept declares itself as a namespace
+- namespace membership is declared in the namespace's global block under `### meta` as a `namespace-members` list
 
 ****
 
-## Ontology.Workflows
+## Concept.Lifecycle
 
 - concepts have a natural lifecycle in the index
-- these workflows are well-defined so agents can participate through the `Index.Eval.Loop`
 
 ### Emergence
 
 - a concept appears informally in discussion or prose
 - someone uses `Dotted.Notation`, firing a `Dotted.Name.Trigger`
 - the `Index.Eval.Loop` detects it as unresolved → `Gap.Detection` → `Emergence.Signal`
-- the concept lives in the agent's working memory initially
 
-### Registration
+### Capture
 
-- when the concept stabilizes, it gets a compact entry in `001-ontology.md`
-- triggered when concept identity matters: design discussions, naming decisions, repeated `Unresolved.Index.Names`
-- the user gates registration (agent proposes, user approves — `User.Gated.Index`)
-
-### Promotion
-
-- when a concept has enough weight, it gets a dedicated `Index.Note` with full `Index.Blocks`
-- a concept can have a registry entry without a note
-- a concept can have a note without going through registry-first
+- when the concept stabilizes, it gets a `Kernel.Block:Index` in a flat index file
+- the user gates capture (`Write.Trigger.Gated` + `Content.Verbatim.Gated`)
+- the routing table (`000-index.md`) is updated to include the new concept
 
 ### Rename and cleanup
 
 - concept names may evolve, but dotted names in published surfaces should be updated together
 - stale or duplicate names are caught during maintenance passes or by `Index.Name.Resolution`
-- the ontology registry is the lookup surface for current canonical names
-
-****
-
-## Reserved Notes
-
-- some notes have fixed system roles — the index's "built-in functions"
-- `000-index.md` — entry point to the file organization; routes to concept notes
-- `001-ontology.md` — entry point to the ontological organization; the symbol table
+- the routing table is the lookup surface for current canonical names
 
 ****
 
 ## Index Surface Layout
 
 ```
+skills/agentos-index/
+  index/             ← public index (Distributed.Index)
+    000-index.md     ← routing table (public entry point)
+    100-299-*.md     ← public flat index files
+  appendix/          ← public appendix
+    Concept.Name-appendix.md
+
 notes/
-  index/           ← the index: durable concept notes (Design.Target.Model)
-    000-index.md   ← reserved: file-organization entry point
-    001-ontology.md ← reserved: ontological entry point (symbol table)
-    1NN-*.md       ← rolling concept notes (modules)
-  live/            ← in-progress work, temporary state
-    010.TODOS.md   ← reserved: TODO parking
-    011.ISSUES.md  ← reserved: issue parking
-    5NN-*.md       ← rolling live notes
-  canvas/          ← visual collaboration surfaces
+  index/             ← local index
+    000-index.md     ← local entry point (points to public)
+    300-499-*.md     ← local flat index files
+  appendix/          ← local appendix
+  live/              ← in-progress work, temporary state
+    010.TODOS.md     ← reserved: TODO parking
+    011.ISSUES.md    ← reserved: issue parking
+    5NN-*.md         ← rolling live notes
+  canvas/            ← visual collaboration surfaces
 ```
