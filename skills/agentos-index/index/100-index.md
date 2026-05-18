@@ -57,7 +57,7 @@
 - implements the `Agentos.Index` — a `Soft.Programming.Language` for project knowledge
 - four roles: conceptual implementation of the system, discovery and navigation index, development surface, main alignment surface
 - contains `Named.Concepts` written in `Kernel.Block:Index` blocks, organized in flat index files
-- agents execute the index at runtime through the `Index.Eval.Loop` — resolving names, loading blocks, detecting gaps
+- agents operate the index through the `Index.Runtime` — the full index is loaded at activation, concepts are always in context
 
 ****
 

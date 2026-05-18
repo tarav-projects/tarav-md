@@ -23,8 +23,8 @@
 ### Emergence
 
 - a concept appears informally in discussion or prose
-- someone uses `Dotted.Notation`, firing a `Dotted.Name.Trigger`
-- the `Index.Eval.Loop` detects it as unresolved → `Gap.Detection` → `Emergence.Signal`
+- someone uses `Dotted.Notation` — it doesn't resolve against the loaded index
+- the agent detects it as unresolved → parks as `Unresolved.Index.Name`
 
 ### Capture
 

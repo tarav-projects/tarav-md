@@ -17,7 +17,5 @@ That file is the step-by-step bootstrap — follow it in order.
 
 ## After Bootstrap
 
-- load `agentos-index-trigger` skill for ongoing detection
 - for full design context, load `agentos-index`
-- for name resolution, load `agentos-index-resolution`
 - for writing to the index, the user invokes `agentos-index-writer`

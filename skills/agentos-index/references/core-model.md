@@ -10,7 +10,6 @@
 The code-to-index mapping:
 
 - **variable declaration** → naming a concept with `Dotted.Notation`
-- **function call** → `Index.Call` — triggered by a `Dotted.Name` or agent reasoning
 - **symbol table** → `000-index.md` routing table — the registry of known names
 - **module** → `Index.Note` — a cluster of related definitions
 - **function body** → `Index.Block` — the loadable unit of meaning
@@ -18,10 +17,9 @@ The code-to-index mapping:
 - **import** → loading blocks into agent context
 - **name resolution** → `Index.Name.Resolution` — fuzzy match to canonical name
 - **undefined variable** → `Unresolved.Index.Name` — parked for later
-- **eval loop** → `Index.Eval.Loop` — sequential pipeline from trigger to grounding
 - **compilation** → maintenance passes — linting, deduplication, structure enforcement
 - **compiler CLI** → `agentos index` — the deterministic tooling surface
-- **runtime** → the conversation itself — where `Index.Calls` execute
+- **runtime** → the conversation itself — where the index is active and concepts are grounded
 
 The structure comes from conventions (Dotted.Names, block shape, separators), not from rigid formal grammar.
 

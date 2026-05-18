@@ -4,7 +4,7 @@
 
 - `Kernel.Block:Index` is `Kernel.Block` placed in `index/` — the loadable unit of meaning in the index
 - the smallest node in the index knowledge graph
-- the unit loaded into agent context during `Index.Eval.Loop`
+- the unit of meaning loaded into agent context at activation
 - anchored by a heading (H2-H6) that names the concept using `Dotted.Notation`
 - aliases: `Index.Block`, `Global.Block`
 

@@ -14,7 +14,7 @@ This is the `Main.Skill` of the index `Skill.Package`. It contains the full desi
 - the index is a `Soft.Programming.Language` — soft syntax (natural language), programming semantics (execution behavior)
 - it is the `Alignment.Surface` between humans and agents — the shared ground where both sides align on what things mean
 - it contains `Named.Concepts` written in `Kernel.Block:Index` blocks, organized in flat index files
-- agents execute the index at runtime through the `Index.Eval.Loop` — resolving names, loading blocks, detecting gaps
+- agents operate the index through the `Index.Runtime` — the full index is loaded at activation, concepts are always in context
 
 ## References
 
@@ -22,7 +22,6 @@ This is the `Main.Skill` of the index `Skill.Package`. It contains the full desi
 |---|---|
 | `references/runtime.md` | Index.Runtime — architecture, reading, writing, research, gaps, detection, footer |
 | `references/core-model.md` | what the index IS — Soft.Programming.Language, Alignment.Surface, SSOT rule, Stable.Surfaces |
-| `references/eval-loop.md` | Index.Call, triggers, Index.Eval.Loop pipeline, activation, runtime semantics |
 | `references/block-syntax.md` | Kernel.Block:Index, Index.Block.Syntax, Bullet.Point.Sentence, Index.Note, size constraints |
 | `references/appendix.md` | Index.Appendix, Kernel.Block:Appendix, placement, promotion, file convention |
 | `references/naming.md` | Dotted.Notation, detection rules, parameterized and variable notation |
@@ -36,11 +35,8 @@ This is the `Main.Skill` of the index `Skill.Package`. It contains the full desi
 This skill package exports the following `Alias.Skills`:
 
 - `agentos-index-activate` — bootstrap the index runtime for a session
-- `agentos-index-trigger` — lightweight always-on detection of Dotted.Names
-- `agentos-index-resolution` — resolve approximate names against the index
 - `agentos-index-writer` — user-gated write path to the index
 - `agentos-index-doctor` — index health review and diagnosis
-- `agentos-index-appendix-base` — appendix surface protocol for `appendix/`
 
 All alias skills point back to the relevant reference file in this skill.
 

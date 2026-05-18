@@ -1,6 +1,6 @@
 ---
 name: agentos-index-writer
-description: "User-gated write path to the Agentos Index. Two gates: Write.Trigger.Gated (user initiates) and Content.Verbatim.Gated (user approves exact wording). Interactive per-block loop."
+description: "User-gated write path to the Agentos Index. Reinforces writing quality: overlap checks, placement, block standards, and write gates."
 ---
 
 # agentos-index-writer
@@ -15,54 +15,31 @@ Full design reference: `agentos-index/references/gating.md`
 - the user explicitly asks to write, register, or update something in the index
 - never auto-triggered by the agent — the user controls when writing happens
 
-## Two Gates
+## Before Writing
 
-- `Write.Trigger.Gated` — the user must explicitly initiate the write flow
-- `Content.Verbatim.Gated` — the user must approve the exact wording of each block before commit
+Ground on these before proposing a block:
+
+- **Overlap check** — the full index is in context, scan it for existing concepts that cover the same idea
+- **`Natural.Placement`** — is this an index concept? Or does it belong in a skill, appendix, code, or live note?
+- **`Kernel.Writing`** — how blocks are written: capture material that changes future judgment, capture first polish later
+- **`Kernel.Block:Index`** — the block format: compact, loadable, grounding
+
+## Write Gates
+
+- `Write.Trigger.Gated` — the user must explicitly initiate the write
+- `Content.Verbatim.Gated` — the user must approve the exact wording before commit
 
 ## Write Loop
 
-For each block to write or modify:
+For each block:
 
-```
-1. Show proposed block (diff for updates, full block for new)
-2. User reads, suggests changes
-3. Show revised version
+1. Propose block (git diff style for updates, full block for new)
+2. User reviews, suggests changes
+3. Revise and show again
 4. Repeat until user accepts
-5. Move to next block
-```
+5. Write to file and update `000-index.md` routing table
 
-- each block gets individual attention — no bulk-approve
-- the user always sees final form before anything touches files
-- the loop is an alignment conversation — refine wording together
+## After Writing
 
-## Write Operations
-
-- **new block creation** — add block to existing or new flat index file
-- **block update** — modify existing block
-- **new note creation** — create new index note (allocate prefix with `agentos stdlib prefix next`)
-
-## Block Format
-
-All writes must follow `Kernel.Block:Index` syntax:
-
-```markdown
-## Dotted.Name
-
-- [fundamental statement]
-- [fundamental statement]
-    - [qualification]
-
-### meta
-
-- aliases: [shorter names]
-- findability: [keywords]
-- related: `Related.Name`
-```
-
-## Constraints
-
-- write first, polish later — focus on meaning alignment, not perfect format
-- linting runs after commit as maintenance, not during the write loop
-- the user is the quality gate — the agent proposes, never decides alone
-- `****` separators between H2-level blocks are mandatory
+- Update the routing table in `000-index.md` with the new concept
+- Check if the concept needs an `Explicit.Namespace` or belongs in an existing one

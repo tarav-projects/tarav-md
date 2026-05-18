@@ -9,14 +9,7 @@ Diagnosis-first workflow for evaluating how well a concrete `Agentos.Project:<ta
 
 ## Source Model
 
-This skill operationalizes:
-
-- `notes/index/108-Agentos.Project.Doctor.md`
-- `notes/index/105-Agentos.Project.md`
-- `notes/index/104-Maintenance.System.md`
-- `skills/agentos-index/index/000-index.md`
-
-If this skill conflicts with `notes/index/`, the index wins and this skill should be updated.
+Load `agentos-usage` and `agentos-index` if not yet loaded.
 
 ## Trigger Boundary
 
@@ -57,7 +50,7 @@ Use a stronger model only when the diagnosis depends on difficult design judgmen
 
 The default output is a chat report with findings, evidence, passed checks, skipped checks, and suggested next steps.
 
-`Agentos.Project.Doctor` must follow the optional-surface policy from `notes/index/108-Agentos.Project.Doctor.md`.
+The doctor must follow the optional-surface policy derived from `Agentos.Project` and `Maintenance.System`.
 
 Policy baseline:
 

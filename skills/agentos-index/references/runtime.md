@@ -38,9 +38,9 @@ Now that the index is loaded, understand how to operate:
 
 ## 5. Always-on Behavior
 
-- Detect `Dotted.Names` in conversation — they're already in your context
-- Report appendix loads and unresolved names in footer:
-  `> Index: loaded appendix `Concept.A` | unresolved: `Unknown.Name``
-- Only report when something happened — no footer for normal grounding
-- Gap detection is passive — park unknown names, don't interrupt flow
+- The full index is in context — known `Dotted.Names` ground naturally, no lookup needed
+- When an unknown name appears, park it as `Unresolved.Index.Name`
+- Report unresolved names in footer: `> Index: unresolved: `Unknown.Name``
+- Only report when something is unresolved — no footer for normal operation
+- Gap detection is passive — don't interrupt flow
 - If the same unresolved name recurs 3+ times, suggest capture to the user

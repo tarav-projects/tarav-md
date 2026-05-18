@@ -49,39 +49,9 @@ All accepted → commit to index
 
 ****
 
-## Index.Name.Resolution
-
-- `Index.Name.Resolution` is a subsystem and skill for resolving names against the index
-- users cannot be expected to reproduce exact canonical names every time
-- reduces concept drift and duplication — one of the index's main integrity threats
-
-### Index.Name.Resolution.Skill
-
-- implemented as its own skill (`agentos-index-resolution`)
-- a skill gives space to develop complex behavior over time
-- the skill is the abstraction boundary — internals can evolve without changing the interface
-
-### MVP behavior (fully agentic)
-
-- reads `000-index.md` as routing entry point
-- follows its instincts from there — scans blocks, reads notes as needed
-- uses the **whole block** for matching, not just the `findability:` field
-- uses the **whole chat context** for discovery — the Dotted.Name is the trigger, but resolution uses surrounding conversation and common sense
-- `findability:` is a performance hint — extra info to help search, not the only input
-- returns: resolved canonical name OR unresolved
-
-### Resolution behavior
-
-- when a name doesn't exactly match the registry → search for close equivalents
-- matching is semantic (meaning-based), not just string similarity
-- if a likely match exists → ground using the canonical name
-- if no match → treat as a potential new concept (feeds into Gap.Detection)
-
-****
-
 ## Unresolved.Index.Name
 
-- `Unresolved.Index.Name` is the result when an `Index.Call` cannot resolve a name and the concept is not clearly new
+- `Unresolved.Index.Name` is the result when a name cannot be resolved against the loaded index and the concept is not clearly new
 - the agent parks it in a session working list
 - available for later resolution if more context emerges
 - suggestion to the user if it keeps recurring

@@ -4,7 +4,7 @@
 
 - `Dotted.Notation` is the language of the index — the syntax for naming concepts
 - a dotted name is a signal that the phrase refers to a concept, not casual prose
-- it is also the primary trigger for `Index.Call` execution via `Dotted.Name.Trigger`
+- it is the primary interface of the index — names in conversation signal concepts to ground on
 
 ### Rules
 
@@ -42,7 +42,6 @@ Examples: `Maintenance.System:Agentos`, `Md.Surface:Agentos.Stack`
 ## Dotted.Name.Detection
 
 - detection rules for recognizing a `Dotted.Name` in conversation
-- used by `agentos-index-trigger`
 - all shapes share the same signal: capitalized words joined by dots, always two+ parts
 
 ### Shapes and patterns
