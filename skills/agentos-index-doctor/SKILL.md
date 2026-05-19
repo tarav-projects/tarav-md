@@ -1,6 +1,6 @@
 ---
 name: agentos-index-doctor
-description: "Index health review and diagnosis. Runs agentos index doctor CLI checks plus agent judgment on staleness, coherence, and coverage gaps. Reports issues, does not auto-fix."
+description: "Index health review and diagnosis. Runs agentos index doctor CLI checks plus agent judgment on staleness, coherence, coverage gaps, and placement drift. Reports issues, does not auto-fix."
 ---
 
 # agentos-index-doctor
@@ -10,6 +10,10 @@ Index health review and diagnosis for the Agentos Index.
 This is an `Alias.Skill` of the `agentos-index` `Skill.Package`.
 Full design reference: `agentos-index/references/maintenance.md`
 
+## Prerequisites
+
+The full index must be in context before running the doctor. If not already activated, run `agentos-index-activate` first. Semantic checks depend on the agent knowing the index contents.
+
 ## When To Use
 
 - user asks for an index health check, quality review, or lint pass
@@ -18,12 +22,12 @@ Full design reference: `agentos-index/references/maintenance.md`
 
 ## Behavior
 
-1. Run `agentos index doctor` on the project for deterministic checks (separators, reserved files, lint)
-2. Add agent judgment on top: staleness, concept coherence, coverage gaps
+1. Run `agentos index doctor` on the project for deterministic checks
+2. Add agent judgment on top: staleness, coherence, coverage gaps, placement drift
 3. Report issues with evidence — quote the problematic content
 4. Suggest fixes but do NOT auto-fix
 
-Use `agentos index doctor --json` for structured output. The index lives at `notes/index/`.
+Use `agentos index doctor --json` for structured output.
 
 ## Checks
 
@@ -34,13 +38,26 @@ Use `agentos index doctor --json` for structured output. The index lives at `not
 - 25-line block ceiling enforcement
 - per-line character limit
 
+### Routing (deterministic + agent)
+
+- public routing table (`000-index.md`) covers active concepts in public flat files
+- local routing table (`001-index.md`) covers active concepts in local flat files
+- routing entries match actual block headings in flat files
+- no unrouted flat files in either public or local index
+
+### Appendix (deterministic + agent)
+
+- appendix files follow `Concept.Name-appendix.md` naming convention
+- no orphaned appendix files (appendix exists but concept doesn't)
+- no appendix files for concepts that don't exist in the index
+
 ### Semantic (agent judgment)
 
-- ontology registry staleness — concepts used but not registered
-- naming issues — inconsistent or approximate names across notes
-- unrouted notes — notes not reachable from `000-index.md`
 - concept coherence — blocks that mix multiple concepts
 - coverage gaps — important concepts referenced but not defined
+- naming issues — inconsistent or approximate names across index files
+- `Placement.Heuristic` drift — design knowledge in skills/references that belongs in index/appendix
+- stale blocks — content that contradicts current project state
 
 ## Report Format
 
