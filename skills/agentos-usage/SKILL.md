@@ -50,7 +50,7 @@ Read the project index to understand what the project is and what design decisio
 
 ```txt
 skills/agentos-index/index/000-index.md    # routing table (public index entry point)
-notes/index/000-index.md                   # local index entry point (points to public)
+notes/index/001-index.md                   # local index entry point (points to public)
 ```
 
 Use `000-index.md` routing table to find and load concept blocks.

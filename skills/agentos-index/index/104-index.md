@@ -1,3 +1,5 @@
+> `Appendix.Discovery`: for depth on any concept, check `appendix/Concept.Name-appendix.md`
+
 ## Project.File.Index
 
 - `Project.File.Index` is the file-level routing section of the `Index.Router`
@@ -13,7 +15,7 @@
 - handled by `agentos-index-activate` — a dedicated bootstrap skill
 - loads the full index into context, then activates operating behavior
 - activation is opt-in — triggered by `AGENTS.md` or manual invocation
-- operational detail: `references/runtime.md`
+- operational detail: `references/launch-runtime.md`
 
 ****
 
@@ -47,3 +49,55 @@
 - `Concept.Cite` is the inline citation notation for referencing related concepts: `[Concept.X, Concept.Y]`
 - used when the relationship is relevant but doesn't come up naturally in the writing
 - goes inline — next to the line it relates to, like academic paper citations
+
+****
+
+## Index.Surface.Layout
+
+- `Index.Surface.Layout` is the expected directory structure for the index system
+- public index: `skills/<project>-index/index/` — `000-index.md` router + `100-299` flat files
+- public appendix: `skills/<project>-index/appendix/` — `Concept.Name-appendix.md`
+- local index: `notes/index/` — `001-index.md` router + `300-499` flat files
+- local appendix: `notes/appendix/`
+- the layout is a protocol — new projects follow this structure to be index-compatible
+
+****
+
+## Appendix.Discovery
+
+- `Appendix.Discovery` is the protocol for loading depth on demand from the appendix
+- trigger: when reasoning about a concept and the index block isn't sufficient
+- discovery: if working with `Concept.X`, check `appendix/Concept.X-appendix.md`
+- no outlink required — the naming convention is the discovery mechanism
+- discovery is a cascade: index block → its appendix → hidden blocks → their appendixes
+- the more blocks loaded, the more paths available — agents discover by following related blocks
+- hidden blocks are not deleted — just not in the starting context
+- related blocks cluster under the same appendix file when they extend related concepts
+
+****
+
+## Placement.Heuristic
+
+- `Placement.Heuristic` is the decision framework for where content lives in the system
+- design knowledge (what, why, how it connects) → index block + appendix
+- executable instructions (do this, run that, follow this loop) → skill references
+- if content drift is detected, report it — don't migrate without user approval
+
+****
+
+## Install.Skill
+
+- `Install.Skill` is a convention where a skill package ships guidance for adopting its support into a project
+- lives in the package's `references/` as installation instructions
+- can be executed agentically (agent follows the steps) or hugentically (human-agent design loop)
+- example: installing the index system creates `notes/index/`, `001-index.md`, routing table
+- example: installing the agentos stack sets up `AGENTS.md`, `notes/`, `skills/`
+
+****
+
+## Alignment.Surface
+
+- `Alignment.Surface` is a surface where humans and agents build shared understanding
+- readable by humans (natural language), operable by agents (structured, loadable)
+- neither side owns it alone — both contribute, both consume
+- the index is the primary `Alignment.Surface` of an Agentos project

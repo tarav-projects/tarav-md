@@ -1,4 +1,4 @@
-# Load Runtime
+# Launch Runtime
 
 Bootstrap the Index Runtime. Execute these steps in order.
 
@@ -6,34 +6,31 @@ Bootstrap the Index Runtime. Execute these steps in order.
 
 - Read `index/000-index.md` — the public routing table
 - Read all flat files listed in the routing table
-- Read `notes/index/000-index.md` if it exists — local entry point
+- Read `notes/index/001-index.md` if it exists — local entry point
 - Read all local flat files listed there
 - The full index is now in context.
 
-## 2. Load Appendix for Runtime Concepts
+## 2. Ground on Key Concepts
 
-- Load appendix files for runtime-related concepts:
-  - `appendix/Index.Architecture-appendix.md`
-  - `appendix/Agentos.Index.System-appendix.md`
-  - `appendix/Agentos.Surfaces-appendix.md`
-- These give the agent depth on how the index is structured and why.
-
-## 3. Understand the Index
-
-The index contains the concepts you need. Key blocks to ground on:
+The index is loaded. Ground on these concepts to understand how the system works:
 - `Index.Architecture` — how the index is structured
 - `Kernel.Block:Index` — what a block is
 - `Kernel.Writing` — how blocks are written
 - `Distributed.Index` — public/local split
 - `Index.Router` — what the routing table is
 - `Index.Runtime` — what the runtime is
+- `Index.Surface.Layout` — expected directory structure
+
+## 3. Load Appendix for Key Concepts
+
+Load these appendix files — they give depth on how the index is structured and why:
+- `appendix/Index.Architecture-appendix.md`
+- `appendix/Agentos.Index.System-appendix.md`
+- `appendix/Agentos.Surfaces-appendix.md`
 
 ## 4. Operating Behavior
 
-Now that the index is loaded, understand how to operate:
-- For writing rules → `references/gating.md`
-- For name detection and resolution → `references/naming.md`
-- For appendix and research → `references/appendix.md`
+Now that the index is loaded, these references are available when needed:
 - For maintenance → `references/maintenance.md`
 
 ## 5. Always-on Behavior

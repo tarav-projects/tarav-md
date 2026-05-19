@@ -20,15 +20,8 @@ This is the `Main.Skill` of the index `Skill.Package`. It contains the full desi
 
 | Reference | Covers |
 |---|---|
-| `references/runtime.md` | Index.Runtime — architecture, reading, writing, research, gaps, detection, footer |
-| `references/core-model.md` | what the index IS — Soft.Programming.Language, Alignment.Surface, SSOT rule, Stable.Surfaces |
-| `references/block-syntax.md` | Kernel.Block:Index, Index.Block.Syntax, Bullet.Point.Sentence, Index.Note, size constraints |
-| `references/appendix.md` | Index.Appendix, Kernel.Block:Appendix, placement, promotion, file convention |
-| `references/naming.md` | Dotted.Notation, detection rules, parameterized and variable notation |
-| `references/ontology.md` | Concept.Scoping, Explicit.Namespace, concept lifecycle, index surface layout |
+| `references/launch-runtime.md` | Index.Runtime — architecture, reading, writing, research, gaps, detection, footer |
 | `references/maintenance.md` | maintenance model, promotion, low-friction capture, Stub.Convention |
-| `references/gating.md` | User.Gated.Index, write gates, write loop, agentos-index-writer behavior |
-| `references/install.md` | instructions for creating Alias.Skills from this Skill.Package |
 
 ## Alias.Skills
 

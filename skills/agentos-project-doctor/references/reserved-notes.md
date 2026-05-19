@@ -13,7 +13,7 @@ When `notes/live/` exists:
 
 When `notes/index/` exists:
 
-- check for `notes/index/000-index.md`
+- check for `notes/index/001-index.md`
 
 When `skills/agentos-index/index/` exists:
 

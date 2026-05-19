@@ -1,3 +1,5 @@
+> `Appendix.Discovery`: for depth on any concept, check `appendix/Concept.Name-appendix.md`
+
 ## Stable.Surface
 
 - `Stable.Surface` is a durable, authoritative surface where a specific facet of project knowledge lives
@@ -76,6 +78,7 @@
 - anchored by a heading (H2–H6) that names the concept using `Dotted.Notation`
 - `Kernel.Writing` at tight space constraints — conceptual completeness under compression
 - must carry enough signal for an agent to reason correctly about the concept
+- the minimal loaded blocks — the starting point for the discovery cascade into the appendix
 - the index must have at least a block for any meaningful concept in the system
     - blocks can link out to other surfaces rather than define everything inline
 - inherits fundamentals + `### appendix` + `### meta` from `Kernel.Block`
@@ -89,11 +92,13 @@
 
 ## Kernel.Block:Appendix
 
-- `Kernel.Block:Appendix` is `Kernel.Block` placed in `appendix/` — extended material for a concept
+- `Kernel.Block:Appendix` is `Kernel.Block` placed in `appendix/` — any material that hangs off a concept
 - `Kernel.Writing` at relaxed space constraints — depth over compression
-- extended material: examples, use cases, reasoning, pros/cons, design depth
-- a `Stable.Surface` — maintained, not throwaway
-- not part of `Context.Minimal.Surface` — agents reach it only on explicit need
+- content is not limited to conceptual depth — specs, regex, raw ideas, parked material all belong here
+- the discipline is at the insertion point — find the right concept, then write freely under it
+- can be cleaned and integrated later — low friction first, curation second
+- no line-count ceiling, but line-length discipline still applies
+- `Write.Trigger.Gated` only — user initiates, but exact wording is not gated
 - discovery is implicit — agents check if `appendix/Concept.Name-appendix.md` exists
 
 ### meta
@@ -108,6 +113,7 @@
 - holds the full state of a concept in one place — used in conversations and design sessions
 - at promotion time: fundamentals compress into `Kernel.Block:Index`, appendix material goes to `Kernel.Block:Appendix`
 - the distinction: `Kernel.Block:Index` is compressed, `Kernel.Block:Appendix` is exhaustive, `Kernel.Block:Design` is both together
+- preserve user's wording when it carries design judgment
 
 ### meta
 
@@ -157,7 +163,12 @@
 ### Current Agentos range model
 
 - `000-099`: reserved files with fixed system roles
-- `100-499`: rolling index and appendix notes
+- `000-index.md` — public `Index.Router`, lives in `Project.Index.Skill`
+- `001-index.md` — local `Index.Router`, lives in `notes/index/`
+- `010.TODOS.md` — TODO parking, lives in `notes/live/`
+- `011.ISSUES.md` — issue parking, lives in `notes/live/`
+- `100-299`: public index flat files (`Project.Index.Skill`)
+- `300-499`: local index flat files (`notes/index/`)
 - `500-999`: rolling other files (live notes, live scripts)
 
 ### CLI support

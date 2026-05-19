@@ -1,3 +1,5 @@
+> `Appendix.Discovery`: for depth on any concept, check `appendix/Concept.Name-appendix.md`
+
 ## Project.Discovery.System
 
 - `Project.Discovery.System` resolves a command or workflow to an `Agentos.Project` target

@@ -1,3 +1,5 @@
+> `Appendix.Discovery`: for depth on any concept, check `appendix/Concept.Name-appendix.md`
+
 ## Alignment.Loop
 
 - `Alignment.Loop` is the general workflow machinery for human-agent convergence

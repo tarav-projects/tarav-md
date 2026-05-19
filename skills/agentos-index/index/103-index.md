@@ -1,3 +1,5 @@
+> `Appendix.Discovery`: for depth on any concept, check `appendix/Concept.Name-appendix.md`
+
 ## Index.Architecture
 
 - `Index.Architecture` is the structural design of the Agentos Index system — an `Explicit.Namespace` grouping the concepts that define it
@@ -31,6 +33,7 @@
 
 - `Global.Index.Scope` is the always-loaded layer of the index — `index/`
 - every concept has one `Kernel.Block:Index` here — the minimum context an agent needs to reason about it
+- defines the starting point for the discovery cascade
 
 ****
 
@@ -39,6 +42,7 @@
 - `Extended.Index.Scope` is the on-demand layer of the index — `appendix/`
 - loaded when an agent needs depth beyond what the global scope provides
 - loading an appendix is an intentional action — the agent displays intention by choosing to go deeper
+- where hidden blocks live — discoverable through the cascade, never loaded by default
 
 ****
 
@@ -149,7 +153,7 @@
 - once loaded, the agent knows how to navigate, interpret, contribute to, and reason with the index
 - the runtime is the skill instructions — it's behavioral, not data
 - `Index.Notes` are the data the runtime operates on
-- operational detail: `references/runtime.md`
+- operational detail: `references/launch-runtime.md`
 
 ****
 
@@ -163,3 +167,19 @@
 - a fresh agent from another project loads only `000-index.md` — sees public concepts
 - a local agent loads both — sees everything
 - the same `Kernel.Block:Index` format, same routing, same scoping — just distributed
+
+****
+
+## Soft.Programming.Language
+
+- `Soft.Programming.Language` is a language with soft syntax (natural language) and programming semantics (execution behavior)
+- the Agentos Index is a `Soft.Programming.Language` — the mapping:
+    - variable declaration → `Dotted.Notation`
+    - symbol table → `000-index.md` routing table
+    - module → `Index.Note`
+    - function body → `Index.Block`
+    - type system → `Index.Block.Syntax`
+    - import → loading blocks into agent context
+    - undefined variable → `Unresolved.Index.Name`
+    - compilation → maintenance passes
+    - runtime → the conversation itself
