@@ -22,6 +22,7 @@ This is the `Main.Skill` of the index `Skill.Package`. It contains the full desi
 |---|---|
 | `references/launch-runtime.md` | Index.Runtime — architecture, reading, writing, research, gaps, detection, footer |
 | `references/maintenance.md` | maintenance model, promotion, low-friction capture, Stub.Convention |
+| `references/test-system.md` | index testing mechanism — master/subagent pattern, test file format |
 
 ## Alias.Skills
 
@@ -30,6 +31,7 @@ This skill package exports the following `Alias.Skills`:
 - `agentos-index-activate` — bootstrap the index runtime for a session
 - `agentos-index-writer` — user-gated write path to the index
 - `agentos-index-doctor` — index health review and diagnosis
+- `agentos-index-test` — run index activation and runtime tests
 
 All alias skills point back to the relevant reference file in this skill.
 

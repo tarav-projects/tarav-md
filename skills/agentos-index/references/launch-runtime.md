@@ -28,16 +28,13 @@ Load these appendix files — they give depth on how the index is structured and
 - `appendix/Agentos.Index.System-appendix.md`
 - `appendix/Agentos.Surfaces-appendix.md`
 
-## 4. Operating Behavior
-
-Now that the index is loaded, these references are available when needed:
-- For maintenance → `references/maintenance.md`
-
-## 5. Always-on Behavior
+## 4. Always-on Behavior
 
 - The full index is in context — known `Dotted.Names` ground naturally, no lookup needed
+- Use `Appendix.Discovery` when you need depth on any concept
 - When an unknown name appears, park it as `Unresolved.Index.Name`
 - Report unresolved names in footer: `> Index: unresolved: `Unknown.Name``
 - Only report when something is unresolved — no footer for normal operation
 - Gap detection is passive — don't interrupt flow
 - If the same unresolved name recurs 3+ times, suggest capture to the user
+- For maintenance operations → `references/maintenance.md`
