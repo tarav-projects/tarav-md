@@ -18,7 +18,7 @@ For the full testing mechanism: `agentos-index/references/test-system.md`
 All subcommands accept these arguments as natural language in the invocation:
 
 - **`on <project>`** (required) — the target project to test. Can be a project name, a path, or anything the agent can resolve to an Agentos project root.
-  - Resolution: use `agentos projects list --root <search-path>` to discover projects, or `agentos projects test-resolve --project <name> --project-base <path>` to verify a match.
+  - Resolution: use `agentos projects list --root <search-path>` to discover projects, or `agentos projects resolve --project <path> --project-base <basename>` to verify a match.
   - If the project cannot be resolved unambiguously, **fail and explain** — do not guess.
 - **`[test-name]`** (optional, `run` only) — the specific test file to run. If omitted, run all tests.
 
