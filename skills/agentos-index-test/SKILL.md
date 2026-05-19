@@ -13,6 +13,23 @@ Each project ships test files in its `<Project.Index.Skill>/testing/` folder. Th
 
 For the full testing mechanism: `agentos-index/references/test-system.md`
 
+## Arguments
+
+All subcommands accept these arguments as natural language in the invocation:
+
+- **`on <project>`** (required) — the target project to test. Can be a project name, a path, or anything the agent can resolve to an Agentos project root.
+  - Resolution: use `agentos projects list --root <search-path>` to discover projects, or `agentos projects test-resolve --project <name> --project-base <path>` to verify a match.
+  - If the project cannot be resolved unambiguously, **fail and explain** — do not guess.
+- **`[test-name]`** (optional, `run` only) — the specific test file to run. If omitted, run all tests.
+
+Examples:
+
+```
+agentos-index-test list on agentos-md
+agentos-index-test run activation-recall-01 on agentos-md
+agentos-index-test run on agentos-md
+```
+
 ## Subcommands
 
 ### `agentos-index-test list`
@@ -41,14 +58,16 @@ Total: N tests
 
 Run one or all tests.
 
-1. Locate the test files in the target project's index skill `testing/` folder
-2. If `test-name` is given, run only that file — otherwise run all
-3. For each test file:
+1. Resolve the target project
+2. Locate test files in `<Project.Index.Skill>/testing/`
+3. If `test-name` is given, run only that file — otherwise run all
+4. For each test file:
    - Extract the **Subagent Prompt** section
    - Spawn a subagent with that prompt
    - Collect the subagent's structured response
-4. Evaluate each response against the **Expected Answers** section — semantic match, not verbatim
-5. Report results: pass/fail per question, with reasoning for failures
+5. Evaluate each response against the **Expected Answers** section — semantic match, not verbatim
+6. Write a test report to `<project>/.agentos/tests/reports/`
+7. Report results to the user
 
 ### After Testing
 

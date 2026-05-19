@@ -28,6 +28,32 @@ Each test file contains:
 3. Compare responses against the expected answers — semantic match
 4. Report: which answers passed, which failed, and why
 
+## Test Reports
+
+Reports are written to `<project>/.agentos/tests/reports/`. One file per test run.
+
+Filename: `<test-name>_<ISO-date>.md` (e.g. `activation-recall-01_2026-05-19.md`)
+
+Report format:
+
+```markdown
+# Test Report: <test-name>
+
+- **Date**: YYYY-MM-DD
+- **Target**: <project-name>
+- **Result**: N/M PASS
+- **Tokens**: total token consumption of the subagent
+- **Tool calls**: number of tool calls made by the subagent
+- **Duration**: wall-clock time in seconds
+
+## Results
+
+| # | Verdict | Detail |
+|---|---------|--------|
+| 1 | PASS/FAIL | brief explanation |
+| ... | ... | ... |
+```
+
 ## Writing Tests
 
 - Keep prompts natural — the subagent should behave as it would in a real session
