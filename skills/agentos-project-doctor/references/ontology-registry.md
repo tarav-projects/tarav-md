@@ -1,20 +1,14 @@
 # Ontology Checks
 
-Check whether the index covers active dotted concepts.
-
-## Concepts
-
-- `000-index.md` routing table is the concept registry — maps every `Dotted.Name` to its flat file
-- `Concept.Scoping` and `Explicit.Namespace` organize views over concepts through appendix files
-- Public index lives at `skills/agentos-index/index/`, local index at `notes/index/`
+Check whether the index covers active dotted concepts. Architecture context (routing table role, concept scoping, public/local split) comes from the index itself.
 
 ## Deterministic Checks
 
-When `skills/agentos-index/index/` or `notes/index/` exists:
+When a routing table exists:
 
 - search for dotted concept-like names across stable surfaces
-- check that `000-index.md` routing table covers obvious active concepts
 - compare concept headings in flat files with routing table entries
+- check that obvious active concepts appear in the routing table
 
 Use simple search first. Do not overfit the regex.
 
@@ -26,7 +20,7 @@ Use simple search first. Do not overfit the regex.
 
 ## Expected Findings
 
-- `fail`: index exists but `000-index.md` routing table is missing.
+- `fail`: index exists but routing table is missing.
 - `warn`: important concepts appear in stable surfaces but are missing from the routing table.
 - `warn`: routing table appears stale relative to obvious active concepts.
 - `info`: dotted names are sparse or only examples.

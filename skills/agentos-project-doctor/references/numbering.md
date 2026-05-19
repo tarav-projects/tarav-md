@@ -1,6 +1,6 @@
 # Numbering Checks
 
-Check obvious `File.Numbering.Protocol` issues in active numbered surfaces.
+Check obvious `File.Numbering.Protocol` issues in active numbered surfaces. Range definitions and reserved prefixes come from the index itself.
 
 ## Active Surfaces
 
@@ -19,10 +19,7 @@ For active surfaces:
 - find files beginning with `NNN-` or reserved `NNN.` forms
 - identify active files that are not numbered and not clearly reserved
 - detect duplicate numeric prefixes within each active surface
-- flag obvious range violations:
-  - `000-099`: reserved files
-  - `100-499`: rolling index notes
-  - `500-999`: rolling other files such as live notes and live scripts
+- flag files that fall outside the expected ranges defined in `File.Numbering.Protocol`
 
 ## Agentic Checks
 

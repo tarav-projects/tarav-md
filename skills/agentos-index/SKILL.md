@@ -20,8 +20,8 @@ This is the `Main.Skill` of the index `Skill.Package`. It contains the full desi
 
 | Reference | Covers |
 |---|---|
-| `references/launch-runtime.md` | Index.Runtime — architecture, reading, writing, research, gaps, detection, footer |
-| `references/maintenance.md` | maintenance model, promotion, low-friction capture, Stub.Convention |
+| `references/launch-runtime.md` | bootstrap script — load index data, ground key concepts, load appendix, always-on behavior |
+| `references/maintenance.md` | maintenance checklist (linting, dedup, promotion, placement audit) + Index.CLI commands |
 | `references/test-system.md` | index testing mechanism — master/subagent pattern, test file format |
 
 ## Alias.Skills

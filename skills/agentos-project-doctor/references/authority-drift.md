@@ -1,6 +1,6 @@
 # Authority Drift Checks
 
-Check whether durable design truth is drifting outside `Agentos.Index.Notes`.
+Check whether design knowledge is drifting outside its `Natural.Placement` in the index/appendix system.
 
 ## Surfaces To Inspect
 
@@ -11,14 +11,14 @@ Check whether durable design truth is drifting outside `Agentos.Index.Notes`.
 
 ## Agentic Check
 
-If `notes/index/` exists, durable design truth should converge there.
+If the index is adopted, design knowledge should converge toward `Kernel.Block:Index` and `Kernel.Block:Appendix` through promotion.
 
-Look for evidence that another surface is becoming an independent design source of truth:
+Look for evidence that another surface holds design knowledge that belongs in the index:
 
 - `AGENTS.md` contains extensive durable concepts rather than local agent guidance
-- skills define major project concepts not present in `notes/index/`
+- skills define major project concepts not present in the index
 - live notes are repeatedly used as current authority after a design has stabilized
-- usage or workflow surfaces introduce rules that conflict with index notes
+- usage or workflow surfaces introduce rules that conflict with index blocks
 
 ## Evidence Standard
 
@@ -28,13 +28,12 @@ A finding should cite:
 
 - the surface
 - the specific durable-looking rule or concept
-- the expected index location or missing registry concept
-- why this looks authoritative rather than local guidance
+- the expected index location or missing concept
+- why this looks like displaced design knowledge rather than local guidance
 
 ## Expected Findings
 
-- `warn`: durable design truth appears to live only outside `notes/index/`.
-- `warn`: derived surface conflicts with an index note.
-- `info`: derived surface correctly routes to index notes.
-- `skip`: no index surface exists, so authority model is not adopted.
-
+- `warn`: design knowledge appears to live only outside the index.
+- `warn`: derived surface conflicts with an index block.
+- `info`: derived surface correctly routes to index blocks.
+- `skip`: no index surface exists, so placement model is not adopted.
