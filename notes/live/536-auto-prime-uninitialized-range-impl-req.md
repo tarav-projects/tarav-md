@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **scope:** improve `auto-prime-zero-limits` so it can detect uninitialized/sliding provider limit ranges, not only exact zero-usage ranges, and activate the workflow in the local account monitor config
-- **status:** ready for execution
+- **status:** implemented
 - **source:** current discussion after inspecting `limits-tracking`, `auto-prime-zero-limits`, and `codex/jp` usage registry behavior
 - **target project:** `agentos-py`
 - **local activation target:** `~/.agentos/config.json`
@@ -222,4 +222,36 @@ The implementer may include `claude-code` targets later only if they can preserv
 
 ## Impl.Log
 
-(empty — not yet started)
+### 2026-05-19 — execution complete
+
+- Implemented trigger configuration for `auto-prime-zero-limits` in `agentos-py`:
+  - `MonitorWorkflowConfig.triggers`
+  - Codex default triggers: `zero_usage`, `near_zero_full_window`, `sliding_reset`, `period_key_churn`
+  - Claude default remains conservative: `zero_usage`
+  - invalid providers and invalid trigger names fail config loading with `CliError`
+- Implemented memory-only per-target/per-limit observations in `AutoPrimeZeroLimitsWorkflow`.
+- Replaced the single `used_percent == 0` eligibility path with trigger-reason evaluation:
+  - `zero_usage`
+  - `near_zero_full_window`
+  - `sliding_reset`
+  - `period_key_churn`
+- Implemented stable uninitialized prime keys:
+  - fixed zero-usage periods keep the normal period key
+  - uninitialized trigger matches use `provider/account/home/limit/uninitialized`
+  - successful prime records include `trigger_reasons`
+- Added JSON visibility for auto-prime setup/config state so activation can be verified even when the auto-prime alarm has not fired yet.
+- Activated local auto-prime in `~/.agentos/config.json` with:
+  - workflow `auto-prime-zero-limits`
+  - `interval_sec: 60`
+  - `retry_cooldown_sec: 600`
+  - `target_limits.codex: ["burst"]`
+  - Codex targets `jp`, `mm`, `tk`, `br`
+  - all four Codex triggers enabled
+- Validation:
+  - `uv run pytest tests/test_agent_monitor_auto_prime.py tests/test_e2e_agent_accounts.py -q` passed.
+  - `uv run ruff check src/agentos/agent/monitor/config.py src/agentos/agent/monitor/models.py src/agentos/agent/monitor/workflows.py tests/test_agent_monitor_auto_prime.py tests/test_e2e_agent_accounts.py` passed.
+  - Refreshed installed CLI with `uv tool install --reinstall --editable .`.
+  - `agentos agent accounts monitor --once --json` showed blocks `limits-tracking` and `auto-prime-zero-limits`; auto-prime state showed `target_limit_ids.codex = ["burst"]` and all four triggers.
+  - `agentos agent accounts monitor --max-ticks 2 --interval-sec 0.1 --json` showed blocks `limits-tracking` and `auto-prime-zero-limits`; `workflow_run_counts` only included `limits-tracking` because live provider refresh had not reached the auto-prime loop before the short smoke ended.
+- Live-state note:
+  - current live Codex burst usage was not in the near-zero full-window shape during validation, so no auto-prime attempt was expected from the smoke.

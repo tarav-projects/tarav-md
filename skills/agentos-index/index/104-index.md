@@ -76,6 +76,20 @@
 
 ****
 
+## Appendix.Pages
+
+- `Appendix.Pages` extends `Appendix.Discovery` with progressive depth layers
+- `Concept.X` is sugar for `Concept.X[0]` — the index block
+- `Concept.X[1]` is the first appendix page (`Concept.X-appendix.md`)
+- `Concept.X[2]+` are deeper pages (`Concept.X-appendix-2.md`, `Concept.X-appendix-3.md`, etc.)
+- `Concept.X[:]` means all content — index block + all appendix pages (JS slice semantics)
+- the notation is usable as inline reference in blocks, chat, and prompts
+- discovery cascades naturally — if depth is insufficient, go deeper: more pages, or jump to other concepts
+- the routing table annotates page count inline: `Concept.X[+2]` — lintable, only present when appendix exists
+- no annotation means no appendix — `Concept.X` alone implies `[0]` only
+
+****
+
 ## Placement.Heuristic
 
 - `Placement.Heuristic` is the decision framework for where content lives in the system
@@ -92,6 +106,17 @@
 - can be executed agentically (agent follows the steps) or hugentically (human-agent design loop)
 - example: installing the index system creates `notes/index/`, `001-index.md`, routing table
 - example: installing the agentos stack sets up `AGENTS.md`, `notes/`, `skills/`
+
+****
+
+## Index.Empirical.Placement
+
+- `Index.Empirical.Placement` is evidence-driven placement of content across index layers
+- complement to `Placement.Heuristic` — design judgment places initially, empirical data optimizes over time
+- evidence source: chat sessions across projects, accessed through `Chatlas.Query.Surface`
+- the core signal is comparative — content at the same depth level should have similar usage profiles
+- the working unit is flexible — a block, a line within a block, or a group of related blocks
+- output is a migration plan — proposed moves with evidence, user approves before execution
 
 ****
 
