@@ -11,7 +11,7 @@
 - `102-index.md` — Alignment.Loop, Alignment.User.Turn, Alignment.Maintenance.Turn, Alignment.Backend, Hard.Evidence, Alignment.Session, Impl.Req, Development.Principles, Deep.Modules, Agent.Navigable.Codebase, Vertical.Slice, No.Legacy.Allowed, Test.At.Boundaries, Design.Target.Model, Current.Implementation, Progress.Gradient, Design.Implementation.CoEvolution, Chatlas.Query.Surface, Chatlas.Query.Envelope, Kernel.Writing, Kernel.Block
 - `103-index.md` — Index.Architecture, Flat.Index.Architecture, Global.Index.Scope, Extended.Index.Scope, Surface.Concept, Concept.Scoping, Explicit.Namespace, Agentos.Index.System, Soft.Semantics.Concept, Hugentic.Concept, Index.Router, Inline.Relatedness, Project.Surfaces, Project.Dev.Install, Index.Runtime, Distributed.Index, Soft.Programming.Language
 - `104-index.md` — Project.File.Index, Index.Activation, Unresolved.Index.Name, BuiltIn.Namespace, Project.Index.Skill, Concept.Cite, Index.Surface.Layout, Appendix.Discovery, Appendix.Pages, Placement.Heuristic, Install.Skill, Index.Empirical.Placement, Alignment.Surface
-- `105-index.md` — Chatlas.View.Model[+1], View.Identity, Session.Set, View.Workflow, View.Class
+- `105-index.md` — Chatlas.View.Model[+1], View.Identity, Session.Set, View.Workflow, View.Class, Index.Agent
 
 ## File System
 

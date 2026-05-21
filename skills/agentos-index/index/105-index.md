@@ -51,3 +51,17 @@
 - both share the `View.Workflow` common surface — status, artifact contract, name, dependencies
 - `Programmatic.View` — production is deterministic and cheap; the framework produces directly, no staging
 - `Agentic.View` — production requires an external agent; the framework prepares a staging area and production prompt; the agent writes, the framework commits
+
+****
+
+## Index.Agent
+
+- `Index.Agent` is a general-purpose subagent that mediates between the index and any agent that needs something from it
+- the caller sends a prompt; the `Index.Agent` scans the index, does the work, and returns a result
+- the caller's context is protected — the `Index.Agent` pays the cost of loading the full index, not the caller
+- not a fixed API — handles any reasonable prompt against the index
+- backed by the `agentos-index-agent` skill: index conventions, block structure, routing, CLI tools, appendix discovery
+- can run on a medium-size model — structured, scoped work
+- the caller retains direct index access when the index *is* the work target
+- the caller can pass context in the prompt — a chat summary, already-loaded blocks, a topic, a question
+- common patterns: grounding (pass chat summary, get relevant blocks), search (find blocks by topic), placement (where to write a new block), filtering (return namespace members minus already-loaded blocks)
