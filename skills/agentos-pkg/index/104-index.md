@@ -135,6 +135,7 @@
 ## Index.Agent
 
 - `Index.Agent` is a role for collecting, interpreting, and returning context from the index
+- `Index.Agent` is index-capable, not index-bound; it operates under `Multi.Index.Operation` unless explicitly constrained
 - can be performed by a dedicated specialist agent or temporarily by a workflow agent
 - the caller sends a prompt; the `Index.Agent` scans the index, does the work, and returns a result
 - the caller's context is protected — the `Index.Agent` pays the cost of loading the full index, not the caller
@@ -147,6 +148,22 @@
 - the caller retains direct index access when the index *is* the work target
 - the caller can pass context in the prompt — a chat summary, already-loaded blocks, a topic, a question
 - common patterns: grounding (pass chat summary, get relevant blocks), search (find blocks by topic), placement (where to write a new block), filtering (return namespace members minus already-loaded blocks)
+
+****
+
+## Multi.Index.Operation
+
+- `Multi.Index.Operation` is the default operating condition of an `Index.Agent`
+- an `Index.Agent` is not inherently attached to one index
+- session context may bias the agent toward a default index, such as the active project index or currently loaded package index
+- explicit user direction may also constrain which index or indexes to use
+- without such constraints, the agent should treat all accessible relevant indexes as possible sources of context, authority, and conflict
+- applies to index research, context collection, writing, citation, maintenance, conflict detection, and package dependency traversal
+- accessible indexes may include the active project's local index, the active package index, dependency package indexes, and explicitly provided external package indexes
+- agents should avoid blind exhaustive loading; search likely relevant indexes first and load only useful blocks, appendix material, or references
+- concepts cited or returned from a non-default index should use qualified names, such as `<package>-pkg/Concept.Name` or `local/Concept.Name`
+- disagreement across indexes is surfaced as an issue, not silently merged
+- writes must respect the authority and write gates of the target index
 
 ****
 
@@ -163,3 +180,16 @@
 ### meta
 
 - aliases: `Agentos.Index.Depot`
+
+****
+
+## Provider.Instance
+
+- `Provider.Instance` is a concrete binding of a `Provider.Family` to a local environment
+- a `Provider.Family` is a supported AI assistant provider (e.g., claude-code, codex, copilot-cli, gemini-cli, opencode, pi, openclaw)
+- two interpretations coexist:
+  - runtime: a fully configured system — provider, home, account — such that it can run
+  - disk: the observable footprint — mostly provider and home directory
+- the disk interpretation is often interchanged with the concept of provider home, because the home directory is the primary observable artifact
+- instance identity is derived from the provider family and environment fingerprint
+- provider home discovery is declarative — each family specifies known paths, file patterns, and database locations to locate its home directory

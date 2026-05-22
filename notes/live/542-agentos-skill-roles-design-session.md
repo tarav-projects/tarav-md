@@ -229,6 +229,188 @@
 - implementation note: absorb useful trigger phrases from `trigger-impl-execution`
 - implementation note: its current recommended skills still mention deprecated `agentos-usage` and `agentos-index-activate`; update when implementing this design
 
+### Deprecated.Skill:trigger-design-session
+
+- `trigger-design-session` is deprecated as a standalone public skill
+- its former role was activation shim for `hugentics-designer`
+- the useful activation language belongs in `hugentics-designer`, because that operational nested auxiliary skill owns the `What.Design` workflow mode
+- keeping both creates duplicate routing authority without adding a distinct package function
+- the public model should route through `agentos-hugentics` for the workflow-neutral subsystem map, then directly to `hugentics-designer` for design-session execution
+
+#### meta
+
+- current action: deprecate
+- future action: remove or leave as compatibility only after dependent references are updated
+
+### Deprecated.Skill:trigger-impl-req
+
+- `trigger-impl-req` is deprecated as a standalone public skill
+- its former role was activation shim for `hugentics-impl-designer`
+- the useful activation language belongs in `hugentics-impl-designer`, because that operational nested auxiliary skill owns the `How.Design` / Impl.Req workflow mode
+- keeping both creates duplicate routing authority without adding a distinct package function
+- `Impl.Req.Handoff` should load `hugentics-impl-designer` directly
+
+#### meta
+
+- current action: deprecate
+- future action: remove or leave as compatibility only after dependent references are updated
+
+### Deprecated.Skill:trigger-impl-execution
+
+- `trigger-impl-execution` is deprecated as a standalone public skill
+- its former role was activation shim for `hugentics-impl-executer`
+- the useful activation language belongs in `hugentics-impl-executer`, because that operational nested auxiliary skill owns the `Impl.Exec` workflow mode
+- keeping both creates duplicate routing authority without adding a distinct package function
+- approved `Impl.Req` execution should load `hugentics-impl-executer` directly
+
+#### meta
+
+- current action: deprecate
+- future action: remove or leave as compatibility only after dependent references are updated
+
+### Package.Aux.Skill:hugentics-workflow-status
+
+- `hugentics-workflow-status` is an operational nested `Package.Aux.Skill` under `agentos-hugentics`
+- its role is structured status for active Hugentic workflows
+- assumes there is workflow or artifact state worth inspecting
+- reports active phase, active artifact/backend, accepted state, uncommitted deltas, open questions, pending writes, blockers, and next workflow moves
+- covers design-session, Impl.Req design, and Impl.Req execution workflows
+- more formal and detailed than `hugentics-chat-status`
+- still focuses on realignment, not exhaustive history
+- replaces `trigger-hugentic-status` as the public conceptual role
+
+#### meta
+
+- current action: rename/reframe `trigger-hugentic-status` to `hugentics-workflow-status`
+- implementation note: preserve useful trigger phrasing while moving the public role away from trigger naming
+
+### Package.Aux.Skill:hugentics-chat-status
+
+- `hugentics-chat-status` is an operational nested `Package.Aux.Skill` under `agentos-hugentics`
+- its role is lightweight chat realignment when the user needs to reconnect with the current conversation
+- answers "what is going on in this chat?"
+- focuses on main topic(s), current thread, recent decisions, active or likely user intent, and useful next moves
+- may mention active Hugentic workflows when visible, but does not deep-audit workflow artifacts
+- if the user says "I'm lost" or similar, the status should be more guiding and explain how to resume
+- output should stay short to medium size; it is not a wall-of-status report
+- not a project diagnosis, package status, git status, or full workflow audit
+- for structured active workflow state, route to `hugentics-workflow-status`
+- replaces `trigger-chat-status` as the public conceptual role
+
+#### meta
+
+- current action: rename/reframe `trigger-chat-status` to `hugentics-chat-status`
+- implementation note: preserve useful reconnect phrasing while keeping the role chat/session-level
+
+### Package.Aux.Skill:hugentics-capture-audit
+
+- `hugentics-capture-audit` is an operational nested `Package.Aux.Skill` under `agentos-hugentics`
+- its role is to review recent work and identify significant material that is not yet captured outside chat
+- captured means placed in a more permanent surface than the chat, such as a design-session artifact, Impl.Req, design summary, issue report, local note, package reference, or index candidate
+- audits for uncaptured decisions, approved wording, design convergence, implementation constraints, risks, open questions, follow-up items, and index-worthy concepts
+- reports findings back to the user with proposed capture targets
+- does not write automatically; the user decides whether and where to capture
+- replaces `trigger-capture-audit` as the public conceptual role
+
+#### appendix
+
+- capture audit belongs under `agentos-hugentics` because it maintains human-agent alignment across chat and more durable artifacts
+- as an operational nested `Package.Aux.Skill`, its local workflow framing should use cited duplicated context from authoritative `agentos-pkg` concepts when needed
+
+#### meta
+
+- current action: rename/reframe `trigger-capture-audit` to `hugentics-capture-audit`
+- implementation note: preserve useful audit trigger phrasing while keeping writes user-gated
+
+### Package.Aux.Skill:artifact-design-session
+
+- `artifact-design-session` is a workflow-neutral artifact-format `Package.Aux.Skill` under `agentos-hugentics`
+- its role is discoverability and orientation for `Alignment.Backend:Artifact:What`
+- points to `hugentics-designer` as the workflow master that owns the full artifact format and write gates
+- does not start a design session by itself
+- useful when the caller needs to inspect, create, validate, or route a design-session artifact without entering the whole design workflow
+- should carry only cited duplicated artifact context; authoritative artifact definitions remain in `agentos-pkg` and the owning workflow master
+
+#### meta
+
+- current action: keep as artifact-format auxiliary skill
+- implementation note: artifact creation still follows the owning workflow master and user gates
+
+### Package.Aux.Skill:artifact-impl-req
+
+- `artifact-impl-req` is a workflow-neutral artifact-format `Package.Aux.Skill` under `agentos-hugentics`
+- its role is discoverability and orientation for `Impl.Req`
+- points to `hugentics-impl-designer` as the workflow master that owns the full artifact format and write gates
+- does not start implementation design by itself
+- useful when the caller needs to inspect, create, validate, or route an Impl.Req artifact without entering the whole implementation-design workflow
+- should carry only cited duplicated artifact context; authoritative artifact definitions remain in `agentos-pkg` and the owning workflow master
+
+#### meta
+
+- current action: keep as artifact-format auxiliary skill
+- implementation note: artifact creation still follows the owning workflow master and user gates
+
+### Package.Aux.Skill:artifact-design-summary
+
+- `artifact-design-summary` is a workflow-neutral artifact-format `Package.Aux.Skill`
+- its role is discoverability and orientation for design-summary artifacts
+- useful when the caller needs to inspect, create, validate, or route a durable summary of a design state
+- should carry only cited duplicated artifact context; authoritative definitions should live in `agentos-pkg` or the future owning workflow/package surface
+- ownership is not fully settled: it may belong under `agentos-hugentics`, `agentos-pkg`, or a future documentation/artifact subsystem
+
+#### meta
+
+- current action: keep as artifact-format auxiliary skill
+- implementation note: artifact creation still follows the owning workflow or package surface and user gates
+
+### Package.Aux.Skill:artifact-issue-report
+
+- `artifact-issue-report` is a workflow-neutral artifact-format `Package.Aux.Skill`
+- its role is discoverability and orientation for durable issue-report artifacts
+- issue reports store discovered issues and track their status
+- should carry only cited duplicated artifact context; authoritative definitions should live in `agentos-pkg` and the owning workflow/package surface
+- operational issue discovery, discussion, triage, tracking, and routing belong to `hugentics-issue-tracker`
+
+#### meta
+
+- current action: keep as artifact-format auxiliary skill
+- implementation note: artifact creation and mutation remain user-gated
+
+### Package.Aux.Skill:hugentics-issue-tracker
+
+- `hugentics-issue-tracker` is a planned operational nested `Package.Aux.Skill` under `agentos-hugentics`
+- its role is discovering, discussing, capturing, triaging, tracking, and routing issues
+- uses `artifact-issue-report` as the durable artifact surface for issue state
+- may route to design sessions, Impl.Req design, implementation execution, or index capture depending on issue type
+- should distinguish issue discussion from artifact mutation; writes remain user-gated
+- not implemented as a dedicated skill yet, but the concept should exist because issue-report artifacts imply workflow behavior
+
+#### meta
+
+- current action: planned skill / design placeholder
+- implementation note: define only the role for now; do not create the skill until the workflow is designed
+
+### Agentos.Live.Note
+
+- `Agentos.Live.Note` is a non-`Stable.Surface` for agent-maintained markdown working data
+- exists for durable-enough capture that should outlive chat but is not yet stable project truth
+- normally lives under `notes/live/`
+- ordinary live notes use `File.Numbering.Protocol` rolling prefixes in `500-999`
+- canonical filename pattern is `NNN-short-topic.md`
+- supports active design sessions, implementation requests, summaries, issue reports, TODOs, audits, and other live coordination material
+- can serve as the backend/storage surface for workflow artifacts, but is not itself defined by one workflow
+
+### Agentos.Live.Script
+
+- `Agentos.Live.Script` is a non-`Stable.Surface` and `Alignment.Surface` for small agent-maintained code surfaces
+- exists so agents can write and maintain small runnable or inspectable code snippets that users can check and give feedback on
+- normally lives under `dev/live/`
+- ordinary live scripts use `File.Numbering.Protocol` rolling prefixes in `500-999`
+- canonical filename pattern is `NNN-short-topic.<ext>`
+- runnable status is optional; use the extension that matches the project language or execution model
+- supports prototypes, product/interface drafts, runnable design sketches, experiments, and workflow support scripts
+- can inform stable implementation work, but is not itself stable project code
+
 ## Session.Notes
 
 ### Traversal Tracker
@@ -249,17 +431,16 @@
 - [x] `hugentics-designer`
 - [x] `hugentics-impl-designer`
 - [x] `hugentics-impl-executer`
-- [ ] `trigger-design-session`
-- [ ] `trigger-impl-req`
-- [ ] `trigger-impl-execution`
-- [ ] `trigger-hugentic-status`
-- [ ] `trigger-capture-audit`
-- [ ] `trigger-chat-status`
-- [ ] `artifact-design-session`
-- [ ] `artifact-impl-req`
-- [ ] `artifact-design-summary`
-- [ ] `artifact-issue-report`
-- [ ] `agentos-live-note-base`
+- [x] `trigger-design-session`
+- [x] `trigger-impl-req`
+- [x] `trigger-impl-execution`
+- [x] `trigger-hugentic-status`
+- [x] `trigger-capture-audit`
+- [x] `trigger-chat-status`
+- [x] `artifact-design-session`
+- [x] `artifact-impl-req`
+- [x] `artifact-design-summary`
+- [x] `artifact-issue-report`
 - [ ] `agentos-live-scripts-base`
 - [ ] `agentos-file-numbering-base`
 - [ ] `agentos-project-doctor`
@@ -305,3 +486,11 @@ For each skill or skill group:
 - `Package.Aux.Skill.Mode` captured — aux skills can be workflow-neutral subsystem surfaces or operational workflow surfaces
 - Hugentic nested-skill direction captured — keep operational workflow skills separate when tuned execution prompting, triggerability, and gates are valuable, while rooting authority in `agentos-pkg`
 - `hugentics-designer`, `hugentics-impl-designer`, and `hugentics-impl-executer` reviewed — retained as operational nested auxiliary skills under workflow-neutral `agentos-hugentics`
+- `trigger-design-session`, `trigger-impl-req`, and `trigger-impl-execution` reviewed — deprecated as standalone trigger-only public skills; useful activation language belongs in the corresponding Hugentic workflow-master skills
+- `trigger-hugentic-status` reviewed — rename/reframe as `hugentics-workflow-status`, a structured status workflow for active Hugentic workflows and artifacts
+- `trigger-chat-status` reviewed — rename/reframe as `hugentics-chat-status`, a short/medium chat realignment surface for reconnecting to the current conversation
+- `trigger-capture-audit` reviewed — rename/reframe as `hugentics-capture-audit`, an operational audit for significant chat material not yet captured in durable surfaces
+- `artifact-design-session` and `artifact-impl-req` reviewed — retained as workflow-neutral artifact-format auxiliary skills under `agentos-hugentics`; their local artifact context should be cited duplication of `agentos-pkg` and owning workflow-master content
+- `artifact-design-summary` reviewed — retained as workflow-neutral artifact-format auxiliary skill with ownership still pending between `agentos-hugentics`, `agentos-pkg`, or a future artifact/documentation subsystem
+- `artifact-issue-report` reviewed — retained as workflow-neutral artifact-format auxiliary skill; companion operational workflow role named `hugentics-issue-tracker`
+- `Agentos.Live.Note` and `Agentos.Live.Script` drafted as live-surface concepts: non-stable working surfaces that can back artifacts or alignment work without being artifacts themselves
