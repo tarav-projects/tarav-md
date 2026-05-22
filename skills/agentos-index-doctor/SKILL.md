@@ -7,8 +7,8 @@ description: "Index health review and diagnosis. Runs agentos index doctor CLI c
 
 Index health review and diagnosis for the Agentos Index.
 
-This is an `Alias.Skill` of the `agentos-index` `Skill.Package`.
-Full design reference: `agentos-index/references/maintenance.md`
+This is a `Package.Aux.Skill` for the Agentos Index subsystem of `agentos-pkg`.
+Full design reference: `agentos-pkg/references/maintenance.md`
 
 ## Prerequisites
 

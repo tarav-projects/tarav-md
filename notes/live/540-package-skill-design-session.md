@@ -18,7 +18,7 @@
 - acts as the package-level SSOT for public agentic knowledge
 - an implementation of the project in the agentic medium, not a replacement for source code
 - one semantic concept that supports compact single-skill and split multi-skill physical layouts
-- can expose specialized alias skills as entry points back into the package SSOT
+- can expose specialized auxiliary skills as entry points, operations, workflows, or aliases back into the package SSOT
 
 ### Package.Skill.Router
 
@@ -27,14 +27,14 @@
 - acts as an internal table of contents, not an active dispatcher
 - stays transparent to the caller workflow: it does not prompt the caller to take actions or change task flow
 - maps task kinds, concepts, workflows, references, services, and alias skills to their package locations
-- lets alias skills add workflow intention while pointing back to the package SSOT
+- lets auxiliary skills add workflow intention while pointing back to the package SSOT
 - helps agents find the right subsystem without making routing decisions for them
 
 ### Package.Skill.Install
 
 - installation layer of a `Package.Skill`
 - like an install script: performs whatever setup the package requires
-- may create or update package entry points such as alias skills
+- may create or update auxiliary package skills such as aliases or workflow helpers
 - may install or check software dependencies, CLIs, references, generated files, or local configuration
 - may delegate work to deterministic tools or scripts when available
 - belongs to the agentic package surface, but does not make the skill the owner of all implementation code
@@ -64,7 +64,7 @@
 - provides the package's conceptual index surface
 - organizes package concepts, names, concept blocks, and reference paths for agent use
 - is owned by the package skill, not by a separate SSOT
-- can be exposed through an entry skill such as `<package>-index`
+- can be exposed through an auxiliary skill such as `<package>-index`
 - lets agents enter the package through conceptual lookup rather than task workflow
 
 #### appendix
@@ -74,12 +74,12 @@
 - an `Index.Agent` is a role any capable agent can perform: search the index, collect relevant blocks or appendix material, then continue the task under the gathered concepts
 - workflow agents can perform the `Index.Agent` role themselves when a separate specialist agent is unnecessary
 
-### Package.Entry.Skill
+### Package.Aux.Skill
 
-- specialized skill that serves as an entry point into a `Package.Skill`
-- adds caller intention, workflow framing, or subsystem focus
+- specialized skill associated with a `Package.Skill` but not itself the package root
+- adds caller intention, workflow framing, operational behavior, subsystem focus, or convenience access
 - points back to the package skill as the SSOT
-- may expose a package subsystem such as `Package.Skill.Index` or a package agent call
+- may act as an entry point, alias, workflow skill, install helper, doctor, test runner, or package-agent launcher
 - does not duplicate package knowledge
 
 ### Cited.Duplication
@@ -97,7 +97,7 @@
 
 - inline citations place provenance at the duplicated idea itself, so agents can inspect the local copy and immediately know where to check authority
 - citations are used where they materially help interpretation, verification, maintenance, or navigation
-- `Cited.Duplication` lets workflow skills, package routers, entry skills, and package-agent instructions carry known context directly instead of rediscovering it on every run
+- `Cited.Duplication` lets workflow skills, package routers, auxiliary skills, and package-agent instructions carry known context directly instead of rediscovering it on every run
 
 ### Inline.Relatedness
 
@@ -138,7 +138,7 @@
 
 - maintenance check performed when editing an existing authoritative concept block
 - starts by finding all mentions and citations of the edited concept across stable markdown surfaces
-- checks cited duplicates, workflow copies, package routers, entry skills, and related references for needed updates
+- checks cited duplicates, workflow copies, package routers, auxiliary skills, and related references for needed updates
 - may update clear cited duplicates in the same approved write pass when they mirror the edited origin
 - surfaces unresolved drift, ambiguous disagreement, or unclear authority as issues
 - prevents index edits from leaving known duplicated or cited material stale
@@ -182,7 +182,7 @@
 - item 3 (`Package.Skill.Install`) reviewed — install layer may perform real setup like an install script; side effects should be explicit
 - item 4 (`Package.Skill.Dependency`) reviewed — dependency knowledge has a formal package surface; external concepts use qualified names such as `<package>-skill/Bla.Concept`
 - item 5 reviewed — `Service.Agent` renamed/reframed as `Package.Agent`, a specialized agent qualified to work with a given `Package.Skill`
-- item 6 reviewed — `<package>-index` is a `Package.Entry.Skill` into the `Package.Skill.Index` subsystem, not a separate SSOT
+- item 6 reviewed — `<package>-index` is a `Package.Aux.Skill` for the `Package.Skill.Index` subsystem, not a separate SSOT
 - item 7 reviewed — `Skill.Export.Package` is unrelated to `Package.Skill`; it belongs to Agentos skill import/export mechanics and is parked as a confusing name
 - item 8 reviewed — compact single-skill and split multi-skill layouts are physical forms of one `Package.Skill` concept
 - index loading uncertainty discussed — no new concept added; standard practice is to list needed blocks in workflow/router references and treat `Index.Agent` as a role that workflow agents may perform themselves
@@ -192,3 +192,4 @@
 - workflow and `Index.Agent` implications captured — workflow skills can become contextualized execution surfaces; `Index.Agent` returned context must cite source blocks
 - critical-path draft blocks captured: `Cited.Duplication`, `Inline.Relatedness`, `Concept.Cite`, `Natural.Placement`, `Placement.Balance`, `Index.Writer.Maintenance.Pass`, `Workflow.Skill`, `Index.Agent`
 - index update written — promoted critical-path changes into public index files and updated `agentos-index-writer` operational guidance
+- Agentos Index package content migrated into `agentos-pkg`; `agentos-index` and companion skills remain auxiliary skills pointing to `agentos-pkg` surfaces

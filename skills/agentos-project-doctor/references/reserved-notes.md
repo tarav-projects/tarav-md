@@ -15,9 +15,9 @@ When `notes/index/` exists:
 
 - check for `notes/index/001-index.md`
 
-When `skills/agentos-index/index/` exists:
+When `skills/agentos-pkg/index/` exists:
 
-- check for `skills/agentos-index/index/000-index.md`
+- check for `skills/agentos-pkg/index/000-index.md`
 
 ## Agentic Checks
 

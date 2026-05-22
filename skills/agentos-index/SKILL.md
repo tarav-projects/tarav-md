@@ -1,13 +1,13 @@
 ---
 name: agentos-index
-description: "Full design reference for the Agentos Index — a Soft.Programming.Language for project knowledge. Load when another index skill needs full design context or when discussing the index design itself."
+description: "Auxiliary skill for the Agentos Index — a Soft.Programming.Language for project knowledge. Load when an index auxiliary skill needs full design context or when discussing the index design itself."
 ---
 
 # agentos-index
 
-The master skill for the Agentos Index — a `Soft.Programming.Language` for project knowledge.
+Auxiliary skill for the Agentos Index — a `Soft.Programming.Language` for project knowledge.
 
-This is the `Main.Skill` of the index `Skill.Package`. It contains the full design reference for how the index works, how agents operate it, and how humans interact with it.
+This is a `Package.Aux.Skill` for `agentos-pkg`. The Agentos Index design reference now lives in `agentos-pkg/index/`, `agentos-pkg/appendix/`, and `agentos-pkg/references/`.
 
 ## What The Index Is
 
@@ -20,24 +20,24 @@ This is the `Main.Skill` of the index `Skill.Package`. It contains the full desi
 
 | Reference | Covers |
 |---|---|
-| `references/launch-runtime.md` | bootstrap script — load index data, ground key concepts, load appendix, always-on behavior |
-| `references/maintenance.md` | maintenance checklist (linting, dedup, promotion, placement audit) + Index.CLI commands |
-| `references/test-system.md` | index testing mechanism — master/subagent pattern, test file format |
+| `agentos-pkg/references/launch-runtime.md` | bootstrap script — load index data, ground key concepts, load appendix, always-on behavior |
+| `agentos-pkg/references/maintenance.md` | maintenance checklist (linting, dedup, promotion, placement audit) + Index.CLI commands |
+| `agentos-pkg/references/test-system.md` | index testing mechanism — master/subagent pattern, test file format |
 
-## Alias.Skills
+## Auxiliary Skills
 
-This skill package exports the following `Alias.Skills`:
+The following `Package.Aux.Skill` surfaces point into the Agentos Index subsystem:
 
 - `agentos-index-activate` — bootstrap the index runtime for a session
 - `agentos-index-writer` — user-gated write path to the index
 - `agentos-index-doctor` — index health review and diagnosis
 - `agentos-index-test` — run index activation and runtime tests
 
-All alias skills point back to the relevant reference file in this skill.
+All auxiliary skills point back to the relevant surface in `agentos-pkg`.
 
 ## When To Load This Skill
 
-- when another index skill needs full design context
+- when another index auxiliary skill needs full design context
 - when discussing or modifying the index design itself
 - when debugging index behavior or resolving design questions
-- not needed for routine index operations — alias skills handle those
+- not needed for routine index operations — auxiliary skills handle those

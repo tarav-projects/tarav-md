@@ -1,17 +1,17 @@
 ---
 name: agentos-index-test
-description: "Run index activation and runtime tests for any project's index skill. Spawns subagents with test prompts and evaluates responses against expected answers."
+description: "Run index activation and runtime tests for any project's package index surface. Spawns subagents with test prompts and evaluates responses against expected answers."
 ---
 
 # agentos-index-test
 
-Test the index activation and runtime behavior of a project's `Project.Index.Skill`.
+Test the index activation and runtime behavior of a project's index package surface.
 
-This is an `Alias.Skill` of the `agentos-index` `Skill.Package`.
+This is a `Package.Aux.Skill` for the Agentos Index subsystem of `agentos-pkg`.
 
-Each project ships test files in its `<Project.Index.Skill>/testing/` folder. This skill runs those tests using the master agent + subagent pattern.
+Each project ships test files in its package index `testing/` folder. This skill runs those tests using the master agent + subagent pattern.
 
-For the full testing mechanism: `agentos-index/references/test-system.md`
+For the full testing mechanism: `agentos-pkg/references/test-system.md`
 
 ## Arguments
 
@@ -34,7 +34,7 @@ agentos-index-test run on agentos-md
 
 ### `agentos-index-test list`
 
-List all available tests in the target project's index skill `testing/` folder. For each test file:
+List all available tests in the target project's package index `testing/` folder. For each test file:
 
 1. Read the file
 2. Show the test name (from `# Test:` heading)
@@ -44,7 +44,7 @@ List all available tests in the target project's index skill `testing/` folder. 
 Output format:
 
 ```
-Tests in <Project.Index.Skill>/testing/:
+Tests in <Package.Skill>/testing/:
 
   activation-recall-01.md
     "activation-recall-01" — 5 questions — tests basic index recall after activation
@@ -59,7 +59,7 @@ Total: N tests
 Run one or all tests.
 
 1. Resolve the target project
-2. Locate test files in `<Project.Index.Skill>/testing/`
+2. Locate test files in the target package index `testing/` folder
 3. If `test-name` is given, run only that file — otherwise run all
 4. For each test file:
    - Extract the **Subagent Prompt** section

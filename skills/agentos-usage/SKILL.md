@@ -15,8 +15,8 @@ The durable design truth about Agentos lives in its index notes, not in this ski
 
 This skill derives from:
 
-- `skills/agentos-index/index/` (public index — concept definitions)
-- `skills/agentos-index/appendix/` (public appendix — extended depth)
+- `skills/agentos-pkg/index/` (public index — concept definitions)
+- `skills/agentos-pkg/appendix/` (public appendix — extended depth)
 
 If this skill conflicts with `notes/index/`, the index wins.
 
@@ -30,7 +30,7 @@ An `Agentos.Project` is a directory with `.agentos/project.json`. That file is t
 
 Inside a project, the main surfaces are:
 
-**Index** — `skills/agentos-index/index/` (public) + `notes/index/` (local)
+**Index** — `skills/agentos-pkg/index/` (public) + `notes/index/` (local)
 The durable design-truth surface. Concept notes and stable decisions live here. Start with `000-index.md` routing table.
 
 **Live Notes** — `notes/live/`
@@ -49,8 +49,8 @@ The project CLI for deterministic operations, checks, and maintenance. Use `agen
 Read the project index to understand what the project is and what design decisions have been made:
 
 ```txt
-skills/agentos-index/index/000-index.md    # routing table (public index entry point)
-notes/index/001-index.md                   # local index entry point (points to public)
+skills/agentos-pkg/index/000-index.md    # routing table (public index entry point)
+notes/index/001-index.md                 # local index entry point (points to public)
 ```
 
 Use `000-index.md` routing table to find and load concept blocks.
@@ -118,5 +118,5 @@ agentos skills status --project
 | Project doctor | `agentos-project-doctor` skill |
 | Design sessions | `trigger-design-session` skill |
 | File numbering protocol | `agentos-file-numbering-base` skill |
-| Index routing | `skills/agentos-index/index/000-index.md` |
+| Index routing | `skills/agentos-pkg/index/000-index.md` |
 | CLI commands | `agentos --help` |

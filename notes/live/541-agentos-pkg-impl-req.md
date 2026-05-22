@@ -102,3 +102,5 @@
 - implemented Slice 2 — added package router sections in `package.md` that reference existing Agentos public skill surfaces without rewriting them
 - implemented Slice 3 — added local boundary rule: `agentos-md` concerns belong in `notes/index/` or future `agentos-md-pkg`, not in `agentos-pkg`
 - validation passed — root `SKILL.md` contains no command snippets or workflow steps; all referenced skill paths in `package.md` exist
+- follow-up migration executed — moved Agentos Index `index/`, `appendix/`, `references/`, and `testing/` content from `agentos-index` into `agentos-pkg`
+- follow-up migration executed — converted `agentos-index` and companion `agentos-index-*` skills into package entry skills pointing to `agentos-pkg` surfaces

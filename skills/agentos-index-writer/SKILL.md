@@ -7,7 +7,7 @@ description: "User-gated write path to the Agentos Index. Reinforces writing qua
 
 User-gated write path to the Agentos Index.
 
-This is an `Alias.Skill` of the `agentos-index` `Skill.Package`.
+This is a `Package.Aux.Skill` for the Agentos Index subsystem of `agentos-pkg`.
 Write gates and quality guidance are defined in the index blocks: `Kernel.Block:Index`, `Kernel.Writing`, `Kernel.Block:Appendix`.
 
 ## When To Use

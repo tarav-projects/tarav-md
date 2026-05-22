@@ -5,7 +5,7 @@
 - `agentos-pkg` is the core `Package.Skill` for Agentos.
 - It is a package-level public agentic surface, not the `agentos-md` repository or any single implementation surface.
 - It currently lives in `agentos-md/skills/agentos-pkg/` as an implementation detail.
-- The first migration is structural: existing Agentos public skill content is respected for now.
+- The first migration is structural: Agentos Index content has moved into this package, while auxiliary skills preserve existing access paths.
 
 ## Package.Router
 
@@ -16,8 +16,12 @@
 
 ### Index
 
-- `agentos-index` — Agentos Index design reference, public index, appendix, and references.
-- `agentos-index-activate` — index runtime bootstrap entry skill.
+- `agentos-pkg/index/` — Agentos public index flat files and routing table.
+- `agentos-pkg/appendix/` — Agentos public index appendix files.
+- `agentos-pkg/references/` — Agentos Index operational references.
+- `agentos-pkg/testing/` — Agentos Index runtime test prompts.
+- `agentos-index` — auxiliary skill for direct Agentos Index design context.
+- `agentos-index-activate` — index runtime bootstrap auxiliary skill.
 - `agentos-index-writer` — user-gated index write path.
 - `agentos-index-doctor` — index health diagnosis.
 - `agentos-index-test` — index activation and runtime tests.
@@ -31,12 +35,12 @@
 
 ### Hugentic Triggers
 
-- `trigger-design-session` — design-session activation entry skill.
-- `trigger-impl-req` — implementation-request activation entry skill.
-- `trigger-impl-execution` — implementation execution activation entry skill.
-- `trigger-hugentic-status` — hugentic workflow status entry skill.
-- `trigger-capture-audit` — capture audit entry skill.
-- `trigger-chat-status` — general chat status entry skill.
+- `trigger-design-session` — design-session activation auxiliary skill.
+- `trigger-impl-req` — implementation-request activation auxiliary skill.
+- `trigger-impl-execution` — implementation execution activation auxiliary skill.
+- `trigger-hugentic-status` — hugentic workflow status auxiliary skill.
+- `trigger-capture-audit` — capture audit auxiliary skill.
+- `trigger-chat-status` — general chat status auxiliary skill.
 
 ### Artifacts
 
@@ -62,8 +66,9 @@
 
 - `agentos-pkg` owns Agentos core public package orientation.
 - `agentos-hugentics-pkg` is not created in this pass; Hugentics and the Agentos Index remain inside `agentos-pkg`.
-- `agentos-chatlas-pkg`, `agentos-iterante-pkg`, and `agentos-md-pkg` are out of scope for this package skeleton.
-- Chatlas-specific, Iterante-specific, and local implementation-specific surfaces should not be folded into `agentos-pkg` by default.
+- `agentos-chatlas-pkg` now exists as a separate package in `agentos-chatlas-md/skills/agentos-chatlas-pkg/`. Chatlas index content has been migrated there.
+- `agentos-iterante-pkg` and `agentos-md-pkg` are out of scope for this package skeleton.
+- Iterante-specific and local implementation-specific surfaces should not be folded into `agentos-pkg` by default.
 
 ## Package.Dependency
 
@@ -74,7 +79,7 @@
 ## Package.Install
 
 - Install behavior is not implemented in this structural pass.
-- Future install work may create or update entry skills, package-local indexes, references, or local configuration.
+- Future install work may create or update auxiliary skills, package-local indexes, references, or local configuration.
 - Any future install behavior should make side effects explicit before changing files.
 
 ## Package.Agents
@@ -88,4 +93,3 @@
 - `agentos-pkg` is not the same thing as `agentos-md`.
 - Local `agentos-md` concerns belong in `notes/index/` or a future `agentos-md-pkg`, not in `agentos-pkg`.
 - If a surface is useful only for this repository's local maintenance, route it locally instead of treating it as Agentos core package knowledge.
-
