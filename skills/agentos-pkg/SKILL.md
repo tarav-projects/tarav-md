@@ -11,5 +11,15 @@ It is the package-level public agentic surface for the Agentos framework: projec
 
 This root skill is workflow neutral. It gives package identity and orientation only, so loading it does not change the caller's current task.
 
-Package structure and routing live in `package.md`.
+## Package Surfaces
 
+| Surface | Use |
+|---|---|
+| `package.md` | package identity, boundaries, dependencies, and current routing |
+| `agentos-index` | Agentos Index subsystem: research, writing, diagnosis, testing, and maintenance functions |
+| `agentos-hugentics` | workflow-neutral Hugentic Harness map |
+| `hugentics-designer` | operational design-session workflow master |
+| `hugentics-impl-designer` | operational implementation-request workflow master |
+| `hugentics-impl-executer` | operational implementation-execution workflow master |
+
+Load this skill when you need Agentos package orientation. Load a narrower auxiliary skill when the caller already has a subsystem or workflow intention.

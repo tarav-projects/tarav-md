@@ -4,7 +4,7 @@
 
 You are working on the agentos-md project. Start by activating the index:
 
-Run the skill `agentos-index-activate` to load the index into context.
+Run the `agentos-index` skill and perform the `Index.Agent` role to collect the relevant index context.
 
 Once the index is loaded, answer these questions about the project's index system:
 

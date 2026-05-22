@@ -2,7 +2,7 @@
 
 `Impl.Req` is the implementation-request handoff produced by a `Design.Session`.
 
-When a session produces implementation work, activate the `trigger-impl-req` skill to hand off to the `hugentics-impl-designer` workflow, which defines the full `Impl.Req` artifact format, vertical slice protocol, and design process.
+When a session produces implementation work, load the `hugentics-impl-designer` workflow, which defines the full `Impl.Req` artifact format, vertical slice protocol, and design process.
 
 ## Role
 

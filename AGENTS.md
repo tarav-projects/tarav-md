@@ -8,11 +8,11 @@ It owns `Md.Surface:Agentos.Stack`, including the durable index notes, live note
 
 ## Orientation
 
-Load the `agentos-usage` skill at the start of a session for a minimal orientation to the Agentos universe and its surfaces.
+Load the `agentos-pkg` skill at the start of a session for workflow-neutral Agentos package orientation.
 
-Load the `agentos-index` skill at the start of a session for the full Agentos Index design reference.
+Load the `agentos-index` skill when you need index-grounded context, index research, index writing, diagnosis, testing, or maintenance.
 
-Load the `agentos-index-activate` skill at the start of a session to bootstrap the Agentos Index runtime.
+Use `agentos-index` for cited context collection or to perform the `Index.Agent` role.
 
 ## Surface Rules
 

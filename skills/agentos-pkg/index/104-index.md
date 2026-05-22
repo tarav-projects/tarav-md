@@ -12,8 +12,8 @@
 ## Index.Activation
 
 - `Index.Activation` is the process of bootstrapping the `Index.Runtime` for a session
-- handled by `agentos-index-activate` — a dedicated bootstrap skill
-- loads the full index into context, then activates operating behavior
+- handled through the `agentos-index` auxiliary skill or by a caller performing the `Index.Agent` role
+- collects the relevant routing blocks, concept blocks, appendix material, and references for the current task
 - activation is opt-in — triggered by `AGENTS.md` or manual invocation
 - operational detail: `agentos-pkg/references/launch-runtime.md`
 
@@ -41,7 +41,7 @@
 - `Project.Index.Skill` is the `<project>-index` auxiliary skill for a package index surface
 - the canonical public index content lives in the package skill, usually `skills/<package>-pkg/index/`
 - it is a `Package.Aux.Skill` for the package's `Package.Skill.Index`
-- the auxiliary skill may provide direct index access, runtime bootstrap, or index workflow framing without owning a separate index SSOT
+- the auxiliary skill may provide direct index access, research, writing, diagnosis, testing, maintenance, or index workflow framing without owning a separate index SSOT
 
 ****
 

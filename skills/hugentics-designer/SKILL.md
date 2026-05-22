@@ -15,7 +15,9 @@ This skill is a router. Load only the references needed for the current backend,
 
 ## Activation
 
-This skill is activated by the `trigger-design-session` trigger skill, or when the user explicitly requests a design session.
+Activate this skill when the user wants to start or continue a design session.
+
+Typical activation phrases include "let's start a design session", "let's design X", "start a design-session", "continue the design-session", or an explicit `hugentics-designer` invocation.
 
 Do not activate for ordinary design discussion, implementation work, generic status reporting, or code review.
 
@@ -61,7 +63,7 @@ Do not upgrade automatically. The user controls backend changes.
 When the user wants implementation-ready handoff:
 
 - load `references/impl-req.md`
-- activate `trigger-impl-req` to hand off to the `hugentics-impl-designer` workflow
+- load `hugentics-impl-designer` to hand off to the implementation-request workflow
 
 ## Move Routing
 

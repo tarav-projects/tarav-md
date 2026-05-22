@@ -11,8 +11,8 @@
 
 ### Orientation
 
-- `agentos-usage` — minimal Agentos orientation and usage routing.
-- `agentos-pkg` — package-level orientation for the Agentos core package.
+- `agentos-pkg` — workflow-neutral package-level orientation for the Agentos core package.
+- `package.md` — package router, boundary, dependency, install, and agent notes.
 
 ### Index
 
@@ -20,27 +20,14 @@
 - `agentos-pkg/appendix/` — Agentos public index appendix files.
 - `agentos-pkg/references/` — Agentos Index operational references.
 - `agentos-pkg/testing/` — Agentos Index runtime test prompts.
-- `agentos-index` — auxiliary skill for direct Agentos Index design context.
-- `agentos-index-activate` — index runtime bootstrap auxiliary skill.
-- `agentos-index-writer` — user-gated index write path.
-- `agentos-index-doctor` — index health diagnosis.
-- `agentos-index-test` — index activation and runtime tests.
+- `agentos-index` — public `Package.Aux.Skill` for Agentos Index orientation and index functions: research/navigation, writing/mutation, diagnosis, testing, and maintenance.
 
 ### Hugentics
 
-- `agentos-hugentics` — Hugentic Harness entry point.
-- `hugentics-designer` — design-session workflow master.
-- `hugentics-impl-designer` — implementation-request workflow master.
-- `hugentics-impl-executer` — implementation execution workflow master.
-
-### Hugentic Triggers
-
-- `trigger-design-session` — design-session activation auxiliary skill.
-- `trigger-impl-req` — implementation-request activation auxiliary skill.
-- `trigger-impl-execution` — implementation execution activation auxiliary skill.
-- `trigger-hugentic-status` — hugentic workflow status auxiliary skill.
-- `trigger-capture-audit` — capture audit auxiliary skill.
-- `trigger-chat-status` — general chat status auxiliary skill.
+- `agentos-hugentics` — workflow-neutral Hugentic Harness subsystem map.
+- `hugentics-designer` — operational design-session workflow master for `What.Design`.
+- `hugentics-impl-designer` — operational implementation-request workflow master for `How.Design`.
+- `hugentics-impl-executer` — operational implementation-execution workflow master for `Impl.Exec`.
 
 ### Artifacts
 
@@ -61,6 +48,18 @@
 - `agentos-skills-miner-ingenier` — skill research and mining workflow.
 - `codebase-general-cleanup` — targeted codebase cleanup workflow.
 - `git-commit-trigger` — deterministic semantic commit workflow.
+
+### Compatibility And Deprecated Surfaces
+
+- `agentos-usage` — deprecated general Agentos orientation; use `agentos-pkg`.
+- `agentos-index-activate` — deprecated standalone index runtime bootstrap; use `agentos-index`.
+- `agentos-index-writer` — deprecated standalone index write skill; use the writing function in `agentos-index`.
+- `agentos-index-doctor` — deprecated standalone index diagnosis skill; use the diagnosis function in `agentos-index`.
+- `agentos-index-test` — deprecated standalone index test skill; use the testing function in `agentos-index`.
+- `trigger-design-session` — deprecated trigger-only route; use `hugentics-designer`.
+- `trigger-impl-req` — deprecated trigger-only route; use `hugentics-impl-designer`.
+- `trigger-impl-execution` — deprecated trigger-only route; use `hugentics-impl-executer`.
+- `trigger-hugentic-status`, `trigger-capture-audit`, and `trigger-chat-status` remain under active role review.
 
 ## Package.Boundary
 

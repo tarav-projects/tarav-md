@@ -15,15 +15,17 @@ The Hugentic Harness is the integrated standard workflow that connects three pha
 2. **How.Design** — fork toward implementation, produce an `Impl.Req` artifact (`impl.designer.agent`)
 3. **Impl.Exec** — load and execute the `Impl.Req` (`impl.executer.agent`)
 
-Each phase has a named agent role, a workflow master skill with full instructions, and a trigger skill for activation.
+Each phase has a named agent role and an operational workflow-master skill with full instructions.
+
+This skill is workflow neutral. It maps the Hugentic subsystem without entering a specific workflow mode.
 
 ## Workflow Map
 
-| Phase | Agent | Workflow Master | Trigger |
-|---|---|---|---|
-| What.Design | `Main.Designer.Agent` | `hugentics-designer` | `trigger-design-session` |
-| How.Design | `impl.designer.agent` | `hugentics-impl-designer` | `trigger-impl-req` |
-| Impl.Exec | `impl.executer.agent` | `hugentics-impl-executer` | `trigger-impl-execution` |
+| Phase | Agent | Workflow Master |
+|---|---|---|
+| What.Design | `Main.Designer.Agent` | `hugentics-designer` |
+| How.Design | `impl.designer.agent` | `hugentics-impl-designer` |
+| Impl.Exec | `impl.executer.agent` | `hugentics-impl-executer` |
 
 ## Artifacts
 
@@ -36,9 +38,9 @@ Each phase has a named agent role, a workflow master skill with full instruction
 
 ## How To Use
 
-- Load a **trigger skill** to activate a workflow — triggers are lightweight and user-invoked
-- The trigger will point you to the **workflow master** — the full instructions for that workflow
-- Workflow masters contain artifact format definitions, reference files, and operational guidance
+- Load this skill for the Hugentic map.
+- Load a workflow master only when the caller intends to enter that operational mode.
+- Workflow masters contain artifact format definitions, reference files, gates, and operational guidance.
 
 ## Session Interruptions
 
@@ -66,7 +68,7 @@ See `skills/agentos-pkg/index/102-index.md` for definitions and how they apply t
 
 - **Alignment.Session** — the general alignment model; see `references/alignment-session.md`
 - **Index** — `agentos-index` skill, independent subsystem for durable design truth
-- **Orientation** — `agentos-usage` skill, general Agentos entry point (lists this skill)
+- **Orientation** — `agentos-pkg` skill, workflow-neutral Agentos package root
 
 ## Design Surface
 

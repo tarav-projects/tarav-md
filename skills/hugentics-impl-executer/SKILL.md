@@ -11,9 +11,11 @@ Load an `Impl.Req` artifact and execute it through disciplined, incremental impl
 
 ## Activation
 
-This skill is activated by the `trigger-impl-execution` trigger skill, or when the user explicitly requests implementation of a plan or `Impl.Req`.
+Activate this skill when the user wants to execute an implementation plan or approved `Impl.Req`.
 
-Do not use for exploratory design (use `trigger-design-session`), debugging, or open-ended refactoring.
+Typical activation phrases include "implement this", "execute the plan", "build this", or an explicit `hugentics-impl-executer` invocation.
+
+Do not use for exploratory design (use `hugentics-designer`), debugging, or open-ended refactoring.
 
 ## References
 
@@ -34,8 +36,8 @@ To extend this skill, add a new file under `references/` and document its loadin
 
 Load these before starting implementation work:
 
-- **`agentos-usage`** — minimal Agentos orientation. Load when working inside an Agentos project.
-- **`agentos-index-activate`** — activates the index runtime. Load when the project has `notes/index/`.
+- **`agentos-pkg`** — workflow-neutral Agentos package orientation. Load when working inside an Agentos project.
+- **`agentos-index`** — index-grounded context and index functions. Load when the task needs index research, writing, diagnosis, testing, or maintenance.
 - **`artifact-impl-req`** — understands impl-req format. Load when the input is an impl-req.
 
 ## Alignment.Loop:Exec

@@ -28,9 +28,9 @@ skills/
 │   ├── appendix/                 — public appendix (concept-named depth)
 │   ├── references/               — operational detail (runtime, syntax, gating)
 │   └── testing/                  — index runtime tests
-├── agentos-index/                — auxiliary skill into the Agentos Index subsystem
+├── agentos-index/                — workflow-neutral aux skill for Agentos Index functions
 ├── agentos-hugentics/            — hugentic harness entry point
-├── agentos-usage/                — project orientation
+├── agentos-pkg/                  — Agentos core package orientation
 ├── agentos-project-doctor/       — project health diagnosis
 └── (33 skills total)             — see skills/ for full listing
 dev/                              — development scripts and tooling

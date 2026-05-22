@@ -11,7 +11,9 @@ Design an implementation path and produce an `Impl.Req` artifact. The agent fork
 
 ## Activation
 
-This skill is activated by the `trigger-impl-req` trigger skill, or when the user explicitly requests an impl-req.
+Activate this skill when the user wants to plan an implementation or produce an `Impl.Req`.
+
+Typical activation phrases include "let's plan the implementation", "create an impl-req", "make an impl-req", `Impl.Req.Handoff`, or an explicit `hugentics-impl-designer` invocation.
 
 Can be triggered from a design session (`Impl.Req.Handoff` interruption) or independently from any context where implementation guidance is needed.
 
