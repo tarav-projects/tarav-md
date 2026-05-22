@@ -1,20 +1,20 @@
 ---
 name: agentos-index
-description: "Auxiliary skill for the Agentos Index — a Soft.Programming.Language for project knowledge. Load when an index auxiliary skill needs full design context or when discussing the index design itself."
+description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem of agentos-pkg. Load for index research, writing, diagnosis, testing, maintenance, or index design context."
 ---
 
 # agentos-index
 
-Auxiliary skill for the Agentos Index — a `Soft.Programming.Language` for project knowledge.
+Workflow-neutral `Package.Aux.Skill` for the Agentos Index — a `Soft.Programming.Language` for project knowledge.
 
-This is a `Package.Aux.Skill` for `agentos-pkg`. The Agentos Index design reference now lives in `agentos-pkg/index/`, `agentos-pkg/appendix/`, and `agentos-pkg/references/`.
+This skill orients the caller to the index subsystem without forcing an operation. The Agentos Index design reference lives in `agentos-pkg/index/`, `agentos-pkg/appendix/`, and `agentos-pkg/references/`.
 
 ## What The Index Is
 
 - the index is a `Soft.Programming.Language` — soft syntax (natural language), programming semantics (execution behavior)
 - it is the `Alignment.Surface` between humans and agents — the shared ground where both sides align on what things mean
 - it contains `Named.Concepts` written in `Kernel.Block:Index` blocks, organized in flat index files
-- agents operate the index through the `Index.Runtime` — the full index is loaded at activation, concepts are always in context
+- agents operate the index by collecting the relevant routing blocks, concept blocks, appendix material, and references for the current task
 
 ## References
 
@@ -24,20 +24,34 @@ This is a `Package.Aux.Skill` for `agentos-pkg`. The Agentos Index design refere
 | `agentos-pkg/references/maintenance.md` | maintenance checklist (linting, dedup, promotion, placement audit) + Index.CLI commands |
 | `agentos-pkg/references/test-system.md` | index testing mechanism — master/subagent pattern, test file format |
 
-## Auxiliary Skills
+## Index Functions
 
-The following `Package.Aux.Skill` surfaces point into the Agentos Index subsystem:
+| Function | Use |
+|---|---|
+| Research / navigation | Search the index, collect relevant blocks or appendix sections, and return cited context for the current task. |
+| Writing / mutation | User-gated index edits: placement, overlap checks, wording approval, routing updates, and maintenance pass. |
+| Diagnosis | Report on structure, routing, staleness, coherence, coverage gaps, or placement drift. Do not mutate unless separately approved. |
+| Testing | Use `agentos-pkg/testing/` and `agentos-pkg/references/test-system.md` to check index activation and recall behavior. |
+| Maintenance | Use `agentos-pkg/references/maintenance.md` for linting, deduplication, promotion, and placement audits. |
 
-- `agentos-index-activate` — bootstrap the index runtime for a session
-- `agentos-index-writer` — user-gated write path to the index
-- `agentos-index-doctor` — index health review and diagnosis
-- `agentos-index-test` — run index activation and runtime tests
+## Index.Agent Behavior
 
-All auxiliary skills point back to the relevant surface in `agentos-pkg`.
+Any capable caller can act as an `Index.Agent`, or spawn a subagent to do so when context pollution matters.
+
+An `Index.Agent` should:
+
+- search routing surfaces first, then load only relevant concept blocks, appendix material, or references
+- return context with source block citations so the caller can verify and maintain the summary
+- distinguish discovered context from inference
+- use writing/mutation only when the user has approved an index write
 
 ## When To Load This Skill
 
-- when another index auxiliary skill needs full design context
+- when a session needs index-grounded context or a custom index research pass
+- when writing, diagnosing, testing, or maintaining the index
 - when discussing or modifying the index design itself
 - when debugging index behavior or resolving design questions
-- not needed for routine index operations — auxiliary skills handle those
+
+## Compatibility
+
+`agentos-index-activate`, `agentos-index-writer`, `agentos-index-doctor`, and `agentos-index-test` are deprecated standalone public aux skills for now. Their roles are represented as functions in this skill.
