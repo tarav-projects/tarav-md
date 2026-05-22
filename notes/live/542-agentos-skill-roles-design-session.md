@@ -411,6 +411,22 @@
 - supports prototypes, product/interface drafts, runnable design sketches, experiments, and workflow support scripts
 - can inform stable implementation work, but is not itself stable project code
 
+### Package.Aux.Skill:agentos-live-script
+
+- `agentos-live-script` is a workflow-neutral live-surface protocol `Package.Aux.Skill` under `agentos-pkg`
+- its role is discoverability and orientation for `Agentos.Live.Script`
+- covers live-script location, naming, numbering, allocation, extension choice, optional runtime behavior, and placement rules
+- supports small runnable or inspectable code snippets that agents maintain for user feedback and alignment
+- useful for prototypes, product/interface drafts, runnable design sketches, experiments, and workflow support scripts
+- should carry cited duplicated protocol context; authoritative concepts belong in `agentos-pkg`
+- does not start a workflow by itself
+- replaces `agentos-live-scripts-base` as the public conceptual role
+
+#### meta
+
+- current action: rename/reframe `agentos-live-scripts-base` to `agentos-live-script`
+- implementation note: use singular `live-script` in the public role name even though the storage directory is `dev/live/`
+
 ## Session.Notes
 
 ### Traversal Tracker
@@ -441,7 +457,7 @@
 - [x] `artifact-impl-req`
 - [x] `artifact-design-summary`
 - [x] `artifact-issue-report`
-- [ ] `agentos-live-scripts-base`
+- [x] `agentos-live-scripts-base`
 - [ ] `agentos-file-numbering-base`
 - [ ] `agentos-project-doctor`
 
@@ -494,3 +510,4 @@ For each skill or skill group:
 - `artifact-design-summary` reviewed — retained as workflow-neutral artifact-format auxiliary skill with ownership still pending between `agentos-hugentics`, `agentos-pkg`, or a future artifact/documentation subsystem
 - `artifact-issue-report` reviewed — retained as workflow-neutral artifact-format auxiliary skill; companion operational workflow role named `hugentics-issue-tracker`
 - `Agentos.Live.Note` and `Agentos.Live.Script` drafted as live-surface concepts: non-stable working surfaces that can back artifacts or alignment work without being artifacts themselves
+- `agentos-live-scripts-base` reviewed — rename/reframe as `agentos-live-script`, a workflow-neutral live-surface protocol auxiliary skill for `Agentos.Live.Script`
