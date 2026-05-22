@@ -94,7 +94,7 @@
 
 - `Impl.Req` work spans `How.Design` and `Impl.Exec` — different principles matter at each phase
 - `How.Design`: `Deep.Modules`, `Agent.Navigable.Codebase` — shape the implementation design
-- `Impl.Exec`: `Vertical.Slice`, `No.Legacy.Allowed`, `Test.At.Boundaries` — guide execution discipline
+- `Impl.Exec`: `Vertical.Slice`, `No.Legacy.Allowed`, `No.Regression.Tests.Allowed`, `Test.At.Boundaries` — guide execution discipline
 - see `102-index.md` for definitions
 
 ****
@@ -135,6 +135,17 @@
 - implementation is not done until the change is clean — no trailing debris
 - applies to every `Impl.Req`, not just large refactors
 - can only be overridden by an explicit statement — ignoring this is one of the main causes of poor quality implementation results
+
+****
+
+## No.Regression.Tests.Allowed
+
+- `No.Regression.Tests.Allowed` is an implementation constraint: do not add regression tests by default
+- a bug fix does not automatically require a new test
+- add tests only when the user asks, the `Impl.Req` calls for them, or the behavior is a durable public contract
+- when tests are added, follow `Test.At.Boundaries`: test public behavior, not private implementation details
+- validation can be a CLI run, manual check, type check, focused command, or existing test suite
+- prevents test suites from accumulating one-off bug fossils and private-helper assertions
 
 ****
 

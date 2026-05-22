@@ -43,6 +43,17 @@
 
 ****
 
+## Workflow.Skill
+
+- `Workflow.Skill` is a skill oriented around executing a recurring workflow
+- can include the conceptual framing it needs inline when that improves execution
+- uses `Cited.Duplication` to carry known context directly instead of searching the index on every run
+- becomes a contextualized execution surface rather than only a thin router
+- should cite origin blocks for duplicated concept material
+- should still use index search or `Index.Agent` behavior for unknown, custom, or exploratory context needs
+
+****
+
 ## Skill.Source
 
 - `Skill.Source` is a direct skill root or package-like expansion that contributes discoverable skills

@@ -56,12 +56,32 @@
 
 ## Index.Agent
 
-- `Index.Agent` is a general-purpose subagent that mediates between the index and any agent that needs something from it
+- `Index.Agent` is a role for collecting, interpreting, and returning context from the index
+- can be performed by a dedicated specialist agent or temporarily by a workflow agent
 - the caller sends a prompt; the `Index.Agent` scans the index, does the work, and returns a result
 - the caller's context is protected — the `Index.Agent` pays the cost of loading the full index, not the caller
+- useful for discovery, uncertain queries, custom context extraction, and index-grounded synthesis
+- not required as the default prelude when a workflow already knows its needed cited context
+- must cite source blocks in returned context so summaries remain traceable and maintainable
 - not a fixed API — handles any reasonable prompt against the index
 - backed by the `agentos-index-agent` skill: index conventions, block structure, routing, CLI tools, appendix discovery
 - can run on a medium-size model — structured, scoped work
 - the caller retains direct index access when the index *is* the work target
 - the caller can pass context in the prompt — a chat summary, already-loaded blocks, a topic, a question
 - common patterns: grounding (pass chat summary, get relevant blocks), search (find blocks by topic), placement (where to write a new block), filtering (return namespace members minus already-loaded blocks)
+
+****
+
+## Index.Depot
+
+- `Index.Depot` is a concrete index instance — the set of files with index blocks, their appendix, and a router
+- built on the `Agentos.Index.Framework` — follows the same block structure, routing, writing, and discovery conventions
+- one depot = public part (skill-packaged, portable) + local part (`notes/index/`, project-specific)
+- each depot is self-contained — its own router(s), its own flat files, its own appendix
+- a concept lives in exactly one depot — the depot that naturally owns it
+- composability: an agent loads multiple depots to build its working index
+- the `Index.Agent` works across all loaded depots — it scans whatever routers are available
+
+### meta
+
+- aliases: `Agentos.Index.Depot`

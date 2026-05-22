@@ -20,25 +20,39 @@
 ## Natural.Placement
 
 - `Natural.Placement` is the principle that each surface holds the facet of a concept that is natural to its function
+- primarily governs where authoritative origin material belongs
 - the full description of a concept is distributed across surfaces — each complements the others
     - index → conceptual grounding (what it is, why, how it connects) and discovery (where to find it)
     - appendix → extended depth, rationale, scoped views through `Concept.Scoping`
     - skills → operational behavior, workflows
     - code → the implementation itself (the code IS the description)
-- each surface should mostly contain what the other surfaces don't
-- a well-maintained system has no drift between surfaces AND has content balanced by the nature of each surface
+- cited duplicates can also be naturally placed when local use strongly benefits from repeated content
+- duplication is justified when avoiding it would harm bootstrapping, workflow performance, local readability, or agent orientation
 - content that feels unnatural in a surface is probably misplaced
-- the anti-pattern is duplication across surfaces — the pattern is complementary coverage
-- minimal duplication is allowed when a surface needs self-sufficiency — e.g. a skill repeating just enough context to be usable without loading the index
+- uncited or stale duplication is the anti-pattern, not duplication itself
 
 ****
 
 ## Placement.Balance
 
-- `Placement.Balance` is the equilibrium state of content across surfaces
-- the system is balanced when moving content from one surface to another would feel less natural than its current placement
-- diagnostic signal: if you find yourself needing the same content in two different surfaces and linking is not possible, the system is unbalanced
-- complementary to `Natural.Placement` — natural placement is the principle, placement balance is the resulting state
+- `Placement.Balance` is the maintained alignment state between authoritative origins and their useful local expressions across surfaces
+- balanced placement is not absence of repetition
+- the system is balanced when authoritative origins live in their natural source surfaces and cited duplicates exist only where locally useful
+- duplicates remain balanced when they cite origins and can be found, checked, and updated during maintenance
+- diagnostic signal: uncited repeated concept material, stale cited duplicates, or ambiguity about which surface is authoritative
+- complementary to `Natural.Placement` — natural placement decides where material belongs; placement balance checks whether distributed material stays aligned
+
+****
+
+## Cited.Duplication
+
+- `Cited.Duplication` is intentional duplication of authoritative concept material into a non-authoritative surface with an explicit `Concept.Cite` to the origin
+- used when local access to repeated context improves agent performance, bootstrapping, workflow execution, package orientation, or readability
+- the duplicate may be rewritten, summarized, or adapted to local task shape, but remains non-authoritative
+- the cited origin anchors maintenance and gives agents or tooling a way to check drift
+- if a cited duplicate clearly mirrors an edited origin, the writer may update the duplicate in the same approved write pass
+- unresolved drift or ambiguous disagreement is surfaced as an issue, not silently resolved
+- uncited durable concept material in a non-authoritative surface should either be indexed, cited, or treated as unmanaged duplication
 
 ****
 
@@ -184,6 +198,17 @@
 - diagnosis-first, not fix-first — report issues with evidence, then the user decides
 - parameterized: `Maintenance.System:Agentos` is the Agentos instance
 - reports must be evidence-based — suggestions without evidence must be marked as such
+
+****
+
+## Index.Writer.Maintenance.Pass
+
+- `Index.Writer.Maintenance.Pass` is the maintenance check performed when editing an existing authoritative concept block
+- starts by finding all mentions and citations of the edited concept across stable markdown surfaces
+- checks cited duplicates, workflow copies, package routers, entry skills, and related references for needed updates
+- may update clear cited duplicates in the same approved write pass when they mirror the edited origin
+- surfaces unresolved drift, ambiguous disagreement, or unclear authority as issues
+- prevents index edits from leaving known duplicated or cited material stale
 
 ****
 

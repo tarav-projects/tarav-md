@@ -121,11 +121,11 @@
 
 ## Inline.Relatedness
 
-- `Inline.Relatedness` is the principle that related concepts should be mentioned in context, not in a separate section
-- if a concept comes up naturally in the writing, the `Dotted.Name` mention is enough
-- if the relationship is relevant but doesn't come up naturally, add a `Concept.Cite`: `[Concept.X, Concept.Y]`
-- the cite goes inline — next to the line or idea it relates to, just like academic paper citations
-- this keeps the concept graph navigable from within the block itself — an agent reading it sees the connections in place
+- `Inline.Relatedness` is the writing discipline of naturally blending related `Dotted.Name` concepts into concept text
+- the goal is not to create explicit related-edge metadata
+- when a related concept is already part of the sentence meaning, use its `Dotted.Name`
+- use `Concept.Cite` only when a materially important relationship should be visible but does not fit naturally into the sentence
+- enriches the index by making concept relationships discoverable inside ordinary writing
 
 ****
 

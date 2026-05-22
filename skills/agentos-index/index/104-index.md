@@ -46,9 +46,11 @@
 
 ## Concept.Cite
 
-- `Concept.Cite` is the inline citation notation for referencing related concepts: `[Concept.X, Concept.Y]`
-- used when the relationship is relevant but doesn't come up naturally in the writing
-- goes inline — next to the line it relates to, like academic paper citations
+- `Concept.Cite` is the bracket notation for citing concept origins or materially important related concepts when inline mention is not natural
+- format: `[Concept.X, Concept.Y]`; page or source qualifiers may be added when needed, e.g. `[Concept.X, Concept.Y[1]]`
+- used when the citation changes how an agent should interpret, verify, maintain, or navigate the line
+- not used merely because another concept is loosely related
+- complements `Inline.Relatedness`: prefer natural inline `Dotted.Name` mentions, cite only when the relation matters but does not read naturally
 
 ****
 

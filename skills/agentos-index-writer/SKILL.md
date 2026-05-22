@@ -43,3 +43,4 @@ For each block:
 
 - Update the routing table in `000-index.md` with the new concept
 - Check if the concept needs an `Explicit.Namespace` or belongs in an existing one
+- For edits to existing concept blocks, run an `Index.Writer.Maintenance.Pass`: find mentions/citations of the edited concept across stable markdown surfaces, update clear cited duplicates in the same approved write pass, and surface ambiguous drift as an issue
