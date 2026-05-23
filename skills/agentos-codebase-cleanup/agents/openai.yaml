@@ -1,0 +1,4 @@
+interface:
+  display_name: "agentos-codebase-cleanup"
+  short_description: "Commit-first in-place code cleanup"
+  default_prompt: "Use $agentos-codebase-cleanup to improve this repository in place, making a safety commit before any edits and summarizing the changes at the end."
