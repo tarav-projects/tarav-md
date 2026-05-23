@@ -45,7 +45,7 @@ Print only what is useful. Do not dump all sections every turn.
 - Prefer delta updates over full restatements.
 - Use headings only when session state needs to be visible.
 - Make clear which material is settled, open, or agent-assumed.
-- Do not imply that printed state is durable project authority.
+- Do not imply that printed state is a durable project surface.
 
 ## Upgrade
 

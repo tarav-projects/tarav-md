@@ -58,7 +58,6 @@
 
 ### Compatibility And Deprecated Surfaces
 
-- `agentos-usage` — deprecated general Agentos orientation; use `agentos-pkg`.
 - `agentos-index-activate` — deprecated standalone index runtime bootstrap; use `agentos-index`.
 - `agentos-index-writer` — deprecated standalone index write skill; use the writing function in `agentos-index`.
 - `agentos-index-doctor` — deprecated standalone index diagnosis skill; use the diagnosis function in `agentos-index`.

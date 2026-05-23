@@ -23,7 +23,7 @@ When both exist:
 ## Agentic Checks
 
 - Does the routing table appear stale relative to the active index surface?
-- Are migrated or legacy notes clearly marked as evidence rather than active authority?
+- Are migrated or legacy notes clearly marked as evidence rather than active design surfaces?
 - Do index notes appear concept-centered enough to be useful?
 
 If neither public nor local index exists, check whether the project appears to use an index-like durable design surface elsewhere.

@@ -9,7 +9,7 @@ Diagnosis-first workflow for evaluating how well a concrete `Agentos.Project:<ta
 
 ## Source Model
 
-Load `agentos-usage` and `agentos-index` if not yet loaded.
+Load `agentos-pkg` and `agentos-index` if not yet loaded.
 
 ## Trigger Boundary
 
@@ -42,7 +42,7 @@ Provider-agnostic examples:
 - `gpt-5.4-mini` with low reasoning
 - any provider's cheap inspection-oriented model with shell access
 
-Use a stronger model only when the diagnosis depends on difficult design judgment, large migration interpretation, or subtle authority-drift analysis.
+Use a stronger model only when the diagnosis depends on difficult design judgment, large migration interpretation, or subtle surface-alignment drift analysis.
 
 ## Core Rule
 
@@ -87,8 +87,8 @@ Load when relevant:
 - `references/ontology-registry.md` when `notes/index/` exists, dotted concepts appear in an index-like durable design surface, or integration ontology files, namespace notes, or cross-project concept declarations appear.
 - `references/reserved-notes.md` when `notes/live/` exists or a near-standard live TODO/issues note alternative appears.
 - `references/numbering.md` when numbered files exist in active Agentos surfaces or in near-standard overlapping alternatives.
-- `references/authority-drift.md` when `AGENTS.md`, `skills/`, `notes/live/`, or `notes/index/` exist.
-- `references/usage-skill-prompt.md` when `AGENTS.md` exists and the project adopts Agentos skills.
+- `references/surface-alignment-drift.md` when `AGENTS.md`, `skills/`, `notes/live/`, or `notes/index/` exist.
+- `references/package-orientation-prompt.md` when `AGENTS.md` exists and the project adopts Agentos skills.
 
 If uncertain, load the relevant reference rather than guessing.
 
@@ -106,7 +106,7 @@ Useful deterministic commands may include:
 - `test -f <path>` and `test -d <path>`
 - `python3 -m json.tool <file>` for JSON validity
 - `find` for numbered files
-- `rg` for dotted concepts and authority-drift evidence
+- `rg` for dotted concepts and surface-alignment drift evidence
 - `agentos stdlib prefix next --project-base <project-root-basename> --target <surface>` only for allocation context, not as a doctor verdict
 
 ## Check Outcome Model
@@ -166,7 +166,7 @@ Mode: report-only
 - For optional surfaces, absence alone is not a finding.
 - For optional surfaces, warn when the project appears to use that capability through a near-standard, overlapping, or off-protocol alternative instead of the canonical Agentos surface.
 - When a canonical optional surface is adopted, enforce its internal protocol.
-- Do not write findings titled as missing optional surfaces. Name the actual problem: overlapping alternative, malformed adopted surface, stale reserved file, unnumbered active file, duplicate prefix, range violation, or authority conflict.
+- Do not write findings titled as missing optional surfaces. Name the actual problem: overlapping alternative, malformed adopted surface, stale reserved file, unnumbered active file, duplicate prefix, range violation, or alignment conflict.
 - Use `fail` only for strong violations.
 - Use `warn` for likely drift or incomplete adoption.
 - Use `info` for useful context.
@@ -195,8 +195,8 @@ The first doctor scope should include these lower-level checks:
   - `.agents/skills` and `.claude/skills` may exist as valid runtime depots and are not findings by themselves when they are symlinked imported depots.
   - Project-root Agentos-style skills should live in `<project-root>/skills/`.
   - Nested `skills/` directories inside clear subprojects, apps, packages, or submodules are valid subproject-local skill surfaces and are not findings by themselves.
-  - Warn only when a nested skill surface appears to provide root-project guidance, conflicts with root `skills/`, or creates unclear authority/discovery from the evaluated project root.
-  - If `.agents/skills` or `.claude/skills` are materialized as local non-symlink directories in a way that blurs imported-depot vs project-local authority, warn.
+  - Warn only when a nested skill surface appears to provide root-project guidance, conflicts with root `skills/`, or creates unclear discovery from the evaluated project root.
+  - If `.agents/skills` or `.claude/skills` are materialized as local non-symlink directories in a way that blurs imported-depot vs project-local surfaces, warn.
 - `dev/live/` is optional by capability adoption.
   - If absent, no finding.
   - If live-script behavior exists through near-standard alternatives, warn.
