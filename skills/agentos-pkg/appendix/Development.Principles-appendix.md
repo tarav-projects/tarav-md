@@ -15,19 +15,19 @@
 
 ### examples
 
-#### CLI feature: `agentos index doctor`
+#### CLI feature: `agentos index linter`
 
-- scope: add a CLI command that checks index health
+- scope: add a CLI command that lints configured index and appendix surfaces
 - horizontal approach (avoid):
-    - add CLI argument parser for doctor
+    - add CLI argument parser for linter
     - add all diagnostic checks
     - add output formatting
     - add tests
 - vertical slice:
-    - wire CLI entry point → run one diagnostic (e.g., missing ontology entries) → print result
-    - testable: `agentos index doctor` runs and outputs something
-    - then: add second diagnostic, expand output
-    - then: add remaining diagnostics
+    - wire CLI entry point → run one deterministic check (e.g., configured surface existence) → print result
+    - testable: `agentos index linter --index <path>` runs and outputs a summary
+    - then: add gated checks, JSON output, and blocked-check summary
+    - then: add remaining linter checks
 
 #### module: prefix allocator for file numbering
 

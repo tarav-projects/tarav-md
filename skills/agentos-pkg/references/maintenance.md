@@ -17,8 +17,9 @@ Maintenance passes are the index equivalent of compilation:
 ## Index.CLI
 
 - `agentos index` is the CLI surface for deterministic index operations — the "compiler"
-- **doctor**: `agentos index doctor` — detect separator issues, syntax violations, health problems
-- **linting**: `Index.Block.Syntax` validation, size enforcement, structural checks
+- **linter**: `agentos index linter` — deterministic index and appendix checks that emit errors, warnings, and blocked checks
+- **doctor**: skill-level diagnosis that can run the linter first, then add agent judgment on coherence, staleness, coverage, and placement drift
+- **linting**: `Index.Block.Syntax` validation, size enforcement, structural checks, routing checks, and appendix checks
 - **lookup**: deterministic concept search and block retrieval
 
 ### Block Extraction (current)

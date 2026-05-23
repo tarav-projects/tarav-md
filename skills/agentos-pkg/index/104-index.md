@@ -193,3 +193,13 @@
 - the disk interpretation is often interchanged with the concept of provider home, because the home directory is the primary observable artifact
 - instance identity is derived from the provider family and environment fingerprint
 - provider home discovery is declarative — each family specifies known paths, file patterns, and database locations to locate its home directory
+
+****
+
+## Index.Linter
+
+- `Index.Linter` is the deterministic CLI checker for index and appendix surfaces
+- finding and check codes are scoped concept names under `Index.Linter/...`
+- each code names an appendix block that explains meaning, gating, or expected remediation
+- agents resolve linter code meaning through normal `agentos-pkg` index and `Appendix.Discovery`
+- the linter reports errors, warnings, blocked checks, and summary counts; semantic diagnosis belongs to `agentos-index-doctor`

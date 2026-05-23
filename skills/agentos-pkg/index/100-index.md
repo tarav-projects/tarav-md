@@ -26,10 +26,13 @@
     - appendix → extended depth, rationale, scoped views through `Concept.Scoping`
     - skills → operational behavior, workflows
     - code → the implementation itself (the code IS the description)
+- describing in markdown what code already holds naturally is redundant placement, not useful duplication — the question is not authority but placement
 - cited duplicates can also be naturally placed when local use strongly benefits from repeated content
 - duplication is justified when avoiding it would harm bootstrapping, workflow performance, local readability, or agent orientation
 - content that feels unnatural in a surface is probably misplaced
 - uncited or stale duplication is the anti-pattern, not duplication itself
+- when multiple implementations exist, one may serve as a `Canonical.Reference.Implementation` — the go-to surface for implementation details, chosen by natural fit rather than by authority hierarchy
+- drift between any surfaces is always an error to resolve, not a hierarchy to adjudicate
 
 ****
 

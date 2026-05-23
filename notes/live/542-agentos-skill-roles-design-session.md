@@ -3,10 +3,10 @@
 ## Session.Abstract
 
 - intent: revisit the role and design of each current Agentos skill to build a clear mental model of `agentos-pkg`
-- active focus: classify skills as `agentos-pkg` core surfaces, `Package.Aux.Skill` surfaces, dependent package skills, external/general skills, or local/project-specific concerns
+- active focus: skill-role inventory complete; prepare consolidation and implementation handoff
 - source context: `agentos-pkg` skeleton and first index-content migration are in place
 - state: active
-- next: review the package-root and index auxiliary-skill group first
+- next: consolidate implementation targets for skill renames, package moves, content extraction, and durable index/reference updates
 
 ## Design.Index
 
@@ -25,7 +25,7 @@
 - `agentos-pkg` core: package-owned content and package root surfaces
 - `Package.Aux.Skill`: package-associated top-level skill that adds specialized intention, operation, workflow, or subsystem focus while pointing into `agentos-pkg`
 - dependent package skill: skill that should belong to a future package such as `agentos-chatlas-pkg` or `agentos-iterante-pkg`
-- external/general skill: reusable skill that may depend on Agentos conventions but is not Agentos core
+- moved skill: skill that should leave `agentos-md` because ownership is project/domain-specific
 - local/project concern: material specific to `agentos-md` and better suited for `notes/index/` or a future `agentos-md-pkg`
 
 ### Package.Aux.Skill.Visibility
@@ -34,7 +34,7 @@
 - skill names and descriptions appear in agent context, so auxiliary skills help agents discover available package subsystems, operations, and workflows before loading the package root
 - the package root `SKILL.md` should provide similar discoverability after load: it acts like an `AGENTS.md` for the package or system
 - aux skill `SKILL.md` files provide tuned intro prompts for a subsystem, operation, or workflow
-- this improves routing, context economy, and task alignment without creating a new package authority
+- this improves routing, context economy, and task alignment without creating a separate package root
 - auxiliary skills may be kept physically separate when visibility, triggerability, or tuned prompting is valuable
 - duplicated context they carry should use `Cited.Duplication` back to authoritative package concepts
 
@@ -45,6 +45,18 @@
 - some auxiliary skills are operational workflow surfaces; loading them means the agent is entering that workflow mode
 - operational auxiliary skills are tuned execution prompts, not data-only documentation surfaces
 - `Workflow.Neutral.Skill` is therefore a property of some skills, not the default for all auxiliary skills
+
+### Natural.Placement:Skills
+
+- `Natural.Placement:Skills` is the application of `Natural.Placement` to skill surfaces
+- skills are natural surfaces for agentic operation: workflows, procedures, gates, tool use, role framing, and execution-shaped guidance
+- operational skills are code-like: they interact with the index and references, but their primary job is to run agentic behavior
+- this gives broad freedom to write operational skills in natural task-shaped language
+- skills can carry the context they need locally when that improves execution
+- when skill text repeats or adapts concept material from the index, it should use `Cited.Duplication`
+- citations add findability: they let agents and maintenance passes locate related surfaces, check drift, and extract useful material back into the index or references
+- drift or disagreement between a skill and the related index/reference surface is an alignment error to surface and fix
+- if a skill accumulates durable concept material, align it with the owning package index, appendix, or references; this may mean extracting, citing, or updating both surfaces together
 
 ### Workflow.Neutral.Skill
 
@@ -88,6 +100,23 @@
 
 - current action: keep as auxiliary skill
 - future action: collapse current index auxiliary skills into `agentos-index`; recreate narrower auxiliary skills later only if a concrete operational need emerges
+
+### Multi.Index.Operation
+
+- `Multi.Index.Operation` is the default operating condition of an `Index.Agent`
+- an `Index.Agent` is index-capable rather than index-bound
+- session context may bias the agent toward a default index, such as the active project index or currently loaded package index
+- explicit user direction may constrain which index or indexes to use
+- without such constraints, the agent should treat all accessible relevant indexes as possible sources of context, alignment, and conflict
+- applies to index research, context collection, writing, citation, maintenance, conflict detection, and package dependency traversal
+- concepts cited or returned from a non-default index should use qualified names, such as `<package>-pkg/Concept.Name` or `local/Concept.Name`
+- disagreement across indexes is surfaced as an issue, not silently merged
+- writes must respect the gates and placement rules of the target index
+
+#### meta
+
+- current action: promoted to durable `agentos-pkg` index
+- implementation note: durable block lives in `skills/agentos-pkg/index/104-index.md`
 
 ### Package.Aux.Skill:agentos-index-activate
 
@@ -146,7 +175,7 @@
 - `agentos-usage` is deprecated and should not be treated as a `Package.Aux.Skill`
 - its former role was general Agentos usage orientation
 - that role belongs to `agentos-pkg`: the package root and package router should guide agents to documentation, index surfaces, references, workflows, and package functions
-- should not remain a second package router or competing documentation authority
+- should not remain a second package router or competing documentation surface
 
 #### meta
 
@@ -160,7 +189,7 @@
 - is a workflow-neutral subsystem surface: loading it gives the Hugentic map without entering a specific Hugentic workflow mode
 - adds caller intention: the caller wants the Hugentic workflow map, not general Agentos package orientation
 - should remain public because Hugentics is an important Agentos subsystem with its own workflow family
-- points back to `agentos-pkg` as the package SSOT for shared Agentos concepts
+- points back to `agentos-pkg` for shared Agentos concept placement
 - may later move into `agentos-hugentics-pkg` if the Hugentic subsystem needs its own package root
 
 #### meta
@@ -189,7 +218,7 @@
 - `hugentics-designer` is a nested `Package.Aux.Skill` under `agentos-hugentics`
 - its role is the tuned prompt and workflow master for `What.Design.Session` / `Main.Designer.Agent`
 - is not workflow-neutral; loading it means the agent is entering Hugentic design-session mode
-- not a separate package authority; it exists because its description and `SKILL.md` prompt strongly shape agent behavior
+- not a separate package root; it exists because its description and `SKILL.md` prompt strongly shape agent behavior
 - should carry phase-specific activation language, routing, references, gates, and cited duplicated context
 - durable Hugentic concepts remain rooted in `agentos-pkg`
 
@@ -204,7 +233,7 @@
 - `hugentics-impl-designer` is a nested `Package.Aux.Skill` under `agentos-hugentics`
 - its role is the tuned prompt and workflow master for Impl.Req design / `impl.designer.agent`
 - is not workflow-neutral; loading it means the agent is entering implementation-design mode
-- not a separate package authority; it exists because its description and `SKILL.md` prompt strongly shape agent behavior
+- not a separate package root; it exists because its description and `SKILL.md` prompt strongly shape agent behavior
 - should carry phase-specific activation language, routing, references, artifact rules, gates, and cited duplicated context
 - durable Hugentic and implementation-design concepts remain rooted in `agentos-pkg`
 
@@ -219,7 +248,7 @@
 - `hugentics-impl-executer` is a nested `Package.Aux.Skill` under `agentos-hugentics`
 - its role is the tuned prompt and workflow master for Impl.Req execution / `impl.executer.agent`
 - is not workflow-neutral; loading it means the agent is entering implementation-execution mode
-- not a separate package authority; it exists because its description and `SKILL.md` prompt strongly shape agent behavior
+- not a separate package root; it exists because its description and `SKILL.md` prompt strongly shape agent behavior
 - should carry phase-specific activation language, routing, execution gates, references, and cited duplicated context
 - durable Hugentic and implementation-execution concepts remain rooted in `agentos-pkg`
 
@@ -234,7 +263,7 @@
 - `trigger-design-session` is deprecated as a standalone public skill
 - its former role was activation shim for `hugentics-designer`
 - the useful activation language belongs in `hugentics-designer`, because that operational nested auxiliary skill owns the `What.Design` workflow mode
-- keeping both creates duplicate routing authority without adding a distinct package function
+- keeping both creates duplicate routing surfaces without adding a distinct package function
 - the public model should route through `agentos-hugentics` for the workflow-neutral subsystem map, then directly to `hugentics-designer` for design-session execution
 
 #### meta
@@ -247,7 +276,7 @@
 - `trigger-impl-req` is deprecated as a standalone public skill
 - its former role was activation shim for `hugentics-impl-designer`
 - the useful activation language belongs in `hugentics-impl-designer`, because that operational nested auxiliary skill owns the `How.Design` / Impl.Req workflow mode
-- keeping both creates duplicate routing authority without adding a distinct package function
+- keeping both creates duplicate routing surfaces without adding a distinct package function
 - `Impl.Req.Handoff` should load `hugentics-impl-designer` directly
 
 #### meta
@@ -260,7 +289,7 @@
 - `trigger-impl-execution` is deprecated as a standalone public skill
 - its former role was activation shim for `hugentics-impl-executer`
 - the useful activation language belongs in `hugentics-impl-executer`, because that operational nested auxiliary skill owns the `Impl.Exec` workflow mode
-- keeping both creates duplicate routing authority without adding a distinct package function
+- keeping both creates duplicate routing surfaces without adding a distinct package function
 - approved `Impl.Req` execution should load `hugentics-impl-executer` directly
 
 #### meta
@@ -400,6 +429,20 @@
 - supports active design sessions, implementation requests, summaries, issue reports, TODOs, audits, and other live coordination material
 - can serve as the backend/storage surface for workflow artifacts, but is not itself defined by one workflow
 
+### Package.Aux.Skill:agentos-live-note-base
+
+- `agentos-live-note-base` is a workflow-neutral live-surface protocol `Package.Aux.Skill` under `agentos-pkg`
+- its role is discoverability and orientation for `Agentos.Live.Note`
+- covers live-note location, naming, numbering, allocation, and placement rules
+- should carry cited duplicated protocol context from `Agentos.Live.Note`, `File.Numbering.Protocol`, and relevant package references
+- does not start a workflow by itself
+- public naming remains unsettled; do not rename before the live surface concepts are stabilized
+
+#### meta
+
+- current action: keep as live-note protocol auxiliary skill for now
+- implementation note: revisit name after promoting `Agentos.Live.Note` and `Agentos.Live.Script` into durable package index
+
 ### Agentos.Live.Script
 
 - `Agentos.Live.Script` is a non-`Stable.Surface` and `Alignment.Surface` for small agent-maintained code surfaces
@@ -426,6 +469,164 @@
 
 - current action: rename/reframe `agentos-live-scripts-base` to `agentos-live-script`
 - implementation note: use singular `live-script` in the public role name even though the storage directory is `dev/live/`
+
+### Absorbed.Skill:agentos-file-numbering-base
+
+- `agentos-file-numbering-base` is absorbed into `agentos-pkg`
+- its former role was orientation for `File.Numbering.Protocol`
+- `File.Numbering.Protocol` remains an important core Agentos concept, but it is package content rather than a separate public auxiliary skill
+- compact numbering semantics belong in the `File.Numbering.Protocol` index block
+- design depth and rationale belong in the `File.Numbering.Protocol` appendix
+- operational procedure, CLI usage, target flags, and implementation caveats belong in a package reference file
+- auxiliary skills that depend on numbering should carry cited duplicated guidance from `File.Numbering.Protocol` or the relevant reference
+- no standalone public skill is needed unless a concrete future workflow emerges around numbering diagnosis, repair, or migration
+
+#### meta
+
+- current action: absorb into `agentos-pkg`
+- future action: move useful operational detail from the current skill into package concept, appendix, and reference surfaces
+
+### Parked.Skill:agentos-project-doctor
+
+- `agentos-project-doctor` is a cited surface of `agentos-pkg`
+- its role and redesign should be handled in a separate design session
+- likely contains diagnostic content that should cite authoritative `agentos-pkg` concepts and references
+- do not resolve its final auxiliary-skill shape in this session
+
+#### meta
+
+- current action: park
+- future action: open a focused design session for Agentos doctor/diagnosis surfaces
+
+### Deprecated.Concept:Usage.Skill
+
+- `Usage.Skill` is deprecated as a standalone skill concept
+- package roots replace usage skills as the general agent-facing orientation surface
+- relevant content from existing usage skills should move into the owning `Package.Skill` index, appendix, or references
+- only real operations, workflows, or subsystem visibility handles should remain as auxiliary skills
+
+#### meta
+
+- current action: deprecate concept
+- implementation note: existing usage skills should be absorbed into their owning package skills rather than renamed as usage surfaces
+
+### Absorbed.Skill:chatlas-usage
+
+- `chatlas-usage` is deprecated as a standalone `Usage.Skill`
+- `Usage.Skill` is being eliminated as a public skill concept
+- package roots are the agent-facing usage and orientation surface for packages and systems
+- Chatlas-specific durable content should move into `agentos-chatlas-pkg` index, appendix, or references
+- operational guidance should become package references or auxiliary skills under `agentos-chatlas-pkg` only when it represents a real package operation
+- `agentos-pkg` may route to `agentos-chatlas-pkg` as a dependent package, but should not absorb Chatlas-specific usage content
+
+#### meta
+
+- current action: absorb into `agentos-chatlas-pkg`
+- implementation note: move relevant content to Chatlas package index, appendix, or references
+
+### Dependent.Package.Aux.Skill:agentos-chatlas-retention-audit
+
+- `agentos-chatlas-retention-audit` belongs to `agentos-chatlas-pkg`
+- its role is operational Chatlas raw-retention audit
+- audits provider raw data against Chatlas archive policy, provider-home artifacts, and previous audit reports
+- loading it means entering a retention-audit workflow, not package-neutral orientation
+- may cite `agentos-pkg` concepts for package skills, live notes, artifacts, index behavior, and audit/report discipline
+- should not be absorbed into `agentos-pkg`
+- `agentos-pkg` may route to it only as a dependent package operation
+
+#### meta
+
+- current action: move/classify under `agentos-chatlas-pkg`
+- implementation note: keep as operational auxiliary skill for Chatlas retention audit
+
+### Dependent.Package.Aux.Skill:chatlas-session-continue
+
+- `chatlas-session-continue` belongs to `agentos-chatlas-pkg`
+- its role is operational session continuation using Chatlas-maintained session data
+- resolves a prior session, extracts conversation context, and returns a continuation handoff for resuming work
+- loading it means entering a Chatlas session-recovery service, not package-neutral orientation
+- conceptual center belongs in `agentos-chatlas-pkg`; local skill framing should use cited duplicated Chatlas package content
+- may cite `agentos-pkg` only for shared package, artifact, and handoff conventions
+- replaces `agentos-session-continue` as the public conceptual role
+
+#### meta
+
+- current action: rename/reframe `agentos-session-continue` to `chatlas-session-continue`
+- implementation note: keep as dependent Chatlas package auxiliary skill
+
+### Dependent.Package.Aux.Skill:chatlas-session-zip-transcript
+
+- `chatlas-session-zip-transcript` belongs to `agentos-chatlas-pkg`
+- its role is operational compact transcript recovery using Chatlas-maintained session data
+- resolves a prior session and returns or creates a zip-transcript summary artifact/path
+- loading it means entering a Chatlas transcript-recovery service, not package-neutral orientation
+- conceptual center belongs in `agentos-chatlas-pkg`; local skill framing should use cited duplicated Chatlas package content
+- may cite `agentos-pkg` only for shared package, artifact, and handoff conventions
+- replaces `agentos-session-zip-transcript` as the public conceptual role
+
+#### meta
+
+- current action: rename/reframe `agentos-session-zip-transcript` to `chatlas-session-zip-transcript`
+- implementation note: keep as dependent Chatlas package auxiliary skill
+
+### Package.Aux.Skill:agentos-skills-ingenier
+
+- `agentos-skills-ingenier` is an operational `Package.Aux.Skill` under `agentos-pkg`
+- its role is researching, designing, creating, and improving agent skills
+- searches available sources for reusable patterns, examples, workflows, supporting artifacts, and design evidence
+- loading it means entering a skill-engineering workflow, not package-neutral orientation
+- should cite authoritative `agentos-pkg` concepts for skill/package design, package boundaries, and duplication discipline when those concepts shape the work
+- source content used by the skill should be cited so local guidance remains maintainable
+- replaces `agentos-skills-miner-ingenier` as the public conceptual role
+
+#### meta
+
+- current action: rename/reframe `agentos-skills-miner-ingenier` to `agentos-skills-ingenier`
+- implementation note: keep broad skill-engineering scope and root shared Agentos concepts in `agentos-pkg`
+
+### Package.Aux.Skill:agentos-codebase-cleanup
+
+- `agentos-codebase-cleanup` is an operational `Package.Aux.Skill` under `agentos-pkg`
+- its role is codebase cleanup after implementation or during maintenance
+- checks code for integration quality, bad practices, stale structure, unnecessary duplication, poor boundaries, and cleanup opportunities
+- loading it means entering a codebase-cleanup workflow, not package-neutral orientation
+- should extract durable conceptual knowledge into `agentos-pkg` index, appendix, or references
+- local workflow guidance should be a `Cited.Duplication` surface of authoritative `agentos-pkg` concepts and references
+- important workflow; needs deeper design later
+- replaces `codebase-general-cleanup` as the public conceptual role
+
+#### meta
+
+- current action: rename/reframe `codebase-general-cleanup` to `agentos-codebase-cleanup`
+- future action: open a focused design session for codebase cleanup workflow quality and package citations
+
+### Package.Aux.Skill:agentos-git-commit
+
+- `agentos-git-commit` is an operational utility `Package.Aux.Skill` under `agentos-pkg`
+- its role is performing deterministic git commit workflows
+- supports grouping changes, writing semantic commit messages, and committing without mixing unrelated work
+- loading it means entering a commit workflow, not package-neutral orientation
+- should extract durable conceptual knowledge into `agentos-pkg` index, appendix, or references
+- local workflow guidance should be a `Cited.Duplication` surface of authoritative `agentos-pkg` concepts and references
+- utility workflow; needs deeper improvement later
+- replaces `git-commit-trigger` as the public conceptual role
+
+#### meta
+
+- current action: rename/reframe `git-commit-trigger` to `agentos-git-commit`
+- future action: open a focused design session for git commit workflow quality and package citations
+
+### Moved.Skill:flutter-adb-usage
+
+- `flutter-adb-usage` does not belong to `agentos-pkg`
+- its role is Flutter app development and device testing through ADB/accessibility tooling
+- should move to `/Users/pereiro/projects/csc-reactor-project/csc-reactor/csc-reactor-specs/skills`
+- may still use Agentos conventions if that project adopts Agentos package/index surfaces, but ownership is project/domain-specific
+
+#### meta
+
+- current action: move out of `agentos-md`
+- implementation note: preserve the skill content during move; do not fold it into `agentos-pkg`
 
 ## Session.Notes
 
@@ -457,23 +658,24 @@
 - [x] `artifact-impl-req`
 - [x] `artifact-design-summary`
 - [x] `artifact-issue-report`
+- [x] `agentos-live-note-base`
 - [x] `agentos-live-scripts-base`
-- [ ] `agentos-file-numbering-base`
-- [ ] `agentos-project-doctor`
+- [x] `agentos-file-numbering-base`
+- [x] `agentos-project-doctor`
 
 #### Ring 3 - Likely Dependent Package Skills
 
-- [ ] `chatlas-usage`
-- [ ] `agentos-chatlas-retention-audit`
-- [ ] `agentos-session-continue`
-- [ ] `agentos-session-zip-transcript`
-- [ ] `agentos-skills-miner-ingenier`
+- [x] `chatlas-usage`
+- [x] `agentos-chatlas-retention-audit`
+- [x] `agentos-session-continue`
+- [x] `agentos-session-zip-transcript`
+- [x] `agentos-skills-miner-ingenier`
 
-#### Ring 4 - External / General / Ambiguous
+#### Ring 4 - Utility / Moved Skills
 
-- [ ] `codebase-general-cleanup`
-- [ ] `git-commit-trigger`
-- [ ] `flutter-adb-usage`
+- [x] `codebase-general-cleanup`
+- [x] `git-commit-trigger`
+- [x] `flutter-adb-usage`
 
 ### Review Protocol
 
@@ -500,7 +702,8 @@ For each skill or skill group:
 - `agentos-hugentics` reviewed — retained as an important subsystem `Package.Aux.Skill` inside `agentos-pkg`
 - `Package.Aux.Skill.Visibility` captured — aux skills are visibility, attention, and tuned-prompt surfaces; package root `SKILL.md` should act like an `AGENTS.md` for the package/system
 - `Package.Aux.Skill.Mode` captured — aux skills can be workflow-neutral subsystem surfaces or operational workflow surfaces
-- Hugentic nested-skill direction captured — keep operational workflow skills separate when tuned execution prompting, triggerability, and gates are valuable, while rooting authority in `agentos-pkg`
+- `Natural.Placement:Skills` captured — skills are natural code-like operational surfaces that can carry cited local context while remaining aligned with index, appendix, and reference surfaces
+- Hugentic nested-skill direction captured — keep operational workflow skills separate when tuned execution prompting, triggerability, and gates are valuable, while rooting shared concept placement in `agentos-pkg`
 - `hugentics-designer`, `hugentics-impl-designer`, and `hugentics-impl-executer` reviewed — retained as operational nested auxiliary skills under workflow-neutral `agentos-hugentics`
 - `trigger-design-session`, `trigger-impl-req`, and `trigger-impl-execution` reviewed — deprecated as standalone trigger-only public skills; useful activation language belongs in the corresponding Hugentic workflow-master skills
 - `trigger-hugentic-status` reviewed — rename/reframe as `hugentics-workflow-status`, a structured status workflow for active Hugentic workflows and artifacts
@@ -510,4 +713,16 @@ For each skill or skill group:
 - `artifact-design-summary` reviewed — retained as workflow-neutral artifact-format auxiliary skill with ownership still pending between `agentos-hugentics`, `agentos-pkg`, or a future artifact/documentation subsystem
 - `artifact-issue-report` reviewed — retained as workflow-neutral artifact-format auxiliary skill; companion operational workflow role named `hugentics-issue-tracker`
 - `Agentos.Live.Note` and `Agentos.Live.Script` drafted as live-surface concepts: non-stable working surfaces that can back artifacts or alignment work without being artifacts themselves
+- `agentos-live-note-base` reviewed — keep as workflow-neutral live-surface protocol auxiliary skill for `Agentos.Live.Note` for now; public rename remains open
 - `agentos-live-scripts-base` reviewed — rename/reframe as `agentos-live-script`, a workflow-neutral live-surface protocol auxiliary skill for `Agentos.Live.Script`
+- `agentos-file-numbering-base` reviewed — absorb into `agentos-pkg`; keep `File.Numbering.Protocol` as durable concept content with design depth in appendix and operational procedures in references
+- `agentos-project-doctor` parked — treat as a cited surface of `agentos-pkg` and handle doctor/diagnosis role design in a separate design session
+- `Usage.Skill` deprecated as a standalone skill concept — package roots become the general agent-facing orientation surfaces
+- `chatlas-usage` reviewed — deprecated as a usage skill and absorbed into `agentos-chatlas-pkg` index, appendix, and references
+- `agentos-chatlas-retention-audit` reviewed — classify as operational `Package.Aux.Skill` under `agentos-chatlas-pkg`, not `agentos-pkg`
+- `agentos-session-continue` reviewed — rename/reframe as `chatlas-session-continue`, a Chatlas session-recovery service under `agentos-chatlas-pkg`
+- `agentos-session-zip-transcript` reviewed — rename/reframe as `chatlas-session-zip-transcript`, a Chatlas transcript-recovery service under `agentos-chatlas-pkg`
+- `agentos-skills-miner-ingenier` reviewed — rename/reframe as `agentos-skills-ingenier`, an operational skill-engineering auxiliary skill under `agentos-pkg`
+- `codebase-general-cleanup` reviewed — rename/reframe as `agentos-codebase-cleanup`, an operational codebase cleanup auxiliary skill under `agentos-pkg`
+- `git-commit-trigger` reviewed — rename/reframe as `agentos-git-commit`, an operational commit utility auxiliary skill under `agentos-pkg`
+- `flutter-adb-usage` reviewed — move out of `agentos-pkg` scope to `/Users/pereiro/projects/csc-reactor-project/csc-reactor/csc-reactor-specs/skills`

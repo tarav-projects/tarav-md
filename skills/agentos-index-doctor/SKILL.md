@@ -1,6 +1,6 @@
 ---
 name: agentos-index-doctor
-description: "Index health review and diagnosis. Runs agentos index doctor CLI checks plus agent judgment on staleness, coherence, coverage gaps, and placement drift. Reports issues, does not auto-fix."
+description: "Index health review and diagnosis. Runs agentos index linter checks plus agent judgment on staleness, coherence, coverage gaps, and placement drift. Reports issues, does not auto-fix."
 ---
 
 # agentos-index-doctor
@@ -22,12 +22,12 @@ The full index must be in context before running the doctor. If not already acti
 
 ## Behavior
 
-1. Run `agentos index doctor` on the project for deterministic checks
+1. Run `agentos index linter` on the project for deterministic checks
 2. Add agent judgment on top: staleness, coherence, coverage gaps, placement drift
 3. Report issues with evidence — quote the problematic content
 4. Suggest fixes but do NOT auto-fix
 
-Use `agentos index doctor --json` for structured output.
+Use `agentos index linter --json` for structured deterministic output.
 
 ## Checks
 
