@@ -1,10 +1,12 @@
 > `Appendix.Discovery`: for depth on any concept, check `appendix/Concept.Name-appendix.md`
 
+****
+
 ## Stable.Surface
 
 - `Stable.Surface` is a durable, authoritative surface where a specific facet of project knowledge lives
 - the "stable" contract: the content aims to be maintained, current, and trustworthy
-- all `Stable.Surfaces` have equal authority — no surface is positioned as more important than another
+- all `Stable.Surfaces` must stay aligned — no surface is positioned as more important than another by default
 - misalignments between surfaces are resolved context-dependently, not by a fixed hierarchy
 - drift between stable surfaces is the target of `Internal.Alignment` — a problem to detect and resolve
 
@@ -20,42 +22,89 @@
 ## Natural.Placement
 
 - `Natural.Placement` is the principle that each surface holds the facet of a concept that is natural to its function
-- primarily governs where authoritative origin material belongs
+- primarily governs where origin material naturally belongs
 - the full description of a concept is distributed across surfaces — each complements the others
     - index → conceptual grounding (what it is, why, how it connects) and discovery (where to find it)
     - appendix → extended depth, rationale, scoped views through `Concept.Scoping`
     - skills → operational behavior, workflows
     - code → the implementation itself (the code IS the description)
-- describing in markdown what code already holds naturally is redundant placement, not useful duplication — the question is not authority but placement
+- describing in markdown what code already holds naturally is redundant placement, not useful duplication — the question is placement
 - cited duplicates can also be naturally placed when local use strongly benefits from repeated content
 - duplication is justified when avoiding it would harm bootstrapping, workflow performance, local readability, or agent orientation
 - content that feels unnatural in a surface is probably misplaced
 - uncited or stale duplication is the anti-pattern, not duplication itself
-- when multiple implementations exist, one may serve as a `Canonical.Reference.Implementation` — the go-to surface for implementation details, chosen by natural fit rather than by authority hierarchy
+- when multiple implementations exist, one may serve as a `Canonical.Reference.Implementation` — the go-to surface for implementation details, chosen by natural fit rather than hierarchy
 - drift between any surfaces is always an error to resolve, not a hierarchy to adjudicate
+
+****
+
+## Natural.Placement:Skills
+
+- `Natural.Placement:Skills` applies `Natural.Placement` to agent skill bodies
+- skills are natural code-like operational surfaces for procedures, gates, role framing, tool use, and execution-shaped guidance
+- a skill can carry the local context it needs when that improves agent performance, bootstrapping, workflow execution, or readability
+- durable concept material still belongs in package index blocks, appendix pages, or references when those surfaces are the natural place for that facet
+- repeated concept context in a skill should use `Cited.Duplication` so agents can find, check, and align the related surfaces
+- cited skill-local context is not suspicious by itself; uncited drift, stale copies, and unclear placement are the maintenance problems
+- a skill should not become a progress log, design transcript, or durable concept dump when those facets belong in live notes, index blocks, appendix pages, or references
 
 ****
 
 ## Placement.Balance
 
-- `Placement.Balance` is the maintained alignment state between authoritative origins and their useful local expressions across surfaces
+- `Placement.Balance` is the maintained alignment state between origin surfaces and their useful local expressions across surfaces
 - balanced placement is not absence of repetition
-- the system is balanced when authoritative origins live in their natural source surfaces and cited duplicates exist only where locally useful
+- the system is balanced when origin material lives in its natural source surfaces and cited duplicates exist only where locally useful
 - duplicates remain balanced when they cite origins and can be found, checked, and updated during maintenance
-- diagnostic signal: uncited repeated concept material, stale cited duplicates, or ambiguity about which surface is authoritative
+- diagnostic signal: uncited repeated concept material, stale cited duplicates, or ambiguity about where the origin material lives
 - complementary to `Natural.Placement` — natural placement decides where material belongs; placement balance checks whether distributed material stays aligned
+
+****
+
+## Reference.Implementation
+
+- `Reference.Implementation` is the codebase surface that owns the executable definition of a protocol, schema, or behavioral contract
+- the index describes semantics and intent; the Reference.Implementation owns the concrete shape
+- drift between the index and the Reference.Implementation is a misalignment error — not resolved by hierarchy
+- a project may designate one implementation surface as the Reference.Implementation when multiple exist (e.g., canvas-js over canvas-py)
+- follows `Natural.Placement` — implementation detail belongs in code, not duplicated in markdown
+
+### meta
+
+- related: `Natural.Placement`, `Stable.Surface`, `Package.Skill`
 
 ****
 
 ## Cited.Duplication
 
-- `Cited.Duplication` is intentional duplication of authoritative concept material into a non-authoritative surface with an explicit `Concept.Cite` to the origin
+- `Cited.Duplication` is intentional duplication of concept material into another surface with an explicit `Concept.Cite` to the origin
 - used when local access to repeated context improves agent performance, bootstrapping, workflow execution, package orientation, or readability
-- the duplicate may be rewritten, summarized, or adapted to local task shape, but remains non-authoritative
+- the duplicate may be rewritten, summarized, or adapted to local task shape, but must remain aligned with the cited origin
 - the cited origin anchors maintenance and gives agents or tooling a way to check drift
 - if a cited duplicate clearly mirrors an edited origin, the writer may update the duplicate in the same approved write pass
 - unresolved drift or ambiguous disagreement is surfaced as an issue, not silently resolved
-- uncited durable concept material in a non-authoritative surface should either be indexed, cited, or treated as unmanaged duplication
+- uncited durable concept material in a repeated surface should either be indexed, cited, or treated as unmanaged duplication
+
+****
+
+## Agentos.Live.Note
+
+- `Agentos.Live.Note` is a non-`Stable.Surface` markdown working surface under `notes/live/`
+- agents use live notes to store and maintain active working data that is useful beyond the immediate chat but not yet promoted as durable design truth
+- live notes can back workflow artifacts such as design sessions, implementation requests, summaries, and issue reports when the workflow defines extra semantics
+- the live-note surface itself defines storage and maintenance posture, not artifact meaning
+- ordinary live-note allocation follows `File.Numbering.Protocol`; operational commands live in `references/file-numbering-protocol.md`
+- durable signal discovered in live notes should be promoted to the natural stable surface instead of leaving the live note as the long-term source
+
+****
+
+## Agentos.Live.Script
+
+- `Agentos.Live.Script` is a non-`Stable.Surface` code working surface under `dev/live/`
+- agents use live scripts for small code snippets, runnable drafts, probes, and alignment surfaces that a user can inspect, run, and critique
+- live scripts are useful when code is the clearest medium for shared alignment, but the code is not yet part of the maintained implementation
+- live-script naming and allocation follow `File.Numbering.Protocol`; operational commands live in `references/file-numbering-protocol.md`
+- a live script may mature into implementation code, documentation, a reference, or be archived when it no longer carries useful working signal
 
 ****
 
@@ -176,6 +225,8 @@
 - `File.Numbering.Protocol` defines numeric filename conventions for stable, addressable files in project surfaces
 - numeric prefixes are stable handles — the title may change, but the prefix should not be renumbered
 - canonical prefixes use three digits; allocation is append-only; gaps are allowed; do not renumber or fill gaps if unnecessary
+- design depth lives in `appendix/File.Numbering.Protocol-appendix.md`
+- operational allocator usage lives in `references/file-numbering-protocol.md`
 
 ### Current Agentos range model
 
@@ -210,7 +261,7 @@
 - starts by finding all mentions and citations of the edited concept across stable markdown surfaces
 - checks cited duplicates, workflow copies, package routers, auxiliary skills, and related references for needed updates
 - may update clear cited duplicates in the same approved write pass when they mirror the edited origin
-- surfaces unresolved drift, ambiguous disagreement, or unclear authority as issues
+- surfaces unresolved drift, ambiguous disagreement, or unclear origin placement as issues
 - prevents index edits from leaving known duplicated or cited material stale
 
 ****
@@ -228,9 +279,9 @@
 
 ****
 
-## Agentos.AGENTS.md
+## Agentos.AgentInstructions
 
-- `Agentos.AGENTS.md` is the project-local natural-language instruction surface at `.agentos/AGENTS.md`
+- `Agentos.AgentInstructions` is the project-local natural-language instruction surface at `.agentos/AGENTS.md`
 - human-writable — contains project-specific guidance for Agentos workflows and skills
 - skills may load it when they need custom local instructions or interpretation guidance
 - does not define project identity — the marker remains `.agentos/project.json`

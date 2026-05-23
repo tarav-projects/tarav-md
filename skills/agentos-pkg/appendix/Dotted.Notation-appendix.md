@@ -1,5 +1,7 @@
 # Dotted.Notation — Appendix
 
+****
+
 ## Dotted.Notation/NOT.Triggers
 
 - abbreviations: `e.g.`, `i.e.`, `etc.`

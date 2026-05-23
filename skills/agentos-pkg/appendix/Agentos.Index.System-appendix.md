@@ -1,3 +1,5 @@
+****
+
 ## Agentos.Index.System/Alignment.Role
 
 - the index is a `Stable.Surface` — it must be aligned with all other surfaces (`Internal.Alignment`)

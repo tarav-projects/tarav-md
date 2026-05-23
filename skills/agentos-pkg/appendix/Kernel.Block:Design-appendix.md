@@ -1,5 +1,7 @@
 # Kernel.Block:Design — Appendix
 
+****
+
 ## Kernel.Block:Design/Promotion.Model
 
 - knowledge flows toward the index through promotion

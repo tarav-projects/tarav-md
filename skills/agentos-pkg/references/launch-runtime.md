@@ -26,7 +26,7 @@ The index is loaded. Ground on these concepts to understand how the system works
 Load these appendix files — they give depth on how the index is structured and why:
 - `agentos-pkg/appendix/Index.Architecture-appendix.md`
 - `agentos-pkg/appendix/Agentos.Index.System-appendix.md`
-- `agentos-pkg/appendix/Agentos.Surfaces-appendix.md`
+- `agentos-pkg/appendix/Surface.Link.Directionality-appendix.md`
 
 ## 4. Always-on Behavior
 

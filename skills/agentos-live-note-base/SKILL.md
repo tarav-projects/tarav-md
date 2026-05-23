@@ -7,7 +7,7 @@ description: Define the live-note protocol for path and filename conventions. Us
 
 Minimal protocol for live notes.
 
-This skill operationalizes live-note naming and location behavior derived from `notes/index/103-File.Numbering.Protocol.md`. The index note is the durable design source; this skill is workflow guidance.
+This skill operationalizes `Agentos.Live.Note` naming and location behavior derived from `File.Numbering.Protocol`. The durable concept lives in `agentos-pkg/index/100-index.md`; operational numbering details live in `agentos-pkg/references/file-numbering-protocol.md`.
 
 ## Scope
 - This skill defines only live-note location and naming.

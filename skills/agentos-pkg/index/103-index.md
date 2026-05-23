@@ -1,5 +1,7 @@
 > `Appendix.Discovery`: for depth on any concept, check `appendix/Concept.Name-appendix.md`
 
+****
+
 ## Index.Architecture
 
 - `Index.Architecture` is the structural design of the Agentos Index system — an `Explicit.Namespace` grouping the concepts that define it

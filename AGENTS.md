@@ -17,7 +17,7 @@ Use `agentos-index` for cited context collection or to perform the `Index.Agent`
 ## Surface Rules
 
 - `notes/index/` is the active `Design.Target.Model:Agentos` surface.
-- Do not treat closed live design sessions as active authority; use them as provenance only.
+- Do not treat closed live design sessions as active design surfaces; use them as provenance only.
 - Do not turn `AGENTS.md` into a progress tracker or design log.
 - Durable design truth belongs in `notes/index/`.
 - Development instructions and local workflow reminders can live here when they help agents work safely.

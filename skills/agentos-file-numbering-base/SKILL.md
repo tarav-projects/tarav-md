@@ -1,9 +1,11 @@
 ---
 name: agentos-file-numbering-base
-description: Define, review, or extend Agentos numeric filename protocols and prefix allocation workflow. Use when adding a new numbered artifact type, checking which files determine the next `NNN-` prefix, deciding prefix floors or reserved ranges, or verifying whether gaps and renumbering are allowed.
+description: Deprecated compatibility surface for Agentos numeric filename protocols. Prefer `agentos-pkg` concept `File.Numbering.Protocol`, its appendix, and `agentos-pkg/references/file-numbering-protocol.md`.
 ---
 
 # Agentos File Numbering Base
+
+Deprecated compatibility surface. Durable numbering semantics now live in `agentos-pkg/index/100-index.md` under `File.Numbering.Protocol`; design depth lives in `agentos-pkg/appendix/File.Numbering.Protocol-appendix.md`; operational commands live in `agentos-pkg/references/file-numbering-protocol.md`.
 
 Minimal protocol for Agentos-managed numeric filename workflows.
 

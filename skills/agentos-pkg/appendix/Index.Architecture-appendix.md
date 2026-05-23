@@ -1,3 +1,5 @@
+****
+
 ## Flat.File.Design
 
 - semantic file names create placement friction — every new concept requires deciding which file it belongs to

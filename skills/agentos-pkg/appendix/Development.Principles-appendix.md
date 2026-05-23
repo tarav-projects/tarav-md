@@ -1,5 +1,7 @@
 # Development.Principles — appendix
 
+****
+
 ## Vertical.Slice
 
 - "vertical" means go deep through the layers, not wide across one layer
@@ -13,9 +15,9 @@
 - once the first vertical path is running and tested, expand: more behaviors, more cases, more edges — the integration path is already proven
 - implementation progress is measured in observable behaviors, not in completed layers
 
-### examples
+****
 
-#### CLI feature: `agentos index linter`
+## Vertical.Slice/Example.CliFeature
 
 - scope: add a CLI command that lints configured index and appendix surfaces
 - horizontal approach (avoid):
@@ -29,7 +31,9 @@
     - then: add gated checks, JSON output, and blocked-check summary
     - then: add remaining linter checks
 
-#### module: prefix allocator for file numbering
+****
+
+## Vertical.Slice/Example.ModulePrefixAllocator
 
 - scope: build a prefix allocator that returns the next available file number
 - vertical slice:
@@ -37,7 +41,9 @@
     - testable: calling the function with a real directory returns the right prefix
     - then: add edge cases — gaps, reserved ranges, floor constraints
 
-#### full-stack feature: canvas card for mission status
+****
+
+## Vertical.Slice/Example.CanvasMissionStatus
 
 - scope: add a canvas card that shows mission status from real data
 - vertical slice:

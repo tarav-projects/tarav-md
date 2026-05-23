@@ -1,5 +1,7 @@
 > `Appendix.Discovery`: for depth on any concept, check `appendix/Concept.Name-appendix.md`
 
+****
+
 ## Project.Discovery.System
 
 - `Project.Discovery.System` resolves a command or workflow to an `Agentos.Project` target
@@ -36,12 +38,11 @@
 
 ## Usage.Skill
 
-- `Usage.Skill` is a special-purpose, usage-centric skill designed primarily as documentation
-- the master `Usage.Skill` of a project coordinates and curates its `Usage.Surface`
-    - routes to whichever surface best answers a given question: skills, CLI help, or index notes
-    - the opinionated entry point for external agents
-- often behaves as a `Workflow.Neutral.Skill`: it orients the caller without forcing a task workflow
-- skills can own the source of truth of a topic — the index links out to them
+- `Usage.Skill` is a deprecated standalone orientation pattern for Agentos packages
+- package roots now provide general usage and orientation through `Package.Skill` and `Package.Skill.Router`
+- existing usage skills should be absorbed into package index, appendix, references, or package-root `SKILL.md` surfaces according to `Natural.Placement`
+- operational workflow guidance should live in focused `Package.Aux.Skill` or `Workflow.Skill` surfaces instead of a general usage skill
+- old usage skills may remain only as compatibility or migration surfaces until current routes stop depending on them
 
 ****
 
@@ -50,19 +51,20 @@
 - `Package.Skill` is a self-contained agentic public surface for a package, project, or subsystem
 - like a software package rather than a script: an integrated collection of subsystems for a coherent task area
 - collects public markdown knowledge, routing, setup guidance, workflows, references, and agent-facing operating material
-- acts as the package-level SSOT for public agentic knowledge; source code and local implementation surfaces keep their own authority
+- acts as the package-level orientation and routing surface for public agentic knowledge
 - supports compact single-skill and split multi-skill layouts under the same semantic concept
-- may expose `Package.Aux.Skill` surfaces that add caller intention while pointing back to the package SSOT
+- may expose `Package.Aux.Skill` surfaces that add caller intention while pointing back to the package root or subsystem
 
 ****
 
 ## Package.Aux.Skill
 
 - `Package.Aux.Skill` is a specialized skill associated with a `Package.Skill` but not itself the package root
-- adds caller intention, workflow framing, operational behavior, subsystem focus, or convenience access without becoming a separate package SSOT
-- points back to the package root or package subsystem that owns the durable knowledge
+- adds caller intention, workflow framing, operational behavior, subsystem focus, or convenience access without becoming a separate package root
+- points back to the package root or package subsystem that provides the durable context
 - may act as an entry point, alias, workflow skill, install helper, doctor, test runner, or package-agent launcher
 - should duplicate package knowledge only through `Cited.Duplication`
+- can be workflow-neutral or operational depending on whether it orients the caller or runs a specific workflow
 
 ****
 
@@ -80,7 +82,7 @@
 
 - `Package.Skill.Index` is the conceptual index subsystem of a `Package.Skill`
 - organizes package concepts, names, concept blocks, appendix pages, and reference paths for agent use
-- is owned by the package skill rather than by a separate index SSOT
+- is part of the package skill rather than a separate package
 - can be exposed through a `Package.Aux.Skill` such as `<package>-index`
 - lets agents enter the package through conceptual lookup rather than a task workflow
 

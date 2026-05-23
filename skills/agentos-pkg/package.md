@@ -35,19 +35,26 @@
 - `artifact-design-summary` — design-summary artifact guidance.
 - `artifact-impl-req` — implementation-request artifact guidance.
 - `artifact-issue-report` — issue-report artifact guidance.
+- `hugentics-issue-tracker` — planned operational issue workflow paired with `artifact-issue-report`.
+
+### Hugentic Status And Capture
+
+- `hugentics-workflow-status` — structured status report for an active Hugentic workflow and its active artifacts.
+- `hugentics-chat-status` — short/medium chat realignment report for reconnecting to the current conversation.
+- `hugentics-capture-audit` — audit for significant chat material not captured in more durable surfaces.
 
 ### Project And Surface Operations
 
 - `agentos-project-doctor` — Agentos project health diagnosis.
 - `agentos-live-note-base` — live-note location and numbering protocol.
-- `agentos-live-scripts-base` — live-scripts location and numbering protocol.
-- `agentos-file-numbering-base` — Agentos numeric filename protocol.
+- `agentos-live-script` — live-script location and numbering protocol.
+- `agentos-file-numbering-base` — deprecated compatibility surface; durable numbering content now lives in `File.Numbering.Protocol`, `appendix/File.Numbering.Protocol-appendix.md`, and `references/file-numbering-protocol.md`.
 
 ### Package And Skill Development
 
-- `agentos-skills-miner-ingenier` — skill research and mining workflow.
-- `codebase-general-cleanup` — targeted codebase cleanup workflow.
-- `git-commit-trigger` — deterministic semantic commit workflow.
+- `agentos-skills-ingenier` — skill research and mining workflow.
+- `agentos-codebase-cleanup` — targeted codebase cleanup workflow.
+- `agentos-git-commit` — deterministic semantic commit workflow.
 
 ### Compatibility And Deprecated Surfaces
 
@@ -59,7 +66,14 @@
 - `trigger-design-session` — deprecated trigger-only route; use `hugentics-designer`.
 - `trigger-impl-req` — deprecated trigger-only route; use `hugentics-impl-designer`.
 - `trigger-impl-execution` — deprecated trigger-only route; use `hugentics-impl-executer`.
-- `trigger-hugentic-status`, `trigger-capture-audit`, and `trigger-chat-status` remain under active role review.
+- `agentos-usage` — deprecated general Agentos orientation; use `agentos-pkg`.
+- `agentos-live-scripts-base` — renamed to `agentos-live-script`.
+- `agentos-skills-miner-ingenier` — renamed to `agentos-skills-ingenier`.
+- `codebase-general-cleanup` — renamed to `agentos-codebase-cleanup`.
+- `git-commit-trigger` — renamed to `agentos-git-commit`.
+- `trigger-hugentic-status` — renamed to `hugentics-workflow-status`.
+- `trigger-capture-audit` — renamed to `hugentics-capture-audit`.
+- `trigger-chat-status` — renamed to `hugentics-chat-status`.
 
 ## Package.Boundary
 

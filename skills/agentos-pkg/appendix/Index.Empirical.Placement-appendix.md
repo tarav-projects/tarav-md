@@ -1,5 +1,7 @@
 # Index.Empirical.Placement — Appendix
 
+****
+
 ## Index.Empirical.Placement/Extraction
 
 - two modes: programmatic (scrape user + visible assistant for `Dotted.Names`) and semantic (agent judges which concepts were reasoned about)

@@ -1,5 +1,7 @@
 # Kernel.Writing — Appendix
 
+****
+
 ## Kernel.Writing/Stub.Convention
 
 - a stub is an incomplete block — captures a concept boundary before the full definition exists

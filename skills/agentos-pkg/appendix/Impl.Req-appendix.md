@@ -1,5 +1,7 @@
 # Impl.Req — Appendix
 
+****
+
 ## Impl.Req/Artifact.Structure
 
 - `Impl.Abstract` — scope, status, source context — fully agent-maintained, the agent must evaluate changes to it on each design change

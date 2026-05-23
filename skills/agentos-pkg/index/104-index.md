@@ -1,5 +1,7 @@
 > `Appendix.Discovery`: for depth on any concept, check `appendix/Concept.Name-appendix.md`
 
+****
+
 ## Project.File.Index
 
 - `Project.File.Index` is the file-level routing section of the `Index.Router`
@@ -41,7 +43,7 @@
 - `Project.Index.Skill` is the `<project>-index` auxiliary skill for a package index surface
 - the canonical public index content lives in the package skill, usually `skills/<package>-pkg/index/`
 - it is a `Package.Aux.Skill` for the package's `Package.Skill.Index`
-- the auxiliary skill may provide direct index access, research, writing, diagnosis, testing, maintenance, or index workflow framing without owning a separate index SSOT
+- the auxiliary skill may provide direct index access, research, writing, diagnosis, testing, maintenance, or index workflow framing without becoming a separate package root
 
 ****
 
@@ -157,13 +159,13 @@
 - an `Index.Agent` is not inherently attached to one index
 - session context may bias the agent toward a default index, such as the active project index or currently loaded package index
 - explicit user direction may also constrain which index or indexes to use
-- without such constraints, the agent should treat all accessible relevant indexes as possible sources of context, authority, and conflict
+- without such constraints, the agent should treat all accessible relevant indexes as possible sources of context, citations, and conflict
 - applies to index research, context collection, writing, citation, maintenance, conflict detection, and package dependency traversal
 - accessible indexes may include the active project's local index, the active package index, dependency package indexes, and explicitly provided external package indexes
 - agents should avoid blind exhaustive loading; search likely relevant indexes first and load only useful blocks, appendix material, or references
 - concepts cited or returned from a non-default index should use qualified names, such as `<package>-pkg/Concept.Name` or `local/Concept.Name`
 - disagreement across indexes is surfaced as an issue, not silently merged
-- writes must respect the authority and write gates of the target index
+- writes must respect the target index's placement rules and write gates
 
 ****
 

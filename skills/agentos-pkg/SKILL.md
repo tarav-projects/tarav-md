@@ -21,5 +21,13 @@ This root skill is workflow neutral. It gives package identity and orientation o
 | `hugentics-designer` | operational design-session workflow master |
 | `hugentics-impl-designer` | operational implementation-request workflow master |
 | `hugentics-impl-executer` | operational implementation-execution workflow master |
+| `hugentics-workflow-status` | operational status report for active Hugentic workflows |
+| `hugentics-chat-status` | short chat/session realignment report |
+| `hugentics-capture-audit` | audit for significant chat material not captured in durable surfaces |
+| `agentos-live-note-base` | live-note protocol for `Agentos.Live.Note` |
+| `agentos-live-script` | live-script protocol for `Agentos.Live.Script` |
+| `agentos-skills-ingenier` | skill engineering and source-mining workflow |
+| `agentos-codebase-cleanup` | targeted codebase cleanup workflow |
+| `agentos-git-commit` | deterministic semantic commit workflow |
 
 Load this skill when you need Agentos package orientation. Load a narrower auxiliary skill when the caller already has a subsystem or workflow intention.
