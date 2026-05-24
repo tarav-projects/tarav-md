@@ -18,9 +18,23 @@
 
 - `agentos-pkg/index/` — Agentos public index flat files and routing table.
 - `agentos-pkg/appendix/` — Agentos public index appendix files.
-- `agentos-pkg/references/` — Agentos Index operational references.
-- `agentos-pkg/testing/` — Agentos Index runtime test prompts.
+- `agentos-pkg/references/` — Agentos Index tutorials and operational references.
+- `agentos-pkg/testing/` — package skill behavioral tests (testground format).
 - `agentos-index` — public `Package.Aux.Skill` for Agentos Index orientation and index functions: research/navigation, writing/mutation, diagnosis, testing, and maintenance.
+- `agentos-testground` — public `Package.Aux.Skill` for testground-based package skill testing.
+
+Index entry points:
+
+- `agentos-index` — first stop when an agent needs index workflow orientation without changing the caller's task.
+- `references/index-system-guide.md` — compact cited tutorial for index architecture, surfaces, and workflows.
+- `index/000-index.md` — routing table for concept lookup.
+- `index/103-index.md` — index architecture concepts: `Index.Architecture`, `Index.Router`, `Index.Runtime`, `Distributed.Index`, `Soft.Programming.Language`.
+- `index/104-index.md` — index operation concepts: `Index.Activation`, `Index.Agent`, `Multi.Index.Operation`, `Appendix.Discovery`, `Index.Linter`.
+- `references/launch-runtime.md` — bootstrap procedure for loading index runtime context.
+- `references/maintenance.md` — maintenance, writing, linting, deduplication, promotion, and placement checks.
+- `references/test-system.md` — deprecated; use `agentos-testground` and `references/testground-runner.md`.
+- `references/testground-format.md` — test file format, behavior tiers, testground folder structure.
+- `references/testground-runner.md` — runner isolation, chatlas trace capture, evaluation, reports.
 
 ### Hugentics
 
@@ -61,7 +75,7 @@
 - `agentos-index-activate` — deprecated standalone index runtime bootstrap; use `agentos-index`.
 - `agentos-index-writer` — deprecated standalone index write skill; use the writing function in `agentos-index`.
 - `agentos-index-doctor` — deprecated standalone index diagnosis skill; use the diagnosis function in `agentos-index`.
-- `agentos-index-test` — deprecated standalone index test skill; use the testing function in `agentos-index`.
+- `agentos-index-test` — deprecated standalone index test skill; use `agentos-testground`.
 - `trigger-design-session` — deprecated trigger-only route; use `hugentics-designer`.
 - `trigger-impl-req` — deprecated trigger-only route; use `hugentics-impl-designer`.
 - `trigger-impl-execution` — deprecated trigger-only route; use `hugentics-impl-executer`.

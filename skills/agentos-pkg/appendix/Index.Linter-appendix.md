@@ -74,9 +74,57 @@
 
 ## Index.Linter/Mdblocks.Syntax
 
-- emitted when the shared markdown-block parser reports a structural issue
-- covers syntax such as orphan separators, empty headings, unclosed fences, and overlong blocks
+- fallback emitted when the shared markdown-block parser reports a structural issue without a first-class linter code
+- most known mdblocks issues are promoted to `Index.Linter/Block.*` codes
 - details include the underlying mdblocks source code for the specific syntax condition
+
+****
+
+## Index.Linter/Block.NoHeadings
+
+- emitted when a markdown file contains no headings in the configured heading range
+- usually means a non-index document is inside a linted surface, or the file is an empty shell
+- fix by moving the file out of the linted surface, adding the intended block heading, or passing a narrower file set
+
+****
+
+## Index.Linter/Block.UnclosedCodeFence
+
+- emitted when a file appears to contain an unclosed fenced code block
+- unclosed fences make heading and separator parsing unreliable
+- fix by closing the code fence before interpreting downstream block findings
+
+****
+
+## Index.Linter/Block.SeparatorOutsideSemantics
+
+- emitted when a `****` separator is not consumed as a block opening or closing boundary
+- common causes are a separator followed by plain text, duplicate separators, or misplaced structural markers
+- fix by placing separators immediately before block headings and after block bodies
+
+****
+
+## Index.Linter/Block.EmptyHeading
+
+- emitted when a heading title is empty after markdown sanitization
+- empty headings cannot name index concepts or appendix sections
+- fix by naming the heading or removing the empty heading marker
+
+****
+
+## Index.Linter/Block.TooLong
+
+- emitted when a separator-anchored block exceeds the hard block line limit
+- details include `line_span`, `max_block_lines`, and `end_line`
+- fix by splitting depth into scoped appendix blocks or moving non-fundamental detail out of the block
+
+****
+
+## Index.Linter/Block.DuplicateHeading
+
+- emitted when a file repeats the same heading title at the same markdown level
+- duplicate local headings are usually ambiguous for block search and citation
+- fix by merging, renaming, or scoping one of the repeated headings
 
 ****
 
@@ -158,6 +206,30 @@
 - emitted when an appendix file has no matching configured index concept block
 - appendix discovery starts from an index concept, so orphaned appendix material may be undiscoverable
 - fix by adding the concept block, correcting the filename, or linting the owning index surface too
+
+****
+
+## Index.Linter/Appendix.RouteAnnotationMissing
+
+- emitted when a routed concept has appendix pages but the router entry has no `[+N]` annotation
+- annotations expose appendix depth at the always-loaded router surface
+- fix by adding `[+N]` to the routed concept, where `N` is the contiguous appendix page count
+
+****
+
+## Index.Linter/Appendix.RouteAnnotationStale
+
+- emitted when a router `[+N]` annotation does not match discovered appendix page depth
+- stale annotations mislead agents about available depth for the concept
+- fix by updating the annotation to the expected count reported by the linter
+
+****
+
+## Index.Linter/Appendix.PageGap
+
+- emitted when appendix page files for a concept are non-contiguous
+- expected pages are `Concept.Name-appendix.md`, then `Concept.Name-appendix-2.md`, `Concept.Name-appendix-3.md`, and so on without gaps
+- fix by adding the missing page file, renaming the later page, or consolidating the appendix material
 
 ****
 
@@ -290,8 +362,17 @@
 ## Index.Linter/Check.RouterEntries
 
 - check that parses router entries into concept-to-file routes
+- parses optional `[+N]` appendix depth annotations while normalizing routed concepts
 - can emit `Index.Linter/Router.InvalidConcept` or `Index.Linter/Router.EntriesEmpty`
 - blocked when router or concept inventory is unavailable
+
+****
+
+## Index.Linter/Check.AppendixRouteAnnotations
+
+- check that compares routed `[+N]` annotations with discovered appendix page inventory
+- can emit `Index.Linter/Appendix.RouteAnnotationMissing`, `Index.Linter/Appendix.RouteAnnotationStale`, or `Index.Linter/Appendix.PageGap`
+- blocked when concept, router, or appendix filename inventory is unavailable
 
 ****
 

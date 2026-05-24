@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - scope: implement the completed Agentos skill-role design inventory by consolidating skill names, package ownership, cited-duplication surfaces, and durable package knowledge
-- status: ready for execution
+- status: implemented
 - source artifacts:
     - `notes/live/542-agentos-skill-roles-design-session.md`
     - `notes/live/545-agentos-pkg-skill-surface-alignment-impl-req.md`
@@ -96,7 +96,7 @@
 
 ### Slice 1 - Promote Durable Concepts And References
 
-- status: pending
+- status: completed
 - changes:
     - add or update durable blocks for `Agentos.Live.Note`, `Agentos.Live.Script`, and `Natural.Placement:Skills`
     - ensure `Multi.Index.Operation` is routed and `Index.Agent` references it
@@ -115,7 +115,7 @@
 
 ### Slice 2 - Align agentos-pkg Root, Router, And Index Aux Surfaces
 
-- status: pending
+- status: completed
 - changes:
     - update `agentos-pkg` router to reflect current skill names, deprecated names, absorbed surfaces, and dependent package operations
     - ensure `agentos-index` presents research, writing, diagnosis, testing, and maintenance as functions
@@ -131,7 +131,7 @@
 
 ### Slice 3 - Align Hugentic Skills And Artifact Surfaces
 
-- status: pending
+- status: completed
 - changes:
     - keep `agentos-hugentics` as workflow-neutral subsystem map
     - ensure `hugentics-designer`, `hugentics-impl-designer`, and `hugentics-impl-executer` own their activation language
@@ -151,7 +151,7 @@
 
 ### Slice 4 - Align Live Surface And Utility Skills
 
-- status: pending
+- status: completed
 - changes:
     - update `agentos-live-note-base` as a live-note protocol aux skill for `Agentos.Live.Note`
     - rename/reframe `agentos-live-scripts-base` to `agentos-live-script`
@@ -173,7 +173,7 @@
 
 ### Slice 5 - Move Or Classify Dependent Package Skills
 
-- status: pending
+- status: completed
 - changes:
     - absorb `chatlas-usage` into `agentos-chatlas-pkg` index, appendix, or references
     - classify/update `agentos-chatlas-retention-audit` as Chatlas package aux skill
@@ -195,7 +195,7 @@
 
 ### Slice 6 - Focused Reference And Compatibility Cleanup
 
-- status: pending
+- status: completed
 - changes:
     - update references across `AGENTS.md`, package routers, skill descriptions, and skill bodies
     - leave compatibility stubs only where needed to avoid breaking current invocation paths
@@ -211,3 +211,11 @@
 - source design session reports all inventory rings reviewed and no unchecked traversal items
 - implementation should proceed as a consolidation pass, not a redesign pass
 - high-risk areas are skill renames, cross-package moves, and stale references in package routers or skill descriptions
+- implemented durable `Agentos.Live.Note`, `Agentos.Live.Script`, `Natural.Placement:Skills`, `Usage.Skill` deprecation, and file-numbering appendix/reference promotion in `agentos-pkg`
+- aligned `agentos-pkg`, `agentos-index`, and `AGENTS.md` around current package-root and index-aux routing
+- renamed/reframed Hugentic status/capture skills as `hugentics-workflow-status`, `hugentics-chat-status`, and `hugentics-capture-audit`; trigger-only design/impl shims were absorbed into the workflow master skills
+- renamed/reframed live-script and utility skills as `agentos-live-script`, `agentos-skills-ingenier`, `agentos-codebase-cleanup`, and `agentos-git-commit`
+- moved Chatlas-owned skills under `agentos-chatlas-md/skills/`, absorbed `chatlas-usage` into `agentos-chatlas-pkg/references/chatlas-commands.md`, and renamed session services to `chatlas-session-continue` and `chatlas-session-zip-transcript`
+- moved `flutter-adb-usage` to `/Users/pereiro/projects/csc-reactor-project/csc-reactor/csc-reactor-specs/skills/flutter-adb-usage`
+- parked `agentos-project-doctor` as a future redesign target while updating stale package-orientation and surface-alignment wording that directly conflicted with the consolidation
+- remaining old-name mentions in package routers are compatibility/deprecation notes, not current routes; historical live notes and the read-only design-session artifact were not rewritten

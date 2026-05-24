@@ -1,6 +1,8 @@
 # File.Numbering.Protocol Appendix
 
-## Design Rationale
+****
+
+## File.Numbering.Protocol/Design.Rationale
 
 `File.Numbering.Protocol` gives agents and humans stable handles for markdown and live working surfaces.
 
@@ -8,7 +10,9 @@ The number is the durable handle. The filename title can improve as understandin
 
 Gaps are expected. Allocation is append-only because preserving address stability matters more than making a directory visually contiguous.
 
-## Range Model
+****
+
+## File.Numbering.Protocol/Range.Model
 
 Current Agentos package guidance uses these ranges:
 
@@ -24,12 +28,16 @@ Reserved examples:
 - `010.TODOS.md`: reserved live TODO parking
 - `011.ISSUES.md`: reserved live issue parking
 
-## Placement
+****
+
+## File.Numbering.Protocol/Placement
 
 The index block should hold compact semantics. This appendix holds rationale and range shape. The operational command recipe belongs in `references/file-numbering-protocol.md`.
 
 Domain-specific surfaces can specialize the protocol by naming their target path, filename pattern, allocation range, and uniqueness scope.
 
-## Future Checks
+****
+
+## File.Numbering.Protocol/Future.Checks
 
 The desired diagnostics are project-wide duplicate detection, range validation, reserved-prefix drift detection, and append-only enforcement.

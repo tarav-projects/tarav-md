@@ -62,7 +62,7 @@
 - `Package.Aux.Skill` is a specialized skill associated with a `Package.Skill` but not itself the package root
 - adds caller intention, workflow framing, operational behavior, subsystem focus, or convenience access without becoming a separate package root
 - points back to the package root or package subsystem that provides the durable context
-- may act as an entry point, alias, workflow skill, install helper, doctor, test runner, or package-agent launcher
+- may act as an entry point, alias, `Aux.Workflow.Skill`, install helper, doctor, test runner, or package-agent launcher
 - should duplicate package knowledge only through `Cited.Duplication`
 - can be workflow-neutral or operational depending on whether it orients the caller or runs a specific workflow
 
@@ -74,7 +74,7 @@
 - loading it should not change the caller's current task, action mode, or execution path
 - contains information, routing, boundaries, and references rather than commands or task procedures
 - useful for `Package.Skill` roots because package roots welcome many caller intentions transparently
-- contrasts with `Workflow.Skill`, which intentionally guides a recurring task
+- contrasts with `Aux.Workflow.Skill`, which intentionally guides a recurring task
 
 ****
 
@@ -129,15 +129,54 @@
 
 ****
 
-## Workflow.Skill
+## Aux.Workflow.Skill
 
-- `Workflow.Skill` is a skill oriented around executing a recurring workflow
+- `Aux.Workflow.Skill` is a `Package.Aux.Skill` oriented around executing a recurring workflow
+- it is the non-workflow-neutral counterpart: loading it steers the caller into a specific operation
 - can include the conceptual framing it needs inline when that improves execution
 - uses `Cited.Duplication` to carry known context directly instead of searching the index on every run
 - becomes a contextualized execution surface rather than only a thin router
 - should cite origin blocks for duplicated concept material
 - should still use index search or `Index.Agent` behavior for unknown, custom, or exploratory context needs
 - contrasts with `Workflow.Neutral.Skill`, which provides orientation without steering the caller's current task
+- may be deployed from a `Package.Skill.UsagePattern` when a hot path deserves its own skill surface
+
+****
+
+## Skill.Explicit.Args
+
+- `Skill.Explicit.Args` is the set of arguments a skill needs from the caller to operate
+- like non-zero-arg functions: some skills need data before they can do useful work
+- skills with explicit args should declare them in the skill description and in a dedicated section of the skill body
+- the description should advertise args so an agent knows what to provide before loading
+- the skill body should clarify behavior when args are missing: orient (workflow-neutral), ask, or noop — never guess
+- zero-arg call on a workflow-neutral skill with explicit args: the skill loads its orientation context but does not perform an operation
+- zero-arg call on an operational skill with explicit args: noop or orient, never assume a target
+- examples: `agentos-testground` needs a target package; `agentos-index-test` needs a target project
+
+****
+
+## Package.Skill.UsagePattern
+
+- `Package.Skill.UsagePattern` is a named situation/response pair that captures a common or important usage path through a package
+- like a compiler hot path: the package identifies frequent usage situations and provides an optimized, documented route for each
+- each pattern has: a trigger situation (what the user asks or needs) and an expected agent behavior path (which surfaces get loaded, in what order, and what the agent produces)
+- patterns live in the package's `usage-patterns/` folder as named objects
+- from a usage pattern, a package can optionally deploy: a router entry in `Package.SKILL`, an `Aux.Workflow.Skill`, or a testground test
+- patterns do not replace the general path — the `Package.SKILL` decision router remains the fallback for situations not captured as a pattern
+- new patterns emerge from real usage: chatlas transcripts, repeated user questions, observed agent failures, or reality-weighted test results
+- a usage pattern is testable by nature: the situation is the test prompt, the expected behavior path is the behavior tiers
+
+****
+
+## Package.Skill.UsagePattern.Test
+
+- `Package.Skill.UsagePattern.Test` evaluates whether the package delivers the expected behavior for a named usage pattern
+- the test prompt is derived from the pattern's situation; the behavior tiers are derived from the pattern's expected response path
+- tests run through the `agentos-testground` system: isolated CLI session, chatlas trace capture, tier evaluation
+- because the pattern already defines situation and response, generating a test is nearly mechanical
+- test results feed back into pattern refinement: if the agent fails, the pattern documentation or the package surfaces may need improvement
+- patterns without tests are still useful as documentation; patterns with tests are verified documentation
 
 ****
 
