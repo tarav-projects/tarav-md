@@ -16,6 +16,7 @@
 - `Kernel.Block` is the single block structure: fundamentals + `### appendix` + `### meta`
 - parameterized by surface using `Dotted.Parameterized.Notation` — e.g. `Kernel.Block:Index`, `Kernel.Block:Appendix`, `Kernel.Block:Design`
 - each parameterization inherits the full structure — what varies is the surface context and its constraints
+- `Kernel.Note` is not a parameterization — it is a file container for collecting `Kernel.Block` sections
 - `Kernel.Writing` applies uniformly — the philosophy is the same, the surface sets the budget
 
 ****

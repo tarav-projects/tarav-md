@@ -33,7 +33,7 @@ Live-note implications:
 
 - Ordinary agent-created live notes should use `500-999`.
 - Reserved live notes may use fixed values in `000-099`.
-- Example reserved live notes: `notes/live/010.TODOS.md`, `notes/live/011.ISSUES.md`.
+- Example reserved live notes: `notes/live/010.TODOS.md`, `notes/live/011.ISSUES.md`, `notes/live/012.NOTEBOOK.md`.
 - Note numbers should be unique across the project md surface, not only inside `notes/live/`.
 
 ## Migration Status

@@ -17,7 +17,7 @@ When this file mentions another skill or reference, load it only if its relevant
 
 Choose the narrowest surface that matches your current task:
 
-- **Durable concepts or design knowledge** — use the Agentos Index. Start with `agentos-index` for index workflow orientation, `references/index-system-guide.md` for the compact tutorial, or `index/000-index.md` for concept routing.
+- **Durable concepts or design knowledge** — use the Agentos Index. Start with `agentos-index` for index workflow orientation or `index/000-index.md` for concept routing.
 - **Design, implementation planning, execution, status, or alignment recovery** — use the Hugentics surfaces. Start with `agentos-hugentics` for the workflow map.
 - **Maintained working data or snippets** — use live surfaces. `agentos-live-note-base` for notes, `agentos-live-script` for small code snippets.
 - **Package boundaries, dependencies, or full skill routing** — use `package.md`.
@@ -31,7 +31,6 @@ If none of these match, stay with the caller's current task and use this file as
 A concept and design navigation system for any project. The index is where agents go to question, understand, or extend a project's design. Contains durable concepts organized in flat index pages with appendix depth. Any project can have its own index.
 
 - `agentos-index` — auxiliary skill for index orientation and functions (research, writing, diagnosis, testing, maintenance)
-- `references/index-system-guide.md` — compact cited tutorial
 - `index/000-index.md` — public index routing table
 
 `Agentos.Pkg` has its own index at `index/` — use it when the task is about Agentos concepts or maintaining this package. Other projects have their own indexes. Do not assume the target index is `Agentos.Pkg`.

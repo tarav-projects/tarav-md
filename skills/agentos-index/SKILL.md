@@ -9,7 +9,7 @@ Workflow-neutral `Package.Aux.Skill` for the Agentos Index — a `Soft.Programmi
 
 This skill orients the caller to the index subsystem without forcing an operation. The Agentos Index design reference lives in `agentos-pkg/index/`, `agentos-pkg/appendix/`, and `agentos-pkg/references/`.
 
-Always load `agentos-pkg/references/index-system-guide.md` with this skill. It is the compact tutorial for the index architecture and workflows.
+
 
 ## What The Index Is
 
@@ -22,7 +22,6 @@ Always load `agentos-pkg/references/index-system-guide.md` with this skill. It i
 
 | Reference | Covers |
 |---|---|
-| `agentos-pkg/references/index-system-guide.md` | compact tutorial — index architecture, surfaces, common workflows, citations |
 | `agentos-pkg/references/launch-runtime.md` | bootstrap script — load index data, ground key concepts, load appendix, always-on behavior |
 | `agentos-pkg/references/maintenance.md` | maintenance checklist (linting, dedup, promotion, placement audit) + Index.CLI commands |
 | `agentos-pkg/references/test-system.md` | deprecated — index testing is now covered by `agentos-testground` |
@@ -32,7 +31,7 @@ Always load `agentos-pkg/references/index-system-guide.md` with this skill. It i
 | Function | Use |
 |---|---|
 | Research / navigation | Search the index, collect relevant blocks or appendix sections, and return cited context for the current task. |
-| Writing / mutation | User-gated index edits: placement, overlap checks, wording approval, routing updates, and maintenance pass. |
+| Writing / mutation | User-gated index edits. Full writer's guide: `agentos-index-writer`. |
 | Diagnosis | Report on structure, routing, staleness, coherence, coverage gaps, or placement drift. Do not mutate unless separately approved. |
 | Testing | Use `agentos-testground` for behavioral testing of index entry paths and usage patterns. Legacy activation-recall tests remain in `agentos-pkg/testing/`. |
 | Maintenance | Use `agentos-pkg/references/maintenance.md` for linting, deduplication, promotion, and placement audits. |
@@ -57,4 +56,4 @@ An `Index.Agent` should:
 
 ## Compatibility
 
-`agentos-index-activate`, `agentos-index-writer`, `agentos-index-doctor`, and `agentos-index-test` are deprecated standalone public aux skills for now. Their roles are represented as functions in this skill.
+`agentos-index-activate`, `agentos-index-doctor`, and `agentos-index-test` are deprecated standalone public aux skills for now. Their roles are represented as functions in this skill. `agentos-index-writer` is the canonical writer's guide — load it for index writing work.

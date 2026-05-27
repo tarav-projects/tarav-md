@@ -26,7 +26,6 @@
 Index entry points:
 
 - `agentos-index` — first stop when an agent needs index workflow orientation without changing the caller's task.
-- `references/index-system-guide.md` — compact cited tutorial for index architecture, surfaces, and workflows.
 - `index/000-index.md` — routing table for concept lookup.
 - `index/103-index.md` — index architecture concepts: `Index.Architecture`, `Index.Router`, `Index.Runtime`, `Distributed.Index`, `Soft.Programming.Language`.
 - `index/104-index.md` — index operation concepts: `Index.Activation`, `Index.Agent`, `Multi.Index.Operation`, `Appendix.Discovery`, `Index.Linter`.
@@ -73,7 +72,7 @@ Index entry points:
 ### Compatibility And Deprecated Surfaces
 
 - `agentos-index-activate` — deprecated standalone index runtime bootstrap; use `agentos-index`.
-- `agentos-index-writer` — deprecated standalone index write skill; use the writing function in `agentos-index`.
+- `agentos-index-writer` — `Aux.Workflow.Skill`: complete writer's guide for the Agentos Index (doc + operational surface for index writing).
 - `agentos-index-doctor` — deprecated standalone index diagnosis skill; use the diagnosis function in `agentos-index`.
 - `agentos-index-test` — deprecated standalone index test skill; use `agentos-testground`.
 - `trigger-design-session` — deprecated trigger-only route; use `hugentics-designer`.

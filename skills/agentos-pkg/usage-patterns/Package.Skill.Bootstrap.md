@@ -6,32 +6,28 @@ The user wants to create a `Package.Skill` for a project or subsystem. They refe
 
 The agent discovers which sub-situation applies by inspecting the target:
 
-### :New
+### Package.Skill.Bootstrap:New
 
-The target has no existing Package.Skill structure. The agent creates it from scratch — SKILL.md, package.md, folder layout.
+- `Package.Skill.Bootstrap:New` is the situation where there is no existing Package.Skill structure
+- the agent reads what `agentos-pkg` says about Package.Skill structure and creates the scaffolding
+- ask the user about naming and ownership boundary, then propose the structure for approval
 
 Signals: empty or minimal project folder, user says "start the Package.Skill for X", "create a Package.Skill."
 
 ### Package.Skill.Bootstrap:Migrate
 
-- `Package.Skill.Bootstrap:Migrate` is the situation where an existing project with content adopts the Package.Skill framework
-- the core constraint is content preservation — the agent relocates, it does not rewrite or drop
-- conservative by default, not by rule: if something maps cleanly (existing index-like files → `index/`), do it now; if it's ambiguous or high friction, move it close and flag it for later
-- the principle is: do the easy moves now, flag the hard moves for later
-- the agent inventories existing content first: what files exist, what they contain, how they're currently organized
-- content moves into the new folder structure by proximity to its natural place — not by full Package.Skill role assignment, which happens in later sessions
-- the migration produces a live-note artifact (`*-pkgskill-migration.md`) that captures:
-    - inventory of what existed and where it went
-    - flagged items: content that doesn't fit cleanly, pending user decisions
-    - post-migration TODO: what needs revisiting (role assignment, index population, driver refinement)
-- the migration creates only the minimal scaffolding: `SKILL.md` as driver, `package.md` as router — no aux skills, no index pages, no references, unless they map trivially from existing content
-- content that doesn't fit cleanly is never silently dropped — the agent flags it in the migration artifact and asks
-- the migration may include structural changes beyond Package.Skill (splitting folders, renaming subprojects) — these should be scoped with the user, not assumed
-- after migration the project is in an explicit non-stable state: it works (SKILL.md routes, content is accessible), but it is not refined — the migration artifact makes this explicit
-- the project graduates to stable through subsequent sessions: driver refinement, design sessions, index population
-- `SKILL.md` can temporarily link to the migration artifact as a "current state" reference until the package matures
+- `Package.Skill.Bootstrap:Migrate` is the situation where existing content needs to be organized into the Package.Skill framework
+- fundamental principles:
+    - never drop content — everything is accounted for, even if its placement is approximate
+    - never duplicate content — relocate means move, not copy. No parallel copies unless the user explicitly asks for a backup
+    - conservative by default, not by rule — if something maps cleanly, move it now; if it's ambiguous or high friction, move it close and flag it for later
+- the agent inventories existing content, classifies by proximity to natural place, and proposes a relocation plan
+- the migration creates only the minimal scaffolding: `SKILL.md` as driver, `package.md` as router — the rest comes from relocated content or later sessions
+- the result is not a finished Package.Skill — it is something that looks like one. A first pass.
+- if the migration is complex (many files, cross-package content, structural splits), propose an `Impl.Req` to the user to scope the work across slices
+- the project graduates to stable through subsequent work: driver refinement, design sessions, index population
 
-Signals: existing project with scattered content, user says "migrate into Package.Skill framework", "restructure into Package.Skill", "setup Package.Skill — don't drop content."
+Signals: existing content that needs restructuring, user says "migrate into Package.Skill framework", "restructure into Package.Skill", "setup Package.Skill — don't drop content."
 
 ## Expected Behavior Path
 
@@ -55,12 +51,11 @@ Signals: existing project with scattered content, user says "migrate into Packag
 ### :Migrate additional steps
 
 Between steps 3 and 5:
-- Inventory all existing content.
-- Classify by proximity: what maps cleanly into the Package.Skill structure, what is ambiguous, what needs user decision.
-- Do the easy moves: relocate content that has an obvious natural place.
-- Flag the hard moves: document ambiguous or high-friction items in the migration artifact.
-- Create the migration artifact (`*-pkgskill-migration.md`) as a live note.
-- Principle: relocate first, revise later. Do not rewrite content during migration.
+- Inventory existing content — what exists, where, what role it serves.
+- Classify by proximity: what maps cleanly, what is ambiguous, what needs user decision.
+- Do the easy moves now. Flag the hard moves for user decision.
+- If the migration is complex, propose an `Impl.Req` to the user to scope the work across slices.
+- Relocate first, revise later. Do not rewrite content during migration.
 
 ## Key Signals
 

@@ -180,13 +180,17 @@
 
 ## Kernel.Writing
 
-- `Kernel.Writing` is a writing philosophy for capturing concepts directly and completely
-- each line aims to describe a fundamental dimension of the concept — the view is multi-faceted
+- `Kernel.Writing` is a portable conceptual writing system for capturing and communicating fundamental signal
+- it can be applied retrospectively to an existing corpus or actively during an ongoing conversation
+- source material can be chat, argument, codebase, documentation, design artifact, implementation behavior, or observation
+- in live use, it helps participants converge by naming topics, separating dimensions, and reducing redundant prose
+- in retrospective use, it distills existing material into named conceptual blocks
+- its purpose is to turn source material into named conceptual blocks that support future judgment
+- each line aims to describe a fundamental dimension of the topic — the view is multi-faceted
 - lines aim to be orthogonal — avoid redundancy, prefer independent facts
 - language is direct — prefer concise expression, avoid superfluous words
-- completeness over clarity — every fundamental dimension has at least evidence in the block, even if not fully explained
+- completeness means covering the fundamental angles of a topic, not explaining every detail
 - coverage over compression — losing a fundamental dimension is more costly than an extra line
-- a `Kernel.Block` positions a concept in the `Conceptual.Space` — an agent reading it can reconstruct the full context
 - space constraints are external — the surface determines the budget, not the philosophy
 - the filter: capture material that changes future judgment
 - useful material can enter before it has mature structure — capture first, polish later
@@ -197,6 +201,11 @@
 ## Kernel.Block
 
 - `Kernel.Block` is the base writing object of `Kernel.Writing`
+- a block is a markdown section whose heading names the block's main topic
+- the heading is a conceptual commitment — it states what the block is about
+- a block should center one main topic; related material belongs in separate blocks, appendix, or meta
+- body lines are mostly bullets that enrich the topic from different perspectives
+- a block applies `Kernel.Writing` at section scale
 - structure: fundamentals (conceptual) + `### appendix` (extended conceptual) + `### meta` (non-conceptual)
 - the dividing rule: fundamentals and appendix are about the concept; meta is about the block itself
 - meta covers: aliases, outlinks, findability, status, open questions, session mechanics — anything non-conceptual

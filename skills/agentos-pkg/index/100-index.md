@@ -98,6 +98,18 @@
 
 ****
 
+## Parking.Note
+
+- `Parking.Note` is a reserved file under `notes/live/` for parking small blocks for later
+- three files form the `Parking.Note` family: `010.TODOS.md` (something to do), `011.ISSUES.md` (something wrong), `012.NOTEBOOK.md` (everything else)
+- `012.NOTEBOOK.md` is the catch-all — nothing is out of place in NOTEBOOK
+- entries follow `Kernel.Writing` style with relaxed constraints — direct, orthogonal lines, no space budget
+- each entry is a `Kernel.Block`-style heading using `Dotted.Notation` plus prose (e.g. `## Idea.About.Fishing`)
+- the capture workflow is short-lived: discuss → draft → approve → write
+- operational skill: `agentos-parking-note`
+
+****
+
 ## Agentos.Live.Script
 
 - `Agentos.Live.Script` is a non-`Stable.Surface` code working surface under `dev/live/`
@@ -148,6 +160,7 @@
 - the index must have at least a block for any meaningful concept in the system
     - blocks can link out to other surfaces rather than define everything inline
 - inherits fundamentals + `### appendix` + `### meta` from `Kernel.Block`
+- `Content.Verbatim.Gated` — user approves exact wording before commit
 - index blocks should NOT become transcripts, changelogs, progress dashboards, task lists, or implementation dumps
 
 ### meta
@@ -235,6 +248,7 @@
 - `001-index.md` — local `Index.Router`, lives in `notes/index/`
 - `010.TODOS.md` — TODO parking, lives in `notes/live/`
 - `011.ISSUES.md` — issue parking, lives in `notes/live/`
+- `012.NOTEBOOK.md` — idea/observation parking, lives in `notes/live/`
 - `100-299`: public index flat files in the package index surface
 - `300-499`: local index flat files (`notes/index/`)
 - `500-999`: rolling other files (live notes, live scripts)

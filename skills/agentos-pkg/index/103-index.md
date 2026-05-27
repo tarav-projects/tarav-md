@@ -9,13 +9,14 @@
 - flat anonymous index files (`100-index.md`, `101-index.md`, ...) with `000-index.md` as concept→file routing table
 - writing is append-only to the last file — placement decisions are decoupled from writing
 - one universal block structure (`Kernel.Block`) parameterized by surface: `Kernel.Block:Index`, `Kernel.Block:Appendix`, `Kernel.Block:Design`
+- one portable file container (`Kernel.Note`) for collecting `Kernel.Block` sections outside index routing
 - one writing philosophy (`Kernel.Writing`) — space constraints come from the surface, not the philosophy
 - appendix files are concept-named (`Concept.Name-appendix.md`) with implicit discovery — no outlink required
 - `Concept.Scoping` and `Explicit.Namespaces` provide the conceptual overlay on the flat file structure
 
 ### meta
 
-- namespace-members: `Global.Index.Scope`, `Extended.Index.Scope`, `Flat.Index.Architecture`, `Kernel.Writing`, `Kernel.Block`, `Kernel.Block:Index`, `Kernel.Block:Appendix`, `Kernel.Block:Design`, `Concept.Scoping`, `Explicit.Namespace`, `Surface.Concept`, `Agentos.Index.System`
+- namespace-members: `Global.Index.Scope`, `Extended.Index.Scope`, `Flat.Index.Architecture`, `Kernel.Writing`, `Kernel.Block`, `Kernel.Note`, `Kernel.Block:Index`, `Kernel.Block:Appendix`, `Kernel.Block:Design`, `Concept.Scoping`, `Explicit.Namespace`, `Surface.Concept`, `Agentos.Index.System`
 
 ****
 
@@ -57,6 +58,26 @@
 - `Md.Surface` — the markdown layer
 - different surfaces can overlap — the same file can participate in multiple surfaces
 - a surface is not a folder or a file type — it's a declared interface over project elements
+
+****
+
+## Surface.Types
+
+- `Surface.Types` are the major axes of surface character in an Agentos project
+- a component of the system can have expressions on different surface types — each type serves a different aspect of the component
+- **Codebase** — executable implementation. The running system.
+- **Index/Appendix** — named concepts, design reasoning, cheap navigation. Where agents and humans go to reason about the system. Aims to contain or cheaply link all components. Not derived from other surfaces.
+- **Skills** — agent-executable guidance. The "codebase" for agents. Can contain index-ish components (routers), doc-ish components (references), or operational components — depends on the implementation.
+- **Docs.Surface** — natural text, readable, linked. General and flexible — can serve presentation, explanation, onboarding, or any purpose that fits natural prose. Can be a derived surface. Its interaction with other surfaces follows `Natural.Placement` and `Cited.Duplication` like any other stable surface.
+- surface types are not file locations — a single folder can contain multiple types
+- all stable surfaces are peers (`Stable.Surface`) — no type outranks another by default
+- the distinction is the access pattern and the purpose, not the authority level
+- the footprint of a component across surface types is proportional to its complexity and usage — not every component needs every surface type
+- a concept that exists only as design communication may only need an index block
+- a major subsystem may have index, codebase, skill, and docs surfaces
+- an agent orchestration across subsystems may need index and skill surfaces but no codebase
+- this follows `Natural.Placement` — each surface type holds the facet that is natural to its function
+- components are deployed on different surfaces as they fit — the surfaces serve the component, not the other way around
 
 ****
 

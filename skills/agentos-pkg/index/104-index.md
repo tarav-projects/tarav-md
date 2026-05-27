@@ -206,3 +206,37 @@
 - agents resolve linter code meaning through normal `agentos-pkg` index and `Appendix.Discovery`
 - router entries use `[+N]` to expose discovered appendix page depth for routed concepts
 - the linter reports errors, warnings, blocked checks, and summary counts; semantic diagnosis belongs to `agentos-index-doctor`
+
+****
+
+## Write.Trigger.Gated
+
+- `Write.Trigger.Gated` is a gating constraint: the user must explicitly initiate the write — the agent never starts writing on its own
+- asking "should I write this?" is allowed; opening an editor without approval is not
+- applies to any surface that wants human control over when mutation happens
+- distinct from `Content.Verbatim.Gated`, which gates what is written rather than when
+- a surface can apply one or both gates independently
+- operational detail: `agentos-index-writer`
+
+****
+
+## Content.Verbatim.Gated
+
+- `Content.Verbatim.Gated` is a gating constraint: the user must approve the exact wording before it is committed
+- the agent proposes; the user settles — no silent rewrites or unreviewed content
+- implies `Write.Trigger.Gated` — if content is gated, the trigger is necessarily gated too
+- supports `Hugentic.Alignment` — the review point is where human judgment shapes the surface
+- operational detail: `agentos-index-writer`
+
+****
+
+## Kernel.Note
+
+- `Kernel.Note` is a portable markdown file made to contain `Kernel.Block` sections
+- it is a collection surface for blocks, not a block type
+- it captures or develops the fundamental structure of a subject by grouping named blocks in one file
+- source material can be any inspectable thing: chat, skill, codebase, document, argument, or observed system behavior
+- it can be produced from an existing corpus or maintained during an active conversation
+- unlike `Kernel.Block:Index`, a `Kernel.Note` is not necessarily part of an index or routing table
+- its purpose is portable block collection, conceptual extraction, and argument substrate
+- a `Kernel.Note` can later be promoted into index blocks, appendix material, design artifacts, or implementation guidance
