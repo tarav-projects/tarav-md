@@ -1,6 +1,6 @@
 ---
 name: agentos-pkg
-description: "Agentos provides shared tools for agent-project workflows: concept indexes, human-agent design sessions, implementation workflows, live notes, package skills, and project structure (AGENTS.md). Load this skill when working with any of these — or when a project's AGENTS.md routes here. After loading, the agent gets workflow-neutral orientation: what tools exist, where each subsystem starts, and which narrower surface to load next."
+description: "Agentos provides shared tools for agent-project workflows: concept indexes, human-agent design sessions, implementation workflows, live notes, package skills, and more. Load this skill when working with any of these — or when a project's AGENTS.md routes here. After loading, the agent gets workflow-neutral orientation: what tools exist, where each subsystem starts, and which narrower surface to load next."
 ---
 
 # agentos-pkg
@@ -9,9 +9,9 @@ Agentos is a toolkit for agent-project workflows. It gives agents shared, durabl
 
 The main tools: concept indexes, live surfaces, package skills, and human-agent workflows.
 
-Any project can adopt agentos incrementally — an AGENTS.md and one package skill is enough to start. This skill (`agentos-pkg`) is the entry point — it teaches agents how to discover and use agentos tools in whatever project they're working on.
+Any project can adopt agentos incrementally — an AGENTS.md and one package skill is enough to start. This skill (`agentos-pkg`) is the entry point to the system toolkit — it teaches agents how to discover and use agentos tools in whatever project they're working on.
 
-Paths in this skill are package-root-relative unless explicitly absolute. For example, `index/000-index.md` means `skills/agentos-pkg/index/000-index.md`.
+Paths in this skill are package-root-relative unless explicitly absolute. For example, `index/000-index.md` means `agentos-pkg/index/000-index.md`.
 
 ## Agentos Workspace
 
