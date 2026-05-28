@@ -117,6 +117,7 @@ When the Driver is not enough, load a narrower surface:
 - **Codebase cleanup** — load `agentos-codebase-cleanup` for targeted refactoring
 - **Git commits** — load `agentos-git-commit` for deterministic semantic commit workflows
 - **Project health** — load `agentos-project-doctor` to diagnose project conformance
+- **Previous agent sessions** — load `agentos-chatlas-pkg` for querying, exporting, and continuing previous agent sessions across projects
 
 For deeper understanding of agentos concepts, search the `agentos-pkg` index:
 
