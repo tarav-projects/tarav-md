@@ -12,7 +12,7 @@ Use:
 NNN-timetag-design-session.md
 ```
 
-Store it in `notes/live/` using `agentos-live-note-base` numbering guidance.
+Store it in `notes/live/` using `agentos-live-surfaces` numbering guidance.
 
 Prefer one artifact once the session is in artifact mode. Create another `*-design-session.md` only for length, scope, lifecycle, or audience reasons.
 

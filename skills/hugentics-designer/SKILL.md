@@ -49,7 +49,7 @@ Use `Alignment.Backend:Artifact:What` when the user explicitly asks to upgrade, 
 
 - load `references/backend-artifact.md`
 - load `references/artifact.md`
-- use `agentos-live-note-base` for live-note location and numbering
+- use `agentos-live-surfaces` for live-note location and numbering
 
 Suggest `Alignment.Backend:Artifact:What` when:
 

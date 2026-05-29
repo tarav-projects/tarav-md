@@ -205,7 +205,7 @@
 - each code names an appendix block that explains meaning, gating, or expected remediation
 - agents resolve linter code meaning through normal `agentos-pkg` index and `Appendix.Discovery`
 - router entries use `[+N]` to expose discovered appendix page depth for routed concepts
-- the linter reports errors, warnings, blocked checks, and summary counts; semantic diagnosis belongs to `agentos-index-doctor`
+- the linter reports errors, warnings, blocked checks, and summary counts
 
 ****
 

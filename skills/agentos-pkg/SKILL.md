@@ -97,6 +97,19 @@ A project folder may contain several local surfaces — the project's own workin
 - `notes/canvas/` — visual collaboration surfaces
 - `dev/live/` — small maintained code scripts and tooling snippets that persist across sessions
 
+## Package
+
+`agentos-pkg` is the core package skill for the agentos framework. It is the dependency root — other agentos package skills depend on it for the project model, skill model, index model, and workflow concepts.
+
+This package owns: the Agentos Index system, the Hugentic workflow harness, live surface conventions, and the project structure model.
+
+Separate packages exist for other systems:
+
+- `agentos-chatlas-pkg` — session dataset system (query, export, continuation)
+- `agentos-iterante-pkg` — mission harness and iterative workflows
+
+`agentos-pkg` is not the same as the `agentos-md` repository — `agentos-md` is one implementation project; `agentos-pkg` is the portable package skill that any project can use.
+
 ## Agentos CLI
 
 The `agentos` CLI is available for discovery and operations. Run `agentos --help` to see what it can do.
@@ -111,8 +124,7 @@ When the Driver is not enough, load a narrower surface:
 - **Implementation planning** — load `hugentics-impl-designer` for implementation-request design
 - **Implementation execution** — load `hugentics-impl-executer` for executing implementation plans
 - **Workflow status** — load `hugentics-workflow-status` for a structured checkpoint
-- **Live notes** — load `agentos-live-note-base` for live-note location and numbering conventions
-- **Live scripts** — load `agentos-live-script` for live-script conventions
+- **Live surfaces** — load `agentos-live-surfaces` for live-note and live-script location, naming, and numbering
 - **Skill engineering** — load `agentos-skills-ingenier` for creating or upgrading skills
 - **Codebase cleanup** — load `agentos-codebase-cleanup` for targeted refactoring
 - **Git commits** — load `agentos-git-commit` for deterministic semantic commit workflows

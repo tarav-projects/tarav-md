@@ -23,8 +23,6 @@ This skill orients the caller to the index subsystem without forcing an operatio
 | Reference | Covers |
 |---|---|
 | `agentos-pkg/references/launch-runtime.md` | bootstrap script — load index data, ground key concepts, load appendix, always-on behavior |
-| `agentos-pkg/references/maintenance.md` | maintenance checklist (linting, dedup, promotion, placement audit) + Index.CLI commands |
-| `agentos-pkg/references/test-system.md` | deprecated — index testing is now covered by `agentos-testground` |
 
 ## Index Functions
 
@@ -34,7 +32,6 @@ This skill orients the caller to the index subsystem without forcing an operatio
 | Writing / mutation | User-gated index edits. Full writer's guide: `agentos-index-writer`. |
 | Diagnosis | Report on structure, routing, staleness, coherence, coverage gaps, or placement drift. Do not mutate unless separately approved. |
 | Testing | Use `agentos-testground` for behavioral testing of index entry paths and usage patterns. Legacy activation-recall tests remain in `agentos-pkg/testing/`. |
-| Maintenance | Use `agentos-pkg/references/maintenance.md` for linting, deduplication, promotion, and placement audits. |
 
 ## Index.Agent Behavior
 
@@ -54,6 +51,3 @@ An `Index.Agent` should:
 - when discussing or modifying the index design itself
 - when debugging index behavior or resolving design questions
 
-## Compatibility
-
-`agentos-index-activate`, `agentos-index-doctor`, and `agentos-index-test` are deprecated standalone public aux skills for now. Their roles are represented as functions in this skill. `agentos-index-writer` is the canonical writer's guide — load it for index writing work.

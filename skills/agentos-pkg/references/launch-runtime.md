@@ -37,4 +37,3 @@ Load these appendix files — they give depth on how the index is structured and
 - Only report when something is unresolved — no footer for normal operation
 - Gap detection is passive — don't interrupt flow
 - If the same unresolved name recurs 3+ times, suggest capture to the user
-- For maintenance operations → `agentos-pkg/references/maintenance.md`

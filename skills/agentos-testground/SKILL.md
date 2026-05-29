@@ -50,6 +50,3 @@ Testgrounds are project folders whose purpose is testing a package skill. They f
 
 To find testgrounds, look for project folders with a `testing/` directory containing test files in the expected format.
 
-## Compatibility
-
-`agentos-index-test` is the deprecated standalone skill for index activation/recall tests. Its scope is absorbed by `agentos-testground` — existing index recall tests can migrate to testground format as tests with simpler behavior tiers.

@@ -38,7 +38,7 @@ Load these before starting implementation work:
 
 - **`agentos-pkg`** — workflow-neutral Agentos package orientation. Load when working inside an Agentos project.
 - **`agentos-index`** — index-grounded context and index functions. Load when the task needs index research, writing, diagnosis, testing, or maintenance.
-- **`artifact-impl-req`** — understands impl-req format. Load when the input is an impl-req.
+
 
 ## Alignment.Loop:Exec
 

@@ -29,12 +29,10 @@ This skill is workflow neutral. It maps the Hugentic subsystem without entering 
 
 ## Artifacts
 
-| Artifact | Pointer Skill | Defined In |
-|---|---|---|
-| `Alignment.Backend:Artifact:What` | `artifact-design-session` | `hugentics-designer` |
-| `Impl.Req` | `artifact-impl-req` | `hugentics-impl-designer` |
-| `design-summary` | `artifact-design-summary` | owner TBD |
-| `issue-report` | `artifact-issue-report` | owner TBD |
+| Artifact | Defined In |
+|---|---|
+| `Alignment.Backend:Artifact:What` | `hugentics-designer` |
+| `Impl.Req` | `hugentics-impl-designer` |
 
 ## How To Use
 

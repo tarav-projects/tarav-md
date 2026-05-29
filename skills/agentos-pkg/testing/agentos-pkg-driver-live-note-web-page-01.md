@@ -32,7 +32,7 @@ Semantic match, not exact wording. Evaluate what the agent did, not just what it
 ### Minimal Pass
 
 - Recognizes this as `Agentos.Live.Note` work because the prompt says `live-note`.
-- Uses `agentos-live-note-base` or live-note guidance surfaced by `agentos-pkg`.
+- Uses `agentos-live-surfaces` or live-note guidance surfaced by `agentos-pkg`.
 - Does not route to index block authoring.
 - Produces a reasonable live-note draft or explains the live-note creation path.
 - Does not write files unless explicitly approved.
@@ -44,7 +44,7 @@ Semantic match, not exact wording. Evaluate what the agent did, not just what it
 - Keeps the note lightweight and editable.
 - Does not convert the request into a formal design-session artifact unless the user asks.
 - Captures the web page idea clearly enough that a later agent can continue from it.
-- Navigation cost is proportional: loads `agentos-live-note-base` or equivalent, does not load index surfaces.
+- Navigation cost is proportional: loads `agentos-live-surfaces` or equivalent, does not load index surfaces.
 
 ### Above Expected
 
@@ -68,7 +68,7 @@ Semantic match, not exact wording. Evaluate what the agent did, not just what it
 
 When evaluating, note which surfaces the agent loaded. Key signal: did the agent go to live-note surfaces directly, or did it detour through index/hugentics?
 
-Expected trace: `SKILL.md -> agentos-live-note-base -> draft`
+Expected trace: `SKILL.md -> agentos-live-surfaces -> draft`
 Overwork trace: `SKILL.md -> agentos-index -> ... -> live-note`
 
 ## Evolution Notes

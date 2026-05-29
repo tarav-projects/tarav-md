@@ -152,7 +152,7 @@
 - the skill body should clarify behavior when args are missing: orient (workflow-neutral), ask, or noop — never guess
 - zero-arg call on a workflow-neutral skill with explicit args: the skill loads its orientation context but does not perform an operation
 - zero-arg call on an operational skill with explicit args: noop or orient, never assume a target
-- examples: `agentos-testground` needs a target package; `agentos-index-test` needs a target project
+- examples: `agentos-testground` needs a target package
 
 ****
 

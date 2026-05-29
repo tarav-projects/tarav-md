@@ -46,7 +46,7 @@ The goal: if handed to an agent with no other context, the plan itself steers th
 
 - Use a filename ending in `-impl-req.md`
 - Store in `notes/live/`
-- Use `agentos-live-note-base` for live-note location and numbering
+- Use `agentos-live-surfaces` for live-note location and numbering
 
 ### Writing Guidance
 
