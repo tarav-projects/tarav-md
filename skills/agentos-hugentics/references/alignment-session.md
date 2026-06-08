@@ -11,6 +11,25 @@
 - **Alignment.User.Turn** — user drives, agent follows
 - **Alignment.Maintenance.Turn** — agent drives one session move
 - **Alignment.Backend** — where session state lives: `InChat` or `Artifact`
+- **Alignment.Mode** — how much human gating the loop carries; set by the caller, respected by the workflow (see below)
+
+## Alignment.Mode
+
+`Alignment.Mode` tunes the amount of human-in-the-loop gating a hugentic skill applies. One concept, three values, applied uniformly across phases.
+
+| Mode | Gates | Use |
+|---|---|---|
+| `Alignment.Mode:Interactive` | Full loop. Every `Alignment.Question` / `Consolidation` confirmed with the user. | Default. Human in the chair. |
+| `Alignment.Mode:Gated` | Autonomous within each phase. One confirmation at phase boundaries (e.g. `What.Design` → `Impl.Req` → `Impl.Exec`). | Mostly-autonomous flows that still want a sanity gate at the artifact handoff. |
+| `Alignment.Mode:Autonomous` | No gates. Artifacts still produced as the audit trail. | End-to-end autonomous flows (e.g. cleanup, scheduled runs). |
+
+The mode is selected by the caller or outer skill. When unspecified, default to `Alignment.Mode:Interactive`. Each workflow master spells out what the mode means for its loop and, importantly, for its **deviation contract**:
+
+- `Interactive` — stop and ask the user.
+- `Gated` — log the deviation; continue if reversible; abort if not.
+- `Autonomous` — log and continue; abort only on hard failure.
+
+A skill that does not name an `Alignment.Mode` is assumed `Interactive`.
 
 ## Phase Semantic Roots
 

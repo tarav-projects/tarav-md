@@ -14,7 +14,7 @@
 ## Index.Activation
 
 - `Index.Activation` is the process of bootstrapping the `Index.Runtime` for a session
-- handled through the `agentos-index` auxiliary skill or by a caller performing the `Index.Agent` role
+- handled through the `agentos-index` auxiliary skill or directly by an index-capable caller
 - collects the relevant routing blocks, concept blocks, appendix material, and references for the current task
 - activation is opt-in — triggered by `AGENTS.md` or manual invocation
 - operational detail: `agentos-pkg/references/launch-runtime.md`
@@ -134,41 +134,6 @@
 
 ****
 
-## Index.Agent
-
-- `Index.Agent` is a role for collecting, interpreting, and returning context from the index
-- `Index.Agent` is index-capable, not index-bound; it operates under `Multi.Index.Operation` unless explicitly constrained
-- can be performed by a dedicated specialist agent or temporarily by a workflow agent
-- the caller sends a prompt; the `Index.Agent` scans the index, does the work, and returns a result
-- the caller's context is protected — the `Index.Agent` pays the cost of loading the full index, not the caller
-- useful for discovery, uncertain queries, custom context extraction, and index-grounded synthesis
-- not required as the default prelude when a workflow already knows its needed cited context
-- must cite source blocks in returned context so summaries remain traceable and maintainable
-- not a fixed API — handles any reasonable prompt against the index
-- backed by the `agentos-index-agent` skill: index conventions, block structure, routing, CLI tools, appendix discovery
-- can run on a medium-size model — structured, scoped work
-- the caller retains direct index access when the index *is* the work target
-- the caller can pass context in the prompt — a chat summary, already-loaded blocks, a topic, a question
-- common patterns: grounding (pass chat summary, get relevant blocks), search (find blocks by topic), placement (where to write a new block), filtering (return namespace members minus already-loaded blocks)
-
-****
-
-## Multi.Index.Operation
-
-- `Multi.Index.Operation` is the default operating condition of an `Index.Agent`
-- an `Index.Agent` is not inherently attached to one index
-- session context may bias the agent toward a default index, such as the active project index or currently loaded package index
-- explicit user direction may also constrain which index or indexes to use
-- without such constraints, the agent should treat all accessible relevant indexes as possible sources of context, citations, and conflict
-- applies to index research, context collection, writing, citation, maintenance, conflict detection, and package dependency traversal
-- accessible indexes may include the active project's local index, the active package index, dependency package indexes, and explicitly provided external package indexes
-- agents should avoid blind exhaustive loading; search likely relevant indexes first and load only useful blocks, appendix material, or references
-- concepts cited or returned from a non-default index should use qualified names, such as `<package>-pkg/Concept.Name` or `local/Concept.Name`
-- disagreement across indexes is surfaced as an issue, not silently merged
-- writes must respect the target index's placement rules and write gates
-
-****
-
 ## Index.Depot
 
 - `Index.Depot` is a concrete index instance — the set of files with index blocks, their appendix, and a router
@@ -177,7 +142,7 @@
 - each depot is self-contained — its own router(s), its own flat files, its own appendix
 - a concept lives in exactly one depot — the depot that naturally owns it
 - composability: an agent loads multiple depots to build its working index
-- the `Index.Agent` works across all loaded depots — it scans whatever routers are available
+- an index-capable agent works across all loaded depots by scanning their available routers
 
 ### meta
 

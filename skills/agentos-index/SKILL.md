@@ -33,16 +33,16 @@ This skill orients the caller to the index subsystem without forcing an operatio
 | Diagnosis | Report on structure, routing, staleness, coherence, coverage gaps, or placement drift. Do not mutate unless separately approved. |
 | Testing | Use `agentos-testground` for behavioral testing of index entry paths and usage patterns. Legacy activation-recall tests remain in `agentos-pkg/testing/`. |
 
-## Index.Agent Behavior
+## Index Operating Behavior
 
-Any capable caller can act as an `Index.Agent`, or spawn a subagent to do so when context pollution matters.
-
-An `Index.Agent` should:
+An agent operating the index should:
 
 - search routing surfaces first, then load only relevant concept blocks, appendix material, or references
 - return context with source block citations so the caller can verify and maintain the summary
 - distinguish discovered context from inference
 - use writing/mutation only when the user has approved an index write
+
+For delegated read-only research that protects the caller's context, use `Packages.Master.Agent` against the relevant package or packages.
 
 ## When To Load This Skill
 
@@ -50,4 +50,3 @@ An `Index.Agent` should:
 - when writing, diagnosing, testing, or maintaining the index
 - when discussing or modifying the index design itself
 - when debugging index behavior or resolving design questions
-

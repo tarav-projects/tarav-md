@@ -1,9 +1,9 @@
 ---
-name: agentos-codebase-cleanup
-description: Improve a git-tracked codebase in place by making targeted cleanup refactors. USE WHEN the user wants the agent to simplify code, reduce duplication, address repeated-knowledge or DRY violations, remove poor abstractions, centralize repeated knowledge, tighten boundaries, or generally clean up a repository after implementation; create a checkpoint commit before editing, apply the improvements, and summarize the results.
+name: hugentics-codebase-cleaner
+description: Improve a git-tracked codebase in place by scanning for targeted cleanup refactors, producing an Impl.Req via hugentics-impl-designer, and executing it via hugentics-impl-executer in Alignment.Mode:Gated. USE WHEN the user wants the agent to simplify code, reduce duplication, address repeated-knowledge or DRY violations, remove poor abstractions, centralize repeated knowledge, tighten boundaries, or generally clean up a repository after implementation.
 ---
 
-# Agentos Codebase Cleanup
+# Hugentics Codebase Cleaner
 
 Improve the current repository directly. Do not stop at an audit unless blocked. The default outcome is edited code plus a short summary of the changes and rationale.
 
@@ -25,6 +25,8 @@ Only act on changes that improve the repo under its current architecture. Respec
 
 ## Workflow
 
+Cleanup is a two-stage hugentic flow: scan + scope here, then hand off to `hugentics-impl-designer` and `hugentics-impl-executer` for the design + execution. The default `Alignment.Mode` for the handoff is `Gated` (see `agentos-hugentics/references/alignment-session.md`): one user confirmation at the `Impl.Req` boundary, then autonomous execution.
+
 ### 1. Reconstruct local context
 
 - Inspect repo structure, primary languages, tooling, tests, and `git status`.
@@ -37,36 +39,29 @@ Only act on changes that improve the repo under its current architecture. Respec
 - Prioritize repeated knowledge, bypassed abstractions, dead code, oversized functions, and confusing module boundaries.
 - Avoid broad rewrites, repo-wide renames, or architecture migrations unless the user asked for them.
 
-### 3. Create a checkpoint commit before the first edit
+### 3. Produce an Impl.Req via hugentics-impl-designer
 
-- This commit is mandatory before any file modification.
-- Analyze first; do not create a checkpoint until you are confident you will edit files.
-- If the worktree is dirty, create a checkpoint commit that captures the repo exactly as found.
-- If the worktree is clean, create an empty checkpoint commit so there is an explicit rollback point.
-- Use a clear message such as `chore: checkpoint before agentos-codebase-cleanup`.
-- If the repo is not a git repo, has unresolved conflicts, or the checkpoint commit fails, stop and explain the blocker.
+- Hand off the scoped cleanup set to `hugentics-impl-designer` and produce an `Impl.Req`.
+- The `Impl.Req` lives in the **cleaned project's** `notes/live/`, not the invoker's. Use `agentos-live-surfaces` for naming and numbering.
+- Carry over cleanup's constraints into the `Impl.Req`: stay narrow, prefer module-local helpers, no new frameworks, replace obsolete interfaces rather than wrap them.
+- Run the designer in `Alignment.Mode:Gated`: the loop runs autonomously, then the `Impl.Req` is presented for one user confirmation before execution.
 
-### 4. Apply improvements
+### 4. Execute via hugentics-impl-executer
 
-- Make the smallest change set that resolves the selected cleanup theme.
-- Prefer extracting or reusing existing helpers over creating new abstractions.
-- Prefer centralization over indirection.
-- Prefer replacing obsolete code over preserving legacy compatibility paths.
-- Delete dead code only when confident it is unused or clearly replaced.
-- Do not keep legacy APIs, adapters, flags, or transitional glue unless the user explicitly requests backward compatibility.
-- Keep touched files internally consistent.
+- Hand the approved `Impl.Req` to `hugentics-impl-executer` in `Alignment.Mode:Gated`.
+- The executer owns the mandatory pre-execution checkpoint commit (rollback floor), per-slice commits, and the deviation contract.
+- A `Gated`-mode deviation that requires reshaping the design or expanding scope aborts back to the user — cleanup never silently broadens its own scope.
 
-### 5. Validate
+### 5. Validate (per slice and at completion)
 
-- Run the narrowest relevant verification for the changed area: tests, linters, type checks, build steps, or focused commands.
-- Fix any issues introduced by the cleanup.
+- Slice-level verification is part of the executer's per-slice loop.
+- At completion, run the narrowest relevant verification for the cleaned areas: tests, linters, type checks, build steps, or focused commands.
 - If verification cannot be run, say so explicitly.
 
 ### 6. Finish
 
-- Leave the cleanup changes in the worktree unless the user asked for a final cleanup commit.
 - Summarize what changed, why it was worth doing, what verification ran, and any remaining risk.
-- Mention the checkpoint commit so the user can roll back easily.
+- Cite the `Impl.Req` location and the checkpoint commit so the user has the audit trail and rollback handle.
 
 ## Constraints
 
@@ -85,4 +80,4 @@ After the cleanup work, respond with a concise summary that includes:
 - what you changed
 - why those changes were chosen
 - what verification ran
-- the checkpoint commit details
+- the `Impl.Req` path and the checkpoint commit details (rollback handle)

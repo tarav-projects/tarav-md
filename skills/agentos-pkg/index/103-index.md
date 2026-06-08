@@ -13,6 +13,7 @@
 - one writing philosophy (`Kernel.Writing`) — space constraints come from the surface, not the philosophy
 - appendix files are concept-named (`Concept.Name-appendix.md`) with implicit discovery — no outlink required
 - `Concept.Scoping` and `Explicit.Namespaces` provide the conceptual overlay on the flat file structure
+- index blocks may carry `Chat.Grounding` — one or more `Chat.Ref`s anchoring the block to user/agent interaction evidence
 
 ### meta
 
@@ -69,6 +70,7 @@
 - **Index/Appendix** — named concepts, design reasoning, cheap navigation. Where agents and humans go to reason about the system. Aims to contain or cheaply link all components. Not derived from other surfaces.
 - **Skills** — agent-executable guidance. The "codebase" for agents. Can contain index-ish components (routers), doc-ish components (references), or operational components — depends on the implementation.
 - **Docs.Surface** — natural text, readable, linked. General and flexible — can serve presentation, explanation, onboarding, or any purpose that fits natural prose. Can be a derived surface. Its interaction with other surfaces follows `Natural.Placement` and `Cited.Duplication` like any other stable surface.
+- **Chat.Surface** — recorded user/agent communication. The interaction trail. Emit-driven and append-only (unlike the curated stable surfaces). Holds the evidence of alignment moves; other surfaces hold curated forms derived from it.
 - surface types are not file locations — a single folder can contain multiple types
 - all stable surfaces are peers (`Stable.Surface`) — no type outranks another by default
 - the distinction is the access pattern and the purpose, not the authority level

@@ -27,6 +27,20 @@ The `How.Design` specialization of `Alignment.Loop`, scoped to implementation co
 
 The loop continues until the implementation design is sufficiently aligned for execution.
 
+### Alignment.Mode
+
+This skill respects the caller's `Alignment.Mode` (see `agentos-hugentics/references/alignment-session.md`). Default is `Interactive`.
+
+- `Interactive` — full loop. The "do not write automatically — only on explicit user request" rule in [Writing Guidance](#writing-guidance) applies; ask before each `Alignment.Consolidation:How`.
+- `Gated` — run `Alignment.Loop:How` autonomously, produce the `Impl.Req`, then stop at the phase boundary for one user confirmation before handing off to `impl.executer.agent`. The "do not write automatically" rule is satisfied by the caller's explicit invocation of this mode.
+- `Autonomous` — run end-to-end without gating. Produce the `Impl.Req` as the audit trail and hand off directly.
+
+Deviation contract:
+
+- `Interactive` — stop and ask.
+- `Gated` — note in `Impl.Index` / `Impl.Log`; continue if reversible; abort and surface if not.
+- `Autonomous` — note and continue; abort only on hard failure.
+
 ## Impl.Req Artifact Format
 
 An `Impl.Req` is an implementation-request artifact — a surface for designing and tracking an implementation plan.
@@ -79,7 +93,7 @@ See `references/example.md` for a concrete sample.
 - Preserve the original request intent unless the user explicitly changes it
 - When refining, prefer focused updates over full rewrites
 - When implementation work occurs, update `Impl.Abstract` and append to `Impl.Log`
-- Post-execution log entries should say what was implemented, what remains if anything, and any drift or blockers discovered
+- Post-execution log entries record only deviations from the plan, decisions made in open space, and blockers. If it is visible in the git diff, it does not belong in the log.
 
 ### Realignment Notes
 

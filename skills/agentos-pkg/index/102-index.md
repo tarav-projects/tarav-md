@@ -33,13 +33,14 @@
 - `Alignment.Backend:InChat` — state lives in chat, no file overhead
 - `Alignment.Backend:Artifact` — state lives in a file-backed artifact, durable and handoff-ready
 - parameterized by phase: `Alignment.Backend:InChat:What`, `Alignment.Backend:Artifact:What`, etc.
+- `Alignment.Backend:InChat` and `Chat.Surface` are distinct concerns: `Alignment.Backend:InChat` is the active session state — the live chat as it unfolds, "what's in RAM"; `Chat.Surface` is the durable record of past chats — the archived interaction trail
 
 ****
 
 ## Hard.Evidence
 
 - `Hard.Evidence` is the principle that evidence-based arguments have priority over agent assumptions during alignment work
-- concrete evidence: user instructions, inspected codebase state, active session artifacts, stable project surfaces
+- concrete evidence: user instructions, inspected codebase state, active session artifacts, stable project surfaces, `Chat.Surface` content (especially user turns)
 - alignment sessions aim to be `Hard.Evidence`-based — more is welcome, but the core alignment axes are the priority
 
 ****
@@ -52,7 +53,7 @@
 
 ### concepts
 
-- `Conceptual.Space`, `Alignment.Hugentic.Axis`, `Alignment.Agentic.Axis`, `Alignment.Loop`, `Alignment.User.Turn`, `Alignment.Maintenance.Turn`, `Alignment.Backend`
+- `Conceptual.Space`, `Alignment.Hugentic.Axis`, `Alignment.Agentic.Axis`, `Alignment.Loop`, `Alignment.User.Turn`, `Alignment.Maintenance.Turn`, `Alignment.Backend`, `Chat.Surface`
 
 ### phase semantic roots
 

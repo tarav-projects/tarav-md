@@ -114,6 +114,8 @@ Separate packages exist for other systems:
 
 The `agentos` CLI is available for discovery and operations. Run `agentos --help` to see what it can do.
 
+For configuring and syncing project-local imported skills, read `references/skills-routing.md`.
+
 ## Go Deeper
 
 When the Driver is not enough, load a narrower surface:
@@ -126,7 +128,7 @@ When the Driver is not enough, load a narrower surface:
 - **Workflow status** — load `hugentics-workflow-status` for a structured checkpoint
 - **Live surfaces** — load `agentos-live-surfaces` for live-note and live-script location, naming, and numbering
 - **Skill engineering** — load `agentos-skills-ingenier` for creating or upgrading skills
-- **Codebase cleanup** — load `agentos-codebase-cleanup` for targeted refactoring
+- **Codebase cleanup** — load `hugentics-codebase-cleaner` for targeted refactoring through the hugentic harness
 - **Git commits** — load `agentos-git-commit` for deterministic semantic commit workflows
 - **Project health** — load `agentos-project-doctor` to diagnose project conformance
 - **Previous agent sessions** — load `agentos-chatlas-pkg` for querying, exporting, and continuing previous agent sessions across projects

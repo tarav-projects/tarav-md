@@ -12,7 +12,7 @@ Load the `agentos-pkg` skill at the start of a session for workflow-neutral Agen
 
 Load the `agentos-index` skill when you need index-grounded context, index research, index writing, diagnosis, testing, or maintenance.
 
-Use `agentos-index` for cited context collection or to perform the `Index.Agent` role.
+Use `agentos-index` for cited context collection and direct index work.
 
 ## Surface Rules
 

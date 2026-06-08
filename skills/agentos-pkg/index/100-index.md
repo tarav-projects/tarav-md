@@ -28,6 +28,7 @@
     - appendix → extended depth, rationale, scoped views through `Concept.Scoping`
     - skills → operational behavior, workflows
     - code → the implementation itself (the code IS the description)
+    - chat → user/agent interaction record, the evidence trail for alignment moves
 - describing in markdown what code already holds naturally is redundant placement, not useful duplication — the question is placement
 - cited duplicates can also be naturally placed when local use strongly benefits from repeated content
 - duplication is justified when avoiding it would harm bootstrapping, workflow performance, local readability, or agent orientation
@@ -128,6 +129,45 @@
 - `Local.Surface` has access to everything — it bridges public and local naturally
 - this constraint exists because public surfaces are distributable — they must work outside the project
 - when the full dependency project is available (`Project.Dev.Install`), the local/public boundary shifts — local surfaces of the dependency become reachable too
+- `Public.Surface`s may carry `Chat.Ref`s, but those refs are not publicly resolvable — a consumer outside the originating project context cannot follow them. This is a pragmatic exception to `Public must be self-contained`
+
+****
+
+## Chat.Surface
+
+- `Chat.Surface` is the surface of user/agent direct communication — the recorded conversation itself
+- emit-driven, not curated: it comes into existence as a byproduct of interaction; other surfaces are actively shaped by humans and agents
+- append-only: a chat session is a tape; once written, turns are not edited but superseded by later turns
+- `Natural.Placement` claim: SSOT of user/agent alignment evidence — what was said, accepted, surfaced, overwritten, and when
+- primary signal lives in user turns; assistant turns supply context and forensic trace ("why did the agent do that")
+- holds reasoning, decisions, rejections, and reactions in their original form — the most detailed description of how the project arrived at its curated state
+- referenceable from any other surface via `Chat.Ref`, the same way the index is referenceable
+- participates in alignment as a precedent bank — earlier exchanges inform later reasoning; the system evolves by accumulating cited precedent
+- agents access chat content through `agentos-chatlas-pkg`
+
+****
+
+## Chat.Ref
+
+- `Chat.Ref` is a citation to a position on a chat tape — the reference primitive for the `Chat.Surface`
+- address shape: `@<hash>-<timetag>` where `<hash>` is an `identity_hash` prefix and `<timetag>` is an ISO 8601 datetime, truncatable to any precision
+- `@<hash>` alone (no timetag) is a session-level reference
+- a timetag defines a window at its declared precision — narrow at second-level, broader at day or month
+- explicit ranges join two timetags with `..`: `@<hash>-<timetag1>..<timetag2>`
+- the readable hook is host-surface annotation alongside the ref (e.g., a trailing em-dash and prose), not part of the address itself
+- resolved through `agentos chatlas` query and export surfaces
+
+****
+
+## Chat.Grounding
+
+- `Chat.Grounding` is the practice of anchoring index blocks (and other curated claims) to one or more `Chat.Ref`s
+- the unit of meaningful claim requiring grounding is an index block — the index is already the surface of what humans and agents both treat as important
+- a block is **grounded** (one or more `Chat.Ref`s), **ungrounded** (no refs yet — visible state, not an error), or **stale** (refs are old and the block has drifted — surfaces as one more instance of inter-surface drift)
+- grounding is itself a hugentic act — humans and agents ground concepts together by chatting about them, often by walking back through old sessions
+- timing is flexible: write-time grounding happens naturally during design; retroactive grounding is a dedicated hugentic activity
+- existing ungrounded blocks are not auto-backfilled — `ungrounded` is a legitimate visible state that signals a future opportunity
+- drift (grounded-but-stale, or claims contradicting their refs) is surfaced, not auto-resolved — handled by the same `Alignment.Loop` machinery as all other inter-surface drift
 
 ****
 

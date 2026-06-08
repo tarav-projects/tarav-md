@@ -50,6 +50,29 @@ Before execution, the agent runs a minimal re-alignment discussion to recover/do
 
 The `Alignment.Loop:Exec` is lighter than the full `Alignment.Loop:How` — it is a recovery check, not a full design pass.
 
+### Alignment.Mode
+
+This skill respects the caller's `Alignment.Mode` (see `agentos-hugentics/references/alignment-session.md`). Default is `Interactive`.
+
+- `Interactive` — run the full `Alignment.Loop:Exec`. "Confirm the plan with the user before coding" applies.
+- `Gated` — compress `Alignment.Loop:Exec` to a single confirmation at the phase boundary (entry into `Impl.Exec`). After that, execute slices without per-slice confirmation.
+- `Autonomous` — skip the confirmation entirely. The caller's invocation is the authorization. Execute slices end-to-end.
+
+Deviation contract is set by mode (see [Deviation Handling](#3-deviation-handling)).
+
+## Git Checkpoint
+
+Before the first implementation edit, create a mandatory git checkpoint so the entire execution has a rollback floor.
+
+- If the worktree is dirty, commit all existing changes so the checkpoint captures the repo exactly as found.
+- When rational boundaries are clear, divide the existing changes into multiple coherent commits with accurate messages.
+- When boundaries are ambiguous, use one explicit checkpoint commit rather than guessing at the history.
+- If the worktree is clean, create an empty checkpoint commit so the rollback point is still explicit.
+- Use a clear message such as `chore: checkpoint before hugentics-impl-executer` (callers may override the message — e.g. `chore: checkpoint before hugentics-codebase-cleaner`).
+- If the repo is not a git repo, has unresolved conflicts, or the checkpoint cannot be completed, stop and surface the blocker before any implementation edits.
+
+The checkpoint is required regardless of `Alignment.Mode`. It is the only commit phase in this workflow: after implementation begins, do not create or suggest commits during per-slice execution or at completion. This rule overrides generic commit preferences in the loaded references. Mention the checkpoint commit or commits in the completion summary so the user has a clear rollback handle.
+
 ## Core Workflow
 
 ### 1. Orientation
@@ -58,10 +81,11 @@ Before writing code:
 
 - Load recommended skills based on the task context.
 - If the input is an `Impl.Req`, re-read it now. Treat any previous read as potentially stale.
-- Run the realignment loop.
+- Run the realignment loop, scaled by `Alignment.Mode`.
 - Restate what is being implemented in design-level prose.
 - Read existing code in the target area. Understand what is already there.
-- Confirm the plan with the user before coding.
+- In `Interactive` mode, confirm the plan with the user before coding. In `Gated` mode, take the caller's invocation as the phase-boundary confirmation (a single explicit acknowledgement of the `Impl.Req`). In `Autonomous` mode, proceed.
+- Create the [Git Checkpoint](#git-checkpoint) before the first implementation edit. Mandatory in all modes.
 
 ### 2. Per-Slice Execution
 
@@ -71,17 +95,19 @@ Follow `Vertical.Slice` ordering from `Execution.Plan`. For each slice:
 2. **Implement** the change.
 3. **Verify** no unintended side effects (check scope of changes).
 4. **Report** brief status: what was done, what is next.
-5. **Update** `Impl.Log` with progress, deviations, decisions.
-6. **Commit checkpoint** — suggest a commit per the repo's commit policy.
+5. **Update** `Impl.Log` with deviations, decisions made in open space, and blockers. Do not record what changed in code — that is in the diff.
+
+Leave all implementation changes uncommitted for user review.
 
 ### 3. Deviation Handling
 
-If the implementation reveals that the design does not fit reality:
+If the implementation reveals that the design does not fit reality, the response depends on `Alignment.Mode`:
 
-- **Stop.** Do not silently adapt or invent workarounds.
-- Flag the deviation to the user with a concrete description of the mismatch.
-- Propose options: adjust the design, adjust the implementation, or revisit in a design session.
-- Wait for user direction before continuing.
+- `Interactive` — **stop.** Flag the deviation to the user with a concrete description of the mismatch. Propose options: adjust the design, adjust the implementation, or revisit in a design session. Wait for user direction before continuing.
+- `Gated` — record the deviation in `Impl.Log` with the concrete mismatch. If the corrective change is reversible and stays within the original intent, continue and report at completion. If it requires reshaping the design or affects scope, abort the slice and surface to the user.
+- `Autonomous` — record the deviation in `Impl.Log` and continue with the most faithful corrective action. Abort only on hard failure (cannot proceed without external input). Surface all deviations in the completion summary.
+
+In all modes: do not silently adapt. The `Impl.Log` is the audit trail.
 
 ### 4. Completion
 
@@ -90,15 +116,16 @@ After all slices are done:
 - Brief summary of what was built.
 - List any deviations encountered and how they were resolved.
 - Note anything deferred or left for follow-up.
-- Update `Impl.Req` state and append to `Impl.Log` — say what was implemented, what remains, and any drift or blockers discovered.
+- Update `Impl.Req` state and append to `Impl.Log` — record only deviations from the plan, decisions made in open space, and blockers. If it is visible in the git diff, it does not belong in the log.
 - Cite concrete files, notes, or surfaces when relevant.
 - Distinguish clearly between accepted decisions, open questions, and out-of-scope items.
 - Apply `No.Legacy.Allowed` — clean up dead code, outdated artifacts, misleading docs.
+- Report the checkpoint commit or commits. Do not commit or suggest committing the completed implementation.
 
 ## Core Principles
 
 - **Work from the plan.** Follow the agreed execution order. Do not reorder or skip without user approval.
-- **Small, verifiable slices.** Each slice should be committable and testable on its own.
+- **Small, verifiable slices.** Each slice should be independently reviewable and testable.
 - **Read before writing.** Always understand existing code before modifying it.
 - **No gold-plating.** Implement what the plan says. No bonus features, no speculative abstractions.
 - **Surface deviations early.** Do not silently adapt when something does not match the plan.

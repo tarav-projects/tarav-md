@@ -57,6 +57,17 @@
 
 ****
 
+## Package.Driver
+
+- `Package.Driver` is the minimal context an agent must load from a `Package.Skill` to be able to work with that package
+- typically the package `SKILL.md` file, including the skill's description as advertised in the skill list
+- enough for the agent to orient and route into narrower surfaces (e.g. `Package.Skill.Router`, `Package.Skill.Index`, `Package.Aux.Skill`) when needed
+- `Package.Driver:<Package>` names the driver of a specific package, e.g. `Package.Driver:Agentos.Pkg`
+- the standard route any agent uses to enter a package — including any package-agnostic agent that takes the package as an argument
+- when the driver is not enough, the agent loads narrower surfaces declared by the `Package.Skill.Router`
+
+****
+
 ## Package.Aux.Skill
 
 - `Package.Aux.Skill` is a specialized skill associated with a `Package.Skill` but not itself the package root
@@ -119,13 +130,40 @@
 
 ****
 
+## Packages.Master.Agent
+
+- `Packages.Master.Agent` is a general read-only agent that can answer prompts about any `Package.Skill` it is pointed at
+- the caller sends a prompt and a target package; the master agent loads the target's `Package.Driver`, follows the `Package.Skill.Router` as needed, scans the surfaces, and returns an answer with citations
+- the caller's context is protected — the master agent pays the cost of loading the target package's surfaces, not the caller
+- not bound to one package — operates against any `Package.Skill` it has access to
+- target package resolution: explicit argument wins; otherwise inferred from project context (e.g. project `AGENTS.md` declaring packages in use); when ambiguous, surfaces the ambiguity rather than guesses
+- read-only by design: returns answers, citations, and surface paths; does not edit, install, or run package operations
+- failure mode: when the answer is not in the package, returns "not found" plus the surfaces it checked — never hallucinates
+- always available as the default; specialized `Package.Agent` instances may exist when a package shows the master is insufficient
+- callers invoke through a `Package.Aux.Skill` such as `agentos-master-pkg-agent` that carries the spawn mechanism, prompt-writing guidance, and model configuration
+
+****
+
+## Multi.Package.Operation
+
+- `Multi.Package.Operation` is the ability of `Packages.Master.Agent` to answer prompts requiring context from multiple packages
+- explicit target packages constrain the operation; otherwise relevant packages may be inferred from project context
+- each package is entered through its `Package.Driver` and traversed through its `Package.Skill.Router`
+- avoids exhaustive loading; searches likely relevant package surfaces first
+- returned answers cite package-qualified concepts and surface paths
+- ambiguity and disagreement between packages are surfaced rather than silently resolved
+
+****
+
 ## Package.Agent
 
-- `Package.Agent` is a specialized agent qualified to work with a given `Package.Skill`
-- mediates package-specific work between a caller agent and the package, project, or subsystem
-- can be defined by a package skill; one package may define several package agents when distinct roles are useful
-- uses the package skill as its public knowledge and operating surface
-- can run general package work or specific package workflows depending on its definition
+- `Package.Agent` is an optional read-only agent specialized for answering prompts about a specific `Package.Skill`
+- exists when specialization makes it more efficient or reliable than `Packages.Master.Agent` for that package
+- loads the package's `Package.Driver` and follows its `Package.Skill.Router`, while adding package-specific prompting, configuration, or knowledge-routing behavior
+- answers using package surfaces with citations and surface paths; does not edit, install, or run package operations
+- failure mode: returns "not found" plus the surfaces checked rather than inventing an answer
+- callers may invoke it through a package-specific `Package.Aux.Skill` named `<package>-pkg-agent`
+- packages do not need to define a `Package.Agent`; `Packages.Master.Agent` remains the default
 
 ****
 
@@ -137,7 +175,7 @@
 - uses `Cited.Duplication` to carry known context directly instead of searching the index on every run
 - becomes a contextualized execution surface rather than only a thin router
 - should cite origin blocks for duplicated concept material
-- should still use index search or `Index.Agent` behavior for unknown, custom, or exploratory context needs
+- should still use `agentos-index` for unknown, custom, or exploratory index context needs
 - contrasts with `Workflow.Neutral.Skill`, which provides orientation without steering the caller's current task
 - may be deployed from a `Package.Skill.UsagePattern` when a hot path deserves its own skill surface
 
