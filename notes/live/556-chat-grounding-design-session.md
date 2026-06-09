@@ -6,7 +6,7 @@ Design `Chat.Grounding`: a citation and context-injection mechanism that lets ag
 
 Chats are the SSOT for user/agent interaction. `Chat.Grounding` makes selected prior chat context traceable from index/appendix blocks, so later agents can inspect the interaction that established a requirement, preference, decision, concern, contradiction, or alignment resolution.
 
-Current focus: settle the conceptual design before implementation. Retrieval and search are related but secondary: retrieval finds candidate evidence; grounding is the selected authoritative context cited by kernel block grounding sections and injected through those blocks into downstream work.
+Current status: core design promoted to the Agentos package index. Retrieval and search are related but secondary: retrieval finds candidate evidence; grounding is the selected authoritative context cited by kernel block grounding sections and injected through those blocks into downstream work.
 
 ## Design.Index
 
@@ -34,8 +34,8 @@ Current focus: settle the conceptual design before implementation. Retrieval and
 
 #### meta
 
-- status: active design
-- promotion: existing `Chat.Grounding` package index block will likely need revision after this session converges
+- status: promoted to package index
+- promotion: core blocks promoted to `skills/agentos-pkg/index/100-index.md`, `102-index.md`, `103-index.md`, `105-index.md`, and `appendix/Index.Architecture-appendix.md`
 
 ### Chat.Surface
 
@@ -278,5 +278,6 @@ Open / unresolved:
 - 2026-06-08: user settled grounding entry grouping. `### grounding` uses emphasized groups such as `*HEAD*`; multiple `*HEAD*` rows are allowed.
 - 2026-06-08: user moved historical grounding to appendix depth so history can accumulate without overloading compressed index blocks.
 - 2026-06-08: user rejected grounding state taxonomy. Lack of grounding is implicit by absence of `### grounding`; only `DRIFT` is explicit.
+- 2026-06-09: core design promoted into the Agentos package index. Linter passed for `skills/agentos-pkg/index` and `skills/agentos-pkg/appendix`.
 - 2026-06-08: user settled `DRIFT:` as a row prefix, not a role group.
 - 2026-06-08: user constrained `DRIFT:` to `*HEAD*` rows only. Reason lives in the evidence note; marker only signals that alignment must be performed.

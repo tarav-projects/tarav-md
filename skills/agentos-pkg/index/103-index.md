@@ -13,11 +13,11 @@
 - one writing philosophy (`Kernel.Writing`) — space constraints come from the surface, not the philosophy
 - appendix files are concept-named (`Concept.Name-appendix.md`) with implicit discovery — no outlink required
 - `Concept.Scoping` and `Explicit.Namespaces` provide the conceptual overlay on the flat file structure
-- index blocks may carry `Chat.Grounding` — one or more `Chat.Ref`s anchoring the block to user/agent interaction evidence
+- index/appendix blocks may carry `Chat.Grounding` through a standard `Kernel.Block:Grounding` section
 
 ### meta
 
-- namespace-members: `Global.Index.Scope`, `Extended.Index.Scope`, `Flat.Index.Architecture`, `Kernel.Writing`, `Kernel.Block`, `Kernel.Note`, `Kernel.Block:Index`, `Kernel.Block:Appendix`, `Kernel.Block:Design`, `Concept.Scoping`, `Explicit.Namespace`, `Surface.Concept`, `Agentos.Index.System`
+- namespace-members: `Global.Index.Scope`, `Extended.Index.Scope`, `Flat.Index.Architecture`, `Kernel.Writing`, `Kernel.Block`, `Kernel.Note`, `Kernel.Block:Index`, `Kernel.Block:Appendix`, `Kernel.Block:Design`, `Kernel.Block:Grounding`, `Concept.Scoping`, `Explicit.Namespace`, `Surface.Concept`, `Agentos.Index.System`
 
 ****
 

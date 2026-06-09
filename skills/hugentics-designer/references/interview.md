@@ -61,16 +61,24 @@ If a question can be answered by inspecting code, notes, artifacts, transcripts,
 
 ## Question Format
 
-Use plain chat text. Do not use UI forms.
+Use plain chat text. Do not use UI forms. Communicate in `Kernel.Writing` — orthogonal bullet lines, direct language (see `writing-craft.md`).
 
-Default format:
+A question turn on a defined subject pairs a `Kernel.Block:Design` with the question: the block first as actionable context, then the question. This turn shape is `Designer.Turn.Kernel.Form`.
 
 ```txt
+### Subject.Name
+- orthogonal fundamental
+- orthogonal fundamental
+#### meta
+- open: [unresolved point]
+
 Question: [one highest-leverage question]
 Why now: [why this is the right next alignment point]
 Recommended answer: [the agent's recommended answer or direction]
 Evidence: [only when useful: user instruction, code/artifact evidence, or stable project surface]
 ```
+
+Every new question on a defined subject is accompanied by its block. Pure openers are exempt — they create the first subject, so no block exists yet.
 
 The agent must recommend an answer or direction. The recommendation may be provisional when evidence is thin, but it should still give the user something concrete to accept, reject, or refine.
 

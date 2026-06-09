@@ -4,7 +4,7 @@
 
 - intent: walk through the mined improvement proposal for `hugentics-impl-designer`, `hugentics-impl-executer`, and `hugentics-codebase-cleaner`, making explicit design decisions about each proposal area
 - active focus: decide the shared contract that should connect cleanup candidate selection, `Impl.Req` design, and implementation execution
-- references: [554-hugentics-implementation-skills-mining-report.md](554-hugentics-implementation-skills-mining-report.md)
+- references: [554-hugentics-implementation-skills-mining-report.md](554-hugentics-implementation-skills-mining-report.md); academy mining — Pocock "Workflow for AI Coding" (`~/projects/academy/workflow-for-ai-coding/working-summaries/001-agentic-development-workflows.md` + repo `.claude/skills/tdd`)
 - state: active
 - next: decide whether the upgrade should be organized around one shared `Impl.Req` execution contract before discussing skill-specific improvements
 
@@ -151,6 +151,47 @@ Execution.Policy (residual, non-gating)
 - status: converged
 - open: keep a light executer-side entry readiness check, or trust this pre-write gate?
 
+### Test.First
+
+- TDD is integrated at its `Natural.Placement` in the framework, not bolted on:
+  - **topic 3 `Alignment.Checkpoint:Readiness`** → the `Impl.Req` names the **behaviors / acceptance to test** (behaviors, not implementation steps) — this is "design tests in advance" done right, the anchor against overfitting
+  - **topic 5 per-slice rung** → **RED → GREEN test-first**, one behavior at a time: failing behavior test, then minimal code to pass
+- the *in-advance* part is **naming behaviors**; the *actual tests* are written per slice during execution
+- **banned: all-tests-up-front** — writing every test before any implementation produces tests of *imagined* behavior/shape that pass when behavior breaks
+- anti-cheating rationale: the test instruments behavior *before* the implementation exists, so the agent cannot retrofit a test that merely rubber-stamps what it built
+- per-cycle test guard: describes behavior not implementation · public interface only · would survive an internal refactor · minimal code · no speculative features
+
+#### meta
+
+- status: accepted direction
+- placement: spans topic 3 (name behaviors) + topic 5 (RED→GREEN per slice)
+- source: academy mining — Pocock `tdd` skill
+
+### Impl.Req.Lifecycle
+
+- `Impl.Req` artifacts are **transient** — that is why they live on the `Live.Note` surface
+- maintained only around the time of the implementation, not kept as long-lived repo docs
+- this sidesteps the doc-rot failure (stale planning docs misleading future agents): there is nothing durable to rot
+- resolves the lifecycle aspect of parked topic 7 for our case
+
+#### meta
+
+- status: converged
+- source: existing `Live.Note` transient model + academy doc-rot warning
+
+### Standards.Push.Pull
+
+- coding standards load differently by role:
+  - **implementer → pull**: standards available as skills/docs the agent reads when relevant
+  - **reviewer → push**: standards injected into context so the review explicitly checks against them
+- rationale: a reviewer must actively measure against the standard; an implementer can fetch on need
+
+#### meta
+
+- status: accepted direction
+- source: academy mining — Pocock push/pull framing
+- note: our chain has no explicit reviewer skill yet; applies if/when a review checkpoint exists
+
 ### Report.Walkthrough
 
 - each major report topic should receive an explicit outcome: adopt, adapt, reject, park, or merge into another concept
@@ -209,3 +250,4 @@ Execution.Policy (residual, non-gating)
 - 2026-06-08: Resolved the positional/conditional question — one `Alignment.Checkpoint` concept: a declared position optionally gated by an activation condition. Added discipline rules: the agent must not invent checkpoints and must not stop outside declared ones. Deviation is handled at a declared checkpoint via a condition, not an anywhere-interrupt.
 - 2026-06-08: Decided topic 2 `Executable.Feedback.Loop`: a feedback loop is mandatory at both per-slice and per-Impl.Req altitudes; agent must construct a signal (scripts/partials) before falling back to manual inspection with explicit criteria. Signal ladder deferred to topic 5; "feedback loop named" routed to the `Readiness.Contract` (topic 3).
 - 2026-06-08: Decided topic 3 as `Alignment.Checkpoint:Readiness` — a single named checkpoint right before the `Impl.Req` is written. A readiness checklist detects gaps; the agent resolves what it can and raises the rest as a final alignment pass (governed by `Alignment.Mode`). Deliberately light: a gap-detector and needs gate, not a documentation mandate. Establishes the `Alignment.Checkpoint:<Name>` convention. Open: whether the executer keeps a light entry readiness check.
+- 2026-06-09: Mined academy / Pocock "Workflow for AI Coding". Captured `Test.First` (TDD at `Natural.Placement` — name behaviors at readiness, RED→GREEN per slice, ban all-tests-up-front to avoid imagined-shape tests), `Impl.Req.Lifecycle` (transient live-notes, resolves topic 7 doc-rot), and `Standards.Push.Pull` (implementer pulls, reviewer pushes). Dropped fresh-context review (user responsibility for now). Strong independent-convergence signal: grill-me≈design session, PRD≈Impl.Req, tracer-bullet slices≈topic 4, feedback-loops-as-quality-ceiling≈topic 2.

@@ -136,6 +136,7 @@
 ## Chat.Surface
 
 - `Chat.Surface` is the surface of user/agent direct communication — the recorded conversation itself
+- it is a `Stable.Surface`, but append-only
 - emit-driven, not curated: it comes into existence as a byproduct of interaction; other surfaces are actively shaped by humans and agents
 - append-only: a chat session is a tape; once written, turns are not edited but superseded by later turns
 - `Natural.Placement` claim: SSOT of user/agent alignment evidence — what was said, accepted, surfaced, overwritten, and when
@@ -161,13 +162,13 @@
 
 ## Chat.Grounding
 
-- `Chat.Grounding` is the practice of anchoring index blocks (and other curated claims) to one or more `Chat.Ref`s
-- the unit of meaningful claim requiring grounding is an index block — the index is already the surface of what humans and agents both treat as important
-- a block is **grounded** (one or more `Chat.Ref`s), **ungrounded** (no refs yet — visible state, not an error), or **stale** (refs are old and the block has drifted — surfaces as one more instance of inter-surface drift)
-- grounding is itself a hugentic act — humans and agents ground concepts together by chatting about them, often by walking back through old sessions
-- timing is flexible: write-time grounding happens naturally during design; retroactive grounding is a dedicated hugentic activity
-- existing ungrounded blocks are not auto-backfilled — `ungrounded` is a legitimate visible state that signals a future opportunity
-- drift (grounded-but-stale, or claims contradicting their refs) is surfaced, not auto-resolved — handled by the same `Alignment.Loop` machinery as all other inter-surface drift
+- `Chat.Grounding` is context injection and citation from `Chat.Surface` into index/appendix kernel blocks
+- it grounds a `Kernel.Block:Index` or `Kernel.Block:Appendix` in prior user/agent chat interaction
+- grounding only happens on index/appendix blocks; downstream surfaces cite grounded blocks instead of carrying first-class chat grounding
+- grounding has sequential semantics: newer grounded chat about the same `Topic.Identity` is treated as the current view
+- absence of `### grounding` is the implicit sign that a block is not grounded
+- grounding has no state taxonomy; material grounding problems are marked with `Grounding.DRIFT`
+- grounding drift is surfaced through alignment because the resolution happens on `Chat.Surface` and can become new grounding
 
 ****
 
@@ -199,7 +200,7 @@
 - the minimal loaded blocks — the starting point for the discovery cascade into the appendix
 - the index must have at least a block for any meaningful concept in the system
     - blocks can link out to other surfaces rather than define everything inline
-- inherits fundamentals + `### appendix` + `### meta` from `Kernel.Block`
+- inherits fundamentals + `### grounding` + `### appendix` + `### meta` from `Kernel.Block`
 - `Content.Verbatim.Gated` — user approves exact wording before commit
 - index blocks should NOT become transcripts, changelogs, progress dashboards, task lists, or implementation dumps
 
@@ -228,7 +229,7 @@
 
 ## Kernel.Block:Design
 
-- `Kernel.Block:Design` is `Kernel.Block` used in design artifacts — fundamentals + appendix in a single block
+- `Kernel.Block:Design` is `Kernel.Block` used in design artifacts — fundamentals, grounding, and appendix in a single block
 - holds the full state of a concept in one place — used in conversations and design sessions
 - at promotion time: fundamentals compress into `Kernel.Block:Index`, appendix material goes to `Kernel.Block:Appendix`
 - the distinction: `Kernel.Block:Index` is compressed, `Kernel.Block:Appendix` is exhaustive, `Kernel.Block:Design` is both together

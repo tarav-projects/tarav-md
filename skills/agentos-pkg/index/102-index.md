@@ -204,11 +204,11 @@
 - `Kernel.Block` is the base writing object of `Kernel.Writing`
 - a block is a markdown section whose heading names the block's main topic
 - the heading is a conceptual commitment — it states what the block is about
-- a block should center one main topic; related material belongs in separate blocks, appendix, or meta
+- a block should center one main topic; related material belongs in separate blocks, grounding, appendix, or meta
 - body lines are mostly bullets that enrich the topic from different perspectives
 - a block applies `Kernel.Writing` at section scale
-- structure: fundamentals (conceptual) + `### appendix` (extended conceptual) + `### meta` (non-conceptual)
-- the dividing rule: fundamentals and appendix are about the concept; meta is about the block itself
+- structure: fundamentals (conceptual) + `### grounding` (chat evidence) + `### appendix` (extended conceptual) + `### meta` (non-conceptual)
+- the dividing rule: fundamentals and appendix are about the concept; grounding cites chat evidence; meta is about the block itself
 - meta covers: aliases, outlinks, findability, status, open questions, session mechanics — anything non-conceptual
 - all block types in the system are parameterizations of `Kernel.Block` placed in specific surfaces with specific constraints
 - parameterized using `Dotted.Parameterized.Notation`: `Kernel.Block:Index`, `Kernel.Block:Appendix`, `Kernel.Block:Design`

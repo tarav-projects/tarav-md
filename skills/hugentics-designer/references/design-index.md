@@ -15,6 +15,10 @@ Use H3 concept blocks under the H2 section:
 
 - fundamentals with the same semantic role as `Index.Block` fundamentals
 
+#### grounding
+
+- optional chat evidence for grounded session-local claims
+
 #### appendix
 
 - rationale, examples, pressure tests, tradeoffs, rejected alternatives, design depth
@@ -31,6 +35,8 @@ Each H3 concept block is a `Design.Index.Block` — a `Kernel.Block:Design` plac
 The fundamentals carry the same semantic role as `Kernel.Block:Index` fundamentals: compact meaning, **boundaries** (what the concept is NOT), **relations** to other concepts (use `Inline.Relatedness`), **judgments** made explicit, and **unresolved conceptual pressure** marked as open. Draft quality may vary during a session, but the meaning target is the same.
 
 Use `appendix` for extended conceptual material — rationale, pressure tests, rejected alternatives — that keeps fundamentals concise without losing valuable discussion signal.
+
+Use `grounding` for chat evidence that grounds the block while the session is active or prepares it for index promotion.
 
 Use `meta` for session mechanics about the concept: aliases, status, sources, open questions, stale markers, alignment issues.
 

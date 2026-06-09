@@ -67,7 +67,7 @@ For the approval-grade report shape, use `consolidation-plan-example.md`.
 For each user reply:
 
 1. Respond directly to the user's point.
-2. Update the current recommendation or design state.
+2. Update the recommendation and re-render the subject's `Kernel.Block:Design` with the change applied.
 3. Name the tradeoff or risk if it matters.
 4. Identify whether the question is settled, still open, or ready to park.
 5. If useful, propose a capture into the active artifact.
@@ -76,14 +76,16 @@ Do not produce the next full alignment question until the user explicitly asks f
 
 ## Output Shape
 
-Prefer short delta updates:
+When the round works a defined subject, re-render its `Kernel.Block:Design` with the change applied, in `Kernel.Writing` (orthogonal bullet lines). Open points live in `#### meta` as `open:` lines. This is `Designer.Turn.Kernel.Form`.
 
 ```txt
-Scoped update: [what changed]
-Recommendation: [current recommended answer]
-Evidence: [only if useful]
-Tradeoff: [only if meaningful]
-Open space: [only if meaningful]
+### Subject.Name
+- orthogonal fundamental (updated this round)
+- orthogonal fundamental
+#### meta
+- open: [what is still unresolved]
 ```
+
+The in-chat block is the same object as the artifact's `Design.Index` block, so capture only adds gating. Alongside the block, keep a short plain-text note stating what changed and whether the question is settled, still open, or ready to park. See `writing-craft.md` for the per-line craft.
 
 Full recaps are for explicit user requests, status/update prompts, capture proposals, or session closure.

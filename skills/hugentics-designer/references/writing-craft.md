@@ -22,10 +22,10 @@ Applied in-session: when you draft a `Design.Index.Block`, walk every bullet aga
 `Kernel.Block` is the writing object that carries `Kernel.Writing`.
 
 - a markdown section whose heading names the block's main topic — the heading is a conceptual commitment
-- one block, one main topic — related material belongs in other blocks, appendix, or meta
+- one block, one main topic — related material belongs in other blocks, grounding, appendix, or meta
 - body lines are mostly bullets enriching the topic from different perspectives
-- structure: fundamentals (conceptual) + `### appendix` (extended conceptual) + `### meta` (non-conceptual)
-- dividing rule: fundamentals and appendix are about the concept; meta is about the block itself
+- structure: fundamentals (conceptual) + `### grounding` (chat evidence) + `### appendix` (extended conceptual) + `### meta` (non-conceptual)
+- dividing rule: fundamentals and appendix are about the concept; grounding cites chat evidence; meta is about the block itself
 - meta carries: aliases, outlinks, findability, status, open questions, session mechanics — anything non-conceptual
 
 Session-loaded variants of `Kernel.Block` differ only in placement and gating, not in writing rules.
@@ -34,7 +34,7 @@ Session-loaded variants of `Kernel.Block` differ only in placement and gating, n
 
 `Kernel.Block:Design` is the variant used in design artifacts and `Design.Index`. This is the block type a designer writes every turn.
 
-- holds the full state of a concept in one place — fundamentals **and** appendix together
+- holds the full state of a concept in one place — fundamentals, grounding, and appendix together
 - the in-session variant: `Kernel.Block:Index` is compressed for the public index; `Kernel.Block:Appendix` is exhaustive; `Kernel.Block:Design` is both together for the working session
 - at promotion time, fundamentals compress into `Kernel.Block:Index`, appendix material moves to `Kernel.Block:Appendix`
 - preserve user's wording when it carries design judgment — never paraphrase quoted-tone phrasing into agent-tone summary

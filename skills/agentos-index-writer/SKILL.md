@@ -38,7 +38,7 @@ The index is a flat set of concept blocks organized across anonymous files. [`In
 The loadable unit of meaning in the index. [`Kernel.Block:Index`, `Kernel.Block`]
 
 - anchored by an H2 heading naming the concept in `Dotted.Notation`
-- structure: **fundamentals** (conceptual core) + optional `### appendix` (extended) + optional `### meta` (non-conceptual: aliases, outlinks, status)
+- structure: **fundamentals** (conceptual core) + optional `### grounding` (chat evidence) + optional `### appendix` (extended) + optional `### meta` (non-conceptual: aliases, outlinks, status)
 - tight space constraints — conceptual completeness under compression
 - must carry enough signal for an agent to reason correctly about the concept
 - 25-line hard cap per block (enforced by linter)
