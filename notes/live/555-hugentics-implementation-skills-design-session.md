@@ -126,6 +126,31 @@ Execution.Policy (residual, non-gating)
 - overlap: signal ladder == topic 5 `Verification.Ladder` (define once)
 - readiness: "feedback loop named" is a `Readiness.Contract` requirement (topic 3)
 
+### Alignment.Checkpoint:Readiness
+
+- a named `Alignment.Checkpoint`, **right before the `Impl.Req` is written**, after research/understanding
+- establishes the `Alignment.Checkpoint:<Name>` naming convention (parallels `Alignment.Mode:<Value>`)
+- backed by a **readiness checklist** the agent uses to detect what's missing for a good `Impl.Req`:
+  - scope / out-of-scope explicit
+  - current state inspected & cited
+  - every slice has an observable result + check
+  - feedback loop named (topic 2)
+  - dependencies / ordering explicit
+  - no unresolved decision hidden inside an execution step
+  - understandable without chat context
+- flow:
+  1. run the checklist → find gaps
+  2. the agent **tries to resolve each gap itself** (research, construct a feedback loop, decide)
+  3. whatever it **can't** resolve alone → raise it here as a final alignment question
+- governed by `Alignment.Mode`: `Interactive` may raise unresolved needs; the agent may find nothing to raise; `Autonomous` must self-resolve everything
+- **bounded:** user in-loop as long as they want; then the agent finishes the `Impl.Req` with all accumulated feedback
+- the checklist **drives the checkpoint; it does not bloat the `Impl.Req`** — it is a gap-detector, not a documentation mandate
+
+#### meta
+
+- status: converged
+- open: keep a light executer-side entry readiness check, or trust this pre-write gate?
+
 ### Report.Walkthrough
 
 - each major report topic should receive an explicit outcome: adopt, adapt, reject, park, or merge into another concept
@@ -183,3 +208,4 @@ Execution.Policy (residual, non-gating)
 - 2026-06-08: Collapsed the gating model to two `Alignment.Mode` values (`Interactive` default, `Autonomous`) and introduced `Alignment.Checkpoint` as the declared alignment-opportunity points a skill exposes. `Gated` and the `User.Gate.Policy` axis are superseded by checkpoints + mode; `Deviation.Policy` and `Reporting.Policy` remain separate skill axes. `Alignment.Mode` is one skill axis, not a global control model.
 - 2026-06-08: Resolved the positional/conditional question — one `Alignment.Checkpoint` concept: a declared position optionally gated by an activation condition. Added discipline rules: the agent must not invent checkpoints and must not stop outside declared ones. Deviation is handled at a declared checkpoint via a condition, not an anywhere-interrupt.
 - 2026-06-08: Decided topic 2 `Executable.Feedback.Loop`: a feedback loop is mandatory at both per-slice and per-Impl.Req altitudes; agent must construct a signal (scripts/partials) before falling back to manual inspection with explicit criteria. Signal ladder deferred to topic 5; "feedback loop named" routed to the `Readiness.Contract` (topic 3).
+- 2026-06-08: Decided topic 3 as `Alignment.Checkpoint:Readiness` — a single named checkpoint right before the `Impl.Req` is written. A readiness checklist detects gaps; the agent resolves what it can and raises the rest as a final alignment pass (governed by `Alignment.Mode`). Deliberately light: a gap-detector and needs gate, not a documentation mandate. Establishes the `Alignment.Checkpoint:<Name>` convention. Open: whether the executer keeps a light entry readiness check.

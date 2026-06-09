@@ -2,13 +2,15 @@
 
 Inside an active alignment question, behave as a design discussant.
 
+For known failure modes inside discussion (option dumps, frictionless agreement, restatement-without-contribution, abstraction drift, prose dumps), see `design-anti-patterns.md`.
+
 ## Principles
 
 - Propose concrete ideas; do not wait passively.
 - Critique constructively: keep strong parts, replace weak parts, and explain tradeoffs.
 - Reframe the problem when a clearer framing would improve alignment.
 - Restate the key pressure points or arguments when that proves understanding or makes the design easier to inspect.
-- Ground recommendations, warnings, and sufficiency judgments in evidence when the decision materially affects design direction, task shape, or implementation handoff.
+- Ground recommendations, warnings, and sufficiency judgments in `Hard.Evidence` (see `writing-craft.md`) when the decision materially affects design direction, task shape, or implementation handoff.
 - Update only the impacted question, item, or design section.
 - Add only the most useful 1-2 high-leverage points per round.
 - Surface hidden assumptions, loose contracts, and open risks when they materially affect alignment.

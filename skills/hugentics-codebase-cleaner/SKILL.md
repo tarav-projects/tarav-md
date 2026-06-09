@@ -27,38 +27,46 @@ Only act on changes that improve the repo under its current architecture. Respec
 
 Cleanup is a two-stage hugentic flow: scan + scope here, then hand off to `hugentics-impl-designer` and `hugentics-impl-executer` for the design + execution. The default `Alignment.Mode` for the handoff is `Gated` (see `agentos-hugentics/references/alignment-session.md`): one user confirmation at the `Impl.Req` boundary, then autonomous execution.
 
-### 1. Reconstruct local context
+### 1. Prepare the working tree (always, first)
 
-- Inspect repo structure, primary languages, tooling, tests, and `git status`.
-- Identify a small set of high-value cleanup candidates.
-- If nothing is clearly worth changing, stop and say that no cleanup was justified.
+- This step runs unconditionally. It is not gated on whether "obvious" cleanup work exists, and it is not subject to evaluation. A cleanup run starts by getting the tree clean — every time.
+- Run `git status`. If dirty:
+  - Commit existing changes as one or more coherent commits with accurate messages, grouping related edits.
+  - When boundaries are unclear, use one explicit `chore: pre-cleanup checkpoint` commit rather than guessing at history.
+- If the repo is not a git repo, has unresolved conflicts, or commits cannot be made safely, stop and surface the concrete blocker.
+- The executer's own pre-execution checkpoint runs later as an additional rollback marker — it does not replace this step.
 
-### 2. Choose a scoped cleanup set
+### 2. Reconstruct local context
 
-- Prefer 1-3 coherent cleanup themes that can be verified together.
-- Prioritize repeated knowledge, bypassed abstractions, dead code, oversized functions, and confusing module boundaries.
+- Inspect repo structure, primary languages, tooling, and tests.
+- Read enough to ground the cleanup choice — do not produce a long findings report.
+
+### 3. Choose a scoped cleanup set
+
+- Pick 1-3 coherent cleanup themes that can be verified together. There is almost always something worth doing — repeated knowledge, dead code, oversized functions, confusing boundaries, bypassed abstractions. Do not invent "no candidate justified" as an exit; pick the highest-ROI target and proceed. Stop only if the repo is empty, structurally unsafe, or genuinely already optimal.
 - Avoid broad rewrites, repo-wide renames, or architecture migrations unless the user asked for them.
+- Do not exclude code based on how recently it was written. Freshness is not a protected status.
 
-### 3. Produce an Impl.Req via hugentics-impl-designer
+### 4. Produce an Impl.Req via hugentics-impl-designer
 
 - Hand off the scoped cleanup set to `hugentics-impl-designer` and produce an `Impl.Req`.
 - The `Impl.Req` lives in the **cleaned project's** `notes/live/`, not the invoker's. Use `agentos-live-surfaces` for naming and numbering.
 - Carry over cleanup's constraints into the `Impl.Req`: stay narrow, prefer module-local helpers, no new frameworks, replace obsolete interfaces rather than wrap them.
 - Run the designer in `Alignment.Mode:Gated`: the loop runs autonomously, then the `Impl.Req` is presented for one user confirmation before execution.
 
-### 4. Execute via hugentics-impl-executer
+### 5. Execute via hugentics-impl-executer
 
 - Hand the approved `Impl.Req` to `hugentics-impl-executer` in `Alignment.Mode:Gated`.
 - The executer owns the mandatory pre-execution checkpoint commit (rollback floor), per-slice commits, and the deviation contract.
 - A `Gated`-mode deviation that requires reshaping the design or expanding scope aborts back to the user — cleanup never silently broadens its own scope.
 
-### 5. Validate (per slice and at completion)
+### 6. Validate (per slice and at completion)
 
 - Slice-level verification is part of the executer's per-slice loop.
 - At completion, run the narrowest relevant verification for the cleaned areas: tests, linters, type checks, build steps, or focused commands.
 - If verification cannot be run, say so explicitly.
 
-### 6. Finish
+### 7. Finish
 
 - Summarize what changed, why it was worth doing, what verification ran, and any remaining risk.
 - Cite the `Impl.Req` location and the checkpoint commit so the user has the audit trail and rollback handle.

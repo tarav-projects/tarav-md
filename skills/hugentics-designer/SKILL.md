@@ -34,9 +34,11 @@ Do not activate for ordinary design discussion, implementation work, generic sta
 
 Always load:
 
-- `references/alignment-loop.md`
-- `references/interview.md`
-- `references/discussion.md`
+- `references/writing-craft.md` — `Cited.Duplication` of `[Kernel.Writing, Kernel.Block, Kernel.Block:Design, Hard.Evidence, Cited.Duplication, Inline.Relatedness]`; the writing-quality floor
+- `references/design-anti-patterns.md` — failure-mode catalog, mid-session re-read
+- `references/alignment-loop.md` — runtime turn modes
+- `references/interview.md` — question selection, format, discussion fork
+- `references/discussion.md` — round behavior, output shape
 
 ## Backend Routing
 

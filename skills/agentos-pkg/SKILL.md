@@ -116,6 +116,8 @@ The `agentos` CLI is available for discovery and operations. Run `agentos --help
 
 For configuring and syncing project-local imported skills, read `references/skills-routing.md`.
 
+For provider account credential artifact reconciliation and troubleshooting, read `references/claude-ambient-auth-reconcile.md`.
+
 ## Go Deeper
 
 When the Driver is not enough, load a narrower surface:

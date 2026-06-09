@@ -23,7 +23,7 @@ The agent must carry the conversation with the user and maintain alignment aroun
 - `Alignment.User.Turn`
 - `Alignment.Maintenance.Turn`
 
-Turn switching is user-gated. The agent may suggest switching modes, but should not silently switch from user-led discussion into session-maintenance mode.
+Turn switching is user-gated. The agent may suggest switching modes, but should not silently switch from user-led discussion into session-maintenance mode (see `design-anti-patterns.md` / silent turn-switching).
 
 ## Alignment.User.Turn
 
@@ -58,7 +58,7 @@ The agent chooses one primary session move:
 - propose impl-req handoff,
 - close, split, or park a topic.
 
-Prefer one primary move per maintenance turn. Do not bundle every possible issue into one response.
+Prefer one primary move per maintenance turn. Do not bundle every possible issue into one response (see `design-anti-patterns.md` / interruption bundling).
 
 After the move, return to `Alignment.User.Turn` unless the user asks for another maintenance action.
 

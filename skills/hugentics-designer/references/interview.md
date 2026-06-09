@@ -57,7 +57,7 @@ If context is insufficient, bootstrap with one opener:
 - "What references should anchor this session?"
 - "What is the current artifact or code surface we should inspect first?"
 
-If a question can be answered by inspecting code, notes, artifacts, transcripts, or other available evidence, inspect that evidence instead of asking the user.
+If a question can be answered by inspecting code, notes, artifacts, transcripts, or other available evidence, inspect that evidence instead of asking the user — `Hard.Evidence` beats agent assumption, and a premature question burns a slot (see `design-anti-patterns.md` / premature questions).
 
 ## Question Format
 
@@ -74,7 +74,7 @@ Evidence: [only when useful: user instruction, code/artifact evidence, or stable
 
 The agent must recommend an answer or direction. The recommendation may be provisional when evidence is thin, but it should still give the user something concrete to accept, reject, or refine.
 
-Use evidence to support the recommendation when the decision materially affects design direction, task shape, or implementation handoff. Evidence may come from direct user instruction, inspected codebase state, active session artifacts, or stable project surfaces such as index notes, project `AGENTS.md`, active skills, CLI help, or documented spec surfaces.
+Use `Hard.Evidence` to support the recommendation when the decision materially affects design direction, task shape, or implementation handoff. Evidence may come from direct user instruction, inspected codebase state, active session artifacts, or stable project surfaces such as `Index.Block`s, project `AGENTS.md`, active skills, CLI help, or documented spec surfaces. See `writing-craft.md` for the full evidence discipline.
 
 ## Discussion Fork
 
