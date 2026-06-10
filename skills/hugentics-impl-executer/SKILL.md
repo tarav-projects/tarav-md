@@ -54,9 +54,10 @@ The `Alignment.Loop:Exec` is lighter than the full `Alignment.Loop:How` — it i
 
 This skill respects the caller's `Alignment.Mode` (see `agentos-hugentics/references/alignment-session.md`). Default is `Interactive`.
 
-- `Interactive` — run the full `Alignment.Loop:Exec`. "Confirm the plan with the user before coding" applies.
-- `Gated` — compress `Alignment.Loop:Exec` to a single confirmation at the phase boundary (entry into `Impl.Exec`). After that, execute slices without per-slice confirmation.
-- `Autonomous` — skip the confirmation entirely. The caller's invocation is the authorization. Execute slices end-to-end.
+- `Interactive` — at each declared `Alignment.Checkpoint` the agent may prompt the user (the plan-confirmation and deviation checkpoints below).
+- `Autonomous` — no prompting; the agent resolves every checkpoint itself and executes slices end-to-end.
+
+A caller wanting "one confirm at the `Impl.Req` boundary, then hands-off execution" provides that confirmation at its own boundary checkpoint and invokes this skill in `Autonomous`.
 
 Deviation contract is set by mode (see [Deviation Handling](#3-deviation-handling)).
 
@@ -84,27 +85,27 @@ Before writing code:
 - Run the realignment loop, scaled by `Alignment.Mode`.
 - Restate what is being implemented in design-level prose.
 - Read existing code in the target area. Understand what is already there.
-- In `Interactive` mode, confirm the plan with the user before coding. In `Gated` mode, take the caller's invocation as the phase-boundary confirmation (a single explicit acknowledgement of the `Impl.Req`). In `Autonomous` mode, proceed.
+- The plan confirmation is a declared `Alignment.Checkpoint`: in `Interactive`, confirm the plan with the user before coding; in `Autonomous`, the caller's invocation is the authorization — proceed.
 - Create the [Git Checkpoint](#git-checkpoint) before the first implementation edit. Mandatory in all modes.
 
 ### 2. Per-Slice Execution
 
-Follow `Vertical.Slice` ordering from `Execution.Plan`. For each slice:
+Follow `Vertical.Slice` ordering from `Execution.Plan`. When the `Impl.Req` calls for a `RED.GREEN.Test.Suite`, drive each covered slice test-first: write the slice's failing test first, then implement to pass — one behavior at a time, never all tests up front. For each slice:
 
 1. **Read** the target files.
-2. **Implement** the change.
-3. **Verify** no unintended side effects (check scope of changes).
-4. **Report** brief status: what was done, what is next.
-5. **Update** `Impl.Log` with deviations, decisions made in open space, and blockers. Do not record what changed in code — that is in the diff.
+2. **Test — RED.** For a slice the `RED.GREEN.Test.Suite` covers, write the failing behavior test first and confirm it fails for the right reason. Skip only where the plan marks the slice as untested.
+3. **Implement — GREEN.** Write the minimal change to pass.
+4. **Verify** no unintended side effects (check scope of changes); existing tests still pass — `No.Regression.Tests.Allowed` still applies, no regression-test slop.
+5. **Report** brief status: what was done, what is next.
+6. **Update** `Impl.Log` with deviations, decisions made in open space, and blockers. Do not record what changed in code — that is in the diff.
 
 Leave all implementation changes uncommitted for user review.
 
 ### 3. Deviation Handling
 
-If the implementation reveals that the design does not fit reality, the response depends on `Alignment.Mode`:
+Design-reality mismatch is a declared `Alignment.Checkpoint` with the activation condition "design did not fit reality" — not an ad-hoc halt. When it fires, the response depends on `Alignment.Mode`:
 
 - `Interactive` — **stop.** Flag the deviation to the user with a concrete description of the mismatch. Propose options: adjust the design, adjust the implementation, or revisit in a design session. Wait for user direction before continuing.
-- `Gated` — record the deviation in `Impl.Log` with the concrete mismatch. If the corrective change is reversible and stays within the original intent, continue and report at completion. If it requires reshaping the design or affects scope, abort the slice and surface to the user.
 - `Autonomous` — record the deviation in `Impl.Log` and continue with the most faithful corrective action. Abort only on hard failure (cannot proceed without external input). Surface all deviations in the completion summary.
 
 In all modes: do not silently adapt. The `Impl.Log` is the audit trail.
@@ -119,6 +120,7 @@ After all slices are done:
 - Update `Impl.Req` state and append to `Impl.Log` — record only deviations from the plan, decisions made in open space, and blockers. If it is visible in the git diff, it does not belong in the log.
 - Cite concrete files, notes, or surfaces when relevant.
 - Distinguish clearly between accepted decisions, open questions, and out-of-scope items.
+- Confirm the `RED.GREEN.Test.Suite` is green and the existing suite still passes.
 - Apply `No.Legacy.Allowed` — clean up dead code, outdated artifacts, misleading docs.
 - Report the checkpoint commit or commits. Do not commit or suggest committing the completed implementation.
 
@@ -126,6 +128,7 @@ After all slices are done:
 
 - **Work from the plan.** Follow the agreed execution order. Do not reorder or skip without user approval.
 - **Small, verifiable slices.** Each slice should be independently reviewable and testable.
+- **Test-first where the suite calls for it.** Build the `RED.GREEN.Test.Suite` red-then-green, one behavior at a time; never all tests up front. `No.Regression.Tests.Allowed` and `Test.At.Boundaries` still govern which tests exist and what they assert.
 - **Read before writing.** Always understand existing code before modifying it.
 - **No gold-plating.** Implement what the plan says. No bonus features, no speculative abstractions.
 - **Surface deviations early.** Do not silently adapt when something does not match the plan.

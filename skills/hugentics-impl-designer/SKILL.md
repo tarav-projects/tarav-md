@@ -31,21 +31,42 @@ The loop continues until the implementation design is sufficiently aligned for e
 
 This skill respects the caller's `Alignment.Mode` (see `agentos-hugentics/references/alignment-session.md`). Default is `Interactive`.
 
-- `Interactive` — full loop. The "do not write automatically — only on explicit user request" rule in [Writing Guidance](#writing-guidance) applies; ask before each `Alignment.Consolidation:How`.
-- `Gated` — run `Alignment.Loop:How` autonomously, produce the `Impl.Req`, then stop at the phase boundary for one user confirmation before handing off to `impl.executer.agent`. The "do not write automatically" rule is satisfied by the caller's explicit invocation of this mode.
-- `Autonomous` — run end-to-end without gating. Produce the `Impl.Req` as the audit trail and hand off directly.
+- `Interactive` — at each declared `Alignment.Checkpoint` the agent may prompt the user. The "do not write automatically — only on explicit user request" rule in [Writing Guidance](#writing-guidance) applies; the `Alignment.Checkpoint:Readiness` pass precedes writing the `Impl.Req`.
+- `Autonomous` — no prompting; the agent resolves every checkpoint itself, produces the `Impl.Req` as the audit trail, and hands off directly.
+
+A caller wanting "design autonomously, then one confirm before handoff" provides that confirmation at its own boundary checkpoint and invokes this skill in `Autonomous`.
 
 Deviation contract:
 
-- `Interactive` — stop and ask.
-- `Gated` — note in `Impl.Index` / `Impl.Log`; continue if reversible; abort and surface if not.
-- `Autonomous` — note and continue; abort only on hard failure.
+- `Interactive` — stop and ask at the deviation checkpoint.
+- `Autonomous` — note in `Impl.Index` / `Impl.Log` and continue with the most faithful action; abort only on hard failure.
+
+### Alignment.Checkpoint:Readiness
+
+Before you write the `Impl.Req`, stop and run this check. Confirm each item; a missing one is a gap to close.
+
+- scope and out-of-scope are explicit
+- current state was inspected and cited
+- every slice has an observable result and a check
+- the feedback loops and `RED.GREEN.Test.Suite` behaviors are named
+- dependencies and ordering are explicit
+- no unresolved decision is hidden inside an execution step
+- the plan is understandable without chat context
+
+For each gap:
+
+1. Try to close it yourself — read the code, construct a check, decide.
+2. If you can't, raise it. Ask for anything you still need — design clarifications, a missing feedback loop, missing inputs — not only design questions.
+
+Under `Alignment.Mode:Interactive`, raise unresolved needs to the user and wait. Under `Autonomous`, resolve them yourself.
+
+When every item is satisfied or consciously waived, write the `Impl.Req`. Do not pad it to satisfy the check — this catches gaps, it does not expand the document.
 
 ## Impl.Req Artifact Format
 
 An `Impl.Req` is an implementation-request artifact — a surface for designing and tracking an implementation plan.
 
-The plan is pre-shaped so the implementer naturally follows good practices: `Vertical.Slice`, `No.Legacy.Allowed`, `Test.At.Boundaries` are built into the plan structure, not listed as recommendations.
+The plan is pre-shaped so the implementer naturally follows good practices: `Vertical.Slice`, `No.Legacy.Allowed`, `Test.At.Boundaries`, `RED.GREEN.Test.Suite` are built into the plan structure, not listed as recommendations.
 
 The goal: if handed to an agent with no other context, the plan itself steers them toward quality work.
 
@@ -83,6 +104,7 @@ Each slice should state:
 - which path through the system it exercises
 - what observable result should exist
 - how the result will be checked
+- for a slice the `RED.GREEN.Test.Suite` covers, the check is a behavior test written test-first — RED before the change, GREEN after
 
 Design the implementation to reach the first observable endpoint as fast as possible — get to a testable running state first, then expand.
 

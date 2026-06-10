@@ -11,25 +11,32 @@
 - **Alignment.User.Turn** — user drives, agent follows
 - **Alignment.Maintenance.Turn** — agent drives one session move
 - **Alignment.Backend** — where session state lives: `InChat` or `Artifact`
-- **Alignment.Mode** — how much human gating the loop carries; set by the caller, respected by the workflow (see below)
+- **Alignment.Checkpoint** — a declared point in a workflow where the agent checks something; an alignment opportunity gated by `Alignment.Mode`
+- **Alignment.Mode** — the caller argument setting who resolves each `Alignment.Checkpoint`: `Interactive` (default) or `Autonomous` (see below)
 
-## Alignment.Mode
+## Alignment.Checkpoint and Alignment.Mode
 
-`Alignment.Mode` tunes the amount of human-in-the-loop gating a hugentic skill applies. One concept, three values, applied uniformly across phases.
+Both concepts are defined in the index (`Cited.Duplication`); this is the operational copy.
 
-| Mode | Gates | Use |
+An **`Alignment.Checkpoint`** is a declared point in a skill workflow where the agent checks something before proceeding. It is a checkpoint because it *can* be an alignment opportunity — a place a human could meaningfully weigh in; a decision the agent always resolves alone is not a checkpoint, just a normal step. A checkpoint may carry an activation condition deciding whether it fires when reached (e.g. "design did not fit reality").
+
+**`Alignment.Mode`** decides *who resolves* each declared checkpoint:
+
+| Mode | Behavior | Use |
 |---|---|---|
-| `Alignment.Mode:Interactive` | Full loop. Every `Alignment.Question` / `Consolidation` confirmed with the user. | Default. Human in the chair. |
-| `Alignment.Mode:Gated` | Autonomous within each phase. One confirmation at phase boundaries (e.g. `What.Design` → `Impl.Req` → `Impl.Exec`). | Mostly-autonomous flows that still want a sanity gate at the artifact handoff. |
-| `Alignment.Mode:Autonomous` | No gates. Artifacts still produced as the audit trail. | End-to-end autonomous flows (e.g. cleanup, scheduled runs). |
+| `Alignment.Mode:Interactive` | At each declared checkpoint, the agent may prompt the user. | Default. Human in the chair. |
+| `Alignment.Mode:Autonomous` | No prompting; the agent resolves every checkpoint itself. | End-to-end autonomous flows (cleanup, scheduled runs). |
 
-The mode is selected by the caller or outer skill. When unspecified, default to `Alignment.Mode:Interactive`. Each workflow master spells out what the mode means for its loop and, importantly, for its **deviation contract**:
+When unspecified, default to `Interactive`. The mode is one skill axis, not a global control model — a skill may carry other axes.
 
-- `Interactive` — stop and ask the user.
-- `Gated` — log the deviation; continue if reversible; abort if not.
-- `Autonomous` — log and continue; abort only on hard failure.
+**Discipline:** checkpoints are declared explicitly, so a skill's alignment surface is inspectable up front. The agent must not invent checkpoints and must not stop outside a declared one — no ad-hoc halts.
 
-A skill that does not name an `Alignment.Mode` is assumed `Interactive`.
+**Deviation contract** (deviation = design-reality mismatch, handled as a declared checkpoint with a "design did not fit reality" condition):
+
+- `Interactive` — stop at the checkpoint and surface the mismatch to the user.
+- `Autonomous` — record the deviation and continue with the most faithful corrective action; abort only on hard failure.
+
+**Boundary-gated autonomy:** a caller wanting autonomous execution within a phase with a single confirmation at the artifact boundary owns that boundary as its own declared `Alignment.Checkpoint` and invokes downstream skills in `Alignment.Mode:Autonomous`.
 
 ## Phase Semantic Roots
 

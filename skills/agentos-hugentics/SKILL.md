@@ -65,7 +65,7 @@ See `skills/agentos-pkg/index/102-index.md` for definitions and how they apply t
 ## Related Concepts
 
 - **Alignment.Session** — the general alignment model; see `references/alignment-session.md`
-- **Alignment.Mode** — tunable autonomy level (`Interactive` / `Gated` / `Autonomous`) respected across hugentic skills; defined in `references/alignment-session.md`
+- **Alignment.Mode** — two-value autonomy axis (`Interactive` default / `Autonomous`) over declared `Alignment.Checkpoint`s, respected across hugentic skills; defined in `references/alignment-session.md`
 - **Index** — `agentos-index` skill, independent subsystem for durable design truth
 - **Orientation** — `agentos-pkg` skill, workflow-neutral Agentos package root
 
