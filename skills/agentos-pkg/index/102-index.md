@@ -81,7 +81,7 @@
 
 - `Impl.Req` work spans `How.Design` and `Impl.Exec` — different principles matter at each phase
 - `How.Design`: `Deep.Modules`, `Agent.Navigable.Codebase` — shape the implementation design
-- `Impl.Exec`: `Vertical.Slice`, `No.Legacy.Allowed`, `No.Regression.Tests.Allowed`, `Test.At.Boundaries` — guide execution discipline
+- `Impl.Exec`: `Vertical.Slice`, `No.Legacy.Allowed`, `No.Regression.Tests.Allowed`, `Test.At.Boundaries`, `RED.GREEN.Test.Suite` — guide execution discipline
 - see `102-index.md` for definitions
 
 ****

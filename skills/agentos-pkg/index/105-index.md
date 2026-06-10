@@ -118,6 +118,50 @@
 - discussion rounds re-render the same block with the change; open points live under `### meta` as `open:` lines
 - the in-chat block and the artifact's `Design.Index` block are one object — capture only adds gating
 
-### meta
+****
 
-- related: `Kernel.Writing`, `Kernel.Block:Design`, `Alignment.User.Turn`, `What.Design.Session`
+## RED.GREEN.Test.Suite
+
+- `RED.GREEN.Test.Suite` is the set of RED/GREEN-style tests an `Impl.Req` calls for, written test-first to drive the implementation
+- an `Impl.Exec` `Development.Principle`: the `Impl.Req` specifies the suite; the executer builds it test-first — each test goes RED (fails) then GREEN (minimal code passes), one at a time
+- never write all tests up front: bulk tests assert imagined shape and pass when behavior breaks
+- it is not the only tests — it is the implementation-driving core; more tests may be added later, including at the end
+- `No.Regression.Tests.Allowed` governs all tests including this suite — keep it core-feature, e2e, and durable-contract focused, not regression slop
+- `Test.At.Boundaries` governs what each test asserts — public behavior that survives a refactor
+- rationale: writing the test before the code prevents retrofit tests that merely rubber-stamp the implementation
+
+****
+
+## Alignment.Mode
+
+- `Alignment.Mode` is an argument accepted by hugentic skills: its name is `Alignment.Mode`, its type is the value enum below
+- it governs one axis only — the `Alignment.Checkpoint` axis: who resolves each declared checkpoint
+- `Interactive` (default) — checkpoints are alignment opportunities; the agent may prompt the user at each
+- `Autonomous` — no user prompting; the agent carries the process and resolves every checkpoint itself
+- it is one skill axis, not a global control model — a skill may carry other independent axes
+- a caller wanting "autonomous within a phase, one confirm at a boundary" owns that boundary as its own declared `Alignment.Checkpoint` and invokes downstream skills in `Autonomous`
+
+****
+
+## Alignment.Checkpoint
+
+- `Alignment.Checkpoint` is a declared point in a skill workflow where the agent checks something before proceeding
+- it is a checkpoint because it can be an alignment opportunity — a place where the human could meaningfully weigh in
+- a decision the agent always resolves alone is not a checkpoint; it is just a normal workflow step
+- every checkpoint sits at an explicit declared position; it may carry an optional activation condition deciding whether it fires when reached (e.g. "design did not fit reality") — a gated positional checkpoint, not a separate kind
+- the check always runs; `Alignment.Mode` decides who resolves it — `Interactive` may prompt the user, `Autonomous` resolves alone
+- checkpoints are declared explicitly, so a skill's alignment surface is inspectable up front
+- discipline: the agent must not invent checkpoints and must not stop execution outside a declared one — no ad-hoc halts
+- deviation (design-reality mismatch) is handled at a declared checkpoint via an activation condition, not as an anywhere-interrupt
+- `Alignment.Checkpoint:<Name>` names a specific checkpoint, such as `Alignment.Checkpoint:Readiness`
+
+****
+
+## Alignment.Checkpoint:Readiness
+
+- `Alignment.Checkpoint:Readiness` is a named `Alignment.Checkpoint` placed right before the `Impl.Req` is written, after research and understanding
+- its purpose is a final alignment pass at the point of maximum understanding: the agent asks for whatever it still needs to produce a good `Impl.Req` — design clarifications, missing feedback loops, missing inputs — not only design questions
+- it is a gap-detector and needs gate, not a documentation mandate — it must not bloat the `Impl.Req`
+- bounded: the user stays in-loop as long as they want; then the agent finishes the `Impl.Req` with all accumulated feedback
+- governed by `Alignment.Mode` like any `Alignment.Checkpoint`
+- its operational definition — the readiness checklist and the resolve-then-raise flow — lives by construction in the skill that declares the checkpoint, not here

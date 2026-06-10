@@ -11,7 +11,7 @@
 - `102-index.md` — Alignment.Loop, Alignment.User.Turn, Alignment.Maintenance.Turn, Alignment.Backend, Hard.Evidence, Alignment.Session, Impl.Req[+1], Development.Principles[+1], Deep.Modules, Agent.Navigable.Codebase, Vertical.Slice, No.Legacy.Allowed, No.Regression.Tests.Allowed, Test.At.Boundaries, Design.Target.Model, Current.Implementation, Progress.Gradient, Design.Implementation.CoEvolution, Kernel.Writing[+1], Kernel.Block
 - `103-index.md` — Index.Architecture[+1], Flat.Index.Architecture, Global.Index.Scope, Extended.Index.Scope, Surface.Concept, Surface.Types, Concept.Scoping, Explicit.Namespace, Agentos.Index.System[+1], Soft.Semantics.Concept, Hugentic.Concept, Index.Router, Inline.Relatedness, Project.Surfaces, Project.Dev.Install, Index.Runtime, Distributed.Index, Soft.Programming.Language
 - `104-index.md` — Project.File.Index, Index.Activation, Unresolved.Index.Name, BuiltIn.Namespace, Project.Index.Skill, Concept.Cite, Index.Surface.Layout, Appendix.Discovery, Appendix.Pages, Placement.Heuristic, Install.Skill, Index.Empirical.Placement[+1], Alignment.Surface, Index.Depot, Provider.Instance, Index.Linter[+1], Write.Trigger.Gated, Content.Verbatim.Gated, Kernel.Note
-- `105-index.md` — Usage.Workflow, Kernel.Block:Grounding, Grounding.Entry, Grounding.DRIFT, Grounding.History, Grounding.Context.Injection, Grounding.Retrieval.Boundary, Topic.Identity, Topic.HEAD, Designer.Turn.Kernel.Form
+- `105-index.md` — Usage.Workflow, Kernel.Block:Grounding, Grounding.Entry, Grounding.DRIFT, Grounding.History, Grounding.Context.Injection, Grounding.Retrieval.Boundary, Topic.Identity, Topic.HEAD, Designer.Turn.Kernel.Form, RED.GREEN.Test.Suite, Alignment.Mode, Alignment.Checkpoint, Alignment.Checkpoint:Readiness
 
 ## File System
 
