@@ -3,10 +3,10 @@
 ## Session.Abstract
 
 - intent: walk through the mined improvement proposal for `hugentics-impl-designer`, `hugentics-impl-executer`, and `hugentics-codebase-cleaner`, making explicit design decisions about each proposal area
-- active focus: decide the shared contract that should connect cleanup candidate selection, `Impl.Req` design, and implementation execution
+- active focus: integrate converged concepts into the index and skills; clean up superseded session concepts
 - references: [554-hugentics-implementation-skills-mining-report.md](554-hugentics-implementation-skills-mining-report.md); academy mining — Pocock "Workflow for AI Coding" (`~/projects/academy/workflow-for-ai-coding/working-summaries/001-agentic-development-workflows.md` + repo `.claude/skills/tdd`)
 - state: active
-- next: decide whether the upgrade should be organized around one shared `Impl.Req` execution contract before discussing skill-specific improvements
+- next: resume the decision queue at topic 4 (slice dependency semantics); pending integration: the executer's two-value `Alignment.Mode` + `Alignment.Checkpoint` rewrite
 
 ## Design.Index
 
@@ -106,25 +106,19 @@ Execution.Policy (residual, non-gating)
 
 #### meta
 
-- status: gating axis converged; residual axes open
-- todo: audit earlier sections for overlap with `Alignment.Checkpoint` and remove any double-defined gating
+- status: gating axis converged; `Deviation.Policy` folds into a conditional `Alignment.Checkpoint`; `Reporting.Policy` is the only residual axis
+- audit done: no double-defined gating remains
 
 ### Executable.Feedback.Loop
 
-- the `Impl.Req` **must** name an executable signal answering "did this work?" — required, not optional
-- two altitudes, both wanted: **per-slice** (tight, primary) and **per-Impl.Req** (aggregate acceptance)
-- pick the best available signal; "no reliable loop" is atypical and to be actively avoided, not a default
-- signal preference (ladder detail belongs to topic 5):
-  1. existing reliable check (test / CLI / type check / linter / artifact diff)
-  2. agent-constructed signal (throwaway script, printed partials, ad-hoc comparison)
-  3. manual inspection with explicit criteria — fallback floor only
-- executer: confirm the loop is available, establish the **baseline before editing**, record pre-existing failures or unavailable checks
+- **folded into the existing index concept `Test.At.Boundaries`**, which already states feedback loops are the quality ceiling and that every `Impl.Req` names what validates the work
+- "feedback loop named" lives in `Alignment.Checkpoint:Readiness` (the readiness checklist) and the `Impl.Req`
+- the signal-preference order (existing check > agent-built script > manual inspection) is execution guidance under `Test.At.Boundaries`, not a separate concept
+- one surviving idea not in the cluster: establish the **baseline before editing** (run existing checks, record pre-existing failures) so introduced breakage is distinguishable — candidate one-liner addition to `Test.At.Boundaries`
 
 #### meta
 
-- status: converging
-- overlap: signal ladder == topic 5 `Verification.Ladder` (define once)
-- readiness: "feedback loop named" is a `Readiness.Contract` requirement (topic 3)
+- status: folded into `Test.At.Boundaries` — not minted as a new concept
 
 ### Alignment.Checkpoint:Readiness
 
@@ -151,21 +145,22 @@ Execution.Policy (residual, non-gating)
 - status: converged
 - open: keep a light executer-side entry readiness check, or trust this pre-write gate?
 
-### Test.First
+### RED.GREEN.Test.Suite
 
-- TDD is integrated at its `Natural.Placement` in the framework, not bolted on:
-  - **topic 3 `Alignment.Checkpoint:Readiness`** → the `Impl.Req` names the **behaviors / acceptance to test** (behaviors, not implementation steps) — this is "design tests in advance" done right, the anchor against overfitting
-  - **topic 5 per-slice rung** → **RED → GREEN test-first**, one behavior at a time: failing behavior test, then minimal code to pass
-- the *in-advance* part is **naming behaviors**; the *actual tests* are written per slice during execution
-- **banned: all-tests-up-front** — writing every test before any implementation produces tests of *imagined* behavior/shape that pass when behavior breaks
-- anti-cheating rationale: the test instruments behavior *before* the implementation exists, so the agent cannot retrofit a test that merely rubber-stamps what it built
-- per-cycle test guard: describes behavior not implementation · public interface only · would survive an internal refactor · minimal code · no speculative features
+- `RED.GREEN.Test.Suite` is the set of RED/GREEN-style tests an `Impl.Req` calls for, written test-first to drive the implementation
+- an `Impl.Exec` `Development.Principle`: the `Impl.Req` specifies the suite; the executer builds it test-first (each test goes RED → minimal code GREEN → next; never all tests up front)
+- the *in-advance* part is naming the behaviors to test at `Alignment.Checkpoint:Readiness`; the actual tests are written test-first during execution
+- **not the only tests** — it is the implementation-driving core; more tests may be added later, e.g. at the end
+- `No.Regression.Tests.Allowed` governs **all** tests including this suite — keep it core-feature / e2e / durable-contract focused, not regression slop
+- `Test.At.Boundaries` governs what each test asserts — public behavior that survives a refactor
+- rationale: writing the test before the code prevents retrofit tests that merely rubber-stamp the implementation (anti-overfit, anti-cheat); all-tests-up-front is banned because bulk tests assert imagined shape and pass when behavior breaks
 
 #### meta
 
-- status: accepted direction
-- placement: spans topic 3 (name behaviors) + topic 5 (RED→GREEN per slice)
-- source: academy mining — Pocock `tdd` skill
+- status: converged — landed in the index (`Development.Principles` member) and the designer/executer skills
+- renamed from `Test.First`
+- placement: `Development.Principles` member for `Impl.Exec`; the `Impl.Req` carries the suite, the executer builds it
+- source: academy mining — Pocock `tdd` skill, reconciled with the existing test cluster (`No.Regression.Tests.Allowed`, `Test.At.Boundaries`)
 
 ### Impl.Req.Lifecycle
 
@@ -206,19 +201,21 @@ Execution.Policy (residual, non-gating)
 
 ### Decision Queue
 
-1. Shared chain contract and ownership boundaries
-2. Executable feedback loops
-3. `Impl.Req` readiness and reader testing
-4. Slice dependency semantics and vertical-slice quality
-5. Verification ladder
-6. Deviation taxonomy
-7. `Impl.Req` state model
-8. Canonical `Impl.Req` template and current-state evidence
-9. Executer baseline, slice entry/exit, and final acceptance review
-10. Git checkpoint boundary and caller consistency
-11. Cleanup candidate selection, evidence, deletion test, and cleanup classes
-12. Trigger descriptions, progressive disclosure, structural validation, and behavioral evaluation
-13. Avoid list and final upgrade ordering
+1. Shared chain contract and ownership boundaries — ✅ `Impl.Req.Execution.Contract`, `Alignment.Checkpoint`, `Alignment.Mode`
+2. Executable feedback loops — ⤵ folded into `Test.At.Boundaries`
+3. `Impl.Req` readiness and reader testing — ✅ `Alignment.Checkpoint:Readiness`
+4. Slice dependency semantics and vertical-slice quality — pending (next)
+5. Verification ladder — ✖ dropped (≈ existing test cluster; only baseline-before-editing was new)
+6. Deviation taxonomy — pending (deviation is now a conditional `Alignment.Checkpoint`)
+7. `Impl.Req` state model — ✅ `Impl.Req.Lifecycle` (transient)
+8. Canonical `Impl.Req` template and current-state evidence — pending
+9. Executer baseline, slice entry/exit, final acceptance review — partly landed via `RED.GREEN.Test.Suite` + executer edits; pending consolidation
+10. Git checkpoint boundary and caller consistency — pending
+11. Cleanup candidate selection, evidence, deletion test, and cleanup classes — pending
+12. Trigger descriptions, progressive disclosure, structural validation, and behavioral evaluation — pending
+13. Avoid list and final upgrade ordering — pending
+
+Also captured outside the original queue: `RED.GREEN.Test.Suite`, `Standards.Push.Pull`, `Designer.Turn.Kernel.Form` (all landed in the index/skills).
 
 ### Working Rules
 
@@ -226,20 +223,18 @@ Execution.Policy (residual, non-gating)
 - record an explicit outcome for every major report topic
 - keep shared contracts distinct from skill-local operational instructions
 - avoid growing the skills with generic engineering material that does not improve the chain
-- do not edit the target skills until the session produces an implementation handoff
+- implementation has begun: converged concepts land incrementally in the index and skills (no single handoff document); keep each landing gated
 
-### Immediate Known Correction
+### Immediate Known Correction — RESOLVED
 
-- `hugentics-codebase-cleaner` still claims the executer owns per-slice commits
-- this contradicts the executer's accepted pre-execution-only git checkpoint contract
-- correction is expected, but its exact placement should follow the checkpoint-boundary discussion
+- `hugentics-codebase-cleaner` previously claimed the executer owns per-slice commits, contradicting the executer's pre-execution-only git checkpoint contract
+- fixed 2026-06-09 during the `Alignment.Mode` cascade: the cleaner now states the pre-execution checkpoint is the only commit phase
 
 ### Parking Lot
 
 - exact reference-file names
 - whether a deterministic `Impl.Req` structural validator is justified
 - behavioral evaluation prompts for the full three-skill chain
-- whether `Alignment.Mode` remains a preset layer over granular execution policy arguments
 
 ## Session.Log
 
@@ -251,3 +246,5 @@ Execution.Policy (residual, non-gating)
 - 2026-06-08: Decided topic 2 `Executable.Feedback.Loop`: a feedback loop is mandatory at both per-slice and per-Impl.Req altitudes; agent must construct a signal (scripts/partials) before falling back to manual inspection with explicit criteria. Signal ladder deferred to topic 5; "feedback loop named" routed to the `Readiness.Contract` (topic 3).
 - 2026-06-08: Decided topic 3 as `Alignment.Checkpoint:Readiness` — a single named checkpoint right before the `Impl.Req` is written. A readiness checklist detects gaps; the agent resolves what it can and raises the rest as a final alignment pass (governed by `Alignment.Mode`). Deliberately light: a gap-detector and needs gate, not a documentation mandate. Establishes the `Alignment.Checkpoint:<Name>` convention. Open: whether the executer keeps a light entry readiness check.
 - 2026-06-09: Mined academy / Pocock "Workflow for AI Coding". Captured `Test.First` (TDD at `Natural.Placement` — name behaviors at readiness, RED→GREEN per slice, ban all-tests-up-front to avoid imagined-shape tests), `Impl.Req.Lifecycle` (transient live-notes, resolves topic 7 doc-rot), and `Standards.Push.Pull` (implementer pulls, reviewer pushes). Dropped fresh-context review (user responsibility for now). Strong independent-convergence signal: grill-me≈design session, PRD≈Impl.Req, tracer-bullet slices≈topic 4, feedback-loops-as-quality-ceiling≈topic 2.
+- 2026-06-09: Overlap check against the existing index test cluster (`Development.Principles` → `Vertical.Slice`, `No.Legacy.Allowed`, `No.Regression.Tests.Allowed`, `Test.At.Boundaries`). Found `Verification.Ladder` ~80% redundant (only baseline-ground-truth was new) — dropped. `Executable.Feedback.Loop` largely folds into `Test.At.Boundaries`. Renamed `Test.First` → `RED.GREEN.Test.Suite` and reconciled: not a conflict with `No.Regression.Tests.Allowed` — method (test-first) vs test-selection (no regression slop) are orthogonal. `RED.GREEN.Test.Suite` becomes a new `Impl.Exec` `Development.Principle`.
+- 2026-06-09: Landed `Designer.Turn.Kernel.Form` and `RED.GREEN.Test.Suite` into the `agentos-pkg` index; wired `RED.GREEN.Test.Suite` into the designer/executer skills; updated the designer-skill `interview.md`/`discussion.md` for `Designer.Turn.Kernel.Form`. Cleaned this session: refreshed `Session.Abstract`, folded `Executable.Feedback.Loop` into `Test.At.Boundaries`, annotated the Decision Queue, resolved the `Alignment.Mode`-preset parking item, and updated the now-outdated "don't edit target skills" working rule.
