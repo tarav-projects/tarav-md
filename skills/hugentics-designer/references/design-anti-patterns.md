@@ -108,6 +108,20 @@ Designed to be re-read mid-session when something feels off. Original to this sk
 - why it kills: convergence built on stale ground collapses when the user notices
 - correction: per `alignment-loop.md`, surface stale state when it materially affects the current discussion
 
+## Orientation Anti-Patterns
+
+### Designing before Setup
+
+- looks like: drafting a `Kernel.Block:Design`, asking a design question, or consolidating design state before `Design.Session.Setup` has run — writing in plain prose, unaware of the owning index's existing concepts
+- why it kills: the process floor never reaches the work, so the user has to supply basic workflow concepts ("we speak in Kernel.Block language"), and the agent designs blind to what already exists
+- correction: on any design signal, ensure `Design.Session.Setup` has run (process frame + subject prior-art via `concept-discovery.md`) before the first design move
+
+### Reinvention / ungrounded concept
+
+- looks like: designing a block whose concept already exists in the owning index, or contradicting a settled index block without surfacing it
+- why it kills: produces duplicate or conflicting concepts, drift, and wasted convergence; the index is the SSOT and was never consulted
+- correction: run `Concept.Discovery` during Setup and when opening any new subject block; cite existing blocks via `Cited.Duplication` / `Inline.Relatedness`, and revise or mark `Grounding.DRIFT` instead of duplicating
+
 ## Session-Mechanics Anti-Patterns
 
 ### Silent turn-switching
@@ -132,6 +146,8 @@ Designed to be re-read mid-session when something feels off. Original to this sk
 
 Re-read mid-session if something feels off:
 
+- did I run `Design.Session.Setup` before designing — process frame loaded, subject prior-art checked?
+- does this concept already exist in the owning index, or contradict a settled block?
 - am I still on the highest-leverage unresolved question?
 - did the last user turn contradict any session state I'm still acting on?
 - have I preserved the user's wording where it carries judgment?

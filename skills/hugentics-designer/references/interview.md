@@ -54,8 +54,9 @@ Prefer questions that:
 If context is insufficient, bootstrap with one opener:
 
 - "What are we designing or deciding?"
-- "What references should anchor this session?"
 - "What is the current artifact or code surface we should inspect first?"
+
+Anchors come from `Design.Session.Setup`, not from the user. `Concept.Discovery` has already surfaced the existing and neighbor blocks, so the agent **proposes** them as anchors for the user to confirm, redirect, or extend.
 
 If a question can be answered by inspecting code, notes, artifacts, transcripts, or other available evidence, inspect that evidence instead of asking the user — `Hard.Evidence` beats agent assumption, and a premature question burns a slot (see `design-anti-patterns.md` / premature questions).
 

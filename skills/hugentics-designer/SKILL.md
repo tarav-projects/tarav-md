@@ -15,26 +15,48 @@ This skill is a router. Load only the references needed for the current backend,
 
 ## Activation
 
-Activate this skill when the user wants to start or continue a design session.
+Activate this skill as soon as design work is happening — not only on an explicit "design session" request.
 
-Typical activation phrases include "let's start a design session", "let's design X", "start a design-session", "continue the design-session", or an explicit `hugentics-designer` invocation.
+Design-start cues include "let's start a design session", "let's design X", "continue the design-session", an explicit `hugentics-designer` invocation, and **organic** signals: "let's revisit/rethink this system", drafting concept blocks, or working through design decisions in chat.
 
-Do not activate for ordinary design discussion, implementation work, generic status reporting, or code review.
+Do not activate for implementation work, generic status reporting, or code review.
 
 ## Execution Workflow
 
-1. Activate the minimal runtime.
-2. Choose the backend.
-3. Detect the current move or interruption.
-4. Load only the references needed for that move.
-5. Execute one `Alignment.Loop:What` move.
-6. Respect user gates.
+1. **Ensure `Design.Session.Setup` has run this session.** This gates every design move — see the dedicated section below.
+2. Activate the minimal runtime.
+3. Choose the backend.
+4. Detect the current move or interruption.
+5. Load only the references needed for that move.
+6. Execute one `Alignment.Loop:What` move.
+7. Respect user gates.
+
+## Design.Session.Setup
+
+**Before drafting any `Kernel.Block:Design`, asking any design question, or consolidating any design state, ensure `Design.Session.Setup` has run.** It is the orientation gate that loads the design *process* concepts and the *subject* prior-art. Skipping it is the failure mode where the agent designs in plain prose, reinvents existing concepts, or contradicts settled index blocks until the user corrects it.
+
+`Design.Session.Setup` is an internal operational move of this workflow-neutral skill, not a standalone skill. Its trigger is compound:
+
+- a "we are designing" signal is present — explicit or organic, **AND**
+- you have not already performed `Design.Session.Setup` this session.
+
+The "already performed" check is **your own session memory** — Setup runs once per agent run, not per turn, and is not recorded in the design artifact. A later agent continuing the session runs its own Setup, because it also needs orienting.
+
+When triggered, perform Setup before any other design move:
+
+1. **Process frame (Axis 1).** Activate and commit to the Minimal Runtime. Operate in `Kernel.Block` language from turn one: every design output is a `Kernel.Block:Design`, and the `writing-craft` floor (`Kernel.Writing`, `Natural.Placement`, `Hard.Evidence`, `Cited.Duplication`, `Inline.Relatedness`) applies to every line. Do not design in plain prose.
+2. **Subject prior-art (Axis 2).** Run `references/concept-discovery.md` against the owning index/appendix. Load relevant existing and neighboring blocks as `Cited.Duplication`, and surface them: does this already exist (revise / `DRIFT`), neighbor an existing block (cite), or warrant a new block?
+3. **Scope + backend.** Name what is being designed, **propose** the anchors discovered in step 2 instead of only asking the user "what references?", and pick the backend (`backend-inchat` by default).
+
+Output a short Setup report — process frame active, the existing-concept neighborhood, the proposed anchors — then proceed to the first design move.
+
+`Concept.Discovery` (step 2) also re-runs whenever the session opens a **new subject block**, not only at Setup. Skipping Setup is an anti-pattern (see `design-anti-patterns.md` / designing before Setup).
 
 ## Minimal Runtime
 
 Always load:
 
-- `references/writing-craft.md` — `Cited.Duplication` of `[Kernel.Writing, Kernel.Block, Kernel.Block:Design, Hard.Evidence, Cited.Duplication, Inline.Relatedness]`; the writing-quality floor
+- `references/writing-craft.md` — `Cited.Duplication` of `[Kernel.Writing, Kernel.Block, Kernel.Block:Design, Natural.Placement, Hard.Evidence, Cited.Duplication, Inline.Relatedness]`; the writing-quality floor
 - `references/design-anti-patterns.md` — failure-mode catalog, mid-session re-read
 - `references/alignment-loop.md` — runtime turn modes
 - `references/interview.md` — question selection, format, discussion fork
@@ -163,6 +185,8 @@ Actual Agentos Index writes remain governed by the Agentos Index write workflow.
 3. Current in-chat session state or active artifact state.
 4. Current codebase state and diffs.
 5. Stable project surfaces such as index notes, project `AGENTS.md`, active skills, CLI help, documented spec surfaces, or other source-of-truth project artifacts.
+
+This ordering governs **conflict resolution**, not when to read. For design specifically, the owning index/appendix blocks on the subject are first-class design input — discovered proactively during `Design.Session.Setup`, not a last-resort fallback. Load them before designing; do not wait to be told.
 
 ## Exit Condition
 

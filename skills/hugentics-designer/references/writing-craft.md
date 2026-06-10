@@ -1,6 +1,6 @@
 # Writing Craft
 
-The writing-quality floor for `What.Design.Session`. Apply on every line written into `Session.Abstract`, `Design.Index`, `Session.Notes`, or any other session surface. This reference is `Cited.Duplication` of `[Kernel.Writing, Kernel.Block, Kernel.Block:Design, Hard.Evidence, Cited.Duplication, Inline.Relatedness]` from `agentos-pkg/index/`. The origin owns authority; this is the on-hand operational copy.
+The writing-quality floor for `What.Design.Session`. Apply on every line written into `Session.Abstract`, `Design.Index`, `Session.Notes`, or any other session surface. This reference is `Cited.Duplication` of `[Kernel.Writing, Kernel.Block, Kernel.Block:Design, Natural.Placement, Hard.Evidence, Cited.Duplication, Inline.Relatedness]` from `agentos-pkg/index/`. The origin owns authority; this is the on-hand operational copy.
 
 ## Kernel.Writing
 
@@ -70,6 +70,18 @@ Use the block's `#### meta` for:
 - open questions
 - session-mechanics annotations
 - promotion notes if the concept may move to a public surface
+
+## Natural.Placement
+
+`Natural.Placement` is the principle that each surface holds the facet of a concept that is natural to its function.
+
+- the full description of a concept is distributed across surfaces, each complementing the others: index → conceptual grounding and discovery; appendix → extended depth and scoped views; skills → operational behavior; code → the implementation itself; chat → the user/agent interaction record
+- it primarily governs where origin material naturally belongs
+- describing in markdown what code already holds is redundant placement, not useful duplication — the question is always placement
+- content that feels unnatural in a surface is probably misplaced
+- a cited duplicate may also be naturally placed when local use strongly benefits from the repeated content; uncited or stale duplication is the anti-pattern, not duplication itself
+
+In a design session this is a constant decision: a drafted line is a fundamental, appendix depth, `#### meta` mechanics, or chat-grounding evidence — placement is part of the design, not an afterthought. The block-section split in `Kernel.Block:Design` is `Natural.Placement` applied inside one block.
 
 ## Hard.Evidence
 
