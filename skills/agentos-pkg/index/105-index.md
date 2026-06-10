@@ -165,3 +165,13 @@
 - bounded: the user stays in-loop as long as they want; then the agent finishes the `Impl.Req` with all accumulated feedback
 - governed by `Alignment.Mode` like any `Alignment.Checkpoint`
 - its operational definition — the readiness checklist and the resolve-then-raise flow — lives by construction in the skill that declares the checkpoint, not here
+
+****
+
+## Alignment.Checkpoint:Executable
+
+- `Alignment.Checkpoint:Executable` is a named `Alignment.Checkpoint` the executer runs at execution entry, before the git checkpoint and first edit
+- it confirms the `Impl.Req` is still executable in the current environment: targeted files and symbols exist, named feedback loops run, the code matches the plan's assumptions, and the plan is followable cold
+- it complements `Alignment.Checkpoint:Readiness` — readiness asks "is this a good plan to write?" at design time; executable asks "is this still runnable now?" at execution time, catching drift since the `Impl.Req` was written
+- governed by `Alignment.Mode`: `Interactive` raises unresolved mismatches before editing; `Autonomous` records them and proceeds only if faithful, aborting if the plan is no longer executable
+- it is a light "still executable?" gate, not a re-run of the readiness checklist; its operational definition lives in the executer skill that declares it

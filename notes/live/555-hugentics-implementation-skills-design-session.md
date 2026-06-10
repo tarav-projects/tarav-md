@@ -143,7 +143,7 @@ Execution.Policy (residual, non-gating)
 #### meta
 
 - status: converged
-- open: keep a light executer-side entry readiness check, or trust this pre-write gate?
+- resolved: keep both — the executer also runs a light `Alignment.Checkpoint:Executable` entry check ("still executable now?") before the git checkpoint
 
 ### RED.GREEN.Test.Suite
 

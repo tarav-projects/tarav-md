@@ -86,6 +86,16 @@ Before writing code:
 - Restate what is being implemented in design-level prose.
 - Read existing code in the target area. Understand what is already there.
 - The plan confirmation is a declared `Alignment.Checkpoint`: in `Interactive`, confirm the plan with the user before coding; in `Autonomous`, the caller's invocation is the authorization — proceed.
+
+Then run `Alignment.Checkpoint:Executable` — read the `Impl.Req` cold and confirm it is still executable here and now:
+
+- the files, modules, and symbols it targets still exist
+- the named feedback loops and `RED.GREEN.Test.Suite` checks are runnable in this environment
+- the current code still matches what the plan assumes — no drift since the `Impl.Req` was written
+- the plan is followable without the original design chat
+
+If something is off, treat it as a gap: resolve it yourself where you can (re-read, locate moved code, adjust a command); under `Alignment.Mode:Interactive` raise unresolved mismatches to the user before editing; under `Autonomous` record in `Impl.Log` and proceed only if you can do so faithfully, aborting if the plan is no longer executable. This is a light "still executable?" gate, not a re-run of the designer's `Alignment.Checkpoint:Readiness` check.
+
 - Create the [Git Checkpoint](#git-checkpoint) before the first implementation edit. Mandatory in all modes.
 
 ### 2. Per-Slice Execution

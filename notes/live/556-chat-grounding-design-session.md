@@ -209,6 +209,76 @@ Current claim or decision cites `Concept.Name`; `Concept.Name` carries the chat 
 - Machine constraints matter for retrieval design; the user's current machine has limited RAM, so vector storage and embedding choices must be modest.
 - Retrieval should be designed as a separate concern so `Chat.Grounding` does not depend on one search backend.
 
+### Grounding.Material
+
+- `Grounding.Material` is a chat turn (or turn span) that carries durable user/agent design signal worth grounding.
+- A turn is `Grounding.Material` when the user adds design information, makes or accepts a decision, corrects direction, rejects an idea, names or renames a concept, states a stable requirement or preference, or creates drift.
+- Detecting `Grounding.Material` is the core L1 job; it does not require any block to be named.
+- Explicit block mentions in a turn are an additional signal, not a precondition.
+- Block-agnostic `Grounding.Material` is still recorded, because it may ground blocks discovered later.
+
+#### appendix
+
+- `Grounding.Material` detection is heuristic, not exhaustive; the cost is a miss, not a corruption, because chats remain the SSOT.
+- The same heuristic vocabulary already used for chat-to-block mining defines what counts as material.
+- One turn can yield multiple `Grounding.Material` records when it carries several distinct design signals.
+
+### Grounding.Request
+
+- `Grounding.Request` is a live-note review artifact for proposed grounding work.
+- It queues candidate `### grounding`, appendix history, or `DRIFT:` entries for later gated index writing.
+- It is produced by grounding miners and processed later by a hugentic user/agent reviewer.
+- It is not stable index truth and does not mutate index/appendix blocks by itself.
+- It preserves evidence, search notes, ambiguity, and rejected or weak candidates outside the compressed index surface.
+- Its MVP carrier is append-only JSONL under a `notes/live/grounding/` base path supplied as a skill argument.
+
+#### appendix
+
+- `Grounding.Request` lets lower-cost miner agents do broad evidence collection without crossing the index write gate.
+- Existing requests are part of miner context so miners can avoid repeating already-proposed grounding.
+- There are two request file kinds:
+  - session request: `notes/live/grounding/<session-hash>-gr-req.jsonl`, written by L1, scoped to one chat session.
+  - block request: `notes/live/grounding/<block-name>-gr-req.jsonl`, written by L2, scoped to one kernel block.
+- Each line is one record:
+
+  ```json
+  {"ref": "@<hash>-<time>..<time>", "blocks": ["Chat.Grounding"], "grounding-why": "why this turn is grounding material"}
+  ```
+
+- `grounding-why` describes the request, not the turn: why it is `Grounding.Material` and what an agent should consider before pulling it. It has the same function as a Skill description.
+- `blocks` may be empty for block-agnostic `Grounding.Material`; L1 fills it only with blocks named explicitly in the turn.
+- Files are append-only. Dedup is per-turn: before appending, the miner reads existing records for that turn `ref` and skips or merges duplicates.
+- `<block-name>` is sanitized for the filesystem: dots are kept, unsafe characters such as `:` become `-` (e.g. `Kernel.Block-Grounding-gr-req.jsonl`).
+- The durable write happens only after reviewer digestion through the normal index workflow.
+
+#### meta
+
+- open: filename sanitization rule defaulted (keep dots, `:`→`-`); confirm or override.
+
+### Grounding.Miner
+
+- `Grounding.Miner` is an agent that produces `Grounding.Request`s from chat and index evidence.
+- It has two levels that mine in opposite directions.
+- L1 mines chat-to-reqs: it reads one chat session and emits a session `Grounding.Request` of `Grounding.Material` records.
+- L2 mines block-to-reqs: it targets one kernel block and emits a block `Grounding.Request` of grounding candidates.
+- Miner output is candidate evidence, not authority.
+
+#### appendix
+
+- L1 detail:
+  - input is one chat session; output is `notes/live/grounding/<session-hash>-gr-req.jsonl`.
+  - it walks turns and detects `Grounding.Material` by heuristic, with or without named blocks.
+  - one turn can produce multiple records; `blocks` is filled only from explicit mentions.
+  - it is append-only and per-turn deduped against existing records for the same `ref`.
+- L2 detail:
+  - input is one kernel block; output is `notes/live/grounding/<block-name>-gr-req.jsonl`.
+  - it treats the L1 session files as a cheap searchable layer: search session gr-reqs first for its block name or relevance.
+  - it always returns to the actual chat turn to confirm before appending a block record.
+  - only after confirmation does it append its own block `Grounding.Request` record with a `grounding-why`.
+- The L1 session layer acts as a hand-built retrieval index over chats, which is how MVP mining avoids depending on a vector backend on constrained hardware.
+- Operationally, mining capacity is shared across many chats: a session is re-mined only after a cooldown rather than back-to-back.
+- Both levels produce `Grounding.Request`s; they do not write the index.
+
 ### Topic.HEAD
 
 - `Topic.HEAD` is the most recent grounded chat view for a topic.
@@ -245,9 +315,9 @@ Current claim or decision cites `Concept.Name`; `Concept.Name` carries the chat 
 
 ### Grounding.MVP
 
-- MVP concept surface: `Chat.Grounding`, `Chat.Ref`, `Topic.Identity`, `Topic.HEAD`, `Kernel.Block:Grounding`, `Grounding.Entry`, `Grounding.DRIFT`, `Grounding.History`, and `Grounding.Context.Injection`.
+- MVP concept surface: `Chat.Grounding`, `Chat.Ref`, `Topic.Identity`, `Topic.HEAD`, `Kernel.Block:Grounding`, `Grounding.Entry`, `Grounding.DRIFT`, `Grounding.History`, `Grounding.Material`, `Grounding.Request`, `Grounding.Miner`, and `Grounding.Context.Injection`.
 - MVP block convention: grounded index/appendix blocks carry a standard grounding section with direct `Chat.Ref`s and one-sentence evidence notes.
-- MVP behavior: agents ground kernel blocks when relevant chat evidence is available and proceed responsibly when it is not.
+- MVP behavior: miners produce `Grounding.Request`s when relevant chat evidence is found and reviewers later write accepted grounding into kernel blocks.
 - MVP retrieval path can use existing `agentos chatlas` query/export surfaces before adding vector search.
 - MVP success means future agents can trace a kernel block back to the chat context that established it, then cite that block from downstream work.
 
@@ -266,6 +336,7 @@ Open / unresolved:
 - Authority language: how strongly a grounding citation should constrain implementation when evidence is old, partial, or ambiguous.
 - Tooling path: whether initial support should live in Chatlas CLI, Agentos markdown workflows, editor helpers, or all three.
 - Retrieval path: keyword/session query first, then modest vector search if it fits local resource constraints.
+- Request organization: per chat session, per block, or batch files for different miner levels.
 - Index promotion: revise the existing `Chat.Grounding` block only after the design session settles exact wording.
 
 ## Session.Log
@@ -279,5 +350,9 @@ Open / unresolved:
 - 2026-06-08: user moved historical grounding to appendix depth so history can accumulate without overloading compressed index blocks.
 - 2026-06-08: user rejected grounding state taxonomy. Lack of grounding is implicit by absence of `### grounding`; only `DRIFT` is explicit.
 - 2026-06-09: core design promoted into the Agentos package index. Linter passed for `skills/agentos-pkg/index` and `skills/agentos-pkg/appendix`.
+- 2026-06-09: user introduced `Grounding.Request` as the miner output artifact and broadened mining directions to block-to-chat and chat-to-block.
 - 2026-06-08: user settled `DRIFT:` as a row prefix, not a role group.
 - 2026-06-08: user constrained `DRIFT:` to `*HEAD*` rows only. Reason lives in the evidence note; marker only signals that alignment must be performed.
+- 2026-06-09: user specified the two-level miner pipeline. Added `Grounding.Material`; `Grounding.Request` MVP carrier is append-only JSONL under a `notes/live/grounding/` base (skill argument), with session files (L1) and block files (L2).
+- 2026-06-09: user settled L1 records `Grounding.Material` by heuristic even with no named blocks; L2 reads L1 session files as a retrieval layer, confirms against the real chat turn, then appends.
+- 2026-06-09: user settled record field name `grounding-why` (describes why the turn is grounding material, Skill-description function) and per-turn dedup against existing records for the same ref; sessions re-mined only after a cooldown.
