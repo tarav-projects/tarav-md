@@ -175,3 +175,33 @@
 - it complements `Alignment.Checkpoint:Readiness` — readiness asks "is this a good plan to write?" at design time; executable asks "is this still runnable now?" at execution time, catching drift since the `Impl.Req` was written
 - governed by `Alignment.Mode`: `Interactive` raises unresolved mismatches before editing; `Autonomous` records them and proceeds only if faithful, aborting if the plan is no longer executable
 - it is a light "still executable?" gate, not a re-run of the readiness checklist; its operational definition lives in the executer skill that declares it
+
+****
+
+## Name.As.Index
+
+- `Name.As.Index` is the property that a `Dotted.Name` is a bidirectional key across all surfaces, not only a forward pointer to a definition
+- forward: name → its `Kernel.Block:Index` definition
+- reverse: name → every surface that mentions it — the mention registers that text as being about the concept
+- makes natural-text surfaces findable and indexable by concept through plain search, with no hand-maintained concept→surface table
+- makes `Cited.Duplication` maintainable: enumerate mentions to detect and align drift — the mechanism `Index.Writer.Maintenance.Pass` already relies on
+- the `Soft.Programming.Language` symbol resolves both ways: name→definition and name→usages
+- depends on `Dotted.Notation` discipline — only named concepts are reverse-findable; casual prose is not
+
+### meta
+
+- related: `Dotted.Notation`, `Cited.Duplication`, `Inline.Relatedness`, `Index.Writer.Maintenance.Pass`, `Soft.Programming.Language`
+
+****
+
+## Not.A.Wall.Of.Text
+
+- `Not.A.Wall.Of.Text` is an alignment anti-pattern: presenting too much un-aligned content in one turn
+- alignment is per-chunk — a wall forces the human to rubber-stamp or disengage (false convergence)
+- soft budget ≈ 1–3 blocks / one decision per `Alignment.Maintenance.Turn`
+- bounds breadth presented, not depth available — depth stays one pull away (`Appendix.Discovery`)
+- exception: content the user explicitly pulls (a requested status print, async artifact) is not a wall
+
+### meta
+
+- related: `Alignment.Maintenance.Turn`, `Hugentic.Alignment`, `Appendix.Discovery`
