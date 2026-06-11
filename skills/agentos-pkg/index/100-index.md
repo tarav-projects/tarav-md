@@ -178,7 +178,8 @@
 - implements the `Agentos.Index` — a `Soft.Programming.Language` for project knowledge
 - four roles: conceptual implementation of the system, discovery and navigation index, development surface, main alignment surface
 - contains `Named.Concepts` written in `Kernel.Block:Index` blocks, organized in flat index files
-- agents operate the index through the `Index.Runtime` — the full index is loaded at activation, concepts are always in context
+- agents operate the index through the `Index.Runtime`; what loads is governed by the `Package.Driver`, not by the index — the index has no loading policy of its own
+- catalog and model are the same act: naming and defining the parts is the modeling; elements and their interactions are both concepts, so one primitive (`Kernel.Block`) carries the whole mental model
 
 ****
 
@@ -197,7 +198,7 @@
 - anchored by a heading (H2–H6) that names the concept using `Dotted.Notation`
 - `Kernel.Writing` at tight space constraints — conceptual completeness under compression
 - must carry enough signal for an agent to reason correctly about the concept
-- the minimal loaded blocks — the starting point for the discovery cascade into the appendix
+- the minimal unit of meaning — the starting point for the discovery cascade into the appendix
 - the index must have at least a block for any meaningful concept in the system
     - blocks can link out to other surfaces rather than define everything inline
 - inherits fundamentals + `### grounding` + `### appendix` + `### meta` from `Kernel.Block`

@@ -6,7 +6,7 @@
 
 - `Project.File.Index` is the file-level routing section of the `Index.Router`
 - describes the project's file system at folder level, with individual files listed only when fundamental
-- one sentence description per entry — token budget is tight, this is always-loaded context
+- one sentence description per entry — token budget is tight, it travels with the router whenever the index is loaded
 - gives agents a structural map of where to look — not a complete listing, but the important entry points
 
 ****
@@ -16,7 +16,7 @@
 - `Index.Activation` is the process of bootstrapping the `Index.Runtime` for a session
 - handled through the `agentos-index` auxiliary skill or directly by an index-capable caller
 - collects the relevant routing blocks, concept blocks, appendix material, and references for the current task
-- activation is opt-in — triggered by `AGENTS.md` or manual invocation
+- activation is opt-in — triggered by `AGENTS.md`, a `Package.Driver`, or manual invocation; the index has no loading policy of its own
 - operational detail: `agentos-pkg/references/launch-runtime.md`
 
 ****

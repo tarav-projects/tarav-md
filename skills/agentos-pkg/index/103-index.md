@@ -5,7 +5,7 @@
 ## Index.Architecture
 
 - `Index.Architecture` is the structural design of the Agentos Index system — an `Explicit.Namespace` grouping the concepts that define it
-- two scopes: `Global.Index.Scope` (`index/`, lean, always loaded) and `Extended.Index.Scope` (`appendix/`, loaded on demand)
+- two depth layers: `index/` (lean, compressed concept definitions) and `Extended.Index.Scope` (`appendix/`, loaded on demand)
 - flat anonymous index files (`100-index.md`, `101-index.md`, ...) with `000-index.md` as concept→file routing table
 - writing is append-only to the last file — placement decisions are decoupled from writing
 - one universal block structure (`Kernel.Block`) parameterized by surface: `Kernel.Block:Index`, `Kernel.Block:Appendix`, `Kernel.Block:Design`
@@ -17,7 +17,7 @@
 
 ### meta
 
-- namespace-members: `Global.Index.Scope`, `Extended.Index.Scope`, `Flat.Index.Architecture`, `Kernel.Writing`, `Kernel.Block`, `Kernel.Note`, `Kernel.Block:Index`, `Kernel.Block:Appendix`, `Kernel.Block:Design`, `Kernel.Block:Grounding`, `Concept.Scoping`, `Explicit.Namespace`, `Surface.Concept`, `Agentos.Index.System`
+- namespace-members: `Extended.Index.Scope`, `Flat.Index.Architecture`, `Kernel.Writing`, `Kernel.Block`, `Kernel.Note`, `Kernel.Block:Index`, `Kernel.Block:Appendix`, `Kernel.Block:Design`, `Kernel.Block:Grounding`, `Concept.Scoping`, `Explicit.Namespace`, `Surface.Concept`, `Agentos.Index.System`
 
 ****
 
@@ -28,23 +28,15 @@
 - ~20 concept blocks per file — hard cap
 - writing always appends to the last file — zero placement decisions, all focus on writing a great block
 - splitting overfull files is maintenance, not a writing concern
-- `000-index.md` is the concept→file routing table — always loaded by agents
+- `000-index.md` is the concept→file routing table — loaded when the `Package.Driver` brings the index into context, not unconditionally
 - organizing happens through `Concept.Scoping` and `Explicit.Namespaces`, not file groupings
-
-****
-
-## Global.Index.Scope
-
-- `Global.Index.Scope` is the always-loaded layer of the index — `index/`
-- every concept has one `Kernel.Block:Index` here — the minimum context an agent needs to reason about it
-- defines the starting point for the discovery cascade
 
 ****
 
 ## Extended.Index.Scope
 
 - `Extended.Index.Scope` is the on-demand layer of the index — `appendix/`
-- loaded when an agent needs depth beyond what the global scope provides
+- loaded when an agent needs depth beyond the compressed `index/` definition
 - loading an appendix is an intentional action — the agent displays intention by choosing to go deeper
 - where hidden blocks live — discoverable through the cascade, never loaded by default
 
@@ -137,7 +129,7 @@
 
 ## Index.Router
 
-- `Index.Router` is the compressed entry point of the index — always loaded, always first
+- `Index.Router` is the compressed entry point of the index — loaded first when the index enters context, per the `Package.Driver`
 - two instances: `000-index.md` (public, in the package index surface) and `001-index.md` (local, in `notes/index/`)
 - two routing sections: concept routing (every `Dotted.Name` → flat file) and file routing (important project files for research)
 - entries can have a one sentence explanation — but depth lives in the blocks themselves
@@ -189,8 +181,8 @@
 - local index: `notes/index/` — project-local concepts
 - two routing tables: `000-index.md` (public, in skill) and `001-index.md` (local, in `notes/index/`)
 - numbering ranges: `100-299` public flat files, `300-499` local flat files
-- a fresh agent from another project loads only `000-index.md` — sees public concepts
-- a local agent loads both — sees everything
+- a fresh agent from another project loads only `000-index.md` — sees the public concept catalog
+- a local agent loads both routers — sees the public + local catalog; concept bodies load on demand
 - the same `Kernel.Block:Index` format, same routing, same scoping — just distributed
 
 ****

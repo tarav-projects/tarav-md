@@ -10,7 +10,7 @@ Once the index is loaded, answer these questions about the project's index syste
 
 1. What naming convention do appendix files follow?
 2. What are the reserved file prefixes in the 000-099 range? List them all.
-3. What is the difference between `Global.Index.Scope` and `Extended.Index.Scope`?
+3. What decides whether the index is loaded into an agent's context, and does the index have its own loading policy?
 4. What numbering range is used for public index flat files vs local index flat files?
 5. How does an agent discover appendix content for a concept?
 
@@ -32,6 +32,6 @@ Respond in this exact format:
 
 1. `Concept.Name-appendix.md`
 2. `000-index.md` (public router), `001-index.md` (local router), `010.TODOS.md` (TODO parking), `011.ISSUES.md` (issue parking)
-3. Global is always-loaded (`index/`), Extended is on-demand (`appendix/`)
+3. The `Package.Driver` decides what loads; the index has no loading policy of its own (`appendix/` / `Extended.Index.Scope` is still loaded on demand for depth)
 4. Public: `100-299`, Local: `300-499`
 5. Check `appendix/Concept.Name-appendix.md` — naming convention is the discovery mechanism, no outlink required

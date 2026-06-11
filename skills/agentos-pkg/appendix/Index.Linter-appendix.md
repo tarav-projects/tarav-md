@@ -212,7 +212,7 @@
 ## Index.Linter/Appendix.RouteAnnotationMissing
 
 - emitted when a routed concept has appendix pages but the router entry has no `[+N]` annotation
-- annotations expose appendix depth at the always-loaded router surface
+- annotations expose appendix depth at the router surface
 - fix by adding `[+N]` to the routed concept, where `N` is the contiguous appendix page count
 
 ****

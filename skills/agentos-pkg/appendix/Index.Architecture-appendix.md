@@ -5,7 +5,7 @@
 - semantic file names create placement friction — every new concept requires deciding which file it belongs to
 - placement friction slows writing and creates false groupings that age poorly
 - flat anonymous files eliminate the decision: append to the last file, done
-- the routing table (`000-index.md`) absorbs the cost — one place to update, always loaded
+- the routing table (`000-index.md`) absorbs the cost — one place to update, loaded with the index per the `Package.Driver`
 - organizing is a separate concern handled by `Concept.Scoping` — a concept can belong to multiple namespaces without moving between files
 - splitting an overfull file is deferred to maintenance — not a writing concern
 
