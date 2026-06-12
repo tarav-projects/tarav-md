@@ -165,10 +165,28 @@
 - `Chat.Grounding` is context injection and citation from `Chat.Surface` into index/appendix kernel blocks
 - it grounds a `Kernel.Block:Index` or `Kernel.Block:Appendix` in prior user/agent chat interaction
 - grounding only happens on index/appendix blocks; downstream surfaces cite grounded blocks instead of carrying first-class chat grounding
-- grounding has sequential semantics: newer grounded chat about the same `Topic.Identity` is treated as the current view
+- grounding follows `Grounding.Latest.Wins`: the newest grounded chat about a `Topic.Identity` is the current view
 - absence of `### grounding` is the implicit sign that a block is not grounded
 - grounding has no state taxonomy; material grounding problems are marked with `Grounding.DRIFT`
 - grounding drift is surfaced through alignment because the resolution happens on `Chat.Surface` and can become new grounding
+
+****
+
+## Chat.Surface.Closure
+
+- `Chat.Surface.Closure` is the principle that the system is closed over `Chat.Surface`
+- chat is the near-universal ingress: users and heterogeneous agents both work through it
+- in the limit, all meaningful information is contained in, or groundable to, the chat log
+- the append-only `Chat.Surface` is an event log; other surfaces are materialized projections of it
+- projection is not authority transfer: each projection stays SSOT of its own curated form
+- `Chat.Surface` stays SSOT of the generative record, so projections remain re-derivable and drift-checkable
+- boundary: chat is the dominant ingress, not total
+- an out-of-band edit lands with no chat event; that gap is `Grounding.DRIFT`
+- closure is self-healing: discussing ungrounded material is itself the grounding act
+- the discussion emits the missing event and becomes the current view by `Grounding.Latest.Wins`
+- grounding is therefore never blocked, only pending; the discussion must re-establish the content, not just mention it
+- closure (groundable in principle) holds at every moment; completeness (grounded now) is only the limit
+- in the limit the chat log is a sufficient generative basis: every projection is reconstructable from it
 
 ****
 

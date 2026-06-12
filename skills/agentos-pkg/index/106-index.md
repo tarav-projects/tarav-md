@@ -98,3 +98,30 @@
 ## Alignment.Agentic.Axis
 
 - `Alignment.Agentic.Axis` is a dimension the agent resolves autonomously without explicit human convergence
+
+****
+
+## Alignment.Loop:How
+
+- `Alignment.Loop:How` is the `How.Design` specialization of `Alignment.Loop` — convergence targeting implementation design
+- targets mostly the runnable surfaces (code, skills), not the conceptual surface
+- the discussion runs lower-level: coding best practices, codebase design considerations
+- consolidation output is the `Impl.Req` fundamentals
+
+****
+
+## Alignment.Loop:Exec
+
+- `Alignment.Loop:Exec` is the `Impl.Exec` specialization of `Alignment.Loop` — the lightest, no longer conceptual
+- it is the practice of designing and walking implementation plans: `Vertical.Slice`, TDD, execution discipline
+- targets the least-stable surfaces — code plus ephemeral ones like progress tracking and logs
+
+****
+
+## Alignment.Loop.Gradient
+
+- `Alignment.Loop.Gradient` orders the three `Alignment.Loop` phases by the shape-distance between their staging state and the `Stable.Surface` they target
+- all three are non-`Stable.Surface` staging that lands on a `Stable.Surface`; the route and timing are not fixed
+- `:What` has low shape-distance — its state is already nearly index-shaped, so little translation is needed
+- `:How`/`:Exec` have high shape-distance — they target code and runnable surfaces their state is not shaped like; closing that distance is the convergence work
+- flow is bidirectional — content can also be promoted up-gradient, a `:How` insight landing in the index

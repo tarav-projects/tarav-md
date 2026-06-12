@@ -108,6 +108,17 @@
 
 ****
 
+## Grounding.Latest.Wins
+
+- `Grounding.Latest.Wins` is the rule that, among grounded chats about one `Topic.Identity`, the newest is the active fact
+- every grounded fact is either current (it is the newest) or superseded by a newer one — never silently co-equal
+- supersession does not delete: older grounded chats stay `Grounding.History`, they just stop being the current view
+- it is the ordering law that produces `Topic.HEAD` — `Topic.HEAD` is the pointer, `Grounding.Latest.Wins` moves it
+- drift is measured against the current fact, not superseded history; a contradiction with the newest fact is `Grounding.DRIFT`
+- the rule advances when a more recent grounded chat appears or the topic is discussed again
+
+****
+
 ## Designer.Turn.Kernel.Form
 
 - `Designer.Turn.Kernel.Form` is how a `What.Design.Session` turn is shaped when working a defined subject
@@ -205,3 +216,13 @@
 ### meta
 
 - related: `Alignment.Maintenance.Turn`, `Hugentic.Alignment`, `Appendix.Discovery`
+
+****
+
+## Dangling.Cite
+
+- `Dangling.Cite` is a `Concept.Cite` or inline `Dotted.Name` mention pointing to a concept that has no block yet — a valid, intentional forward reference
+- it is a feature, not an error: it signals a block worth writing next, and the surrounding text already carries part of the concept's definition
+- do NOT strip dangling cites to avoid a "broken reference" — stripping loses the signal and the partial grounding
+- distinct from `Unresolved.Index.Name` (a name the agent cannot resolve while reading) — a `Dangling.Cite` is authored deliberately while writing
+- offer to land the cited concept as its own block, but never silently remove the cite
