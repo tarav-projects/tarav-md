@@ -1,0 +1,4 @@
+interface:
+  display_name: "chatlas-grounding-agent"
+  short_description: "Mine Chatlas sessions into Grounding.Request live notes"
+  default_prompt: "Run this skill as a separate agent by default. Given either kernel blocks or Chatlas session selectors, use basic `agentos chatlas` query/export workflows to mine grounding evidence. Write a Grounding.Request live note with proposed `### grounding` rows, appendix history candidates, DRIFT candidates, and search notes. Do not edit stable index or appendix files."
