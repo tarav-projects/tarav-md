@@ -1,4 +1,4 @@
 interface:
   display_name: "chatlas-grounding-agent"
-  short_description: "Mine Chatlas sessions into Grounding.Request live notes"
-  default_prompt: "Run this skill as a separate agent by default. Given either kernel blocks or Chatlas session selectors, use basic `agentos chatlas` query/export workflows to mine grounding evidence. Write a Grounding.Request live note with proposed `### grounding` rows, appendix history candidates, DRIFT candidates, and search notes. Do not edit stable index or appendix files."
+  short_description: "Grounding.Miner for the Chat.Surface — append Grounding.Request JSONL"
+  default_prompt: "Run this skill as a separate agent by default. You are a Grounding.Miner. Given a Chatlas session selector, run L1: detect Grounding.Material turns and append records to ~/Documents/chatlas/grounding/<identity_hash>-gr-req.jsonl. Given a kernel block, run L2: search the L1 session layer, confirm against the actual chat turn, and append records to the target project's <block-name>-gr-req.jsonl. Each record is {\"ref\", \"blocks\", \"grounding-why\"}; files are append-only with per-turn dedup. Surface evidence only — do not classify *HEAD*/history/DRIFT and do not edit stable index or appendix files. Use basic `agentos chatlas` query/export workflows."

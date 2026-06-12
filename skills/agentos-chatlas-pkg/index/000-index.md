@@ -6,4 +6,4 @@
 
 ## Routing
 
-- `100-index.md` — Chatlas.Query.Surface, Chatlas.Query.Envelope, Chatlas.View.Model[+1], View.Identity, Session.Set, View.Workflow, View.Class, Chatlas.Lock.Visibility, Provider.GC, Cold.Session.Cache, Grounding.Miner, Grounding.Miner.Locality, Grounding.Material, Grounding.Material.Catalog
+- `100-index.md` — Chatlas.Query.Surface, Chatlas.Query.Envelope, Chatlas.View.Model[+1], View.Identity, Session.Set, View.Workflow, View.Class, Chatlas.Lock.Visibility, Provider.GC, Cold.Session.Cache, Grounding.Miner, Grounding.Miner.Locality, Grounding.Material, Grounding.Material.Catalog, Grounding.Request

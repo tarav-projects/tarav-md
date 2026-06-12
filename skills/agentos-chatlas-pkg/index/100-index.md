@@ -162,3 +162,16 @@
 - `Grounding.Material.Catalog` is the maintained, ever-growing list of positive and negative criteria defining `Grounding.Material`.
 - it is never assumed complete.
 - it refines from a high-signal feedback sample: turns approved into a `### grounding` section, fed back into the catalog.
+
+****
+
+## Grounding.Request
+
+- `Grounding.Request` is a miner output artifact: queued candidate grounding entries (`### grounding`, appendix history, or `DRIFT:`) proposed for later gated index writing.
+- produced by `Grounding.Miner`, digested later by a hugentic user/agent reviewer; it is not stable index truth and never mutates index/appendix blocks by itself.
+- it lets low-cost miners collect evidence broadly — preserving ambiguity, search notes, and weak/rejected candidates — without crossing the index write gate.
+- carrier: append-only JSONL, one record per line — `{"ref": "@<hash>-<time>..<time>", "blocks": ["Concept.Name"], "grounding-why": "..."}`.
+- `grounding-why` describes the request, not the turn — why it is `Grounding.Material` and what to weigh before pulling it; same function as a Skill description.
+- `blocks` lists only blocks named explicitly in the turn, and may be empty for block-agnostic material.
+- two kinds — session (L1) and block (L2) — whose file locations are governed by `Grounding.Miner.Locality`.
+- append-only with per-turn dedup: before appending, the miner reads existing records for that turn `ref` and skips or merges.
