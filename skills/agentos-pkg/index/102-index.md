@@ -7,8 +7,6 @@
 - `Alignment.Loop` is the general workflow machinery for human-agent convergence
 - sequence: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`
 - parameterized by phase: `Alignment.Loop:What` (design), `Alignment.Loop:How` (impl design), `Alignment.Loop:Exec` (impl execution, light)
-- see `106-index.md` for `What.Design` specialization
-- see `102-index.md` for `How.Design` specialization
 
 ****
 
@@ -68,7 +66,7 @@
 - `Impl.Req` is an implementation-request artifact — a surface for designing and tracking an implementation plan
 - can be produced from any context where implementation guidance is needed
 - the impl-req author designs the implementation path — sequence, constraints, checkpoints — not just what to build, but how to build it well
-- the plan is pre-shaped so the implementer naturally follows good practices — development principles are built into the plan structure, not listed as recommendations (see `102-index.md`)
+- the plan is pre-shaped so the implementer naturally follows good practices — `Development.Principles` are built into the plan structure, not listed as recommendations
 - the goal: if handed to an agent with no other context, the plan itself steers them toward quality work
 - self-contained enough for any agent to understand and execute — can link out to other surfaces for extended context
 - the fundamentals section is produced through a focused alignment discussion scoped to implementation concerns — same `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation` loop (`Alignment.Loop:How`), but targeting implementation design
@@ -82,7 +80,7 @@
 - `Impl.Req` work spans `How.Design` and `Impl.Exec` — different principles matter at each phase
 - `How.Design`: `Deep.Modules`, `Agent.Navigable.Codebase` — shape the implementation design
 - `Impl.Exec`: `Vertical.Slice`, `No.Legacy.Allowed`, `No.Regression.Tests.Allowed`, `Test.At.Boundaries`, `RED.GREEN.Test.Suite` — guide execution discipline
-- see `102-index.md` for definitions
+- each principle is its own block; the router resolves them
 
 ****
 

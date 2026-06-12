@@ -83,7 +83,7 @@
 
 - `Conceptual.Space` is the abstract space where alignment occurs — the set of all possible design decisions
 - `Alignment.Space` is a synonym
-- see also `102-index.md` for `Design.Target.Model` as a point in this space
+- `Design.Target.Model` is a point in this space
 
 ****
 
