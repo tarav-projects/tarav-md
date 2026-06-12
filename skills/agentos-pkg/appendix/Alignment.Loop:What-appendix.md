@@ -1,6 +1,6 @@
 # Alignment.Loop:What — appendix
 
-Extended depth for `Alignment.Loop:What`. The index block is in `101-index.md`.
+Extended depth for `Alignment.Loop:What`. The index block is in `106-index.md`.
 
 ## Loop Schema
 

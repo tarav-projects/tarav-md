@@ -7,7 +7,7 @@
 - `Alignment.Loop` is the general workflow machinery for human-agent convergence
 - sequence: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`
 - parameterized by phase: `Alignment.Loop:What` (design), `Alignment.Loop:How` (impl design), `Alignment.Loop:Exec` (impl execution, light)
-- see `101-index.md` for `What.Design` specialization
+- see `106-index.md` for `What.Design` specialization
 - see `102-index.md` for `How.Design` specialization
 
 ****
