@@ -62,6 +62,20 @@ Designed to be re-read mid-session when something feels off. Original to this sk
 - why it kills: dilutes the signal; the user has to scan for the actual move
 - correction: short delta updates per `discussion.md` output shape; full recaps only on explicit request
 
+## Writing Anti-Patterns
+
+### Welded lines (non-atomic fundamentals)
+
+- looks like: a fundamentals bullet that carries three or four dimensions welded by semicolons, em-dashes, or "which lets / and demotes" clauses — prose chopped into bullets
+- why it kills: the line *touches* distinct facets so it survives a careless read of the rules, but it is not a kernel line; the block reads as flowing prose and resists reorder/compression at promotion time
+- correction: split until each line is one fact, one dimension, reorderable on its own; compare against the exemplars in `index-view.md` and the welded-vs-atomic contrast in `writing-craft.md` § Line Granularity
+
+### Auditing against the impoverished copy
+
+- looks like: the user says "off-spec"; the agent re-checks against the same abstract rule file and keeps finding placement nits (grounding vs appendix, heading levels) while missing a line-level defect
+- why it kills: principles alone do not surface granularity failures; the calibration lives in real blocks, so an audit with no exemplar in context cannot self-correct
+- correction: when a block is called off-spec and the rule re-read does not resolve it, compare line-by-line against a real well-formed block in `index-view.md` (or the live `agentos-pkg` index) before re-explaining the rules
+
 ## Capture Anti-Patterns
 
 ### Silent writes
@@ -155,3 +169,4 @@ Re-read mid-session if something feels off:
 - did I switch turn modes without user approval?
 - is there uncommitted material I'm about to skip past?
 - am I writing fundamentals (definition, boundary, judgment, relation, open) or just prose bullets?
+- is each line atomic (one dimension, reorderable) or did I weld several facets into one bullet — does my draft match the granularity of the `index-view.md` exemplars?

@@ -44,7 +44,7 @@ The "already performed" check is **your own session memory** — Setup runs once
 
 When triggered, perform Setup before any other design move:
 
-1. **Process frame (Axis 1).** Activate and commit to the Minimal Runtime. Operate in `Kernel.Block` language from turn one: every design output is a `Kernel.Block:Design`, and the `writing-craft` floor (`Kernel.Writing`, `Natural.Placement`, `Hard.Evidence`, `Cited.Duplication`, `Inline.Relatedness`) applies to every line. Do not design in plain prose.
+1. **Process frame (Axis 1).** Activate and commit to the Minimal Runtime. Operate in `Kernel.Block` language from turn one: every design output is a `Kernel.Block:Design`, and the `writing-craft` floor (`Kernel.Writing`, `Natural.Placement`, `Hard.Evidence`, `Cited.Duplication`, `Inline.Relatedness`) applies to every line. Calibrate line granularity against the exemplar blocks in `index-view.md` — match their atomic, orthogonal lines, not a prose instinct. Do not design in plain prose, and do not weld multiple dimensions into one line.
 2. **Subject prior-art (Axis 2).** Run `references/concept-discovery.md` against the owning index/appendix. Load relevant existing and neighboring blocks as `Cited.Duplication`, and surface them: does this already exist (revise / `DRIFT`), neighbor an existing block (cite), or warrant a new block?
 3. **Scope + backend.** Name what is being designed, **propose** the anchors discovered in step 2 instead of only asking the user "what references?", and pick the backend (`backend-inchat` by default).
 
@@ -56,7 +56,8 @@ Output a short Setup report — process frame active, the existing-concept neigh
 
 Always load:
 
-- `references/writing-craft.md` — `Cited.Duplication` of `[Kernel.Writing, Kernel.Block, Kernel.Block:Design, Natural.Placement, Hard.Evidence, Cited.Duplication, Inline.Relatedness]`; the writing-quality floor
+- `references/writing-craft.md` — `Cited.Duplication` of `[Kernel.Writing, Kernel.Block, Kernel.Block:Design, Natural.Placement, Hard.Evidence, Cited.Duplication, Inline.Relatedness]`; the writing-quality floor, incl. the welded-vs-atomic line-granularity contrast
+- `references/index-view.md` — curated verbatim `Cited.Duplication` of the fundamental `agentos-pkg` blocks; the form **exemplars** (calibration for line granularity) and standing hugentic concept context. Calibration must be in context *at drafting time* — this is why it is always-loaded, not Setup-only
 - `references/design-anti-patterns.md` — failure-mode catalog, mid-session re-read
 - `references/alignment-loop.md` — runtime turn modes
 - `references/interview.md` — question selection, format, discussion fork

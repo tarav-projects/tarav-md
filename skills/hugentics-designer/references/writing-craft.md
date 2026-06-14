@@ -2,6 +2,8 @@
 
 The writing-quality floor for `What.Design.Session`. Apply on every line written into `Session.Abstract`, `Design.Index`, `Session.Notes`, or any other session surface. This reference is `Cited.Duplication` of `[Kernel.Writing, Kernel.Block, Kernel.Block:Design, Natural.Placement, Hard.Evidence, Cited.Duplication, Inline.Relatedness]` from `agentos-pkg/index/`. The origin owns authority; this is the on-hand operational copy.
 
+**Rules here, exemplars in `index-view.md`.** This file states *how to apply* the writing kernel; `index-view.md` holds the verbatim, well-formed blocks that show *what the bar looks like*. A writing standard does not transfer on principles alone — the line-granularity bar lives in the examples. Read `index-view.md` blocks as the calibration before you draft, and the § Line Granularity contrast below for the failure mode the rules do not catch on their own.
+
 ## Kernel.Writing
 
 `Kernel.Writing` is the conceptual writing system every session output should pass through.
@@ -16,6 +18,32 @@ The writing-quality floor for `What.Design.Session`. Apply on every line written
 - useful material can enter before it has mature structure — capture first, polish later
 
 Applied in-session: when you draft a `Design.Index.Block`, walk every bullet against these tests. If two bullets compress to one without losing a dimension, fuse them. If a bullet only restates the heading, drop it.
+
+## Line Granularity — atomic vs welded
+
+The most common off-spec failure is **welded lines**: prose chopped into bullets, where one bullet carries three or four dimensions joined by semicolons, em-dashes, or "which lets / and demotes" clauses. The line *touches* distinct facets, so it passes a careless reading of the rules — but it is not a kernel line. A kernel line is **one fact, one dimension**, reorderable, with nothing smuggled in.
+
+This failure is invisible from the rules alone; it is only obvious against the exemplars in `index-view.md`. Keep these mocks in view:
+
+**Welded (off-spec):**
+
+```md
+- its only mandatory dependency is the `iterante` runtime library; every other
+  dependency is the author's choice, which is what lets `mission.py` import
+  freely and demotes `iterante` tooling to opt-in (`Iterante.Ctx`)
+```
+
+One bullet, four dimensions welded: the mandatory dep, the author's freedom, free imports, tooling demotion. Each is a separate fundamental.
+
+**Atomic (at-spec):**
+
+```md
+- `iterante` is the only mandatory dependency; all others are the author's choice
+- the mission owns its full dependency set
+- `mission.py` may import freely — `iterante` tooling becomes opt-in, not the sole channel (`Iterante.Ctx`)
+```
+
+The test: can you reorder the lines without breaking meaning, and does each line survive on its own? Welded lines fail both — drop a clause and the sentence collapses. If your draft reads like flowing prose with bullet markers, you welded it; split until each line is one dimension. Compare against any block in `index-view.md` — that is the granularity.
 
 ## Kernel.Block
 

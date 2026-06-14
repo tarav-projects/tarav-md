@@ -43,7 +43,7 @@ Use `meta` for session mechanics about the concept: aliases, status, sources, op
 ## Writing Guidance
 
 - Prefer one block per subject concept.
-- Each fundamental line should target a distinct facet — definition, boundary, judgment, relation, or open pressure. Orthogonal lines, no redundancy. See `Kernel.Writing` in `writing-craft.md`.
+- Each fundamental line should target a distinct facet — definition, boundary, judgment, relation, or open pressure. Orthogonal lines, no redundancy, one dimension per line — never weld several facets into one bullet. See `Kernel.Writing` in `writing-craft.md`, the welded-vs-atomic contrast there, and the exemplar blocks in `index-view.md` for the granularity bar.
 - Move rationale, examples, pressure tests, tradeoffs, rejected alternatives, and design depth into `appendix`.
 - Put session mechanics in `meta`, not in fundamentals.
 - Preserve user language when wording is part of the design judgment — paraphrasing user-tone into agent-tone erases authority (see `design-anti-patterns.md` / paraphrased user judgment).

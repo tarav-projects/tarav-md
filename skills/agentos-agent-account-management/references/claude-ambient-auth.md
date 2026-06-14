@@ -1,4 +1,4 @@
-# Account Auth Reconcile
+# Claude Ambient Auth Reconcile
 
 Operational reference for Agentos account credential artifact reconciliation.
 

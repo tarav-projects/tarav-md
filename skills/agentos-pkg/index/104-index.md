@@ -152,6 +152,7 @@
 
 ## Provider.Instance
 
+- status: superseded by `Agentos.Agent.Adapter` (see below). Retained only as the `provider_instance_*` session-index JSON compatibility key consumed by `agentos-chatlas-py`; not the current code model.
 - `Provider.Instance` is a concrete binding of a `Provider.Family` to a local environment
 - a `Provider.Family` is a supported AI assistant provider (e.g., claude-code, codex, copilot-cli, gemini-cli, opencode, pi, openclaw)
 - two interpretations coexist:
@@ -160,6 +161,33 @@
 - the disk interpretation is often interchanged with the concept of provider home, because the home directory is the primary observable artifact
 - instance identity is derived from the provider family and environment fingerprint
 - provider home discovery is declarative — each family specifies known paths, file patterns, and database locations to locate its home directory
+
+****
+
+## Agentos.Agent.Adapter
+
+- `Agentos.Agent.Adapter` is the Agentos-facing adapter object pattern for representing an agent on a named operational surface
+- concrete adapters are named `<Something>.Agent`
+- `<Something>` names the surface served by the adapter, not a fixed ontology layer
+- `<Something>.Agent` binds the configuration and behavior needed by that surface
+- `<Something>.Agent` may be partially configured
+- capability execution validates only the requirements of the invoked capability
+- missing configuration is acceptable until a capability needs it
+- `.Agent` is the public promise boundary; `<Something>` remains free to vary
+- implementations may share stable primitives without inheriting a forced common model
+
+### appendix
+
+- `<Something>` may be provider-shaped, subsystem-shaped, capability-shaped, workflow-shaped, or composed
+- examples: `Claude.Runner.Agent`, `Codex.Chatlas.Agent`, `Account.Monitor.Agent`, `Credential.Reconcile.Agent`
+- supporting primitives may include `Agent.Profile`, `Provider.Account`, `Provider.Home`, `Provider.Family`, credential artifacts, session references, run requests, and run results
+- the design keeps provider-specific and subsystem-specific complexity below the `.Agent` boundary
+
+### meta
+
+- aliases: `Something.Agent`, `Agent.Surface`, `Agent.Capability.Object`
+- status: current — implemented in `agentos-py`. `Provider.Instance` is superseded and retained only as a session-index JSON compatibility key.
+- resolved: capability contracts are small typed protocols a concrete adapter may satisfy (`AgentAdapter` base + `RunCapable`/`AccountStatusCapable`/`SessionDiscoveryCapable`); run behavior is a `RunnableMixin` on runnable adapters only. Concrete adapters subclass the single `AgentConfig` field surface and stay named `<Provider>.Agent`.
 
 ****
 
