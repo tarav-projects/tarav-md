@@ -7,7 +7,7 @@ Operational Chatlas command reference absorbed from the deprecated `chatlas-usag
 - Refresh dataset: `agentos chatlas update`
 - Inventory/query sessions: `agentos chatlas query`
 - Aggregate dataset stats: `agentos chatlas stats`
-- Export standard-model views: `agentos chatlas export`
+- Print inline standard-model views: `agentos chatlas views inline`
 - Export raw artifacts: `agentos chatlas raw path` / `agentos chatlas raw export`
 - Consume or produce materialized views: `agentos chatlas views`
 
@@ -34,15 +34,15 @@ agentos chatlas update --session-index-cache false
 agentos chatlas update --verbose-mode=quiet --output-mode=json
 ```
 
-## Export Workflow
+## Inline View Workflow
 
 ```sh
-agentos chatlas export "<query>" --view full --format json
-agentos chatlas export "<query>" --view transcript --format json
-agentos chatlas export "<query>" --view user --format json
-agentos chatlas export "<query>" --view replay --format json
-agentos chatlas export "<query>" --view events --format json
-agentos chatlas export "<query>" --view zip-transcript --format json
+agentos chatlas views inline "<query>" --view full --format json
+agentos chatlas views inline "<query>" --view transcript --format json
+agentos chatlas views inline "<query>" --view user --format json
+agentos chatlas views inline "<query>" --view replay --format json
+agentos chatlas views inline "<query>" --view events --format json
+agentos chatlas views inline "<query>" --view zip-transcript --format json
 agentos chatlas raw path "<query>"
 agentos chatlas raw export "<query>" --format json
 ```
@@ -51,6 +51,7 @@ agentos chatlas raw export "<query>" --format json
 
 ```sh
 agentos chatlas views list
+agentos chatlas views inline --view <inline-view-name> <selector-options>
 agentos chatlas views status --view <view-name> <selector-options>
 agentos chatlas views get --view <view-name> <selector-options>
 agentos chatlas views path --view <view-name> <selector-options>

@@ -6,7 +6,7 @@ Input: one chat session. Output: `~/Documents/chatlas/grounding/<identity_hash>-
 
 ## Procedure
 
-1. **Resolve the session.** Take the caller's session id, `identity_hash`, `Chat.Ref`, or selector. Get the `identity_hash` (the session file key) and export the transcript (`chatlas-surface.md`). Use `--view user` when user turns suffice; `--view transcript` when assistant context is needed to read a decision.
+1. **Resolve the session.** Take the caller's session id, `identity_hash`, `Chat.Ref`, or selector. Get the `identity_hash` (the session file key) and read the transcript with `chatlas-surface.md`. Use `--view user` when user turns suffice; `--view transcript` when assistant context is needed to read a decision.
 
 2. **Load existing records.** Read `<identity_hash>-gr-req.jsonl` if it exists. These are dedup context — do not re-propose what is already recorded for a `ref`.
 

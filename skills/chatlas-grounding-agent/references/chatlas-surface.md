@@ -24,12 +24,12 @@ Useful filters: `--project` / `--project-base` (project-local grounding), `--pro
 
 Prefer a few high-signal probes over broad noisy recall. Do not use vector search. Do not treat a failed search as proof no grounding exists.
 
-## Export a session
+## Read an inline session view
 
 ```sh
-agentos chatlas export --identity-hash <hash> --view transcript --format json
-agentos chatlas export --session-id <id> --view user --format json
-agentos chatlas export --ref "@<hash>-<time>..<time>" --view transcript --format json
+agentos chatlas views inline --identity-hash <hash> --view transcript --format json
+agentos chatlas views inline --session-id <id> --view user --format json
+agentos chatlas views inline --ref "@<hash>-<time>..<time>" --view transcript --format json
 ```
 
 - `--view user` when user turns alone settle it; `--view transcript` for user+assistant; `--view full` only when tool calls or metadata are materially needed.
