@@ -15,7 +15,7 @@
 - trigger skills are lightweight, user-invoked — they steer the agent and ensure the right master loads
 - workflow master skills are documentation portals — full instructions for running a workflow, including artifact formats
 - artifact pointer skills follow the same shape as triggers — point to the master that defines the format
-- `agentos-usage` stays as the general agentos orientation, lists `agentos-hugentics` as a subsystem reference
+- `agentos-pkg` stays as the general agentos orientation, lists `agentos-hugentics` as a subsystem reference
 - `agentos-index` stays as a separate subsystem peer to `agentos-hugentics`
 
 ### New.Skill.Surface
@@ -38,7 +38,7 @@
 - `agentos-artifact-impl-req` → content migrates to `hugentics-impl-designer`
 - `agentos-artifact-design-summary` → artifact pointer to owner TBD
 - `agentos-artifact-issue-report` → artifact pointer to owner TBD
-- `agentos-usage` → updated in place (add `agentos-hugentics` reference)
+- `agentos-pkg` → updated in place (add `agentos-hugentics` reference)
 
 ### Unchanged.Skills
 
@@ -96,10 +96,10 @@
 - migrate any format definitions from `_DEPRECATED/` equivalents
 - validation: pointer stubs exist, content preserved
 
-### Slice 7 — Update `agentos-usage`
+### Slice 7 — Update `agentos-pkg`
 
-- update `skills/agentos-usage/SKILL.md` to reference `agentos-hugentics` as a subsystem
-- validation: `agentos-usage` lists `agentos-hugentics` alongside `agentos-index`
+- update `skills/agentos-pkg/SKILL.md` to reference `agentos-hugentics` as a subsystem
+- validation: `agentos-pkg` lists `agentos-hugentics` alongside `agentos-index`
 
 ### Slice 8 — Remove originals
 

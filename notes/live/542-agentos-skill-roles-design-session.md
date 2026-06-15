@@ -170,9 +170,9 @@
 - current action: collapse into `agentos-index`
 - future action: recreate as a narrower auxiliary skill only if repeated automation needs a separate public handle
 
-### Deprecated.Skill:agentos-usage
+### Deprecated.Skill:legacy-agentos-orientation
 
-- `agentos-usage` is deprecated and should not be treated as a `Package.Aux.Skill`
+- the legacy Agentos usage skill is deprecated and should not be treated as a `Package.Aux.Skill`
 - its former role was general Agentos usage orientation
 - that role belongs to `agentos-pkg`: the package root and package router should guide agents to documentation, index surfaces, references, workflows, and package functions
 - should not remain a second package router or competing documentation surface
@@ -256,7 +256,7 @@
 
 - current action: keep as nested auxiliary skill
 - implementation note: absorb useful trigger phrases from `trigger-impl-execution`
-- implementation note: its current recommended skills still mention deprecated `agentos-usage` and `agentos-index-activate`; update when implementing this design
+- implementation note: its current recommended skills still mention the deprecated usage skill and `agentos-index-activate`; update when implementing this design
 
 ### Deprecated.Skill:trigger-design-session
 
@@ -643,7 +643,7 @@
 
 #### Ring 2 - Likely agentos-pkg-Owned, Not Yet Absorbed
 
-- [x] `agentos-usage`
+- [x] `agentos-pkg`
 - [x] `agentos-hugentics`
 - [x] `hugentics-designer`
 - [x] `hugentics-impl-designer`
@@ -698,7 +698,7 @@ For each skill or skill group:
 - `agentos-index-activate` reviewed — deprecated as a standalone aux skill because its bootstrap role is absorbed by `agentos-index` and `Index.Agent` context collection
 - `agentos-index` reframed as the single public index auxiliary skill; index research, writing, diagnosis, testing, and maintenance are index functions rather than separate public skills by default
 - `agentos-index-writer`, `agentos-index-doctor`, and `agentos-index-test` reviewed — collapse into `agentos-index`, while preserving their roles as function rows and allowing future re-splitting only for concrete operational needs
-- `agentos-usage` reviewed — deprecated entirely, not retained as a `Package.Aux.Skill`; `agentos-pkg` should guide agents to documentation and package surfaces
+- legacy Agentos usage skill reviewed — deprecated entirely, not retained as a `Package.Aux.Skill`; `agentos-pkg` should guide agents to documentation and package surfaces
 - `agentos-hugentics` reviewed — retained as an important subsystem `Package.Aux.Skill` inside `agentos-pkg`
 - `Package.Aux.Skill.Visibility` captured — aux skills are visibility, attention, and tuned-prompt surfaces; package root `SKILL.md` should act like an `AGENTS.md` for the package/system
 - `Package.Aux.Skill.Mode` captured — aux skills can be workflow-neutral subsystem surfaces or operational workflow surfaces

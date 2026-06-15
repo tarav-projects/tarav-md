@@ -1,12 +1,12 @@
-# Agentos Usage Skill Draft
+# Agentos Package Skill Draft
 
 ```md
 ---
-name: agentos-usage
+name: agentos-pkg
 description: Use when working in or with an Agentos project and you need a minimal orientation to the Agentos universe.
 ---
 
-# Agentos Usage
+# Agentos Package
 
 Minimal orientation to the Agentos universe for agents working in or with an Agentos project.
 

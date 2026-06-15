@@ -31,7 +31,7 @@ Compare bytes with:
 sha256sum "$HOME"/.codex*/auth*.json
 ```
 
-## Register And Link
+## Register And Materialize
 
 Register a fresh Codex auth artifact:
 
@@ -42,10 +42,10 @@ agentos agent accounts register --provider codex \
   --email "$EMAIL"
 ```
 
-Link the active artifact into a home:
+Materialize the active artifact into a home for manual repair:
 
 ```bash
-agentos agent accounts link --provider codex --home "$HOME_PATH" --account "$ACCOUNT" --force
+agentos agent accounts materialize --provider codex --home "$HOME_PATH" --account "$ACCOUNT" --force
 ```
 
 Use `--register-only` only when staging an artifact before deciding whether to activate it.
@@ -74,4 +74,4 @@ Common failures:
 - `401 token_expired`: the access token is expired; re-login or use a fresher artifact.
 - `401 token_invalidated`: the auth payload has been invalidated; re-login or use a different valid artifact.
 
-After a successful live validation, make sure the artifact is verified, active, and linked. Passive reconcile may otherwise revert homes to the latest verified artifact.
+After a successful live validation, make sure the artifact is verified, active, and materialized. Passive reconcile may otherwise revert homes to the latest verified artifact.

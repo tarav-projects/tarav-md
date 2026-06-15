@@ -31,7 +31,7 @@
 - `agentos-pkg` is the core `Package.Skill` for Agentos
 - root `SKILL.md` should be workflow neutral, but it should still give package-level discoverability, like an `AGENTS.md` for the package/system
 - `package.md` is the package router and should stop presenting deprecated surfaces as first-class current routes
-- `agentos-usage` is deprecated and should not remain a separate package router
+- the legacy Agentos usage skill is deprecated and should not remain a separate package router
 
 ### Index.Aux.Alignment
 
@@ -57,13 +57,13 @@
 ### Deprecation.Cleanup.Targets
 
 - known stale references found during the readiness pass:
-    - `AGENTS.md` still tells agents to load `agentos-usage` and `agentos-index-activate`
+    - `AGENTS.md` still tells agents to load the deprecated usage skill and `agentos-index-activate`
     - `skills/agentos-pkg/package.md` still lists deprecated index aux skills and trigger skills as current package routes
     - `skills/agentos-index/SKILL.md` still lists the old index aux split as current auxiliary skills
     - `skills/agentos-hugentics/SKILL.md` still routes through `trigger-design-session`, `trigger-impl-req`, and `trigger-impl-execution`
-    - `skills/hugentics-impl-executer/SKILL.md` still recommends `agentos-usage` and `agentos-index-activate`
+    - `skills/hugentics-impl-executer/SKILL.md` still recommends `agentos-pkg` and `agentos-index-activate`
     - `skills/hugentics-designer/SKILL.md`, `skills/hugentics-impl-designer/SKILL.md`, and `skills/hugentics-impl-executer/SKILL.md` still describe trigger skills as primary activation paths
-- project-doctor references to `agentos-usage` are known stale but can be deferred unless touched by the focused pass
+- project-doctor references to the deprecated usage skill are known stale but can be deferred unless touched by the focused pass
 
 ## Execution.Plan
 
@@ -83,7 +83,7 @@
     - `skills/agentos-pkg/package.md`
 - validation:
     - inspect both files
-    - `rg "agentos-usage|agentos-index-activate|agentos-index-writer|agentos-index-doctor|agentos-index-test|trigger-design-session|trigger-impl-req|trigger-impl-execution" skills/agentos-pkg`
+    - `rg "agentos-pkg|agentos-index-activate|agentos-index-writer|agentos-index-doctor|agentos-index-test|trigger-design-session|trigger-impl-req|trigger-impl-execution" skills/agentos-pkg`
 
 ### Slice 2 - Align agentos-index As Single Index Aux Skill
 
@@ -114,7 +114,7 @@
     - `skills/hugentics-impl-executer/SKILL.md`
 - validation:
     - inspect updated Activation sections
-    - `rg "trigger-design-session|trigger-impl-req|trigger-impl-execution|agentos-usage|agentos-index-activate" skills/agentos-hugentics skills/hugentics-designer skills/hugentics-impl-designer skills/hugentics-impl-executer`
+    - `rg "trigger-design-session|trigger-impl-req|trigger-impl-execution|agentos-pkg|agentos-index-activate" skills/agentos-hugentics skills/hugentics-designer skills/hugentics-impl-designer skills/hugentics-impl-executer`
 
 ### Slice 4 - Update Project Startup Guidance
 
@@ -127,7 +127,7 @@
     - `AGENTS.md`
 - validation:
     - inspect `AGENTS.md`
-    - ensure it no longer instructs loading deprecated `agentos-usage` or `agentos-index-activate`
+    - ensure it no longer instructs loading the deprecated usage skill or `agentos-index-activate`
 
 ### Slice 5 - Focused Maintenance Pass
 
@@ -137,7 +137,7 @@
     - report remaining stale references that are intentionally deferred
     - update this Impl.Req `Impl.Log`
 - validation:
-    - `rg "agentos-usage|agentos-index-activate|agentos-index-writer|agentos-index-doctor|agentos-index-test|trigger-design-session|trigger-impl-req|trigger-impl-execution|Package.Entry.Skill" AGENTS.md skills`
+    - `rg "agentos-pkg|agentos-index-activate|agentos-index-writer|agentos-index-doctor|agentos-index-test|trigger-design-session|trigger-impl-req|trigger-impl-execution|Package.Entry.Skill" AGENTS.md skills`
     - `git -C agentos-md diff --check`
 
 ## Impl.Log
@@ -148,7 +148,7 @@
 - implemented package surface alignment:
     - updated `skills/agentos-pkg/SKILL.md` with workflow-neutral package subsystem visibility
     - updated `skills/agentos-pkg/package.md` so current routes point to `agentos-pkg`, `agentos-index`, `agentos-hugentics`, and Hugentic workflow masters
-    - demoted `agentos-usage`, split index aux skills, and trigger-only activation skills into a compatibility/deprecated section
+    - demoted the legacy usage skill, split index aux skills, and trigger-only activation skills into a compatibility/deprecated section
 - implemented index aux alignment:
     - updated `skills/agentos-index/SKILL.md` as the single workflow-neutral public index aux skill
     - added index functions for research/navigation, writing/mutation, diagnosis, testing, and maintenance

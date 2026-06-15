@@ -1,11 +1,11 @@
 ---
 name: agentos-agent-account-management
-description: "Operational router for Agentos provider-account management problems: registering fresh auth artifacts, linking provider homes, diagnosing account monitor failures, checking usage fallback, resolving active-vs-verified registry drift, and troubleshooting Codex auth.json, Claude Code ambient browser auth, and Copilot CLI account state."
+description: "Operational router for Agentos provider-account management problems: registering fresh auth artifacts, materializing provider homes, diagnosing account monitor failures, checking usage fallback, resolving active-vs-verified registry drift, and troubleshooting Codex auth.json, Claude Code ambient browser auth, and Copilot CLI account state."
 ---
 
 # Agentos Agent Account Management
 
-Use this skill when the user asks to inspect, register, repair, reconcile, link, or diagnose Agentos-managed provider accounts or provider homes.
+Use this skill when the user asks to inspect, register, repair, reconcile, materialize, or diagnose Agentos-managed provider accounts or provider homes.
 
 ## Core Rule
 
@@ -48,9 +48,9 @@ agentos agent accounts status --provider claude-code --home "$HOME/.agentos/agen
 When changing state:
 
 1. Identify the provider, account alias, provider account id, home path, auth artifact id, and live validation result.
-2. Register fresh auth artifacts before linking homes.
+2. Register fresh auth artifacts before materializing homes.
 3. Verify artifacts with a live provider operation before relying on passive reconcile.
-4. Link only from the verified active artifact.
+4. Materialize only from the verified active artifact.
 5. Re-run status and one live provider check after mutation.
 
 Do not use passive reconcile as proof of credential validity. Passive reconcile archives observations and syncs from existing verification evidence; it does not prove a credential works.

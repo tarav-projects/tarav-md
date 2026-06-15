@@ -125,3 +125,33 @@
 - `:What` has low shape-distance — its state is already nearly index-shaped, so little translation is needed
 - `:How`/`:Exec` have high shape-distance — they target code and runnable surfaces their state is not shaped like; closing that distance is the convergence work
 - flow is bidirectional — content can also be promoted up-gradient, a `:How` insight landing in the index
+
+****
+
+## Soft.Program
+
+- `Soft.Program` is an adaptive natural-language behavioral program for agent-human work
+- preserves continuity across turns without becoming a rigid execution script
+- interprets `Soft.State`, user directives, current evidence, and common sense together
+- guides agent behavior inside declared behavioral boundaries
+- adapts to user correction, new context, and changing focus
+- does not erase explicit gates, checkpoints, or `Hard.Evidence`
+- distinct from `Soft.Programming.Language`: `Soft.Program` is program-as-behavior-pattern; `Soft.Programming.Language` is language-as-index/runtime semantics
+
+****
+
+## Supervisor.Agent
+
+- `Supervisor.Agent` is a `Soft.Program` for observing another agent session
+- follows a `Target.Session` without replacing or controlling it
+- is an observer: it never mutates the target session
+- keeps a separate context budget for supervision-specific knowledge
+- lets `Worker.Agent`s stay focused on task execution
+- reads new target-session turns from an `Observation.Cursor`
+- reports against an evolving `Supervisor.Brief`
+- produces `Supervisor.Report` output for the user
+- may include copyable intervention text inside `Supervisor.Report`
+- remains conversational with the user during supervision
+- treats the human as the transfer gate between supervision and target-session correction
+- uses `Hard.Evidence` from target-session turns, user directives, and stable project surfaces
+- does not turn observation into automatic control

@@ -36,7 +36,7 @@ To extend this skill, add a new file under `references/` and document its loadin
 
 Load these before starting implementation work:
 
-- **`agentos-usage`** — minimal Agentos orientation (CLI, skills, index routing). Load when working inside an Agentos project.
+- **`agentos-pkg`** — minimal Agentos orientation (CLI, skills, index routing). Load when working inside an Agentos project.
 - **`agentos-index-activate`** — activates the index runtime so you ground on project concepts. Load when the project has `notes/index/`.
 - **`agentos-artifact-impl-req`** — understands impl-req format. Load when the input is an impl-req.
 - **`agentos-artifact-design-summary`** — understands design-summary format. Load when the input is a design summary.

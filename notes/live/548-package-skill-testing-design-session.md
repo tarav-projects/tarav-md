@@ -136,7 +136,7 @@
 - the section should route to the package skill and any primary auxiliary skill needed for common project work
 - it should not duplicate the package manual; it should identify the package entry point and when to use it
 - in multi-project repositories, root `AGENTS.md` should route broadly, while nested project `AGENTS.md` files can give stronger package-specific guidance
-- for `agentos-project`, this means root `AGENTS.md` should route to `agentos-pkg` instead of deprecated `agentos-usage`, and `agentos-md/AGENTS.md` should keep its stronger `agentos-pkg` / `agentos-index` guidance
+- for `agentos-project`, this means root `AGENTS.md` should route to `agentos-pkg` instead of the deprecated usage skill, and `agentos-md/AGENTS.md` should keep its stronger `agentos-pkg` / `agentos-index` guidance
 
 ### InContext.Surface:Package.SKILL
 

@@ -78,7 +78,7 @@
 
 ### Absorb.Move.And.Park.Targets
 
-- absorb `agentos-usage` into `agentos-pkg`
+- absorb the legacy Agentos usage skill into `agentos-pkg`
 - absorb `chatlas-usage` into `agentos-chatlas-pkg`
 - absorb `agentos-file-numbering-base` into `agentos-pkg`
 - classify `agentos-chatlas-retention-audit` under `agentos-chatlas-pkg`
@@ -127,7 +127,7 @@
     - `AGENTS.md`
 - validation:
     - inspect package router and startup guidance
-    - search for stale current-routing references to `agentos-usage`, split index aux skills, and usage-skill language
+    - search for stale current-routing references to `agentos-pkg`, split index aux skills, and usage-skill language
 
 ### Slice 3 - Align Hugentic Skills And Artifact Surfaces
 
@@ -202,7 +202,7 @@
     - report any deferred old-name references and why they remain
     - update this Impl.Req `Impl.Log`
 - validation:
-    - `rg "agentos-usage|chatlas-usage|Usage.Skill|trigger-design-session|trigger-impl-req|trigger-impl-execution|trigger-hugentic-status|trigger-capture-audit|trigger-chat-status|agentos-live-scripts-base|agentos-file-numbering-base|agentos-skills-miner-ingenier|codebase-general-cleanup|git-commit-trigger|agentos-session-continue|agentos-session-zip-transcript|flutter-adb-usage" AGENTS.md skills notes/index notes/live`
+    - `rg "agentos-pkg|chatlas-usage|Usage.Skill|trigger-design-session|trigger-impl-req|trigger-impl-execution|trigger-hugentic-status|trigger-capture-audit|trigger-chat-status|agentos-live-scripts-base|agentos-file-numbering-base|agentos-skills-miner-ingenier|codebase-general-cleanup|git-commit-trigger|agentos-session-continue|agentos-session-zip-transcript|flutter-adb-usage" AGENTS.md skills notes/index notes/live`
     - `git -C agentos-md diff --check`
 
 ## Impl.Log
