@@ -43,9 +43,17 @@ agentos chatlas views inline "<query>" --view user --format json
 agentos chatlas views inline "<query>" --view replay --format json
 agentos chatlas views inline "<query>" --view events --format json
 agentos chatlas views inline "<query>" --view zip-transcript --format json
+agentos chatlas views inline "<query>" --view zip-transcript --range 10: --format json
 agentos chatlas raw path "<query>"
 agentos chatlas raw export "<query>" --format json
 ```
+
+`views inline --range <range>` is a view-specific slicing surface. Range
+syntax is Python-style and half-open, with forms such as `N`, `A:B`, `A:`,
+`:B`, and `-N:`. The first rangeable inline view is `zip-transcript`, where
+the range applies to the top-level `turns` sequence and the output includes a
+`range` metadata object. Other inline views reject `--range` unless they define
+their own range target.
 
 ## Views Workflow
 
