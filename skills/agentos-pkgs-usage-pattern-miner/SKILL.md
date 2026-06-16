@@ -29,7 +29,7 @@ Find sessions where the target package skill was loaded. Extract the user's init
 
 ```bash
 agentos chatlas query --provider claude-code --updated-after <date>
-agentos chatlas export <session-id> --view transcript
+agentos chatlas views inline <session-id> --view transcript
 ```
 
 From the transcript, extract:

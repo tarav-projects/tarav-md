@@ -152,26 +152,20 @@
 
 ## Provider.Instance
 
-- status: superseded by `Agentos.Agent.Adapter` (see below). Retained only as the `provider_instance_*` session-index JSON compatibility key consumed by `agentos-chatlas-py`; not the current code model.
-- `Provider.Instance` is a concrete binding of a `Provider.Family` to a local environment
-- a `Provider.Family` is a supported AI assistant provider (e.g., claude-code, codex, copilot-cli, gemini-cli, opencode, pi, openclaw)
-- two interpretations coexist:
-  - runtime: a fully configured system — provider, home, account — such that it can run
-  - disk: the observable footprint — mostly provider and home directory
-- the disk interpretation is often interchanged with the concept of provider home, because the home directory is the primary observable artifact
-- instance identity is derived from the provider family and environment fingerprint
-- provider home discovery is declarative — each family specifies known paths, file patterns, and database locations to locate its home directory
+- `Provider.Instance` is a configured binding of a `Provider.Family` to a specific local environment
+- the OOP analogy holds: `Provider.Family` is the class, `Provider.Instance` is when its parameters are bound
+- parameters include home path, profile, credentials, and any family-specific configuration
+- identity is derived from provider family + environment fingerprint — two different homes = two different instances
 
 ****
 
 ## Agentos.Agent.Adapter
 
-- `Agentos.Agent.Adapter` is the Agentos-facing adapter object pattern for representing an agent on a named operational surface
-- concrete adapters are named `<Something>.Agent`
-- `<Something>` names the surface served by the adapter, not a fixed ontology layer
-- `<Something>.Agent` binds the configuration and behavior needed by that surface
-- `<Something>.Agent` may be partially configured
-- capability execution validates only the requirements of the invoked capability
+- `Agentos.Agent.Adapter` is the Agentos code design pattern for exposing slices of a `Provider.Instance`'s capabilities on a common surface
+- concrete adapters are named `<Something>.Agent` — `<Something>` names the capability surface served, not the full instance
+- one `Provider.Instance` may have multiple adapters covering different capability slices
+- provider differences are absorbed below the `.Agent` boundary; Agentos sees a uniform interface above it
+- adapters may be partially configured — capability execution validates only what the invoked capability needs
 - missing configuration is acceptable until a capability needs it
 - `.Agent` is the public promise boundary; `<Something>` remains free to vary
 - implementations may share stable primitives without inheriting a forced common model
@@ -186,7 +180,7 @@
 ### meta
 
 - aliases: `Something.Agent`, `Agent.Surface`, `Agent.Capability.Object`
-- status: current — implemented in `agentos-py`. `Provider.Instance` is superseded and retained only as a session-index JSON compatibility key.
+- status: current — implemented in `agentos-py`. It implements `Provider.Instance` at the code level; the concept is not superseded.
 - resolved: capability contracts are small typed protocols a concrete adapter may satisfy (`AgentAdapter` base + `RunCapable`/`AccountStatusCapable`/`SessionDiscoveryCapable`); run behavior is a `RunnableMixin` on runnable adapters only. Concrete adapters subclass the single `AgentConfig` field surface and stay named `<Provider>.Agent`.
 
 ****

@@ -29,14 +29,14 @@ Model selection:
 
 ### 2. Capture Trace
 
-After the session completes, use chatlas to find and export the session transcript:
+After the session completes, use chatlas to find and read the session transcript:
 
 ```bash
 agentos chatlas query <selector>
-agentos chatlas export <session-id>
+agentos chatlas views inline <session-id>
 ```
 
-The exported transcript contains the full tool call sequence — which files were read, in what order, and what the agent produced. This is the mechanical navigation trace.
+The inline transcript contains the full tool call sequence — which files were read, in what order, and what the agent produced. This is the mechanical navigation trace.
 
 ### 3. Evaluate
 
