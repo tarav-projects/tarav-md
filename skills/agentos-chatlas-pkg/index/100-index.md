@@ -175,3 +175,85 @@
 - `blocks` lists only blocks named explicitly in the turn, and may be empty for block-agnostic material.
 - two kinds — session (L1) and block (L2) — whose file locations are governed by `Grounding.Miner.Locality`.
 - append-only with per-turn dedup: before appending, the miner reads existing records for that turn `ref` and skips or merges.
+
+****
+
+## Session.Identity
+
+- `Session.Identity` is the set of properties that uniquely identify one session across the `Chatlas.Dataset`
+- composed of three components: provider family, configured instance, and provider-native session id
+- `Session.Identity.Hash` is a deterministic hash of those three components — the compact canonical identifier
+- stable across dataset refreshes — identity does not change when the provider updates session content
+- distinct from content fingerprint — identity answers "which session", content fingerprint tracks "what it currently contains"
+
+****
+
+## Chatlas.Session.Index
+
+- `Chatlas.Session.Index` is the queryable metadata surface over all archived sessions in the `Chatlas.Dataset`
+- each session is one index row — a metadata record derived from raw archive content during the indexing phase
+- partitioned by `Provider.Instance` — each provider/instance pair has its own index partition
+- derived, not manually maintained — rebuilt from the raw archive on each delta scan
+- index selection is the first filtering layer of `Chatlas.Query.Surface`
+- index rows carry `Session.Identity`, content fingerprint, project association, timestamps, and extractability flags
+
+****
+
+## Chatlas.Dataset
+
+- `Chatlas.Dataset` is the Agentos-maintained dataset of chat sessions collected from AI assistant providers
+- lifecycle: provider-native scan → `Raw.Archive` → `Chatlas.Session.Index` → `Chatlas.Query.Surface` → `Chatlas.View.Model`
+- user-scoped, not project-scoped — queries can filter by project but the dataset spans all projects
+- the raw archive is the authoritative preservation layer; all derived surfaces rebuild from it
+
+****
+
+## Raw.Archive
+
+- `Raw.Archive` is the preservation layer that stores provider-native session artifacts verbatim
+- every session discovered during native scan gets its artifacts copied into the archive before any normalization
+- the source of truth for what the provider actually produced — normalization is derived, raw is authoritative
+- organized by `Provider.Instance` — each provider/instance pair has its own archive partition
+- raw artifacts are overwritten in place when the provider updates them — git captures version history
+- retention scope is governed by `Chatlas.Retention.Policy`
+
+****
+
+## Chatlas.Retention.Policy
+
+- `Chatlas.Retention.Policy` is the set of per-provider retention decisions that govern what raw artifacts the `Raw.Archive` keeps
+- the fundamental objective is capturing user interactions — direct user turns and anything visible to the user during the session
+- materialized as audit reports — each report captures current decisions for one provider's artifact families
+- there is no standalone policy document — the audit reports are the living policy
+- produced through the `Chatlas.Retention.Audit` workflow skill
+
+****
+
+## Chatlas.Update.Pipeline
+
+- `Chatlas.Update.Pipeline` is the decomposed form of `agentos chatlas update`
+- bulk update runs the pipeline across all configured `Provider.Instance` inputs
+- targeted update runs the same mechanics for one provider instance, provider-home locator, or known `Session.Identity`
+- targeted refresh is not a separate system — it is an atomized invocation of the existing update mechanics
+- the pipeline preserves the lifecycle invariant: `Provider.Home` → `Raw.Archive` → `Chatlas.Session.Index`
+
+****
+
+## Provider.Home
+
+- `Provider.Home` is the local provider-native data home of one `Provider.Instance`
+- the concrete observable source Chatlas reads when discovering provider-native sessions
+- may include files, folders, databases, caches, logs, or known paths interpreted together as the configured home
+- provider-native — its layout, artifact names, schemas, and update behavior are defined by the provider, not by Chatlas
+- Chatlas reads from `Provider.Home`; it does not own or mutate it
+- `Raw.Archive` is the preserved downstream copy of selected provider-home artifacts
+
+****
+
+## Provider.Home.Query
+
+- `Provider.Home.Query` is the read-only discovery layer over a `Provider.Home`
+- finds provider-native sessions or artifacts directly in the provider home, outside the Chatlas archive
+- returns provider-home matches or locators, not `Chatlas.Session.Index` rows
+- used when freshness or direct source lookup matters before relying on archived material
+- does not mutate `Raw.Archive` or `Chatlas.Session.Index`

@@ -3,10 +3,10 @@
 ## Session.Abstract
 
 - **Intent:** Revisit and extend the Chatlas index model — define the foundational conceptual layer, review existing blocks, create new blocks.
-- **State:** Active — foundational concept blocks captured; provider-home/update alignment in progress.
-- **Active focus:** Provider.Instance, Provider.Home, Provider.Home.Query, and atomized update mechanics.
-- **Scope:** The full Chatlas mental model: dataset identity, raw archive, session indexing, query, views, export.
-- **Next:** Visit the aligned concepts one by one and decide which belong in public Chatlas index blocks versus general Agentos index blocks.
+- **State:** Closed — all dataset-infrastructure blocks promoted to the Chatlas pkg index (2026-06-15).
+- **Outcome:** 8 blocks promoted to `agentos-chatlas-pkg/index/100-index.md`; `Provider.Instance`/`Agentos.Agent.Adapter` corrected in `agentos-pkg/index/104-index.md`.
+- **Scope:** The full Chatlas mental model: dataset identity, raw archive, session indexing, query, views.
+- **Successor:** `Session.Model` content-representation design opens as a fresh thread (not covered by this session).
 
 ## Design.Index
 
@@ -133,3 +133,7 @@
 - 2026-05-22: Chatlas.Session.Index block captured.
 - 2026-05-22: Session.Identity block captured.
 - 2026-05-24: Captured corrected Provider.Instance/Provider.Home alignment, Provider.Home.Query, and Chatlas.Update.Pipeline as atomized update mechanics.
+- 2026-06-15: Promotion pass. Promoted to `agentos-chatlas-pkg/index/100-index.md`: Session.Identity, Chatlas.Session.Index, Chatlas.Dataset, Raw.Archive, Chatlas.Retention.Policy, Chatlas.Update.Pipeline, Provider.Home, Provider.Home.Query.
+- 2026-06-15: Corrected `Provider.Instance` (un-superseded; conceptual layer) and `Agentos.Agent.Adapter` (code-level implementer) in `agentos-pkg/index/104-index.md`.
+- 2026-06-15: Archived old `agentos-py/notes/index/` to `agentos-md/_DEPRECATED/agentos-py-notes-index/`.
+- 2026-06-15: Session closed.
