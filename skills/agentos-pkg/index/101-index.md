@@ -251,18 +251,19 @@
 ## Batchy.Skill
 
 - `Batchy.Skill` is the design style every Agentos skill follows — a skill interpreted as a CLI-style command
-- universal: every skill is a `Batchy.Skill`; `-h` help is always available, while arguments, banner, and subcommands appear only when the skill needs them
+- universal: every skill is a `Batchy.Skill`; `-h` help is always available, while arguments, banner, and modules appear only when the skill needs them
 - a convention, not a mandate — a clear natural prompt always works; for one obvious argument the agent just grabs it, flags grow valuable as parameter count grows
 - when a skill takes arguments, they are declared as `Skill.Arg` blocks inside its `Skill.Arg.Section`
 - each argument has a canonical name (e.g. `Skill.Arg:Target.Project`); loose flags, abbreviations, and positionals resolve to it
 - tokens are written `--flag`-style by preference so they read as commands inside natural text (`do a --run on stripe-pkg`); loose forms still resolve
 - switch flags map to `Dotted.Parameterized.Notation` values (`--AUTO` -> `Alignment.Mode:Autonomous`)
+- a skill's files and sections are `Skill.Module`s — named parts loaded on mention; a `Skill.Arg` may carry an `action` that activates one
 - missing required arguments follow `Skill.Explicit.Args`: ask or orient, never guess; declared defaults fill silently
 - exposes terminal-style help through `Batchy.Skill.Help`
 
 ### meta
 
-- detail: `agentos-skills-base/references/batchy-skills.md`
+- detail: `agentos-batchy-skills/references/batchy-skill-designer.md`
 
 ****
 
@@ -271,21 +272,21 @@
 - `Batchy.Skill.Template` is the canonical skeleton every `Batchy.Skill` instantiates, so all Agentos skills share one shape
 - opens with a `Batchy.Skill.Contract` block — the in-skill mini-course on the convention
 - then, when the skill takes arguments, a `Skill.Arg.Section` of `### Skill.Arg:<Name>` blocks
-- then optional `Batchy.SubCommand`s, each a nested Batchy skill loaded on demand
+- then any `Skill.Module`s — named files or sections loaded on mention, optionally fronted by a `Skill.Arg` carrying an `action`
 - requires a `Skill.Trigger.Clause` (`USE WHEN`) in the frontmatter description
-- adapts per skill: a zero-argument skill omits the `Skill.Arg.Section`, a single-operation skill omits subcommands; the `Batchy.Skill.Contract` and `Skill.Trigger.Clause` are always present
-- the copy-pasteable skeleton lives in `agentos-skills-base/references/batchy-skills.md`
+- adapts per skill: a zero-argument skill omits the `Skill.Arg.Section`, a single-operation skill needs no extra modules; the `Batchy.Skill.Contract` and `Skill.Trigger.Clause` are always present
+- the copy-pasteable skeleton lives in `agentos-batchy-skills/references/batchy-skill-designer.md`
 
 ****
 
 ## Batchy.Skill.Contract
 
-- `Batchy.Skill.Contract` is the in-skill mini-course a `Batchy.Skill` carries — a compact restatement of the convention so the skill complies without `agentos-skills-base` loaded
+- `Batchy.Skill.Contract` is the in-skill mini-course a `Batchy.Skill` carries — a compact restatement of the convention so the skill complies without `agentos-batchy-skills` loaded
 - a `Cited.Duplication`: it duplicates the canonical convention into the skill and cites it for depth
-- declares the skill is a `Batchy.Skill` and points to `agentos-skills-base` for the full convention
+- declares the skill is a `Batchy.Skill` and points to `agentos-batchy-skills` for the full convention
 - help rule (always): `-h`/`--help` short-circuits to `Batchy.Skill.Help`, printing the help into the chat instead of running
 - banner rule (when it has arguments): a run begins by printing the `Batchy.Skill.Banner` of resolved arguments; a zero-argument skill has none
-- resolution rule (when it has arguments): loose flags, abbreviations, and positionals map to canonical `Skill.Arg` names
+- resolution rule: loose flags, abbreviations, positionals, and module mentions map to canonical `Skill.Arg` or `Skill.Module` names
 - a zero-argument skill carries only the help rule; arg-bearing skills carry all three
 - sits at the top of the skill body, ahead of any `Skill.Arg.Section`
 
@@ -296,7 +297,9 @@
 - `Skill.Arg` is a single argument of a `Batchy.Skill`, written as a kernel block
 - named with `Dotted.Parameterized.Notation`: `Skill.Arg:Context`, `Skill.Arg:Main.Prompt`
 - its fundamentals state what the argument means; bullet settings carry its calling metadata
-- settings: `required`, `default`, `type` (switch vs valued), `help`, `examples`, `aliases` (non-obvious only)
+- settings: `required`, `default`, `type` (switch vs valued), `help`, `examples`, `aliases` (non-obvious only), `action`
+- `action` (optional): the behavior the arg activates when set — usually loads a `Skill.Module`; a switch (`--dry-run`) layers behavior, a selector whose values are operations (`Command:Run`) picks one
+- an arg with an `action` is how a former subcommand is expressed; no dedicated subcommand structure is needed
 - the canonical name is used unambiguously in the skill body; loose flags resolve to it
 - lives as a `###` block inside the skill's `Skill.Arg.Section`
 - `Batchy.Skill.Help` and `Batchy.Skill.Banner` render from these blocks
@@ -326,16 +329,15 @@
 
 ****
 
-## Batchy.SubCommand
+## Skill.Module
 
-- `Batchy.SubCommand` is a `Dotted.Name` subroutine of a `Batchy.Skill`, explicitly activated by name
-- lives as a section or a file in the skill folder; loaded only when called — lazy activation keeps context lean
-- selected like an argument that activates a subroutine rather than passing data (`--index-write` ≈ activate `Index.Write`)
-- the agent resolves loose forms (`--index-write`, `INDEX-WRITE`, `index-write`) to the canonical subcommand name
-- each subcommand is itself a `Batchy.Skill`: its own `Skill.Arg.Section` and `Batchy.Skill.Help`
-- a subcommand inherits the container skill's arguments, and adds its own on top
-- help composes — top-level `-h` lists subcommands; `<subcommand> -h` renders that subcommand's `Skill.Arg` blocks
-- the skill designer keeps argument and subcommand names sufficiently distinct so activation is unambiguous
+- `Skill.Module` is a named, on-demand-loadable part of a `Batchy.Skill` — a file or a section, addressable by its name
+- progressive disclosure made addressable-by-name: mentioning a module reinforces loading it into context
+- it generalizes the subcommand — any sub-file or section is an implicit module, activatable without a declared argument
+- placement is `Natural.Placement`: an inline section, a skill-root file, or a `references/` file — never a mandated subfolder
+- a `Skill.Arg` carrying an `action` is the optional formal front for a module — for help text, parameters, or selector-exclusivity
+- the agent resolves loose mentions (`--examples`, `examples`, `EXAMPLES`) to the canonical module name
+- arg, file, and section names share one resolution space; the skill designer keeps them collision-free
 
 ****
 
