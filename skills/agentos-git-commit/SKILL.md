@@ -10,7 +10,7 @@ Operational `Package.Aux.Skill` under `agentos-pkg`.
 
 Commit changes in existing Git repositories using a deterministic semantic multi-commit flow.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
 - every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
@@ -40,6 +40,14 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skill
 - type: switch
 - help: "allow bypassing commit hooks"
 - examples: --no-verify
+
+### Skill.Arg:Mode.DryRun
+- explore and plan the commit groups read-only; do everything except stage and commit, then report
+- required: false
+- default: false
+- type: switch
+- help: "plan and report commits without staging or committing"
+- examples: --dry-run
 
 ## Trigger Policy
 
@@ -102,6 +110,12 @@ Rules:
 3. Review the staged diff for obvious secrets or sensitive material before committing.
 4. If the staged diff appears to include `.env` files, raw credentials, private keys, tokens, API keys, or connection strings, stop and report the blocker instead of committing that group.
 
+Dry-run override (`--dry-run`):
+
+- Do not run any `git add` (full or `-p`). The index must end exactly as it began.
+- Inspect each planned group from the working state as found, using read-only commands scoped per group: `git -C <repo> diff --name-status -- <pathspec...>` and `git -C <repo> diff -- <pathspec...>` for unstaged work, plus the `--staged` variants to describe pre-existing staged work as-is. Do not reframe staged vs unstaged by touching the index.
+- Still run the secret-scan over the changes that *would* be staged; report any blocker instead of acting on it.
+
 ### 4) Compose Commit Message (Conventional Commit)
 
 Generate a concrete and complete message inferred from the current staged group only.
@@ -142,6 +156,12 @@ If `git commit` fails, stop and report the blocker immediately.
 
 Repeat steps 3-5 until `git -C <repo> status --porcelain` is empty, then continue with the next repo.
 
+Dry-run override (`--dry-run`):
+
+- Do not commit. Instead, render each planned group as a preview: the composed subject, the body bullets, and the file list it would include.
+- Do not stage to produce the preview; derive it from the read-only inspection in step 3.
+- After previewing all groups for a repo, move to the next repo. The repo state must be identical to before the run.
+
 ## Safety Rules
 
 - Never run `git init` in this skill.
@@ -152,6 +172,7 @@ Repeat steps 3-5 until `git -C <repo> status --porcelain` is empty, then continu
 - Never use `--amend` unless explicitly requested by the user in the same prompt.
 - Never use `--no-verify` unless explicitly requested by the user in the same prompt.
 - Never commit obvious secrets or sensitive local environment files.
+- In `--dry-run`, never stage (`git add`) and never commit; every operation must be read-only and leave the repo state unchanged.
 
 ## Output Contract
 
@@ -166,3 +187,9 @@ If the workflow stops early on a blocker, report:
 1. Which repo stopped
 2. The blocker that prevented committing
 3. Whether staged changes were preserved
+
+In `--dry-run`, report instead:
+
+1. Planned commit list per repo, in group order, with the subject of each.
+2. Per planned commit: the files it would include (`name-status`) and the composed message (subject + body bullets).
+3. Explicit confirmation that nothing was staged, committed, or pushed — the working tree and index are unchanged.
