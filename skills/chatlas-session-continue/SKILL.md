@@ -11,7 +11,7 @@ Return a continuation handoff for a prior chat session so the discussion can res
 
 This skill must run as an agent by default, not inline in the caller context. `agentos chatlas` handles deterministic resolution and extraction from the maintained chat dataset. The agent always returns a handoff artifact oriented toward continuation, not just transcript recovery.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
 - a bare session id, URI, or query resolves to `--session`.

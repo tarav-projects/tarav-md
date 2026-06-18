@@ -11,7 +11,7 @@ Delegate prior-session transcript summary recovery to a subagent.
 
 The default output is the path to a fresh Chatlas `zip-transcript-agent-summary` `summary.json` artifact. The artifact body should not be pasted into the parent chat unless the user explicitly asks for inline output.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
 - a bare session id, URI, or query resolves to `--session`.

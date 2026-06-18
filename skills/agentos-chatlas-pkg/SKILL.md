@@ -11,7 +11,7 @@ It is the package-level public agentic surface for the Chatlas dataset system: s
 
 This root skill is workflow neutral. It gives package identity and orientation only, so loading it does not change the caller's current task.
 
-This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
 

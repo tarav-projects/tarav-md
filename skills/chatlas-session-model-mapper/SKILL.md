@@ -10,7 +10,7 @@ Operational `Package.Aux.Skill` under `agentos-chatlas-pkg`. It drives the
 `Chatlas.Session.Model` neutral concepts, one concept at a time, under continuous
 pressure from real data.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
 - a bare provider name resolves to `--provider`.

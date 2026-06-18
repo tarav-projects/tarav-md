@@ -9,7 +9,7 @@ Operational `Package.Aux.Skill` under `agentos-chatlas-pkg`.
 
 `Grounding.Miner` for the `Chat.Surface`: mine chat sessions for `Grounding.Material` and append `Grounding.Request` records for later gated index review. The miner **neither creates nor destroys information** — it surfaces high-signal turns and converges toward exhausting the design signal in the chats. It never writes index or appendix files.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
 - supplied flags resolve to the `Skill.Arg` names below.

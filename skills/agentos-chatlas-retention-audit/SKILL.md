@@ -9,7 +9,7 @@ Evaluate whether Chatlas is retaining the right provider-native artifacts for lo
 
 Operational `Package.Aux.Skill` under `agentos-chatlas-pkg`.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
 - a bare provider name resolves to `--provider`.
