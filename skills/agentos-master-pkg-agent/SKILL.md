@@ -7,51 +7,46 @@ description: Ask a separate read-only agent to research and answer almost any qu
 
 Ask a separate agent to research and answer a prompt using the organized knowledge and capabilities available through Agentos packages.
 
-The caller prepares the master agent's arguments and typically spawns the agent. The delegated agent performs the package research, keeping that context out of the caller's conversation.
+The caller prepares the arguments and typically spawns the agent. The delegated agent performs the package research, keeping that context out of the caller's conversation.
 
-## Prepare The Arguments
+This is a `Batchy.Skill`: its arguments are the `Skill.Arg` blocks below, and its `Batchy.SubCommand`s are named shortcuts that preset those arguments.
 
-Provide `Master.Agent.Arguments` containing:
+## Skill.Arg.Section
 
-- `Master.Agent.Scope` — optional research focus
-- `Prompt.Bundle` — ordered prompts for the master agent
+The master agent does not receive the caller's conversation. Pass the context each prompt needs explicitly; prefer complete, relevant context over an unfiltered transcript.
 
-The master agent does not automatically receive the caller's conversation. Include the context adjacent to each prompt that materially affects how it should be understood or answered.
+### Skill.Arg:Main.Prompt
+- the primary question or requested result, answered first and with the highest priority
+- may request research, comparison, explanation, critique, enrichment, or another read-only result
+- required: true
+- help: "the primary question or requested result"
+- examples: --prompt "..."
 
-The caller may provide substantial context. Prefer complete, relevant context over an unfiltered conversation transcript.
+### Skill.Arg:Context
+- the adjacent context the master agent needs because it cannot see the caller's conversation
+- carries relevant concepts, current understanding, accepted decisions, uncertainty, constraints, or prior findings
+- required: false
+- help: "context the agent needs to interpret the request"
+- examples: --context "..."
 
-## Master.Agent.Scope
+### Skill.Arg:Scope
+- an optional research focus: particular packages, subsystems, surfaces, concepts, time ranges, or investigation boundaries
+- guidance, not a strict exclusion unless explicitly marked strict; materially relevant findings just outside it may still be reported
+- when omitted, the master agent discovers relevant packages and surfaces from the request and context
+- required: false
+- help: "focus the research"
+- examples: --scope "agentos-pkg index"
 
-Scope is optional.
+### Skill.Arg:Enrichment.Prompt
+- a recommended secondary request: independently inspect the subject and surface additional package-grounded concepts, connections, contradictions, risks, opportunities, or questions the caller had not considered
+- orthogonal to `Skill.Arg:Main.Prompt` — not an expansion, critique, or continuation of it
+- answered after the main prompt; may return that no material enrichment was found
+- author it for the current discussion and exclude topics already enriched by previous calls
+- required: false
+- help: "ask for independent package-grounded enrichment"
+- examples: --enrich "..."
 
-Use it to focus research on particular packages, subsystems, surfaces, concepts, time ranges, or investigation boundaries.
-
-Unless explicitly marked strict, scope is guidance rather than an exclusion. The master agent may report materially relevant findings just outside it.
-
-## Prompt.Bundle
-
-Prepare an ordered bundle containing:
-
-1. `Main.Request.Prompt` — required
-2. `Enrichment.Request.Prompt` — recommended but optional
-
-The master agent answers prompts in order and returns a separate answer section for each. The main request has the highest priority.
-
-### Main.Request.Prompt
-
-State the primary question or requested result.
-
-Include the adjacent context needed to answer it well, such as relevant concepts, current understanding, accepted decisions, uncertainty, constraints, or prior findings.
-
-### Enrichment.Request.Prompt
-
-Ask the master agent to independently enrich the surrounding subject.
-
-This prompt is orthogonal to `Main.Request.Prompt`: do not merely expand, critique, or continue the main answer. Instead, inspect the supplied context and identify additional package-grounded concepts, connections, contradictions, risks, opportunities, or questions that the caller may not have considered.
-
-This is a recommended default question for every call. Author it for the current discussion and exclude topics already enriched by previous calls.
-
-When enrichment itself is the main goal, use an `Enrichment.Request.Prompt` as the `Main.Request.Prompt`.
+The master agent answers the supplied prompts in order, each in its own answer section, with `Skill.Arg:Main.Prompt` highest priority. When enrichment is the main goal, supply it as `Skill.Arg:Main.Prompt`.
 
 ## Spawn The Agent
 
@@ -72,12 +67,29 @@ Spawn a separate agent by default.
 
 When the user explicitly instructs the caller not to spawn an agent, the caller must:
 
-1. Prepare the same `Master.Agent.Arguments` and complete prompt it would send to the spawned agent.
+1. Prepare the same arguments and complete prompt it would send to the spawned agent.
 2. Adopt the `Packages.Master.Agent` role itself.
 3. Load the `agentos-pkg` skill and `agentos-pkg/references/master-agent.md`.
 4. Execute the prepared prompt in the caller's context under the same read-only and response contracts.
 
 Do not choose inline execution implicitly. It gives up the normal caller-context protection and exists only as an explicit override.
+
+## SubCommands
+
+A `Batchy.SubCommand` is a named shortcut that presets the arguments for a common call. The caller activates it by name and adds optional guiding context; spawn, read-only operation, and response mechanics follow this skill unchanged, and the subcommand inherits this skill's `Skill.Arg`s.
+
+Activate by name:
+
+- `/agentos-master-pkg-agent index-grounding`
+- `/agentos-master-pkg-agent --index-grounding`
+
+Then add any extra context to further guide the agent.
+
+Available subcommands:
+
+- `index-grounding` — given what the caller is currently doing, return the existing package knowledge relevant to that context. Lightweight, retrieval-oriented, repeatable. See `references/subcommands/index-grounding.md`.
+
+To run a subcommand, load its file in `references/subcommands/<name>.md` and fill the prompt template below using the subcommand's preset arguments.
 
 ## Prompt Template
 
@@ -85,23 +97,21 @@ Fill the insertion tags with context for the current call. Remove optional secti
 
 ```text
 Act as `Packages.Master.Agent`: a general read-only research agent that answers
-the ordered prompt bundle using the organized knowledge and capabilities
-available through accessible Agentos packages. You own the package-loading and
-research context so the caller does not have to load it.
+the ordered prompts using the organized knowledge and capabilities available
+through accessible Agentos packages. You own the package-loading and research
+context so the caller does not have to load it.
 
 Load the `agentos-pkg` skill first as the fundamental package driver. Then load
 `agentos-pkg/references/master-agent.md` for the detailed master-agent research
 and response mechanics.
 
-## Master.Agent.Scope
+## Scope
 
 {{OPTIONAL_SCOPE}}
 
 Scope is guidance unless explicitly marked strict.
 
-## Prompt.Bundle
-
-### 1. Main.Request.Prompt
+## Main Request
 
 {{MAIN_REQUEST}}
 
@@ -109,7 +119,7 @@ Adjacent context:
 
 {{MAIN_REQUEST_ADJACENT_CONTEXT}}
 
-### 2. Enrichment.Request.Prompt
+## Enrichment Request
 
 Independently inspect the surrounding subject described below.
 
@@ -135,7 +145,7 @@ Adjacent context:
 - Enter relevant packages through their `Package.Driver`.
 - Follow package routers only as needed.
 - Remain read-only.
-- Answer prompts in bundle order.
+- Answer the prompts in order.
 - Return a separate answer section for each prompt.
 - Write every answer using `Kernel.Writing`: direct, concise, mostly bullet-based,
   orthogonal lines that retain all material dimensions without repetition.

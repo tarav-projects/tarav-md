@@ -36,16 +36,6 @@
 
 ****
 
-## Usage.Skill
-
-- `Usage.Skill` is a deprecated standalone orientation pattern for Agentos packages
-- package roots now provide general usage and orientation through `Package.Skill` and `Package.Skill.Router`
-- existing usage skills should be absorbed into package index, appendix, references, or package-root `SKILL.md` surfaces according to `Natural.Placement`
-- operational workflow guidance should live in focused `Package.Aux.Skill` or `Workflow.Skill` surfaces instead of a general usage skill
-- old usage skills may remain only as compatibility or migration surfaces until current routes stop depending on them
-
-****
-
 ## Package.Skill
 
 - `Package.Skill` is a self-contained agentic public surface for a package, project, or subsystem
@@ -255,3 +245,89 @@
 ## Imported.Skills
 
 - `Imported.Skills` is the `Selected.Skills` after import syncs depots
+
+****
+
+## Batchy.Skill
+
+- `Batchy.Skill` is a skill framework that interprets a skill as a CLI-style command — arguments passed as bash-like flags
+- a convention, not a mandate — for a single obvious argument the agent just grabs it; flags become valuable as parameter count grows
+- arguments are declared as `Skill.Arg` blocks inside the skill's `Skill.Arg.Section`
+- each argument has a canonical name (e.g. `Skill.Arg:Target.Project`); loose flags, abbreviations, and positionals resolve to it
+- switch flags map to `Dotted.Parameterized.Notation` values (`--AUTO` -> `Alignment.Mode:Autonomous`)
+- missing required arguments follow `Skill.Explicit.Args`: ask or orient, never guess; declared defaults fill silently
+- exposes terminal-style help through `Batchy.Skill.Help`
+
+### meta
+
+- detail: `agentos-skills-base/references/batchy-skills.md`
+- related: `Skill.Explicit.Args`, `Skill.Arg`, `Skill.Arg.Section`, `Batchy.Skill.Help`, `Dotted.Parameterized.Notation`
+
+****
+
+## Skill.Arg
+
+- `Skill.Arg` is a single argument of a `Batchy.Skill`, written as a kernel block
+- named with `Dotted.Parameterized.Notation`: `Skill.Arg:Context`, `Skill.Arg:Main.Prompt`
+- its fundamentals state what the argument means; bullet settings carry its calling metadata
+- settings: `required`, `default`, `type` (switch vs valued), `help`, `examples`, `aliases` (non-obvious only)
+- the canonical name is used unambiguously in the skill body; loose flags resolve to it
+- lives as a `###` block inside the skill's `Skill.Arg.Section`
+- `Batchy.Skill.Help` and `Batchy.Skill.Banner` render from these blocks
+
+### meta
+
+- related: `Skill.Arg.Section`, `Batchy.Skill`, `Dotted.Parameterized.Notation`
+
+****
+
+## Skill.Arg.Section
+
+- `Skill.Arg.Section` is the section of a `Batchy.Skill` that holds its arguments
+- each argument is a `### Skill.Arg:<Name>` block nested in the section
+- block-based, never a markdown table — these blocks are the single declaration of the skill's arguments
+- the agent resolves loose flags, abbreviations, and positionals against them to the canonical `Skill.Arg` name
+- the source that `Batchy.Skill.Help` and `Batchy.Skill.Banner` render from
+
+****
+
+## Batchy.Skill.Help
+
+- `Batchy.Skill.Help` is the `-h`/`--help` call of a `Batchy.Skill` — prints terminal-style usage instead of running
+- a non-executing call: it short-circuits the skill, orienting the caller without performing the operation
+- leads with a one-paragraph explanation of what the skill is and does, then the usage
+- usage is rendered from the skill's `Skill.Arg` blocks: each argument's flag, meaning, default, and required state
+- available regardless of other supplied flags — `-h` always wins over execution
+
+****
+
+## Batchy.SubCommand
+
+- `Batchy.SubCommand` is a `Dotted.Name` subroutine of a `Batchy.Skill`, explicitly activated by name
+- lives as a section or a file in the skill folder; loaded only when called — lazy activation keeps context lean
+- selected like an argument that activates a subroutine rather than passing data (`--index-write` ≈ activate `Index.Write`)
+- the agent resolves loose forms (`--index-write`, `INDEX-WRITE`, `index-write`) to the canonical subcommand name
+- each subcommand is itself a `Batchy.Skill`: its own `Skill.Arg.Section` and `Batchy.Skill.Help`
+- a subcommand inherits the container skill's arguments, and adds its own on top
+- help composes — top-level `-h` lists subcommands; `<subcommand> -h` renders that subcommand's `Skill.Arg` blocks
+- the skill designer keeps argument and subcommand names sufficiently distinct so activation is unambiguous
+
+### meta
+
+- related: `Batchy.Skill`, `Skill.Arg.Section`, `Batchy.Skill.Help`
+
+****
+
+## Batchy.Skill.Banner
+
+- `Batchy.Skill.Banner` is the resolved-argument banner a `Batchy.Skill` prints as the first step of any run
+- shows the mapping from supplied flags to canonical arguments (`--AUTO` -> `Alignment.Mode:Autonomous`) and the values used
+- distinguishes supplied values from filled defaults, so the caller sees what was inferred
+- informational, not a checkpoint: it echoes the interpretation, it does not ask for confirmation
+- makes fuzzy flag resolution auditable — a misread is visible before side effects
+- printed on every run except the non-executing `-h` call
+- a short banner section in the target skill restates the convention via `Cited.Duplication`, improving compliance
+
+### meta
+
+- related: `Batchy.Skill`, `Skill.Arg`, `Batchy.Skill.Help`

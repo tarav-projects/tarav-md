@@ -1,64 +1,15 @@
 # Packages.Master.Agent - Appendix
 
-****
-
-## Master.Agent.Arguments
-
-- `Master.Agent.Arguments` is the complete caller-authored input supplied to `Packages.Master.Agent`
-- contains an optional `Master.Agent.Scope` and an ordered `Prompt.Bundle`
-- may include call-wide context, constraints, or supporting material
-- should provide enough adjacent conversational context for the master agent to understand the prompts without having access to the caller's conversation
-- the caller may use substantial context when that improves answer quality
-
-****
-
-## Master.Agent.Scope
-
-- `Master.Agent.Scope` is an optional argument that focuses the master agent's research
-- may identify particular packages, subsystems, surfaces, concepts, time ranges, or investigation boundaries
-- when omitted, the master agent discovers relevant packages and surfaces from the request and adjacent context
-- scope guides research without becoming a strict exclusion unless the caller explicitly marks it strict
-- the master agent may report materially relevant findings just outside a non-strict scope
-
-****
-
-## Prompt.Bundle
-
-- `Prompt.Bundle` is an ordered collection of related prompts answered during one master-agent call
-- prompts in the bundle benefit from the same caller context and loaded package context
-- prompts are answered in order
-- each prompt receives a separate answer section
-- the main prompt has the highest priority
-- the initial standard bundle contains `Main.Request.Prompt` followed by an optional `Enrichment.Request.Prompt`
-
-****
-
-## Main.Request.Prompt
-
-- `Main.Request.Prompt` is the primary caller-specific question or requested result
-- answered first and with the highest priority
-- may request research, comparison, explanation, critique, enrichment, or another read-only result
-- should include the context adjacent to the request when that context materially affects interpretation or answer quality
-
-****
-
-## Enrichment.Request.Prompt
-
-- `Enrichment.Request.Prompt` is a recommended but optional caller-authored secondary prompt in a master-agent `Prompt.Bundle`
-- asks the master agent to enrich selected parts of the current subject using package-grounded knowledge
-- the caller identifies new concepts, major themes, uncertainty, assumptions, or connections that could profit from enrichment
-- should account for previous master-agent calls so already-enriched subjects are not repeated unnecessarily
-- answered after `Main.Request.Prompt`
-- may return that no material enrichment was found
+The caller-facing arguments of the master agent are declared as `Skill.Arg` blocks in the `agentos-master-pkg-agent` skill's `Skill.Arg.Section` (`Skill.Arg:Main.Prompt`, `Skill.Arg:Context`, `Skill.Arg:Scope`, `Skill.Arg:Enrichment.Prompt`). This appendix covers the depth that is not an argument.
 
 ****
 
 ## Context.Enrichment.Call
 
-- `Context.Enrichment.Call` is a master-agent usage pattern where the caller makes an `Enrichment.Request.Prompt` the `Main.Request.Prompt`
+- `Context.Enrichment.Call` is a master-agent usage pattern where the caller supplies an enrichment request as `Skill.Arg:Main.Prompt`
 - used when enriching a current discussion, subject summary, design, or working context is the primary goal
 - the caller may summarize the current subject and ask the master agent to report relevant package-grounded concepts, connections, contradictions, risks, or opportunities
-- may optionally include another `Enrichment.Request.Prompt` targeting a narrower or secondary enrichment frontier
+- may optionally include a `Skill.Arg:Enrichment.Prompt` targeting a narrower or secondary enrichment frontier
 
 ****
 

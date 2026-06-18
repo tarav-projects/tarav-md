@@ -129,6 +129,7 @@ When the Driver is not enough, load a narrower surface:
 - **Implementation execution** — load `hugentics-impl-executer` for executing implementation plans
 - **Workflow status** — load `hugentics-workflow-status` for a structured checkpoint
 - **Live surfaces** — load `agentos-live-surfaces` for live-note and live-script location, naming, and numbering
+- **Skill conventions** — load `agentos-skills-base` for the conventions a proper Agentos skill follows (skill taxonomy, the Batchy calling convention, argument parsing)
 - **Skill engineering** — load `agentos-skills-ingenier` for creating or upgrading skills
 - **Codebase cleanup** — load `hugentics-codebase-cleaner` for targeted refactoring through the hugentic harness
 - **Git commits** — load `agentos-git-commit` for deterministic semantic commit workflows
