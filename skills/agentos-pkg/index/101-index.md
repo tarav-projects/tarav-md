@@ -254,6 +254,7 @@
 - a convention, not a mandate — for a single obvious argument the agent just grabs it; flags become valuable as parameter count grows
 - arguments are declared as `Skill.Arg` blocks inside the skill's `Skill.Arg.Section`
 - each argument has a canonical name (e.g. `Skill.Arg:Target.Project`); loose flags, abbreviations, and positionals resolve to it
+- tokens are written `--flag`-style by preference so they read as commands inside natural text (`do a --run on stripe-pkg`); loose forms still resolve
 - switch flags map to `Dotted.Parameterized.Notation` values (`--AUTO` -> `Alignment.Mode:Autonomous`)
 - missing required arguments follow `Skill.Explicit.Args`: ask or orient, never guess; declared defaults fill silently
 - exposes terminal-style help through `Batchy.Skill.Help`
@@ -261,7 +262,29 @@
 ### meta
 
 - detail: `agentos-skills-base/references/batchy-skills.md`
-- related: `Skill.Explicit.Args`, `Skill.Arg`, `Skill.Arg.Section`, `Batchy.Skill.Help`, `Dotted.Parameterized.Notation`
+
+****
+
+## Batchy.Skill.Template
+
+- `Batchy.Skill.Template` is the canonical skeleton every `Batchy.Skill` instantiates, so all Agentos skills share one shape
+- opens with a `Batchy.Skill.Contract` block — the in-skill mini-course on the convention
+- then a `Skill.Arg.Section` holding one `### Skill.Arg:<Name>` block per argument
+- then optional `Batchy.SubCommand`s, each a nested Batchy skill loaded on demand
+- requires a `Skill.Trigger.Clause` (`USE WHEN`) in the frontmatter description
+- the copy-pasteable skeleton lives in `agentos-skills-base/references/batchy-skills.md`
+
+****
+
+## Batchy.Skill.Contract
+
+- `Batchy.Skill.Contract` is the in-skill mini-course a `Batchy.Skill` carries — a compact restatement of the convention so the skill complies without `agentos-skills-base` loaded
+- a `Cited.Duplication`: it duplicates the canonical convention into the skill and cites it for depth
+- declares the skill is a `Batchy.Skill` and points to `agentos-skills-base` for the full convention
+- help rule: `-h`/`--help` short-circuits to `Batchy.Skill.Help` instead of running
+- banner rule: every run begins by printing the `Batchy.Skill.Banner` of resolved arguments
+- resolution rule: loose flags, abbreviations, and positionals map to canonical `Skill.Arg` names
+- sits at the top of the skill body, ahead of the `Skill.Arg.Section`
 
 ****
 
@@ -274,10 +297,6 @@
 - the canonical name is used unambiguously in the skill body; loose flags resolve to it
 - lives as a `###` block inside the skill's `Skill.Arg.Section`
 - `Batchy.Skill.Help` and `Batchy.Skill.Banner` render from these blocks
-
-### meta
-
-- related: `Skill.Arg.Section`, `Batchy.Skill`, `Dotted.Parameterized.Notation`
 
 ****
 
@@ -312,10 +331,6 @@
 - help composes — top-level `-h` lists subcommands; `<subcommand> -h` renders that subcommand's `Skill.Arg` blocks
 - the skill designer keeps argument and subcommand names sufficiently distinct so activation is unambiguous
 
-### meta
-
-- related: `Batchy.Skill`, `Skill.Arg.Section`, `Batchy.Skill.Help`
-
 ****
 
 ## Batchy.Skill.Banner
@@ -327,7 +342,3 @@
 - makes fuzzy flag resolution auditable — a misread is visible before side effects
 - printed on every run except the non-executing `-h` call
 - a short banner section in the target skill restates the convention via `Cited.Duplication`, improving compliance
-
-### meta
-
-- related: `Batchy.Skill`, `Skill.Arg`, `Batchy.Skill.Help`

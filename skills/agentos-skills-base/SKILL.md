@@ -33,9 +33,12 @@ The skill taxonomy and roles are canonical in the `agentos-pkg` index (`index/10
 Every Agentos skill that takes arguments is a `Batchy.Skill` — called like a terminal command. The convention is canonical in the index and detailed for authors in the reference:
 
 - `Batchy.Skill` — skill interpreted as a CLI-style command, arguments passed as bash-like flags.
+- `Batchy.Skill.Template` — the canonical skeleton every Batchy skill instantiates.
+- `Batchy.Skill.Contract` — the in-skill mini-course restating the convention standalone (a `Cited.Duplication`).
 - `Skill.Arg` — one argument of the skill, written as a `### Skill.Arg:<Name>` kernel block.
 - `Skill.Arg.Section` — the section of the skill holding its `Skill.Arg` blocks.
 - `Batchy.Skill.Help` — the non-executing `-h`/`--help` call rendered from the skill's `Skill.Arg` blocks.
+- `Batchy.Skill.Banner` — the resolved-argument banner printed as the first step of every run.
 - `Batchy.SubCommand` — a `Dotted.Name` subroutine, explicitly activated, inheriting the container's arguments.
 
 Authoring detail, the `Skill.Arg.Section` format, resolution rules, and worked examples: [references/batchy-skills.md](references/batchy-skills.md).

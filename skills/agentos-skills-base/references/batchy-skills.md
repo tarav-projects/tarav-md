@@ -1,6 +1,6 @@
 # Batchy Skills — Authoring Guide
 
-How to build a `Batchy.Skill`: a skill interpreted as a CLI-style command. The concepts are canonical in `agentos-pkg/index/101-index.md` (`Batchy.Skill`, `Skill.Arg`, `Skill.Arg.Section`, `Batchy.Skill.Help`, `Batchy.SubCommand`). This is the author-facing depth.
+How to build a `Batchy.Skill`: a skill interpreted as a CLI-style command. The concepts are canonical in `agentos-pkg/index/101-index.md` (`Batchy.Skill`, `Batchy.Skill.Template`, `Batchy.Skill.Contract`, `Skill.Arg`, `Skill.Arg.Section`, `Batchy.Skill.Help`, `Batchy.Skill.Banner`, `Batchy.SubCommand`). This is the author-facing depth.
 
 The Batchy framework is a convention the agent knows, not a parser. The agent stays smart: clear natural prompts still work, and named flags are the crisp path that matters most as parameter count grows.
 
@@ -11,6 +11,32 @@ The Batchy framework is a convention the agent knows, not a parser. The agent st
 - Each argument is a `Skill.Arg` block with a canonical name used unambiguously in the skill body.
 - The loose flag the user types maps to that canonical name; the agent resolves synonyms, abbreviations, and positionals (`--proj` ≈ `--project`).
 - Switch values use `Dotted.Parameterized.Notation`: `--AUTO` → `Alignment.Mode:Autonomous`.
+
+**Write tokens `--flag`-style.** Both arguments and `Batchy.SubCommand`s are written with the `--` prefix by preference — `--run`, `--project`, `--AUTO` — even when describing a call in prose. The `--` makes the token legible as a command inside natural text (`do a --run on stripe-pkg` reads as an invocation, `do a run on stripe-pkg` does not). This is a writing preference, not a parser rule: the agent still resolves bare and loose forms (`run`, `RUN`, a positional package name) to the canonical name.
+
+## The Skill Template
+
+Every Batchy skill instantiates one `Batchy.Skill.Template` — the same skeleton — so all Agentos skills share a shape. Lay the skill body out in this order:
+
+1. a one-paragraph description of what the skill is and does;
+2. a `Batchy.Skill.Contract` block — the in-skill mini-course (below);
+3. a `## Skill.Arg.Section` holding one `### Skill.Arg:<Name>` block per argument;
+4. optional `## SubCommands` listing the skill's `Batchy.SubCommand`s.
+
+The frontmatter `description` carries a `Skill.Trigger.Clause` (a `USE WHEN` line) so an agent knows when to load the skill.
+
+## The Batchy.Skill.Contract Block
+
+Carry a `Batchy.Skill.Contract` near the top of the skill body: a compact mini-course that restates the convention so the skill complies even when `agentos-skills-base` is not loaded. It is a `Cited.Duplication` — duplicate the few must-do behaviors, cite the base skill for depth. Paste a block like:
+
+```markdown
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base`
+for the full convention.
+
+- `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
+- every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
+- supplied flags resolve to the `Skill.Arg` names below; loose and positional forms resolve too.
+```
 
 ## Skill.Arg.Section
 
@@ -105,8 +131,11 @@ A skill may expose subroutines as `Batchy.SubCommand`s — `Dotted.Name` subpart
 
 ## Authoring Checklist
 
+- Body follows the `Batchy.Skill.Template`: description, `Batchy.Skill.Contract`, `Skill.Arg.Section`, optional `SubCommands`.
+- A `Batchy.Skill.Contract` block near the top restates the `-h`, banner, and resolution rules standalone.
 - Arguments declared as `### Skill.Arg:<Name>` blocks in a `Skill.Arg.Section`.
 - Each argument advertised enough that `-h` is useful.
-- `description` frontmatter names the key arguments so an agent knows what to provide before loading.
+- Tokens written `--flag`-style — arguments and subcommands alike.
+- `description` frontmatter carries a `Skill.Trigger.Clause` and names the key arguments so an agent knows what to provide before loading.
 - Missing-argument behavior stated: ask, orient, or noop — never guess.
 - Subcommands, if any, named in `Dotted.Notation` and distinct from argument names.
