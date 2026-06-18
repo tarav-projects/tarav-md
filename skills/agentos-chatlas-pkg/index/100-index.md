@@ -257,3 +257,51 @@
 - returns provider-home matches or locators, not `Chatlas.Session.Index` rows
 - used when freshness or direct source lookup matters before relying on archived material
 - does not mutate `Raw.Archive` or `Chatlas.Session.Index`
+
+****
+
+## Chatlas.Session.Model
+
+- `Chatlas.Session.Model` is the standard with which Chatlas represents any session's information
+- provider-neutral: one model normalized inward from many provider-native session formats
+- directionality: Chatlas knows provider formats and normalizes them into one; providers know nothing about this model
+- producer: `Chatlas.Normalizer.<Provider>` is the only writer — there is no provider-side conformance
+- provider-native formats are inspiration for the model's expressiveness, not an input contract it must accept
+- not overfitted to any single provider — the model carries no provider-named canonical fields
+- expressive enough to represent most of what a provider provides — each provider's content maps into a neutral concept the model defines
+- provider-specific richness with no neutral concept lives in `native` / `source_refs` — recoverable, never canonical
+- consumers are read-side: search, summary, replay, UI, `Chatlas.View.Model`
+
+****
+
+## Session.Event.Tape
+
+- `Session.Event.Tape` is the canonical structure of a `Chatlas.Session.Model` — an append-only, ordered ledger of typed events
+- the tape is the single source of truth; every higher-level view of the session is a projection derived from it
+- one event captures one thing that happened in the session
+- an event carries its identity, its order, its kind, who produced it, its content, and a link back to raw evidence
+- projections are derived and disposable — rebuildable from the tape, never authoritative on their own
+
+****
+
+## Session.Lineage
+
+- `Session.Lineage` is how a `Chatlas.Session.Model` represents branching and forking — event-level references on the linear tape, not a tree spine
+- the canonical tape is linear-chronological — the order events were recorded, not a branching tree
+- an event may reference a prior event as its origin; the tree is a projection derived from those references, never the spine
+- the active/visible path is the default read; abandoned branches stay on the tape as preserved evidence
+
+****
+
+## Session.Model.Map
+
+- `Session.Model.Map` is a per-provider document mapping a provider's native session concepts/fields to `Chatlas.Session.Model` neutral concepts
+- one file per provider: `agentos-chatlas-pkg/references/session-model-map-<provider>.md`
+- the neutral side is a controlled vocabulary — only `Chatlas.Session.Model` concept names defined in the index
+- one-directional: the index defines the neutral concept (SSOT); the map records the native→neutral path and never redefines it
+- records only non-obvious mappings — an obvious native↔neutral correspondence needs no line
+- each mapped line carries its rationale and the survival decision: the native concept resolves to a neutral concept or to `native`/`source_refs`
+- decision-and-rationale-centric, not a field-by-field restatement of the normalizer code — that is redundant placement and drifts
+- a native concept with no neutral mapping (`TBD`) is an open gap — the live question queue for `Chatlas.Session.Model` design
+- the shared neutral vocabulary makes the cross-provider slice pivotable: one neutral concept, every provider's source for it
+- a current-truth document — kept honest by re-checking against provider source and the raw archive; git holds history, no version metadata
