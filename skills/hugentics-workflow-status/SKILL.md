@@ -1,6 +1,6 @@
 ---
 name: hugentics-workflow-status
-description: "Operational Hugentic status workflow — produce a structured checkpoint against the active workflow's artifacts and surfaces."
+description: "Operational Hugentic status workflow — produce a structured checkpoint against the active workflow's artifacts and surfaces. USE WHEN the user asks for workflow status, a structured checkpoint, or a workflow-aware report during an active Hugentic workflow."
 ---
 
 # Hugentics Workflow Status
@@ -8,6 +8,10 @@ description: "Operational Hugentic status workflow — produce a structured chec
 Produce a structured status report for the active Hugentic workflow.
 
 This is an operational `Package.Aux.Skill` under `agentos-hugentics`. It is not a general project diagnosis surface; it reports the state of an ongoing Hugentic workflow.
+
+This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
 
 ## Activation
 

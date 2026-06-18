@@ -1,6 +1,6 @@
 ---
 name: agentos-parking-note
-description: "Capture an idea, todo, or issue into a project Parking.Note through a short discussion. Use when the user wants to quickly park a thought without actioning it."
+description: "Capture an idea, todo, or issue into a project Parking.Note through a short discussion. USE WHEN the user wants to quickly park a thought without actioning it. Called like a terminal command — a bare idea is the `--idea` to park."
 ---
 
 # Agentos Parking Note
@@ -8,6 +8,19 @@ description: "Capture an idea, todo, or issue into a project Parking.Note throug
 Short-lived workflow for capturing a thought into a project `Parking.Note`.
 
 The user presents an idea. The agent discusses it briefly, drafts a `Kernel.Block`-style entry, proposes a target file, and writes on approval.
+
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
+- supplied flags resolve to the `Skill.Arg` names below; a bare idea is `--idea`.
+
+## Skill.Arg.Section
+
+### Skill.Arg:Idea
+- the thought to park: an idea, todo, issue, or observation
+- required: false
+- help: "the thought to capture; omitted, the skill asks for it"
+- examples: --idea "revisit the retry backoff in the uploader"
 
 ## Activation
 

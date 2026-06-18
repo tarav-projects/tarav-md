@@ -9,6 +9,10 @@ The conventions base for building Agentos skills. This is a `Workflow.Neutral.Sk
 
 It exists so all `agentos-pkg` skills share one homogeneous framework instead of each reinventing structure, argument passing, and help.
 
+This is itself a `Batchy.Skill` — the convention it defines applies to it too.
+
+- `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
+
 ## Boundary
 
 - This skill defines conventions; it does not execute a skill-building workflow.

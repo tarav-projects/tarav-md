@@ -1,6 +1,6 @@
 ---
 name: agentos-index
-description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem of agentos-pkg. Load for index research, writing, diagnosis, testing, maintenance, or index design context."
+description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem of agentos-pkg. USE WHEN you need index research, writing, diagnosis, testing, maintenance, or index design context."
 ---
 
 # agentos-index
@@ -8,6 +8,10 @@ description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem
 Workflow-neutral `Package.Aux.Skill` for the Agentos Index — a `Soft.Programming.Language` for project knowledge.
 
 This skill orients the caller to the index subsystem without forcing an operation. The Agentos Index design reference lives in `agentos-pkg/index/`, `agentos-pkg/appendix/`, and `agentos-pkg/references/`.
+
+This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
 
 
 

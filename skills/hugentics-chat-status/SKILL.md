@@ -1,6 +1,6 @@
 ---
 name: hugentics-chat-status
-description: "Operational chat realignment workflow — produce a short or medium reconnect report for the current session. Use when the user says status, catch me up, what are we doing, what's next, I'm lost."
+description: "Operational chat realignment workflow — produce a short or medium reconnect report for the current session. USE WHEN the user says status, catch me up, what are we doing, what's next, I'm lost."
 ---
 
 # Hugentics Chat Status
@@ -12,6 +12,10 @@ This is a lightweight Hugentic realignment surface. It helps recover the main to
 If an explicit Hugentic workflow is active, include which workflow appears active and whether `hugentics-workflow-status` would be the more precise status surface.
 
 This skill is a **semantic guide**, not a rigid template. The user may append directions after invocation — adapt the output weight accordingly.
+
+This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments — append free direction to steer the report weight.
 
 ## Activation
 

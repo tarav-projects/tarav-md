@@ -1,6 +1,6 @@
 ---
 name: agentos-index-writer
-description: "Complete writer's guide for the Agentos Index. Covers index structure, writing philosophy, block format, write gates, the write loop, and post-write maintenance. The canonical doc surface for index writing knowledge."
+description: "Complete writer's guide for the Agentos Index. Covers index structure, writing philosophy, block format, write gates, the write loop, and post-write maintenance. The canonical doc surface for index writing knowledge. USE WHEN you need to write into the Agentos Index or learn how index writing works."
 ---
 
 # agentos-index-writer
@@ -8,6 +8,10 @@ description: "Complete writer's guide for the Agentos Index. Covers index struct
 The complete writer's guide for the Agentos Index — everything an agent needs to know to write well into the index, in one place.
 
 This is a `Workflow.Neutral.Skill` of `agentos-pkg` — it provides knowledge about index writing without steering the caller into a writing action. Loading this skill makes the agent literate about index writing; whether writing happens is up to the user and the caller's workflow. [`Package.Aux.Skill`, `Workflow.Neutral.Skill`, `Natural.Placement`]
+
+This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
 
 ## Index Structure For Writers
 

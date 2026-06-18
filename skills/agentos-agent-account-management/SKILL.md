@@ -1,11 +1,15 @@
 ---
 name: agentos-agent-account-management
-description: "Operational router for Agentos provider-account management problems: registering fresh auth artifacts, materializing provider homes, diagnosing account monitor failures, checking usage fallback, resolving active-vs-verified registry drift, and troubleshooting Codex auth.json, Claude Code ambient browser auth, and Copilot CLI account state."
+description: "Operational router for Agentos provider-account management problems: registering fresh auth artifacts, materializing provider homes, diagnosing account monitor failures, checking usage fallback, resolving active-vs-verified registry drift, and troubleshooting Codex auth.json, Claude Code ambient browser auth, and Copilot CLI account state. USE WHEN the user asks to inspect, register, repair, reconcile, materialize, or diagnose Agentos-managed provider accounts or provider homes."
 ---
 
 # Agentos Agent Account Management
 
 Use this skill when the user asks to inspect, register, repair, reconcile, materialize, or diagnose Agentos-managed provider accounts or provider homes.
+
+This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments — describe the account problem in natural language and the skill routes it.
 
 ## Core Rule
 

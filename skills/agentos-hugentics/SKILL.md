@@ -1,11 +1,15 @@
 ---
 name: agentos-hugentics
-description: "Entry point to the Agentos Hugentic Harness — the integrated standard workflow connecting design, implementation design, and implementation execution. Load when you need orientation to hugentic workflows."
+description: "Entry point to the Agentos Hugentic Harness — the integrated standard workflow connecting design, implementation design, and implementation execution. USE WHEN you need orientation to hugentic workflows."
 ---
 
 # Agentos Hugentic Harness
 
 Single entry point to the hugentic workflow system. This skill maps the landscape — what workflows exist, what agents run them, and where to find the full instructions.
+
+This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
 
 ## What This Is
 

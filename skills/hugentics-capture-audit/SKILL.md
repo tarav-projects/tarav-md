@@ -1,6 +1,6 @@
 ---
 name: hugentics-capture-audit
-description: "Operational capture audit workflow — scan chat for significant material not captured in durable surfaces. Use when the user says capture-audit, did we miss anything, scan the chat."
+description: "Operational capture audit workflow — scan chat for significant material not captured in durable surfaces. USE WHEN the user says capture-audit, did we miss anything, scan the chat."
 ---
 
 # Hugentics Capture Audit
@@ -11,6 +11,10 @@ Scan for converged material stuck upstream in the info flow. The goal is to avoi
 Chat → Design.Artifact → Stable.Surface
 Chat ——————————————————→ Stable.Surface (shortcut)
 ```
+
+This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
 
 At each stage: is there material that's further upstream than its maturity warrants?
 

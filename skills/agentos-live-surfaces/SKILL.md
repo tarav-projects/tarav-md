@@ -1,6 +1,6 @@
 ---
 name: agentos-live-surfaces
-description: "Live surface protocols for notes and scripts. Use when the user mentions live-note, live-script, live surface, or needs canonical location, naming, or numbering for notes/live/ or dev/live/."
+description: "Live surface protocols for notes and scripts. USE WHEN the user mentions live-note, live-script, live surface, or needs canonical location, naming, or numbering for notes/live/ or dev/live/."
 ---
 
 # Agentos Live Surfaces
@@ -8,6 +8,10 @@ description: "Live surface protocols for notes and scripts. Use when the user me
 Minimal protocols for live notes and live scripts — the two numbered live surfaces in an agentos project.
 
 This skill operationalizes `Agentos.Live.Note` and `Agentos.Live.Script` naming and location behavior derived from `File.Numbering.Protocol`. The durable concepts live in `agentos-pkg/index/100-index.md`; operational numbering details live in `agentos-pkg/references/file-numbering-protocol.md`.
+
+This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
 
 ## Scope
 
