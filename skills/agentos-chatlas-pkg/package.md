@@ -12,7 +12,7 @@
 ### Orientation
 
 - `agentos-chatlas-pkg` — workflow-neutral Chatlas package orientation.
-- `references/chatlas-commands.md` — Chatlas command and workflow reference absorbed from the deprecated `chatlas-usage` skill.
+- `references/chatlas-commands.md` — Chatlas command and workflow reference.
 
 ### Index
 
@@ -44,12 +44,6 @@
 ## Package.Agents
 
 - No dedicated `Package.Agent` is defined in this structural pass.
-
-## Compatibility
-
-- `chatlas-usage` is deprecated as a `Usage.Skill`; its command content is absorbed into `references/chatlas-commands.md`.
-- `agentos-session-continue` is renamed to `chatlas-session-continue`.
-- `agentos-session-zip-transcript` is renamed to `chatlas-session-zip-transcript`.
 
 ## Local.Boundary
 

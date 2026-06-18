@@ -1,6 +1,6 @@
 # Chatlas Commands
 
-Operational Chatlas command reference absorbed from the deprecated `chatlas-usage` skill.
+Operational Chatlas command and workflow reference.
 
 ## Default Command Mapping
 
