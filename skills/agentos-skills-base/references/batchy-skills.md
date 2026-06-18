@@ -6,7 +6,8 @@ The Batchy framework is a convention the agent knows, not a parser. The agent st
 
 ## The Model
 
-- A skill that takes arguments is a `Batchy.Skill`.
+- Every Agentos skill is a `Batchy.Skill` — the universal design style; `-h` help is always available, while arguments, banner, and subcommands appear only when the skill needs them.
+- A skill with no arguments is still Batchy: it answers `-h` and carries the `Batchy.Skill.Contract` help rule, and simply omits the `Skill.Arg.Section`.
 - Arguments are passed as bash-like flags — **valued** (`--project "BlaBla"`) or **switch** (`--AUTO`).
 - Each argument is a `Skill.Arg` block with a canonical name used unambiguously in the skill body.
 - The loose flag the user types maps to that canonical name; the agent resolves synonyms, abbreviations, and positionals (`--proj` ≈ `--project`).
@@ -20,10 +21,10 @@ Every Batchy skill instantiates one `Batchy.Skill.Template` — the same skeleto
 
 1. a one-paragraph description of what the skill is and does;
 2. a `Batchy.Skill.Contract` block — the in-skill mini-course (below);
-3. a `## Skill.Arg.Section` holding one `### Skill.Arg:<Name>` block per argument;
+3. a `## Skill.Arg.Section` of `### Skill.Arg:<Name>` blocks — only when the skill takes arguments;
 4. optional `## SubCommands` listing the skill's `Batchy.SubCommand`s.
 
-The frontmatter `description` carries a `Skill.Trigger.Clause` (a `USE WHEN` line) so an agent knows when to load the skill.
+Adapt the template to the skill: a zero-argument skill omits the `Skill.Arg.Section` (and its Contract carries only the help rule); a single-operation skill omits `SubCommands`. The `Batchy.Skill.Contract` and the frontmatter `Skill.Trigger.Clause` (a `USE WHEN` line) are always present.
 
 ## The Batchy.Skill.Contract Block
 
@@ -33,9 +34,17 @@ Carry a `Batchy.Skill.Contract` near the top of the skill body: a compact mini-c
 This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base`
 for the full convention.
 
-- `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
+- `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
 - every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
 - supplied flags resolve to the `Skill.Arg` names below; loose and positional forms resolve too.
+```
+
+A zero-argument skill carries only the help rule:
+
+```markdown
+This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
 ```
 
 ## Skill.Arg.Section

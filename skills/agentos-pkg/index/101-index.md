@@ -250,9 +250,10 @@
 
 ## Batchy.Skill
 
-- `Batchy.Skill` is a skill framework that interprets a skill as a CLI-style command — arguments passed as bash-like flags
-- a convention, not a mandate — for a single obvious argument the agent just grabs it; flags become valuable as parameter count grows
-- arguments are declared as `Skill.Arg` blocks inside the skill's `Skill.Arg.Section`
+- `Batchy.Skill` is the design style every Agentos skill follows — a skill interpreted as a CLI-style command
+- universal: every skill is a `Batchy.Skill`; `-h` help is always available, while arguments, banner, and subcommands appear only when the skill needs them
+- a convention, not a mandate — a clear natural prompt always works; for one obvious argument the agent just grabs it, flags grow valuable as parameter count grows
+- when a skill takes arguments, they are declared as `Skill.Arg` blocks inside its `Skill.Arg.Section`
 - each argument has a canonical name (e.g. `Skill.Arg:Target.Project`); loose flags, abbreviations, and positionals resolve to it
 - tokens are written `--flag`-style by preference so they read as commands inside natural text (`do a --run on stripe-pkg`); loose forms still resolve
 - switch flags map to `Dotted.Parameterized.Notation` values (`--AUTO` -> `Alignment.Mode:Autonomous`)
@@ -269,9 +270,10 @@
 
 - `Batchy.Skill.Template` is the canonical skeleton every `Batchy.Skill` instantiates, so all Agentos skills share one shape
 - opens with a `Batchy.Skill.Contract` block — the in-skill mini-course on the convention
-- then a `Skill.Arg.Section` holding one `### Skill.Arg:<Name>` block per argument
+- then, when the skill takes arguments, a `Skill.Arg.Section` of `### Skill.Arg:<Name>` blocks
 - then optional `Batchy.SubCommand`s, each a nested Batchy skill loaded on demand
 - requires a `Skill.Trigger.Clause` (`USE WHEN`) in the frontmatter description
+- adapts per skill: a zero-argument skill omits the `Skill.Arg.Section`, a single-operation skill omits subcommands; the `Batchy.Skill.Contract` and `Skill.Trigger.Clause` are always present
 - the copy-pasteable skeleton lives in `agentos-skills-base/references/batchy-skills.md`
 
 ****
@@ -281,10 +283,11 @@
 - `Batchy.Skill.Contract` is the in-skill mini-course a `Batchy.Skill` carries — a compact restatement of the convention so the skill complies without `agentos-skills-base` loaded
 - a `Cited.Duplication`: it duplicates the canonical convention into the skill and cites it for depth
 - declares the skill is a `Batchy.Skill` and points to `agentos-skills-base` for the full convention
-- help rule: `-h`/`--help` short-circuits to `Batchy.Skill.Help` instead of running
-- banner rule: every run begins by printing the `Batchy.Skill.Banner` of resolved arguments
-- resolution rule: loose flags, abbreviations, and positionals map to canonical `Skill.Arg` names
-- sits at the top of the skill body, ahead of the `Skill.Arg.Section`
+- help rule (always): `-h`/`--help` short-circuits to `Batchy.Skill.Help`, printing the help into the chat instead of running
+- banner rule (when it has arguments): a run begins by printing the `Batchy.Skill.Banner` of resolved arguments; a zero-argument skill has none
+- resolution rule (when it has arguments): loose flags, abbreviations, and positionals map to canonical `Skill.Arg` names
+- a zero-argument skill carries only the help rule; arg-bearing skills carry all three
+- sits at the top of the skill body, ahead of any `Skill.Arg.Section`
 
 ****
 
@@ -303,6 +306,7 @@
 ## Skill.Arg.Section
 
 - `Skill.Arg.Section` is the section of a `Batchy.Skill` that holds its arguments
+- present only when the skill takes arguments; a zero-argument skill has none
 - each argument is a `### Skill.Arg:<Name>` block nested in the section
 - block-based, never a markdown table — these blocks are the single declaration of the skill's arguments
 - the agent resolves loose flags, abbreviations, and positionals against them to the canonical `Skill.Arg` name
@@ -312,10 +316,12 @@
 
 ## Batchy.Skill.Help
 
-- `Batchy.Skill.Help` is the `-h`/`--help` call of a `Batchy.Skill` — prints terminal-style usage instead of running
+- `Batchy.Skill.Help` is the `-h`/`--help` call of a `Batchy.Skill` — prints the skill's help into the chat instead of running
+- available on every skill, including zero-argument ones — the universal half of the convention
+- distinct from loading the skill: loading silently orients the agent, `-h` is a deliberate help output to the user
 - a non-executing call: it short-circuits the skill, orienting the caller without performing the operation
 - leads with a one-paragraph explanation of what the skill is and does, then the usage
-- usage is rendered from the skill's `Skill.Arg` blocks: each argument's flag, meaning, default, and required state
+- usage is rendered from the skill's `Skill.Arg` blocks; a zero-argument skill states it takes none
 - available regardless of other supplied flags — `-h` always wins over execution
 
 ****

@@ -30,9 +30,9 @@ The skill taxonomy and roles are canonical in the `agentos-pkg` index (`index/10
 
 ## Batchy Convention
 
-Every Agentos skill that takes arguments is a `Batchy.Skill` — called like a terminal command. The convention is canonical in the index and detailed for authors in the reference:
+Every Agentos skill is a `Batchy.Skill` — called like a terminal command. `-h` help is universal; arguments, banner, and subcommands appear only when the skill needs them. The convention is canonical in the index and detailed for authors in the reference:
 
-- `Batchy.Skill` — skill interpreted as a CLI-style command, arguments passed as bash-like flags.
+- `Batchy.Skill` — the universal skill design style; a skill interpreted as a CLI-style command, with `-h` always and flag arguments when it has them.
 - `Batchy.Skill.Template` — the canonical skeleton every Batchy skill instantiates.
 - `Batchy.Skill.Contract` — the in-skill mini-course restating the convention standalone (a `Cited.Duplication`).
 - `Skill.Arg` — one argument of the skill, written as a `### Skill.Arg:<Name>` kernel block.
