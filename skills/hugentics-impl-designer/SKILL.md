@@ -1,6 +1,6 @@
 ---
 name: hugentics-impl-designer
-description: "impl.designer.agent workflow master — design implementation plans and produce Impl.Req artifacts. Covers the Alignment.Loop:How and artifact format."
+description: "impl.designer.agent workflow master — design implementation plans and produce Impl.Req artifacts. Covers the Alignment.Loop:How and artifact format. USE WHEN the user wants to plan an implementation or create an Impl.Req. Called like a terminal command — an optional design input plus `--AUTO` for autonomous design."
 ---
 
 # Hugentics Impl Designer
@@ -8,6 +8,29 @@ description: "impl.designer.agent workflow master — design implementation plan
 Workflow master for the `impl.designer.agent` — the second phase of the Hugentic Harness.
 
 Design an implementation path and produce an `Impl.Req` artifact. The agent forks toward implementation, writing `Impl.Index` + `Execution.Plan`, and baking in development principles.
+
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
+- every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
+- supplied flags resolve to the `Skill.Arg` names below; a bare prompt or artifact path is `--input`.
+
+## Skill.Arg.Section
+
+### Skill.Arg:Design.Input
+- the source the implementation design starts from: a `What.Design.Session` artifact, a design summary, or a direct user request
+- required: false
+- help: "the design source: artifact path, summary, or direct request"
+- examples: --input "notes/live/NNN-...-design.md"
+
+### Skill.Arg:Alignment.Mode
+- whether the agent prompts at each `Alignment.Checkpoint` or resolves them itself and runs end-to-end
+- required: false
+- default: Interactive
+- type: switch
+- help: "run autonomously instead of prompting at checkpoints"
+- examples: --AUTO
+- detail: `agentos-hugentics/references/alignment-session.md`
 
 ## Activation
 

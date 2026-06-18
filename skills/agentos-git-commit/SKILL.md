@@ -10,6 +10,37 @@ Operational `Package.Aux.Skill` under `agentos-pkg`.
 
 Commit changes in existing Git repositories using a deterministic semantic multi-commit flow.
 
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
+- every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
+- supplied flags resolve to the `Skill.Arg` names below; a bare path is `--repo`.
+
+## Skill.Arg.Section
+
+### Skill.Arg:Target.Repo
+- the repository to commit in; when omitted, the skill auto-detects the current repo or immediate child repos
+- required: false
+- default: auto-detect (current directory or immediate child repositories)
+- help: "the repository to commit in"
+- examples: --repo "./my-repo"
+
+### Skill.Arg:Allow.Amend
+- permit `git commit --amend`; forbidden unless this switch is set
+- required: false
+- default: false
+- type: switch
+- help: "allow amending the previous commit"
+- examples: --amend
+
+### Skill.Arg:Allow.NoVerify
+- permit `git commit --no-verify`; forbidden unless this switch is set
+- required: false
+- default: false
+- type: switch
+- help: "allow bypassing commit hooks"
+- examples: --no-verify
+
 ## Trigger Policy
 
 Use this skill only when explicitly invoked by name (for example: `$agentos-git-commit`).

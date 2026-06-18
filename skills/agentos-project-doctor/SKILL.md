@@ -1,11 +1,26 @@
 ---
 name: agentos-project-doctor
-description: Diagnose how well a target folder conforms to the Agentos.Stack project model. Use directly or delegate to a subagent when the user asks for an Agentos doctor pass, project health check, adoption assessment, migration assessment, or wants to evaluate an Agentos.Project target. Suitable for low-reasoning, cost-efficient models because the default task is report-only inspection. Do not fix unless explicitly asked in a follow-up.
+description: Diagnose how well a target folder conforms to the Agentos.Stack project model. USE WHEN the user asks for an Agentos doctor pass, project health check, adoption assessment, migration assessment, or wants to evaluate an Agentos.Project target. Called like a terminal command — `--target <folder>` (defaults to the current directory), report-only. Suitable for low-reasoning, cost-efficient models because the default task is report-only inspection. Do not fix unless explicitly asked in a follow-up.
 ---
 
 # Agentos Project Doctor
 
 Diagnosis-first workflow for evaluating how well a concrete `Agentos.Project:<target>` conforms to `Agentos.Stack`.
+
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
+- every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
+- a bare path resolves to `--target`; when omitted, the target is the current working directory.
+
+## Skill.Arg.Section
+
+### Skill.Arg:Target.Project
+- the project folder to evaluate against `Agentos.Stack`
+- required: false
+- default: the current working directory
+- help: "the project folder to diagnose"
+- examples: --target "./my-project"
 
 ## Source Model
 

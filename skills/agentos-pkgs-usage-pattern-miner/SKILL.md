@@ -1,6 +1,6 @@
 ---
 name: agentos-pkgs-usage-pattern-miner
-description: "Mines chatlas sessions for package skill usage patterns. Load when you want to discover, validate, or refine usage patterns for a package by analyzing real agent sessions that used it. Requires a target package. Uses chatlas transcripts to extract situation/response pairs and compare against existing usage-patterns/."
+description: "Mines chatlas sessions for package skill usage patterns. USE WHEN you want to discover, validate, or refine usage patterns for a package by analyzing real agent sessions that used it. Requires a target package. Called like a terminal command — a `--discover`/`--compare`/`--suggest` subcommand on a target `--package`. Uses chatlas transcripts to extract situation/response pairs and compare against existing usage-patterns/."
 ---
 
 # agentos-pkgs-usage-pattern-miner
@@ -9,19 +9,46 @@ description: "Mines chatlas sessions for package skill usage patterns. Load when
 
 This skill closes the feedback loop between real agent usage and documented package hot paths. It reads organic sessions, extracts situation/response pairs, compares them against existing patterns, and suggests improvements or new patterns.
 
-## Arguments
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
 
-`Skill.Explicit.Args` — this skill needs data from the caller to operate.
+- `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
+- every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
+- supplied flags resolve to the `Skill.Arg` names below; a bare package name is `--package`.
+- pick a `--`subcommand for the operation; with no subcommand and no flags, this skill just loads orientation context and mines nothing.
 
-- **Target package** (required) — which package skill's usage patterns to mine/improve. Determines which `usage-patterns/` folder to compare against and which skill name to search in chatlas.
-- **Session selector** (optional) — chatlas query filters to narrow the session pool: `--updated-after`, `--project`, `--provider`, `--limit`, etc.
-- **Focus** (optional) — specific pattern name or situation type to focus on. If omitted, mine broadly.
+## Skill.Arg.Section
 
-Zero-arg behavior: the skill loads its orientation context. No mining is performed.
+These arguments are shared across subcommands; `--package` is always required.
+
+### Skill.Arg:Target.Package
+- the package skill whose usage patterns to mine; sets which `usage-patterns/` folder to compare against and which skill name to search in chatlas
+- required: true
+- help: "which package skill to mine usage patterns for"
+- examples: --package "stripe-pkg"
+
+### Skill.Arg:Session.Selector
+- chatlas query filters that narrow the session pool, passed through to `agentos chatlas query`
+- required: false
+- help: "chatlas query filters to narrow the sessions mined"
+- examples: --session-selector "--updated-after 2026-01-01 --provider claude-code --limit 50"
+
+### Skill.Arg:Focus
+- a specific pattern name or situation type to focus on; omitted means mine broadly
+- required: false
+- help: "a pattern name or situation type to focus on"
+- examples: --focus "cold-entry navigation"
+
+## SubCommands
+
+Each `Batchy.SubCommand` inherits the arguments above. They are stages of one pipeline but each is independently useful; activate the one you want.
+
+- `--discover` — find sessions that loaded the target package and extract situation / navigation trace / outcome.
+- `--compare` — match discovered sessions against existing `<package>/usage-patterns/` and surface follows, deviations, and gaps.
+- `--suggest` — propose new patterns, refinements, test candidates, and router updates from discovery and comparison.
+
+The subcommand procedures are detailed below.
 
 ## Operations
-
-The user drives which operation to perform. Common moves:
 
 ### Discover
 

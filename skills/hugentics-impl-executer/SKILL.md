@@ -1,6 +1,6 @@
 ---
 name: hugentics-impl-executer
-description: "impl.executer.agent workflow master — load and execute Impl.Req artifacts through disciplined, incremental implementation. Covers Alignment.Loop:Exec, deviation handling, and execution references."
+description: "impl.executer.agent workflow master — load and execute Impl.Req artifacts through disciplined, incremental implementation. Covers Alignment.Loop:Exec, deviation handling, and execution references. USE WHEN the user wants to execute an implementation plan or approved Impl.Req. Called like a terminal command — `--impl-req <artifact>` plus `--AUTO` for autonomous execution."
 ---
 
 # Hugentics Impl Executer
@@ -8,6 +8,29 @@ description: "impl.executer.agent workflow master — load and execute Impl.Req 
 Workflow master for the `impl.executer.agent` — the third phase of the Hugentic Harness.
 
 Load an `Impl.Req` artifact and execute it through disciplined, incremental implementation. The agent runs a minimal realignment discussion to recover alignment, then implements following `Vertical.Slice` ordering from the `Execution.Plan`.
+
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
+- every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
+- supplied flags resolve to the `Skill.Arg` names below; a bare path or note number is `--impl-req`.
+
+## Skill.Arg.Section
+
+### Skill.Arg:Impl.Req
+- the `Impl.Req` artifact to load and execute
+- required: true
+- help: "the Impl.Req artifact to execute"
+- examples: --impl-req "notes/live/520-batchy-template-rollout-impl-req.md"
+
+### Skill.Arg:Alignment.Mode
+- whether the agent prompts at each `Alignment.Checkpoint` or resolves them itself and runs end-to-end
+- required: false
+- default: Interactive
+- type: switch
+- help: "run autonomously instead of prompting at checkpoints"
+- examples: --AUTO
+- detail: `agentos-hugentics/references/alignment-session.md`
 
 ## Activation
 

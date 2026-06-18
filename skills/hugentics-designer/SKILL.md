@@ -1,6 +1,6 @@
 ---
 name: hugentics-designer
-description: "Main.Designer.Agent workflow master — run What.Design.Session workflows for scoped human-agent design convergence. Covers in-chat and artifact-backed sessions, session interruptions, and impl-req handoffs."
+description: "Main.Designer.Agent workflow master — run What.Design.Session workflows for scoped human-agent design convergence. Covers in-chat and artifact-backed sessions, session interruptions, and impl-req handoffs. USE WHEN design work is happening — an explicit design-session request or organic design signals. Called like a terminal command — an optional `--scope`, `--artifact` backend, and `--AUTO`."
 ---
 
 # Hugentics Designer
@@ -12,6 +12,37 @@ Coordinate a `What.Design.Session`: a scoped human-agent convergence surface for
 For the general alignment model, see `agentos-hugentics` and its `references/alignment-session.md`.
 
 This skill is a router. Load only the references needed for the current backend, interruption, or section update.
+
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
+- every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
+- supplied flags resolve to the `Skill.Arg` names below; a bare topic is `--scope`.
+
+## Skill.Arg.Section
+
+### Skill.Arg:Design.Scope
+- the subject and boundary of the design work
+- required: false
+- help: "what is being designed"
+- examples: --scope "the Batchy skill framework"
+
+### Skill.Arg:Session.Backend
+- where the design session lives: in-chat by default, or artifact-backed when `--artifact` is set
+- required: false
+- default: InChat
+- type: switch
+- help: "use an artifact-backed session instead of in-chat"
+- examples: --artifact
+
+### Skill.Arg:Alignment.Mode
+- whether the agent prompts at each `Alignment.Checkpoint` or resolves them itself and runs end-to-end
+- required: false
+- default: Interactive
+- type: switch
+- help: "run autonomously instead of prompting at checkpoints"
+- examples: --AUTO
+- detail: `agentos-hugentics/references/alignment-session.md`
 
 ## Activation
 

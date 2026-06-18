@@ -1,6 +1,6 @@
 ---
 name: agentos-session-supervisor
-description: "Observe another Chatlas-backed agent session as a non-mutating supervisor. Use when the user wants an agent to follow a target session, check new turns, apply an evolving supervision brief, report deviations or risks, and optionally draft paste-ready interventions while keeping all supervisor state in the current conversation."
+description: "Observe another Chatlas-backed agent session as a non-mutating supervisor. USE WHEN the user wants an agent to follow a target session, check new turns, apply an evolving supervision brief, report deviations or risks, and optionally draft paste-ready interventions while keeping all supervisor state in the current conversation. Called like a terminal command — `--session <target>` plus an optional `--brief` and `--role` lenses."
 ---
 
 # Agentos Session Supervisor
@@ -14,6 +14,33 @@ The supervisor can follow another agent or worker session, check whether that wo
 A supervisor does not continue the target session here, edit target-session artifacts automatically, manage a durable supervisor record on disk, replace formal alignment-session design work, or produce generic status for the current chat.
 
 The supervisor may also run one or more active `Supervisor.Role`s. A role is an additive read-only lens over the same observed transcript. Roles live in `references/` and can be activated by the user when they want the supervisor to notice a specific class of material while still following the current supervision brief.
+
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
+- every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
+- supplied flags resolve to the `Skill.Arg` names below; a bare session id, URI, or query is `--session`.
+- this skill is a conversation, not a one-shot command: the arguments seed an evolving supervision pass rather than triggering discrete subcommands.
+
+## Skill.Arg.Section
+
+### Skill.Arg:Target.Session
+- the session to observe: a session id, an `agentos://chat-session/...` URI, a query, or a selector
+- required: true
+- help: "the target session to observe"
+- examples: --session "agentos://chat-session/..."
+
+### Skill.Arg:Supervisor.Brief
+- the evolving objective and user directives the supervisor watches against; treated as a `Soft.Program`
+- required: false
+- help: "what to watch for in the target session"
+- examples: --brief "ensure the worker follows the impl-req without scope creep"
+
+### Skill.Arg:Active.Roles
+- additive read-only lenses applied over the observed transcript; each names a `references/role-*.md`, loaded on activation
+- required: false
+- help: "role lenses to activate (additive; may list several)"
+- examples: --role chat-grounding
 
 ## Core Contract
 

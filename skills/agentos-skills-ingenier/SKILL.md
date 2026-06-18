@@ -7,6 +7,33 @@ description: Mine local and external sources to discover reusable patterns, exam
 
 Mine sources to improve skill design. This operational `Package.Aux.Skill` under `agentos-pkg` owns the whole loop: research, discussion, and eventual application.
 
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
+- every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
+- supplied flags resolve to the `Skill.Arg` names below; a bare idea or skill path is `--target`.
+
+## Skill.Arg.Section
+
+### Skill.Arg:Skill.Target
+- what to work on: a prompt or capability description for a new skill, or an existing skill path/folder to upgrade
+- the skill self-detects whether this is a new skill, an upgrade, or a source comparison
+- required: true
+- help: "the new-skill idea or the existing skill to upgrade"
+- examples: --target "skills/agentos-foo"
+
+### Skill.Arg:Sources
+- extra sources to mine and any source constraints, beyond the curated registry
+- required: false
+- help: "extra sources or source constraints"
+- examples: --sources "github.com/danielmiessler/fabric, ./local-skills"
+
+### Skill.Arg:Platform
+- target agent or platform constraints for the resulting skill
+- required: false
+- help: "target agent/platform constraints"
+- examples: --platform "claude-code"
+
 ## Default Sources
 
 - Read [references/source-registry.md](references/source-registry.md) first.
@@ -14,13 +41,6 @@ Mine sources to improve skill design. This operational `Package.Aux.Skill` under
 - Treat registry entries as curated defaults, not a mandatory exhaustive search.
 - Treat custom recommendations as high-priority local evidence when they directly apply.
 - Add prompt-provided repos, folders, docs, gists, or skill paths as dynamic sources for the current task.
-
-## Inputs
-
-- A prompt or capability description for a new skill
-- An existing skill path or folder to upgrade
-- Optional source constraints or extra sources
-- Optional target agent or platform constraints
 
 ## Trigger Boundary
 
