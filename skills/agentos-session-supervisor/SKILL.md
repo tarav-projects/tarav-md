@@ -13,6 +13,8 @@ The supervisor can follow another agent or worker session, check whether that wo
 
 A supervisor does not continue the target session here, edit target-session artifacts automatically, manage a durable supervisor record on disk, replace formal alignment-session design work, or produce generic status for the current chat.
 
+The supervisor may also run one or more active `Supervisor.Role`s. A role is an additive read-only lens over the same observed transcript. Roles live in `references/` and can be activated by the user when they want the supervisor to notice a specific class of material while still following the current supervision brief.
+
 ## Core Contract
 
 - You are an observer of a target session.
@@ -21,6 +23,10 @@ A supervisor does not continue the target session here, edit target-session arti
 - Keep supervisor state in the current chat only.
 - Treat the supervision brief as a `Soft.Program`: structured enough to preserve continuity, flexible enough to adapt to user correction and common sense.
 - Prefer direct reports over rigid templates.
+- Active roles are additive lenses.
+- The user's current brief remains primary.
+- A role may surface a proposal, but not hijack the report.
+- When roles conflict, report the conflict and ask the user.
 
 ## In-Chat State
 
@@ -31,9 +37,30 @@ Useful state:
 - `Target.Session`: the session id, URI, query, or selector the user wants observed
 - `Supervisor.Brief`: the current evolving objective and user directives
 - `Last.Observed.Turn`: the last observed `zip-transcript.turns` index, when tracking deltas
+- `Active.Roles`: role references the user has activated for this supervision pass
 - `Recent.Findings`: only what is useful for continuity in this chat
 
 Do not create files for this state unless the user explicitly asks.
+
+## Supervisor Roles
+
+Use roles when the user activates a predefined lens by name or asks for the behavior the role defines.
+
+Roles are not separate workflows. They do not replace the supervision brief, target-session cursoring, or report contract. They add noticing, evidence collection, and proposal shapes to the normal supervisor pass.
+
+Available roles:
+
+- `references/role-chat-grounding.md` — propose `Chat.Grounding` material from observed transcript turns, including candidate `Chat.Ref` / turn references and related concept targets
+
+Role discipline:
+
+- Load a role reference before using that role.
+- Keep role state in the current chat unless the user explicitly asks for a durable artifact.
+- Treat role output as proposal material, not accepted design truth.
+- Do not write to indexes, artifacts, or target sessions from a role without explicit user instruction and the relevant workflow gates.
+- A role may write only to surfaces its role reference explicitly permits.
+- Prefer a small number of high-signal role findings over exhaustive dumps.
+- If role findings compete with the user's current question, answer the question first and surface the role finding as a short secondary note.
 
 ## Reading The Target Session
 
@@ -101,8 +128,9 @@ When the user asks to check new turns:
 3. Use `zip-transcript --range <Last.Observed.Turn>:` if a cursor exists.
 4. If no cursor exists, read the full `zip-transcript` or ask whether to start from the beginning.
 5. Analyze only what is relevant to the current `Supervisor.Brief`.
-6. Report findings and recommendations.
-7. Update the in-chat cursor to the observed `range.total` or full turn count.
+6. Apply any `Active.Roles` as additive lenses over the same observed turns.
+7. Report findings and recommendations.
+8. Update the in-chat cursor to the observed `range.total` or full turn count.
 
 If no new turns exist, say that plainly and keep the cursor unchanged.
 
@@ -115,6 +143,7 @@ Usually include:
 - what changed in the target session
 - whether the target agent is aligned with the brief
 - deviations, risks, or missed obligations
+- role findings, when active and materially useful
 - concrete recommendations
 - optional paste-ready intervention text, clearly labeled
 

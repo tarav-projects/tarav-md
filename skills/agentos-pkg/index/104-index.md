@@ -185,6 +185,31 @@
 
 ****
 
+## Harness.Injected.ENV
+
+- `Harness.Injected.ENV` is environment state injected by Agentos to enable provider functionality
+- it exists because the provider exposes required functionality through environment variables
+- it translates explicit Agentos runtime state into the provider's execution mechanism
+- it is mechanical provider enablement, not launch policy
+- the injected value must be necessary for the requested provider functionality
+- provider adapters may know which env variable enables the provider mechanism
+- provider adapters must not use harness injection to add behavioral preferences
+- command-build tests should allow only named harness env keys when config env is empty
+
+****
+
+## Config.Injected.ENV
+
+- `Config.Injected.ENV` is environment state declared by configuration and injected into provider execution
+- it exists because a configuration surface declares environment state for execution
+- it carries launch policy
+- it is passed through to the provider process as configured
+- `Agentos.Agent.Adapter` may transport config env
+- `Agentos.Agent.Adapter` must not author config env
+- it is distinct from `Harness.Injected.ENV`
+
+****
+
 ## Index.Linter
 
 - `Index.Linter` is the deterministic CLI checker for index and appendix surfaces
