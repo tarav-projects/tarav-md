@@ -11,6 +11,25 @@ The caller prepares the arguments and typically spawns the agent. The delegated 
 
 This is a `Batchy.Skill`: its arguments are the `Skill.Arg` blocks below, and its `Skill.Module`s (named, activated by mention, e.g. `--index-grounding`) are shortcuts that preset those arguments.
 
+## Skill.Index.Section
+
+This skill runs as two agents. The skill body refers to both throughout.
+
+### Caller.Agent
+- the agent that invokes this skill; the only agent with access to the caller's conversation and context
+- distills the relevant context into the `Skill.Arg`s and typically spawns the `Master.Agent`
+- owns argument preparation and, for `Skill.Module`s, the preset values
+
+### Master.Agent
+- the read-only research agent the caller spawns, acting as `Packages.Master.Agent`
+- owns package discovery, surface loading, research, and synthesis, keeping that context off the `Caller.Agent`
+- answers the supplied prompts from accessible Agentos package surfaces and returns the report
+
+### Hard.Evidence
+- every reported fact carries a resolvable link to its source — a surface path plus the concept block or line range it came from
+- lets the `Caller.Agent` double-check any claim against the source rather than trusting it
+- the `Master.Agent` distinguishes such evidence from its own inference and never reports an ungrounded fact as evidence
+
 ## Skill.Arg.Section
 
 The master agent does not receive the caller's conversation. Pass the context each prompt needs explicitly; prefer complete, relevant context over an unfiltered transcript.
