@@ -271,6 +271,7 @@
 
 - `Batchy.Skill.Template` is the canonical skeleton every `Batchy.Skill` instantiates, so all Agentos skills share one shape
 - opens with a `Batchy.Skill.Contract` block — the in-skill mini-course on the convention
+- then, optionally, a `Skill.Index.Section` defining the skill's own key concepts
 - then, when the skill takes arguments, a `Skill.Arg.Section` of `### Skill.Arg:<Name>` blocks
 - then any `Skill.Module`s — named files or sections loaded on mention, optionally fronted by a `Skill.Arg` carrying an `action`
 - requires a `Skill.Trigger.Clause` (`USE WHEN`) in the frontmatter description
@@ -314,6 +315,20 @@
 - block-based, never a markdown table — these blocks are the single declaration of the skill's arguments
 - the agent resolves loose flags, abbreviations, and positionals against them to the canonical `Skill.Arg` name
 - the source that `Batchy.Skill.Help` and `Batchy.Skill.Banner` render from
+
+****
+
+## Skill.Index.Section
+
+- `Skill.Index.Section` is the optional section of a `Batchy.Skill` that defines the skill's own key concepts
+- a `Skill.Arg.Section` sibling: a named SKILL section holding one kind of block
+- entries are compact concept blocks — a `Dotted.Name` heading plus a few orthogonal lines, like tiny `Kernel.Block:Index` entries
+- scoped to one skill, with no local router; distinct from the package-wide `Package.Skill.Index`
+- included only when a skill hinges on a few defined terms, e.g. a two-agent skill defining `Caller.Agent` and `Master.Agent`
+
+### meta
+
+- detail: `agentos-batchy-skills/references/batchy-skill-designer.md`
 
 ****
 

@@ -1,6 +1,6 @@
 # Batchy Skills — Designing One
 
-How to *build* a `Batchy.Skill`. This is the designer-facing guide — best practices for authoring a skill. For operating one, see `batchy-skill-run.md`. Concepts are canonical in `agentos-pkg/index/101-index.md` (`Batchy.Skill`, `Batchy.Skill.Template`, `Batchy.Skill.Contract`, `Skill.Arg`, `Skill.Arg.Section`, `Batchy.Skill.Help`, `Batchy.Skill.Banner`, `Skill.Module`).
+How to *build* a `Batchy.Skill`. This is the designer-facing guide — best practices for authoring a skill. For operating one, see `batchy-skill-run.md`. Concepts are canonical in `agentos-pkg/index/101-index.md` (`Batchy.Skill`, `Batchy.Skill.Template`, `Batchy.Skill.Contract`, `Skill.Index.Section`, `Skill.Arg`, `Skill.Arg.Section`, `Batchy.Skill.Help`, `Batchy.Skill.Banner`, `Skill.Module`).
 
 ## The Skill Template
 
@@ -8,10 +8,11 @@ Every Batchy skill instantiates one `Batchy.Skill.Template` — the same skeleto
 
 1. a one-paragraph description of what the skill is and does;
 2. a `Batchy.Skill.Contract` block — the in-skill mini-course (below);
-3. a `## Skill.Arg.Section` of `### Skill.Arg:<Name>` blocks — only when the skill takes arguments;
-4. any `Skill.Module`s — named files or sections, optionally fronted by an arg.
+3. a `## Skill.Index.Section` defining the skill's own key concepts — only when the skill hinges on a few defined terms;
+4. a `## Skill.Arg.Section` of `### Skill.Arg:<Name>` blocks — only when the skill takes arguments;
+5. any `Skill.Module`s — named files or sections, optionally fronted by an arg.
 
-Adapt the template to the skill: a zero-argument skill omits the `Skill.Arg.Section` (and its Contract carries only the help rule); a single-operation skill needs no extra modules. The `Batchy.Skill.Contract` and the frontmatter `Skill.Trigger.Clause` (a `USE WHEN` line) are always present.
+Adapt the template to the skill: a zero-argument skill omits the `Skill.Arg.Section` (and its Contract carries only the help rule); a single-operation skill needs no extra modules; most skills omit the `Skill.Index.Section`. The `Batchy.Skill.Contract` and the frontmatter `Skill.Trigger.Clause` (a `USE WHEN` line) are always present.
 
 ## The Batchy.Skill.Contract Block
 
@@ -32,6 +33,24 @@ A zero-argument skill carries only the help rule:
 This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
+```
+
+## Skill.Index.Section
+
+Most skills skip this. Include a `## Skill.Index.Section` only when the skill hinges on a few defined concepts the rest of the body leans on — for example a two-agent skill that keeps referring to `Caller.Agent` and `Master.Agent`. It is a `Skill.Arg.Section` sibling: a named section holding one kind of block, scoped to this one skill, with no local router (distinct from the package-wide `Package.Skill.Index`).
+
+Write each concept as a compact block — a `Dotted.Name` heading plus a few orthogonal lines, like a tiny `Kernel.Block:Index` entry. Define, do not narrate.
+
+```markdown
+## Skill.Index.Section
+
+### Caller.Agent
+- the agent that invokes this skill; owns the caller conversation and context
+- distills the relevant context and hands it to the `Master.Agent`
+
+### Master.Agent
+- the read-only research agent the caller spawns
+- researches the sources and returns the answer, keeping that context off the caller
 ```
 
 ## Skill.Arg.Section
@@ -113,7 +132,7 @@ Restate a short banner section in the target skill (a `Cited.Duplication` of the
 
 ## Authoring Checklist
 
-- Body follows the `Batchy.Skill.Template`: description, `Batchy.Skill.Contract`, `Skill.Arg.Section` (if any args), modules (if any).
+- Body follows the `Batchy.Skill.Template`: description, `Batchy.Skill.Contract`, `Skill.Index.Section` (if the skill hinges on defined concepts), `Skill.Arg.Section` (if any args), modules (if any).
 - A `Batchy.Skill.Contract` block near the top restates the `-h`, banner, and resolution rules standalone.
 - Arguments declared as `### Skill.Arg:<Name>` blocks, never a table.
 - Each argument advertised enough that `-h` is useful.
