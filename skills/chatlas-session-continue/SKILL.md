@@ -1,6 +1,6 @@
 ---
 name: chatlas-session-continue
-description: Resolve a prior Chatlas session from a session id, session URI, or provider-agnostic query, extract its conversation with `agentos chatlas`, and return a continuation handoff artifact for resuming the discussion here. Use when the goal is to continue work from another chat while keeping all user turns verbatim.
+description: Resolve a prior Chatlas session from a session id, session URI, or provider-agnostic query, extract its conversation with `agentos chatlas`, and return a continuation handoff artifact for resuming the discussion here. USE WHEN the goal is to continue work from another chat while keeping all user turns verbatim. Called like a terminal command — `--session <id|uri|query>`.
 ---
 
 # Chatlas Session Continue
@@ -10,6 +10,19 @@ Operational `Package.Aux.Skill` under `agentos-chatlas-pkg`.
 Return a continuation handoff for a prior chat session so the discussion can resume in the current chat.
 
 This skill must run as an agent by default, not inline in the caller context. `agentos chatlas` handles deterministic resolution and extraction from the maintained chat dataset. The agent always returns a handoff artifact oriented toward continuation, not just transcript recovery.
+
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
+- a bare session id, URI, or query resolves to `--session`.
+
+## Skill.Arg.Section
+
+### Skill.Arg:Session
+- the prior session to continue: a session id, a session URI, or a provider-agnostic query
+- required: true
+- help: "the session to continue (id, URI, or query)"
+- examples: --session "agentos://chat-session/..."
 
 ## Trigger Boundary
 

@@ -1,6 +1,6 @@
 ---
 name: chatlas-session-zip-transcript
-description: Resolve a prior chat session and return the Chatlas `zip-transcript-agent-summary` artifact path, producing the view through Chatlas when needed. Use when the user wants prior session context recovered compactly while preserving every user turn.
+description: Resolve a prior chat session and return the Chatlas `zip-transcript-agent-summary` artifact path, producing the view through Chatlas when needed. USE WHEN the user wants prior session context recovered compactly while preserving every user turn. Called like a terminal command — `--session <id|uri|query>`.
 ---
 
 # Chatlas Session Zip Transcript
@@ -10,6 +10,19 @@ Operational `Package.Aux.Skill` under `agentos-chatlas-pkg`.
 Delegate prior-session transcript summary recovery to a subagent.
 
 The default output is the path to a fresh Chatlas `zip-transcript-agent-summary` `summary.json` artifact. The artifact body should not be pasted into the parent chat unless the user explicitly asks for inline output.
+
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
+- a bare session id, URI, or query resolves to `--session`.
+
+## Skill.Arg.Section
+
+### Skill.Arg:Session
+- the prior session to recover: a session id, a session URI, or a provider-agnostic query
+- required: true
+- help: "the session to recover (id, URI, or query)"
+- examples: --session "agentos://chat-session/..."
 
 ## Caller Contract
 

@@ -1,6 +1,6 @@
 ---
 name: agentos-chatlas-retention-audit
-description: Audit Chatlas raw retention for a provider by comparing previous audit reports, current provider-home artifacts, and current Chatlas archive policy. Use when deciding what raw provider data Chatlas should retain, keep for future analysis, track as telemetry, or exclude.
+description: Audit Chatlas raw retention for a provider by comparing previous audit reports, current provider-home artifacts, and current Chatlas archive policy. USE WHEN deciding what raw provider data Chatlas should retain, keep for future analysis, track as telemetry, or exclude. Called like a terminal command — `--provider <name>`.
 ---
 
 # Chatlas Retention Audit
@@ -8,6 +8,19 @@ description: Audit Chatlas raw retention for a provider by comparing previous au
 Evaluate whether Chatlas is retaining the right provider-native artifacts for long-term transcript fidelity, behavioral analysis, and future study.
 
 Operational `Package.Aux.Skill` under `agentos-chatlas-pkg`.
+
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
+- a bare provider name resolves to `--provider`.
+
+## Skill.Arg.Section
+
+### Skill.Arg:Provider
+- the provider whose Chatlas raw retention to audit
+- required: true
+- help: "which provider's retention to audit"
+- examples: --provider "claude-code"
 
 Chatlas as a system has two stacked contracts:
 

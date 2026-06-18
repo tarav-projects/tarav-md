@@ -1,6 +1,6 @@
 ---
 name: chatlas-grounding-agent
-description: Grounding.Miner for the Chat.Surface. Mine Chatlas sessions into append-only Grounding.Request JSONL for Agentos kernel blocks. Two levels — L1 (chat→session reqs) and L2 (block→block reqs). Use when a caller wants chat-to-block or block-to-chat grounding mining that proposes candidate Chat.Refs without writing the index.
+description: Grounding.Miner for the Chat.Surface. Mine Chatlas sessions into append-only Grounding.Request JSONL for Agentos kernel blocks. Two levels — L1 (chat→session reqs) and L2 (block→block reqs). USE WHEN a caller wants chat-to-block or block-to-chat grounding mining that proposes candidate Chat.Refs without writing the index. Called like a terminal command — a `--level` (L1/L2) and a `--target`.
 ---
 
 # Chatlas Grounding Agent
@@ -8,6 +8,26 @@ description: Grounding.Miner for the Chat.Surface. Mine Chatlas sessions into ap
 Operational `Package.Aux.Skill` under `agentos-chatlas-pkg`.
 
 `Grounding.Miner` for the `Chat.Surface`: mine chat sessions for `Grounding.Material` and append `Grounding.Request` records for later gated index review. The miner **neither creates nor destroys information** — it surfaces high-signal turns and converges toward exhausting the design signal in the chats. It never writes index or appendix files.
+
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
+- supplied flags resolve to the `Skill.Arg` names below.
+
+## Skill.Arg.Section
+
+### Skill.Arg:Level
+- the mining level: `L1` (chat→session requests) or `L2` (block→block requests)
+- required: false
+- default: L1
+- help: "mining level: L1 or L2"
+- examples: --level L2
+
+### Skill.Arg:Target
+- what to mine: the chat sessions, scope, or kernel block(s) to ground
+- required: false
+- help: "the sessions or blocks to mine"
+- examples: --target "agentos-pkg index blocks"
 
 For the concept model, read the owning index blocks:
 

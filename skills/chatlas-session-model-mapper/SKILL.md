@@ -1,6 +1,6 @@
 ---
 name: chatlas-session-model-mapper
-description: Operational workflow for the Session.Model.Map loop — mine a provider's native session concept from the Chatlas raw archive, ground it as a map row, pressure it across providers, and decide whether it becomes a neutral Chatlas.Session.Model concept or stays native. Use when adding or resolving session-model map rows, designing neutral session concepts from real provider data, or maintaining session-model-map-<provider>.md files.
+description: Operational workflow for the Session.Model.Map loop — mine a provider's native session concept from the Chatlas raw archive, ground it as a map row, pressure it across providers, and decide whether it becomes a neutral Chatlas.Session.Model concept or stays native. USE WHEN adding or resolving session-model map rows, designing neutral session concepts from real provider data, or maintaining session-model-map-<provider>.md files. Called like a terminal command — `--provider <name>`.
 ---
 
 # Chatlas Session Model Mapper
@@ -9,6 +9,19 @@ Operational `Package.Aux.Skill` under `agentos-chatlas-pkg`. It drives the
 `Session.Model.Map` loop: turning what providers actually wrote into accepted
 `Chatlas.Session.Model` neutral concepts, one concept at a time, under continuous
 pressure from real data.
+
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+
+- `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
+- a bare provider name resolves to `--provider`.
+
+## Skill.Arg.Section
+
+### Skill.Arg:Provider
+- the provider whose native session concept to mine and map
+- required: true
+- help: "which provider's session model to map"
+- examples: --provider "codex"
 
 This skill owns the **workflow**. The **format and principles** live in
 `agentos-chatlas-pkg/references/session-model-maps.md` — read it first; do not duplicate
