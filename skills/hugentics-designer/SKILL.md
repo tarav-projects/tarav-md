@@ -13,7 +13,7 @@ For the general alignment model, see `agentos-hugentics` and its `references/ali
 
 This skill is a router. Load only the references needed for the current backend, interruption, or section update.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
 - every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).

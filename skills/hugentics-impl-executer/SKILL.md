@@ -9,7 +9,7 @@ Workflow master for the `impl.executer.agent` — the third phase of the Hugenti
 
 Load an `Impl.Req` artifact and execute it through disciplined, incremental implementation. The agent runs a minimal realignment discussion to recover alignment, then implements following `Vertical.Slice` ordering from the `Execution.Plan`.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
 - every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).

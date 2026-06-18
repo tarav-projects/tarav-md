@@ -9,7 +9,7 @@ Produce a structured status report for the active Hugentic workflow.
 
 This is an operational `Package.Aux.Skill` under `agentos-hugentics`. It is not a general project diagnosis surface; it reports the state of an ongoing Hugentic workflow.
 
-This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
 

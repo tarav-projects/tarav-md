@@ -1,6 +1,6 @@
 ---
 name: agentos-testground
-description: "Testing subsystem for package skills — behavioral tests that measure how agents use a Package.Skill in a controlled project environment. Covers test format, runner isolation, trace capture, and behavior-tier evaluation. USE WHEN running, listing, designing, or evaluating testground tests for a package skill. Called like a terminal command: a `--run`/`--list`/`--design`/`--evaluate` subcommand on a target `--package`."
+description: "Testing subsystem for package skills — behavioral tests that measure how agents use a Package.Skill in a controlled project environment. Covers test format, runner isolation, trace capture, and behavior-tier evaluation. USE WHEN running, listing, designing, or evaluating testground tests for a package skill. Called like a terminal command: a `--run`/`--list`/`--design`/`--evaluate` command on a target `--package`."
 ---
 
 # agentos-testground
@@ -9,16 +9,24 @@ description: "Testing subsystem for package skills — behavioral tests that mea
 
 A testground is a controlled project that tests how an agent USES a `Package.Skill` — what it loaded, how it navigated, and what it produced — not just output correctness. Any package skill can have one: a separate project folder that imports the skill and holds test files under `testing/`. This skill runs, lists, designs, and evaluates those tests.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
 - every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
 - supplied flags resolve to the `Skill.Arg` names below; loose and positional forms resolve too (a bare package name is `--package`).
-- pick a `--`subcommand for the operation; with no subcommand and no flags, this skill just loads its orientation context and performs nothing.
+- pick a `--`command for the operation (the `Skill.Arg:Command` selector); with no command and no flags, this skill just loads its orientation context and performs nothing.
 
 ## Skill.Arg.Section
 
-These arguments are shared across subcommands. Each subcommand states which it requires; `--package` is always required.
+`--package` is always required; the other arguments are shared, and each command states which it needs.
+
+### Skill.Arg:Command
+- the operation to perform — a selector whose values each activate a command behavior (a `Skill.Module`)
+- values: `Command:Run`, `Command:List`, `Command:Design`, `Command:Evaluate`; tokens `--run` / `--list` / `--design` / `--evaluate`
+- required: false (omitted -> orient only, no operation)
+- type: selector
+- help: "which operation to perform"
+- examples: --run
 
 ### Skill.Arg:Target.Package
 - the package skill to test; locates its tests under `<package>/testing/`
@@ -52,9 +60,9 @@ These arguments are shared across subcommands. Each subcommand states which it r
 - help: "the run report or transcript to evaluate"
 - examples: --report "reports/entry-path-from-cold.md"
 
-## SubCommands
+## Commands
 
-Each `Batchy.SubCommand` inherits the arguments above and sets which are required. Activate by name; `<subcommand> -h` prints its own usage.
+The `Skill.Arg:Command` selector picks the operation; each value activates a command behavior and inherits the arguments above. Activate by token (`--run`); `--<command> -h` prints that command's usage.
 
 - `--run` — execute tests in a testground and capture traces. Requires `--package` and `--testground` (unless the package has a default); accepts `--test`, `--model`. Runs as fresh CLI sessions from the testground folder (runner isolation), captures each navigation trace from the transcript, and reports against the test's behavior tiers.
 - `--list` — list the tests available for a package. Requires `--package`; accepts `--testground`.

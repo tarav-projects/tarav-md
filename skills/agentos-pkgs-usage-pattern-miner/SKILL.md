@@ -1,6 +1,6 @@
 ---
 name: agentos-pkgs-usage-pattern-miner
-description: "Mines chatlas sessions for package skill usage patterns. USE WHEN you want to discover, validate, or refine usage patterns for a package by analyzing real agent sessions that used it. Requires a target package. Called like a terminal command — a `--discover`/`--compare`/`--suggest` subcommand on a target `--package`. Uses chatlas transcripts to extract situation/response pairs and compare against existing usage-patterns/."
+description: "Mines chatlas sessions for package skill usage patterns. USE WHEN you want to discover, validate, or refine usage patterns for a package by analyzing real agent sessions that used it. Requires a target package. Called like a terminal command — a `--discover`/`--compare`/`--suggest` command on a target `--package`. Uses chatlas transcripts to extract situation/response pairs and compare against existing usage-patterns/."
 ---
 
 # agentos-pkgs-usage-pattern-miner
@@ -9,16 +9,24 @@ description: "Mines chatlas sessions for package skill usage patterns. USE WHEN 
 
 This skill closes the feedback loop between real agent usage and documented package hot paths. It reads organic sessions, extracts situation/response pairs, compares them against existing patterns, and suggests improvements or new patterns.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
 - every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
 - supplied flags resolve to the `Skill.Arg` names below; a bare package name is `--package`.
-- pick a `--`subcommand for the operation; with no subcommand and no flags, this skill just loads orientation context and mines nothing.
+- pick a `--`command for the operation (the `Skill.Arg:Command` selector); with no command and no flags, this skill just loads orientation context and mines nothing.
 
 ## Skill.Arg.Section
 
-These arguments are shared across subcommands; `--package` is always required.
+`--package` is always required; the others are shared across commands.
+
+### Skill.Arg:Command
+- the operation to perform — a selector whose values each activate a command behavior (a `Skill.Module`)
+- values: `Command:Discover`, `Command:Compare`, `Command:Suggest`; tokens `--discover` / `--compare` / `--suggest`
+- required: false (omitted -> orient only, mines nothing)
+- type: selector
+- help: "which mining operation to perform"
+- examples: --discover
 
 ### Skill.Arg:Target.Package
 - the package skill whose usage patterns to mine; sets which `usage-patterns/` folder to compare against and which skill name to search in chatlas
@@ -38,15 +46,15 @@ These arguments are shared across subcommands; `--package` is always required.
 - help: "a pattern name or situation type to focus on"
 - examples: --focus "cold-entry navigation"
 
-## SubCommands
+## Commands
 
-Each `Batchy.SubCommand` inherits the arguments above. They are stages of one pipeline but each is independently useful; activate the one you want.
+The `Skill.Arg:Command` selector picks the operation; each value activates a command behavior and inherits the arguments above. They are stages of one pipeline but each is independently useful; activate the one you want (`--discover`).
 
 - `--discover` — find sessions that loaded the target package and extract situation / navigation trace / outcome.
 - `--compare` — match discovered sessions against existing `<package>/usage-patterns/` and surface follows, deviations, and gaps.
 - `--suggest` — propose new patterns, refinements, test candidates, and router updates from discovery and comparison.
 
-The subcommand procedures are detailed below.
+The command procedures are detailed below.
 
 ## Operations
 

@@ -7,7 +7,7 @@ description: "Operational router for Agentos provider-account management problem
 
 Use this skill when the user asks to inspect, register, repair, reconcile, materialize, or diagnose Agentos-managed provider accounts or provider homes.
 
-This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments — describe the account problem in natural language and the skill routes it.
 

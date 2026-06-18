@@ -9,7 +9,7 @@ Ask a separate agent to research and answer a prompt using the organized knowled
 
 The caller prepares the arguments and typically spawns the agent. The delegated agent performs the package research, keeping that context out of the caller's conversation.
 
-This is a `Batchy.Skill`: its arguments are the `Skill.Arg` blocks below, and its `Batchy.SubCommand`s are named shortcuts that preset those arguments.
+This is a `Batchy.Skill`: its arguments are the `Skill.Arg` blocks below, and its `Skill.Module`s (named, activated by mention, e.g. `--index-grounding`) are shortcuts that preset those arguments.
 
 ## Skill.Arg.Section
 
@@ -74,9 +74,9 @@ When the user explicitly instructs the caller not to spawn an agent, the caller 
 
 Do not choose inline execution implicitly. It gives up the normal caller-context protection and exists only as an explicit override.
 
-## SubCommands
+## Modules
 
-A `Batchy.SubCommand` is a named shortcut that presets the arguments for a common call. The caller activates it by name and adds optional guiding context; spawn, read-only operation, and response mechanics follow this skill unchanged, and the subcommand inherits this skill's `Skill.Arg`s.
+A `Skill.Module` here is a named shortcut that presets the arguments for a common call. The caller activates it by mention and adds optional guiding context; spawn, read-only operation, and response mechanics follow this skill unchanged, and the module inherits this skill's `Skill.Arg`s.
 
 Activate by name:
 
@@ -85,11 +85,11 @@ Activate by name:
 
 Then add any extra context to further guide the agent.
 
-Available subcommands:
+Available modules:
 
-- `index-grounding` — given what the caller is currently doing, return the existing package knowledge relevant to that context. Lightweight, retrieval-oriented, repeatable. See `references/subcommands/index-grounding.md`.
+- `index-grounding` — given what the caller is currently doing, return the existing package knowledge relevant to that context. Lightweight, retrieval-oriented, repeatable. See `references/index-grounding.md`.
 
-To run a subcommand, load its file in `references/subcommands/<name>.md` and fill the prompt template below using the subcommand's preset arguments.
+To run one, load its file in `references/<name>.md` and fill the prompt template below using the module's preset arguments.
 
 ## Prompt Template
 

@@ -7,7 +7,7 @@ description: Diagnose how well a target folder conforms to the Agentos.Stack pro
 
 Diagnosis-first workflow for evaluating how well a concrete `Agentos.Project:<target>` conforms to `Agentos.Stack`.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
 - every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).

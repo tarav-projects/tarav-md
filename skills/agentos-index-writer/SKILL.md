@@ -9,7 +9,7 @@ The complete writer's guide for the Agentos Index — everything an agent needs 
 
 This is a `Workflow.Neutral.Skill` of `agentos-pkg` — it provides knowledge about index writing without steering the caller into a writing action. Loading this skill makes the agent literate about index writing; whether writing happens is up to the user and the caller's workflow. [`Package.Aux.Skill`, `Workflow.Neutral.Skill`, `Natural.Placement`]
 
-This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
 

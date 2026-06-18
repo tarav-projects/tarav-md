@@ -12,7 +12,7 @@ Chat → Design.Artifact → Stable.Surface
 Chat ——————————————————→ Stable.Surface (shortcut)
 ```
 
-This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
 

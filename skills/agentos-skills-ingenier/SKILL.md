@@ -7,7 +7,7 @@ description: Mine local and external sources to discover reusable patterns, exam
 
 Mine sources to improve skill design. This operational `Package.Aux.Skill` under `agentos-pkg` owns the whole loop: research, discussion, and eventual application.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
 - every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).

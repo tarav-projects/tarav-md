@@ -7,7 +7,7 @@ description: "Entry point to the Agentos Hugentic Harness — the integrated sta
 
 Single entry point to the hugentic workflow system. This skill maps the landscape — what workflows exist, what agents run them, and where to find the full instructions.
 
-This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
 

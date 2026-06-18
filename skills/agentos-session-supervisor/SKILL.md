@@ -15,12 +15,12 @@ A supervisor does not continue the target session here, edit target-session arti
 
 The supervisor may also run one or more active `Supervisor.Role`s. A role is an additive read-only lens over the same observed transcript. Roles live in `references/` and can be activated by the user when they want the supervisor to notice a specific class of material while still following the current supervision brief.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
 - every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
 - supplied flags resolve to the `Skill.Arg` names below; a bare session id, URI, or query is `--session`.
-- this skill is a conversation, not a one-shot command: the arguments seed an evolving supervision pass rather than triggering discrete subcommands.
+- this skill is a conversation, not a one-shot command: the arguments seed an evolving supervision pass rather than triggering discrete commands.
 
 ## Skill.Arg.Section
 

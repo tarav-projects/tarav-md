@@ -9,7 +9,7 @@ Minimal protocols for live notes and live scripts — the two numbered live surf
 
 This skill operationalizes `Agentos.Live.Note` and `Agentos.Live.Script` naming and location behavior derived from `File.Numbering.Protocol`. The durable concepts live in `agentos-pkg/index/100-index.md`; operational numbering details live in `agentos-pkg/references/file-numbering-protocol.md`.
 
-This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
 

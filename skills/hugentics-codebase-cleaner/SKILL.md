@@ -11,7 +11,7 @@ This is an operational `Package.Aux.Skill` under `agentos-pkg`.
 
 Default assumption: backward compatibility is not a goal unless the user explicitly asks for it. If an old abstraction, interface, or implementation should be replaced, replace it instead of preserving it behind compatibility layers.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
 - every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).

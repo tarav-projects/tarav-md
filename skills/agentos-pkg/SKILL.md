@@ -13,7 +13,7 @@ Any project can adopt agentos incrementally — an AGENTS.md and one package ski
 
 Paths in this skill are package-root-relative unless explicitly absolute. For example, `index/000-index.md` means `agentos-pkg/index/000-index.md`.
 
-This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
 
@@ -133,7 +133,7 @@ When the Driver is not enough, load a narrower surface:
 - **Implementation execution** — load `hugentics-impl-executer` for executing implementation plans
 - **Workflow status** — load `hugentics-workflow-status` for a structured checkpoint
 - **Live surfaces** — load `agentos-live-surfaces` for live-note and live-script location, naming, and numbering
-- **Skill conventions** — load `agentos-skills-base` for the conventions a proper Agentos skill follows (skill taxonomy, the Batchy calling convention, argument parsing)
+- **Skill conventions** — load `agentos-batchy-skills` for the conventions a proper Agentos skill follows (skill taxonomy, the Batchy calling convention, argument parsing)
 - **Skill engineering** — load `agentos-skills-ingenier` for creating or upgrading skills
 - **Codebase cleanup** — load `hugentics-codebase-cleaner` for targeted refactoring through the hugentic harness
 - **Git commits** — load `agentos-git-commit` for deterministic semantic commit workflows

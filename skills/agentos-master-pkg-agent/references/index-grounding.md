@@ -1,6 +1,6 @@
-# SubCommand: index-grounding
+# Module: index-grounding
 
-A `Batchy.SubCommand` is a named shortcut that presets the arguments the caller would otherwise author by hand. The caller activates it by name and adds optional guiding context; everything else — spawn, read-only contract, response mechanics — follows the base `agentos-master-pkg-agent` skill unchanged, and the subcommand inherits this skill's `Skill.Arg`s.
+A `Skill.Module` is a named shortcut that presets the arguments the caller would otherwise author by hand. The caller activates it by mention and adds optional guiding context; everything else — spawn, read-only contract, response mechanics — follows the base `agentos-master-pkg-agent` skill unchanged, and the module inherits this skill's `Skill.Arg`s.
 
 `index-grounding` is the lightweight, repeatable retrieval call: the caller states what it is currently doing, and the master agent returns the existing package knowledge relevant to that context.
 
@@ -26,7 +26,7 @@ The caller supplies one required slot and may add optional guidance:
 
 ## Preset Arguments
 
-The subcommand presets this skill's `Skill.Arg`s as follows:
+The module presets this skill's `Skill.Arg`s as follows:
 
 - `Skill.Arg:Main.Prompt` is the grounding request below, parameterized by `Grounding.Context`.
 - no `Skill.Arg:Enrichment.Prompt` is included by default.

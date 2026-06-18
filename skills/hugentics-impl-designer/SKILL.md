@@ -9,7 +9,7 @@ Workflow master for the `impl.designer.agent` — the second phase of the Hugent
 
 Design an implementation path and produce an `Impl.Req` artifact. The agent forks toward implementation, writing `Impl.Index` + `Execution.Plan`, and baking in development principles.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
 - every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).

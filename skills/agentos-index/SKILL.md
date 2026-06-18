@@ -9,7 +9,7 @@ Workflow-neutral `Package.Aux.Skill` for the Agentos Index — a `Soft.Programmi
 
 This skill orients the caller to the index subsystem without forcing an operation. The Agentos Index design reference lives in `agentos-pkg/index/`, `agentos-pkg/appendix/`, and `agentos-pkg/references/`.
 
-This is a `Batchy.Skill`. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
 

@@ -9,7 +9,7 @@ Short-lived workflow for capturing a thought into a project `Parking.Note`.
 
 The user presents an idea. The agent discusses it briefly, drafts a `Kernel.Block`-style entry, proposes a target file, and writes on approval.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-skills-base` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
 - supplied flags resolve to the `Skill.Arg` names below; a bare idea is `--idea`.

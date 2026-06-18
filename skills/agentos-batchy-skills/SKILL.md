@@ -1,9 +1,9 @@
 ---
-name: agentos-skills-base
+name: agentos-batchy-skills
 description: Workflow-neutral conventions base for building Agentos package skills — skill taxonomy, the Batchy calling convention, argument parsing, and placement rules. USE WHEN authoring or upgrading an Agentos skill and you need the shared conventions a proper skill should follow, or when another skill or agent needs to learn how Agentos skills are structured. Loading it orients; it does not run a build workflow.
 ---
 
-# Agentos Skills Base
+# Agentos Batchy Skills
 
 The conventions base for building Agentos skills. This is a `Workflow.Neutral.Skill`: it teaches how a proper Agentos `Package.Skill` is shaped and called, then routes to the canonical concept blocks. Loading it does not steer the caller into a task.
 
@@ -34,18 +34,18 @@ The skill taxonomy and roles are canonical in the `agentos-pkg` index (`index/10
 
 ## Batchy Convention
 
-Every Agentos skill is a `Batchy.Skill` — called like a terminal command. `-h` help is universal; arguments, banner, and subcommands appear only when the skill needs them. The convention is canonical in the index and detailed for authors in the reference:
+Every Agentos skill is a `Batchy.Skill` — called like a terminal command. `-h` help is universal; arguments, banner, and modules appear only when the skill needs them. The convention is canonical in the index and detailed for authors in the reference:
 
 - `Batchy.Skill` — the universal skill design style; a skill interpreted as a CLI-style command, with `-h` always and flag arguments when it has them.
 - `Batchy.Skill.Template` — the canonical skeleton every Batchy skill instantiates.
 - `Batchy.Skill.Contract` — the in-skill mini-course restating the convention standalone (a `Cited.Duplication`).
-- `Skill.Arg` — one argument of the skill, written as a `### Skill.Arg:<Name>` kernel block.
+- `Skill.Arg` — one argument of the skill, written as a `### Skill.Arg:<Name>` kernel block; may carry an `action`.
 - `Skill.Arg.Section` — the section of the skill holding its `Skill.Arg` blocks.
 - `Batchy.Skill.Help` — the non-executing `-h`/`--help` call rendered from the skill's `Skill.Arg` blocks.
 - `Batchy.Skill.Banner` — the resolved-argument banner printed as the first step of every run.
-- `Batchy.SubCommand` — a `Dotted.Name` subroutine, explicitly activated, inheriting the container's arguments.
+- `Skill.Module` — a named, on-demand-loadable part of the skill (file or section); progressive disclosure made addressable-by-name. A former subcommand is just a `Skill.Arg` with an `action` that activates one.
 
-Authoring detail, the `Skill.Arg.Section` format, resolution rules, and worked examples: [references/batchy-skills.md](references/batchy-skills.md).
+Detail is split by audience: running a Batchy skill → [references/batchy-skill-run.md](references/batchy-skill-run.md); building one → [references/batchy-skill-designer.md](references/batchy-skill-designer.md).
 
 ## Authoring Conventions
 
@@ -59,6 +59,7 @@ Authoring detail, the `Skill.Arg.Section` format, resolution rules, and worked e
 
 ## References
 
-- [references/batchy-skills.md](references/batchy-skills.md) — the Batchy authoring guide.
+- [references/batchy-skill-run.md](references/batchy-skill-run.md) — operating a Batchy skill (runner-facing).
+- [references/batchy-skill-designer.md](references/batchy-skill-designer.md) — building a Batchy skill (designer-facing).
 - `agentos-pkg` index `index/101-index.md` — skill model and Batchy concept blocks.
 - `agentos-index-writer` — how to write the index blocks a skill's concepts live in.
