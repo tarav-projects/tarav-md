@@ -26,4 +26,5 @@ Package structure and routing live in `package.md`.
 | `chatlas-grounding-agent` | Mine Chatlas sessions into `Grounding.Request` live notes for Agentos kernel blocks |
 | `chatlas-session-continue` | continuation handoff workflow for prior sessions |
 | `chatlas-session-zip-transcript` | compact transcript summary artifact workflow |
+| `agentos-chatlas-my-session-id` | discover the running agent's own native session id |
 | `agentos-chatlas-retention-audit` | raw retention audit workflow |

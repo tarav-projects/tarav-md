@@ -5,6 +5,7 @@
     "/Users/pereiro/.agentos/skills/depots/864f1a4d1d84abc1": {
       "links": {
         "agentos-agent-account-management": "../../../../projects/agentos-project/agentos-md/skills/agentos-agent-account-management",
+        "agentos-batchy-skills": "../../../../projects/agentos-project/agentos-md/skills/agentos-batchy-skills",
         "agentos-git-commit": "../../../../projects/agentos-project/agentos-md/skills/agentos-git-commit",
         "agentos-hugentics": "../../../../projects/agentos-project/agentos-md/skills/agentos-hugentics",
         "agentos-hugentics-capture-audit": "../../../../projects/agentos-project/agentos-md/skills/hugentics-capture-audit",
@@ -23,9 +24,9 @@
         "agentos-pkgs-usage-pattern-miner": "../../../../projects/agentos-project/agentos-md/skills/agentos-pkgs-usage-pattern-miner",
         "agentos-project-doctor": "../../../../projects/agentos-project/agentos-md/skills/agentos-project-doctor",
         "agentos-session-supervisor": "../../../../projects/agentos-project/agentos-md/skills/agentos-session-supervisor",
-        "agentos-skills-base": "../../../../projects/agentos-project/agentos-md/skills/agentos-skills-base",
         "agentos-skills-ingenier": "../../../../projects/agentos-project/agentos-md/skills/agentos-skills-ingenier",
         "agentos-testground": "../../../../projects/agentos-project/agentos-md/skills/agentos-testground",
+        "chatlas-agentos-chatlas-my-session-id": "../../../../projects/agentos-project/agentos-chatlas-md/skills/agentos-chatlas-my-session-id",
         "chatlas-agentos-chatlas-pkg": "../../../../projects/agentos-project/agentos-chatlas-md/skills/agentos-chatlas-pkg",
         "chatlas-agentos-chatlas-retention-audit": "../../../../projects/agentos-project/agentos-chatlas-md/skills/agentos-chatlas-retention-audit",
         "chatlas-grounding-agent": "../../../../projects/agentos-project/agentos-chatlas-md/skills/chatlas-grounding-agent",
