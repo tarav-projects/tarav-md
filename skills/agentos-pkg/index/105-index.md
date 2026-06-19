@@ -87,35 +87,38 @@
 
 ****
 
-## Topic.Identity
+## Chat.Grounding.Target.Block
 
-- `Topic.Identity` is kernel block identity in the index/appendix system
-- a grounding topic is a `Kernel.Block:Index` or `Kernel.Block:Appendix` subject
+- `Chat.Grounding.Target.Block` is the rule that chat grounding attaches to a kernel block, not to a loose topic
+- the index is the entity inventory that answers what is being grounded
+- every chat grounding target is a `Kernel.Block:Index` or `Kernel.Block:Appendix`
+- if an issue or topic needs grounding, it must first resolve to an existing block or become a new block
 - if a subtopic inside a block needs independent grounding, it should become its own kernel block
-- `Topic.HEAD` is scoped to one grounded kernel block topic
-- other surfaces cite grounded blocks instead of inventing separate grounding topics
+- `Active.Grounding` is scoped to one target block
+- other surfaces cite grounded blocks instead of inventing separate grounding targets
 
 ****
 
-## Topic.HEAD
+## Active.Grounding
 
-- `Topic.HEAD` is the most recent grounded chat view for a topic
-- the topic is the identity of a grounded index/appendix kernel block
-- it is the grounding anchor for the block's current user/agent alignment state
-- drift is measured against `Topic.HEAD`, not against every older grounded chat
-- older grounded chats remain useful history, but do not override the current view
-- `Topic.HEAD` can be updated by finding a more recent grounded chat or by discussing the topic again in chat
+- `Active.Grounding` is the set of grounding entries that support the current factual shape of a block
+- active grounding is scoped to one `Chat.Grounding.Target.Block`
+- active grounding can include multiple `*HEAD*` rows when several chat refs jointly support the current block
+- a grounding entry remains active while it supports the current block, even if newer compatible evidence exists
+- drift is measured against active grounding, not against every older grounded chat
+- older grounding moves to `Grounding.History` only when it no longer supports the current block as written
+- active grounding changes through `Chat.Grounding.Candidate.Review`, `Chat.Grounding.Head.Audit`, or renewed discussion on `Chat.Surface`
 
 ****
 
-## Grounding.Latest.Wins
+## Grounding.Hugentic.Authority
 
-- `Grounding.Latest.Wins` is the rule that, among grounded chats about one `Topic.Identity`, the newest is the active fact
-- every grounded fact is either current (it is the newest) or superseded by a newer one — never silently co-equal
-- supersession does not delete: older grounded chats stay `Grounding.History`, they just stop being the current view
-- it is the ordering law that produces `Topic.HEAD` — `Topic.HEAD` is the pointer, `Grounding.Latest.Wins` moves it
-- drift is measured against the current fact, not superseded history; a contradiction with the newest fact is `Grounding.DRIFT`
-- the rule advances when a more recent grounded chat appears or the topic is discussed again
+- `Grounding.Hugentic.Authority` is the rule that chat grounding is primarily grounded in user turns
+- assistant turns provide context, reasoning trace, proposed wording, and forensic evidence
+- assistant-authored material becomes normal grounding only when the user explicitly accepts, corrects toward, or acts on it
+- unaccepted assistant-only evidence may still be cited, but must be labeled `ASSISTANT`
+- the label warns the reader that the evidence is agent-authored support, not direct user alignment
+- grounding is a `Hugentic.Alignment` workflow: human/agent collaboration, not agent-only retrieval
 
 ****
 

@@ -165,10 +165,47 @@
 - `Chat.Grounding` is context injection and citation from `Chat.Surface` into index/appendix kernel blocks
 - it grounds a `Kernel.Block:Index` or `Kernel.Block:Appendix` in prior user/agent chat interaction
 - grounding only happens on index/appendix blocks; downstream surfaces cite grounded blocks instead of carrying first-class chat grounding
-- grounding follows `Grounding.Latest.Wins`: the newest grounded chat about a `Topic.Identity` is the current view
+- grounding follows `Active.Grounding`: accepted heads remain active while they support the current block
 - absence of `### grounding` is the implicit sign that a block is not grounded
 - grounding has no state taxonomy; material grounding problems are marked with `Grounding.DRIFT`
 - grounding drift is surfaced through alignment because the resolution happens on `Chat.Surface` and can become new grounding
+
+****
+
+## Chat.Grounding.Ref.Resolution
+
+- `Chat.Grounding.Ref.Resolution` is the reading rule for resolving a `Chat.Ref` used as grounding
+- a grounding ref is a landing point into `Chat.Surface`, not a claim that all evidence is contained in one exact turn
+- the reader should inspect the landing turn and nearby turns needed to understand the alignment move
+- a point ref is valid when it lands inside the relevant evidence neighborhood
+- a range ref is preferred when grounding depends on proposal, correction, discussion, or convergence across turns
+- the evidence note tells the reader what to look for around the ref
+- the goal is recoverable grounding, not maximal timestamp precision
+
+****
+
+## Chat.Grounding.Candidate.Review
+
+- `Chat.Grounding.Candidate.Review` decides whether a proposed chat ref should enter block grounding
+- the reviewer asks whether the evidence directly supports the current factual shape of the target block
+- the reviewer checks nearby context for contradiction, drift, or unresolved ambiguity
+- `*HEAD*` means the evidence still supports the current block as `Active.Grounding`
+- history means the evidence is retained for provenance but no longer supports the current block as written
+- a later refinement does not demote earlier evidence when the earlier evidence remains compatible with the current block
+- the final index write happens only after user approval of the grounding role and resolution shape
+
+****
+
+## Chat.Grounding.Head.Audit
+
+- `Chat.Grounding.Head.Audit` reviews existing `*HEAD*` grounding rows against the current target block
+- each `*HEAD*` is evaluated against the block version it originally supported and the current block version
+- git history provides the block diff between grounding insertion and the current block
+- a fundamental block change is a trigger to re-evaluate existing `*HEAD*` rows
+- unchanged or editorial block diffs usually do not require full head review
+- invalidated heads move to `Grounding.History`; they are not deleted
+- new heads can trigger a lightweight audit of older heads when they appear to supersede prior evidence
+- the purpose is to keep `Active.Grounding` aligned with the current factual shape of the block
 
 ****
 
@@ -178,7 +215,7 @@
 - it grounds a topic in prior `Kernel.Block:Index` or `Kernel.Block:Appendix` material instead of chat turns
 - it is source-specific retrieval; accepted results still land through the generic `Kernel.Block:Grounding` review semantics
 - it is useful when an agent should search the index for related blocks before discussing, writing, or grounding a topic
-- it does not replace `Chat.Grounding`; the two source families can produce different evidence for the same `Topic.Identity`
+- it does not replace `Chat.Grounding`; the two source families can produce different evidence for the same target block
 
 ****
 
@@ -193,7 +230,7 @@
 - boundary: chat is the dominant ingress, not total
 - an out-of-band edit lands with no chat event; that gap is `Grounding.DRIFT`
 - closure is self-healing: discussing ungrounded material is itself the grounding act
-- the discussion emits the missing event and becomes the current view by `Grounding.Latest.Wins`
+- the discussion emits the missing event and can become `Active.Grounding`
 - grounding is therefore never blocked, only pending; the discussion must re-establish the content, not just mention it
 - closure (groundable in principle) holds at every moment; completeness (grounded now) is only the limit
 - in the limit the chat log is a sufficient generative basis: every projection is reconstructable from it

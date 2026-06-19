@@ -26,6 +26,7 @@
         "agentos-session-supervisor": "../../../../projects/agentos-project/agentos-md/skills/agentos-session-supervisor",
         "agentos-skills-ingenier": "../../../../projects/agentos-project/agentos-md/skills/agentos-skills-ingenier",
         "agentos-testground": "../../../../projects/agentos-project/agentos-md/skills/agentos-testground",
+        "chatlas-agentos-chatlas-my-session-id": "../../../../projects/agentos-project/agentos-chatlas-md/skills/agentos-chatlas-my-session-id",
         "chatlas-agentos-chatlas-pkg": "../../../../projects/agentos-project/agentos-chatlas-md/skills/agentos-chatlas-pkg",
         "chatlas-agentos-chatlas-retention-audit": "../../../../projects/agentos-project/agentos-chatlas-md/skills/agentos-chatlas-retention-audit",
         "chatlas-grounding-agent": "../../../../projects/agentos-project/agentos-chatlas-md/skills/chatlas-grounding-agent",
