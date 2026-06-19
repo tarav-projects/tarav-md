@@ -172,6 +172,16 @@
 
 ****
 
+## Index.Grounding
+
+- `Index.Grounding` is context discovery and citation from existing index/appendix blocks into a target topic
+- it grounds a topic in prior `Kernel.Block:Index` or `Kernel.Block:Appendix` material instead of chat turns
+- it is source-specific retrieval; accepted results still land through the generic `Kernel.Block:Grounding` review semantics
+- it is useful when an agent should search the index for related blocks before discussing, writing, or grounding a topic
+- it does not replace `Chat.Grounding`; the two source families can produce different evidence for the same `Topic.Identity`
+
+****
+
 ## Chat.Surface.Closure
 
 - `Chat.Surface.Closure` is the principle that the system is closed over `Chat.Surface`
