@@ -34,8 +34,9 @@
 
 ## Raw.Normalizer
 
-- `Raw.Normalizer` is a pure function mapping one `Raw.Source` to a `Model.Fragment` — the unit of normalization in a `Normalization.Pipeline`
+- `Raw.Normalizer` maps a `Raw.Source` to a `Model.Fragment` — the unit of normalization in a `Normalization.Pipeline`
 - the raw boundary of the pipeline: it is the only stage that touches native formats or knows source structure; nothing downstream reads raw
+- may also take already-built model objects alongside raw (`Raw.Sources + Others → Raw.Normalizer → Model.Fragment`) — to use as context and/or modify in place (e.g. a raw-keyed cross-reference); it still touches raw, so it stays a normalizer; a model-only step is `Normal.Assembler` work
 - additive and free-form — added independently, asymmetric per source kind, implemented however the native format demands
 - free granularity — it may resolve a thin slice of the source or much of the model; fragments make fine-grained normalizers cheap, they do not require them
 - overlap is allowed — multiple normalizers may target the same path; a `Normalizer.Context` keeps shared raw loaded once
