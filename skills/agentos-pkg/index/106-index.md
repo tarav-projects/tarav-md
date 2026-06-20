@@ -155,3 +155,15 @@
 - treats the human as the transfer gate between supervision and target-session correction
 - uses `Hard.Evidence` from target-session turns, user directives, and stable project surfaces
 - does not turn observation into automatic control
+
+****
+
+## Normalization.Pipeline
+
+- `Normalization.Pipeline` is a general design pattern for turning native source data into one canonical model — defined by its constraints, not a fixed topology; variants are acceptable
+- canonical shape: `Raw.Sources → Raw.Normalizers → Model.Fragments → Normal.Assembler → Normal.Model` — plural stages mark the degrees of freedom: many sources, many normalizers, many fragments, converging on one model
+- constraint — raw boundary: anything that touches raw or knows native formats is a `Raw.Normalizer`; no other stage reads raw
+- constraint — `Normal.Model.Closure`: every stage outputs within the `Normal.Model.Namespace` — fragments are subpaths of it, assembled objects are instances of it; nothing leaves the namespace
+- constraint — normalization is separate from integration: normalizers only produce fragments; merging, placing, and reconciling them is the `Normal.Assembler`'s job, never a normalizer's
+- the many-normalizers freedom is the point of fragments — native extraction splits into independent, additive pieces the assembler integrates
+- what may vary: normalizer count and granularity, assembler merge policy, assembled depth — free, as long as the three constraints hold

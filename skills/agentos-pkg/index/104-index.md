@@ -185,6 +185,18 @@
 
 ****
 
+## Normalization.Pipeline:Account.Usage.Model
+
+- `Normalization.Pipeline:Account.Usage.Model` is the account-usage instantiation of `Normalization.Pipeline` — native provider usage artifacts normalized into `Account.Usage.Status`
+- `Normal.Model` = `Account.Usage.Status`, modeled as a list of `Usage.Limit`s
+- `Raw.Source`s are native provider usage artifacts (codex `rateLimits`, claude statusline JSON, copilot usage); `Raw.Normalizer`s are per-provider and per-native-variant
+- the many-normalizers freedom covers native drift — claude statusline `rate_limits` and the legacy `seven_day` shape are separate `Raw.Normalizer`s, not one branching function
+- a `Model.Fragment` is a partial `Account.Usage.Status` — a subset of `Usage.Limit`s; an absent limit is "not carried", never fabricated as empty or zero
+- `Normalizer.Context` is provider-scoped — a provider's raw usage artifact loaded once per assembly
+- the `Normal.Assembler` merges fragments by `Usage.Limit` identity into a full or partial `Account.Usage.Status`, and owns precedence when fragments carry the same limit
+
+****
+
 ## Harness.Injected.ENV
 
 - `Harness.Injected.ENV` is environment state injected by Agentos to enable provider functionality
