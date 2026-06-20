@@ -265,7 +265,7 @@
 - `Chatlas.Session.Model` is the standard with which Chatlas represents any session's information
 - provider-neutral: one model normalized inward from many provider-native session formats
 - directionality: Chatlas knows provider formats and normalizes them into one; providers know nothing about this model
-- producer: `Chatlas.Normalizer` writes it — there is no provider-side conformance
+- producer: the `Normal.Assembler` of `Normalization.Pipeline:Chatlas.Session.Model` writes it — there is no provider-side conformance
 - provider-native formats are inspiration for the model's expressiveness, not an input contract it must accept
 - not overfitted to any single provider — the model carries no provider-named canonical fields
 - expressive enough to represent most of what a provider provides — each provider's content maps into a neutral concept the model defines
@@ -308,47 +308,12 @@
 
 ****
 
-## Chatlas.Session.Model.Fragment
+## Normalization.Pipeline:Chatlas.Session.Model
 
-- `Chatlas.Session.Model.Fragment` is a free-standing primitive carrying a partial, sub-shape slice of a `Chatlas.Session.Model`
-- a primitive, not owned by one producer: `Session.Model.Extractor` is the only raw→fragment producer, but fragments also derive from full models
-- structurally model-compatible: a fragment is always a valid subpath of the model — preserving containment and field naming, nothing more
-- topological, not positional: it carries nesting and type shape (e.g. `events` is a list of objects each with a `timetag`), never an absolute index
-- the same datum has many valid fragments — full `{events: [{timetag: X}]}` or relative `{timetag: X}`; each is a subpath of the model
-- partial by definition — a fragment carries only the slice it holds; an absent path means "not carried here", not "empty"
-- provider-neutral: it names only `Chatlas.Session.Model` concepts; native-only richness rides in `native`/`source_refs`, never as a new path
-- the consuming application finalizes it: exact placement (which element, what index) and any merge with other fragments are its job, not the fragment's
-
-****
-
-## Session.Model.Extractor
-
-- `Session.Model.Extractor` is a pure per-provider function mapping raw session artifacts to a `Chatlas.Session.Model.Fragment`
-- atomic and single-purpose: one extractor resolves some slice of the native artifacts, never the whole session
-- additive and free-form: extractors are added independently, asymmetric per provider, implemented however the native format demands
-- encapsulation invariant: only extractors touch raw artifacts or know native formats — nothing downstream reads native models
-- loads artifacts on demand; may use `Extractor.Context` — a per-provider resource for reusing already-loaded artifacts — or ignore it entirely
-- `Extractor.Context` is an offered convenience, not a contract: shared across a provider's extractors it lets an application avoid re-paying loads
-- carries no assembly policy: it produces a fragment and stops — whether it is needed and how fragments merge is the consumer's concern
-
-****
-
-## Extractor.Context
-
-- `Extractor.Context` is a per-provider resource passed across a provider's `Session.Model.Extractor`s to share already-loaded raw artifacts
-- a lazy artifact cache: an extractor asks it for an artifact, loaded on demand; later extractors reuse the loaded copy instead of re-reading
-- provider-scoped — it carries only one provider's artifacts, not a cross-provider interface
-- optional, not a contract: an extractor may use it or load on its own and ignore it — correctness never depends on it
-- an efficiency utility for applications: it lets one call run many of a provider's extractors while paying each artifact load once
-- caches raw artifacts only — it holds no model data; fragments and assembly live outside it
-
-****
-
-## Chatlas.Normalizer
-
-- `Chatlas.Normalizer` is the layer above extractors that assembles `Session.Model.Extractor` fragments into a normalized Chatlas session object
-- the assembled object is a `Chatlas.Session.Model` or a projection of it — an index entry, a lite ref, a full session
-- specialized along several axes — provider is one, the target object another; a concrete normalizer fixes them and calls the extractors its target needs
-- owns assembly — fragment placement and merge/coalesce semantics live here, never in extractors
-- two assembly regimes: structural fragments merge by path; tape events assemble by append + order + lineage (`Session.Event.Tape`)
-- runs its extractors over a shared `Extractor.Context`, so each artifact they need loads once per assembly
+- `Normalization.Pipeline:Chatlas.Session.Model` is the Chatlas instantiation of `Normalization.Pipeline` — provider sessions normalized into `Chatlas.Session.Model`
+- `Normal.Model` = `Chatlas.Session.Model`; its `Session.Event.Tape` is the ordered structure assembled fragments build
+- `Raw.Source`s are provider session artifacts (transcripts, rollouts, index files); `Raw.Normalizer`s are per-provider (claude-code, codex, copilot, …)
+- a `Raw.Normalizer` here implements a `Session.Model.Map` row — the native→neutral decision becomes code
+- `Normalizer.Context` is provider-scoped — one provider's session artifacts, loaded once per assembly
+- the `Normal.Assembler` produces the target a caller needs over `Chatlas.Session.Model`: a lite session ref, an index row, or a full session
+- two assembly regimes meet here — flat session metadata merges by path; `Session.Event.Tape` events assemble by order + `Session.Lineage`
