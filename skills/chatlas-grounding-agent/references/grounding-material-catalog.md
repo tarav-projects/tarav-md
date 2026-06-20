@@ -1,14 +1,14 @@
-# Grounding.Material.Catalog
+# Chat.Grounding.Material.Catalog
 
-The maintained, ever-growing list of criteria for detecting `Grounding.Material` — the core L1 job. `Cited.Duplication` of `[Grounding.Material, Grounding.Material.Catalog]` from `agentos-chatlas-pkg/index`; the index owns authority.
+The maintained, ever-growing list of criteria for detecting `Chat.Grounding.Material` — the core L1 job. `Cited.Duplication` of `[Chat.Grounding.Material, Chat.Grounding.Material.Catalog]` from `agentos-chatlas-pkg/index`; the index owns authority.
 
-`Grounding.Material` is a chat turn (or turn span) carrying durable design signal worth grounding. Detection requires no named block; block-agnostic material is still recorded, because it may ground blocks discovered later. One turn can yield multiple records.
+`Chat.Grounding.Material` is a chat turn (or turn span) carrying durable design signal worth grounding. Detection requires no named block; block-agnostic material is still recorded, because it may ground blocks discovered later. One turn can yield multiple records.
 
 This catalog is **never assumed complete**. It refines from a high-signal feedback sample: turns actually approved into a `### grounding` section show what real grounding material looked like — fold those back into the positives below.
 
 ## Positive criteria — record it
 
-A turn is `Grounding.Material` when the user (priority) or agent:
+A turn is `Chat.Grounding.Material` when the user (priority) or agent:
 
 - adds durable design information
 - makes or accepts a decision
@@ -20,7 +20,7 @@ A turn is `Grounding.Material` when the user (priority) or agent:
 - explains why a block should exist or split
 - marks current behavior as drift (a `Grounding.DRIFT` candidate)
 
-User turns are primary signal; assistant turns are context, reasoning trace, and forensic detail.
+User turns are primary signal. Assistant turns are context, reasoning trace, and forensic detail; unaccepted assistant-only grounding must be labeled `ASSISTANT` under `Grounding.Hugentic.Authority`.
 
 ## Negative criteria — skip it
 

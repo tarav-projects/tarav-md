@@ -1,6 +1,6 @@
 # L2 Miner — block → block reqs
 
-L2 is the block-to-reqs `Grounding.Miner`. `Cited.Duplication` of `[Grounding.Miner, Grounding.Request, Topic.Identity, Grounding.Latest.Wins]` from the package indexes.
+L2 is the block-to-reqs `Chat.Grounding.Miner`. `Cited.Duplication` of `[Chat.Grounding.Miner, Chat.Grounding.Request, Chat.Grounding.Target.Block, Active.Grounding]` from the package indexes.
 
 Input: one kernel block. Output: `<project>/notes/live/grounding/<block-name>-gr-req.jsonl` (see `gr-req-format.md`). L2 is keyed by project blocks and writes into the target project.
 
@@ -16,7 +16,7 @@ Match on the `blocks` field and on `grounding-why` text.
 
 ## Procedure
 
-1. **Read the target block.** Concept name (`Topic.Identity`), fundamentals, existing `### grounding`, aliases, user-language phrases. If the evidence is really a subtopic, propose a separate block instead of forcing grounding onto the parent.
+1. **Read the target block.** Concept name (`Chat.Grounding.Target.Block`), fundamentals, existing `### grounding`, aliases, user-language phrases. If the evidence is really a subtopic, propose a separate block instead of forcing grounding onto the parent.
 
 2. **Load existing block records.** Read `<block-name>-gr-req.jsonl`; dedup context.
 
@@ -31,5 +31,5 @@ Match on the `blocks` field and on `grounding-why` text.
 ## Discipline
 
 - L2 confirms before appending; L1 is the lead, the chat turn is the evidence.
-- L2 records evidence; it does not decide `*HEAD*` vs history vs `DRIFT`. `Grounding.Latest.Wins` and the reviewer settle the current view at index-write time.
+- L2 records evidence; it does not decide `*HEAD*` vs history vs `DRIFT`. `Chat.Grounding.Candidate.Review` and the reviewer settle active grounding at index-write time.
 - when the L1 layer is thin for a block, run L1 over the relevant sessions first, then L2.

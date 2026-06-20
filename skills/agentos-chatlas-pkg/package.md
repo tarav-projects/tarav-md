@@ -23,7 +23,7 @@
 ### Workflows
 
 - `agentos-chatlas-retention-audit` — raw retention policy audit workflow.
-- `chatlas-grounding-agent` — mine Chatlas sessions into `Grounding.Request` live notes for Agentos kernel blocks.
+- `chatlas-grounding-agent` — mine Chatlas sessions into `Chat.Grounding.Request` records or run git-guided grounding review for Agentos kernel blocks.
 - `chatlas-session-continue` — session continuation handoff workflow.
 - `chatlas-session-zip-transcript` — compact transcript recovery workflow.
 - `agentos-chatlas-my-session-id` — discover the running agent's own native session id.

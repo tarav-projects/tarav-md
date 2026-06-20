@@ -1,6 +1,6 @@
 # L1 Miner — chat → session reqs
 
-L1 is the chat-to-reqs `Grounding.Miner`. `Cited.Duplication` of `[Grounding.Miner, Grounding.Material, Grounding.Miner.Locality]` from `agentos-chatlas-pkg/index`.
+L1 is the chat-to-reqs `Chat.Grounding.Miner`. `Cited.Duplication` of `[Chat.Grounding.Miner, Chat.Grounding.Material, Chat.Grounding.Miner.Locality]` from `agentos-chatlas-pkg/index`.
 
 Input: one chat session. Output: `~/Documents/chatlas/grounding/<identity_hash>-gr-req.jsonl` (see `gr-req-format.md`). L1 reads only the `Chat.Surface` — no project, no index.
 
@@ -10,7 +10,7 @@ Input: one chat session. Output: `~/Documents/chatlas/grounding/<identity_hash>-
 
 2. **Load existing records.** Read `<identity_hash>-gr-req.jsonl` if it exists. These are dedup context — do not re-propose what is already recorded for a `ref`.
 
-3. **Walk turns, apply the catalog.** For each turn (or span), test it against `grounding-material-catalog.md`. Detect `Grounding.Material` with or without named blocks.
+3. **Walk turns, apply the catalog.** For each turn (or span), test it against `grounding-material-catalog.md`. Detect `Chat.Grounding.Material` with or without named blocks.
 
 4. **Build each record.**
    - `ref` — smallest `Chat.Ref` range that preserves the decision.
