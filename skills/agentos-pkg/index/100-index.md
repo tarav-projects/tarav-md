@@ -324,6 +324,7 @@
 - a dotted name can appear before it is registered
     - agents infer concept maturity from the repository: prose-only, registry entry, or dedicated note
 - registry lookup is opportunistic, not mandatory — use it when concept identity matters, avoid turning ordinary work into ontology maintenance
+- an approximate chat-side form exists — see `Fuzzy.Dotted.Name`
 
 ****
 

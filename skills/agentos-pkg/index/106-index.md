@@ -167,3 +167,20 @@
 - constraint — normalization is separate from integration: normalizers only produce fragments; merging, placing, and reconciling them is the `Normal.Assembler`'s job, never a normalizer's
 - the many-normalizers freedom is the point of fragments — native extraction splits into independent, additive pieces the assembler integrates
 - what may vary: normalizer count and granularity, assembler merge policy, assembled depth — free, as long as the three constraints hold
+
+****
+
+## Fuzzy.Dotted.Name
+
+- `Fuzzy.Dotted.Name` is a `Dotted.Name` marked approximate with a leading tilde: `~Concept.Partial`
+- the tilde is a softness operator on the name — it declares the name uncommitted, to be read in context
+- a chat-side device for the user (and agent); never written into the index, which stays canonical and strict
+- matching is fuzzy: order-independent, partial, word-subset — not a prefix
+- the softness is flow-agnostic — context selects the workflow, the sigil names no flow
+    - recall miss → resolve to an existing canonical block
+    - near-variant → naming review: existing concept, sibling/refinement, or rename
+    - seed → a gesture toward a new concept to coin
+- invariant across all outcomes: the agent surfaces its interpretation and makes the resolved canonical name(s) explicit before building on it
+- ambiguity → surface the top candidates and confirm; unresolvable → degrade to `Unresolved.Index.Name`
+- direction is symmetric: the user emits `~` to ask; the agent emits `~` to flag an unverified, approximate recall
+- soft meaning surfaced as a chat sigil — rides `Soft.Semantics.Concept`, sibling to `Dotted.Parameterized.Notation` and the variable `<Concept>.Name` form
