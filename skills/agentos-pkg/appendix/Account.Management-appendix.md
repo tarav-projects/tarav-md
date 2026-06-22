@@ -5,8 +5,7 @@
 - `Account.Model` is both the concept of an agent account on agentos and its data representation
 - an account is an identity owned by a provider, holding one or more `Account.Model:Auth.Method`s
 - the identity carries provider-neutral fields: provider, account name, and identity metadata such as email
-- the auth types carry the account's login methods and credentials
-- the agent normal model references an account by name; credentials live under the auth types
+- the agent normal model references an account by name; credentials live under the auth methods
 
 ****
 
@@ -16,9 +15,9 @@
 - it is a credential class — `auth-json`, `ambient-auth`, `gh-auth-token`
 - it models what login the method achieves and how the method works
 - its class defines the method's fixed properties
-- an account holds several auth types as independent methods
-- a call can select which auth type to use
-- auth types are provider-specific
+- an account holds several auth methods, each independent
+- a call can select which auth method to use
+- auth methods are provider-specific
 
 ### meta
 
@@ -29,9 +28,9 @@
 ## Materializable.Account
 
 - `Materializable.Account` is an account that holds at least one materializable `Account.Model:Auth.Method`
-- a materializable auth type can be reconstituted into a logged-in agent from its stored `Auth.Data`
-- materializability is a property of the auth type's credential class
-- a non-materializable auth type is reference-only — agentos tracks it but cannot stand up a logged-in agent from it
+- a materializable auth method can be reconstituted into a logged-in agent from its stored `Auth.Data`
+- materializability is a property of the auth method's credential class
+- a non-materializable auth method is reference-only — agentos tracks it but cannot stand up a logged-in agent from it
 - materializability is orthogonal to validity: stored `Auth.Data` may be present yet no longer accepted by the provider
 
 ****
@@ -39,7 +38,7 @@
 ## Auth.Data
 
 - `Auth.Data` is the local data a provider reads to authenticate a login
-- shape is provider-specific — the `Credential.Shape` seam (codex `auth.json`, claude Keychain entry, copilot gh-token reference)
+- shape is provider-specific — the `Auth.Method` seam (codex `auth.json`, claude Keychain entry, copilot gh-token reference)
 - pipeline: `Raw.Credential.Data` (as read from a live source) → `Registered.Data` (normalized and stored in the registry)
 - what to store and how is delegated to the provider/agent implementation
 - payloads can contain secrets; index and ledger surfaces must never carry raw tokens
@@ -72,7 +71,7 @@
 - `Account.Registry` stores the `Auth.Data` needed to log in any `Materializable.Account`, plus convenience metadata
 - append-only immutable history: each captured credential version is its own entry; rotation produces a new entry; one active/current pointer
 - history and the active pointer attach per `Account.Model:Auth.Method`, since an account can hold several auth methods
-- storage shape is delegated to the provider implementation (`Credential.Shape`)
+- storage shape is delegated to the provider implementation (`Auth.Method`)
 - non-materializable accounts store reference and metadata only — no reconstructible secret
 - existing implementation surfaces: `accounts.json` (pointer records), `artifacts.jsonl` + `artifacts/<id>.<kind>.json` (immutable index + payloads, `id = sha256(payload)`), `verifications.jsonl` (success ledger, secrets rejected)
 
@@ -85,7 +84,7 @@
 - detecting and storing refreshed credentials is the registry's core job, not an optional optimization
 - a registry that misses rotations holds stale snapshots and forces avoidable re-logins
 - goal: minimize the need to re-login by capturing refreshed `Auth.Data` as it appears
-- mechanism: append-only capture of each new credential version, one current pointer per account
+- mechanism: append-only capture of each new credential version, one current pointer per `Auth.Method`
 - standing hazard it answers: two live homes off one account race over single-use refresh tokens; the loser is invalidated and its captured snapshot goes stale
 
 ****
@@ -100,15 +99,47 @@
 
 ****
 
-## Credential.Capture
+## Auth.Data.Capture
 
-- `Credential.Capture` is the pipeline that detects `Auth.Data` in live sources and stores it as an `Auth.Data.Artifact` in the `Account.Registry`
-- its goal is preservation: keep every observed credential so corruption or overwrite of a live source stays recoverable
-- it is the system's most robust path — additive and content-addressed, it cannot corrupt what it captures
-- it stores into the nested structure `Provider.Account` → `Auth.Method` → `Auth.Data.Artifact`
-- an already-stored version dedups; a new version appends (`Keep.Up.With.Rotation`)
-- it keeps stale or invalid credentials too — partial data still carries hope of recovery
-- it runs independent of validity — capture never waits on a provider accepting the credential
+- `Auth.Data.Capture` is the primitive operation that observes `Auth.Data` from a live source and archives it
+- sole writer of the archival layer — the stored artifacts and the capture log
+- reads the source to observe; reads prior capture state to classify by `Account.Identity` and dedup
+- classifies, never rejects — known `Provider.Account` ⇒ filed under it; identifiable orphan ⇒ `Unknown.Account`
+- never touches activation, never touches a home — observation only, non-destructive
+- priority 1: it precedes every other operation (`Capture.Over.Materialization`)
+- records the capture in the capture log
+
+****
+
+## Auth.Data.Activation
+
+- `Auth.Data.Activation` is the primitive operation that designates which archived `Auth.Data.Artifact` is current for a `Provider.Account`'s `Auth.Method`
+- sole writer of the synchronization layer — the activation log
+- reads capture state (the artifact must already be archived) and the current activation
+- a pure registry move — never writes artifacts, never writes a home
+- a designation, not proof — it does not assert the credential is `Valid.Credentials`
+- records the activation in the activation log
+
+****
+
+## Auth.Data.Materialization
+
+- `Auth.Data.Materialization` is the primitive operation that writes a `Provider.Account`'s active `Auth.Data` into a home so an agent can log in
+- the only primitive operation that mutates a home — sole writer of the home/system layer
+- reads the active artifact and the home↔account binding; writes the home via the `Auth.Method`
+- a pure write — it does not capture, activate, or verify
+- capture-first by composition: a `Auth.Data.Capture` precedes the overwrite, so no credential is lost
+- records the write in the materialization log
+
+****
+
+## Account.State.Tape
+
+- `Account.State.Tape` is an append-only registry that records `Account.Management` state as a sequence of events
+- each primitive operation owns one tape — capture, activation, materialization
+- operations only append; a tape is never rewritten or hand-edited
+- current state is read back as the last relevant record on the tape
+- it holds state only — config is a separate, declarative surface
 
 ****
 
@@ -125,7 +156,7 @@
 
 ## Unknown.Account
 
-- `Unknown.Account` is the fallback `Provider.Account` where `Credential.Capture` stores `Auth.Data` it cannot bind to a known account
+- `Unknown.Account` is the fallback `Provider.Account` where `Auth.Data.Capture` stores `Auth.Data` it cannot bind to a known account
 - capture never rejects — an unmatched credential is preserved, never discarded, because it may still be needed
 - the `Account.Identity` check classifies (known vs unknown); it does not gate capture
 - the `Auth.Data` must be recognizable — capture extracts an `Account.Identity`, so the fallback holds identifiable orphans, not anonymous data

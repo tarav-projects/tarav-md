@@ -86,7 +86,7 @@
 
 - `Semantic.Router` is a Skillware primitive: a key:value table where keys are natural-language situation descriptions and values are linked resources (a prompt, a `Skill.Module`, content, or another `Semantic.Router`).
 - routing is semantic and agentic — the agent matches the live situation against the key descriptions and selects; keys must be discriminative.
-- it offers options, not an order — the rows are an unordered set of choices, not a sequence; `None.Is.An.Option` is stated explicitly, so the agent may select nothing.
+- it offers options, not an order — an unordered set; the router states a `Router.Selection.Contract` so the reader knows that selecting none, one, or several rows is all normal.
 - it composes — a value can be another `Semantic.Router`, giving progressive, multi-level selection.
 
 ****
