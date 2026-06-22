@@ -23,6 +23,43 @@ Agentos handles provider auth by treating credentials as an artifact system:
 
 Do not treat `claude auth status` alone as proof that credentials work. A home can report logged in and still fail real API use.
 
+## Keychain Is The Credential Source Of Truth (macOS)
+
+Home files (`.claude.json`, `.credentials.json`) are NOT where the live OAuth token lives. On macOS the real secret is in the **login Keychain**, and that is what you must inspect — checking home files alone will mislead you.
+
+Service name per home (see `claude_keychain_service_names` in `claude/account_registry.py`):
+
+```text
+Claude Code-credentials-<sha256(resolved_home_path)[:8]>      # path-scoped
+Claude Code-credentials                                       # legacy fallback
+```
+
+Derive the service and read the actual token:
+
+```bash
+# service for a home
+python3 -c 'import hashlib,os,sys; p=os.path.realpath(sys.argv[1]); print("Claude Code-credentials-"+hashlib.sha256(p.encode()).hexdigest()[:8])' "$HOME/.agentos/agent/homes/claude-code/<account>"
+
+# read the secret and inspect expiry + refresh token
+security find-generic-password -s "Claude Code-credentials-<hash>" -w \
+  | python3 -c 'import sys,json,datetime; o=json.load(sys.stdin).get("claudeAiOauth",{}); print("expiresAt", datetime.datetime.fromtimestamp(o["expiresAt"]/1000, tz=datetime.timezone.utc).isoformat()); print("refreshToken_len", len(o.get("refreshToken","")))'
+```
+
+The two diagnostic fields: `expiresAt` (is the access token still valid?) and `refreshToken` length (can the home self-heal?). List all Claude entries with `security dump-keychain | grep -i 'svce.*Claude Code-credentials'`.
+
+## Symptom: Logged In But Dead (Refresh Token Rotation)
+
+A home can show `claude auth status` → `loggedIn: true` while its Keychain holds an **expired `accessToken` AND an empty `refreshToken`**. That home is dead — it cannot refresh and every live call (including the monitor's statusline harvest) will fail or hang to timeout, even though status looks fine.
+
+Root cause when multiple homes share one account: Claude OAuth refresh tokens are **single-use / rotating**. Two live homes off the same account each start with the same refresh token; whichever refreshes first gets a new pair and the server **invalidates the other's** refresh token. The loser's next refresh fails and Claude clears its refresh token → permanent expiry. The winning home stays healthy and self-refreshing.
+
+Diagnose by comparing the two homes' Keychain entries (not their files):
+
+- working home: `accessToken` valid OR a present `refreshToken` (can self-heal)
+- dead home: expired `accessToken` + **empty `refreshToken`**
+
+Note the registered agentos artifact may still contain a refresh token (it is the immutable snapshot from capture time); the *home* is what lost it. So the active artifact can itself be an expired snapshot — passive reconcile cannot fix this; you need a fresh capture from a working home (see Common Repair Pattern).
+
 ## Important Paths
 
 Managed Claude homes:
@@ -151,13 +188,34 @@ Then test a real provider call only when live calls are acceptable.
 
 ## Common Repair Pattern
 
-If one home works and another home is broken:
+If one home works and another home is broken (e.g. the managed home died via rotation while a personal home like `~/.claude-<x>` stays healthy):
 
-1. Identify the working home artifact.
-2. Promote only the working artifact after real success or known evidence.
-3. Materialize/sync that verified active artifact into stale homes.
+First confirm agentos does not already hold the working credential. The Keychain (SSOT) is often *ahead of* agentos — a home self-refreshed and agentos never captured the new token. Check by matching the working home's current Keychain `accessToken`/`refreshToken` against the registered artifact payloads in `accounts/claude-code/artifacts/*.ambient-auth.json`. If there is no match, the live credential is unregistered and a plain reconcile (which only syncs from existing artifacts) will not help — and could even sync a stale artifact back over the working home.
+
+Capture from the working home, verify, and sync only the broken home:
+
+```bash
+# observes the working home's Keychain -> archives a fresh artifact ->
+# live-ping verifies it -> promotes it active -> syncs the managed home
+agentos agent accounts reconcile --provider claude-code --account <account> --ping --json
+```
+
+Scoping with `--account` keeps the sync targeted: it updates the broken managed home and leaves the healthy personal home untouched. Confirm the action trail shows `verified_artifact` for the working home and `synced_home` for the broken one.
+
+**Timing matters (rotation safety):** run this while the working home's `accessToken` still has time left (check `expiresAt`). A ping on a still-valid token will not trigger a refresh, so it cannot rotate the token out from under the working home. If the working token is about to expire, the ping may refresh+rotate and a subsequent sync could clobber the good home.
+
+Then verify the repair on the **Keychain**, not just the registry:
+
+```bash
+# the managed home's Keychain should now show a valid expiresAt + non-empty refreshToken
+# and a live check should pass:
+agentos agent accounts status --provider claude-code --json   # active_artifact + last_verified
+# plus a live account.status on the managed home (check=ok, usage=ok, identity=verified)
+```
 
 Do not run a mutating passive reconcile expecting it to decide validity from observation alone. Passive reconcile collects and uses existing evidence; it does not prove credentials.
+
+**Standing hazard:** as long as two homes run live off one account, they will keep racing over refresh-token rotation and re-breaking the loser. Either avoid concurrent live use, or treat the personal home as the single source and re-capture into the managed home on demand.
 
 ## Code Entry Points
 

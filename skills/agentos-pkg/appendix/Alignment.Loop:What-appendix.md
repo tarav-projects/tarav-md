@@ -2,6 +2,8 @@
 
 Extended depth for `Alignment.Loop:What`. The index block is in `106-index.md`.
 
+****
+
 ## Loop Schema
 
 ```txt

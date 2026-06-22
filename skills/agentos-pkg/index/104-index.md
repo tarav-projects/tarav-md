@@ -264,3 +264,31 @@
 - unlike `Kernel.Block:Index`, a `Kernel.Note` is not necessarily part of an index or routing table
 - its purpose is portable block collection, conceptual extraction, and argument substrate
 - a `Kernel.Note` can later be promoted into index blocks, appendix material, design artifacts, or implementation guidance
+
+****
+
+## Account.Management
+
+- `Account.Management` is the agentos subsystem that models provider login across all providers and account types under one shared lifecycle
+- one lifecycle, never per-provider: provider differences are absorbed at two seams only — `Credential.Shape` (how `Auth.Data` is read and stored) and the verify probe
+- credential lifecycle states: `observed → archived → verified → active`
+- a `Materializable.Account` can be reconstituted into a logged-in agent from stored `Auth.Data`; non-materializable accounts are reference-only
+- the `Account.Registry` stores `Auth.Data` as append-only immutable history with one active pointer per account
+- `Keep.Up.With.Rotation` — capturing refreshed credentials before they are lost is the registry's core duty, so re-login is minimized
+- `Credential.Capture` is the robust core — additive and content-addressed; by `Capture.Over.Materialization` it has strict priority over the home-writing direction
+- capture never rejects — `Auth.Data` that binds to no known account is preserved in a fallback `Unknown.Account` for later adoption; errors over unknown credentials happen downstream, not at capture
+- `Active.Auth.Artifact` is a registry pointer (not an auth property); `Active.Auth.Artifact.Rotation` moves it as a registry operation, never a home write — the pipeline is capture → activate → materialize
+- `Account.Identity` is provider-specific data in `Auth.Data` that binds a captured credential to the right account — the authoritative anchor, not the alias or the home
+- home-mutation invariant: only explicit, user-invoked operations mutate a live home or active pointer; observation → archive is always allowed because it is non-destructive
+- relates to `Provider.Instance` (a bound home+profile+credentials), `Agentos.Agent.Adapter` (which lists `Provider.Account`/`Provider.Home`/credential artifacts as supporting primitives), and `Normalization.Pipeline:Account.Usage.Model` (usage, downstream of login)
+
+### appendix
+
+- full sub-concept blocks in `appendix/Account.Management-appendix.md`: `Account.Model`, `Account.Model:Auth.Method`, `Account.Identity`, `Materializable.Account`, `Auth.Data`, `Auth.Data.Artifact`, `Valid.Credentials`, `Account.Registry`, `Keep.Up.With.Rotation`, `Credential.Capture`, `Capture.Over.Materialization`, `Unknown.Account`, `Active.Auth.Artifact`, `Active.Auth.Artifact.Rotation`, `Active.Auth.Drift`
+
+### meta
+
+- status: current design capture (2026-06) — redesign in progress; the credential machinery exists in `agentos-py` but was previously un-indexed
+- open: the freeze/suspension of non-explicit home-mutating paths is decided in principle; exact write taxonomy still being settled
+- open: the `Account.Model` field set carried by every account regardless of type
+- open: whether `Credential.Capture` runs fully automatic/continuous or explicit-triggered
