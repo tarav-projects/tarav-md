@@ -184,3 +184,16 @@
 - ambiguity → surface the top candidates and confirm; unresolvable → degrade to `Unresolved.Index.Name`
 - direction is symmetric: the user emits `~` to ask; the agent emits `~` to flag an unverified, approximate recall
 - soft meaning surfaced as a chat sigil — rides `Soft.Semantics.Concept`, sibling to `Dotted.Parameterized.Notation` and the variable `<Concept>.Name` form
+
+****
+
+## General.Avoids.Specific
+
+- a block's references tend to point up — a specialization references the general; a general block, as a rule of thumb, avoids reaching down into its specifics.
+- the aim is to keep a fundamental independent of its specializations — guarding against overspecification, so a general block stays readable and reusable on its own.
+- references then tend to run specific → general, keeping the graph stable toward the fundamentals.
+
+### appendix
+
+- the typical drift it guards against: specific detail accreting onto a general block.
+- namespace exception: an umbrella/namespace concept may list its members in `meta` (membership is constitutive); ordinary blocks reach upward only.

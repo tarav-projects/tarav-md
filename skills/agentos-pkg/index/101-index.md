@@ -346,13 +346,9 @@
 
 ## Skill.Module
 
-- `Skill.Module` is a named, on-demand-loadable part of a `Batchy.Skill` — a file or a section, addressable by its name
-- progressive disclosure made addressable-by-name: mentioning a module reinforces loading it into context
-- it generalizes the subcommand — any sub-file or section is an implicit module, activatable without a declared argument
-- placement is `Natural.Placement`: an inline section, a skill-root file, or a `references/` file — never a mandated subfolder
-- a `Skill.Arg` carrying an `action` is the optional formal front for a module — for help text, parameters, or selector-exclusivity
-- the agent resolves loose mentions (`--examples`, `examples`, `EXAMPLES`) to the canonical module name
-- arg, file, and section names share one resolution space; the skill designer keeps them collision-free
+- `Skill.Module` is the unit of skill-software — a named, encapsulating subsystem of a skill: a file or section, addressable by name, with hidden internals
+- addressable ⇒ loadable on demand — naming a module brings it into context (progressive disclosure)
+- it is the substrate Skillware's subsystems build on — a subsystem adds a capability to modules without changing what a module is
 
 ****
 
