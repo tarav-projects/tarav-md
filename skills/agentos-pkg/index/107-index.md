@@ -10,7 +10,7 @@
 
 ### meta
 
-- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Derivation.Rule`, `Derived.Content`, `Module.Dependency.Management`, `Derived.Module`, `Derivation.Manifest`, `Derivation.Surface.Arch`.
+- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Derivation.Rule`, `Derived.Content`, `Module.Dependency.Management`, `Derived.Module`, `Derivation.Manifest`, `Derivation.Surface.Arch`, `Semantic.Router`, `Usage.Pattern.Routing`.
 
 ****
 
@@ -79,3 +79,20 @@
 - `Derivation.Manifest` is the explicit artifact for a `Derivation.Rule` — it carries the parts of the rule (declared dependencies + external context) not already inline in the derived surface.
 - it lives on the derivation surface (`Derivation.Surface.Arch`), a `Skill.Build.Surface` kept off the runnable surface.
 - it names each dependency by a durable address and holds the external context, so a maintainer or agent can re-derive and drift-check from one known place.
+
+****
+
+## Semantic.Router
+
+- `Semantic.Router` is a Skillware primitive: a key:value table where keys are natural-language situation descriptions and values are linked resources (a prompt, a `Skill.Module`, content, or another `Semantic.Router`).
+- routing is semantic and agentic — the agent matches the live situation against the key descriptions and selects; keys must be discriminative.
+- it offers options, not an order — the rows are an unordered set of choices, not a sequence; `None.Is.An.Option` is stated explicitly, so the agent may select nothing.
+- it composes — a value can be another `Semantic.Router`, giving progressive, multi-level selection.
+
+****
+
+## Usage.Pattern.Routing
+
+- `Usage.Pattern.Routing` is `Semantic.Router` routing whose rows are usage patterns — keys are usage situations, values are the response for each (knowledge/surfaces to load, what to produce).
+- its keys are mined from real usage — chats, repeated questions, observed friction — so the routing grows cheaply and stays reality-weighted.
+- it optimizes frequent or important situations (a hot path); an unmatched situation selects nothing and falls back to the package's general routing.

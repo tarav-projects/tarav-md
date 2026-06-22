@@ -167,7 +167,7 @@
 - should cite origin blocks for duplicated concept material
 - should still use `agentos-index` for unknown, custom, or exploratory index context needs
 - contrasts with `Workflow.Neutral.Skill`, which provides orientation without steering the caller's current task
-- may be deployed from a `Package.Skill.UsagePattern` when a hot path deserves its own skill surface
+- may be deployed from `Usage.Pattern.Routing` when a hot path deserves its own skill surface
 
 ****
 
@@ -181,30 +181,6 @@
 - zero-arg call on a workflow-neutral skill with explicit args: the skill loads its orientation context but does not perform an operation
 - zero-arg call on an operational skill with explicit args: noop or orient, never assume a target
 - examples: `agentos-testground` needs a target package
-
-****
-
-## Package.Skill.UsagePattern
-
-- `Package.Skill.UsagePattern` is a named situation/response pair that captures a common or important usage path through a package
-- like a compiler hot path: the package identifies frequent usage situations and provides an optimized, documented route for each
-- each pattern has: a trigger situation (what the user asks or needs) and an expected agent behavior path (which surfaces get loaded, in what order, and what the agent produces)
-- patterns live in the package's `usage-patterns/` folder as named objects
-- from a usage pattern, a package can optionally deploy: a router entry in `Package.SKILL`, an `Aux.Workflow.Skill`, or a testground test
-- patterns do not replace the general path — the `Package.SKILL` decision router remains the fallback for situations not captured as a pattern
-- new patterns emerge from real usage: chatlas transcripts, repeated user questions, observed agent failures, or reality-weighted test results
-- a usage pattern is testable by nature: the situation is the test prompt, the expected behavior path is the behavior tiers
-
-****
-
-## Package.Skill.UsagePattern.Test
-
-- `Package.Skill.UsagePattern.Test` evaluates whether the package delivers the expected behavior for a named usage pattern
-- the test prompt is derived from the pattern's situation; the behavior tiers are derived from the pattern's expected response path
-- tests run through the `agentos-testground` system: isolated CLI session, chatlas trace capture, tier evaluation
-- because the pattern already defines situation and response, generating a test is nearly mechanical
-- test results feed back into pattern refinement: if the agent fails, the pattern documentation or the package surfaces may need improvement
-- patterns without tests are still useful as documentation; patterns with tests are verified documentation
 
 ****
 
