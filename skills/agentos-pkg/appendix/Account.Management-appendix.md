@@ -35,13 +35,38 @@
 
 ****
 
+## Home.State
+
+- `Home.State` is the actual authentication state of a home — the provider surface an agent reads to log in
+- it is reality: agentos observes it, and never treats a stored record as a substitute for reading it
+- its shape is provider-specific — a `CODEX_HOME` `auth.json`, a path-scoped Keychain entry, an ambient provider session
+- `Auth.Data` and `Auth.Ref` are constructed by reading it; materialization writes `Auth.Data` back to it
+- it is the ground truth a drift check compares against — a registry designation is only intent until matched to a `Home.State`
+
+****
+
 ## Auth.Data
 
-- `Auth.Data` is the local data a provider reads to authenticate a login
-- shape is provider-specific — the `Auth.Method` seam (codex `auth.json`, claude Keychain entry, copilot gh-token reference)
-- pipeline: `Raw.Credential.Data` (as read from a live source) → `Registered.Data` (normalized and stored in the registry)
-- what to store and how is delegated to the provider/agent implementation
-- payloads can contain secrets; index and ledger surfaces must never carry raw tokens
+- `Auth.Data` is the totality of data agentos's auth system needs for an `Auth.Method`
+- it is collected to serve distinct objectives — authentication (tokens, `auth.json` artifacts) and identification (provider, account, credential version) — more may be added
+- it is deliberately built to contain a sufficient, unambiguous `Auth.Ref` — its identification projection
+- it is the transport object between reality and the registry: `Home.State ↔ Auth.Data ↔ Auth.Registry`
+- capture constructs it from a `Home.State`; materialization writes it back to a `Home.State`
+- if it cannot be extracted from a `Home.State`, there is no `Auth.Data` — the `Auth.Method` is reference-only (non-materializable), and only its `Auth.Ref` exists
+- how the registry stores it is flexible, delegated to the `Auth.Method` — file, content-addressed artifact, token blob, or a bare reference
+- it can carry secrets — only `Auth.Registry` holds it; index and log surfaces carry `Auth.Ref`, never raw `Auth.Data`
+
+****
+
+## Auth.Ref
+
+- `Auth.Ref` is the identification-only projection of `Auth.Data` — enough to identify it unambiguously, never enough to materialize
+- it names a credential's provenance — provider, account, and the specific artifact/credential version
+- `Auth.Data` is deliberately built to contain an unambiguous `Auth.Ref`; for reference-only methods the `Auth.Ref` stands alone
+- it is lossy and one-way — `Auth.Data` and `Home.State` cannot be reconstructed from it
+- it carries no secret, so it is safe on index, log, and registry surfaces
+- it is the key for every identification operation — e.g. "is this already registered?" is `Home.State → Auth.Ref → Auth.Registry`
+- in `Logic.Impl`, all identification runs on `Auth.Ref`, never the full secret
 
 ****
 
@@ -63,6 +88,17 @@
 - rotation can invalidate previously-valid data with no action by agentos
 - orthogonal to materializability: holding the data to set up a home does not mean the provider still accepts it
 - `verified` means was valid at capture time, never guarantees is valid now
+
+****
+
+## Auth.Registry
+
+- `Auth.Registry` is the agentos store for captured `Auth.Data`, kept on agentos's own controlled paths
+- it is the registry end of the flow `Home.State ↔ Auth.Data ↔ Auth.Registry` — capture extracts `Auth.Data` from a `Home.State` and stores it here; materialization reads it back
+- how each credential is stored is delegated to the `Auth.Method`; the registry offers facilities such as a content-addressed artifact store but imposes no single schema
+- identification queries resolve against it via `Auth.Ref` — e.g. "is this already registered?"
+- it is the access point for auth credential data; account metadata is the concern of `Account.Registry` (whether one nests inside the other is unspecified)
+- it is authoritative for what agentos has captured; the live `Home.State` stays authoritative for what is actually in a home
 
 ****
 
@@ -133,13 +169,14 @@
 
 ****
 
-## Account.State.Tape
+## Account.Event.Tape
 
-- `Account.State.Tape` is an append-only registry that records `Account.Management` state as a sequence of events
+- `Account.Event.Tape` is an append-only registry that records `Account.Management` events — the operations agentos performed
 - each primitive operation owns one tape — capture, activation, materialization
 - operations only append; a tape is never rewritten or hand-edited
-- current state is read back as the last relevant record on the tape
-- it holds state only — config is a separate, declarative surface
+- it records operations performed, not the state of the world — divergence from reality is drift, surfaced as error/warn
+- the last relevant record is read back as the current designation (e.g. the active artifact, what was last written to a home)
+- it holds events only — config is a separate, declarative surface
 
 ****
 

@@ -109,13 +109,23 @@
 
 ****
 
-## Soft.Semantics.Concept
+## Spec.Hardness
 
-- `Soft.Semantics.Concept` is the principle that concepts in the system are intentionally under-specified because the consumer (an LLM) has common sense
-- you don't need to close every obvious gap — the LLM fills them reliably enough
-- this is a feature, not a deficiency — precision costs space and maintenance, common sense is free — trust the LLM
-- the entire index is built on `Soft.Semantics.Concept` — it's what makes a `Soft.Programming.Language` possible
-- when a concept feels incomplete, ask: would an LLM figure this out? If yes, it's complete enough
+- `Spec.Hardness` is how much of an interpreted artifact is specified vs left to its interpreter to complete
+- it is set by the interpreter's intelligence — a dumber interpreter needs harder (more specified) artifacts; a smarter interpreter allows softer ones
+- it is a soft↔hard axis: hard is fully specified, soft leans on the interpreter's judgment
+- placement is a design choice — too hard over-specifies (cost, rigidity); too soft costs reliability
+- it applies to anything handed to an interpreter — behavior, meaning, instructions, plans
+
+****
+
+## Concept.Hardness
+
+- `Concept.Hardness` applies `Spec.Hardness` to meaning — how much a concept's definition is fixed vs left to the interpreter to complete
+- the index runs its concepts soft: definitions are intentionally under-specified, completed by the LLM's common sense
+- soft is a feature, not a deficiency — precision costs space and maintenance; common sense is free
+- the writing heuristic: close gaps only to the point where an LLM would reliably figure out the rest
+- soft concepts are what make the index a `Soft.Programming.Language`
 
 ****
 

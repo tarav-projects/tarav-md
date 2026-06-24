@@ -284,7 +284,7 @@
 
 ### appendix
 
-- full sub-concept blocks in `appendix/Account.Management-appendix.md`: `Auth.Data.Capture`, `Auth.Data.Activation`, `Auth.Data.Materialization`, `Account.State.Tape`, `Account.Model`, `Account.Model:Auth.Method`, `Account.Identity`, `Materializable.Account`, `Auth.Data`, `Auth.Data.Artifact`, `Valid.Credentials`, `Account.Registry`, `Keep.Up.With.Rotation`, `Capture.Over.Materialization`, `Unknown.Account`, `Active.Auth.Artifact`, `Active.Auth.Artifact.Rotation`, `Active.Auth.Drift`
+- full sub-concept blocks in `appendix/Account.Management-appendix.md`: `Auth.Data.Capture`, `Auth.Data.Activation`, `Auth.Data.Materialization`, `Account.Event.Tape`, `Account.Model`, `Account.Model:Auth.Method`, `Account.Identity`, `Materializable.Account`, `Home.State`, `Auth.Data`, `Auth.Ref`, `Auth.Data.Artifact`, `Valid.Credentials`, `Auth.Registry`, `Account.Registry`, `Keep.Up.With.Rotation`, `Capture.Over.Materialization`, `Unknown.Account`, `Active.Auth.Artifact`, `Active.Auth.Artifact.Rotation`, `Active.Auth.Drift`
 
 ### meta
 

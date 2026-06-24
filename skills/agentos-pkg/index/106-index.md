@@ -128,15 +128,46 @@
 
 ****
 
+## Program.Hardness
+
+- `Program.Hardness` is `Spec.Hardness` applied to executed behavior — how much of a program is fixed vs left to its interpreter
+- its interpreter is an executor; the executor's intelligence sets the achievable hardness
+
+****
+
 ## Soft.Program
 
 - `Soft.Program` is an adaptive natural-language behavioral program for agent-human work
+- a `Soft.Program` is an `Agentic.Program` whose behavior is soft/adaptive
 - preserves continuity across turns without becoming a rigid execution script
 - interprets `Soft.State`, user directives, current evidence, and common sense together
 - guides agent behavior inside declared behavioral boundaries
 - adapts to user correction, new context, and changing focus
 - does not erase explicit gates, checkpoints, or `Hard.Evidence`
 - distinct from `Soft.Programming.Language`: `Soft.Program` is program-as-behavior-pattern; `Soft.Programming.Language` is language-as-index/runtime semantics
+
+****
+
+## Agentic.Program
+
+- `Agentic.Program` is a program whose interpreter is an **Agent** — the agent executes the steps, deciding what runs next and when to branch
+- one side of the executor-axis split: the interpreter is either an Agent (`Agentic.Program`) or a CPU (`CPU.Program`)
+- the agent's judgment is the control flow — sequencing, branching, and adaptation come from the agent
+- an agent interpreter opens the full `Program.Hardness` continuum — its programs can run hard or soft, softer the more capable the agent
+- the medium is open — natural language, code, or mixed; what makes it agentic is the agent deciding flow, not the medium
+- natural language is a common and important medium, worth its own treatment, but not the defining feature
+- its implementation-level form is `Agentic.Impl`
+
+****
+
+## CPU.Program
+
+- `CPU.Program` is a program whose interpreter is a **CPU** — code executed deterministically by an interpreter or compiler
+- the other side of the executor-axis split from `Agentic.Program`
+- control flow is fixed by the code — no judgment decides what runs next
+- it is the hard endpoint of `Program.Hardness` — a CPU interpreter admits no softness
+- it cannot improvise — it runs declared paths and errors hard outside them
+- its implementation-level form is `CPU.Impl`
 
 ****
 
@@ -183,7 +214,7 @@
 - invariant across all outcomes: the agent surfaces its interpretation and makes the resolved canonical name(s) explicit before building on it
 - ambiguity → surface the top candidates and confirm; unresolvable → degrade to `Unresolved.Index.Name`
 - direction is symmetric: the user emits `~` to ask; the agent emits `~` to flag an unverified, approximate recall
-- soft meaning surfaced as a chat sigil — rides `Soft.Semantics.Concept`, sibling to `Dotted.Parameterized.Notation` and the variable `<Concept>.Name` form
+- soft meaning surfaced as a chat sigil — rides `Concept.Hardness`, sibling to `Dotted.Parameterized.Notation` and the variable `<Concept>.Name` form
 
 ****
 
