@@ -7,7 +7,7 @@
 - **scope:** align stable index-surface references so `agentos-index` is the canonical entry surface for index work and the search/load model is routing-first selective loading
 - **out of scope:** integrating later modules such as `--ground`, `--diagnose`, or `--test`
 - **out of scope:** broad cleanup of every index-adjacent appendix or reference file beyond the search/write merge and directly affected stable callers
-- **status:** ready for implementation
+- **status:** completed
 - **source:** 2026-06-27 chat design on `agentos-index` as a `Batchy.Skill` router with `--search` and `--write`; current stable surfaces inspected in `agentos-md/skills/agentos-index/SKILL.md`, `agentos-md/skills/agentos-index-writer/SKILL.md`, `agentos-md/skills/agentos-batchy-skills/SKILL.md`, `agentos-md/skills/agentos-pkg/index/101-index.md`, `agentos-md/skills/agentos-pkg/index/107-index.md`, `agentos-md/skills/agentos-pkg/references/launch-runtime.md`
 
 ## Impl.Index
@@ -59,7 +59,7 @@
 - path: `agentos-index/SKILL.md` frontmatter + root body
 - observable: the root skill presents `--search` and `--write` as the canonical public entrypoints
 - check: read `agentos-index/SKILL.md` alone and confirm writing no longer routes to `agentos-index-writer`, and `-h` / `--help` is specified in terms that expose `--search` and `--write`
-- status: not started
+- status: completed
 
 ### Slice 2 — Create the `search` and `write` modules
 
@@ -70,7 +70,7 @@
 - path: `agentos-index/SKILL.md` router + new `references/search.md` + new `references/write.md`
 - observable: the root skill stays short while both operations are fully reachable through explicit Batchy args
 - check: each module can be read independently and covers its operation without depending on `agentos-index-writer`
-- status: not started
+- status: completed
 
 ### Slice 3 — Remove `agentos-index-writer` and patch stable callers
 
@@ -80,7 +80,7 @@
 - path: index skill surfaces, directly affected stable callers, and directly affected stable index blocks
 - observable: stable package docs present `agentos-index` as the single public route for index writing
 - check: `rg "agentos-index-writer" agentos-md/skills` returns no hits outside deprecated or historical surfaces
-- status: not started
+- status: completed
 
 ### Slice 4 — Align the canonical load model
 
@@ -89,8 +89,10 @@
 - path: `agentos-pkg` stable references that define index runtime/loading behavior
 - observable: no stable reference contradicts routing-first selective loading
 - check: read `agentos-index/SKILL.md` and `launch-runtime.md` together and confirm they describe one coherent search/load model
-- status: not started
+- status: completed
 
 ## Impl.Log
 
 - 2026-06-27: Created from accepted chat design to make `agentos-index` the single public Batchy router skill for the index subsystem and absorb `agentos-index-writer` into explicit modules.
+- 2026-06-27: Executed inside the `agentos-md` git repo because the umbrella `agentos-project` root is not itself a git repository; all touched implementation surfaces for this request lived under `agentos-md`.
+- 2026-06-27: Replaced `agentos-index` root skill with a Batchy router shape, added `search` and `write` reference-backed modules, deleted `agentos-index-writer`, patched stable callers, and rewrote `agentos-pkg/references/launch-runtime.md` to the routing-first selective load model.

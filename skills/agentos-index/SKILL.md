@@ -5,37 +5,51 @@ description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem
 
 # agentos-index
 
-Workflow-neutral `Package.Aux.Skill` for the Agentos Index — a `Soft.Programming.Language` for project knowledge.
+Workflow-neutral `Package.Aux.Skill` for the Agentos Index subsystem.
 
-This skill orients the caller to the index subsystem without forcing an operation. The Agentos Index design reference lives in `agentos-pkg/index/`, `agentos-pkg/appendix/`, and `agentos-pkg/references/`.
+This skill is the public Batchy router for index work. It orients the caller to the subsystem by default and routes explicit operations such as `--search` and `--write` into named `Skill.Module`s.
 
 This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
-- `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
+- `-h` / `--help` prints usage and the public args without running.
 
+## Skill.Arg.Section
 
+### Skill.Arg:Search
+- search the index through routing-first selective loading
+- required: false
+- help: "search the index and return cited context"
+- examples: --search "Index.AGENTS.MD"
+
+### Skill.Arg:Write
+- work the approved write path for index or appendix edits
+- required: false
+- help: "use the index write path for approved edits"
+- examples: --write "add Context.Hook"
+
+## Boundary
+
+- this skill is the canonical public entry surface for working with the Agentos Index system
+- it remains a `Workflow.Neutral.Skill` when no explicit arg is selected
+- it routes into named modules for concrete index operations instead of splitting those operations into separate public skills
+- later modules such as diagnosis, testing, or grounding may be added without changing the public package entry surface
 
 ## What The Index Is
 
-- the index is a `Soft.Programming.Language` — soft syntax (natural language), programming semantics (execution behavior)
-- it is the `Alignment.Surface` between humans and agents — the shared ground where both sides align on what things mean
-- it contains `Named.Concepts` written in `Kernel.Block:Index` blocks, organized in flat index files
-- agents operate the index by collecting the relevant routing blocks, concept blocks, appendix material, and references for the current task
+- the index is a `Soft.Programming.Language` for project knowledge
+- it is an `Alignment.Surface` between humans and agents
+- it contains `Named.Concepts` written in `Kernel.Block:Index` blocks, organized across flat index files and on-demand appendix depth
+- agents operate it by collecting routing blocks, concept blocks, appendix material, and references relevant to the current task
 
-## References
+## Router Table
 
-| Reference | Covers |
+| Situation | Module / Surface |
 |---|---|
-| `agentos-pkg/references/launch-runtime.md` | bootstrap script — load index data, ground key concepts, load appendix, always-on behavior |
-
-## Index Functions
-
-| Function | Use |
-|---|---|
-| Research / navigation | Search the index, collect relevant blocks or appendix sections, and return cited context for the current task. |
-| Writing / mutation | User-gated index edits. Full writer's guide: `agentos-index-writer`. |
-| Diagnosis | Report on structure, routing, staleness, coherence, coverage gaps, or placement drift. Do not mutate unless separately approved. |
-| Testing | Use `agentos-testground` for behavioral testing of index entry paths and usage patterns. Legacy activation-recall tests remain in `agentos-pkg/testing/`. |
+| Search for concepts, load cited context, or retrieve appendix depth | `references/search.md` |
+| Work an approved index or appendix write | `references/write.md` |
+| Understand the subsystem at package level | `agentos-pkg/index/`, `agentos-pkg/appendix/`, `agentos-pkg/references/` |
+| Behavior examples for block writing quality | `agentos-pkg/references/index-block-catalog.md` |
+| Behavioral testing of index entry paths or usage patterns | `agentos-testground` |
 
 ## Index Operating Behavior
 
@@ -47,6 +61,11 @@ An agent operating the index should:
 - use writing/mutation only when the user has approved an index write
 
 For delegated read-only research that protects the caller's context, use `Packages.Master.Agent` against the relevant package or packages.
+
+## Skill Modules
+
+- `references/search.md` — routing-first search, selective loading, appendix discovery, and citation behavior
+- `references/write.md` — approved write path for index and appendix edits: gates, naming, placement, write loop, and maintenance
 
 ## When To Load This Skill
 

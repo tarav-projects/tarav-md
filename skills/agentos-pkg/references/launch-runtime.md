@@ -1,39 +1,30 @@
 # Launch Runtime
 
-Bootstrap the Index Runtime. Execute these steps in order.
+Bootstrap index work through the canonical `agentos-index` entry surface.
 
-## 1. Load Index Data
+## 1. Enter Through `agentos-index`
 
-- Read `agentos-pkg/index/000-index.md` — the public routing table
-- Read all flat files listed in the routing table
-- Read `notes/index/001-index.md` if it exists — local entry point
-- Read all local flat files listed there
-- The full index is now in context.
+- Load `agentos-index` as the public entry place for the index system
+- Choose the explicit module that matches the current task when one applies, such as `--search` or `--write`
+- Stay at the root skill when the task is only orientation, subsystem understanding, or route selection
 
-## 2. Ground on Key Concepts
+## 2. Use Routing-First Selective Loading
 
-The index is loaded. Ground on these concepts to understand how the system works:
-- `Index.Architecture` — how the index is structured
-- `Kernel.Block:Index` — what a block is
-- `Kernel.Writing` — how blocks are written
-- `Distributed.Index` — public/local split
-- `Index.Router` — what the routing table is
-- `Index.Runtime` — what the runtime is
-- `Index.Surface.Layout` — expected directory structure
+- Start from the relevant routing surface: public `index/000-index.md`, local `notes/index/001-index.md`, or both
+- Find the target concept or nearby related names before loading flat files
+- Read only the flat index files that own the relevant routed concepts
+- Load appendix depth only when the selected concept blocks do not carry enough signal
+- Load references only when the task needs operational detail or worked examples
 
-## 3. Load Appendix for Key Concepts
+## 3. Search Behavior
 
-Load these appendix files — they give depth on how the index is structured and why:
-- `agentos-pkg/appendix/Index.Architecture-appendix.md`
-- `agentos-pkg/appendix/Agentos.Index.System-appendix.md`
-- `agentos-pkg/appendix/Surface.Link.Directionality-appendix.md`
+- Return context with source block citations so the caller can verify and maintain the summary
+- Distinguish discovered context from inference
+- Surface unresolved names instead of inventing concepts
+- Treat repeated unresolved names as capture signals, not reasons to guess
 
-## 4. Always-on Behavior
+## 4. Depth And Quality References
 
-- The full index is in context — known `Dotted.Names` ground naturally, no lookup needed
-- Use `Appendix.Discovery` when you need depth on any concept
-- When an unknown name appears, park it as `Unresolved.Index.Name`
-- Report unresolved names in footer: `> Index: unresolved: `Unknown.Name``
-- Only report when something is unresolved — no footer for normal operation
-- Gap detection is passive — don't interrupt flow
-- If the same unresolved name recurs 3+ times, suggest capture to the user
+- use `Appendix.Discovery` when the selected index block suggests or requires depth
+- use `agentos-pkg/references/index-block-catalog.md` when the task needs concrete block-writing calibration
+- use the `agentos-index --write` module for approved index or appendix edits

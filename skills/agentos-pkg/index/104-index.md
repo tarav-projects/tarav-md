@@ -240,7 +240,7 @@
 - applies to any surface that wants human control over when mutation happens
 - distinct from `Content.Verbatim.Gated`, which gates what is written rather than when
 - a surface can apply one or both gates independently
-- operational detail: `agentos-index-writer`
+- operational detail: `agentos-index --write`
 
 ****
 
@@ -250,7 +250,7 @@
 - the agent proposes; the user settles — no silent rewrites or unreviewed content
 - implies `Write.Trigger.Gated` — if content is gated, the trigger is necessarily gated too
 - supports `Hugentic.Alignment` — the review point is where human judgment shapes the surface
-- operational detail: `agentos-index-writer`
+- operational detail: `agentos-index --write`
 
 ****
 
