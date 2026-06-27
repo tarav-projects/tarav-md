@@ -50,11 +50,63 @@
 ## Package.Driver
 
 - `Package.Driver` is the minimal context an agent must load from a `Package.Skill` to be able to work with that package
-- typically the package `SKILL.md` file, including the skill's description as advertised in the skill list
-- enough for the agent to orient and route into narrower surfaces (e.g. `Package.Skill.Router`, `Package.Skill.Index`, `Package.Aux.Skill`) when needed
+- typically the package `SKILL.md`, with its description advertised cold in the skill list (visible before any load)
+- it loads at the `SKILL.Loading` tier — present whole once its skill is loaded; fundamental drivers are also wired into `Cold.Loading` `Context.Hook`s so they arrive from cold
+- once loaded it is two parts: `Package.Driver.Base` (always loaded) plus `Package.Driver.Router` (routes onward)
 - `Package.Driver:<Package>` names the driver of a specific package, e.g. `Package.Driver:Agentos.Pkg`
 - the standard route any agent uses to enter a package — including any package-agnostic agent that takes the package as an argument
-- when the driver is not enough, the agent loads narrower surfaces declared by the `Package.Skill.Router`
+- when base and router are not enough, the agent descends into the narrower surfaces the router declares
+
+****
+
+## Package.Driver.Base
+
+- `Package.Driver.Base` is the explicit operating explanation carried in the driver itself
+- always loaded whenever the `Package.Driver` is loaded — the package's always-on core
+- carries the package protocol plus the fundamental vocabulary downstream surfaces assume
+- must hold enough vocabulary that its own `Package.Driver.Router` keys are matchable
+- minimal by discipline: only what the common paths need, not everything useful
+
+****
+
+## Context.Loading.Path
+
+- `Context.Loading.Path` is the tiered path by which context enters an agent, ordered from guaranteed-at-cold to pulled-on-demand
+- each tier is a distinct loading mechanism with its own guarantee level; a later tier becomes reachable only once earlier tiers have loaded what it needs
+- tier 1 `Cold.Loading` — context guaranteed present from a cold start
+- tier 2 `SKILL.Loading` — context that arrives whole when a skill is loaded
+- tier 3 `Dynamic.Loading` — context pulled selectively, on demand
+- the path bootstraps itself: each tier loads the keys and surfaces the next tier needs to act
+
+****
+
+## Cold.Loading
+
+- `Cold.Loading` is the `Context.Loading.Path` tier guaranteed present from a cold start, before the agent takes any action
+- it loads through the `Context.Hook`s an agent always sees on entry — skill descriptions and `AGENTS.md`
+- the guarantee comes from redundant placement: the same context is wired into many `Context.Hook`s so the system cannot miss it
+- it is the bootstrap tier — it carries the minimal vocabulary and routing keys the later tiers need to act at all
+- only `Workflow.Neutral.Skill` orientation belongs here — non-steering, safe to always load; its cost is paid every session, so it stays minimal
+
+****
+
+## SKILL.Loading
+
+- `SKILL.Loading` is the `Context.Loading.Path` tier that arrives whole when a skill is loaded
+- the `SKILL.md` file is its unit — the single discrete loading step between `Cold.Loading` and `Dynamic.Loading`
+- it is atomic: loading a skill brings its entire `SKILL.md` at once, all-or-nothing, with no finer selection
+- whatever an author wants present the moment a skill is in context belongs in its `SKILL.md`
+- it sets up the next tier: the keys and routes loaded here are what `Dynamic.Loading` selects against
+
+****
+
+## Dynamic.Loading
+
+- `Dynamic.Loading` is the `Context.Loading.Path` tier that pulls context selectively, on demand, rather than guaranteeing it
+- it loads only what the live situation calls for, keeping context minimal
+- two sub-modes today: `Semantic.Router` selection — the agent matches the situation against router keys an earlier tier loaded — and explicit `Batchy.Skill` call — a `Skill.Arg` names the `Skill.Module` to pull (e.g. `--write`)
+- it depends on earlier tiers: it can only select against the routers and keys that `Cold.Loading` or `SKILL.Loading` already brought
+- it is open-ended: new pull mechanisms (auto-triggers, agent-initiated fetches) extend this tier without changing the earlier ones
 
 ****
 
@@ -89,20 +141,20 @@
 
 ****
 
-## Package.Skill.Router
+## Package.Driver.Router
 
-- `Package.Skill.Router` is the orientation layer inside a `Package.Skill`
-- acts as an internal table of contents for package knowledge and capabilities
-- stays transparent to caller workflow: it helps the caller find surfaces without prompting a task-flow change
-- maps task kinds, concepts, workflows, references, package agents, install surfaces, and auxiliary skills to their package locations
-- lets `Package.Aux.Skill` aliases carry workflow intention while the package router remains neutral
+- `Package.Driver.Router` is the entry `Semantic.Router` the driver carries at the package `SKILL.md` — the first router an agent meets
+- maps situations to the package surfaces that handle them: task kinds, concepts, workflows, references, package agents, install surfaces, and `Package.Aux.Skill`
+- its keys read in the loaded `Package.Driver.Base` vocabulary; an unmatched situation falls back to the package's general routing
+- composes like any `Semantic.Router`: a row may point to a `Skill.Module`, a nested skill's own `Package.Driver`, or a deeper router
+- stays transparent: it routes without forcing a workflow, letting `Package.Aux.Skill` aliases carry workflow intention while the router stays neutral
 
 ****
 
 ## Package.Skill.Dependency
 
 - `Package.Skill.Dependency` is the package surface that declares dependencies needed by a `Package.Skill`
-- may live as a `Package.Skill.Router` section or as a `references/` file, depending on package size
+- may live as a `Package.Driver.Router` section or as a `references/` file, depending on package size
 - covers agentic dependencies: concepts, workflows, routers, install steps, references, or service surfaces provided by another package skill
 - external concepts should use qualified names when crossing package boundaries, for example `<package>-skill/Bla.Concept`
 - gives agents a formal place to discover which outside package surfaces may need to be loaded, installed, or consulted
@@ -123,7 +175,7 @@
 ## Packages.Master.Agent
 
 - `Packages.Master.Agent` is a general read-only agent that can answer prompts about any `Package.Skill` it is pointed at
-- the caller sends a prompt and a target package; the master agent loads the target's `Package.Driver`, follows the `Package.Skill.Router` as needed, scans the surfaces, and returns an answer with citations
+- the caller sends a prompt and a target package; the master agent loads the target's `Package.Driver`, follows the `Package.Driver.Router` as needed, scans the surfaces, and returns an answer with citations
 - the caller's context is protected — the master agent pays the cost of loading the target package's surfaces, not the caller
 - not bound to one package — operates against any `Package.Skill` it has access to
 - target package resolution: explicit argument wins; otherwise inferred from project context (e.g. project `AGENTS.md` declaring packages in use); when ambiguous, surfaces the ambiguity rather than guesses
@@ -138,7 +190,7 @@
 
 - `Multi.Package.Operation` is the ability of `Packages.Master.Agent` to answer prompts requiring context from multiple packages
 - explicit target packages constrain the operation; otherwise relevant packages may be inferred from project context
-- each package is entered through its `Package.Driver` and traversed through its `Package.Skill.Router`
+- each package is entered through its `Package.Driver` and traversed through its `Package.Driver.Router`
 - avoids exhaustive loading; searches likely relevant package surfaces first
 - returned answers cite package-qualified concepts and surface paths
 - ambiguity and disagreement between packages are surfaced rather than silently resolved
@@ -149,7 +201,7 @@
 
 - `Package.Agent` is an optional read-only agent specialized for answering prompts about a specific `Package.Skill`
 - exists when specialization makes it more efficient or reliable than `Packages.Master.Agent` for that package
-- loads the package's `Package.Driver` and follows its `Package.Skill.Router`, while adding package-specific prompting, configuration, or knowledge-routing behavior
+- loads the package's `Package.Driver` and follows its `Package.Driver.Router`, while adding package-specific prompting, configuration, or knowledge-routing behavior
 - answers using package surfaces with citations and surface paths; does not edit, install, or run package operations
 - failure mode: returns "not found" plus the surfaces checked rather than inventing an answer
 - callers may invoke it through a package-specific `Package.Aux.Skill` named `<package>-pkg-agent`

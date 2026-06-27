@@ -8,16 +8,16 @@
 - two depth layers: `index/` (lean, compressed concept definitions) and `Extended.Index.Scope` (`appendix/`, loaded on demand)
 - flat anonymous index files (`100-index.md`, `101-index.md`, ...) with `000-index.md` as concept→file routing table
 - writing is append-only to the last file — placement decisions are decoupled from writing
-- one universal block structure (`Kernel.Block`) parameterized by surface: `Index.Block`, `Appendix.Block`, `Design.Block`
+- one base block (`Kernel.Block`) with surface-placement variants `Index.Block`, `Appendix.Block`, `Design.Block`
 - one portable file container (`Kernel.Note`) for collecting `Kernel.Block` sections outside index routing
 - one writing philosophy (`Kernel.Writing`) — space constraints come from the surface, not the philosophy
 - appendix files are concept-named (`Concept.Name-appendix.md`) with implicit discovery — no outlink required
 - `Concept.Scoping` and `Explicit.Namespaces` provide the conceptual overlay on the flat file structure
-- index/appendix blocks may carry `Chat.Grounding` through a standard `Kernel.Block.Grounding` section
+- index/appendix blocks may carry grounding through a `Kernel.Block.Grounding` section
 
 ### meta
 
-- namespace-members: `Extended.Index.Scope`, `Flat.Index.Architecture`, `Kernel.Writing`, `Kernel.Block`, `Kernel.Note`, `Index.Block`, `Appendix.Block`, `Design.Block`, `Kernel.Block.Grounding`, `Concept.Scoping`, `Explicit.Namespace`, `Surface.Concept`, `Agentos.Index.System`
+- namespace-members: `Extended.Index.Scope`, `Flat.Index.Architecture`, `Kernel.Writing`, `Kernel.Block`, `Kernel.Block.Section`, `Kernel.Block.Fundamentals`, `Kernel.Block.Grounding`, `Kernel.Block.Appendix`, `Kernel.Block.Meta`, `Kernel.Note`, `Index.Block`, `Appendix.Block`, `Design.Block`, `Concept.Scoping`, `Explicit.Namespace`, `Surface.Concept`, `Agentos.Index.System`
 
 ****
 
@@ -81,7 +81,7 @@
 - an appendix file can contain blocks for other concepts, viewed through the host concept's lens
 - a concept can appear in multiple scopes — each scoped block should be read in the context of the container concept
 - notation: `Concept.B/Concept.A` — Concept.A as seen from Concept.B's scope
-- examples: `Index.Architecture/Flat.File.Design`, `Index.Architecture/Meta.Unification`
+- examples: `Index.Architecture/Flat.File.Design`, `Index.Architecture/Implicit.Appendix.Discovery`
 
 ****
 
@@ -180,17 +180,6 @@
 - all surfaces of the installed project become reachable — not just its `Public.Surface`
 - enables agents to work on multiple projects with full context
 - not yet defined — the mechanism is open
-
-****
-
-## Index.Runtime
-
-- `Index.Runtime` is the behavioral program installed in an agent at `Index.Activation` — how to operate the index
-- covers: architecture, reading, writing, research, gaps, detection, footer
-- once loaded, the agent knows how to navigate, interpret, contribute to, and reason with the index
-- the runtime is the skill instructions — it's behavioral, not data
-- `Index.Notes` are the data the runtime operates on
-- operational detail: `agentos-pkg/references/launch-runtime.md`
 
 ****
 

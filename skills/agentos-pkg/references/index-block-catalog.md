@@ -1,6 +1,6 @@
 # Index.Block — Catalog
 
-Worked examples for writing `Index.Block`s: well-formed blocks to imitate, and malformed ones to zavoid.
+Worked examples for writing `Index.Block`s: well-formed blocks to imitate, and malformed ones to avoid.
 
 The bar is **line granularity** — each line one fact, one dimension, reorderable, surviving on its own. The rules live in `Index.Block` and `Kernel.Writing`; this file is the concrete form. Read the positives for the shape, the negatives for the failure modes the rules don't catch on their own.
 
@@ -13,14 +13,15 @@ The bar is **line granularity** — each line one fact, one dimension, reorderab
 ```md
 ## Hard.Evidence
 
-- `Hard.Evidence` is the principle that evidence-based arguments have priority over agent assumptions during alignment work
+- `Hard.Evidence` is the principle that evidence-based arguments have priority over agent assumptions
 - concrete evidence: user instructions, inspected codebase state, active session artifacts, stable project surfaces, `Chat.Surface` content (especially user turns)
-- alignment sessions aim to be `Hard.Evidence`-based — more is welcome, but the core alignment axes are the priority
+- a summary is not `Hard.Evidence` — without a link to the evidence it stands on, it is low-confidence (`We.Distrust.Summaries`)
+- when evidence and assumption conflict, evidence wins
 ```
 
 Why it works:
 - line 1 is the `Concept is a …` definition — the heading's conceptual commitment, paid off.
-- each line is one dimension; reorder lines 2–3 and nothing breaks.
+- each line is one dimension; reorder lines 2–4 and nothing breaks.
 - the related concept (`Chat.Surface`) is woven inline (`Inline.Relatedness`), not listed as edge metadata.
 
 ### Definition + boundary + surface-neutrality

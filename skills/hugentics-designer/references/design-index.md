@@ -1,6 +1,6 @@
 # Design.Index
 
-`Design.Index` is the conceptual background of the current `What.Design.Session`. Each block is a `Kernel.Block:Design` and applies `Kernel.Writing` discipline — see `writing-craft.md` for the full craft surface.
+`Design.Index` is the conceptual background of the current `What.Design.Session`. Each block is a `Design.Block` and applies `Kernel.Writing` discipline — see `writing-craft.md` for the full craft surface.
 
 It captures the relevant conceptual value produced by the session so the agent and user can keep the design grounded while the discussion continues.
 
@@ -30,9 +30,9 @@ Use H3 concept blocks under the H2 section:
 
 ## Design.Index.Block
 
-Each H3 concept block is a `Design.Index.Block` — a `Kernel.Block:Design` placed in this section.
+Each H3 concept block is a `Design.Index.Block` — a `Design.Block` placed in this section.
 
-The fundamentals carry the same semantic role as `Kernel.Block:Index` fundamentals: compact meaning, **boundaries** (what the concept is NOT), **relations** to other concepts (use `Inline.Relatedness`), **judgments** made explicit, and **unresolved conceptual pressure** marked as open. Draft quality may vary during a session, but the meaning target is the same.
+The fundamentals carry the same semantic role as `Index.Block` fundamentals: compact meaning, **boundaries** (what the concept is NOT), **relations** to other concepts (use `Inline.Relatedness`), **judgments** made explicit, and **unresolved conceptual pressure** marked as open. Draft quality may vary during a session, but the meaning target is the same.
 
 Use `appendix` for extended conceptual material — rationale, pressure tests, rejected alternatives — that keeps fundamentals concise without losing valuable discussion signal.
 

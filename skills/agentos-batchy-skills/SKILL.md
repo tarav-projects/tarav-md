@@ -29,7 +29,7 @@ The skill taxonomy and roles are canonical in the `agentos-pkg` index (`index/10
 - `Package.Driver` — the minimal load (usually `SKILL.md`) to orient and route.
 - `Package.Aux.Skill` — a specialized skill hanging off a package, pointing back to its root.
 - `Workflow.Neutral.Skill` vs `Aux.Workflow.Skill` — orient-only vs steer-into-a-task. Choose deliberately; a base or router is neutral, an operation is not.
-- `Package.Skill.Router`, `Package.Skill.Index`, `Package.Skill.Install`, `Package.Skill.Dependency` — the internal subsystems of a package skill.
+- `Package.Driver.Router`, `Package.Skill.Index`, `Package.Skill.Install`, `Package.Skill.Dependency` — the internal subsystems of a package skill.
 - `Skill.Explicit.Args` — the arguments a skill needs before it can do useful work, and its missing-argument behavior.
 
 ## Batchy Convention

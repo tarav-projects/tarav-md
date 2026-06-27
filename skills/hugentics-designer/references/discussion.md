@@ -67,7 +67,7 @@ For the approval-grade report shape, use `consolidation-plan-example.md`.
 For each user reply:
 
 1. Respond directly to the user's point.
-2. Update the recommendation and re-render the subject's `Kernel.Block:Design` with the change applied.
+2. Update the recommendation and re-render the subject's `Design.Block` with the change applied.
 3. Name the tradeoff or risk if it matters.
 4. Identify whether the question is settled, still open, or ready to park.
 5. If useful, propose a capture into the active artifact.
@@ -76,7 +76,7 @@ Do not produce the next full alignment question until the user explicitly asks f
 
 ## Output Shape
 
-When the round works a defined subject, re-render its `Kernel.Block:Design` with the change applied, in `Kernel.Writing` (orthogonal bullet lines). Open points live in `#### meta` as `open:` lines. This is `Designer.Turn.Kernel.Form`.
+When the round works a defined subject, re-render its `Design.Block` with the change applied, in `Kernel.Writing` (orthogonal bullet lines). Open points live in `#### meta` as `open:` lines. This is `Designer.Turn.Kernel.Form`.
 
 ```txt
 ### Subject.Name

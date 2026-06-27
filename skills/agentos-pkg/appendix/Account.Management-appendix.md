@@ -229,3 +229,4 @@
 - capture first preserves the new credential (`Capture.Over.Materialization`); activation then moves the `Active.Auth.Data` to follow it
 - it answers rolling auth — `Keep.Up.With.Rotation`: the active pointer must track the credential the provider now accepts
 - it is a registry move only, never a home write — the home already advanced on its own
+- because it is a reversible registry-only move (append-only history, pointer reselection), it is safe to run automatically and unattended, while home writes stay user-gated under the home-write invariant

@@ -6,11 +6,12 @@
 
 - `Agentos.Skillware` is the discipline of treating skills as software — the skill is the unit of software for agents.
 - "as software" means the artifacts agents run gain engineering structure — modules, dependencies, builds, versions, lineage — so they can be reused and evolved rather than written once and forked.
+- it is supported by a development toolchain — linters, builders, compilers — spanning agentic and `CPU.Impl` work, that moves package maintenance off the human.
 - a discipline realized by capabilities, not a single mechanism — it names the stance; specific members implement it.
 
 ### meta
 
-- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Derivation.Rule`, `Derived.Content`, `Module.Dependency.Management`, `Derived.Module`, `Derivation.Manifest`, `Derivation.Surface.Arch`, `Semantic.Router`, `Usage.Pattern.Routing`.
+- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Derivation.Rule`, `Derived.Content`, `Module.Dependency.Management`, `Derived.Module`, `Derivation.Manifest`, `Semantic.Router`, `Usage.Pattern.Routing`.
 
 ****
 
@@ -27,6 +28,18 @@
 - `Skill.Build.Surface` is the complement of `Skill.Runnable.Surface` — it holds the artifacts that produce and maintain runnable content, and is never loaded at run time.
 - it is the home for everything kept off the runnable surface: derivation context, dependency declarations, lineage, dev material.
 - never run, it carries no "stay clean" constraint — an unconstrained workspace; that freedom is what the two-surface split buys.
+- it lives in a per-package `build/` folder — build-time material organized by capability (derivation, tests, lint, lineage), discovered by convention.
+
+****
+
+## Skill.Package.Builder
+
+- `Skill.Package.Builder` is the support system for developing and maintaining a skill package's `Skill.Runnable.Surface`
+- it is a bundle of agentic skills and CLI support tooling that run build workflows over the package
+- a build workflow either produces runnable content or checks it — builds, drift-checks, tests, lint
+- it is open-ended — any build workflow can be added; derivation is one capability, not the whole system
+- the `Skill.Build.Surface` is its workspace — it holds anything the builder needs that should not live on the `Skill.Runnable.Surface`
+- realized as the `agentos-skill-pkg-builder` `Package.Aux.Skill`, which centralizes the build-related `Skill.Module`s
 
 ****
 
@@ -65,19 +78,10 @@
 
 ****
 
-## Derivation.Surface.Arch
-
-- `Derivation.Surface.Arch` is the layout of a skill's derivation surface — a `derivation/` folder (a `Skill.Build.Surface`) holding explicit `Derivation.Manifest`s, kept off the `Skill.Runnable.Surface`.
-- per-file mirror — `derivation/<name>.md` mirrors the derived file's name and is discovered implicitly (check if it exists); the default, no registry needed.
-- `derivation/002-index.md` routes the surface — listing is cheap, so it lists every derivation and carries the multi-output/subsystem cases a 1:1 mirror can't express.
-- discovery is convention-based — a maintainer or agent always knows where a derivation's context lives, like `Appendix.Discovery`.
-
-****
-
 ## Derivation.Manifest
 
 - `Derivation.Manifest` is the explicit artifact for a `Derivation.Rule` — it carries the parts of the rule (declared dependencies + external context) not already inline in the derived surface.
-- it lives on the derivation surface (`Derivation.Surface.Arch`), a `Skill.Build.Surface` kept off the runnable surface.
+- it lives on the `Skill.Build.Surface` (under `build/derivation/`), kept off the runnable surface.
 - it names each dependency by a durable address and holds the external context, so a maintainer or agent can re-derive and drift-check from one known place.
 
 ****

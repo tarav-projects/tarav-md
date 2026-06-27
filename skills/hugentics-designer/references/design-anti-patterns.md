@@ -94,7 +94,7 @@ Designed to be re-read mid-session when something feels off. Original to this sk
 
 - looks like: the user said "anyone can put a halo on the model and that is the way"; the agent captured "the model is the mediation surface for halos"
 - why it kills: erases user-tone wording that carries authority and reads as a concrete design rule
-- correction: preserve user wording when it carries design judgment (per `Kernel.Block:Design`); summarize only the prose, not the judgments
+- correction: preserve user wording when it carries design judgment (per `Design.Block`); summarize only the prose, not the judgments
 
 ### Settling open material
 
@@ -126,7 +126,7 @@ Designed to be re-read mid-session when something feels off. Original to this sk
 
 ### Designing before Setup
 
-- looks like: drafting a `Kernel.Block:Design`, asking a design question, or consolidating design state before `Design.Session.Setup` has run — writing in plain prose, unaware of the owning index's existing concepts
+- looks like: drafting a `Design.Block`, asking a design question, or consolidating design state before `Design.Session.Setup` has run — writing in plain prose, unaware of the owning index's existing concepts
 - why it kills: the process floor never reaches the work, so the user has to supply basic workflow concepts ("we speak in Kernel.Block language"), and the agent designs blind to what already exists
 - correction: on any design signal, ensure `Design.Session.Setup` has run (process frame + subject prior-art via `concept-discovery.md`) before the first design move
 

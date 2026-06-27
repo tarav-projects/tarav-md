@@ -10,7 +10,7 @@ This reference leans on `[Cited.Duplication, Inline.Relatedness, Natural.Placeme
 
 Two different things load at session start; do not conflate them:
 
-- **Process floor (Axis 1)** — the design *workflow* concepts: `Kernel.Writing`, `Kernel.Block:Design`, `Natural.Placement`, etc. Loaded once via the Minimal Runtime / `writing-craft.md`. Concept-agnostic; true for every session.
+- **Process floor (Axis 1)** — the design *workflow* concepts: `Kernel.Writing`, `Design.Block`, `Natural.Placement`, etc. Loaded once via the Minimal Runtime / `writing-craft.md`. Concept-agnostic; true for every session.
 - **Subject prior-art (Axis 2, this file)** — the existing index concepts about *this specific subject*. Discovered fresh per session and per new subject block.
 
 `Concept.Discovery` is only the second. The first is already covered by the Minimal Runtime.

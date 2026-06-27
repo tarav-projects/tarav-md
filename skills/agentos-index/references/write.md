@@ -2,6 +2,8 @@
 
 Use this module when the user has approved an index or appendix edit.
 
+Drafting or revising block wording is also `--write` work, even before the user has approved a file mutation.
+
 ## Write Gates
 
 - index work is gated by `Write.Trigger.Gated`
@@ -41,5 +43,6 @@ Use this module when the user has approved an index or appendix edit.
 
 ## Quality References
 
+- load `agentos-pkg/references/index-block-catalog.md` before proposing new block wording or revising existing block wording
 - use `agentos-pkg/references/index-block-catalog.md` for concrete block-quality calibration
 - use the `agentos-pkg` index and appendix for the underlying design concepts that govern writing

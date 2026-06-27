@@ -64,7 +64,7 @@ If a question can be answered by inspecting code, notes, artifacts, transcripts,
 
 Use plain chat text. Do not use UI forms. Communicate in `Kernel.Writing` — orthogonal bullet lines, direct language (see `writing-craft.md`).
 
-A question turn on a defined subject pairs a `Kernel.Block:Design` with the question: the block first as actionable context, then the question. This turn shape is `Designer.Turn.Kernel.Form`.
+A question turn on a defined subject pairs a `Design.Block` with the question: the block first as actionable context, then the question. This turn shape is `Designer.Turn.Kernel.Form`.
 
 ```txt
 ### Subject.Name

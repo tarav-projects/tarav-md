@@ -38,7 +38,7 @@
 
 ## Grounding.History
 
-- `Grounding.History` is accumulated older chat evidence for a grounded topic
+- `Grounding.History` is accumulated older grounding evidence for a grounded topic, superseded by current `*HEAD*` grounding
 - it belongs in the topic's appendix surface
 - it preserves alignment evolution, rejected directions, superseded views, and drift resolutions
 - it does not override `*HEAD*` grounding in the index block
@@ -48,7 +48,7 @@
 
 ## Grounding.Context.Injection
 
-- `Grounding.Context.Injection` is selected prior chat context made available through grounded kernel blocks
+- `Grounding.Context.Injection` is selected prior grounded context made available through grounded kernel blocks
 - the citation is the durable pointer; the injected context is what improves current agent judgment
 - injection happens by loading a grounded index/appendix block in a workflow that needs its evidence
 - injected context should be relevant enough to affect judgment, not merely adjacent

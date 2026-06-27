@@ -63,7 +63,7 @@ Use this discovery order:
 
 Enter each package through its `Package.Driver`, typically its package `SKILL.md`.
 
-Follow its `Package.Skill.Router` only as needed. Relevant package surfaces may include:
+Follow its `Package.Driver.Router` only as needed. Relevant package surfaces may include:
 
 - package indexes and appendixes
 - package references

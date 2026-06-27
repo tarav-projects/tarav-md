@@ -11,16 +11,6 @@
 
 ****
 
-## Index.Activation
-
-- `Index.Activation` is the process of bootstrapping the `Index.Runtime` for a session
-- handled through the `agentos-index` auxiliary skill or directly by an index-capable caller
-- collects the relevant routing blocks, concept blocks, appendix material, and references for the current task
-- activation is opt-in — triggered by `AGENTS.md`, a `Package.Driver`, or manual invocation; the index has no loading policy of its own
-- operational detail: `agentos-pkg/references/launch-runtime.md`
-
-****
-
 ## Unresolved.Index.Name
 
 - `Unresolved.Index.Name` is an unknown `Dotted.Name` that the agent cannot resolve against the index
@@ -159,6 +149,15 @@
 
 ****
 
+## Linked.Home
+
+- `Linked.Home` is a home that shares selected subcomponents with another home by linking to them instead of owning independent copies
+- it combines shared subcomponents with home-local state
+- the shared subcomponents remain owned by one home and reused from the others
+- it is a partial-home pattern — only some subcomponents are linked, not the whole home
+
+****
+
 ## Agentos.Agent.Adapter
 
 - `Agentos.Agent.Adapter` is the Agentos code design pattern for exposing slices of a `Provider.Instance`'s capabilities on a common surface
@@ -180,8 +179,6 @@
 ### meta
 
 - aliases: `Something.Agent`, `Agent.Surface`, `Agent.Capability.Object`
-- status: current — implemented in `agentos-py`. It implements `Provider.Instance` at the code level; the concept is not superseded.
-- resolved: capability contracts are small typed protocols a concrete adapter may satisfy (`AgentAdapter` base + `RunCapable`/`AccountStatusCapable`/`SessionDiscoveryCapable`); run behavior is a `RunnableMixin` on runnable adapters only. Concrete adapters subclass the single `AgentConfig` field surface and stay named `<Provider>.Agent`.
 
 ****
 
@@ -279,16 +276,10 @@
 - capture never rejects — `Auth.Data` that binds to no known account is preserved in a fallback `Unknown.Account` for later adoption; errors over unknown credentials happen downstream, not at capture
 - `Active.Auth.Data` is a registry pointer (not an auth property); `Auth.Data.Aligned` is the desired home↔active match and `Auth.Data.Drift` its read-only negation, with `Auth.Data.Rotation` (capture+activate) the response to refresh-drift
 - `Account.Identity` is provider-specific data in `Auth.Data` that binds a captured credential to the right account — the authoritative anchor, not the alias or the home
-- home-mutation invariant: only explicit, user-invoked operations mutate a live home or active pointer; observation → archive is always allowed because it is non-destructive
+- home-write invariant: a live home is mutated only by explicit, user-invoked `Auth.Data.Materialization` — never automatically, because a home write is destructive
+- active-pointer invariant: the `Active.Auth.Data` pointer may move automatically (e.g. `Auth.Data.Rotation` tracking provider refreshes), because the `Account.Registry` is append-only immutable history and the pointer is reversible selection — moving it destroys nothing; observation → archive (capture) is likewise always non-destructive
 - relates to `Provider.Instance` (a bound home+profile+credentials), `Agentos.Agent.Adapter` (which lists `Provider.Account`/`Provider.Home`/credential artifacts as supporting primitives), and `Normalization.Pipeline:Account.Usage.Model` (usage, downstream of login)
 
 ### appendix
 
 - full sub-concept blocks in `appendix/Account.Management-appendix.md`: `Auth.Data.Capture`, `Auth.Data.Activation`, `Auth.Data.Materialization`, `Account.Model`, `Account.Model:Auth.Method`, `Account.Identity`, `Materializable.Account`, `Home.State`, `Auth.Data`, `Auth.Ref`, `Auth.Data.Artifact`, `Valid.Credentials`, `Auth.Registry`, `Account.Registry`, `Keep.Up.With.Rotation`, `Capture.Over.Materialization`, `Unknown.Account`, `Active.Auth.Data`, `Auth.Data.Aligned`, `Auth.Data.Drift`, `Auth.Data.Rotation`
-
-### meta
-
-- status: current design capture (2026-06) — redesign in progress; the credential machinery exists in `agentos-py` but was previously un-indexed
-- open: the freeze/suspension of non-explicit home-mutating paths is decided in principle; exact write taxonomy still being settled
-- open: the `Account.Model` field set carried by every account regardless of type
-- pending merge: `Account.Registry` needs reworking for the config/state split

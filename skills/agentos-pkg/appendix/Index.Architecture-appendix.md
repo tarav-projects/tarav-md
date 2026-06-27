@@ -11,24 +11,6 @@
 
 ****
 
-## Universal.Block.Structure
-
-- `Kernel.Block` is the single block structure: fundamentals + `### grounding` + `### appendix` + `### meta`
-- parameterized by surface using `Dotted.Parameterized.Notation` — e.g. `Index.Block`, `Appendix.Block`, `Design.Block`
-- each parameterization inherits the full structure — what varies is the surface context and its constraints
-- `Kernel.Note` is not a parameterization — it is a file container for collecting `Kernel.Block` sections
-- `Kernel.Writing` applies uniformly — the philosophy is the same, the surface sets the budget
-
-****
-
-## Meta.Unification
-
-- `### meta` is the single non-conceptual section of a `Kernel.Block` — aliases, findability, outlinks, status, open questions
-- the dividing rule: fundamentals and appendix are about the concept; meta is about the block itself
-- fewer sections means less structural overhead per block
-
-****
-
 ## Implicit.Appendix.Discovery
 
 - appendix files live at `appendix/` (public: `skills/agentos-pkg/appendix/`, local: `notes/appendix/`)

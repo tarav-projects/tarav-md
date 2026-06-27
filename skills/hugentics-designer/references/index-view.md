@@ -2,7 +2,7 @@
 
 A curated `Cited.Duplication` of the `agentos-pkg` index blocks this skill treats as fundamental. Two jobs at once:
 
-- **form exemplars** — these are real, well-formed `Kernel.Block`s. They are the calibration for *how a block should be written* — atomic, orthogonal lines. When you draft a `Kernel.Block:Design`, imitate the line granularity you see here, not your prose instinct. `writing-craft.md` states the rules; this file shows the bar.
+- **form exemplars** — these are real, well-formed `Kernel.Block`s. They are the calibration for *how a block should be written* — atomic, orthogonal lines. When you draft a `Design.Block`, imitate the line granularity you see here, not your prose instinct. `writing-craft.md` states the rules; this file shows the bar.
 - **concept context** — they are also the hugentic concepts the designer uses every turn, loaded so the skill is self-sufficient and never needs to open the live index just to recall form.
 
 Each block below is copied **verbatim** from its origin. The origin owns authority; this is a drift-checkable copy. If a block here disagrees with origin, origin wins and this copy is stale — fix it.
@@ -13,7 +13,7 @@ This is a *selection*, not the whole index. Start small; add a block here only w
 
 ## Writing kernel
 
-Origin: `agentos-pkg/index/102-index.md` (`Kernel.Writing`, `Kernel.Block`) and `agentos-pkg/index/100-index.md` (`Kernel.Block:Design`).
+Origin: `agentos-pkg/index/102-index.md` (`Kernel.Writing`, `Kernel.Block`) and `agentos-pkg/index/100-index.md` (`Design.Block`).
 
 ### Kernel.Writing
 
@@ -41,19 +41,19 @@ Origin: `agentos-pkg/index/102-index.md` (`Kernel.Writing`, `Kernel.Block`) and 
 - a block should center one main topic; related material belongs in separate blocks, grounding, appendix, or meta
 - body lines are mostly bullets that enrich the topic from different perspectives
 - a block applies `Kernel.Writing` at section scale
-- structure: fundamentals (conceptual) + `### grounding` (chat evidence) + `### appendix` (extended conceptual) + `### meta` (non-conceptual)
-- the dividing rule: fundamentals and appendix are about the concept; grounding cites chat evidence; meta is about the block itself
-- meta covers: aliases, outlinks, findability, status, open questions, session mechanics — anything non-conceptual
-- all block types in the system are parameterizations of `Kernel.Block` placed in specific surfaces with specific constraints
-- parameterized using `Dotted.Parameterized.Notation`: `Kernel.Block:Index`, `Kernel.Block:Appendix`, `Kernel.Block:Design`
+- its sections are named `Kernel.Block.Section`s: `Kernel.Block.Fundamentals` (the only required one) + `Kernel.Block.Grounding` + `Kernel.Block.Appendix` + `Kernel.Block.Meta`; `###` is just the inblock form of a section
+- the dividing rule: fundamentals and appendix are about the concept; grounding cites evidence; meta is about the block itself
+- meta is non-conceptual block data only — aliases, outlinks, findability; the strip-test: remove the line and the conceptual load is unchanged
+- block types are `Kernel.Block` placed on a specific surface with that surface's constraints — surface-placement variants: `Index.Block`, `Appendix.Block`, `Design.Block`
 
-### Kernel.Block:Design
+### Design.Block
 
-- `Kernel.Block:Design` is `Kernel.Block` used in design artifacts — fundamentals, grounding, and appendix in a single block
+- `Design.Block` is `Kernel.Block` used in design artifacts — fundamentals, grounding, and appendix in a single block
 - holds the full state of a concept in one place — used in conversations and design sessions
-- at promotion time: fundamentals compress into `Kernel.Block:Index`, appendix material goes to `Kernel.Block:Appendix`
-- the distinction: `Kernel.Block:Index` is compressed, `Kernel.Block:Appendix` is exhaustive, `Kernel.Block:Design` is both together
+- at promotion time: fundamentals compress into `Index.Block`, appendix material goes to `Appendix.Block`
+- the distinction: `Index.Block` is compressed, `Appendix.Block` is exhaustive, `Design.Block` is both together
 - preserve user's wording when it carries design judgment
+- as a design-surface block, its working-meta may carry status, open questions, and stale markers — allowed because a design artifact is not a `Stable.Surface`
 
 #### meta
 

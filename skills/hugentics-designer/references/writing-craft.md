@@ -1,6 +1,6 @@
 # Writing Craft
 
-The writing-quality floor for `What.Design.Session`. Apply on every line written into `Session.Abstract`, `Design.Index`, `Session.Notes`, or any other session surface. This reference is `Cited.Duplication` of `[Kernel.Writing, Kernel.Block, Kernel.Block:Design, Natural.Placement, Hard.Evidence, Cited.Duplication, Inline.Relatedness]` from `agentos-pkg/index/`. The origin owns authority; this is the on-hand operational copy.
+The writing-quality floor for `What.Design.Session`. Apply on every line written into `Session.Abstract`, `Design.Index`, `Session.Notes`, or any other session surface. This reference is `Cited.Duplication` of `[Kernel.Writing, Kernel.Block, Design.Block, Natural.Placement, Hard.Evidence, Cited.Duplication, Inline.Relatedness]` from `agentos-pkg/index/`. The origin owns authority; this is the on-hand operational copy.
 
 **Rules here, exemplars in `index-view.md`.** This file states *how to apply* the writing kernel; `index-view.md` holds the verbatim, well-formed blocks that show *what the bar looks like*. A writing standard does not transfer on principles alone — the line-granularity bar lives in the examples. Read `index-view.md` blocks as the calibration before you draft, and the § Line Granularity contrast below for the failure mode the rules do not catch on their own.
 
@@ -58,13 +58,13 @@ The test: can you reorder the lines without breaking meaning, and does each line
 
 Session-loaded variants of `Kernel.Block` differ only in placement and gating, not in writing rules.
 
-## Kernel.Block:Design
+## Design.Block
 
-`Kernel.Block:Design` is the variant used in design artifacts and `Design.Index`. This is the block type a designer writes every turn.
+`Design.Block` is the variant used in design artifacts and `Design.Index`. This is the block type a designer writes every turn.
 
 - holds the full state of a concept in one place — fundamentals, grounding, and appendix together
-- the in-session variant: `Kernel.Block:Index` is compressed for the public index; `Kernel.Block:Appendix` is exhaustive; `Kernel.Block:Design` is both together for the working session
-- at promotion time, fundamentals compress into `Kernel.Block:Index`, appendix material moves to `Kernel.Block:Appendix`
+- the in-session variant: `Index.Block` is compressed for the public index; `Appendix.Block` is exhaustive; `Design.Block` is both together for the working session
+- at promotion time, fundamentals compress into `Index.Block`, appendix material moves to `Appendix.Block`
 - preserve user's wording when it carries design judgment — never paraphrase quoted-tone phrasing into agent-tone summary
 - in a `Design.Index`, the block uses H3 (under the `## Design.Index` H2 parent); appendix and meta are `#### appendix` and `#### meta`
 
@@ -109,7 +109,7 @@ Use the block's `#### meta` for:
 - content that feels unnatural in a surface is probably misplaced
 - a cited duplicate may also be naturally placed when local use strongly benefits from the repeated content; uncited or stale duplication is the anti-pattern, not duplication itself
 
-In a design session this is a constant decision: a drafted line is a fundamental, appendix depth, `#### meta` mechanics, or chat-grounding evidence — placement is part of the design, not an afterthought. The block-section split in `Kernel.Block:Design` is `Natural.Placement` applied inside one block.
+In a design session this is a constant decision: a drafted line is a fundamental, appendix depth, `#### meta` mechanics, or chat-grounding evidence — placement is part of the design, not an afterthought. The block-section split in `Design.Block` is `Natural.Placement` applied inside one block.
 
 ## Hard.Evidence
 
