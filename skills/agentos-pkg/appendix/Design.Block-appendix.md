@@ -1,12 +1,12 @@
-# Kernel.Block:Design — Appendix
+# Design.Block — Appendix
 
 ****
 
-## Kernel.Block:Design/Promotion.Model
+## Design.Block/Promotion.Model
 
 - knowledge flows toward the index through promotion
 - material starts wherever it naturally appears: chat, live notes, skills, code comments, design sessions
-- when it stabilizes, it gets promoted: fundamentals → `Kernel.Block:Index`, depth → `Kernel.Block:Appendix`
+- when it stabilizes, it gets promoted: fundamentals → `Index.Block`, depth → `Appendix.Block`
 
 Signs of a promotion candidate:
 

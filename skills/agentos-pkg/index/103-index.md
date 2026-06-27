@@ -8,16 +8,16 @@
 - two depth layers: `index/` (lean, compressed concept definitions) and `Extended.Index.Scope` (`appendix/`, loaded on demand)
 - flat anonymous index files (`100-index.md`, `101-index.md`, ...) with `000-index.md` as concept→file routing table
 - writing is append-only to the last file — placement decisions are decoupled from writing
-- one universal block structure (`Kernel.Block`) parameterized by surface: `Kernel.Block:Index`, `Kernel.Block:Appendix`, `Kernel.Block:Design`
+- one universal block structure (`Kernel.Block`) parameterized by surface: `Index.Block`, `Appendix.Block`, `Design.Block`
 - one portable file container (`Kernel.Note`) for collecting `Kernel.Block` sections outside index routing
 - one writing philosophy (`Kernel.Writing`) — space constraints come from the surface, not the philosophy
 - appendix files are concept-named (`Concept.Name-appendix.md`) with implicit discovery — no outlink required
 - `Concept.Scoping` and `Explicit.Namespaces` provide the conceptual overlay on the flat file structure
-- index/appendix blocks may carry `Chat.Grounding` through a standard `Kernel.Block:Grounding` section
+- index/appendix blocks may carry `Chat.Grounding` through a standard `Kernel.Block.Grounding` section
 
 ### meta
 
-- namespace-members: `Extended.Index.Scope`, `Flat.Index.Architecture`, `Kernel.Writing`, `Kernel.Block`, `Kernel.Note`, `Kernel.Block:Index`, `Kernel.Block:Appendix`, `Kernel.Block:Design`, `Kernel.Block:Grounding`, `Concept.Scoping`, `Explicit.Namespace`, `Surface.Concept`, `Agentos.Index.System`
+- namespace-members: `Extended.Index.Scope`, `Flat.Index.Architecture`, `Kernel.Writing`, `Kernel.Block`, `Kernel.Note`, `Index.Block`, `Appendix.Block`, `Design.Block`, `Kernel.Block.Grounding`, `Concept.Scoping`, `Explicit.Namespace`, `Surface.Concept`, `Agentos.Index.System`
 
 ****
 
@@ -156,6 +156,16 @@
 
 ****
 
+## File.Mention
+
+- `File.Mention` is the inline token for referencing a file from a block, written `@<path-hint>`
+- it is a neutral relation — it brings the file into the block's context, it does not make the block about the file
+- it is the file peer of `Inline.Relatedness` and `Concept.Cite`: blocks mention concepts by `Dotted.Name`, files by `@<path-hint>`
+- the `@<path-hint>` is a hint, not a contract — the agent resolves it by searching, starting from the project
+- resolution is opportunistic, like registry lookup for a `Dotted.Name` — check it when the exact file matters
+
+****
+
 ## Project.Surfaces
 
 - `Project.Surfaces` is a `BuiltIn.Namespace` — an expected interface in every project's ontology
@@ -193,7 +203,7 @@
 - numbering ranges: `100-299` public flat files, `300-499` local flat files
 - a fresh agent from another project loads only `000-index.md` — sees the public concept catalog
 - a local agent loads both routers — sees the public + local catalog; concept bodies load on demand
-- the same `Kernel.Block:Index` format, same routing, same scoping — just distributed
+- the same `Index.Block` format, same routing, same scoping — just distributed
 
 ****
 

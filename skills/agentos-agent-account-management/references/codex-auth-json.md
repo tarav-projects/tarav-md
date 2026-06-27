@@ -7,7 +7,7 @@ Use this when working with Codex `auth.json` files, backup auth files, or Codex 
 Do not paste raw tokens in chat. Extract only stable metadata:
 
 ```bash
-python3 - <<'PY' "$AUTH_FILE"
+python3 - "$AUTH_FILE" <<'PY'
 import base64, json, sys
 p = sys.argv[1]
 o = json.load(open(p))
@@ -25,34 +25,46 @@ print(json.dumps({
 PY
 ```
 
-Compare bytes with:
+Compare files by hash:
 
 ```bash
-sha256sum "$HOME"/.codex*/auth*.json
+shasum -a 256 "$HOME"/.codex*/auth*.json
 ```
 
-## Register And Materialize
+## Current Workflow
 
-Register a fresh Codex auth artifact:
+Read-only triage:
 
 ```bash
-agentos agent accounts register --provider codex \
-  --auth-file "$AUTH_FILE" \
-  --account "$ACCOUNT" \
-  --email "$EMAIL"
+agentos agent accounts status --provider codex --json
+agentos agent accounts capture --provider codex --global --dry-run --json
+jq . ~/.agentos/accounts/codex/registry/active.json
+agentos agent accounts materialize --provider codex --account <account>/file --home "$HOME_PATH" --check --json
 ```
 
-Materialize the active artifact into a home for manual repair:
+Archive what a home currently holds:
 
 ```bash
-agentos agent accounts materialize --provider codex --home "$HOME_PATH" --account "$ACCOUNT" --force
+agentos agent accounts capture --provider codex --home "$HOME_PATH" --json
 ```
 
-Use `--register-only` only when staging an artifact before deciding whether to activate it.
+Activate a captured artifact:
+
+```bash
+agentos agent accounts activate --provider codex --account <account>/file --artifact <artifact-id> --json
+```
+
+Write the active artifact into one home:
+
+```bash
+agentos agent accounts materialize --provider codex --account <account>/file --home "$HOME_PATH" --json
+```
+
+Activation does not rewrite homes. Materialize each desired home explicitly.
 
 ## Live Usage Validation
 
-Codex `matching-active` only proves the home matches Agentos registry metadata. It does not prove ChatGPT accepts the token.
+Codex `aligned` only proves the home matches Agentos registry intent. It does not prove ChatGPT accepts the token.
 
 Validate a Codex home with the app-server rate-limit request:
 
@@ -71,7 +83,8 @@ Read until response id `2`; notification messages may arrive first.
 
 Common failures:
 
-- `401 token_expired`: the access token is expired; re-login or use a fresher artifact.
-- `401 token_invalidated`: the auth payload has been invalidated; re-login or use a different valid artifact.
+- `401 token_expired`: access token expired; re-login or use a fresher artifact.
+- `401 token_invalidated`: auth payload was invalidated; re-login or use a different valid artifact.
+- `401 Unauthorized`: inspect the same home's `auth.json` identity and active pointer before materializing over it.
 
-After a successful live validation, make sure the artifact is verified, active, and materialized. Passive reconcile may otherwise revert homes to the latest verified artifact.
+After a successful live validation, make sure the desired artifact is active and materialized into the target homes.

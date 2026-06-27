@@ -12,6 +12,8 @@ For Codex:
 - Usage registry fallback reads `~/.agentos/agent/usage-registry/*-usage.jsonl`.
 - Fallback usage does not verify the auth artifact.
 
+Alignment also does not verify the auth artifact. `agentos agent accounts status` only compares home `Auth.Data` with the active pointer.
+
 ## Commands
 
 Current monitor frame:
@@ -63,3 +65,16 @@ Common backend messages:
 - `401 Unauthorized`
 
 Those require a fresher valid auth artifact, not just relinking the same artifact.
+
+## Claude Live Failure Check
+
+If monitor or `agent ping` shows Claude authentication failures, inspect the path-scoped Keychain entry with `references/claude-ambient-auth.md`.
+
+Common pattern:
+
+- passive status is `aligned`
+- Keychain access token is expired
+- refresh token is empty
+- live provider call fails with 401
+
+That requires a fresher captured artifact or a new login, then `activate` and per-home `materialize`.

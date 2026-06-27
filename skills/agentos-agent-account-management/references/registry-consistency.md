@@ -1,61 +1,67 @@
 # Registry Consistency
 
-Use this when account state looks contradictory: newest artifact is not active, active artifact is invalid, passive reconcile reverts homes, or homes are `matching-active` while live provider calls fail.
+Use this when account state looks contradictory: newest artifact is not active, active is not materialized, homes are drifted unexpectedly, or a home is aligned but live calls fail.
 
-## Invariants To Check
+## Layer Model
 
-For each account:
+- `registry/captures.jsonl` records observed `Auth.Data` artifacts.
+- `registry/artifacts/<artifact-id>` stores the content-addressed secret payload. Do not print it.
+- `registry/active.json` maps `<account>/<method>` to the desired active artifact.
+- `agentos agent accounts status` compares each configured home's current `Auth.Data` to `active.json`; it performs no provider call.
+- `Valid.Credentials` is separate. Only a live provider operation proves current validity.
 
-- `accounts.json.active_artifact_id` should point to the artifact intended for home materialization.
-- `accounts.json.artifact_file` should match the active artifact id.
-- The active artifact should exist in `artifacts.jsonl`.
-- The active artifact payload file should exist under `artifacts/`.
-- Known homes should hash to the active artifact.
-- The active artifact should have fresh verification evidence when passive reconcile is expected to preserve it.
+Current state paths:
 
-Commands:
-
-```bash
-jq '.accounts.<account>' ~/.agentos/accounts/<provider>/accounts.json
-rg '"account":"<account>"' ~/.agentos/accounts/<provider>/artifacts.jsonl
-rg '"account":"<account>"' ~/.agentos/accounts/<provider>/verifications.jsonl
-agentos agent accounts status --provider <provider> --home <home> --json
+```text
+~/.agentos/accounts/<provider>/accounts.json
+~/.agentos/accounts/<provider>/registry/active.json
+~/.agentos/accounts/<provider>/registry/captures.jsonl
+~/.agentos/accounts/<provider>/registry/artifacts/<artifact-id>
 ```
 
-## Failure Pattern
+## Read-Only Checks
 
-Registered does not mean valid.
+```bash
+agentos agent accounts status --provider <provider> --json
+agentos agent accounts capture --provider <provider> --global --dry-run --json
+jq . ~/.agentos/accounts/<provider>/registry/active.json
+tail -n 40 ~/.agentos/accounts/<provider>/registry/captures.jsonl
+agentos agent accounts materialize --provider <provider> --account <account>/<method> --home "$HOME_PATH" --check --json
+```
 
-Active does not necessarily mean freshest.
+Interpret `materialize --check`:
 
-Freshest does not necessarily mean verified.
+- `active_artifact_id`: what would be written.
+- `captured_artifact_id`: what the home currently contains after a read-only capture.
+- equal ids: the home is already aligned to active.
+- different ids: materialization has not happened for this active artifact, or the provider updated the home after the last materialization.
 
-Verified matters because passive reconcile chooses from verification evidence. A newly registered Codex artifact that has not been verified can be overwritten by an older verified artifact during passive reconcile or account status.
+## Mutating Flow
 
-## Repair Pattern
+Use this only when the user asks to change state.
 
-1. Find candidate artifacts for the account.
-2. Test candidates with a real provider operation.
-3. Promote the working artifact as active.
-4. Write verification evidence for the working artifact.
-5. Link configured and managed homes from the verified active artifact.
-6. Re-run status and live validation.
+```bash
+agentos agent accounts capture --provider <provider> --home "$HOME_PATH" --json
+agentos agent accounts activate --provider <provider> --account <account>/<method> --artifact <artifact-id> --json
+agentos agent accounts materialize --provider <provider> --account <account>/<method> --home "$HOME_PATH" --json
+agentos agent accounts status --provider <provider> --json
+```
 
-For Codex, successful `account/rateLimits/read` is a strong live validation for usage-monitor problems.
+If several homes should use the same active artifact, run `materialize` once per home.
 
-## Better System Direction
+## Failure Patterns
 
-The registry should separate these fields instead of overloading `active_artifact_id`:
+- `active` does not imply the home uses that artifact. It only changes `registry/active.json`.
+- `aligned` does not imply live validity. It only proves home state matches active state.
+- capture timestamp is not always freshness. Inspect provider-specific metadata such as Claude `expiresAt` and refresh-token presence.
+- materialization is capture-first. If a target home contains a new credential, that credential is archived before overwrite.
+- `Unknown.Account` captures are preserved but cannot be activated until adopted into a declared account.
 
-- `latest_observed_artifact_id`
-- `latest_verified_artifact_id`
-- `desired_artifact_id`
-- `materialized_artifact_id` per home
+## Concept Grounding
 
-Passive reconcile should never silently downgrade a home from a newer observed artifact to an older verified artifact. If it sees a newer unverified artifact, it should classify the account as `needs_verification` and report the candidate. Sync should require an explicit policy decision:
+This follows `agentos-pkg` `Account.Management`:
 
-- `verified-only`: preserve current behavior.
-- `newest-live-verified`: verify candidate before activating.
-- `manual`: report candidates only.
-
-This would make account repair predictable and prevent the "new metadata, old active id" state.
+- `Auth.Data.Capture` writes the archival layer.
+- `Auth.Data.Activation` writes the registry synchronization layer.
+- `Auth.Data.Materialization` writes the home/system layer.
+- `Auth.Data.Aligned` and `Auth.Data.Drift` are read-only designations, not validity proofs.

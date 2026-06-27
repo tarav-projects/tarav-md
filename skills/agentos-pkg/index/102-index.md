@@ -37,9 +37,19 @@
 
 ## Hard.Evidence
 
-- `Hard.Evidence` is the principle that evidence-based arguments have priority over agent assumptions during alignment work
+- `Hard.Evidence` is the principle that evidence-based arguments have priority over agent assumptions
 - concrete evidence: user instructions, inspected codebase state, active session artifacts, stable project surfaces, `Chat.Surface` content (especially user turns)
-- alignment sessions aim to be `Hard.Evidence`-based — more is welcome, but the core alignment axes are the priority
+- a summary is not `Hard.Evidence` — without a link to the evidence it stands on, it is low-confidence (`We.Distrust.Summaries`)
+- when evidence and assumption conflict, evidence wins
+
+****
+
+## We.Distrust.Summaries
+
+- `We.Distrust.Summaries` is the stance that a summary carries low confidence until it links to its source evidence
+- a summary is a compressed, derived claim — agent assumption, not `Hard.Evidence`, until grounded
+- the link to the source restores confidence — it lets a reader recompute the summary against the evidence
+- this is why `Stable.Surface`s prefer pointers and recomputation over cached summaries (`Computed.Status`)
 
 ****
 
@@ -200,13 +210,53 @@
 ## Kernel.Block
 
 - `Kernel.Block` is the base writing object of `Kernel.Writing`
-- a block is a markdown section whose heading names the block's main topic
-- the heading is a conceptual commitment — it states what the block is about
-- a block should center one main topic; related material belongs in separate blocks, grounding, appendix, or meta
-- body lines are mostly bullets that enrich the topic from different perspectives
-- a block applies `Kernel.Writing` at section scale
-- structure: fundamentals (conceptual) + `### grounding` (chat evidence) + `### appendix` (extended conceptual) + `### meta` (non-conceptual)
-- the dividing rule: fundamentals and appendix are about the concept; grounding cites chat evidence; meta is about the block itself
-- meta covers: aliases, outlinks, findability, status, open questions, session mechanics — anything non-conceptual
-- all block types in the system are parameterizations of `Kernel.Block` placed in specific surfaces with specific constraints
-- parameterized using `Dotted.Parameterized.Notation`: `Kernel.Block:Index`, `Kernel.Block:Appendix`, `Kernel.Block:Design`
+- its heading is a conceptual commitment — it names what the block is about
+- one block is one topic — a single concept, issue, or subject
+- it has a defined format of named `Kernel.Block.Section`s: `Kernel.Block.Fundamentals`, `Kernel.Block.Grounding`, `Kernel.Block.Appendix`, `Kernel.Block.Meta`
+- only `Kernel.Block.Fundamentals` is required; grounding, appendix, and meta are optional
+- its sections separate conceptual content from cited chat evidence and from non-conceptual block data
+- it is surface-neutral — the surface it lives on sets what a block may hold and how writing is gated
+
+****
+
+## Kernel.Block.Section
+
+- `Kernel.Block.Section` is a named part of a `Kernel.Block`
+- a section has two forms: `Kernel.Block.Section:Inblock` and `Kernel.Block.Section:Outblock`
+- `:Inblock` is a `###` subsection written inside the block
+- `:Outblock` is an external, concept-named surface holding the same section, discovered by naming (`Appendix.Discovery`)
+- the appendix is the canonical dual — `### appendix` inblock, `Concept-appendix.md` outblock — one section, two forms
+- the form is a placement choice: inblock keeps the section local and compressed; outblock moves depth to a surface loaded on demand
+
+****
+
+## Kernel.Block.Meta
+
+- `Kernel.Block.Meta` is the meta `Kernel.Block.Section` of a `Kernel.Block`
+- it holds non-conceptual data about the block as an object, never about the block's subject
+- the strip-test: remove the line — if the block's conceptual load is unchanged, it belongs in meta
+- its purpose is findability and convenience — data kept next to the block to reach or handle it
+- `alias` is the paradigmatic field: alternate names that widen query hits without changing meaning
+
+****
+
+## Kernel.Block.Fundamentals
+
+- `Kernel.Block.Fundamentals` is the fundamentals `Kernel.Block.Section` of a `Kernel.Block` — its conceptual core
+- it is the only required section; a block is its fundamentals, the rest is optional
+- it is always inblock — alone among sections it has no outblock form
+- it carries the concept itself: definition, boundaries, judgments, and relations, one dimension per line
+- it pays off the heading's conceptual commitment — what the block is about
+- it holds the compressed core; extended conceptual depth belongs in `Kernel.Block.Appendix`
+
+****
+
+## Kernel.Block.Appendix
+
+- `Kernel.Block.Appendix` is the appendix `Kernel.Block.Section` of a `Kernel.Block` — extended conceptual depth
+- it is `Kernel.Writing` at relaxed constraints: coverage over compression, format-rich allowed
+- it holds rationale, edge cases, examples, rejected alternatives — depth that did not fit the compressed `Kernel.Block.Fundamentals`
+- it is first-class extended writing, not a hiding place for less-important blocks
+- it is the canonical dual section: inblock as a `### appendix` subsection, outblock as its own concept-named file
+- the outblock file is `Concept-appendix.md`, discovered by naming (`Appendix.Discovery`) and loaded on demand
+- distinct from `Appendix.Block`, which is a whole `Kernel.Block` placed in that outblock file

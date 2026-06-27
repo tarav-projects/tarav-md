@@ -169,17 +169,6 @@
 
 ****
 
-## Account.Event.Tape
-
-- `Account.Event.Tape` is an append-only registry that records `Account.Management` events — the operations agentos performed
-- each primitive operation owns one tape — capture, activation, materialization
-- operations only append; a tape is never rewritten or hand-edited
-- it records operations performed, not the state of the world — divergence from reality is drift, surfaced as error/warn
-- the last relevant record is read back as the current designation (e.g. the active artifact, what was last written to a home)
-- it holds events only — config is a separate, declarative surface
-
-****
-
 ## Capture.Over.Materialization
 
 - `Capture.Over.Materialization` is the priority rule that capture wins when capture and materialization conflict
@@ -203,9 +192,9 @@
 
 ****
 
-## Active.Auth.Artifact
+## Active.Auth.Data
 
-- `Active.Auth.Artifact` is the registry-designated current `Auth.Data.Artifact` for an `Auth.Method`
+- `Active.Auth.Data` is the registry-designated current `Auth.Data.Artifact` for an `Auth.Method`
 - it is a registry state — the registry asserting which artifact is current, not a property of the credential
 - distinct from `Valid.Credentials` and from freshness: active marks the designated pointer, not a checked or proven property
 - the registry does not verify freshness when setting it — that active should be freshest-and-valid is policy, not a guarantee of the state
@@ -213,20 +202,30 @@
 
 ****
 
-## Active.Auth.Artifact.Rotation
+## Auth.Data.Aligned
 
-- `Active.Auth.Artifact.Rotation` is the registry operation that moves the `Active.Auth.Artifact` to another `Auth.Data.Artifact`
-- it is a registry operation, never a home write — same family as `Capture.Over.Materialization`
-- it answers rolling auth: a refresh under one home can get a later home's credential refused, so the active pointer must follow the current credential
-- capture and activation are orthogonal axes — a path may couple them or keep them independent
-- activation modes: explicit (set any artifact active), capture-coupled (promote on capture), conditional (promote when a condition holds), automatic (resolve the active artifact from the credentials themselves)
-- automatic resolution needs a self-describing auth-method — one whose `Auth.Data` exposes freshness without a provider call; otherwise promotion needs verification
+- `Auth.Data.Aligned` is the desired state where a `Home.State`'s `Auth.Data` is the `Active.Auth.Data` for its `Provider.Account`'s `Auth.Method`
+- it is the single good state the system steers toward — the home holds exactly the credential the registry has designated current
+- it is evaluated read-only, on `Auth.Ref`, with no provider call and no home mutation — a designation match, not a `Valid.Credentials` proof
+- it is the reference against which `Auth.Data.Drift` is defined as the negation
+- alignment is intent satisfied, not freshness proven — an aligned home can still hold expired credentials
 
 ****
 
-## Active.Auth.Drift
+## Auth.Data.Drift
 
-- `Active.Auth.Drift` is a read-only check that an agent/home is using the `Active.Auth.Artifact`
-- it compares a home's `Auth.Data` against the registry's active pointer, with no provider call
-- a mismatch flags likely-stale auth, aiding stale detection
-- it is the inverse of materialization — reads and compares rather than writes the home
+- `Auth.Data.Drift` is the negation of `Auth.Data.Aligned` — a `Home.State` whose `Auth.Data` is not the `Active.Auth.Data`
+- whatever the reason — unregistered, registered-but-not-active, or otherwise — any non-match is drift
+- it is a state, evaluated by a read-only operation — it compares home against the active pointer on `Auth.Ref`, with no provider call and no home mutation
+- it is a diagnosis, never a writer — detecting drift mutates nothing
+- it is directional — the home can be behind the registry or ahead of it — and the direction is what a response keys on
+
+****
+
+## Auth.Data.Rotation
+
+- `Auth.Data.Rotation` is the response to refresh-drift — the home-ahead case of `Auth.Data.Drift`, where the provider refreshed the home's `Auth.Data` past the registry
+- it is not a primitive operation but a composition: `Auth.Data.Capture` then `Auth.Data.Activation`
+- capture first preserves the new credential (`Capture.Over.Materialization`); activation then moves the `Active.Auth.Data` to follow it
+- it answers rolling auth — `Keep.Up.With.Rotation`: the active pointer must track the credential the provider now accepts
+- it is a registry move only, never a home write — the home already advanced on its own

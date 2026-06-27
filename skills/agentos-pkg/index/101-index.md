@@ -298,7 +298,7 @@
 
 - `Skill.Index.Section` is the optional section of a `Batchy.Skill` that defines the skill's own key concepts
 - a `Skill.Arg.Section` sibling: a named SKILL section holding one kind of block
-- entries are compact concept blocks — a `Dotted.Name` heading plus a few orthogonal lines, like tiny `Kernel.Block:Index` entries
+- entries are compact concept blocks — a `Dotted.Name` heading plus a few orthogonal lines, like tiny `Index.Block` entries
 - scoped to one skill, with no local router; distinct from the package-wide `Package.Skill.Index`
 - included only when a skill hinges on a few defined terms, e.g. a two-agent skill defining `Caller.Agent` and `Master.Agent`
 

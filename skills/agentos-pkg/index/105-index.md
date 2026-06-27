@@ -2,26 +2,26 @@
 
 ****
 
-## Kernel.Block:Grounding
+## Kernel.Block.Grounding
 
-- `Kernel.Block:Grounding` is the standard `### grounding` section of a kernel block
-- it is the block-local expression of a `Chat.Grounding` relationship
-- it sits alongside fundamentals, `### appendix`, and `### meta` as a normal block section
+- `Kernel.Block.Grounding` is the grounding `Kernel.Block.Section` of a `Kernel.Block`
+- it is a mechanical `Hard.Evidence` linking system — it links the block to where its evidence lives
+- it carries `Grounding.Entry` links and their evidence notes, never agent reinforcement or commentary
 - it groups `Grounding.Entry` rows by lightweight role labels
-- `*HEAD*` marks active current grounding for the block
-- multiple `*HEAD*` rows are allowed when several chat refs jointly define the current view
-- historical grounding belongs in appendix depth, not compressed index grounding
+- a grounding source can be a `Chat.Ref`, a `File.Mention`, a web page, or another evidence surface
+- grounding lives only on index/appendix blocks; downstream surfaces cite the grounded block instead of re-grounding
+- a block with no `Kernel.Block.Grounding` is simply not grounded
+- `*HEAD*` marks the active current grounding for the block
 
 ****
 
 ## Grounding.Entry
 
-- `Grounding.Entry` is one citation row inside `### grounding`
-- it resolves to one direct `Chat.Ref`
-- it includes a short evidence note explaining what the cited chat establishes for the block
+- `Grounding.Entry` is one citation row in a `Kernel.Block.Grounding` section
+- it resolves to one evidence reference — a `Chat.Ref`, a `File.Mention`, or another source
+- it includes a short evidence note: what the cited source establishes for the block
 - its grounding role comes from the group it appears under
-- `*HEAD*` entries identify active chat evidence still considered current for the block
-- historical entries are placed in the block's appendix surface, not compressed index grounding
+- `*HEAD*` entries identify active evidence still considered current for the block
 
 ****
 
@@ -56,6 +56,34 @@
 
 ****
 
+## Context.Hook
+
+- `Context.Hook` is a surface for placing data that is hooked into a mechanism of injecting context into an agent
+- it is part of how an agent is contextualized beyond the direct chat
+- the hook is the coupling between the surface and the injection mechanism
+- `AGENTS.md` is a `Context.Hook`
+- a skill surface is a `Context.Hook`
+
+****
+
+## Index.AGENTS.MD
+
+- `Index.AGENTS.MD` is a `Context.Hook` for the index surface
+- its canonical artifact path is `index/AGENTS.md` relative to the index root
+- it injects index-usage context through the harness `AGENTS.md` loading mechanism
+- `agentos-md/skills/agentos-pkg/index/AGENTS.md` is the `Reference.Implementation` for `Index.AGENTS.MD`
+
+****
+
+## Appendix.AGENTS.MD
+
+- `Appendix.AGENTS.MD` is a `Context.Hook` for the appendix surface
+- its canonical artifact path is `appendix/AGENTS.md` relative to the appendix root
+- it injects appendix-usage context through the harness `AGENTS.md` loading mechanism
+- `agentos-md/skills/agentos-pkg/appendix/AGENTS.md` is the `Reference.Implementation` for `Appendix.AGENTS.MD`
+
+****
+
 ## Grounding.Retrieval.Boundary
 
 - retrieval finds candidate chat evidence
@@ -70,7 +98,7 @@
 
 - `Chat.Grounding.Target.Block` is the rule that chat grounding attaches to a kernel block, not to a loose topic
 - the index is the entity inventory that answers what is being grounded
-- every chat grounding target is a `Kernel.Block:Index` or `Kernel.Block:Appendix`
+- every chat grounding target is a `Index.Block` or `Appendix.Block`
 - if an issue or topic needs grounding, it must first resolve to an existing block or become a new block
 - if a subtopic inside a block needs independent grounding, it should become its own kernel block
 - `Active.Grounding` is scoped to one target block
@@ -105,8 +133,8 @@
 
 - `Designer.Turn.Kernel.Form` is how a `What.Design.Session` turn is shaped when working a defined subject
 - the designer communicates in `Kernel.Writing` — orthogonal bullet lines, each an independent fundamental point, direct language
-- a turn working a defined subject proposes a `Kernel.Block:Design`: an H2 `Dotted.Notation` heading, orthogonal fundamentals, and an optional `### meta` for open items
-- a question turn pairs the block with the question — the `Kernel.Block:Design` as actionable intro, then `Question / Why-now / Recommended-answer / Evidence`
+- a turn working a defined subject proposes a `Design.Block`: an H2 `Dotted.Notation` heading, orthogonal fundamentals, and an optional `### meta` for open items
+- a question turn pairs the block with the question — the `Design.Block` as actionable intro, then `Question / Why-now / Recommended-answer / Evidence`
 - every new question on a defined subject is accompanied by its block; pure openers are exempt because they create the first subject
 - discussion rounds re-render the same block with the change; open points live under `### meta` as `open:` lines
 - the in-chat block and the artifact's `Design.Index` block are one object — capture only adds gating
@@ -174,7 +202,7 @@
 ## Name.As.Index
 
 - `Name.As.Index` is the property that a `Dotted.Name` is a bidirectional key across all surfaces, not only a forward pointer to a definition
-- forward: name → its `Kernel.Block:Index` definition
+- forward: name → its `Index.Block` definition
 - reverse: name → every surface that mentions it — the mention registers that text as being about the concept
 - makes natural-text surfaces findable and indexable by concept through plain search, with no hand-maintained concept→surface table
 - makes `Cited.Duplication` maintainable: enumerate mentions to detect and align drift — the mechanism `Index.Writer.Maintenance.Pass` already relies on

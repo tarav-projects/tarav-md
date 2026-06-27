@@ -162,13 +162,9 @@
 
 ## Chat.Grounding
 
-- `Chat.Grounding` is context injection and citation from `Chat.Surface` into index/appendix kernel blocks
-- it grounds a `Kernel.Block:Index` or `Kernel.Block:Appendix` in prior user/agent chat interaction
-- grounding only happens on index/appendix blocks; downstream surfaces cite grounded blocks instead of carrying first-class chat grounding
-- grounding follows `Active.Grounding`: accepted heads remain active while they support the current block
-- absence of `### grounding` is the implicit sign that a block is not grounded
-- grounding has no state taxonomy; material grounding problems are marked with `Grounding.DRIFT`
-- grounding drift is surfaced through alignment because the resolution happens on `Chat.Surface` and can become new grounding
+- `Chat.Grounding` is grounding whose source is `Chat.Surface` — an `Index.Block` or `Appendix.Block` cited to prior user/agent interaction
+- it is the canonical grounding source — `Chat.Surface` is the Hugentic surface where alignment happens
+- other grounding sources converge toward it: drift resolves on `Chat.Surface`, and the resolution can become new grounding
 
 ****
 
@@ -212,8 +208,8 @@
 ## Index.Grounding
 
 - `Index.Grounding` is context discovery and citation from existing index/appendix blocks into a target topic
-- it grounds a topic in prior `Kernel.Block:Index` or `Kernel.Block:Appendix` material instead of chat turns
-- it is source-specific retrieval; accepted results still land through the generic `Kernel.Block:Grounding` review semantics
+- it grounds a topic in prior `Index.Block` or `Appendix.Block` material instead of chat turns
+- it is source-specific retrieval; accepted results still land through the generic `Kernel.Block.Grounding` review semantics
 - it is useful when an agent should search the index for related blocks before discussing, writing, or grounding a topic
 - it does not replace `Chat.Grounding`; the two source families can produce different evidence for the same target block
 
@@ -242,7 +238,7 @@
 - `Agentos.Index.Notes` is one of the `Stable.Surfaces` of an Agentos-style project — the index flat files
 - implements the `Agentos.Index` — a `Soft.Programming.Language` for project knowledge
 - four roles: conceptual implementation of the system, discovery and navigation index, development surface, main alignment surface
-- contains `Named.Concepts` written in `Kernel.Block:Index` blocks, organized in flat index files
+- contains `Named.Concepts` written in `Index.Block` blocks, organized in flat index files
 - agents operate the index through the `Index.Runtime`; what loads is governed by the `Package.Driver`, not by the index — the index has no loading policy of its own
 - catalog and model are the same act: naming and defining the parts is the modeling; elements and their interactions are both concepts, so one primitive (`Kernel.Block`) carries the whole mental model
 
@@ -257,9 +253,9 @@
 
 ****
 
-## Kernel.Block:Index
+## Index.Block
 
-- `Kernel.Block:Index` is `Kernel.Block` placed in `index/` — the loadable unit of meaning in the index
+- `Index.Block` is `Kernel.Block` placed in `index/` — the loadable unit of meaning in the index
 - anchored by a heading (H2–H6) that names the concept using `Dotted.Notation`
 - `Kernel.Writing` at tight space constraints — conceptual completeness under compression
 - must carry enough signal for an agent to reason correctly about the concept
@@ -276,9 +272,9 @@
 
 ****
 
-## Kernel.Block:Appendix
+## Appendix.Block
 
-- `Kernel.Block:Appendix` is `Kernel.Block` placed in `appendix/` — any material that hangs off a concept
+- `Appendix.Block` is `Kernel.Block` placed in `appendix/` — any material that hangs off a concept
 - `Kernel.Writing` at relaxed space constraints — depth over compression
 - content is not limited to conceptual depth — specs, regex, raw ideas, parked material all belong here
 - the discipline is at the insertion point — find the right concept, then write freely under it
@@ -293,12 +289,12 @@
 
 ****
 
-## Kernel.Block:Design
+## Design.Block
 
-- `Kernel.Block:Design` is `Kernel.Block` used in design artifacts — fundamentals, grounding, and appendix in a single block
+- `Design.Block` is `Kernel.Block` used in design artifacts — fundamentals, grounding, and appendix in a single block
 - holds the full state of a concept in one place — used in conversations and design sessions
-- at promotion time: fundamentals compress into `Kernel.Block:Index`, appendix material goes to `Kernel.Block:Appendix`
-- the distinction: `Kernel.Block:Index` is compressed, `Kernel.Block:Appendix` is exhaustive, `Kernel.Block:Design` is both together
+- at promotion time: fundamentals compress into `Index.Block`, appendix material goes to `Appendix.Block`
+- the distinction: `Index.Block` is compressed, `Appendix.Block` is exhaustive, `Design.Block` is both together
 - preserve user's wording when it carries design judgment
 
 ### meta
