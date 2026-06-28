@@ -127,12 +127,11 @@
 ## Index.Depot
 
 - `Index.Depot` is a concrete index instance — the set of files with index blocks, their appendix, and a router
-- built on the `Agentos.Index.Framework` — follows the same block structure, routing, writing, and discovery conventions
-- one depot = public part (skill-packaged, portable) + local part (`notes/index/`, project-specific)
-- each depot is self-contained — its own router(s), its own flat files, its own appendix
-- a concept lives in exactly one depot — the depot that naturally owns it
-- composability: an agent loads multiple depots to build its working index
-- an index-capable agent works across all loaded depots by scanning their available routers
+- follows the `Agentos.Index.System` conventions — same block structure, routing, writing, and discovery
+- one depot spans a public (skill-packaged, portable) and a local (project-specific) part — see `Distributed.Index`
+- each depot is self-contained — its own router(s), flat files, and appendix; a concept lives in exactly one depot
+- a depot loads with its package through the normal `Context.Loading.Path` — its router enters context via the package's `Package.Driver`
+- composability: multiple loaded depots compose one working index; the agent routes across all their routers as `Semantic.Router`s
 
 ### meta
 
