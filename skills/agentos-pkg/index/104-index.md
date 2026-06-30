@@ -139,11 +139,24 @@
 
 ****
 
+## Agent.Profile
+
+- `Agent.Profile` is the meta-configuration for working with a `runnable` agent — it defines the span of configuration that agent is allowed to run under
+- it binds a `Provider.Family` to a permitted set of run parameters: which accounts, which homes, plus model, command, and environment
+- it is referenced explicitly by name — never inferred
+- every running primitive consumes it as the source of permitted *who* and *how*; a primitive selects within the profile's span, it never authors or widens it
+
+### meta
+
+- aliases: `Profile`, `Run.Profile`
+
+****
+
 ## Provider.Instance
 
 - `Provider.Instance` is a configured binding of a `Provider.Family` to a specific local environment
 - the OOP analogy holds: `Provider.Family` is the class, `Provider.Instance` is when its parameters are bound
-- parameters include home path, profile, credentials, and any family-specific configuration
+- parameters include home path, the bound `Agent.Profile`, credentials, and any family-specific configuration
 - identity is derived from provider family + environment fingerprint — two different homes = two different instances
 
 ****
