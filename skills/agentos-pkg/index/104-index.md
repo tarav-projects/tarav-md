@@ -154,10 +154,14 @@
 
 ## Provider.Instance
 
-- `Provider.Instance` is a configured binding of a `Provider.Family` to a specific local environment
-- the OOP analogy holds: `Provider.Family` is the class, `Provider.Instance` is when its parameters are bound
-- parameters include home path, the bound `Agent.Profile`, credentials, and any family-specific configuration
-- identity is derived from provider family + environment fingerprint — two different homes = two different instances
+- `Provider.Instance` is a fully-specified, runnable agent configuration — a `Provider.Family` bound to all the parameters a run needs
+- the OOP analogy holds: `Provider.Family` is the class, `Provider.Instance` is its parameters bound
+- the bound parameters are the account, the home, the bound `Agent.Profile`, credentials, and any family-specific configuration
+- identity is the full binding — the same provider and account on two different homes are two different instances (claude on home A vs home B)
+
+### meta
+
+- aliases: `Agent.Instance`
 
 ****
 
@@ -172,25 +176,30 @@
 
 ## Agentos.Agent.Adapter
 
-- `Agentos.Agent.Adapter` is the Agentos code design pattern for exposing slices of a `Provider.Instance`'s capabilities on a common surface
+- `Agentos.Agent.Adapter` is the agent-domain `Raw.Adapter` — a provider's realization of `Agent.Normal.Model`'s capabilities on a common surface
 - concrete adapters are named `<Something>.Agent` — `<Something>` names the capability surface served, not the full instance
-- one `Provider.Instance` may have multiple adapters covering different capability slices
-- provider differences are absorbed below the `.Agent` boundary; Agentos sees a uniform interface above it
-- adapters may be partially configured — capability execution validates only what the invoked capability needs
-- missing configuration is acceptable until a capability needs it
-- `.Agent` is the public promise boundary; `<Something>` remains free to vary
-- implementations may share stable primitives without inheriting a forced common model
+- one `Provider.Instance` may carry multiple adapters covering different capability slices
 
 ### appendix
 
 - `<Something>` may be provider-shaped, subsystem-shaped, capability-shaped, workflow-shaped, or composed
 - examples: `Claude.Runner.Agent`, `Codex.Chatlas.Agent`, `Account.Monitor.Agent`, `Credential.Reconcile.Agent`
 - supporting primitives may include `Agent.Profile`, `Provider.Account`, `Provider.Home`, `Provider.Family`, credential artifacts, session references, run requests, and run results
-- the design keeps provider-specific and subsystem-specific complexity below the `.Agent` boundary
 
 ### meta
 
 - aliases: `Something.Agent`, `Agent.Surface`, `Agent.Capability.Object`
+
+****
+
+## Agent.Normal.Model
+
+- `Agent.Normal.Model` is an instantiation of `Normalization.Pipeline` whose `Normal.Model` is a runnable agent — normalized state bundled with the capabilities defined over it
+- its `Raw.Adapter` is the `Agentos.Agent.Adapter` — each provider realizes the capabilities from its native operations
+- the canonical capabilities are run, ping, evaluate, and account-status — the operations every agent exposes irrespective of provider
+- it is scoped to run-time capabilities; account-lifecycle operations are their own `Normal.Model`
+- state is shared, not owned — its fields may coincide with `Agent.Profile` and `Provider.Instance` where reuse fits
+- the typed signatures — state fields, capability arguments, and result sub-models — are specified in this concept's appendix
 
 ****
 

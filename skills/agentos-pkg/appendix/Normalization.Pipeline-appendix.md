@@ -7,6 +7,10 @@
 - normalized inward — the pipeline knows native source formats and maps into the model; sources know nothing about it
 - any field may carry an `Inline.Raw.Source` — its originating raw data packaged beside the normalized value, so the neutral read and its evidence travel together; the normalized value stays canonical
 - completeness is a dial, not a type — a lite ref and a full object are the same `Normal.Model` at different depth
+- a `Normal.Model` may bundle operations alongside data — its fields and the operations defined over them are one model
+- by analogy, a Python class bundles data attributes together with the methods over them
+- an operation's declaration and its result live in the `Normal.Model.Namespace`
+- executing an operation is the `Raw.Normalizer`'s job at the raw boundary — the model specifies the operation, the normalizer runs it
 
 ****
 
@@ -34,13 +38,28 @@
 
 ## Raw.Normalizer
 
-- `Raw.Normalizer` maps a `Raw.Source` to a `Model.Fragment` — the unit of normalization in a `Normalization.Pipeline`
-- the raw boundary of the pipeline: it is the only stage that touches native formats or knows source structure; nothing downstream reads raw
-- may also take already-built model objects alongside raw (`Raw.Sources + Others → Raw.Normalizer → Model.Fragment`) — to use as context and/or modify in place (e.g. a raw-keyed cross-reference); it still touches raw, so it stays a normalizer; a model-only step is `Normal.Assembler` work
+- `Raw.Normalizer` maps a `Raw.Source` to a `Model.Fragment` — the unit of data-normalization in a `Normalization.Pipeline`
+- the raw boundary for data — the only stage that reads native formats or knows source structure; nothing downstream reads raw
+- the data dual of `Raw.Adapter` — the normalizer maps raw data, the adapter maps raw operations
 - additive and free-form — added independently, asymmetric per source kind, implemented however the native format demands
+- it may read already-built model objects alongside raw as context — it still touches raw, so it stays a normalizer; a model-only step is `Normal.Assembler` work
 - free granularity — it may resolve a thin slice of the source or much of the model; fragments make fine-grained normalizers cheap, they do not require them
 - overlap is allowed — multiple normalizers may target the same path; a `Normalizer.Context` keeps shared raw loaded once
-- carries no assembly policy — it produces a fragment and stops; need and merge are the assembler's concern
+- carries no assembly policy — it produces a fragment and stops; need and merge are the `Normal.Assembler`'s concern
+
+****
+
+## Raw.Adapter
+
+- `Raw.Adapter` maps a raw operation to a normal capability — the unit of functionality-normalization in a `Normalization.Pipeline`
+- the raw boundary for functionality — the only stage that invokes native operations or knows provider structure; the capability it exposes is provider-neutral
+- the functionality dual of `Raw.Normalizer` — the adapter maps raw operations, the normalizer maps raw data
+- additive and free-form — added independently, asymmetric per provider, implemented however the native operation demands
+- a capability that returns data delegates inward — the adapter maps the functionality, `Raw.Normalizer`s and a `Normal.Assembler` map the resulting data
+- it exposes the normal capability and hides its raw dependencies — the encapsulation form of `Normal.Model.Closure`
+- a `Raw.Adapter` is a `Model.Fragment` of its `Normal.Model`'s interface — it realizes only the capabilities it supports
+- it carries only the configuration those capabilities need — what a capability requires is resolved at its execution boundary
+- carries no assembly policy — fallback and precedence across several raw paths to one capability are the `Normal.Assembler`'s concern
 
 ****
 
