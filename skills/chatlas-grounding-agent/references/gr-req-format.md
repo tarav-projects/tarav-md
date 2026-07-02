@@ -1,6 +1,6 @@
 # Chat.Grounding.Request Format
 
-The miner's output artifact. `Cited.Duplication` of `[Chat.Grounding.Request, Chat.Grounding.Miner.Locality]` from `agentos-chatlas-pkg/index`; the index owns authority.
+The miner's output artifact. `Cited.Duplication` of `[Chat.Grounding.Request, Chat.Grounding.Miner.Locality]` from `agentos-chatlas-pkg/design`; the index owns authority.
 
 A `Chat.Grounding.Request` is append-only JSONL — one record per line. It queues candidate grounding for later gated index writing. It is not index truth and never mutates index/appendix blocks by itself.
 

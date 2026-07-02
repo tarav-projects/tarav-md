@@ -1,6 +1,6 @@
 # Chat.Grounding.Material.Catalog
 
-The maintained, ever-growing list of criteria for detecting `Chat.Grounding.Material` — the core L1 job. `Cited.Duplication` of `[Chat.Grounding.Material, Chat.Grounding.Material.Catalog]` from `agentos-chatlas-pkg/index`; the index owns authority.
+The maintained, ever-growing list of criteria for detecting `Chat.Grounding.Material` — the core L1 job. `Cited.Duplication` of `[Chat.Grounding.Material, Chat.Grounding.Material.Catalog]` from `agentos-chatlas-pkg/design`; the index owns authority.
 
 `Chat.Grounding.Material` is a chat turn (or turn span) carrying durable design signal worth grounding. Detection requires no named block; block-agnostic material is still recorded, because it may ground blocks discovered later. One turn can yield multiple records.
 

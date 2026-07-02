@@ -1,6 +1,6 @@
 # L1 Miner — chat → session reqs
 
-L1 is the chat-to-reqs `Chat.Grounding.Miner`. `Cited.Duplication` of `[Chat.Grounding.Miner, Chat.Grounding.Material, Chat.Grounding.Miner.Locality]` from `agentos-chatlas-pkg/index`.
+L1 is the chat-to-reqs `Chat.Grounding.Miner`. `Cited.Duplication` of `[Chat.Grounding.Miner, Chat.Grounding.Material, Chat.Grounding.Miner.Locality]` from `agentos-chatlas-pkg/design`.
 
 Input: one chat session. Output: `~/Documents/chatlas/grounding/<identity_hash>-gr-req.jsonl` (see `gr-req-format.md`). L1 reads only the `Chat.Surface` — no project, no index.
 

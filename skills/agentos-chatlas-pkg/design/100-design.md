@@ -272,6 +272,10 @@
 - provider-specific richness with no neutral concept lives in `native` / `source_refs` — recoverable, never canonical
 - consumers are read-side: search, summary, replay, UI, `Chatlas.View.Model`
 
+### meta
+
+- aliases: `Session.Normal.Model` (session-scoped long form), `Normal.Model` (its role name as the target model of `Normalization.Pipeline:Chatlas.Session.Model`)
+
 ****
 
 ## Session.Event.Tape
@@ -317,3 +321,14 @@
 - `Normalizer.Context` is provider-scoped — one provider's session artifacts, loaded once per assembly
 - the `Normal.Assembler` produces the target a caller needs over `Chatlas.Session.Model`: a lite session ref, an index row, or a full session
 - two assembly regimes meet here — flat session metadata merges by path; `Session.Event.Tape` events assemble by order + `Session.Lineage`
+
+****
+
+## Chat.Semantic.From.File.Content
+
+- `Chat.Semantic.From.File.Content` means Chatlas derives chat meaning from the provider artifact's own content
+- chat semantic fields include timestamps, identity, lineage, messages, tool events, titles, paths, and activity signals
+- external storage signals are not chat evidence — filesystem metadata is the common negative example
+- `Raw.Normalizer`s may use external storage signals for artifact management, but not to populate `Chatlas.Session.Model` or semantic `Chatlas.Session.Index` fields
+- if provider content does not carry a semantic value, Chatlas should emit absence or an explicit content-derived fallback
+- rebuilding the same artifact content in another archive, checkout, or storage backend should produce the same chat semantics
