@@ -229,6 +229,18 @@
 
 ****
 
+## Independent.Reader.Block
+
+- `Independent.Reader.Block` is a durable block whose full meaning is recoverable by an independent reader holding only the block and the index it cites
+- it is a quality every `Kernel.Block` should hold: independence from the writer's context — the conversation that produced it — and from its position on the index surface
+- it MAY inline existing blocks: `Dotted.Name` references are durable, resolvable anchors (`Name.As.Index`), not dependencies that break independence
+- what breaks independence is deixis — a reference whose meaning depends on the authoring context instead of on a named, resolvable concept
+- the writer's context is the primary hazard: distilling a live conversation tempts the author to carry its frame into a surface the reader meets cold
+- the fix is positive statement — say what the concept is, not what it is instead of
+- extended depth lives in `appendix/Independent.Reader.Block-appendix.md`
+
+****
+
 ## Dangling.Cite
 
 - `Dangling.Cite` is a `Concept.Cite` or inline `Dotted.Name` mention pointing to a concept that has no block yet — a valid, intentional forward reference

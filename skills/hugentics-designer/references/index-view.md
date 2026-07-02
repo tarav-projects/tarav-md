@@ -38,7 +38,7 @@ Origin: `agentos-pkg/index/102-index.md` (`Kernel.Writing`, `Kernel.Block`) and 
 - `Kernel.Block` is the base writing object of `Kernel.Writing`
 - a block is a markdown section whose heading names the block's main topic
 - the heading is a conceptual commitment — it states what the block is about
-- a block should center one main topic; related material belongs in separate blocks, grounding, appendix, or meta
+- a block should center one main topic; related material belongs in separate blocks, grounding, or appendix — relations to other concepts use `Inline.Relatedness`
 - body lines are mostly bullets that enrich the topic from different perspectives
 - a block applies `Kernel.Writing` at section scale
 - its sections are named `Kernel.Block.Section`s: `Kernel.Block.Fundamentals` (the only required one) + `Kernel.Block.Grounding` + `Kernel.Block.Appendix` + `Kernel.Block.Meta`; `###` is just the inblock form of a section
