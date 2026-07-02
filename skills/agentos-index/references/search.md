@@ -9,6 +9,7 @@ Use this module when the caller wants cited index context, conceptual lookup, or
 - find the concept or a nearby related name before loading flat index files
 - load only the concept blocks, appendix pages, and references that are relevant to the current task
 - do not preload the full index as a default runtime
+- follow symlinks when traversing surfaces — index files, appendix pages, and whole skill trees are commonly symlinked in; use symlink-following tooling (e.g. `grep -R`, `find -L`) so linked surfaces are not silently skipped
 
 ## Search Steps
 

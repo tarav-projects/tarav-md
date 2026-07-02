@@ -52,11 +52,11 @@ The test: can you reorder the lines without breaking meaning, and does each line
 - a markdown section whose heading names the block's main topic — the heading is a conceptual commitment
 - one block, one main topic — related material belongs in other blocks, grounding, appendix, or meta
 - body lines are mostly bullets enriching the topic from different perspectives
-- structure: fundamentals (conceptual) + `### grounding` (chat evidence) + `### appendix` (extended conceptual) + `### meta` (non-conceptual)
-- dividing rule: fundamentals and appendix are about the concept; grounding cites chat evidence; meta is about the block itself
-- meta carries: aliases, outlinks, findability, status, open questions, session mechanics — anything non-conceptual
+- sections are named `Kernel.Block.Section`s: `Kernel.Block.Fundamentals` (the only required one) + `Kernel.Block.Grounding` + `Kernel.Block.Appendix` + `Kernel.Block.Meta`; `###` is just the inblock form
+- dividing rule: fundamentals and appendix are about the concept; grounding cites evidence; meta is about the block itself
+- meta is non-conceptual block data only — aliases, outlinks, findability; the strip-test: drop the line and the conceptual load is unchanged
 
-Session-loaded variants of `Kernel.Block` differ only in placement and gating, not in writing rules.
+Surface-placement variants of `Kernel.Block` differ only in placement and gating, not in writing rules; what a block may hold — e.g. status in meta — is a surface concern, allowed on design surfaces, barred on a `Stable.Surface`.
 
 ## Design.Block
 

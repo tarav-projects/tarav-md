@@ -201,6 +201,22 @@
 
 ****
 
+## Comparative.Normalization
+
+- `Comparative.Normalization` is normalizing a source by reading it alongside previously normalized instances rather than from the source and specs in isolation — an instantiation of `Normalization.Pipeline` that consults precedent
+- canonical shape: `Content + Specs + Precedence → Normal.Model` — content is sourced from the raw, specs are explicit guidance, precedence is prior instances; the three combine into the normalized value
+- specs are always incomplete — a stated ruleset leaves representation gaps it does not decide
+- precedence fills the gaps specs leave — an unspecified representation choice is settled by what was approved on prior instances, not invented fresh
+- it splits authority by question: the source is the sole authority for content; specs and precedence are the authority for representation
+- content authority sits at the raw boundary — only a `Raw.Normalizer` reads the source, and each normalized value can carry its `Inline.Raw.Source` as canonical-content evidence
+- representation authority follows `Specified.By.Precedence` — prior normalized instances set the converging shape (spelling, format, convention) a new instance imitates
+- specs supersede precedence — an explicit rule settles representation over any precedent, matching `Specified.By.Precedence`'s spec-over-imitation rule
+- precedence never overrides source content — it decides how a value is written, never what the value is
+- precedence is weighted by relatedness — instances sharing identifying context (same party, project, or scope) carry more weight than distant ones
+- representation choices are `Content.Verbatim.Gated` — the agent proposes from precedence, the user settles the canonical form
+
+****
+
 ## Fuzzy.Dotted.Name
 
 - `Fuzzy.Dotted.Name` is a `Dotted.Name` marked approximate with a leading tilde: `~Concept.Partial`

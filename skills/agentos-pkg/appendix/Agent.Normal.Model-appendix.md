@@ -26,7 +26,7 @@ class AgentNormalModel:
     # capabilities
     def run(self, intent: RunIntent) -> RunResult: ...
     def ping(self)                    -> PingResult: ...
-    def evaluate(self)                -> Evaluation: ...
+    def profile_check(self)           -> ProfileCheck: ...
     def account_status(self)          -> AccountStatus: ...
 ```
 
@@ -46,6 +46,6 @@ class RunIntent:
 class RunResult:        exit_code: int; stdout: str | None; stderr: str | None
 class PingResult:       ok: bool; model: ModelId; elapsed_ms: int; failure: str | None
 class CheckpointResult: id: CheckpointId; passed: bool; reason: str | None
-class Evaluation:       checkpoints: list[CheckpointResult]; ok: bool
+class ProfileCheck:     checkpoints: list[CheckpointResult]; ok: bool
 class AccountStatus:    usage: AccountUsageStatus   # → Normalization.Pipeline:Account.Usage.Model
 ```

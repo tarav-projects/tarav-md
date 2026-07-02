@@ -26,13 +26,24 @@ Drafting or revising block wording is also `--write` work, even before the user 
 - place extended depth, grounded history, scoped views, specs, and parked depth in the appendix
 - place operational procedure in skills or references, not in the index
 
+## Block Independence
+
+`Cited.Duplication` of `[Independent.Reader.Block]` — the quality every drafted block must hold:
+
+- a block must be recoverable cold by an independent reader holding only the block and the index it cites
+- no deixis to the authoring conversation: no "the new model", "as discussed", "the thing the user wants" — the reader meets the block cold, without the session that produced it
+- define positively — say what the concept is, not what it is instead of a rejected alternative
+- inlining other concepts by `Dotted.Name` keeps independence — `Name.As.Index` anchors are resolvable, not dependencies that break it
+- the primary hazard is distilling a live conversation; strip the session's frame before committing
+
 ## Write Loop
 
 1. Propose a full new block or a focused diff.
-2. Review with the user.
-3. Revise until accepted.
-4. Commit the approved edit to the natural surface.
-5. Update the router when concepts are added, renamed, moved, or gain appendix depth.
+2. Screen it for `Block Independence` — strip any deixis to the authoring conversation; state the concept positively.
+3. Review with the user.
+4. Revise until accepted.
+5. Commit the approved edit to the natural surface.
+6. Update the router when concepts are added, renamed, moved, or gain appendix depth.
 
 ## Post-Write Maintenance
 

@@ -151,13 +151,14 @@
 
 ****
 
-## Package.Skill.Dependency
+## Package.Manifest
 
-- `Package.Skill.Dependency` is the package surface that declares dependencies needed by a `Package.Skill`
-- may live as a `Package.Driver.Router` section or as a `references/` file, depending on package size
-- covers agentic dependencies: concepts, workflows, routers, install steps, references, or service surfaces provided by another package skill
-- external concepts should use qualified names when crossing package boundaries, for example `<package>-skill/Bla.Concept`
-- gives agents a formal place to discover which outside package surfaces may need to be loaded, installed, or consulted
+- `Package.Manifest` is the settings file of a `Skill.Package` — the config for its (agentic) package manager
+- artifact: `package.md` at the package root; data consulted by tooling, not orientation loaded into context (that is the `Package.Driver`)
+- declares what the package depends on: other `Skill.Package`s and the external CLIs/tools it needs
+- declares how to resolve each dependency when missing — a source and version, e.g. a git repo URL + ref — so the manager can fetch it
+- `Skill.Package`s are `Agentos.Skillware` units; like any software they need a package manager, and this is its manifest
+- named generically and kept extensible — dependencies are the first content; more package-level settings can land here later
 
 ****
 

@@ -196,7 +196,7 @@
 
 - `Agent.Normal.Model` is an instantiation of `Normalization.Pipeline` whose `Normal.Model` is a runnable agent — normalized state bundled with the capabilities defined over it
 - its `Raw.Adapter` is the `Agentos.Agent.Adapter` — each provider realizes the capabilities from its native operations
-- the canonical capabilities are run, ping, evaluate, and account-status — the operations every agent exposes irrespective of provider
+- the canonical capabilities are run, ping, profile-check, and account-status — the operations every agent exposes irrespective of provider
 - it is scoped to run-time capabilities; account-lifecycle operations are their own `Normal.Model`
 - state is shared, not owned — its fields may coincide with `Agent.Profile` and `Provider.Instance` where reuse fits
 - the typed signatures — state fields, capability arguments, and result sub-models — are specified in this concept's appendix

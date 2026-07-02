@@ -100,3 +100,14 @@
 - `Usage.Pattern.Routing` is `Semantic.Router` routing whose rows are usage patterns — keys are usage situations, values are the response for each (knowledge/surfaces to load, what to produce).
 - its keys are mined from real usage — chats, repeated questions, observed friction — so the routing grows cheaply and stays reality-weighted.
 - it optimizes frequent or important situations (a hot path); an unmatched situation selects nothing and falls back to the package's general routing.
+
+****
+
+## Specified.By.Precedence
+
+- `Specified.By.Precedence` is a design pattern: when no explicit specification is in sight, constrain new work by the shape of the existing implementations
+- the already-built instances serve as the `Reference.Implementation` for the ones not yet built — precedent is the spec
+- it trades an authored contract for imitation: a new instance reads its antecedents and follows their shape
+- the format evolves and converges naturally — each addition both follows and extends the precedent, no central definition to maintain
+- use it where a rigid spec would over-specify a still-soft, still-converging pattern; an explicit spec, once it appears, supersedes precedent
+- distinct from `Reference.Implementation`: that names one canonical owner of a contract; here the whole existing set is the soft, emergent spec
