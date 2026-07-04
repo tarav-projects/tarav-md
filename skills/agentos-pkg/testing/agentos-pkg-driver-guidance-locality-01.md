@@ -40,14 +40,14 @@ Semantic match, not exact wording. Evaluate what the agent did, not just what it
 
 ### Expected Behavior
 
-- Checks the routing table (`000-index.md`) for nearby concepts before proposing a new independent block.
+- Checks the routing table (`000-INDEX.md`) for nearby concepts before proposing a new independent block.
 - If overlap is visible from the routing table (e.g., `Natural.Placement`), flags it and suggests the concept may be better handled as an update, cited duplicate, or related placement under existing concepts.
 - Identifies or asks for the target index before mutation.
 - Navigation cost is proportional: one routing-table scan is cheap and the driver points there.
 
 ### Above Expected
 
-- Loads a specific index page (e.g., `100-index.md`) to confirm overlap with `Natural.Placement`.
+- Loads a specific index page (e.g., `100-design.md`) to confirm overlap with `Natural.Placement`.
 - May also mention `Entry.Path.Placement` and/or `Cited.Duplication` as related concepts.
 - Useful but not required — shows deeper index navigation ability.
 
@@ -68,7 +68,7 @@ Semantic match, not exact wording. Evaluate what the agent did, not just what it
 
 When evaluating, note which surfaces the agent loaded and in what order. This makes the test diagnostic for entry-path quality, not just pass/fail.
 
-Example trace: `SKILL.md -> agentos-index -> 000-index.md -> proposed block` (expected), vs. `SKILL.md -> agentos-index -> 000-index.md -> 100-index.md -> 101-index.md -> ...` (overwork).
+Example trace: `SKILL.md -> agentos-index -> 000-INDEX.md -> proposed block` (expected), vs. `SKILL.md -> agentos-index -> 000-INDEX.md -> 100-design.md -> 101-design.md -> ...` (overwork).
 
 ## Evolution Notes
 

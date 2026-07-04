@@ -11,7 +11,7 @@ The main tools: concept indexes, live surfaces, package skills, and human-agent 
 
 Any project can adopt agentos incrementally — an AGENTS.md and one package skill is enough to start. This skill (`agentos-pkg`) is the entry point to the system toolkit — it teaches agents how to discover and use agentos tools in whatever project they're working on.
 
-Paths in this skill are package-root-relative unless explicitly absolute. For example, `index/000-index.md` means `agentos-pkg/index/000-index.md`.
+Paths in this skill are package-root-relative unless explicitly absolute. For example, `000-INDEX.md` means `agentos-pkg/000-INDEX.md`.
 
 This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
@@ -23,7 +23,7 @@ Two important locations for agentos surfaces: project folders and package skills
 
 A **Project Folder** is where the project that users and agents are developing lives — in practice, a folder that stores notes, code, data, and other project material. A `.agentos` folder is a hint that a folder might be an agentos project. At the project level, look for `AGENTS.md`, `notes/` (live notes, index, appendix), and `dev/` (scripts and tooling).
 
-A **Package Skill** is a reachable skill that serves as the agentic interface to a package — it contains data, documentation, and operational instructions for using a package's functionalities. For instance, `agentos-pkg` is the Package Skill of the agentos framework. At the package level, a package skill contains its own `index/`, `appendix/`, `references/`, and `SKILL.md`.
+A **Package Skill** is a reachable skill that serves as the agentic interface to a package — it contains data, documentation, and operational instructions for using a package's functionalities. For instance, `agentos-pkg` is the Package Skill of the agentos framework. At the package level, a package skill contains its own `000-INDEX.md`, `design/`, `appendix/`, `references/`, and `SKILL.md`.
 
 When working in a project, the agent may encounter several workspaces — multiple project folders, multiple package skills, or both. Keep clear which workspace an action or prompt is referring to — surfaces from different workspaces should not be confused.
 
@@ -37,10 +37,10 @@ Concepts are named using **Dotted Notation** — compound names like `Vertical.S
 
 Indexes are distributed across two scopes:
 
-- `index/` — always-loaded fundamentals. Contains flat numbered files (`100-index.md`, `101-index.md`, ...) where file names carry no semantic meaning — concepts are just appended.
+- `design/` — always-loaded fundamentals. Contains flat numbered files (`100-design.md`, `101-design.md`, ...) where file names carry no semantic meaning — concepts are just appended.
 - `appendix/` — on-demand depth. Contains concept-named files (`Concept.Name-appendix.md`) — check if one exists when you need depth beyond the index block.
 
-The **routing table** maps every concept name to the file that holds it — always read this first. Package indexes use `000-index.md`; project-local indexes use `001-index.md`.
+The **routing table** maps every concept name to the file that holds it — always read this first. Package indexes use `000-INDEX.md`; project-local indexes use `001-index.md`.
 
 Both project folders and package skills can have their own index. If a project is developing a package skill, the agent can access both indexes locally.
 
@@ -62,10 +62,10 @@ my-project/
 ```
 skills/some-pkg/
 ├── SKILL.md
-├── index/
-│   ├── 000-index.md            ← package routing table
-│   ├── 100-index.md            ← package concept blocks
-│   └── 101-index.md
+├── 000-INDEX.md                ← package routing table
+├── design/
+│   ├── 100-design.md           ← package concept blocks
+│   └── 101-design.md
 └── appendix/
     └── Some.Concept-appendix.md
 ```
@@ -82,9 +82,9 @@ my-project/
 ├── skills/
 │   └── my-pkg/
 │       ├── SKILL.md
-│       ├── index/
-│       │   ├── 000-index.md    ← package routing table
-│       │   └── 100-index.md
+│       ├── 000-INDEX.md        ← package routing table
+│       ├── design/
+│       │   └── 100-design.md
 │       └── appendix/
 ```
 

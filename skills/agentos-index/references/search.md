@@ -5,7 +5,7 @@ Use this module when the caller wants cited index context, conceptual lookup, or
 ## Search Model
 
 - use routing-first selective loading
-- start with the relevant router: public `index/000-index.md`, local `notes/index/001-index.md`, or both
+- start with the relevant router: public `000-INDEX.md`, local `notes/index/001-index.md`, or both
 - find the concept or a nearby related name before loading flat index files
 - load only the concept blocks, appendix pages, and references that are relevant to the current task
 - do not preload the full index as a default runtime

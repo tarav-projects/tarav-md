@@ -4,7 +4,7 @@
 
 It is run during `Design.Session.Setup` and again whenever the session opens a **new subject block**. Its job is to keep design grounded in existing `Named.Concepts` instead of reinventing or silently contradicting them.
 
-This reference leans on `[Cited.Duplication, Inline.Relatedness, Natural.Placement, Grounding.DRIFT]` from `agentos-pkg/index/`. The origin owns authority.
+This reference leans on `[Cited.Duplication, Inline.Relatedness, Natural.Placement, Grounding.DRIFT]` from `agentos-pkg/design/`. The origin owns authority.
 
 ## Distinction — subject prior-art vs the process floor
 
@@ -23,7 +23,7 @@ Two different things load at session start; do not conflate them:
 
 ## Procedure
 
-1. **Locate the owning index.** Identify which project owns the subject's concepts. Use the target project's `AGENTS.md` routing, then its `skills/agentos-pkg/index/` and `appendix/` (or the project's own index surfaces). Load `agentos-index` if the ownership or structure is unclear.
+1. **Locate the owning index.** Identify which project owns the subject's concepts. Use the target project's `AGENTS.md` routing, then its `skills/agentos-pkg/design/` and `appendix/` (or the project's own index surfaces). Load `agentos-index` if the ownership or structure is unclear.
 
 2. **Build probes.** Derive search terms from the subject:
    - the exact concept name and its `Dotted.Name` tokens
@@ -33,7 +33,7 @@ Two different things load at session start; do not conflate them:
 3. **Search.** Prefer a few high-signal probes over broad noisy recall:
 
    ```sh
-   rg -n "Subject.Name|token|neighbor" <project>/skills/agentos-pkg/index <project>/skills/agentos-pkg/appendix
+   rg -n "Subject.Name|token|neighbor" <project>/skills/agentos-pkg/design <project>/skills/agentos-pkg/appendix
    ```
 
    Failed search is not proof the concept is absent — widen probes once, then report.

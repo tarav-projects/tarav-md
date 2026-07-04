@@ -13,7 +13,7 @@ This is a *selection*, not the whole index. Start small; add a block here only w
 
 ## Writing kernel
 
-Origin: `agentos-pkg/index/102-index.md` (`Kernel.Writing`, `Kernel.Block`) and `agentos-pkg/index/100-index.md` (`Design.Block`).
+Origin: `agentos-pkg/design/102-design.md` (`Kernel.Writing`, `Kernel.Block`) and `agentos-pkg/design/100-design.md` (`Design.Block`).
 
 ### Kernel.Writing
 
@@ -63,7 +63,7 @@ Origin: `agentos-pkg/index/102-index.md` (`Kernel.Writing`, `Kernel.Block`) and 
 
 ## Alignment spine
 
-Origin: `agentos-pkg/index/102-index.md` (`Alignment.Loop`, `Alignment.Backend`, `Hard.Evidence`).
+Origin: `agentos-pkg/design/102-design.md` (`Alignment.Loop`, `Alignment.Backend`, `Hard.Evidence`).
 
 ### Alignment.Loop
 

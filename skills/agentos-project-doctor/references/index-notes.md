@@ -4,9 +4,9 @@ Check `Agentos.Index.Notes` basics. Architecture context comes from the index it
 
 ## Deterministic Checks
 
-When `skills/agentos-pkg/index/` exists (public index):
+When `skills/agentos-pkg/design/` exists (public index):
 
-- check for `000-index.md` routing table
+- check for `000-INDEX.md` routing table
 - list flat index files, verify numbering in public range
 
 When `notes/index/` exists (local index):

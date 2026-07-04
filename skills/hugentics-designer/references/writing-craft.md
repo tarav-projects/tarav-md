@@ -1,6 +1,6 @@
 # Writing Craft
 
-The writing-quality floor for `What.Design.Session`. Apply on every line written into `Session.Abstract`, `Design.Index`, `Session.Notes`, or any other session surface. This reference is `Cited.Duplication` of `[Kernel.Writing, Kernel.Block, Design.Block, Natural.Placement, Hard.Evidence, Cited.Duplication, Inline.Relatedness]` from `agentos-pkg/index/`. The origin owns authority; this is the on-hand operational copy.
+The writing-quality floor for `What.Design.Session`. Apply on every line written into `Session.Abstract`, `Design.Index`, `Session.Notes`, or any other session surface. This reference is `Cited.Duplication` of `[Kernel.Writing, Kernel.Block, Design.Block, Natural.Placement, Hard.Evidence, Cited.Duplication, Inline.Relatedness]` from `agentos-pkg/design/`. The origin owns authority; this is the on-hand operational copy.
 
 **Rules here, exemplars in `index-view.md`.** This file states *how to apply* the writing kernel; `index-view.md` holds the verbatim, well-formed blocks that show *what the bar looks like*. A writing standard does not transfer on principles alone — the line-granularity bar lives in the examples. Read `index-view.md` blocks as the calibration before you draft, and the § Line Granularity contrast below for the failure mode the rules do not catch on their own.
 

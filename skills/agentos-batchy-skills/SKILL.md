@@ -23,7 +23,7 @@ This is itself a `Batchy.Skill` — the convention it defines applies to it too.
 
 ## Skill Model
 
-The skill taxonomy and roles are canonical in the `agentos-pkg` index (`index/101-index.md`). Read the blocks rather than restating them:
+The skill taxonomy and roles are canonical in the `agentos-pkg` index (`design/101-design.md`). Read the blocks rather than restating them:
 
 - `Package.Skill` — the self-contained agentic surface for a package or subsystem.
 - `Package.Driver` — the minimal load (usually `SKILL.md`) to orient and route.
@@ -61,5 +61,5 @@ Detail is split by audience: running a Batchy skill → [references/batchy-skill
 
 - [references/batchy-skill-run.md](references/batchy-skill-run.md) — operating a Batchy skill (runner-facing).
 - [references/batchy-skill-designer.md](references/batchy-skill-designer.md) — building a Batchy skill (designer-facing).
-- `agentos-pkg` index `index/101-index.md` — skill model and Batchy concept blocks.
+- `agentos-pkg` index `design/101-design.md` — skill model and Batchy concept blocks.
 - `agentos-index --write` — how to write the index blocks a skill's concepts live in.

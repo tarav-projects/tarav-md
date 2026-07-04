@@ -7,7 +7,7 @@ description: "Live surface protocols for notes and scripts. USE WHEN the user me
 
 Minimal protocols for live notes and live scripts — the two numbered live surfaces in an agentos project.
 
-This skill operationalizes `Agentos.Live.Note` and `Agentos.Live.Script` naming and location behavior derived from `File.Numbering.Protocol`. The durable concepts live in `agentos-pkg/index/100-index.md`; operational numbering details live in `agentos-pkg/references/file-numbering-protocol.md`.
+This skill operationalizes `Agentos.Live.Note` and `Agentos.Live.Script` naming and location behavior derived from `File.Numbering.Protocol`. The durable concepts live in `agentos-pkg/design/100-design.md`; operational numbering details live in `agentos-pkg/references/file-numbering-protocol.md`.
 
 This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 

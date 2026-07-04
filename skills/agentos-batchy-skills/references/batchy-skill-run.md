@@ -1,6 +1,6 @@
 # Batchy Skills — Running One
 
-How to *operate* a `Batchy.Skill`. This is the runner-facing convention — what you need to correctly invoke a skill. For building one, see `batchy-skill-designer.md`. Concepts are canonical in `agentos-pkg/index/101-index.md`.
+How to *operate* a `Batchy.Skill`. This is the runner-facing convention — what you need to correctly invoke a skill. For building one, see `batchy-skill-designer.md`. Concepts are canonical in `agentos-pkg/design/101-design.md`.
 
 Every Agentos skill is a `Batchy.Skill` — called like a terminal command. The convention is a convention the agent knows, not a parser: a clear natural prompt always works, and flags are the crisp path as parameter count grows.
 

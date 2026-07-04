@@ -12,8 +12,8 @@ Drafting or revising block wording is also `--write` work, even before the user 
 
 ## Structure
 
-- public routing table: `index/000-index.md`
-- public flat files: `index/100-index.md`, `101-index.md`, ...
+- public routing table: `000-INDEX.md`
+- public flat files: `design/100-design.md`, `101-design.md`, ...
 - public appendix files: `appendix/Concept.Name-appendix.md`
 - local routing table: `notes/index/001-index.md`
 - local flat files: `notes/index/300-index.md`, `301-index.md`, ...
