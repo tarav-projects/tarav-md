@@ -57,8 +57,8 @@ Append-only. One section per native concept.
 ## parentUuid / logicalParentUuid
 - seen: `parentUuid` on every `Claude.TranscriptMessage` (`S1:6`, `S1:9`). `logicalParentUuid` is rare — 1/10,987 records — and appears on the compaction boundary: `S2:467` has `logicalParentUuid:"c31ba9a0…"` pointing across the compacted span
 - native: transcript chain link; `logicalParentUuid` re-threads across compaction (`logs.ts:9`)
-- neutral: `Session.Lineage` (origin reference); `logicalParentUuid` → compaction re-thread (see compaction)
-- rationale: under the linear tape these are event-level origin refs, not the spine. `logicalParentUuid` is specifically a compaction artifact, not general threading.
+- neutral: `Session.Lineage` — a conversation fork (a parent with ≥2 conversation-bearing child subtrees) normalizes to a derived `lineage.rollback` event at the rebranch point plus `lineage: {on_active_path: false}` on the abandoned subtree's events; the active path is the ancestor chain of the last record (claude's replay rule). `logicalParentUuid` → compaction re-thread (see compaction)
+- rationale: under the linear tape these are event-level origin refs, not the spine. Raw children counting is NOT a fork signal: `attachment` records are dead-end leaves sharing a parent with the `tool_result`, so every tool use forks the raw DAG benignly — only conversation-bearing children mark a rewind. Implemented by 528 (`_claude_mark_fork_lineage`); validated on the `knights-knaves-restore` corpus.
 
 ## system / turn_duration
 - seen: `S1:9` → `{"type":"system","subtype":"turn_duration","durationMs":4179,"messageCount":4,"isMeta":false,…}` (uuid `04381c50…`). Present in 1382/4638 sessions
@@ -107,6 +107,12 @@ Append-only. One section per native concept.
 - native: `SerializedMessage` envelope (`logs.ts:8-17`)
 - neutral: `sessionId` → `Session.Identity`; `cwd`/`gitBranch`/`version`/`entrypoint` → `TBD: session-metadata`; `slug`/`userType`/`promptId` → `→ native`
 - rationale: working dir, git branch, harness version, and entrypoint are real on every record and currently dropped (chatlas keeps only `uuid`/`parent_uuid`). Candidate neutral session-metadata slot.
+
+## thinking (empty marker)
+- seen: `thinking` content items with `thinking: ""` and only a `signature` — every thinking item in the `knights-knaves` corpus sessions (6/6, 6/6, 7/7); claude-code does not persist thinking text in the session artifact
+- native: assistant content block `{type:'thinking', thinking, signature}`
+- neutral: `reasoning` event with `{visibility: "redacted", content: null, signature}` — an explicit reasoning-occurrence marker, no fabricated content
+- rationale: the artifact proves reasoning occurred without carrying its text; per `Chat.Semantic.From.File.Content` the tape emits the absence explicitly rather than dropping the occurrence. Content-bearing thinking (if a future version persists it) stays `visibility: "visible"`. Implemented by 528 Slice 2.
 
 # Absent in dataset (verifiable zero-grounding)
 
