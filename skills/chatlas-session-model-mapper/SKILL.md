@@ -104,7 +104,7 @@ The unit of work is **one map row → one decision**. Never batch.
 ### 6. Execute — gated writes to stable surfaces only
 
 - if accepted: write the concept as a `Kernel.Block:Index` into the chatlas index, and
-  update the routing table
+  update the router (`000-INDEX.md`)
 - update **every provider map row** naming the candidate: `TBD: <candidate>` → the real
   index concept name — all maps in lockstep
 - if `→ native`: set the row's `neutral:` to `→ native` with rationale; no index write
