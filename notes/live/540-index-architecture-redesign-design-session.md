@@ -2,14 +2,15 @@
 
 ## Session.Abstract
 
+- grounding session for this design: `99144906-781e-43cc-9d27-b40f166e2acf`
 - revisit/redesign all Agentos Index concepts to converge the generalized-index model
 - this artifact is the temporary home for the updated blocks; migrate into `agentos-pkg/index/` later, safely, once converged
 - convergence so far: the Index is a system of **chapters** + appendix + router
     - **chapters** = load-partition folders (default `design`, reserved `design`/`impl`, extensible, files `NNN-<chapter>.md`)
-    - **`ROUTER.md`** = chapter-sectioned lookup table (was `INDEX.md`/`000-index.md`)
+    - **`000-INDEX.md`** = chapter-sectioned lookup table (renamed from `000-index.md`; the `000-` prefix is the grep marker, `INDEX` the name)
     - **appendix** = part of the Index but not a chapter — depth, discovered not routed
     - default search scopes to `design`; other chapters load only on an explicit miss
-- proof-of-shape already applied additively to `agentos-chatlas-pkg` (`design/` + `ROUTER.md`)
+- proof-of-shape already applied additively to `agentos-chatlas-pkg` (`design/` + `000-INDEX.md`)
 
 ## Design.Index
 
@@ -27,7 +28,7 @@
 - a chapter's files are named `NNN-<chapter>.md`, e.g. `design/100-design.md` — the suffix names the chapter
 
 #### appendix
-- `ROUTER.md` routes every chapter; the appendix is the Index's depth layer, reached by naming (`Appendix.Discovery`), not routed as a chapter
+- `000-INDEX.md` routes every chapter; the appendix is the Index's depth layer, reached by naming (`Appendix.Discovery`), not routed as a chapter
 - a concept may carry its chapter as an optional `Dotted.Name` prefix (`Impl.Concept.A`)
 
 ### Agentos.Index.System
@@ -46,12 +47,12 @@
 
 ### Agentos.Index.System/Index.Surface.Layout
 - `Index.Surface.Layout` is the directory protocol a package follows to host an Index
-- a hosted Index is a `ROUTER.md` lookup over one folder per `Index.Chapter`, plus a shared `appendix/`
+- a hosted Index is a `000-INDEX.md` lookup over one folder per `Index.Chapter`, plus a shared `appendix/`
 
 public Index — in the package skill:
 ```
 skills/<package>-pkg/
-├── ROUTER.md          — concept→file lookup, sectioned by chapter
+├── 000-INDEX.md          — concept→file lookup, sectioned by chapter
 ├── design/            — default chapter;     NNN-design.md
 ├── impl/              — reserved chapter;     NNN-impl.md
 ├── <chapter>/         — any further chapter;  NNN-<chapter>.md
@@ -173,8 +174,14 @@ skills/<package>-pkg/
 #### meta
 - aliases: `Index.Fundamentals`
 
+### Index.Main/Appendix
+- named `Index.Main` for the book parallel — main body vs appendix
+- rejected `Index.HEAD` — collides with `*HEAD*`, the active-grounding marker (`Kernel.Block.Grounding`)
+- rejected `Index.Root` — collides with the `Block.Path` root segment
+- rejected `Index.Base` — leans "foundation"; the layer's real property is "primary / default"
+
 ### Index.Router
-- `Index.Router` is the lookup table of the Index — `ROUTER.md`, loaded first when the Index enters context (per the `Package.Driver`)
+- `Index.Router` is the lookup table of the Index — `000-INDEX.md`, loaded first when the Index enters context (per the `Package.Driver`)
 - it routes concept name → file, sectioned by `Index.Chapter`
 - the appendix is not routed — appendix depth is reached by naming (`Appendix.Discovery`), not listed here
 - it also carries file routing (`Project.File.Index`) — important project files for research
@@ -199,7 +206,7 @@ skills/<package>-pkg/
 
 ### Index.Block
 - `Index.Block` is a `Kernel.Block` placed in an `Index.Chapter` — the routed, loadable unit of meaning in the Index
-- its heading is a `Dotted.Name`, the root of the concept's `Block.Path`s and what `ROUTER.md` routes
+- its heading is a `Dotted.Name`, the root of the concept's `Block.Path`s and what `000-INDEX.md` routes
 - it is `Kernel.Writing` under tight compression — conceptual completeness in few lines, depth pushed to `Concept.X/Appendix`
 - the Index must have a block for any meaningful concept; it may link out rather than define everything inline
 - `Content.Verbatim.Gated` — user approves exact wording before commit
@@ -225,7 +232,7 @@ skills/<package>-pkg/
 - dropping the tail is the main way user-discussed design is lost; fundamentals survive, the rest evaporates
 
 ### Index.Depot
-- `Index.Depot` is a self-contained Index instance — its own `ROUTER.md`, chapters, and appendix
+- `Index.Depot` is a self-contained Index instance — its own `000-INDEX.md`, chapters, and appendix
 - it follows `Agentos.Index.System` conventions
 - a depot belongs to a surface — a project or a `Package.Skill` — and is engaged like any other, no depot privileged
 - the same concept name may exist in two engaged depots; the system surfaces the collision, it does not prevent or resolve it
@@ -233,9 +240,9 @@ skills/<package>-pkg/
 
 ### Index.Discovery
 - `Index.Discovery` is how an agent finds the `Index.Depot`s available to engage
-- a depot is marked by a `ROUTER.md` — its presence identifies an engageable index on a skill or project
+- a depot is marked by a `000-INDEX.md` — its presence identifies an engageable index on a skill or project
 - declared discovery walks the dependency graph: a project's `Project.Manifest` and each package's `Package.Manifest`
-- fallback discovery: when nothing declares them, search for `ROUTER.md` across skills and projects — cheap
+- fallback discovery: when nothing declares them, search for `000-INDEX.md` across skills and projects — cheap
 - discovery is hierarchical (the dependency graph) but engagement is flat — discovered depots are peers, routed equally
 - a workflow scopes the discovered set by agent common sense — conversation context, skill descriptions, task relevance — defaulting to the whole engaged set
 
@@ -243,7 +250,7 @@ skills/<package>-pkg/
 - `Project.Manifest` is a project's declaration of the `Package.Skill`s and indexes it engages — the project peer of `Package.Manifest`
 - it lives in the project's `AGENTS.md`
 - with `Package.Manifest` it forms the dependency graph `Index.Discovery` walks
-- it is optional — without it, `Index.Discovery` falls back to searching for `ROUTER.md`
+- it is optional — without it, `Index.Discovery` falls back to searching for `000-INDEX.md`
 
 ### Explicit.Namespace
 - `Explicit.Namespace` is a concept whose purpose is to group a cluster of blocks — a declared view over the concepts it gathers
@@ -325,6 +332,62 @@ skills/<package>-pkg/
 #### meta
 - aliases: `Partial.Name`
 
+### Design.Space
+- `Design.Space` is the total decision space of an artifact — every choice its design comprises, centered on the user's input (renames `Conceptual.Space`)
+- it partitions two orthogonal ways: by provenance (`Touched.Space` / `Untouched.Space`) and by constraint (`Open.Space` / fixed)
+- the touched/open ratio is the control surface: the user tightens control by constraining more of the space, and delegates automation by leaving space open
+- it is the object every surface nests over: the `Chat.Surface` records it, the index digests it, the codebase realizes it
+- it is never required complete to proceed — the agent works `Open.Space` to keep moving, alignment catches up
+
+#### meta
+- aliases: `Conceptual.Space`, `Alignment.Space`
+
+### User.Touched
+- `User.Touched` is a property of a fact: it was produced by a user-gated hugentic process — carrying evidence of user-agent collaboration, not agent invention
+- the agent may construct and tag the fact; the user gates it — the gating is the touch, authorship is irrelevant
+- it is general over the form of touch: stated, discussed, approved, co-drafted — any user-gated production qualifies
+- it is a cross-surface predicate — the index is *a* `User.Touched` surface, the `Chat.Surface` is another
+- it separates `Touched.Space` from `Untouched.Space` — untouched is always `Open.Space` and off-index; touched can be open (`FR`) or constrained (a constraint)
+
+### Touched.Space
+- `Touched.Space` is the region of the `Design.Space` carrying `User.Touched` evidence — what the hugentic process has reached
+- the index is its primary alignment surface, but not the only one — the `Chat.Surface` is another hugentic surface that holds touch
+- a touched decision may be constrained (`CT`/`DC`/`RJ`) or open (declared free, `FR`) — touch means *engaged*, not *decided*
+
+### Untouched.Space
+- `Untouched.Space` is the region of the `Design.Space` with no `User.Touched` evidence — the hugentic process has not reached it
+- it is always `Open.Space`: with no touch there is no directive constraint, so the agent decides for itself
+- it never becomes an index line — untouched material remains only in the chat or the work
+- the chats are mixed, touched and untouched; the index earns its keep by extracting the touched part worth keeping — not user filler — which is exactly `Line.Type`'s gate
+- alignment is the shrinking of `Untouched.Space`: growing touch across the `Design.Space`
+
+### Open.Space
+- `Open.Space` is the uncollapsed region of the `Design.Space` — decisions not fixed by a user directive or its consequences, the agent's domain
+- it is orthogonal to touch: it spans `Untouched.Space` (always open) and touched-open (`FR`, an explicit free declaration)
+- consequences logically entailed by touched constraints are NOT open — the agent may fail to derive them, but is not free to decide against them
+- in it the agent makes its own decisions to act — coherent, never random — but provisional and overwritable with good reason, off-index; they become directive constraints only once touched
+
+### Line.Type
+- `Line.Type` is the classification a `Kernel.Line` carries, written as a 2-letter prefix from a small controlled vocabulary
+- classifying is the line-level gate — it forces significance the way naming gates a block; the small cost is the point, a cost-zero index overwhelms the user
+- naming once bundled three filters — identification, boundary, significance; the line-level tests unbundle them: a crisp single point (`Kernel.Line`), attaching to a block (`Append.Line`), and significance (`Line.Type`)
+- each type is a verb on the `Design.Space`, sorted by how the line acts on it:
+  - collapsing: `CT` constraint (rules out), `DC` decision (selects a point), `RJ` rejected (closes an alternative)
+  - describing: `DF` definition (what a concept is), `PR` principle (a valuation or rule of thumb)
+  - declaring-open: `FR` free (an explicit, touched statement that a dimension is intentionally unconstrained)
+- every typed line is `User.Touched`; `FR` is delegated-open (touched), not an agent guess — agent-fill has no type because it is not in the index
+- typed lines are lintable and high-signal; untagged lines are allowed and typed as the index is polished
+
+### Line.Type/Appendix
+- example lines in the light 2-letter form:
+  - `CT: a `Dotted.Name` must have more than one part`
+  - `DF: `Index.Main` is the routed main body of the Index`
+  - `RJ: `Index.HEAD` — collides with the `*HEAD*` grounding marker`
+  - `FR: blocks may be placed in any order within a chapter`
+- the vocabulary is soft and curated (`Concept.Hardness`) — extensible, not a hard enum; add a type when a recurring line-act has no home
+- type analytics: which types earn their keep, which are smells — a `NOTE`/`SUMMARY` type would flag chat-recounting sneaking in
+- lint targets: contradictory `CT`s, `DC`s that disagree, an `RJ` later reintroduced, an `FR` a later `CT` silently overrides
+
 ## Session.Notes
 
 - migration deletions (remove from real `agentos-pkg/index/` on migrate): `Index.Architecture` (merged into `Agentos.Index.System`); `Flat.Index.Architecture` (folded into `…/Index.Surface.Layout` appendix); `Extended.Index.Scope` (folded into `Appendix.Discovery`); `Distributed.Index` (replaced by `Index.Depot` + `Index.Discovery`)
@@ -340,29 +403,42 @@ skills/<package>-pkg/
 - resolved: `Appendix.Pages` is the file axis (`Concept.X[N]`), orthogonal to `Block.Path` (ontology axis); they overlap by default but are independent — not a notation conflict, two axes
 - `Concept.Scoping` revisited → narrowed to "semantics of a concept-valued `Block.Path` segment" and moved into `Block.Path`'s appendix
 - migration: at migrate, replace standalone `Concept.Scoping` (103) with `Block.Path` + its appendix; refresh stale examples (`Index.Architecture/Flat.File.Design` → `Agentos.Index.System/Index.Surface.Layout`); replace the old `Explicit.Namespace` (103) with the rewrite (no longer cites `Concept.Scoping`)
-- naming locked: Index = system; chapters = folders; `ROUTER.md` = table; `Index.Block` stays valid (a block in any chapter)
+- naming locked: Index = system; chapters = folders; `000-INDEX.md` = table; `Index.Block` stays valid (a block in any chapter)
+- DECISION (router filename): the lookup table is `000-INDEX.md` (not `ROUTER.md`) — user prefers `INDEX`; `000-` keeps a unique grep marker for `Index.Discovery`; one router name for every depot (no separate public/local router file). the NNN file-numbering system is KEPT as-is (revisit later, not part of this migration)
 - REDESIGN DECISION: appendix/grounding/scoped blocks are path-named outblocks (`Concept.X/Appendix`, `Concept.X/Grounding`, `Concept.X/Concept.Y`), appendix-placed by default; fundamentals and meta stay inblock (meta loads with the concept for findability)
 - consequence: `Kernel.Block.Section` reframed — outblock form = a `Block.Path`; the section family (`Kernel.Block.Section`, `…Appendix`, `…Meta`, `…Grounding`, `…Fundamentals`) is now a redesign target
 - migration rule: `540` uses full `Block.Path`s in one flat file; when a block migrates into a `Concept.X-appendix.md`, shorten its heading to the relative path (implicit root)
 
 - chat-integration reframe: the index is a cache over the `Chat.Surface`, not a gate — captured as `Chat.Surface` block + `Chat.Surface/Appendix` (defines `Projects.Chats`, `Chat.Retrieval`); grounded on real Chatlas primitives (`query`/`recents`/`views` + `chatlas-grounding-agent` git-grounding); augments the existing `Chat.Surface` block in real `100` (reconcile at migrate); `Projects.Chats`/`Chat.Retrieval` promotable to scoped blocks if cited
 - open (chat integration): date-range upper bound for `chatlas query`; whether `Chat.Retrieval` firing stays user-triggered or becomes a light alignment-loop reflex
+- RENAME (migration): `Conceptual.Space` → `Design.Space` (user prefers the name); keep `Conceptual.Space`, `Alignment.Space` as aliases; `Design.Target.Model` stays "a point in the `Design.Space`"
+- FOUNDATIONAL cluster (not index-architecture — tag for an alignment/foundational surface at migration): `Design.Space` (two-axis partition + the touched/open control-surface line — the framework thesis: user governs by constraining vs delegating), `User.Touched` (predicate: user-gated hugentic provenance, not authorship; a cross-surface property — index is *a* touched surface, chats another), `Touched.Space`/`Untouched.Space`/`Open.Space` (provenance × constraint axes; untouched⟹open; entailed consequences are not open; agent self-decisions are provisional/overwritable/off-index)
+- `Line.Type`: 2-letter typed-line vocabulary (`CT`/`DC`/`RJ`/`DF`/`PR`/`FR`) = the line-level significance gate that replaces the block naming-filter; each type is a verb on the `Design.Space`; index holds only `Touched.Space` (no agent-fill/`OPEN` type); touch-necessary-but-not-sufficient (index = touched ∩ significant, not user filler); lintable + type-analytics; soft/curated vocabulary
+- reframe: the index is a rolling digestion of `Touched.Space` — bypassable (just work), but always hugentic, never fully agentic
+- RECONCILE (do over the already-migrated index, partially — not now): the alignment framework overlaps existing `Alignment.*.Axis` — `Open.Space` delegated ↔ `Alignment.Agentic.Axis`; touch grows on `Alignment.Hugentic.Axis`. link/merge the two vocabularies at migration; keep this as the standing reconcile note
+- MIGRATION PLAN (detail later): operating contract = structure-free / content-gated — rename/move/split folders freely; any block wording or new line stays `Content.Verbatim.Gated`. `540` migrates to THREE homes, not one: index-architecture → `agentos-pkg` index (chapters/`ROUTER`/appendix); chat cluster (`Chat.Surface`/`Projects.Chats`/`Chat.Retrieval`) → home TBD (chatlas vs agentos-pkg); foundational cluster (`Design.Space`, `User.Touched`, `Touched.Space`/`Untouched.Space`/`Open.Space`, `Line.Type`) → a foundational/alignment surface, not the index cluster. approach: incremental till compliant, chatlas as pilot. open decisions: `INDEX.md` vs `000-INDEX.md`; cluster homes; plan artifact (Impl.Req vs live note)
+- TOOLING DEBT (found during arch migration): `agentos index linter` encodes the OLD index model — it only accepts a router named `000-index.md`/`001-index.md` *inside* the index dir and hardcodes `NNN-index.md` filenames; it rejects the new layout (`000-INDEX.md`, chapter folders, `NNN-<chapter>.md`). the linter (and any other index tooling) must be updated to the new model — a separate later effort. during the arch migration the linter is NOT used for validation (agent-convention only). there is no runtime driver — index loading is agent-convention (the linter is the only structural-aware tool)
+- parked candidate: `Digestion.Gradient` — promote the "index block → appendix line (`Append.Line`) → chat-in-place (`Chat.Retrieval`)" spine to a named concept if it earns cites; revisit later
 
 ## Session.Log
+
+- arch-migration handoff: wrote `561-index-arch-migration-impl-req.md` (structural only — chapters/`000-INDEX.md`/appendix layout, chatlas pilot → agentos-pkg; numbering kept; content upgrade is a separate later Impl.Req); router locked to `000-INDEX.md` and applied across `540`
 
 - session opened; backend = artifact; scope = all Index-architecture concepts
 - appendix-philosophy thread written: `Writing.Friction.Reduction`, `Concept.Explosion`, `Block.Line.Gradient`, `Appendix.Default.Block`
 - path-model written: `Block.Path` (+`/Appendix`, +`/Concept.Scoping`); `Concept.Scoping` demoted into `Block.Path` appendix
 - `Kernel.Block.Section` reframed (sections = path-children outblock; fundamentals+meta inblock); members written: `…Fundamentals`, `…Meta`, `…Appendix`, `…Grounding` (trimmed of form-mechanics, now owned by `Block.Path`)
 - implicit-root convention added to `Block.Path/Appendix` (appendix file roots its blocks)
-- structural cluster: `Index.Router` (→ROUTER.md, scope removed as misplaced), `Appendix.Pages` (file axis, orthogonal to `Block.Path`), `Appendix.Discovery` (reach-by-naming); `Extended.Index.Scope` deleted/folded
+- structural cluster: `Index.Router` (→000-INDEX.md, scope removed as misplaced), `Appendix.Pages` (file axis, orthogonal to `Block.Path`), `Appendix.Discovery` (reach-by-naming); `Extended.Index.Scope` deleted/folded
 - model spine settled: ontology (`Block.Path`) × storage (`Appendix.Pages`), two orthogonal axes
 - `Index.Chapter` converged + written (keystone: chapters = selective-loading folders, default `design`)
 - `Index.Architecture` trimmed to a pure `Explicit.Namespace` anchor (one line, no meta) — membership/structure live in the member blocks
 - `Agentos.Index.System` trimmed: fundamentals = whole-system identity + semantic computation; SPL/micro-prompts/context-manipulation/namespace-grouping moved to its appendix
-- `Index.Surface.Layout` rewritten for chapters/`ROUTER.md` and captured as `Agentos.Index.System/Index.Surface.Layout` (scoped appendix block); local paths under `notes/`
+- `Index.Surface.Layout` rewritten for chapters/`000-INDEX.md` and captured as `Agentos.Index.System/Index.Surface.Layout` (scoped appendix block); local paths under `notes/`
 - depot cluster written: `Index.Depot`, `Index.Discovery`, `Project.Manifest`; `Distributed.Index` retired
 - `Explicit.Namespace` rewritten (grouped-peer vs owned-child, member list as discoverability surface, appendix required); `./Child` sugar folded into `Block.Path/Appendix`
 - chat integration written as `Chat.Surface` block + appendix (index-as-cache-over-chats; `Projects.Chats`, `Chat.Retrieval` 3 tiers on real Chatlas primitives) — captured practicing the line-centric philosophy
+- grounded the alignment framework on the real index (`/agentos-index --ground`): found `Design.Space` = `Conceptual.Space` (renamed), delegated-open ≈ `Alignment.Agentic.Axis`; new = touch-coverage, untouched-vs-delegated, provisional agent-fill
+- alignment-framework cluster written: `Design.Space` (control-surface thesis), `User.Touched`, `Touched.Space`/`Untouched.Space`/`Open.Space` (two orthogonal axes), `Line.Type`(+appendix) — the 2-letter typed-line vocabulary that gates line capture (replaces the block naming-filter); index = rolling digestion of `Touched.Space`, always hugentic
 - part-naming COMPLETE: `Index.Surface` (whole, `Surface.Concept` = bytes vs `Agentos.Index.System` = semantics), `Index.Main`(+alias `Index.Fundamentals`), `Index.Appendix` (root of the appendix layer), `Index.Router` (lookup) — the two layers mirror `Kernel.Block.Fundamentals`/`Kernel.Block.Appendix`; the index indexes all `Surface.Types`, `Chat.Surface` foremost (not only chat)
 - line-centric reframe written: `Kernel.Line` (atom), `Index.Edit.Action` + the `Index.Edit.*` family (`Create.Block`/`Append.Line`/`Modify.Line`/`Revise.Block`), `Partial.Cite`(+`Partial.Name`); enrichments: `Block.Line.Gradient` coherence line, nested-index line in `Agentos.Index.System/Appendix`; `Index.Editor.Maintenance.Pass` cold-tempo reframe logged for migration

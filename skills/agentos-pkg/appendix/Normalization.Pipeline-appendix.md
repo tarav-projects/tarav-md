@@ -109,3 +109,51 @@
 - it lives in a `Raw.Model.Namespace` — the native counterpart of the `Normal.Model.Namespace`
 - opaque to the rest of the pipeline — only `Raw.Normalizer`s and `Inline.Raw.Source` attachments ever hold it
 - a run has many — `Raw.Normalizer`s map them; a `Normalizer.Context` coordinates loading them once
+****
+
+## Projection.Test
+
+- `Projection.Test` evaluates a `Normal.Model` against a corpus of its assembled instances by projecting a canonical path of the `Normal.Model.Namespace` across all instances and judging the resulting column — the model is the test subject, the corpus is the evidence
+- the mechanic: a canonical path carries an intended meaning; the projection shows what actually landed there after normalization; comparing the column against the intention detects meaning drift, completeness failures, and shape divergence
+- the corpus is its own oracle — the test asserts agreement between column and intention, so it needs no hand-written expected outputs; any accumulated set of assembled instances serves as evidence
+- the projection code is variant-free: it reads by canonical path only, with no per-source branching — needing a branch to read a value means a datum lives off its canonical path, a model failure, never a test limitation
+- what to judge on a column belongs to the `Normal.Model` under test, not to the framework — the test framework never constrains the model's expressibility; typical judgments: the path resolves, absences are justified, values share one domain, relations hold within an instance and along the column across instances
+- failure triage is three-way, which makes the test a convergence engine rather than a gate: an extraction defect — fix the `Raw.Normalizer`; a model gap — change the `Normal.Model` and re-normalize the corpus; a genuine source condition — document it, converting the failure into pass-with-evidence
+- `Comparative.Normalization` consults the corpus as precedent while writing; `Projection.Test` consults it as oracle while validating — one corpus, two directions
+
+****
+
+## Under.Normalization
+
+- `Under.Normalization` is the design failure where a `Raw.Normalizer` passes raw structure through instead of finishing the mapping — equivalent data from different `Raw.Source`s lands on different paths of the `Normal.Model.Namespace`, split by source
+- resembling a raw namespace is legal — a `Normal.Model` may copy whatever shape it wants from a raw source, even adopting one source's shape wholesale and normalizing every other source to it; the failure is branching, never resemblance
+- the signature: one meaning, several canonical paths, partitioned by raw source — instances from one source populate path A, instances from another populate path B, and the paths never co-occur in one instance
+- the cost: a consumer must carry per-source knowledge to read the model — the cost a `Normalization.Pipeline` exists to pay once, centrally
+- detection is mechanical over a corpus of assembled instances: find path pairs with disjoint populated-instance sets partitioned by source, ranked by role similarity — shared value domain, same structural position, similar name; the detector emits candidates, the meaning judgment stays with the model
+- triage: one meaning — converge onto one canonical path and re-normalize the corpus; genuinely distinct meanings — document the distinction as pass-with-evidence; sometimes the meaning deserves a path neither source suggested
+- raw riding along deliberately is not under-normalization — `Inline.Raw.Source` carries raw labeled as raw at a defined path; under-normalized data arrives unlabeled, posing as canonical
+- `Path.Source.Split.Test` is its cheap screen — the source distribution of every path, computed in one pass, feeds the review queue the pair detection judges
+- the dual of `Projection.Test`: projection judges one path across many instances; under-normalization detection judges one meaning across many paths — the same corpus serves both
+
+****
+
+## Path.Source.Split.Test
+
+- `Path.Source.Split.Test` is a corpus test over a `Normal.Model`: for every path of the `Normal.Model.Namespace`, measure the distribution of `Raw.Source`s across the instances that populate it — paths populated mostly or only from one source form the review queue
+- it is the cheap screen for `Under.Normalization`: a source-split path is a candidate leak, reviewed by the pair-matching detection; a source-split path with no counterpart anywhere may instead mark a meaning other normalizers silently drop
+- the output is a review queue, never a verdict — source-exclusive paths are legal, since sources genuinely carry exclusive concepts
+- each reviewed path gets a remembered verdict: converge it onto a shared path, or document it as source-specific by design — pass-with-evidence; without the memory the queue re-fills identically every run and the test drowns in noise
+- the mostly-one-source case outranks the only-one-source case: a dominant-but-not-exclusive split can mean one normalizer converged and another only partially — a half-fixed leak
+- one histogram per path in a single pass — no pairwise comparison; it scales with the namespace, not with its square
+
+****
+
+## Normalization.Coverage
+
+- `Normalization.Coverage` scores how much of a `Raw.Source` a `Normal.Model` expresses — the analogue of code coverage for a `Normalization.Pipeline`, quantifiable and easily discoverable over any corpus
+- unit: raw leaf fields — a raw record scores consumed leaves over total leaves; consumed means recoverable from the assembled instance, not merely visited during normalization
+- aggregation makes it comparable: records aggregate into an instance score, instances average into a per-source score — sources can then be compared against each other
+- the per-record-type breakdown is the actionable surface; a blended total only trends
+- the target is not any fraction in particular — how much to encode is a design decision; the signal is the delta from the designed baseline, not the absolute
+- score movement on recent instances is format-drift detection for free: new raw fields the `Raw.Normalizer`s do not know lower the score as they appear
+- it is the expressiveness measure of the pipeline — it makes visible what raw the model chose not to say, the counterweight to convergence pressure, which alone can be satisfied by collapsing meaning into opaque blobs

@@ -87,6 +87,17 @@
 
 ****
 
+## Design.Variable
+
+- `Design.Variable` is one axis of the `Conceptual.Space` — a question a design must resolve on its way to implementation
+- a design is a vector of `Design.Variable`s; resolving every one yields a `Design.Target.Model`, a point in the space
+- each variable carries a set of possible values — the candidate solutions for that axis; spanning all variables and their values spans the whole space
+- an abstract design constrains axes to subsets of their values — a region of the space, not yet a point
+- a design may deliberately leave a variable unresolved — bound case by case at implementation rather than fixed as a rule; an unbound axis is a degree of freedom the design hands down, not one it forgot
+- `Alignment.Hugentic.Axis` is its specialization: a `Design.Variable` whose resolution needs human-agent convergence
+
+****
+
 ## Alignment.Hugentic.Axis
 
 - `Alignment.Hugentic.Axis` is a dimension of the `Conceptual.Space` that needs human-agent convergence
