@@ -31,7 +31,7 @@ When `skills/agentos-pkg/design/` exists:
 
 ## Expected Findings
 
-- `fail`: active index exists but reserved routing table is missing.
+- `fail`: active index exists but reserved router is missing.
 - `warn`: a TODO note exists under `notes/live/` but does not use the reserved `010.TODOS.md` path.
 - `warn`: an issues note exists under `notes/live/` but does not use the reserved `011.ISSUES.md` path.
 - `skip`: relevant note surface is absent.

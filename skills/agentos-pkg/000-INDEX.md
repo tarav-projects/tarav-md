@@ -2,7 +2,7 @@
 
 > `Appendix.Discovery`: for depth on any concept, check `appendix/Concept.Name-appendix.md`
 
-- public index routing table
+- public index router
 
 ## Routing
 

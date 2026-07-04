@@ -198,7 +198,7 @@ The first doctor scope should include these lower-level checks:
   - If index-like durable design/reference behavior is absent, no finding.
   - If index-like behavior exists outside `notes/index/`, warn about overlapping or nonstandard alternatives.
   - If `notes/index/` is adopted, missing `notes/index/001-index.md` is a protocol failure.
-  - When the routing table exists, check whether it appears stale relative to the active index surface.
+  - When the router exists, check whether it appears stale relative to the active index surface.
   - If a public index exists at `skills/agentos-pkg/design/`, check that `notes/index/001-index.md` points to it.
 - `notes/live/` is optional by capability adoption.
   - If absent, no finding.

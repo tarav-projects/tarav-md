@@ -40,8 +40,8 @@ Semantic match, not exact wording. Evaluate what the agent did, not just what it
 
 ### Expected Behavior
 
-- Checks the routing table (`000-INDEX.md`) for nearby concepts before proposing a new independent block.
-- If overlap is visible from the routing table (e.g., `Natural.Placement`), flags it and suggests the concept may be better handled as an update, cited duplicate, or related placement under existing concepts.
+- Checks the router (`000-INDEX.md`) for nearby concepts before proposing a new independent block.
+- If overlap is visible from the router (e.g., `Natural.Placement`), flags it and suggests the concept may be better handled as an update, cited duplicate, or related placement under existing concepts.
 - Identifies or asks for the target index before mutation.
 - Navigation cost is proportional: one routing-table scan is cheap and the driver points there.
 
@@ -55,7 +55,7 @@ Semantic match, not exact wording. Evaluate what the agent did, not just what it
 
 - Loads multiple index pages, spawns broad subagent searches, or does exhaustive index scans.
 - May produce good output, but the cost is disproportionate to the prompt.
-- Diagnostic signal: the driver or routing table may not be giving enough orientation for the agent to narrow its search cheaply.
+- Diagnostic signal: the driver or router may not be giving enough orientation for the agent to narrow its search cheaply.
 
 ### Failure Signs
 

@@ -12,10 +12,10 @@ Drafting or revising block wording is also `--write` work, even before the user 
 
 ## Structure
 
-- public routing table: `000-INDEX.md`
+- public router: `000-INDEX.md`
 - public flat files: `design/100-design.md`, `101-design.md`, ...
 - public appendix files: `appendix/Concept.Name-appendix.md`
-- local routing table: `notes/index/001-index.md`
+- local router: `notes/index/001-index.md`
 - local flat files: `notes/index/300-index.md`, `301-index.md`, ...
 
 ## Naming And Placement
@@ -47,7 +47,7 @@ Drafting or revising block wording is also `--write` work, even before the user 
 
 ## Post-Write Maintenance
 
-- update the routing table when the concept inventory changed
+- update the router when the concept inventory changed
 - add or update appendix route annotations when appendix depth changed
 - update namespace membership in `### meta` when the concept belongs to an `Explicit.Namespace`
 - check cited duplicates and related stable mentions when editing an existing concept

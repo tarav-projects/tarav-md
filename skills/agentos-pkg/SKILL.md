@@ -40,7 +40,7 @@ Indexes are distributed across two scopes:
 - `design/` — always-loaded fundamentals. Contains flat numbered files (`100-design.md`, `101-design.md`, ...) where file names carry no semantic meaning — concepts are just appended.
 - `appendix/` — on-demand depth. Contains concept-named files (`Concept.Name-appendix.md`) — check if one exists when you need depth beyond the index block.
 
-The **routing table** maps every concept name to the file that holds it — always read this first. Package indexes use `000-INDEX.md`; project-local indexes use `001-index.md`.
+The **router** maps every concept name to the file that holds it — always read this first. Package indexes use `000-INDEX.md`; project-local indexes use `001-index.md`.
 
 Both project folders and package skills can have their own index. If a project is developing a package skill, the agent can access both indexes locally.
 
@@ -50,7 +50,7 @@ Both project folders and package skills can have their own index. If a project i
 my-project/
 ├── notes/
 │   ├── index/
-│   │   ├── 001-index.md        ← local routing table
+│   │   ├── 001-index.md        ← local router
 │   │   ├── 300-index.md        ← local concept blocks
 │   │   └── 301-index.md
 │   └── appendix/
@@ -62,7 +62,7 @@ my-project/
 ```
 skills/some-pkg/
 ├── SKILL.md
-├── 000-INDEX.md                ← package routing table
+├── 000-INDEX.md                ← package router
 ├── design/
 │   ├── 100-design.md           ← package concept blocks
 │   └── 101-design.md
@@ -76,19 +76,19 @@ skills/some-pkg/
 my-project/
 ├── notes/
 │   ├── index/
-│   │   ├── 001-index.md        ← local routing table
+│   │   ├── 001-index.md        ← local router
 │   │   └── 300-index.md
 │   └── appendix/
 ├── skills/
 │   └── my-pkg/
 │       ├── SKILL.md
-│       ├── 000-INDEX.md        ← package routing table
+│       ├── 000-INDEX.md        ← package router
 │       ├── design/
 │       │   └── 100-design.md
 │       └── appendix/
 ```
 
-**To search an index:** read the routing table, find the concept or a related name, read the file it points to, then check the appendix for depth — or just wander around following your intuition.
+**To search an index:** read the router, find the concept or a related name, read the file it points to, then check the appendix for depth — or just wander around following your intuition.
 
 ## Local Surfaces
 
