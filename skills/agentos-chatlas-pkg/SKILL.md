@@ -15,13 +15,13 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
 
-The Chatlas index lives in `ROUTER.md` (the lookup table) over its chapters — `design/` by default — with depth in `appendix/`.
+The Chatlas index lives in `000-INDEX.md` (the lookup table) over its chapters — `design/` by default — with depth in `appendix/`.
 
 ## Package Surfaces
 
 | Surface | Use |
 |---|---|
-| `ROUTER.md` → `design/` | Chatlas index: chapter routing and concept definitions (depth in `appendix/`) |
+| `000-INDEX.md` → `design/` | Chatlas index: chapter routing and concept definitions (depth in `appendix/`) |
 | `references/chatlas-commands.md` | Chatlas CLI query, export, raw, and view workflows |
 | `chatlas-grounding-agent` | Mine Chatlas sessions into `Grounding.Request` live notes for Agentos kernel blocks |
 | `chatlas-session-continue` | continuation handoff workflow for prior sessions |
