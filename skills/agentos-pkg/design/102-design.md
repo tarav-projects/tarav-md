@@ -61,7 +61,7 @@
 
 ### concepts
 
-- `Design.Space`, `Alignment.Hugentic.Axis`, `Alignment.Agentic.Axis`, `Alignment.Loop`, `Alignment.User.Turn`, `Alignment.Maintenance.Turn`, `Alignment.Backend`, `Chat.Surface`
+- `Design.Space`, `Hugentic.Variable`, `Agentic.Variable`, `Alignment.Loop`, `Alignment.User.Turn`, `Alignment.Maintenance.Turn`, `Alignment.Backend`, `Chat.Surface`
 
 ### phase semantic roots
 

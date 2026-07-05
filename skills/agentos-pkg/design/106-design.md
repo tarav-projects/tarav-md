@@ -5,7 +5,7 @@
 ## What.Design.Session
 
 - `What.Design.Session` is a scoped human-agent convergence surface for design work — the `What.Design` specialization of `Alignment.Session`, run through `Alignment.Loop:What`
-- it does real design work (problem-solving, issue resolution) while progressively enriching alignment, aiming to fill `Alignment.Hugentic.Axis:What` with `Hard.Evidence`-based facts
+- it does real design work (problem-solving, issue resolution) while progressively enriching alignment, aiming to fill `Hugentic.Variable:What` with `Hard.Evidence`-based facts
 - a staging area for `Stable.Surface` changes — a strong, high-signal trigger for change, not a `Stable.Surface` itself
 - the move from session state to stable surface is the implementation: other agents read the artifact and implement, the session emits `Impl.Req`s, or surfaces are updated directly
 - the destinations are index notes and skills — the session does not replace them
@@ -156,21 +156,32 @@
 - each variable carries a set of possible values — the candidate solutions for that axis; spanning all variables and their values spans the whole space
 - an abstract design constrains axes to subsets of their values — a region of the space, not yet a point
 - a design may deliberately leave a variable unresolved — bound case by case at implementation rather than fixed as a rule; an unbound axis is a degree of freedom the design hands down, not one it forgot
-- `Alignment.Hugentic.Axis` is its specialization: a `Design.Variable` whose resolution needs human-agent convergence
+- `Hugentic.Variable` is its specialization: a `Design.Variable` whose resolution needs human-agent convergence
 
 ****
 
-## Alignment.Hugentic.Axis
+## Hugentic.Variable
 
-- `Alignment.Hugentic.Axis` is a dimension of the `Design.Space` that needs human-agent convergence
-- each workflow specialization defines its own set of axes
-- the axes are the focus of the `Alignment.Loop`
+- `Hugentic.Variable` is a `Design.Variable` that needs human-agent convergence — meant to be collapsed inside the `Touched.Space`
+- for a given design, some variables should be prioritized as hugentic — each type of system has its own set worth identifying
+- the current default is precedence (`Specified.By.Precedence`): agents visit the indexes of previously implemented similar systems, see which variables were specified there, and extract both the variables and their variable space
+- each workflow specialization defines its own variable set — these variables are the focus of the `Alignment.Loop`
+
+### meta
+
+- aliases: `Touched.Variable`
 
 ****
 
-## Alignment.Agentic.Axis
+## Agentic.Variable
 
-- `Alignment.Agentic.Axis` is a dimension the agent resolves autonomously without explicit human convergence
+- `Agentic.Variable` is a `Design.Variable` the agent resolves autonomously, without explicit human convergence
+- it is the variable form of `Open.Space` — left to the agent by delegation (a touched free declaration) or simply untouched
+- its resolutions stay provisional and overwritable — they become directive constraints only once touched
+
+### meta
+
+- aliases: `Open.Variable`
 
 ****
 

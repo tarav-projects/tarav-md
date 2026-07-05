@@ -5,8 +5,8 @@
 ## Concepts
 
 - **Design.Space** — the total decision space of an artifact; every choice its design comprises (`Conceptual.Space`, `Alignment.Space` are aliases)
-- **Alignment.Hugentic.Axis** — a dimension that needs human-agent convergence; each workflow defines its own set
-- **Alignment.Agentic.Axis** — a dimension the agent resolves autonomously
+- **Hugentic.Variable** — a `Design.Variable` that needs human-agent convergence; each workflow defines its own set (alias `Touched.Variable`)
+- **Agentic.Variable** — a `Design.Variable` the agent resolves autonomously (alias `Open.Variable`)
 - **Alignment.Loop** — the machinery: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`; parameterized by workflow phase (`:What`, `:How`, `:Exec`)
 - **Alignment.User.Turn** — user drives, agent follows
 - **Alignment.Maintenance.Turn** — agent drives one session move
