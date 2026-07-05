@@ -187,9 +187,9 @@
 
 ## Index.Linter/Concept.InventoryEmpty
 
-- emitted when a configured index surface contains no separator-anchored concept blocks
+- emitted when a configured index scope contains no separator-anchored concept blocks
 - downstream concept, router, and appendix checks may be blocked when the concept inventory is unavailable
-- fix by adding concept blocks or pointing the linter at the correct index files
+- fix by adding concept blocks or pointing the linter at the correct index chapter files
 
 ****
 
@@ -213,7 +213,7 @@
 
 - emitted when an appendix file has no matching configured index concept block
 - appendix discovery starts from an index concept, so orphaned appendix material may be undiscoverable
-- fix by adding the concept block, correcting the filename, or linting the owning index surface too
+- fix by adding the concept block, correcting the filename, or including the owning index scope in the lint run
 
 ****
 
@@ -346,7 +346,7 @@
 
 ## Index.Linter/Check.ConceptDuplicates
 
-- check that verifies discovered index concept headings are unique inside the configured lint surface
+- check that verifies discovered index concept headings are unique inside the configured lint scope
 - can emit `Index.Linter/Concept.Duplicate`
 - blocked when concept inventory is unavailable
 

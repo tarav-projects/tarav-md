@@ -4,7 +4,7 @@
 
 ## Concepts
 
-- **Conceptual.Space** — the abstract space where alignment occurs; the set of all possible design decisions (`Alignment.Space` is a synonym)
+- **Design.Space** — the total decision space of an artifact; every choice its design comprises (`Conceptual.Space`, `Alignment.Space` are aliases)
 - **Alignment.Hugentic.Axis** — a dimension that needs human-agent convergence; each workflow defines its own set
 - **Alignment.Agentic.Axis** — a dimension the agent resolves autonomously
 - **Alignment.Loop** — the machinery: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`; parameterized by workflow phase (`:What`, `:How`, `:Exec`)

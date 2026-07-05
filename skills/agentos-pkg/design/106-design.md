@@ -59,7 +59,7 @@
 
 ## Forward.Alignment
 
-- `Forward.Alignment` is moving the design point to a new place in the `Conceptual.Space` — adding features, evolving design, exploring new territory
+- `Forward.Alignment` is moving the design point to a new place in the `Design.Space` — adding features, evolving design, exploring new territory
 - the creative act of development: deciding where to go next
 
 ****
@@ -74,22 +74,66 @@
 
 ## Hugentic.Alignment
 
-- `Hugentic.Alignment` is bringing human and agent to shared understanding of where they are and where they're going in the `Conceptual.Space`
+- `Hugentic.Alignment` is bringing human and agent to shared understanding of where they are and where they're going in the `Design.Space`
 - the convergence act: achieved through `Alignment.Loop` cycles
 
 ****
 
-## Conceptual.Space
+## Design.Space
 
-- `Conceptual.Space` is the abstract space where alignment occurs — the set of all possible design decisions
-- `Alignment.Space` is a synonym
-- `Design.Target.Model` is a point in this space
+- `Design.Space` is the total decision space of an artifact — every choice its design comprises, centered on the user's input (renames `Conceptual.Space`)
+- it partitions two orthogonal ways: by provenance (`Touched.Space` / `Untouched.Space`) and by constraint (`Open.Space` / fixed)
+- it is a vector space of `Design.Variable`s — each variable one axis; `Design.Target.Model` is a point in this space
+- the touched/open ratio is the control surface: the user tightens control by constraining more of the space, and delegates automation by leaving space open
+- it is the object every surface nests over: the `Chat.Surface` records it, the index digests it, the codebase realizes it
+- it is never required complete to proceed — the agent works `Open.Space` to keep moving, alignment catches up
+
+### meta
+
+- aliases: `Conceptual.Space`, `Alignment.Space`
+
+****
+
+## User.Touched
+
+- `User.Touched` is a property of a fact: it was produced by a user-gated hugentic process — carrying evidence of user-agent collaboration, not agent invention
+- the agent may construct and tag the fact; the user gates it — the gating is the touch, authorship is irrelevant
+- it is general over the form of touch: stated, discussed, approved, co-drafted — any user-gated production qualifies
+- it is a cross-surface predicate — the index is *a* `User.Touched` surface, the `Chat.Surface` is another
+- it separates `Touched.Space` from `Untouched.Space` — untouched is always `Open.Space` and off-index (the `Agendix` is its index-adjacent home); touched can be open (`FR`) or constrained
+
+****
+
+## Touched.Space
+
+- `Touched.Space` is the region of the `Design.Space` carrying `User.Touched` evidence — what the hugentic process has reached
+- the index is its primary alignment surface, but not the only one — the `Chat.Surface` is another hugentic surface that holds touch
+- a touched decision may be constrained (`CT`/`DC`/`RJ`) or open (declared free, `FR`) — touch means *engaged*, not *decided*
+
+****
+
+## Untouched.Space
+
+- `Untouched.Space` is the region of the `Design.Space` with no `User.Touched` evidence — the hugentic process has not reached it
+- it is always `Open.Space`: with no touch there is no directive constraint, so the agent decides for itself
+- it never becomes an index line — untouched material remains in the chat, the work, or the `Agendix`, never the index proper
+- the chats are mixed, touched and untouched; the index earns its keep by extracting the touched part worth keeping — not user filler — which is exactly `Line.Type`'s gate
+- alignment is the shrinking of `Untouched.Space`: growing touch across the `Design.Space`
+
+****
+
+## Open.Space
+
+- `Open.Space` is the uncollapsed region of the `Design.Space` — decisions not fixed by a user directive or its consequences, the agent's domain
+- it is orthogonal to touch: it spans `Untouched.Space` (always open) and touched-open (`FR`, an explicit free declaration)
+- consequences logically entailed by touched constraints are NOT open — the agent may fail to derive them, but is not free to decide against them
+- in it the agent makes its own decisions to act — coherent, never random — but provisional and overwritable with good reason, off-index; they become directive constraints only once touched
 
 ****
 
 ## Design.Variable
 
-- `Design.Variable` is one axis of the `Conceptual.Space` — a question a design must resolve on its way to implementation
+- `Design.Variable` is one axis of the `Design.Space` — a question a design must resolve on its way to implementation
 - a design is a vector of `Design.Variable`s; resolving every one yields a `Design.Target.Model`, a point in the space
 - each variable carries a set of possible values — the candidate solutions for that axis; spanning all variables and their values spans the whole space
 - an abstract design constrains axes to subsets of their values — a region of the space, not yet a point
@@ -100,7 +144,7 @@
 
 ## Alignment.Hugentic.Axis
 
-- `Alignment.Hugentic.Axis` is a dimension of the `Conceptual.Space` that needs human-agent convergence
+- `Alignment.Hugentic.Axis` is a dimension of the `Design.Space` that needs human-agent convergence
 - each workflow specialization defines its own set of axes
 - the axes are the focus of the `Alignment.Loop`
 

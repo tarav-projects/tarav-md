@@ -359,6 +359,7 @@ skills/<package>-pkg/
 ### Design.Space
 - `Design.Space` is the total decision space of an artifact — every choice its design comprises, centered on the user's input (renames `Conceptual.Space`)
 - it partitions two orthogonal ways: by provenance (`Touched.Space` / `Untouched.Space`) and by constraint (`Open.Space` / fixed)
+- it is a vector space of `Design.Variable`s — each variable one axis; `Design.Target.Model` is a point in this space
 - the touched/open ratio is the control surface: the user tightens control by constraining more of the space, and delegates automation by leaving space open
 - it is the object every surface nests over: the `Chat.Surface` records it, the index digests it, the codebase realizes it
 - it is never required complete to proceed — the agent works `Open.Space` to keep moving, alignment catches up
@@ -371,7 +372,7 @@ skills/<package>-pkg/
 - the agent may construct and tag the fact; the user gates it — the gating is the touch, authorship is irrelevant
 - it is general over the form of touch: stated, discussed, approved, co-drafted — any user-gated production qualifies
 - it is a cross-surface predicate — the index is *a* `User.Touched` surface, the `Chat.Surface` is another
-- it separates `Touched.Space` from `Untouched.Space` — untouched is always `Open.Space` and off-index; touched can be open (`FR`) or constrained (a constraint)
+- it separates `Touched.Space` from `Untouched.Space` — untouched is always `Open.Space` and off-index (the `Agendix` is its index-adjacent home); touched can be open (`FR`) or constrained (a constraint)
 
 ### Touched.Space
 - `Touched.Space` is the region of the `Design.Space` carrying `User.Touched` evidence — what the hugentic process has reached
@@ -381,7 +382,7 @@ skills/<package>-pkg/
 ### Untouched.Space
 - `Untouched.Space` is the region of the `Design.Space` with no `User.Touched` evidence — the hugentic process has not reached it
 - it is always `Open.Space`: with no touch there is no directive constraint, so the agent decides for itself
-- it never becomes an index line — untouched material remains only in the chat or the work
+- it never becomes an index line — untouched material remains in the chat, the work, or the `Agendix`, never the index proper
 - the chats are mixed, touched and untouched; the index earns its keep by extracting the touched part worth keeping — not user filler — which is exactly `Line.Type`'s gate
 - alignment is the shrinking of `Untouched.Space`: growing touch across the `Design.Space`
 

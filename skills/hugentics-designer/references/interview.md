@@ -21,9 +21,9 @@ agent asks one design question
 
 During discussion, the agent remains in `Alignment.User.Turn`: follow the user's thread, respond directly, and surface important alignment issues only when they materially affect the discussion.
 
-## Conceptual.Space
+## Design.Space
 
-`Conceptual.Space` is the working map of the session's alignment state.
+`Design.Space` is the working map of the session's alignment state.
 
 Track:
 
@@ -36,7 +36,7 @@ Track:
 - implications for `Design.Index`, `Session.Notes`, or `Impl.Req`
 - material that belongs in open space
 
-`Conceptual.Space` is not automatically written verbatim. Consolidate it into the session artifact when it becomes useful working state and the user approves the write.
+`Design.Space` is not automatically written verbatim. Consolidate it into the session artifact when it becomes useful working state and the user approves the write.
 
 ## Question Selection
 

@@ -232,6 +232,7 @@
 ## Index.Linter
 
 - `Index.Linter` is the deterministic CLI checker for index and appendix surfaces
+- normal use is depot-first: lint an `Index.Depot` through its `000-INDEX.md`, chapter folders, and appendix
 - finding and check codes are scoped concept names under `Index.Linter/...`
 - each code names an appendix block that explains meaning, gating, or expected remediation
 - agents resolve linter code meaning through normal `agentos-pkg` index and `Appendix.Discovery`
