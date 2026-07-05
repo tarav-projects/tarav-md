@@ -30,7 +30,6 @@
         "chatlas-agentos-chatlas-retention-audit": "../../../../projects/agentos-project/agentos-chatlas-md/skills/agentos-chatlas-retention-audit",
         "chatlas-grounding-agent": "../../../../projects/agentos-project/agentos-chatlas-md/skills/chatlas-grounding-agent",
         "chatlas-session-continue": "../../../../projects/agentos-project/agentos-chatlas-md/skills/chatlas-session-continue",
-        "chatlas-session-model-mapper": "../../../../projects/agentos-project/agentos-chatlas-md/skills/chatlas-session-model-mapper",
         "chatlas-session-zip-transcript": "../../../../projects/agentos-project/agentos-chatlas-md/skills/chatlas-session-zip-transcript",
         "iterante-agentos-iterante-pkg": "../../../../projects/agentos-project/agentos-iterante-md/skills/agentos-iterante-pkg",
         "md-library-iterante": "../../../../Documents/md-library/skills/md-library-iterante",

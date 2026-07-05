@@ -283,7 +283,18 @@
 
 - `Chatlas.Session.Model.Contract` is the `Normal.Model.Contract` of `Chatlas.Session.Model` — its namespace reified as a machine-readable path table
 - lives in the code repo beside its producers: `agentos-chatlas-py/references/normal-model.contract.json`
-- one artifact, two consumers: `Raw.Normalizer`s target it, the corpus tests (projection, path-source-split, schema closure) load their judgments and verdicts from it
+- one artifact, two consumers: `Raw.Normalizer`s target it, `Chatlas.Session.Model.Tests` loads its judgments and verdicts from it
+
+****
+
+## Chatlas.Session.Model.Tests
+
+- `Chatlas.Session.Model.Tests` is the testing surface of `Chatlas.Session.Model` — the model is validated against its own corpus, with the assembled instances as evidence
+- grounded in the corpus-test concepts of the agentos-pkg Normalization.Pipeline appendix (`Projection.Test`, `Path.Source.Split.Test`, `Normalization.Coverage`, `Under.Normalization`) — the concepts live there, this block indexes their chatlas instantiation
+- the engines load their judgments from `Chatlas.Session.Model.Contract` — one load point keeps model, contract, and tests from drifting apart
+- failures triage three-way: normalizer defect, model gap, or genuine source condition — the tests are a convergence engine, not a gate
+- runs are operated as `Run.Req` copies of the templates in `agentos-chatlas-py/notes/templates/`; the marked copy is the run report
+- current state: workspace `agentos-chatlas-py/dev/user-script-invariant-test/` — engines `validate.py` (script invariants), `projection.py`, `path_source_split.py` (+ schema closure), `coverage.py`, `comparative_projection.py` (script-pair skeletons); verdict memory beside them (`path-verdicts.md`, `divergence-notes.md`, `coverage-baseline.md`); corpus = User.Script.Invariant script sessions (claude-code + codex; copilot-cli runs are an open extension) plus random archive samples
 
 ****
 
@@ -306,27 +317,12 @@
 
 ****
 
-## Session.Model.Map
-
-- `Session.Model.Map` is a per-provider document mapping a provider's native session concepts/fields to `Chatlas.Session.Model` neutral concepts
-- one file per provider: `agentos-chatlas-pkg/references/session-model-map-<provider>.md`
-- the neutral side is a controlled vocabulary — only `Chatlas.Session.Model` concept names defined in the index
-- one-directional: the index defines the neutral concept (SSOT); the map records the native→neutral path and never redefines it
-- records only non-obvious mappings — an obvious native↔neutral correspondence needs no line
-- each mapped line carries its rationale and the survival decision: the native concept resolves to a neutral concept or to `native`/`source_refs`
-- decision-and-rationale-centric, not a field-by-field restatement of the normalizer code — that is redundant placement and drifts
-- a native concept with no neutral mapping (`TBD`) is an open gap — the live question queue for `Chatlas.Session.Model` design
-- the shared neutral vocabulary makes the cross-provider slice pivotable: one neutral concept, every provider's source for it
-- a current-truth document — kept honest by re-checking against provider source and the raw archive; git holds history, no version metadata
-
-****
-
 ## Normalization.Pipeline:Chatlas.Session.Model
 
 - `Normalization.Pipeline:Chatlas.Session.Model` is the Chatlas instantiation of `Normalization.Pipeline` — provider sessions normalized into `Chatlas.Session.Model`
 - `Normal.Model` = `Chatlas.Session.Model`; its `Session.Event.Tape` is the ordered structure assembled fragments build
 - `Raw.Source`s are provider session artifacts (transcripts, rollouts, index files); `Raw.Normalizer`s are per-provider (claude-code, codex, copilot, …)
-- a `Raw.Normalizer` here implements a `Session.Model.Map` row — the native→neutral decision becomes code
+- the native→neutral decision lives as code in the `Raw.Normalizer` and as neutral-side commitments in `Chatlas.Session.Model.Contract` — the code is the descriptor of the mapping
 - `Normalizer.Context` is provider-scoped — one provider's session artifacts, loaded once per assembly
 - the `Normal.Assembler` produces the target a caller needs over `Chatlas.Session.Model`: a lite session ref, an index row, or a full session
 - two assembly regimes meet here — flat session metadata merges by path; `Session.Event.Tape` events assemble by order + `Session.Lineage`
