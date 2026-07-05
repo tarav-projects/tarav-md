@@ -155,7 +155,6 @@
 - guides agent behavior inside declared behavioral boundaries
 - adapts to user correction, new context, and changing focus
 - does not erase explicit gates, checkpoints, or `Hard.Evidence`
-- distinct from `Soft.Programming.Language`: `Soft.Program` is program-as-behavior-pattern; `Soft.Programming.Language` is language-as-index/runtime semantics
 
 ****
 

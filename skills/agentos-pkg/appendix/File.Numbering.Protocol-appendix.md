@@ -17,16 +17,16 @@ Gaps are expected. Allocation is append-only because preserving address stabilit
 Current Agentos package guidance uses these ranges:
 
 - `000-099`: reserved fixed-role files
-- `100-299`: public package index flat files
-- `300-499`: local project index flat files
+- `100-299`: public `Index.Chapter` files (`design/NNN-design.md`)
+- `300-499`: local `Index.Chapter` files (project depot)
 - `500-999`: rolling working files, including `Agentos.Live.Note` and `Agentos.Live.Script`
 
 Reserved examples:
 
-- `000-index.md`: public `Index.Router`
-- `001-index.md`: local `Index.Router`
+- `000-INDEX.md`: the `Index.Router`, one per `Index.Depot`
 - `010.TODOS.md`: reserved live TODO parking
 - `011.ISSUES.md`: reserved live issue parking
+- `012.NOTEBOOK.md`: reserved live idea/observation parking
 
 ****
 

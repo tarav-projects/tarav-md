@@ -4,13 +4,13 @@
 
 - the index is a `Stable.Surface` — it must be aligned with all other surfaces (`Internal.Alignment`)
 - the index explicitly holds the conceptual model of the project — `Forward.Alignment` passes often target it first
-- the index is both `Write.Trigger.Gated` and `Content.Verbatim.Gated` by default — this review point supports `Hugentic.Alignment`
+- the index is both `Edit.Trigger.Gated` and `Content.Verbatim.Gated` by default — this review point supports `Hugentic.Alignment`
 
 ****
 
 ## Agentos.Index.System/Appendix
 
-- it is a `Soft.Programming.Language` for project knowledge — a library of micro-prompts invoked by naming
+- it is `Index.Skillware` for project knowledge — a library of micro-prompts invoked by naming
 - mentioning a `Dotted.Name` triggers a concept-level context load
 - it manipulates the agent's context window — by controlling what enters context, you control how the agent reasons
 - it is an `Explicit.Namespace` grouping the concepts that compose the index system

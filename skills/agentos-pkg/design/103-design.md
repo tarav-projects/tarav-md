@@ -109,7 +109,7 @@
 - the index runs its concepts soft: definitions are intentionally under-specified, completed by the LLM's common sense
 - soft is a feature, not a deficiency — precision costs space and maintenance; common sense is free
 - the writing heuristic: close gaps only to the point where an LLM would reliably figure out the rest
-- soft concepts are what make the index a `Soft.Programming.Language`
+- soft concepts are what make the index `Index.Skillware` — an executable artifact
 
 ****
 
@@ -169,15 +169,16 @@
 
 ****
 
-## Soft.Programming.Language
+## Index.Skillware
 
-- `Soft.Programming.Language` is a language with soft syntax (natural language) and programming semantics (execution behavior)
-- the Agentos Index is a `Soft.Programming.Language` — the mapping:
+- `Index.Skillware` is the Index viewed as an executable artifact — soft syntax (natural language), programming semantics (execution behavior)
+- it is the index member of the program family (`Agentic.Program`, `Soft.Program`, `Program.Hardness`) and the index peer of `Agentos.Skillware`
+- the mapping:
     - variable declaration → `Dotted.Notation`
-    - symbol table → `000-index.md` routing table
-    - module → `Index.Note`
+    - symbol table → `000-INDEX.md` (`Index.Router`)
+    - module → chapter file (`Index.Chapter`)
     - function body → `Index.Block`
-    - type system → `Index.Block.Syntax`
+    - type system → `Kernel.Block` structure
     - import → loading blocks into agent context
     - undefined variable → `Unresolved.Index.Name`
     - compilation → maintenance passes

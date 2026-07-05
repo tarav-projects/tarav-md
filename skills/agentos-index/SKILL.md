@@ -42,7 +42,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 ## What The Index Is
 
-- the index is a `Soft.Programming.Language` for project knowledge
+- the index is `Index.Skillware` — an executable artifact for project knowledge
 - it is an `Alignment.Surface` between humans and agents
 - it contains `Named.Concepts` written in `Kernel.Block:Index` blocks, organized across chapter files (`design/NNN-design.md`) routed by `000-INDEX.md`, with on-demand appendix depth
 - agents operate it by collecting routing blocks, concept blocks, appendix material, and references relevant to the current task

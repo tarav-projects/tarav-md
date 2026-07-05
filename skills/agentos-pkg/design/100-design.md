@@ -236,7 +236,7 @@
 ## Agentos.Index.Notes
 
 - `Agentos.Index.Notes` is one of the `Stable.Surfaces` of an Agentos-style project — the index flat files
-- implements the `Agentos.Index` — a `Soft.Programming.Language` for project knowledge
+- implements the `Agentos.Index` — `Index.Skillware` for project knowledge
 - four roles: conceptual implementation of the system, discovery and navigation index, development surface, main alignment surface
 - contains `Named.Concepts` written in `Index.Block` blocks, organized in flat index files
 - agents operate the index by loading it through its `Package.Driver`; what loads is governed by the driver, not by the index — the index has no loading policy of its own
@@ -280,7 +280,7 @@
 - the discipline is at the insertion point — find the right concept, then write freely under it
 - can be cleaned and integrated later — low friction first, curation second
 - no line-count ceiling, but line-length discipline still applies
-- `Write.Trigger.Gated` only — user initiates, but exact wording is not gated
+- `Edit.Trigger.Gated` only — user initiates, but exact wording is not gated
 - discovery is implicit — agents check if `appendix/Concept.Name-appendix.md` exists
 
 ### meta
@@ -348,13 +348,12 @@
 ### Current Agentos range model
 
 - `000-099`: reserved files with fixed system roles
-- `000-index.md` — public `Index.Router`, lives in the package index surface
-- `001-index.md` — local `Index.Router`, lives in `notes/index/`
+- `000-INDEX.md` — the `Index.Router`, one per `Index.Depot`, at the depot root
 - `010.TODOS.md` — TODO parking, lives in `notes/live/`
 - `011.ISSUES.md` — issue parking, lives in `notes/live/`
 - `012.NOTEBOOK.md` — idea/observation parking, lives in `notes/live/`
-- `100-299`: public index flat files in the package index surface
-- `300-499`: local index flat files (`notes/index/`)
+- `100-299`: public `Index.Chapter` files (`design/NNN-design.md`)
+- `300-499`: local `Index.Chapter` files (project depot)
 - `500-999`: rolling other files (live notes, live scripts)
 
 ### CLI support
@@ -373,9 +372,9 @@
 
 ****
 
-## Index.Writer.Maintenance.Pass
+## Index.Editor.Maintenance.Pass
 
-- `Index.Writer.Maintenance.Pass` is the maintenance check performed when editing an existing authoritative concept block
+- `Index.Editor.Maintenance.Pass` is the maintenance check performed when editing an existing authoritative concept block
 - starts by finding all mentions and citations of the edited concept across stable markdown surfaces
 - checks cited duplicates, workflow copies, package routers, auxiliary skills, and related references for needed updates
 - may update clear cited duplicates in the same approved write pass when they mirror the edited origin

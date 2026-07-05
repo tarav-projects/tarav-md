@@ -41,7 +41,7 @@
 - aliases: `Agentos.Index`
 
 ### Agentos.Index.System/Appendix
-- it is a `Soft.Programming.Language` for project knowledge — a library of micro-prompts invoked by naming
+- it is `Index.Skillware` for project knowledge — a library of micro-prompts invoked by naming
 - mentioning a `Dotted.Name` triggers a concept-level context load
 - it manipulates the agent's context window — by controlling what enters context, you control how the agent reasons
 - it is an `Explicit.Namespace` grouping the concepts that compose the index system
@@ -154,7 +154,7 @@ skills/<package>-pkg/
 
 ### Index.Surface
 - `Index.Surface` is the file surface of one Index — `Index.Router`, `Index.Main`, and `Index.Appendix` taken as a single addressable surface
-- it is a `Surface.Concept`: the bytes on disk, distinct from `Agentos.Index.System`, which is what those bytes do (the operable `Soft.Programming.Language`)
+- it is a `Surface.Concept`: the bytes on disk, distinct from `Agentos.Index.System`, which is what those bytes do (the operable `Index.Skillware`)
 - it follows the `Index.Surface.Layout` directory protocol; one `Index.Surface` per `Index.Depot`
 - it is the outermost layer of the nested index — the index of the project across its surfaces (`Surface.Types`), foremost the `Chat.Surface` where design originates
 
@@ -392,6 +392,8 @@ skills/<package>-pkg/
 - lint targets: contradictory `CT`s, `DC`s that disagree, an `RJ` later reintroduced, an `FR` a later `CT` silently overrides
 
 ## Session.Notes
+
+- DECISION (migration review): `Soft.Programming.Language` renamed to `Index.Skillware` — no alias; the generic name collided with the program family (`Soft.Program`, `Agentic.Program`, `Program.Hardness`); the `Soft.Program` disambiguation line dropped as no longer needed; all 8 live citations swapped; mapping refreshed (`000-INDEX.md` router, chapter file, `Kernel.Block` structure; dead names `Index.Note`, `Index.Block.Syntax` removed)
 
 - migration deletions (remove from real `agentos-pkg/index/` on migrate): `Index.Architecture` (merged into `Agentos.Index.System`); `Flat.Index.Architecture` (folded into `…/Index.Surface.Layout` appendix); `Extended.Index.Scope` (folded into `Appendix.Discovery`); `Distributed.Index` (replaced by `Index.Depot` + `Index.Discovery`)
 - new concepts: `Index.Discovery`, `Project.Manifest` (project peer of `Package.Manifest`, in `AGENTS.md`); depot collisions are surfaced, not prevented

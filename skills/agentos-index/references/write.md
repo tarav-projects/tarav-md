@@ -6,7 +6,7 @@ Drafting or revising block wording is also `--write` work, even before the user 
 
 ## Write Gates
 
-- index work is gated by `Write.Trigger.Gated`
+- index work is gated by `Edit.Trigger.Gated`
 - wording-sensitive index-block work is also gated by `Content.Verbatim.Gated`
 - the agent may propose a write path or draft, but must not commit an index or appendix edit without explicit approval
 

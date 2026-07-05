@@ -205,13 +205,13 @@
 - forward: name → its `Index.Block` definition
 - reverse: name → every surface that mentions it — the mention registers that text as being about the concept
 - makes natural-text surfaces findable and indexable by concept through plain search, with no hand-maintained concept→surface table
-- makes `Cited.Duplication` maintainable: enumerate mentions to detect and align drift — the mechanism `Index.Writer.Maintenance.Pass` already relies on
-- the `Soft.Programming.Language` symbol resolves both ways: name→definition and name→usages
+- makes `Cited.Duplication` maintainable: enumerate mentions to detect and align drift — the mechanism `Index.Editor.Maintenance.Pass` already relies on
+- the `Index.Skillware` symbol resolves both ways: name→definition and name→usages
 - depends on `Dotted.Notation` discipline — only named concepts are reverse-findable; casual prose is not
 
 ### meta
 
-- related: `Dotted.Notation`, `Cited.Duplication`, `Inline.Relatedness`, `Index.Writer.Maintenance.Pass`, `Soft.Programming.Language`
+- related: `Dotted.Notation`, `Cited.Duplication`, `Inline.Relatedness`, `Index.Editor.Maintenance.Pass`, `Index.Skillware`
 
 ****
 
