@@ -162,6 +162,15 @@
 
 ****
 
+## Project.Manifest
+
+- `Project.Manifest` is a project's declaration of the `Package.Skill`s and indexes it engages — the project peer of `Package.Manifest`
+- it lives in the project's `AGENTS.md`
+- with `Package.Manifest` it forms the dependency graph `Index.Discovery` walks
+- it is optional — without it, `Index.Discovery` falls back to searching for `000-INDEX.md`
+
+****
+
 ## Package.Skill.Install
 
 - `Package.Skill.Install` is the installation layer of a `Package.Skill`
