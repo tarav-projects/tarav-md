@@ -177,7 +177,7 @@ skills/<package>-pkg/
 - it is the index-level echo of `Kernel.Block.Appendix`: depth deferred out of the compressed front, loaded by choice
 - it is not routed — reached by naming through `Appendix.Discovery`, never loaded by default
 - loading an appendix is an intentional action — the agent displays intention by choosing to go deeper
-- it lives in one `appendix/` shared across chapters; files are concept-named and addressed as `Appendix.Pages`
+- it lives in one `appendix/` shared across chapters; files are concept-named and addressed as `Index.Pages`
 - it holds every concept's tail (`Block.Line.Gradient`): `Concept.X/Appendix` catch-alls and scoped `Concept.X/Concept.Y` blocks (`Appendix.Block`)
 - with `Index.Main` and `Index.Router` it composes the `Index.Surface`
 
@@ -205,8 +205,8 @@ skills/<package>-pkg/
 - entries may carry a one-sentence hint, but depth lives in the blocks themselves
 - the routers of the engaged `Index.Depot`s compose into one working Index (`Index.Discovery`)
 
-### Appendix.Pages
-- `Appendix.Pages` is the file dimension of a concept — the pages its content spans, written `Concept.X[N]`
+### Index.Pages
+- `Index.Pages` is the file dimension of a concept — the pages its content spans, written `Concept.X[N]`
 - `Concept.X[0]` is the index block's file; `Concept.X[1]` is the first appendix file (`Concept.X-appendix.md`); `[2]+` are further files
 - `Concept.X[:]` means all of a concept's content across its files (slice semantics)
 - it is orthogonal to `Block.Path` — pages address files, paths address the ontology; one page holds many path-blocks
@@ -225,17 +225,19 @@ skills/<package>-pkg/
 - `Index.Block` is a `Kernel.Block` placed in an `Index.Chapter` — the routed, loadable unit of meaning in the Index
 - its heading is a `Dotted.Name`, the root of the concept's `Block.Path`s and what `000-INDEX.md` routes
 - it is `Kernel.Writing` under tight compression — conceptual completeness in few lines, depth pushed to `Concept.X/Appendix`
+- it must carry enough signal for an agent to reason correctly about the concept
 - the Index must have a block for any meaningful concept; it may link out rather than define everything inline
 - `Content.Verbatim.Gated` — user approves exact wording before commit
 - it must not become a transcript, changelog, dashboard, task list, or implementation dump
 
 #### meta
-- aliases: `Global.Block`
+- aliases: `Global.Block`, `Concept.Block`
 
 ### Appendix.Block
 - `Appendix.Block` is a `Kernel.Block` placed in the appendix — a path-child of a concept (`Concept.X/Appendix`, `Concept.X/Concept.Y`)
-- it is `Kernel.Writing` at relaxed constraints — depth over compression, no line-count ceiling
+- it is `Kernel.Writing` at relaxed constraints — depth over compression, no line-count ceiling, though line-length discipline still applies
 - content is not limited to conceptual depth — specs, raw ideas, parked material belong, filed under the nearest concept (`Concept.Explosion`)
+- the discipline is at the insertion point — find the right concept, then write freely under it
 - `Edit.Trigger.Gated` only — the user initiates, but exact wording is not gated; the low-friction half of `Writing.Friction.Reduction`
 - reached by `Appendix.Discovery`, not routed
 

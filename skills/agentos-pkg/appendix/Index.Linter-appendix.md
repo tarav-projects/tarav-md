@@ -4,9 +4,9 @@
 
 ## Index.Linter/Config.NoSurfaces
 
-- emitted when no `--index` or `--appendix` paths are configured
-- the linter explicit mode requires at least one surface path to process
-- fix by passing one or more index or appendix files/directories
+- emitted when no lint target is configured
+- normal use is `--depot`; explicit surface paths exist only for advanced or partial linting
+- fix by passing a depot root, or an explicit surface path when doing partial linting
 
 ****
 
@@ -142,6 +142,14 @@
 - emitted when configured surfaces include no depot-root router file
 - the required router is `000-INDEX.md` at the `Index.Depot` root
 - fix by adding `000-INDEX.md`, pointing `--depot` at the depot root, or including a surface that belongs to a depot with that router
+
+****
+
+## Index.Linter/Router.LegacyName
+
+- emitted when a depot contains a legacy router filename such as `000-index.md` or `001-index.md`
+- the only valid router name is `000-INDEX.md` at the `Index.Depot` root
+- fix by renaming the legacy router to `000-INDEX.md` and placing it at the depot root
 
 ****
 
@@ -282,7 +290,7 @@
 
 ## Index.Linter/Check.ConfigSurfaces
 
-- check that validates the explicit `--index` and `--appendix` configuration surface paths
+- check that validates configured lint targets and explicit surface paths
 - can emit config and surface findings
 - downstream checks use its findings to avoid cascading errors
 
@@ -314,15 +322,15 @@
 
 ## Index.Linter/Check.RouterPresence
 
-- check that verifies configured index surfaces include a router file
-- can emit `Index.Linter/Router.Missing` or `Index.Linter/Router.Empty`
+- check that verifies each linted depot has a depot-root router file
+- can emit `Index.Linter/Router.Missing`, `Index.Linter/Router.LegacyName`, or `Index.Linter/Router.Empty`
 - blocked when no valid index surface is configured
 
 ****
 
 ## Index.Linter/Check.IndexFilenames
 
-- check that verifies index markdown filenames match the index naming convention
+- check that verifies index chapter filenames match the chapter naming convention
 - can emit `Index.Linter/Index.InvalidFilename`
 - blocked when no valid index surface is configured
 

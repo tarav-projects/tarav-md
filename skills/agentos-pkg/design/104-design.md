@@ -47,41 +47,31 @@
 
 ****
 
-## Index.Surface.Layout
-
-- `Index.Surface.Layout` is the expected directory structure for the index system
-- public index: `skills/<package>-pkg/index/` — `000-index.md` router + `100-299` flat files inside the package's `Package.Skill.Index`
-- public appendix: `skills/<package>-pkg/appendix/` — `Concept.Name-appendix.md`
-- local index: `notes/index/` — `001-index.md` router + `300-499` flat files
-- local appendix: `notes/appendix/`
-- the layout is a protocol — new projects follow this structure to be index-compatible
-
-****
-
 ## Appendix.Discovery
 
-- `Appendix.Discovery` is the protocol for loading depth on demand from the appendix
-- trigger: when reasoning about a concept and the index block isn't sufficient
-- discovery: if working with `Concept.X`, check `appendix/Concept.X-appendix.md`
-- no outlink required — the naming convention is the discovery mechanism
-- discovery is a cascade: index block → its appendix → hidden blocks → their appendixes
+- `Appendix.Discovery` is the protocol for reaching a concept's depth on demand — the appendix is not routed, it is found by naming
+- loading appendix depth is an intentional act — the agent goes deeper by choice, never by default
+- if a concept's block is not enough, check `appendix/Concept.X-appendix.md`; the naming convention is the discovery mechanism, no outlink needed
+- that file holds the concept's path-children — its `Concept.X/Appendix` dump and any scoped `Concept.X/Concept.Y` blocks
+- discovery cascades: a block → its appendix → the blocks there → their own appendixes
 - the more blocks loaded, the more paths available — agents discover by following related blocks
-- hidden blocks are not deleted — just not in the starting context
-- related blocks cluster under the same appendix file when they extend related concepts
+- hidden blocks are not deleted — just outside the default scope, reached by following the cascade
 
 ****
 
-## Appendix.Pages
+## Index.Pages
 
-- `Appendix.Pages` extends `Appendix.Discovery` with progressive depth layers
-- `Concept.X` is sugar for `Concept.X[0]` — the index block
-- `Concept.X[1]` is the first appendix page (`Concept.X-appendix.md`)
-- `Concept.X[2]+` are deeper pages (`Concept.X-appendix-2.md`, `Concept.X-appendix-3.md`, etc.)
-- `Concept.X[:]` means all content — index block + all appendix pages (JS slice semantics)
+- `Index.Pages` is the file dimension of a concept — the pages its content spans, written `Concept.X[N]`
+- `Concept.X[0]` is the index block's file; `Concept.X[1]` is the first appendix file (`Concept.X-appendix.md`); `[2]+` are further files
+- `Concept.X[:]` means all of a concept's content across its files (slice semantics)
 - the notation is usable as inline reference in blocks, chat, and prompts
-- discovery cascades naturally — if depth is insufficient, go deeper: more pages, or jump to other concepts
-- the routing table annotates page count inline: `Concept.X[+2]` — lintable, only present when appendix exists
-- no annotation means no appendix — `Concept.X` alone implies `[0]` only
+- it is orthogonal to `Block.Path` — pages address files, paths address the ontology; one page holds many path-blocks
+- by default a path block lands in the matching page, but the two axes need not coincide
+- the router annotates page presence inline (`Concept.X[+N]`) — lintable, only when appendix files exist; no annotation means no appendix
+
+### meta
+
+- aliases: `Appendix.Pages`
 
 ****
 

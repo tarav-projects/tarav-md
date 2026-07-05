@@ -18,7 +18,7 @@
 - it is the index-level echo of `Kernel.Block.Appendix`: depth deferred out of the compressed front, loaded by choice
 - it is not routed — reached by naming through `Appendix.Discovery`, never loaded by default
 - loading an appendix is an intentional action — the agent displays intention by choosing to go deeper
-- it lives in one `appendix/` shared across chapters; files are concept-named and addressed as `Appendix.Pages`
+- it lives in one `appendix/` shared across chapters; files are concept-named and addressed as `Index.Pages`
 - it holds every concept's tail (`Block.Line.Gradient`): `Concept.X/Appendix` catch-alls and scoped `Concept.X/Concept.Y` blocks (`Appendix.Block`)
 - with `Index.Main` and `Index.Router` it composes the `Index.Surface`
 

@@ -255,37 +255,28 @@
 
 ## Index.Block
 
-- `Index.Block` is `Kernel.Block` placed in `index/` — the loadable unit of meaning in the index
-- anchored by a heading (H2–H6) that names the concept using `Dotted.Notation`
-- `Kernel.Writing` at tight space constraints — conceptual completeness under compression
-- must carry enough signal for an agent to reason correctly about the concept
-- the minimal unit of meaning — the starting point for the discovery cascade into the appendix
-- the index must have at least a block for any meaningful concept in the system
-    - blocks can link out to other surfaces rather than define everything inline
-- it keeps its conceptual core inblock and pushes depth to the outblock appendix (`Concept-appendix.md`) to stay compressed
+- `Index.Block` is a `Kernel.Block` placed in an `Index.Chapter` — the routed, loadable unit of meaning in the Index
+- its heading is a `Dotted.Name`, the root of the concept's `Block.Path`s and what `000-INDEX.md` routes
+- it is `Kernel.Writing` under tight compression — conceptual completeness in few lines, depth pushed to `Concept.X/Appendix`
+- it must carry enough signal for an agent to reason correctly about the concept
+- the Index must have a block for any meaningful concept; it may link out rather than define everything inline
 - `Content.Verbatim.Gated` — user approves exact wording before commit
-- index blocks should NOT become transcripts, changelogs, progress dashboards, task lists, or implementation dumps
+- it must not become a transcript, changelog, dashboard, task list, or implementation dump
 
 ### meta
 
-- aliases: `Global.Block`
+- aliases: `Global.Block`, `Concept.Block`
 
 ****
 
 ## Appendix.Block
 
-- `Appendix.Block` is `Kernel.Block` placed in `appendix/` — any material that hangs off a concept
-- `Kernel.Writing` at relaxed space constraints — depth over compression
-- content is not limited to conceptual depth — specs, regex, raw ideas, parked material all belong here
+- `Appendix.Block` is a `Kernel.Block` placed in the appendix — a path-child of a concept (`Concept.X/Appendix`, `Concept.X/Concept.Y`)
+- it is `Kernel.Writing` at relaxed constraints — depth over compression, no line-count ceiling, though line-length discipline still applies
+- content is not limited to conceptual depth — specs, raw ideas, parked material belong, filed under the nearest concept (`Concept.Explosion`)
 - the discipline is at the insertion point — find the right concept, then write freely under it
-- can be cleaned and integrated later — low friction first, curation second
-- no line-count ceiling, but line-length discipline still applies
-- `Edit.Trigger.Gated` only — user initiates, but exact wording is not gated
-- discovery is implicit — agents check if `appendix/Concept.Name-appendix.md` exists
-
-### meta
-
-- aliases: `Appendix.Block`
+- `Edit.Trigger.Gated` only — the user initiates, but exact wording is not gated; the low-friction half of `Writing.Friction.Reduction`
+- reached by `Appendix.Discovery`, not routed
 
 ****
 
