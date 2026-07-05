@@ -393,25 +393,21 @@ skills/<package>-pkg/
 - in it the agent makes its own decisions to act — coherent, never random — but provisional and overwritable with good reason, off-index; they become directive constraints only once touched
 
 ### Line.Type
-- `Line.Type` is the classification a `Kernel.Line` carries, written as a 2-letter prefix from a small controlled vocabulary
+- `Line.Type` is the classification a `Kernel.Line` carries, written as a typed prefix from the `Line.Type.Vocabulary`
 - classifying is the line-level gate — it forces significance the way naming gates a block; the small cost is the point, a cost-zero index overwhelms the user
-- naming once bundled three filters — identification, boundary, significance; the line-level tests unbundle them: a crisp single point (`Kernel.Line`), attaching to a block (`Append.Line`), and significance (`Line.Type`)
-- each type is a verb on the `Design.Space`, sorted by how the line acts on it:
-  - collapsing: `CT` constraint (rules out), `DC` decision (selects a point), `RJ` rejected (closes an alternative)
-  - describing: `DF` definition (what a concept is), `PR` principle (a valuation or rule of thumb)
-  - declaring-open: `FR` free (an explicit, touched statement that a dimension is intentionally unconstrained)
-- every typed line is `User.Touched`; `FR` is delegated-open (touched), not an agent guess — agent-fill has no type because it is not in the index
-- typed lines are lintable and high-signal; untagged lines are allowed and typed as the index is polished
+- naming once bundled three filters — identification, boundary, significance; the line-level tests unbundle them: a crisp single point (`Kernel.Line`), attaching to a block (`Index.Edit.Append.Line`), and significance (`Line.Type`)
+- every typed line is `User.Touched` — agent-fill has no type because it is not in the index
+- typed lines are lintable and high-signal; untagged lines are allowed and typed as the index is polished — the mechanism is design, not yet operational: no tagging today
 
-### Line.Type/Appendix
-- example lines in the light 2-letter form:
-  - `CT: a `Dotted.Name` must have more than one part`
-  - `DF: `Index.Main` is the routed main body of the Index`
-  - `RJ: `Index.HEAD` — collides with the `*HEAD*` grounding marker`
-  - `FR: blocks may be placed in any order within a chapter`
-- the vocabulary is soft and curated (`Concept.Hardness`) — extensible, not a hard enum; add a type when a recurring line-act has no home
-- type analytics: which types earn their keep, which are smells — a `NOTE`/`SUMMARY` type would flag chat-recounting sneaking in
-- lint targets: contradictory `CT`s, `DC`s that disagree, an `RJ` later reintroduced, an `FR` a later `CT` silently overrides
+### Line.Type.Vocabulary
+- `Line.Type.Vocabulary` is the controlled set of `Line.Type`s an index uses — small, curated, soft (`Concept.Hardness`); extensible, not a hard enum
+- each type is a verb on the `Design.Space` — types sort by how a line acts on the space: collapsing it, describing it, or declaring it open
+- a type earns its place when a recurring line-act has no home; a type that attracts filler is a smell
+- draft type ideas parked from the session (not converged): CT constraint, DC decision, RJ rejected, DF definition, PR principle, FR free
+
+### Line.Type.Vocabulary/Appendix
+- type analytics: which types earn their keep, which are smells — a note/summary type would flag chat-recounting sneaking in
+- lint targets: contradictory constraints, decisions that disagree, a rejection later reintroduced, a free declaration silently overridden by a later constraint
 
 ## Session.Notes
 

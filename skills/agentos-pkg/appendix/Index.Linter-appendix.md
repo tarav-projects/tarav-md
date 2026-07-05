@@ -14,7 +14,7 @@
 
 - emitted when a configured `--index` path does not exist
 - the path is resolved from the current working directory unless absolute
-- fix by correcting the path or creating the intended index surface
+- fix by correcting the path or creating the intended index scope
 
 ****
 
@@ -165,7 +165,7 @@
 
 - emitted when an index markdown file does not match the chapter filename convention
 - chapter files use `NNN-<chapter>.md`, where `<chapter>` matches the containing folder name
-- fix by renaming the file to match its chapter folder or moving non-index markdown out of the linted index surface
+- fix by renaming the file to match its chapter folder or moving non-index markdown out of the linted index scope
 
 ****
 
@@ -324,7 +324,7 @@
 
 - check that verifies each linted depot has a depot-root router file
 - can emit `Index.Linter/Router.Missing`, `Index.Linter/Router.LegacyName`, or `Index.Linter/Router.Empty`
-- blocked when no valid index surface is configured
+- blocked when no valid index scope is configured
 
 ****
 
@@ -332,7 +332,7 @@
 
 - check that verifies index chapter filenames match the chapter naming convention
 - can emit `Index.Linter/Index.InvalidFilename`
-- blocked when no valid index surface is configured
+- blocked when no valid index scope is configured
 
 ****
 

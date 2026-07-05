@@ -131,6 +131,24 @@
 
 ****
 
+## Line.Type
+
+- `Line.Type` is the classification a `Kernel.Line` carries, written as a typed prefix from the `Line.Type.Vocabulary`
+- classifying is the line-level gate — it forces significance the way naming gates a block; the small cost is the point, a cost-zero index overwhelms the user
+- naming once bundled three filters — identification, boundary, significance; the line-level tests unbundle them: a crisp single point (`Kernel.Line`), attaching to a block (`Index.Edit.Append.Line`), and significance (`Line.Type`)
+- every typed line is `User.Touched` — agent-fill has no type because it is not in the index
+- typed lines are lintable and high-signal; untagged lines are allowed and typed as the index is polished — the mechanism is design, not yet operational: no tagging today
+
+****
+
+## Line.Type.Vocabulary
+
+- `Line.Type.Vocabulary` is the controlled set of `Line.Type`s an index uses — small, curated, soft (`Concept.Hardness`); extensible, not a hard enum
+- each type is a verb on the `Design.Space` — types sort by how a line acts on the space: collapsing it, describing it, or declaring it open
+- a type earns its place when a recurring line-act has no home; a type that attracts filler is a smell
+
+****
+
 ## Design.Variable
 
 - `Design.Variable` is one axis of the `Design.Space` — a question a design must resolve on its way to implementation
