@@ -132,7 +132,7 @@
 
 - emitted when an H2-H6 heading appears outside a separator-anchored block
 - plain starting text before the first block is allowed
-- router files are exempt because their sections are control-plane structure, not concept blocks
+- the depot router `000-INDEX.md` is exempt because its sections are control-plane structure, not concept blocks
 - fix by wrapping the section in a block using `****`, or by moving non-block content outside H2-H6 headings
 
 ****
@@ -276,8 +276,8 @@
 ## Index.Linter/Router.UnknownConcept
 
 - emitted when a router entry points to a concept block that was not discovered
-- this can mean the routed concept is stale, misspelled, or outside the configured lint surface
-- fix by correcting the router, adding the missing block, or including the owning index file in the lint run
+- this can mean the routed concept is stale, misspelled, or outside the configured lint scope
+- fix by correcting the router, adding the missing block, or including the owning chapter file in the lint run
 
 ****
 
@@ -316,7 +316,7 @@
 
 - check that verifies H2-H6 sections are separator-anchored concept or appendix blocks
 - can emit `Index.Linter/Block.UnanchoredSection`
-- intentionally ignores starting prose before the first block and router control files
+- intentionally ignores starting prose before the first block and the depot router `000-INDEX.md`
 
 ****
 
@@ -338,7 +338,7 @@
 
 ## Index.Linter/Check.ConceptInventory
 
-- check that extracts separator-anchored concept blocks from index files
+- check that extracts separator-anchored concept blocks from index chapter files
 - can emit `Index.Linter/Concept.InvalidHeading` or `Index.Linter/Concept.InventoryEmpty`
 - downstream duplicate, router, and appendix checks depend on this inventory
 
@@ -370,7 +370,7 @@
 
 ## Index.Linter/Check.RouterEntries
 
-- check that parses router entries into concept-to-file routes
+- check that parses router entries into concept-to-file routes over depot-root-relative chapter paths
 - parses optional `[+N]` appendix depth annotations while normalizing routed concepts
 - can emit `Index.Linter/Router.InvalidConcept` or `Index.Linter/Router.EntriesEmpty`
 - blocked when router or concept inventory is unavailable

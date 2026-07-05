@@ -82,6 +82,9 @@ skills/<package>-pkg/
 - capture is user-triggered but not gated — the agent may suggest a capture pass, never start one
 - it extends the `Block.Line.Gradient` past the touch cut: fundamentals → `Concept.X/Appendix` (touched tail) → the concept's agendix shadow tail (untouched)
 - homeless material lands in a fallback file — misfit pressure is evidence a concept is missing (concept-gap detector)
+- it is index-adjacent, not part of the index — it softens the index principles on the fly, replacing the direct user touch with a grounding link to the touch event
+- it is self-similar to the appendix — an untouched appendix, same form and rules; it exists because the user gate is the bottleneck: a surface for the agent to run ahead of the gate
+- agendix and appendix must not duplicate content — over time the agendix drains: entries reviewed by the user are promoted through the gate or dropped
 - in alignment terms: `Untouched.Space` made durable — visible, assumed untouched by the user, non-aligned; zero authority, freely rewritable; everything in it is promotion evidence
 
 ### Concept.Explosion
@@ -282,6 +285,7 @@ skills/<package>-pkg/
 ### Chat.Surface
 - the `Chat.Surface` is the largest, most complete record of a project's design — user data lands here first, before any digestion
 - the index is a curated cache over the `Chat.Surface`, not a gate: an undigested concept is retrieved from the chats, never a reason to stall (no design-paralysis)
+- in alignment terms it holds the raw touch events: user turns are `User.Touched` surface, assistant turns are touched-adjacent — the context around the touch, not the touch itself
 - the index is the index *of* the `Chat.Surface` for the project — the nested-index relation, at the surface level
 - not every cycle starts with design; work may run implement-first, with digestion deferred to cold consolidation (`Index.Edit.Action`)
 - all `Chat.Surface` access is through Chatlas; the project's attributed chats are `Projects.Chats`, searched by `Chat.Retrieval`
@@ -290,11 +294,12 @@ skills/<package>-pkg/
 - `Projects.Chats` is the chat set attributed to a project — its own sessions plus its ancestors': for `A/B/C`, the union of `A/B/C`, `A/B`, `A` (walk the path via `chatlas query --project`, one query per level — match is exact, no prefix)
 - `Chat.Retrieval` is the user-triggered "where did we last discuss X", over `Projects.Chats`, cheapest-path-first:
   - tier 1 index — digested → a named block (cache hit)
+  - tier 1.5 agendix — agent-cached grounded lines pointing into the chats (`Agendix`)
   - tier 2 git-anchored — `git log` on touched files → date range → `chatlas query --active-after` → sessions (precise, cheap)
   - tier 3 direct — `chatlas query --user-contains` / `chatlas recents` over the turns (broad, complete)
   - read a hit via Chatlas views: `summary` as the cheap filter, `zip-transcript` as the trusted raw turns (`We.Distrust.Summaries`)
 - two situations: chat-only work (worst case, but the data is there) vs work with file consequences (best — git bridges files→sessions)
-- digestion gradient (extends the `Block.Line.Gradient` capture axis): index block → appendix line (`Append.Line`) → chat-in-place, retrieved on demand (the zero-digestion floor)
+- digestion gradient (extends the `Block.Line.Gradient` capture axis): index block → appendix line (`Append.Line`) → agendix line (ungated, grounded) → chat-in-place, retrieved on demand (the zero-digestion floor)
 - firing is user-triggered by default; the trigger mechanism is secondary to the retrieval design
 - open: `chatlas query --active-after` is a lower bound only; a true date range needs an upper bound (client-side trim or an `--active-before`)
 - mostly composition — Chatlas `query`/`recents`/`views` and `chatlas-grounding-agent` git-grounding already exist; this names them as a retrieval layer

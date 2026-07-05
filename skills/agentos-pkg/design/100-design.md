@@ -136,15 +136,15 @@
 ## Chat.Surface
 
 - `Chat.Surface` is the surface of user/agent direct communication — the recorded conversation itself
-- it is a `Stable.Surface`, but append-only
-- emit-driven, not curated: it comes into existence as a byproduct of interaction; other surfaces are actively shaped by humans and agents
-- append-only: a chat session is a tape; once written, turns are not edited but superseded by later turns
+- it is a `Stable.Surface`, but append-only and emit-driven — a byproduct of interaction, not curation; a session is a tape, turns superseded, never edited
+- it is the largest, most complete record of a project's design — user data lands here first, before any digestion
 - `Natural.Placement` claim: SSOT of user/agent alignment evidence — what was said, accepted, surfaced, overwritten, and when
 - primary signal lives in user turns; assistant turns supply context and forensic trace ("why did the agent do that")
-- holds reasoning, decisions, rejections, and reactions in their original form — the most detailed description of how the project arrived at its curated state
-- referenceable from any other surface via `Chat.Ref`, the same way the index is referenceable
-- participates in alignment as a precedent bank — earlier exchanges inform later reasoning; the system evolves by accumulating cited precedent
-- agents access chat content through `agentos-chatlas-pkg`
+- in alignment terms it holds the raw touch events: user turns are `User.Touched` surface, assistant turns are touched-adjacent — the context around the touch, not the touch itself
+- the index is a curated cache over the `Chat.Surface`, not a gate: an undigested concept is retrieved from the chats, never a reason to stall (no design-paralysis)
+- not every cycle starts with design; work may run implement-first, with digestion deferred to cold consolidation (`Index.Edit.Action`)
+- referenceable from any surface via `Chat.Ref`; it participates in alignment as a precedent bank — earlier exchanges inform later reasoning
+- all access is through Chatlas (`agentos-chatlas-pkg`); the project's attributed chats are `Projects.Chats`, searched by `Chat.Retrieval`
 
 ****
 
