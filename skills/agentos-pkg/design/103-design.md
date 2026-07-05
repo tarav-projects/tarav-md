@@ -89,7 +89,7 @@
 ### meta
 
 - aliases: `Agentos.Index`
-- namespace-members: `./Index.Surface.Layout`, `Index.Surface`, `Index.Router`, `Index.Main`, `Index.Chapter`, `Index.Appendix`, `Index.Depot`, `Index.Discovery`, `Kernel.Writing`, `Kernel.Block`, `Kernel.Block.Section`, `Kernel.Block.Fundamentals`, `Kernel.Block.Grounding`, `Kernel.Block.Appendix`, `Kernel.Block.Meta`, `Kernel.Note`, `Index.Block`, `Appendix.Block`, `Design.Block`, `Block.Path`, `Explicit.Namespace`, `Surface.Concept`
+- namespace-members: `./Index.Surface.Layout`, `Index.Surface`, `Index.Router`, `Index.Main`, `Index.Chapter`, `Index.Appendix`, `Index.Depot`, `Index.Discovery`, `Agendix`, `Kernel.Writing`, `Kernel.Block`, `Kernel.Block.Section`, `Kernel.Block.Fundamentals`, `Kernel.Block.Grounding`, `Kernel.Block.Appendix`, `Kernel.Block.Meta`, `Kernel.Note`, `Index.Block`, `Appendix.Block`, `Design.Block`, `Block.Path`, `Explicit.Namespace`, `Block.Line.Gradient`, `Surface.Concept`
 
 ****
 

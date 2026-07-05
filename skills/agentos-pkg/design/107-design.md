@@ -1,148 +1,25 @@
-> `Appendix.Discovery`: for depth on any concept, check `appendix/Concept.Name-appendix.md`
+
 
 ****
 
-## Agentos.Skillware
+## Writing.Friction.Reduction
 
-- `Agentos.Skillware` is the discipline of treating skills as software — the skill is the unit of software for agents.
-- "as software" means the artifacts agents run gain engineering structure — modules, dependencies, builds, versions, lineage — so they can be reused and evolved rather than written once and forked.
-- it is supported by a development toolchain — linters, builders, compilers — spanning agentic and `CPU.Impl` work, that moves package maintenance off the human.
-- a discipline realized by capabilities, not a single mechanism — it names the stance; specific members implement it.
-
-### meta
-
-- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Derivation.Rule`, `Derived.Content`, `Module.Dependency.Management`, `Derived.Module`, `Derivation.Manifest`, `Semantic.Router`, `Usage.Pattern.Routing`.
+- `Writing.Friction.Reduction` is the principle that the Agentos system lowers the cost of capturing design as it is discussed — by routing capture to the surface whose friction matches it
+- friction is a designed gradient, and friction buys authority: `Chat.Surface` (free — talk is capture) → `Agendix` (zero user friction, agent-driven, no authority) → `Index.Appendix` (`Kernel.Line`-level approval) → `Index.Main` (`Kernel.Block`-level work unit)
+- the aim is to capture as much of the user's design as possible before it is lost — structure is deferred, not skipped
+- the index keeps a friction floor on purpose — too-cheap writing would flush the hugentic surface; the friction is part of the alignment
+- on touched surfaces the approval gate stays — friction drops, the gate does not
 
 ****
 
-## Skill.Runnable.Surface
+## Agendix
 
-- `Skill.Runnable.Surface` is a surface whose purpose is to be run — loaded into agent context to do work; it carries only the executable substance.
-- the system keeps it free of non-runnable artifacts, so nothing obscures or dilutes what runs.
-- forced by context being executable — anything on it is read into context and shapes the run; non-runnable artifacts there are not inert, they interfere.
-
-****
-
-## Skill.Build.Surface
-
-- `Skill.Build.Surface` is the complement of `Skill.Runnable.Surface` — it holds the artifacts that produce and maintain runnable content, and is never loaded at run time.
-- it is the home for everything kept off the runnable surface: derivation context, dependency declarations, lineage, dev material.
-- never run, it carries no "stay clean" constraint — an unconstrained workspace; that freedom is what the two-surface split buys.
-- it lives in a per-package `build/` folder — build-time material organized by capability (derivation, tests, lint, lineage), discovered by convention.
-
-****
-
-## Skill.Package.Builder
-
-- `Skill.Package.Builder` is the support system for developing and maintaining a skill package's `Skill.Runnable.Surface`
-- it is a bundle of agentic skills and CLI support tooling that run build workflows over the package
-- a build workflow either produces runnable content or checks it — builds, drift-checks, tests, lint
-- it is open-ended — any build workflow can be added; derivation is one capability, not the whole system
-- the `Skill.Build.Surface` is its workspace — it holds anything the builder needs that should not live on the `Skill.Runnable.Surface`
-- realized as the `agentos-skill-pkg-builder` `Package.Aux.Skill`, which centralizes the build-related `Skill.Module`s
-
-****
-
-## Derivation.Rule
-
-- `Derivation.Rule` is the relation `Dependencies + Context → Derived` — the unit that produces a piece of derived content from declared dependencies, interpreted through a context.
-- `Context` is everything informing the derivation other than the declared dependencies — case by case, from implicit (the derived surface itself + ambient knowledge) to explicit (written down).
-- both dependencies and context span **inline + external** — carried inline in the derived surface, or external on a build surface; whatever isn't inline is written externally.
-- run **forward** it (re)generates the derived; run as a **check** it answers the drift question — does the current derived still match what its dependencies + context would now produce?
-- the check is the payoff: maintenance becomes a query the system runs, not vigilance the user keeps — and maintenance is derivation's main cost.
-
-****
-
-## Derived.Content
-
-- `Derived.Content` is the *Derived* side of a `Derivation.Rule` — content produced from declared dependencies and a context, a projection of those sources rather than authored standalone.
-- granular — any span of a module can be `Derived.Content`; the rest is original content, and the original/derived ratio is just how much of a module is derived.
-- its tie to its sources automates drift detection and aids regeneration — drift is caught when sources change; regeneration is supported by the kept context.
-
-****
-
-## Module.Dependency.Management
-
-- `Module.Dependency.Management` is the part of the Skillware module model that maintains a module's `Derivation.Rule`s — tracking dependencies and the context so derived content can be drift-checked and regenerated.
-- it records, per derived span, the dependencies (by durable address) and the context, and re-runs the rule on demand.
-- the more derived a module, the more its maintenance automates — derived spans re-project, while original content and the seams where it meets derived content stay manual.
-- dependencies are addressed by the in-place linking mechanism — `Dotted.Names` for blocks, `Chat.Ref`/`Chat.Grounding` for chat fallback dependencies.
-
-****
-
-## Derived.Module
-
-- `Derived.Module` is a `Skill.Module` whose content is mostly `Derived.Content` — the high-derivation pole.
-- source-agnostic — its sources may be index blocks or other modules; derived-ness is the ratio, not the surface.
-- the more derived it is, the more its maintenance automates — largely a projection of its sources, re-derived on change, with human work only at the seam with original content.
-
-****
-
-## Derivation.Manifest
-
-- `Derivation.Manifest` is the explicit artifact for a `Derivation.Rule` — it carries the parts of the rule (declared dependencies + external context) not already inline in the derived surface.
-- it lives on the `Skill.Build.Surface` (under `build/derivation/`), kept off the runnable surface.
-- it names each dependency by a durable address and holds the external context, so a maintainer or agent can re-derive and drift-check from one known place.
-
-****
-
-## Semantic.Router
-
-- `Semantic.Router` is a Skillware primitive: a key:value table where keys are natural-language situation descriptions and values are linked resources (a prompt, a `Skill.Module`, content, or another `Semantic.Router`).
-- routing is semantic and agentic — the agent matches the live situation against the key descriptions and selects; keys must be discriminative.
-- it offers options, not an order — an unordered set; the router states a `Router.Selection.Contract` so the reader knows that selecting none, one, or several rows is all normal.
-- it composes — a value can be another `Semantic.Router`, giving progressive, multi-level selection.
-
-****
-
-## Usage.Pattern.Routing
-
-- `Usage.Pattern.Routing` is `Semantic.Router` routing whose rows are usage patterns — keys are usage situations, values are the response for each (knowledge/surfaces to load, what to produce).
-- its keys are mined from real usage — chats, repeated questions, observed friction — so the routing grows cheaply and stays reality-weighted.
-- it optimizes frequent or important situations (a hot path); an unmatched situation selects nothing and falls back to the package's general routing.
-
-****
-
-## Specified.By.Precedence
-
-- `Specified.By.Precedence` is a design pattern: when no explicit specification is in sight, constrain new work by the shape of the existing implementations
-- the already-built instances serve as the `Reference.Implementation` for the ones not yet built — precedent is the spec
-- it trades an authored contract for imitation: a new instance reads its antecedents and follows their shape
-- the format evolves and converges naturally — each addition both follows and extends the precedent, no central definition to maintain
-- use it where a rigid spec would over-specify a still-soft, still-converging pattern; an explicit spec, once it appears, supersedes precedent
-- distinct from `Reference.Implementation`: that names one canonical owner of a contract; here the whole existing set is the soft, emergent spec
-
-****
-
-## Index.Main
-
-- `Index.Main` is the main body of the Index — the routed layer of concept fundamentals, spanning the `Index.Chapter` folders
-- it is the index-level echo of `Kernel.Block.Fundamentals`: the compressed front, with depth deferred to `Index.Appendix`
-- it holds the `Index.Block`s under tight `Kernel.Writing` compression, every one routed by `Index.Router`
-- it is the complement of `Index.Appendix` — main body vs appendix, the split a book makes: main is routed, appendix is discovered (`Appendix.Discovery`)
-- with `Index.Appendix` and `Index.Router` it composes the `Index.Surface`
-
-### meta
-
-- aliases: `Index.Fundamentals`
-
-****
-
-## Index.Surface
-
-- `Index.Surface` is the file surface of one Index — `Index.Router`, `Index.Main`, and `Index.Appendix` taken as a single addressable surface
-- it is a `Surface.Concept`: the bytes on disk, distinct from `Agentos.Index.System`, which is what those bytes do (the operable `Index.Skillware`)
-- it follows the `Index.Surface.Layout` directory protocol; one `Index.Surface` per `Index.Depot`
-- it is the outermost layer of the nested index — the index of the project across its surfaces (`Surface.Types`), foremost the `Chat.Surface` where design originates
-
-****
-
-## Index.Discovery
-
-- `Index.Discovery` is how an agent finds the `Index.Depot`s available to engage
-- a depot is marked by a `000-INDEX.md` — its presence identifies an engageable index on a skill or project
-- declared discovery walks the dependency graph: a project's `Project.Manifest` and each package's `Package.Manifest`
-- fallback discovery: when nothing declares them, search for `000-INDEX.md` across skills and projects — cheap
-- discovery is hierarchical (the dependency graph) but engagement is flat — discovered depots are peers, each router a `Semantic.Router`, routed equally
-- a workflow scopes the discovered set by agent common sense — conversation context, skill descriptions, task relevance — defaulting to the whole engaged set
-
+- `Agendix` is the agent-driven shadow of the Index — an untouched member of the index surface, one file per `Index.Main` concept: `agendix/Concept.X-agendix.md`, next to `appendix/`
+- it is a cache the agent keeps to aid grounding on stable surfaces — no stable surface may link into it; promotion copies an entry out through the normal gates (including into the index)
+- the agent cannot mint concepts — it attaches lines under existing routed concepts; the ontology primes the capture, the agent fills the gaps — the index's shadow, not a second index
+- hard rule: every line is a grounded summary of chat discussion — a rejection, a constraint, a highlight the index does not yet capture — carrying its `Chat.Ref`/`File.Mention` pointer; unsourced agent reasoning does not belong
+- writing rules are the appendix's — `Kernel.Writing` discipline, the same block and line forms; only the supervision differs: all work is done and supervised by agents
+- capture is user-triggered but not gated — the agent may suggest a capture pass, never start one
+- it extends the `Block.Line.Gradient` past the touch cut: fundamentals → `Concept.X/Appendix` (touched tail) → the concept's agendix shadow tail (untouched)
+- homeless material lands in a fallback file — misfit pressure is evidence a concept is missing (concept-gap detector)
+- in alignment terms: `Untouched.Space` made durable — visible, assumed untouched by the user, non-aligned; zero authority, freely rewritable; everything in it is promotion evidence

@@ -67,10 +67,22 @@ skills/<package>-pkg/
 - splitting an overfull file is maintenance, not a writing concern
 
 ### Writing.Friction.Reduction
-- `Writing.Friction.Reduction` is the principle that the Agentos system relentlessly lowers the cost of capturing design as it is discussed
+- `Writing.Friction.Reduction` is the principle that the Agentos system lowers the cost of capturing design as it is discussed — by routing capture to the surface whose friction matches it
+- friction is a designed gradient, and friction buys authority: `Chat.Surface` (free — talk is capture) → `Agendix` (zero user friction, agent-driven, no authority) → `Index.Appendix` (`Kernel.Line`-level approval) → `Index.Main` (`Kernel.Block`-level work unit)
 - the aim is to capture as much of the user's design as possible before it is lost — structure is deferred, not skipped
-- the appendix is the low-friction capture surface — dump-capture without the index's space budget, promote to fundamentals in later iterations
-- capture stays user-gated — friction drops, the approval gate stays
+- the index keeps a friction floor on purpose — too-cheap writing would flush the hugentic surface; the friction is part of the alignment
+- on touched surfaces the approval gate stays — friction drops, the gate does not
+
+### Agendix
+- `Agendix` is the agent-driven shadow of the Index — an untouched member of the index surface, one file per `Index.Main` concept: `agendix/Concept.X-agendix.md`, next to `appendix/`
+- it is a cache the agent keeps to aid grounding on stable surfaces — no stable surface may link into it; promotion copies an entry out through the normal gates (including into the index)
+- the agent cannot mint concepts — it attaches lines under existing routed concepts; the ontology primes the capture, the agent fills the gaps — the index's shadow, not a second index
+- hard rule: every line is a grounded summary of chat discussion — a rejection, a constraint, a highlight the index does not yet capture — carrying its `Chat.Ref`/`File.Mention` pointer; unsourced agent reasoning does not belong
+- writing rules are the appendix's — `Kernel.Writing` discipline, the same block and line forms; only the supervision differs: all work is done and supervised by agents
+- capture is user-triggered but not gated — the agent may suggest a capture pass, never start one
+- it extends the `Block.Line.Gradient` past the touch cut: fundamentals → `Concept.X/Appendix` (touched tail) → the concept's agendix shadow tail (untouched)
+- homeless material lands in a fallback file — misfit pressure is evidence a concept is missing (concept-gap detector)
+- in alignment terms: `Untouched.Space` made durable — visible, assumed untouched by the user, non-aligned; zero authority, freely rewritable; everything in it is promotion evidence
 
 ### Concept.Explosion
 - `Concept.Explosion` is the failure where splitting every fact into its own named concept floods the index with low-value names
@@ -84,7 +96,7 @@ skills/<package>-pkg/
 - `Block.Line.Gradient` is the ordering of a concept's lines from most fundamental to most accidental
 - line 0 is typically a direct definition (`Concept.X` is …); each later line tends to be more specific than the one before
 - the order continues unbroken into the appendix — the appendix is the tail of the same sequence, not a separate object
-- far enough down the sequence, a line is merely filed under the concept, barely about it
+- the further down the sequence a line sits, the less fundamental to the concept it can be — the tail admits lines merely filed under it
 - the index/appendix split — and the cuts between appendix pages — are artificial cuts on this sequence, placed for token economy
 - fundamentals are the prefix you keep if you can read only a few lines; the appendix is the rest, loaded on demand
 - coherence is a gradient too: tight in the fundamentals, relaxing in the appendix, where loosely-related lines accrete without earning the core's coherence
@@ -129,6 +141,7 @@ skills/<package>-pkg/
 - `Kernel.Block.Fundamentals` is the conceptual core of a `Kernel.Block` — the root block, what `Concept.X` is
 - it is the only required section; a block is its fundamentals, the rest is optional
 - it carries the concept itself: definition, boundaries, judgments, and relations, one dimension per line
+- it pays off the heading's conceptual commitment — what the block is about
 - it is the compressed prefix of the `Block.Line.Gradient`; extended depth continues in `Concept.X/Appendix`
 
 ### Kernel.Block.Meta
@@ -143,6 +156,7 @@ skills/<package>-pkg/
 - it holds rationale, edge cases, examples, rejected alternatives — depth past the compressed fundamentals
 - it is first-class extended writing, not a hiding place for less-important blocks
 - it is the tail of the `Block.Line.Gradient`, loaded on demand (`Appendix.Discovery`)
+- distinct from `Appendix.Block`, which is a whole `Kernel.Block` placed in the appendix file
 
 ### Kernel.Block.Grounding
 - `Kernel.Block.Grounding` is the grounding section of a `Kernel.Block`, addressed `Concept.X/Grounding`
@@ -392,6 +406,8 @@ skills/<package>-pkg/
 - lint targets: contradictory `CT`s, `DC`s that disagree, an `RJ` later reintroduced, an `FR` a later `CT` silently overrides
 
 ## Session.Notes
+
+- DECISION (migration review): the `Agendix` — agent-driven untouched member of the index, `agendix/Concept.X-agendix.md` next to `appendix/`; hard provenance rule; user-triggered/not-gated capture; no stable-surface links in; concept-gap detector; will likely redefine the grounding surface (`Chat.Grounding.Request` queue reconcile pending). `Writing.Friction.Reduction` reworded around the friction gradient (friction buys authority; index keeps a friction floor).
 
 - DECISION (migration review): `Soft.Programming.Language` renamed to `Index.Skillware` — no alias; the generic name collided with the program family (`Soft.Program`, `Agentic.Program`, `Program.Hardness`); the `Soft.Program` disambiguation line dropped as no longer needed; all 8 live citations swapped; mapping refreshed (`000-INDEX.md` router, chapter file, `Kernel.Block` structure; dead names `Index.Note`, `Index.Block.Syntax` removed)
 

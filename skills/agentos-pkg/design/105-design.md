@@ -4,7 +4,7 @@
 
 ## Kernel.Block.Grounding
 
-- `Kernel.Block.Grounding` is the grounding `Kernel.Block.Section` of a `Kernel.Block`
+- `Kernel.Block.Grounding` is the grounding section of a `Kernel.Block`, addressed `Concept.X/Grounding`
 - it is a mechanical `Hard.Evidence` linking system — it links the block to where its evidence lives
 - it carries `Grounding.Entry` links and their evidence notes, never agent reinforcement or commentary
 - it groups `Grounding.Entry` rows by lightweight role labels

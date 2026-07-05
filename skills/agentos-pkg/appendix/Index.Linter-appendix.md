@@ -139,9 +139,9 @@
 
 ## Index.Linter/Router.Missing
 
-- emitted when configured index paths include no router file
-- router files are currently `000-index.md` or `001-index.md`
-- fix by including the router file in explicit file mode or pointing at the containing index directory
+- emitted when configured surfaces include no depot-root router file
+- the required router is `000-INDEX.md` at the `Index.Depot` root
+- fix by adding `000-INDEX.md`, pointing `--depot` at the depot root, or including a surface that belongs to a depot with that router
 
 ****
 
@@ -155,17 +155,17 @@
 
 ## Index.Linter/Index.InvalidFilename
 
-- emitted when an index markdown file does not match the flat index filename convention
-- expected ordinary names use `NNN-index.md`; routers use `000-index.md` or `001-index.md`
-- fix by moving non-index markdown out of the index surface or renaming valid index files
+- emitted when an index markdown file does not match the chapter filename convention
+- chapter files use `NNN-<chapter>.md`, where `<chapter>` matches the containing folder name
+- fix by renaming the file to match its chapter folder or moving non-index markdown out of the linted index surface
 
 ****
 
 ## Index.Linter/Concept.InvalidHeading
 
-- emitted when an index block heading does not match the current concept-name pattern
-- index headings should name concepts using `Dotted.Notation`, optional parameterization, or scoped appendix notation
-- fix by renaming the heading or updating the concept-name grammar if the design intentionally permits the form
+- emitted when an index block heading does not match the current `Block.Path` pattern
+- a valid heading starts with a rooted `Dotted.Notation` concept and may continue with `/` segments for concept refs or free labels
+- fix by renaming the heading to a valid `Block.Path`, or by updating the grammar if the design intentionally permits the form
 
 ****
 
@@ -235,9 +235,9 @@
 
 ## Index.Linter/Router.InvalidConcept
 
-- emitted when a router entry contains a concept name that does not match the current concept-name pattern
-- the router should use the same concept grammar as index block headings
-- fix by correcting the routed concept name or updating the grammar if the form is intentional
+- emitted when a router entry contains a concept name that does not match the current `Block.Path` pattern
+- routed concepts use the same heading grammar as index block headings
+- fix by correcting the routed concept name or by updating the grammar if the form is intentional
 
 ****
 
@@ -245,7 +245,7 @@
 
 - emitted when router files exist but no routing entries can be parsed from them
 - this usually means the routing table is missing or does not match the expected bullet format
-- fix by adding entries like ``- `100-index.md` — Concept.Name`` to the router
+- fix by adding entries like ``- `design/100-design.md` — Concept.Name`` to the router
 
 ****
 
@@ -259,8 +259,9 @@
 
 ## Index.Linter/Router.MissingFile
 
-- emitted when a router entry points to a file that does not exist beside the router
-- fix by correcting the route target or restoring the missing index file
+- emitted when a router entry points to a file that does not exist at its routed depot path
+- route files are resolved depot-root-relatively from `000-INDEX.md`
+- fix by correcting the route target or restoring the missing chapter file
 
 ****
 

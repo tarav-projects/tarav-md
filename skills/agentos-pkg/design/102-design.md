@@ -222,41 +222,37 @@
 ## Kernel.Block.Section
 
 - `Kernel.Block.Section` is a named part of a `Kernel.Block`
-- a section has two forms: `Kernel.Block.Section:Inblock` and `Kernel.Block.Section:Outblock`
-- `:Inblock` is a `###` subsection written inside the block
-- `:Outblock` is an external, concept-named surface holding the same section, discovered by naming (`Appendix.Discovery`)
-- the appendix is the canonical dual — `### appendix` inblock, `Concept-appendix.md` outblock — one section, two forms
-- the form is a placement choice: inblock keeps the section local and compressed; outblock moves depth to a surface loaded on demand
+- fundamentals are the root `Concept.X` block itself — the block is its fundamentals
+- meta is always inblock — non-conceptual data kept with the concept so it loads alongside it
+- appendix and grounding are path-children placed outblock by default: `Concept.X/Appendix`, `Concept.X/Grounding`, loaded on demand
+- the path is the name; outblock placement (in the appendix) is the default for these depth sections
 
 ****
 
 ## Kernel.Block.Meta
 
-- `Kernel.Block.Meta` is the meta `Kernel.Block.Section` of a `Kernel.Block`
-- it holds non-conceptual data about the block as an object, never about the block's subject
-- the strip-test: remove the line — if the block's conceptual load is unchanged, it belongs in meta
-- its purpose is findability and convenience — data kept next to the block to reach or handle it
+- `Kernel.Block.Meta` is the meta section of a `Kernel.Block` — non-conceptual data about the block as an object, never its subject
+- always inblock — kept with the concept so it loads alongside it (findability)
+- the strip-test: remove the line; if the block's conceptual load is unchanged, it belongs in meta
 - `alias` is the paradigmatic field: alternate names that widen query hits without changing meaning
 
 ****
 
 ## Kernel.Block.Fundamentals
 
-- `Kernel.Block.Fundamentals` is the fundamentals `Kernel.Block.Section` of a `Kernel.Block` — its conceptual core
+- `Kernel.Block.Fundamentals` is the conceptual core of a `Kernel.Block` — the root block, what `Concept.X` is
 - it is the only required section; a block is its fundamentals, the rest is optional
-- it is always inblock — alone among sections it has no outblock form
 - it carries the concept itself: definition, boundaries, judgments, and relations, one dimension per line
 - it pays off the heading's conceptual commitment — what the block is about
-- it holds the compressed core; extended conceptual depth belongs in `Kernel.Block.Appendix`
+- it is the compressed prefix of the `Block.Line.Gradient`; extended depth continues in `Concept.X/Appendix`
 
 ****
 
 ## Kernel.Block.Appendix
 
-- `Kernel.Block.Appendix` is the appendix `Kernel.Block.Section` of a `Kernel.Block` — extended conceptual depth
+- `Kernel.Block.Appendix` is the extended-depth section of a `Kernel.Block`, addressed `Concept.X/Appendix`
 - it is `Kernel.Writing` at relaxed constraints: coverage over compression, format-rich allowed
-- it holds rationale, edge cases, examples, rejected alternatives — depth that did not fit the compressed `Kernel.Block.Fundamentals`
+- it holds rationale, edge cases, examples, rejected alternatives — depth past the compressed fundamentals
 - it is first-class extended writing, not a hiding place for less-important blocks
-- it is the canonical dual section: inblock as a `### appendix` subsection, outblock as its own concept-named file
-- the outblock file is `Concept-appendix.md`, discovered by naming (`Appendix.Discovery`) and loaded on demand
-- distinct from `Appendix.Block`, which is a whole `Kernel.Block` placed in that outblock file
+- it is the tail of the `Block.Line.Gradient`, loaded on demand (`Appendix.Discovery`)
+- distinct from `Appendix.Block`, which is a whole `Kernel.Block` placed in the appendix file
