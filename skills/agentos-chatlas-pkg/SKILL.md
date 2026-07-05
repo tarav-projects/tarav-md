@@ -23,7 +23,6 @@ The Chatlas index lives in `000-INDEX.md` (the lookup table) over its chapters â
 |---|---|
 | `000-INDEX.md` â†’ `design/` | Chatlas index: chapter routing and concept definitions (depth in `appendix/`) |
 | `references/chatlas-commands.md` | Chatlas CLI query, export, raw, and view workflows |
-| `chatlas-grounding-agent` | Mine Chatlas sessions into `Grounding.Request` live notes for Agentos kernel blocks |
 | `chatlas-session-continue` | continuation handoff workflow for prior sessions |
 | `chatlas-session-zip-transcript` | compact transcript summary artifact workflow |
 | `agentos-chatlas-my-session-id` | discover the running agent's own native session id |
