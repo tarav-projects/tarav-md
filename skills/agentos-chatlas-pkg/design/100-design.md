@@ -271,10 +271,19 @@
 - expressive enough to represent most of what a provider provides — each provider's content maps into a neutral concept the model defines
 - provider-specific richness with no neutral concept lives in `native` / `source_refs` — recoverable, never canonical
 - consumers are read-side: search, summary, replay, UI, `Chatlas.View.Model`
+- its namespace is reified as `Chatlas.Session.Model.Contract` — the machine-readable path table model consumers and corpus tests share
 
 ### meta
 
 - aliases: `Session.Normal.Model` (session-scoped long form), `Normal.Model` (its role name as the target model of `Normalization.Pipeline:Chatlas.Session.Model`)
+
+****
+
+## Chatlas.Session.Model.Contract
+
+- `Chatlas.Session.Model.Contract` is the `Normal.Model.Contract` of `Chatlas.Session.Model` — its namespace reified as a machine-readable path table
+- lives in the code repo beside its producers: `agentos-chatlas-py/references/normal-model.contract.json`
+- one artifact, two consumers: `Raw.Normalizer`s target it, the corpus tests (projection, path-source-split, schema closure) load their judgments and verdicts from it
 
 ****
 
