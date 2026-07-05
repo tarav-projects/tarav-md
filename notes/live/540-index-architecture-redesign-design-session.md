@@ -23,7 +23,7 @@
 ### Index.Chapter
 - `Index.Chapter` is a folder of the Index that groups concepts into a unit of selective loading
 - concepts across chapters are peers, reached by one `Dotted.Name` lookup — a chapter sets only what loads together
-- the Index has a default chapter that loads first; another chapter loads only when a named concept is absent from the default
+- the chapter loading policy is open — if any default holds, only the default chapter is loaded/searched
 - the default chapter is `design`; `impl` is reserved; a package may add any number beyond these
 - a chapter's files are named `NNN-<chapter>.md`, e.g. `design/100-design.md` — the suffix names the chapter
 
@@ -33,6 +33,8 @@
 
 ### Agentos.Index.System
 - `Agentos.Index.System` is the Agentos Index taken as a whole — the operable system of named concepts agents reason with
+- it is a curated `User.Touched` surface — it indexes the `Touched.Space` of the project's other surfaces, the `Chat.Surface` foremost
+- it is a `Hugentic.Concept` surface — user and agent collaborate over it: the agent constructs, the user gates
 - it enables semantic computation over those concepts: composing them, finding contradictions, detecting design weakness
 
 #### meta
@@ -160,6 +162,7 @@ skills/<package>-pkg/
 - `Index.Appendix` is the appendix layer of the Index and the root concept for it — the on-demand depth, complement of `Index.Main`
 - it is the index-level echo of `Kernel.Block.Appendix`: depth deferred out of the compressed front, loaded by choice
 - it is not routed — reached by naming through `Appendix.Discovery`, never loaded by default
+- loading an appendix is an intentional action — the agent displays intention by choosing to go deeper
 - it lives in one `appendix/` shared across chapters; files are concept-named and addressed as `Appendix.Pages`
 - it holds every concept's tail (`Block.Line.Gradient`): `Concept.X/Appendix` catch-alls and scoped `Concept.X/Concept.Y` blocks (`Appendix.Block`)
 - with `Index.Main` and `Index.Router` it composes the `Index.Surface`

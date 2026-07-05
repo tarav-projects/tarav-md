@@ -111,3 +111,38 @@
 - the format evolves and converges naturally — each addition both follows and extends the precedent, no central definition to maintain
 - use it where a rigid spec would over-specify a still-soft, still-converging pattern; an explicit spec, once it appears, supersedes precedent
 - distinct from `Reference.Implementation`: that names one canonical owner of a contract; here the whole existing set is the soft, emergent spec
+
+****
+
+## Index.Main
+
+- `Index.Main` is the main body of the Index — the routed layer of concept fundamentals, spanning the `Index.Chapter` folders
+- it is the index-level echo of `Kernel.Block.Fundamentals`: the compressed front, with depth deferred to `Index.Appendix`
+- it holds the `Index.Block`s under tight `Kernel.Writing` compression, every one routed by `Index.Router`
+- it is the complement of `Index.Appendix` — main body vs appendix, the split a book makes: main is routed, appendix is discovered (`Appendix.Discovery`)
+- with `Index.Appendix` and `Index.Router` it composes the `Index.Surface`
+
+### meta
+
+- aliases: `Index.Fundamentals`
+
+****
+
+## Index.Surface
+
+- `Index.Surface` is the file surface of one Index — `Index.Router`, `Index.Main`, and `Index.Appendix` taken as a single addressable surface
+- it is a `Surface.Concept`: the bytes on disk, distinct from `Agentos.Index.System`, which is what those bytes do (the operable `Soft.Programming.Language`)
+- it follows the `Index.Surface.Layout` directory protocol; one `Index.Surface` per `Index.Depot`
+- it is the outermost layer of the nested index — the index of the project across its surfaces (`Surface.Types`), foremost the `Chat.Surface` where design originates
+
+****
+
+## Index.Discovery
+
+- `Index.Discovery` is how an agent finds the `Index.Depot`s available to engage
+- a depot is marked by a `000-INDEX.md` — its presence identifies an engageable index on a skill or project
+- declared discovery walks the dependency graph: a project's `Project.Manifest` and each package's `Package.Manifest`
+- fallback discovery: when nothing declares them, search for `000-INDEX.md` across skills and projects — cheap
+- discovery is hierarchical (the dependency graph) but engagement is flat — discovered depots are peers, each router a `Semantic.Router`, routed equally
+- a workflow scopes the discovered set by agent common sense — conversation context, skill descriptions, task relevance — defaulting to the whole engaged set
+

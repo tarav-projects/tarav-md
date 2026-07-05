@@ -1,11 +1,8 @@
-# Kernel.Writing — Appendix
-
 ****
 
-## Kernel.Writing/Stub.Convention
+## Kernel.Writing/Organizing.Decoupling
 
-- a stub is an incomplete block — captures a concept boundary before the full definition exists
-- stubs live in the appendix only — they are not loaded by default
-- a valid stub must have: a `Dotted.Name`, at least one grounding sentence, explicit incompleteness
-- a stub with just a title and no content is not valid
-- a stub can mature into a full block, stay as-is, or be deleted — no pressure to promote
+- `Kernel.Writing` defines how to capture a concept — the philosophy is surface-independent
+- space constraints are external — the surface determines the budget, not the philosophy
+- the same writing discipline applies everywhere: index, appendix, session artifacts, etc.
+- organizing happens through `Block.Path` and `Explicit.Namespace`, not through file structure or writing decisions

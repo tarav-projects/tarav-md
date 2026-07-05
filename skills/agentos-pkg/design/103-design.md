@@ -2,43 +2,25 @@
 
 ****
 
-## Index.Architecture
+## Index.Chapter
 
-- `Index.Architecture` is the structural design of the Agentos Index system — an `Explicit.Namespace` grouping the concepts that define it
-- two depth layers: `index/` (lean, compressed concept definitions) and `Extended.Index.Scope` (`appendix/`, loaded on demand)
-- flat anonymous index files (`100-index.md`, `101-index.md`, ...) with `000-index.md` as concept→file routing table
-- writing is append-only to the last file — placement decisions are decoupled from writing
-- one base block (`Kernel.Block`) with surface-placement variants `Index.Block`, `Appendix.Block`, `Design.Block`
-- one portable file container (`Kernel.Note`) for collecting `Kernel.Block` sections outside index routing
-- one writing philosophy (`Kernel.Writing`) — space constraints come from the surface, not the philosophy
-- appendix files are concept-named (`Concept.Name-appendix.md`) with implicit discovery — no outlink required
-- `Concept.Scoping` and `Explicit.Namespaces` provide the conceptual overlay on the flat file structure
-- index/appendix blocks may carry grounding through a `Kernel.Block.Grounding` section
-
-### meta
-
-- namespace-members: `Extended.Index.Scope`, `Flat.Index.Architecture`, `Kernel.Writing`, `Kernel.Block`, `Kernel.Block.Section`, `Kernel.Block.Fundamentals`, `Kernel.Block.Grounding`, `Kernel.Block.Appendix`, `Kernel.Block.Meta`, `Kernel.Note`, `Index.Block`, `Appendix.Block`, `Design.Block`, `Concept.Scoping`, `Explicit.Namespace`, `Surface.Concept`, `Agentos.Index.System`
+- `Index.Chapter` is a folder of the Index that groups concepts into a unit of selective loading
+- concepts across chapters are peers, reached by one `Dotted.Name` lookup — a chapter sets only what loads together
+- the chapter loading policy is open — if any default holds, only the default chapter is loaded/searched
+- the default chapter is `design`; `impl` is reserved; a package may add any number beyond these
+- a chapter's files are named `NNN-<chapter>.md`, e.g. `design/100-design.md` — the suffix names the chapter
 
 ****
 
-## Flat.Index.Architecture
+## Index.Appendix
 
-- `Flat.Index.Architecture` is the file-level design of the index: anonymous flat containers instead of semantic groupings
-- index concept files are `100-index.md`, `101-index.md`, ... — file names carry no semantic meaning
-- ~20 concept blocks per file — hard cap
-- writing always appends to the last file — zero placement decisions, all focus on writing a great block
-- splitting overfull files is maintenance, not a writing concern
-- `000-index.md` is the concept→file routing table — loaded when the `Package.Driver` brings the index into context, not unconditionally
-- organizing happens through `Concept.Scoping` and `Explicit.Namespaces`, not file groupings
-
-****
-
-## Extended.Index.Scope
-
-- `Extended.Index.Scope` is the on-demand layer of the index — `appendix/`
-- loaded when an agent needs depth beyond the compressed `index/` definition
+- `Index.Appendix` is the appendix layer of the Index and the root concept for it — the on-demand depth, complement of `Index.Main`
+- it is the index-level echo of `Kernel.Block.Appendix`: depth deferred out of the compressed front, loaded by choice
+- it is not routed — reached by naming through `Appendix.Discovery`, never loaded by default
 - loading an appendix is an intentional action — the agent displays intention by choosing to go deeper
-- where hidden blocks live — discoverable through the cascade, never loaded by default
+- it lives in one `appendix/` shared across chapters; files are concept-named and addressed as `Appendix.Pages`
+- it holds every concept's tail (`Block.Line.Gradient`): `Concept.X/Appendix` catch-alls and scoped `Concept.X/Concept.Y` blocks (`Appendix.Block`)
+- with `Index.Main` and `Index.Router` it composes the `Index.Surface`
 
 ****
 
@@ -75,37 +57,39 @@
 
 ****
 
-## Concept.Scoping
+## Block.Path
 
-- `Concept.Scoping` is the general mechanism: any concept can scope other concepts through its appendix file
-- an appendix file can contain blocks for other concepts, viewed through the host concept's lens
-- a concept can appear in multiple scopes — each scoped block should be read in the context of the container concept
-- notation: `Concept.B/Concept.A` — Concept.A as seen from Concept.B's scope
-- examples: `Index.Architecture/Flat.File.Design`, `Index.Architecture/Implicit.Appendix.Discovery`
+- `Block.Path` is a block name written as a `/`-separated path — the full path is the name
+- the root segment is a `Dotted.Name`, a top-level index concept; the path anchors on that node
+- later segments may be `Dotted.Name` concepts or free labels; an author composes any path that organizes the block
+- a concept segment carries `Concept.Scoping` semantics; a label segment just groups, claiming no ontology entry
+- a path-named block is attached to its root and lives in the root's appendix by default — it is not itself a top-level index block
+- section paths (`Concept.X/Appendix`, `Concept.X/Grounding`) are restricted to the appendix; a scoped concept-child defaults there but may be promoted
 
 ****
 
 ## Explicit.Namespace
 
-- `Explicit.Namespace` is a concept that intentionally organizes a view over a set of related concepts
-- the mechanics are `Concept.Scoping` — the difference is intent: this concept declares itself as a namespace
-- namespace membership is declared in the namespace's global block under `### meta` as a `namespace-members` list
-- the global block is the universal minimum; a namespace appendix block is a scoped view for people digging into that area
-- examples: `Index.Architecture`, `Agentos.Index.System`
+- `Explicit.Namespace` is a concept whose purpose is to group a cluster of blocks — a declared view over the concepts it gathers
+- its members are listed in `### meta` under `namespace-members` — the inventory of the cluster
+- a member is either a grouped peer (a routed `Index.Block` standing on its own) or an owned child in the namespace's appendix
+- the member list is where appendix-depth members surface — path-children the `Index.Router` never routes, otherwise reachable only by `Appendix.Discovery`, are named here
+- the appendix is required — it is the namespace's home, holding the owned children and the guided view over the cluster
+- example: `Agentos.Index.System`
 
 ****
 
 ## Agentos.Index.System
 
-- `Agentos.Index.System` is the top concept for the index — a `Soft.Programming.Language` for project knowledge
-- a library of micro-prompts invoked by naming — mentioning a `Dotted.Name` triggers a concept-level context load
-- manipulates the agent's context window — by controlling what enters context, you control how the agent reasons
-- enables semantic computation: composing concepts, finding contradictions, detecting design weakness
-- `Agentos.Index.System` is an `Explicit.Namespace` — groups the concepts that compose the index system
+- `Agentos.Index.System` is the Agentos Index taken as a whole — the operable system of named concepts agents reason with
+- it is a curated `User.Touched` surface — it indexes the `Touched.Space` of the project's other surfaces, the `Chat.Surface` foremost
+- it is a `Hugentic.Concept` surface — user and agent collaborate over it: the agent constructs, the user gates
+- it enables semantic computation over those concepts: composing them, finding contradictions, detecting design weakness
 
 ### meta
 
 - aliases: `Agentos.Index`
+- namespace-members: `./Index.Surface.Layout`, `Index.Surface`, `Index.Router`, `Index.Main`, `Index.Chapter`, `Index.Appendix`, `Index.Depot`, `Index.Discovery`, `Kernel.Writing`, `Kernel.Block`, `Kernel.Block.Section`, `Kernel.Block.Fundamentals`, `Kernel.Block.Grounding`, `Kernel.Block.Appendix`, `Kernel.Block.Meta`, `Kernel.Note`, `Index.Block`, `Appendix.Block`, `Design.Block`, `Block.Path`, `Explicit.Namespace`, `Surface.Concept`
 
 ****
 
@@ -139,10 +123,12 @@
 
 ## Index.Router
 
-- `Index.Router` is the compressed entry point of the index — loaded first when the index enters context, per the `Package.Driver`
-- two instances: `000-index.md` (public, in the package index surface) and `001-index.md` (local, in `notes/index/`)
-- two routing sections: concept routing (every `Dotted.Name` → flat file) and file routing (important project files for research)
-- entries can have a one sentence explanation — but depth lives in the blocks themselves
+- `Index.Router` is the lookup table of the Index — `000-INDEX.md`, loaded first when the Index enters context (per the `Package.Driver`)
+- it routes concept name → file, sectioned by `Index.Chapter`
+- the appendix is not routed — appendix depth is reached by naming (`Appendix.Discovery`), not listed here
+- it also carries file routing (`Project.File.Index`) — important project files for research
+- entries may carry a one-sentence hint, but depth lives in the blocks themselves
+- the routers of the engaged `Index.Depot`s compose into one working Index (`Index.Discovery`)
 
 ****
 
@@ -180,19 +166,6 @@
 - all surfaces of the installed project become reachable — not just its `Public.Surface`
 - enables agents to work on multiple projects with full context
 - not yet defined — the mechanism is open
-
-****
-
-## Distributed.Index
-
-- `Distributed.Index` is the architecture where the index spans multiple surfaces
-- public index: `skills/<package>-pkg/index/` — the canonical public package index surface, auxiliary skills assume it exists
-- local index: `notes/index/` — project-local concepts
-- two routing tables: `000-index.md` (public, in skill) and `001-index.md` (local, in `notes/index/`)
-- numbering ranges: `100-299` public flat files, `300-499` local flat files
-- a fresh agent from another project loads only `000-index.md` — sees the public concept catalog
-- a local agent loads both routers — sees the public + local catalog; concept bodies load on demand
-- the same `Index.Block` format, same routing, same scoping — just distributed
 
 ****
 

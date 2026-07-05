@@ -33,7 +33,7 @@ When a surface mentions another skill or reference, load it only if the relevant
 
 The Agentos Index is a concept and design knowledge base — a searchable collection of named entries that capture what a project or package knows about itself. Each entry is a **Kernel Block** — a short, named section that describes one concept from multiple angles using direct, orthogonal lines. The index is the primary discovery surface — where agents go to understand, question, or extend a project's design.
 
-Concepts are named using **Dotted Notation** — compound names like `Vertical.Slice` or `Index.Architecture` that serve as stable identifiers.
+Concepts are named using **Dotted Notation** — compound names like `Vertical.Slice` or `Agentos.Index.System` that serve as stable identifiers.
 
 Indexes are distributed across two scopes:
 
@@ -144,6 +144,6 @@ For deeper understanding of agentos concepts, search the `agentos-pkg` index:
 
 - Search for `Kernel.Writing` to understand the writing philosophy behind index blocks
 - Search for `Kernel.Block` to understand the structure of index entries
-- Search for `Index.Architecture` to understand how the index system is designed
+- Search for `Agentos.Index.System` to understand how the index system is designed
 - Search for `Alignment.Loop` to understand how human-agent workflows converge
 - Search for `Development.Principles` to understand implementation discipline

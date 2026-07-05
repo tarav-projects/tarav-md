@@ -32,6 +32,6 @@ Respond in this exact format:
 
 1. `Concept.Name-appendix.md`
 2. `000-INDEX.md` (public router), `001-index.md` (local router), `010.TODOS.md` (TODO parking), `011.ISSUES.md` (issue parking)
-3. The `Package.Driver` decides what loads; the index has no loading policy of its own (`appendix/` / `Extended.Index.Scope` is still loaded on demand for depth)
+3. The `Package.Driver` decides what loads; the index has no loading policy of its own (`appendix/` / `Index.Appendix` is still loaded on demand for depth)
 4. Public: `100-299`, Local: `300-499`
 5. Check `appendix/Concept.Name-appendix.md` — naming convention is the discovery mechanism, no outlink required
