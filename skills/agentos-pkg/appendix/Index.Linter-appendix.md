@@ -155,9 +155,9 @@
 
 ## Index.Linter/Router.Empty
 
-- emitted when a router file exists but is empty
-- the router should provide concept-to-file routing for the index surface
-- fix by adding routing entries or removing the empty router from the configured lint surface
+- emitted when the depot router `000-INDEX.md` exists but is empty
+- the router should provide concept-to-file routing for the index depot
+- fix by adding routing entries or removing the empty router from the linted depot
 
 ****
 
@@ -284,7 +284,7 @@
 ## Index.Linter/Router.WrongFile
 
 - emitted when a router entry names a real concept but routes it to a different file than the discovered block
-- fix by updating the route file or moving the concept block to the routed file
+- fix by updating the route file or moving the concept block to the routed chapter file
 
 ****
 

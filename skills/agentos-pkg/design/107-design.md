@@ -236,3 +236,57 @@
 - two tempos: hot capture (append during the `Alignment.Loop`) and cold consolidation (a maintenance pass over accumulated lines, where `Index.Edit.Create.Block` and `Index.Edit.Revise.Block` mostly live)
 - the bias is the lowest-cost action that captures the aligned content (`Writing.Friction.Reduction`)
 - every action is user-gated and `Content.Verbatim.Gated` — it is the index
+
+****
+
+## Index.Edit.Create.Block
+
+- `Index.Edit.Create.Block` is the `Index.Edit.Action` of adding a new named concept block to the index
+- the case: a genuinely new concept appears — coined by the user, or revealed when accreted lines show a pattern during consolidation
+- the naming hint: when lines need to be referenced — cited from elsewhere, or pointed at as a group — they need a name; referenceability is what earns a block
+- it is the higher-cost action — a new frame, a router entry, a placement decision; prefer `Index.Edit.Append.Line` unless the concept is genuinely new
+- it mostly lives in the cold tempo, extracted from accumulated lines, not coined hot
+
+****
+
+## Index.Edit.Append.Line
+
+- `Index.Edit.Append.Line` is the `Index.Edit.Action` of adding a `Kernel.Line` to the nearest coherent block — the default index edit
+- it is the lowest-cost capture path, which is why it is the first beat: drop the line, do not stop to architect a block
+- landing selection picks the nearest coherent frame — a concept block, its appendix, or a namespace for subsystem-level lines
+- it is a load-then-word operation: select the block, bring it into context, then word the line against what it already says
+- the block defines the wording — terse, framed, non-redundant — never generated blind and attached
+
+****
+
+## Index.Edit.Modify.Line
+
+- `Index.Edit.Modify.Line` is the `Index.Edit.Action` of refining or correcting an existing `Kernel.Line`, keeping its block
+- the case: a statement already in the block is wrong, imprecise, or superseded by aligned discussion
+- like `Index.Edit.Append.Line` it is load-then-word — the block and the existing line both frame the new wording
+- it is `Content.Verbatim.Gated` — the replacement wording is approved before commit
+- prefer it over stacking a contradicting append: a corrected line beats two lines that disagree
+
+****
+
+## Index.Edit.Revise.Block
+
+- `Index.Edit.Revise.Block` is the `Index.Edit.Action` of restructuring a block whose frame no longer holds its accreted lines
+- the case: lines have piled up past the block's coherence — it needs reorder, split, or promotion of lines into the appendix
+- it is a consolidation move, cold tempo — done with the warm context gathered while chatting, not hot
+- it may spawn `Index.Edit.Create.Block` when a promoted cluster of lines earns its own name
+- it preserves the lines — restructuring moves and reframes them, it never discards aligned content
+
+****
+
+## Partial.Cite
+
+- `Partial.Cite` is using a shortened form of a `Dotted.Name` when it still resolves unambiguously
+- legal when the short form has no collision in the engaged indexes, or the full name was already cited in the same document
+- it is pure ergonomics — `Append.Line` for `Index.Edit.Append.Line` once the family is established
+- the canonical name is always the full path; the router and block headings carry it — shortening is reader-facing convenience only
+- it is the authoring side of `Fuzzy.Dotted.Name`: resolution tolerates approximation, `Partial.Cite` deliberately relies on it
+
+### meta
+
+- aliases: `Partial.Name`
