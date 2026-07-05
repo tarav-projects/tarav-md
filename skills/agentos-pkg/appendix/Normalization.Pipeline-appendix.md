@@ -157,3 +157,21 @@
 - the target is not any fraction in particular — how much to encode is a design decision; the signal is the delta from the designed baseline, not the absolute
 - score movement on recent instances is format-drift detection for free: new raw fields the `Raw.Normalizer`s do not know lower the score as they appear
 - it is the expressiveness measure of the pipeline — it makes visible what raw the model chose not to say, the counterweight to convergence pressure, which alone can be satisfied by collapsing meaning into opaque blobs
+
+****
+
+## Normal.Model.Contract
+
+- `Normal.Model.Contract` is the `Normal.Model.Namespace` reified as a machine-readable document — the model's public contract, one entry per canonical path
+- each path entry carries the column's semantic commitments: value domain, null policy (what a bare absence means — the column's `Null.Legend`), and a closed vocabulary where a string column's value set is finite
+- each entry records the path's intended `meaning` — the semantic definition the projected column is judged against; the contract is the canonical home of per-path meaning, anchored to the source standard's own coordinates where one exists, defining the neutral role where none does
+- `meaning` owns presence semantics, the null policy owns absence semantics — together they fully specify the column; concept depth stays in the index, which a meaning line may cite by `Dotted.Name`
+- paths are written in JSONPath notation, and a valid normal model needs only two of its constructs: child steps and the `[*]` array collapse — the collapse puts the quantifier in the path itself, so one entry describes a field for every element of an array and one table covers per-record and per-element columns alike
+- one artifact, two consumers: `Raw.Normalizer`s target it, `Projection.Test`s load their judgments from it — the shared load point is what keeps model and tests from drifting apart
+- it declares the boundary as well as the interior: a registry of demotion keys (the marked source-anchor area where source-native data may legally live) and the retired keys
+- retired keys are namespace tombstones: convergence leaves former encodings behind, and only an explicit ban stops them from creeping back with new sources
+- annotation conventions (field notes, provenance anchors) are declared in it but marked annotation-class: outside projection semantics, never content, absence never a failure
+- its sections partition a record's whole path space — enumerated canonical interior, registered boundary, declared annotations, banned tombstones — so schema closure ("every path falls in exactly one region") is a mechanical test
+- versioned with the namespace — a version bump implies a corpus migration
+- not an instance validator: a schema checks shape, the contract declares meaning per column — a validator is derivable from it, the reverse is not
+- g702-03 reference implementation: `subcontractor-g70203-db/references/normal-model.contract.json`, loaded by the projection battery
