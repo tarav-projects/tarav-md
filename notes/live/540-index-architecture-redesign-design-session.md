@@ -411,6 +411,8 @@ skills/<package>-pkg/
 
 ## Session.Notes
 
+- DECISION (grounding redesign, first principles): grounding split into `Context.Grounding` (read-side, ungated, levels: `Index.Grounding` → full grounding via Chatlas+git) and `Index.Linking` (write-side pointer maintenance, user-gated index edit; open in the `Agendix`). Miner workflow (L1/L2, `Chat.Grounding.Request`) deprecated → chatlas `_DEPRECATED`. Old index-side Chat.Grounding.* blocks pending one-by-one revisit.
+
 - DECISION (migration review): the `Agendix` — agent-driven untouched member of the index, `agendix/Concept.X-agendix.md` next to `appendix/`; hard provenance rule; user-triggered/not-gated capture; no stable-surface links in; concept-gap detector; will likely redefine the grounding surface (`Chat.Grounding.Request` queue reconcile pending). `Writing.Friction.Reduction` reworded around the friction gradient (friction buys authority; index keeps a friction floor).
 
 - DECISION (migration review): `Soft.Programming.Language` renamed to `Index.Skillware` — no alias; the generic name collided with the program family (`Soft.Program`, `Agentic.Program`, `Program.Hardness`); the `Soft.Program` disambiguation line dropped as no longer needed; all 8 live citations swapped; mapping refreshed (`000-INDEX.md` router, chapter file, `Kernel.Block` structure; dead names `Index.Note`, `Index.Block.Syntax` removed)

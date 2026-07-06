@@ -207,11 +207,9 @@
 
 ## Index.Grounding
 
-- `Index.Grounding` is context discovery and citation from existing index/appendix blocks into a target topic
-- it grounds a topic in prior `Index.Block` or `Appendix.Block` material instead of chat turns
-- it is source-specific retrieval; accepted results still land through the generic `Kernel.Block.Grounding` review semantics
-- it is useful when an agent should search the index for related blocks before discussing, writing, or grounding a topic
-- it does not replace `Chat.Grounding`; the two source families can produce different evidence for the same target block
+- `Index.Grounding` is the first `Context.Grounding` level — enriching the agent's context with the index's content on a topic
+- routing-first selective loading: router → concept blocks → appendix depth as needed (`agentos-index --ground` is this level)
+- it is the cheap default; when the digest is not enough, escalate to full grounding and reach the original surfaces
 
 ****
 

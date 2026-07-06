@@ -290,3 +290,23 @@
 ### meta
 
 - aliases: `Partial.Name`
+
+****
+
+## Context.Grounding
+
+- `Context.Grounding` is enriching an agent's context with `Hard.Evidence`-linked data before it acts
+- foundation: all `User.Touched` data is on the `Chat.Surface`; the index is an index of it and points back to it — for completeness and correctness checking
+- it runs at levels: `Index.Grounding` loads the index's digest of the topic; full grounding also follows the pointers out to the original surfaces — the chats via Chatlas + git history, the code directly
+- it is read-only and ungated — it changes the agent's context, never a surface
+- `Index.Linking` is its dual: linking builds and maintains the pointers grounding follows
+
+****
+
+## Index.Linking
+
+- `Index.Linking` is constructing and maintaining the index's pointers back to the surfaces it indexes — support on the `Chat.Surface` (or code, or files) for index blocks and lines
+- without the links back, the index cannot be checked for completeness or correctness against the touched record
+- it lands in the block's grounding section (`Concept.X/Grounding`), carried as `Grounding.Entry` rows
+- it is an index edit — user-gated like any edit (`Edit.Trigger.Gated`, `Content.Verbatim.Gated`); in the `Agendix` linking runs open, agent-driven (dealt with later)
+- it is the dual of `Context.Grounding`: linking builds the pointers, grounding follows them
