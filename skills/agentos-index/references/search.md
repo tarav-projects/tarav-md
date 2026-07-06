@@ -5,7 +5,9 @@ Use this module when the caller wants cited index context, conceptual lookup, or
 ## Search Model
 
 - use routing-first selective loading
-- start with the relevant router: public `000-INDEX.md`, local `notes/index/001-index.md`, or both
+- start with the relevant routers in the engaged `Index.Depot`s
+- respect `--depot` as the engaged depot scope; otherwise use task-relevant engaged depots
+- respect `--chapter` as the active `Index.Chapter` within engaged depots; default to `design`
 - find the concept or a nearby related name before loading chapter files
 - load only the concept blocks, appendix pages, and references that are relevant to the current task
 - do not preload the full index as a default runtime
@@ -13,11 +15,12 @@ Use this module when the caller wants cited index context, conceptual lookup, or
 
 ## Search Steps
 
-1. Read the relevant routing surface.
-2. Identify the target concept or nearby related concepts.
-3. Read the chapter file (`design/NNN-design.md`) that owns the routed concept.
-4. Load appendix depth only when the block does not carry enough signal.
-5. Load references only when the task needs operational detail or concrete examples.
+1. Read the relevant routing surfaces from the engaged depots.
+2. Apply depot and chapter scope; default chapter is `design`, and widen only when the task or routed concept calls for it.
+3. Identify the target concept or nearby related concepts.
+4. Read the chapter file (`<chapter>/NNN-<chapter>.md`) that owns the routed concept.
+5. Load appendix depth only when the block does not carry enough signal.
+6. Load references only when the task needs operational detail or concrete examples.
 
 ## Citation Behavior
 

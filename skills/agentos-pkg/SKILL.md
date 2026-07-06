@@ -126,7 +126,7 @@ For provider account credential artifact reconciliation and troubleshooting, use
 
 When the Driver is not enough, load a narrower surface:
 
-- **Index operations** — load `agentos-index` for index research, writing, diagnosis, and maintenance
+- **Index operations** — load `agentos-index` for index research, editing, diagnosis, and maintenance
 - **Human-agent workflows** — load `agentos-hugentics` for structured design, implementation, and alignment workflows
 - **Design sessions** — load `hugentics-designer` for scoped human-agent design convergence
 - **Implementation planning** — load `hugentics-impl-designer` for implementation-request design

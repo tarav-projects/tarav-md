@@ -31,7 +31,7 @@
 ## Project.Index.Skill
 
 - `Project.Index.Skill` is the `<project>-index` auxiliary skill for a package index surface
-- the canonical public index content lives in the package skill, usually `skills/<package>-pkg/index/`
+- the canonical public index content lives in the package skill's `Index.Depot`: `000-INDEX.md`, `design/`, and `appendix/`
 - it is a `Package.Aux.Skill` for the package's `Package.Skill.Index`
 - the auxiliary skill may provide direct index access, research, writing, diagnosis, testing, maintenance, or index workflow framing without becoming a separate package root
 
@@ -248,7 +248,7 @@
 - applies to any surface that wants human control over when mutation happens
 - distinct from `Content.Verbatim.Gated`, which gates what is written rather than when
 - a surface can apply one or both gates independently
-- operational detail: `agentos-index --write`
+- operational detail: `agentos-index --edit`
 
 ****
 
@@ -258,7 +258,7 @@
 - the agent proposes; the user settles — no silent rewrites or unreviewed content
 - implies `Edit.Trigger.Gated` — if content is gated, the trigger is necessarily gated too
 - supports `Hugentic.Alignment` — the review point is where human judgment shapes the surface
-- operational detail: `agentos-index --write`
+- operational detail: `agentos-index --edit`
 
 ****
 

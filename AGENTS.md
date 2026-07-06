@@ -10,7 +10,7 @@ It owns `Md.Surface:Agentos.Stack`, including the durable index notes, live note
 
 Load the `agentos-pkg` skill at the start of a session for workflow-neutral Agentos package orientation.
 
-Load the `agentos-index` skill when you need index-grounded context, index research, index writing, diagnosis, testing, or maintenance.
+Load the `agentos-index` skill when you need index-grounded context, index research, index editing, diagnosis, testing, or maintenance.
 
 Use `agentos-index` for cited context collection and direct index work.
 

@@ -1,13 +1,13 @@
 ---
 name: agentos-index
-description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem of agentos-pkg. USE WHEN you need index research, writing, diagnosis, testing, maintenance, or index design context."
+description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem of agentos-pkg. USE WHEN you need index research, editing, diagnosis, testing, maintenance, or index design context."
 ---
 
 # agentos-index
 
 Workflow-neutral `Package.Aux.Skill` for the Agentos Index subsystem.
 
-This skill is the public Batchy router for index work. It orients the caller to the subsystem by default and routes explicit operations such as `--search` and `--write` into named `Skill.Module`s.
+This skill is the public Batchy router for index work. It orients the caller to the subsystem by default and routes explicit operations such as `--search`, `--edit`, and `--ground` into named `Skill.Module`s.
 
 This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
@@ -21,11 +21,49 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - help: "search the index and return cited context"
 - examples: --search "Index.AGENTS.MD"
 
-### Skill.Arg:Write
-- work the approved write path for index or appendix edits
+### Skill.Arg:Edit
+- work the approved edit path for index or appendix changes
 - required: false
-- help: "use the index write path for approved edits"
+- help: "use the index edit path for approved changes"
+- examples: --edit "add Context.Hook"
+
+### Skill.Arg:Write
+- call the edit module
+- required: false
+- help: "use the index edit path for approved changes"
 - examples: --write "add Context.Hook"
+
+### Skill.Arg:Append
+- call the edit module
+- required: false
+- help: "use the index edit path for approved changes"
+- examples: --append "add a line to Context.Hook"
+
+### Skill.Arg:Check
+- run deterministic checks over index depots or explicit index surfaces
+- required: false
+- help: "run index checks"
+- examples: --check --depot agentos-pkg
+
+### Skill.Arg:Lint
+- call the check module
+- required: false
+- help: "run index checks"
+- examples: --lint --depot agentos-pkg
+
+### Skill.Arg:Depot
+- scope index work to one or more engaged index depots
+- required: false
+- default: task-relevant engaged depots
+- help: "scope index work to an index depot"
+- examples: --depot agentos-pkg, --depot agentos-chatlas-pkg
+
+### Skill.Arg:Chapter
+- scope index work to one chapter within the engaged depots
+- required: false
+- default: design
+- help: "scope index work to a chapter"
+- examples: --chapter design, --chapter impl
 
 ### Skill.Arg:Ground
 - ground the current conversation or prompt against the index
@@ -44,16 +82,21 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - the index is `Index.Skillware` — an executable artifact for project knowledge
 - it is an `Alignment.Surface` between humans and agents
-- it contains `Named.Concepts` written in `Kernel.Block:Index` blocks, organized across chapter files (`design/NNN-design.md`) routed by `000-INDEX.md`, with on-demand appendix depth
-- agents operate it by collecting routing blocks, concept blocks, appendix material, and references relevant to the current task
+- it contains `Named.Concepts` written in `Kernel.Block:Index` blocks, organized in `Index.Chapter` files under `Index.Main`, routed by `000-INDEX.md`, with on-demand `Index.Appendix` depth
+- the active chapter defaults to `design`; chapter files are named `NNN-<chapter>.md`
+- index work happens over engaged `Index.Depot`s; `--depot` scopes which depots are engaged and `--chapter` scopes within them
+- agents operate it by loading routers, concept blocks, appendix material, and references relevant to the current task
 
 ## Router Table
 
 | Situation | Module / Surface |
 |---|---|
 | When the caller wants to find concepts, retrieve cited index context, inspect related blocks, discover whether appendix depth exists, or understand how the index already models a topic before proposing changes | `references/search.md` |
-| When the caller wants to draft, redraft, critique, tighten, or otherwise shape index-block or appendix-block wording; when the task is proposing concept text, revising a block, or preparing an approved index or appendix edit; includes block-shaping work even before file mutation is approved | `references/write.md` |
+| When the caller wants to draft, redraft, critique, tighten, or otherwise shape index-block or appendix-block wording; when the task is proposing concept text, revising a block, appending a line, or preparing an approved index or appendix edit; includes block-shaping work even before file mutation is approved; `--edit`, `--write`, and `--append` all call this module | `references/edit.md` |
 | When the caller wants the current prompt or ongoing conversation grounded against the index; when the task is to surface the most relevant concepts, tensions, contradictions, significant accepted remarks, or missing coverage; when the caller wants the relationship between the live discussion and the existing index made explicit rather than running a raw lookup | `references/ground.md` |
+| When the caller wants deterministic diagnosis, linter findings, or post-edit validation for an index depot or explicit index/appendix surface; `--check` and `--lint` both call this module | `references/check.md` |
+| When the caller provides `--depot`, scope the selected operation to those `Index.Depot`s; otherwise use task-relevant engaged depots | applies to `references/search.md`, `references/edit.md`, and `references/ground.md` |
+| When the caller provides `--chapter`, scope the selected operation to that `Index.Chapter` inside the engaged depots; default to `design` when no chapter is named | applies to `references/search.md`, `references/edit.md`, and `references/ground.md` |
 | When the caller needs package-level understanding of how the index subsystem is designed, structured, and distributed across public and local surfaces | `agentos-pkg/design/`, `agentos-pkg/appendix/`, `agentos-pkg/references/` |
 | When the caller needs concrete examples of good and bad block shape before proposing or judging block wording | `agentos-pkg/references/index-block-catalog.md` |
 | When the caller needs behavioral testing of index entry paths, selection behavior, or usage patterns | `agentos-testground` |
@@ -62,23 +105,27 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 An agent operating the index should:
 
-- search routing surfaces first, then load only relevant concept blocks, appendix material, or references
+- search routing surfaces in the engaged `Index.Depot`s first, then load only relevant concept blocks, appendix material, or references
+- respect `--depot` as an `Index.Depot` scope; otherwise use task-relevant engaged depots
+- respect `--chapter` as an `Index.Chapter` scope inside engaged depots; default chapter is `design`
 - return context with source block citations so the caller can verify and maintain the summary
 - distinguish discovered context from inference
 - use `--ground` when the caller wants the live discussion compared against the index instead of a direct query lookup
-- use writing/mutation only when the user has approved an index write
+- use file mutation only when the user has approved an index edit
+- run a linter check after applying an approved index or appendix edit
 
 For delegated read-only research that protects the caller's context, use `Packages.Master.Agent` against the relevant package or packages.
 
 ## Skill Modules
 
 - `references/search.md` — routing-first search, selective loading, appendix discovery, and citation behavior
-- `references/write.md` — approved write path for index and appendix edits: gates, naming, placement, write loop, and maintenance
+- `references/edit.md` — approved edit path for index and appendix changes: gates, actions, naming, placement, edit loop, and maintenance
 - `references/ground.md` — conversation-to-index grounding: derive the active themes, search selectively, and report matches, tensions, and gaps
+- `references/check.md` — deterministic index checks through `agentos index linter`
 
 ## When To Load This Skill
 
 - when a session needs index-grounded context or a custom index research pass
-- when writing, diagnosing, testing, or maintaining the index
+- when editing, diagnosing, testing, or maintaining the index
 - when discussing or modifying the index design itself
 - when debugging index behavior or resolving design questions

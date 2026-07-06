@@ -1,22 +1,27 @@
-# agentos-index --write
+# agentos-index --edit
 
 Use this module when the user has approved an index or appendix edit.
 
-Drafting or revising block wording is also `--write` work, even before the user has approved a file mutation.
+Drafting or revising block wording is also edit work, even before the user has approved a file mutation.
 
-## Write Gates
+`--edit`, `--write`, and `--append` all call this module. The context defines the edit action.
+
+## Edit Gates
 
 - index work is gated by `Edit.Trigger.Gated`
 - wording-sensitive index-block work is also gated by `Content.Verbatim.Gated`
-- the agent may propose a write path or draft, but must not commit an index or appendix edit without explicit approval
+- the agent may propose an edit path or draft, but must not commit an index or appendix edit without explicit approval
 
 ## Structure
 
-- public router: `000-INDEX.md`
-- public flat files: `design/100-design.md`, `101-design.md`, ...
-- public appendix files: `appendix/Concept.Name-appendix.md`
+- depot router: `000-INDEX.md`
+- public main surface: `Index.Main`
+- public chapter files: `<chapter>/NNN-<chapter>.md`, defaulting to `design/NNN-design.md`
+- public appendix depth: shared `Index.Appendix` files under `appendix/Concept.Name-appendix.md`
 - local router: `notes/index/001-index.md`
-- local flat files: `notes/index/300-index.md`, `301-index.md`, ...
+- local index files: `notes/index/300-index.md`, `301-index.md`, ...
+- `--depot` scopes edits to engaged `Index.Depot`s; otherwise use task-relevant engaged depots
+- `--chapter` scopes main-surface edits to an `Index.Chapter`; default is `design`
 
 ## Naming And Placement
 
@@ -36,24 +41,36 @@ Drafting or revising block wording is also `--write` work, even before the user 
 - inlining other concepts by `Dotted.Name` keeps independence — `Name.As.Index` anchors are resolvable, not dependencies that break it
 - the primary hazard is distilling a live conversation; strip the session's frame before committing
 
-## Write Loop
+## Edit Decision Mechanics
+
+- use the context to choose the natural `Index.Edit.Action`
+- create a block when the aligned content is a genuinely new named concept
+- append a line when the content is a valuable point under an existing concept
+- modify a line when an existing statement is wrong, stale, or imprecise
+- revise a block when the current frame no longer holds its accumulated lines
+- use `Index.Main` for routed fundamentals and `Index.Appendix` for tail, depth, history, scoped children, or loose but valuable material
+- prefer the lowest-friction edit that captures the aligned content without losing meaning
+
+## Edit Loop
 
 1. Propose a full new block or a focused diff.
 2. Screen it for `Block Independence` — strip any deixis to the authoring conversation; state the concept positively.
 3. Review with the user.
 4. Revise until accepted.
-5. Commit the approved edit to the natural surface.
+5. Apply the approved edit to the natural surface.
 6. Update the router when concepts are added, renamed, moved, or gain appendix depth.
+7. Run a linter check over the edited depot or explicit surfaces.
 
-## Post-Write Maintenance
+## Post-Edit Maintenance
 
 - update the router when the concept inventory changed
 - add or update appendix route annotations when appendix depth changed
 - update namespace membership in `### meta` when the concept belongs to an `Explicit.Namespace`
 - check cited duplicates and related stable mentions when editing an existing concept
+- run `agentos index linter --depot <depot>` after depot edits, or explicit `--index` / `--appendix` checks when the edit is scoped to individual surfaces
 
 ## Quality References
 
 - load `agentos-pkg/references/index-block-catalog.md` before proposing new block wording or revising existing block wording
 - use `agentos-pkg/references/index-block-catalog.md` for concrete block-quality calibration
-- use the `agentos-pkg` index and appendix for the underlying design concepts that govern writing
+- use the `agentos-pkg` index and appendix for the underlying design concepts that govern editing

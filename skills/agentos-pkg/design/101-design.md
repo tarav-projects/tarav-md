@@ -104,7 +104,7 @@
 
 - `Dynamic.Loading` is the `Context.Loading.Path` tier that pulls context selectively, on demand, rather than guaranteeing it
 - it loads only what the live situation calls for, keeping context minimal
-- two sub-modes today: `Semantic.Router` selection — the agent matches the situation against router keys an earlier tier loaded — and explicit `Batchy.Skill` call — a `Skill.Arg` names the `Skill.Module` to pull (e.g. `--write`)
+- two sub-modes today: `Semantic.Router` selection — the agent matches the situation against router keys an earlier tier loaded — and explicit `Batchy.Skill` call — a `Skill.Arg` names the `Skill.Module` to pull (e.g. `--edit`)
 - it depends on earlier tiers: it can only select against the routers and keys that `Cold.Loading` or `SKILL.Loading` already brought
 - it is open-ended: new pull mechanisms (auto-triggers, agent-initiated fetches) extend this tier without changing the earlier ones
 

@@ -69,9 +69,9 @@
 ## Index.AGENTS.MD
 
 - `Index.AGENTS.MD` is a `Context.Hook` for the index surface
-- its canonical artifact path is `index/AGENTS.md` relative to the index root
+- its canonical artifact path is `design/AGENTS.md` relative to the `Index.Depot` root
 - it injects index-usage context through the harness `AGENTS.md` loading mechanism
-- `agentos-md/skills/agentos-pkg/index/AGENTS.md` is the `Reference.Implementation` for `Index.AGENTS.MD`
+- `agentos-md/skills/agentos-pkg/design/AGENTS.md` is the `Reference.Implementation` for `Index.AGENTS.MD`
 
 ****
 

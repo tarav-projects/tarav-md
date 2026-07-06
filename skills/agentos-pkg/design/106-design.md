@@ -100,7 +100,7 @@
 - the agent may construct and tag the fact; the user gates it — the gating is the touch, authorship is irrelevant
 - it is general over the form of touch: stated, discussed, approved, co-drafted — any user-gated production qualifies
 - it is a cross-surface predicate — the index is *a* `User.Touched` surface, the `Chat.Surface` is another
-- it separates `Touched.Space` from `Untouched.Space` — untouched is always `Open.Space` and off-index (the `Agendix` is its index-adjacent home); touched can be open (`FR`) or constrained
+- it separates `Touched.Space` from `Untouched.Space` — untouched is always `Open.Space` and off-index (the `Index.Agendix` is its index-adjacent home); touched can be open (`FR`) or constrained
 
 ****
 
@@ -116,7 +116,7 @@
 
 - `Untouched.Space` is the region of the `Design.Space` with no `User.Touched` evidence — the hugentic process has not reached it
 - it is always `Open.Space`: with no touch there is no directive constraint, so the agent decides for itself
-- it never becomes an index line — untouched material remains in the chat, the work, or the `Agendix`, never the index proper
+- it never becomes an index line — untouched material remains in the chat, the work, or the `Index.Agendix`, never the index proper
 - the chats are mixed, touched and untouched; the index earns its keep by extracting the touched part worth keeping — not user filler — which is exactly `Line.Type`'s gate
 - alignment is the shrinking of `Untouched.Space`: growing touch across the `Design.Space`
 
