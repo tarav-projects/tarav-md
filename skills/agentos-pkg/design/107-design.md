@@ -310,3 +310,20 @@
 - it lands in the block's grounding section (`Concept.X/Grounding`), carried as `Grounding.Entry` rows
 - it is an index edit — user-gated like any edit (`Edit.Trigger.Gated`, `Content.Verbatim.Gated`); in the `Agendix` linking runs open, agent-driven (dealt with later)
 - it is the dual of `Context.Grounding`: linking builds the pointers, grounding follows them
+
+****
+
+## Anchory.System
+
+- `Anchory.System` is the Agentos subsystem for stable symbolic links to contexts on other surfaces
+- `Anchory.Anchor` carries compact identity while `Anchory.Register` carries resolution data
+- `Anchory.Namespace` partitions anchor keys into independent resolution domains
+- Anchory is Agentos-wide rather than project-local
+- Anchory is library-first so other subsystems can integrate directly
+- integrating subsystems own payload meaning and final traversal to referenced surfaces
+- `agentos anchory ...` is a thin CLI over the library contract
+- referenced surfaces remain authoritative; Anchory is plumbing, not truth
+
+### meta
+
+- namespace-members: `./Anchory.Anchor`, `./Anchory.Namespace`, `./Anchory.Register`, `./Anchory.Record`, `./Anchory.Depot`, `./Integration`, `./Chat.Application`, `./Open.Design`
