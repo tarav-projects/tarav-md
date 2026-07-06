@@ -2,11 +2,11 @@
 
 `Impl.Req` is the implementation-request handoff produced by a `Design.Session`.
 
-When a session produces implementation work, load the `hugentics-impl-designer` workflow, which defines the full `Impl.Req` artifact format, vertical slice protocol, and design process.
+When a session produces implementation work, load `agentos-hugentics-impl --design`, which defines the full `Impl.Req` artifact format, vertical slice protocol, and design process.
 
 ## Role
 
-`Impl.Req` translates the current design-session state into implementation-ready guidance. The artifact format and writing rules are owned by `hugentics-impl-designer` — this reference only covers the handoff from the design session side.
+`Impl.Req` translates the current design-session state into implementation-ready guidance. The artifact format and writing rules are owned by the `agentos-hugentics-impl` design module — this reference only covers the handoff from the design session side.
 
 ## Relationship To Design Session
 

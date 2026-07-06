@@ -1,4 +1,4 @@
 interface:
   display_name: "hugentics-codebase-cleaner"
   short_description: "Scan-design-execute code cleanup via the hugentic harness"
-  default_prompt: "Use $hugentics-codebase-cleaner to improve this repository in place: scan for cleanup targets, produce an Impl.Req via hugentics-impl-designer, confirm with the user, then execute via hugentics-impl-executer in Alignment.Mode:Autonomous. Summarize the changes at the end."
+  default_prompt: "Use $hugentics-codebase-cleaner to improve this repository in place: scan for cleanup targets, produce an Impl.Req through $agentos-hugentics-impl --design, confirm with the user, then execute it through --exec in Alignment.Mode:Autonomous."

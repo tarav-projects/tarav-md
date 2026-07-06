@@ -1,6 +1,6 @@
 ---
 name: hugentics-codebase-cleaner
-description: Improve a git-tracked codebase in place by scanning for targeted cleanup refactors, producing an Impl.Req via hugentics-impl-designer, and executing it via hugentics-impl-executer in Alignment.Mode:Autonomous after one user confirmation. USE WHEN the user wants the agent to simplify code, reduce duplication, address repeated-knowledge or DRY violations, remove poor abstractions, centralize repeated knowledge, tighten boundaries, or generally clean up a repository after implementation.
+description: Improve a git-tracked codebase in place by scanning for targeted cleanup refactors, producing an Impl.Req via agentos-hugentics-impl --design, and executing it via --exec in Alignment.Mode:Autonomous after one user confirmation. USE WHEN the user wants the agent to simplify code, reduce duplication, address repeated-knowledge or DRY violations, remove poor abstractions, centralize repeated knowledge, tighten boundaries, or generally clean up a repository after implementation.
 ---
 
 # Hugentics Codebase Cleaner
@@ -50,7 +50,7 @@ Only act on changes that improve the repo under its current architecture. Respec
 
 ## Workflow
 
-Cleanup is a two-stage hugentic flow: scan + scope here, then hand off to `hugentics-impl-designer` and `hugentics-impl-executer` for the design + execution. Cleanup owns a single boundary confirmation as its own declared `Alignment.Checkpoint`: it presents the `Impl.Req` for one user confirmation, then runs design and execution in `Alignment.Mode:Autonomous` (see `agentos-hugentics/references/alignment-session.md`).
+Cleanup is a two-stage hugentic flow: scan + scope here, then hand off to `agentos-hugentics-impl --design` and `--exec` for design + execution. Cleanup owns a single boundary confirmation as its own declared `Alignment.Checkpoint`: it presents the `Impl.Req` for one user confirmation, then runs design and execution in `Alignment.Mode:Autonomous` (see `agentos-hugentics/references/alignment-session.md`).
 
 ### 1. Prepare the working tree (always, first)
 
@@ -72,17 +72,17 @@ Cleanup is a two-stage hugentic flow: scan + scope here, then hand off to `hugen
 - Avoid broad rewrites, repo-wide renames, or architecture migrations unless the user asked for them.
 - Do not exclude code based on how recently it was written. Freshness is not a protected status.
 
-### 4. Produce an Impl.Req via hugentics-impl-designer
+### 4. Produce an Impl.Req via agentos-hugentics-impl
 
-- Hand off the scoped cleanup set to `hugentics-impl-designer` and produce an `Impl.Req`.
+- Hand off the scoped cleanup set to `agentos-hugentics-impl --design` and produce an `Impl.Req`.
 - The `Impl.Req` lives in the **cleaned project's** `notes/live/`, not the invoker's. Use `agentos-live-surfaces` for naming and numbering.
 - Carry over cleanup's constraints into the `Impl.Req`: stay narrow, prefer module-local helpers, no new frameworks, replace obsolete interfaces rather than wrap them.
 - Run the designer in `Alignment.Mode:Autonomous`: the loop runs without prompting and produces the `Impl.Req`.
 - Present the produced `Impl.Req` to the user for one confirmation — cleanup's own boundary `Alignment.Checkpoint` — before execution.
 
-### 5. Execute via hugentics-impl-executer
+### 5. Execute via agentos-hugentics-impl
 
-- Hand the user-confirmed `Impl.Req` to `hugentics-impl-executer` in `Alignment.Mode:Autonomous`.
+- Hand the user-confirmed `Impl.Req` to `agentos-hugentics-impl --exec` in `Alignment.Mode:Autonomous`.
 - The executer owns the mandatory pre-execution checkpoint commit (the rollback floor and the only commit phase) and the deviation contract.
 - For cleanup, a deviation that would reshape the design or broaden scope is a hard boundary — abort the autonomous run and surface to the user; cleanup never silently broadens its own scope.
 

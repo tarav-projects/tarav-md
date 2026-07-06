@@ -1,0 +1,82 @@
+---
+name: agentos-hugentics-impl
+description: "Unified Hugentic implementation workflow for designing Impl.Req artifacts, executing them, or developing an idea through both phases. USE WHEN the user wants implementation planning, execution of an Impl.Req, or end-to-end design and implementation. Called with an optional input plus --design, --execute/--exec, --develop/--dev/--impl, and --AUTO."
+---
+
+# Agentos Hugentics Impl
+
+Unified `Aux.Workflow.Skill` for the implementation side of the Hugentic Harness.
+
+The skill routes into implementation design, implementation execution, or both in sequence while keeping each workflow in an on-demand `Skill.Module`.
+
+This is a `Batchy.Skill` - called like a terminal command. Load `agentos-batchy-skills` for the full convention.
+
+- `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
+- every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
+- supplied flags, aliases, loose forms, and positionals resolve to the `Skill.Arg` names below.
+
+## Skill.Arg.Section
+
+### Skill.Arg:Input
+- the implementation source: an idea, direct request, design artifact, design summary, or `Impl.Req`
+- required: false
+- default: the caller's current explicit request or supplied context
+- help: "the idea, design source, or Impl.Req to operate on"
+- examples: --input "add project-scoped configuration"
+
+### Skill.Arg:Workflow
+- selects one implementation workflow
+- required: false
+- default: infer `Workflow:Execute` when `Input` resolves to an `Impl.Req`; otherwise infer `Workflow:Design`
+- type: selector
+- help: "design an Impl.Req, execute one, or develop an idea through both phases"
+- examples: --design, --execute, --develop
+- `Workflow:Design`: --design; action: load `references/design.md`
+- `Workflow:Execute`: --execute; aliases: --exec; action: load `references/execute.md`
+- `Workflow:Develop`: --develop; aliases: --dev, --impl; action: load `references/develop.md`
+
+### Skill.Arg:Alignment.Mode
+- whether the workflow prompts at declared `Alignment.Checkpoint`s or resolves them autonomously
+- required: false
+- default: Interactive
+- type: switch
+- help: "run the selected workflow autonomously"
+- examples: --AUTO
+- aliases: --auto, --autonomous
+- detail: `agentos-hugentics/references/alignment-session.md`
+
+## Workflow Resolution
+
+Resolve the workflow in this order:
+
+1. An explicit workflow flag always wins.
+2. Without a workflow flag, resolve `Input` to `Workflow:Execute` when it is an `Impl.Req`.
+3. Otherwise resolve to `Workflow:Design`.
+4. Never infer `Workflow:Develop`; end-to-end execution requires `--develop`, `--dev`, or `--impl`.
+
+Treat input as an `Impl.Req` when it is:
+
+- a path whose file is an `Impl.Req`, normally ending in `-impl-req.md`
+- a note number or reference that resolves to such an artifact
+- supplied artifact content carrying the `Impl.Abstract`, `Impl.Index`, `Execution.Plan`, and `Impl.Log` structure
+
+If neither an input nor actionable current context exists, orient to the available workflows and do not guess a target.
+
+## Skill Modules
+
+| Workflow | Module | Result |
+|---|---|---|
+| `Workflow:Design` | `references/design.md` | produce an implementation-ready `Impl.Req` |
+| `Workflow:Execute` | `references/execute.md` | execute an existing `Impl.Req` |
+| `Workflow:Develop` | `references/develop.md` | produce an `Impl.Req`, then execute that exact artifact |
+
+Load only the selected workflow module. The develop module composes the other two and therefore loads both in sequence.
+
+## Shared Contract
+
+- Preserve the selected `Alignment.Mode` across every phase.
+- Treat the generated or supplied `Impl.Req` as the phase boundary and audit trail.
+- Keep the `impl.designer.agent` and `impl.executer.agent` responsibilities distinct even when one agent runs both.
+- Load `agentos-pkg` when working in an Agentos project.
+- Load `agentos-index` when the task needs index-grounded context or index mutation.
+- Respect project-local `AGENTS.md` and repository instructions before any implementation edit.

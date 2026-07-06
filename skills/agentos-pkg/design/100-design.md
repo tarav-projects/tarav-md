@@ -162,9 +162,9 @@
 
 ## Chat.Grounding
 
-- `Chat.Grounding` is grounding whose source is `Chat.Surface` — an `Index.Block` or `Appendix.Block` cited to prior user/agent interaction
-- it is the canonical grounding source — `Chat.Surface` is the Hugentic surface where alignment happens
-- other grounding sources converge toward it: drift resolves on `Chat.Surface`, and the resolution can become new grounding
+- `Chat.Grounding` is grounding whose evidence source is the `Chat.Surface` — a block or line linked back to the user/agent interaction that touched it
+- it is the canonical source: the `Chat.Surface` holds the touch events, so index content should ultimately link there — built and maintained by `Index.Linking`
+- other sources converge toward it: drift resolves on the `Chat.Surface`, and the resolution becomes a new link
 
 ****
 

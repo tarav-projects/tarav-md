@@ -28,20 +28,21 @@ This skill is workflow neutral. It maps the Hugentic subsystem without entering 
 | Phase | Agent | Workflow Master |
 |---|---|---|
 | What.Design | `Main.Designer.Agent` | `hugentics-designer` |
-| How.Design | `impl.designer.agent` | `hugentics-impl-designer` |
-| Impl.Exec | `impl.executer.agent` | `hugentics-impl-executer` |
+| How.Design | `impl.designer.agent` | `agentos-hugentics-impl --design` |
+| Impl.Exec | `impl.executer.agent` | `agentos-hugentics-impl --execute` |
 
 ## Artifacts
 
 | Artifact | Defined In |
 |---|---|
 | `Alignment.Backend:Artifact:What` | `hugentics-designer` |
-| `Impl.Req` | `hugentics-impl-designer` |
+| `Impl.Req` | `agentos-hugentics-impl` design module |
 
 ## How To Use
 
 - Load this skill for the Hugentic map.
 - Load a workflow master only when the caller intends to enter that operational mode.
+- Use `agentos-hugentics-impl --develop` to produce an `Impl.Req` and execute it in one call.
 - Workflow masters contain artifact format definitions, reference files, gates, and operational guidance.
 
 ## Alignment.Loop.Interruptions

@@ -119,7 +119,7 @@ Do not upgrade automatically. The user controls backend changes.
 When the user wants implementation-ready handoff:
 
 - load `references/impl-req.md`
-- load `hugentics-impl-designer` to hand off to the implementation-request workflow
+- load `agentos-hugentics-impl --design` to hand off to the implementation-request workflow
 
 ## Move Routing
 

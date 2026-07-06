@@ -129,8 +129,7 @@ When the Driver is not enough, load a narrower surface:
 - **Index operations** — load `agentos-index` for index research, editing, diagnosis, and maintenance
 - **Human-agent workflows** — load `agentos-hugentics` for structured design, implementation, and alignment workflows
 - **Design sessions** — load `hugentics-designer` for scoped human-agent design convergence
-- **Implementation planning** — load `hugentics-impl-designer` for implementation-request design
-- **Implementation execution** — load `hugentics-impl-executer` for executing implementation plans
+- **Implementation workflows** — load `agentos-hugentics-impl` to design an `Impl.Req`, execute one, or develop an idea through both phases
 - **Workflow status** — load `hugentics-workflow-status` for a structured checkpoint
 - **Live surfaces** — load `agentos-live-surfaces` for live-note and live-script location, naming, and numbering
 - **Skill conventions** — load `agentos-batchy-skills` for the conventions a proper Agentos skill follows (skill taxonomy, the Batchy calling convention, argument parsing)
