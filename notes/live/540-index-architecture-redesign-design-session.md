@@ -403,7 +403,7 @@ skills/<package>-pkg/
 - `Line.Type.Vocabulary` is the controlled set of `Line.Type`s an index uses — small, curated, soft (`Concept.Hardness`); extensible, not a hard enum
 - each type is a verb on the `Design.Space` — types sort by how a line acts on the space: collapsing it, describing it, or declaring it open
 - a type earns its place when a recurring line-act has no home; a type that attracts filler is a smell
-- draft type ideas parked from the session (not converged): CT constraint, DC decision, RJ rejected, DF definition, PR principle, FR free
+- CONVERGED (2026-07-07, live index 106): starting vocabulary is five types — `DC` decision (pins a variable to a value), `CT` constraint (bounds to a subset), `RJ` rejection, `PR` principle, `FR` free; `DF` dropped (definition lives in the block's first line by convention, can earn its place later); each type creates a validation point — a typed line must perform its act
 
 ### Line.Type.Vocabulary/Appendix
 - type analytics: which types earn their keep, which are smells — a note/summary type would flag chat-recounting sneaking in

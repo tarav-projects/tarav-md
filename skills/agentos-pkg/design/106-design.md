@@ -146,6 +146,47 @@
 - `Line.Type.Vocabulary` is the controlled set of `Line.Type`s an index uses — small, curated, soft (`Concept.Hardness`); extensible, not a hard enum
 - each type is a verb on the `Design.Space` — types sort by how a line acts on the space: collapsing it, describing it, or declaring it open
 - a type earns its place when a recurring line-act has no home; a type that attracts filler is a smell
+- each type creates a validation point: a typed line must perform its act — a constraint line must constrain something; a typed line that performs nothing is mistyped filler
+
+****
+
+## Line.Type:DC
+
+- `Line.Type:DC` marks a decision — the line pins a `Design.Variable` to a value
+- validation point: the line must name what was decided and the value it took; a `DC` that pins nothing is mistyped
+- lint: two `DC` lines pinning the same variable to different values is a contradiction to surface
+
+****
+
+## Line.Type:CT
+
+- `Line.Type:CT` marks a constraint — the line bounds a `Design.Variable` to a subset without picking a value
+- validation point: the line must exclude something; a `CT` that rules nothing out is filler
+- lint: constraints whose intersection is empty, and a `CT` silently violated by a later `DC`
+
+****
+
+## Line.Type:RJ
+
+- `Line.Type:RJ` marks a rejection — the line excludes a considered alternative
+- validation point: the line must name the rejected alternative, preferably with the reason
+- lint: a rejected alternative later reintroduced without a new touch
+
+****
+
+## Line.Type:PR
+
+- `Line.Type:PR` marks a principle — a generative orientation that spawns constraints across many variables
+- validation point: the line must orient decisions beyond one variable; a `PR` scoped to a single variable is a `CT`
+- lint: decisions or constraints that run against a standing principle
+
+****
+
+## Line.Type:FR
+
+- `Line.Type:FR` marks a free declaration — the user explicitly leaves a `Design.Variable` agent-owned
+- validation point: the line must name what is left open; freedom is a touched act, not an omission
+- lint: a `FR` variable later constrained without retiring the declaration
 
 ****
 
