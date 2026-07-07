@@ -66,7 +66,7 @@
 - `Module.Dependency.Management` is the part of the Skillware module model that maintains a module's `Derivation.Rule`s — tracking dependencies and the context so derived content can be drift-checked and regenerated.
 - it records, per derived span, the dependencies (by durable address) and the context, and re-runs the rule on demand.
 - the more derived a module, the more its maintenance automates — derived spans re-project, while original content and the seams where it meets derived content stay manual.
-- dependencies are addressed by the in-place linking mechanism — `Dotted.Names` for blocks, `Chat.Ref`/`Chat.Grounding` for chat fallback dependencies.
+- dependencies are addressed by the in-place linking mechanism — `Dotted.Names` for blocks, `Anchory.Anchor`/`Chat.Grounding` for chat fallback dependencies.
 
 ****
 
@@ -185,7 +185,7 @@
 - `Index.Agendix` is the agent-driven shadow of the Index — an untouched member of the index surface, one file per `Index.Main` concept: `agendix/Concept.X-agendix.md`, next to `appendix/`
 - it is a cache the agent keeps to aid grounding on stable surfaces — no stable surface may link into it; promotion copies an entry out through the normal gates (including into the index)
 - the agent cannot mint concepts — it attaches lines under existing routed concepts; the ontology primes the capture, the agent fills the gaps — the index's shadow, not a second index
-- hard rule: every line is a grounded summary of chat discussion — a rejection, a constraint, a highlight the index does not yet capture — carrying its `Chat.Ref`/`File.Mention` pointer; unsourced agent reasoning does not belong
+- hard rule: every line is a grounded summary of chat discussion — a rejection, a constraint, a highlight the index does not yet capture — carrying its `Anchory.Anchor`/`File.Mention` pointer; unsourced agent reasoning does not belong
 - writing rules are the appendix's — `Kernel.Writing` discipline, the same block and line forms; only the supervision differs: all work is done and supervised by agents
 - capture is user-triggered but not gated — the agent may suggest a capture pass, never start one
 - it extends the `Block.Line.Gradient` past the touch cut: fundamentals → `Concept.X/Appendix` (touched tail) → the concept's agendix shadow tail (untouched)
@@ -307,7 +307,7 @@
 
 - `Index.Linking` is constructing and maintaining the index's pointers back to the surfaces it indexes — support on the `Chat.Surface` (or code, or files) for index blocks and lines
 - without the links back, the index cannot be checked for completeness or correctness against the touched record
-- it lands in the block's grounding section (`Concept.X/Grounding`), carried as `Grounding.Entry` rows
+- it lands in the block's grounding section (`Concept.X/Grounding`), carried as grounding lines — an `Anchory.Anchor` plus a one-sentence note
 - it is an index edit — user-gated like any edit (`Edit.Trigger.Gated`, `Content.Verbatim.Gated`); in the `Agendix` linking runs open, agent-driven (dealt with later)
 - it is the dual of `Context.Grounding`: linking builds the pointers, grounding follows them
 

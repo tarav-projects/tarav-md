@@ -4,45 +4,15 @@
 
 ## Kernel.Block.Grounding
 
-- `Kernel.Block.Grounding` is the grounding section of a `Kernel.Block`, addressed `Concept.X/Grounding`
-- it is a mechanical `Hard.Evidence` linking system — it links the block to where its evidence lives
-- it carries `Grounding.Entry` links and their evidence notes, never agent reinforcement or commentary
-- it groups `Grounding.Entry` rows by lightweight role labels
-- a grounding source can be a `Chat.Ref`, a `File.Mention`, a web page, or another evidence surface
+- `Kernel.Block.Grounding` is the grounding of a `Kernel.Block` — two appendix sections, `Concept.X/Grounding.Head` and `Concept.X/Grounding.Drift`
+- both hold grounding lines: an `Anchory.Anchor` plus a one-sentence explanation of what the anchored turn grounds
+- `Grounding.Head` holds evidence supporting the block as currently written; a missing or empty `Grounding.Head` means the block is not grounded
+- `Grounding.Drift` holds related evidence that no longer supports the current content — kept for provenance, created on demand
+- state is positional: as the concept evolves, lines move from `Grounding.Head` to `Grounding.Drift`; the move reads in git history
+- relatedness is the retention gate: a link unrelated to the block's concept is dropped from either section, not kept
+- an anchor lands in an evidence neighborhood — the processor is an agent: it reads the landing turn and around it
+- built and maintained by `Index.Linking`; followed by `Context.Grounding`, which needs only `Grounding.Head`
 - grounding lives only on index/appendix blocks; downstream surfaces cite the grounded block instead of re-grounding
-- a block with no `Kernel.Block.Grounding` is simply not grounded
-- `*HEAD*` marks the active current grounding for the block
-
-****
-
-## Grounding.Entry
-
-- `Grounding.Entry` is one citation row in a `Kernel.Block.Grounding` section
-- it resolves to one evidence reference — a `Chat.Ref`, a `File.Mention`, or another source
-- it includes a short evidence note: what the cited source establishes for the block
-- its grounding role comes from the group it appears under
-- `*HEAD*` entries identify active evidence still considered current for the block
-
-****
-
-## Grounding.DRIFT
-
-- `Grounding.DRIFT` is an explicit marker that a grounded block needs alignment discussion
-- it only marks `*HEAD*` grounding rows
-- it signals that alignment must be performed on this block/grounding
-- it does not encode the drift reason; the evidence note carries the reason
-- its canonical form is a `DRIFT:` prefix on the affected `*HEAD*` row
-- the resolution happens on `Chat.Surface` and can become the new `*HEAD*` grounding
-
-****
-
-## Grounding.History
-
-- `Grounding.History` is accumulated older grounding evidence for a grounded topic, superseded by current `*HEAD*` grounding
-- it belongs in the topic's appendix surface
-- it preserves alignment evolution, rejected directions, superseded views, and drift resolutions
-- it does not override `*HEAD*` grounding in the index block
-- it can grow freely under appendix constraints
 
 ****
 
@@ -101,20 +71,8 @@
 - every chat grounding target is a `Index.Block` or `Appendix.Block`
 - if an issue or topic needs grounding, it must first resolve to an existing block or become a new block
 - if a subtopic inside a block needs independent grounding, it should become its own kernel block
-- `Active.Grounding` is scoped to one target block
+- a `Kernel.Block.Grounding` is scoped to its one target block
 - other surfaces cite grounded blocks instead of inventing separate grounding targets
-
-****
-
-## Active.Grounding
-
-- `Active.Grounding` is the set of grounding entries that support the current factual shape of a block
-- active grounding is scoped to one `Chat.Grounding.Target.Block`
-- active grounding can include multiple `*HEAD*` rows when several chat refs jointly support the current block
-- a grounding entry remains active while it supports the current block, even if newer compatible evidence exists
-- drift is measured against active grounding, not against every older grounded chat
-- older grounding moves to `Grounding.History` only when it no longer supports the current block as written
-- active grounding changes through `Chat.Grounding.Candidate.Review`, `Chat.Grounding.Head.Audit`, or renewed discussion on `Chat.Surface`
 
 ****
 

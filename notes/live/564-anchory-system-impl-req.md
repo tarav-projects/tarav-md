@@ -3,10 +3,11 @@
 ## Impl.Abstract
 
 - **scope:** implement the first Anchory core library in `agentos-py`, expose `agentos anchory ...` through `agentos-cli`, and prove the application boundary with a Chatlas depot adapter
-- **status:** ready for implementation
+- **status:** implementation complete; awaiting review
 - **source:** `skills/agentos-pkg/design/107-design.md` (`Anchory.System`) and `skills/agentos-pkg/appendix/Anchory.System-appendix.md`
 - **current state:** no Anchory code or CLI exists; `agentos-py` owns foundation libraries, `agentos-cli` aggregates command registration, and `agentos-chatlas-py` already resolves a Chatlas root
 - **out of scope:** automatic anchor allocation, Chatlas record semantics, Chatlas command integration, `Chat.Ref` migration, namespace selection, delete operations, and application Git workflows
+- **verification:** 268 `agentos-py`, 52 `agentos-cli`, and 140 `agentos-chatlas-py` tests pass; Ruff passes on every touched Python file
 
 ## Impl.Index
 
@@ -87,7 +88,7 @@
 - RED: behavior tests show registration is unavailable and exact resolution cannot round-trip a JSON record
 - GREEN: registration creates the expected shard and a fresh `AnchoryDepot` resolves the identical record
 - check: `cd agentos-py && uv run pytest tests/test_anchory.py`
-- status: not started
+- status: complete
 
 ### Slice 2 - Safe mutation and immutable identity
 
@@ -96,7 +97,7 @@
 - RED: concurrent registrations targeting one shard lose data or allow duplicate reuse
 - GREEN: both distinct records survive, duplicate registration fails without file changes, amendment requires an existing anchor, and interrupted writes leave valid JSON
 - check: focused multiprocessing behavior tests in `tests/test_anchory.py`
-- status: not started
+- status: complete
 
 ### Slice 3 - Query and structural checking
 
@@ -105,7 +106,7 @@
 - RED: cross-shard lookup order, misplaced keys, malformed JSON, and non-object records are not handled consistently
 - GREEN: query is deterministic and `check()` reports each structural failure without mutating the depot
 - check: focused query and corruption tests in `agentos-py`
-- status: not started
+- status: complete
 
 ### Slice 4 - Umbrella CLI
 
@@ -115,7 +116,7 @@
 - GREEN: CLI tests cover register, resolve, query, amend, check, duplicate errors, missing anchors, and record-file input
 - check: `cd agentos-cli && uv run pytest tests/test_e2e_anchory.py`
 - check: reinstall with `uv tool install --reinstall --editable .`, then run `agentos anchory --help`
-- status: not started
+- status: complete
 
 ### Slice 5 - Chatlas depot adapter
 
@@ -124,7 +125,7 @@
 - RED: Chatlas has no standard path into its Anchory depot
 - GREEN: explicit-root and default-root tests resolve the required path without changing existing Chatlas queries
 - check: `cd agentos-chatlas-py && uv run pytest tests/test_anchory_depot.py`
-- status: not started
+- status: complete
 
 ## Acceptance.Signals
 
@@ -148,3 +149,4 @@
 ## Impl.Log
 
 - 2026-07-06: first implementation request created from the accepted Anchory system and depot design; execution has not started
+- 2026-07-06: repository-wide Ruff remains blocked by checkpoint-preexisting findings in `agentos-py/_DEPRECATED`, `agentos-py/dev`, and `agentos-chatlas-py/dev`; the execution kept them out of scope and verified all touched files clean

@@ -129,7 +129,7 @@
 - `Local.Surface` has access to everything — it bridges public and local naturally
 - this constraint exists because public surfaces are distributable — they must work outside the project
 - when the full dependency project is available (`Project.Dev.Install`), the local/public boundary shifts — local surfaces of the dependency become reachable too
-- `Public.Surface`s may carry `Chat.Ref`s, but those refs are not publicly resolvable — a consumer outside the originating project context cannot follow them. This is a pragmatic exception to `Public must be self-contained`
+- `Public.Surface`s may carry chat `Anchory.Anchor`s, but those anchors are not publicly resolvable — a consumer outside the originating project context cannot follow them. This is a pragmatic exception to `Public must be self-contained`
 
 ****
 
@@ -143,20 +143,8 @@
 - in alignment terms it holds the raw touch events: user turns are `User.Touched` surface, assistant turns are touched-adjacent — the context around the touch, not the touch itself
 - the index is a curated cache over the `Chat.Surface`, not a gate: an undigested concept is retrieved from the chats, never a reason to stall (no design-paralysis)
 - not every cycle starts with design; work may run implement-first, with digestion deferred to cold consolidation (`Index.Edit.Action`)
-- referenceable from any surface via `Chat.Ref`; it participates in alignment as a precedent bank — earlier exchanges inform later reasoning
+- referenceable from any surface via `Anchory.Anchor`; it participates in alignment as a precedent bank — earlier exchanges inform later reasoning
 - all access is through Chatlas (`agentos-chatlas-pkg`); the project's attributed chats are `Projects.Chats`, searched by `Chat.Retrieval`
-
-****
-
-## Chat.Ref
-
-- `Chat.Ref` is a citation to a position on a chat tape — the reference primitive for the `Chat.Surface`
-- address shape: `@<hash>-<timetag>` where `<hash>` is an `identity_hash` prefix and `<timetag>` is an ISO 8601 datetime, truncatable to any precision
-- `@<hash>` alone (no timetag) is a session-level reference
-- a timetag defines a window at its declared precision — narrow at second-level, broader at day or month
-- explicit ranges join two timetags with `..`: `@<hash>-<timetag1>..<timetag2>`
-- the readable hook is host-surface annotation alongside the ref (e.g., a trailing em-dash and prose), not part of the address itself
-- resolved through `agentos chatlas` query and export surfaces
 
 ****
 
@@ -168,40 +156,15 @@
 
 ****
 
-## Chat.Grounding.Ref.Resolution
+## Grounding.Audit
 
-- `Chat.Grounding.Ref.Resolution` is the reading rule for resolving a `Chat.Ref` used as grounding
-- a grounding ref is a landing point into `Chat.Surface`, not a claim that all evidence is contained in one exact turn
-- the reader should inspect the landing turn and nearby turns needed to understand the alignment move
-- a point ref is valid when it lands inside the relevant evidence neighborhood
-- a range ref is preferred when grounding depends on proposal, correction, discussion, or convergence across turns
-- the evidence note tells the reader what to look for around the ref
-- the goal is recoverable grounding, not maximal timestamp precision
-
-****
-
-## Chat.Grounding.Candidate.Review
-
-- `Chat.Grounding.Candidate.Review` decides whether a proposed chat ref should enter block grounding
-- the reviewer asks whether the evidence directly supports the current factual shape of the target block
-- the reviewer checks nearby context for contradiction, drift, or unresolved ambiguity
-- `*HEAD*` means the evidence still supports the current block as `Active.Grounding`
-- history means the evidence is retained for provenance but no longer supports the current block as written
-- a later refinement does not demote earlier evidence when the earlier evidence remains compatible with the current block
-- the final index write happens only after user approval of the grounding role and resolution shape
-
-****
-
-## Chat.Grounding.Head.Audit
-
-- `Chat.Grounding.Head.Audit` reviews existing `*HEAD*` grounding rows against the current target block
-- each `*HEAD*` is evaluated against the block version it originally supported and the current block version
-- git history provides the block diff between grounding insertion and the current block
-- a fundamental block change is a trigger to re-evaluate existing `*HEAD*` rows
-- unchanged or editorial block diffs usually do not require full head review
-- invalidated heads move to `Grounding.History`; they are not deleted
-- new heads can trigger a lightweight audit of older heads when they appear to supersede prior evidence
-- the purpose is to keep `Active.Grounding` aligned with the current factual shape of the block
+- `Grounding.Audit` reviews a block's `Grounding.Head` lines against the block as currently written
+- a fundamental block change is the trigger; editorial diffs usually do not require one
+- a line whose turn no longer supports the current content moves to `Grounding.Drift` — demoted, not deleted
+- a line unrelated to the block's concept is dropped: relatedness is the retention gate
+- git history provides the block diff between a line's insertion and the current block
+- demoted inline grounding also lands in `Grounding.Drift`
+- it is part of `Index.Linking` maintenance — an index edit, user-gated like any other
 
 ****
 
@@ -222,9 +185,9 @@
 - projection is not authority transfer: each projection stays SSOT of its own curated form
 - `Chat.Surface` stays SSOT of the generative record, so projections remain re-derivable and drift-checkable
 - boundary: chat is the dominant ingress, not total
-- an out-of-band edit lands with no chat event; that gap is `Grounding.DRIFT`
+- an out-of-band edit lands with no chat event; the gap is content no `Grounding.Head` line can support
 - closure is self-healing: discussing ungrounded material is itself the grounding act
-- the discussion emits the missing event and can become `Active.Grounding`
+- the discussion emits the missing event and can become `Grounding.Head` evidence
 - grounding is therefore never blocked, only pending; the discussion must re-establish the content, not just mention it
 - closure (groundable in principle) holds at every moment; completeness (grounded now) is only the limit
 - in the limit the chat log is a sufficient generative basis: every projection is reconstructable from it

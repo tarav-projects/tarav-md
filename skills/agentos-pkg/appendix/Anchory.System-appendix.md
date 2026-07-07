@@ -89,8 +89,8 @@
 - the first Anchory integration is the Chatlas anchory at `<chatlas-depot>/anchory/`
 - every Chatlas Anchory action uses the active Chatlas depot
 - Chatlas owns traversal from an `Anchory.Record` to the session and evidence neighborhood
-- `Chat.Grounding.Ref.Resolution` remains the reading rule after anchor resolution
-- `Index.Linking` writes anchors into `Grounding.Entry` rows instead of embedding provider-coupled chat addresses
+- the reading rule after resolution: the anchor lands in an evidence neighborhood — read the landing turn and around it
+- `Index.Linking` writes anchors into grounding lines instead of embedding provider-coupled chat addresses
 - full `Context.Grounding` follows those anchors through Anchory and then through Chatlas
 - `Index.Agendix` can use anchors for its hard provenance rule
 
@@ -101,4 +101,3 @@
 - open: dictionary file format and sharding
 - open: registration ergonomics and concurrent allocation of sequential keys
 - open: whether `File.Mention` becomes an Anchory application or retains its independent resolution model
-- open: migration and retirement of existing `Chat.Ref` usages
