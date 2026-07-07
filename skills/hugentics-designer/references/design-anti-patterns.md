@@ -134,7 +134,7 @@ Designed to be re-read mid-session when something feels off. Original to this sk
 
 - looks like: designing a block whose concept already exists in the owning index, or contradicting a settled index block without surfacing it
 - why it kills: produces duplicate or conflicting concepts, drift, and wasted convergence; the index is the SSOT and was never consulted
-- correction: run `Concept.Discovery` during Setup and when opening any new subject block; cite existing blocks via `Cited.Duplication` / `Inline.Relatedness`, and revise or mark `Grounding.DRIFT` instead of duplicating
+- correction: run `Concept.Discovery` during Setup and when opening any new subject block; cite existing blocks via `Cited.Duplication` / `Inline.Relatedness`, and revise or flag for `Grounding.Audit` instead of duplicating
 
 ## Session-Mechanics Anti-Patterns
 

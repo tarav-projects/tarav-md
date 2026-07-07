@@ -4,7 +4,7 @@
 
 It is run during `Design.Session.Setup` and again whenever the session opens a **new subject block**. Its job is to keep design grounded in existing `Named.Concepts` instead of reinventing or silently contradicting them.
 
-This reference leans on `[Cited.Duplication, Inline.Relatedness, Natural.Placement, Grounding.DRIFT]` from `agentos-pkg/design/`. The origin owns authority.
+This reference leans on `[Cited.Duplication, Inline.Relatedness, Natural.Placement, Grounding.Audit]` from `agentos-pkg/design/`. The origin owns authority.
 
 ## Distinction — subject prior-art vs the process floor
 
@@ -39,7 +39,7 @@ Two different things load at session start; do not conflate them:
    Failed search is not proof the concept is absent — widen probes once, then report.
 
 4. **Classify each hit:**
-   - **exists** — a block already defines this concept. Do not create a parallel block. Revise it, or mark `Grounding.DRIFT` if current work contradicts it.
+   - **exists** — a block already defines this concept. Do not create a parallel block. Revise it, or flag it for `Grounding.Audit` if current work contradicts it.
    - **neighbor** — a related block the new work couples to. Cite it via `Inline.Relatedness` / `Cited.Duplication`; do not duplicate its content uncited.
    - **none** — no match. A new block is justified, but record the adjacent vocabulary found so the new block aligns with existing naming.
 

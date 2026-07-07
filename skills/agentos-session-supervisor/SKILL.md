@@ -77,7 +77,7 @@ Roles are not separate workflows. They do not replace the supervision brief, tar
 
 Available roles:
 
-- `references/role-chat-grounding.md` — propose `Chat.Grounding` material from observed transcript turns, including candidate `Chat.Ref` / turn references and related concept targets
+- `references/role-chat-grounding.md` — propose `Index.Linking` candidates from observed transcript turns: anchor candidates (turn locator + hint) mapped to target blocks
 
 Role discipline:
 
