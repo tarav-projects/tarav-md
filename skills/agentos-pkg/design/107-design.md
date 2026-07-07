@@ -194,7 +194,7 @@
 - it is self-similar to the appendix — an untouched appendix, same form and rules; it exists because the user gate is the bottleneck: a surface for the agent to run ahead of the gate
 - agendix and appendix must not duplicate content — over time the agendix drains: entries reviewed by the user are promoted through the gate or dropped
 - in alignment terms: `Untouched.Space` made durable — visible, assumed untouched by the user, non-aligned; zero authority, freely rewritable; everything in it is promotion evidence
-
+- agendix lines are typed: every line carries a `Line.Type` from the vocabulary — the validation point applies to agent capture too
 ****
 
 ## Concept.Explosion
