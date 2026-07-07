@@ -282,3 +282,14 @@
 - `Raw.Normalizer`s may use external storage signals for artifact management, but not to populate `Chatlas.Session.Model` or semantic `Chatlas.Session.Index` fields
 - if provider content does not carry a semantic value, Chatlas should emit absence or an explicit content-derived fallback
 - rebuilding the same artifact content in another archive, checkout, or storage backend should produce the same chat semantics
+
+****
+
+## Chatlas.Anchory
+
+- `Chatlas.Anchory` is the Chatlas application of `Anchory.System` — anchors standing for turn neighborhoods on the `Chat.Surface`
+- its `Anchory.Depot` lives at `<chatlas-root>/anchory/`; every action uses the active Chatlas depot
+- the anchor key convention is date-based: `YYYYMMDD-N`, a daily position suffix
+- Chatlas owns the `Anchory.Record` payload and the traversal from record to session and turn neighborhood
+- registration validates the session exists and the timestamp falls inside its bounds
+- record format: `appendix/Chatlas.Anchory-appendix.md`

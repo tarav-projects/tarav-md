@@ -10,4 +10,4 @@
 
 ### design
 
-- `design/100-design.md` — Chatlas.Query.Surface, Chatlas.Query.Envelope, Chatlas.View.Model[+1], View.Identity, Session.Set, View.Workflow, View.Class, Chatlas.Lock.Visibility, Provider.GC, Cold.Session.Cache, Session.Identity, Chatlas.Session.Index, Chatlas.Dataset, Raw.Archive, Chatlas.Retention.Policy, Chatlas.Update.Pipeline, Provider.Home, Provider.Home.Query, Chatlas.Session.Model, Chatlas.Session.Model.Contract, Chatlas.Session.Model.Tests, Session.Event.Tape, Session.Lineage, Normalization.Pipeline:Chatlas.Session.Model, Chat.Semantic.From.File.Content
+- `design/100-design.md` — Chatlas.Query.Surface, Chatlas.Query.Envelope, Chatlas.View.Model[+1], View.Identity, Session.Set, View.Workflow, View.Class, Chatlas.Lock.Visibility, Provider.GC, Cold.Session.Cache, Session.Identity, Chatlas.Session.Index, Chatlas.Dataset, Raw.Archive, Chatlas.Retention.Policy, Chatlas.Update.Pipeline, Provider.Home, Provider.Home.Query, Chatlas.Session.Model, Chatlas.Session.Model.Contract, Chatlas.Session.Model.Tests, Session.Event.Tape, Session.Lineage, Normalization.Pipeline:Chatlas.Session.Model, Chat.Semantic.From.File.Content, Chatlas.Anchory[+1]
