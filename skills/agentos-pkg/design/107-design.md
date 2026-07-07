@@ -299,6 +299,7 @@
 - foundation: all `User.Touched` data is on the `Chat.Surface`; the index is an index of it and points back to it — for completeness and correctness checking
 - it runs at levels: `Index.Grounding` loads the index's digest of the topic; full grounding also follows the pointers out to the original surfaces — the chats via Chatlas + git history, the code directly
 - it is read-only and ungated — it changes the agent's context, never a surface
+- grounded blocks make prior work reusable — settled context reaches the agent without the user re-explaining it
 - `Index.Linking` is its dual: linking builds and maintains the pointers grounding follows
 
 ****

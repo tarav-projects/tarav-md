@@ -16,13 +16,14 @@
 
 ****
 
-## Grounding.Context.Injection
+## Inline.Grounding
 
-- `Grounding.Context.Injection` is selected prior grounded context made available through grounded kernel blocks
-- the citation is the durable pointer; the injected context is what improves current agent judgment
-- injection happens by loading a grounded index/appendix block in a workflow that needs its evidence
-- injected context should be relevant enough to affect judgment, not merely adjacent
-- grounded blocks make prior work reusable without requiring the user to re-explain settled context
+- `Inline.Grounding` is grounding at `Kernel.Line` granularity — a trailing `Anchory.Anchor` on the line it grounds
+- the anchored turn is supposed to support that one line, not the whole block
+- it matters most on appendix lines, where depth accumulates line by line
+- it is head-only: an inline anchor that no longer supports its line is demoted to the block's `Grounding.Drift` or dropped
+- the `Index.Agendix` hard provenance rule is inline grounding made mandatory
+- same reading rule: the anchor lands in an evidence neighborhood — read the landing turn and around it
 
 ****
 
@@ -56,11 +57,11 @@
 
 ## Grounding.Retrieval.Boundary
 
-- retrieval finds candidate chat evidence
-- grounding selects and cites accepted evidence on a kernel block
-- retrieval quality affects grounding quality, but retrieval mechanics are not the definition of grounding
-- search engines, vector databases, keyword indexes, and session queries are candidate-discovery mechanisms
-- grounding does not depend on a specific retrieval backend
+- `Grounding.Retrieval.Boundary` separates finding candidate evidence from linking it
+- retrieval finds candidates; `Index.Linking` selects, anchors, and cites accepted evidence on a block
+- retrieval quality affects linking quality, but retrieval mechanics are not the definition of grounding
+- search engines, vector databases, keyword indexes, and chatlas queries are candidate-discovery mechanisms
+- neither `Index.Linking` nor `Context.Grounding` depends on a specific retrieval backend
 
 ****
 
@@ -78,7 +79,7 @@
 
 ## Grounding.Hugentic.Authority
 
-- `Grounding.Hugentic.Authority` is the rule that chat grounding is primarily grounded in user turns
+- `Grounding.Hugentic.Authority` is the rule that grounding lines primarily anchor user turns
 - assistant turns provide context, reasoning trace, proposed wording, and forensic evidence
 - assistant-authored material becomes normal grounding only when the user explicitly accepts, corrects toward, or acts on it
 - unaccepted assistant-only evidence may still be cited, but must be labeled `ASSISTANT`
