@@ -7,7 +7,7 @@
 - **Out of scope**: consolidating `agentos.mdblocks` into the parser (the linter keeps mapping mdblocks findings initially — parity first; consolidation is a follow-up cleanup); semantic lints (agent work); index-content edits (gated — this effort proposes, never writes index blocks); the chatlas-aware provenance check's logic (it only re-bases onto the parser).
 - **Repos**: `agentos-py` (parser package, linter port, tests), `agentos-chatlas-py` (`index_checks.py` re-base), `agentos-cli` (e2e only; no wiring change expected — the `extra_checks` socket is stable API). Reinstall note: `uv tool install --reinstall --editable .` from `agentos-cli/` after CLI-visible changes.
 - **Source**: design discussion in session `9d194db7…` (2026-07-08); reference implementation: `/Users/pereiro/projects/md-library-project/md-library` — `src/md_library/docast/` (nodes 109 lines, parser 493) and `src/md_library/lint2/` (runner 1340, parity 341); its index documents the architecture (`skills/md-library-pkg/design/101-design.md:97-133`).
-- **Status**: ready for implementation
+- **Status**: implemented
 
 ## Impl.Index
 
@@ -115,4 +115,13 @@
 
 ## Impl.Log
 
-- (empty — populated by the executer)
+- 2026-07-08 execution: created checkpoint commits in `agentos-md`, `agentos-py`, `agentos-chatlas-py`, and `agentos-cli` before implementation edits per the execution workflow.
+- S1-S3 implemented `agentos.index.model` with typed nodes, `parse_index_file`, `parse_depot`, router parsing, code-fence protection, span extraction, and block-anchor query helpers.
+- S1 deviation resolved autonomously: live index separators are delimiters, not open/close toggles; the same `****` closes the previous block and prepares the next. Parser separator handling was adjusted after live depot smoke initially produced false `heading_without_separator` diagnostics.
+- S4-S6 implemented parser-backed linter state for concept inventory, router entries, unanchored-section detection, line-type checks, source-axis placement, and the Chatlas grounding bridge. The old private `_line_type_surface_files` helper and raw router/section parsing helpers were removed.
+- S7 implemented `Index.Linter/Line.Unlinked` and `agentos index linter --warn-unlinked`; default scope checks agendix only, while the flag extends warnings to chapter and appendix kernel lines.
+- S7 live baseline changed from the pre-review rough estimate: installed CLI reports 1847 `Line.Unlinked` warnings for `agentos-pkg` under `--warn-unlinked`; the lower count is expected because parser-backed logic excludes meta lines and non-kernel material.
+- S8 updated `agentos-py/AGENTS.md`, `agentos-index/references/check.md`, and `agentos-index/references/search.md`.
+- Verification: `agentos-py` full suite 281 passed; `agentos-chatlas-py` full suite 139 passed; `agentos-cli` full suite 56 passed; scoped ruff passed for touched `agentos-py` and `agentos-chatlas-py` files.
+- Verification caveat: whole-repo ruff is not clean due unrelated pre-existing deprecated/dev files (`agentos-py/_DEPRECATED/...`, `agentos-py/dev/account-usage.py`, `agentos-chatlas-py/dev/user-script-invariant-test/validate.py`); touched-file ruff is clean.
+- Installed CLI refreshed with `uv tool install --reinstall --editable .` from `agentos-cli/`; installed smoke checks show both live depots clean by default with 17 checks, 0 findings, and `--warn-unlinked` warning-only exit code 0.

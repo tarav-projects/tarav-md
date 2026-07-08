@@ -7,6 +7,7 @@ Use this module when the caller wants deterministic diagnosis, linter findings, 
 ## Check Model
 
 - use `agentos index linter` for deterministic index checks
+- the linter is parser-backed for index model concerns: concept headings, router rows, kernel lines, line types, source-axis placement, anchor spans, and unlinked-line coverage are read from the typed index model
 - prefer depot-first checking with `--depot` when a full `Index.Depot` is in scope
 - use explicit `--index` and `--appendix` only when the caller has scoped the check to individual surfaces
 - resolve finding and check codes through the `agentos-pkg` `Index.Linter` concept and normal `Appendix.Discovery`
@@ -17,10 +18,12 @@ Use this module when the caller wants deterministic diagnosis, linter findings, 
 - depot check: `agentos index linter --depot <depot-root>`
 - explicit surface check: `agentos index linter --index <index-path> --appendix <appendix-path>`
 - structured output when useful: add `--json`
+- linking coverage check: add `--warn-unlinked` to warn for unanchored chapter and appendix kernel lines; agendix kernel lines are checked for anchors without this flag
 
 ## Built-In Grounding Checks
 
-- the installed `agentos index linter` runs `Line.Type` syntax checks (bracket form, known act codes, `[GR]` trailing anchor; `AS:` outside `agendix/` is an ERROR) and the chatlas grounding-provenance check (anchors resolve; landing turns exist; roles match the source axis) — no extra flags
+- the installed `agentos index linter` runs parser-backed `Line.Type` syntax checks (bracket form, known act codes, `[GR]` trailing anchor; `AS:` outside `agendix/` is an ERROR), `Index.Linter/Line.Unlinked` for agendix lines, and the chatlas grounding-provenance check (anchors resolve; landing turns exist; roles match the source axis)
+- `--warn-unlinked` extends `Index.Linter/Line.Unlinked` to chapter and appendix kernel lines as a coverage meter; warnings do not change the exit code
 - a missing chatlas backend renders `Index.Linter/Grounding.Provenance` as a blocked check, never a silent skip
 - `agentos anchory scan --depot <chatlas-root>/anchory --src-file <file> --regex '@(?P<anchor>[0-9]{8}-[0-9]+)'` remains the record-level spot check for a single file
 
