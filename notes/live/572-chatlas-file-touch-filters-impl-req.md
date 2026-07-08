@@ -7,7 +7,7 @@
 - **Out of scope**: Bash command-string parsing (the long tail — a `git commit` or `rm` via Bash is invisible to v1; documented blind spot, added when workflows demand); finer verbs (create/modify/delete — "write" means a mutating tool invocation carried the path, nothing finer, user decision); provider tool vocabularies beyond what the normal model already carries.
 - **Repos**: `agentos-chatlas-py` only (`normalization/session_model/` new extractor module, `query.py`, `inline.py`, `commands.py`, `tests/test_e2e_chatlas.py`); `agentos-chatlas-md` reference/index updates in the final slice.
 - **Source**: this design session — live verification that `chat.tool_invocations` carries `tool_name`, `input.arguments.file_path`, `output`, timestamps, `event_refs` (709 invocations in session `9d194db7…`; the 563-note Write recovered with full path and events); index concepts `Chatlas.Session.Model`, `Chatlas.Query.Envelope`, `Chatlas.View`, `Chatlas.Filter`.
-- **Status**: ready for implementation
+- **Status**: implemented (2026-07-08); all three slices, suite 131 green, live-verified (563-note writer found, mentioner excluded)
 
 ## Impl.Index
 
@@ -65,4 +65,9 @@
 
 ## Impl.Log
 
-- (empty — populated by the executer)
+- 2026-07-08: executed in `Alignment.Mode:Autonomous`; 6 new behavior tests; fixture writer extended with `tool_calls` (codex `function_call`/`function_call_output` pairs).
+- open-space decision (S1): query flags are repeatable with AND semantics across repeats, matching the `*-contains` family convention.
+- open-space decision (S2): inline file-touch flags are single-valued (one path per flag) — the inline surface selects one file's moments; widen only on demand.
+- open-space decision (S2): inline selection keeps exactly the events in the matching invocations' `event_refs` (call + output events); message events are naturally excluded unless referenced.
+- deviation: none — plan followed as written; the fixture-realism risk did not fire (rollout writer extension was small).
+- gated follow-up proposed to the user (not self-written): a `[DC]` line on `Chatlas.Query.Surface` for file-touch filters.

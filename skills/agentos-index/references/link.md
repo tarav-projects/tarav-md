@@ -26,6 +26,10 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
 4. **Verify.** The mint echo already shows the neighborhood; for later re-checks, `agentos chatlas views inline --anchor <anchor> [--radius N] --filter turns` returns it again, plumbing stripped.
 5. **Return the anchor** to the caller, which tags its line: trailing position, `… @20260707-0`.
 
+## Code-Side Evidence
+
+- file-touches are the code-side analogue of chat anchors: `agentos chatlas query --file-touched "<path>"` finds the sessions that actually read/wrote a file (mentions never match), and `views inline --file-write "<path>"` lands on the touching moments — the "find the evidence turn" step for code changes
+
 ## Anchor Discipline
 
 - an anchor's meaning is immutable: no reuse; a wrong hint or wrong date means minting a new anchor, never repurposing
