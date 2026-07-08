@@ -31,7 +31,7 @@
 ### Target.Package
 - location: `agentos-py`, new subpackage `src/agentos/index/model/` (`nodes.py`, `parser.py`, `__init__.py`) — "model" names the role (naming is small open space; avoid bare `ast`, it shadows stdlib in readers' minds)
 - public entry points: `parse_index_file(path | text) -> IndexDocument`; `parse_depot(root) -> IndexDepotModel` (surfaces classified: router, chapter files, appendix, agendix); query helpers: `anchors_by_block()`, `blocks_by_anchor()`, `kernel_lines()` iterators
-- the linter's existing public API is FROZEN: `run_linter(config, …, extra_checks=…)`, `build_linter_config`, `LinterCheck/LinterFinding/GateResult/LinterState`, `register_index_commands(…, extra_linter_checks=…)`, JSON/text rendering — external callers (chatlas bridge, cli, tests) must not need changes beyond what S6 does deliberately
+- the linter's existing public API is FROZEN: `run_linter(config, …, extra_checks=…)`, `build_linter_config`, `LinterCheck/LinterFinding/GateResult/LinterState`, `register_index_commands(…, extra_linter_checks=…)`, JSON/text rendering — external callers (chatlas bridge, cli, tests) must not need changes beyond what S6 does deliberately; new options such as `--warn-unlinked` should flow through optional config/state fields, not required positional API changes
 
 ### Index.Grammar *(the node vocabulary — parse targets with current live syntax)*
 - `Separator` — a line of four-plus `*` (`****`); anchors block boundaries
@@ -45,7 +45,7 @@
 
 ### Parity.Contract
 - a parity harness (dev-side, in tests) runs the OLD raw engine and the NEW AST engine over: the full fixture corpus in `tests/test_index_linter.py` AND both live depots (`agentos-md/skills/agentos-pkg`, `agentos-chatlas-md/skills/agentos-chatlas-pkg`)
-- parity = identical findings (code, path, line, severity) modulo a documented allowlist of deliberate improvements; every divergence is either fixed or allowlisted with a reason in the Impl.Log
+- parity = identical check results (code, status, blocked_by) and findings (code, path, line, severity) modulo a documented allowlist of deliberate improvements; every divergence is either fixed or allowlisted with a reason in the Impl.Log
 - the old engine is retired ONLY after parity holds; retirement is deletion (`No.Legacy.Allowed`), not a parked copy — git history is the archive
 
 ### Bridge.Rebase

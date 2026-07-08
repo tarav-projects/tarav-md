@@ -45,6 +45,14 @@ Dead-home signature:
 
 A home can report logged in yet be dead. Real provider use may fail with 401 if the Keychain entry is expired and cannot refresh.
 
+Treat `expiresAt` as a hard check against current time, not just metadata to sort by.
+An artifact can still have non-empty access and refresh tokens yet already be invalid for
+live use because the access token is long expired.
+
+`claude auth status` is weaker than a real Claude request. It may report `loggedIn: true`
+for a home whose first real prompt immediately fails with `Not logged in` or 401.
+When this mismatch appears, trust the live prompt result over `auth status`.
+
 ## Inspect Registered Claude Artifacts
 
 Artifact payload files contain secrets. Use sanitized inspection only.
@@ -121,6 +129,21 @@ Claude OAuth refresh tokens can rotate. Multiple live homes for one Claude accou
 - the loser may become expired with an empty refresh token
 
 When diagnosing, compare Keychain entries by home. A working artifact in the registry does not mean every home has been materialized to it.
+
+## Fast-Drift Pattern
+
+If a Claude home "drifts back" almost immediately after materialization, do not assume
+materialize lost the write.
+
+A common pattern is:
+
+- Agentos materializes an artifact that is structurally complete.
+- `claude auth status` may briefly report `loggedIn: true`.
+- the first real Claude use rejects the credential as invalid/expired.
+- a subsequent capture sees the home's new dead state and records a tokenless artifact.
+
+In that pattern, the dead artifact is produced by Claude's failure path on live use, not by
+the materialization step itself.
 
 ## Live Validation
 

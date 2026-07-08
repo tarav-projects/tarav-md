@@ -54,8 +54,10 @@ If several homes should use the same active artifact, run `materialize` once per
 - `active` does not imply the home uses that artifact. It only changes `registry/active.json`.
 - `aligned` does not imply live validity. It only proves home state matches active state.
 - capture timestamp is not always freshness. Inspect provider-specific metadata such as Claude `expiresAt` and refresh-token presence.
+- for Claude, token presence is still not enough. Compare `expiresAt` to current time and prefer a real provider check when validity is in doubt.
 - materialization is capture-first. If a target home contains a new credential, that credential is archived before overwrite.
 - `Unknown.Account` captures are preserved but cannot be activated until adopted into a declared account.
+- very fast post-materialize drift can come from the provider mutating the home after a failed live use. Do not assume the write failed until raw home state is checked before and after a real provider operation.
 
 ## Concept Grounding
 
