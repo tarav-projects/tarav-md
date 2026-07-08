@@ -7,7 +7,7 @@ description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem
 
 Workflow-neutral `Package.Aux.Skill` for the Agentos Index subsystem.
 
-This skill is the public Batchy router for index work. It orients the caller to the subsystem by default and routes explicit operations such as `--search`, `--edit`, `--ground`, `--type`, `--link`, and `--agendix` into named `Skill.Module`s.
+This skill is the public Batchy router for index work. It orients the caller to the subsystem by default and routes explicit operations such as `--search`, `--edit`, `--ground`, `--type`, `--link`, `--back-link`, and `--agendix` into named `Skill.Module`s.
 
 This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
@@ -89,6 +89,12 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - help: "mint an anchor for a chat evidence turn and return it"
 - examples: --link "anchor the turn where the user picked syntax B"
 
+### Skill.Arg:BackLink
+- ground an existing index block backward: git history → session → turns → anchor
+- required: false
+- help: "recover chat evidence for an existing block and propose its grounding"
+- examples: --back-link "Writing.Friction.Reduction", --back-link "ground the 107 chapter"
+
 ## Boundary
 
 - this skill is the canonical public entry surface for working with the Agentos Index system
@@ -118,6 +124,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 | When the caller wants line typing understood, read, or proposed — the `[XX]` syntax, the `Line.Type.Vocabulary`, validation points, reading typed lines as constraints, calibration passes and their residue | `references/type.md` |
 | When the user triggers agendix capture — harvesting `User.Touched` lines from the current conversation into `agendix/` files under existing concepts, typed and anchored, ungated | `references/agendix.md` |
 | When a caller needs an `Anchory.Anchor` minted for a chat context — session resolution, turn location, registration, verification; consumed by `--edit` and `--agendix` | `references/link.md` |
+| When the caller wants an existing block grounded backward — git dates the wording, chatlas finds the session and turns, the linking primitive mints, the gated edit lands the `[GR]` line | `references/back-link.md` |
 | When the caller provides `--depot`, scope the selected operation to those `Index.Depot`s; otherwise use task-relevant engaged depots | applies to `references/search.md`, `references/edit.md`, and `references/ground.md` |
 | When the caller provides `--chapter`, scope the selected operation to that `Index.Chapter` inside the engaged depots; default to `design` when no chapter is named | applies to `references/search.md`, `references/edit.md`, and `references/ground.md` |
 | When the caller needs package-level understanding of how the index subsystem is designed, structured, and distributed across public and local surfaces | `agentos-pkg/design/`, `agentos-pkg/appendix/`, `agentos-pkg/references/` |
@@ -148,6 +155,7 @@ For delegated read-only research that protects the caller's context, use `Packag
 - `references/type.md` — line typing: syntax, vocabulary, validation points, reading typed lines, fence and residue
 - `references/agendix.md` — agentic capture path: typed, anchored `User.Touched` lines into the agendix, ungated
 - `references/link.md` — the linking primitive: mint and verify chat anchors through chatlas + anchory commands
+- `references/back-link.md` — backward grounding: git history to evidence turns for existing blocks
 
 ## When To Load This Skill
 

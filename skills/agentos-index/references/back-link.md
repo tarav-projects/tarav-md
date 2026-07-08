@@ -1,0 +1,34 @@
+# agentos-index --back-link
+
+Use this module when the caller wants an existing index block grounded backward: from the block as written, through git history, to the chat turns that produced it.
+
+This is the archaeology counterpart of `references/link.md`: `--link` anchors content being produced now (edge linking); `--back-link` recovers evidence for content written in the past. Both end in the same place — an anchor and a gated `[GR]` line.
+
+This module is `Workflow.Neutral` in the same sense as `--link`: it produces verified anchors; the index write at the end goes through `--edit` and its gates.
+
+## Back-Link Pipeline
+
+1. **Block → time.** Git history dates the block's current wording:
+   - `git log -L "/## Concept.X/,/^\*\*\*\*/:<chapter-file>" --format="%h %aI %s"` — the commits that shaped the block, newest first
+   - the newest content-bearing commit's timestamp is the write moment; the design discussion precedes it (often by hours)
+2. **Time → session.** Find who wrote it, escalating through the truth tiers:
+   - semantic: `agentos chatlas query --file-write "<chapter-file basename>"` — precise, but misses command-string writes (Bash heredocs)
+   - recall: `agentos chatlas query --tool-contains "<chapter-file basename>" [--tool-name Bash]` — total coverage, no verb claim
+   - content: `agentos chatlas query --message-contains "Concept.X"` — sessions that discussed the concept by name
+3. **Session → turn.** Search the tape with the block's own vocabulary, biased toward the write moment:
+   - `agentos chatlas views inline --identity-hash <H> --contains "<distinctive block wording>" --role user --around "<commit time>" --radius 6 --filter turns`
+   - the user turn that proposed, corrected, or accepted the block's content is the landing point; `Grounding.Hugentic.Authority` applies — user turns primarily
+4. **Turn → anchor.** Mint through the linking primitive (`references/link.md` step 3): `agentos chatlas anchory register --identity-hash <H> --at "<turn time>" --hint "…"` — read the echo, confirm the neighborhood.
+5. **Anchor → index.** Propose the gated write (`--edit`): a `[GR]` line in `appendix/Concept.X/Grounding.Head` (router gains `[+N]` if the appendix file is new), or an inline trailing anchor when one line is the target.
+
+## Judgment Points
+
+- the commit dates the *write*; the *evidence* is earlier — search around and before the commit time, not at it
+- a block repaired, migrated, or reworded later still grounds on the original design discussion: follow `git log -L` past mechanical commits to the content-bearing ones
+- multiple sessions may have shaped one block (design + migration + revision): ground the current wording; older shaping evidence belongs in `Grounding.Head` only while it still supports the block as written
+- relatedness gate as always: no supporting turn found is a finding, not a failure — an ungrounded block stays ungrounded rather than gaining a weak link
+
+## Batch Behavior
+
+- back-linking a chapter is this pipeline per block; report per block: grounded (anchor), no-evidence-found, or ambiguous (candidate turns for the user)
+- every write remains individually gated — batch discovery, gated landing
