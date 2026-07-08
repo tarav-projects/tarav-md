@@ -93,6 +93,8 @@
 - [DC] the gate is a status filter, not a section: the user reviews `proposed` entries; discovery and minting are free, every landing passes the gate
 - [DC] review keeps progress in place: the gate pass edits entry statuses in the `Gr.Set` — the artifact stays the single record through the campaign
 - [DC] filename `NNN-…-gr-req.md` in `notes/live/`, per `Agentos.Live.Note` and `File.Numbering.Protocol`
+
+****
 ## Development.Principles
 
 - `Impl.Req` work spans `How.Design` and `Impl.Exec` — different principles matter at each phase
