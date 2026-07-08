@@ -71,3 +71,4 @@
 - open-space decision (S2): inline selection keeps exactly the events in the matching invocations' `event_refs` (call + output events); message events are naturally excluded unless referenced.
 - deviation: none — plan followed as written; the fixture-realism risk did not fire (rollout writer extension was small).
 - gated follow-up proposed to the user (not self-written): a `[DC]` line on `Chatlas.Query.Surface` for file-touch filters.
+- 2026-07-08 follow-up (user-requested after a live blind-spot hit): recall tier added — `--tool-contains` (+ `--tool-name`) on query and views inline; substring over the whole invocation, no verb claim, the reader judges. Two-tier model: semantic file-touch (precise verb, limited coverage) over general tool-contains (total coverage, reader-judged). 2 new tests; suite 133 green. The gated `[DC]` for `Chatlas.Query.Surface` was written to its appendix per user instruction.
