@@ -22,6 +22,14 @@ Use this module when the caller wants cited index context, conceptual lookup, or
 5. Load appendix depth only when the block does not carry enough signal.
 6. Load references only when the task needs operational detail or concrete examples.
 
+## Reading What You Find
+
+- lines may carry a leading `Line.Type` code (`- [CT] ...`): the type is the line's act — `[CT]`/`[DC]`/`[RJ]` bind, `[PR]` orients, `[FR]` frees, `[DF]`/`[EX]` inform, `[GR]` cites evidence; see `references/type.md` to read them as constraints
+- untyped lines are pre-fence legacy — same authority, just not yet classified
+- a trailing `@YYYYMMDD-N` token is an `Anchory.Anchor`: a pointer to chat evidence, resolvable via `agentos anchory resolve` + chatlas; see `references/link.md` — resolution is optional depth, not required reading
+- appendix blocks named `Concept.X/Grounding.Head` and `Concept.X/Grounding.Drift` are evidence sections, not conceptual content: Head supports the block as written, Drift is kept provenance
+- `agendix/` files are agent-captured, user-unreviewed material — zero authority, useful as leads, never citable as accepted design
+
 ## Citation Behavior
 
 - return context with source block citations so the caller can verify and maintain the summary

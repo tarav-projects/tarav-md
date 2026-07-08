@@ -30,6 +30,7 @@ Drafting or revising block wording is also edit work, even before the user has a
 - place conceptual fundamentals in the index
 - place extended depth, grounded history, scoped views, specs, and parked depth in the appendix
 - place operational procedure in skills or references, not in the index
+- place evidence links in grounding surfaces: `[GR]` lines in the appendix `Concept.X/Grounding.Head` block (demotions to `Concept.X/Grounding.Drift`), or a trailing anchor inline on the line it supports — anchors come from `references/link.md`
 
 ## Block Independence
 

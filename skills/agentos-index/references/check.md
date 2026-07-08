@@ -18,8 +18,14 @@ Use this module when the caller wants deterministic diagnosis, linter findings, 
 - explicit surface check: `agentos index linter --index <index-path> --appendix <appendix-path>`
 - structured output when useful: add `--json`
 
+## Beyond The Linter
+
+- anchor resolvability: `agentos anchory scan --depot <chatlas-root>/anchory --src-file <file> --regex '@(?P<anchor>[0-9]{8}-[0-9]+)'` — every anchor in an edited file should resolve
+- semantic lints on typed lines (contradicting `[DC]`s, violated `[CT]`s, reintroduced `[RJ]`s, overridden `[FR]`s) are agent work, not linter checks — see `references/type.md`; report findings, route fixes through `--edit`
+
 ## Post-Edit Check
 
 - after an approved index or appendix edit, run the linter over the edited depot or explicit edited surfaces
+- if the edit added or touched anchors, run the anchor resolvability scan over the edited files
 - if findings existed before the edit, do not treat them as new regressions unless the edit worsened or touched them
 - if the edit creates a new error or warning, report it before considering the edit complete
