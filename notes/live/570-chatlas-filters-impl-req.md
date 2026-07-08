@@ -7,7 +7,7 @@
 - **Out of scope**: the legacy named-view (`Chatlas.View.Model`) rework to model-object products (future design session, declared in `Chatlas.View`); a `--filter` mini-grammar for parameterized filters (the ergonomic flags stay the parametric surface); filters on other commands than `views inline` (extend when workflows demand).
 - **Repos**: `agentos-chatlas-py` only (`normalization/session_model/_views.py`, new `normalization/session_model/filters.py`, `inline.py`, `anchory.py`, `commands.py`, `tests/test_e2e_chatlas.py`).
 - **Source**: this design session — `Chatlas.View`/`Chatlas.Filter` index blocks (agentos-chatlas-pkg `design/100-design.md`, committed `f6f0e58`); builds on 569 (executed, uncommitted in the worktree — this work stacks on it).
-- **Status**: ready for implementation
+- **Status**: implemented (2026-07-08); all three slices, suite 125 green, live-verified (`--anchor 20260708-0 --filter turns`)
 
 ## Impl.Index
 
@@ -78,4 +78,7 @@
 
 ## Impl.Log
 
-- (empty — populated by the executer)
+- 2026-07-08: executed in `Alignment.Mode:Autonomous`; 4 new behavior tests (S1), echo test tightened (S3), S2 pure refactor locked by existing selection tests.
+- open-space decision (S1): `messages` keeps `model_runs`/`usage` rows referenced by surviving events (via `model_run_ref`) and empties `tool_invocations`; resync reuses `_messages_from_events`.
+- open-space decision (S1): filter registry lives in `normalization/session_model/filters.py` — model-space code owns model-space operations; `slim` key lists documented there as a schema-coupled contract.
+- note (S2): the event-selection constructors (`contains_filter`, `role_filter`, `around_filter`) operate on event lists (fragment components), while named filters operate on whole model objects — two arities, one module; unify only if a workflow demands whole-object parametric filters.

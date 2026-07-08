@@ -23,7 +23,7 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
    - `agentos chatlas anchory register --identity-hash <hash> --at "<ISO time>" --hint "<one sentence: what is at this location>"`
    - chatlas validates the session and that `at` falls inside its event-time bounds, derives the `YYYYMMDD` prefix, registers atomically through anchory, and returns the anchor PLUS the landing neighborhood — double-check it shows the intended turns before tagging
    - the raw plumbing remains available: `agentos anchory register --depot <chatlas-root>/anchory --prefix <YYYYMMDD> --record-json '…'`
-4. **Verify.** The mint echo already shows the neighborhood; for later re-checks, `agentos chatlas views inline --anchor <anchor> [--radius N]` returns it again.
+4. **Verify.** The mint echo already shows the neighborhood; for later re-checks, `agentos chatlas views inline --anchor <anchor> [--radius N] --filter turns` returns it again, plumbing stripped.
 5. **Return the anchor** to the caller, which tags its line: trailing position, `… @20260707-0`.
 
 ## Anchor Discipline
