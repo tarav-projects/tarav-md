@@ -146,6 +146,9 @@
 - each type is a verb on the `Design.Space` — types sort by how a line acts on the space: collapsing it, describing it, or declaring it open
 - a type earns its place when a recurring line-act has no home; a type that attracts filler is a smell
 - each type creates a validation point: a typed line must perform its act — a constraint line must constrain something; a typed line that performs nothing is mistyped filler
+- the vocabulary is the fence of the index: index content is what the vocabulary can express — a line that can take no type belongs elsewhere; developing the vocabulary is deciding what the index is for
+- scope widens only by widening the vocabulary — a visible, gated act, instead of line-by-line scope creep
+- calibration: type the live index against a candidate vocabulary and inspect what remains untyped — each residue is a discussion: out of the index, or a vocabulary extension
 
 ****
 
@@ -186,6 +189,14 @@
 - `Line.Type:FR` marks a free declaration — the user explicitly leaves a `Design.Variable` agent-owned
 - validation point: the line must name what is left open; freedom is a touched act, not an omission
 - lint: a `FR` variable later constrained without retiring the declaration
+
+****
+
+## Line.Type:EX
+
+- `Line.Type:EX` marks an example — the line illustrates another line's claim with a concrete case
+- validation point: the line must exemplify something specific; an example that illustrates no claim is filler
+- lint: an example inconsistent with the constraints and decisions it illustrates
 
 ****
 
