@@ -137,6 +137,8 @@
 - classifying is the line-level gate — it forces significance the way naming gates a block; the small cost is the point, a cost-zero index overwhelms the user
 - naming once bundled three filters — identification, boundary, significance; the line-level tests unbundle them: a crisp single point (`Kernel.Line`), attaching to a block (`Index.Edit.Append.Line`), and significance (`Line.Type`)
 - typed lines are lintable and high-signal; untagged lines are allowed and typed as the index is polished — the mechanism is design, not yet operational: no tagging today
+- syntax: a leading bracketed code — `- [CT] the anchor token stays small`; the type is read first and primes the line, the tail stays free for inline anchors
+- every line is typed, the definition first line explicitly `[DF]` — untyped lines are mechanically detectable (no leading bracket), the pre-fence legacy the calibration passes work down
 
 ****
 
@@ -149,6 +151,14 @@
 - the vocabulary is the fence of the index: index content is what the vocabulary can express — a line that can take no type belongs elsewhere; developing the vocabulary is deciding what the index is for
 - scope widens only by widening the vocabulary — a visible, gated act, instead of line-by-line scope creep
 - calibration: type the live index against a candidate vocabulary and inspect what remains untyped — each residue is a discussion: out of the index, or a vocabulary extension
+
+****
+
+## Line.Type:DF
+
+- `Line.Type:DF` marks a definition — the line fixes what a name means
+- validation point: the line must bind a name to a meaning; a `DF` that introduces no name is mistyped
+- lint: two `DF` lines binding the same name to different meanings, and a block whose first line is not a `DF`
 
 ****
 
