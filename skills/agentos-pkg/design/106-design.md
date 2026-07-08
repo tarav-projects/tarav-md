@@ -138,6 +138,7 @@
 - naming once bundled three filters — identification, boundary, significance; the line-level tests unbundle them: a crisp single point (`Kernel.Line`), attaching to a block (`Index.Edit.Append.Line`), and significance (`Line.Type`)
 - syntax: a leading bracketed code — `- [CT] the anchor token stays small`; the type is read first and primes the line, the tail stays free for inline anchors
 - every line is typed, the definition first line explicitly `[DF]` — untyped lines are mechanically detectable (no leading bracket), the pre-fence legacy the calibration passes work down
+- [DC] types stack along axes: the act axis (`CT`, `DC`, …) and the source axis — unmarked is user-grounded, `AS:` marks assistant-grounded (`[AS:CT]`); `AS:` is legal only in the agendix
 
 ****
 

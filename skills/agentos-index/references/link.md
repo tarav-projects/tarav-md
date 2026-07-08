@@ -32,6 +32,7 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
 
 ## Anchor Discipline
 
+- an anchor for index grounding targets a USER turn — touch is the landing point, assistant context is recovered by neighborhood reading; when the wording originated agent-side, anchor the approval turn
 - an anchor's meaning is immutable: no reuse; a wrong hint or wrong date means minting a new anchor, never repurposing
 - `agentos anchory amend` exists only to correct an error or improve resolution of the same context
 - the hint is the desync tripwire: write it so a reader can tell whether the resolved neighborhood matches

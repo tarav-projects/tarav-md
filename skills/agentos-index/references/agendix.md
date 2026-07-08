@@ -21,6 +21,7 @@ Authority lives in the index: `Index.Agendix`, `Writing.Friction.Reduction`, `Ke
 
 - capture only `User.Touched` material: summaries of chat discussion — a correction, a decision, a rejection, a boundary, a constraint the index does not yet carry (`Grounding.Hugentic.Authority`: user turns primarily; assistant material only when the user accepted, corrected toward, or acted on it)
 - every line is typed: pick the `Line.Type` first (`references/type.md`); a line that takes no type does not enter
+- assistant-grounded lines are allowed here (only here), marked on the source axis: `[AS:CT] … @anchor` — the anchor targets the assistant turn; promotion re-grounds on the approving user turn and drops the marker
 - every line ends with its anchor: hard provenance, no unanchored agendix lines
 - attach only under existing routed concepts — the agent cannot mint concepts; a candidate with no concept goes to the fallback file
 - no duplication: skip content the index, appendix, or agendix already carries

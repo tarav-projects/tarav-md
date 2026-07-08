@@ -89,7 +89,7 @@
 - `Install.Skill` is a convention where a skill package ships guidance for adopting its support into a project
 - lives in the package's `references/` as installation instructions
 - can be executed agentically (agent follows the steps) or hugentically (human-agent design loop)
-- example: installing the index system creates `notes/index/`, `001-index.md`, routing table
+- example: installing the index system creates a local `Index.Depot` at `notes/index/` — `000-INDEX.md` router and chapter files
 - example: installing the agentos stack sets up `AGENTS.md`, `notes/`, `skills/`
 
 ****

@@ -83,8 +83,7 @@
 - `Grounding.Hugentic.Authority` is the rule that grounding lines primarily anchor user turns
 - assistant turns provide context, reasoning trace, proposed wording, and forensic evidence
 - assistant-authored material becomes normal grounding only when the user explicitly accepts, corrects toward, or acts on it
-- unaccepted assistant-only evidence may still be cited, but must be labeled `ASSISTANT`
-- the label warns the reader that the evidence is agent-authored support, not direct user alignment
+- [CT] index grounding anchors target user turns only — gating guarantees an approval turn exists; there is no assistant-only index evidence
 - grounding is a `Hugentic.Alignment` workflow: human/agent collaboration, not agent-only retrieval
 
 ****

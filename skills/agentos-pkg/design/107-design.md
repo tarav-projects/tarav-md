@@ -195,6 +195,7 @@
 - agendix and appendix must not duplicate content — over time the agendix drains: entries reviewed by the user are promoted through the gate or dropped
 - in alignment terms: `Untouched.Space` made durable — visible, assumed untouched by the user, non-aligned; zero authority, freely rewritable; everything in it is promotion evidence
 - agendix lines are typed: every line carries a `Line.Type` from the vocabulary — the validation point applies to agent capture too
+- [DC] agendix lines may be assistant-grounded, marked `[AS:XX]`; promotion re-grounds on the approving user turn and drops the marker
 - [DC] agendix files follow appendix writing rules with the block headed `Concept.X/Agendix`, one file per concept in `agendix/` next to `appendix/`
 - [DC] captures with no routed concept land in `agendix/Unassigned-agendix.md` — the homeless pool, promotion evidence for concepts the index does not yet name, never a dump
 ****
