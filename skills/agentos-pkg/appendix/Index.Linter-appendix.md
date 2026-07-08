@@ -398,3 +398,11 @@
 - check that verifies router entries point to existing files and discovered concept blocks
 - can emit `Index.Linter/Router.MissingFile`, `Index.Linter/Router.UnknownConcept`, or `Index.Linter/Router.WrongFile`
 - blocked when router or concept inventory is unavailable
+
+****
+
+## Index.Linter/External.Checks
+
+- [DC] the linter exposes an external-check socket; the chatlas grounding-provenance bridge registers through it at the composition root — anchors must resolve and land on user turns (`AS:`-marked lines excepted, agendix only)
+- [DC] core `Line.Type` checks run without chatlas: bracket syntax, known act codes, `[GR]` trailing anchor (warnings); `AS:` outside `agendix/` is `Index.Linter/Source.Axis.Placement`, an error
+- [DC] a missing chatlas backend renders `Index.Linter/Grounding.Provenance` as a blocked check — visible, never silently skipped
