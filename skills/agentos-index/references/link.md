@@ -10,11 +10,14 @@ Authority lives in the index: `Anchory.System`, `Chatlas.Anchory`, `Index.Linkin
 
 All steps run through `agentos chatlas` and `agentos anchory` commands — never provider raw files or transcript paths.
 
-1. **Resolve the session.** Identify the session holding the evidence turn and resolve its chatlas identity, refreshing first so live sessions are ingested:
-   - own live session: `chatlas-agentos-chatlas-my-session-id`, or `agentos chatlas query --session-id <native-id> --field identity_hash --update`
-   - past session: normal `agentos chatlas query` filters, `--update` when staleness is possible
-2. **Locate the evidence turn.** Search the tape directly:
-   - `agentos chatlas views inline --identity-hash <hash> --view events --contains "<text>" [--role user] [--around <ISO time>] --format json` — returns the matching events as a model fragment with timestamps
+1. **Resolve the session.** Most linking happens on the edge — anchoring content produced in the *current* session, whose id the agent usually does not know. Discover yourself by content matching:
+   - refresh and pull the recent candidates: `agentos chatlas recents` or `agentos chatlas query --active-after <recent> --update`
+   - filter with verbatim user turns from your own context — the more distinctive the phrasing, the better: `agentos chatlas query --user-contains "<exact snippet>" --field identity_hash`
+   - repeat with more snippets until exactly one candidate remains: that is you (the conversation is a fingerprint; chatlas has indexed it)
+   - shortcuts: a native session id already in hand → `agentos chatlas query --session-id <native-id> --field identity_hash --update`; a past session → normal `query` filters
+2. **Locate the evidence turn.** Same trick at turn granularity — the agent holds the conversation in context, so it can quote the moment it wants to anchor:
+   - `agentos chatlas views inline --identity-hash <hash> --view events --contains "<distinctive text from that moment>" [--role user] --format json` — the matching events come back as a model fragment with timestamps
+   - add `--around <approximate ISO time>` to get a proximity blast: nearest events first, useful when the quote is weak or repeated
    - the anchor lands in a neighborhood: pick the turn that best *lands* the reader, not a span that contains everything
 3. **Register the anchor.** One command — chatlas owns the record, validates, allocates, and echoes:
    - `agentos chatlas anchory register --identity-hash <hash> --at "<ISO time>" --hint "<one sentence: what is at this location>"`
