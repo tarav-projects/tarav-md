@@ -7,7 +7,7 @@ Use this module when the caller wants the current prompt or ongoing conversation
 ## Grounding Levels
 
 - this module runs `Index.Grounding` — the first `Context.Grounding` level: enrich the agent's context with the index's digest of the topic
-- when the digest is not enough, escalate to full grounding: follow the blocks' anchors out to the original surfaces — chat evidence via `references/link.md` resolution (anchory + chatlas), code and files directly
+- when the digest is not enough, escalate to full grounding: follow the blocks' anchors out to the original surfaces — chat evidence via `references/link.md` resolution (`views inline --anchor … --filter turns`), code and files directly
 - grounding is read-only and ungated — it changes the agent's context, never a surface
 
 ## Grounding Goal

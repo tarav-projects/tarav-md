@@ -16,7 +16,7 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
    - repeat with more snippets until exactly one candidate remains: that is you (the conversation is a fingerprint; chatlas has indexed it)
    - shortcuts: a native session id already in hand → `agentos chatlas query --session-id <native-id> --field identity_hash --update`; a past session → normal `query` filters
 2. **Locate the evidence turn.** Same trick at turn granularity — the agent holds the conversation in context, so it can quote the moment it wants to anchor:
-   - `agentos chatlas views inline --identity-hash <hash> --view events --contains "<distinctive text from that moment>" [--role user] --format json` — the matching events come back as a model fragment with timestamps
+   - `agentos chatlas views inline --identity-hash <hash> --contains "<distinctive text from that moment>" [--role user] --filter turns --format json` — the matching events come back as a clean model fragment with timestamps
    - add `--around <approximate ISO time>` to get a proximity blast: nearest events first, useful when the quote is weak or repeated
    - the anchor lands in a neighborhood: pick the turn that best *lands* the reader, not a span that contains everything
 3. **Register the anchor.** One command — chatlas owns the record, validates, allocates, and echoes:
@@ -36,5 +36,6 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
 
 ## Resolution (reading an anchor)
 
-- `agentos chatlas views inline --anchor <anchor> [--radius N]` — resolves through the chatlas anchory depot and returns the landing-turn neighborhood as a model fragment; read the landing turn and around it
+- `agentos chatlas views inline --anchor <anchor> [--radius N] --filter turns` — resolves through the chatlas anchory depot and returns the landing-turn neighborhood as a clean model fragment; read the landing turn and around it
+- `Chatlas.Filter` presets tune the noise: `turns` (message turns, plumbing stripped) is the grounding reader's default; drop the flag when you need full envelopes (`source_refs`, event ids)
 - `agentos anchory resolve --depot … --anchor <anchor>` remains the record-level (plumbing) view
