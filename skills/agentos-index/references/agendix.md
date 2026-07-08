@@ -35,7 +35,7 @@ Authority lives in the index: `Index.Agendix`, `Writing.Friction.Reduction`, `Ke
 5. **Write** `agendix/Concept.X-agendix.md` in the engaged depot, next to `appendix/` — appendix writing rules, block heading `Concept.X/Agendix`, lines appended:
 
    ```md
-   - [CT] no stable surface links into the agendix — promotion copies content out @20260707-3
+   - [CT] no stable surface links into the agendix — promotion copies content out @YYYYMMDD-N
    ```
 
 6. **Report** compactly: lines captured per concept, fallback entries, candidates dropped at the fence and why.

@@ -99,5 +99,4 @@
 ## Anchory.System/Open.Design
 
 - open: dictionary file format and sharding
-- open: registration ergonomics and concurrent allocation of sequential keys
 - open: whether `File.Mention` becomes an Anchory application or retains its independent resolution model
