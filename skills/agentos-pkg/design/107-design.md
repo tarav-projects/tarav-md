@@ -198,6 +198,7 @@
 - [DC] agendix lines may be assistant-grounded, marked `[AS:XX]`; promotion re-grounds on the approving user turn and drops the marker
 - [DC] agendix files follow appendix writing rules with the block headed `Concept.X/Agendix`, one file per concept in `agendix/` next to `appendix/`
 - [DC] captures with no routed concept land in `agendix/Unassigned-agendix.md` — the homeless pool, promotion evidence for concepts the index does not yet name, never a dump
+- [PR] the agendix is the agentic path of the alignment workflow the gated edit runs hugentically — same primitives (typed `Kernel.Line`s, anchors, the current concept set), the user gate replaced by hard provenance @20260708-4
 ****
 
 ## Concept.Explosion
@@ -317,6 +318,7 @@
 - [CT] linking accesses chat data only through `agentos chatlas` commands — never provider raw stores or transcript files @20260708-0
 - it is the dual of `Context.Grounding`: linking builds the pointers, grounding follows them
 
+- [DC] linking mostly happens on the edge — anchoring content produced in the current session; self-session discovery by content matching is the entry step @20260708-1
 ****
 
 ## Anchory.System

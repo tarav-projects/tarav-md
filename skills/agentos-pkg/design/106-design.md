@@ -140,6 +140,7 @@
 - every line is typed, the definition first line explicitly `[DF]` — untyped lines are mechanically detectable (no leading bracket), the pre-fence legacy the calibration passes work down
 - [DC] types stack along axes: the act axis (`CT`, `DC`, …) and the source axis — unmarked is user-grounded, `AS:` marks assistant-grounded (`[AS:CT]`); `AS:` is legal only in the agendix
 
+- [PR] typing makes the index computable — backward, lint for coherence; forward, agents derive their bounds and freedoms mechanically instead of interpreting prose @20260707-1
 ****
 
 ## Line.Type.Vocabulary
