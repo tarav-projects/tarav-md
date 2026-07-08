@@ -96,6 +96,7 @@ agentos chatlas views inline --identity-hash <H> --file-write "<path-fragment>" 
 
 - `query` flags answer *which sessions* (mentions in prose never match — touch means a tool invocation carried the path)
 - `views inline` flags answer *where in the session*: the touching invocations' events as a model fragment
+- blind-spot escape hatch: `--tool-contains "<text>"` (optionally `--tool-name Bash`) matches over the whole invocation — full recall, no verb claim; the reader judges read/write from the matched invocations
 
 ## Views Workflow
 
