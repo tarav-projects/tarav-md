@@ -6,7 +6,7 @@ This module is NOT `Workflow.Neutral`: it applies gated index writes (`Edit.Trig
 
 ## Inputs
 
-- a `Gr.Req` (note number or path); only entries at `status: proposed` enter the walk — `ambiguous` entries are reported as pending discovery (`--gr-scout`'s job), not reviewed
+- a `Gr.Req` (note number or path); only entries at `status: proposed` enter the walk — `ambiguous` entries are reported as pending discovery (`--gr-survey`'s job), not reviewed
 
 ## Review Loop (per proposed entry)
 

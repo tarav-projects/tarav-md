@@ -7,7 +7,7 @@ description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem
 
 Workflow-neutral `Package.Aux.Skill` for the Agentos Index subsystem.
 
-This skill is the public Batchy router for index work. It orients the caller to the subsystem by default and routes explicit operations such as `--search`, `--edit`, `--ground`, `--type`, `--link`, `--back-link`, `--gr-scout`, `--gr-review`, and `--agendix` into named `Skill.Module`s.
+This skill is the public Batchy router for index work. It orients the caller to the subsystem by default and routes explicit operations such as `--search`, `--edit`, `--ground`, `--type`, `--link`, `--back-link`, `--gr-survey`, `--gr-review`, and `--agendix` into named `Skill.Module`s.
 
 This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
@@ -95,11 +95,12 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - help: "recover chat evidence for an existing block and propose its grounding"
 - examples: --back-link "Writing.Friction.Reduction", --back-link "ground the 107 chapter"
 
-### Skill.Arg:GrScout
-- run a grounding campaign's scouting phase: sweep a scope, mint anchors, produce a `Gr.Req`
+### Skill.Arg:GrSurvey
+- run a grounding campaign's survey phase: sweep a scope, mint anchors, produce a `Gr.Req`
 - required: false
-- help: "scout grounding evidence for a scope into a Gr.Req artifact"
-- examples: --gr-scout "design/105-design.md", --gr-scout "the whole agentos-pkg depot"
+- aliases: --gr-scout, --gr-scan, --gr-linker
+- help: "survey grounding evidence for a scope into a Gr.Req artifact"
+- examples: --gr-survey "design/105-design.md", --gr-survey "the whole agentos-pkg depot"
 
 ### Skill.Arg:GrReview
 - walk a `Gr.Req`'s proposed entries with the user and land the approved links
@@ -137,7 +138,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 | When the user triggers agendix capture — harvesting `User.Touched` lines from the current conversation into `agendix/` files under existing concepts, typed and anchored, ungated | `references/agendix.md` |
 | When a caller needs an `Anchory.Anchor` minted for a chat context — session resolution, turn location, registration, verification; consumed by `--edit` and `--agendix` | `references/link.md` |
 | When the caller wants an existing block grounded backward — git dates the wording, chatlas finds the session and turns, the linking primitive mints, the gated edit lands the `[GR]` line | `references/back-link.md` |
-| When the caller wants a grounding campaign scouted — a scope swept, anchors minted, a `Gr.Req` produced with `proposed`/`ambiguous` entries, no index writes | `references/gr-scout.md` |
+| When the caller wants a grounding campaign surveyed — a scope swept, anchors minted, a `Gr.Req` produced with `proposed`/`ambiguous` entries, no index writes; `--gr-scout`/`--gr-scan`/`--gr-linker` are aliases | `references/gr-survey.md` |
 | When the caller wants a `Gr.Req` reviewed — proposed entries walked with the user, statuses flipped, approved links landed through the gates, provenance re-verified | `references/gr-review.md` |
 | When the caller provides `--depot`, scope the selected operation to those `Index.Depot`s; otherwise use task-relevant engaged depots | applies to `references/search.md`, `references/edit.md`, and `references/ground.md` |
 | When the caller provides `--chapter`, scope the selected operation to that `Index.Chapter` inside the engaged depots; default to `design` when no chapter is named | applies to `references/search.md`, `references/edit.md`, and `references/ground.md` |
@@ -171,7 +172,7 @@ For delegated read-only research that protects the caller's context, use `Packag
 - `references/agendix.md` — agentic capture path: typed, anchored `User.Touched` lines into the agendix, ungated
 - `references/link.md` — the linking primitive: mint and verify chat anchors through chatlas + anchory commands
 - `references/back-link.md` — backward grounding: git history to evidence turns for existing blocks
-- `references/gr-scout.md` — grounding campaign scouting: scope sweep, minting, `Gr.Req` production (no index writes)
+- `references/gr-survey.md` — grounding campaign survey: scope sweep, minting, `Gr.Req` production (no index writes)
 - `references/gr-review.md` — grounding campaign gate: per-entry user verdicts, gated landings, provenance close-out
 
 ## When To Load This Skill

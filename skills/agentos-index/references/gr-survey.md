@@ -1,6 +1,8 @@
-# agentos-index --gr-scout
+# agentos-index --gr-survey
 
-Use this module to run a grounding campaign's scouting phase: sweep a scope, mint anchors, and produce a `Gr.Req` artifact. The grounding analogue of `agentos-hugentics-impl --design` — reconnaissance that reports back and does not act.
+Use this module to run a grounding campaign's survey phase: sweep a scope, mint anchors, and produce a `Gr.Req` artifact. The grounding analogue of `agentos-hugentics-impl --design` — reconnaissance that reports back and does not act.
+
+Aliases: `--gr-scout`, `--gr-scan`, `--gr-linker` all call this module.
 
 This module NEVER writes index or appendix surfaces. Its only outputs are anchors in the register (minting is free) and the `Gr.Req` live note. Landing is the reviewer's job (`references/gr-review.md`), gated per entry.
 
