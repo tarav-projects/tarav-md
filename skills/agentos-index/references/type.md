@@ -15,7 +15,7 @@ Authority lives in the index: `Line.Type`, `Line.Type.Vocabulary`, and the `Line
 
 ## The Vocabulary
 
-Seven starting types, sorted by their verb on the `Design.Space`. One-line reminders — the `Line.Type:XX` blocks are the authority:
+Eight starting types, sorted by their verb on the `Design.Space`. One-line reminders — the `Line.Type:XX` blocks are the authority:
 
 | verb | type | act |
 |---|---|---|
@@ -26,6 +26,7 @@ Seven starting types, sorted by their verb on the `Design.Space`. One-line remin
 | orient | `PR` | generative orientation across variables |
 | open | `FR` | explicitly declares a variable agent-owned |
 | witness | `EX` | illustrates another line's claim with a concrete case |
+| cite | `GR` | accounts what an anchored evidence neighborhood grounds, anchor trailing |
 
 The vocabulary is soft and extensible (`Concept.Hardness`) — but extension is an index edit, not a call this module makes.
 

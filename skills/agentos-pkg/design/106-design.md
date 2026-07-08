@@ -209,6 +209,14 @@
 
 ****
 
+## Line.Type:GR
+
+- [DF] `Line.Type:GR` marks a grounding line — a one-sentence account of what an anchored evidence neighborhood grounds
+- [CT] validation point: the line must carry a trailing anchor and state what the evidence grounds; a `GR` without an anchor is mistyped
+- [DC] lint: an anchor that does not resolve, and a `GR` account contradicted by its anchored neighborhood
+
+****
+
 ## Design.Variable
 
 - `Design.Variable` is one axis of the `Design.Space` — a question a design must resolve on its way to implementation

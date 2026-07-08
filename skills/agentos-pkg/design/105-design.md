@@ -6,6 +6,7 @@
 
 - `Kernel.Block.Grounding` is the grounding of a `Kernel.Block` — two appendix sections, `Concept.X/Grounding.Head` and `Concept.X/Grounding.Drift`
 - both hold grounding lines: an `Anchory.Anchor` plus a one-sentence explanation of what the anchored turn grounds
+- [DC] a grounding line is typed `[GR]` and reads sentence first, anchor trailing — the same tail position `Inline.Grounding` uses
 - `Grounding.Head` holds evidence supporting the block as currently written; a missing or empty `Grounding.Head` means the block is not grounded
 - `Grounding.Drift` holds related evidence that no longer supports the current content — kept for provenance, created on demand
 - state is positional: as the concept evolves, lines move from `Grounding.Head` to `Grounding.Drift`; the move reads in git history
