@@ -18,9 +18,14 @@ Use this module when the caller wants deterministic diagnosis, linter findings, 
 - explicit surface check: `agentos index linter --index <index-path> --appendix <appendix-path>`
 - structured output when useful: add `--json`
 
+## Built-In Grounding Checks
+
+- the installed `agentos index linter` runs `Line.Type` syntax checks (bracket form, known act codes, `[GR]` trailing anchor; `AS:` outside `agendix/` is an ERROR) and the chatlas grounding-provenance check (anchors resolve; landing turns exist; roles match the source axis) — no extra flags
+- a missing chatlas backend renders `Index.Linter/Grounding.Provenance` as a blocked check, never a silent skip
+- `agentos anchory scan --depot <chatlas-root>/anchory --src-file <file> --regex '@(?P<anchor>[0-9]{8}-[0-9]+)'` remains the record-level spot check for a single file
+
 ## Beyond The Linter
 
-- anchor resolvability: `agentos anchory scan --depot <chatlas-root>/anchory --src-file <file> --regex '@(?P<anchor>[0-9]{8}-[0-9]+)'` — every anchor in an edited file should resolve
 - semantic lints on typed lines (contradicting `[DC]`s, violated `[CT]`s, reintroduced `[RJ]`s, overridden `[FR]`s) are agent work, not linter checks — see `references/type.md`; report findings, route fixes through `--edit`
 
 ## Post-Edit Check

@@ -7,7 +7,7 @@
 - **Out of scope**: the physical packaging split into `packages/` workspaces (`Dependency.Profile.Split` says no new profile is needed here — the bridge's profile is a subset of chatlas-py's; the split is its own future effort and this code moves into it unchanged); semantic lints (contradicting `[DC]`s etc. — agent work per `references/type.md`); typing legacy untyped lines.
 - **Repos**: `agentos-py` (`src/agentos/index/linter.py`, `commands.py`, tests), `agentos-chatlas-py` (new `src/agentos_chatlas/index_checks.py`, tests), `agentos-cli` (wiring + e2e). Reinstall after CLI changes (`uv tool install --reinstall --editable .` from `agentos-cli/`).
 - **Source**: this design session — `Dependency.Profile.Split` (102, anchored `@20260708-7`), `Line.Type` source-axis lines (106), `Grounding.Hugentic.Authority` user-turn-only `[CT]` (105), `Chatlas.Anchory` user-turn `[CT]` (chatlas 100), `notes/live/571-line-type-linter-checks-parking.md`.
-- **Status**: ready for implementation
+- **Status**: implemented (2026-07-08); all four slices; suites green (agentos-py 277, chatlas-py +6 bridge tests, cli 56); both live depots clean at 16 checks with provenance verified
 
 ## Impl.Index
 
@@ -82,4 +82,9 @@
 
 ## Impl.Log
 
-- (empty — populated by the executer)
+- 2026-07-08: executed in `Alignment.Mode:Autonomous`. S1: socket (`extra_checks`) + `Index.Linter/Line.Types` core check (syntax, unknown code, `[GR]` anchor, `Source.Axis.Placement` error); agendix files discovered as `appendix`-sibling and `depot/agendix` — no `SurfaceKind` ripple (the deviation trigger did not fire; checks walk config paths directly).
+- S2: `agentos_chatlas/index_checks.py` — provenance check with per-session model cache; landing-turn role = nearest timestamped message event to `at` (mirrors mint validation semantics); non-chatlas records skipped; missing depot gates to blocked.
+- S3: `register_index_commands(..., extra_linter_checks=…)` + composition in `agentos-cli`; live acceptance: both depots 16 checks, 0 findings — all live anchors verified end to end.
+- open-space decision: act-code list is a module constant in the core linter with a comment pointing at `Line.Type.Vocabulary` (index-sourced later if cheap).
+- open-space decision: the bridge imports the core's `_line_type_surface_files` helper (private-by-underscore but the bridge wields full libraries per design); promote to public name during the packaging split.
+- gated follow-up proposed to the user (not self-written): `[DC]` on `Index.Linter` (104) for the socket + provenance checks.

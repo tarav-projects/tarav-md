@@ -1,4 +1,4 @@
-# Line.Type Linter Checks — Parking.Note
+# Line.Type Linter Checks — Parking.Note — CLOSED (574, executed 2026-07-08; all checks below implemented except the agent-side semantic lints, which stay agent work by design)
 
 CPU-checkable `Line.Type` syntax checks for `agentos index linter` — the cheap mechanical tier under the agent-side semantic lints (`references/type.md`). Slated "later" in the typing implementation ladder (this session); parked so it is not lost.
 
