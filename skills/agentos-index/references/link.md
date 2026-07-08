@@ -17,9 +17,8 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
    - `agentos chatlas views inline --identity-hash <hash> --view user --format json` — events carry `timestamp`; scan for the evidence turn
    - the anchor lands in a neighborhood: pick the turn that best *lands* the reader, not a span that contains everything
 3. **Register the anchor.** Depot is the chatlas anchory depot (`<chatlas-root>/anchory/`); key prefix is the evidence turn's date `YYYYMMDD`:
-   - `agentos anchory register --depot <chatlas-root>/anchory --anchor <YYYYMMDD-N> --record-json '{"app":"chatlas","session":"<identity_hash>","at":"<ISO time>","hint":"<one sentence: what is at this location>"}'`
-   - allocation today: `agentos anchory query --depot … --prefix <YYYYMMDD>` for the next free `-N`; on duplicate-key error, re-query and retry — the collision is normal, not a fault
-   - target CLI (planned): `register --prefix <YYYYMMDD>` allocates `-N` atomically under the depot lock and returns the full anchor
+   - `agentos anchory register --depot <chatlas-root>/anchory --prefix <YYYYMMDD> --record-json '{"app":"chatlas","session":"<identity_hash>","at":"<ISO time>","hint":"<one sentence: what is at this location>"}'`
+   - `register --prefix` allocates the next `<YYYYMMDD>-N` atomically under the depot lock and returns the full anchor
 4. **Verify.** `agentos anchory resolve --depot … --anchor <anchor>` must round-trip the record.
 5. **Return the anchor** to the caller, which tags its line: trailing position, `… @20260707-0`.
 

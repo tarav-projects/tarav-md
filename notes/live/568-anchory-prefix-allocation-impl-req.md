@@ -7,7 +7,7 @@
 - **Out of scope**: a `next` advisory peek (user decision: implement only if actual workflows demand it); chatlas-side anchor digestion (`query --anchor`, turn search — `notes/live/567`, separate req); namespaces; storage format; `exists`/`anchors` read surfaces (owned by `565-anchory-read-surfaces-impl-req.md`).
 - **Repos**: code in `agentos-py` (`src/agentos/anchory/core.py`, `src/agentos/anchory/commands.py`, `tests/test_anchory.py`); CLI parser behavior also has e2e coverage in `agentos-cli/tests/test_e2e_anchory.py` — both repos are in scope. The `agentos` executable is owned by `agentos-cli`; CLI changes require `uv tool install --reinstall --editable .` from `agentos-cli/` (per `agentos-py/AGENTS.md`).
 - **Source**: this design session (first end-to-end linking run); `notes/live/567-linking-cli-follow-ups-parking.md` item 1; index concepts `Anchory.System`, `Chatlas.Anchory`, `Index.Linking`.
-- **Status**: ready for implementation (revised after executer review — repo scope, exact prefix regex, breaking-API sweep, concurrency test, AGENTS.md ownership statement)
+- **Status**: implemented
 
 ## Impl.Index
 
@@ -57,7 +57,7 @@
 ### Acceptance signals
 - an agent can mint a tagged-ready anchor with one command: `agentos anchory register --depot <chatlas-root>/anchory --prefix <YYYYMMDD> --record-json '…'`
 - two concurrent prefix registrations never yield the same anchor (serialized by the depot lock)
-- full `agentos-py` suite green; `No.Regression.Tests.Allowed` respected
+- full `agentos-py` and `agentos-cli` suites green; `No.Regression.Tests.Allowed` respected
 
 ### Risks / deviation triggers
 - if 565 lands mid-flight and touches `register` or shard iteration, rebase on it rather than duplicating helpers
@@ -65,4 +65,8 @@
 
 ## Impl.Log
 
-- (empty — populated by the executer)
+- 2026-07-08: Executed in `Alignment.Mode:Autonomous`. Deviation: the execution module's git checkpoint could not be created because the umbrella root is not a git repo and project instructions prohibit commits without an explicit commit request; proceeded without a checkpoint and left changes uncommitted. Pre-existing dirty changes were present in related Anchory/CLI/Chatlas areas; inspected and preserved them.
+- 2026-07-08: Implemented `AnchoryDepot.register(record, *, anchor=None, prefix=None)` with exactly-one identity validation, exact regex prefix allocation under the existing exclusive depot lock, max+1 suffix selection, and no gap filling. Updated internal exact-anchor callsites/tests to the breaking keyword-only contract.
+- 2026-07-08: Added CLI `agentos anchory register --prefix`, e2e coverage in `agentos-cli`, refreshed the installed `agentos` tool with `uv tool install --reinstall --editable .`, and verified prefix allocation against a scratch depot.
+- 2026-07-08: Updated `agentos-py/AGENTS.md`, `agentos-index/references/link.md`, and `notes/live/567-linking-cli-follow-ups-parking.md`. Verification: `agentos-py` `uv run pytest` passed (274), `agentos-cli` `uv run pytest` passed (56), focused Ruff checks passed for touched Anchory and CLI test files.
+- 2026-07-08: Adjacent Chatlas verification: `agentos-chatlas-py` `uv run pytest tests/test_anchory_depot.py` passed (2). `agentos index linter --depot agentos-md/skills/agentos-index` was attempted but is not applicable because `agentos-index` is a runnable skill/reference surface, not a lintable index depot with chapter/router files.
