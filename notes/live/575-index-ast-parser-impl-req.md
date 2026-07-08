@@ -25,7 +25,7 @@
 - `md_library/docast/nodes.py` — `Node` (src, start_line, end_line, parsed dict, spans list), `InlineSpan` (frozen: kind, src, start, end, line, column, parsed), `Diagnostic`, `Document`
 - `md_library/docast/parser.py` — line-classifier → block builder; `_location()` for span line/column; escaped-char handling
 - `md_library/lint2/runner.py` — `Lint2PhysicalLine` (raw, stripped, line, block_index, node_type: physical lines back-referencing nodes), `Lint2Context`, check dataclasses, the runner loop (`:1252`)
-- `md_library/lint2/parity.py` — the old-vs-new sweep pattern; md-library kept the legacy engine wired to no command until parity held, then demoted it
+- the parity-sweep pattern: md-library kept the legacy engine wired to no command until old-vs-new parity held, then demoted it — NOTE (pre-execution review): `lint2/parity.py` no longer exists at that path; the parity examples now live in md-library's tests — take the pattern, not the path
 - do NOT copy code wholesale — the index grammar differs; copy the architecture
 
 ### Target.Package
@@ -72,12 +72,13 @@
 - check: green; span positions verified by slicing `src`
 
 ### S3 — Router dialects + depot model + query API
-- what: `RouterEntry` parsing for BOTH dialects; `parse_depot` surface classification (router/chapter/appendix/agendix, AGENTS.md exclusion); public query helpers `blocks_by_anchor` / `anchors_by_block` / `kernel_lines`
+- what: `RouterEntry` parsing for BOTH dialects; `parse_depot` surface classification (router/chapter/appendix/agendix, AGENTS.md exclusion) — the router is an EXPLICIT parse step from the depot root: `000-INDEX.md` is not in today's derived index surfaces and must never be reached only via chapter discovery (pre-execution review finding); public query helpers `blocks_by_anchor` / `anchors_by_block` / `kernel_lines`
 - RED: both live routers' formats parse (fixture copies); `[+N]` annotations parsed; `blocks_by_anchor("20260705-0")` on a fixture returns the citing block path + line
 - check: green; live smoke — `parse_depot` over both real depots reports zero `Diagnostic`s (or only known/justified ones, recorded in the log)
 
 ### S4 — Check runner over the AST
 - what: node-check/document-check dataclasses + dispatch integrated INTO the existing linter (`LinterState` gains the parsed model; findings/gates/rendering unchanged); Tier-0 conformance check (Diagnostics → findings)
+- DESIGN CLARIFICATION (pre-execution review): today's checks are a covert pipeline — early "checks" build inventory (file discovery, mdblocks, concepts) that later checks and gates consume, so ordering is load-bearing. The AST runner makes the split explicit: PARSING is the inventory phase, CHECKS only find. Gate codes, blocked statuses, and their rendering must reproduce exactly — parity compares blocked checks too, not only findings
 - RED: a toy node check fires per matching node type; a `Diagnostic` in a fixture becomes a conformance finding; existing raw checks still run unchanged alongside
 - check: full existing suite still green (old engine untouched so far)
 
@@ -94,7 +95,7 @@
 ### S7 — `Line.Unlinked` + `--warn-unlinked`
 - what: the new check per New.Check spec; `--warn-unlinked` flag on `agentos index linter`
 - RED: unlinked agendix kernel line warns by default; unlinked chapter line silent by default, warns under the flag; separators/headings/meta/fence interiors never warn; linked lines never warn
-- check: live — both depots' agendix files pass (all captured lines are anchored); `--warn-unlinked` over agentos-pkg reports the (large, legacy) unlinked count without errors
+- check: live — both depots' agendix files pass (baseline measured at review time: 0 unlinked in both agendixes); `--warn-unlinked` baselines ≈ agentos-pkg design 1237 + appendix 642, chatlas design 167 + appendix 62 — expect that order of magnitude, warnings only, exit code unaffected by warnings
 - observable: linking coverage is measurable per depot
 
 ### S8 — Docs + gated proposals
