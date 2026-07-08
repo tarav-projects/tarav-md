@@ -3,7 +3,7 @@
 Date: 2026-07-08
 Target: `skills/agentos-pkg/design/107-design.md`
 Chapter: `107-design.md`
-Status: first backlink pass complete; report-only, no index writes applied
+Status: first backlink pass complete; gated edit set LANDED 2026-07-09 (9 inline anchors, commit 0f9faca; provenance re-verified by linter) — remaining: the ambiguous lines (20/22/31/198/199), upgradeable via the approval-turn authority rule
 
 ## Scope
 
