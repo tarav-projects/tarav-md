@@ -85,6 +85,16 @@
 
 ****
 
+
+
+## Gr.Req
+
+- [DF] `Gr.Req` is the grounding-request artifact — a live note carrying one grounding campaign from discovery to landed links
+- [DC] structure: `Gr.Abstract` (target scope, coverage before/projected, status), `Gr.Set` (one entry per grounding target: anchor, evidence hint, why, landing form, status), `Gr.Log` (deviations, unattached anchors, drops with reasons)
+- [DC] a `Gr.Set` entry is candidate and proposal at once — status carries the lifecycle: `ambiguous` (no anchor yet) → `proposed` (mint done, awaiting gate) → `landed` | `dropped`
+- [DC] the gate is a status filter, not a section: the user reviews `proposed` entries; discovery and minting are free, every landing passes the gate
+- [DC] review keeps progress in place: the gate pass edits entry statuses in the `Gr.Set` — the artifact stays the single record through the campaign
+- [DC] filename `NNN-…-gr-req.md` in `notes/live/`, per `Agentos.Live.Note` and `File.Numbering.Protocol`
 ## Development.Principles
 
 - `Impl.Req` work spans `How.Design` and `Impl.Exec` — different principles matter at each phase

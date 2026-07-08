@@ -7,7 +7,7 @@
 - **Out of scope** (v1+, user decisions this session): the grounding relevance tier (anchor-scan → session set — agents check grounding manually for now); any READ path against the local folder (all queries/resolution/linting keep using the global chatlas); pruning (stale chats remain); privacy policy beyond the `turns` filter; resolution precedence on chatlas-less machines.
 - **Repos**: `agentos-chatlas-py` only (new `local.py` or similar, `commands.py`, tests). Reinstall note: `uv tool install --reinstall --editable .` from `agentos-cli/` after CLI changes.
 - **Source**: design discussion in session `9d194db7…` (2026-07-08/09); index concepts `Chatlas.Session.Model`, `Chatlas.Filter` (the `turns` preset IS the v0 content policy), `Chatlas.View` (model-closed outputs), `Surface.Link.Directionality` (the not-publicly-resolvable exception this feature works toward retiring).
-- **Status**: ready for implementation
+- **Status**: implemented; review pending
 
 ## Impl.Index
 
@@ -42,15 +42,18 @@
 - what: library function: project path → attributed session rows (reusing query-layer matching) → per session, load model, apply `turns`, write JSON into the folder; the folder marker/manifest
 - RED: fixture with two sessions in project A (distinct `cwd`s under it) and one in unrelated project B — sync-core over A exports exactly the two; exported JSON is a valid model object (has `chat.events`, message events only, no `normalization`/`sources` — the `turns` contract); a session whose model fails to load is skipped and reported, not fatal
 - check: suite green
+- status: done
 
 ### S2 — `chatlas local` CLI namespace
 - what: `local` subparser with `sync` and `status`; `--project` optional with discovered-root default
 - RED: e2e — `chatlas local sync --project <fixture-project>` creates the folder and files; running it twice is idempotent (same content); a manually planted extra file in the folder SURVIVES sync (the never-delete contract); `status` reports the three buckets correctly
 - check: suite green; reinstall; scratch-project live smoke
+- status: done
 
 ### S3 — Live acceptance + docs
 - what: run `chatlas local sync --project /Users/pereiro/projects/agentos-project/agentos-md` for real; inspect the folder; `chatlas-commands.md` gains a "Local Chatlas Workflow" section (v0 boundaries stated: export-only, attribution-only, turns-only, never deletes); propose (gated, do not self-write) a `Local.Chatlas`/`Chatlas.Local` concept block for the chatlas index — verbatim draft in the completion report
 - check: live folder sane (model JSONs load, turns-only); reference matches real CLI; both existing depots still lint clean (nothing index-side changed)
+- status: done
 
 ### Acceptance signals
 - one command ports a project's attributed chats as portable, model-closed, turns-filtered JSON into the project tree
@@ -64,4 +67,20 @@
 
 ## Impl.Log
 
-- (empty — populated by the executer)
+- 2026-07-08: created workflow-required checkpoint commits before edits:
+  - `agentos-chatlas-py` `efdc5cf`
+  - `agentos-chatlas-md` `8eb5dbc`
+  - `agentos-md` `af101b3`
+- 2026-07-08: implemented `agentos_chatlas.local` with deterministic `chatlas/manifest.json` plus one `<identity_hash>.json` turns-filtered model file per written session.
+- 2026-07-08: added `agentos chatlas local sync/status`; explicit `--project` is accepted and omitted `--project` resolves through `require_agentos_project_root`.
+- 2026-07-08: deviation resolved: S1 fixture wording suggested descendant cwd matching, but `Projects.Chats` authority says exact selected project plus ancestors. Implementation uses exact query-layer matching and a bounded ancestor walk.
+- 2026-07-08: deviation resolved: naive filesystem ancestor walking initially included `/Users` and `/`, over-attributing thousands of broad sessions. Corrected to the selected Agentos project plus contiguous Agentos-project ancestors only; for live `agentos-md`, attribution paths are `agentos-md` and `agentos-project`.
+- 2026-07-08: deviation resolved: Abstract said `agentos-chatlas-py` only, but S3 explicitly required docs and audit-log edits. Updated `agentos-chatlas-md/skills/agentos-chatlas-pkg/references/chatlas-commands.md` and this `agentos-md` Impl.Req.
+- 2026-07-08: live smoke: `agentos chatlas local sync --project /Users/pereiro/projects/agentos-project/agentos-md` wrote `3114` session files plus manifest under `agentos-md/chatlas/`; `3538` attributed sessions, `424` skipped. Skips were best-effort load failures, mainly existing cached `chatlas-session` schema-version mismatches.
+- 2026-07-08: live status: `3114` attributed-and-present, `424` attributed-and-missing, `0` present-but-not-attributed.
+- 2026-07-08: verification:
+  - `uv run pytest` in `agentos-chatlas-py`: `141 passed`
+  - `uv run ruff check src tests` in `agentos-chatlas-py`: passed
+  - `uv run ruff check` in `agentos-chatlas-py`: blocked by unrelated pre-existing `dev/user-script-invariant-test/validate.py` unused `sys` import
+  - `agentos index linter --depot skills/agentos-pkg`: `0 error(s), 0 warning(s)`
+  - `agentos index linter --depot skills/agentos-chatlas-pkg`: `0 error(s), 0 warning(s)`

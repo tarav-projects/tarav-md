@@ -31,5 +31,5 @@ This module is `Workflow.Neutral` in the same sense as `--link`: it produces ver
 
 ## Batch Behavior
 
-- back-linking a chapter is this pipeline per block; report per block: grounded (anchor), no-evidence-found, or ambiguous (candidate turns for the user)
+- a back-linking campaign lives in a `Gr.Req` live note (`NNN-…-gr-req.md`): one `Gr.Set` entry per grounding target — anchor, evidence, landing form, status (`ambiguous` → `proposed` → `landed`|`dropped`); the user gates by flipping statuses on `proposed` entries
 - every write remains individually user-gated — batch discovery, per-line verbatim proposal, user-approved landing
