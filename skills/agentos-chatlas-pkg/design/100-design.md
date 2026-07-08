@@ -292,6 +292,7 @@
 - the anchor key convention is date-based: `YYYYMMDD-N`, a daily position suffix
 - Chatlas owns the `Anchory.Record` payload and the traversal from record to session and turn neighborhood
 - registration validates the session exists and the timestamp falls inside its bounds
+- [DC] registration echoes the landing neighborhood — the minting agent double-checks the anchor before tagging lines
 - record format: `appendix/Chatlas.Anchory-appendix.md`
 ****
 
