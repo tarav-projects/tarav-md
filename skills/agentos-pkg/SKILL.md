@@ -37,10 +37,15 @@ Concepts are named using **Dotted Notation** — compound names like `Vertical.S
 
 Indexes are distributed across two scopes:
 
-- `design/` — always-loaded fundamentals. Contains flat numbered files (`100-design.md`, `101-design.md`, ...) where file names carry no semantic meaning — concepts are just appended.
+- `design/` — the default `Index.Chapter`: conceptual fundamentals in flat numbered files (`100-design.md`, `101-design.md`, ...) whose suffix names the chapter. The loading policy is open — when in doubt, search the default chapter only.
 - `appendix/` — on-demand depth. Contains concept-named files (`Concept.Name-appendix.md`) — check if one exists when you need depth beyond the index block.
 
 The **router** maps every concept name to the file that holds it — always read this first. Package indexes use `000-INDEX.md`; project-local indexes use `001-index.md`.
+
+Two further layers ride on the blocks — gesture-level here, the index owns the detail:
+
+- **Typed lines** — index lines carry a `Line.Type` from a small vocabulary (`- [CT] ...`), classifying each line's act: define, decide, constrain, reject, orient, free, exemplify. Load `agentos-index` (`--type`) for reading and proposing types.
+- **Grounding** — a concept's evidence links live in its appendix `Grounding.Head`/`Grounding.Drift` sections and inline as trailing anchors (`@20260630-0`), resolved through the Anchory subsystem back to the chats. See `Kernel.Block.Grounding` and `Anchory.System` in the index.
 
 Both project folders and package skills can have their own index. If a project is developing a package skill, the agent can access both indexes locally.
 

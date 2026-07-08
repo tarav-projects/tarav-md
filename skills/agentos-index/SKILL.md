@@ -7,7 +7,7 @@ description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem
 
 Workflow-neutral `Package.Aux.Skill` for the Agentos Index subsystem.
 
-This skill is the public Batchy router for index work. It orients the caller to the subsystem by default and routes explicit operations such as `--search`, `--edit`, and `--ground` into named `Skill.Module`s.
+This skill is the public Batchy router for index work. It orients the caller to the subsystem by default and routes explicit operations such as `--search`, `--edit`, `--ground`, and `--type` into named `Skill.Module`s.
 
 This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
@@ -71,6 +71,12 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - help: "ground the current conversation against the index and report what matters"
 - examples: --ground "check this design discussion against the index"
 
+### Skill.Arg:Type
+- read or propose `Line.Type` classification for index lines
+- required: false
+- help: "explain, read, or propose index line typing"
+- examples: --type "type the Anchory.System block", --type "what binds me in this block?"
+
 ## Boundary
 
 - this skill is the canonical public entry surface for working with the Agentos Index system
@@ -95,6 +101,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 | When the caller wants to draft, redraft, critique, tighten, or otherwise shape index-block or appendix-block wording; when the task is proposing concept text, revising a block, appending a line, or preparing an approved index or appendix edit; includes block-shaping work even before file mutation is approved; `--edit`, `--write`, and `--append` all call this module | `references/edit.md` |
 | When the caller wants the current prompt or ongoing conversation grounded against the index; when the task is to surface the most relevant concepts, tensions, contradictions, significant accepted remarks, or missing coverage; when the caller wants the relationship between the live discussion and the existing index made explicit rather than running a raw lookup | `references/ground.md` |
 | When the caller wants deterministic diagnosis, linter findings, or post-edit validation for an index depot or explicit index/appendix surface; `--check` and `--lint` both call this module | `references/check.md` |
+| When the caller wants line typing understood, read, or proposed — the `[XX]` syntax, the `Line.Type.Vocabulary`, validation points, reading typed lines as constraints, calibration passes and their residue | `references/type.md` |
 | When the caller provides `--depot`, scope the selected operation to those `Index.Depot`s; otherwise use task-relevant engaged depots | applies to `references/search.md`, `references/edit.md`, and `references/ground.md` |
 | When the caller provides `--chapter`, scope the selected operation to that `Index.Chapter` inside the engaged depots; default to `design` when no chapter is named | applies to `references/search.md`, `references/edit.md`, and `references/ground.md` |
 | When the caller needs package-level understanding of how the index subsystem is designed, structured, and distributed across public and local surfaces | `agentos-pkg/design/`, `agentos-pkg/appendix/`, `agentos-pkg/references/` |
@@ -122,6 +129,7 @@ For delegated read-only research that protects the caller's context, use `Packag
 - `references/edit.md` — approved edit path for index and appendix changes: gates, actions, naming, placement, edit loop, and maintenance
 - `references/ground.md` — conversation-to-index grounding: derive the active themes, search selectively, and report matches, tensions, and gaps
 - `references/check.md` — deterministic index checks through `agentos index linter`
+- `references/type.md` — line typing: syntax, vocabulary, validation points, reading typed lines, fence and residue
 
 ## When To Load This Skill
 
