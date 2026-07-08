@@ -302,7 +302,7 @@
 - it runs at levels: `Index.Grounding` loads the index's digest of the topic; full grounding also follows the pointers out to the original surfaces — the chats via Chatlas + git history, the code directly
 - it is read-only and ungated — it changes the agent's context, never a surface
 - grounded blocks make prior work reusable — settled context reaches the agent without the user re-explaining it
-- [CT] grounding reaches chat surfaces only through `agentos chatlas` commands — never provider raw stores or transcript files
+- [CT] grounding reaches chat surfaces only through `agentos chatlas` commands — never provider raw stores or transcript files @20260708-0
 - `Index.Linking` is its dual: linking builds and maintains the pointers grounding follows
 
 ****
@@ -313,7 +313,7 @@
 - without the links back, the index cannot be checked for completeness or correctness against the touched record
 - it lands in the block's grounding section (`Concept.X/Grounding`), carried as grounding lines — an `Anchory.Anchor` plus a one-sentence note
 - it is an index edit — user-gated like any edit (`Edit.Trigger.Gated`, `Content.Verbatim.Gated`); in the `Agendix` linking runs open, agent-driven (dealt with later)
-- [CT] linking accesses chat data only through `agentos chatlas` commands — never provider raw stores or transcript files
+- [CT] linking accesses chat data only through `agentos chatlas` commands — never provider raw stores or transcript files @20260708-0
 - it is the dual of `Context.Grounding`: linking builds the pointers, grounding follows them
 
 ****
