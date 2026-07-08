@@ -6,7 +6,7 @@
 
 - `Agentos.Skillware` is the discipline of treating skills as software — the skill is the unit of software for agents.
 - "as software" means the artifacts agents run gain engineering structure — modules, dependencies, builds, versions, lineage — so they can be reused and evolved rather than written once and forked.
-- it is supported by a development toolchain — linters, builders, compilers — spanning agentic and `CPU.Impl` work, that moves package maintenance off the human.
+- it is supported by a development toolchain — linters, builders, compilers — spanning agentic and `CPU.Impl` work, that moves package maintenance off the human. @20260627-0
 - a discipline realized by capabilities, not a single mechanism — it names the stance; specific members implement it.
 
 ### meta
@@ -18,15 +18,15 @@
 ## Skill.Runnable.Surface
 
 - `Skill.Runnable.Surface` is a surface whose purpose is to be run — loaded into agent context to do work; it carries only the executable substance.
-- the system keeps it free of non-runnable artifacts, so nothing obscures or dilutes what runs.
+- the system keeps it free of non-runnable artifacts, so nothing obscures or dilutes what runs. @20260627-2
 - forced by context being executable — anything on it is read into context and shapes the run; non-runnable artifacts there are not inert, they interfere.
 
 ****
 
 ## Skill.Build.Surface
 
-- `Skill.Build.Surface` is the complement of `Skill.Runnable.Surface` — it holds the artifacts that produce and maintain runnable content, and is never loaded at run time.
-- it is the home for everything kept off the runnable surface: derivation context, dependency declarations, lineage, dev material.
+- `Skill.Build.Surface` is the complement of `Skill.Runnable.Surface` — it holds the artifacts that produce and maintain runnable content, and is never loaded at run time. @20260627-1
+- it is the home for everything kept off the runnable surface: derivation context, dependency declarations, lineage, dev material. @20260627-1
 - never run, it carries no "stay clean" constraint — an unconstrained workspace; that freedom is what the two-surface split buys.
 - it lives in a per-package `build/` folder — build-time material organized by capability (derivation, tests, lint, lineage), discovered by convention.
 
@@ -173,7 +173,7 @@
 ## Writing.Friction.Reduction
 
 - `Writing.Friction.Reduction` is the principle that the Agentos system lowers the cost of capturing design as it is discussed — by routing capture to the surface whose friction matches it
-- friction is a designed gradient, and friction buys authority: `Chat.Surface` (free — talk is capture) → `Index.Agendix` (zero user friction, agent-driven, no authority) → `Index.Appendix` (`Kernel.Line`-level approval) → `Index.Main` (`Kernel.Block`-level work unit)
+- friction is a designed gradient, and friction buys authority: `Chat.Surface` (free — talk is capture) → `Index.Agendix` (zero user friction, agent-driven, no authority) → `Index.Appendix` (`Kernel.Line`-level approval) → `Index.Main` (`Kernel.Block`-level work unit) @20260705-2
 - the aim is to capture as much of the user's design as possible before it is lost — structure is deferred, not skipped
 - the index keeps a friction floor on purpose — too-cheap writing would flush the hugentic surface; the friction is part of the alignment
 - on touched surfaces the approval gate stays — friction drops, the gate does not
@@ -182,19 +182,19 @@
 
 ## Index.Agendix
 
-- `Index.Agendix` is the agent-driven shadow of the Index — an untouched member of the index surface, one file per `Index.Main` concept: `agendix/Concept.X-agendix.md`, next to `appendix/`
+- `Index.Agendix` is the agent-driven shadow of the Index — an untouched member of the index surface, one file per `Index.Main` concept: `agendix/Concept.X-agendix.md`, next to `appendix/` @20260705-2
 - it is a cache the agent keeps to aid grounding on stable surfaces — no stable surface may link into it; promotion copies an entry out through the normal gates (including into the index)
 - the agent cannot mint concepts — it attaches lines under existing routed concepts; the ontology primes the capture, the agent fills the gaps — the index's shadow, not a second index
-- hard rule: every line is a grounded summary of chat discussion — a rejection, a constraint, a highlight the index does not yet capture — carrying its `Anchory.Anchor`/`File.Mention` pointer; unsourced agent reasoning does not belong
+- hard rule: every line is a grounded summary of chat discussion — a rejection, a constraint, a highlight the index does not yet capture — carrying its `Anchory.Anchor`/`File.Mention` pointer; unsourced agent reasoning does not belong @20260705-2
 - writing rules are the appendix's — `Kernel.Writing` discipline, the same block and line forms; only the supervision differs: all work is done and supervised by agents
 - capture is user-triggered but not gated — the agent may suggest a capture pass, never start one
 - it extends the `Block.Line.Gradient` past the touch cut: fundamentals → `Concept.X/Appendix` (touched tail) → the concept's agendix shadow tail (untouched)
-- homeless material lands in a fallback file — misfit pressure is evidence a concept is missing (concept-gap detector)
+- homeless material lands in a fallback file — misfit pressure is evidence a concept is missing (concept-gap detector) @20260705-2
 - it is index-adjacent, not part of the index — it softens the index principles on the fly, replacing the direct user touch with a grounding link to the touch event
 - it is self-similar to the appendix — an untouched appendix, same form and rules; it exists because the user gate is the bottleneck: a surface for the agent to run ahead of the gate
 - agendix and appendix must not duplicate content — over time the agendix drains: entries reviewed by the user are promoted through the gate or dropped
 - in alignment terms: `Untouched.Space` made durable — visible, assumed untouched by the user, non-aligned; zero authority, freely rewritable; everything in it is promotion evidence
-- agendix lines are typed: every line carries a `Line.Type` from the vocabulary — the validation point applies to agent capture too
+- agendix lines are typed: every line carries a `Line.Type` from the vocabulary — the validation point applies to agent capture too @20260707-2
 - [DC] agendix lines may be assistant-grounded, marked `[AS:XX]`; promotion re-grounds on the approving user turn and drops the marker
 - [DC] agendix files follow appendix writing rules with the block headed `Concept.X/Agendix`, one file per concept in `agendix/` next to `appendix/`
 - [DC] captures with no routed concept land in `agendix/Unassigned-agendix.md` — the homeless pool, promotion evidence for concepts the index does not yet name, never a dump
