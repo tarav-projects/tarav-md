@@ -293,3 +293,21 @@
 - Chatlas owns the `Anchory.Record` payload and the traversal from record to session and turn neighborhood
 - registration validates the session exists and the timestamp falls inside its bounds
 - record format: `appendix/Chatlas.Anchory-appendix.md`
+****
+
+## Chatlas.View
+
+- [DF] `Chatlas.View` is a closed operation on the model space: normal model objects + env + prompt → a normal model object
+- [CT] a view always returns a `Chatlas.Session.Model` object or fragment — the output vocabulary never leaves the model space
+- [DC] closure makes views composable: any view's output is a legal input to any view
+- [DC] the prompt term admits agentic views — an agent-driven transformation is still a view when its result is a model object
+- [DC] materialized products are views too: the legacy named-view system will be reworked so every product is a model object; rendering to human formats is a terminal step outside the algebra
+
+****
+
+## Chatlas.Filter
+
+- [DF] `Chatlas.Filter` is the shape-preserving view: a normal model object in, the same shape out, content reduced
+- [DC] filters compose freely, applied in order; a named filter is a registered preset
+- [DC] parameterized selection (`--contains`, `--role`, `--around`) runs on the same filter pipeline behind ergonomic flags
+- [EX] `turns`: message events only, provenance plumbing stripped — the grounding reader's preset
