@@ -19,6 +19,10 @@ The legacy `Claude Code-credentials` service may exist but should not be trusted
 
 ## Safe Keychain Inspection
 
+Treat raw Keychain inspection as a first-class check when debugging Claude auth.
+Do not rely only on `status` or `materialize --check` when the home may be
+changing under concurrent Claude activity.
+
 Do not print tokens. Print only expiry, token lengths/presence, and identity.
 
 ```bash
