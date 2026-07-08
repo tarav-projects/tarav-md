@@ -85,8 +85,6 @@
 
 ****
 
-
-
 ## Gr.Req
 
 - [DF] `Gr.Req` is the grounding-request artifact — a live note carrying one grounding campaign from discovery to landed links
