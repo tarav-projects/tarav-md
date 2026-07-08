@@ -2,6 +2,8 @@
 
 Use this module when the user triggers agendix capture: harvesting `User.Touched` material from the current conversation into the `Index.Agendix`.
 
+`Capture.Offer` is the hugentic sibling of this module: same trigger instinct, user gate instead of hard provenance — an offer the user routes to the agendix lands here.
+
 This module is NOT `Workflow.Neutral` — it runs a capture workflow and writes agendix files. It is the agentic path of the same alignment workflow `--edit` runs hugentically: same primitives — `Kernel.Line`s, `Line.Type`s, anchors, the current concept set — with the user gate replaced by hard provenance.
 
 Authority lives in the index: `Index.Agendix`, `Writing.Friction.Reduction`, `Kernel.Block.Grounding`, `Inline.Grounding`, `Grounding.Hugentic.Authority`, `Chatlas.Anchory` own the concepts.

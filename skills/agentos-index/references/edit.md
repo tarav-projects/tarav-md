@@ -53,6 +53,11 @@ Drafting or revising block wording is also edit work, even before the user has a
 - propose new lines typed (`- [CT] ...`); existing untyped lines are legacy, typed opportunistically on `Index.Edit.Modify.Line` or maintenance passes — never bulk-retyped inside an unrelated edit
 - prefer the lowest-friction edit that captures the aligned content without losing meaning
 
+## Capture.Offer Entry
+
+- an accepted `Capture.Offer` enters the loop below at step 3 — the draft already exists, typed and landing-scouted; the user's destination pick (index main, appendix, agendix) sets the surface
+- an offer routed to the agendix leaves this module: it lands through `references/agendix.md` rules (typed, anchored, ungated)
+
 ## Edit Loop
 
 1. Propose a full new block or a focused diff.

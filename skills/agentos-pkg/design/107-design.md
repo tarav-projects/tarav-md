@@ -333,3 +333,13 @@
 ### meta
 
 - namespace-members: `./Anchory.Anchor`, `./Anchory.Namespace`, `./Anchory.Register`, `./Anchory.Record`, `./Anchory.Depot`, `./Integration`, `./Chat.Application`, `./Open.Design`
+****
+
+## Capture.Offer
+
+- [DF] `Capture.Offer` is the practice of proposing an index capture at the moment the content is born — the exact typed line or block, verbatim, user-gated
+- [PR] capture is cheapest at the moment for both sides: the agent's context is hot and the anchor mintable on the spot; the user's judgment is hot too — reviewing now beats reconstructing later
+- [DC] an offer presents destination options: index main, appendix, agendix, or decline — the user picks the landing with the gate
+- [DC] an offer arrives landing-ready: proposed type carried, target scouted for each destination it offers
+- [DC] it is the hugentic sibling of agendix capture — same trigger instinct, the user gate in place of hard provenance
+- [DC] offers ride any workflow — impl execution, design, review; declining is cheap and normal, the offer must never block the work

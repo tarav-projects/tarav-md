@@ -141,6 +141,7 @@ An agent operating the index should:
 - return context with source block citations so the caller can verify and maintain the summary
 - distinguish discovered context from inference
 - use `--ground` when the caller wants the live discussion compared against the index instead of a direct query lookup
+- make a `Capture.Offer` when work surfaces new aligned content: propose the exact typed line(s) at the moment, with destination options (index main, appendix, agendix, decline) — never self-write
 - use file mutation only when the user has approved an index edit
 - run a linter check after applying an approved index or appendix edit
 
