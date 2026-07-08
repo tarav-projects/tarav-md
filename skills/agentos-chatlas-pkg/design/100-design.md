@@ -293,6 +293,7 @@
 - Chatlas owns the `Anchory.Record` payload and the traversal from record to session and turn neighborhood
 - registration validates the session exists and the timestamp falls inside its bounds
 - [DC] registration echoes the landing neighborhood — the minting agent double-checks the anchor before tagging lines
+- [CT] a chat anchor used for index grounding targets a user turn; assistant context is recovered by neighborhood reading
 - record format: `appendix/Chatlas.Anchory-appendix.md`
 ****
 
