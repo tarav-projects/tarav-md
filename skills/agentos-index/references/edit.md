@@ -18,8 +18,8 @@ Drafting or revising block wording is also edit work, even before the user has a
 - public main surface: `Index.Main`
 - public chapter files: `<chapter>/NNN-<chapter>.md`, defaulting to `design/NNN-design.md`
 - public appendix depth: shared `Index.Appendix` files under `appendix/Concept.Name-appendix.md`
-- local router: `notes/index/001-index.md`
-- local index files: `notes/index/300-index.md`, `301-index.md`, ...
+- local index: an `Index.Depot` with the same structure, differing only in location — rooted in the project rather than inside a shippable skill bundle
+- local surfaces mirror the public ones: `notes/index/000-INDEX.md` router, `<chapter>/NNN-<chapter>.md` chapter files, `appendix/` depth
 - `--depot` scopes edits to engaged `Index.Depot`s; otherwise use task-relevant engaged depots
 - `--chapter` scopes main-surface edits to an `Index.Chapter`; default is `design`
 
