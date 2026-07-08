@@ -13,13 +13,14 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
 1. **Resolve the session.** Identify the session holding the evidence turn and resolve its chatlas identity, refreshing first so live sessions are ingested:
    - own live session: `chatlas-agentos-chatlas-my-session-id`, or `agentos chatlas query --session-id <native-id> --field identity_hash --update`
    - past session: normal `agentos chatlas query` filters, `--update` when staleness is possible
-2. **Locate the evidence turn.** Pull the turn-level view and find the landing turn's timestamp:
-   - `agentos chatlas views inline --identity-hash <hash> --view user --format json` — events carry `timestamp`; scan for the evidence turn
+2. **Locate the evidence turn.** Search the tape directly:
+   - `agentos chatlas views inline --identity-hash <hash> --view events --contains "<text>" [--role user] [--around <ISO time>] --format json` — returns the matching events as a model fragment with timestamps
    - the anchor lands in a neighborhood: pick the turn that best *lands* the reader, not a span that contains everything
-3. **Register the anchor.** Depot is the chatlas anchory depot (`<chatlas-root>/anchory/`); key prefix is the evidence turn's date `YYYYMMDD`:
-   - `agentos anchory register --depot <chatlas-root>/anchory --prefix <YYYYMMDD> --record-json '{"app":"chatlas","session":"<identity_hash>","at":"<ISO time>","hint":"<one sentence: what is at this location>"}'`
-   - `register --prefix` allocates the next `<YYYYMMDD>-N` atomically under the depot lock and returns the full anchor
-4. **Verify.** `agentos anchory resolve --depot … --anchor <anchor>` must round-trip the record.
+3. **Register the anchor.** One command — chatlas owns the record, validates, allocates, and echoes:
+   - `agentos chatlas anchory register --identity-hash <hash> --at "<ISO time>" --hint "<one sentence: what is at this location>"`
+   - chatlas validates the session and that `at` falls inside its event-time bounds, derives the `YYYYMMDD` prefix, registers atomically through anchory, and returns the anchor PLUS the landing neighborhood — double-check it shows the intended turns before tagging
+   - the raw plumbing remains available: `agentos anchory register --depot <chatlas-root>/anchory --prefix <YYYYMMDD> --record-json '…'`
+4. **Verify.** The mint echo already shows the neighborhood; for later re-checks, `agentos chatlas views inline --anchor <anchor> [--radius N]` returns it again.
 5. **Return the anchor** to the caller, which tags its line: trailing position, `… @20260707-0`.
 
 ## Anchor Discipline
@@ -32,5 +33,5 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
 
 ## Resolution (reading an anchor)
 
-- `agentos anchory resolve` → record → chatlas traversal to the session and turn neighborhood; read the landing turn and around it
-- target CLI (planned): `agentos chatlas query --anchor <anchor>` — chatlas digests anchors natively as the successor of the retired `Chat.Ref` reference surfaces
+- `agentos chatlas views inline --anchor <anchor> [--radius N]` — resolves through the chatlas anchory depot and returns the landing-turn neighborhood as a model fragment; read the landing turn and around it
+- `agentos anchory resolve --depot … --anchor <anchor>` remains the record-level (plumbing) view

@@ -7,7 +7,7 @@
 - **Out of scope**: a general time-softener flag for all filters (deferred — implement what actual workflows demand, same principle as anchory `next`); anchory-core changes (allocation is `568-anchory-prefix-allocation-impl-req.md`, in execution); namespaces; view classes beyond the existing projection set; the agendix/index write side.
 - **Repos**: `agentos-chatlas-py` (`inline.py`, `query.py`, `chat_ref.py`, `anchory.py`, `commands.py`, `normalization/session_model/_views.py`, tests); e2e parser coverage in `agentos-cli` if chatlas e2e tests exist there (inspect; add alongside). Reinstall note: `agentos` executable owned by `agentos-cli`, `uv tool install --reinstall --editable .` after CLI changes.
 - **Source**: this design session (first end-to-end linking run + chatlas co-design discussion); `notes/live/567` items 2–3; index concepts `Chatlas.Anchory`, `Anchory.System/Chat.Application`, `Chatlas.Session.Model`, `Session.Event.Tape`, `Chatlas.Query.Envelope`, `Index.Linking`.
-- **Status**: ready for implementation (blocked only on 568 for S3's registration call)
+- **Status**: implemented (2026-07-08); all four slices executed, suite green (119), live-verified against session `9d194db7…`
 
 ## Impl.Index
 
@@ -89,4 +89,12 @@
 
 ## Impl.Log
 
-- (empty — populated by the executer)
+- 2026-07-08: executed in `Alignment.Mode:Autonomous`. All slices S1–S4 complete; 11 new behavior tests; full suite 119 green after `Chat.Ref` test removal (ref grammar tests deleted, not ported).
+- open-space decision (S1): `--around` without `--radius` orders ALL selected events nearest-first (no implicit window size); `--radius` limits to the nearest `2r+1`. `--radius` without `--around` is a `CliError`.
+- open-space decision (S1): selection flags are rejected for `--view full` — full is the unprojected model, filtering it would corrupt "full" semantics.
+- open-space decision (S1): `--contains` matches case-insensitively over all string values in the event payload (recursive walk), not only `text` fields.
+- open-space decision (S2): `--anchor` defaults `--radius` to 4 when unset; explicit `--around` overrides the record's `at` for window placement.
+- deviation (S4, recorded at Executable checkpoint): `--ref` also served as a session-selector convenience on query/recents/views scopes (`_resolve_ref_and_identity_hash`); removal drops that convenience — identity-hash/session-id selectors remain, faithful to "anchors are the only chat reference".
+- cleanup beyond plan (No.Legacy.Allowed): the `window` parameter and `_events_in_window` were dead once `ChatRef` windowing left — removed from `project_chatlas_session_model_view` and `_views.py`.
+- S3 live mint skipped intentionally: minting into the real register requires content to tag (anchor immutability discipline); behavior covered by tests, S1/S2 live-verified on the real session and anchor `@20260708-0`.
+- chatlas-md surface sweep: no live `Chat.Ref` mentions found (miner docs already parked in `_DEPRECATED`).
