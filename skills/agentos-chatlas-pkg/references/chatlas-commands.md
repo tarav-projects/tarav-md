@@ -84,6 +84,19 @@ agentos chatlas views inline --anchor <key> --radius 4 --filter turns
 - registration validates the session and time bounds, allocates the date-prefixed key atomically, and echoes the landing neighborhood for double-checking
 - resolution returns the landing-turn neighborhood as a model fragment — read the landing turn and around it
 
+## File Touch Workflow
+
+Which sessions read/wrote a file, and where — answered from the normal model's `tool_invocations` (explicit-path tools: `Read`, `Write`, `Edit`, `NotebookEdit`). Substring path matching. Blind spot by design: paths inside Bash command strings are invisible to these filters.
+
+```sh
+agentos chatlas query --file-touched "<path-fragment>"
+agentos chatlas query --file-write "<path-fragment>" --field identity_hash
+agentos chatlas views inline --identity-hash <H> --file-write "<path-fragment>" --filter slim
+```
+
+- `query` flags answer *which sessions* (mentions in prose never match — touch means a tool invocation carried the path)
+- `views inline` flags answer *where in the session*: the touching invocations' events as a model fragment
+
 ## Views Workflow
 
 ```sh
