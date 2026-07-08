@@ -31,7 +31,7 @@ Authority lives in the index: `Index.Agendix`, `Writing.Friction.Reduction`, `Ke
 1. **Scan** the recent conversation for touched, significant, un-captured material. Use `--ground` behavior to compare against the engaged depot: what the index already models is out; gaps and fresh touch are candidates.
 2. **Route** each candidate to a routed concept. No match → `agendix/Unassigned-agendix.md`, the homeless pool: accumulated evidence that a concept may be missing — promotion evidence, never a dump.
 3. **Fence**: type each line; drop what cannot take a type.
-4. **Anchor**: resolve the current session (`chatlas-agentos-chatlas-my-session-id`), then mint one anchor per line through the Chatlas anchory depot — `agentos anchory register` with the `Chatlas.Anchory` record shape (`app`, `session`, `at`, `hint`); the anchor key is `YYYYMMDD-N`.
+4. **Anchor**: mint one anchor per line through the linking primitive (`references/link.md`) — chatlas-only session/turn resolution, `Chatlas.Anchory` record shape, `YYYYMMDD-N` keys.
 5. **Write** `agendix/Concept.X-agendix.md` in the engaged depot, next to `appendix/` — appendix writing rules, block heading `Concept.X/Agendix`, lines appended:
 
    ```md
