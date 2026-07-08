@@ -256,3 +256,13 @@
 - it is first-class extended writing, not a hiding place for less-important blocks
 - it is the tail of the `Block.Line.Gradient`, loaded on demand (`Appendix.Discovery`)
 - distinct from `Appendix.Block`, which is a whole `Kernel.Block` placed in the appendix file
+****
+
+## Dependency.Profile.Split
+
+- [DF] `Dependency.Profile.Split` is the rule that implementation units are delimited by functionality AND dependency profile — when a capability needs a new dependency profile and the implementation can split, split it into its own package @20260708-7
+- [DC] a library is an independent core plus integration subsystems (bridges): the core imports nothing upward; a bridge is defined by its dependency set and may import any combination of cores
+- [CT] cores never import bridges — cycles become structurally impossible instead of carefully avoided
+- [DC] the composition root (the CLI) depends on the bridges and wires them into core sockets at startup
+- [DC] sockets are registration points, not data contracts — thin sockets, thick bridges: a bridge wields the full libraries it depends on
+- [EX] the chatlas grounding-provenance linter check: bridge-side code (chatlas + linter dependencies), registered into the linter's check socket, composed by the CLI
