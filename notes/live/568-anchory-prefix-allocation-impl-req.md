@@ -5,9 +5,9 @@
 - **Goal**: let agents mint anchors without racing — `register` allocates the next `<prefix>-<N>` key atomically and returns the full anchor for line tagging.
 - **Scope**: `AnchoryDepot.register` prefix mode + `agentos anchory register --prefix` CLI; docs refresh; `agentos-index` `link.md` planned-CLI note flip.
 - **Out of scope**: a `next` advisory peek (user decision: implement only if actual workflows demand it); chatlas-side anchor digestion (`query --anchor`, turn search — `notes/live/567`, separate req); namespaces; storage format; `exists`/`anchors` read surfaces (owned by `565-anchory-read-surfaces-impl-req.md`).
-- **Repos**: code in `agentos-py` (`src/agentos/anchory/core.py`, `src/agentos/anchory/commands.py`, `tests/test_anchory.py`). The `agentos` executable is owned by `agentos-cli`; CLI changes require `uv tool install --reinstall --editable .` from `agentos-cli/` (per `agentos-py/AGENTS.md`).
+- **Repos**: code in `agentos-py` (`src/agentos/anchory/core.py`, `src/agentos/anchory/commands.py`, `tests/test_anchory.py`); CLI parser behavior also has e2e coverage in `agentos-cli/tests/test_e2e_anchory.py` — both repos are in scope. The `agentos` executable is owned by `agentos-cli`; CLI changes require `uv tool install --reinstall --editable .` from `agentos-cli/` (per `agentos-py/AGENTS.md`).
 - **Source**: this design session (first end-to-end linking run); `notes/live/567-linking-cli-follow-ups-parking.md` item 1; index concepts `Anchory.System`, `Chatlas.Anchory`, `Index.Linking`.
-- **Status**: ready for implementation
+- **Status**: ready for implementation (revised after executer review — repo scope, exact prefix regex, breaking-API sweep, concurrency test, AGENTS.md ownership statement)
 
 ## Impl.Index
 
@@ -19,11 +19,12 @@
 
 ### Allocation.Contract
 - `AnchoryDepot.register(record, *, anchor=None, prefix=None)` — exactly one of `anchor`/`prefix`; both or neither is `InvalidAnchoryInputError`
-- prefix mode: under the exclusive lock, collect existing anchors matching `<prefix>-<N>` (integer `N` suffix), allocate `N = max + 1` (`0` when none), write, return the `AnchoryEntry` carrying the allocated anchor
+- prefix mode: under the exclusive lock, collect existing anchors matching exactly `re.escape(prefix) + r"-(\d+)$"` — never `startswith`, so adjacent prefixes cannot interfere — allocate `N = max + 1` (`0` when none), write, return the `AnchoryEntry` carrying the allocated anchor
 - max+1, never gap-filling — gaps are irrelevant (user decision); an allocated-looking key must never be re-mintable
 - anchors under the prefix that do not end in `-<integer>` are ignored by allocation, not errors
 - the joiner is fixed `-`; anchory stays application-agnostic — date prefixes are a Chatlas convention, not an anchory rule
 - exact-anchor mode is unchanged, including `AnchorExistsError` semantics
+- the signature change `register(record, *, anchor=None, prefix=None)` is breaking versus `register(anchor, record)` — accepted under `No.Legacy.Allowed`; ALL internal callers and tests update in the same pass, including any register callsites in `agentos-chatlas-py`
 
 ### CLI.Surface
 - `agentos anchory register --depot … (--anchor A | --prefix P) (--record-json … | --record-file …)`
@@ -40,17 +41,17 @@
 
 ### S1 — Library prefix allocation (test-first)
 - what changes: `register` signature gains keyword `prefix`; allocation logic inside the existing exclusive-lock section
-- RED (`tests/test_anchory.py`): empty prefix allocates `-0`; existing `-0`/`-1` allocates `-2`; gap (`-0`,`-2` present) allocates `-3` not `-1`; non-integer suffixes under the prefix ignored; `anchor`+`prefix` together and neither both raise `InvalidAnchoryInputError`; returned entry carries the allocated anchor and normalized record
+- RED (`tests/test_anchory.py`): empty prefix allocates `-0`; existing `-0`/`-1` allocates `-2`; gap (`-0`,`-2` present) allocates `-3` not `-1`; non-integer suffixes under the prefix ignored; adjacent prefix isolation (`2026` never sees `20260708-0`); `anchor`+`prefix` together and neither both raise `InvalidAnchoryInputError`; returned entry carries the allocated anchor and normalized record; concurrency: two simultaneous `register(prefix=…)` callers (threads or processes against one depot) always yield distinct anchors
 - GREEN: minimal allocation implementation
 - check: new tests pass; full `test_anchory.py` green; exact-anchor behavior untouched
 
 ### S2 — CLI `--prefix`
 - what changes: `commands.py` register parser gains the mutually exclusive group; handler routes to the new keyword
-- RED: CLI-level test — register via `--prefix` on a tmp depot prints payload with allocated anchor; second call allocates the next key; `--anchor`+`--prefix` exits with a usage error
+- RED: CLI-level test — register via `--prefix` on a tmp depot prints payload with allocated anchor; second call allocates the next key; `--anchor`+`--prefix` exits with a usage error; e2e parser coverage added in `agentos-cli/tests/test_e2e_anchory.py` alongside the existing cases
 - check: suite green; `agentos anchory register --prefix …` verified against a scratch depot after `agentos-cli` editable reinstall
 
 ### S3 — Docs + skill-surface flip
-- what changes: `agentos-py/AGENTS.md` CLI-surface notes; `agentos-md/skills/agentos-index/references/link.md` — replace the "target CLI (planned)" allocation note with the real command as the primary path (query-then-retry drops out); `notes/live/567` item 1 marked done
+- what changes: `agentos-py/AGENTS.md` — the CLI-surface notes AND the design statement at the allocation boundary (it currently says applications own anchor allocation; prefix allocation now moves into Anchory — the ownership line must be rewritten, not just the command list); `agentos-md/skills/agentos-index/references/link.md` — replace the "target CLI (planned)" allocation note with the real command as the primary path (query-then-retry drops out); `notes/live/567` item 1 marked done
 - check: `link.md` pipeline step 3 reads as a single command; no remaining "planned" wording for allocation
 
 ### Acceptance signals
