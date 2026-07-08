@@ -49,12 +49,13 @@ Drafting or revising block wording is also edit work, even before the user has a
 - modify a line when an existing statement is wrong, stale, or imprecise
 - revise a block when the current frame no longer holds its accumulated lines
 - use `Index.Main` for routed fundamentals and `Index.Appendix` for tail, depth, history, scoped children, or loose but valuable material
+- propose new lines typed (`- [CT] ...`); existing untyped lines are legacy, typed opportunistically on `Index.Edit.Modify.Line` or maintenance passes — never bulk-retyped inside an unrelated edit
 - prefer the lowest-friction edit that captures the aligned content without losing meaning
 
 ## Edit Loop
 
 1. Propose a full new block or a focused diff.
-2. Screen it for `Block Independence` — strip any deixis to the authoring conversation; state the concept positively.
+2. Screen it for `Block Independence` — strip any deixis to the authoring conversation; state the concept positively. Screen each line's `Line.Type`: the line must perform its typed act (`references/type.md`); a line that takes no type belongs elsewhere — flag it, do not force a type.
 3. Review with the user.
 4. Revise until accepted.
 5. Apply the approved edit to the natural surface.
@@ -72,5 +73,6 @@ Drafting or revising block wording is also edit work, even before the user has a
 ## Quality References
 
 - load `agentos-pkg/references/index-block-catalog.md` before proposing new block wording or revising existing block wording
+- load `references/type.md` before drafting or judging `Kernel.Line`s — a line is drafted as an act: pick its `Line.Type` first, then word the line to pass that type's validation point
 - use `agentos-pkg/references/index-block-catalog.md` for concrete block-quality calibration
 - use the `agentos-pkg` index and appendix for the underlying design concepts that govern editing
