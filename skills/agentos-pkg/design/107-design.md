@@ -330,6 +330,15 @@
 - enrichment is block-scoped and gated — a micro design-session one block wide; the block's density delta is the receipt ^20260709-9
 ****
 
+## Git.Dating
+
+- [DF] `Git.Dating` is dating a file or file line by finding its last change in the git history ^20260709-10
+- the date turns a static artifact into a searchable event: it says where in time to look further about the target — for instance in the chat corpus ^20260709-10
+- [DC] the commit dates the write; the originating evidence is earlier — search around and before the commit time, not at it ^20260709-11
+- `git log -L` follows a line's wording past mechanical commits to the content-bearing ones ^20260709-11
+- it is the entry step of backward grounding: git dates the wording, chatlas finds the session and turns ^20260709-11
+****
+
 ## Anchory.System
 
 - `Anchory.System` is the Agentos subsystem for stable symbolic links to contexts on other surfaces
