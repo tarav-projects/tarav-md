@@ -82,10 +82,6 @@
 - the more imported a module's content, the more its maintenance automates — imported spans re-materialize, while original content and the seams where it meets them stay manual
 - targets are addressed by legal block names — `Dotted.Name`s for blocks, locator names for files and regions, `Anchory.Anchor`/`Chat.Grounding` for chat fallback dependencies
 
-### meta
-
-- aliases: `Module.Dependency.Management`
-
 ****
 
 ## Derived.Module
@@ -102,10 +98,6 @@
 - for a `derived` binding it carries the `Derivation.Rule` parts (declared dependencies + external context) not already inline in the derived surface
 - it lives on the `Skill.Build.Surface` (under `build/imports/`), kept off the runnable surface ^20260709-13
 - it names each target by a durable address, so a maintainer or agent can check and re-materialize from one known place
-
-### meta
-
-- aliases: `Derivation.Manifest`
 
 ****
 
