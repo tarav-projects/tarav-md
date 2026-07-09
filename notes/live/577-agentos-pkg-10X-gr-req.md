@@ -8,7 +8,7 @@ Date: 2026-07-08
 - baseline: `agentos index linter --depot skills/agentos-pkg --warn-unlinked --json`
 - coverage before: `1202` `Index.Linter/Line.Unlinked` findings inside the chapter set (`1208` by the review's recount method)
 - coverage after review sitting 2026-07-09: `1200` (same-method baseline `1208` — the 8 landed inline anchors account for the full delta)
-- status: `landed` — no `proposed` entries remain; 2 `ambiguous` entries pending discovery
+- status: `gated set ready` — entries `1`-`4` landed; entries `5`-`6` newly proposed from the ambiguous-resolution survey pass
 - report mode: survey only; no index or appendix files changed (review sitting 2026-07-09 applied the gated landings)
 - dominant evidence session: `99144906-781e-43cc-9d27-b40f166e2acf` (`identity_hash` `9d194db7...`)
 
@@ -61,22 +61,24 @@ Date: 2026-07-08
 ### 5. `Grounding.Retrieval.Boundary`
 
 - target: [105-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/105-design.md:59)
-- searched:
-  - 2026-07-05 grounding redesign neighborhood
-  - session recovered through truth-tier queries, then narrowed with user-turn views
-- missing: a crisp user turn narrower than the large redesign summary/replay neighborhood
-- landing form: unresolved
-- status: `ambiguous`
+- proposed anchor: `@20260707-4`
+- hint: approval turn: user accepts the paired `Grounding.Retrieval.Boundary` and `Grounding.Hugentic.Authority` survivor rewrites
+- why: approval-turn authority route; the assistant showed the verbatim replacement block, the user then accepted, and the landed commit follows immediately. The current `Grounding.Retrieval.Boundary` lines match that approved rewrite.
+- landing form:
+  - block-level `[GR]` in new `appendix/Grounding.Retrieval.Boundary-appendix.md`
+  - router gains `[+1]` for `Grounding.Retrieval.Boundary` when that appendix file is created
+- status: `proposed`
 
 ### 6. `Chat.Grounding.Target.Block`
 
 - target: [105-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/105-design.md:69)
-- searched:
-  - survivor-revisit thread
-  - nearby authority turns around the block rewrite window
-- missing: a tight user turn that supports the block without weak-link stretch
-- landing form: unresolved
-- status: `ambiguous`
+- proposed anchor: `@20260707-3`
+- hint: approval turn: user applies the one-line `Chat.Grounding.Target.Block` rewrite replacing `Active.Grounding` with `Kernel.Block.Grounding`
+- why: approval-turn authority route; the assistant proposed the exact one-line survivor fix, the user replied `apply`, and the landed block preserves that approved replacement verbatim.
+- landing form:
+  - block-level `[GR]` in new `appendix/Chat.Grounding.Target.Block-appendix.md`
+  - router gains `[+1]` for `Chat.Grounding.Target.Block` when that appendix file is created
+- status: `proposed`
 
 ## Gr.Log
 
@@ -105,3 +107,18 @@ Date: 2026-07-08
   - close-out lint: `0 error(s), 0 warning(s)`, 17 checks — provenance bridge re-verified all four anchors landing on user turns
   - meter method note: the survey's `1202` baseline and this review's `1208` differ by counting filter; same-method before/after is `1208 → 1200`, exactly the 8 inline landings
   - entries 5-6 remain `ambiguous` — need a fresh `--gr-survey` discovery pass (or an approval-turn mint), not review time
+- survey sitting 2026-07-09 (ambiguous-resolution pass):
+  - route taken: approval-turn authority for both remaining 105 blocks, per `Grounding.Hugentic.Authority/Appendix`
+  - `Chat.Grounding.Target.Block` dated through `aaa9726` / survivor-revisit neighborhood; minted `@20260707-3` on the user's `apply` turn after the one-line verbatim proposal replacing `Active.Grounding` with `Kernel.Block.Grounding`
+  - `Grounding.Retrieval.Boundary` dated through `e90c949`; `--tool-contains '105-design.md' --tool-name Bash` again recovered the right session; minted `@20260707-4` on the user's approval turn after the paired verbatim survivor proposal covering `Grounding.Retrieval.Boundary` and `Grounding.Hugentic.Authority`
+  - commands used in this pass:
+    - `git log -L 59,67:skills/agentos-pkg/design/105-design.md --format='%h %aI %s'`
+    - `git log -L 69,79:skills/agentos-pkg/design/105-design.md --format='%h %aI %s'`
+    - `agentos chatlas query --project-base agentos-project --active-after 2026-07-07T00:00:00-04:00 --tool-contains '105-design.md' --tool-name Bash --sort oldest --limit 20`
+    - `agentos chatlas query --project-base agentos-project --active-after 2026-07-07T00:00:00-04:00 --message-contains 'Grounding.Retrieval.Boundary' --sort oldest --limit 20`
+    - `agentos chatlas query --project-base agentos-project --active-after 2026-07-07T00:00:00-04:00 --message-contains 'Chat.Grounding.Target.Block' --sort oldest --limit 20`
+    - `agentos chatlas views inline --identity-hash 9d194db7 --around 2026-07-07T18:43:49.214Z --radius 4 --filter turns --format json`
+    - `agentos chatlas views inline --identity-hash 9d194db7 --role user --around 2026-07-07T18:56:54.874Z --radius 3 --filter turns --format json`
+    - `agentos chatlas anchory register --identity-hash 9d194db7 --at 2026-07-07T18:46:25.131Z --hint 'approval turn: user applies the one-line Chat.Grounding.Target.Block rewrite replacing Active.Grounding with Kernel.Block.Grounding'`
+    - `agentos chatlas anchory register --identity-hash 9d194db7 --at 2026-07-07T19:05:49.084Z --hint 'approval turn: user accepts the paired Grounding.Retrieval.Boundary and Grounding.Hugentic.Authority survivor rewrites'`
+  - minted-but-unattached anchors: none
