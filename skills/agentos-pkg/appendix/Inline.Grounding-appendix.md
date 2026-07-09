@@ -11,6 +11,7 @@
 - [DC] `Grounding.Diversity` is the block's first grounding metric: unique inline anchors / kernel lines — evidence diversity relative to block size @20260709-3
 - [DC] the diversity count is inline-only: `Grounding.Head` board spots do not enter the metric — the board's existence is the block coverage meter's axis @20260709-4
 - a fresh block-approval stamp reads 1/n — covered but coarse; the ratio may exceed 1 (up to 3 anchors per line); a resolution gauge, not a debt gauge @20260709-3
+- the metric aggregates over any scope — block, chapter, depot: unique inline anchors within the scope / kernel lines in the scope @20260709-5
 
 ****
 
