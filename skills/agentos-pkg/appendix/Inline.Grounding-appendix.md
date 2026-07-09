@@ -8,7 +8,7 @@
 - it is head-only: a superseded or no-longer-supporting anchor moves to the block's `Grounding.Drift` or is dropped @20260709-1
 - the `Index.Agendix` hard provenance rule is inline grounding made mandatory @20260709-2
 - same reading rule: the anchor lands in an evidence neighborhood — read the landing turn and around it @20260709-2
-- [DC] `Grounding.Diversity` is the block's first grounding metric: unique inline anchors / kernel lines — evidence diversity relative to block size @20260709-3
+- [DC] `Grounding.Density` is the block's first grounding metric: unique inline anchors / kernel lines — evidence density relative to block size @20260709-3 @20260709-6
 - [DC] the diversity count is inline-only: `Grounding.Head` board spots do not enter the metric — the board's existence is the block coverage meter's axis @20260709-4
 - a fresh block-approval stamp reads 1/n — covered but coarse; the ratio may exceed 1 (up to 3 anchors per line); a resolution gauge, not a debt gauge @20260709-3
 - the metric aggregates over any scope — block, chapter, depot: unique inline anchors within the scope / kernel lines in the scope @20260709-5
