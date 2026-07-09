@@ -65,8 +65,9 @@ Drafting or revising block wording is also edit work, even before the user has a
 3. Review with the user.
 4. Revise until accepted.
 5. Apply the approved edit to the natural surface.
-6. Update the router when concepts are added, renamed, moved, or gain appendix depth.
-7. Run a linter check over the edited depot or explicit surfaces.
+6. Stamp grounding at landing: mint the approval-turn anchor (`references/link.md`) and set it as the trailing anchor on every landed line that has no more specific evidence turn — the fallback pointer per `Inline.Grounding`; line-specific turns win where they exist.
+7. Update the router when concepts are added, renamed, moved, or gain appendix depth.
+8. Run a linter check over the edited depot or explicit surfaces.
 
 ## Post-Edit Maintenance
 

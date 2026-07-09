@@ -4,37 +4,31 @@
 
 ## Kernel.Block.Grounding
 
-- `Kernel.Block.Grounding` is the grounding of a `Kernel.Block` — two appendix sections, `Concept.X/Grounding.Head` and `Concept.X/Grounding.Drift`
-- both hold grounding lines: an `Anchory.Anchor` plus a one-sentence explanation of what the anchored turn grounds
-- [DC] a grounding line is typed `[GR]` and reads sentence first, anchor trailing — the same tail position `Inline.Grounding` uses
-- `Grounding.Head` holds evidence supporting the block as currently written; a missing or empty `Grounding.Head` means the block is not grounded
-- `Grounding.Drift` holds related evidence that no longer supports the current content — kept for provenance, created on demand
-- state is positional: as the concept evolves, lines move from `Grounding.Head` to `Grounding.Drift`; the move reads in git history
-- relatedness is the retention gate: a link unrelated to the block's concept is dropped from either section, not kept
-- an anchor lands in an evidence neighborhood — the processor is an agent: it reads the landing turn and around it
-- built and maintained by `Index.Linking`; followed by `Context.Grounding`, which needs only `Grounding.Head`
-- grounding lives only on index/appendix blocks; downstream surfaces cite the grounded block instead of re-grounding
+- `Kernel.Block.Grounding` is the grounding of a `Kernel.Block` — two appendix sections, `Concept.X/Grounding.Head` and `Concept.X/Grounding.Drift` @20260707-0
+- both hold grounding lines: an `Anchory.Anchor` plus a one-sentence explanation of what the anchored turn grounds @20260707-0
+- [DC] a grounding line is typed `[GR]` and reads sentence first, anchor trailing — the same tail position `Inline.Grounding` uses @20260709-2
+- [DC] `Grounding.Head` is the block's evidence board: noticeable grounding spots scoped to the block and its lines — append-friendly, no whole-block claim required @20260709-0
+- [DC] `Grounding.Drift` collects retired grounding — provenance, created on demand @20260709-1
+- state is positional: lines move from `Grounding.Head` to `Grounding.Drift` as the concept evolves @20260707-0
 
 ****
 
 ## Inline.Grounding
 
-- `Inline.Grounding` is grounding at `Kernel.Line` granularity — a trailing `Anchory.Anchor` on the line it grounds
-- the anchored turn is supposed to support that one line, not the whole block
-- it matters most on appendix lines, where depth accumulates line by line
-- it is head-only: an inline anchor that no longer supports its line is demoted to the block's `Grounding.Drift` or dropped
-- the `Index.Agendix` hard provenance rule is inline grounding made mandatory
-- same reading rule: the anchor lands in an evidence neighborhood — read the landing turn and around it
+- `Inline.Grounding` is grounding at `Kernel.Line` granularity — trailing `Anchory.Anchor`s on the line they ground @20260709-2
+- [DC] a line anchor answers: here is the best known place to look for user-touched evidence about this line — a curated pointer, upgraded when a better turn is found @20260709-0
+- [DC] the whole-block approval turn is the legitimate fallback pointer — stamped at gated landing on every line no more specific turn covers @20260709-1
+- [DC] anchors per line stay curated: up to 3, all high value — upgrading beats accumulating @20260709-0
 
 ****
 
 ## Context.Hook
 
-- `Context.Hook` is a surface for placing data that is hooked into a mechanism of injecting context into an agent
-- it is part of how an agent is contextualized beyond the direct chat
-- the hook is the coupling between the surface and the injection mechanism
-- `AGENTS.md` is a `Context.Hook`
-- a skill surface is a `Context.Hook`
+- `Context.Hook` is a harness-defined mechanism that inserts content into an agent context
+- hooks may operate at different `Context.Loading.Path` tiers
+- a surface may be loaded through a `Context.Hook`
+- `Cold.Loading.Hook` is the cold-start specialization of `Context.Hook`
+- `AGENTS.md` and skill surfaces can be loaded through `Context.Hook`s
 
 ****
 
