@@ -15,12 +15,12 @@ Engine: `references/back-link.md` (archaeology) and `references/link.md` (edge l
 
 ## Campaign Loop
 
-1. **Baseline.** `agentos index linter --depot <depot> --warn-unlinked --json` — count `Index.Linter/Line.Unlinked` findings inside the scope; record in `Gr.Abstract` (coverage before).
+1. **Baseline.** `agentos index linter --depot <depot> --coverage all --scope <scope> --json` — record the exact command plus the line and block coverage meters in `Gr.Abstract` (coverage before); use `--coverage line` when a campaign deliberately tracks only inline anchors.
 2. **Target selection.** Unlinked blocks/lines in scope, worked block by block per `back-link.md`'s pipeline (git-date → session tiers → user turn → mint-with-echo). Pick the route per block first:
    - user-originated wording → hunt the topical user turn (the statement itself)
    - agent-drafted wording the user gated through (most index blocks) → the **approval turn is the primary route, not a fallback**: date the block's landing commit, find the user's acceptance turn — the "write"/"apply"/"ok" after the verbatim proposal — and mint there (`Grounding.Hugentic.Authority` appendix). Do not burn the pass hunting for a topical turn that never existed.
 3. **Entry per target** in the `Gr.Set`:
-   - evidence found → mint (`chatlas anchory register`, echo-verified), entry at `status: proposed` with anchor, hint, why, landing form (block-level `[GR]` in `Grounding.Head` when several lines share the evidence; inline anchor for single-line targets); approval-turn mints say so in the hint, and the hint states what the approval covered (a whole block, one line's rewrite)
+   - evidence found → mint (`chatlas anchory register`, echo-verified), entry at `status: proposed` with anchor, hint, why, landing form (a `[GR]` board spot in `Grounding.Head` for a noticeable turn; inline best pointers on the lines the turn specifically touched — per `Inline.Grounding`, an anchor is the line's best known evidence place, so a block-approval turn may stamp lines as the fallback); approval-turn mints say so in the hint, and the hint states what the approval covered (a whole block, one line's rewrite)
    - no honest evidence on either route → entry at `status: ambiguous` with what was searched and what is missing — never a weak link
 4. **Write the `Gr.Req`** (`notes/live/NNN-<scope>-gr-req.md`, numbering per `agentos-live-surfaces`): `Gr.Abstract` (scope, coverage before + projected-if-landed, status `gated set ready`), the `Gr.Set`, `Gr.Log` (unattached anchors, search dead ends worth recording).
 5. **Report** compactly: entries by status, coverage delta on offer, the `Gr.Req` path.

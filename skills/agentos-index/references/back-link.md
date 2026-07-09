@@ -25,7 +25,7 @@ This module is `Workflow.Neutral` in the same sense as `--link`: it produces ver
 
 - the commit dates the *write*; the *evidence* is earlier — search around and before the commit time, not at it
 - a block repaired, migrated, or reworded later still grounds on the original design discussion: follow `git log -L` past mechanical commits to the content-bearing ones
-- multiple sessions may have shaped one block (design + migration + revision): ground the current wording; older shaping evidence belongs in `Grounding.Head` only while it still supports the block as written
+- multiple sessions may have shaped one block (design + migration + revision): ground the current wording; older shaping evidence stays on the `Grounding.Head` board only while it remains an interesting spot for the current text — otherwise it drifts
 - approval-turn authority: index content lands through gated verbatim proposals — when no design-discussion turn exists, the user's approval turn ("write"/"apply" following the shown text) IS the grounding authority (`Grounding.Hugentic.Authority`: assistant material accepted or acted on); anchor the acceptance, hint it as such
 - relatedness gate as always: no supporting turn found is a finding, not a failure — an ungrounded block stays ungrounded rather than gaining a weak link
 
