@@ -315,3 +315,13 @@
 - [DC] filters compose freely, applied in order; a named filter is a registered preset
 - [DC] parameterized selection (`--contains`, `--role`, `--around`) runs on the same filter pipeline behind ergonomic flags
 - [EX] `turns`: message events only, provenance plumbing stripped — the grounding reader's preset
+
+****
+
+## Chatlas.Local
+
+- [DF] `Chatlas.Local` is a project-local Chatlas export surface that carries attributed chat evidence inside an Agentos project tree
+- [CT] its session set is `Projects.Chats`: the selected Agentos project plus contiguous Agentos-project ancestors
+- [DC] its content shape is `Chatlas.Session.Model` JSON reduced by `Chatlas.Filter/turns`
+- [PR] it gives grounding-relevant turns a stable project-relative home while global Chatlas remains the canonical query, resolution, and grounding depot
+- [DC] sync refreshes computed session files by `identity_hash` and preserves other local files in the surface

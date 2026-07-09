@@ -7,6 +7,7 @@ Operational Chatlas command and workflow reference.
 - Refresh dataset: `agentos chatlas update`
 - Inventory/query sessions: `agentos chatlas query`
 - Aggregate dataset stats: `agentos chatlas stats`
+- Export attributed sessions into a project tree: `agentos chatlas local sync`
 - Print inline standard-model views: `agentos chatlas views inline`
 - Mint a chat anchor (validated, echoing the landing turns): `agentos chatlas anchory register`
 - Resolve a chat anchor to its turn neighborhood: `agentos chatlas views inline --anchor <key>`
@@ -20,6 +21,23 @@ Operational Chatlas command and workflow reference.
 - If freshness matters, run `agentos chatlas update` before querying.
 - If already-materialized dataset contents are enough, query first and avoid unnecessary updates.
 - Default Chatlas dataset root is `~/Documents/chatlas`.
+
+## Local Chatlas Workflow
+
+```sh
+agentos chatlas local sync --project <project-root>
+agentos chatlas local status --project <project-root>
+```
+
+`chatlas local` bootstraps a project-local `chatlas/` folder from the global
+Chatlas dataset. v0 is export-only: reads, query resolution, linting, and
+grounding still use the global Chatlas depot.
+
+- relevance is path attribution only: the selected Agentos project path plus contiguous Agentos-project ancestors (`Projects.Chats`)
+- content is the `turns` filter only: visible user/assistant message events as model JSON, with native/source plumbing stripped
+- sync overwrites the sessions it computes and never deletes other local files
+- status reports attributed-and-present, attributed-and-missing, and present-but-not-attributed buckets
+- the local folder contains a small marker manifest plus one `<identity_hash>.json` session-model file per synced session
 
 ## Query Workflow
 
@@ -69,8 +87,9 @@ agentos chatlas views inline --identity-hash <H> --contains "<text>" --filter tu
 
 - `--contains` — case-insensitive text match over event payloads
 - `--role` — message events with this role (`user`, `assistant`)
-- `--around` + `--radius` — nearest events to a time; radius keeps the closest `2r+1`
+- `--around` + `--radius` — nearest events to a time; radius keeps the closest `2r+1`, output stays chronological
 - `--filter` — named `Chatlas.Filter`, repeatable and ordered: `slim` (strip provenance plumbing), `messages` (message events only, synced), `turns` (`messages` then `slim` — the grounding reader's preset)
+- composition: with `--contains`/`--role`/`--around` selection, named filters apply **before** the window, so radius counts filter-surviving events — `--around <t> --radius 3 --filter turns` means 3 turns each side, tool events don't eat the window
 
 ## Anchor Workflow
 
@@ -83,6 +102,7 @@ agentos chatlas views inline --anchor <key> --radius 4 --filter turns
 
 - registration validates the session and time bounds, allocates the date-prefixed key atomically, and echoes the landing neighborhood for double-checking
 - resolution returns the landing-turn neighborhood as a model fragment — read the landing turn and around it
+- with `--filter turns` the radius counts turns, chronologically — `--radius 3` around an approval turn shows the preceding proposal and the follow-up, the review reading pattern
 
 ## File Touch Workflow
 
