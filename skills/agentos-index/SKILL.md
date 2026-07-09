@@ -7,7 +7,7 @@ description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem
 
 Workflow-neutral `Package.Aux.Skill` for the Agentos Index subsystem.
 
-This skill is the public Batchy router for index work. It orients the caller to the subsystem by default and routes explicit operations such as `--search`, `--edit`, `--ground`, `--type`, `--link`, `--back-link`, `--gr-survey`, `--gr-review`, and `--agendix` into named `Skill.Module`s.
+This skill is the public Batchy router for index work. It orients the caller to the subsystem by default and routes explicit operations such as `--search`, `--edit`, `--ground`, `--type`, `--link`, `--back-link`, `--gr-survey`, `--gr-review`, `--enrich`, and `--agendix` into named `Skill.Module`s.
 
 This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
@@ -108,6 +108,12 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - help: "review a Gr.Req: flip statuses, land gated grounding edits"
 - examples: --gr-review 577, --gr-review "notes/live/577-105-gr-req.md"
 
+### Skill.Arg:Enrich
+- run `Index.Enrichment` on a block: a focused discussion producing new touched surface, landed through the gates
+- required: false
+- help: "enrich a block: generate new grounding surface through a scoped discussion"
+- examples: --enrich "Writing.Friction.Reduction", --enrich (default: head of the gr-density worklist)
+
 ## Boundary
 
 - this skill is the canonical public entry surface for working with the Agentos Index system
@@ -140,6 +146,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 | When the caller wants an existing block grounded backward — git dates the wording, chatlas finds the session and turns, the linking primitive mints, the gated edit lands the `[GR]` line | `references/back-link.md` |
 | When the caller wants a grounding campaign surveyed — a scope swept, anchors minted, a `Gr.Req` produced with `proposed`/`ambiguous` entries, no index writes; `--gr-scout`/`--gr-scan`/`--gr-linker` are aliases | `references/gr-survey.md` |
 | When the caller wants a `Gr.Req` reviewed — proposed entries walked with the user, statuses flipped, approved links landed through the gates, provenance re-verified | `references/gr-review.md` |
+| When the caller wants a block enriched — `Index.Enrichment`: a scoped discussion with the user generating new touched surface, minted and landed through the gates; low-but-nonzero density blocks are the default targets | `references/enrich.md` |
 | When the caller provides `--depot`, scope the selected operation to those `Index.Depot`s; otherwise use task-relevant engaged depots | applies to `references/search.md`, `references/edit.md`, and `references/ground.md` |
 | When the caller provides `--chapter`, scope the selected operation to that `Index.Chapter` inside the engaged depots; default to `design` when no chapter is named | applies to `references/search.md`, `references/edit.md`, and `references/ground.md` |
 | When the caller needs package-level understanding of how the index subsystem is designed, structured, and distributed across public and local surfaces | `agentos-pkg/design/`, `agentos-pkg/appendix/`, `agentos-pkg/references/` |
@@ -174,6 +181,7 @@ For delegated read-only research that protects the caller's context, use `Packag
 - `references/back-link.md` — backward grounding: git history to evidence turns for existing blocks
 - `references/gr-survey.md` — grounding campaign survey: scope sweep, minting, `Gr.Req` production (no index writes)
 - `references/gr-review.md` — grounding campaign gate: per-entry user verdicts, gated landings, provenance close-out
+- `references/enrich.md` — `Index.Enrichment`: block-scoped discussion generating new grounding surface, gated landings, density-delta receipt
 
 ## When To Load This Skill
 
