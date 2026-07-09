@@ -100,3 +100,9 @@
 
 - open: dictionary file format and sharding
 - open: whether `File.Mention` becomes an Anchory application or retains its independent resolution model
+
+****
+
+## Anchory.System/Grounding.Head
+
+- [GR] the user corrects Anchory's scope — an Agentos subsystem rather than per-project, coupled with Chatlas @20260706-1
