@@ -348,9 +348,9 @@
 
 ****
 
-## Agentos.AgentInstructions
+## Dot.Agentos.AGENTS.File
 
-- `Agentos.AgentInstructions` is the project-local natural-language instruction surface at `.agentos/AGENTS.md`
+- `Dot.Agentos.AGENTS.File` is the Agentos-local instruction file at `.agentos/AGENTS.md`
 - human-writable — contains project-specific guidance for Agentos workflows and skills
 - skills may load it when they need custom local instructions or interpretation guidance
 - does not define project identity — the marker remains `.agentos/project.json`
