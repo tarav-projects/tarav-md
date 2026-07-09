@@ -6,7 +6,7 @@
 
 - `Agentos.Skillware` is the discipline of treating skills as software — the skill is the unit of software for agents.
 - "as software" means the artifacts agents run gain engineering structure — modules, dependencies, builds, versions, lineage — so they can be reused and evolved rather than written once and forked.
-- it is supported by a development toolchain — linters, builders, compilers — spanning agentic and `CPU.Impl` work, that moves package maintenance off the human. @20260627-0
+- it is supported by a development toolchain — linters, builders, compilers — spanning agentic and `CPU.Impl` work, that moves package maintenance off the human. ^20260627-0
 - a discipline realized by capabilities, not a single mechanism — it names the stance; specific members implement it.
 
 ### meta
@@ -18,15 +18,15 @@
 ## Skill.Runnable.Surface
 
 - `Skill.Runnable.Surface` is a surface whose purpose is to be run — loaded into agent context to do work; it carries only the executable substance.
-- the system keeps it free of non-runnable artifacts, so nothing obscures or dilutes what runs. @20260627-2
+- the system keeps it free of non-runnable artifacts, so nothing obscures or dilutes what runs. ^20260627-2
 - forced by context being executable — anything on it is read into context and shapes the run; non-runnable artifacts there are not inert, they interfere.
 
 ****
 
 ## Skill.Build.Surface
 
-- `Skill.Build.Surface` is the complement of `Skill.Runnable.Surface` — it holds the artifacts that produce and maintain runnable content, and is never loaded at run time. @20260627-1
-- it is the home for everything kept off the runnable surface: derivation context, dependency declarations, lineage, dev material. @20260627-1
+- `Skill.Build.Surface` is the complement of `Skill.Runnable.Surface` — it holds the artifacts that produce and maintain runnable content, and is never loaded at run time. ^20260627-1
+- it is the home for everything kept off the runnable surface: derivation context, dependency declarations, lineage, dev material. ^20260627-1
 - never run, it carries no "stay clean" constraint — an unconstrained workspace; that freedom is what the two-surface split buys.
 - it lives in a per-package `build/` folder — build-time material organized by capability (derivation, tests, lint, lineage), discovered by convention.
 
@@ -172,33 +172,33 @@
 
 ## Writing.Friction.Reduction
 
-- `Writing.Friction.Reduction` is the principle that the Agentos system lowers the cost of capturing design as it is discussed — by routing capture to the surface whose friction matches it @20260705-3
-- friction is a designed gradient, and friction buys authority: `Chat.Surface` (free — talk is capture) → `Index.Agendix` (zero user friction, agent-driven, no authority) → `Index.Appendix` (`Kernel.Line`-level approval) → `Index.Main` (`Kernel.Block`-level work unit) @20260705-2
-- the aim is to capture as much of the user's design as possible before it is lost — structure is deferred, not skipped @20260705-3
-- the index keeps a friction floor on purpose — too-cheap writing would flush the hugentic surface; the friction is part of the alignment @20260705-3
-- on touched surfaces the approval gate stays — friction drops, the gate does not @20260705-3
+- `Writing.Friction.Reduction` is the principle that the Agentos system lowers the cost of capturing design as it is discussed — by routing capture to the surface whose friction matches it ^20260705-3
+- friction is a designed gradient, and friction buys authority: `Chat.Surface` (free — talk is capture) → `Index.Agendix` (zero user friction, agent-driven, no authority) → `Index.Appendix` (`Kernel.Line`-level approval) → `Index.Main` (`Kernel.Block`-level work unit) ^20260705-2
+- the aim is to capture as much of the user's design as possible before it is lost — structure is deferred, not skipped ^20260705-3
+- the index keeps a friction floor on purpose — too-cheap writing would flush the hugentic surface; the friction is part of the alignment ^20260705-3
+- on touched surfaces the approval gate stays — friction drops, the gate does not ^20260705-3
 
 ****
 
 ## Index.Agendix
 
-- `Index.Agendix` is the agent-driven shadow of the Index — an untouched member of the index surface, one file per `Index.Main` concept: `agendix/Concept.X-agendix.md`, next to `appendix/` @20260705-2
+- `Index.Agendix` is the agent-driven shadow of the Index — an untouched member of the index surface, one file per `Index.Main` concept: `agendix/Concept.X-agendix.md`, next to `appendix/` ^20260705-2
 - it is a cache the agent keeps to aid grounding on stable surfaces — no stable surface may link into it; promotion copies an entry out through the normal gates (including into the index)
-- the agent cannot mint concepts — it attaches lines under existing routed concepts; the ontology primes the capture, the agent fills the gaps — the index's shadow, not a second index @20260705-2
-- hard rule: every line is a grounded summary of chat discussion — a rejection, a constraint, a highlight the index does not yet capture — carrying its `Anchory.Anchor`/`File.Mention` pointer; unsourced agent reasoning does not belong @20260705-2
+- the agent cannot mint concepts — it attaches lines under existing routed concepts; the ontology primes the capture, the agent fills the gaps — the index's shadow, not a second index ^20260705-2
+- hard rule: every line is a grounded summary of chat discussion — a rejection, a constraint, a highlight the index does not yet capture — carrying its `Anchory.Anchor`/`File.Mention` pointer; unsourced agent reasoning does not belong ^20260705-2
 - writing rules are the appendix's — `Kernel.Writing` discipline, the same block and line forms; only the supervision differs: all work is done and supervised by agents
 - capture is user-triggered but not gated — the agent may suggest a capture pass, never start one
-- it extends the `Block.Line.Gradient` past the touch cut: fundamentals → `Concept.X/Appendix` (touched tail) → the concept's agendix shadow tail (untouched) @20260705-2
-- homeless material lands in a fallback file — misfit pressure is evidence a concept is missing (concept-gap detector) @20260705-2
+- it extends the `Block.Line.Gradient` past the touch cut: fundamentals → `Concept.X/Appendix` (touched tail) → the concept's agendix shadow tail (untouched) ^20260705-2
+- homeless material lands in a fallback file — misfit pressure is evidence a concept is missing (concept-gap detector) ^20260705-2
 - it is index-adjacent, not part of the index — it softens the index principles on the fly, replacing the direct user touch with a grounding link to the touch event
 - it is self-similar to the appendix — an untouched appendix, same form and rules; it exists because the user gate is the bottleneck: a surface for the agent to run ahead of the gate
 - agendix and appendix must not duplicate content — over time the agendix drains: entries reviewed by the user are promoted through the gate or dropped
 - in alignment terms: `Untouched.Space` made durable — visible, assumed untouched by the user, non-aligned; zero authority, freely rewritable; everything in it is promotion evidence
-- agendix lines are typed: every line carries a `Line.Type` from the vocabulary — the validation point applies to agent capture too @20260707-2
+- agendix lines are typed: every line carries a `Line.Type` from the vocabulary — the validation point applies to agent capture too ^20260707-2
 - [DC] agendix lines may be assistant-grounded, marked `[AS:XX]`; promotion re-grounds on the approving user turn and drops the marker
 - [DC] agendix files follow appendix writing rules with the block headed `Concept.X/Agendix`, one file per concept in `agendix/` next to `appendix/`
 - [DC] captures with no routed concept land in `agendix/Unassigned-agendix.md` — the homeless pool, promotion evidence for concepts the index does not yet name, never a dump
-- [PR] the agendix is the agentic path of the alignment workflow the gated edit runs hugentically — same primitives (typed `Kernel.Line`s, anchors, the current concept set), the user gate replaced by hard provenance @20260708-4
+- [PR] the agendix is the agentic path of the alignment workflow the gated edit runs hugentically — same primitives (typed `Kernel.Line`s, anchors, the current concept set), the user gate replaced by hard provenance ^20260708-4
 ****
 
 ## Concept.Explosion
@@ -304,7 +304,7 @@
 - it runs at levels: `Index.Grounding` loads the index's digest of the topic; full grounding also follows the pointers out to the original surfaces — the chats via Chatlas + git history, the code directly
 - it is read-only and ungated — it changes the agent's context, never a surface
 - grounded blocks make prior work reusable — settled context reaches the agent without the user re-explaining it
-- [CT] grounding reaches chat surfaces only through `agentos chatlas` commands — never provider raw stores or transcript files @20260708-0
+- [CT] grounding reaches chat surfaces only through `agentos chatlas` commands — never provider raw stores or transcript files ^20260708-0
 - `Index.Linking` is its dual: linking builds and maintains the pointers grounding follows
 
 ****
@@ -315,19 +315,19 @@
 - without the links back, the index cannot be checked for completeness or correctness against the touched record
 - it lands in the block's grounding section (`Concept.X/Grounding`), carried as grounding lines — an `Anchory.Anchor` plus a one-sentence note
 - it is an index edit — user-gated like any edit (`Edit.Trigger.Gated`, `Content.Verbatim.Gated`); in the `Agendix` linking runs open, agent-driven (dealt with later)
-- [CT] linking accesses chat data only through `agentos chatlas` commands — never provider raw stores or transcript files @20260708-0
+- [CT] linking accesses chat data only through `agentos chatlas` commands — never provider raw stores or transcript files ^20260708-0
 - it is the dual of `Context.Grounding`: linking builds the pointers, grounding follows them
 
-- [DC] linking mostly happens on the edge — anchoring content produced in the current session; self-session discovery by content matching is the entry step @20260708-1
+- [DC] linking mostly happens on the edge — anchoring content produced in the current session; self-session discovery by content matching is the entry step ^20260708-1
 ****
 
 ## Index.Enrichment
 
-- [DF] `Index.Enrichment` is the hugentic drive to always increase the `Touched.Surface` of any block or line — no block is finished @20260709-7
-- [DC] grounding and enrichment split by evidence source: grounding is retrospective, mining the existing chat corpus; enrichment is generative, producing new touched surface @20260709-8
-- the discussion is the yield: spawning a focused discussion about a block creates the user turns that become its new grounding surface — and, through the gate, possibly new content @20260709-7
-- [DC] `Grounding.Density` reads as pipeline position: zero → mine the corpus first (grounding); low → generate (enrichment); high → rest until touched again @20260709-8
-- enrichment is block-scoped and gated — a micro design-session one block wide; the block's density delta is the receipt @20260709-9
+- [DF] `Index.Enrichment` is the hugentic drive to always increase the `Touched.Surface` of any block or line — no block is finished ^20260709-7
+- [DC] grounding and enrichment split by evidence source: grounding is retrospective, mining the existing chat corpus; enrichment is generative, producing new touched surface ^20260709-8
+- the discussion is the yield: spawning a focused discussion about a block creates the user turns that become its new grounding surface — and, through the gate, possibly new content ^20260709-7
+- [DC] `Grounding.Density` reads as pipeline position: zero → mine the corpus first (grounding); low → generate (enrichment); high → rest until touched again ^20260709-8
+- enrichment is block-scoped and gated — a micro design-session one block wide; the block's density delta is the receipt ^20260709-9
 ****
 
 ## Anchory.System
@@ -335,7 +335,7 @@
 - `Anchory.System` is the Agentos subsystem for stable symbolic links to contexts on other surfaces
 - `Anchory.Anchor` carries compact identity while `Anchory.Register` carries resolution data
 - `Anchory.Namespace` partitions anchor keys into independent resolution domains
-- Anchory is Agentos-wide rather than project-local @20260706-1
+- Anchory is Agentos-wide rather than project-local ^20260706-1
 - Anchory is library-first so other subsystems can integrate directly
 - integrating subsystems own payload meaning and final traversal to referenced surfaces
 - `agentos anchory ...` is a thin CLI over the library contract

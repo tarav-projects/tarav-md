@@ -6,7 +6,7 @@
 - **Scope**: linter external-check socket + CPU-local `Line.Type`/`AS:` checks (`agentos-py`); grounding-provenance bridge check (`agentos-chatlas-py`, full chatlas power); CLI wiring (`agentos-cli`); closes most of `notes/live/571`.
 - **Out of scope**: the physical packaging split into `packages/` workspaces (`Dependency.Profile.Split` says no new profile is needed here — the bridge's profile is a subset of chatlas-py's; the split is its own future effort and this code moves into it unchanged); semantic lints (contradicting `[DC]`s etc. — agent work per `references/type.md`); typing legacy untyped lines.
 - **Repos**: `agentos-py` (`src/agentos/index/linter.py`, `commands.py`, tests), `agentos-chatlas-py` (new `src/agentos_chatlas/index_checks.py`, tests), `agentos-cli` (wiring + e2e). Reinstall after CLI changes (`uv tool install --reinstall --editable .` from `agentos-cli/`).
-- **Source**: this design session — `Dependency.Profile.Split` (102, anchored `@20260708-7`), `Line.Type` source-axis lines (106), `Grounding.Hugentic.Authority` user-turn-only `[CT]` (105), `Chatlas.Anchory` user-turn `[CT]` (chatlas 100), `notes/live/571-line-type-linter-checks-parking.md`.
+- **Source**: this design session — `Dependency.Profile.Split` (102, anchored `^20260708-7`), `Line.Type` source-axis lines (106), `Grounding.Hugentic.Authority` user-turn-only `[CT]` (105), `Chatlas.Anchory` user-turn `[CT]` (chatlas 100), `notes/live/571-line-type-linter-checks-parking.md`.
 - **Status**: implemented (2026-07-08); all four slices; suites green (agentos-py 277, chatlas-py +6 bridge tests, cli 56); both live depots clean at 16 checks with provenance verified
 
 ## Impl.Index

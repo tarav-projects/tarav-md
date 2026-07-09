@@ -4,21 +4,21 @@
 
 ## Kernel.Block.Grounding
 
-- `Kernel.Block.Grounding` is the grounding of a `Kernel.Block` — two appendix sections, `Concept.X/Grounding.Head` and `Concept.X/Grounding.Drift` @20260707-0
-- both hold grounding lines: an `Anchory.Anchor` plus a one-sentence explanation of what the anchored turn grounds @20260707-0
-- [DC] a grounding line is typed `[GR]` and reads sentence first, anchor trailing — the same tail position `Inline.Grounding` uses @20260709-2
-- [DC] `Grounding.Head` is the block's evidence board: noticeable grounding spots scoped to the block and its lines — append-friendly, no whole-block claim required @20260709-0
-- [DC] `Grounding.Drift` collects retired grounding — provenance, created on demand @20260709-1
-- state is positional: lines move from `Grounding.Head` to `Grounding.Drift` as the concept evolves @20260707-0
+- `Kernel.Block.Grounding` is the grounding of a `Kernel.Block` — two appendix sections, `Concept.X/Grounding.Head` and `Concept.X/Grounding.Drift` ^20260707-0
+- both hold grounding lines: an `Anchory.Anchor` plus a one-sentence explanation of what the anchored turn grounds ^20260707-0
+- [DC] a grounding line is typed `[GR]` and reads sentence first, anchor trailing — the same tail position `Inline.Grounding` uses ^20260709-2
+- [DC] `Grounding.Head` is the block's evidence board: noticeable grounding spots scoped to the block and its lines — append-friendly, no whole-block claim required ^20260709-0
+- [DC] `Grounding.Drift` collects retired grounding — provenance, created on demand ^20260709-1
+- state is positional: lines move from `Grounding.Head` to `Grounding.Drift` as the concept evolves ^20260707-0
 
 ****
 
 ## Inline.Grounding
 
-- `Inline.Grounding` is grounding at `Kernel.Line` granularity — trailing `Anchory.Anchor`s on the line they ground @20260709-2
-- [DC] a line anchor answers: here is the best known place to look for user-touched evidence about this line — a curated pointer, upgraded when a better turn is found @20260709-0
-- [DC] the whole-block approval turn is the legitimate fallback pointer — stamped at gated landing on every line no more specific turn covers @20260709-1
-- [DC] anchors per line stay curated: up to 3, all high value — upgrading beats accumulating @20260709-0
+- `Inline.Grounding` is grounding at `Kernel.Line` granularity — trailing `Anchory.Anchor`s on the line they ground ^20260709-2
+- [DC] a line anchor answers: here is the best known place to look for user-touched evidence about this line — a curated pointer, upgraded when a better turn is found ^20260709-0
+- [DC] the whole-block approval turn is the legitimate fallback pointer — stamped at gated landing on every line no more specific turn covers ^20260709-1
+- [DC] anchors per line stay curated: up to 3, all high value — upgrading beats accumulating ^20260709-0
 
 ****
 
@@ -77,7 +77,7 @@
 - `Grounding.Hugentic.Authority` is the rule that grounding lines primarily anchor user turns
 - assistant turns provide context, reasoning trace, proposed wording, and forensic evidence
 - assistant-authored material becomes normal grounding only when the user explicitly accepts, corrects toward, or acts on it
-- [CT] index grounding anchors target user turns only — gating guarantees an approval turn exists; there is no assistant-only index evidence @20260708-8
+- [CT] index grounding anchors target user turns only — gating guarantees an approval turn exists; there is no assistant-only index evidence ^20260708-8
 - grounding is a `Hugentic.Alignment` workflow: human/agent collaboration, not agent-only retrieval
 
 ****

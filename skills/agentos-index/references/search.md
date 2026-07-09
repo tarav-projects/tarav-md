@@ -27,7 +27,7 @@ Use this module when the caller wants cited index context, conceptual lookup, or
 - lines may carry a leading `Line.Type` code (`- [CT] ...`): the type is the line's act — `[CT]`/`[DC]`/`[RJ]` bind, `[PR]` orients, `[FR]` frees, `[DF]`/`[EX]` inform, `[GR]` cites evidence; see `references/type.md` to read them as constraints
 - parser-backed tools read index surfaces as typed nodes: `RouterEntry` rows, `BlockHeading`s, `KernelLine`s, `MetaLine`s, code fences, and inline spans such as anchors, concept cites, type brackets, and file mentions
 - untyped lines are pre-fence legacy — same authority, just not yet classified
-- a trailing `@YYYYMMDD-N` token is an `Anchory.Anchor`: a pointer to chat evidence, resolvable via `agentos chatlas views inline --anchor <token> --filter turns`; see `references/link.md` — resolution is optional depth, not required reading
+- a trailing `^YYYYMMDD-N` token is an `Anchory.Anchor`: a pointer to chat evidence, resolvable via `agentos chatlas views inline --anchor <token> --filter turns`; see `references/link.md` — resolution is optional depth, not required reading
 - appendix blocks named `Concept.X/Grounding.Head` and `Concept.X/Grounding.Drift` are evidence sections, not conceptual content: Head supports the block as written, Drift is kept provenance
 - `agendix/` files are agent-captured, user-unreviewed material — zero authority, useful as leads, never citable as accepted design
 

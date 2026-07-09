@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **scope:** move the `Anchory.Anchor` surface sigil from `@YYYYMMDD-N` to `^YYYYMMDD-N` — hard cutover across parser, checks, skill docs, and existing markdown surfaces
-- **status:** ready for implementation
+- **status:** implemented
 - **source:** `Block.Name.Schema` design discussion (this session, 2026-07-09): `@` becomes the locator prefix in the block naming schema; `^` (Obsidian-style) takes the evidence-anchor role so every sigil keeps one meaning
 - **out of scope:** the `Block.Name.Schema` index blocks themselves (separate design/edit pass); anchory depot storage format (keys are stored bare, no data migration); any dual-syntax compatibility mode
 
@@ -51,7 +51,7 @@
 - update the four `@{anchor}` display strings in `agentos-chatlas-py/src/agentos_chatlas/index_checks.py` to `^{anchor}`
 - observable: parser emits anchor spans for `^20260708-7` and no longer for `@20260708-7`
 - check: both packages' test suites pass GREEN
-- status: not started
+- status: done
 
 ### Slice 2 - Legacy-sigil linter check
 
@@ -60,7 +60,7 @@
 - RED-then-GREEN: a fixture line carrying `@20260101-0` produces the finding; the `^` form produces none
 - observable: `agentos index linter` reports legacy sigils
 - check: new linter test passes; existing linter tests still pass
-- status: not started
+- status: done
 
 ### Slice 3 - Markdown surface migration
 
@@ -68,18 +68,29 @@
 - verify with the migration greps, excluding this artifact: `grep -rn '@[0-9]\{8\}-[0-9]\|@YYYYMMDD' agentos-md agentos-chatlas-md --include='*.md' | grep -v 580-anchory-caret-sigil` returns nothing; the `\^[0-9]\{8\}-` grep returns the pre-migration literal-anchor count (record the baseline count before rewriting)
 - observable: `agentos chatlas views inline --anchor <key>` and `agentos index linter` grounding checks resolve anchors from the migrated surfaces
 - check: `agentos index linter` run over the agentos-pkg depot reports zero legacy-sigil findings and no new grounding regressions relative to a pre-migration baseline run
-- status: not started
+- status: done
 
 ### Slice 4 - Syntax-teaching doc updates
 
 - rewrite the `@YYYYMMDD-N` syntax descriptions to `^YYYYMMDD-N` across the known syntax-teaching surfaces in `Migration.Scope.Rule` — including `agentos-chatlas-md/skills/agentos-chatlas-pkg/references/chatlas-commands.md` and the 571 parking note — plus anything else the scope-rule grep finds
 - observable: `grep -rn '@YYYYMMDD' agentos-md agentos-chatlas-md --include='*.md' | grep -v 580-anchory-caret-sigil` returns nothing
 - check: grep clean; spot-read link.md mint instructions to confirm they now teach `^`
-- status: not started
+- status: done
 
 ## Impl.Log
 
 - 2026-07-09 review pass: migration authority moved from a hand-listed inventory to `Migration.Scope.Rule` (rule over list); chatlas-commands.md and the 571 parking note added to syntax-teaching surfaces; storage claim corrected (`_validate_anchor` is permissive, sigil boundary enforced by linter only); Slice 2 pinned to the post-579 18-check `CHECKS` registry
-- no deviations or blockers
+- 2026-07-09 execution checkpoint commits created before mutation: `agentos-py` `2aa73cd`, `agentos-md` `5044b53`, `agentos-chatlas-py` `24c276b`, `agentos-chatlas-md` `bf486d3`
+- Slice 1 implemented: parser anchor regex now accepts `^YYYYMMDD-N`, parser tests expect caret spans and no legacy-span parse, `blocks_by_anchor` accepts caller input with or without a sigil, and Chatlas provenance messages render caret anchors
+- Slice 1 RED/GREEN: focused tests failed before parser/message changes, then `uv run pytest tests/test_index_model_parser.py tests/test_index_linter.py` passed `34 passed`; `uv run pytest tests/test_index_checks.py` passed `6 passed`
+- Slice 2 implemented: `Index.Linter/Anchor.LegacySigil` was added to the linter registry and warns on `@YYYYMMDD-N` in index surfaces with a caret replacement hint
+- Slice 2 RED/GREEN: the legacy-sigil fixture failed before the check existed, then `uv run pytest tests/test_index_linter.py` passed `31 passed`
+- Slice 3/4 implemented: markdown rewrite baseline found `110` literal legacy anchors outside this artifact; the scripted rewrite converted all selected literal, placeholder, and syntax-teaching forms; post-rewrite caret literal count is `110`
+- Migration acceptance grep is clean outside this artifact: `grep -RIn '@[0-9]\{8\}-[0-9]\|@YYYYMMDD\|@(?P<anchor\|@\[0-9\]' agentos-md agentos-chatlas-md --include='*.md' | grep -v 580-anchory-caret-sigil` returns no rows
+- Verification: `uv run ruff check src tests` passes in `agentos-py` and `agentos-chatlas-py`; full `uv run pytest` passes in `agentos-py` (`286 passed`) and `agentos-chatlas-py` (`143 passed`)
+- Live verification after `uv tool install --reinstall --editable .`: `agentos index linter --depot skills/agentos-pkg --json` and `agentos index linter --depot skills/agentos-chatlas-pkg --json` both pass `19` checks with zero findings
+- Coverage-mode smoke: `agentos index linter --depot skills/agentos-pkg --coverage all --scope skills/agentos-pkg/design --json` reports the existing coverage backlog (`1203` unlinked-line warnings, `219` ungrounded-block warnings) and zero legacy-sigil/provenance findings
+- Chatlas smoke: `agentos chatlas views inline --anchor 20260707-0 --radius 1 --filter turns --format json` resolves the migrated anchor and returns the landing-turn window
+- deviation: an initial broad test rewrite command corrupted three test files; they were restored from the checkpoint immediately, then the intended narrow rewrite was reapplied and verified by RED/GREEN tests
 - design follow-up (not this artifact): land the `Block.Name.Schema` sigil table in the index via `agentos-index --edit`
 - follow-up for other projects: re-sync imported skills where `agentos-index`/`agentos-pkg` are copied rather than symlinked (`references/skills-routing.md`)

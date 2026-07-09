@@ -12,7 +12,7 @@
 
 ## Design (converged with the user)
 
-- **`Link.Anchor`** — a small stable token, e.g. `@20260630-0`, standing for a context on some surface; the register resolves it
+- **`Link.Anchor`** — a small stable token, e.g. `^20260630-0`, standing for a context on some surface; the register resolves it
   - immutable in meaning: no reuse of anchors; an entry changes only to amend an error or improve its resolution
   - the token carries hints of what it anchors; if the token's own hint is wrong (e.g. wrong date), mint a new anchor — do not repurpose
   - date-based keys for chat/index linking: humans are sequential sources of information; time is the natural parameter (`-0` suffix = register position that day, keeps the token small)

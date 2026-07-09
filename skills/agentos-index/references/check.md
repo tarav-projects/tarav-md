@@ -28,7 +28,7 @@ Use this module when the caller wants deterministic diagnosis, linter findings, 
 - `--coverage line` extends `Index.Linter/Line.Unlinked` to chapter and appendix kernel lines as a coverage meter; warnings do not change the exit code
 - `--coverage block` enables `Index.Linter/Block.Ungrounded`; inline anchors never satisfy the block meter, and `Grounding.Head` never satisfies the line meter
 - a missing chatlas backend renders `Index.Linter/Grounding.Provenance` as a blocked check, never a silent skip
-- `agentos anchory scan --depot <chatlas-root>/anchory --src-file <file> --regex '@(?P<anchor>[0-9]{8}-[0-9]+)'` remains the record-level spot check for a single file
+- `agentos anchory scan --depot <chatlas-root>/anchory --src-file <file> --regex '\^(?P<anchor>[0-9]{8}-[0-9]+)'` remains the record-level spot check for a single file
 
 ## Beyond The Linter
 

@@ -68,7 +68,7 @@
 
 ### S2 — KernelLine + spans + meta
 - what: bullet parsing (act code, `AS:`, untyped), span extraction (`anchor`, `concept_cite`, `type_bracket`, `file_mention`) with exact positions; `### meta` handling
-- RED: a line `- [AS:CT] text @20260708-0` yields parsed `{act: "CT", source: "AS"}` + one anchor span; untyped line yields no type payload; backticked `Dotted.Name`s become `concept_cite` spans; meta lines are not kernel lines; anchors inside code fences are NOT spans
+- RED: a line `- [AS:CT] text ^20260708-0` yields parsed `{act: "CT", source: "AS"}` + one anchor span; untyped line yields no type payload; backticked `Dotted.Name`s become `concept_cite` spans; meta lines are not kernel lines; anchors inside code fences are NOT spans
 - check: green; span positions verified by slicing `src`
 
 ### S3 — Router dialects + depot model + query API
