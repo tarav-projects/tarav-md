@@ -8,7 +8,7 @@ Date: 2026-07-08
 - baseline: `agentos index linter --depot skills/agentos-pkg --warn-unlinked --json`
 - coverage before: `1202` `Index.Linter/Line.Unlinked` findings inside the chapter set (`1208` by the review's recount method)
 - coverage after review sitting 2026-07-09: `1200` (same-method baseline `1208` — the 8 landed inline anchors account for the full delta)
-- status: `gated set ready` — entries `1`-`4` landed; entries `5`-`6` newly proposed from the ambiguous-resolution survey pass
+- status: `landed` — all 6 entries landed; nothing `proposed` or `ambiguous` remains
 - report mode: survey only; no index or appendix files changed (review sitting 2026-07-09 applied the gated landings)
 - dominant evidence session: `99144906-781e-43cc-9d27-b40f166e2acf` (`identity_hash` `9d194db7...`)
 
@@ -67,7 +67,7 @@ Date: 2026-07-08
 - landing form:
   - block-level `[GR]` in new `appendix/Grounding.Retrieval.Boundary-appendix.md`
   - router gains `[+1]` for `Grounding.Retrieval.Boundary` when that appendix file is created
-- status: `proposed`
+- status: `landed`
 
 ### 6. `Chat.Grounding.Target.Block`
 
@@ -78,7 +78,7 @@ Date: 2026-07-08
 - landing form:
   - block-level `[GR]` in new `appendix/Chat.Grounding.Target.Block-appendix.md`
   - router gains `[+1]` for `Chat.Grounding.Target.Block` when that appendix file is created
-- status: `proposed`
+- status: `landed`
 
 ## Gr.Log
 
@@ -122,3 +122,10 @@ Date: 2026-07-08
     - `agentos chatlas anchory register --identity-hash 9d194db7 --at 2026-07-07T18:46:25.131Z --hint 'approval turn: user applies the one-line Chat.Grounding.Target.Block rewrite replacing Active.Grounding with Kernel.Block.Grounding'`
     - `agentos chatlas anchory register --identity-hash 9d194db7 --at 2026-07-07T19:05:49.084Z --hint 'approval turn: user accepts the paired Grounding.Retrieval.Boundary and Grounding.Hugentic.Authority survivor rewrites'`
   - minted-but-unattached anchors: none
+- review sitting 2026-07-09 (second, batch-approved: "land"):
+  - entries 5-6 landed: two new appendix files (`Grounding.Retrieval.Boundary-appendix.md`, `Chat.Grounding.Target.Block-appendix.md`) each with a `Grounding.Head` `[GR]` line; router rows gained `[+1]` for both concepts
+  - both anchors verified live as approval turns: @20260707-4 = "ok" on the verbatim survivor rewrite (commit `e90c949`); @20260707-3 = "apply" on the one-line `Active.Grounding` → `Kernel.Block.Grounding` fix (commit `aaa9726`); the entry-6 head line states the one-line scope explicitly
+  - meter: unchanged at `1200` — head-only landings, no inline anchors
+  - close-out lint: `0 error(s), 0 warning(s)`, 17 checks
+  - campaign closed: no `proposed` or `ambiguous` entries remain
+
