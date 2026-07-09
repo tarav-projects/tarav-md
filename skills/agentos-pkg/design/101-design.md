@@ -49,10 +49,10 @@
 
 ## Package.Driver
 
-- `Package.Driver` is the minimal context an agent must load from a `Package.Skill` to be able to work with that package
-- typically the package `SKILL.md`, with its description advertised cold in the skill list (visible before any load)
-- it loads at the `SKILL.Loading` tier — present whole once its skill is loaded; fundamental drivers are also wired into `Cold.Loading` `Context.Hook`s so they arrive from cold
-- once loaded it is two parts: `Package.Driver.Base` (always loaded) plus `Package.Driver.Router` (routes onward)
+- `Package.Driver` is the minimal context an agent must receive across the `Context.Loading.Path` to be able to work with a `Package.Skill`
+- it is distributed across loading tiers: a cold slice may live in a `Cold.Loading.Surface`, the package `SKILL.md` arrives through `SKILL.Loading`, and deeper routes are selected through `Dynamic.Loading`
+- the package `SKILL.md` is the canonical runnable driver surface; cold-loading surfaces may project enough driver context to make the package reachable from cold
+- functionally it has two parts: `Package.Driver.Base` (always-on orientation) plus `Package.Driver.Router` (routes onward)
 - `Package.Driver:<Package>` names the driver of a specific package, e.g. `Package.Driver:Agentos.Pkg`
 - the standard route any agent uses to enter a package — including any package-agnostic agent that takes the package as an argument
 - when base and router are not enough, the agent descends into the narrower surfaces the router declares
@@ -95,11 +95,32 @@
 ## Cold.Loading
 
 - `Cold.Loading` is the `Context.Loading.Path` tier guaranteed present from a cold start, before the agent takes any action
-- it loads through the `Context.Hook`s an agent always sees on entry — skill descriptions and `AGENTS.md`
+- it loads through the `Cold.Loading.Hook`s an agent always sees on entry — skill descriptions and `AGENTS.md`
 - the guarantee comes from redundant placement: the same context is wired into many `Context.Hook`s so the system cannot miss it
 - it is the bootstrap tier — it carries the minimal vocabulary and routing keys the later tiers need to act at all
 - only `Workflow.Neutral.Skill` orientation belongs here — non-steering, safe to always load; its cost is paid every session, so it stays minimal
 - [CT] `Cold.Loading` surfaces are linter-controlled because they shape every agent run before task-specific routing begins
+
+****
+
+## Cold.Loading.Hook
+
+- [DF] `Cold.Loading.Hook` is a `Context.Hook` that the harness loads automatically before the agent acts
+- [CT] it injects a `Cold.Loading.Surface`
+- [EX] project-root `AGENTS.md` is a `Cold.Loading.Hook` when the harness reads it before the agent acts
+- [EX] skill descriptions are `Cold.Loading.Hook`s when the harness advertises them before skill selection
+- [CT] its loaded content is linter-controlled because every session receives it
+
+****
+
+## Cold.Loading.Surface
+
+- [DF] `Cold.Loading.Surface` is a surface whose content is guaranteed present at `Cold.Loading`
+- [CT] it is identified by harness loading behavior, not only by file name or path
+- [EX] a project-root `AGENTS.md` loaded before the agent acts is a `Cold.Loading.Surface`
+- [CT] a `Context.Hook` is the injection mechanism; `Cold.Loading.Surface` is the loaded content surface
+- [CT] `Package.Driver` content may be projected into a `Cold.Loading.Surface` when the package must be reachable from cold
+- [CT] `Cold.Loading.Surface`s are linter-controlled because every session pays their context cost
 
 ****
 

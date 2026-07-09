@@ -11,7 +11,7 @@
 - **Out of scope**: drift/hint meters (future coverage names); semantic verification (agent-side by design); changing any structural check; the chatlas provenance bridge (unaffected — it consumes `parsed_linter_kernel_lines`, which does not change).
 - **Repos**: `agentos-py` (linter, commands, tests). Docs follow-up in `agentos-md` (`skills/agentos-index/references/check.md`, `gr-survey.md` baseline step) — small, part of S4. Reinstall after CLI changes: `uv tool install --reinstall --editable .` from `agentos-cli/`.
 - **Source**: user directions in session `99144906-781e-43cc-9d27-b40f166e2acf` (2026-07-09): "separate the two checks in the linter", "measure which blocks and lines independently", "do not overfit for this case only"; Gr.Req 577 `Gr.Log` meter notes; index concepts `Kernel.Block.Grounding`, `Inline.Grounding`, `Index.Linter` (+ `External.Checks` appendix).
-- **Status**: designed; ready for execution
+- **Status**: implemented; suite green; live acceptance verified
 
 ## Impl.Index
 
@@ -49,24 +49,24 @@
 - what: `LinterConfig.coverage: frozenset[str]`; `build_linter_config(coverage=...)`; `_check_line_unlinked` consults `"line" in config.coverage`; CLI `--coverage` (repeatable, accepts `all`) with `--warn-unlinked` mapping to `{"line"}`; update existing callers/tests
 - RED: `--coverage line` reproduces today's `--warn-unlinked` findings; `--warn-unlinked` still works (alias test); no coverage flag → agendix lines still flagged, chapter/appendix lines not
 - check: suite green
-- status: pending
+- status: done
 
 ### S2 — Block.Ungrounded check + meters payload
 - what: new `_check_block_ungrounded` registered in `CHECKS` (coverage `"block"`); `coverage` object in the JSON payload and text summary lines, computed from the same traversal. Note: registering it grows the flagless check count by one (17 → 18, shown as passed) — accepted, this mirrors exactly how `Line.Unlinked` already appears when its flag is off; flagless FINDINGS must not change
 - RED: fixture with grounded + ungrounded concept blocks → exactly the ungrounded one fires, on its heading line; inline-anchored-but-headless block still fires (no cross-coverage); a `Grounding.Head` whose only anchored line is NOT `[GR]`-typed does not ground its block; a parameterized block (`Concept:Param`) is matched by full path, not root; appendix/agendix headings absent from the denominator; JSON `coverage.block == {"grounded": 1, "total": 2}`; with `--coverage all` both meters appear
 - check: suite green
-- status: pending
+- status: done
 
 ### S3 — --scope reporting filter
 - what: `--scope` CLI + `LinterConfig.scope_paths`; findings/counts/meters filtered to scope; JSON echoes scope; unmatched scope entry → config-surface error
 - RED: two-chapter fixture depot; `--scope <chapter-1>` drops the other chapter's findings from findings AND summary AND meters while structural cross-file checks still see the whole depot; bogus `--scope` errors
 - check: suite green
-- status: pending
+- status: done
 
 ### S4 — live acceptance + docs
 - what: reinstall; live: `agentos index linter --depot skills/agentos-pkg --coverage all --scope skills/agentos-pkg/design --json` in agentos-md — expect the block meter to show the four 577-grounded blocks as grounded and the line meter to reproduce the 10X count without post-filtering; update `agentos-md` `skills/agentos-index/references/check.md` (built-in checks + flags), `references/gr-survey.md` step 1 (baseline = the scoped linter command, recorded verbatim in `Gr.Abstract`), and `agentos-py/AGENTS.md` (it documents the linter CLI flags and requires updating on CLI changes)
 - check: live numbers sane; both depots lint clean unflagged (no default-behavior change); `uv run pytest` + `ruff` green in agentos-py
-- status: pending
+- status: done
 
 ### Acceptance signals
 - one command yields reproducible scoped campaign numbers: findings + two independent meters
@@ -81,3 +81,12 @@
 ## Impl.Log
 
 - 2026-07-09: review round — `agentos-hugentics-impl --review` run in a fresh agent returned `not ready` with 5 findings (default-output conflict, root-vs-path block identity, [GR]-typed grounding requirement, scope derivation mechanics, agentos-py/AGENTS.md docs); all 5 folded into Design.Decisions / Execution.Plan / Acceptance above
+- 2026-07-09: execution checkpoint created before edits per workflow: `agentos-py` empty checkpoint `cb8e4f2`; `agentos-md` checkpoint `da2d646` captured pre-existing index changes.
+- 2026-07-09: executed S1-S3 in `agentos-py`: `LinterConfig.coverage` replaces `warn_unlinked` as state, `--warn-unlinked` folds into `coverage={"line"}`, `--coverage line|block|all` and `--scope` are wired, scoped render/payload recomputes findings/check counts/summary/meters without mutating `LinterState`.
+- 2026-07-09: implemented `Index.Linter/Block.Ungrounded` with full `parsed["path"]` block identity and `[GR]`+anchor `Grounding.Head` satisfaction; parameterized block coverage test added.
+- 2026-07-09: implementation decision: `Block.Ungrounded` is registered in `CHECKS`, so flagless clean depots now report 18 passed checks instead of 17; flagless findings remain unchanged.
+- 2026-07-09: updated `agentos-py/AGENTS.md`, `agentos-index` `references/check.md`, and `references/gr-survey.md` for the new linter flags and campaign baseline.
+- 2026-07-09: installed CLI refreshed from `agentos-cli` with `uv tool install --reinstall --editable .`.
+- 2026-07-09: live acceptance: `agentos index linter --depot skills/agentos-pkg --coverage all --scope skills/agentos-pkg/design --json` reports line `23/1231` linked (1208 unlinked) and block `7/224` grounded; scoped summary has 1425 warnings, 0 errors.
+- 2026-07-09: default live depots clean unflagged: `agentos-md/skills/agentos-pkg` and `agentos-chatlas-md/skills/agentos-chatlas-pkg` both report 18 checks, 0 findings.
+- 2026-07-09: verification: `uv run pytest tests/test_index_linter.py` 30 passed; `uv run pytest` 285 passed; `uv run ruff check src tests` clean.
