@@ -321,6 +321,15 @@
 - [DC] linking mostly happens on the edge — anchoring content produced in the current session; self-session discovery by content matching is the entry step @20260708-1
 ****
 
+## Index.Enrichment
+
+- [DF] `Index.Enrichment` is the hugentic drive to always increase the `Touched.Surface` of any block or line — no block is finished @20260709-7
+- [DC] grounding and enrichment split by evidence source: grounding is retrospective, mining the existing chat corpus; enrichment is generative, producing new touched surface @20260709-8
+- the discussion is the yield: spawning a focused discussion about a block creates the user turns that become its new grounding surface — and, through the gate, possibly new content @20260709-7
+- [DC] `Grounding.Density` reads as pipeline position: zero → mine the corpus first (grounding); low → generate (enrichment); high → rest until touched again @20260709-8
+- enrichment is block-scoped and gated — a micro design-session one block wide; the block's density delta is the receipt @20260709-9
+****
+
 ## Anchory.System
 
 - `Anchory.System` is the Agentos subsystem for stable symbolic links to contexts on other surfaces
