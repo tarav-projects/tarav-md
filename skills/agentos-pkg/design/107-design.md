@@ -11,7 +11,7 @@
 
 ### meta
 
-- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Derivation.Rule`, `Derived.Content`, `Module.Dependency.Management`, `Derived.Module`, `Derivation.Manifest`, `Semantic.Router`, `Usage.Pattern.Routing`.
+- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Derivation.Rule`, `Derived.Content`, `Module.Import`, `Import.Management`, `Derived.Module`, `Import.Manifest`, `Semantic.Router`, `Usage.Pattern.Routing`.
 
 ****
 
@@ -43,6 +43,18 @@
 
 ****
 
+## Module.Import
+
+- [DF] `Module.Import` is a declared dependency between surfaces — a consumer surface imports a target named by any legal block name (`Block.Naming.Schema`) ^20260709-12
+- [DC] three binding modes: `pointer` — resolved at load time, always fresh; `copy` — verbatim materialization at build time; `derived` — a semantic transformation materialized at build time, governed by a `Derivation.Rule` ^20260709-14
+- [DC] the binding is the consumer's declaration — the imported surface never knows its importers ^20260709-12
+- [DC] declarations live on the `Skill.Build.Surface`; the `Skill.Runnable.Surface` carries only the materialized result — a routed pointer or the inlined content ^20260709-13
+- each binding carries a checkable claim: pointer — the target resolves at its address; copy — equality with the target; derived — the rule still holds ^20260709-16
+- [DC] a failed check is a drift finding with no predefined winner — resolution is case-by-case; a particular workflow may set auto-regeneration as its own rule ^20260709-15
+- it is the Skillware linking system: copy and derived are static binding, pointer is dynamic ^20260709-12
+
+****
+
 ## Derivation.Rule
 
 - `Derivation.Rule` is the relation `Dependencies + Context → Derived` — the unit that produces a piece of derived content from declared dependencies, interpreted through a context.
@@ -50,6 +62,7 @@
 - both dependencies and context span **inline + external** — carried inline in the derived surface, or external on a build surface; whatever isn't inline is written externally.
 - run **forward** it (re)generates the derived; run as a **check** it answers the drift question — does the current derived still match what its dependencies + context would now produce?
 - the check is the payoff: maintenance becomes a query the system runs, not vigilance the user keeps — and maintenance is derivation's main cost.
+- it is the mechanics of the `derived` binding of `Module.Import`; the `copy` binding needs no rule — equality is its whole check ^20260709-14
 
 ****
 
@@ -61,12 +74,17 @@
 
 ****
 
-## Module.Dependency.Management
+## Import.Management
 
-- `Module.Dependency.Management` is the part of the Skillware module model that maintains a module's `Derivation.Rule`s — tracking dependencies and the context so derived content can be drift-checked and regenerated.
-- it records, per derived span, the dependencies (by durable address) and the context, and re-runs the rule on demand.
-- the more derived a module, the more its maintenance automates — derived spans re-project, while original content and the seams where it meets derived content stay manual.
-- dependencies are addressed by the in-place linking mechanism — `Dotted.Names` for blocks, `Anchory.Anchor`/`Chat.Grounding` for chat fallback dependencies.
+- `Import.Management` is the part of the Skillware module model that maintains a module's `Module.Import`s — tracking each import's target and binding so materialized content can be checked and regenerated ^20260709-16
+- it records, per import, the target (by durable address), the binding, and any context, and re-runs the check or the materialization on demand
+- pointer bindings are checked for address validity, copy for equality, derived for `Derivation.Rule` drift ^20260709-14
+- the more imported a module's content, the more its maintenance automates — imported spans re-materialize, while original content and the seams where it meets them stay manual
+- targets are addressed by legal block names — `Dotted.Name`s for blocks, locator names for files and regions, `Anchory.Anchor`/`Chat.Grounding` for chat fallback dependencies
+
+### meta
+
+- aliases: `Module.Dependency.Management`
 
 ****
 
@@ -78,11 +96,16 @@
 
 ****
 
-## Derivation.Manifest
+## Import.Manifest
 
-- `Derivation.Manifest` is the explicit artifact for a `Derivation.Rule` — it carries the parts of the rule (declared dependencies + external context) not already inline in the derived surface.
-- it lives on the `Skill.Build.Surface` (under `build/derivation/`), kept off the runnable surface.
-- it names each dependency by a durable address and holds the external context, so a maintainer or agent can re-derive and drift-check from one known place.
+- `Import.Manifest` is the explicit artifact for a module's `Module.Import` declarations — it names what the module imports and under which binding ^20260709-16
+- for a `derived` binding it carries the `Derivation.Rule` parts (declared dependencies + external context) not already inline in the derived surface
+- it lives on the `Skill.Build.Surface` (under `build/imports/`), kept off the runnable surface ^20260709-13
+- it names each target by a durable address, so a maintainer or agent can check and re-materialize from one known place
+
+### meta
+
+- aliases: `Derivation.Manifest`
 
 ****
 

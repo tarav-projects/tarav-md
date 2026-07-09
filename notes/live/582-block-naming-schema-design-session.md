@@ -37,13 +37,41 @@
 - open: router sorting/placement of `@`-named blocks in `000-INDEX.md`
 - open: exact child-block split (`Naming.Sigil.Vocabulary`, `Locator.Name`) vs one bigger block
 
+### Naming.Sigil.Vocabulary
+
+- `Naming.Sigil.Vocabulary` is the closed set of primitives a `Block.Naming.Schema` name composes from
+- each sigil carries exactly one meaning; expressivity comes from composition, never from overloading
+- `.` joins words into one name atom: `Concept.X`, `AGENTS.md`
+- `/` states descent — the right side lives inside the left side's namespace, in either space
+- `#` switches space — the name leaves file space and enters the file's internal regions
+- `::` states type — the right side is an entity of the left side's type: `Line.Type::DF`
+- `:` states line position inside a file: `@<project>/AGENTS.md:42`
+- `<...>` marks a variable part, resolved by context and legal in any space: `<project>`
+- `@` is the locator prefix — it anchors a name in file space from its first character
+- `^` is reserved by `Anchory.Anchor` for evidence links and never appears inside a block name
+- a sigil's meaning is invariant across positions; where it may appear is grammar, not meaning
+- the vocabulary is closed by discipline, not by parser — extending it is a gated index decision
+
+#### appendix
+
+- members enumerate inline (one line per sigil), diverging from the `Line.Type.Vocabulary` per-member-block precedent: a sigil's whole semantics fits one line, a `Line.Type` carries validation behavior that earns a block
+- the `^` reservation line documents the full sigil budget on index surfaces — collision-proofing, though `^` is not a naming primitive; `Anchory.System` owns its semantics
+- `::` mirrors Julia's type-ascription syntax; its type reading subsumes the retired "applied to a target" phrasing: `Maintenance.System::Agentos` reads as the `Maintenance.System` instance identified by `Agentos`
+- `:` for lines mirrors the universal `path:line` convention (grep output, editor jump targets); `::` longest-matches over `:`, so parsing is unambiguous
+- `#` and `:` are the two file-internal addressers — `#` by heading region (stable), `:` by line number (volatile); prefer regions for durable names
+
+#### meta
+
+- status: converging
+- related: `Block.Naming.Schema`, `Line.Type.Vocabulary`, `Anchory.System`, `Dotted.Notation`
+- open: none
+
 ## Session.Notes
 
-- sigil table settled in chat, pending its own block draft: `.` word-joiner, `/` descent, `#` file→region space switch, `:` type statement (Julia `::`), `<...>` variable part (space-agnostic), `@` locator prefix, `^` evidence anchor (Anchory)
-- `:` vs `/` semantics settled: `Concept.X:Blo` — Blo is of the type Concept.X; `Concept.X/Blo` — Blo lives inside Concept.X's namespace; both full strings name the entity
-- the type reading of `:` subsumes the old "applied to a target" phrasing of `Dotted.Parameterized.Notation`
-- `@` maintenance rule settled: agents maintain the `@`, users need not type it — a user's `Bla/Blo` resolves to block `@Bla/Blo` when that is the match; usability must not suffer
+- sigil table and `:`/`/` semantics consolidated into `Naming.Sigil.Vocabulary` (Design.Index)
+- `@` maintenance rule settled, pending the `Locator.Name` draft: agents maintain the `@`, users need not type it — a user's `Bla/Blo` resolves to block `@Bla/Blo` when that is the match; usability must not suffer
 - surfaces that restate naming and will need alignment at landing: `agentos-pkg/SKILL.md` (Dotted Notation section), `agentos-index` references, `Index.Block` heading line
+- landing-phase impl-req of its own: the `:`→`::` migration — single-`:` parameterized names are pervasive (`Line.Type:DF`, `Alignment.Backend:Artifact:What`, `Natural.Placement:Skills`, the Batchy `Skill.Arg:X` convention in every skill); same shape as the `@`→`^` migration (regex rewrite, linter legacy check, doc updates) but wider, reaching skill files beyond the index
 - pre-existing loose end (out of scope): `^20260630-0` example in `agentos-pkg/SKILL.md` does not resolve in the anchory depot
 
 ## Session.Log
@@ -52,3 +80,5 @@
 - 2026-07-09 prior landed work recorded: Anchory `@`→`^` migration (580)
 - 2026-07-09 first draft of `Block.Naming.Schema` block written
 - 2026-07-09 redraft after `Kernel.Writing` research pass: de-welded lines, removed deixis, anti-explosion rationale consolidated to appendix; pending commitments noted: `Locator.Name` and the two-space model cited before drafted
+- 2026-07-09 `Naming.Sigil.Vocabulary` drafted and accepted: inline member enumeration (divergence from `Line.Type.Vocabulary` precedent recorded in appendix), `^` reservation kept, closed-by-discipline extension rule; sigil table moved out of `Session.Notes` into the block
+- 2026-07-09 sigil revision: type statements move from `:` to `::` (Julia mirror); `:` freed for line position inside a file (`path:line` convention); `:`→`::` migration recorded as a landing-phase impl-req in `Session.Notes`

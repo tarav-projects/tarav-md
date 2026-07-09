@@ -101,7 +101,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 | find surfaces that contradict a concept they mention | `references/inline-drift.md` |
 | run or reconcile derived content from its sources | `references/build.md` |
 | author or understand derivation manifests and the rule format | `references/derivation.md` |
-| canonical subsystem concepts (`Skill.Package.Builder`, `Skill.Build.Surface`, `Derivation.Rule`, `Derived.Content`, `Derivation.Manifest`) | `agentos-pkg` index `107-design.md` |
+| canonical subsystem concepts (`Skill.Package.Builder`, `Skill.Build.Surface`, `Derivation.Rule`, `Derived.Content`, `Module.Import`, `Import.Manifest`) | `agentos-pkg` index `107-design.md` |
 
 ## Builder Operating Behavior
 
