@@ -16,7 +16,7 @@ Engine: `references/back-link.md` (archaeology) and `references/link.md` (edge l
 ## Campaign Loop
 
 1. **Baseline.** `agentos index linter --depot <depot> --coverage all --scope <scope> --json` — record the exact command plus the line and block coverage meters in `Gr.Abstract` (coverage before); use `--coverage line` when a campaign deliberately tracks only inline anchors.
-2. **Target selection.** Unlinked blocks/lines in scope, worked block by block per `back-link.md`'s pipeline (git-date → session tiers → user turn → mint-with-echo). Pick the route per block first:
+2. **Target selection.** Default selector: `agentos index blocks --depot <depot> --sort gr-density --scope <scope> --json` — the worklist head (zero-density blocks) is the grounding queue. Worked block by block per `back-link.md`'s pipeline (git-date → session tiers → user turn → mint-with-echo). Pick the route per block first:
    - user-originated wording → hunt the topical user turn (the statement itself)
    - agent-drafted wording the user gated through (most index blocks) → the **approval turn is the primary route, not a fallback**: date the block's landing commit, find the user's acceptance turn — the "write"/"apply"/"ok" after the verbatim proposal — and mint there (`Grounding.Hugentic.Authority` appendix). Do not burn the pass hunting for a topical turn that never existed.
 3. **Entry per target** in the `Gr.Set`:

@@ -9,8 +9,7 @@ This module is NOT `Workflow.Neutral`: it drives a discussion and applies gated 
 ## Target Selection
 
 - an explicit block from the caller wins
-- default selector: the head of the density worklist, `agentos index blocks --sort gr-density` — filtered to **non-zero** density (zero-density blocks go to grounding first: mine before you generate)
-- until that command lands: `agentos index linter --coverage all --scope <scope> --json` meters plus block inspection approximate the worklist
+- default selector: the head of the density worklist — `agentos index blocks --depot <depot> --sort gr-density [--scope <path>] --json` — filtered to **non-zero** density (zero-density blocks go to grounding first: mine before you generate)
 - `Grounding.Density` reads as pipeline position (`Index.Enrichment`): zero → grounding; low → enrich here; high → rest until touched again
 
 ## Enrichment Loop (per block)
