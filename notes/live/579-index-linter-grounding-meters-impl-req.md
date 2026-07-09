@@ -21,14 +21,15 @@
 - **checks emit-per-config, not gate-per-config**: follow the existing `Line.Unlinked` pattern — coverage checks always run and consult `config.coverage` to decide what to emit; no blocked-check noise for disabled meters.
 - **`Index.Linter/Block.Ungrounded`** (warning, coverage `"block"`): fires on a chapter-surface concept block with no `Grounding.Head`.
   - denominator: `BlockHeading` nodes in `surface_kind == "chapter"` documents with `parsed["segments"] == []` and `parsed["valid"]` — top-level concept blocks only; appendix/agendix headings never enter the denominator
-  - grounded: some appendix-surface document has a `BlockHeading` with `parsed["root"] == <block title>` and `parsed["segments"] == ["Grounding.Head"]` whose section contains at least one `KernelLine` with an anchor span
+  - block identity is `parsed["path"]`, NOT `parsed["root"]` — parameterized names split into root+params (`Line.Type:DF` → root `Line.Type`), so root-matching would collapse distinct blocks
+  - grounded: some appendix-surface document has a `BlockHeading` whose `parsed["path"] == f"{block_path}/Grounding.Head"` (equivalently: same full path prefix, `parsed["segments"] == ["Grounding.Head"]`) whose section contains at least one `KernelLine` with `parsed["act"] == "GR"` AND an anchor span — an anchored non-`[GR]` line does not satisfy the block meter
   - the finding lands on the chapter block's heading line
 - **`Line.Unlinked` semantics unchanged** except its trigger: coverage `"line"` instead of `warn_unlinked`. The agendix mandatory case (hard provenance) is NOT coverage — it keeps firing regardless of flags, exactly as today.
 - **no cross-coverage in either direction** — each landing form moves only its own meter.
 - **`--scope <path>`** (repeatable, file or directory, resolved under root like `--depot`): a *reporting* filter —
   - all checks run over the full configured surfaces (cross-file checks keep their context)
-  - findings whose `path` falls outside every scope entry are dropped from findings, per-check counts, and the summary
-  - coverage meter denominators/numerators are computed within scope
+  - mechanics: `LinterState` stays unscoped; scoping is a derivation applied when rendering — filter findings by path prefix, then RECOMPUTE `CheckResult` finding/error/warning counts, the summary, and the coverage meters from the scoped findings/meter items; nothing scoped is stored back into state
+  - coverage meter denominators/numerators are computed within scope (the meter traversal carries item paths for exactly this)
   - the JSON payload echoes the resolved scope; a scope that matches no configured file is a config-surface error (typo protection)
 - **meters in the summary**: when any coverage name is enabled, the JSON payload gains a `coverage` object — e.g. `{"line": {"linked": n, "total": m}, "block": {"grounded": g, "total": b}}` — and the text render prints one line per enabled meter. The campaign number becomes tool output, not agent arithmetic.
 
@@ -51,8 +52,8 @@
 - status: pending
 
 ### S2 — Block.Ungrounded check + meters payload
-- what: new `_check_block_ungrounded` registered in `CHECKS` (coverage `"block"`); `coverage` object in the JSON payload and text summary lines, computed from the same traversal
-- RED: fixture with grounded + ungrounded concept blocks → exactly the ungrounded one fires, on its heading line; inline-anchored-but-headless block still fires (no cross-coverage); appendix/agendix headings absent from the denominator; JSON `coverage.block == {"grounded": 1, "total": 2}`; with `--coverage all` both meters appear
+- what: new `_check_block_ungrounded` registered in `CHECKS` (coverage `"block"`); `coverage` object in the JSON payload and text summary lines, computed from the same traversal. Note: registering it grows the flagless check count by one (17 → 18, shown as passed) — accepted, this mirrors exactly how `Line.Unlinked` already appears when its flag is off; flagless FINDINGS must not change
+- RED: fixture with grounded + ungrounded concept blocks → exactly the ungrounded one fires, on its heading line; inline-anchored-but-headless block still fires (no cross-coverage); a `Grounding.Head` whose only anchored line is NOT `[GR]`-typed does not ground its block; a parameterized block (`Concept:Param`) is matched by full path, not root; appendix/agendix headings absent from the denominator; JSON `coverage.block == {"grounded": 1, "total": 2}`; with `--coverage all` both meters appear
 - check: suite green
 - status: pending
 
@@ -63,20 +64,20 @@
 - status: pending
 
 ### S4 — live acceptance + docs
-- what: reinstall; live: `agentos index linter --depot skills/agentos-pkg --coverage all --scope skills/agentos-pkg/design --json` in agentos-md — expect the block meter to show the four 577-grounded blocks as grounded and the line meter to reproduce the 10X count without post-filtering; update `agentos-md` `skills/agentos-index/references/check.md` (built-in checks + flags) and `references/gr-survey.md` step 1 (baseline = the scoped linter command, recorded verbatim in `Gr.Abstract`)
+- what: reinstall; live: `agentos index linter --depot skills/agentos-pkg --coverage all --scope skills/agentos-pkg/design --json` in agentos-md — expect the block meter to show the four 577-grounded blocks as grounded and the line meter to reproduce the 10X count without post-filtering; update `agentos-md` `skills/agentos-index/references/check.md` (built-in checks + flags), `references/gr-survey.md` step 1 (baseline = the scoped linter command, recorded verbatim in `Gr.Abstract`), and `agentos-py/AGENTS.md` (it documents the linter CLI flags and requires updating on CLI changes)
 - check: live numbers sane; both depots lint clean unflagged (no default-behavior change); `uv run pytest` + `ruff` green in agentos-py
 - status: pending
 
 ### Acceptance signals
 - one command yields reproducible scoped campaign numbers: findings + two independent meters
-- default (flagless) linter output is byte-identical to today on both live depots
+- default (flagless) linter FINDINGS are unchanged on both live depots (0 errors / 0 warnings stays 0/0); the check count grows by exactly one passed check — the only permitted default-output difference
 - `No.Regression.Tests.Allowed` respected; the chatlas bridge untouched and its tests green
 
 ### Risks / deviation triggers
 - if `LinterConfig` freezing makes the `warn_unlinked` → `coverage` migration awkward at call sites, keep a `warn_unlinked` constructor kwarg that folds into `coverage` — do not keep two sources of truth in the dataclass
-- if block-title ↔ appendix-head matching hits a naming wrinkle (e.g. `Concept:Param` roots), match on the heading `root` string exactly and log the wrinkle in `Impl.Log` rather than inventing normalization
+- if the full-path (`parsed["path"]`) block ↔ appendix-head matching hits a naming wrinkle, log it in `Impl.Log` rather than inventing normalization — never fall back to `root`-only matching (parameterized blocks would collide)
 - if scope filtering of per-check counts requires deep `LinterState` surgery, filter at render/payload time only — state internals stay unscoped
 
 ## Impl.Log
 
-- (empty — no execution yet)
+- 2026-07-09: review round — `agentos-hugentics-impl --review` run in a fresh agent returned `not ready` with 5 findings (default-output conflict, root-vs-path block identity, [GR]-typed grounding requirement, scope derivation mechanics, agentos-py/AGENTS.md docs); all 5 folded into Design.Decisions / Execution.Plan / Acceptance above
