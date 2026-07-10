@@ -1,6 +1,6 @@
 ---
 name: agentos-skill-pkg-builder
-description: "Workflow-neutral Package.Aux.Skill for the Skill.Package.Builder subsystem of agentos-pkg — the build toolchain that maintains a skill package's Skill.Runnable.Surface from its Skill.Build.Surface. USE WHEN building or checking imported content across a skill package's surfaces, or when authoring import manifests."
+description: "Workflow-neutral Package.Aux.Skill for the Skill.Package.Builder subsystem of agentos-pkg — the build toolchain that maintains a skill package's Skill.Runnable.Surface from its Skillware src surface. USE WHEN building or checking Skillware-managed content across a skill package's surfaces, or when authoring .skw.md sources and recipes."
 ---
 
 # agentos-skill-pkg-builder
@@ -20,15 +20,11 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - a bundle of agentic skills and CLI support tooling that run build workflows over the package
 - canonical definition: `agentos-pkg` index `Skill.Package.Builder` (`Cited.Duplication`)
 
-### Skill.Build.Surface
-- the builder's workspace — a per-package `build/` folder of build-time material, never loaded at run time
-- `build/<expanded-relative-path>-<file-name>-imports.md` holds each module's `Import.Manifest`, flat; tests, lint, lineage get their own sub-areas
-
-### Module.Import
-- a declared dependency between surfaces — a consumer surface imports a target named by any legal block name
-- three binding modes: `pointer` (resolved at load time), `copy` (verbatim materialization), `derived` (semantic transformation governed by a `Derivation.Rule`)
-- pointer and copy are CPU-checkable (`agentos skills imports`); derived is checked agentically
-- canonical definition: `agentos-pkg` index `Module.Import` / `Import.Manifest` (`Cited.Duplication`)
+### Skillware
+- the skill-development compilation system: runnable files are produced from `.skillware/src/**/*.skw.md` sources — markdown plus `[!skw]` callout recipes
+- recipe bindings: `copy` (CPU-refreshed verbatim body) and `derived` (agent-authored solution kept in src); absence of a src file = hand-owned
+- `agentos skillware build/check/status` is the deterministic toolchain; drift is tracked in `.skillware/lock.json`
+- format and discipline: `references/skillware.md`
 
 ## Skill.Arg.Section
 
@@ -36,15 +32,15 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - the umbrella check runner — run every registered check over the package and aggregate, read-only
 - required: false
 - action: load `references/check.md`
-- help: "run all drift checks (manifest + inline), no writes"
-- examples: --check, --check --target references/index-block-catalog.md
+- help: "run all drift checks (skillware + inline), no writes"
+- examples: --check, --check --skill skills/agentos-index2
 
-### Skill.Arg:Import.Checks
-- run only the declared-import checks — do the `Module.Import`s in the manifests still hold?
+### Skill.Arg:Skillware.Checks
+- run only the Skillware checks — do the managed surfaces still hold?
 - required: false
-- action: load `references/import-checks.md`
-- help: "check declared imports for drift (CPU pass + agentic derived pass)"
-- examples: --import-checks, --import-checks --manifest build/references-index-block-catalog-imports.md
+- action: load `references/skillware-checks.md`
+- help: "CPU drift verdicts + agentic re-derive of stale derived bodies"
+- examples: --skillware-checks, --skillware-checks --skill skills/agentos-index2
 
 ### Skill.Arg:Inline.Drift
 - run only the inline-drift check — does any surface contradict or go stale against a concept it mentions?
@@ -54,36 +50,23 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - examples: --inline-drift --target Hard.Evidence
 
 ### Skill.Arg:Build
-- make the package's derived content match its sources — run the manifest relations forward and reconcile drift
+- compile the package's Skillware sources and reconcile drift
 - required: false
 - action: load `references/build.md`
-- help: "build/reconcile derived content from its sources"
-- examples: --build, --build --target references/index-block-catalog.md
+- help: "build compiled surfaces from .skillware/src sources"
+- examples: --build, --build --skill skills/agentos-index2
 
 ### Skill.Arg:Skill
 - the coarse scope — which skill surface to operate on
 - required: false
 - help: "limit the run to one skill"
-- examples: --skill hugentics-designer, --skill agentos-index
+- examples: --skill hugentics-designer, --skill agentos-index2
 
 ### Skill.Arg:Target
 - the fine scope within a skill — a file path or a block/concept name
 - required: false
 - help: "limit the run to one file or block"
-- examples: --target references/index-view.md, --target Hard.Evidence
-
-### Skill.Arg:Manifest
-- scope a manifest run to one manifest file (import-checks / build)
-- required: false
-- help: "limit the run to a single manifest"
-- examples: --manifest build/references-index-block-catalog-imports.md
-
-### Skill.Arg:Since
-- the inline-drift window — how far back the recent-changes default target reaches
-- required: false
-- default: ~2-3 weeks
-- help: "set the recent-changes window for inline-drift (date or git ref)"
-- examples: --since 3.weeks, --since HEAD~20
+- examples: --target references/ground.md, --target Hard.Evidence
 
 ## Boundary
 
@@ -98,34 +81,31 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 | Situation | Module / Surface |
 |---|---|
 | run all drift checks over the package (read-only) | `references/check.md` |
-| check declared imports for drift | `references/import-checks.md` |
+| check Skillware-managed surfaces for drift | `references/skillware-checks.md` |
 | find surfaces that contradict a concept they mention | `references/inline-drift.md` |
-| run or reconcile imported content from its targets | `references/build.md` |
-| author or understand import manifests and the block format | `references/imports.md` |
-| canonical subsystem concepts (`Skill.Package.Builder`, `Skill.Build.Surface`, `Module.Import`, `Import.Manifest`, `Import.Management`, `Derivation.Rule`, `Derived.Content`) | `agentos-pkg` index `107-design.md` |
+| compile or reconcile Skillware sources | `references/build.md` |
+| author or understand `.skw.md` sources and recipes | `references/skillware.md` |
+| canonical subsystem concepts (`Skill.Package.Builder`, `Skill.Build.Surface`, `Module.Import`, `Derivation.Rule`, `Derived.Content`) | `agentos-pkg` index `107-design.md` |
 
 ## Builder Operating Behavior
 
-- the builder is agentic and smart — import blocks are soft; resolve landing spans by reading the runnable surface, not by markers planted in it
-- never add bookkeeping noise to a `Skill.Runnable.Surface` — addressing lives on the build side, expressed over the surface's own structure (headings, code fences, `Dotted.Name`s)
-- load all `build/*-imports.md` manifests and run every import; narrow with `--skill` (coarse) or `--target` (fine)
-- `agentos skills imports --package <pkg> [--depot ...]` is the deterministic pointer/copy pass — take its verdicts as given; the agentic work is the `derived` bindings
-- one owner per landing span — if two imports land on the same span, report the collision instead of guessing
-- `--check` is read-only and reports drift; `--build` reconciles declared imports with common sense, preserving surrounding hand-written content
+- all authoring happens on the src surface — never edit a compiled file; the compiled surface carries zero machinery
+- `agentos skillware build/check` is the deterministic CPU layer — take its verdicts as given; the agentic work is re-deriving stale `derived` bodies in src
+- a failed check is a drift finding with no predefined winner — resolution is case-by-case; a particular workflow may set auto-regeneration as its own rule
+- writing src for a gated package still follows the package's edit gates — propose, get approval, then re-derive and rebuild
 - `--inline-drift` asserts only non-contradiction — a mention may rephrase, simplify, or scope a concept; it just may not contradict the canonical definition
 - inline-drift output is candidates for judgment, never verdicts — it has no rule for how a surface should restate a concept, so it never reconciles
-- writing to a runnable surface is gated like any package edit — propose, get approval, then reconcile
 
 ## Skill Modules
 
 - `references/check.md` — the umbrella check runner: run every check, aggregate, no writes
-- `references/import-checks.md` — declared-import drift: CPU pass for pointer/copy, agentic pass for derived
+- `references/skillware-checks.md` — Skillware drift: CPU verdicts + the agentic re-derive pass
 - `references/inline-drift.md` — inline-drift: find surfaces that contradict a concept they mention
-- `references/build.md` — the build/reconcile pass: load manifests, resolve targets, write imported content
-- `references/imports.md` — the `Import.Manifest` format, the binding vocabulary, and a worked example
+- `references/build.md` — the compile/reconcile pass over `.skillware/src` sources
+- `references/skillware.md` — the src surface, the recipe format, and the toolchain
 
 ## When To Load This Skill
 
-- when building or checking imported content across a skill package's surfaces
-- when authoring or maintaining import manifests
+- when building or checking Skillware-managed content across a skill package's surfaces
+- when authoring or maintaining `.skw.md` sources and recipes
 - when adding a build capability (tests, lint, lineage) to a package

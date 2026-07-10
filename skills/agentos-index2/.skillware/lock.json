@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "files": {
+    "references/ground.md": {
+      "output_sha256": "312ab2be7b794ed544c35fd6d0a08fcb0867791b1abf74526749d5d832f64f74",
+      "recipes": [
+        {
+          "heading": "Grounding Model",
+          "verb": "derived",
+          "body_sha256": "5ae8af1c466240df8c9d49d87b6adfdfa0838340ed47278c002b55791526aa9d",
+          "deps": {
+            "references/search.skw.md#Search Model": "305857d0668999bcbd70140ffc79f742d2dbae9c9b18fd65b555421fcc0a8268",
+            "Context.Grounding": "8891b0d11d7cf45ec447609004fe0a9e54aa82ae8086dd2f459e897b10760285"
+          }
+        },
+        {
+          "heading": "Citation Behavior",
+          "verb": "copy",
+          "body_sha256": "e57e94bf2adedb5f4bde5e498c1feb6342c70412564a0e8d8a1a8734a673a8a9",
+          "deps": {
+            "references/search.skw.md#Citation Behavior": "e57e94bf2adedb5f4bde5e498c1feb6342c70412564a0e8d8a1a8734a673a8a9"
+          }
+        }
+      ]
+    },
+    "references/search.md": {
+      "output_sha256": "516f5265bbb5f41775c7d415ac15133b6013cb3dc6791ebbe1006d29116c2abe",
+      "recipes": []
+    }
+  }
+}
