@@ -49,18 +49,18 @@
       ]
     },
     "references/doctrine.md": {
-      "output_sha256": "22170d086744287b1cb3d67e36692883ad23d2641b5f928bfd4a83d9d75afffc",
+      "output_sha256": "04fc442d11792e8497d5748e2aff3f496daa5fd3beca561525f94f58b6a45bc0",
       "recipes": [
         {
           "heading": "The Model",
           "verb": "derived",
-          "body_sha256": "a5b37be5f1ceadabf3ed49d3f6e3a99a84cdb69cb265b229b82e1a026801a070",
+          "body_sha256": "46d4f500c3d02533a6f6cbd1552112fd39e1c92c1e32a5b22722ad795695fa8c",
           "deps": {
             "Agentos.Skillware": "f6e0256cfa1b4976c6d006b7fd4916dce3525a907892eb9d391e6dfa02c6f4d7",
             "Skill.Runnable.Surface": "1a0c9b0235f70135efb1090d96ea86848d8042e2383bedbfe12a9d2b3cfd0dab",
             "Skill.Build.Surface": "6a86daf0304d1c612e9660851d24592cec13d087090fa6980f8353a45af6e8a6",
             "Module.Import": "f10a86765628e5243615d29c59da1558f749111f89a4c89e21b8f2412e003f81",
-            "Skillware.Recipe": "b246db20112d7994b6f5edfb2621c66c05e9edb32cf58253e7437ef592a43e9f",
+            "Skillware.Recipe": "a0e47e14037251f8019ceec803cbdb1cc0dfe28d9b9192fd92485db501157935",
             "Derivation.Rule": "ee265f9f6c4395716e253a13347654bc45dcf120fb01e22d3aae897a6b3fad11",
             "Derived.Content": "f1f93a46f6e4793ddac2d9b243b209ee85980cbb5e1ae72b0146da5d81abbb7e"
           }

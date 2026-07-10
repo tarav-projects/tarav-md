@@ -11,7 +11,7 @@
 
 ### meta
 
-- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Derivation.Rule`, `Derived.Content`, `Module.Import`, `Import.Management`, `Derived.Module`, `Skillware.Recipe`, `Semantic.Router`, `Usage.Pattern.Routing`.
+- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Derivation.Rule`, `Derived.Content`, `Module.Import`, `Import.Management`, `Derived.Module`, `Skillware.Construct`, `Skillware.Recipe`, `Semantic.Router`, `Usage.Pattern.Routing`.
 
 ****
 
@@ -95,12 +95,23 @@
 
 ****
 
+## Skillware.Construct
+
+- [DF] `Skillware.Construct` is the single syntactic form of the Skillware language: a `[!skw]` declaration callout (command + `key: value` args), a flat markdown body, and a mandatory owned closer `[!skw]- end-<command>` ^20260710-4
+- [DC] closure is fully explicit: a bare `end` is invalid; a multi-close line (`end-a end-b`) unwinds the open stack innermost-first; a heading closes nothing — a construct left open at a heading or EOF is a finding ^20260710-4
+- [DC] no indentation: bodies sit at column 0 — nesting is logical (the parse stack + owned ends), never visual; the body is runnable prose first ^20260710-4
+- [DC] three primitives instantiate it anywhere in a src: `text` (a literal, tag optional), `copy`, and `derived` — a generation function whose declaration describes the generated body and whose body is the current output ^20260710-4
+- the command vocabulary is the language's growth axis: new capability is a new command over the same construct — structural commands (`router`, `when`, `then`) compose primitives ^20260710-4
+
+****
+
 ## Skillware.Recipe
 
 - [DF] `Skillware.Recipe` is the inline declaration form of a `Module.Import`: a `[!skw]` callout under a heading in a `.skw.md` src, carrying the verb (binding), `from:` targets, and `intent:` (the `Derivation.Rule` context), with the produced body directly below ^20260710-2
 - the recipe and its current solution live side by side in src — declaration, rule, and result in one place ^20260710-2
 - compile is deterministic: the toolchain strips the callout machinery; the runnable surface carries only the produced content ^20260710-2
 - [RJ] `Import.Manifest` — a separate flat artifact per consuming module (`build/<...>-imports.md`) — was superseded before implementation: declarations live inline; `lock.json` is the machine record ^20260709-13 ^20260710-2
+- [DC] recast by `Skillware.Construct`: the recipe is the section-scoped v1 instance of the general declaration+body form; v2 makes the construct position-free with enforced owned ends ^20260710-4
 
 ****
 
