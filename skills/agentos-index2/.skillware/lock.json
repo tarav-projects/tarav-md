@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "6f553553f2cb5d51a390a94e18c1d31032301c11f3c473cb441b16996f838b87",
+      "output_sha256": "ae97d7b488e639747e163fc21b2c17e8e0b1d98c55e73a93c0581a467379c76b",
       "recipes": [
         {
           "heading": "Index Operating Behavior",

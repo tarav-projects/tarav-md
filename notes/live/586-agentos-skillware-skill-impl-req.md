@@ -7,7 +7,7 @@
 - **Self-containment contract**: an agent loading only this skill has everything needed to be a competent Skillware user.
 - **Out of scope**: `inline-drift` (dropped — future test-engine redesign owns it); `pointer` binding tooling; any further index edits beyond mention sweeps.
 - **Repos**: `agentos-py` (engine + tests), `agentos-md` (the skill, the retirement, index2 provenance cleanup).
-- **Status**: designed 2026-07-10 — ready for execution
+- **Status**: executed 2026-07-10 — all slices done; verification green; changes uncommitted for review
 
 ## Impl.Index
 
@@ -48,22 +48,22 @@
 ### S1 — engine: constitutive AGENTS.md (agentos-py)
 - what: RED test — build a tmp skill, assert `.skillware/AGENTS.md` exists with canonical content and that a hand-modified copy is overwritten by rebuild; GREEN — `AGENTS_MD_TEXT` constant + stamp in `build_skill`; run full skillware test file + ruff
 - check: new tests pass; suite green
-- status: pending
+- status: done
 
 ### S2 — author agentos-skillware (agentos-md)
 - what: src tree — `.skillware/skillware.json`, `src/SKILL.skw.md`, `src/references/{doctrine,lang,author,adopt,build,check}.skw.md` with the five recipes; build; check
 - check: `agentos skillware build --skill skills/agentos-skillware` emits 7 files + AGENTS.md; `check` exit 0 all-ok; derived bodies faithful to their index sources
-- status: pending
+- status: done
 
 ### S3 — retire agentos-skill-pkg-builder + link sweep
 - what: delete `skills/agentos-skill-pkg-builder/`; re-run `agentos skills import` for agentos-md and agentos-py; sweep remaining live mentions (excluding notes/chatlas history)
 - check: old symlink+state gone, `agentos-skillware` linked and resolvable via `agentos skills path`; no live-surface mentions remain
-- status: pending
+- status: done
 
 ### S4 — index2 zero-delta + final verification
 - what: drop provenance additions from index2 `SKILL.skw.md`, rebuild index2; final pass — pytest (agentos-py), skillware build/check/status over index2 + agentos-skillware, index linter over agentos-pkg, parity diff for index2 SKILL.md now empty
 - check: all green; index2 SKILL.md parity diff byte-empty modulo name
-- status: pending
+- status: done
 
 ### Acceptance signals
 - an agent can load `agentos-skillware` and operate the whole system: understand (doctrine/lang), write (author/adopt/build), maintain (check)
@@ -78,4 +78,9 @@
 
 ## Impl.Log
 
-*(empty — written during execution)*
+- **checkpoints**: agentos-md checkpoint committed the pre-existing 585/recast work as found; agentos-py empty checkpoint (clean worktree).
+- **S1**: RED (2 tests failed on missing `AGENTS_MD_TEXT`), GREEN — constant + stamp beside the lock write in `build_skill`; suite green.
+- **deviation (fence-awareness)**: the parser was not code-fence aware — the `lang.skw.md` grammar example (a real recipe callout inside a ```md fence) would have parsed as a live recipe and been destroyed at compile. Most faithful fix under AUTO: engine change, RED-GREEN — `parse_skw_source` now treats fenced lines as inert content (```/~~~ toggling). 16 skillware tests, 306 suite-wide, ruff clean. The lang spec documents the rule ("fenced code blocks are inert").
+- **S2**: 7 srcs authored; build emitted 7 targets + stamped `.skillware/AGENTS.md`; check exit 0 all-ok; recipes as designed — 5 derived (`SKILL#What Skillware Is`, `doctrine#The Model`, `doctrine#Recipe In Brief`, `author#Division Of Labor`, `check#Verdicts`), 0 copies.
+- **S3**: builder deleted; `agentos skills import --force --project <p>` re-run for agentos-md and agentos-py (plain `import` needed explicit `--project`; `--force` required to drop the dangling link). `agentos-skillware` linked in both depots (`.claude/skills`, `.agents/skills`), old link and state entries gone, `agentos skills path agentos-skillware` resolves. Live-mention sweep clean (notes + chatlas history retained as provenance).
+- **S4**: provenance additions removed from index2 `SKILL.skw.md`, rebuilt (1 built, 11 unchanged); SKILL.md parity diff now byte-empty modulo name; all 11 reference diffs clean. Final: pytest 306 passed, ruff clean, both skills all-ok (12 + 7 files), index2 `.skillware/AGENTS.md` stamped by rebuild, index linter 0/0/0.

@@ -1,0 +1,84 @@
+---
+name: agentos-skillware
+description: "Workflow-neutral Package.Aux.Skill for the Skillware subsystem of agentos-pkg — skills developed as software, compiled from .skillware/src sources. USE WHEN understanding Skillware, authoring or adopting .skw.md sources, building managed surfaces, or checking drift."
+---
+
+# agentos-skillware
+
+Workflow-neutral `Package.Aux.Skill` for the Skillware subsystem — the center of all Skillware content: doctrine, language, authoring discipline, adoption, and toolchain operation.
+
+This skill is the public Batchy router for Skillware work. It orients the caller by default and routes `--about`, `--dev`, and `--check` into named `Skill.Module`s; the agent selects the concrete module from the live situation (`Semantic.Router`).
+
+This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
+
+- `-h` / `--help` prints usage and the public args without running.
+
+## What Skillware Is
+
+> [!skw]- derived
+> from: Agentos.Skillware
+> intent: orientation blurb — restate the discipline block for a caller
+> meeting the subsystem cold; keep it to the stance, not the mechanics
+
+- `Agentos.Skillware` is the discipline of treating skills as software — the skill is the unit of software for agents
+- "as software" means the artifacts agents run gain engineering structure — modules, dependencies, builds, versions, lineage — so they are reused and evolved rather than written once and forked
+- a development toolchain of builders and checkers, spanning agentic and `CPU.Impl` work, moves package maintenance off the human
+- it is a discipline realized by capabilities, not a single mechanism — this skill carries the capabilities
+
+> [!skw] end
+
+## Skill.Arg.Section
+
+### Skill.Arg:About
+- orientation, doctrine, and language questions — the read-to-understand side
+- required: false
+- aliases: --info, --doctrine
+- help: "explain Skillware: doctrine, model, recipe language, locators"
+- examples: --about, --about "how do derived recipes track staleness?"
+
+### Skill.Arg:Dev
+- authoring, adoption, and building — the write side
+- required: false
+- help: "do Skillware development: write src, adopt a skill, build surfaces"
+- examples: --dev "add a derived section to ground.skw.md", --dev "adopt agentos-batchy-skills"
+
+### Skill.Arg:Check
+- read-only drift report over a skill's managed surfaces, with per-verdict prescriptions
+- required: false
+- help: "check managed surfaces for drift and prescribe responses (read-only)"
+- examples: --check --skill skills/agentos-index2, --check
+
+## Router Table
+
+| Situation | Module |
+|---|---|
+| When the caller is new to Skillware, needs the mental model, or asks conceptual questions — what the system is, why two surfaces, how derivation works | `references/doctrine.md` |
+| When the caller needs exact syntax — recipe grammar, verbs, field lines, body boundaries, locator forms, `skillware.json`, what the compiler does | `references/lang.md` |
+| When the caller is writing or restructuring src — deciding roots vs derived consumers, declaring imports, crafting an `intent:`, judging whether a relation earns an import | `references/author.md` |
+| When the caller wants an existing hand-owned skill brought under Skillware management | `references/adopt.md` |
+| When the caller wants surfaces produced or refreshed from src, or asks about the lock or the build's mechanics | `references/build.md` |
+| When the caller wants drift inspected — what changed, what each verdict means, what response each demands; read-only | `references/check.md` |
+| When the caller needs the canonical index concepts behind all of this | `agentos-pkg/design/107-design.md` (the `Agentos.Skillware` namespace) |
+
+## Boundary
+
+- this skill is the canonical home of Skillware content; the index (`agentos-pkg` 107) owns the concepts, this skill owns the operation
+- `--check` never writes: it reports and prescribes; acting on the report is a follow-up into `--dev`
+- writing to src for a gated package still follows that package's own edit gates — propose, get approval, then derive and rebuild
+- self-containment: an agent loading this skill has everything needed to be a competent Skillware user
+
+## Skill Modules
+
+- `references/doctrine.md` — the model: skills as software, the two surfaces, imports, recipes, derivation
+- `references/lang.md` — the operational spec: src surface, recipe grammar, locators, compilation, settings
+- `references/author.md` — writing src: graph discipline, roots vs derived, `intent:` craft, division of labor
+- `references/adopt.md` — converting an existing skill to Skillware management
+- `references/build.md` — producing surfaces: build and status mechanics, the lock model
+- `references/check.md` — drift: verdict vocabulary, prescriptions, the re-derive pass
+
+## When To Load This Skill
+
+- when working on or inside any `.skillware/` build surface
+- when authoring, building, checking, or adopting Skillware-managed skills
+- when a `check` verdict needs interpreting or acting on
+- when discussing or modifying the Skillware system design itself

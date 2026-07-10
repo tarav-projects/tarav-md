@@ -1,0 +1,48 @@
+# agentos-skillware --about (doctrine)
+
+Use this module to understand Skillware: the mental model behind skills developed as software. It is a self-contained `Cited.Duplication` of the `Agentos.Skillware` namespace in the `agentos-pkg` index (107) — the index owns the concepts; this module makes an agent operational without leaving the skill.
+
+## The Model
+
+> [!skw]- derived
+> from: Agentos.Skillware
+> from: Skill.Runnable.Surface
+> from: Skill.Build.Surface
+> from: Module.Import
+> from: Skillware.Recipe
+> from: Derivation.Rule
+> from: Derived.Content
+> intent: the self-contained doctrine — restate the 107 cluster as one
+> coherent narrative an agent can hold: discipline, two surfaces, imports
+> and bindings, the recipe form, derivation and its drift check; stay
+> faithful to the blocks, do not invent mechanics
+
+**Skills as software.** `Agentos.Skillware` treats the skill as the unit of software for agents: the artifacts agents run gain engineering structure — modules, dependencies, builds, lineage — so they are reused and evolved rather than written once and forked. A toolchain spanning agentic and CPU work moves package maintenance off the human.
+
+**Two surfaces.** A skill splits into a `Skill.Runnable.Surface` — loaded into agent context to do work, carrying only executable substance, kept clean because anything on it shapes the run — and its complement, the `Skill.Build.Surface`: everything that produces and maintains runnable content, never loaded at run time, an unconstrained workspace. It is realized as the per-package `.skillware/` folder and constitutively carries an engine-stamped `AGENTS.md` redirecting agents outside skillware activity.
+
+**Imports.** A `Module.Import` is a declared dependency between surfaces — the consumer declares, the imported surface never knows its importers. Three binding modes: `pointer` (resolved at load time, always fresh), `copy` (verbatim materialization at build time), `derived` (a semantic transformation materialized at build time, governed by a `Derivation.Rule`). Each binding carries a checkable claim — pointer: the target resolves; copy: equality; derived: the rule still holds. A failed check is a drift finding with no predefined winner. The v1 toolchain materializes `copy` and `derived`; `pointer` remains routed prose.
+
+**Recipes.** The `Skillware.Recipe` is the inline declaration form: a `[!skw]` callout under a heading in a `.skw.md` src, carrying the verb (binding), `from:` targets, and `intent:` (the rule's context), with the produced body directly below — declaration, rule, and result side by side. Compile is deterministic: the toolchain strips the machinery; the runnable surface carries only the produced content.
+
+**Derivation.** A `Derivation.Rule` is the relation `Dependencies + Context → Derived`. Run forward it (re)generates the derived content; run as a check it answers the drift question — does the current derived still match what its dependencies and context would now produce? The check is the payoff: maintenance becomes a query the system runs, not vigilance the user keeps. `Derived.Content` is granular — any span of a module can be derived, and the more a module imports, the more its maintenance automates.
+
+> [!skw] end
+
+## Recipe In Brief
+
+> [!skw]- derived
+> from: references/lang.skw.md#Recipe Grammar
+> intent: one-paragraph digest of the grammar for a reader who wants the
+> shape without the full spec; route to lang.md for the normative rules
+
+A recipe is an Obsidian-style callout placed first in its section: `> [!skw]- <verb>` (verbs: `copy`, `derived`), followed by `> from:` lines naming the sources and an optional `> intent:` stating the transformation. The produced body sits *below* the callout as ordinary markdown, running to a `> [!skw] end` one-liner or the next heading. Sections without a recipe are hand-owned prose. The full grammar, locator forms, and compilation rules live in `references/lang.md`.
+
+> [!skw] end
+
+## Where Things Live
+
+- concepts (canonical): `agentos-pkg/design/107-design.md` — the `Agentos.Skillware` namespace, from `Skill.Runnable.Surface` through `Skillware.Recipe`
+- the operational spec: `references/lang.md`
+- the working discipline: `references/author.md` (writing), `references/check.md` (maintaining)
+- the toolchain: `agentos skillware build / check / status`

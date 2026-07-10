@@ -1,13 +1,11 @@
 ---
 name: agentos-index2
-description: "Skillware-built parity edition of agentos-index (POC; agentos-index remains canonical). Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem of agentos-pkg. USE WHEN you need index research, editing, diagnosis, testing, maintenance, or index design context."
+description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem of agentos-pkg. USE WHEN you need index research, editing, diagnosis, testing, maintenance, or index design context."
 ---
 
 # agentos-index2
 
 Workflow-neutral `Package.Aux.Skill` for the Agentos Index subsystem.
-
-Skillware-built parity edition (`585-agentos-index2-parity-impl-req.md`): every surface compiles from `.skillware/src/`; `agentos-index` remains the canonical skill.
 
 This skill is the public Batchy router for index work. It orients the caller to the subsystem by default and routes explicit operations such as `--search`, `--edit`, `--ground`, `--type`, `--link`, `--back-link`, `--gr-survey`, `--gr-review`, `--enrich`, and `--agendix` into named `Skill.Module`s.
 
