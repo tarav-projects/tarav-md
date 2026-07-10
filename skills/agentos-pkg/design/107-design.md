@@ -96,7 +96,7 @@
 
 - `Import.Manifest` is the explicit artifact for a module's `Module.Import` declarations — it names what the module imports and under which binding ^20260709-16
 - for a `derived` binding it carries the `Derivation.Rule` parts (declared dependencies + external context) not already inline in the derived surface
-- it lives on the `Skill.Build.Surface` (under `build/imports/`), kept off the runnable surface ^20260709-13
+- it lives on the `Skill.Build.Surface`, flat, one manifest per consuming module: `build/<expanded-relative-path>-<file-name>-imports.md`, kept off the runnable surface ^20260709-13
 - it names each target by a durable address, so a maintainer or agent can check and re-materialize from one known place
 
 ****

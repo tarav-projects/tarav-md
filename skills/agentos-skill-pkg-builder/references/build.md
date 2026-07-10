@@ -1,25 +1,25 @@
 # agentos-skill-pkg-builder --build
 
-Run the package's derivation relations forward — make each derived span match its source, reconciling drift.
+Run the package's import relations forward — make each landing span match its target, reconciling drift.
 
-The builder never generates a surface from scratch. Every target already exists; building means reconciling it with its source. See `references/derivation.md` for the manifest and rule format.
+The builder never generates a surface from scratch. Every consumer already exists; building means reconciling it with its imports. See `references/imports.md` for the manifest and block format.
 
 ## Inputs
 
-- all manifests in `build/derivation/` (or one, with `--manifest`)
-- narrow to one runnable file with `--target`
+- all `build/*-imports.md` manifests in the package (or one, with `--manifest`)
+- narrow to one consumer file with `--target`
 
 ## Pass
 
-1. Load the manifests — each is a `Kernel.Note` of `Derivation.Rule` blocks.
-2. For each rule, resolve the source — a `Dotted.Name` block via the index, or a file span.
-3. Locate the target span by the rule's locator-hint over the surface's own structure (heading, code fence, `Dotted.Name`) — read the file and find it by common sense.
-4. Apply the op: `copy` (verbatim), `projection` (the named structural part), `transform` (reshape by the stated intent).
-5. Reconcile only the derived span; leave surrounding hand-written content intact.
+1. Load the manifests — each is a `Kernel.Note` of import blocks, one per `Module.Import`.
+2. For each import, resolve the target — a `Dotted.Name` block via the index depot, or an `@path` file locator with optional `#region`.
+3. Locate the landing span by `lands:` over the surface's own structure (heading, code fence, `Dotted.Name`) — read the file and find it by common sense; omitted `lands:` means the whole file.
+4. Apply the binding: `copy` lands the target verbatim; `derived` reshapes it by the `context:` intent; `pointer` lands nothing — it only declares the dependency.
+5. Reconcile only the landing span; leave surrounding hand-written content intact.
 
 ## Discipline
 
 - never plant markers or bookkeeping in the runnable surface — addressing is the build side's job
-- one owner per target span; if two rules claim it, stop and report the collision
+- one owner per landing span; if two imports land on it, stop and report the collision
 - writing a runnable surface is gated — propose the reconciliation, get approval, then write
 - if a locator resolves to zero or several spans, report it instead of guessing

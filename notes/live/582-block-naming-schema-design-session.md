@@ -66,10 +66,34 @@
 - related: `Block.Naming.Schema`, `Line.Type.Vocabulary`, `Anchory.System`, `Dotted.Notation`
 - open: none
 
+### Locator.Name
+
+- `Locator.Name` is the `Block.Naming.Schema` form that names an entity by its workspace address
+- it begins with `@` — the locator prefix declares file space from the first character
+- the body is a path in filesystem language: `@<project>/AGENTS.md`, `@notes/live/582-block-naming-schema-design-session.md`
+- roots follow common sense, often a `<...>` variable — no closed root vocabulary exists
+- `#` extends the name into the file's heading regions, with `/` descent: `@<project>/AGENTS.md#Agentos/Index`
+- `:` extends the name to a line: `@dev/tool.py:42` — heading regions are the durable choice (`Naming.Sigil.Vocabulary`)
+- it serves entities that already have a native address — a file, a section, a region — sparing an artificial `Dotted.Name`
+- the `@` is agent-maintained: users may omit it, and a bare mention resolves to the locator-named block when it matches (`Bla/Blo` → `@Bla/Blo`)
+- a locator-named block is a normal `Kernel.Block` — the address form adds no semantics
+
+#### appendix
+
+- bare-mention resolution: a bare `Bla/Blo` is ontology-space by default; a `Locator.Name` match wins when it exists
+- if both an ontology block `Bla/Blo` and a locator block `@Bla/Blo` exist, the mention is ambiguous — resolve the `Fuzzy.Dotted.Name` way: surface both candidates and confirm; no fixed precedence
+- rejected: scheme prefixes (`project:`, `skill:`, `index:`) from the origin sketch — replaced by `@` + common-sense roots; `:` now states line position, making schemes unparseable anyway
+
+#### meta
+
+- status: converging
+- related: `Block.Naming.Schema`, `Naming.Sigil.Vocabulary`, `Fuzzy.Dotted.Name`, `Kernel.Block.Meta`
+- open: none — bare-mention ambiguity resolved by candidate surfacing, not precedence
+
 ## Session.Notes
 
 - sigil table and `:`/`/` semantics consolidated into `Naming.Sigil.Vocabulary` (Design.Index)
-- `@` maintenance rule settled, pending the `Locator.Name` draft: agents maintain the `@`, users need not type it — a user's `Bla/Blo` resolves to block `@Bla/Blo` when that is the match; usability must not suffer
+- `@` maintenance rule consolidated into `Locator.Name` (Design.Index)
 - surfaces that restate naming and will need alignment at landing: `agentos-pkg/SKILL.md` (Dotted Notation section), `agentos-index` references, `Index.Block` heading line
 - landing-phase impl-req of its own: the `:`→`::` migration — single-`:` parameterized names are pervasive (`Line.Type:DF`, `Alignment.Backend:Artifact:What`, `Natural.Placement:Skills`, the Batchy `Skill.Arg:X` convention in every skill); same shape as the `@`→`^` migration (regex rewrite, linter legacy check, doc updates) but wider, reaching skill files beyond the index
 - pre-existing loose end (out of scope): `^20260630-0` example in `agentos-pkg/SKILL.md` does not resolve in the anchory depot
@@ -82,3 +106,4 @@
 - 2026-07-09 redraft after `Kernel.Writing` research pass: de-welded lines, removed deixis, anti-explosion rationale consolidated to appendix; pending commitments noted: `Locator.Name` and the two-space model cited before drafted
 - 2026-07-09 `Naming.Sigil.Vocabulary` drafted and accepted: inline member enumeration (divergence from `Line.Type.Vocabulary` precedent recorded in appendix), `^` reservation kept, closed-by-discipline extension rule; sigil table moved out of `Session.Notes` into the block
 - 2026-07-09 sigil revision: type statements move from `:` to `::` (Julia mirror); `:` freed for line position inside a file (`path:line` convention); `:`→`::` migration recorded as a landing-phase impl-req in `Session.Notes`
+- 2026-07-09 `Locator.Name` drafted and accepted: `@`-anchored file-space form, `#`/`:` region grammar, common-sense roots, agent-maintained `@`; bare-mention ambiguity resolved by `Fuzzy.Dotted.Name`-style candidate surfacing; scheme prefixes recorded as rejected; one pending commitment discharged (two-space model line in `Block.Naming.Schema` remains cited-only)

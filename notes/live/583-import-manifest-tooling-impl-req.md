@@ -8,7 +8,7 @@
 - **Out of scope**: the agentic `derived` check redesign (the builder's existing `--manifest-checks` behavior ports with vocabulary updates, not new mechanics); `block-craft.md` authoring (separate content work — it becomes the first heavy SSOT *after* this tooling exists); auto-regeneration policies (workflow-level, per `Module.Import`).
 - **Repos**: `agentos-py` (manifest model + checks + CLI), `agentos-md` (builder skill modules, catalog manifest migration, one index line). Reinstall from `agentos-cli/` after CLI changes.
 - **Source**: user turns 2026-07-09 evening (session `9d194db7...`): flat naming rule, format A block-per-import ("we need space to specify all we want"), "binding: copy / pointer — this ones we can check it on the linter"; index blocks `Module.Import`, `Import.Manifest`, `Import.Management`, `Derivation.Rule` (107, all landed `^20260709-12..16`); prior art: `agentos-skill-pkg-builder` `references/derivation.md` + `manifest-checks.md`, `build/derivation/catalog.md`.
-- **Status**: designed; ready for execution
+- **Status**: executed 2026-07-09 — all slices complete; changes uncommitted for review
 
 ## Impl.Index
 
@@ -45,23 +45,23 @@
 - what: `ImportDeclaration` parse from format A via the index parser; filename-rule expansion with resolve-by-existence
 - RED: unit tests — field extraction (binding/lands/context), whole-file default, discovery glob, ambiguous expansion → finding
 - check: suite green
-- status: pending
+- status: done
 
 ### S2 — pointer/copy checks + CLI
 - what: check functions + `agentos skills imports` command (findings report, `--json`, exit code)
 - RED: e2e — pointer resolves (file + depot block) and fails on a missing target; copy passes on equality and fails after perturbing the region; derived counted as skipped; report shape
 - check: suite green; ruff clean
-- status: pending
+- status: done
 
 ### S3 — builder skill migration + catalog manifest
 - what: the module renames/rewrites listed in Design.Decisions; migrate `build/derivation/catalog.md` to the new format and location; remove `build/derivation/`; update the `Import.Manifest` index line (gated verbatim)
 - check: `agentos skills imports --package skills/agentos-pkg` runs over the migrated manifest live — pointer/copy findings sane, derived inventory listed; both depots lint clean
-- status: pending
+- status: done
 
 ### S4 — live acceptance
 - what: reinstall; run the CPU check over agentos-pkg and agentos-index packages; record counts in `Impl.Log`
 - check: full agentos-py suite green; the command is documented in `agentos-py/AGENTS.md`
-- status: pending
+- status: done
 
 ### Acceptance signals
 - one deterministic command reports every declared import's status: resolved / equal / drifted / unresolvable / skipped-agentic
@@ -75,4 +75,9 @@
 
 ## Impl.Log
 
-- (empty — no execution yet)
+- **resumed mid-execution**: a prior session had already made the git checkpoint (`agentos-py` `0ee4e74`) and left S1 (`agentos/skills/imports.py`) plus the full test file uncommitted; this session verified S1 against the plan and continued from the missing S2 CLI handler
+- **module path deviation**: the model landed in the existing `agentos/skills/` package (`agentos.skills.imports`) rather than a new `agentos/skills_pkg/` — the name was executer-open and the `skills` package already owns the `agentos skills` namespace
+- **S3 scope extension**: `skills/agentos-index/build/derivation/ground-from-search.md` (a second live manifest not named in the plan) was migrated to `build/references-ground-imports.md` — required by the acceptance signal "no `build/derivation/` remains"; its `transform` op folded into `context:` verbatim
+- **lint caveat**: `agentos index linter --depot skills/agentos-index` reports `Config.NoSurfaces` — pre-existing (that package has no index depot, only references/); `skills/agentos-pkg` lints clean (0 errors, 0 warnings)
+- **live counts (S4)**: `agentos-pkg` — 1 import, 1 skipped-agentic, 0 findings, 0 manifest problems; `agentos-index` — 1 import, 1 skipped-agentic, 0 findings, 0 manifest problems; agentos-py suite 295 passed; ruff clean on touched files
+- **source note**: the abstract cites session `9d194db7...`; execution was launched against session `99144906-781e-...` — the same design thread (Module.Import / Import.Manifest landing `^20260709-12..16`)

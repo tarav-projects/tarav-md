@@ -4,7 +4,7 @@ The umbrella check runner. Read-only. Runs every registered check over the packa
 
 ## Registered Checks
 
-- `--manifest-checks` (`references/manifest-checks.md`) — do the declared `Derivation.Rule`s still hold?
+- `--import-checks` (`references/import-checks.md`) — do the declared `Module.Import`s still hold? (CPU pass for pointer/copy, agentic pass for derived)
 - `--inline-drift` (`references/inline-drift.md`) — does any surface contradict a concept it mentions?
 - more checks may register here without changing the public entry surface
 
@@ -14,4 +14,4 @@ The umbrella check runner. Read-only. Runs every registered check over the packa
 2. Aggregate into one report, grouped by check, cited by source and target.
 3. Never writes — reconciliation and fixes are separate, gated steps.
 
-Run a single check directly with its own arg (`--manifest-checks`, `--inline-drift`) when you do not want the full sweep.
+Run a single check directly with its own arg (`--import-checks`, `--inline-drift`) when you do not want the full sweep.
