@@ -36,7 +36,7 @@
   - `.skillware/skillware.json` — depots: `["../agentos-pkg"]`
   - content adapted from the real `agentos-index` modules so the dependencies are meaningful, not lorem
 - **583 supersession**: delete `src/agentos/skills/imports.py`, `tests/test_skills_imports.py`, the `imports` subparser + handler in `agentos/skills/commands.py`; delete `skills/agentos-pkg/build/references-index-block-catalog-imports.md` and `skills/agentos-index/build/references-ground-imports.md` (empty `build/` dirs go too); rewrite `agentos-skill-pkg-builder` `references/imports.md` → `references/skillware.md` (src/recipe format, points at the CLI) and `references/import-checks.md` → `references/skillware-checks.md` (step 0 = `agentos skillware check`; agentic pass = re-derive stale `derived` bodies in src); update `check.md`, `build.md`, `SKILL.md` rows/args accordingly; update `agentos-py/AGENTS.md` (drop the `skills imports` entry, add `skillware`).
-- **index follow-up (not executed here)**: 107's `Module.Import`/`Import.Manifest`/`Import.Management` realization lines describe the removed mechanics; a design session should recast them over Skillware. Recorded as follow-up, index untouched.
+- **index follow-up (not executed here)**: 107's `Module.Import`/`Import.Manifest`/`Import.Management` realization lines describe the removed mechanics; a design session should recast them over Skillware. Recorded as follow-up, index untouched. *(Resolved 2026-07-10: recast landed — `Import.Manifest` replaced by `Skillware.Recipe`, realization lines updated, `^20260710-2`.)*
 
 ### Current.State *(inspected)*
 

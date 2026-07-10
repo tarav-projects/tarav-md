@@ -8,7 +8,7 @@
 - **Out of scope**: changing any module's operational content beyond the name adaptation; index (107/105) edits; skillware engine changes; removing the POC framing entirely (the SKILL.md banner shrinks to a provenance note but index2 remains non-canonical).
 - **Repos**: `agentos-md` only.
 - **Source**: goal `/agentos-hugentics-impl --dev --AUTO` (this session, 2026-07-10); prior art: `584-skillware-v1-impl-req.md` (the engine + initial POC).
-- **Status**: designed; executing under `--dev --AUTO`
+- **Status**: executed 2026-07-10 — all slices complete; parity verified; changes uncommitted for review
 
 ## Impl.Index
 
@@ -40,22 +40,22 @@
 ### S1 — root module srcs
 - what: author full-parity passthrough srcs for `search`, `type`, `link`, `agendix`, `enrich`, `gr-survey`, `gr-review` (verbatim originals + name adaptation); delete the hand `references/gr-survey.md` stub
 - check: after S4's build, the parity diff for these seven modules is empty
-- status: pending
+- status: done
 
 ### S2 — derived consumer srcs
 - what: author `ground`, `check`, `back-link`, `edit` srcs with the recipes listed in Design.Decisions; derived bodies carry the original wording; intents state the transformation
 - check: recipes resolve (no findings); parity diff empty for the four modules
-- status: pending
+- status: done
 
 ### S3 — SKILL src
 - what: `SKILL.skw.md` — full parity content, provenance note, `#Index Operating Behavior` derived recipe
 - check: compiled SKILL.md matches original modulo name + provenance note; recipe resolves
-- status: pending
+- status: done
 
 ### S4 — build, check, parity verification
 - what: `agentos skillware build` + `check` over index2; run the mechanical parity diff for all 12 surfaces; record results; update this note and the 584 note's POC framing
 - check: check exit 0 (all ok); parity diffs empty (SKILL.md delta = provenance note only); status inventories 12 managed files
-- status: pending
+- status: done
 
 ### Acceptance signals
 - every agentos-index2 surface is compiled from src; `agentos skillware check` exits 0
@@ -69,4 +69,7 @@
 
 ## Impl.Log
 
-- (empty — execution follows in this --dev run)
+- **parity result**: all 11 reference modules byte-identical to the originals modulo the `agentos-index2` name; SKILL.md delta is exactly the two provenance additions (description prefix + one provenance line). `agentos skillware build` emitted 12 files, `check` exits 0, all-ok.
+- **graph as landed**: roots — search, type, link, agendix, enrich, gr-survey, gr-review (recipe-free); derived — ground#Grounding Levels ← Context.Grounding; ground#Grounding Model ← search#Search Model + Context.Grounding; check#Beyond The Linter ← type#Semantic Lints; back-link#Back-Link Pipeline ← link#Linking Pipeline; edit#Block Independence ← Independent.Reader.Block; SKILL#Index Operating Behavior ← search#Search Model + search#Citation Behavior. Six derived recipes, zero copies — no verbatim span duplication exists between the real modules.
+- **584 POC framing retired**: the hand-owned `references/gr-survey.md` demo stub was deleted and replaced by its compiled parity module; the SKILL.md POC banner shrank to a two-line provenance note.
+- **compile normalization was a non-issue**: no original carries double blank lines, so passthrough compiles are byte-exact.

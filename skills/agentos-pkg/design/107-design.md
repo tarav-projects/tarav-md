@@ -11,7 +11,7 @@
 
 ### meta
 
-- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Derivation.Rule`, `Derived.Content`, `Module.Import`, `Import.Management`, `Derived.Module`, `Import.Manifest`, `Semantic.Router`, `Usage.Pattern.Routing`.
+- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Derivation.Rule`, `Derived.Content`, `Module.Import`, `Import.Management`, `Derived.Module`, `Skillware.Recipe`, `Semantic.Router`, `Usage.Pattern.Routing`.
 
 ****
 
@@ -28,7 +28,7 @@
 - `Skill.Build.Surface` is the complement of `Skill.Runnable.Surface` — it holds the artifacts that produce and maintain runnable content, and is never loaded at run time. ^20260627-1
 - it is the home for everything kept off the runnable surface: derivation context, dependency declarations, lineage, dev material. ^20260627-1
 - never run, it carries no "stay clean" constraint — an unconstrained workspace; that freedom is what the two-surface split buys.
-- it lives in a per-package `build/` folder — build-time material organized by capability (derivation, tests, lint, lineage), discovered by convention.
+- realized as the per-package `.skillware/` folder — `src/` mirror, settings, lock — organized by capability, discovered by convention. ^20260710-2
 
 ****
 
@@ -39,7 +39,7 @@
 - a build workflow either produces runnable content or checks it — builds, drift-checks, tests, lint
 - it is open-ended — any build workflow can be added; derivation is one capability, not the whole system
 - the `Skill.Build.Surface` is its workspace — it holds anything the builder needs that should not live on the `Skill.Runnable.Surface`
-- realized as the `agentos-skill-pkg-builder` `Package.Aux.Skill`, which centralizes the build-related `Skill.Module`s
+- realized as the `agentos-skillware` `Package.Aux.Skill`, which centralizes all Skillware `Skill.Module`s — build toolchain, language, authoring, doctrine ^20260710-2
 
 ****
 
@@ -52,6 +52,7 @@
 - each binding carries a checkable claim: pointer — the target resolves at its address; copy — equality with the target; derived — the rule still holds ^20260709-16
 - [DC] a failed check is a drift finding with no predefined winner — resolution is case-by-case; a particular workflow may set auto-regeneration as its own rule ^20260709-15
 - it is the Skillware linking system: copy and derived are static binding, pointer is dynamic ^20260709-12
+- [DC] v1 realization: declarations are `[!skw]` recipe callouts inline in src (`.skw.md`); the toolchain materializes `copy` and `derived` — `pointer` remains routed prose, not yet toolchain-checked ^20260710-2
 
 ****
 
@@ -81,6 +82,8 @@
 - pointer bindings are checked for address validity, copy for equality, derived for `Derivation.Rule` drift ^20260709-14
 - the more imported a module's content, the more its maintenance automates — imported spans re-materialize, while original content and the seams where it meets them stay manual
 - targets are addressed by legal block names — `Dotted.Name`s for blocks, locator names for files and regions, `Anchory.Anchor`/`Chat.Grounding` for chat fallback dependencies
+- [PR] division of labor: the CPU materializes copy bindings and detects drift; the agent performs derivations — and performs them in src, where the `Derivation.Rule` and its current solution live side by side ^20260710-0
+- [DC] v1 realization: `lock.json` holds the per-import record; check verdicts (`copy-drift`, `derived-stale`, `hand-edited`) surface drift — and a rebuild can never silently clear `derived-stale`; only an actual re-derive does ^20260710-2
 
 ****
 
@@ -92,12 +95,12 @@
 
 ****
 
-## Import.Manifest
+## Skillware.Recipe
 
-- `Import.Manifest` is the explicit artifact for a module's `Module.Import` declarations — it names what the module imports and under which binding ^20260709-16
-- for a `derived` binding it carries the `Derivation.Rule` parts (declared dependencies + external context) not already inline in the derived surface
-- it lives on the `Skill.Build.Surface`, flat, one manifest per consuming module: `build/<expanded-relative-path>-<file-name>-imports.md`, kept off the runnable surface ^20260709-13
-- it names each target by a durable address, so a maintainer or agent can check and re-materialize from one known place
+- [DF] `Skillware.Recipe` is the inline declaration form of a `Module.Import`: a `[!skw]` callout under a heading in a `.skw.md` src, carrying the verb (binding), `from:` targets, and `intent:` (the `Derivation.Rule` context), with the produced body directly below ^20260710-2
+- the recipe and its current solution live side by side in src — declaration, rule, and result in one place ^20260710-2
+- compile is deterministic: the toolchain strips the callout machinery; the runnable surface carries only the produced content ^20260710-2
+- [RJ] `Import.Manifest` — a separate flat artifact per consuming module (`build/<...>-imports.md`) — was superseded before implementation: declarations live inline; `lock.json` is the machine record ^20260709-13 ^20260710-2
 
 ****
 

@@ -1,30 +1,107 @@
 {
   "schema_version": 1,
   "files": {
-    "references/ground.md": {
-      "output_sha256": "312ab2be7b794ed544c35fd6d0a08fcb0867791b1abf74526749d5d832f64f74",
+    "SKILL.md": {
+      "output_sha256": "6f553553f2cb5d51a390a94e18c1d31032301c11f3c473cb441b16996f838b87",
       "recipes": [
         {
-          "heading": "Grounding Model",
+          "heading": "Index Operating Behavior",
           "verb": "derived",
-          "body_sha256": "5ae8af1c466240df8c9d49d87b6adfdfa0838340ed47278c002b55791526aa9d",
+          "body_sha256": "30f667174cc35815a28f4711c047cd25bfda98f5f43bdba9093fc298a963f913",
           "deps": {
-            "references/search.skw.md#Search Model": "305857d0668999bcbd70140ffc79f742d2dbae9c9b18fd65b555421fcc0a8268",
-            "Context.Grounding": "8891b0d11d7cf45ec447609004fe0a9e54aa82ae8086dd2f459e897b10760285"
-          }
-        },
-        {
-          "heading": "Citation Behavior",
-          "verb": "copy",
-          "body_sha256": "e57e94bf2adedb5f4bde5e498c1feb6342c70412564a0e8d8a1a8734a673a8a9",
-          "deps": {
+            "references/search.skw.md#Search Model": "3aad398a81c24d82880bca1b075a19bc33da25e36bb786392ec6cc941f886024",
             "references/search.skw.md#Citation Behavior": "e57e94bf2adedb5f4bde5e498c1feb6342c70412564a0e8d8a1a8734a673a8a9"
           }
         }
       ]
     },
+    "references/agendix.md": {
+      "output_sha256": "096be1b19df365cb8e353b80f34706bd44a1a450e6cacd477938f73dca3e5f53",
+      "recipes": []
+    },
+    "references/back-link.md": {
+      "output_sha256": "b177ba29f58446f49d6f9ca4bcbe19be0d194d13dbebcbeda660b3d3dcade536",
+      "recipes": [
+        {
+          "heading": "Back-Link Pipeline",
+          "verb": "derived",
+          "body_sha256": "c3146f6d71c51d7d8e82db38fedca9200166b52e8526c2e8a7f6229c89e53b69",
+          "deps": {
+            "references/link.skw.md#Linking Pipeline": "61beb9f146bcf06a595810db3c8e0a5afe2d38b6ef7ae45d7b222a081bc9a869"
+          }
+        }
+      ]
+    },
+    "references/check.md": {
+      "output_sha256": "0e185c3c3968b2dbc74f714699b875568dbb1c7486f5c8015adbb59839827fc2",
+      "recipes": [
+        {
+          "heading": "Beyond The Linter",
+          "verb": "derived",
+          "body_sha256": "4b77d38d04eabdd5a8cb0ca4413ce0c4909d6974dab278de3e823311c2d82322",
+          "deps": {
+            "references/type.skw.md#Semantic Lints": "be7a92fda6aaa525d18eefe5d2389d9ebf3ea5c91e484ff17906b4d45058193c"
+          }
+        }
+      ]
+    },
+    "references/edit.md": {
+      "output_sha256": "beccc9f20446c59d68a3d5d7e5505bf35872de330424056d091846bae2a88eac",
+      "recipes": [
+        {
+          "heading": "Block Independence",
+          "verb": "derived",
+          "body_sha256": "21d3732f67c80612c6c5336799cb1c90d1ec11345ef3ed59709b09b891938c6f",
+          "deps": {
+            "Independent.Reader.Block": "b5fda5b41f4341d86556b75e6a189497c8ba0ad7809c7d58ad15a772ff515d09"
+          }
+        }
+      ]
+    },
+    "references/enrich.md": {
+      "output_sha256": "adc000adf83200e7ae11e2fb0475f47a97a7b104235a65fb92b30edaae9d1c51",
+      "recipes": []
+    },
+    "references/gr-review.md": {
+      "output_sha256": "8f91b5d6b0459fa260bca129e2b856fc39ed2c8f06edb9c2f32692d7b7e56bf1",
+      "recipes": []
+    },
+    "references/gr-survey.md": {
+      "output_sha256": "f4386901bfed5e7bd7f6a280ab43f3020f8ef1b4ce19385d62ead68ab020aeed",
+      "recipes": []
+    },
+    "references/ground.md": {
+      "output_sha256": "3f0c2164f511762adc7be4dff690a19277156cb0f35f9c9c52272397d4da87be",
+      "recipes": [
+        {
+          "heading": "Grounding Levels",
+          "verb": "derived",
+          "body_sha256": "cbed914eb00efcb1b7f2fbfad675124d81de249eb9955f6b119ab04b6b75c833",
+          "deps": {
+            "Context.Grounding": "8891b0d11d7cf45ec447609004fe0a9e54aa82ae8086dd2f459e897b10760285"
+          }
+        },
+        {
+          "heading": "Grounding Model",
+          "verb": "derived",
+          "body_sha256": "790b01f7d2a068e2d0a04af8dabab9de5708cee46b3a774f8d3f41b3f0f42605",
+          "deps": {
+            "references/search.skw.md#Search Model": "3aad398a81c24d82880bca1b075a19bc33da25e36bb786392ec6cc941f886024",
+            "Context.Grounding": "8891b0d11d7cf45ec447609004fe0a9e54aa82ae8086dd2f459e897b10760285"
+          }
+        }
+      ]
+    },
+    "references/link.md": {
+      "output_sha256": "054697ccdba10240daa308686659926a04c2f0a1df4d3c29ea5df12bc40bc1b8",
+      "recipes": []
+    },
     "references/search.md": {
-      "output_sha256": "516f5265bbb5f41775c7d415ac15133b6013cb3dc6791ebbe1006d29116c2abe",
+      "output_sha256": "f63a439289ae7893400f836601226942f7836c68704f3ad37ad14168c82d54e1",
+      "recipes": []
+    },
+    "references/type.md": {
+      "output_sha256": "b132fd409278d29db66939e046ca270927cc504df31597d329cdd0cdafcbe033",
       "recipes": []
     }
   }
