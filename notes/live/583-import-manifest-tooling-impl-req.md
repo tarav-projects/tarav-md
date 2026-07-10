@@ -8,7 +8,7 @@
 - **Out of scope**: the agentic `derived` check redesign (the builder's existing `--manifest-checks` behavior ports with vocabulary updates, not new mechanics); `block-craft.md` authoring (separate content work — it becomes the first heavy SSOT *after* this tooling exists); auto-regeneration policies (workflow-level, per `Module.Import`).
 - **Repos**: `agentos-py` (manifest model + checks + CLI), `agentos-md` (builder skill modules, catalog manifest migration, one index line). Reinstall from `agentos-cli/` after CLI changes.
 - **Source**: user turns 2026-07-09 evening (session `9d194db7...`): flat naming rule, format A block-per-import ("we need space to specify all we want"), "binding: copy / pointer — this ones we can check it on the linter"; index blocks `Module.Import`, `Import.Manifest`, `Import.Management`, `Derivation.Rule` (107, all landed `^20260709-12..16`); prior art: `agentos-skill-pkg-builder` `references/derivation.md` + `manifest-checks.md`, `build/derivation/catalog.md`.
-- **Status**: executed 2026-07-09 — all slices complete; changes uncommitted for review
+- **Status**: executed 2026-07-09; **superseded by 584 (Skillware)** on 2026-07-10 — the imports CLI, model, and manifests were removed under `No.Legacy.Allowed`
 
 ## Impl.Index
 

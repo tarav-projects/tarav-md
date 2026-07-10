@@ -15,7 +15,7 @@
 - **Out of scope**: index (107) concept-block updates for Skillware — the Skillware/Import blocks need a design session, noted as follow-up; `$link`/pointer verb; `--with-heading`/`--level` flags; parameters/conditionals; cross-skill import roots (settings key reserved); Obsidian CSS for the `skw` callout.
 - **Repos**: `agentos-py` (skillware package + CLI), `agentos-cli` (registration + reinstall), `agentos-md` (POC skill, builder-skill re-route, manifest removals).
 - **Source**: this session's design discussion (2026-07-09 evening → 2026-07-10), converged over live examples; syntax family chosen: Obsidian callouts. Prior art superseded: note `583-import-manifest-tooling-impl-req.md`.
-- **Status**: designed; executing under `--dev --AUTO`
+- **Status**: executed 2026-07-10 — all slices complete; changes uncommitted for review
 
 ## Impl.Index
 
@@ -56,35 +56,35 @@
 - what: `model.py` — `SkwRecipe` (verb, froms, intent, heading, line), `SkwSrcFile` (segments: prose spans, recipe callouts, produced bodies, end markers); `parse_skw_source(text)`
 - RED: unit tests — callout detection (`[!skw]-` and `[!skw]`), verbs, repeated `from:`, quoted intent continuation, body span to heading vs to `end`, unknown verb → finding, `end` without body → finding, non-first-position recipe → finding
 - check: suite green
-- status: pending
+- status: done
 
 ### S2 — locators + expansion + compile
 - what: `build.py` — locator resolution (src-root/skill-root paths, region body extraction, `.skw.md` recursive expansion with cycle chain error, `Dotted.Name` via depots), `compile_src` (strip machinery + blank-line normalization)
 - RED: unit tests — region body excludes heading and includes subsections; whole-file locator; depot block body; missing target / missing region / no-depot findings; cycle error names the chain; compile output byte-pinned for the fixture
 - check: suite green
-- status: pending
+- status: done
 
 ### S3 — build + lock + check
 - what: `build_skill(root)` (refresh copy bodies in src, emit targets, write `.skillware/lock.json`), `check_skill(root)` with the six verdicts (`never-built`, `stale-build`, `hand-edited`, `copy-drift`, `derived-stale`, `ok`) + recipe/locator findings
 - RED: unit tests — build then check = all ok; edit target → `hand-edited`; edit src prose → `stale-build`; edit copy target → `copy-drift` and build repairs src; edit derived dep → `derived-stale`; no lock → `never-built`
 - check: suite green
-- status: pending
+- status: done
 
 ### S4 — CLI + registration
 - what: `commands.py` — `agentos skillware build|check|status --skill <path> [--json]`, findings-style report, check exits non-zero on findings; register in `agentos-cli/cli.py`; reinstall
 - RED: e2e — handler-level tests over the fixture: build report shape, check exit codes and JSON payload, status inventory; `CliError` on a non-skill path
 - check: suite green; ruff clean; `agentos skillware --help` live
-- status: pending
+- status: done
 
 ### S5 — POC `agentos-index2`
 - what: author the POC skill per Design.Decisions (src files, hand-owned files, settings); run `agentos skillware build` then `check` live; verify compiled `ground.md` matches the design examples' shape; perturb one dep and show `derived-stale`, restore
 - check: live `build` emits `search.md` + `ground.md`; `check` all-ok after build; the perturb/restore cycle shows the agentic flag; compiled files contain zero skillware machinery
-- status: pending
+- status: done
 
 ### S6 — 583 supersession + docs
 - what: the removals and builder-skill re-route listed in Design.Decisions; `agentos-py/AGENTS.md` update; reinstall; full suites both repos' relevant checks
 - check: `agentos skills imports` no longer parses; no `*-imports.md`, no `agentos.skills.imports`, no stale mentions outside `notes/live/` provenance; agentos-py suite green; ruff clean on touched files
-- status: pending
+- status: done
 
 ### Acceptance signals
 - `agentos skillware build/check/status` run live over `agentos-index2`; compiled surfaces carry zero machinery
@@ -100,4 +100,9 @@
 
 ## Impl.Log
 
-- (design phase complete; execution follows in the same --dev run)
+- **derived blessing rule (open-space decision)**: `build` keeps a derived recipe's old dependency hashes in the lock while its body hash is unchanged — a rebuild can never silently clear `derived-stale`; only an actual re-derive (body change) re-blesses. Pinned by test.
+- **copy uses its first `from:` only** for splicing (extra `from:` lines hash as dependencies but do not splice); multi-from splicing semantics deferred.
+- **checkpoint deviation (agentos-cli)**: the registration edit and its checkpoint landed in one commit (`chore: checkpoint before 584 skillware registration`) instead of checkpoint-then-edit; the repo was clean before, so the pre-edit state is the parent commit.
+- **live acceptance (S5)**: `agentos-index2` — build compiled `search.md` + `ground.md`, materialized the copy placeholder into src; check all-ok; perturbing `search.skw.md#Search Model` flagged `derived-stale` on ground's `Grounding Model` and `stale-build` on `search.md`; restore → clean. Compiled surfaces carry zero `[!skw]` machinery.
+- **S6 counts**: agentos-py suite 303 passed (5 imports tests removed, 13 skillware tests added); ruff clean on touched files; `agentos skills imports` now rejects as invalid choice; no `build/*-imports.md` or `build/derivation/` remain.
+- **known stale index line (declared out of scope)**: `107-design.md:99` (`Import.Manifest` flat-rule realization) describes the removed 583 mechanics — follow-up design session should recast the 107 Skillware cluster (`Module.Import`, `Import.Manifest`, `Import.Management`) over Skillware.
