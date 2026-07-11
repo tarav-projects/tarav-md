@@ -16,7 +16,7 @@ Use this module to understand Skillware: the mental model behind skills develope
 
 ## The Construct In Brief
 
-The language has one syntactic form: `> [!skw]- <command>` opens a construct, `> key: value` lines carry its args (a bare `>` line continues the previous key), the body follows as flat markdown at column 0, and a mandatory owned closer `> [!skw]- end-<command>` ends it — bare `end` is invalid, headings close nothing, and a multi-close line (`end-a end-b`) unwinds nested constructs innermost-first. Primitive commands are `text`, `copy`, and `derived`; everything outside constructs is hand-owned prose, and callouts inside code fences are inert examples. The full grammar, locator forms, and compilation rules live in `references/lang.md`.
+The language has one syntactic form: `> [!skw]- <command>` opens a construct, `> key: value` lines carry its args (a bare `>` line continues the previous key), the body follows as flat markdown at column 0, and a mandatory owned closer `> [!skw]- end-<command>` ends it — bare `end` is invalid, headings close nothing, and a multi-close line (`end-a end-b`) unwinds nested constructs innermost-first. A declaration may carry one `^label` token giving the span a stable heading-independent identity (a bare `^label` is a labeled `text`; `end-^label` is the precise closer). Primitive commands are `text`, `copy`, and `derived`; everything outside constructs is hand-owned prose, and callouts inside code fences are inert examples. The full grammar, locator forms, and compilation rules live in `references/lang.md`.
 
 ## Where Things Live
 

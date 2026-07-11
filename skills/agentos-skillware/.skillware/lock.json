@@ -19,7 +19,7 @@
       "recipes": []
     },
     "references/author.md": {
-      "output_sha256": "19a4f7811ff369ec83c8a68108d08931216e672fc1042f89e62c2c79e01a08d7",
+      "output_sha256": "5c403b383984dbd7f675906f25a6a4446c0af85709342ac93b6a5504eaf1e0ba",
       "recipes": [
         {
           "heading": "Division Of Labor",
@@ -49,7 +49,7 @@
       ]
     },
     "references/doctrine.md": {
-      "output_sha256": "9056bccf44305786d8c380af18631ee2cfd38946f67cab746fb7b58c1568577e",
+      "output_sha256": "39a4663c72edc117a5d204682f936a0ae36763931a57168b863fda929811ce19",
       "recipes": [
         {
           "heading": "The Model",
@@ -68,15 +68,15 @@
         {
           "heading": "The Construct In Brief",
           "verb": "derived",
-          "body_sha256": "259e04c6f0596f25ab7f162163409a7a21695cc05d5f6b9afac52087e453111c",
+          "body_sha256": "8474a085d3da4a5ba0e78a0fc9fcde6fd9f148f073c12545fdc25fb21e2dc80c",
           "deps": {
-            "references/lang.skw.md#Construct Grammar": "166214f388d65fe36b4cb633bfea0f85d0f66e19cea7fdce8e3db90c0eeed12e"
+            "references/lang.skw.md#Construct Grammar": "07d933103769019ed7d7993e7973e2c0fb4a576eac453b8648dbb8d154b65db5"
           }
         }
       ]
     },
     "references/lang.md": {
-      "output_sha256": "60f946e58c3613ced3ab1d42ddbe97cf5bdbf014a77e6840fdfe1ead21769653",
+      "output_sha256": "58783b7daf1a55e73d1ff3549a1c54400033dbef2f1b363400ca985bf8ffe57d",
       "recipes": []
     }
   }

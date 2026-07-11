@@ -14,6 +14,7 @@ Use this module when writing or restructuring `.skw.md` src: deciding the module
 - a **root module** is recipe-free passthrough src: canonical home of its content, imported by others, importing nothing
 - a **derived consumer** carries recipes: its flagged sections restate, adapt, or digest other surfaces
 - keep each span's canonical home unambiguous — content lives in exactly one root; consumers project it
+- prefer `^label` addresses for imported spans: a labeled span survives heading renames and hashes independently of its file, so consumers drift only with the fragment they actually depend on — and renaming a label is a breaking change importers will surface as unresolvable
 - mixed files are normal: hand sections and recipe sections interleave freely; the recipe governs only its own section
 
 ## Crafting The Intent

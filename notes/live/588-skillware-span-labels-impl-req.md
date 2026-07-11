@@ -6,7 +6,7 @@
 - **Design source**: this session (2026-07-11 morning); index capture `^20260711-1` on 107 `Skillware.Construct`.
 - **Out of scope**: labels on hand-owned plain files (labels are src machinery); `to:` label targets beyond what `from:` resolution gives for free; label renaming tooling.
 - **Repos**: `agentos-py` (parser, locators, lock keys, tests), `agentos-md` (agentos-skillware content).
-- **Status**: designed 2026-07-11 — ready for execution
+- **Status**: executed 2026-07-11 — all slices done; verification green; changes uncommitted for review
 
 ## Impl.Index
 
@@ -33,17 +33,17 @@
 ### S1 — parser: label tokens + label closers (agentos-py)
 - what: RED — labeled text (bare `^x`), labeled derived, `end-^x` correct close, label mismatch finding, duplicate label finding, label never in compiled emit; GREEN — declaration token parse, frame label, closer matching, per-file label registry
 - check: new tests + full skillware file green
-- status: pending
+- status: done
 
 ### S2 — locators + hashing + lock keys (agentos-py)
 - what: RED — copy from `path^label`, derived from local `^label`, missing-label finding, fine-grained staleness (edit outside the span → no flag; edit inside → `derived-stale`), labeled recipe lock key `^x`; GREEN — `_resolve_locator` `^` form with current-file context, span extraction with machinery strip, `recipe_key` label branch
 - check: skillware tests green; full pytest + ruff clean
-- status: pending
+- status: done
 
 ### S3 — the skill teaches labels (agentos-md)
 - what: `lang.skw.md` updates (grammar, closure, locators, fenced example with a label); re-derive `doctrine#The Construct In Brief`; `author.md` stable-address note; rebuild; final pass — pytest, both skill checks, index linter
 - check: all green; lang.md documents the label forms
-- status: pending
+- status: done
 
 ### Acceptance signals
 - a labeled span authored in one src is importable as `path^label` from another and locally as `^label`
@@ -56,4 +56,8 @@
 
 ## Impl.Log
 
-*(empty — written during execution)*
+- **checkpoints**: both repos checkpointed as found (agentos-md carried the trait/label index captures; agentos-py carried the uncommitted 587 v2 engine work — captured per the as-found rule).
+- **S1**: RED (3 tests), GREEN — `^label` token parse on declarations (bare `^label` = labeled `text`), `label` on `SkwRecipe`/`SkwConstruct`, `end-^label` matching with dual-owner mismatch messages, per-file duplicate-label finding, `recipe_key` label branch. 26 tests green.
+- **S2**: RED (2 tests), GREEN — `_resolve_locator` `^` form (`path^label` + file-local via the expansion stack), `_labeled_span` extraction with nested-machinery strip, fine-grained staleness verified (edit outside span → clean; inside → `derived-stale` keyed `^consumer`). 28 tests, 318 suite, ruff clean.
+- **deviation (fence-unaware region extraction, latent since v1)**: found via a missing expected `derived-stale` — `_region_body` treated a heading *inside a fenced example* as a section boundary, so `lang#Construct Grammar`'s dep hash covered only the intro paragraph and edits below the example never registered (a silent-staleness hole, the exact failure class the system exists to prevent). Fixed RED-GREEN: `_region_body` now fence-aware. The doctrine digest then correctly flagged `derived-stale` and was properly re-derived (label-aware wording).
+- **S3**: lang grammar/closure/locator updates with a labeled fenced example; author stable-address guidance; doctrine re-derive. Final: 29 skillware tests / 319 suite, ruff clean, both skills all-ok, index linter 0/0.

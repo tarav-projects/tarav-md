@@ -17,8 +17,8 @@ The language has one syntactic form — the `Skillware.Construct`: a declaration
 ```md
 ## Grounding Model
 
-> [!skw]- derived
-> from: references/search.skw.md#Search Model
+> [!skw]- derived ^grounding-model
+> from: references/search.skw.md^search-model
 > from: Context.Grounding
 > intent: adapt the search doctrine to grounding use; keep depot
 > routing aligned; do not collapse into a copy of search
@@ -26,15 +26,15 @@ The language has one syntactic form — the `Skillware.Construct`: a declaration
 - the current derived solution, as ordinary markdown
 - develop it here, in src — never on the compiled surface
 
-> [!skw]- end-derived
+> [!skw]- end-^grounding-model
 
 Hand-written tail in the same section, outside the produced body.
 ```
 
-- declaration: `> [!skw]- <command>` (the fold marker `-` is optional)
+- declaration: `> [!skw]- <command>` (the fold marker `-` is optional); it may carry one `^label` token — `> [!skw]- derived ^grounding-model` — giving the span a stable, heading-independent identity; a bare `> [!skw]- ^label` declares a labeled `text`; a label duplicated within one file is a finding
 - args: `> key: value` lines directly under the declaration; a bare `> ...` continuation line appends to the previous key; each command declares which keys it accepts
 - body: flat markdown at column 0 — never indented; nesting is logical (the parse stack + owned ends), never visual; the body is runnable prose first
-- closure is fully explicit: every construct ends with `> [!skw]- end-<command>`; a bare `end` is invalid; a heading closes nothing — a construct still open at a heading or EOF is a finding (bodies cannot span headings)
+- closure is fully explicit: every construct ends with `> [!skw]- end-<command>` or `> [!skw]- end-^label` (either owner matches; the label is the more precise); a bare `end` is invalid; a heading closes nothing — a construct still open at a heading or EOF is a finding (bodies cannot span headings)
 - multi-close: `> [!skw]- end-a end-b` unwinds the open stack innermost-first; a mismatched or wrongly ordered owner is a finding naming the expected close
 - fenced code blocks are inert: a callout inside ``` fences is an example, not a construct
 - everything outside constructs is hand-owned prose; a src file with no constructs is a plain passthrough
@@ -78,6 +78,7 @@ Load `references/search.md`.
 A `from:` value is one of:
 
 - **`path#Region`** — a heading-section body in a file, resolved against the src root first, then the skill root. The region is the section's body: heading excluded, subsections included. A `.skw.md` target is recursively expanded before extraction (innermost first); expansion cycles are an error naming the chain. A plain (non-skw) file yields the raw region body.
+- **`path^label`** — a labeled span in a src file; **`^label`** alone is file-local (the current src). Labels are heading-independent, so the import survives section renames, and the dependency hash covers only the span — a consumer drifts with its fragment, not the file. Labels live only in src machinery (stripped at compile), so they address src files exclusively; renaming a label breaks importers, which the unresolvable-`from:` finding catches.
 - **`Dotted.Name`** — an index block resolved in the configured depots (`skillware.json`); the value is the block's kernel-line body.
 
 ## Compilation
