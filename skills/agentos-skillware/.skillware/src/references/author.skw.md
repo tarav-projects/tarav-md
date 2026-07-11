@@ -38,7 +38,7 @@ The `intent:` is the `Derivation.Rule` context — written so a cold agent can r
 - targets are addressed by legal block names: `Dotted.Name`s for index blocks, locators for files and regions
 - the more imported a module's content, the more its maintenance automates — imported spans re-materialize, while original content and the seams where it meets them stay manual
 
-> [!skw] end
+> [!skw]- end-derived
 
 ## Workflow
 

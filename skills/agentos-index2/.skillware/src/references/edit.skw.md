@@ -48,6 +48,8 @@ Drafting or revising block wording is also edit work, even before the user has a
 - inlining other concepts by `Dotted.Name` keeps independence — `Name.As.Index` anchors are resolvable, not dependencies that break it
 - the primary hazard is distilling a live conversation; strip the session's frame before committing
 
+> [!skw]- end-derived
+
 ## Edit Decision Mechanics
 
 - use the context to choose the natural `Index.Edit.Action`

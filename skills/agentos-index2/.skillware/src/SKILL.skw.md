@@ -176,6 +176,8 @@ An agent operating the index should:
 
 For delegated read-only research that protects the caller's context, use `Packages.Master.Agent` against the relevant package or packages.
 
+> [!skw]- end-derived
+
 ## Skill Modules
 
 - `references/search.md` — routing-first search, selective loading, appendix discovery, and citation behavior

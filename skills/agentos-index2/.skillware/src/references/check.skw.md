@@ -39,6 +39,8 @@ Use this module when the caller wants deterministic diagnosis, linter findings, 
 
 - semantic lints on typed lines (contradicting `[DC]`s, violated `[CT]`s, reintroduced `[RJ]`s, overridden `[FR]`s) are agent work, not linter checks — see `references/type.md`; report findings, route fixes through `--edit`
 
+> [!skw]- end-derived
+
 ## Post-Edit Check
 
 - after an approved index or appendix edit, run the linter over the edited depot or explicit edited surfaces

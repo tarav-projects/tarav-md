@@ -46,7 +46,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 | Situation | Module |
 |---|---|
 | When the caller is new to Skillware, needs the mental model, or asks conceptual questions — what the system is, why two surfaces, how derivation works | `references/doctrine.md` |
-| When the caller needs exact syntax — recipe grammar, verbs, field lines, body boundaries, locator forms, `skillware.json`, what the compiler does | `references/lang.md` |
+| When the caller needs exact syntax — the construct grammar, commands, arg lines, owned ends, locator forms, `skillware.json`, what the compiler does | `references/lang.md` |
 | When the caller is writing or restructuring src — deciding roots vs derived consumers, declaring imports, crafting an `intent:`, judging whether a relation earns an import | `references/author.md` |
 | When the caller wants an existing hand-owned skill brought under Skillware management | `references/adopt.md` |
 | When the caller wants surfaces produced or refreshed from src, or asks about the lock or the build's mechanics | `references/build.md` |
@@ -63,7 +63,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 ## Skill Modules
 
 - `references/doctrine.md` — the model: skills as software, the two surfaces, imports, recipes, derivation
-- `references/lang.md` — the operational spec: src surface, recipe grammar, locators, compilation, settings
+- `references/lang.md` — the operational spec: src surface, construct grammar, primitives, structural commands, locators, compilation, settings
 - `references/author.md` — writing src: graph discipline, roots vs derived, `intent:` craft, division of labor
 - `references/adopt.md` — converting an existing skill to Skillware management
 - `references/build.md` — producing surfaces: build and status mechanics, the lock model

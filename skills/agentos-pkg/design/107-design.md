@@ -102,6 +102,12 @@
 - [DC] no indentation: bodies sit at column 0 — nesting is logical (the parse stack + owned ends), never visual; the body is runnable prose first ^20260710-4
 - [DC] three primitives instantiate it anywhere in a src: `text` (a literal, tag optional), `copy`, and `derived` — a generation function whose declaration describes the generated body and whose body is the current output ^20260710-4
 - the command vocabulary is the language's growth axis: new capability is a new command over the same construct — structural commands (`router`, `when`, `then`) compose primitives ^20260710-4
+- [DC] arg keys are trait annotations, orthogonal to the command list: a command gives core semantics, annotations layer constraints on the body (`from:` inbound dependency, `intent:` derivation rule, `to:` the prose explicitly sends the agent to another surface — carriable by any construct) ^20260711-0
+- [PR] every annotation is a checkable constraint: the CPU checks its decidable face (resolution, structure, hashes); agents check its semantic face (does the body honor the declaration) — annotations are to prose what types are to code ^20260711-0
+- [DC] trait semantics are reserved by JSONPath-style paths: `*.key` reserves the key's meaning on every command, `command.key` scopes it to one; validation is registry-driven, and a scoped semantic that generalizes is promoted up the path ^20260711-0
+- [DC] any declaration may carry a `^label` token — identity riding the construct (`*.label` spelled inline); a bare `^label` command is a labeled `text`; owned ends accept either owner, `end-<command>` or `end-^label`, the label matching exactly ^20260711-1
+- [DC] labels extend the locator grammar — `path^label` (labeled span), `^label` (file-local); a `from:` on a labeled span hashes only that span, so drift is heading-independent and fine-grained ^20260711-1
+- [DC] labels are src-only machinery, stripped at compile — distinct from `Anchory.Anchor`s (global evidence links that survive in the text); renaming a label breaks importers, caught by the dead-link check ^20260711-1
 
 ****
 

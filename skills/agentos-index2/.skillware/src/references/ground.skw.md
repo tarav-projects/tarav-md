@@ -16,6 +16,8 @@ Use this module when the caller wants the current prompt or ongoing conversation
 - when the digest is not enough, escalate to full grounding: follow the blocks' anchors out to the original surfaces — chat evidence via `references/link.md` resolution (`views inline --anchor … --filter turns`), code and files directly
 - grounding is read-only and ungated — it changes the agent's context, never a surface
 
+> [!skw]- end-derived
+
 ## Grounding Goal
 
 - derive the active concepts, claims, tensions, and decisions from the live discussion
@@ -38,6 +40,8 @@ Use this module when the caller wants the current prompt or ongoing conversation
 - do not pretend to ground against conversation state that is not actually visible in the current prompt or thread
 - distinguish what the index explicitly says from what the agent infers by comparing the conversation against the index
 - prefer a compact grounding report over a long raw search dump
+
+> [!skw]- end-derived
 
 ## Grounding Steps
 

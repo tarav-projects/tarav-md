@@ -36,7 +36,7 @@ Per recipe:
 
 The no-silent-blessing rule: a rebuild carries a stale derivation's old dependency hashes forward while its body is unchanged — `derived-stale` survives any number of builds and clears only when the body is actually re-derived.
 
-> [!skw] end
+> [!skw]- end-derived
 
 ## The Re-Derive Pass
 

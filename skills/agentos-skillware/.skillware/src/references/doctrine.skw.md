@@ -27,18 +27,18 @@ Use this module to understand Skillware: the mental model behind skills develope
 
 **Derivation.** A `Derivation.Rule` is the relation `Dependencies + Context → Derived`. Run forward it (re)generates the derived content; run as a check it answers the drift question — does the current derived still match what its dependencies and context would now produce? The check is the payoff: maintenance becomes a query the system runs, not vigilance the user keeps. `Derived.Content` is granular — any span of a module can be derived, and the more a module imports, the more its maintenance automates.
 
-> [!skw] end
+> [!skw]- end-derived
 
-## Recipe In Brief
+## The Construct In Brief
 
 > [!skw]- derived
-> from: references/lang.skw.md#Recipe Grammar
+> from: references/lang.skw.md#Construct Grammar
 > intent: one-paragraph digest of the grammar for a reader who wants the
 > shape without the full spec; route to lang.md for the normative rules
 
-A recipe is an Obsidian-style callout placed first in its section: `> [!skw]- <verb>` (verbs: `copy`, `derived`), followed by `> from:` lines naming the sources and an optional `> intent:` stating the transformation. The produced body sits *below* the callout as ordinary markdown, running to a `> [!skw] end` one-liner or the next heading. Sections without a recipe are hand-owned prose. The full grammar, locator forms, and compilation rules live in `references/lang.md`.
+The language has one syntactic form: `> [!skw]- <command>` opens a construct, `> key: value` lines carry its args (a bare `>` line continues the previous key), the body follows as flat markdown at column 0, and a mandatory owned closer `> [!skw]- end-<command>` ends it — bare `end` is invalid, headings close nothing, and a multi-close line (`end-a end-b`) unwinds nested constructs innermost-first. Primitive commands are `text`, `copy`, and `derived`; everything outside constructs is hand-owned prose, and callouts inside code fences are inert examples. The full grammar, locator forms, and compilation rules live in `references/lang.md`.
 
-> [!skw] end
+> [!skw]- end-derived
 
 ## Where Things Live
 
