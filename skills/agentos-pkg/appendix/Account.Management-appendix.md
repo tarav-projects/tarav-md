@@ -3,15 +3,15 @@
 ## Account.Model
 
 - `Account.Model` is both the concept of an agent account on agentos and its data representation
-- an account is an identity owned by a provider, holding one or more `Account.Model:Auth.Method`s
+- an account is an identity owned by a provider, holding one or more `Account.Model::Auth.Method`s
 - the identity carries provider-neutral fields: provider, account name, and identity metadata such as email
 - the agent normal model references an account by name; credentials live under the auth methods
 
 ****
 
-## Account.Model:Auth.Method
+## Account.Model::Auth.Method
 
-- `Account.Model:Auth.Method` is an independent authentication method of an account
+- `Account.Model::Auth.Method` is an independent authentication method of an account
 - it is a credential class — `auth-json`, `ambient-auth`, `gh-auth-token`
 - it models what login the method achieves and how the method works
 - its class defines the method's fixed properties
@@ -27,7 +27,7 @@
 
 ## Materializable.Account
 
-- `Materializable.Account` is an account that holds at least one materializable `Account.Model:Auth.Method`
+- `Materializable.Account` is an account that holds at least one materializable `Account.Model::Auth.Method`
 - a materializable auth method can be reconstituted into a logged-in agent from its stored `Auth.Data`
 - materializability is a property of the auth method's credential class
 - a non-materializable auth method is reference-only — agentos tracks it but cannot stand up a logged-in agent from it
@@ -75,7 +75,7 @@
 - `Account.Identity` is whatever data in `Auth.Data` lets agentos identify a particular account
 - it is provider-specific — each provider carries account identity in its own form (a UUID claim, a numeric user id, an email)
 - it is the authoritative anchor binding a captured credential to a `Provider.Account`, independent of the agentos alias or the home it came from
-- extracting it from `Auth.Data` is a capability of the `Account.Model:Auth.Method` class
+- extracting it from `Auth.Data` is a capability of the `Account.Model::Auth.Method` class
 - the account record stores its normalized form as `provider_account_id` when the method yields a stable id
 - all auth methods of one account resolve to the same `Account.Identity`; a divergent identity means a different account
 
@@ -106,7 +106,7 @@
 
 - `Account.Registry` stores the `Auth.Data` needed to log in any `Materializable.Account`, plus convenience metadata
 - append-only immutable history: each captured credential version is its own entry; rotation produces a new entry; one active/current pointer
-- history and the active pointer attach per `Account.Model:Auth.Method`, since an account can hold several auth methods
+- history and the active pointer attach per `Account.Model::Auth.Method`, since an account can hold several auth methods
 - storage shape is delegated to the provider implementation (`Auth.Method`)
 - non-materializable accounts store reference and metadata only — no reconstructible secret
 - existing implementation surfaces: `accounts.json` (pointer records), `artifacts.jsonl` + `artifacts/<id>.<kind>.json` (immutable index + payloads, `id = sha256(payload)`), `verifications.jsonl` (success ledger, secrets rejected)

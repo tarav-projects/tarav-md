@@ -14,12 +14,12 @@ Status: **A1, A3 resolved** 2026-06-12 — established the rule that index block
 
 ### A1. `Alignment.Loop` — broken `How.Design` specialization pointer
 - blocks: `Alignment.Loop` (`102`)
-- "see `102-index.md` for `How.Design` specialization" points at its own file, and no `Alignment.Loop:How` block exists anywhere. (The `What.Design` sibling pointer was corrected to `106`; this one was not.)
+- "see `102-index.md` for `How.Design` specialization" points at its own file, and no `Alignment.Loop::How` block exists anywhere. (The `What.Design` sibling pointer was corrected to `106`; this one was not.)
 - **RESOLVED 2026-06-12**: both `see NNN-index.md` lines removed; the `:What`/`:How`/`:Exec` specializations are already named inline and the router resolves them. (A2 — the missing `:How`/`:Exec` blocks — is a separate, still-open question.)
 
-### A2. `Alignment.Loop:How` / `Alignment.Loop:Exec` — promised but undefined
-- blocks: `Alignment.Loop` (`102`), `Impl.Req` (`102`, uses `Alignment.Loop:How`)
-- the loop is declared "parameterized by phase `:What`/`:How`/`:Exec`" and `Impl.Req` cites `Alignment.Loop:How`, but only `:What` has a block (`106`). `:How`/`:Exec` have no blocks — gap is fine as `Dangling.Cite`, but A1 actively promises the definition.
+### A2. `Alignment.Loop::How` / `Alignment.Loop::Exec` — promised but undefined
+- blocks: `Alignment.Loop` (`102`), `Impl.Req` (`102`, uses `Alignment.Loop::How`)
+- the loop is declared "parameterized by phase `:What`/`:How`/`:Exec`" and `Impl.Req` cites `Alignment.Loop::How`, but only `:What` has a block (`106`). `:How`/`:Exec` have no blocks — gap is fine as `Dangling.Cite`, but A1 actively promises the definition.
 
 ### A3. `Development.Principles` — "definitions in 102" but one lives in 105
 - blocks: `Development.Principles` (`102`), `RED.GREEN.Test.Suite` (`105`)
@@ -67,7 +67,7 @@ Status: **A1, A3 resolved** 2026-06-12 — established the rule that index block
 - both are used as first-class concepts across blocks but have no routed block — defined only inline inside `Surface.Concept`.
 
 ### D2. Loop-step concepts `Alignment.Question` / `Alignment.Discussion` / `Alignment.Consolidation`
-- blocks referencing them: `Alignment.Loop` (`102`), `Impl.Req` (`102`), `Alignment.Loop:What` (`106`)
+- blocks referencing them: `Alignment.Loop` (`102`), `Impl.Req` (`102`), `Alignment.Loop::What` (`106`)
 - the three named loop steps appear throughout but have no blocks (inline only). Possibly intentional soft; flagged against `Index.Concept.Coverage`.
 
 ### D3. `Provider.Family`
@@ -99,8 +99,8 @@ Status: **A1, A3 resolved** 2026-06-12 — established the rule that index block
 - Maintenance.System: "diagnosis-first, not fix-first ... user decides"; the writer pass "may update clear cited duplicates in the same approved write pass." Different scopes, but reads as a mild fix-vs-diagnose contradiction without a reconciling line.
 
 ### F2. `Design.Index` (artifact section) vs `Design.Index.Block` (alias)
-- blocks: `Kernel.Block:Design` (`100`, alias `Design.Index.Block`), `Designer.Turn.Kernel.Form` (`105`), `Alignment.Backend:Artifact:What` (`106`)
-- `Design.Index` names an artifact section; `Design.Index.Block` is an alias of `Kernel.Block:Design`. Near-identical names, different referents.
+- blocks: `Kernel.Block::Design` (`100`, alias `Design.Index.Block`), `Designer.Turn.Kernel.Form` (`105`), `Alignment.Backend::Artifact::What` (`106`)
+- `Design.Index` names an artifact section; `Design.Index.Block` is an alias of `Kernel.Block::Design`. Near-identical names, different referents.
 
 ### F3. `Distributed.Index` still narrates automatic loading
 - blocks: `Distributed.Index` (`103`), `Agentos.Index.Notes` (`100`), `Index.Activation` (`104`)

@@ -39,9 +39,9 @@
 
 ****
 
-## Natural.Placement:Skills
+## Natural.Placement::Skills
 
-- `Natural.Placement:Skills` applies `Natural.Placement` to agent skill bodies
+- `Natural.Placement::Skills` applies `Natural.Placement` to agent skill bodies
 - skills are natural code-like operational surfaces for procedures, gates, role framing, tool use, and execution-shaped guidance
 - a skill can carry the local context it needs when that improves agent performance, bootstrapping, workflow execution, or readability
 - durable concept material still belongs in package index blocks, appendix pages, or references when those surfaces are the natural place for that facet
@@ -217,7 +217,7 @@
 ## Index.Block
 
 - `Index.Block` is a `Kernel.Block` placed in an `Index.Chapter` — the routed, loadable unit of meaning in the Index
-- its heading is a `Dotted.Name`, the root of the concept's `Block.Path`s and what `000-INDEX.md` routes
+- [DC] its heading is a legal `Skw.Address.Schema` name — the root of the concept's `Block.Path`s and what `000-INDEX.md` routes ^20260712-5
 - it is `Kernel.Writing` under tight compression — conceptual completeness in few lines, depth pushed to `Concept.X/Appendix`
 - it must carry enough signal for an agent to reason correctly about the concept
 - the Index must have a block for any meaningful concept; it may link out rather than define everything inline
@@ -258,34 +258,23 @@
 ## Md.Surface
 
 - `Md.Surface` is the markdown layer of a project — the set of `.md` files
-- parameterized to scope: `Md.Surface:Agentos`, `Md.Surface:Agentos.Stack`
+- parameterized to scope: `Md.Surface::Agentos`, `Md.Surface::Agentos.Stack`
 
 ****
 
 ## Dotted.Notation
 
 - `Dotted.Notation` identifies named concepts in an ontology surface
+- [DF] it is the concept form of `Skw.Address.Schema` — compact, symbolic, natural-text friendly ^20260712-3
 - a dotted name is a signal that the phrase refers to a concept, not casual prose
-- every name has at least two parts; dot depth is flexible and natural to the concept
+- [CT] every name has at least two parts — the schema's minimum-sigil rule applied to `.`; dot depth is flexible and natural to the concept ^20260712-3
 - dots provide context but are not a strict hierarchy — definition and relationships live in notes and registry entries, not the name
 - `Explicit.Namespace` must be explicit; do not infer a namespace from a dotted prefix alone
 - a dotted name can appear before it is registered
     - agents infer concept maturity from the repository: prose-only, registry entry, or dedicated note
 - registry lookup is opportunistic, not mandatory — use it when concept identity matters, avoid turning ordinary work into ontology maintenance
+- [DF] type statements extend a dotted name with `::` (`Line.Type::DF`) — the full string names the entity (`Addressing.Sigil.Vocabulary`) ^20260712-3
 - an approximate chat-side form exists — see `Fuzzy.Dotted.Name`
-
-****
-
-## Dotted.Parameterized.Notation
-
-- `Dotted.Parameterized.Notation` identifies a target or instance of a named concept without creating a new concept
-- form: `Concept.Name:Target`
-- the part before the colon is the concept, the part after is the parameter
-- colon parameters may themselves use dots
-- parameterized references are instances of the same concept, not different concepts
-    - use a new dotted name when the meaning changes
-    - use a colon parameter when the same concept is applied to a different target
-- examples: `Maintenance.System:Agentos`, `Md.Surface:Agentos.Stack`, `Project.CLI:Agentos`
 
 ****
 
@@ -319,7 +308,7 @@
 
 - `Maintenance.System` defines how a project surface is diagnosed over time
 - diagnosis-first, not fix-first — report issues with evidence, then the user decides
-- parameterized: `Maintenance.System:Agentos` is the Agentos instance
+- parameterized: `Maintenance.System::Agentos` is the Agentos instance
 - reports must be evidence-based — suggestions without evidence must be marked as such
 
 ****

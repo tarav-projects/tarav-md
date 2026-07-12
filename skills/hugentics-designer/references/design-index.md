@@ -55,8 +55,8 @@ Use `meta` for session mechanics about the concept: aliases, status, sources, op
 
 `Design.Index` is session state.
 
-In `Alignment.Backend:InChat:What`, the agent may print refreshed `Design.Index` blocks and let the user correct, accept, or park them.
+In `Alignment.Backend::InChat::What`, the agent may print refreshed `Design.Index` blocks and let the user correct, accept, or park them.
 
-In `Alignment.Backend:Artifact:What`, updates are artifact writes and require the artifact user gate.
+In `Alignment.Backend::Artifact::What`, updates are artifact writes and require the artifact user gate.
 
 Actual Agentos Index writes remain governed by the Agentos Index write workflow.

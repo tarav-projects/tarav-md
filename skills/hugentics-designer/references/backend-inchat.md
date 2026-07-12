@@ -1,12 +1,12 @@
-# Alignment.Backend:InChat:What
+# Alignment.Backend::InChat::What
 
-`Alignment.Backend:InChat:What` is the default `What.Design.Session` workflow.
+`Alignment.Backend::InChat::What` is the default `What.Design.Session` workflow.
 
 It runs the session in chat without creating a file. The agent maintains visible session state by printing compact sections in the conversation.
 
 ## Role
 
-Use `Alignment.Backend:InChat:What` when:
+Use `Alignment.Backend::InChat::What` when:
 
 - the user starts a design session without asking for an artifact,
 - the design is still exploratory,
@@ -49,7 +49,7 @@ Print only what is useful. Do not dump all sections every turn.
 
 ## Upgrade
 
-Upgrade to `Alignment.Backend:Artifact:What` when:
+Upgrade to `Alignment.Backend::Artifact::What` when:
 
 - the user asks,
 - the state needs durable capture,

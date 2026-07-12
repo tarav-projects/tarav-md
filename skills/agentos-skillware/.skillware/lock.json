@@ -2,14 +2,14 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "999e632c162853462a32fd7b7398a21d6b9392d3745e1f6b85f5346c9be7b4a8",
+      "output_sha256": "6b4610562c19a08758b4457569f7e4f36d42616246241c2d25fd27386cb69f4f",
       "recipes": [
         {
           "heading": "What Skillware Is",
           "verb": "derived",
-          "body_sha256": "be335672c6d0972169dacdb2fecf5cd1aefb7a5076045fd5b296ed0f68e9027f",
+          "body_sha256": "640ef647bf6ba70affa4b7007cce3e179117968cf8f04b994c4032e90f6c23b0",
           "deps": {
-            "Agentos.Skillware": "f6e0256cfa1b4976c6d006b7fd4916dce3525a907892eb9d391e6dfa02c6f4d7"
+            "Agentos.Skillware": "b9d2d55483b77f00d2d3fea147cdc38b592f33508d46316fa08244047680c57f"
           }
         }
       ]
@@ -19,14 +19,14 @@
       "recipes": []
     },
     "references/author.md": {
-      "output_sha256": "5c403b383984dbd7f675906f25a6a4446c0af85709342ac93b6a5504eaf1e0ba",
+      "output_sha256": "8c08a178023c35c7e6ffc0d1d02cc16f7b5013dbdcb1888f034754bedbcdd83f",
       "recipes": [
         {
           "heading": "Division Of Labor",
           "verb": "derived",
-          "body_sha256": "f95c9169abfe99167e249d68f14de36ebb3dace9a2b4b757b2da899b497fabf8",
+          "body_sha256": "32bff6f3f436dee427fb3e1ac4d5e4f9580e1983c52f2348643b0d8e972edd34",
           "deps": {
-            "Import.Management": "e5e5a1cd9c3cd623c345b0628bbe18f9e4307352d92543f23b84625047200fb7"
+            "Import.Management": "e802eb67222aba31968aae95ad62520923f0b8c08c4342ffcaa4fc375dd7d35f"
           }
         }
       ]
@@ -36,30 +36,30 @@
       "recipes": []
     },
     "references/check.md": {
-      "output_sha256": "28ce0aacc13bac8e26577c8cdbb1f0b5f2aa8930d0a83de31b2f853c735d65d7",
+      "output_sha256": "3c9313eb34cac41c811e8c0cffbd8b0110f46736ccb40114accaa2bf7232edf3",
       "recipes": [
         {
           "heading": "Verdicts",
           "verb": "derived",
-          "body_sha256": "324d989eb4a4654c517967b18e49e63caa9f8d3004b78399287ab679e803c9ec",
+          "body_sha256": "bd1a10bcfec4ad754a144582bd5532f46d98e3347bc2b474d945bf8b5000defd",
           "deps": {
-            "Import.Management": "e5e5a1cd9c3cd623c345b0628bbe18f9e4307352d92543f23b84625047200fb7"
+            "Import.Management": "e802eb67222aba31968aae95ad62520923f0b8c08c4342ffcaa4fc375dd7d35f"
           }
         }
       ]
     },
     "references/doctrine.md": {
-      "output_sha256": "39a4663c72edc117a5d204682f936a0ae36763931a57168b863fda929811ce19",
+      "output_sha256": "dff25c20f44aed9962ee399462e8a68bd7e1178e2305e2237ed6d599bb753d02",
       "recipes": [
         {
           "heading": "The Model",
           "verb": "derived",
-          "body_sha256": "46d4f500c3d02533a6f6cbd1552112fd39e1c92c1e32a5b22722ad795695fa8c",
+          "body_sha256": "a9421e78f5a4cc1b70320bf8a494d3d47a72cf0ac9d384ce0d4fbaa25c446db2",
           "deps": {
-            "Agentos.Skillware": "f6e0256cfa1b4976c6d006b7fd4916dce3525a907892eb9d391e6dfa02c6f4d7",
-            "Skill.Runnable.Surface": "1a0c9b0235f70135efb1090d96ea86848d8042e2383bedbfe12a9d2b3cfd0dab",
+            "Agentos.Skillware": "b9d2d55483b77f00d2d3fea147cdc38b592f33508d46316fa08244047680c57f",
+            "Skill.Runnable.Surface": "1b53ecdf4f6a6a124363552a9fa0b5f95ca54ee07d602d7ff59c236c9b36dea8",
             "Skill.Build.Surface": "6a86daf0304d1c612e9660851d24592cec13d087090fa6980f8353a45af6e8a6",
-            "Module.Import": "f10a86765628e5243615d29c59da1558f749111f89a4c89e21b8f2412e003f81",
+            "Module.Import": "c73a157bd484c261bc5d55f37fd4abcf749fd1a800e2f3ba5f041fcab0ca8dff",
             "Skillware.Recipe": "a0e47e14037251f8019ceec803cbdb1cc0dfe28d9b9192fd92485db501157935",
             "Derivation.Rule": "ee265f9f6c4395716e253a13347654bc45dcf120fb01e22d3aae897a6b3fad11",
             "Derived.Content": "f1f93a46f6e4793ddac2d9b243b209ee85980cbb5e1ae72b0146da5d81abbb7e"

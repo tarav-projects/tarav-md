@@ -8,17 +8,18 @@
 - "as software" means the artifacts agents run gain engineering structure — modules, dependencies, builds, versions, lineage — so they can be reused and evolved rather than written once and forked.
 - it is supported by a development toolchain — linters, builders, compilers — spanning agentic and `CPU.Impl` work, that moves package maintenance off the human. ^20260627-0
 - a discipline realized by capabilities, not a single mechanism — it names the stance; specific members implement it.
+- **skw** is the system realizing the discipline: the general annotation language (`Skw.Language`) and its `Skw.Backend`s ^20260711-9
 
 ### meta
 
-- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Derivation.Rule`, `Derived.Content`, `Module.Import`, `Import.Management`, `Derived.Module`, `Skillware.Construct`, `Skillware.Recipe`, `Semantic.Router`, `Usage.Pattern.Routing`.
+- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Derivation.Rule`, `Derived.Content`, `Module.Import`, `Import.Management`, `Derived.Module`, `Skillware.Construct`, `Skillware.Recipe`, `Skw.Language`, `Skw.Backend`, `Surface.Annotation`, `Annotation.Point`, `Annotation.Authority`, `Drift.POI`, `Semantic.Router`, `Usage.Pattern.Routing`.
 
 ****
 
 ## Skill.Runnable.Surface
 
 - `Skill.Runnable.Surface` is a surface whose purpose is to be run — loaded into agent context to do work; it carries only the executable substance.
-- the system keeps it free of non-runnable artifacts, so nothing obscures or dilutes what runs. ^20260627-2
+- the system keeps it free of non-runnable artifacts, so nothing obscures or dilutes what runs — a building-backend discipline; annotated-only `Skw.Backend`s trade it for constraint co-location. ^20260627-2 ^20260711-9
 - forced by context being executable — anything on it is read into context and shapes the run; non-runnable artifacts there are not inert, they interfere.
 
 ****
@@ -45,10 +46,10 @@
 
 ## Module.Import
 
-- [DF] `Module.Import` is a declared dependency between surfaces — a consumer surface imports a target named by any legal block name (`Block.Naming.Schema`) ^20260709-12
+- [DF] `Module.Import` is a declared dependency between surfaces — a consumer surface imports a target named by any legal `Skw.Address.Schema` name ^20260709-12 ^20260712-10
 - [DC] three binding modes: `pointer` — resolved at load time, always fresh; `copy` — verbatim materialization at build time; `derived` — a semantic transformation materialized at build time, governed by a `Derivation.Rule` ^20260709-14
 - [DC] the binding is the consumer's declaration — the imported surface never knows its importers ^20260709-12
-- [DC] declarations live on the `Skill.Build.Surface`; the `Skill.Runnable.Surface` carries only the materialized result — a routed pointer or the inlined content ^20260709-13
+- [DC] on building `Skw.Backend`s, declarations live on the `Skill.Build.Surface` and the `Skill.Runnable.Surface` carries only the materialized result; annotated-only backends keep declarations in place on the surface itself ^20260709-13 ^20260711-9
 - each binding carries a checkable claim: pointer — the target resolves at its address; copy — equality with the target; derived — the rule still holds ^20260709-16
 - [DC] a failed check is a drift finding with no predefined winner — resolution is case-by-case; a particular workflow may set auto-regeneration as its own rule ^20260709-15
 - it is the Skillware linking system: copy and derived are static binding, pointer is dynamic ^20260709-12
@@ -81,7 +82,7 @@
 - it records, per import, the target (by durable address), the binding, and any context, and re-runs the check or the materialization on demand
 - pointer bindings are checked for address validity, copy for equality, derived for `Derivation.Rule` drift ^20260709-14
 - the more imported a module's content, the more its maintenance automates — imported spans re-materialize, while original content and the seams where it meets them stay manual
-- targets are addressed by legal block names — `Dotted.Name`s for blocks, locator names for files and regions, `Anchory.Anchor`/`Chat.Grounding` for chat fallback dependencies
+- targets are addressed by `Skw.Address.Schema` names — `Dotted.Name`s for blocks, `Locator.Name`s for files, regions, and spans, `Anchory.Anchor`s for chat moments ^20260712-10
 - [PR] division of labor: the CPU materializes copy bindings and detects drift; the agent performs derivations — and performs them in src, where the `Derivation.Rule` and its current solution live side by side ^20260710-0
 - [DC] v1 realization: `lock.json` holds the per-import record; check verdicts (`copy-drift`, `derived-stale`, `hand-edited`) surface drift — and a rebuild can never silently clear `derived-stale`; only an actual re-derive does ^20260710-2
 
@@ -97,16 +98,18 @@
 
 ## Skillware.Construct
 
-- [DF] `Skillware.Construct` is the single syntactic form of the Skillware language: a `[!skw]` declaration callout (command + `key: value` args), a flat markdown body, and a mandatory owned closer `[!skw]- end-<command>` ^20260710-4
-- [DC] closure is fully explicit: a bare `end` is invalid; a multi-close line (`end-a end-b`) unwinds the open stack innermost-first; a heading closes nothing — a construct left open at a heading or EOF is a finding ^20260710-4
+- [DF] `Skillware.Construct` is the single syntactic form of the skw language: a `$kw:` declaration line — a CLI-style command, `<command> [^label] [--flag value …]` — with `$kw.` continuation lines, a flat native body, and a mandatory owned closer `$kw. end-<command>` ^20260710-4 ^20260712-7
+- [DC] the sigil pair splits open from belong: `$kw:` opens a construct (or declares a divider); `$kw.` marks everything belonging to the open construct — further flags, value continuations, and the closer ^20260712-7
+- [DC] every machinery line carries the sigil — uniform marking, so nothing skw is ever inferred from bare host syntax; the sigil rides the host's carrier (blockquote in markdown, comments in code), making the form carrier-neutral ^20260712-7
+- [DC] closure is fully explicit for body-bearing constructs: a bare `end` is invalid; a multi-close line (`end-a end-b`) unwinds the open stack innermost-first; a heading closes nothing — a construct left open at a heading or EOF is a finding; annotation sections (leveled dividers, `Annotation.Point`) are the sanctioned end-free exception ^20260710-4 ^20260711-9
 - [DC] no indentation: bodies sit at column 0 — nesting is logical (the parse stack + owned ends), never visual; the body is runnable prose first ^20260710-4
 - [DC] three primitives instantiate it anywhere in a src: `text` (a literal, tag optional), `copy`, and `derived` — a generation function whose declaration describes the generated body and whose body is the current output ^20260710-4
 - the command vocabulary is the language's growth axis: new capability is a new command over the same construct — structural commands (`router`, `when`, `then`) compose primitives ^20260710-4
-- [DC] arg keys are trait annotations, orthogonal to the command list: a command gives core semantics, annotations layer constraints on the body (`from:` inbound dependency, `intent:` derivation rule, `to:` the prose explicitly sends the agent to another surface — carriable by any construct) ^20260711-0
+- [DC] arg flags are trait annotations, orthogonal to the command list: a command gives core semantics, annotations layer constraints on the body (`--from` inbound dependency, `--intent` derivation rule, `--to` the prose explicitly sends the agent to another surface — carriable by any construct) ^20260711-0 ^20260712-7
 - [PR] every annotation is a checkable constraint: the CPU checks its decidable face (resolution, structure, hashes); agents check its semantic face (does the body honor the declaration) — annotations are to prose what types are to code ^20260711-0
 - [DC] trait semantics are reserved by JSONPath-style paths: `*.key` reserves the key's meaning on every command, `command.key` scopes it to one; validation is registry-driven, and a scoped semantic that generalizes is promoted up the path ^20260711-0
-- [DC] any declaration may carry a `^label` token — identity riding the construct (`*.label` spelled inline); a bare `^label` command is a labeled `text`; owned ends accept either owner, `end-<command>` or `end-^label`, the label matching exactly ^20260711-1
-- [DC] labels extend the locator grammar — `path^label` (labeled span), `^label` (file-local); a `from:` on a labeled span hashes only that span, so drift is heading-independent and fine-grained ^20260711-1
+- [DC] any declaration may carry a `^label` token — identity riding the construct (`*.label` spelled inline); `label ^x` is the explicit command for a labeled literal (no command-less declarations); owned ends accept either owner, `end-<command>` or `end-^label`, the label matching exactly ^20260711-1 ^20260712-7
+- [DC] labels extend the address grammar — `@path^label` (labeled span; the `@` agent-maintained), `^label` (file-local); a `--from` on a labeled span hashes only that span, so drift is heading-independent and fine-grained ^20260711-1 ^20260712-10
 - [DC] labels are src-only machinery, stripped at compile — distinct from `Anchory.Anchor`s (global evidence links that survive in the text); renaming a label breaks importers, caught by the dead-link check ^20260711-1
 
 ****
@@ -118,6 +121,109 @@
 - compile is deterministic: the toolchain strips the callout machinery; the runnable surface carries only the produced content ^20260710-2
 - [RJ] `Import.Manifest` — a separate flat artifact per consuming module (`build/<...>-imports.md`) — was superseded before implementation: declarations live inline; `lock.json` is the machine record ^20260709-13 ^20260710-2
 - [DC] recast by `Skillware.Construct`: the recipe is the section-scoped v1 instance of the general declaration+body form; v2 makes the construct position-free with enforced owned ends ^20260710-4
+
+****
+
+## Skw.Language
+
+- [DF] skw is an embedded annotation language for the generation of surfaces — an annotation states how a span of content is produced: from which dependencies, under which rule ^20260711-2
+- the annotation constrains the span: the content must not contradict or drift from its declaration — every annotation is a checkable claim ^20260711-2
+- everything frames as generation: a copy is deterministic generation (the inlining of a source, itself possibly generated); a derived span is agentic generation under its rule; a literal carries no generation claim; a link's text is a typed generated span, annotated independently of the target it points at ^20260711-2
+- it annotates any content, but earns most on agent-generated surfaces — where the rule and its current solution living side by side is what makes maintenance checkable ^20260711-2
+- it is embedded — skw lives inside the host surface's own format, next to the content it governs, and never replaces it ^20260711-2
+- the language is surface-blind; a `Skw.Backend` binds it to each surface class ^20260711-2
+
+****
+
+## Skw.Backend
+
+- [DF] a `Skw.Backend` binds `Skw.Language` to one surface class, named `skw-<surface>` ^20260711-3
+- a backend owns four things: the carrier syntax, the build semantics (if any), where check state lives, and its host-native `Annotation.Point` vocabulary ^20260711-3
+- every backend is annotated; some backends additionally build — annotation + check is the universal layer, build is backend-local ^20260711-3
+- a building backend generates its runnable form from annotated src and strips the machinery; an annotated-only backend keeps declarations in place on the surface itself, trading surface cleanliness for constraint co-location ^20260711-3
+- **skw-skills** is the first backend, a building one: annotated src compiles to the skill's runnable files ^20260711-3
+- **skw-code** is the first annotated-only candidate: declarations ride the host language's comments; the body is the live fragment ^20260711-3
+
+****
+
+## Surface.Annotation
+
+- [DF] a `Surface.Annotation` is the skw content of a file — the machinery that states extra things *about* the surface it annotates, next to the content it governs ^20260711-4
+- it is a deliberate subset: the fragment's fundamentals, never an exhaustive dependency capture ^20260711-4
+- it answers one question: *what context can't I miss to understand this fragment?* ^20260711-4
+- it is a satellite index of the design — a leaf citing the canonical index by `Dotted.Name`; the hub stays the center ^20260711-4
+- it is a local grounding recipe: an agent landing on the fragment loads the declared dependencies and holds the minimal sufficient context by declaration, not by search ^20260711-4
+
+****
+
+## Annotation.Point
+
+- [DF] an `Annotation.Point` is a named, sanctioned place where annotations attach — a small vocabulary of points so agents do not over-annotate arbitrary fragments ^20260711-5
+- points come in two families: **host-native** — the natural divisions of the annotated surface — and **skw-native** — the language's own scoping constructs, layered on top ^20260711-5
+- [PR] prefer the host's natural divisions; reach for skw-native scoping only where the host's divisions do not fit the annotation's true scope ^20260711-5
+- the file is the universal host point; each backend declares the rest of its host vocabulary — functions, modules, namespaces for code; sections for markdown ^20260711-5
+- the skw-native points: the **annotation section** (a leveled, end-free divider sectioning a file for annotation purposes only) and the **span** (an explicit construct body — the finest grain) ^20260711-5
+- the agent attaches at the coarsest point that honestly fits ^20260711-5
+
+****
+
+## Annotation.Authority
+
+- [DF] `Annotation.Authority` is the authority model of annotations: authority flows from grounding, not from the writer ^20260711-6
+- annotation lines take the index's own forms: `Line.Type` codes and `Anchory.Anchor`s, with the same validation points ^20260711-6
+- authority follows `Touched.Authority`: untouched annotation lines are hypotheses bound by the grounded span; grounded ones hold second-order authority; gated ones are first-order touched ^20260711-6
+- what stays restricted below the gate is linkability, not worth — the `Touched.Authority` fence ^20260711-6
+- no status is stored: drift is discovered and surfaced by the checker; authority is read from the lines' provenance ^20260711-6
+- [CT] agent-free insertion is regulated: only the file `Annotation.Point` is open to ungated agentic annotation — every finer point lands user-gated ^20260711-6
+- finer annotations are therefore born touched: the gating turn is their grounding evidence ^20260711-6
+
+****
+
+## Drift.POI
+
+- [DF] a `Drift.POI` is a point of interest raised by the CPU checker: a span's declared dependencies changed — that, and nothing more ^20260711-7
+- the CPU never rules on drift: whether the surface actually drifted is an agent's finding — the agent is always the fixer and supervisor ^20260711-7
+- a POI carries its trigger — which dependency, what changed — so the responding agent starts contextualized ^20260711-7
+- resolution is agentic: real drift → re-derive the span; benign change → re-bless the dependencies ^20260711-7
+
+****
+
+## Closure.Parser
+
+- [DF] a `Closure.Parser` demands a minimal structure — the `Parse.Floor` — and is closed above it: a surface below the floor is a hard parse error; a surface at the floor always yields a full AST, and no finer detail can fail the parse ^20260712-17
+- from the `Parse.Floor` up, the parser cares only about what it recognizes: recognized regions become structured nodes, everything else becomes text nodes, and no further errors exist ^20260712-17
+- above the floor, an unrecognized region is simply an opaque text node — the parser does not judge it; whatever might be wrong inside is a linter concern, not a parse concern ^20260712-17
+- the parser emits exactly one kind of failure: parse errors, only below the floor — it emits no POIs ^20260712-17
+- [PR] one broken construct never blinds the system to the whole file ^20260712-17
+- [CT] closed also means lossless: above the floor, every byte of the input lands in some node ^20260712-17
+
+****
+
+## Poi.Linter
+
+- [DF] a `Poi.Linter` lints the AST of a `Closure.Parser`, never the native text — every lint rule is a rule about node types, not text patterns ^20260712-17
+- [CT] the no-shadow-parser constraint: a rule targets node types and may read inside a text node, but re-parsing the surface around the AST is forbidden ^20260712-17
+- checks are layered: parse errors gate everything — below the `Parse.Floor` the linter reports the parse errors as POIs and advances no further ^20260712-17
+- its output is the POI stream: each POI marks a place worth an agent's attention, and nothing more — it may carry a suggested resolution, but it asserts no verdict; the agent inspects and decides ^20260712-17
+- [PR] the softness is bought, not accidental: a linter that is always right costs a robust parser — the system stays cheap and simple by tolerating wrong and missed flags, and agents are told so ^20260712-17
+- opaque text nodes are its territory: what the parser deliberately ignores, linter rules may inspect and flag ^20260712-17
+
+****
+
+## Poi.Bless
+
+- [DF] `Poi.Bless` is the explicit act of accepting a POI's current state as correct: an auditable command rewrites the POI's recorded expectation to match reality, and the flag clears without the surface being touched ^20260712-17
+- [PR] blessing is loud: drift never clears as a side effect of rebuilds or unrelated edits — only a re-derivation of the content or an explicit bless (the no-silent-blessing rule generalized) ^20260712-17
+- [CT] not every POI is blessable: parse errors are never blessable — a surface below the `Parse.Floor` is not in the language and must be fixed; blessability belongs to semantic POIs, where the current state might genuinely be the truth ^20260712-17
+
+****
+
+## Structure.Ratchet
+
+- [DF] the `Structure.Ratchet` is the system's direction of travel: over time, content moves from opaque text nodes into recognized structure — the target state is a fully structured surface where all remaining prose is ACTUAL prose: no parsable objects remain in the text ^20260712-17
+- progress is measurable: the `Closure.Parser` knows exactly what fraction of a surface is structured nodes versus opaque text — the ratio is the ratchet's gauge ^20260712-17
+- promoting a text pattern into the grammar converts a class of soft `Poi.Linter` flags into hard parse-level guarantees ^20260712-17
+- [CT] promotion is an `Experience.Gated.Decision`: promote a pattern when it keeps generating the same manual POI toil, never speculatively — premature grammar is how the language dies ^20260712-17
 
 ****
 
@@ -146,6 +252,16 @@
 - the format evolves and converges naturally — each addition both follows and extends the precedent, no central definition to maintain
 - use it where a rigid spec would over-specify a still-soft, still-converging pattern; an explicit spec, once it appears, supersedes precedent
 - distinct from `Reference.Implementation`: that names one canonical owner of a contract; here the whole existing set is the soft, emergent spec
+
+****
+
+## Experience.Gated.Decision
+
+- [DF] `Experience.Gated.Decision` is a design decision deliberately parked until usage experience accumulates — the question is sound, but answering it now would be a mistake ^20260711-8
+- the failure it prevents is double: deciding early locks in a guess; leaving the question unnamed loses it ^20260711-8
+- identification is the work: mark the topic explicitly on a durable surface so the system carries the open question forward without answering it ^20260711-8
+- the gate opens on evidence — real usage, felt friction, accumulated instances — and the decision is then made from experience, not speculation ^20260711-8
+- sibling of `Specified.By.Precedence`: both defer authored contracts to accumulated reality; precedence defers the spec, this defers the decision ^20260711-8
 
 ****
 
@@ -228,7 +344,7 @@
 - it is index-adjacent, not part of the index — it softens the index principles on the fly, replacing the direct user touch with a grounding link to the touch event
 - it is self-similar to the appendix — an untouched appendix, same form and rules; it exists because the user gate is the bottleneck: a surface for the agent to run ahead of the gate
 - agendix and appendix must not duplicate content — over time the agendix drains: entries reviewed by the user are promoted through the gate or dropped
-- in alignment terms: `Untouched.Space` made durable — visible, assumed untouched by the user, non-aligned; zero authority, freely rewritable; everything in it is promotion evidence
+- in alignment terms: `Untouched.Space` made durable — visible, assumed untouched by the user, non-aligned; no authority of its own (`Touched.Authority`: well-grounded lines carry second-order authority); everything in it is promotion evidence ^20260711-9
 - agendix lines are typed: every line carries a `Line.Type` from the vocabulary — the validation point applies to agent capture too ^20260707-2
 - [DC] agendix lines may be assistant-grounded, marked `[AS:XX]`; promotion re-grounds on the approving user turn and drops the marker
 - [DC] agendix files follow appendix writing rules with the block headed `Concept.X/Agendix`, one file per concept in `agendix/` next to `appendix/`

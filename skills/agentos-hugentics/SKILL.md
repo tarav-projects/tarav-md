@@ -35,7 +35,7 @@ This skill is workflow neutral. It maps the Hugentic subsystem without entering 
 
 | Artifact | Defined In |
 |---|---|
-| `Alignment.Backend:Artifact:What` | `hugentics-designer` |
+| `Alignment.Backend::Artifact::What` | `hugentics-designer` |
 | `Impl.Req` | `agentos-hugentics-impl` design module |
 
 ## How To Use
@@ -84,7 +84,7 @@ The concept vocabulary a design agent reasons *with*. Definitions live in the `a
 ### Communication form — how a designer *speaks* (`100`, `102`, `105`)
 
 - `Kernel.Writing` — orthogonal, compressed bullet lines, each an independent fundamental point, direct language — not prose
-- `Kernel.Block` / `Kernel.Block:Design` — every design turn is a *block*: an H2 `Dotted.Notation` heading + orthogonal fundamentals + optional `### meta`
+- `Kernel.Block` / `Kernel.Block::Design` — every design turn is a *block*: an H2 `Dotted.Notation` heading + orthogonal fundamentals + optional `### meta`
 - `Designer.Turn.Kernel.Form` — the turn shape: render the block, then pair it with the question (`Question / Why-now / Recommended / Evidence`); re-render the same block as it evolves
 - `Dotted.Notation` [`:Param`] — name concepts with dotted names; the name signals "this is a concept" and is the key for `Name.As.Index`
 

@@ -53,7 +53,7 @@
 - it is distributed across loading tiers: a cold slice may live in a `Cold.Loading.Surface`, the package `SKILL.md` arrives through `SKILL.Loading`, and deeper routes are selected through `Dynamic.Loading`
 - the package `SKILL.md` is the canonical runnable driver surface; cold-loading surfaces may project enough driver context to make the package reachable from cold
 - functionally it has two parts: `Package.Driver.Base` (always-on orientation) plus `Package.Driver.Router` (routes onward)
-- `Package.Driver:<Package>` names the driver of a specific package, e.g. `Package.Driver:Agentos.Pkg`
+- `Package.Driver:<Package>` names the driver of a specific package, e.g. `Package.Driver::Agentos.Pkg`
 - the standard route any agent uses to enter a package — including any package-agnostic agent that takes the package as an argument
 - when base and router are not enough, the agent descends into the narrower surfaces the router declares
 
@@ -326,9 +326,9 @@
 - universal: every skill is a `Batchy.Skill`; `-h` help is always available, while arguments, banner, and modules appear only when the skill needs them
 - a convention, not a mandate — a clear natural prompt always works; for one obvious argument the agent just grabs it, flags grow valuable as parameter count grows
 - when a skill takes arguments, they are declared as `Skill.Arg` blocks inside its `Skill.Arg.Section`
-- each argument has a canonical name (e.g. `Skill.Arg:Target.Project`); loose flags, abbreviations, and positionals resolve to it
+- each argument has a canonical name (e.g. `Skill.Arg::Target.Project`); loose flags, abbreviations, and positionals resolve to it
 - tokens are written `--flag`-style by preference so they read as commands inside natural text (`do a --run on stripe-pkg`); loose forms still resolve
-- switch flags map to `Dotted.Parameterized.Notation` values (`--AUTO` -> `Alignment.Mode:Autonomous`)
+- switch flags map to `::` type-statement values (`Addressing.Sigil.Vocabulary`) (`--AUTO` -> `Alignment.Mode::Autonomous`) ^20260712-6
 - a skill's files and sections are `Skill.Module`s — named parts loaded on mention; a `Skill.Arg` may carry an `action` that activates one
 - missing required arguments follow `Skill.Explicit.Args`: ask or orient, never guess; declared defaults fill silently
 - exposes terminal-style help through `Batchy.Skill.Help`
@@ -368,7 +368,7 @@
 ## Skill.Arg
 
 - `Skill.Arg` is a single argument of a `Batchy.Skill`, written as a kernel block
-- named with `Dotted.Parameterized.Notation`: `Skill.Arg:Context`, `Skill.Arg:Main.Prompt`
+- named with `::` type statements (`Addressing.Sigil.Vocabulary`): `Skill.Arg::Context`, `Skill.Arg::Main.Prompt` ^20260712-6
 - its fundamentals state what the argument means; bullet settings carry its calling metadata
 - settings: `required`, `default`, `type` (switch vs valued), `help`, `examples`, `aliases` (non-obvious only), `action`
 - `action` (optional): the behavior the arg activates when set — usually loads a `Skill.Module`; a switch (`--dry-run`) layers behavior, a selector whose values are operations (`Command:Run`) picks one
@@ -427,7 +427,7 @@
 ## Batchy.Skill.Banner
 
 - `Batchy.Skill.Banner` is the resolved-argument banner a `Batchy.Skill` prints as the first step of any run
-- shows the mapping from supplied flags to canonical arguments (`--AUTO` -> `Alignment.Mode:Autonomous`) and the values used
+- shows the mapping from supplied flags to canonical arguments (`--AUTO` -> `Alignment.Mode::Autonomous`) and the values used
 - distinguishes supplied values from filled defaults, so the caller sees what was inferred
 - informational, not a checkpoint: it echoes the interpretation, it does not ask for confirmation
 - makes fuzzy flag resolution auditable — a misread is visible before side effects

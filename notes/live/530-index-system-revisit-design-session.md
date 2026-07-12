@@ -238,7 +238,7 @@ For each skill map item:
 ## Session.Log
 
 - session opened — goal: full index system revisit
-- backend upgraded to Alignment.Backend:Artifact:What
+- backend upgraded to Alignment.Backend::Artifact::What
 - skill map agreed as traversal tracker
 - per-item protocol defined: test → align → react → capture
 - item 1 (Agentos.Index) reviewed — Design.Index.Block captured

@@ -7,11 +7,11 @@ Develop takes an idea or design source through implementation design and executi
 ## Workflow
 
 1. Load `references/design.md`.
-2. Run `Alignment.Loop:How` with the resolved `Input` and `Alignment.Mode`.
+2. Run `Alignment.Loop::How` with the resolved `Input` and `Alignment.Mode`.
 3. Produce a complete `Impl.Req`.
 4. Capture the exact artifact path and re-read it from disk.
 5. Load `references/execute.md`.
-6. Pass that exact `Impl.Req` into `Alignment.Loop:Exec`.
+6. Pass that exact `Impl.Req` into `Alignment.Loop::Exec`.
 7. Execute its `Execution.Plan` using the same resolved `Alignment.Mode`.
 8. Complete only after the artifact and implementation state are updated.
 

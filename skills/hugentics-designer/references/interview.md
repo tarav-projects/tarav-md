@@ -6,7 +6,7 @@ Fundamental rule: the agent controls organization; the user controls advancement
 
 The agent chooses the highest-leverage unresolved question and keeps the alignment path organized. The agent may suggest that the next question is ready, but must not present the next full question until the user explicitly asks for `next`, `continue`, `next question`, `go on`, or equivalent.
 
-In `Alignment.Loop:What`, asking the next full design question is an `Alignment.Maintenance.Turn`. Turn switching is user-gated.
+In `Alignment.Loop::What`, asking the next full design question is an `Alignment.Maintenance.Turn`. Turn switching is user-gated.
 
 ## Canonical Flow
 

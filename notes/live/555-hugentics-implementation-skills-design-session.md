@@ -112,7 +112,7 @@ Execution.Policy (residual, non-gating)
 ### Executable.Feedback.Loop
 
 - **folded into the existing index concept `Test.At.Boundaries`**, which already states feedback loops are the quality ceiling and that every `Impl.Req` names what validates the work
-- "feedback loop named" lives in `Alignment.Checkpoint:Readiness` (the readiness checklist) and the `Impl.Req`
+- "feedback loop named" lives in `Alignment.Checkpoint::Readiness` (the readiness checklist) and the `Impl.Req`
 - the signal-preference order (existing check > agent-built script > manual inspection) is execution guidance under `Test.At.Boundaries`, not a separate concept
 - one surviving idea not in the cluster: establish the **baseline before editing** (run existing checks, record pre-existing failures) so introduced breakage is distinguishable — candidate one-liner addition to `Test.At.Boundaries`
 
@@ -120,7 +120,7 @@ Execution.Policy (residual, non-gating)
 
 - status: folded into `Test.At.Boundaries` — not minted as a new concept
 
-### Alignment.Checkpoint:Readiness
+### Alignment.Checkpoint::Readiness
 
 - a named `Alignment.Checkpoint`, **right before the `Impl.Req` is written**, after research/understanding
 - establishes the `Alignment.Checkpoint:<Name>` naming convention (parallels `Alignment.Mode:<Value>`)
@@ -143,13 +143,13 @@ Execution.Policy (residual, non-gating)
 #### meta
 
 - status: converged
-- resolved: keep both — the executer also runs a light `Alignment.Checkpoint:Executable` entry check ("still executable now?") before the git checkpoint
+- resolved: keep both — the executer also runs a light `Alignment.Checkpoint::Executable` entry check ("still executable now?") before the git checkpoint
 
 ### RED.GREEN.Test.Suite
 
 - `RED.GREEN.Test.Suite` is the set of RED/GREEN-style tests an `Impl.Req` calls for, written test-first to drive the implementation
 - an `Impl.Exec` `Development.Principle`: the `Impl.Req` specifies the suite; the executer builds it test-first (each test goes RED → minimal code GREEN → next; never all tests up front)
-- the *in-advance* part is naming the behaviors to test at `Alignment.Checkpoint:Readiness`; the actual tests are written test-first during execution
+- the *in-advance* part is naming the behaviors to test at `Alignment.Checkpoint::Readiness`; the actual tests are written test-first during execution
 - **not the only tests** — it is the implementation-driving core; more tests may be added later, e.g. at the end
 - `No.Regression.Tests.Allowed` governs **all** tests including this suite — keep it core-feature / e2e / durable-contract focused, not regression slop
 - `Test.At.Boundaries` governs what each test asserts — public behavior that survives a refactor
@@ -203,7 +203,7 @@ Execution.Policy (residual, non-gating)
 
 1. Shared chain contract and ownership boundaries — ✅ `Impl.Req.Execution.Contract`, `Alignment.Checkpoint`, `Alignment.Mode`
 2. Executable feedback loops — ⤵ folded into `Test.At.Boundaries`
-3. `Impl.Req` readiness and reader testing — ✅ `Alignment.Checkpoint:Readiness`
+3. `Impl.Req` readiness and reader testing — ✅ `Alignment.Checkpoint::Readiness`
 4. Slice dependency semantics and vertical-slice quality — pending (next)
 5. Verification ladder — ✖ dropped (≈ existing test cluster; only baseline-before-editing was new)
 6. Deviation taxonomy — pending (deviation is now a conditional `Alignment.Checkpoint`)
@@ -244,7 +244,7 @@ Also captured outside the original queue: `RED.GREEN.Test.Suite`, `Standards.Pus
 - 2026-06-08: Collapsed the gating model to two `Alignment.Mode` values (`Interactive` default, `Autonomous`) and introduced `Alignment.Checkpoint` as the declared alignment-opportunity points a skill exposes. `Gated` and the `User.Gate.Policy` axis are superseded by checkpoints + mode; `Deviation.Policy` and `Reporting.Policy` remain separate skill axes. `Alignment.Mode` is one skill axis, not a global control model.
 - 2026-06-08: Resolved the positional/conditional question — one `Alignment.Checkpoint` concept: a declared position optionally gated by an activation condition. Added discipline rules: the agent must not invent checkpoints and must not stop outside declared ones. Deviation is handled at a declared checkpoint via a condition, not an anywhere-interrupt.
 - 2026-06-08: Decided topic 2 `Executable.Feedback.Loop`: a feedback loop is mandatory at both per-slice and per-Impl.Req altitudes; agent must construct a signal (scripts/partials) before falling back to manual inspection with explicit criteria. Signal ladder deferred to topic 5; "feedback loop named" routed to the `Readiness.Contract` (topic 3).
-- 2026-06-08: Decided topic 3 as `Alignment.Checkpoint:Readiness` — a single named checkpoint right before the `Impl.Req` is written. A readiness checklist detects gaps; the agent resolves what it can and raises the rest as a final alignment pass (governed by `Alignment.Mode`). Deliberately light: a gap-detector and needs gate, not a documentation mandate. Establishes the `Alignment.Checkpoint:<Name>` convention. Open: whether the executer keeps a light entry readiness check.
+- 2026-06-08: Decided topic 3 as `Alignment.Checkpoint::Readiness` — a single named checkpoint right before the `Impl.Req` is written. A readiness checklist detects gaps; the agent resolves what it can and raises the rest as a final alignment pass (governed by `Alignment.Mode`). Deliberately light: a gap-detector and needs gate, not a documentation mandate. Establishes the `Alignment.Checkpoint:<Name>` convention. Open: whether the executer keeps a light entry readiness check.
 - 2026-06-09: Mined academy / Pocock "Workflow for AI Coding". Captured `Test.First` (TDD at `Natural.Placement` — name behaviors at readiness, RED→GREEN per slice, ban all-tests-up-front to avoid imagined-shape tests), `Impl.Req.Lifecycle` (transient live-notes, resolves topic 7 doc-rot), and `Standards.Push.Pull` (implementer pulls, reviewer pushes). Dropped fresh-context review (user responsibility for now). Strong independent-convergence signal: grill-me≈design session, PRD≈Impl.Req, tracer-bullet slices≈topic 4, feedback-loops-as-quality-ceiling≈topic 2.
 - 2026-06-09: Overlap check against the existing index test cluster (`Development.Principles` → `Vertical.Slice`, `No.Legacy.Allowed`, `No.Regression.Tests.Allowed`, `Test.At.Boundaries`). Found `Verification.Ladder` ~80% redundant (only baseline-ground-truth was new) — dropped. `Executable.Feedback.Loop` largely folds into `Test.At.Boundaries`. Renamed `Test.First` → `RED.GREEN.Test.Suite` and reconciled: not a conflict with `No.Regression.Tests.Allowed` — method (test-first) vs test-selection (no regression slop) are orthogonal. `RED.GREEN.Test.Suite` becomes a new `Impl.Exec` `Development.Principle`.
 - 2026-06-09: Landed `Designer.Turn.Kernel.Form` and `RED.GREEN.Test.Suite` into the `agentos-pkg` index; wired `RED.GREEN.Test.Suite` into the designer/executer skills; updated the designer-skill `interview.md`/`discussion.md` for `Designer.Turn.Kernel.Form`. Cleaned this session: refreshed `Session.Abstract`, folded `Executable.Feedback.Loop` into `Test.At.Boundaries`, annotated the Decision Queue, resolved the `Alignment.Mode`-preset parking item, and updated the now-outdated "don't edit target skills" working rule.

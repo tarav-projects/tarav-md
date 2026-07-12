@@ -65,7 +65,7 @@
 
 ## Impl.Log
 
-- 2026-07-08: executed in `Alignment.Mode:Autonomous`; 6 new behavior tests; fixture writer extended with `tool_calls` (codex `function_call`/`function_call_output` pairs).
+- 2026-07-08: executed in `Alignment.Mode::Autonomous`; 6 new behavior tests; fixture writer extended with `tool_calls` (codex `function_call`/`function_call_output` pairs).
 - open-space decision (S1): query flags are repeatable with AND semantics across repeats, matching the `*-contains` family convention.
 - open-space decision (S2): inline file-touch flags are single-valued (one path per flag) — the inline surface selects one file's moments; widen only on demand.
 - open-space decision (S2): inline selection keeps exactly the events in the matching invocations' `event_refs` (call + output events); message events are naturally excluded unless referenced.

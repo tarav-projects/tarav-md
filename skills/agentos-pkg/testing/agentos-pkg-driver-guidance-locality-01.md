@@ -2,13 +2,13 @@
 
 ## Purpose
 
-Evaluate whether `Package.Driver:Agentos.Pkg` helps a fresh agent handle realistic index-block work from an external project context.
+Evaluate whether `Package.Driver::Agentos.Pkg` helps a fresh agent handle realistic index-block work from an external project context.
 
 This test intentionally proposes a concept that overlaps with existing Agentos index concepts. It evaluates both output quality and navigation behavior — what the agent did matters as much as what it produced.
 
 ## Entry Path
 
-`AGENTS.md -> load agentos-pkg -> Package.SKILL:Agentos.Pkg`
+`AGENTS.md -> load agentos-pkg -> Package.SKILL::Agentos.Pkg`
 
 ## How To Run
 

@@ -28,7 +28,7 @@ Use `discussion.md` usage histories and `consolidation-plan-example.md`.
 
 ### Artifact.Upgrade
 
-The user asks to persist the session, or the agent recommends upgrading from `Alignment.Backend:InChat:What` to `Alignment.Backend:Artifact:What`.
+The user asks to persist the session, or the agent recommends upgrading from `Alignment.Backend::InChat::What` to `Alignment.Backend::Artifact::What`.
 
 Use `backend-artifact.md`.
 

@@ -11,7 +11,7 @@ Check whether design knowledge is drifting outside its `Natural.Placement` in th
 
 ## Agentic Check
 
-If the index is adopted, design knowledge should converge toward `Kernel.Block:Index` and `Kernel.Block:Appendix` through promotion.
+If the index is adopted, design knowledge should converge toward `Kernel.Block::Index` and `Kernel.Block::Appendix` through promotion.
 
 Look for evidence that another surface holds design knowledge that belongs in the index:
 

@@ -82,6 +82,6 @@
 
 ## Impl.Log
 
-- 2026-07-05: Executed in `Alignment.Mode:Autonomous` through `hugentics-impl-executer`.
+- 2026-07-05: Executed in `Alignment.Mode::Autonomous` through `hugentics-impl-executer`.
 - 2026-07-05: Open-space decision: explicit `--index` directory linting keeps working under the new chapter rule by validating `NNN-<directory>.md` against the containing folder name, while `000-INDEX.md` is treated as the depot router rather than a chapter file.
 - 2026-07-05: Open-space decision: router discovery now derives depot roots from configured surfaces (`--depot`, chapter dirs/files, appendix dirs/files, or `000-INDEX.md`) so the same router/annotation checks apply consistently across explicit-surface and depot modes.

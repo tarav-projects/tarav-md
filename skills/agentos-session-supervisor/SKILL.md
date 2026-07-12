@@ -24,19 +24,19 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 
 ## Skill.Arg.Section
 
-### Skill.Arg:Target.Session
+### Skill.Arg::Target.Session
 - the session to observe: a session id, an `agentos://chat-session/...` URI, a query, or a selector
 - required: true
 - help: "the target session to observe"
 - examples: --session "agentos://chat-session/..."
 
-### Skill.Arg:Supervisor.Brief
+### Skill.Arg::Supervisor.Brief
 - the evolving objective and user directives the supervisor watches against; treated as a `Soft.Program`
 - required: false
 - help: "what to watch for in the target session"
 - examples: --brief "ensure the worker follows the impl-req without scope creep"
 
-### Skill.Arg:Active.Roles
+### Skill.Arg::Active.Roles
 - additive read-only lenses applied over the observed transcript; each names a `references/role-*.md`, loaded on activation
 - required: false
 - help: "role lenses to activate (additive; may list several)"

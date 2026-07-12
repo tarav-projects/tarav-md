@@ -11,12 +11,12 @@
 
 ## Impl.Index
 
-### Design.Principle:Parser.As.Model.Layer
+### Design.Principle::Parser.As.Model.Layer
 - the parser is the index's model layer, the analogue of `Chatlas.Session.Model` for chat: surfaces parse into one typed model; the linter is just the first consumer
 - other consumers arrive free: block↔anchor queries ("ask a block by its anchors"), `--type` calibration passes, grounding audits, coverage metrics
 - a document ALWAYS parses: parse problems are `Diagnostic` nodes in the tree, never exceptions (md-library's key move — `docast/nodes.py`, `Diagnostic(Node)` with `reason`)
 
-### Design.Principle:Checks.Over.AST
+### Design.Principle::Checks.Over.AST
 - checks never touch raw text; they receive typed nodes or the whole parsed document
 - two check shapes, mirroring `lint2/runner.py:112-125`: a node check declares the node types it sees (`node_types` dispatch tuple, runner routes); a document check sees the whole parsed surface
 - Tier-0 conformance: every parser `Diagnostic` becomes a linter finding BEFORE semantic checks — "did it parse" gates "is it right" (`101-design.md:110-111` in md-library's index)
@@ -52,7 +52,7 @@
 - `agentos_chatlas/index_checks.py` currently imports the private `_line_type_surface_files` and re-scans lines with its own regex — after the port it consumes the parser: iterate `KernelLine` nodes' `anchor` spans (with node line numbers), `AS:` from the parsed payload
 - the parser API it needs becomes public in S3 (this also discharges the 574 log note about promoting the private helper)
 
-### New.Check:Line.Unlinked
+### New.Check::Line.Unlinked
 - code `Index.Linter/Line.Unlinked`, severity warning
 - a `KernelLine` with no `anchor` span is unlinked; scope: agendix surfaces ALWAYS (enforces the agendix hard-provenance `[CT]`); chapter+appendix surfaces only under a new `--warn-unlinked` flag (coverage meter, off by default — the index's unlinked lines are pre-linking legacy)
 - meta lines, router entries, prose, code-fence interiors are not `KernelLine`s — excluded by construction

@@ -29,7 +29,7 @@ Grade each checked claim: **verified** / **stale** (was true, no longer) / **unv
 
 ### 3. Readiness audit
 
-The designer's `Alignment.Checkpoint:Readiness` list, re-run from outside:
+The designer's `Alignment.Checkpoint::Readiness` list, re-run from outside:
 
 - scope and out-of-scope explicit
 - current state inspected and cited (and it survived the evidence audit)

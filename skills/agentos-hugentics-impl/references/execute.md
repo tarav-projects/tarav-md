@@ -13,13 +13,13 @@ Always load:
 
 Load additional language or pattern references when they are added and the target context matches them.
 
-## Alignment.Loop:Exec
+## Alignment.Loop::Exec
 
 Before execution, run the lightweight execution realignment:
 
-- `Alignment.Question:Exec` - review the `Impl.Index`, recover understanding, and surface ambiguities
-- `Alignment.Discussion:Exec` - resolve final implementation constraints
-- `Alignment.Consolidation:Exec` - update the `Impl.Req` when adjustment is needed
+- `Alignment.Question::Exec` - review the `Impl.Index`, recover understanding, and surface ambiguities
+- `Alignment.Discussion::Exec` - resolve final implementation constraints
+- `Alignment.Consolidation::Exec` - update the `Impl.Req` when adjustment is needed
 
 This is a recovery check, not a second implementation-design pass.
 
@@ -39,7 +39,7 @@ Before editing:
 5. Restate the implementation in design-level prose.
 6. In `Interactive`, use the declared plan-confirmation checkpoint before coding. In `Autonomous`, the invocation is authorization.
 
-## Alignment.Checkpoint:Executable
+## Alignment.Checkpoint::Executable
 
 Read the `Impl.Req` cold and confirm:
 

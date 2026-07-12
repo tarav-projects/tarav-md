@@ -1,8 +1,8 @@
-# Alignment.Loop:What
+# Alignment.Loop::What
 
-`Alignment.Loop:What` is the shared runtime behavior for every `What.Design.Session`.
+`Alignment.Loop::What` is the shared runtime behavior for every `What.Design.Session`.
 
-The backend may be `Alignment.Backend:InChat:What` or `Alignment.Backend:Artifact:What`, but the loop is the same:
+The backend may be `Alignment.Backend::InChat::What` or `Alignment.Backend::Artifact::What`, but the loop is the same:
 
 ```txt
 session runtime -> user interaction -> session runtime -> user interaction -> ...
@@ -18,7 +18,7 @@ The agent must carry the conversation with the user and maintain alignment aroun
 
 ## Turn Modes
 
-`Alignment.Loop:What` has two turn modes:
+`Alignment.Loop::What` has two turn modes:
 
 - `Alignment.User.Turn`
 - `Alignment.Maintenance.Turn`
@@ -79,7 +79,7 @@ agent: one next design question or requested interruption
 
 The runtime loop does not depend on storage backend.
 
-- In `Alignment.Backend:InChat:What`, state is printed and refreshed in chat.
-- In `Alignment.Backend:Artifact:What`, committed state lives in the artifact and chat may contain uncommitted deltas.
+- In `Alignment.Backend::InChat::What`, state is printed and refreshed in chat.
+- In `Alignment.Backend::Artifact::What`, committed state lives in the artifact and chat may contain uncommitted deltas.
 
 The same alignment and maintenance responsibilities apply in both modes.

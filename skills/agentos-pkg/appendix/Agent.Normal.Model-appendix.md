@@ -47,5 +47,5 @@ class RunResult:        exit_code: int; stdout: str | None; stderr: str | None
 class PingResult:       ok: bool; model: ModelId; elapsed_ms: int; failure: str | None
 class CheckpointResult: id: CheckpointId; passed: bool; reason: str | None
 class ProfileCheck:     checkpoints: list[CheckpointResult]; ok: bool
-class AccountStatus:    usage: AccountUsageStatus   # → Normalization.Pipeline:Account.Usage.Model
+class AccountStatus:    usage: AccountUsageStatus   # → Normalization.Pipeline::Account.Usage.Model
 ```

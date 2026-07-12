@@ -25,23 +25,23 @@
 ### Terminology.Map
 
 - `Design.Session` → `What.Design.Session`
-- `Session.Runtime.Loop` → `Alignment.Loop` (general) / `Alignment.Loop:What` (design specialization)
-- `Design.Alignment.Question` → `Alignment.Question:What`
-- `Design.Enrichment.Discussion` → `Alignment.Discussion:What`
-- `Design.Consolidation` → `Alignment.Consolidation:What`
+- `Session.Runtime.Loop` → `Alignment.Loop` (general) / `Alignment.Loop::What` (design specialization)
+- `Design.Alignment.Question` → `Alignment.Question::What`
+- `Design.Enrichment.Discussion` → `Alignment.Discussion::What`
+- `Design.Consolidation` → `Alignment.Consolidation::What`
 - `User.Assistant.Turn` → `Alignment.User.Turn`
 - `Session.Maintenance.Turn` → `Alignment.Maintenance.Turn`
-- `InChat.Design.Session` / `InChat.Session` → `Alignment.Backend:InChat:What`
-- `Artifact.Design.Session` / `Artifact.Session` → `Alignment.Backend:Artifact:What`
-- `Design.Alignment.Core` → `Alignment.Hugentic.Axis:What`
-- `Impl.Alignment.Loop` → `Alignment.Loop:How`
-- `Impl.Alignment.Question` → `Alignment.Question:How`
-- `Impl.Enrichment.Discussion` → `Alignment.Discussion:How`
-- `Impl.Consolidation` → `Alignment.Consolidation:How`
-- `Realignment.Loop` → `Alignment.Loop:Exec` (light)
-- `Realignment.Question` → `Alignment.Question:Exec`
-- `Realignment.Discussion` → `Alignment.Discussion:Exec`
-- `Realignment.Consolidation` → `Alignment.Consolidation:Exec`
+- `InChat.Design.Session` / `InChat.Session` → `Alignment.Backend::InChat::What`
+- `Artifact.Design.Session` / `Artifact.Session` → `Alignment.Backend::Artifact::What`
+- `Design.Alignment.Core` → `Alignment.Hugentic.Axis::What`
+- `Impl.Alignment.Loop` → `Alignment.Loop::How`
+- `Impl.Alignment.Question` → `Alignment.Question::How`
+- `Impl.Enrichment.Discussion` → `Alignment.Discussion::How`
+- `Impl.Consolidation` → `Alignment.Consolidation::How`
+- `Realignment.Loop` → `Alignment.Loop::Exec` (light)
+- `Realignment.Question` → `Alignment.Question::Exec`
+- `Realignment.Discussion` → `Alignment.Discussion::Exec`
+- `Realignment.Consolidation` → `Alignment.Consolidation::Exec`
 - `Alignment.Space` → `Conceptual.Space` (primary), `Alignment.Space` (synonym)
 - `Alignment.Focus` → `Alignment.Hugentic.Axis`
 
@@ -78,7 +78,7 @@
 12. `references/discussion.md` — `Session.Maintenance.Turn` → `Alignment.Maintenance.Turn`
 13. `references/inchat-session.md` → rename to `references/backend-inchat.md`, full terminology update
 14. `references/artifact-session.md` → rename to `references/backend-artifact.md`, full terminology update
-15. `references/artifact.md` — `Artifact.Session` → `Alignment.Backend:Artifact:What`
+15. `references/artifact.md` — `Artifact.Session` → `Alignment.Backend::Artifact::What`
 16. `references/design-index.md` — backend terminology update
 17. `references/session-interruptions.md` — backend terminology update
 18. `references/consolidation-plan-example.md` — backend terminology update
@@ -93,6 +93,6 @@
 - deviation: `126-Alignment.Session.md` → `127-Alignment.Session.md` (126 was taken by `Chatlas.Query.md`)
 - Slice 1: created `127-Alignment.Session.md` (index note) + `agentos-hugentics/references/alignment-session.md` (public surface)
 - Slice 2: updated `121-Design.Session.md` (4 blocks renamed), `123-Impl.Req.md` (loop terminology), `001-ontology.md` (5 entries rewritten + Alignment.Session added), `000-index.md` (121 entry updated + 127 added)
-- Slice 3: updated `hugentics-designer/SKILL.md` (full rewrite), `hugentics-impl-designer/SKILL.md` (Impl.Alignment.Loop → Alignment.Loop:How), `hugentics-impl-executer/SKILL.md` (Realignment → Alignment.Loop:Exec)
+- Slice 3: updated `hugentics-designer/SKILL.md` (full rewrite), `hugentics-impl-designer/SKILL.md` (Impl.Alignment.Loop → Alignment.Loop::How), `hugentics-impl-executer/SKILL.md` (Realignment → Alignment.Loop::Exec)
 - Slice 4: renamed `session-runtime.md` → `alignment-loop.md`, `inchat-session.md` → `backend-inchat.md`, `artifact-session.md` → `backend-artifact.md`; updated `interview.md`, `discussion.md`, `artifact.md`, `design-index.md`, `session-interruptions.md`, `consolidation-plan-example.md`
 - Slice 5: updated `agentos-hugentics/SKILL.md` (phase names, artifact table, added Alignment.Session to related concepts)

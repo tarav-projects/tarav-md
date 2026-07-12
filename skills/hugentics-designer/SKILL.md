@@ -7,7 +7,7 @@ description: "Main.Designer.Agent workflow master — run What.Design.Session wo
 
 Workflow master for the `Main.Designer.Agent` — the first phase of the Hugentic Harness.
 
-Coordinate a `What.Design.Session`: a scoped human-agent convergence surface for design work. The agent serves as moderator, tracking progress and driving the user toward alignment through cycles of `Alignment.Question:What` → `Alignment.Discussion:What` → `Alignment.Consolidation:What`.
+Coordinate a `What.Design.Session`: a scoped human-agent convergence surface for design work. The agent serves as moderator, tracking progress and driving the user toward alignment through cycles of `Alignment.Question::What` → `Alignment.Discussion::What` → `Alignment.Consolidation::What`.
 
 For the general alignment model, see `agentos-hugentics` and its `references/alignment-session.md`.
 
@@ -21,13 +21,13 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 
 ## Skill.Arg.Section
 
-### Skill.Arg:Design.Scope
+### Skill.Arg::Design.Scope
 - the subject and boundary of the design work
 - required: false
 - help: "what is being designed"
 - examples: --scope "the Batchy skill framework"
 
-### Skill.Arg:Session.Backend
+### Skill.Arg::Session.Backend
 - where the design session lives: in-chat by default, or artifact-backed when `--artifact` is set
 - required: false
 - default: InChat
@@ -35,7 +35,7 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 - help: "use an artifact-backed session instead of in-chat"
 - examples: --artifact
 
-### Skill.Arg:Alignment.Mode
+### Skill.Arg::Alignment.Mode
 - whether the agent prompts at each `Alignment.Checkpoint` or resolves them itself and runs end-to-end
 - required: false
 - default: Interactive
@@ -59,7 +59,7 @@ Do not activate for implementation work, generic status reporting, or code revie
 3. Choose the backend.
 4. Detect the current move or interruption.
 5. Load only the references needed for that move.
-6. Execute one `Alignment.Loop:What` move.
+6. Execute one `Alignment.Loop::What` move.
 7. Respect user gates.
 
 ## Design.Session.Setup
@@ -96,18 +96,18 @@ Always load:
 
 ## Backend Routing
 
-Use `Alignment.Backend:InChat:What` by default:
+Use `Alignment.Backend::InChat::What` by default:
 
 - load `references/backend-inchat.md`
 - do not create a file
 
-Use `Alignment.Backend:Artifact:What` when the user explicitly asks to upgrade, persist, capture to file, or create a design-session artifact:
+Use `Alignment.Backend::Artifact::What` when the user explicitly asks to upgrade, persist, capture to file, or create a design-session artifact:
 
 - load `references/backend-artifact.md`
 - load `references/artifact.md`
 - use `agentos-live-surfaces` for live-note location and numbering
 
-Suggest `Alignment.Backend:Artifact:What` when:
+Suggest `Alignment.Backend::Artifact::What` when:
 
 - the session state is too large or important to keep only in chat
 - the work needs durable handoff to later agents or future sessions
@@ -125,7 +125,7 @@ When the user wants implementation-ready handoff:
 
 For normal design flow:
 
-- use `Alignment.Loop:What`
+- use `Alignment.Loop::What`
 - ask or continue one design question at a time
 - follow `references/interview.md` and `references/discussion.md`
 
@@ -151,10 +151,10 @@ Load section references only when printing, updating, auditing, or capturing tha
 
 - `Session.Abstract` -> `references/session-abstract.md`
 - `Design.Index` -> `references/design-index.md`
-- `Session.Notes` -> `references/session-notes.md` in `Alignment.Backend:Artifact:What`
-- `Session.Log` -> `references/session-log.md` in `Alignment.Backend:Artifact:What`
+- `Session.Notes` -> `references/session-notes.md` in `Alignment.Backend::Artifact::What`
+- `Session.Log` -> `references/session-log.md` in `Alignment.Backend::Artifact::What`
 
-## Alignment.Backend:Artifact:What Format
+## Alignment.Backend::Artifact::What Format
 
 A `*-design-session.md` `Live.Note` used as file-backed session backend.
 
@@ -167,7 +167,7 @@ Artifact writes are user-gated.
 The shared runtime is:
 
 ```txt
-Alignment.Loop:What:
+Alignment.Loop::What:
 
 Alignment.User.Turn
   -> agent follows the user's current thread

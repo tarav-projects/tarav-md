@@ -14,13 +14,13 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 - `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
 - every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
 - supplied flags resolve to the `Skill.Arg` names below; loose and positional forms resolve too (a bare package name is `--package`).
-- pick a `--`command for the operation (the `Skill.Arg:Command` selector); with no command and no flags, this skill just loads its orientation context and performs nothing.
+- pick a `--`command for the operation (the `Skill.Arg::Command` selector); with no command and no flags, this skill just loads its orientation context and performs nothing.
 
 ## Skill.Arg.Section
 
 `--package` is always required; the other arguments are shared, and each command states which it needs.
 
-### Skill.Arg:Command
+### Skill.Arg::Command
 - the operation to perform — a selector whose values each activate a command behavior (a `Skill.Module`)
 - values: `Command:Run`, `Command:List`, `Command:Design`, `Command:Evaluate`; tokens `--run` / `--list` / `--design` / `--evaluate`
 - required: false (omitted -> orient only, no operation)
@@ -28,33 +28,33 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 - help: "which operation to perform"
 - examples: --run
 
-### Skill.Arg:Target.Package
+### Skill.Arg::Target.Package
 - the package skill to test; locates its tests under `<package>/testing/`
 - required: true
 - help: "which package skill to test"
 - examples: --package "stripe-pkg"
 
-### Skill.Arg:Testground
+### Skill.Arg::Testground
 - the controlled project to execute or operate from
 - a package may declare a default testground, used when this is omitted
 - required: false (required by `--run` when no default exists)
 - help: "which testground environment to use"
 - examples: --testground "stripe-pkg-testground"
 
-### Skill.Arg:Test.Name
+### Skill.Arg::Test.Name
 - a specific test to target; omitted means all tests
 - required: false
 - help: "a specific test; omitted -> all"
 - examples: --test "entry-path-from-cold"
 
-### Skill.Arg:Model
+### Skill.Arg::Model
 - the model for the tested agent
 - required: false
 - default: the runner default
 - help: "model for the tested agent"
 - examples: --model "claude-haiku-4-5"
 
-### Skill.Arg:Report
+### Skill.Arg::Report
 - a completed run to evaluate: a report under `<testground>/.agentos/tests/reports/` or a captured transcript
 - required: false (required by `--evaluate`)
 - help: "the run report or transcript to evaluate"
@@ -62,7 +62,7 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 
 ## Commands
 
-The `Skill.Arg:Command` selector picks the operation; each value activates a command behavior and inherits the arguments above. Activate by token (`--run`); `--<command> -h` prints that command's usage.
+The `Skill.Arg::Command` selector picks the operation; each value activates a command behavior and inherits the arguments above. Activate by token (`--run`); `--<command> -h` prints that command's usage.
 
 - `--run` — execute tests in a testground and capture traces. Requires `--package` and `--testground` (unless the package has a default); accepts `--test`, `--model`. Runs as fresh CLI sessions from the testground folder (runner isolation), captures each navigation trace from the transcript, and reports against the test's behavior tiers.
 - `--list` — list the tests available for a package. Requires `--package`; accepts `--testground`.

@@ -280,7 +280,7 @@ agentos chatlas query --updated-after 2026-05-17 --min-user-turns 3 --user-conta
 1. Load routing table (`000-index.md`)
 2. Check for existing overlap
 3. If overlap: flag, suggest merge/complement/cited-dup
-4. If new: draft in Kernel.Block:Index format (dash-list)
+4. If new: draft in Kernel.Block::Index format (dash-list)
 5. Ask for target index
 6. Propose router update
 

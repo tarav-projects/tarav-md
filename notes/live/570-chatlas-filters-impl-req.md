@@ -78,7 +78,7 @@
 
 ## Impl.Log
 
-- 2026-07-08: executed in `Alignment.Mode:Autonomous`; 4 new behavior tests (S1), echo test tightened (S3), S2 pure refactor locked by existing selection tests.
+- 2026-07-08: executed in `Alignment.Mode::Autonomous`; 4 new behavior tests (S1), echo test tightened (S3), S2 pure refactor locked by existing selection tests.
 - open-space decision (S1): `messages` keeps `model_runs`/`usage` rows referenced by surviving events (via `model_run_ref`) and empties `tool_invocations`; resync reuses `_messages_from_events`.
 - open-space decision (S1): filter registry lives in `normalization/session_model/filters.py` — model-space code owns model-space operations; `slim` key lists documented there as a schema-coupled contract.
 - note (S2): the event-selection constructors (`contains_filter`, `role_filter`, `around_filter`) operate on event lists (fragment components), while named filters operate on whole model objects — two arities, one module; unify only if a workflow demands whole-object parametric filters.

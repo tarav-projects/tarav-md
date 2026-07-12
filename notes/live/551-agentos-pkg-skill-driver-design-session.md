@@ -4,7 +4,7 @@
 
 - Goal: redesign `agentos-pkg/SKILL.md` as the Driver of the agentos system
 - The current SKILL.md is a routing table for insiders; the new one teaches agents from zero
-- Format: one `Kernel.Block:Design` per section, six sections total
+- Format: one `Kernel.Block::Design` per section, six sections total
 - State: all six blocks converged — design complete
 
 ## Design.Index

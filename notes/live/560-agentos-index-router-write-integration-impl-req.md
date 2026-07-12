@@ -53,7 +53,7 @@
 ### Slice 1 — Turn `agentos-index` into the public Batchy router
 
 - add a small `Skill.Arg.Section` to `agentos-md/skills/agentos-index/SKILL.md`
-- define `Skill.Arg:Search` and `Skill.Arg:Write`
+- define `Skill.Arg::Search` and `Skill.Arg::Write`
 - rewrite the root skill so it is clearly the neutral router/driver for the index subsystem rather than a thin orientation note plus redirect
 - make `-h` / `--help` render the new public args through the `Skill.Arg.Section` as a normal `Batchy.Skill.Help` surface
 - path: `agentos-index/SKILL.md` frontmatter + root body

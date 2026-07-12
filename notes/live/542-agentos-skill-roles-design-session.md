@@ -46,9 +46,9 @@
 - operational auxiliary skills are tuned execution prompts, not data-only documentation surfaces
 - `Workflow.Neutral.Skill` is therefore a property of some skills, not the default for all auxiliary skills
 
-### Natural.Placement:Skills
+### Natural.Placement::Skills
 
-- `Natural.Placement:Skills` is the application of `Natural.Placement` to skill surfaces
+- `Natural.Placement::Skills` is the application of `Natural.Placement` to skill surfaces
 - skills are natural surfaces for agentic operation: workflows, procedures, gates, tool use, role framing, and execution-shaped guidance
 - operational skills are code-like: they interact with the index and references, but their primary job is to run agentic behavior
 - this gives broad freedom to write operational skills in natural task-shaped language
@@ -354,7 +354,7 @@
 ### Package.Aux.Skill:artifact-design-session
 
 - `artifact-design-session` is a workflow-neutral artifact-format `Package.Aux.Skill` under `agentos-hugentics`
-- its role is discoverability and orientation for `Alignment.Backend:Artifact:What`
+- its role is discoverability and orientation for `Alignment.Backend::Artifact::What`
 - points to `hugentics-designer` as the workflow master that owns the full artifact format and write gates
 - does not start a design session by itself
 - useful when the caller needs to inspect, create, validate, or route a design-session artifact without entering the whole design workflow
@@ -498,7 +498,7 @@
 - current action: park
 - future action: open a focused design session for Agentos doctor/diagnosis surfaces
 
-### Deprecated.Concept:Usage.Skill
+### Deprecated.Concept::Usage.Skill
 
 - `Usage.Skill` is deprecated as a standalone skill concept
 - package roots replace usage skills as the general agent-facing orientation surface
@@ -702,7 +702,7 @@ For each skill or skill group:
 - `agentos-hugentics` reviewed — retained as an important subsystem `Package.Aux.Skill` inside `agentos-pkg`
 - `Package.Aux.Skill.Visibility` captured — aux skills are visibility, attention, and tuned-prompt surfaces; package root `SKILL.md` should act like an `AGENTS.md` for the package/system
 - `Package.Aux.Skill.Mode` captured — aux skills can be workflow-neutral subsystem surfaces or operational workflow surfaces
-- `Natural.Placement:Skills` captured — skills are natural code-like operational surfaces that can carry cited local context while remaining aligned with index, appendix, and reference surfaces
+- `Natural.Placement::Skills` captured — skills are natural code-like operational surfaces that can carry cited local context while remaining aligned with index, appendix, and reference surfaces
 - Hugentic nested-skill direction captured — keep operational workflow skills separate when tuned execution prompting, triggerability, and gates are valuable, while rooting shared concept placement in `agentos-pkg`
 - `hugentics-designer`, `hugentics-impl-designer`, and `hugentics-impl-executer` reviewed — retained as operational nested auxiliary skills under workflow-neutral `agentos-hugentics`
 - `trigger-design-session`, `trigger-impl-req`, and `trigger-impl-execution` reviewed — deprecated as standalone trigger-only public skills; useful activation language belongs in the corresponding Hugentic workflow-master skills

@@ -2,11 +2,11 @@
 
 ## Purpose
 
-Evaluate whether `Package.Driver:Agentos.Pkg` helps a fresh agent route a natural `live-note` request to the live-note surface instead of confusing it with index block authoring or formal design artifacts.
+Evaluate whether `Package.Driver::Agentos.Pkg` helps a fresh agent route a natural `live-note` request to the live-note surface instead of confusing it with index block authoring or formal design artifacts.
 
 ## Entry Path
 
-`AGENTS.md -> load agentos-pkg -> Package.SKILL:Agentos.Pkg`
+`AGENTS.md -> load agentos-pkg -> Package.SKILL::Agentos.Pkg`
 
 ## How To Run
 

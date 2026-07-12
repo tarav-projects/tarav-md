@@ -6,7 +6,7 @@
 
 - `Alignment.Loop` is the general workflow machinery for human-agent convergence
 - sequence: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`
-- parameterized by phase: `Alignment.Loop:What` (design), `Alignment.Loop:How` (impl design), `Alignment.Loop:Exec` (impl execution, light)
+- parameterized by phase: `Alignment.Loop::What` (design), `Alignment.Loop::How` (impl design), `Alignment.Loop::Exec` (impl execution, light)
 
 ****
 
@@ -28,10 +28,10 @@
 ## Alignment.Backend
 
 - `Alignment.Backend` is where session state lives
-- `Alignment.Backend:InChat` — state lives in chat, no file overhead
-- `Alignment.Backend:Artifact` — state lives in a file-backed artifact, durable and handoff-ready
-- parameterized by phase: `Alignment.Backend:InChat:What`, `Alignment.Backend:Artifact:What`, etc.
-- `Alignment.Backend:InChat` and `Chat.Surface` are distinct concerns: `Alignment.Backend:InChat` is the active session state — the live chat as it unfolds, "what's in RAM"; `Chat.Surface` is the durable record of past chats — the archived interaction trail
+- `Alignment.Backend::InChat` — state lives in chat, no file overhead
+- `Alignment.Backend::Artifact` — state lives in a file-backed artifact, durable and handoff-ready
+- parameterized by phase: `Alignment.Backend::InChat::What`, `Alignment.Backend::Artifact::What`, etc.
+- `Alignment.Backend::InChat` and `Chat.Surface` are distinct concerns: `Alignment.Backend::InChat` is the active session state — the live chat as it unfolds, "what's in RAM"; `Chat.Surface` is the durable record of past chats — the archived interaction trail
 
 ****
 
@@ -79,7 +79,7 @@
 - the plan is pre-shaped so the implementer naturally follows good practices — `Development.Principles` are built into the plan structure, not listed as recommendations
 - the goal: if handed to an agent with no other context, the plan itself steers them toward quality work
 - self-contained enough for any agent to understand and execute — can link out to other surfaces for extended context
-- the fundamentals section is produced through a focused alignment discussion scoped to implementation concerns — same `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation` loop (`Alignment.Loop:How`), but targeting implementation design
+- the fundamentals section is produced through a focused alignment discussion scoped to implementation concerns — same `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation` loop (`Alignment.Loop::How`), but targeting implementation design
 - updated by the implementer during execution — serves as a status tracking surface for the implementation
 - multiple `Impl.Req` artifacts can spawn from the same design session for different parts of the system
 

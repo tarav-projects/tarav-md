@@ -21,7 +21,7 @@ Every Agentos skill is a `Batchy.Skill` — called like a terminal command. The 
 
 - On a real run (anything but `-h`), the first step is to print a `Batchy.Skill.Banner`: a short echo of how the flags resolved.
 - It shows each supplied flag mapped to its canonical argument and the value used, and distinguishes supplied values from filled defaults.
-- Informational, not a checkpoint — it prints, it does not ask — and it runs even under `Alignment.Mode:Autonomous`. A zero-argument skill has no banner.
+- Informational, not a checkpoint — it prints, it does not ask — and it runs even under `Alignment.Mode::Autonomous`. A zero-argument skill has no banner.
 
 ```text
 $my-skill — banner
@@ -35,7 +35,7 @@ $my-skill — banner
 - Map every supplied flag to a canonical `Skill.Arg` (or `Skill.Module`) name from the skill body.
 - Accept loose forms: case variants, abbreviations, obvious synonyms (`--proj` ≈ `--project`).
 - A bare value with no flag may resolve to an obvious positional argument.
-- Switch values use `Dotted.Parameterized.Notation`: `--AUTO` → `Alignment.Mode:Autonomous`.
+- Switch values use `::` type statements (`Addressing.Sigil.Vocabulary`): `--AUTO` → `Alignment.Mode::Autonomous`.
 - A **selector** argument picks one operation among enumerated values (`--run` → `Command:Run`); a **switch** layers an additive behavior (`--dry-run`).
 - Fill declared `default`s silently for omitted arguments.
 - For a missing `required` argument, follow `Skill.Explicit.Args`: ask or orient — never guess a value.

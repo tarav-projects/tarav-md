@@ -127,13 +127,13 @@
 - checkpoints are declared explicitly, so a skill's alignment surface is inspectable up front
 - discipline: the agent must not invent checkpoints and must not stop execution outside a declared one — no ad-hoc halts
 - deviation (design-reality mismatch) is handled at a declared checkpoint via an activation condition, not as an anywhere-interrupt
-- `Alignment.Checkpoint:<Name>` names a specific checkpoint, such as `Alignment.Checkpoint:Readiness`
+- `Alignment.Checkpoint:<Name>` names a specific checkpoint, such as `Alignment.Checkpoint::Readiness`
 
 ****
 
-## Alignment.Checkpoint:Readiness
+## Alignment.Checkpoint::Readiness
 
-- `Alignment.Checkpoint:Readiness` is a named `Alignment.Checkpoint` placed right before the `Impl.Req` is written, after research and understanding
+- `Alignment.Checkpoint::Readiness` is a named `Alignment.Checkpoint` placed right before the `Impl.Req` is written, after research and understanding
 - its purpose is a final alignment pass at the point of maximum understanding: the agent asks for whatever it still needs to produce a good `Impl.Req` — design clarifications, missing feedback loops, missing inputs — not only design questions
 - it is a gap-detector and needs gate, not a documentation mandate — it must not bloat the `Impl.Req`
 - bounded: the user stays in-loop as long as they want; then the agent finishes the `Impl.Req` with all accumulated feedback
@@ -142,11 +142,11 @@
 
 ****
 
-## Alignment.Checkpoint:Executable
+## Alignment.Checkpoint::Executable
 
-- `Alignment.Checkpoint:Executable` is a named `Alignment.Checkpoint` the executer runs at execution entry, before the git checkpoint and first edit
+- `Alignment.Checkpoint::Executable` is a named `Alignment.Checkpoint` the executer runs at execution entry, before the git checkpoint and first edit
 - it confirms the `Impl.Req` is still executable in the current environment: targeted files and symbols exist, named feedback loops run, the code matches the plan's assumptions, and the plan is followable cold
-- it complements `Alignment.Checkpoint:Readiness` — readiness asks "is this a good plan to write?" at design time; executable asks "is this still runnable now?" at execution time, catching drift since the `Impl.Req` was written
+- it complements `Alignment.Checkpoint::Readiness` — readiness asks "is this a good plan to write?" at design time; executable asks "is this still runnable now?" at execution time, catching drift since the `Impl.Req` was written
 - governed by `Alignment.Mode`: `Interactive` raises unresolved mismatches before editing; `Autonomous` records them and proceeds only if faithful, aborting if the plan is no longer executable
 - it is a light "still executable?" gate, not a re-run of the readiness checklist; its operational definition lives in the executer skill that declares it
 

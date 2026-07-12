@@ -46,7 +46,7 @@ Concise dated entries:
 ```md
 ## Session.Log
 
-- 2026-05-11: Session opened. Backend: `Alignment.Backend:Artifact:What`.
+- 2026-05-11: Session opened. Backend: `Alignment.Backend::Artifact::What`.
 - 2026-05-12: Abandoned "single-layer" framing — collapses
   user/system boundary the session is here to draw.
 - 2026-05-13: Produced `NNN-topic-impl-req.md`; session closed.

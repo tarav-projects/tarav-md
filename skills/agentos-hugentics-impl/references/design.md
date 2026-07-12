@@ -4,13 +4,13 @@ Load this module for `Workflow:Design` and as the first phase of `Workflow:Devel
 
 Operate as the `impl.designer.agent`: inspect the implementation context, design an implementation path, and produce an `Impl.Req` artifact.
 
-## Alignment.Loop:How
+## Alignment.Loop::How
 
 Run the `How.Design` specialization of `Alignment.Loop`:
 
-- `Alignment.Question:How` - drive toward implementation design and enrich the `Impl.Index` with `Hard.Evidence`
-- `Alignment.Discussion:How` - resolve implementation concerns
-- `Alignment.Consolidation:How` - write or update the `Impl.Req`
+- `Alignment.Question::How` - drive toward implementation design and enrich the `Impl.Index` with `Hard.Evidence`
+- `Alignment.Discussion::How` - resolve implementation concerns
+- `Alignment.Consolidation::How` - write or update the `Impl.Req`
 
 Continue until the implementation design is sufficiently aligned for execution.
 
@@ -26,7 +26,7 @@ At a design-reality deviation:
 - `Interactive` - stop at the declared checkpoint and ask.
 - `Autonomous` - record the deviation in `Impl.Index` or `Impl.Log` and continue with the most faithful action.
 
-## Alignment.Checkpoint:Readiness
+## Alignment.Checkpoint::Readiness
 
 Immediately before writing the `Impl.Req`, confirm:
 

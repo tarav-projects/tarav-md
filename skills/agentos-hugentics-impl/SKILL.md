@@ -17,14 +17,14 @@ This is a `Batchy.Skill` - called like a terminal command. Load `agentos-batchy-
 
 ## Skill.Arg.Section
 
-### Skill.Arg:Input
+### Skill.Arg::Input
 - the implementation source: an idea, direct request, design artifact, design summary, or `Impl.Req`
 - required: false
 - default: the caller's current explicit request or supplied context
 - help: "the idea, design source, or Impl.Req to operate on"
 - examples: --input "add project-scoped configuration"
 
-### Skill.Arg:Workflow
+### Skill.Arg::Workflow
 - selects one implementation workflow
 - required: false
 - default: infer `Workflow:Execute` when `Input` resolves to an `Impl.Req`; otherwise infer `Workflow:Design`
@@ -36,7 +36,7 @@ This is a `Batchy.Skill` - called like a terminal command. Load `agentos-batchy-
 - `Workflow:Execute`: --execute; aliases: --exec; action: load `references/execute.md`
 - `Workflow:Develop`: --develop; aliases: --dev, --impl; action: load `references/develop.md`
 
-### Skill.Arg:Alignment.Mode
+### Skill.Arg::Alignment.Mode
 - whether the workflow prompts at declared `Alignment.Checkpoint`s or resolves them autonomously
 - required: false
 - default: Interactive

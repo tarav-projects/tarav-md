@@ -65,7 +65,7 @@
 
 ## Impl.Log
 
-- 2026-07-08: Executed in `Alignment.Mode:Autonomous`. Deviation: the execution module's git checkpoint could not be created because the umbrella root is not a git repo and project instructions prohibit commits without an explicit commit request; proceeded without a checkpoint and left changes uncommitted. Pre-existing dirty changes were present in related Anchory/CLI/Chatlas areas; inspected and preserved them.
+- 2026-07-08: Executed in `Alignment.Mode::Autonomous`. Deviation: the execution module's git checkpoint could not be created because the umbrella root is not a git repo and project instructions prohibit commits without an explicit commit request; proceeded without a checkpoint and left changes uncommitted. Pre-existing dirty changes were present in related Anchory/CLI/Chatlas areas; inspected and preserved them.
 - 2026-07-08: Implemented `AnchoryDepot.register(record, *, anchor=None, prefix=None)` with exactly-one identity validation, exact regex prefix allocation under the existing exclusive depot lock, max+1 suffix selection, and no gap filling. Updated internal exact-anchor callsites/tests to the breaking keyword-only contract.
 - 2026-07-08: Added CLI `agentos anchory register --prefix`, e2e coverage in `agentos-cli`, refreshed the installed `agentos` tool with `uv tool install --reinstall --editable .`, and verified prefix allocation against a scratch depot.
 - 2026-07-08: Updated `agentos-py/AGENTS.md`, `agentos-index/references/link.md`, and `notes/live/567-linking-cli-follow-ups-parking.md`. Verification: `agentos-py` `uv run pytest` passed (274), `agentos-cli` `uv run pytest` passed (56), focused Ruff checks passed for touched Anchory and CLI test files.

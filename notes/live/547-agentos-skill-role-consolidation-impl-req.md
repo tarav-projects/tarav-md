@@ -31,7 +31,7 @@
 
 ### Natural.Placement.For.Skills
 
-- `Natural.Placement:Skills` is the main implementation rule for operational skills
+- `Natural.Placement::Skills` is the main implementation rule for operational skills
 - skills are natural code-like workflow surfaces for procedures, gates, role framing, tool use, and execution-shaped guidance
 - durable concept material belongs in package index blocks, appendix pages, or references
 - skill-local duplicated context should use `Cited.Duplication` so related surfaces can be found, checked for drift, and aligned
@@ -98,7 +98,7 @@
 
 - status: completed
 - changes:
-    - add or update durable blocks for `Agentos.Live.Note`, `Agentos.Live.Script`, and `Natural.Placement:Skills`
+    - add or update durable blocks for `Agentos.Live.Note`, `Agentos.Live.Script`, and `Natural.Placement::Skills`
     - ensure `Multi.Index.Operation` is routed and `Index.Agent` references it
     - update/deprecate `Usage.Skill` so package roots replace usage skills as general orientation surfaces
     - create or update file-numbering appendix/reference surfaces for design depth and operational procedure
@@ -111,7 +111,7 @@
     - `skills/agentos-pkg/references/`
 - validation:
     - inspect concept blocks and routing
-    - `rg "Agentos.Live.Note|Agentos.Live.Script|Natural.Placement:Skills|Multi.Index.Operation|Usage.Skill|File.Numbering.Protocol" skills/agentos-pkg`
+    - `rg "Agentos.Live.Note|Agentos.Live.Script|Natural.Placement::Skills|Multi.Index.Operation|Usage.Skill|File.Numbering.Protocol" skills/agentos-pkg`
 
 ### Slice 2 - Align agentos-pkg Root, Router, And Index Aux Surfaces
 
@@ -211,7 +211,7 @@
 - source design session reports all inventory rings reviewed and no unchecked traversal items
 - implementation should proceed as a consolidation pass, not a redesign pass
 - high-risk areas are skill renames, cross-package moves, and stale references in package routers or skill descriptions
-- implemented durable `Agentos.Live.Note`, `Agentos.Live.Script`, `Natural.Placement:Skills`, `Usage.Skill` deprecation, and file-numbering appendix/reference promotion in `agentos-pkg`
+- implemented durable `Agentos.Live.Note`, `Agentos.Live.Script`, `Natural.Placement::Skills`, `Usage.Skill` deprecation, and file-numbering appendix/reference promotion in `agentos-pkg`
 - aligned `agentos-pkg`, `agentos-index`, and `AGENTS.md` around current package-root and index-aux routing
 - renamed/reframed Hugentic status/capture skills as `hugentics-workflow-status`, `hugentics-chat-status`, and `hugentics-capture-audit`; trigger-only design/impl shims were absorbed into the workflow master skills
 - renamed/reframed live-script and utility skills as `agentos-live-script`, `agentos-skills-ingenier`, `agentos-codebase-cleanup`, and `agentos-git-commit`

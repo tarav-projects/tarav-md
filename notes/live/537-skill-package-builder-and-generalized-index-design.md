@@ -25,7 +25,7 @@
 - **`Kernel.Block`** — the base writing object; **surface-neutral**: "the surface it lives on sets what a block may hold and how writing is gated." One block = one topic. Heading is a conceptual commitment.
 - **`Kernel.Block.Section`** — a named part; two forms: `:Inblock` (`###` subsection) and `:Outblock` (external concept-named file, discovered by naming). The form is a placement choice; **inblock/outblock preference is a block-TYPE concern, not fixed at the Kernel.Block level.**
 - **Section blocks**: `Kernel.Block.Fundamentals` (only required; always inblock), `Kernel.Block.Grounding`, `Kernel.Block.Appendix`, `Kernel.Block.Meta`.
-- **Surface-placement variants** (renamed from old `Kernel.Block:Index/:Appendix/:Design`): `Index.Block`, `Appendix.Block`, `Design.Block` — `Kernel.Block` placed on a specific surface with that surface's constraints. NOT "parameterizations."
+- **Surface-placement variants** (renamed from old `Kernel.Block::Index/:Appendix/:Design`): `Index.Block`, `Appendix.Block`, `Design.Block` — `Kernel.Block` placed on a specific surface with that surface's constraints. NOT "parameterizations."
 - **`Kernel.Block.Meta`** — non-conceptual data about the block-as-object; findability/convenience. The **strip-test**: remove the line; if conceptual load unchanged, it's meta. `alias` is paradigmatic. **No status** on a Stable.Surface.
 
 ### Naming notation (key discipline)

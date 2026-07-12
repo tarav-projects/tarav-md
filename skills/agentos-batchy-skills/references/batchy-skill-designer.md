@@ -39,7 +39,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 Most skills skip this. Include a `## Skill.Index.Section` only when the skill hinges on a few defined concepts the rest of the body leans on — for example a two-agent skill that keeps referring to `Caller.Agent` and `Master.Agent`. It is a `Skill.Arg.Section` sibling: a named section holding one kind of block, scoped to this one skill, with no local router (distinct from the package-wide `Package.Skill.Index`).
 
-Write each concept as a compact block — a `Dotted.Name` heading plus a few orthogonal lines, like a tiny `Kernel.Block:Index` entry. Define, do not narrate.
+Write each concept as a compact block — a `Dotted.Name` heading plus a few orthogonal lines, like a tiny `Kernel.Block::Index` entry. Define, do not narrate.
 
 ```markdown
 ## Skill.Index.Section
@@ -70,13 +70,13 @@ Each `Skill.Arg` block has fundamentals (what the argument means) plus bullet se
 ```markdown
 ## Skill.Arg.Section
 
-### Skill.Arg:Target.Project
+### Skill.Arg::Target.Project
 - the project this skill operates on
 - required: true
 - help: "the project this skill operates on"
 - examples: --project "my-project"
 
-### Skill.Arg:Alignment.Mode
+### Skill.Arg::Alignment.Mode
 - whether the skill asks at checkpoints or runs autonomously
 - required: false
 - default: Interactive

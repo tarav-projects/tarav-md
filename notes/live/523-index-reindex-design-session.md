@@ -318,7 +318,7 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
 
 - `Alignment.Loop` — the machinery for achieving `Hugentic.Alignment` along the `Alignment.Hugentic.Axis`
 - three steps, parameterized by workflow: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`
-- parameterized naming: `Alignment.Question:What`, `Alignment.Question:How`, `Alignment.Question:Exec`
+- parameterized naming: `Alignment.Question::What`, `Alignment.Question::How`, `Alignment.Question::Exec`
 - "Realignment" dropped as prefix — lightweight alignment is just a qualified `Alignment.Loop` (e.g. light)
 
 #### Turn Modes
@@ -334,13 +334,13 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
 
 #### Concept Merges
 
-- `Session.Runtime.Loop` → `Alignment.Loop:What`
-- `Design.Alignment.Question` / `Design.Enrichment.Discussion` / `Design.Consolidation` → `Alignment.Question:What` / `Alignment.Discussion:What` / `Alignment.Consolidation:What`
+- `Session.Runtime.Loop` → `Alignment.Loop::What`
+- `Design.Alignment.Question` / `Design.Enrichment.Discussion` / `Design.Consolidation` → `Alignment.Question::What` / `Alignment.Discussion::What` / `Alignment.Consolidation::What`
 - `User.Assistant.Turn` / `Session.Maintenance.Turn` → `Alignment.User.Turn` / `Alignment.Maintenance.Turn`
-- `InChat.Design.Session` / `Artifact.Design.Session` → `Alignment.Backend:InChat:What` / `Alignment.Backend:Artifact:What`
-- `Impl.Alignment.Loop` → `Alignment.Loop:How`
-- `Realignment.Loop` → `Alignment.Loop:Exec` (light)
-- `Design.Alignment.Core` → `Alignment.Hugentic.Axis:What`
+- `InChat.Design.Session` / `Artifact.Design.Session` → `Alignment.Backend::InChat::What` / `Alignment.Backend::Artifact::What`
+- `Impl.Alignment.Loop` → `Alignment.Loop::How`
+- `Realignment.Loop` → `Alignment.Loop::Exec` (light)
+- `Design.Alignment.Core` → `Alignment.Hugentic.Axis::What`
 - `Design.Open.Space` → sparse region of `Conceptual.Space`
 
 #### Phase Semantic Roots
@@ -348,7 +348,7 @@ Possible CLI: `agentos context minimal`, `agentos context minimal --size`, `agen
 - `What.Design` — phase 1, working on the conceptual model (was `Fundamentals Design`)
 - `How.Design` — phase 2, planning the path to reach it (was `Implementation Design`)
 - `Impl.Exec` — phase 3, walking the path (was `Implementation Execution`)
-- concept names build from these roots (e.g. `What.Design.Session`, `Alignment.Loop:What`)
+- concept names build from these roots (e.g. `What.Design.Session`, `Alignment.Loop::What`)
 
 #### Concept Eliminations
 

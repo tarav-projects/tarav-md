@@ -4,8 +4,8 @@
 
 ## What.Design.Session
 
-- `What.Design.Session` is a scoped human-agent convergence surface for design work — the `What.Design` specialization of `Alignment.Session`, run through `Alignment.Loop:What`
-- it does real design work (problem-solving, issue resolution) while progressively enriching alignment, aiming to fill `Hugentic.Variable:What` with `Hard.Evidence`-based facts
+- `What.Design.Session` is a scoped human-agent convergence surface for design work — the `What.Design` specialization of `Alignment.Session`, run through `Alignment.Loop::What`
+- it does real design work (problem-solving, issue resolution) while progressively enriching alignment, aiming to fill `Hugentic.Variable::What` with `Hard.Evidence`-based facts
 - a staging area for `Stable.Surface` changes — a strong, high-signal trigger for change, not a `Stable.Surface` itself
 - the move from session state to stable surface is the implementation: other agents read the artifact and implement, the session emits `Impl.Req`s, or surfaces are updated directly
 - the destinations are index notes and skills — the session does not replace them
@@ -13,13 +13,13 @@
 
 ****
 
-## Alignment.Loop:What
+## Alignment.Loop::What
 
-- `Alignment.Loop:What` is the `What.Design` specialization of `Alignment.Loop` — the flow the agent steers the session through
-- main flow: `Alignment.Question:What` → `Alignment.Discussion:What` → `Alignment.Consolidation:What`, repeating
+- `Alignment.Loop::What` is the `What.Design` specialization of `Alignment.Loop` — the flow the agent steers the session through
+- main flow: `Alignment.Question::What` → `Alignment.Discussion::What` → `Alignment.Consolidation::What`, repeating
 - runs as `Alignment.User.Turn` (discussion) and `Alignment.Maintenance.Turn` (one agent-driven move); switching is user-gated
 - interruptions (`Alignment.Loop.Interruptions`) are sidequests that pause the main flow at any point and return to it
-- consolidation output is a `Design.Status.Report`; in `Alignment.Backend:InChat:What`, a consolidation just prints one
+- consolidation output is a `Design.Status.Report`; in `Alignment.Backend::InChat::What`, a consolidation just prints one
 
 ****
 
@@ -29,29 +29,29 @@
 - delta-oriented: reactive to context, does not repeat still-valid reported state
 - serves multiple roles: status checkpoint, consolidation output, and session-state summary
 - used sparingly, at natural consolidation points
-- works in both `Alignment.Backend:InChat:What` and `Alignment.Backend:Artifact:What`; in InChat, an `Alignment.Consolidation:What` is printing one
+- works in both `Alignment.Backend::InChat::What` and `Alignment.Backend::Artifact::What`; in InChat, an `Alignment.Consolidation::What` is printing one
 
 ****
 
 ## Alignment.Loop.Interruptions
 
 - `Alignment.Loop.Interruptions` is the user taking a sidequest out of the `Alignment.Loop` — any branch away from the main flow
-- it is fine and expected; the essential property is that the agent can always return to the session state afterward, in both `Alignment.Backend:InChat:What` and `Alignment.Backend:Artifact:What`
+- it is fine and expected; the essential property is that the agent can always return to the session state afterward, in both `Alignment.Backend::InChat::What` and `Alignment.Backend::Artifact::What`
 - some interruptions are themselves well-defined workflows; others are ad-hoc and fully user-driven
 
 ****
 
-## Alignment.Backend:InChat:What
+## Alignment.Backend::InChat::What
 
-- `Alignment.Backend:InChat:What` is the default `What.Design.Session` backend — the `:What` specialization of `Alignment.Backend:InChat`
+- `Alignment.Backend::InChat::What` is the default `What.Design.Session` backend — the `:What` specialization of `Alignment.Backend::InChat`
 - the agent organizes the live chat into design-session form and tracks state across turns and `Design.Status.Report` prints
 - flexibility is the priority — no formal sections required every turn; don't spend tokens on organization overhead
 
 ****
 
-## Alignment.Backend:Artifact:What
+## Alignment.Backend::Artifact::What
 
-- `Alignment.Backend:Artifact:What` is the file-backed `What.Design.Session` backend — state in a `*-design-session.md` `Live.Note`
+- `Alignment.Backend::Artifact::What` is the file-backed `What.Design.Session` backend — state in a `*-design-session.md` `Live.Note`
 - adds `Session.Notes` and `Session.Log` to `Session.Abstract` and `Design.Index`; writes are user-gated
 - upgrade path: InChat → Artifact when state grows large, important, or needs handoff — user-gated, never automatic
 
@@ -131,6 +131,16 @@
 
 ****
 
+## Touched.Authority
+
+- [DF] `Touched.Authority` is the rule that content's authority flows from its grounding, not from its writer — agent-written material carries whatever its evidence supports ^20260711-6
+- the gradient: **untouched** — agent-generated, user-untouched, no grounding: zero authority of its own, rewritable only within `Open.Space` — the complement of the span of grounded constraints, never against them; **grounded** — linked to a `User.Turn`: second-order authority through the link, and rewriting must answer to that evidence; **`User.Turn`** — the grounding itself: the user's touch, first-order authority ^20260711-6
+- lower tiers are bound by the span of the higher ones: untouched content moves in what grounded statements leave open; grounded content moves in what its `User.Turn`s leave open ^20260711-6
+- linkability fences by surface, not by gradient: stable surfaces link only into touched surfaces — grounded content on an untouched surface may be authoritative yet stays unlinkable-into ^20260711-6
+- no authority status is stored — authority is read from provenance on the surface: types, anchors, the gate trail ^20260711-6
+
+****
+
 ## Line.Type
 
 - `Line.Type` is the classification a `Kernel.Line` carries, written as a typed prefix from the `Line.Type.Vocabulary`
@@ -155,65 +165,65 @@
 
 ****
 
-## Line.Type:DF
+## Line.Type::DF
 
-- `Line.Type:DF` marks a definition — the line fixes what a name means
+- `Line.Type::DF` marks a definition — the line fixes what a name means
 - validation point: the line must bind a name to a meaning; a `DF` that introduces no name is mistyped
 - lint: two `DF` lines binding the same name to different meanings, and a block whose first line is not a `DF`
 
 ****
 
-## Line.Type:DC
+## Line.Type::DC
 
-- `Line.Type:DC` marks a decision — the line pins a `Design.Variable` to a value
+- `Line.Type::DC` marks a decision — the line pins a `Design.Variable` to a value
 - validation point: the line must name what was decided and the value it took; a `DC` that pins nothing is mistyped
 - lint: two `DC` lines pinning the same variable to different values is a contradiction to surface
 
 ****
 
-## Line.Type:CT
+## Line.Type::CT
 
-- `Line.Type:CT` marks a constraint — the line bounds a `Design.Variable` to a subset without picking a value
+- `Line.Type::CT` marks a constraint — the line bounds a `Design.Variable` to a subset without picking a value
 - validation point: the line must exclude something; a `CT` that rules nothing out is filler
 - lint: constraints whose intersection is empty, and a `CT` silently violated by a later `DC`
 
 ****
 
-## Line.Type:RJ
+## Line.Type::RJ
 
-- `Line.Type:RJ` marks a rejection — the line excludes a considered alternative
+- `Line.Type::RJ` marks a rejection — the line excludes a considered alternative
 - validation point: the line must name the rejected alternative, preferably with the reason
 - lint: a rejected alternative later reintroduced without a new touch
 
 ****
 
-## Line.Type:PR
+## Line.Type::PR
 
-- `Line.Type:PR` marks a principle — a generative orientation that spawns constraints across many variables
+- `Line.Type::PR` marks a principle — a generative orientation that spawns constraints across many variables
 - validation point: the line must orient decisions beyond one variable; a `PR` scoped to a single variable is a `CT`
 - lint: decisions or constraints that run against a standing principle
 
 ****
 
-## Line.Type:FR
+## Line.Type::FR
 
-- `Line.Type:FR` marks a free declaration — the user explicitly leaves a `Design.Variable` agent-owned
+- `Line.Type::FR` marks a free declaration — the user explicitly leaves a `Design.Variable` agent-owned
 - validation point: the line must name what is left open; freedom is a touched act, not an omission
 - lint: a `FR` variable later constrained without retiring the declaration
 
 ****
 
-## Line.Type:EX
+## Line.Type::EX
 
-- `Line.Type:EX` marks an example — the line illustrates another line's claim with a concrete case
+- `Line.Type::EX` marks an example — the line illustrates another line's claim with a concrete case
 - validation point: the line must exemplify something specific; an example that illustrates no claim is filler
 - lint: an example inconsistent with the constraints and decisions it illustrates
 
 ****
 
-## Line.Type:GR
+## Line.Type::GR
 
-- [DF] `Line.Type:GR` marks a grounding line — a one-sentence account of what an anchored evidence neighborhood grounds
+- [DF] `Line.Type::GR` marks a grounding line — a one-sentence account of what an anchored evidence neighborhood grounds
 - [CT] validation point: the line must carry a trailing anchor and state what the evidence grounds; a `GR` without an anchor is mistyped
 - [DC] lint: an anchor that does not resolve, and a `GR` account contradicted by its anchored neighborhood
 
@@ -255,18 +265,18 @@
 
 ****
 
-## Alignment.Loop:How
+## Alignment.Loop::How
 
-- `Alignment.Loop:How` is the `How.Design` specialization of `Alignment.Loop` — convergence targeting implementation design
+- `Alignment.Loop::How` is the `How.Design` specialization of `Alignment.Loop` — convergence targeting implementation design
 - targets mostly the runnable surfaces (code, skills), not the conceptual surface
 - the discussion runs lower-level: coding best practices, codebase design considerations
 - consolidation output is the `Impl.Req` fundamentals
 
 ****
 
-## Alignment.Loop:Exec
+## Alignment.Loop::Exec
 
-- `Alignment.Loop:Exec` is the `Impl.Exec` specialization of `Alignment.Loop` — the lightest, no longer conceptual
+- `Alignment.Loop::Exec` is the `Impl.Exec` specialization of `Alignment.Loop` — the lightest, no longer conceptual
 - it is the practice of designing and walking implementation plans: `Vertical.Slice`, TDD, execution discipline
 - targets the least-stable surfaces — code plus ephemeral ones like progress tracking and logs
 
@@ -354,6 +364,34 @@
 
 ****
 
+## Delta.Normalization
+
+- [DF] `Delta.Normalization` is incremental derivation in a `Normalization.Pipeline`: normalize only source records added since the last pass plus the model's volatile tail, instead of re-deriving the whole `Normal.Model` ^20260712-14
+- [PR] it applies better to append-friendly target models — an append-only body with per-line provenance and finality; the `Normalization.Pipeline` does not require its targets to be append-friendly ^20260712-13
+- [DC] the unit of work is the stable-prefix / volatile-tail split — content whose derivation is final is frozen and skipped; only the volatile tail and new source records are recomputed ^20260712-14
+- [DC] resume state persists in a `Normalization.Delta.Checkpoint`; a checkpoint that fails validation discards itself and the pass falls back to full derivation ^20260712-14
+- [CT] full derivation from raw sources remains always available and authoritative — delta passes are an optimization, never a new source of truth ^20260712-14
+
+****
+
+## Normalization.Delta.Checkpoint
+
+- [DF] `Normalization.Delta.Checkpoint` is the persisted resume state of `Delta.Normalization` for one source: source position consumed, derivation state still open at that position, running aggregates, and hash-chain state ^20260712-15
+- [DC] the checkpoint is producer-private — only the pipeline that wrote it reads it; it is never a consumer surface of the `Normal.Model` ^20260712-15
+- [DC] it validates before use: the source must still extend the position it recorded; a failed validation discards the checkpoint and the pass re-derives fully ^20260712-15
+- [CT] the checkpoint is disposable at any time with no data loss — deleting it costs one full derivation, nothing else ^20260712-15
+
+****
+
+## Normalization.Trust.Tier
+
+- [DF] `Normalization.Trust.Tier` is the verification level a caller selects for a `Delta.Normalization` pass — how much of the existing `Normal.Model` is re-checked against source before being trusted ^20260712-16
+- [DC] three tiers: trust-append assumes the source only grew and resumes blindly from the checkpoint; verify re-checks provenance over the frozen content and recomputes from the first divergence; rebuild re-derives everything from source ^20260712-16
+- [PR] staleness is a price point, not a defect — when raw sources are preserved and authoritative, a wrong cheap pass is always recoverable by a more expensive one ^20260712-16
+- [CT] tier selection changes cost and staleness risk only, never the model contract — every tier produces the same model shape ^20260712-16
+
+****
+
 ## Comparative.Normalization
 
 - `Comparative.Normalization` is normalizing a source by reading it alongside previously normalized instances rather than from the source and specs in isolation — an instantiation of `Normalization.Pipeline` that consults precedent
@@ -383,7 +421,7 @@
 - invariant across all outcomes: the agent surfaces its interpretation and makes the resolved canonical name(s) explicit before building on it
 - ambiguity → surface the top candidates and confirm; unresolvable → degrade to `Unresolved.Index.Name`
 - direction is symmetric: the user emits `~` to ask; the agent emits `~` to flag an unverified, approximate recall
-- soft meaning surfaced as a chat sigil — rides `Concept.Hardness`, sibling to `Dotted.Parameterized.Notation` and the variable `<Concept>.Name` form
+- soft meaning surfaced as a chat sigil — rides `Concept.Hardness`, sibling to `::` type statements (`Addressing.Sigil.Vocabulary`) and the variable `<Concept>.Name` form ^20260712-6
 
 ****
 

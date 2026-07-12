@@ -11,12 +11,12 @@
 
 ## Impl.Index
 
-### Design.Principle:Model.Closed.Output
+### Design.Principle::Model.Closed.Output
 - every chatlas output is a fragment of the `Chatlas.Session.Model` — the output vocabulary stays closed on the model space (user constraint, this session)
 - turn search results, anchor neighborhoods, and mint echoes are all tape projections through the existing view machinery, never ad-hoc row shapes
 - the `Chatlas.Query.Envelope` continues to separate query accounting from row projection
 
-### Design.Principle:One.System
+### Design.Principle::One.System
 - chatlas anchory and the chatlas query language are the same system, co-designed: an anchor is a session/window selector the query language accepts natively, and query surfaces are how anchor records are validated and read back
 - `Anchory.System/Integration` split holds: chatlas owns record meaning and traversal; anchory stays plumbing — chatlas never touches register files directly, always through the anchory library
 
@@ -89,7 +89,7 @@
 
 ## Impl.Log
 
-- 2026-07-08: executed in `Alignment.Mode:Autonomous`. All slices S1–S4 complete; 11 new behavior tests; full suite 119 green after `Chat.Ref` test removal (ref grammar tests deleted, not ported).
+- 2026-07-08: executed in `Alignment.Mode::Autonomous`. All slices S1–S4 complete; 11 new behavior tests; full suite 119 green after `Chat.Ref` test removal (ref grammar tests deleted, not ported).
 - open-space decision (S1): `--around` without `--radius` orders ALL selected events nearest-first (no implicit window size); `--radius` limits to the nearest `2r+1`. `--radius` without `--around` is a `CliError`.
 - open-space decision (S1): selection flags are rejected for `--view full` — full is the unprojected model, filtering it would corrupt "full" semantics.
 - open-space decision (S1): `--contains` matches case-insensitively over all string values in the event payload (recursive walk), not only `text` fields.

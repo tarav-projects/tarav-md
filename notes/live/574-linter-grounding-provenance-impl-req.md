@@ -82,7 +82,7 @@
 
 ## Impl.Log
 
-- 2026-07-08: executed in `Alignment.Mode:Autonomous`. S1: socket (`extra_checks`) + `Index.Linter/Line.Types` core check (syntax, unknown code, `[GR]` anchor, `Source.Axis.Placement` error); agendix files discovered as `appendix`-sibling and `depot/agendix` — no `SurfaceKind` ripple (the deviation trigger did not fire; checks walk config paths directly).
+- 2026-07-08: executed in `Alignment.Mode::Autonomous`. S1: socket (`extra_checks`) + `Index.Linter/Line.Types` core check (syntax, unknown code, `[GR]` anchor, `Source.Axis.Placement` error); agendix files discovered as `appendix`-sibling and `depot/agendix` — no `SurfaceKind` ripple (the deviation trigger did not fire; checks walk config paths directly).
 - S2: `agentos_chatlas/index_checks.py` — provenance check with per-session model cache; landing-turn role = nearest timestamped message event to `at` (mirrors mint validation semantics); non-chatlas records skipped; missing depot gates to blocked.
 - S3: `register_index_commands(..., extra_linter_checks=…)` + composition in `agentos-cli`; live acceptance: both depots 16 checks, 0 findings — all live anchors verified end to end.
 - open-space decision: act-code list is a module constant in the core linter with a comment pointing at `Line.Type.Vocabulary` (index-sourced later if cheap).

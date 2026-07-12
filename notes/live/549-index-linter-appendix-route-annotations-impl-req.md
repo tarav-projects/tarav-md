@@ -32,7 +32,7 @@
 - `Concept.Name[+1]` should normalize to `Concept.Name`
 - `Concept.Name[+2]` should normalize to `Concept.Name`
 - existing router forms without annotations must continue to work
-- chained colon parameter concepts such as `Alignment.Backend:InChat:What[+1]` must remain valid
+- chained type-statement concepts such as `Alignment.Backend::InChat::What[+1]` must remain valid
 
 ****
 

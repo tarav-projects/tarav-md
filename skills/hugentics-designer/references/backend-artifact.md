@@ -1,15 +1,15 @@
-# Alignment.Backend:Artifact:What
+# Alignment.Backend::Artifact::What
 
-`Alignment.Backend:Artifact:What` is the file-backed `What.Design.Session` workflow.
+`Alignment.Backend::Artifact::What` is the file-backed `What.Design.Session` workflow.
 
 It materializes session state into one live-note artifact and continues the same alignment loop with durable working state.
 
 ## Role
 
-Use `Alignment.Backend:Artifact:What` when:
+Use `Alignment.Backend::Artifact::What` when:
 
 - the user asks for an artifact, file, live note, or durable capture,
-- an `Alignment.Backend:InChat:What` session is upgraded,
+- an `Alignment.Backend::InChat::What` session is upgraded,
 - the session is too large or important for chat-only state,
 - the work needs future handoff,
 - an `Impl.Req` is likely or requested.
@@ -75,8 +75,8 @@ Suggest a second `*-design-session.md` only when:
 
 Do not split merely because a new section or concept exists.
 
-## Relationship To Alignment.Backend:InChat:What
+## Relationship To Alignment.Backend::InChat::What
 
-`Alignment.Backend:Artifact:What` is an upgrade of `Alignment.Backend:InChat:What`, not a different conceptual model.
+`Alignment.Backend::Artifact::What` is an upgrade of `Alignment.Backend::InChat::What`, not a different conceptual model.
 
 The same `Session.Abstract` and `Design.Index` sections are preserved. Artifact mode adds `Session.Notes` and `Session.Log` for working state and event history.

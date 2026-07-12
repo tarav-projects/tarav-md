@@ -60,10 +60,11 @@
 ## Block.Path
 
 - `Block.Path` is a block name written as a `/`-separated path — the full path is the name
-- the root segment is a `Dotted.Name`, a top-level index concept; the path anchors on that node
-- later segments may be `Dotted.Name` concepts or free labels; an author composes any path that organizes the block
+- [DF] it is the ontology-topology form of `Skw.Address.Schema`; `/` states descent (`Addressing.Sigil.Vocabulary`) ^20260712-4
+- [CT] a segment may be a `Dotted.Name` concept, a free label, or a single-word atom — the `/` supplies the minimum sigil ^20260712-4
 - a concept segment carries `Concept.Scoping` semantics; a label segment just groups, claiming no ontology entry
-- a path-named block is attached to its root and lives in the root's appendix by default — it is not itself a top-level index block
+- [DC] an anchored path — its root names a routed index concept — attaches the block to that node and lives in the root's appendix by default; it is not itself a top-level index block ^20260712-4
+- [FR] an unanchored path is legal, mirroring pre-registration `Dotted.Name`s — placement is the author's call until the root matures ^20260712-4
 - section paths (`Concept.X/Appendix`, `Concept.X/Grounding`) are restricted to the appendix; a scoped concept-child defaults there but may be promoted
 
 ****

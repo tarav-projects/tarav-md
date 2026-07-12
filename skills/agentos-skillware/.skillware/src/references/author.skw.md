@@ -36,7 +36,7 @@ The `intent:` is the `Derivation.Rule` context — written so a cold agent can r
 
 - the CPU materializes `copy` bindings and detects drift; the agent performs derivations — and performs them **in src**, where the `Derivation.Rule` and its current solution live side by side
 - per import, the system records the target (by durable address), the binding, and the context, and re-runs the check or the materialization on demand — `lock.json` holds the record
-- targets are addressed by legal block names: `Dotted.Name`s for index blocks, locators for files and regions
+- targets are addressed by `Skw.Address.Schema` names: `Dotted.Name`s for index blocks, `Locator.Name`s for files, regions, and labeled spans
 - the more imported a module's content, the more its maintenance automates — imported spans re-materialize, while original content and the seams where it meets them stay manual
 
 > [!skw]- end-derived

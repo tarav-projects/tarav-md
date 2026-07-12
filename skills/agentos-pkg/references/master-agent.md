@@ -12,7 +12,7 @@ The caller owns the prompt and surrounding context. The master agent owns packag
 - answer from accessible `Package.Skill` surfaces
 - load only the package context needed for the prompts
 - answer prompts in order
-- answer `Skill.Arg:Main.Prompt` with the highest priority
+- answer `Skill.Arg::Main.Prompt` with the highest priority
 - return a separate answer section for each prompt
 - write responses using `Kernel.Writing`
 - distinguish discovered package evidence from inference
@@ -24,7 +24,7 @@ The caller owns the prompt and surrounding context. The master agent owns packag
 
 1. Load the `agentos-pkg` skill as the fundamental `Package.Driver`.
 2. Read the supplied arguments.
-3. Interpret the optional `Skill.Arg:Scope`.
+3. Interpret the optional `Skill.Arg::Scope`.
 4. Inspect all the supplied prompts before beginning research.
 5. Identify the packages and package surfaces likely to answer the prompts.
 
@@ -32,7 +32,7 @@ The master agent does not have access to the caller's conversation unless the ca
 
 ## Scope Behavior
 
-`Skill.Arg:Scope` focuses the research.
+`Skill.Arg::Scope` focuses the research.
 
 Scope may identify:
 
@@ -55,7 +55,7 @@ If scope or package resolution remains ambiguous, state the ambiguity rather tha
 
 Use this discovery order:
 
-1. Explicit packages named in `Skill.Arg:Scope` or the prompts.
+1. Explicit packages named in `Skill.Arg::Scope` or the prompts.
 2. Packages identified by project guidance such as `AGENTS.md`.
 3. Packages, subsystems, skills, or concepts named in adjacent context.
 4. Routes exposed by the `agentos-pkg` skill.
@@ -79,8 +79,8 @@ Research all the supplied prompts as one related call.
 
 - identify shared concepts and package surfaces before loading deeply
 - reuse loaded context across prompts
-- prioritize evidence needed for `Skill.Arg:Main.Prompt`
-- collect orthogonal findings for `Skill.Arg:Enrichment.Prompt`
+- prioritize evidence needed for `Skill.Arg::Main.Prompt`
+- collect orthogonal findings for `Skill.Arg::Enrichment.Prompt`
 - follow useful package routes when they materially improve an answer
 - stop exploring when further loading is unlikely to change the result
 
@@ -90,7 +90,7 @@ Package-grounded evidence is authoritative for this role. General reasoning may 
 
 Answer prompts in their declared order.
 
-### Skill.Arg:Main.Prompt
+### Skill.Arg::Main.Prompt
 
 - answer first
 - give it the highest research and response priority
@@ -98,7 +98,7 @@ Answer prompts in their declared order.
 - use adjacent context to interpret the request
 - do not let secondary prompts dilute or delay the main answer
 
-### Skill.Arg:Enrichment.Prompt
+### Skill.Arg::Enrichment.Prompt
 
 - answer after the main request
 - treat it as orthogonal to the main request
@@ -154,7 +154,7 @@ Token economy comes from high signal and low redundancy, not from omitting mater
 Return one named section per prompt. Use direct, orthogonal bullet lines inside each section:
 
 ```md
-## Skill.Arg:Main.Prompt
+## Skill.Arg::Main.Prompt
 
 - <direct answer dimension with relevant `Dotted.Name` concepts naturally embedded>
 - <independent supporting or qualifying dimension>
@@ -163,7 +163,7 @@ Return one named section per prompt. Use direct, orthogonal bullet lines inside 
 - inference: <material inference, only when needed>
 - unresolved: <ambiguity, disagreement, or missing evidence>
 
-## Skill.Arg:Enrichment.Prompt
+## Skill.Arg::Enrichment.Prompt
 
 - <orthogonal package-grounded finding with relevant concepts naturally embedded>
 - <independent connection, contradiction, risk, opportunity, or useful question>

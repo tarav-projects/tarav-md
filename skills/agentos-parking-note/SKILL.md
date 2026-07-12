@@ -16,7 +16,7 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 
 ## Skill.Arg.Section
 
-### Skill.Arg:Idea
+### Skill.Arg::Idea
 - the thought to park: an idea, todo, issue, or observation
 - required: false
 - help: "the thought to capture; omitted, the skill asks for it"

@@ -23,26 +23,26 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - `Agentos.Skillware` is the discipline of treating skills as software — the skill is the unit of software for agents
 - "as software" means the artifacts agents run gain engineering structure — modules, dependencies, builds, versions, lineage — so they are reused and evolved rather than written once and forked
 - a development toolchain of builders and checkers, spanning agentic and `CPU.Impl` work, moves package maintenance off the human
-- it is a discipline realized by capabilities, not a single mechanism — this skill carries the capabilities
+- it is a discipline realized by capabilities, not a single mechanism — **skw**, the general annotation language and its backends, is the system realizing it; this skill carries the capabilities
 
 > [!skw]- end-derived
 
 ## Skill.Arg.Section
 
-### Skill.Arg:About
+### Skill.Arg::About
 - orientation, doctrine, and language questions — the read-to-understand side
 - required: false
 - aliases: --info, --doctrine
 - help: "explain Skillware: doctrine, model, recipe language, locators"
 - examples: --about, --about "how do derived recipes track staleness?"
 
-### Skill.Arg:Dev
+### Skill.Arg::Dev
 - authoring, adoption, and building — the write side
 - required: false
 - help: "do Skillware development: write src, adopt a skill, build surfaces"
 - examples: --dev "add a derived section to ground.skw.md", --dev "adopt agentos-batchy-skills"
 
-### Skill.Arg:Check
+### Skill.Arg::Check
 - read-only drift report over a skill's managed surfaces, with per-verdict prescriptions
 - required: false
 - help: "check managed surfaces for drift and prescribe responses (read-only)"

@@ -18,14 +18,14 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 
 ## Skill.Arg.Section
 
-### Skill.Arg:Target.Repo
+### Skill.Arg::Target.Repo
 - the repository to commit in; when omitted, the skill auto-detects the current repo or immediate child repos
 - required: false
 - default: auto-detect (current directory or immediate child repositories)
 - help: "the repository to commit in"
 - examples: --repo "./my-repo"
 
-### Skill.Arg:Allow.Amend
+### Skill.Arg::Allow.Amend
 - permit `git commit --amend`; forbidden unless this switch is set
 - required: false
 - default: false
@@ -33,7 +33,7 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 - help: "allow amending the previous commit"
 - examples: --amend
 
-### Skill.Arg:Allow.NoVerify
+### Skill.Arg::Allow.NoVerify
 - permit `git commit --no-verify`; forbidden unless this switch is set
 - required: false
 - default: false
@@ -41,7 +41,7 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 - help: "allow bypassing commit hooks"
 - examples: --no-verify
 
-### Skill.Arg:Mode.DryRun
+### Skill.Arg::Mode.DryRun
 - explore and plan the commit groups read-only; do everything except stage and commit, then report
 - required: false
 - default: false

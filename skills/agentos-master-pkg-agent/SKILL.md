@@ -34,21 +34,21 @@ This skill runs as two agents. The skill body refers to both throughout.
 
 The master agent does not receive the caller's conversation. Pass the context each prompt needs explicitly; prefer complete, relevant context over an unfiltered transcript.
 
-### Skill.Arg:Main.Prompt
+### Skill.Arg::Main.Prompt
 - the primary question or requested result, answered first and with the highest priority
 - may request research, comparison, explanation, critique, enrichment, or another read-only result
 - required: true
 - help: "the primary question or requested result"
 - examples: --prompt "..."
 
-### Skill.Arg:Context
+### Skill.Arg::Context
 - the adjacent context the master agent needs because it cannot see the caller's conversation
 - carries relevant concepts, current understanding, accepted decisions, uncertainty, constraints, or prior findings
 - required: false
 - help: "context the agent needs to interpret the request"
 - examples: --context "..."
 
-### Skill.Arg:Scope
+### Skill.Arg::Scope
 - an optional research focus: particular packages, subsystems, surfaces, concepts, time ranges, or investigation boundaries
 - guidance, not a strict exclusion unless explicitly marked strict; materially relevant findings just outside it may still be reported
 - when omitted, the master agent discovers relevant packages and surfaces from the request and context
@@ -56,16 +56,16 @@ The master agent does not receive the caller's conversation. Pass the context ea
 - help: "focus the research"
 - examples: --scope "agentos-pkg index"
 
-### Skill.Arg:Enrichment.Prompt
+### Skill.Arg::Enrichment.Prompt
 - a recommended secondary request: independently inspect the subject and surface additional package-grounded concepts, connections, contradictions, risks, opportunities, or questions the caller had not considered
-- orthogonal to `Skill.Arg:Main.Prompt` — not an expansion, critique, or continuation of it
+- orthogonal to `Skill.Arg::Main.Prompt` — not an expansion, critique, or continuation of it
 - answered after the main prompt; may return that no material enrichment was found
 - author it for the current discussion and exclude topics already enriched by previous calls
 - required: false
 - help: "ask for independent package-grounded enrichment"
 - examples: --enrich "..."
 
-The master agent answers the supplied prompts in order, each in its own answer section, with `Skill.Arg:Main.Prompt` highest priority. When enrichment is the main goal, supply it as `Skill.Arg:Main.Prompt`.
+The master agent answers the supplied prompts in order, each in its own answer section, with `Skill.Arg::Main.Prompt` highest priority. When enrichment is the main goal, supply it as `Skill.Arg::Main.Prompt`.
 
 ## Spawn The Agent
 

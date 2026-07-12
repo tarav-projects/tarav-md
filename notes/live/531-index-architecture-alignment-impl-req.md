@@ -19,9 +19,9 @@
 ### Block.Structure.Revision
 
 - block types are parameterizations of `Kernel.Block` using `Dotted.Parameterized.Notation`:
-    - `Kernel.Block:Index` — Kernel.Block in `notes/index/`, tight space constraints; aliases: `Index.Block`, `Global.Block`
-    - `Kernel.Block:Appendix` — Kernel.Block in `notes/appendix/`, relaxed space; aliases: `Appendix.Block`
-    - `Kernel.Block:Design.Session` — Kernel.Block in session artifacts, draft quality; aliases: `Design.Session.Block`, `Design.Index.Block`
+    - `Kernel.Block::Index` — Kernel.Block in `notes/index/`, tight space constraints; aliases: `Index.Block`, `Global.Block`
+    - `Kernel.Block::Appendix` — Kernel.Block in `notes/appendix/`, relaxed space; aliases: `Appendix.Block`
+    - `Kernel.Block::Design.Session` — Kernel.Block in session artifacts, draft quality; aliases: `Design.Session.Block`, `Design.Index.Block`
 - aliases live in `### meta` — findability aids, not separate concepts
 - `Complete.Index.Block` is removed — `Kernel.Block` already includes appendix + meta
 - `Index.Block.Outlinks` section in `100-index.md` is removed — outlinks are now part of `### meta`
@@ -36,7 +36,7 @@
 - existing files to rename:
     - `notes/appendix/125-Agentos.Surfaces.md` → determine concept name
     - `notes/appendix/125-Development.Principles.md` → determine concept name
-- `Index.Appendix.Block` as a separate concept is removed — replaced by `Kernel.Block:Appendix`
+- `Index.Appendix.Block` as a separate concept is removed — replaced by `Kernel.Block::Appendix`
 
 ### Ontology.System.Introduction
 
@@ -63,14 +63,14 @@
 
 ### Slice 2 — Reframe block types as Kernel.Block parameterizations
 
-- rewrite `Index.Block` in `100-index.md` as `Kernel.Block:Index` — reference `Kernel.Block`, describe tight space constraints; add aliases in `### meta`
-- rewrite `Index.Appendix.Block` in `100-index.md` as `Kernel.Block:Appendix` — reference `Kernel.Block`, describe relaxed space; add aliases in `### meta`
-- rewrite `Design.Index.Block` in `100-index.md` as `Kernel.Block:Design.Session` — reference `Kernel.Block`, describe session draft quality; add aliases in `### meta`
+- rewrite `Index.Block` in `100-index.md` as `Kernel.Block::Index` — reference `Kernel.Block`, describe tight space constraints; add aliases in `### meta`
+- rewrite `Index.Appendix.Block` in `100-index.md` as `Kernel.Block::Appendix` — reference `Kernel.Block`, describe relaxed space; add aliases in `### meta`
+- rewrite `Design.Index.Block` in `100-index.md` as `Kernel.Block::Design.Session` — reference `Kernel.Block`, describe session draft quality; add aliases in `### meta`
 - remove `Complete.Index.Block` block from `100-index.md` and `001-ontology.md`
 - remove `Index.Block.Outlinks` block from `100-index.md` and `001-ontology.md`
 - update ontology entries: rename to parameterized names, add alias entries
 - path: `100-index.md` → `001-ontology.md`
-- observable: block types use `Kernel.Block:X` naming with aliases; `Complete.Index.Block` and `Index.Block.Outlinks` gone
+- observable: block types use `Kernel.Block::X` naming with aliases; `Complete.Index.Block` and `Index.Block.Outlinks` gone
 - check: grep for removed terms returns zero hits in `notes/index/`
 - status: done
 
@@ -107,10 +107,10 @@
 ## Impl.Log
 
 - 2026-05-15: Impl.Req created from design session 530, items 1-8
-- 2026-05-15: Updated — block types reframed as `Kernel.Block:X` parameterizations with aliases in `### meta`; slice 2 rewritten
+- 2026-05-15: Updated — block types reframed as `Kernel.Block::X` parameterizations with aliases in `### meta`; slice 2 rewritten
 - 2026-05-15: Implementation complete — all 5 slices executed
     - Slice 1: `Kernel.Writing` and `Kernel.Block` added to `102-index.md` + ontology entries + routing
-    - Slice 2: `Index.Block` → `Kernel.Block:Index`, `Index.Appendix.Block` → `Kernel.Block:Appendix`, `Design.Index.Block` → `Kernel.Block:Design.Session`; `Complete.Index.Block` and `Index.Block.Outlinks` removed; ontology entries updated
+    - Slice 2: `Index.Block` → `Kernel.Block::Index`, `Index.Appendix.Block` → `Kernel.Block::Appendix`, `Design.Index.Block` → `Kernel.Block::Design.Session`; `Complete.Index.Block` and `Index.Block.Outlinks` removed; ontology entries updated
     - Slice 3: `Ontology.Registry`, `Ontology.Namespace`, `Index.Architecture`, `Agentos.Index` blocks added to `001-ontology.md`
     - Slice 4: appendix files renamed to `Concept.Name-appendix.md`; `agentos-index-appendix-base` and `agentos-index/references/appendix.md` rewritten for new convention
     - Slice 5: "durable concept-note subsystem" → Stable.Surface framing in index; `### index` → `### meta` in block-syntax and writer skills; reference table updated

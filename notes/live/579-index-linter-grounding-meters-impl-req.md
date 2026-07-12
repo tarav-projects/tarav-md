@@ -21,7 +21,7 @@
 - **checks emit-per-config, not gate-per-config**: follow the existing `Line.Unlinked` pattern — coverage checks always run and consult `config.coverage` to decide what to emit; no blocked-check noise for disabled meters.
 - **`Index.Linter/Block.Ungrounded`** (warning, coverage `"block"`): fires on a chapter-surface concept block with no `Grounding.Head`.
   - denominator: `BlockHeading` nodes in `surface_kind == "chapter"` documents with `parsed["segments"] == []` and `parsed["valid"]` — top-level concept blocks only; appendix/agendix headings never enter the denominator
-  - block identity is `parsed["path"]`, NOT `parsed["root"]` — parameterized names split into root+params (`Line.Type:DF` → root `Line.Type`), so root-matching would collapse distinct blocks
+  - block identity is `parsed["path"]`, NOT `parsed["root"]` — parameterized names split into root+params (`Line.Type::DF` → root `Line.Type`), so root-matching would collapse distinct blocks
   - grounded: some appendix-surface document has a `BlockHeading` whose `parsed["path"] == f"{block_path}/Grounding.Head"` (equivalently: same full path prefix, `parsed["segments"] == ["Grounding.Head"]`) whose section contains at least one `KernelLine` with `parsed["act"] == "GR"` AND an anchor span — an anchored non-`[GR]` line does not satisfy the block meter
   - the finding lands on the chapter block's heading line
 - **`Line.Unlinked` semantics unchanged** except its trigger: coverage `"line"` instead of `warn_unlinked`. The agendix mandatory case (hard provenance) is NOT coverage — it keeps firing regardless of flags, exactly as today.

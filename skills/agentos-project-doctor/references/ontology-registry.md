@@ -15,7 +15,7 @@ Use simple search first. Do not overfit the regex.
 ## Agentic Checks
 
 - Decide whether unregistered dotted names are real concepts, examples, parameters, or incidental prose.
-- Distinguish `Dotted.Notation` concepts from `Dotted.Parameterized.Notation` examples.
+- Distinguish `Dotted.Notation` concepts from `::` type-statement examples (`Addressing.Sigil.Vocabulary`).
 - Treat missing routing entries as findings only when concept identity matters.
 
 ## Expected Findings

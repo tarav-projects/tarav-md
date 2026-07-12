@@ -15,100 +15,100 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 ## Skill.Arg.Section
 
-### Skill.Arg:Search
+### Skill.Arg::Search
 - search the index through routing-first selective loading
 - required: false
 - help: "search the index and return cited context"
 - examples: --search "Index.AGENTS.MD"
 
-### Skill.Arg:Edit
+### Skill.Arg::Edit
 - work the approved edit path for index or appendix changes
 - required: false
 - help: "use the index edit path for approved changes"
 - examples: --edit "add Context.Hook"
 
-### Skill.Arg:Write
+### Skill.Arg::Write
 - call the edit module
 - required: false
 - help: "use the index edit path for approved changes"
 - examples: --write "add Context.Hook"
 
-### Skill.Arg:Append
+### Skill.Arg::Append
 - call the edit module
 - required: false
 - help: "use the index edit path for approved changes"
 - examples: --append "add a line to Context.Hook"
 
-### Skill.Arg:Check
+### Skill.Arg::Check
 - run deterministic checks over index depots or explicit index surfaces
 - required: false
 - help: "run index checks"
 - examples: --check --depot agentos-pkg
 
-### Skill.Arg:Lint
+### Skill.Arg::Lint
 - call the check module
 - required: false
 - help: "run index checks"
 - examples: --lint --depot agentos-pkg
 
-### Skill.Arg:Depot
+### Skill.Arg::Depot
 - scope index work to one or more engaged index depots
 - required: false
 - default: task-relevant engaged depots
 - help: "scope index work to an index depot"
 - examples: --depot agentos-pkg, --depot agentos-chatlas-pkg
 
-### Skill.Arg:Chapter
+### Skill.Arg::Chapter
 - scope index work to one chapter within the engaged depots
 - required: false
 - default: design
 - help: "scope index work to a chapter"
 - examples: --chapter design, --chapter impl
 
-### Skill.Arg:Ground
+### Skill.Arg::Ground
 - ground the current conversation or prompt against the index
 - required: false
 - help: "ground the current conversation against the index and report what matters"
 - examples: --ground "check this design discussion against the index"
 
-### Skill.Arg:Type
+### Skill.Arg::Type
 - read or propose `Line.Type` classification for index lines
 - required: false
 - help: "explain, read, or propose index line typing"
 - examples: --type "type the Anchory.System block", --type "what binds me in this block?"
 
-### Skill.Arg:Agendix
+### Skill.Arg::Agendix
 - capture `User.Touched` lines from the current conversation into the agendix
 - required: false
 - help: "run an agendix capture pass over the current conversation"
 - examples: --agendix, --agendix "capture the grounding discussion"
 
-### Skill.Arg:Link
+### Skill.Arg::Link
 - mint an `Anchory.Anchor` for a chat context — the linking primitive other modules consume
 - required: false
 - help: "mint an anchor for a chat evidence turn and return it"
 - examples: --link "anchor the turn where the user picked syntax B"
 
-### Skill.Arg:BackLink
+### Skill.Arg::BackLink
 - ground an existing index block backward: git history → session → turns → anchor
 - required: false
 - help: "recover chat evidence for an existing block and propose its grounding"
 - examples: --back-link "Writing.Friction.Reduction", --back-link "ground the 107 chapter"
 
-### Skill.Arg:GrSurvey
+### Skill.Arg::GrSurvey
 - run a grounding campaign's survey phase: sweep a scope, mint anchors, produce a `Gr.Req`
 - required: false
 - aliases: --gr-scout, --gr-scan, --gr-linker
 - help: "survey grounding evidence for a scope into a Gr.Req artifact"
 - examples: --gr-survey "design/105-design.md", --gr-survey "the whole agentos-pkg depot"
 
-### Skill.Arg:GrReview
+### Skill.Arg::GrReview
 - walk a `Gr.Req`'s proposed entries with the user and land the approved links
 - required: false
 - help: "review a Gr.Req: flip statuses, land gated grounding edits"
 - examples: --gr-review 577, --gr-review "notes/live/577-105-gr-req.md"
 
-### Skill.Arg:Enrich
+### Skill.Arg::Enrich
 - run `Index.Enrichment` on a block: a focused discussion producing new touched surface, landed through the gates
 - required: false
 - help: "enrich a block: generate new grounding surface through a scoped discussion"
@@ -125,7 +125,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - the index is `Index.Skillware` — an executable artifact for project knowledge
 - it is an `Alignment.Surface` between humans and agents
-- it contains `Named.Concepts` written in `Kernel.Block:Index` blocks, organized in `Index.Chapter` files under `Index.Main`, routed by `000-INDEX.md`, with on-demand `Index.Appendix` depth
+- it contains `Named.Concepts` written in `Kernel.Block::Index` blocks, organized in `Index.Chapter` files under `Index.Main`, routed by `000-INDEX.md`, with on-demand `Index.Appendix` depth
 - the active chapter defaults to `design`; chapter files are named `NNN-<chapter>.md`
 - index work happens over engaged `Index.Depot`s; `--depot` scopes which depots are engaged and `--chapter` scopes within them
 - its lines carry `Line.Type` codes (`- [CT] ...`) classifying each line's act; untyped lines are pre-fence legacy

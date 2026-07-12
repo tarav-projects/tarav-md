@@ -15,7 +15,7 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 
 ## Skill.Arg.Section
 
-### Skill.Arg:Target.Project
+### Skill.Arg::Target.Project
 - the project folder to evaluate against `Agentos.Stack`
 - required: false
 - default: the current working directory

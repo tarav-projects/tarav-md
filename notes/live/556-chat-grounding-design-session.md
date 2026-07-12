@@ -13,7 +13,7 @@ Current status: core design promoted to the Agentos package index. Retrieval and
 ### Chat.Grounding
 
 - `Chat.Grounding` is a context-injection and citation responsibility over index/appendix blocks.
-- It grounds a `Kernel.Block:Index` or `Kernel.Block:Appendix` in prior user/agent chat interactions.
+- It grounds a `Kernel.Block::Index` or `Kernel.Block::Appendix` in prior user/agent chat interactions.
 - It improves downstream work quality by connecting cited concepts to actual recorded user/agent alignment evidence.
 - It is an `Alignment.Mechanism`: it helps agents preserve user intent, recover prior decisions, and detect drift.
 - It has sequential semantics: more recent grounded chat about a topic is treated as the current view.
@@ -69,9 +69,9 @@ Current status: core design promoted to the Agentos package index. Retrieval and
 
 - open: whether MVP `Chat.Ref` is sufficient or a stricter exact-turn primitive is needed
 
-### Kernel.Block:Grounding
+### Kernel.Block::Grounding
 
-- `Kernel.Block:Grounding` is the standard grounding section of a kernel block.
+- `Kernel.Block::Grounding` is the standard grounding section of a kernel block.
 - It is the block-local expression of a `Chat.Grounding` relationship.
 - It sits alongside fundamentals, `### appendix`, and `### meta` as a normal block section.
 - Its canonical heading is lowercase `### grounding`.
@@ -179,7 +179,7 @@ Current claim or decision cites `Concept.Name`; `Concept.Name` carries the chat 
 ### Topic.Identity
 
 - `Topic.Identity` is kernel block identity in the index/appendix system.
-- A grounding topic is a `Kernel.Block:Index` or `Kernel.Block:Appendix` subject.
+- A grounding topic is a `Kernel.Block::Index` or `Kernel.Block::Appendix` subject.
 - If a subtopic inside a block needs independent grounding, it should become its own kernel block.
 - `Topic.HEAD` is scoped to one grounded kernel block topic.
 - Other surfaces cite grounded blocks instead of inventing separate grounding topics.
@@ -315,7 +315,7 @@ Current claim or decision cites `Concept.Name`; `Concept.Name` carries the chat 
 
 ### Grounding.MVP
 
-- MVP concept surface: `Chat.Grounding`, `Chat.Ref`, `Topic.Identity`, `Topic.HEAD`, `Kernel.Block:Grounding`, `Grounding.Entry`, `Grounding.DRIFT`, `Grounding.History`, `Grounding.Material`, `Grounding.Request`, `Grounding.Miner`, and `Grounding.Context.Injection`.
+- MVP concept surface: `Chat.Grounding`, `Chat.Ref`, `Topic.Identity`, `Topic.HEAD`, `Kernel.Block::Grounding`, `Grounding.Entry`, `Grounding.DRIFT`, `Grounding.History`, `Grounding.Material`, `Grounding.Request`, `Grounding.Miner`, and `Grounding.Context.Injection`.
 - MVP block convention: grounded index/appendix blocks carry a standard grounding section with direct `Chat.Ref`s and one-sentence evidence notes.
 - MVP behavior: miners produce `Grounding.Request`s when relevant chat evidence is found and reviewers later write accepted grounding into kernel blocks.
 - MVP retrieval path can use existing `agentos chatlas` query/export surfaces before adding vector search.

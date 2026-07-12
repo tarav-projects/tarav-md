@@ -192,9 +192,9 @@
 
 ****
 
-## Normalization.Pipeline:Account.Usage.Model
+## Normalization.Pipeline::Account.Usage.Model
 
-- `Normalization.Pipeline:Account.Usage.Model` is the account-usage instantiation of `Normalization.Pipeline` — native provider usage artifacts normalized into `Account.Usage.Status`
+- `Normalization.Pipeline::Account.Usage.Model` is the account-usage instantiation of `Normalization.Pipeline` — native provider usage artifacts normalized into `Account.Usage.Status`
 - `Normal.Model` = `Account.Usage.Status`, modeled as a list of `Usage.Limit`s
 - `Raw.Source`s are native provider usage artifacts (codex `rateLimits`, claude statusline JSON, copilot usage); `Raw.Normalizer`s are per-provider and per-native-variant
 - the many-normalizers freedom covers native drift — claude statusline `rate_limits` and the legacy `seven_day` shape are separate `Raw.Normalizer`s, not one branching function
@@ -278,7 +278,7 @@
 ## Account.Management
 
 - `Account.Management` is the agentos subsystem that models provider login across all providers and account types under one shared lifecycle
-- one lifecycle, never per-provider: provider differences are absorbed by the `Account.Model:Auth.Method` class — it owns how `Auth.Data` is read, stored, identity-extracted, and materialized per provider
+- one lifecycle, never per-provider: provider differences are absorbed by the `Account.Model::Auth.Method` class — it owns how `Auth.Data` is read, stored, identity-extracted, and materialized per provider
 - the three `Auth.Data` primitive operations — `Auth.Data.Capture`, `Auth.Data.Activation`, `Auth.Data.Materialization` — are the atomic, composable units; each is the sole writer of one state layer (archival / synchronization / home), and workflows like rotation compose them
 - a `Materializable.Account` can be reconstituted into a logged-in agent from stored `Auth.Data`; non-materializable accounts are reference-only
 - the `Account.Registry` stores `Auth.Data` as append-only immutable history with one active pointer per account
@@ -289,8 +289,8 @@
 - `Account.Identity` is provider-specific data in `Auth.Data` that binds a captured credential to the right account — the authoritative anchor, not the alias or the home
 - home-write invariant: a live home is mutated only by explicit, user-invoked `Auth.Data.Materialization` — never automatically, because a home write is destructive
 - active-pointer invariant: the `Active.Auth.Data` pointer may move automatically (e.g. `Auth.Data.Rotation` tracking provider refreshes), because the `Account.Registry` is append-only immutable history and the pointer is reversible selection — moving it destroys nothing; observation → archive (capture) is likewise always non-destructive
-- relates to `Provider.Instance` (a bound home+profile+credentials), `Agentos.Agent.Adapter` (which lists `Provider.Account`/`Provider.Home`/credential artifacts as supporting primitives), and `Normalization.Pipeline:Account.Usage.Model` (usage, downstream of login)
+- relates to `Provider.Instance` (a bound home+profile+credentials), `Agentos.Agent.Adapter` (which lists `Provider.Account`/`Provider.Home`/credential artifacts as supporting primitives), and `Normalization.Pipeline::Account.Usage.Model` (usage, downstream of login)
 
 ### appendix
 
-- full sub-concept blocks in `appendix/Account.Management-appendix.md`: `Auth.Data.Capture`, `Auth.Data.Activation`, `Auth.Data.Materialization`, `Account.Model`, `Account.Model:Auth.Method`, `Account.Identity`, `Materializable.Account`, `Home.State`, `Auth.Data`, `Auth.Ref`, `Auth.Data.Artifact`, `Valid.Credentials`, `Auth.Registry`, `Account.Registry`, `Keep.Up.With.Rotation`, `Capture.Over.Materialization`, `Unknown.Account`, `Active.Auth.Data`, `Auth.Data.Aligned`, `Auth.Data.Drift`, `Auth.Data.Rotation`
+- full sub-concept blocks in `appendix/Account.Management-appendix.md`: `Auth.Data.Capture`, `Auth.Data.Activation`, `Auth.Data.Materialization`, `Account.Model`, `Account.Model::Auth.Method`, `Account.Identity`, `Materializable.Account`, `Home.State`, `Auth.Data`, `Auth.Ref`, `Auth.Data.Artifact`, `Valid.Credentials`, `Auth.Registry`, `Account.Registry`, `Keep.Up.With.Rotation`, `Capture.Over.Materialization`, `Unknown.Account`, `Active.Auth.Data`, `Auth.Data.Aligned`, `Auth.Data.Drift`, `Auth.Data.Rotation`

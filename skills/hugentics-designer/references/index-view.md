@@ -69,15 +69,15 @@ Origin: `agentos-pkg/design/102-design.md` (`Alignment.Loop`, `Alignment.Backend
 
 - `Alignment.Loop` is the general workflow machinery for human-agent convergence
 - sequence: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`
-- parameterized by phase: `Alignment.Loop:What` (design), `Alignment.Loop:How` (impl design), `Alignment.Loop:Exec` (impl execution, light)
+- parameterized by phase: `Alignment.Loop::What` (design), `Alignment.Loop::How` (impl design), `Alignment.Loop::Exec` (impl execution, light)
 
 ### Alignment.Backend
 
 - `Alignment.Backend` is where session state lives
-- `Alignment.Backend:InChat` — state lives in chat, no file overhead
-- `Alignment.Backend:Artifact` — state lives in a file-backed artifact, durable and handoff-ready
-- parameterized by phase: `Alignment.Backend:InChat:What`, `Alignment.Backend:Artifact:What`, etc.
-- `Alignment.Backend:InChat` and `Chat.Surface` are distinct concerns: `Alignment.Backend:InChat` is the active session state — the live chat as it unfolds, "what's in RAM"; `Chat.Surface` is the durable record of past chats — the archived interaction trail
+- `Alignment.Backend::InChat` — state lives in chat, no file overhead
+- `Alignment.Backend::Artifact` — state lives in a file-backed artifact, durable and handoff-ready
+- parameterized by phase: `Alignment.Backend::InChat::What`, `Alignment.Backend::Artifact::What`, etc.
+- `Alignment.Backend::InChat` and `Chat.Surface` are distinct concerns: `Alignment.Backend::InChat` is the active session state — the live chat as it unfolds, "what's in RAM"; `Chat.Surface` is the durable record of past chats — the archived interaction trail
 
 ### Hard.Evidence
 

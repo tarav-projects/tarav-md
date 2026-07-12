@@ -24,8 +24,8 @@ An **`Alignment.Checkpoint`** is a declared point in a skill workflow where the 
 
 | Mode | Behavior | Use |
 |---|---|---|
-| `Alignment.Mode:Interactive` | At each declared checkpoint, the agent may prompt the user. | Default. Human in the chair. |
-| `Alignment.Mode:Autonomous` | No prompting; the agent resolves every checkpoint itself. | End-to-end autonomous flows (cleanup, scheduled runs). |
+| `Alignment.Mode::Interactive` | At each declared checkpoint, the agent may prompt the user. | Default. Human in the chair. |
+| `Alignment.Mode::Autonomous` | No prompting; the agent resolves every checkpoint itself. | End-to-end autonomous flows (cleanup, scheduled runs). |
 
 When unspecified, default to `Interactive`. The mode is one skill axis, not a global control model — a skill may carry other axes.
 
@@ -36,7 +36,7 @@ When unspecified, default to `Interactive`. The mode is one skill axis, not a gl
 - `Interactive` — stop at the checkpoint and surface the mismatch to the user.
 - `Autonomous` — record the deviation and continue with the most faithful corrective action; abort only on hard failure.
 
-**Boundary-gated autonomy:** a caller wanting autonomous execution within a phase with a single confirmation at the artifact boundary owns that boundary as its own declared `Alignment.Checkpoint` and invokes downstream skills in `Alignment.Mode:Autonomous`.
+**Boundary-gated autonomy:** a caller wanting autonomous execution within a phase with a single confirmation at the artifact boundary owns that boundary as its own declared `Alignment.Checkpoint` and invokes downstream skills in `Alignment.Mode::Autonomous`.
 
 ## Phase Semantic Roots
 
@@ -50,8 +50,8 @@ When unspecified, default to `Interactive`. The mode is one skill axis, not a gl
 
 The `Alignment.Loop` and its components are parameterized by phase:
 
-- `Alignment.Loop:What` / `Alignment.Question:What` / `Alignment.Discussion:What` / `Alignment.Consolidation:What`
-- `Alignment.Loop:How` / `Alignment.Question:How` / `Alignment.Discussion:How` / `Alignment.Consolidation:How`
-- `Alignment.Loop:Exec` / `Alignment.Question:Exec` / `Alignment.Discussion:Exec` / `Alignment.Consolidation:Exec`
+- `Alignment.Loop::What` / `Alignment.Question::What` / `Alignment.Discussion::What` / `Alignment.Consolidation::What`
+- `Alignment.Loop::How` / `Alignment.Question::How` / `Alignment.Discussion::How` / `Alignment.Consolidation::How`
+- `Alignment.Loop::Exec` / `Alignment.Question::Exec` / `Alignment.Discussion::Exec` / `Alignment.Consolidation::Exec`
 
-Similarly for backends: `Alignment.Backend:InChat:What`, `Alignment.Backend:Artifact:What`, etc.
+Similarly for backends: `Alignment.Backend::InChat::What`, `Alignment.Backend::Artifact::What`, etc.

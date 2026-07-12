@@ -1,15 +1,15 @@
 # Packages.Master.Agent - Appendix
 
-The caller-facing arguments of the master agent are declared as `Skill.Arg` blocks in the `agentos-master-pkg-agent` skill's `Skill.Arg.Section` (`Skill.Arg:Main.Prompt`, `Skill.Arg:Context`, `Skill.Arg:Scope`, `Skill.Arg:Enrichment.Prompt`). This appendix covers the depth that is not an argument.
+The caller-facing arguments of the master agent are declared as `Skill.Arg` blocks in the `agentos-master-pkg-agent` skill's `Skill.Arg.Section` (`Skill.Arg::Main.Prompt`, `Skill.Arg::Context`, `Skill.Arg::Scope`, `Skill.Arg::Enrichment.Prompt`). This appendix covers the depth that is not an argument.
 
 ****
 
 ## Context.Enrichment.Call
 
-- `Context.Enrichment.Call` is a master-agent usage pattern where the caller supplies an enrichment request as `Skill.Arg:Main.Prompt`
+- `Context.Enrichment.Call` is a master-agent usage pattern where the caller supplies an enrichment request as `Skill.Arg::Main.Prompt`
 - used when enriching a current discussion, subject summary, design, or working context is the primary goal
 - the caller may summarize the current subject and ask the master agent to report relevant package-grounded concepts, connections, contradictions, risks, or opportunities
-- may optionally include a `Skill.Arg:Enrichment.Prompt` targeting a narrower or secondary enrichment frontier
+- may optionally include a `Skill.Arg::Enrichment.Prompt` targeting a narrower or secondary enrichment frontier
 
 ****
 

@@ -15,7 +15,7 @@ Authority lives in the index: `Line.Type`, `Line.Type.Vocabulary`, and the `Line
 
 ## The Vocabulary
 
-Eight starting types, sorted by their verb on the `Design.Space`. One-line reminders — the `Line.Type:XX` blocks are the authority:
+Eight starting types, sorted by their verb on the `Design.Space`. One-line reminders — the `Line.Type::XX` blocks are the authority:
 
 | verb | type | act |
 |---|---|---|
@@ -48,7 +48,7 @@ Reading a typed block is loading a small constraint system: derive what you are 
 When drafting or reviewing a line's type:
 
 - every type creates a validation point: the line must perform its act — a `[CT]` must exclude something, a `[DC]` must pin something, an `[EX]` must illustrate a specific claim
-- a typed line that performs nothing is mistyped filler; check the validation point in the relevant `Line.Type:XX` block before proposing
+- a typed line that performs nothing is mistyped filler; check the validation point in the relevant `Line.Type::XX` block before proposing
 - a `[PR]` scoped to a single variable is a `[CT]`
 - type proposals on index content are index edits — `Edit.Trigger.Gated`, `Content.Verbatim.Gated`; propose, never self-write
 

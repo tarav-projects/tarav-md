@@ -34,7 +34,7 @@ Per recipe:
 - `copy-drift` — a copy body no longer equals its target's expansion; mechanical: `build` repairs it
 - `derived-stale` — a dependency changed since the derived body was written; **agentic**: open the src, read the recipe's `from:` targets and `intent:`, and re-derive the body in src so it faithfully transforms the current dependencies
 
-The no-silent-blessing rule: a rebuild carries a stale derivation's old dependency hashes forward while its body is unchanged — `derived-stale` survives any number of builds and clears only when the body is actually re-derived.
+The no-silent-blessing rule: a rebuild carries a stale derivation's old dependency hashes forward while its body is unchanged — `derived-stale` survives any number of builds and clears only when the body is actually re-derived. Dependency targets are `Skw.Address.Schema` names; an unresolvable target is a finding, not a verdict.
 
 > [!skw]- end-derived
 

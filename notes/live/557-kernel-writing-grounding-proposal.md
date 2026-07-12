@@ -16,7 +16,7 @@ Target block: `## Kernel.Writing` in `102-index.md`
 
 - @88ff80fa-2026-05-15T1116..2026-05-15T1154 - User coins the concept and name. Settles that format and philosophy are unified (not two concepts), that `Kernel.Block` is the precise writing object, and that the completeness principle governs over explanation: "it cares about completeness — all that is fundamental we have something in the block."
 
-- @011733ff-2026-05-28T0657..2026-05-28T0739 - User reviews the philosophy and refines two key principles: (1) a block captures "THE CORE ESSENCE of something, not transient state"; (2) `Kernel.Writing` and `Kernel.Block:Index` are distinct layers — "the index uses kernel writing style, but it adds extra design constraints." These became the two lines added to the block in that session.
+- @011733ff-2026-05-28T0657..2026-05-28T0739 - User reviews the philosophy and refines two key principles: (1) a block captures "THE CORE ESSENCE of something, not transient state"; (2) `Kernel.Writing` and `Kernel.Block::Index` are distinct layers — "the index uses kernel writing style, but it adds extra design constraints." These became the two lines added to the block in that session.
 ```
 
 ****
