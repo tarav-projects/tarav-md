@@ -1,4 +1,4 @@
-# agentos-index2 --type
+# agentos-index --type
 
 Use this module when the caller wants line typing understood, read, or proposed: classifying `Kernel.Line`s with the `Line.Type.Vocabulary`.
 

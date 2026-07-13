@@ -1,4 +1,4 @@
-# agentos-index2 --check
+# agentos-index --check
 
 Use this module when the caller wants deterministic diagnosis, linter findings, or post-edit validation for an index depot or explicit index/appendix surface.
 
@@ -32,7 +32,14 @@ Use this module when the caller wants deterministic diagnosis, linter findings, 
 
 ## Beyond The Linter
 
+> $kw: derived
+> $kw. --from references/type.skw.md#Semantic Lints
+> $kw. --intent compress the semantic-lint catalogue into one routing line: agent work,
+> $kw. not linter checks; findings reported, fixes through --edit
+
 - semantic lints on typed lines (contradicting `[DC]`s, violated `[CT]`s, reintroduced `[RJ]`s, overridden `[FR]`s) are agent work, not linter checks — see `references/type.md`; report findings, route fixes through `--edit`
+
+> $kw. end-derived
 
 ## Post-Edit Check
 

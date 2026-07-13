@@ -1,4 +1,4 @@
-# agentos-index2 --edit
+# agentos-index --edit
 
 Use this module when the user has approved an index or appendix edit.
 
@@ -34,6 +34,12 @@ Drafting or revising block wording is also edit work, even before the user has a
 
 ## Block Independence
 
+> $kw: derived
+> $kw. --from Independent.Reader.Block
+> $kw. --intent the section self-declares Cited.Duplication of the block: restate its
+> $kw. recoverable-cold / no-deixis / positive-statement / Name.As.Index lines
+> $kw. as the drafting checklist --edit enforces
+
 `Cited.Duplication` of `[Independent.Reader.Block]` — the quality every drafted block must hold:
 
 - a block must be recoverable cold by an independent reader holding only the block and the index it cites
@@ -41,6 +47,8 @@ Drafting or revising block wording is also edit work, even before the user has a
 - define positively — say what the concept is, not what it is instead of a rejected alternative
 - inlining other concepts by `Dotted.Name` keeps independence — `Name.As.Index` anchors are resolvable, not dependencies that break it
 - the primary hazard is distilling a live conversation; strip the session's frame before committing
+
+> $kw. end-derived
 
 ## Edit Decision Mechanics
 

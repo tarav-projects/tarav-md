@@ -1,4 +1,4 @@
-# agentos-index2 --agendix
+# agentos-index --agendix
 
 Use this module when the user triggers agendix capture: harvesting `User.Touched` material from the current conversation into the `Index.Agendix`.
 

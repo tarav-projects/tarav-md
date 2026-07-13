@@ -1,4 +1,4 @@
-# agentos-index2 --ground
+# agentos-index --ground
 
 Use this module when the caller wants the current prompt or ongoing conversation grounded against the index.
 
@@ -6,17 +6,17 @@ Use this module when the caller wants the current prompt or ongoing conversation
 
 ## Grounding Levels
 
-> [!skw]- derived
-> from: Context.Grounding
-> intent: restate Context.Grounding's levels for the --ground module: Index.Grounding
-> as the first level, escalation to full grounding via the pointers,
-> read-only and ungated
+> $kw: derived
+> $kw. --from Context.Grounding
+> $kw. --intent restate Context.Grounding's levels for the --ground module: Index.Grounding
+> $kw. as the first level, escalation to full grounding via the pointers,
+> $kw. read-only and ungated
 
 - this module runs `Index.Grounding` — the first `Context.Grounding` level: enrich the agent's context with the index's digest of the topic
 - when the digest is not enough, escalate to full grounding: follow the blocks' anchors out to the original surfaces — chat evidence via `references/link.md` resolution (`views inline --anchor … --filter turns`), code and files directly
 - grounding is read-only and ungated — it changes the agent's context, never a surface
 
-> [!skw]- end-derived
+> $kw. end-derived
 
 ## Grounding Goal
 
@@ -27,12 +27,12 @@ Use this module when the caller wants the current prompt or ongoing conversation
 
 ## Grounding Model
 
-> [!skw]- derived
-> from: references/search.skw.md#Search Model
-> from: Context.Grounding
-> intent: adapt the search doctrine to grounding use — retrieval base, depot and
-> chapter scoping — framed through Context.Grounding; keep the grounding-
-> specific honesty and report-shape lines that search does not carry
+> $kw: derived
+> $kw. --from references/search.skw.md#Search Model
+> $kw. --from Context.Grounding
+> $kw. --intent adapt the search doctrine to grounding use — retrieval base, depot and
+> $kw. chapter scoping — framed through Context.Grounding; keep the grounding-
+> $kw. specific honesty and report-shape lines that search does not carry
 
 - use `--search` behavior as the retrieval base: depot-scoped routing, chapter-scoped selective loading, citations, and appendix depth only when needed
 - respect `--depot` as the engaged depot scope; otherwise use task-relevant engaged depots
@@ -41,7 +41,7 @@ Use this module when the caller wants the current prompt or ongoing conversation
 - distinguish what the index explicitly says from what the agent infers by comparing the conversation against the index
 - prefer a compact grounding report over a long raw search dump
 
-> [!skw]- end-derived
+> $kw. end-derived
 
 ## Grounding Steps
 

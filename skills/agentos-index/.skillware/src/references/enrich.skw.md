@@ -1,4 +1,4 @@
-# agentos-index2 --enrich
+# agentos-index --enrich
 
 Use this module to run `Index.Enrichment` on a block: spawn a focused discussion with the user that produces new `Touched.Surface`, and land the resulting evidence through the gates.
 

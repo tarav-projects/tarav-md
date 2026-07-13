@@ -1,4 +1,4 @@
-# agentos-index2 --search
+# agentos-index --search
 
 Use this module when the caller wants cited index context, conceptual lookup, or appendix depth.
 

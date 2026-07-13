@@ -1,4 +1,4 @@
-# agentos-index2 --gr-review
+# agentos-index --gr-review
 
 Use this module to run a grounding campaign's gate phase: walk a `Gr.Req`'s `proposed` entries with the user, flip statuses, and land the approved links. The grounding analogue of `agentos-hugentics-impl --exec` — except the executer here is the USER's judgment; this module is its clerk.
 

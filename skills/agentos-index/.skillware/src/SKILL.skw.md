@@ -1,9 +1,9 @@
 ---
-name: agentos-index2
+name: agentos-index
 description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem of agentos-pkg. USE WHEN you need index research, editing, diagnosis, testing, maintenance, or index design context."
 ---
 
-# agentos-index2
+# agentos-index
 
 Workflow-neutral `Package.Aux.Skill` for the Agentos Index subsystem.
 
@@ -155,6 +155,13 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 ## Index Operating Behavior
 
+> $kw: derived
+> $kw. --from references/search.skw.md#Search Model
+> $kw. --from references/search.skw.md#Citation Behavior
+> $kw. --intent restate the search doctrine (routing-first selective loading, depot and
+> $kw. chapter scoping) and citation behavior as the operating checklist, and
+> $kw. extend it with the gate/capture lines the modules own
+
 An agent operating the index should:
 
 - search routing surfaces in the engaged `Index.Depot`s first, then load only relevant concept blocks, appendix material, or references
@@ -168,6 +175,8 @@ An agent operating the index should:
 - run a linter check after applying an approved index or appendix edit
 
 For delegated read-only research that protects the caller's context, use `Packages.Master.Agent` against the relevant package or packages.
+
+> $kw. end-derived
 
 ## Skill Modules
 

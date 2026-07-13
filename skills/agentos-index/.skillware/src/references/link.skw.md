@@ -1,4 +1,4 @@
-# agentos-index2 --link
+# agentos-index --link
 
 Use this module when a caller needs an `Anchory.Anchor` minted for a chat context: the linking primitive behind grounding lines, inline grounding, and agendix provenance.
 
