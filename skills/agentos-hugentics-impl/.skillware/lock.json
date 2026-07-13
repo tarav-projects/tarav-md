@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "files": {
+    "SKILL.md": {
+      "output_sha256": "d8f094fb0a57c869f0ce2b2637da9d01eb75ca853ef4bf53c97d2373159982d8",
+      "recipes": []
+    },
+    "references/design.md": {
+      "output_sha256": "1193e8f63d9c1d26b3405337e62b9b7e3d2427cad9fda2567ce71c3394bd448a",
+      "recipes": [
+        {
+          "heading": "^how-loop",
+          "verb": "derived",
+          "body_sha256": "7df7092eefc7b026e486208f44ac89bc66e64664b911cbbe6dfeaa385c429da8",
+          "deps": {
+            "Alignment.Loop::How": "45e2ae4cfd145feded33f66f9fc2fb0f26f00aaf8b245833c293c5dbdc823f35",
+            "Alignment.Loop": "57d7e83a7e26a2e653edc8b63f6dfb560cf9c92204a5eb27d3ef8865113b7985"
+          }
+        },
+        {
+          "heading": "Alignment.Mode",
+          "verb": "derived",
+          "body_sha256": "c6faace91d3c4cb26e4f7cec66e92e04015557c2abd4499b78775a1fee6ce604",
+          "deps": {
+            "Alignment.Mode": "8127bef68ccab8f921f4ee7bb39eb8cb9ac1998875f45ad30be54ef7204b1747"
+          }
+        },
+        {
+          "heading": "Alignment.Checkpoint::Readiness",
+          "verb": "derived",
+          "body_sha256": "98b12950bc2e4582c6ced4dec4aa28ef5abbd29bb72df07ac7e00e9213605775",
+          "deps": {
+            "Alignment.Checkpoint::Readiness": "29a0d82b3f264201b4359f76b91658a2280709e43fc626cd7c9cfa9fe575e123"
+          }
+        },
+        {
+          "heading": "Structure",
+          "verb": "derived",
+          "body_sha256": "578d4ee608de9997b97fda5f92e6584899151599e909958581b0a20f08fead88",
+          "deps": {
+            "Impl.Req": "4d6addffc2f215b37cca055f1b19d3afe6e3e9d4d6a1e67012e1b44a983c4f5f"
+          }
+        },
+        {
+          "heading": "Writing",
+          "verb": "derived",
+          "body_sha256": "5921bcffa38011668e64a84efe6346dddacac04c3ff133d96ecbba52391512b2",
+          "deps": {
+            "Impl.Req": "4d6addffc2f215b37cca055f1b19d3afe6e3e9d4d6a1e67012e1b44a983c4f5f",
+            "Vertical.Slice": "b10a10691ae102b35da52072bf0bcbd53cdc82de47ccd8c9fd81ee5a8e45259d",
+            "RED.GREEN.Test.Suite": "d2b1d3f40cf2b16f1c70127a6f03cc2ddfb93b13023b0fb288c5c76c5ad4c8e5"
+          }
+        }
+      ]
+    },
+    "references/develop.md": {
+      "output_sha256": "55d4acb834a170f983d16a836f334415df7a63c02d74b41fa99f5f4c69364887",
+      "recipes": [
+        {
+          "heading": "Workflow",
+          "verb": "derived",
+          "body_sha256": "3a8cb4c56810ad113b354b3c0a4a88f0aebc720fba1dc5d1d2a2241df7379869",
+          "deps": {
+            "references/design.skw.md^how-loop": "7df7092eefc7b026e486208f44ac89bc66e64664b911cbbe6dfeaa385c429da8",
+            "references/execute.skw.md^exec-loop": "52f8d1b38f2d59eed03cf9634316ba2d44fdb7db765b830a3a4222c2b86f1fbd"
+          }
+        }
+      ]
+    },
+    "references/example.md": {
+      "output_sha256": "ea0141bf0eb1236b356303e02de39140c3cd3f755298211977a9309d7f51a8c7",
+      "recipes": [
+        {
+          "heading": "Impl.Req Example",
+          "verb": "derived",
+          "body_sha256": "ff74533f51e6df4ab3811d877e40cc2e48a61d4a22446bb3d571bd88eea58c05",
+          "deps": {
+            "references/design.skw.md#Impl.Req Artifact": "186dfb7ce7b570179f7e5827417095b37dcf8ffd3f3ce43eb29ee797a7756efd"
+          }
+        }
+      ]
+    },
+    "references/execute.md": {
+      "output_sha256": "93d1ac8400e3251da3d905bc3b90864d32459bb43da433f7ee9f68b2720f63f9",
+      "recipes": [
+        {
+          "heading": "^exec-loop",
+          "verb": "derived",
+          "body_sha256": "52f8d1b38f2d59eed03cf9634316ba2d44fdb7db765b830a3a4222c2b86f1fbd",
+          "deps": {
+            "Alignment.Loop::Exec": "b8656199b118e822eedd82b065c770e378cc468658759d3f4f5466e7c41bea34"
+          }
+        },
+        {
+          "heading": "Alignment.Checkpoint::Executable",
+          "verb": "derived",
+          "body_sha256": "2e47195bf5a41fbdbe85ae8477d3fa041d264e683fc26c1932d2ad3a317c7af1",
+          "deps": {
+            "Alignment.Checkpoint::Executable": "0b94c7373a64e4fe130f921989cacf4b624505ac9e6ceb320b9e4e6c15e1d959"
+          }
+        },
+        {
+          "heading": "Per-Slice Execution",
+          "verb": "derived",
+          "body_sha256": "44ce10b9da763f6efa3a0bc300aa6d1dd5706fae3e407965be79708735525523",
+          "deps": {
+            "Vertical.Slice": "b10a10691ae102b35da52072bf0bcbd53cdc82de47ccd8c9fd81ee5a8e45259d",
+            "RED.GREEN.Test.Suite": "d2b1d3f40cf2b16f1c70127a6f03cc2ddfb93b13023b0fb288c5c76c5ad4c8e5"
+          }
+        }
+      ]
+    },
+    "references/general-practices.md": {
+      "output_sha256": "9f76cf3f9bb2febf4e55e467dd8cdffb6033fb4b91e6dde827a13c9203e811e4",
+      "recipes": [
+        {
+          "heading": "Moving Forward",
+          "verb": "derived",
+          "body_sha256": "7834888bc1e618d5dde04871e3f3b754e556148108ac42d4d0e4cf585252fdcc",
+          "deps": {
+            "No.Legacy.Allowed": "13b70b46b197531fe439921ca95d9dca8fb80b1c0f1b9ba7f40031c906f25b80"
+          }
+        }
+      ]
+    },
+    "references/general-preferences.md": {
+      "output_sha256": "279129aa9f66007de98fa9360c1207a4ff1f54fee943b80a6611f6c8f1945259",
+      "recipes": []
+    },
+    "references/review.md": {
+      "output_sha256": "a274d763206d218288a4822ee3c96b7ff83d0fdb797ea4b9a33bbce91d1aaa30",
+      "recipes": [
+        {
+          "heading": "2. Evidence audit",
+          "verb": "derived",
+          "body_sha256": "8d7168f028cfc193330d93a8310d3a3dd8c2e137af3f4c125628677b4f8c3bb4",
+          "deps": {
+            "Hard.Evidence": "2b5c830625d374d89ced88e011e38e4658244b485665f63a96c89e18991a6966"
+          }
+        },
+        {
+          "heading": "3. Readiness audit",
+          "verb": "derived",
+          "body_sha256": "24335d3bfb5a17afab66ac098b9c248965071a4a673e6c26f33a969d8846f93a",
+          "deps": {
+            "Alignment.Checkpoint::Readiness": "29a0d82b3f264201b4359f76b91658a2280709e43fc626cd7c9cfa9fe575e123"
+          }
+        }
+      ]
+    }
+  }
+}

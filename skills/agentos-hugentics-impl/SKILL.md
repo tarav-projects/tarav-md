@@ -66,12 +66,21 @@ If neither an input nor actionable current context exists, orient to the availab
 
 ## Skill Modules
 
-| Workflow | Module | Result |
-|---|---|---|
-| `Workflow:Design` | `references/design.md` | produce an implementation-ready `Impl.Req` |
-| `Workflow:Review` | `references/review.md` | verify an `Impl.Req`'s claims against `Hard.Evidence` and report readiness in chat — read-only |
-| `Workflow:Execute` | `references/execute.md` | execute an existing `Impl.Req` |
-| `Workflow:Develop` | `references/develop.md` | produce an `Impl.Req`, then execute that exact artifact |
+`Workflow:Design` is selected — the caller wants implementation planning.
+
+Load `references/design.md` — produce an implementation-ready `Impl.Req`.
+
+`Workflow:Review` is selected — the caller wants an `Impl.Req` double-checked.
+
+Load `references/review.md` — verify the artifact's claims against `Hard.Evidence` and report readiness in chat; read-only.
+
+`Workflow:Execute` is selected — the caller wants an existing `Impl.Req` executed.
+
+Load `references/execute.md` — execute the artifact's `Execution.Plan`.
+
+`Workflow:Develop` is selected — the caller wants an idea taken through both phases.
+
+Load `references/develop.md` — produce an `Impl.Req`, then execute that exact artifact.
 
 Load only the selected workflow module. The develop module composes design and execute and therefore loads both in sequence. Review is designed to run in a fresh agent that did not design the artifact — that is where the blind-spot check has value.
 
