@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "files": {
+    "SKILL.md": {
+      "output_sha256": "b59964922d97cfa03782de20f8f82b028116c46d2866553084429244dce6437b",
+      "recipes": [
+        {
+          "heading": "Alignment.Loop.Interruptions",
+          "verb": "derived",
+          "body_sha256": "bf6bc23f0447af7d201681a78640106247719bff62f23e0e6e3f053978101711",
+          "deps": {
+            "Alignment.Loop.Interruptions": "2c86024638a3a62884b0951b050c83d579c59cfc40a489e231d54ff5620b46a5"
+          }
+        },
+        {
+          "heading": "Shared Principles",
+          "verb": "derived",
+          "body_sha256": "c83b622b8c2240b64ab3e4b492fd74781255e2d9a43c70c335560fa260e0226e",
+          "deps": {
+            "Development.Principles": "35aa9c6593ecbd4c2d0f5c446b4a8d519e6ae25a3814970f2f52c5c94848bbed",
+            "Vertical.Slice": "b10a10691ae102b35da52072bf0bcbd53cdc82de47ccd8c9fd81ee5a8e45259d",
+            "No.Legacy.Allowed": "13b70b46b197531fe439921ca95d9dca8fb80b1c0f1b9ba7f40031c906f25b80",
+            "Test.At.Boundaries": "679f3344635cea8183f897e5c82300b32b17e367f12a93bfbba118ce773ee698",
+            "Deep.Modules": "22c34b76c25164b05e356da4646e80ee11b113fe66d0b1075eb56c9d6fdde800",
+            "Agent.Navigable.Codebase": "048c59e65c21d3ff485534c96841f99fd958d2a688737bbcce0a86109dc9ec34"
+          }
+        },
+        {
+          "heading": "Hugentic Concept Space",
+          "verb": "derived",
+          "body_sha256": "8edb762a961b8d2ce579b33576da88441cb55d5bc065a6aae30805ea003cf650",
+          "deps": {
+            "Hugentic.Concept": "b7e2f8cfd645b68367dd4efc8f0555cb1104baa570a870f294a351457a742482"
+          }
+        },
+        {
+          "heading": "Alignment frame \u2014 what alignment *is* (`101`\u2013`102`)",
+          "verb": "derived",
+          "body_sha256": "83f26c8f7efd39fe4aadf499239687eabffdb3caefb4c2ddfcf1a5c0ef759030",
+          "deps": {
+            "Hugentic.Alignment": "1f16dfaf5e1802c47289752cc6533ff6472b5a3456b57792b6e166b9d7a64956",
+            "Forward.Alignment": "459241b8471039de89980c49b05abbfb53d2416f7e3bb8422ab97157f188b46c",
+            "Internal.Alignment": "3d8df70c54dbc2de5708683d438ae1afd843c9866dc34245f5cac6bd937d57a8",
+            "Progress.Gradient": "d26e0f5d17079436660e5e10b85bc8ce6e9efff1100c2007e4b152dfd8bb5fe6",
+            "Design.Implementation.CoEvolution": "d81bb847bc4339e225aaa9482eb827af8fba53b3dc8d729bb054926174fda3a7"
+          }
+        },
+        {
+          "heading": "Communication form \u2014 how a designer *speaks* (`100`, `102`, `105`)",
+          "verb": "derived",
+          "body_sha256": "7051941abb8804909a836f1d8bf917af358f60a6e322b1f12ccb020b0e6f8994",
+          "deps": {
+            "Kernel.Writing": "33fbda2bbdeccbf151315f818c8b442b7476076d1669673a3b3dbb5be0d05e5c",
+            "Kernel.Block": "83829ca9a071366ac242b8f7b3d1860df24ed605d0f02672d30ac7da20081599",
+            "Designer.Turn.Kernel.Form": "9bba43c4a768e893cf8ae90d7f9e6fc5cab2ee55f7d5ffbe84e5d82ec7f294b2",
+            "Dotted.Notation": "1af4971655acabc24d274ac1080dd0478e5d691ee87b0d515e46410ca12c3623"
+          }
+        }
+      ]
+    },
+    "references/alignment-session.md": {
+      "output_sha256": "5fdc9c5ab79d15af5cdc38e0157703cce8dc006590d1efcdaa34bcb299710ff1",
+      "recipes": [
+        {
+          "heading": "Concepts",
+          "verb": "derived",
+          "body_sha256": "ba244b6afcad97c1fc8249fc94f7205cc60cf6d6e58209f4156241033c991e9c",
+          "deps": {
+            "Alignment.Session": "e4f1d0d62a81f17ed631ef4e0bf57a38cad354a6f2254bd1f4b22c863c4a3d48",
+            "Design.Space": "acca355ea5d29e919f6f32b5411fe6790a3d30e392f7db59db04d69b51a687e2",
+            "Hugentic.Variable": "e87d84d1409856bf164b4c26075900a267c75dd05bf6cfdc4e44db90d8a966bc",
+            "Agentic.Variable": "30e09b8e3d25504958c496722ed6a697930aad4b9d366b6095a5c17231e1b4ea",
+            "Alignment.Loop": "57d7e83a7e26a2e653edc8b63f6dfb560cf9c92204a5eb27d3ef8865113b7985",
+            "Alignment.Backend": "90db8db81e4e728732ebb35a4f54cc03a789b476bb42a12ea214c18a61701da6",
+            "Alignment.Checkpoint": "e4c60c9e0dea4a7a6f7dc9912bed9716f0516b80015366cb5acf6332b794050d",
+            "Alignment.Mode": "8127bef68ccab8f921f4ee7bb39eb8cb9ac1998875f45ad30be54ef7204b1747"
+          }
+        },
+        {
+          "heading": "Alignment.Checkpoint and Alignment.Mode",
+          "verb": "derived",
+          "body_sha256": "9bd7bfed8ecda86013d17abe37ea4c5335e6a350529e1f57b866dfbbda0dd70f",
+          "deps": {
+            "Alignment.Checkpoint": "e4c60c9e0dea4a7a6f7dc9912bed9716f0516b80015366cb5acf6332b794050d",
+            "Alignment.Mode": "8127bef68ccab8f921f4ee7bb39eb8cb9ac1998875f45ad30be54ef7204b1747"
+          }
+        },
+        {
+          "heading": "^loop-params",
+          "verb": "derived",
+          "body_sha256": "8428e5cda987b852b57b7d40f0e834a9997204d86a7b88dad4f17ea7dfc5db89",
+          "deps": {
+            "Alignment.Loop": "57d7e83a7e26a2e653edc8b63f6dfb560cf9c92204a5eb27d3ef8865113b7985",
+            "Alignment.Backend": "90db8db81e4e728732ebb35a4f54cc03a789b476bb42a12ea214c18a61701da6"
+          }
+        }
+      ]
+    }
+  }
+}

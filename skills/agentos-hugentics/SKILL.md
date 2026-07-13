@@ -25,11 +25,17 @@ This skill is workflow neutral. It maps the Hugentic subsystem without entering 
 
 ## Workflow Map
 
-| Phase | Agent | Workflow Master |
-|---|---|---|
-| What.Design | `Main.Designer.Agent` | `hugentics-designer` |
-| How.Design | `impl.designer.agent` | `agentos-hugentics-impl --design` |
-| Impl.Exec | `impl.executer.agent` | `agentos-hugentics-impl --execute` |
+`What.Design` — the caller wants scoped human-agent convergence on what to build.
+
+Act as `Main.Designer.Agent`; load `hugentics-designer`.
+
+`How.Design` — the caller wants implementation design forked into an `Impl.Req`.
+
+Act as `impl.designer.agent`; load `agentos-hugentics-impl --design`.
+
+`Impl.Exec` — the caller wants an existing `Impl.Req` executed.
+
+Act as `impl.executer.agent`; load `agentos-hugentics-impl --execute`.
 
 ## Artifacts
 
