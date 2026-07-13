@@ -79,55 +79,107 @@
 
 ****
 
+## QA.Space
+
+- [DF] `QA.Space` is the implicit space of questions and possible answers that define a topic, artifact, task, source, or user model
+- [PR] alignment is the progressive conditioning of a `QA.Space` through agent/user interaction
+- [DC] a `QA.Space` is a model, not a requirement that agents mechanically enumerate every question and answer
+- [DC] any state of a `QA.Space` can be described as answer regions that are open, constrained, fixed, touched, or untouched
+- [PR] the touched/open ratio is the control surface: the user tightens control by constraining more of the space, and delegates automation by leaving space open
+- [DC] hugentic surfaces nest over `QA.Space`: the `Chat.Surface` records it, the index digests it, and implementation surfaces realize it
+- [PR] `QA.Space` is never required complete to proceed; the agent works `Open.Space` to keep moving, and alignment catches up
+
+****
+
+## User.Model.Space
+
+- [DF] `User.Model.Space` is a `QA.Space` about the user
+- [DC] it models what the system knows about the user: what they said, wanted, rejected, approved, left open, or asked to process
+- [CT] `User.Model.Space` is evidence-scoped; user claims belong there only to the extent that a surface grounds them
+- [PR] growing `Touched.Space` improves the user model because more of it is backed by user-grounded interaction
+
+****
+
+## Work.Space
+
+- [DF] `Work.Space` is a `QA.Space` about the work at hand
+- [DC] it models what is true, needed, selected, excluded, available, blocked, open, constrained, or fixed in the work
+- [PR] agents act in the `Open.Space` of `Work.Space` and obey the `Constrained.Space` of `Work.Space`
+- [CT] touch is not an action gate for `Work.Space`; openness governs whether the agent decides
+
+****
+
+## Source.Space
+
+- [DF] `Source.Space` is a `QA.Space` about a source surface or source artifact
+- [DC] it can model whatever matters about a source: what it says, contains, implies, connects to, supports, contradicts, enables, or raises as a point of interest
+- [CT] source-local signals do not by themselves establish current `User.Model.Space` claims unless they are grounded through a user-touched process
+- [PR] source surfaces feed alignment by surfacing candidate questions and points of interest for later touch
+
+****
+
 ## Design.Space
 
-- `Design.Space` is the total decision space of an artifact — every choice its design comprises, centered on the user's input (renames `Conceptual.Space`)
-- it partitions two orthogonal ways: by provenance (`Touched.Space` / `Untouched.Space`) and by constraint (`Open.Space` / fixed)
-- it is a vector space of `Design.Variable`s — each variable one axis; `Design.Target.Model` is a point in this space
-- the touched/open ratio is the control surface: the user tightens control by constraining more of the space, and delegates automation by leaving space open
-- it is the object every surface nests over: the `Chat.Surface` records it, the index digests it, the codebase realizes it
-- it is never required complete to proceed — the agent works `Open.Space` to keep moving, alignment catches up
-
-### meta
-
-- aliases: `Conceptual.Space`, `Alignment.Space`
+- [DF] `Design.Space` is a `QA.Space` about artifact design
+- [DC] it scopes `QA.Space` to design questions whose answers shape an artifact
+- [DC] it is a vector space of `Design.Variable`s; each variable one axis, and `Design.Target.Model` is a point in this space
 
 ****
 
 ## User.Touched
 
-- `User.Touched` is a property of a fact: it was produced by a user-gated hugentic process — carrying evidence of user-agent collaboration, not agent invention
-- the agent may construct and tag the fact; the user gates it — the gating is the touch, authorship is irrelevant
-- it is general over the form of touch: stated, discussed, approved, co-drafted — any user-gated production qualifies
-- it is a cross-surface predicate — the index is *a* `User.Touched` surface, the `Chat.Surface` is another
-- it separates `Touched.Space` from `Untouched.Space` — untouched is always `Open.Space` and off-index (the `Index.Agendix` is its index-adjacent home); touched can be open (`FR`) or constrained
+- [DF] `User.Touched` is a property of a fact produced by a user-gated hugentic process
+- [DC] it carries evidence of user-agent collaboration, not agent ONLY invention
+- [DC] the agent may construct and tag the fact; the user gates it, so authorship is not the touch boundary
+- [CT] touch is general over stated, discussed, approved, corrected, rejected, co-drafted, or explicitly delegated material
+- [DC] it is a cross-surface predicate; the index is a `User.Touched` surface, and the `Chat.Surface` is another
+- [CT] `User.Touched` separates `Touched.Space` from `Untouched.Space`; it does not decide whether a region is open, constrained, or fixed
 
 ****
 
 ## Touched.Space
 
-- `Touched.Space` is the region of the `Design.Space` carrying `User.Touched` evidence — what the hugentic process has reached
-- the index is its primary alignment surface, but not the only one — the `Chat.Surface` is another hugentic surface that holds touch
-- a touched decision may be constrained (`CT`/`DC`/`RJ`) or open (declared free, `FR`) — touch means *engaged*, not *decided*
+- [DF] `Touched.Space` is the region of a `QA.Space` carrying `User.Touched` evidence
+- [DC] it is the part of the modeled space that the hugentic process has reached
+- [DC] the index is its primary alignment surface, but not the only one; the `Chat.Surface` is another hugentic surface that holds touch
+- [CT] a touched region may be open or constrained; touch means engaged, not decided
 
 ****
 
 ## Untouched.Space
 
-- `Untouched.Space` is the region of the `Design.Space` with no `User.Touched` evidence — the hugentic process has not reached it
-- it is always `Open.Space`: with no touch there is no directive constraint, so the agent decides for itself
-- it never becomes an index line — untouched material remains in the chat, the work, or the `Index.Agendix`, never the index proper
-- the chats are mixed, touched and untouched; the index earns its keep by extracting the touched part worth keeping — not user filler — which is exactly `Line.Type`'s gate
-- alignment is the shrinking of `Untouched.Space`: growing touch across the `Design.Space`
+- [DF] `Untouched.Space` is the region of a `QA.Space` with no `User.Touched` evidence
+- [DC] it is the part of the modeled space the hugentic process has not reached
+- [CT] touch does not decide whether the agent may act; the `Open.Space` / `Constrained.Space` axis decides action
+- [DC] untouched material never becomes an index line directly; it remains in chat, work surfaces, source surfaces, or `Index.Agendix` until touched
+- [PR] alignment grows by moving important regions from `Untouched.Space` into `Touched.Space`
 
 ****
 
 ## Open.Space
 
-- `Open.Space` is the uncollapsed region of the `Design.Space` — decisions not fixed by a user directive or its consequences, the agent's domain
-- it is orthogonal to touch: it spans `Untouched.Space` (always open) and touched-open (`FR`, an explicit free declaration)
-- consequences logically entailed by touched constraints are NOT open — the agent may fail to derive them, but is not free to decide against them
-- in it the agent makes its own decisions to act — coherent, never random — but provisional and overwritable with good reason, off-index; they become directive constraints only once touched
+- [DF] `Open.Space` is the region of a `QA.Space` where meaningful agent choice remains
+- [DC] in `Open.Space`, the agent makes its own decisions to act: coherent, never random, and provisional
+- [CT] `Open.Space` is orthogonal to touch: it may be untouched, or it may be touched by an explicit free declaration (`FR`)
+- [CT] consequences logically entailed by constraints are not open; the agent may fail to derive them, but is not free to decide against them
+- [DC] open resolutions become directive constraints only once touched
+
+****
+
+## Constrained.Space
+
+- [DF] `Constrained.Space` is the region of a `QA.Space` where possible answers have been narrowed below total freedom
+- [DC] constraint can come from user directives, grounded arguments, formal implications, code reality, physical reality, or consequences of prior constraints
+- [CT] in `Constrained.Space`, the agent does not choose outside the remaining valid answer region
+- [PR] constraint strength varies; `Fixed.Space` is the maximally constrained endpoint
+
+****
+
+## Fixed.Space
+
+- [DF] `Fixed.Space` is the region of `Constrained.Space` narrowed to one valid answer
+- [DC] it is the 0%-free endpoint of the freedom axis
+- [CT] a fixed region is not a decision point for the agent; the agent's job is to recognize and obey the fixed answer
 
 ****
 
