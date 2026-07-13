@@ -12,40 +12,42 @@ The operational spec of the Skillware source language. This module is normative 
 
 ## Construct Grammar
 
-The language has one syntactic form — the `Skillware.Construct`: a declaration callout, arg lines, a flat markdown body, and a mandatory owned closer:
+The language has one syntactic form — the `Skillware.Construct`: a `$kw:` declaration, `$kw.` belonging lines, a flat markdown body, and a mandatory owned closer. Every machinery line carries the sigil, riding the host carrier (blockquote in markdown):
 
 ```md
 ## Grounding Model
 
-> [!skw]- derived ^grounding-model
-> from: references/search.skw.md^search-model
-> from: Context.Grounding
-> intent: adapt the search doctrine to grounding use; keep depot
-> routing aligned; do not collapse into a copy of search
+> $kw: derived ^grounding-model
+> $kw. --from references/search.skw.md^search-model
+> $kw. --from Context.Grounding
+> $kw. --intent adapt the search doctrine to grounding use; keep depot
+> $kw. routing aligned; do not collapse into a copy of search
 
 - the current derived solution, as ordinary markdown
 - develop it here, in src — never on the compiled surface
 
-> [!skw]- end-^grounding-model
+> $kw. end-^grounding-model
 
 Hand-written tail in the same section, outside the produced body.
 ```
 
-- declaration: `> [!skw]- <command>` (the fold marker `-` is optional); it may carry one `^label` token — `> [!skw]- derived ^grounding-model` — giving the span a stable, heading-independent identity; a bare `> [!skw]- ^label` declares a labeled `text`; a label duplicated within one file is a finding
-- args: `> key: value` lines directly under the declaration; a bare `> ...` continuation line appends to the previous key; each command declares which keys it accepts
+- declaration: `> $kw: <command> [^label] [--flag value …]` — CLI-style, inline when short (`> $kw: copy --from references/lib.skw.md#Alpha`); the optional `^label` token gives the span a stable, heading-independent identity; `label ^x` is the explicit command for a labeled literal (command-less declarations are invalid); a label duplicated within one file is a finding
+- belonging lines: `> $kw. …` directly under the declaration — `--flag value` adds a flag occurrence (`--from` repeats), a plain continuation appends to the previous flag's value; a non-end `$kw.` line separated from its declaration is a stray-line finding
+- flags are the registered trait vocabulary: `--from` (inbound dependency, repeatable), `--intent` (the derivation rule's context), `--to` (outbound send, reserved); only registered flags bound values — an unregistered `--token` mid-value is prose, but in flag position it is a finding
 - body: flat markdown at column 0 — never indented; nesting is logical (the parse stack + owned ends), never visual; the body is runnable prose first
-- closure is fully explicit: every construct ends with `> [!skw]- end-<command>` or `> [!skw]- end-^label` (either owner matches; the label is the more precise); a bare `end` is invalid; a heading closes nothing — a construct still open at a heading or EOF is a finding (bodies cannot span headings)
-- multi-close: `> [!skw]- end-a end-b` unwinds the open stack innermost-first; a mismatched or wrongly ordered owner is a finding naming the expected close
-- fenced code blocks are inert: a callout inside ``` fences is an example, not a construct
+- closure is fully explicit: every construct ends with `> $kw. end-<command>` or `> $kw. end-^label` (either owner matches; the label is the more precise); a bare `end` is invalid; a heading closes nothing — a construct still open at a heading or EOF is a finding (bodies cannot span headings)
+- multi-close: `> $kw. end-a end-b` unwinds the open stack innermost-first; a mismatched or wrongly ordered owner is a finding naming the expected close; end lines take no args
+- fenced code blocks are inert: machinery inside ``` fences is an example, not a construct
 - everything outside constructs is hand-owned prose; a src file with no constructs is a plain passthrough
+- the parser is a `Closure.Parser`: below its `Parse.Floor` (well-formed machinery, explicit closure, unique labels, sane router rows) it emits parse errors; above the floor everything it does not recognize is opaque text, and nothing else can fail the parse
 
 ## Primitives
 
 Position-free leaves — any number per section, anywhere; a construct may not open inside a primitive body:
 
-- `text` — a tagged literal: plain content, no binding; the tag only makes the span addressable
-- `copy` — the body is the target's expanded body, verbatim; `agentos skillware build` refreshes it mechanically in src (CPU-owned); args: `from:` (one target)
-- `derived` — the body is the agent-authored current solution of the construct's `Derivation.Rule`; the build never touches it — only an agentic re-derive changes it; args: `from:` (repeatable), `intent:` (the rule's context, free prose)
+- `text` — a tagged literal: plain content, no binding; the tag only makes the span addressable (`label ^x` is its labeled spelling)
+- `copy` — the body is the target's expanded body, verbatim; `agentos skillware build` refreshes it mechanically in src (CPU-owned); flags: `--from` (exactly one)
+- `derived` — the body is the agent-authored current solution of the construct's `Derivation.Rule`; the build never touches it — only an agentic re-derive changes it; flags: `--from` (repeatable), `--intent` (the rule's context, free prose)
 
 ## Structural Commands
 
@@ -58,32 +60,32 @@ Structural commands compose primitives and carry no lock state — their checks 
 ```md
 ## Router Table
 
-> [!skw]- router
+> $kw: router
 
-> [!skw]- when
+> $kw: when
 When the caller wants to find concepts or retrieve cited index context.
 
 Includes the read-only pass that precedes any edit proposal.
-> [!skw]- end-when
+> $kw. end-when
 
-> [!skw]- then
+> $kw: then
 Load `references/search.md`.
-> [!skw]- end-then
+> $kw. end-then
 
-> [!skw]- end-router
+> $kw. end-router
 ```
 
 ## Locators
 
-A `from:` value is one of:
+A `--from` value is one of:
 
 - **`path#Region`** — a heading-section body in a file, resolved against the src root first, then the skill root. The region is the section's body: heading excluded, subsections included. A `.skw.md` target is recursively expanded before extraction (innermost first); expansion cycles are an error naming the chain. A plain (non-skw) file yields the raw region body.
-- **`path^label`** — a labeled span in a src file; **`^label`** alone is file-local (the current src). Labels are heading-independent, so the import survives section renames, and the dependency hash covers only the span — a consumer drifts with its fragment, not the file. Labels live only in src machinery (stripped at compile), so they address src files exclusively; renaming a label breaks importers, which the unresolvable-`from:` finding catches.
+- **`path^label`** — a labeled span in a src file; **`^label`** alone is file-local (the current src). Labels are heading-independent, so the import survives section renames, and the dependency hash covers only the span — a consumer drifts with its fragment, not the file. Labels live only in src machinery (stripped at compile), so they address src files exclusively; renaming a label breaks importers, which the unresolvable-`--from` POI catches.
 - **`Dotted.Name`** — an index block resolved in the configured depots (`skillware.json`); the value is the block's kernel-line body.
 
 ## Compilation
 
-- deterministic — no agent in the loop: strip every construct's machinery (declaration, args, owned ends), keep the bodies and all hand prose; blank-line runs collapse; output is trimmed
+- deterministic — no agent in the loop: strip every construct's machinery (declaration, belonging lines, owned ends), keep the bodies and all hand prose; blank-line runs collapse; output is trimmed
 - `copy` bodies are refreshed in src before targets are emitted; `derived` bodies pass through as materialized
 - the compiled target never carries Skillware syntax — zero machinery lands on the runnable surface
 

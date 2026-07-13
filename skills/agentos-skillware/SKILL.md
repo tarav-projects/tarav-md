@@ -36,10 +36,10 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - examples: --dev "add a derived section to ground.skw.md", --dev "adopt agentos-batchy-skills"
 
 ### Skill.Arg::Check
-- read-only drift report over a skill's managed surfaces, with per-verdict prescriptions
+- read-only POI report over a skill's managed surfaces, with per-kind prescriptions
 - required: false
 - help: "check managed surfaces for drift and prescribe responses (read-only)"
-- examples: --check --skill skills/agentos-index2, --check
+- examples: --check --skill skills/agentos-index, --check
 
 ## Router Table
 
@@ -47,10 +47,10 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 |---|---|
 | When the caller is new to Skillware, needs the mental model, or asks conceptual questions — what the system is, why two surfaces, how derivation works | `references/doctrine.md` |
 | When the caller needs exact syntax — the construct grammar, commands, arg lines, owned ends, locator forms, `skillware.json`, what the compiler does | `references/lang.md` |
-| When the caller is writing or restructuring src — deciding roots vs derived consumers, declaring imports, crafting an `intent:`, judging whether a relation earns an import | `references/author.md` |
+| When the caller is writing or restructuring src — deciding roots vs derived consumers, declaring imports, crafting an `--intent`, judging whether a relation earns an import | `references/author.md` |
 | When the caller wants an existing hand-owned skill brought under Skillware management | `references/adopt.md` |
 | When the caller wants surfaces produced or refreshed from src, or asks about the lock or the build's mechanics | `references/build.md` |
-| When the caller wants drift inspected — what changed, what each verdict means, what response each demands; read-only | `references/check.md` |
+| When the caller wants drift inspected — what changed, what each POI kind means, what response each demands (re-derive vs bless); read-only | `references/check.md` |
 | When the caller needs the canonical index concepts behind all of this | `agentos-pkg/design/107-design.md` (the `Agentos.Skillware` namespace) |
 
 ## Boundary
@@ -64,14 +64,14 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - `references/doctrine.md` — the model: skills as software, the two surfaces, imports, recipes, derivation
 - `references/lang.md` — the operational spec: src surface, construct grammar, primitives, structural commands, locators, compilation, settings
-- `references/author.md` — writing src: graph discipline, roots vs derived, `intent:` craft, division of labor
+- `references/author.md` — writing src: graph discipline, roots vs derived, `--intent` craft, division of labor
 - `references/adopt.md` — converting an existing skill to Skillware management
 - `references/build.md` — producing surfaces: build and status mechanics, the lock model
-- `references/check.md` — drift: verdict vocabulary, prescriptions, the re-derive pass
+- `references/check.md` — drift: the POI kinds, prescriptions, the re-derive pass, the bless act
 
 ## When To Load This Skill
 
 - when working on or inside any `.skillware/` build surface
 - when authoring, building, checking, or adopting Skillware-managed skills
-- when a `check` verdict needs interpreting or acting on
+- when a `check` POI needs interpreting or acting on
 - when discussing or modifying the Skillware system design itself

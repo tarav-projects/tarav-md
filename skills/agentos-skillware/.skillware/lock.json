@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "6b4610562c19a08758b4457569f7e4f36d42616246241c2d25fd27386cb69f4f",
+      "output_sha256": "437c5772845065fdb986ee0890f60dd92e2d64cef26f382e12a17e231dee4b2c",
       "recipes": [
         {
           "heading": "What Skillware Is",
@@ -19,7 +19,7 @@
       "recipes": []
     },
     "references/author.md": {
-      "output_sha256": "8c08a178023c35c7e6ffc0d1d02cc16f7b5013dbdcb1888f034754bedbcdd83f",
+      "output_sha256": "8a270fc0f78935d05cd771d0595f41505719b42599f6f9d95b2ce435c4e7bde7",
       "recipes": [
         {
           "heading": "Division Of Labor",
@@ -36,31 +36,33 @@
       "recipes": []
     },
     "references/check.md": {
-      "output_sha256": "3c9313eb34cac41c811e8c0cffbd8b0110f46736ccb40114accaa2bf7232edf3",
+      "output_sha256": "46b27b03ba7bbd1de3be877048152e898dc16e57935d0eaa0875c0168b402175",
       "recipes": [
         {
-          "heading": "Verdicts",
+          "heading": "POI Kinds",
           "verb": "derived",
-          "body_sha256": "bd1a10bcfec4ad754a144582bd5532f46d98e3347bc2b474d945bf8b5000defd",
+          "body_sha256": "c322600256797e8825b1d1784255635f8cfb9795353e80263bbf646818202eb5",
           "deps": {
-            "Import.Management": "e802eb67222aba31968aae95ad62520923f0b8c08c4342ffcaa4fc375dd7d35f"
+            "Import.Management": "e802eb67222aba31968aae95ad62520923f0b8c08c4342ffcaa4fc375dd7d35f",
+            "Poi.Linter": "49ae12f7c632edaef1024271385beb43f48f5753b83e2473ff2ae3b59670466e",
+            "Poi.Bless": "4c82ae55afd37168b2aa23fec823716592a6cb72dc56d1fc7799c9acae22dd59"
           }
         }
       ]
     },
     "references/doctrine.md": {
-      "output_sha256": "dff25c20f44aed9962ee399462e8a68bd7e1178e2305e2237ed6d599bb753d02",
+      "output_sha256": "9a892589532973b9519e4385aa684f1ccaeccfdecc6e79a3543ebbde88106eaa",
       "recipes": [
         {
           "heading": "The Model",
           "verb": "derived",
-          "body_sha256": "a9421e78f5a4cc1b70320bf8a494d3d47a72cf0ac9d384ce0d4fbaa25c446db2",
+          "body_sha256": "7acac548482756e65c80fd650c74220793ecaa2f22c604e5c9939e3b1e8ed459",
           "deps": {
             "Agentos.Skillware": "b9d2d55483b77f00d2d3fea147cdc38b592f33508d46316fa08244047680c57f",
             "Skill.Runnable.Surface": "1b53ecdf4f6a6a124363552a9fa0b5f95ca54ee07d602d7ff59c236c9b36dea8",
             "Skill.Build.Surface": "6a86daf0304d1c612e9660851d24592cec13d087090fa6980f8353a45af6e8a6",
             "Module.Import": "c73a157bd484c261bc5d55f37fd4abcf749fd1a800e2f3ba5f041fcab0ca8dff",
-            "Skillware.Recipe": "a0e47e14037251f8019ceec803cbdb1cc0dfe28d9b9192fd92485db501157935",
+            "Skillware.Recipe": "fe56b09f87def261cc00fd892f0b5293061797c625d9bc147a3fc29be197717f",
             "Derivation.Rule": "ee265f9f6c4395716e253a13347654bc45dcf120fb01e22d3aae897a6b3fad11",
             "Derived.Content": "f1f93a46f6e4793ddac2d9b243b209ee85980cbb5e1ae72b0146da5d81abbb7e"
           }
@@ -68,15 +70,15 @@
         {
           "heading": "The Construct In Brief",
           "verb": "derived",
-          "body_sha256": "8474a085d3da4a5ba0e78a0fc9fcde6fd9f148f073c12545fdc25fb21e2dc80c",
+          "body_sha256": "addf3c58ce8c6b682a0d6cd77a4d9314097ff9096769c4a4af06a107c801448f",
           "deps": {
-            "references/lang.skw.md#Construct Grammar": "07d933103769019ed7d7993e7973e2c0fb4a576eac453b8648dbb8d154b65db5"
+            "references/lang.skw.md#Construct Grammar": "4284328f82160a6821141b3d2404cf10985132d9d45fc80860f20b3f87c2ada8"
           }
         }
       ]
     },
     "references/lang.md": {
-      "output_sha256": "58783b7daf1a55e73d1ff3549a1c54400033dbef2f1b363400ca985bf8ffe57d",
+      "output_sha256": "ea9f93c5f9c4db134384881a24b280f2e1d2979da47f5f867419d201e30a2277",
       "recipes": []
     }
   }

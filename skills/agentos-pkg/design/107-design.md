@@ -101,7 +101,10 @@
 - [DF] `Skillware.Construct` is the single syntactic form of the skw language: a `$kw:` declaration line — a CLI-style command, `<command> [^label] [--flag value …]` — with `$kw.` continuation lines, a flat native body, and a mandatory owned closer `$kw. end-<command>` ^20260710-4 ^20260712-7
 - [DC] the sigil pair splits open from belong: `$kw:` opens a construct (or declares a divider); `$kw.` marks everything belonging to the open construct — further flags, value continuations, and the closer ^20260712-7
 - [DC] every machinery line carries the sigil — uniform marking, so nothing skw is ever inferred from bare host syntax; the sigil rides the host's carrier (blockquote in markdown, comments in code), making the form carrier-neutral ^20260712-7
-- [DC] closure is fully explicit for body-bearing constructs: a bare `end` is invalid; a multi-close line (`end-a end-b`) unwinds the open stack innermost-first; a heading closes nothing — a construct left open at a heading or EOF is a finding; annotation sections (leveled dividers, `Annotation.Point`) are the sanctioned end-free exception ^20260710-4 ^20260711-9
+- [DC] closure is fully explicit for body-bearing constructs: a bare `end` is invalid; a multi-close line (`end-a end-b`) unwinds the open stack innermost-first; a heading closes nothing — a construct left open at a heading or EOF is a finding ^20260710-4 ^20260711-9
+- [DC] closure is declared, never positional: beyond owned ends, the registry may grant a command peer-closure — opening it closes its open peers (`when` closes `when`/`then`; a leveled `section` closes sections of level ≥ its own) — and a parent's end closes its open scoped children (`end-router` closes an open row); every closure still happens at a marked machinery line, and headings/EOF still close nothing ^20260713-0
+- [CT] peer-closure is only for vocabularies where the next declaration IS the boundary by construction (rows, sections); body-bearing primitives (`text`, `copy`, `derived`) keep mandatory owned ends — nothing can infer where an arbitrary body stops ^20260713-0
+- end-free annotation sections are this mechanism, not an exception: a divider is a peer-closing command, so explicit closure survives intact ^20260713-0
 - [DC] no indentation: bodies sit at column 0 — nesting is logical (the parse stack + owned ends), never visual; the body is runnable prose first ^20260710-4
 - [DC] three primitives instantiate it anywhere in a src: `text` (a literal, tag optional), `copy`, and `derived` — a generation function whose declaration describes the generated body and whose body is the current output ^20260710-4
 - the command vocabulary is the language's growth axis: new capability is a new command over the same construct — structural commands (`router`, `when`, `then`) compose primitives ^20260710-4
@@ -116,7 +119,7 @@
 
 ## Skillware.Recipe
 
-- [DF] `Skillware.Recipe` is the inline declaration form of a `Module.Import`: a `[!skw]` callout under a heading in a `.skw.md` src, carrying the verb (binding), `from:` targets, and `intent:` (the `Derivation.Rule` context), with the produced body directly below ^20260710-2
+- [DF] `Skillware.Recipe` is the inline declaration form of a `Module.Import`: a `$kw:` declaration in a `.skw.md` src, carrying the verb (binding), `--from` targets, and `--intent` (the `Derivation.Rule` context), with the produced body directly below ^20260710-2 ^20260712-7
 - the recipe and its current solution live side by side in src — declaration, rule, and result in one place ^20260710-2
 - compile is deterministic: the toolchain strips the callout machinery; the runnable surface carries only the produced content ^20260710-2
 - [RJ] `Import.Manifest` — a separate flat artifact per consuming module (`build/<...>-imports.md`) — was superseded before implementation: declarations live inline; `lock.json` is the machine record ^20260709-13 ^20260710-2
@@ -196,6 +199,7 @@
 - the parser emits exactly one kind of failure: parse errors, only below the floor — it emits no POIs ^20260712-17
 - [PR] one broken construct never blinds the system to the whole file ^20260712-17
 - [CT] closed also means lossless: above the floor, every byte of the input lands in some node ^20260712-17
+- [DC] realized: the skw parser is `Closure.Parser::Skw` — its floor is well-formed, explicitly closed `$kw` machinery; above it, construct nodes and opaque text ^20260712-17
 
 ****
 
@@ -207,6 +211,7 @@
 - its output is the POI stream: each POI marks a place worth an agent's attention, and nothing more — it may carry a suggested resolution, but it asserts no verdict; the agent inspects and decides ^20260712-17
 - [PR] the softness is bought, not accidental: a linter that is always right costs a robust parser — the system stays cheap and simple by tolerating wrong and missed flags, and agents are told so ^20260712-17
 - opaque text nodes are its territory: what the parser deliberately ignores, linter rules may inspect and flag ^20260712-17
+- [DC] realized: `agentos skillware check` — parse errors gate per file, POIs carry stable identity hashes, output is a once-per-kind legend plus bare rows ^20260712-17
 
 ****
 
@@ -215,6 +220,7 @@
 - [DF] `Poi.Bless` is the explicit act of accepting a POI's current state as correct: an auditable command rewrites the POI's recorded expectation to match reality, and the flag clears without the surface being touched ^20260712-17
 - [PR] blessing is loud: drift never clears as a side effect of rebuilds or unrelated edits — only a re-derivation of the content or an explicit bless (the no-silent-blessing rule generalized) ^20260712-17
 - [CT] not every POI is blessable: parse errors are never blessable — a surface below the `Parse.Floor` is not in the language and must be fixed; blessability belongs to semantic POIs, where the current state might genuinely be the truth ^20260712-17
+- [DC] realized: `agentos skillware bless --poi <hash>` — rewrites the recipe's locked dependency hashes to current, body untouched; only `derived-stale` accepts it ^20260712-17
 
 ****
 

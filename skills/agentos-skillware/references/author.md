@@ -19,7 +19,7 @@ Use this module when writing or restructuring `.skw.md` src: deciding the module
 
 ## Crafting The Intent
 
-The `intent:` is the `Derivation.Rule` context — written so a cold agent can re-derive the body from the `from:` targets alone:
+The `--intent` is the `Derivation.Rule` context — written so a cold agent can re-derive the body from the `--from` targets alone:
 
 - name the transformation: *adapt X to scope Y*, *digest X to one paragraph*, *restate X as a checklist*
 - state what must stay aligned and what must not happen (*do not collapse into a copy of search*)
@@ -37,5 +37,5 @@ The `intent:` is the `Derivation.Rule` context — written so a cold agent can r
 
 1. Write or edit the src (`.skw.md`) — never the compiled target.
 2. `agentos skillware build --skill <path>` — copy refresh, compile, lock, AGENTS.md stamp.
-3. `agentos skillware check --skill <path>` — confirm all-ok; interpret verdicts per `references/check.md`.
+3. `agentos skillware check --skill <path>` — confirm all-ok; interpret POIs per `references/check.md` (re-derive real drift; `bless` benign dep changes).
 4. For a gated package, src edits still pass the package's own edit gates before landing.

@@ -2,7 +2,7 @@
 
 ## Impl.Abstract
 
-- status: draft
+- status: executed 2026-07-12
 - mode: `Alignment.Mode::Autonomous` (--dev --AUTO)
 - scope: rework the skw parser to the captured v3 surface grammar (`$kw:` / `$kw.`), recast the engine in the new 107 vocabulary (`Closure.Parser`, `Poi.Linter`, `Poi.Bless`), add the `agentos skillware bless` verb, recast `check` output to legend + bare rows with stable POI identities, migrate all srcs off `[!skw]` with byte-identical compile verification, re-derive the affected skill modules, and land the realization lines on 107.
 - source context: the v3 syntax capture on `Skillware.Construct` (107, `^20260712-7`); the parser/linter cluster landed 2026-07-12 (`Closure.Parser`, `Poi.Linter`, `Poi.Bless`, `Structure.Ratchet`, all `^20260712-17`); the md-library linter steal (legend + hash/resolve model) accepted in chat.
@@ -54,28 +54,28 @@
 
 ## Execution.Plan
 
-1. **Parser rework (RED→GREEN)** — status: pending
+1. **Parser rework (RED→GREEN)** — status: done
    - RED: rewrite the grammar tests in `agentos-py/tests/test_skillware.py` to v3 syntax (all of them — No.Legacy.Allowed), add new-grammar tests: inline flags, flag-value-with-spaces, `--intent` continuation, stray `$kw.` line, unknown flag, `label ^x`, multi-close, `end-^label`, legacy-callout POI absence from parser (parser ignores `[!skw]`).
    - GREEN: rework `model.py`: `_MACHINERY_RE` for `$kw:`/`$kw.`, declaration/flag tokenizer, contiguous belonging-block reader, closer handling, stray-line finding. Keep dataclasses, `recipe_key`, stack semantics, fence-inertness. Docstring recast to `Closure.Parser::Skw`.
    - check: new grammar tests pass; whole module suite runs.
-2. **Build/emit alignment** — status: pending
+2. **Build/emit alignment** — status: done
    - `build.py` consumes spans unchanged; verify src-refresh preserves v3 machinery verbatim and compile strips it. Update `[!skw]` mentions in docstrings/help (`build.py`, `commands.py` parser description).
    - check: expand/emit tests green.
-3. **Src migration, byte-identical** — status: pending
+3. **Src migration, byte-identical** — status: done
    - snapshot compiled targets + lock for both skills; scripted transform of the 10 srcs; `build` both skills; assert compiled targets byte-identical (git diff), lock derived deps unchanged, `check` all-ok.
-4. **Poi.Linter recast of check** — status: pending
+4. **Poi.Linter recast of check** — status: done
    - RED: tests for parse-error gating (a file with a parse error reports `parse-error` POIs and no semantic POIs for that file; sibling files unaffected), POI hash stability across runs, hash change when deps move again, legend printed once per present kind, bare-row format, `legacy-callout` POI on a leftover `[!skw]` line.
    - GREEN: `build.py` check_skill returns POI records (kind, target, key, hash, detail); `commands.py` renders legend + rows; JSON payload extended.
-5. **Bless verb (RED→GREEN)** — status: pending
+5. **Bless verb (RED→GREEN)** — status: done
    - RED: bless a real derived-stale POI → lock deps rewritten, body/target untouched, subsequent check all-ok, output names old→new; bless `parse-error`/unknown hash → CLI error; blessed situation re-drifts → new hash, new POI.
    - GREEN: `bless_skill(skill_root, poi_hash)` in `build.py`; `bless` subcommand with `--poi` in `commands.py`.
-6. **Doc modules re-derive + rebuild** — status: pending
+6. **Doc modules re-derive + rebuild** — status: done
    - `lang.skw.md`: full grammar rewrite to v3 (normative spec + fenced examples). `author.skw.md`: workflow/examples. `check.skw.md`: verdicts→POI kinds table, legend/bare-row reading, bless protocol and blessability rules, re-derive pass updated. `doctrine.skw.md`: derived sections re-derived (`The Construct In Brief` depends on lang `#Construct Grammar`); model narrative mentions `Closure.Parser::Skw`/`Poi.Linter`/`Poi.Bless`. SKILL src if it mentions `[!skw]`.
    - `agentos-index2` srcs: no doc content changes expected beyond the mechanical migration; verify with check.
    - check: build + check all-ok on both skills; derived bodies genuinely re-derived where deps changed (no silent blessing, no lazy body-keeps).
-7. **Index realization lines** — status: pending
+7. **Index realization lines** — status: done
    - append the three `[DC]` lines (Impl.Index wording) to 107; run `agentos index linter`; run skillware check for doctrine drift (Agentos.Skillware cluster unchanged → expect ok; re-derive if flagged).
-8. **Full verification** — status: pending
+8. **Full verification** — status: done
    - full agentos-py test suite; `agentos skillware build/check/status` on both skills from agentos-md; grep: zero `[!skw]` outside fences in srcs; report.
 
 Deviation triggers: byte-identical check fails → stop, diagnose in src transform, never hand-adjust compiled targets; lock shows new derived-stale after migration → key-shift bug, fix `recipe_key` path, do not bless; any test regression outside skillware → investigate before proceeding.
@@ -84,4 +84,9 @@ Acceptance: all slices checked, suite green, both skills all-ok, `[!skw]` gone f
 
 ## Impl.Log
 
-- (empty)
+- grammar decision forced by reality: existing intents contain flag-like prose tokens (`--edit`, `--ground`); per the registry doctrine (107 trait reservation), only registered flags (`--from/--intent/--to`) bound values — an unregistered `--token` mid-value is prose, in flag position it is a parse error. Test adjusted to match.
+- `unresolvable` split out as its own gating POI kind (locator failures are not below-floor parse errors, but they still gate the file); a parse-broken file poisons its importers as `unresolvable` rather than silently.
+- migration: only 10 of the srcs carried machinery; all migrated mechanically, compiled targets and locks byte-identical, both skills all-ok.
+- the 107 edits (Skillware.Recipe DF respelled to v3 within scope; three realized [DC] lines) tripped two derived-stale POIs whose bodies already matched the new deps — resolved with the first two production `bless` calls (`3fb18b2e9a`, `df49917f34`); check clean after.
+- agentos-py `AGENTS.md` skillware bullet rewritten (required-doc-update repo policy).
+- deferred as designed: dividers/end-free annotation sections, non-`>` carriers, `pointer` materialization, verdict-name changes, CLI rename.
