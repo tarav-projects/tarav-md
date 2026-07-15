@@ -428,7 +428,7 @@
 
 ## Normalization.Delta.Checkpoint
 
-- [DF] `Normalization.Delta.Checkpoint` is the persisted resume state of `Delta.Normalization` for one source: source position consumed, derivation state still open at that position, running aggregates, and hash-chain state ^20260712-15
+- [DF] `Normalization.Delta.Checkpoint` is the persisted resume state of `Delta.Normalization` for one source — whatever the producer needs to continue derivation from the recorded source position ^20260712-15
 - [DC] the checkpoint is producer-private — only the pipeline that wrote it reads it; it is never a consumer surface of the `Normal.Model` ^20260712-15
 - [DC] it validates before use: the source must still extend the position it recorded; a failed validation discards the checkpoint and the pass re-derives fully ^20260712-15
 - [CT] the checkpoint is disposable at any time with no data loss — deleting it costs one full derivation, nothing else ^20260712-15
