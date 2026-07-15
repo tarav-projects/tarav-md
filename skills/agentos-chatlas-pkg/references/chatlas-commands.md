@@ -118,6 +118,19 @@ agentos chatlas views inline --identity-hash <H> --file-write "<path-fragment>" 
 - `views inline` flags answer *where in the session*: the touching invocations' events as a model fragment
 - blind-spot escape hatch: `--tool-contains "<text>"` (optionally `--tool-name Bash`) matches over the whole invocation — full recall, no verb claim; the reader judges read/write from the matched invocations
 
+## Ping Workflow
+
+Transcript round-trip probe: emit unique marker lines to stdout (they land in the calling session's transcript when the tool call completes), then update and search Chatlas for them. Unresolved markers persist in `<chatlas-root>/ping/state.json`, so the *next* ping run resolves them and reports cross-call latency plus the caller's session id.
+
+```sh
+agentos chatlas ping --provider claude-code
+agentos chatlas ping --provider claude-code --lines 1 --rounds 1
+```
+
+- a run never sees its own markers (`self_visible` is false until providers stream tool output); the value is in `previous_resolved` — each entry carries `session_id`, `identity_hash`, and `latency_seconds`
+- markers must actually reach the transcript: piping ping's stdout through `tail`/parsers hides them from the provider log and the probe silently loses them — run it unpiped
+- output is markers + update progress + one JSON payload on stdout; parse from the first `{`
+
 ## Views Workflow
 
 ```sh

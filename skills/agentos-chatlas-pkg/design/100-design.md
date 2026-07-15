@@ -77,6 +77,16 @@
 
 ****
 
+## Workflow.Update
+
+- [DF] `Workflow.Update` is the update capability of one workflow: bring everything current along the path from `Provider.Home` to that workflow's target, and nothing past it ^20260714-3
+- plain `agentos chatlas update` is itself a workflow — its target is the `Chatlas.Session.Index` ^20260714-4
+- [CT] no update touches another workflow's caches — a stale downstream artifact is detected by its own workflow's read-time freshness check and re-derived on demand ^20260714-2
+- [PR] a stale `Session.Model.Artifact` is an asset, not garbage — `Delta.Normalization::Chatlas` resumes from it; deleting it destroys the resume base ^20260714-2
+- [FR] a workflow may offer forced re-materialization that ignores freshness — a correctness-testing tool, never the default ^20260714-2
+
+****
+
 ## View.Class
 
 - `View.Class` distinguishes view workflows by their production mode
@@ -108,6 +118,16 @@
 - unknown, unindexed, failed-parse, missing-archive, or mismatched originals are not delete candidates.
 - dry-run/report mode is the default; destructive deletion requires an explicit apply gate.
 - the goal is faster `agentos chatlas update` by shrinking old provider-home scan surfaces.
+- a `Provider.Home.Adapter` capability — the adapter owns all provider-home contact, including this gated deletion of captured originals ^20260714-6
+
+****
+
+## View.GC
+
+- [DF] `View.GC` is the depot-side maintenance subsystem for deleting stale view caches — orphaned view identities, superseded parameter variants, caches of sessions no longer indexed ^20260714-5
+- the depot sibling of `Provider.GC`, same grammar: report-first default, destructive deletion behind an explicit apply gate ^20260714-5
+- eligibility is proven from depot evidence: view manifests checked against current `View.Identity` and the `Chatlas.Session.Index` ^20260714-5
+- [PR] cache hygiene is an explicit maintenance action, never a side effect of update — deletion gets its own audit trail ^20260714-5
 
 ****
 
@@ -147,7 +167,7 @@
 ## Chatlas.Dataset
 
 - `Chatlas.Dataset` is the Agentos-maintained dataset of chat sessions collected from AI assistant providers
-- lifecycle: provider-native scan → `Raw.Archive` → `Chatlas.Session.Index` → `Chatlas.Query.Surface` → `Chatlas.View.Model`
+- lifecycle: `Provider.Home.Adapter` → `Raw.Archive` → `Chatlas.Session.Model` → `Chatlas.Session.Index` → `Chatlas.Query.Surface` → `Chatlas.View.Model` ^20260714-0
 - user-scoped, not project-scoped — queries can filter by project but the dataset spans all projects
 - the raw archive is the authoritative preservation layer; all derived surfaces rebuild from it
 
@@ -181,6 +201,16 @@
 - targeted update runs the same mechanics for one provider instance, provider-home locator, or known `Session.Identity`
 - targeted refresh is not a separate system — it is an atomized invocation of the existing update mechanics
 - the pipeline preserves the lifecycle invariant: `Provider.Home` → `Raw.Archive` → `Chatlas.Session.Index`
+- [CT] the update pipeline's native scan is the only Chatlas system that reads `Provider.Home`; query and view surfaces answer from the depot ^20260712-9
+
+****
+
+## Scan.Scope
+
+- [DF] `Scan.Scope` is the selection an update run hands the `Provider.Home.Adapter`'s scan: which sessions the scan considers — everything configured, one provider, one instance, one session, or an activity window ^20260714-2
+- [CT] narrowing the scope never changes the mechanics — every scoped run performs the same discover → signature-compare → archive → derive stages over its selection ^20260714-2
+- [PR] a single-session refresh is the whole pipeline at one-session scope, not a parallel code path ^20260714-2
+- cold-cache trust and `--full-scan` are comparison policies, orthogonal to scope — scope picks the candidates, policy picks how hard to look at them ^20260714-2
 
 ****
 
@@ -195,6 +225,15 @@
 
 ****
 
+## Provider.Home.Adapter
+
+- [DF] `Provider.Home.Adapter` is the Chatlas component owning all `Provider.Home` contact for one provider family — discovery scan, change signatures, archive copy, home-query diagnostics, and provider-GC eligibility checks ^20260714-1
+- [CT] it is the only component that touches the `Provider.Home` filesystem — every other Chatlas system answers from the depot or reaches provider data by means of the adapter ^20260714-0
+- [CT] the adapter provides the files of the `Raw.Archive` ^20260714-1
+- [PR] one component owning the entire provider-home contact surface keeps the depot boundary auditable ^20260714-0
+
+****
+
 ## Provider.Home.Query
 
 - `Provider.Home.Query` is the read-only discovery layer over a `Provider.Home`
@@ -202,6 +241,8 @@
 - returns provider-home matches or locators, not `Chatlas.Session.Index` rows
 - used when freshness or direct source lookup matters before relying on archived material
 - does not mutate `Raw.Archive` or `Chatlas.Session.Index`
+- [CT] a diagnostic surface, not a query path — `Chatlas.Query.Surface` never routes through it ^20260712-9
+- a capability of the `Provider.Home.Adapter` — the same discovery machinery exposed as a diagnostic read ^20260714-6
 
 ****
 
@@ -210,7 +251,7 @@
 - `Chatlas.Session.Model` is the standard with which Chatlas represents any session's information
 - provider-neutral: one model normalized inward from many provider-native session formats
 - directionality: Chatlas knows provider formats and normalizes them into one; providers know nothing about this model
-- producer: the `Normal.Assembler` of `Normalization.Pipeline:Chatlas.Session.Model` writes it — there is no provider-side conformance
+- producer: the `Normal.Assembler` of `Normalization.Pipeline::Chatlas.Session.Model` writes it — there is no provider-side conformance
 - provider-native formats are inspiration for the model's expressiveness, not an input contract it must accept
 - not overfitted to any single provider — the model carries no provider-named canonical fields
 - expressive enough to represent most of what a provider provides — each provider's content maps into a neutral concept the model defines
@@ -220,7 +261,7 @@
 
 ### meta
 
-- aliases: `Session.Normal.Model` (session-scoped long form), `Normal.Model` (its role name as the target model of `Normalization.Pipeline:Chatlas.Session.Model`)
+- aliases: `Session.Normal.Model` (session-scoped long form), `Normal.Model` (its role name as the target model of `Normalization.Pipeline::Chatlas.Session.Model`)
 
 ****
 
@@ -250,6 +291,22 @@
 - one event captures one thing that happened in the session
 - an event carries its identity, its order, its kind, who produced it, its content, and a link back to raw evidence
 - projections are derived and disposable — rebuildable from the tape, never authoritative on their own
+- [DC] the tape is a jsonl file: one frozen event per line, appended in order ^20260712-12
+- [DC] each tape line carries provenance beside its payload: `source_refs` to the raw records it derives from, a `source_hash` over those records, a finality flag, and a chain hash over the line and its predecessor ^20260712-12
+- [DF] a final line's validity depends only on its source records — its `source_hash` re-verifies it; a non-final line consumed end-of-file context (open tool groups, run status, last-prompt residue) and is recomputed on every delta pass ^20260712-12
+- [DC] tail revision is truncate-and-reappend: cut the tape at the last final line, re-derive the volatile tail plus new events, append ^20260712-12
+- [RJ] serving reads through a checkpoint overlay of shadow events — the tape on disk is always the complete served tape ^20260712-12
+- [PR] per-line provenance turns staleness detection mechanical: divergence is located at a line, recomputation starts there, never from zero ^20260712-12
+
+****
+
+## Session.Model.Artifact
+
+- [DF] `Session.Model.Artifact` is the on-disk form of one `Chatlas.Session.Model` — a per-session folder of purpose-split files rather than one monolithic document ^20260712-11
+- [DC] the folder holds a small mutable head (`session.json` — identity, session payload, sources, normalization meta), the append-only `Session.Event.Tape` (`events.jsonl`), and the projections as sibling derived files ^20260712-11
+- [DC] the head is freely rewritten on update; only the tape carries append discipline ^20260712-11
+- [RJ] a single-file model with a head line inside the tape — rewriting the head would break the tape's append-only economics ^20260712-11
+- [PR] mutable aggregates live in cheap-to-rewrite surfaces (head, index row); append-only surfaces hold only frozen content ^20260712-11
 
 ****
 
@@ -262,15 +319,39 @@
 
 ****
 
-## Normalization.Pipeline:Chatlas.Session.Model
+## Normalization.Pipeline::Chatlas.Session.Model
 
-- `Normalization.Pipeline:Chatlas.Session.Model` is the Chatlas instantiation of `Normalization.Pipeline` — provider sessions normalized into `Chatlas.Session.Model`
+- `Normalization.Pipeline::Chatlas.Session.Model` is the Chatlas instantiation of `Normalization.Pipeline` — provider sessions normalized into `Chatlas.Session.Model`
 - `Normal.Model` = `Chatlas.Session.Model`; its `Session.Event.Tape` is the ordered structure assembled fragments build
 - `Raw.Source`s are provider session artifacts (transcripts, rollouts, index files); `Raw.Normalizer`s are per-provider (claude-code, codex, copilot, …)
 - the native→neutral decision lives as code in the `Raw.Normalizer` and as neutral-side commitments in `Chatlas.Session.Model.Contract` — the code is the descriptor of the mapping
 - `Normalizer.Context` is provider-scoped — one provider's session artifacts, loaded once per assembly
 - the `Normal.Assembler` produces the target a caller needs over `Chatlas.Session.Model`: a lite session ref, an index row, or a full session
 - two assembly regimes meet here — flat session metadata merges by path; `Session.Event.Tape` events assemble by order + `Session.Lineage`
+- [CT] `Raw.Normalizer`s read raw only from the `Raw.Archive` — never from provider-home paths ^20260714-1
+
+****
+
+## Delta.Normalization::Chatlas
+
+- [DF] `Delta.Normalization::Chatlas` is the application of `Delta.Normalization` to `Normalization.Pipeline::Chatlas.Session.Model`, enabled by the append-friendly `Session.Event.Tape` ^20260712-14
+- [PR] cost scales with what changed, not with session size — the active session pays for its new turns, not its history ^20260712-14
+- [CT] full re-derivation reads `Raw.Archive`, honoring the depot boundary: delta passes never read `Provider.Home` ^20260712-9
+
+****
+
+## Normalization.Delta.Checkpoint::Chatlas
+
+- [DF] `Normalization.Delta.Checkpoint::Chatlas` is the per-session checkpoint of `Delta.Normalization::Chatlas` — the frozen/volatile boundary in the raw record stream plus the state to resume derivation past it ^20260712-15
+- [DC] it lives with the scanner's derivation caches under the Chatlas depot, beside — never inside — the `Session.Model.Artifact` ^20260712-15
+
+****
+
+## Normalization.Trust.Tier::Chatlas
+
+- [DF] `Normalization.Trust.Tier::Chatlas` is the tier choice surfaced through the Chatlas update ladder — callers of `agentos chatlas update` pick how much verification a refresh pays for ^20260712-16
+- [PR] applications choose their point: a fast caller accepts a possibly-stale normal model; a caller needing certainty pays for verify or rebuild ^20260712-16
+- [CT] `Raw.Archive` preservation is what licenses the cheap tiers — a stale or wrong normal model is recoverable, lost raw is not ^20260712-16
 
 ****
 

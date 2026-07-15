@@ -33,14 +33,14 @@ This is what makes the skill cheap: a wide candidate set is reduced to one row w
 
 ## Skill.Arg.Section
 
-### Skill.Arg:Provider
+### Skill.Arg::Provider
 - narrow the candidate set to the caller's own provider family (e.g. `claude-code`, `codex`, `copilot-cli`)
 - the running agent usually knows its provider; setting it is cheaper and avoids cross-provider collisions
 - required: false
 - help: "restrict the search to one provider family"
 - examples: --provider claude-code
 
-### Skill.Arg:Days
+### Skill.Arg::Days
 - look-back window in days for the recently-active candidate set
 - keep small; the caller's own session is by definition among the most recently active
 - required: false
@@ -48,7 +48,7 @@ This is what makes the skill cheap: a wide candidate set is reduced to one row w
 - help: "recents look-back window in days"
 - examples: --days 1
 
-### Skill.Arg:Last.Turns
+### Skill.Arg::Last.Turns
 - how many trailing user turns per candidate to materialize for matching
 - raise it only when shallow turns do not disambiguate (escalation)
 - required: false

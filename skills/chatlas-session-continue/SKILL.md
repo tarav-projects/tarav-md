@@ -18,7 +18,7 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 
 ## Skill.Arg.Section
 
-### Skill.Arg:Session
+### Skill.Arg::Session
 - the prior session to continue: a session id, a session URI, or a provider-agnostic query
 - required: true
 - help: "the session to continue (id, URI, or query)"

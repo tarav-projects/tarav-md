@@ -16,7 +16,7 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 
 ## Skill.Arg.Section
 
-### Skill.Arg:Provider
+### Skill.Arg::Provider
 - the provider whose Chatlas raw retention to audit
 - required: true
 - help: "which provider's retention to audit"
