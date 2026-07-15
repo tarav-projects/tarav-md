@@ -1,16 +1,17 @@
 # agentos-index --edit
 
-Use this module when the user has approved an index or appendix edit.
+The knowledge of writing Agentos index and appendix surfaces: gates, structure, naming, block quality, edit actions, and the landing procedure.
 
-Drafting or revising block wording is also edit work, even before the user has approved a file mutation.
+This module is a `Workflow.Neutral.Module`: it does not run a workflow — its rules bind whenever an index or appendix surface is written, whichever module has control. Workflow modules such as `references/capture.md`, `references/gr-review.md`, and `references/enrich.md` steer sessions and consume this knowledge.
 
-`--edit`, `--write`, and `--append` all call this module. The context defines the edit action.
+`--edit`, `--write`, and `--append` all route here for direct edit work — a stale line to fix, a block to revise, an approved change to land. The context defines the edit action.
 
 ## Edit Gates
 
 - index work is gated by `Edit.Trigger.Gated`
 - wording-sensitive index-block work is also gated by `Content.Verbatim.Gated`
 - the agent may propose an edit path or draft, but must not commit an index or appendix edit without explicit approval
+- approval and landing are distinct acts: user approval accepts a form in chat; the write happens only on a landing trigger
 
 ## Structure
 
@@ -53,21 +54,30 @@ Drafting or revising block wording is also edit work, even before the user has a
 - propose new lines typed (`- [CT] ...`); existing untyped lines are legacy, typed opportunistically on `Index.Edit.Modify.Line` or maintenance passes — never bulk-retyped inside an unrelated edit
 - prefer the lowest-friction edit that captures the aligned content without losing meaning
 
+## Drafting
+
+When a draft is being shaped for an index or appendix surface — inside `references/capture.md`, a `Capture.Offer`, or direct edit work:
+
+- screen it for `Block Independence` — strip any deixis to the authoring conversation; state the concept positively
+- screen each line's `Line.Type`: the line must perform its typed act (`references/type.md`); a line that takes no type belongs elsewhere — flag it, do not force a type
+- review with the user and revise until accepted — acceptance is a chat state, not a write
+
+## Landing Procedure
+
+When landing an approved edit:
+
+1. Apply the approved edit to the natural surface.
+2. Stamp grounding at landing: mint the approval-turn anchor (`references/link.md`) and set it as the trailing anchor on every landed line that has no more specific evidence turn — the fallback pointer per `Inline.Grounding`; line-specific turns win where they exist.
+3. Update the router when concepts are added, renamed, moved, or gain appendix depth.
+4. Run a linter check over the edited depot or explicit surfaces.
+
+A cluster of edits approved together lands under one gate — the landing trigger covers the batch; each item's grounding still anchors its own approval turn.
+
 ## Capture.Offer Entry
 
-- an accepted `Capture.Offer` enters the loop below at step 3 — the draft already exists, typed and landing-scouted; the user's destination pick (index main, appendix, agendix) sets the surface
-- an offer routed to the agendix leaves this module: it lands through `references/agendix.md` rules (typed, anchored, ungated)
-
-## Edit Loop
-
-1. Propose a full new block or a focused diff.
-2. Screen it for `Block Independence` — strip any deixis to the authoring conversation; state the concept positively. Screen each line's `Line.Type`: the line must perform its typed act (`references/type.md`); a line that takes no type belongs elsewhere — flag it, do not force a type.
-3. Review with the user.
-4. Revise until accepted.
-5. Apply the approved edit to the natural surface.
-6. Stamp grounding at landing: mint the approval-turn anchor (`references/link.md`) and set it as the trailing anchor on every landed line that has no more specific evidence turn — the fallback pointer per `Inline.Grounding`; line-specific turns win where they exist.
-7. Update the router when concepts are added, renamed, moved, or gain appendix depth.
-8. Run a linter check over the edited depot or explicit surfaces.
+- an accepted `Capture.Offer` is already drafted, typed, and landing-scouted; the user's destination pick (index main, appendix, agendix) sets the surface
+- index main and appendix destinations land through the `Landing Procedure` above
+- an offer routed to the agendix leaves this module: it lands through `references/agendix.md` rules (typed, anchored, trigger-gated)
 
 ## Post-Edit Maintenance
 

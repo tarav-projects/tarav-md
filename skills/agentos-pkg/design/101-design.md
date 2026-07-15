@@ -155,13 +155,14 @@
 
 ****
 
-## Workflow.Neutral.Skill
+## Workflow.Neutral
 
-- `Workflow.Neutral.Skill` provides orientation or package context without steering the caller into a workflow
-- loading it should not change the caller's current task, action mode, or execution path
-- contains information, routing, boundaries, and references rather than commands or task procedures
-- useful for `Package.Skill` roots because package roots welcome many caller intentions transparently
-- contrasts with `Aux.Workflow.Skill`, which intentionally guides a recurring task
+- [DF] `Workflow.Neutral` is the property of a surface that provides context — rules, structure, routing, boundaries — without steering the caller into a workflow; loading it does not change the caller's current task, action mode, or execution path ^20260715-4
+- [CT] a `Workflow.Neutral` surface may describe a workflow, but frames it conditionally — "if you are in this situation, you must ..." — never as an imperative to act now ^20260715-4
+- [CT] a workflow surface takes control of the session; a `Workflow.Neutral` surface only informs whatever module has control ^20260715-4
+- [DF] `Workflow.Neutral.Skill` is the property held by a whole skill — useful for `Package.Skill` roots because roots welcome many caller intentions transparently ^20260715-4
+- [DF] `Workflow.Neutral.Module` is the property held by a single `Skill.Module` — the fundamental unit: a skill with only a SKILL.md is a skill with one module ^20260715-4
+- [CT] contrasts with `Aux.Workflow.Skill`, which intentionally guides a recurring task ^20260715-4
 
 ****
 

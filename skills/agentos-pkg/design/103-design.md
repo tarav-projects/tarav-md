@@ -80,6 +80,17 @@
 
 ****
 
+## Inline.Definition
+
+- [DF] `Inline.Definition` is a `[DF]` line that defines a concept by inlining it inside another concept's block, without granting it a block of its own ^20260715-4
+- [CT] the inline-defined name is a first-class `Named.Concept` — citable by `Dotted.Name` anywhere — but its truth lives on its host's line ^20260715-4
+- [EX] instances or variants of the host concept are the typical case — `Workflow.Neutral.Skill` and `Workflow.Neutral.Module` inlined in `Workflow.Neutral` ^20260715-4
+- [CT] use it when a concept is definable in one line and a block of its own would duplicate or dilute its host ^20260715-4
+- [PR] promote an `Inline.Definition` to its own block when it starts accumulating lines of its own ^20260715-4
+- [CT] differs from `Explicit.Namespace`, which declares a view over blocks that already exist — `Inline.Definition` names things that have no block ^20260715-4
+
+****
+
 ## Agentos.Index.System
 
 - `Agentos.Index.System` is the Agentos Index taken as a whole — the operable system of named concepts agents reason with

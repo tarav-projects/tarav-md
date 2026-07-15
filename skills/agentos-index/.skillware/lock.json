@@ -2,12 +2,12 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "17d99625e1f72c939185d18ced2bd480a3580e0721ca3c9391d4c441244716d1",
+      "output_sha256": "8ffa6a660e483a5be98dfd0cda41751ef25bc411e833416054a4a01719394273",
       "recipes": [
         {
           "heading": "Index Operating Behavior",
           "verb": "derived",
-          "body_sha256": "30f667174cc35815a28f4711c047cd25bfda98f5f43bdba9093fc298a963f913",
+          "body_sha256": "b4562c0f739deb284b6a2d5f6fac0d5de0a4b2d8029899735a7abcd301cad0c5",
           "deps": {
             "references/search.skw.md#Search Model": "3aad398a81c24d82880bca1b075a19bc33da25e36bb786392ec6cc941f886024",
             "references/search.skw.md#Citation Behavior": "e57e94bf2adedb5f4bde5e498c1feb6342c70412564a0e8d8a1a8734a673a8a9"
@@ -16,7 +16,7 @@
       ]
     },
     "references/agendix.md": {
-      "output_sha256": "b5982972827da70727073dc48e0cb1bfcb288f9ff57e258b71e7768d41b7baa4",
+      "output_sha256": "b38828ee2da6ef45b7fc72b5b32cf1d0b58da26edb52d9f785d4c3f04cc0cc89",
       "recipes": []
     },
     "references/back-link.md": {
@@ -28,6 +28,20 @@
           "body_sha256": "c3146f6d71c51d7d8e82db38fedca9200166b52e8526c2e8a7f6229c89e53b69",
           "deps": {
             "references/link.skw.md#Linking Pipeline": "61beb9f146bcf06a595810db3c8e0a5afe2d38b6ef7ae45d7b222a081bc9a869"
+          }
+        }
+      ]
+    },
+    "references/capture.md": {
+      "output_sha256": "07624dbd2c883e6bb8536c414c6f163f958d23c25180a86cdecb98ece9b96752",
+      "recipes": [
+        {
+          "heading": "Landing",
+          "verb": "derived",
+          "body_sha256": "b199c6fd77af39fa58a21ea445488718a6e41e8caa82ed1f2b117295b21723f0",
+          "deps": {
+            "references/edit.skw.md#Landing Procedure": "11f76adfaf1626849bc476163b3bbdefd8b4e10da87a2788f9d3ccfe41904b7e",
+            "references/agendix.skw.md#Landing Form": "04998fb197b873ef1664c138fa35ed4f51450ff9ac297d540b57ff436babeac8"
           }
         }
       ]
@@ -46,7 +60,7 @@
       ]
     },
     "references/edit.md": {
-      "output_sha256": "f639fb9be405dfad65bbffd6b8c96b53b3a0eb0de79bceee9f7ac1ca15db6e43",
+      "output_sha256": "9cbcb84ed60042c36fd66aeabae9956ccf9781d7fc980873a7c0cfa1c065f7ca",
       "recipes": [
         {
           "heading": "Block Independence",
