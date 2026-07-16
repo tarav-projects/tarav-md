@@ -1,10 +1,12 @@
 # agentos-index --enrich
 
+> $kw: depends --from Capture.Offer --from Edition.Trigger.User.Gated --from Index.Enrichment --from Inline.Grounding --from Verbatim.User.Gated --from Workflow.Neutral
+
 Use this module to run `Index.Enrichment` on a block: spawn a focused discussion with the user that produces new `Touched.Surface`, and land the resulting evidence through the gates.
 
 Authority lives in the index: `Index.Enrichment` (107) owns the doctrine — grounding is retrospective (mining the existing chat corpus), enrichment is generative (producing new surface). This module is the generative side. If a block's evidence is probably sitting unmined in the corpus, that is grounding work: route to `--gr-survey` / `--back-link` instead.
 
-This module is NOT `Workflow.Neutral`: it drives a discussion and applies gated index writes (`Edit.Trigger.Gated`, `Content.Verbatim.Gated`).
+This module is NOT `Workflow.Neutral`: it drives a discussion and applies gated index writes (`Edition.Trigger.User.Gated`, `Verbatim.User.Gated`).
 
 ## Target Selection
 

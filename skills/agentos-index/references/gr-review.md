@@ -2,7 +2,7 @@
 
 Use this module to run a grounding campaign's gate phase: walk a `Gr.Req`'s `proposed` entries with the user, flip statuses, and land the approved links. The grounding analogue of `agentos-hugentics-impl --exec` — except the executer here is the USER's judgment; this module is its clerk.
 
-This module is NOT `Workflow.Neutral`: it applies gated index writes (`Edit.Trigger.Gated`, `Content.Verbatim.Gated`) — one user verdict per entry, never a blanket apply.
+This module is NOT `Workflow.Neutral`: it applies gated index writes (`Edition.Trigger.User.Gated`, `Verbatim.User.Gated`) — one user verdict per entry, never a blanket apply.
 
 ## Inputs
 

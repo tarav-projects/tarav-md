@@ -1,5 +1,7 @@
 # agentos-index --search
 
+> $kw: depends --from Appendix.Discovery --from Index.Chapter --from Index.Depot --from Line.Type
+
 Use this module when the caller wants cited index context, conceptual lookup, or appendix depth.
 
 ## Search Model

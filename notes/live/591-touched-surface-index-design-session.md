@@ -39,14 +39,19 @@ Each row: block · depot · relationship with `2026:07:15-17:34:41` · status. A
 
 ### Axis 4 — anchor model + typed support turns
 
-- `Chat.Support.Set` (renamed from `Anchor.Support.Turns`) · chatlas · NEW — ordered relevance-sorted user-turn support set for anchored statements; typed members; old names retire to meta aliases · **landed 2026-07-16**
+- `Chat.Support.Set` (renamed from `Anchor.Support.Turns`) · chatlas · NEW — ordered relevance-sorted user-turn support set for anchored statements; typed members; old names retire to meta aliases · **landed 2026-07-16**; generality line added: support set is a general primitive, `Support.Set::<Subject>` specialization pattern, alias `Support.Set` · **landed 2026-07-16 ^20260716-15**
 - `Turn.Type` / `Turn.Type.Vocabulary` · chatlas (next to `Chat.Support.Set`) · NEW — vocabulary of support-turn roles mirroring `Line.Type`; first member `Turn.Type::Index.Approved`; typed turns make gates lintable · **landed 2026-07-16**
-- `Chatlas.Anchory` (CH 100) · chatlas · `[CT]` revision to support-set form **landed 2026-07-16**; restate adds typed turns (approval type) — linter-enforceable gate evidence · revisit-pending
-- `Anchory.System` (107) · agentos-pkg · does typed-turn/support-set generalize above the chat specialization? · revisit-pending
-- `Line.Type::GR` (106) · agentos-pkg · grounding lines vs approval-typed evidence · revisit-pending
+- `Chatlas.Anchory` (CH 100) · chatlas · `[CT]` revision to support-set form **landed 2026-07-16**; typed-turn material lives in `Chat.Support.Set`/`Turn.Type` — no further block edit; the concept's appendix is the default landing for relevant lines that find no block · **revisited 2026-07-16, no edit**
+- `Anchory.System` (107) · agentos-pkg · no generalization needed — anchory is plumbing usable by systems beyond chatlas; chatlas is currently the only consumer; payload-ownership line already covers it · **revisited 2026-07-16, no edit**
+- `Line.Type::GR` (106) · agentos-pkg · boundary line added: grounding is factual evidence, not authority — gate turns live in a line's own support set · **landed 2026-07-16 ^20260716-18**
 - `Kernel.Block.Grounding` (105) · agentos-pkg · support-set + approval-turn model touches grounding heads · revisit-pending
 - `Inline.Grounding` (105) · agentos-pkg · trailing anchors now resolve to support sets · revisit-pending
 - `Git.Dating` (107) · agentos-pkg · restate: CPU/agent path for locating verbatim/approval evidence on chats · revisit-pending
+
+- `Touched.Support.Network` (alias `Index.Support.Network`) · agentos-pkg (107, after `Touched.Surface.Index`) · NEW — the dynamic network `Support.Set` ↔ `Anchor.Metadata` ↔ `Anchored.Line`; live cut on the surface, history in git, invariant turns on the chat; new-meaning-new-anchor doctrine · **landed 2026-07-16 ^20260716-19..24**
+- archive surface · agentos-pkg/chatlas · NEW candidate — attachment surface for current relationships with drifted turns; `Line.Type::DR` (why the turn drifted, turn anchor trailing); `Outdated.Concept` fallback bucket for turns no current concept absorbs; live-cut discipline caps it (drop to git when useless) · draft-pending
+- `Kernel.Block.Grounding` (105) · agentos-pkg · direction agreed in chat: line support sets absorb the evidence-board role; `Grounding.Head`/`Grounding.Drift` justification weak in the new model — rewrite pending the archive/`[DR]` drafts · discussion-advanced
+- `Inline.Grounding` (105) · agentos-pkg · direction agreed: becomes *the* grounding mechanism · discussion-advanced
 
 ### Axis 5 — attachment-point generalization
 

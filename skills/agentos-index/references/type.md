@@ -50,7 +50,7 @@ When drafting or reviewing a line's type:
 - every type creates a validation point: the line must perform its act — a `[CT]` must exclude something, a `[DC]` must pin something, an `[EX]` must illustrate a specific claim
 - a typed line that performs nothing is mistyped filler; check the validation point in the relevant `Line.Type::XX` block before proposing
 - a `[PR]` scoped to a single variable is a `[CT]`
-- type proposals on index content are index edits — `Edit.Trigger.Gated`, `Content.Verbatim.Gated`; propose, never self-write
+- type proposals on index content are index edits — `Edition.Trigger.User.Gated`, `Verbatim.User.Gated`; propose, never self-write
 
 ## The Fence And The Residue
 

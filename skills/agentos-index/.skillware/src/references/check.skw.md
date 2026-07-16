@@ -1,5 +1,7 @@
 # agentos-index --check
 
+> $kw: depends --from Appendix.Discovery --from Index.Depot --from Index.Linter --from Line.Type
+
 Use this module when the caller wants deterministic diagnosis, linter findings, or post-edit validation for an index depot or explicit index/appendix surface.
 
 `--check` and `--lint` both call this module.

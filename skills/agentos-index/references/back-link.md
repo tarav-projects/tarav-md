@@ -19,7 +19,7 @@ This module is `Workflow.Neutral` in the same sense as `--link`: it produces ver
    - `agentos chatlas views inline --identity-hash <H> --contains "<distinctive block wording>" --role user --around "<commit time>" --radius 6 --filter turns`
    - the user turn that proposed, corrected, or accepted the block's content is the landing point; `Grounding.Hugentic.Authority` applies — user turns primarily
 4. **Turn → anchor.** Mint through the linking primitive (`references/link.md` step 3): `agentos chatlas anchory register --identity-hash <H> --at "<turn time>" --hint "…"` — read the echo, confirm the neighborhood.
-5. **Anchor → index.** USER-GATED: show the proposed `[GR]` line verbatim in chat and write only on explicit user approval (`Edit.Trigger.Gated`, `Content.Verbatim.Gated`, via `--edit`). The landing is a `[GR]` line in `appendix/Concept.X/Grounding.Head` (router gains `[+N]` if the appendix file is new), or an inline trailing anchor when one line is the target. Steps 1–4 are free; step 5 never is.
+5. **Anchor → index.** USER-GATED: show the proposed `[GR]` line verbatim in chat and write only on explicit user approval (`Edition.Trigger.User.Gated`, `Verbatim.User.Gated`, via `--edit`). The landing is a `[GR]` line in `appendix/Concept.X/Grounding.Head` (router gains `[+N]` if the appendix file is new), or an inline trailing anchor when one line is the target. Steps 1–4 are free; step 5 never is.
 
 ## Judgment Points
 

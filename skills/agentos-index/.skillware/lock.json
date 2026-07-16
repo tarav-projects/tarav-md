@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "8ffa6a660e483a5be98dfd0cda41751ef25bc411e833416054a4a01719394273",
+      "output_sha256": "5b764b37a98e5bad3070b2e3daab1b734c0f2cbee187f154101119e4a657ef22",
       "recipes": [
         {
           "heading": "Index Operating Behavior",
@@ -16,16 +16,16 @@
       ]
     },
     "references/agendix.md": {
-      "output_sha256": "2f5e886f1998d48447b74a2bf1c87b44bb207b24356ddd25de904a10d0bca027",
+      "output_sha256": "fa37671e8edc6e76b70fc6b52a66ff7efb9b4219161eac9bba4f5c02ff2c3675",
       "recipes": []
     },
     "references/back-link.md": {
-      "output_sha256": "80f36ebd80e51086706c16e697f0e6b7962c352f60a8f7ec73f8e83cc80070ee",
+      "output_sha256": "e196a35593ac6d6f0b746a3b24103cba7407da12ec59e5d06f9a96fd7b70da02",
       "recipes": [
         {
           "heading": "Back-Link Pipeline",
           "verb": "derived",
-          "body_sha256": "c3146f6d71c51d7d8e82db38fedca9200166b52e8526c2e8a7f6229c89e53b69",
+          "body_sha256": "e3cc2f89abf7ebdcbe2471212f38d815dcb1358bf1f364ca8e72ad8c4d01a890",
           "deps": {
             "references/link.skw.md#Linking Pipeline": "61beb9f146bcf06a595810db3c8e0a5afe2d38b6ef7ae45d7b222a081bc9a869"
           }
@@ -33,12 +33,12 @@
       ]
     },
     "references/capture.md": {
-      "output_sha256": "16aba8867b643588e8eba725324cdc7fea01f8112943913b97c312a87b774a57",
+      "output_sha256": "9697bdd6319db27dacad88dfa6cb5402c7b466c6e56cef9c7c2a712413eda770",
       "recipes": [
         {
           "heading": "Landing",
           "verb": "derived",
-          "body_sha256": "b043771f79555fe3b50e979219dd14802cfca2fbcc51d3d2f4c36b0495cf03db",
+          "body_sha256": "5b658b9cdfde0e2a6a1e3afaf36c1a214fb9d2a3736645f62baca471ed788e74",
           "deps": {
             "references/edit.skw.md#Landing Procedure": "11f76adfaf1626849bc476163b3bbdefd8b4e10da87a2788f9d3ccfe41904b7e",
             "references/agendix.skw.md#Landing Form": "a5a020ea13b8cf4e3941260112c0a66098225fbf50c2d2944e14eaab49674028"
@@ -60,24 +60,24 @@
       ]
     },
     "references/edit.md": {
-      "output_sha256": "9cbcb84ed60042c36fd66aeabae9956ccf9781d7fc980873a7c0cfa1c065f7ca",
+      "output_sha256": "b1dc4ab698644e578f341f736d1fe4a23e83dd5a8669fcbd8640ac7bee8511ce",
       "recipes": [
         {
           "heading": "Block Independence",
           "verb": "derived",
-          "body_sha256": "21d3732f67c80612c6c5336799cb1c90d1ec11345ef3ed59709b09b891938c6f",
+          "body_sha256": "79222e12b6610528d3dcb618f182f5d0defe2c99d0b6e625bb48b4b1d96a060f",
           "deps": {
-            "Independent.Reader.Block": "b5fda5b41f4341d86556b75e6a189497c8ba0ad7809c7d58ad15a772ff515d09"
+            "Independent.Reader.Block": "12d798ef629eacfa0d0bc4fa6a2fb4cd64c73376e7f4097eae62fd3ac9a2a098"
           }
         }
       ]
     },
     "references/enrich.md": {
-      "output_sha256": "d13a4da7d20ee6cfc0733ac6c52ace13fa9e803159fdd0d67d532263bcd44776",
+      "output_sha256": "77de20ae946678878ea915d12e9df4f1fdfb1375963636de892affc3c77fd9ef",
       "recipes": []
     },
     "references/gr-review.md": {
-      "output_sha256": "863dd82cc58e32f604450a95897a09b6c09572f5b4f5ddeb19e06703188d755e",
+      "output_sha256": "beca4d3181023384e848ccfaeab042806fc9da48e39a117caeb34ca385694851",
       "recipes": []
     },
     "references/gr-survey.md": {
@@ -115,8 +115,9 @@
       "recipes": []
     },
     "references/type.md": {
-      "output_sha256": "9474bdb392a66df99c5c2166da7d33631a055b7dbabcd8432fe1493b57fd45d6",
+      "output_sha256": "85b9f712e47a4fc36c9cbc1f1a3db974e0bee6958266364143bf45051ee0757b",
       "recipes": []
     }
-  }
+  },
+  "blessings": []
 }

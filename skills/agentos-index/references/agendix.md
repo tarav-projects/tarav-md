@@ -4,24 +4,24 @@ The knowledge of the `Index.Agendix` surface: what it is, what may enter it, and
 
 This module is a `Workflow.Neutral.Module`: it runs no workflow — its rules bind whenever material lands on the agendix, whichever module has control. The capture workflow that harvests chat content lives in `references/capture.md`; `--agendix` runs that workflow with the agendix as preset destination.
 
-The agendix is the agentic path of the same alignment writing the index runs hugentically: same primitives — `Kernel.Line`s, `Line.Type`s, anchors, the current concept set — with the user's review gate replaced by hard provenance. It is **trigger-gated, not content-gated**: a user routing verdict ("send it to the agendix") is the whole gate; the writes within a pass are not individually reviewed.
+The agendix is the agentic path of the same alignment writing the index runs hugentically: same primitives — `Kernel.Line`s, `Line.Type`s, anchors, the current concept set — with the user's review gate replaced by hard provenance. On the `Capture.Gradient` it sits **touched, captured, ungated**: a user routing verdict ("send it to the agendix") triggers the pass, and the writes within it are not individually reviewed — the gate buys stability, not authority; authority lives per-line in its `Chat.Support.Set`.
 
 Authority lives in the index: `Index.Agendix`, `Writing.Friction.Reduction`, `Kernel.Block.Grounding`, `Inline.Grounding`, `Grounding.Hugentic.Authority`, `Chatlas.Anchory` own the concepts.
 
 ## The Two Surfaces, Same Primitives
 
-| primitive | index main + appendix (hugentic) | agendix (agentic) |
+| primitive | ontology + appendix (hugentic) | agendix (agentic) |
 |---|---|---|
 | unit | `Kernel.Line`s and `Kernel.Block`s | same — lines and candidate blocks, same forms |
 | significance gate | `Line.Type` + validation point | same — untypeable lines do not enter |
 | evidence | grounding lines / inline anchors | same — every line carries an anchor, mandatory |
 | concept set | user can mint routed concepts | primed: candidate names only, attached under routed concepts |
-| authority gate | `Edit.Trigger.Gated` + `Content.Verbatim.Gated` | trigger-gated — provenance replaces review |
+| authority gate | `Edition.Trigger.User.Gated` + `Verbatim.User.Gated` | ungated, user-triggered — provenance replaces review |
 | surface | chapter files + `appendix/` | `agendix/Concept.X-agendix.md` next to `appendix/` |
 
 ## Surface Rules
 
-- the agendix holds touched but uncaptured material: summaries of chat discussion — a correction, a decision, a rejection, a boundary, a constraint the index does not yet carry — every line grounded by a user-turn support set, no line landed through a user-gated capture
+- the agendix holds touched but ungated material: summaries of chat discussion — a correction, a decision, a rejection, a boundary, a constraint the index does not yet carry — every line grounded by its `Chat.Support.Set` of user turns, no line's wording passed the user gate
 - assistant-grounded capture is excluded: anchors target user turns; assistant material enters only through the user turn that touched it (`Grounding.Hugentic.Authority`: accepted, corrected toward, or acted on)
 - every line is typed: pick the `Line.Type` first (`references/type.md`); a line that takes no type does not enter
 - every line ends with its anchor: hard provenance, no unanchored agendix lines
@@ -47,7 +47,7 @@ When landing material on the agendix — from `references/capture.md`, an accept
 
 ## Boundaries
 
-- landing on the agendix modifies no index main, appendix, or router file
+- landing on the agendix modifies no ontology, appendix, or router file
 - no promotion from this surface: promotion and drop are user decisions on later review; the agendix only accumulates
 - the agendix does not restate index content — it holds what the index does not yet capture
 - nothing lands without a user trigger; the trigger covers the pass, the writes within it are not individually gated

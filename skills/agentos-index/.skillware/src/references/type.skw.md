@@ -1,5 +1,7 @@
 # agentos-index --type
 
+> $kw: depends --from Concept.Hardness --from Design.Space --from Design.Variable --from Edition.Trigger.User.Gated --from Inline.Grounding --from Kernel.Line --from Line.Type --from Line.Type.Vocabulary --from Verbatim.User.Gated --from Workflow.Neutral
+
 Use this module when the caller wants line typing understood, read, or proposed: classifying `Kernel.Line`s with the `Line.Type.Vocabulary`.
 
 This module is `Workflow.Neutral`: it is a cited surface explaining how to make and read proper index line typing. It runs no workflow and mutates no file — typing lands on the index only through the `--edit` path and its gates.
@@ -50,7 +52,7 @@ When drafting or reviewing a line's type:
 - every type creates a validation point: the line must perform its act — a `[CT]` must exclude something, a `[DC]` must pin something, an `[EX]` must illustrate a specific claim
 - a typed line that performs nothing is mistyped filler; check the validation point in the relevant `Line.Type::XX` block before proposing
 - a `[PR]` scoped to a single variable is a `[CT]`
-- type proposals on index content are index edits — `Edit.Trigger.Gated`, `Content.Verbatim.Gated`; propose, never self-write
+- type proposals on index content are index edits — `Edition.Trigger.User.Gated`, `Verbatim.User.Gated`; propose, never self-write
 
 ## The Fence And The Residue
 

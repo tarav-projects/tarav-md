@@ -8,15 +8,15 @@ This module is a `Workflow.Neutral.Module`: it does not run a workflow — its r
 
 ## Edit Gates
 
-- index work is gated by `Edit.Trigger.Gated`
-- wording-sensitive index-block work is also gated by `Content.Verbatim.Gated`
+- index work is gated by `Edition.Trigger.User.Gated`
+- wording-sensitive index-block work is also gated by `Verbatim.User.Gated`
 - the agent may propose an edit path or draft, but must not commit an index or appendix edit without explicit approval
 - approval and landing are distinct acts: user approval accepts a form in chat; the write happens only on a landing trigger
 
 ## Structure
 
 - depot router: `000-INDEX.md`
-- public main surface: `Index.Main`
+- public main surface: `Index.Ontology`
 - public chapter files: `<chapter>/NNN-<chapter>.md`, defaulting to `design/NNN-design.md`
 - public appendix depth: shared `Index.Appendix` files under `appendix/Concept.Name-appendix.md`
 - local index: an `Index.Depot` with the same structure, differing only in location — rooted in the project rather than inside a shippable skill bundle
@@ -38,10 +38,12 @@ This module is a `Workflow.Neutral.Module`: it does not run a workflow — its r
 `Cited.Duplication` of `[Independent.Reader.Block]` — the quality every drafted block must hold:
 
 - a block must be recoverable cold by an independent reader holding only the block and the index it cites
-- no deixis to the authoring conversation: no "the new model", "as discussed", "the thing the user wants" — the reader meets the block cold, without the session that produced it
-- define positively — say what the concept is, not what it is instead of a rejected alternative
-- inlining other concepts by `Dotted.Name` keeps independence — `Name.As.Index` anchors are resolvable, not dependencies that break it
+- independence means independence from the writer's context, the producing conversation, and the block's position on the index surface
+- inlining other concepts by `Dotted.Name` keeps independence — `Name.As.Index` anchors are durable and resolvable, not dependencies that break it
+- what breaks independence is deixis: a reference whose meaning depends on the authoring context instead of on a named, resolvable concept
 - the primary hazard is distilling a live conversation; strip the session's frame before committing
+- define positively — say what the concept is, not what it is instead of
+- extended depth belongs in `appendix/Independent.Reader.Block-appendix.md`
 
 ## Edit Decision Mechanics
 
@@ -50,7 +52,7 @@ This module is a `Workflow.Neutral.Module`: it does not run a workflow — its r
 - append a line when the content is a valuable point under an existing concept
 - modify a line when an existing statement is wrong, stale, or imprecise
 - revise a block when the current frame no longer holds its accumulated lines
-- use `Index.Main` for routed fundamentals and `Index.Appendix` for tail, depth, history, scoped children, or loose but valuable material
+- use `Index.Ontology` for routed fundamentals and `Index.Appendix` for tail, depth, history, scoped children, or loose but valuable material
 - propose new lines typed (`- [CT] ...`); existing untyped lines are legacy, typed opportunistically on `Index.Edit.Modify.Line` or maintenance passes — never bulk-retyped inside an unrelated edit
 - prefer the lowest-friction edit that captures the aligned content without losing meaning
 

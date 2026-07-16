@@ -4,7 +4,7 @@ Use this module to run `Index.Enrichment` on a block: spawn a focused discussion
 
 Authority lives in the index: `Index.Enrichment` (107) owns the doctrine — grounding is retrospective (mining the existing chat corpus), enrichment is generative (producing new surface). This module is the generative side. If a block's evidence is probably sitting unmined in the corpus, that is grounding work: route to `--gr-survey` / `--back-link` instead.
 
-This module is NOT `Workflow.Neutral`: it drives a discussion and applies gated index writes (`Edit.Trigger.Gated`, `Content.Verbatim.Gated`).
+This module is NOT `Workflow.Neutral`: it drives a discussion and applies gated index writes (`Edition.Trigger.User.Gated`, `Verbatim.User.Gated`).
 
 ## Target Selection
 

@@ -23,9 +23,10 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 ### Skill.Arg::Capture
 - run the capture loop: work the chat's content into kernel writing form through discussion, and land approved material on user-named index surfaces
+- accepts `Alignment.Mode` (`Interactive` default); `--AUTO` is the fully automatic extreme — chat to agendix, no prompting
 - required: false
 - help: "capture the current chat into the index: ground, draft, discuss, approve, land"
-- examples: --capture, --capture "capture the design discussion we just had"
+- examples: --capture, --capture "capture the design discussion we just had", --capture --AUTO
 
 ### Skill.Arg::Edit
 - work the approved edit path for index or appendix changes
@@ -84,7 +85,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - examples: --type "type the Anchory.System block", --type "what binds me in this block?"
 
 ### Skill.Arg::Agendix
-- run the capture loop with the agendix as preset destination — the agentic, trigger-gated path
+- run the capture loop with the agendix as preset destination — `Alignment.Mode::Autonomous` by default, the agent lands and reports
 - required: false
 - help: "run an agendix capture pass over the current conversation"
 - examples: --agendix, --agendix "capture the grounding discussion"
@@ -131,7 +132,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - the index is `Index.Skillware` — an executable artifact for project knowledge
 - it is an `Alignment.Surface` between humans and agents
-- it contains `Named.Concepts` written in `Kernel.Block::Index` blocks, organized in `Index.Chapter` files under `Index.Main`, routed by `000-INDEX.md`, with on-demand `Index.Appendix` depth
+- it contains `Named.Concepts` written in `Kernel.Block::Index` blocks, organized in `Index.Chapter` files under `Index.Ontology`, routed by `000-INDEX.md`, with on-demand `Index.Appendix` depth
 - the active chapter defaults to `design`; chapter files are named `NNN-<chapter>.md`
 - index work happens over engaged `Index.Depot`s; `--depot` scopes which depots are engaged and `--chapter` scopes within them
 - its lines carry `Line.Type` codes (`- [CT] ...`) classifying each line's act; untyped lines are pre-fence legacy
@@ -148,7 +149,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 | When the caller wants the current prompt or ongoing conversation grounded against the index; when the task is to surface the most relevant concepts, tensions, contradictions, significant accepted remarks, or missing coverage; when the caller wants the relationship between the live discussion and the existing index made explicit rather than running a raw lookup | `references/ground.md` |
 | When the caller wants deterministic diagnosis, linter findings, or post-edit validation for an index depot or explicit index/appendix surface; `--check` and `--lint` both call this module | `references/check.md` |
 | When the caller wants line typing understood, read, or proposed — the `[XX]` syntax, the `Line.Type.Vocabulary`, validation points, reading typed lines as constraints, calibration passes and their residue | `references/type.md` |
-| When material lands on the agendix or the caller needs the agendix surface understood — `agendix/` files under existing concepts, typed and anchored lines, trigger-gated with hard provenance | `references/agendix.md` |
+| When material lands on the agendix or the caller needs the agendix surface understood — `agendix/` files under existing concepts, typed and anchored lines, ungated with hard provenance | `references/agendix.md` |
 | When a caller needs an `Anchory.Anchor` minted for a chat context — session resolution, turn location, registration, verification; consumed by `--capture`, `--edit`, and `--agendix` | `references/link.md` |
 | When the caller wants an existing block grounded backward — git dates the wording, chatlas finds the session and turns, the linking primitive mints, the gated edit lands the `[GR]` line | `references/back-link.md` |
 | When the caller wants a grounding campaign surveyed — a scope swept, anchors minted, a `Gr.Req` produced with `proposed`/`ambiguous` entries, no index writes; `--gr-scout`/`--gr-scan`/`--gr-linker` are aliases | `references/gr-survey.md` |
@@ -185,7 +186,7 @@ For delegated read-only research that protects the caller's context, use `Packag
 - `references/ground.md` — conversation-to-index grounding: derive the active themes, search selectively, and report matches, tensions, and gaps
 - `references/check.md` — deterministic index checks through `agentos index linter`
 - `references/type.md` — line typing: syntax, vocabulary, validation points, reading typed lines, fence and residue
-- `references/agendix.md` — the knowledge of the agendix surface: rules, landing form, boundaries — typed, anchored, trigger-gated
+- `references/agendix.md` — the knowledge of the agendix surface: rules, landing form, boundaries — typed, anchored, ungated
 - `references/link.md` — the linking primitive: mint and verify chat anchors through chatlas + anchory commands
 - `references/back-link.md` — backward grounding: git history to evidence turns for existing blocks
 - `references/gr-survey.md` — grounding campaign survey: scope sweep, minting, `Gr.Req` production (no index writes)

@@ -6,7 +6,7 @@
 - deliverables: (a) alias-aware `Dotted.Name` resolution in the skillware depot resolver, (b) baseline `depends` declarations on the `agentos-index` skill, (c) resolution of the exposed drift POIs by updating the stale citations to current names, ending with a clean check
 - scope: `agentos-py/src/agentos/skillware/build.py` + tests; `agentos-md/skills/agentos-pkg/design/107-design.md` (one meta data fix); `agentos-md/skills/agentos-index/.skillware/src/**` (declarations + drift fixes, then rebuild)
 - out of scope: index-linter changes; alias support anywhere outside the skillware resolver; declaring or fixing skills other than `agentos-index`; the project-root `.claude/skills` copies (they regenerate from the same src)
-- status: ready
+- status: executed
 
 ## Impl.Index
 
@@ -71,4 +71,12 @@ Run `python -m pytest agentos-py/tests/test_skillware.py` per slice (RED→GREEN
 
 ## Impl.Log
 
-- (empty — execution not started)
+- 2026-07-16 — pre-edit checkpoints created per execution workflow: `agentos-py` commit `3c8eb20`, `agentos-md` commit `db5bda3`.
+- 2026-07-16 — implemented alias-aware Skillware depot resolution in `agentos-py`: canonical block names and `### meta` aliases now resolve through a cached per-depot name index; canonical names win on collisions.
+- 2026-07-16 — added alias regression tests for canonical resolution, alias resolution, canonical collision priority, literal alias dependency-sync POIs, blessing suppression, and re-minting after target block edits.
+- 2026-07-16 — fixed `Index.Ontology` metadata in `agentos-pkg/design/107-design.md`: alias `Index.Ontology` corrected to retired `Index.Main`; `agentos index linter --depot skills/agentos-pkg` passed with 0 errors/warnings.
+- 2026-07-16 — added canonical `$kw: depends --from ...` baseline declarations to all 13 `agentos-index` Skillware source files and rebuilt the managed skill outputs.
+- 2026-07-16 — deviation: current sources contained retired gate-name citations in 7 files, not only the 5 stale citations listed in `Current.State`; resolved all observed retired aliases (`Index.Main`, `Edit.Trigger.Gated`, `Content.Verbatim.Gated`) to current names instead of blessing drift POIs.
+- 2026-07-16 — deviation: baseline exposed an existing `derived-stale` POI for `references/edit.md :: Block Independence`; refreshed that derived body from current `Independent.Reader.Block` source so final acceptance could be clean without blessing.
+- 2026-07-16 — verification: `uv run python -m pytest tests/test_skillware.py -q` passed (`62 passed`); `agentos skillware check --skill /Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-index` passed with 13 ok files and 0 POIs.
+- 2026-07-16 — scratch probe: temporarily added undeclared resolving mention `Capture.Offer` to `references/check.skw.md`, rebuilt, confirmed exactly one `undeclared-dependency` POI, then reverted the probe and rebuilt back to 0 POIs.

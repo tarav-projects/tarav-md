@@ -281,7 +281,7 @@
 
 ### meta
 
-- aliases: `Index.Ontology`, `Index.Fundamentals`
+- aliases: `Index.Main`, `Index.Fundamentals`
 
 ****
 
@@ -555,6 +555,24 @@
 - [FR] the nature of the annotation varies by application: a line may restate the turn content, or contextualize why the support turns support what is being annotated ^20260716-1
 - [DC] member surfaces differ by design axes on top of the invariant: attachment point, gating, format, ordering ^20260716-1
 - [EX] the `Agentos.Index` is the first member — lines attached to concepts; `Chat.Agendix` attaches them to chats; `Skw.Agendix` to any `Skw.Annotation` ^20260716-1
+
+****
+
+## Touched.Support.Network
+
+- [DF] `Touched.Support.Network` is the network relating anchored statements across all touched surfaces to their chat evidence — edges of the form `Support.Set` ↔ `Anchor.Metadata` ↔ `Anchored.Line` ^20260716-21 ^20260716-23
+- [DC] two surfaces meet at the edge: the `Chat.Surface` holds the turns, the anchored surface holds the line; the anchory between them can carry metadata ^20260716-22
+- [DC] `Anchored.Line` is the general node: an `Index.Line` is one case — agendix, archive, and annotation lines ride the same edge shape ^20260716-21
+- [DC] metadata is free at this level: optional and implementation-defined — hint, explanation, whatever the integration needs; the bare edge `Support.Set` ↔ `Anchored.Line` is valid, the line itself explaining the relationship ^20260716-21 ^20260716-22
+- [DC] it is a dynamic system: nodes and edges are created and eliminated as both sides evolve — the index is a view over the `Chat.Surface` contextualized by its current semantics ^20260716-19
+- [DC] the surface holds the live cut — utility for the current model; git holds the network's history; the `Chat.Surface` holds the invariant turns ^20260716-19
+- [DC] a turn's grounding history is traced by following the edit history of the anchors and the index — no history log on the surface ^20260716-20
+- [DC] reinterpretation mints a new anchor rather than amending — new meaning is a new anchor, generalizing the wrong-date doctrine ^20260716-19
+- [PR] `Chat.Support.Set` is the local view: one node's edge bundle; the network is the global object the sets compose ^20260716-20
+
+### meta
+
+- aliases: `Index.Support.Network`
 
 ****
 

@@ -1,5 +1,7 @@
 # agentos-index --ground
 
+> $kw: depends --from Context.Grounding --from Index.Grounding
+
 Use this module when the caller wants the current prompt or ongoing conversation grounded against the index.
 
 `--ground` is not a raw lookup alias. It is a conversation-to-index grounding pass.

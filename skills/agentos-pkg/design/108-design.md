@@ -17,6 +17,7 @@
 - [FR] locator roots follow common sense, often a `<...>` variable — no closed root vocabulary exists ^20260712-2
 - [DC] the `@` is agent-maintained: users may omit it, and a bare mention resolves to the locator-named entity when it matches (`Bla/Blo` → `@Bla/Blo`) ^20260712-2
 - [DC] friendly alternates live as aliases in `Kernel.Block.Meta`, not as competing names ^20260712-0
+- [CT] aliases resolve inbound references only — user input, queries, legacy mentions; a citation written on any stable surface canonicalizes to the block's title name — an alias in a cite fragments the `Name.As.Index` reverse lookup ^20260716-17
 - [DC] routing is form-neutral: `000-INDEX.md` routes any legal name ^20260712-0
 
 ### meta
