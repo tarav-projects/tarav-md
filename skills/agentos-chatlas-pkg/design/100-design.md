@@ -374,7 +374,7 @@
 - Chatlas owns the `Anchory.Record` payload and the traversal from record to session and turn neighborhood
 - registration validates the session exists and the timestamp falls inside its bounds
 - [DC] registration echoes the landing neighborhood — the minting agent double-checks the anchor before tagging lines
-- [CT] a chat anchor used for index grounding targets a user turn; assistant context is recovered by neighborhood reading
+- [CT] a chat anchor resolves to its `Chat.Support.Set`; you land on the set and read the neighborhoods ^20260715-5
 - record format: `appendix/Chatlas.Anchory-appendix.md`
 - [PR] chatlas anchory and the chatlas query language are one system, co-designed — anchors are native selectors of the query language ^20260708-2
 - [DC] the anchor key's date is the evidence turn's date, not the minting date — a wrong date means a new anchor, never an amendment ^20260706-0
@@ -406,3 +406,38 @@
 - [DC] its content shape is `Chatlas.Session.Model` JSON reduced by `Chatlas.Filter/turns`
 - [PR] it gives grounding-relevant turns a stable project-relative home while global Chatlas remains the canonical query, resolution, and grounding depot
 - [DC] sync refreshes computed session files by `identity_hash` and preserves other local files in the surface
+
+****
+
+## Chat.Support.Set
+
+- [DF] `Chat.Support.Set` is the ordered, relevance-sorted set of `Chat.Surface` user turns that support an anchored statement ^20260716-1
+- [CT] support turns are user turns only — the authority moments; assistant content is recovered by neighborhood reading ^20260715-5
+- [DC] a support set may hold a single turn when one turn is the actual support, or many when the fact spans them ^20260715-5
+- [DC] the set is relevance-sorted — a reader consumes top-down, as deep as its budget allows ^20260715-5
+- [DC] support turns may be typed: a `Turn.Type` names the role a turn plays for the annotated statement, orthogonal to the sort order ^20260716-2
+- [DC] an untyped member is plain evidence — the default role; typed members carry specific duties ^20260716-2
+- [EX] `Turn.Type::Project.Index.Gate` — the turn where the user approved the line's verbatim text onto the index ^20260716-2 ^20260716-10
+- [PR] types make gates checkable: a surface's gate can require a turn of a given type in every line's set — presence is CPU-lintable, correspondence stays an agent check ^20260716-2
+- [PR] anchor the authority, read the content around it — the user reaction is the touch event; the idea it reacts to is the neighborhood ^20260715-5
+- [DC] registration echoes the set's neighborhoods for the minting agent to verify ^20260715-5
+- [DC] the support set is a general primitive: any anchored statement has one, whatever surface it lives on; specializations name the subject — `Support.Set::Index.Line` is an `Index.Line`'s set ^20260716-15
+
+### meta
+
+- aliases: `Support.Set`, `Anchor.Support.Turns`, `Anchor.Landing.Turns`
+
+****
+
+## Turn.Type
+
+- [DF] `Turn.Type` is the role a member turn plays inside a `Chat.Support.Set` — a per-member tag, orthogonal to the set's relevance sort ^20260716-3
+- [DC] the untyped member is the default: plain evidence for the annotated statement ^20260716-3
+- [DC] the vocabulary is soft and extensible (`Concept.Hardness`) — a new type is an index edit, mirroring `Line.Type.Vocabulary` ^20260716-3
+- [DC] gates consume types by name: a surface gate may require a turn of a given type in every line's set; the linter checks presence, the agent checks correspondence ^20260716-3
+- [DC] gate types follow the surface: each `Verbatim.User.Gated` surface names its own gate type — `Turn.Type::<Surface>.Gate` ^20260716-10
+- [EX] `Turn.Type::Project.Index.Gate` — the turn that opened the project index gate for a line's verbatim text; required by the `Project.Index`'s gated surfaces ^20260716-10
+
+### meta
+
+- aliases: `Turn.Type::Index.Approved` (of `Turn.Type::Project.Index.Gate`)
