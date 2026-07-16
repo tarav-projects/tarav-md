@@ -151,7 +151,7 @@
 - [DF] `Untouched.Space` is the region of a `QA.Space` with no `User.Touched` evidence
 - [DC] it is the part of the modeled space the hugentic process has not reached
 - [CT] touch does not decide whether the agent may act; the `Open.Space` / `Constrained.Space` axis decides action
-- [DC] untouched material never becomes an index line directly; it remains in chat, work surfaces, source surfaces, or `Index.Agendix` until touched
+- [DC] untouched material never becomes an index line directly; and touch alone lands nothing — material, touched or not, remains in chat, work surfaces, source surfaces, or `Index.Agendix` until landed through the gate ^20260716-0
 - [PR] alignment grows by moving important regions from `Untouched.Space` into `Touched.Space`
 
 ****
@@ -200,7 +200,7 @@
 - naming once bundled three filters — identification, boundary, significance; the line-level tests unbundle them: a crisp single point (`Kernel.Line`), attaching to a block (`Index.Edit.Append.Line`), and significance (`Line.Type`)
 - syntax: a leading bracketed code — `- [CT] the anchor token stays small`; the type is read first and primes the line, the tail stays free for inline anchors
 - every line is typed, the definition first line explicitly `[DF]` — untyped lines are mechanically detectable (no leading bracket), the pre-fence legacy the calibration passes work down
-- [DC] types stack along axes: the act axis (`CT`, `DC`, …) and the source axis — unmarked is user-grounded, `AS:` marks assistant-grounded (`[AS:CT]`); `AS:` is legal only in the agendix
+- [DC] the act axis (`CT`, `DC`, …) is the type — the assistant-grounded source marker (`[AS:XX]`) is retired: all typed lines are user-grounded on every surface ^20260716-0
 
 - [PR] typing makes the index computable — backward, lint for coherence; forward, agents derive their bounds and freedoms mechanically instead of interpreting prose ^20260707-1
 ****
@@ -456,7 +456,7 @@
 - specs supersede precedence — an explicit rule settles representation over any precedent, matching `Specified.By.Precedence`'s spec-over-imitation rule
 - precedence never overrides source content — it decides how a value is written, never what the value is
 - precedence is weighted by relatedness — instances sharing identifying context (same party, project, or scope) carry more weight than distant ones
-- representation choices are `Content.Verbatim.Gated` — the agent proposes from precedence, the user settles the canonical form
+- representation choices are `Verbatim.User.Gated` — the agent proposes from precedence, the user settles the canonical form
 
 ****
 

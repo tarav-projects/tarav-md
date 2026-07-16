@@ -28,7 +28,7 @@ Eight starting types, sorted by their verb on the `Design.Space`. One-line remin
 | witness | `EX` | illustrates another line's claim with a concrete case |
 | cite | `GR` | accounts what an anchored evidence neighborhood grounds, anchor trailing |
 
-Types stack along axes. The act axis above is required; the source axis is a prefix marker: unmarked = user-grounded (the default), `AS:` = assistant-grounded, as in `[AS:CT]`. `AS:` is legal only in the agendix — the index proper is user-turn-grounded, no exceptions; promotion re-grounds on the approving user turn and drops the marker.
+The act axis is the type. Every typed line is user-turn-grounded, on every surface — the assistant-grounded source marker (`[AS:XX]`) is retired; a line encountered carrying it is legacy, re-grounded on a user turn or dropped when next touched.
 
 The vocabulary is soft and extensible (`Concept.Hardness`) — but extension is an index edit, not a call this module makes.
 

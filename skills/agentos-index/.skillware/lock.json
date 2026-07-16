@@ -16,7 +16,7 @@
       ]
     },
     "references/agendix.md": {
-      "output_sha256": "b38828ee2da6ef45b7fc72b5b32cf1d0b58da26edb52d9f785d4c3f04cc0cc89",
+      "output_sha256": "2f5e886f1998d48447b74a2bf1c87b44bb207b24356ddd25de904a10d0bca027",
       "recipes": []
     },
     "references/back-link.md": {
@@ -33,15 +33,15 @@
       ]
     },
     "references/capture.md": {
-      "output_sha256": "07624dbd2c883e6bb8536c414c6f163f958d23c25180a86cdecb98ece9b96752",
+      "output_sha256": "16aba8867b643588e8eba725324cdc7fea01f8112943913b97c312a87b774a57",
       "recipes": [
         {
           "heading": "Landing",
           "verb": "derived",
-          "body_sha256": "b199c6fd77af39fa58a21ea445488718a6e41e8caa82ed1f2b117295b21723f0",
+          "body_sha256": "b043771f79555fe3b50e979219dd14802cfca2fbcc51d3d2f4c36b0495cf03db",
           "deps": {
             "references/edit.skw.md#Landing Procedure": "11f76adfaf1626849bc476163b3bbdefd8b4e10da87a2788f9d3ccfe41904b7e",
-            "references/agendix.skw.md#Landing Form": "04998fb197b873ef1664c138fa35ed4f51450ff9ac297d540b57ff436babeac8"
+            "references/agendix.skw.md#Landing Form": "a5a020ea13b8cf4e3941260112c0a66098225fbf50c2d2944e14eaab49674028"
           }
         }
       ]
@@ -115,7 +115,7 @@
       "recipes": []
     },
     "references/type.md": {
-      "output_sha256": "2dd87f5001ab1293bd6669381f0c68354aeae0645e8c78b44c96ec9c91a0793c",
+      "output_sha256": "9474bdb392a66df99c5c2166da7d33631a055b7dbabcd8432fe1493b57fd45d6",
       "recipes": []
     }
   }

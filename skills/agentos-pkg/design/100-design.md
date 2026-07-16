@@ -221,7 +221,7 @@
 - it is `Kernel.Writing` under tight compression — conceptual completeness in few lines, depth pushed to `Concept.X/Appendix`
 - it must carry enough signal for an agent to reason correctly about the concept
 - the Index must have a block for any meaningful concept; it may link out rather than define everything inline
-- `Content.Verbatim.Gated` — user approves exact wording before commit
+- `Verbatim.User.Gated` — user approves exact wording before commit
 - it must not become a transcript, changelog, dashboard, task list, or implementation dump
 
 ### meta
@@ -236,7 +236,7 @@
 - it is `Kernel.Writing` at relaxed constraints — depth over compression, no line-count ceiling, though line-length discipline still applies
 - content is not limited to conceptual depth — specs, raw ideas, parked material belong, filed under the nearest concept (`Concept.Explosion`)
 - the discipline is at the insertion point — find the right concept, then write freely under it
-- `Edit.Trigger.Gated` only — the user initiates, but exact wording is not gated; the low-friction half of `Writing.Friction.Reduction`
+- `Edition.Trigger.User.Gated` only — the user initiates, but exact wording is not gated; the low-friction half of `Writing.Friction.Reduction`
 - reached by `Appendix.Discovery`, not routed
 
 ****

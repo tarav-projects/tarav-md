@@ -14,13 +14,13 @@
 
 ## Index.Appendix
 
-- `Index.Appendix` is the appendix layer of the Index and the root concept for it — the on-demand depth, complement of `Index.Main`
+- `Index.Appendix` is the appendix layer of the Index and the root concept for it — the on-demand depth, complement of `Index.Ontology`
 - it is the index-level echo of `Kernel.Block.Appendix`: depth deferred out of the compressed front, loaded by choice
 - it is not routed — reached by naming through `Appendix.Discovery`, never loaded by default
 - loading an appendix is an intentional action — the agent displays intention by choosing to go deeper
 - it lives in one `appendix/` shared across chapters; files are concept-named and addressed as `Index.Pages`
 - it holds every concept's tail (`Block.Line.Gradient`): `Concept.X/Appendix` catch-alls and scoped `Concept.X/Concept.Y` blocks (`Appendix.Block`)
-- with `Index.Main` and `Index.Router` it composes the `Index.Surface`
+- with `Index.Ontology`, `Index.Agendix`, and `Index.Router` it composes the `Index.Surface` ^20260716-9
 
 ****
 
@@ -94,14 +94,15 @@
 ## Agentos.Index.System
 
 - `Agentos.Index.System` is the Agentos Index taken as a whole — the operable system of named concepts agents reason with
+- [DC] it is a member of the `Touched.Surface.Index` category — `Index.Line`s attached to the project's named concepts ^20260716-1
 - it is a curated `User.Touched` surface — it indexes the `Touched.Space` of the project's other surfaces, the `Chat.Surface` foremost
 - it is a `Hugentic.Concept` surface — user and agent collaborate over it: the agent constructs, the user gates
 - it enables semantic computation over those concepts: composing them, finding contradictions, detecting design weakness
 
 ### meta
 
-- aliases: `Agentos.Index`
-- namespace-members: `./Index.Surface.Layout`, `Index.Surface`, `Index.Router`, `Index.Main`, `Index.Chapter`, `Index.Appendix`, `Index.Depot`, `Index.Discovery`, `Index.Agendix`, `Kernel.Writing`, `Kernel.Block`, `Kernel.Block.Section`, `Kernel.Block.Fundamentals`, `Kernel.Block.Grounding`, `Kernel.Block.Appendix`, `Kernel.Block.Meta`, `Kernel.Note`, `Index.Block`, `Appendix.Block`, `Design.Block`, `Block.Path`, `Explicit.Namespace`, `Block.Line.Gradient`, `Surface.Concept`
+- aliases: `Agentos.Index`, `Project.Index`
+- namespace-members: `./Index.Surface.Layout`, `Index.Surface`, `Index.Router`, `Index.Ontology`, `Index.Chapter`, `Index.Appendix`, `Index.Depot`, `Index.Discovery`, `Index.Agendix`, `Kernel.Writing`, `Kernel.Block`, `Kernel.Block.Section`, `Kernel.Block.Fundamentals`, `Kernel.Block.Grounding`, `Kernel.Block.Appendix`, `Kernel.Block.Meta`, `Kernel.Note`, `Index.Block`, `Appendix.Block`, `Design.Block`, `Block.Path`, `Explicit.Namespace`, `Block.Line.Gradient`, `Surface.Concept`
 
 ****
 

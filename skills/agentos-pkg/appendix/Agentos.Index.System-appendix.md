@@ -4,7 +4,7 @@
 
 - the index is a `Stable.Surface` — it must be aligned with all other surfaces (`Internal.Alignment`)
 - the index explicitly holds the conceptual model of the project — `Forward.Alignment` passes often target it first
-- the index is both `Edit.Trigger.Gated` and `Content.Verbatim.Gated` by default — this review point supports `Hugentic.Alignment`
+- the index is both `Edition.Trigger.User.Gated` and `Verbatim.User.Gated` by default — this review point supports `Hugentic.Alignment`
 
 ****
 

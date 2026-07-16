@@ -271,26 +271,31 @@
 
 ****
 
-## Index.Main
+## Index.Ontology
 
-- `Index.Main` is the main body of the Index — the routed layer of concept fundamentals, spanning the `Index.Chapter` folders
-- it is the index-level echo of `Kernel.Block.Fundamentals`: the compressed front, with depth deferred to `Index.Appendix`
-- it holds the `Index.Block`s under tight `Kernel.Writing` compression, every one routed by `Index.Router`
-- it is the complement of `Index.Appendix` — main body vs appendix, the split a book makes: main is routed, appendix is discovered (`Appendix.Discovery`)
-- with `Index.Appendix` and `Index.Router` it composes the `Index.Surface`
+- [DF] `Index.Ontology` is the concept-naming layer of the `Project.Index` — the routed body of `Index.Block`s that names and defines the project's concepts, spanning the `Index.Chapter` folders ^20260716-8
+- [DC] it is the authoritative name-set: `Index.Appendix` and `Index.Agendix` attach their material to concepts the ontology names ^20260716-8
+- [DC] fully composed of conceptual blocks under tight `Kernel.Writing` compression, every one routed by `Index.Router`
+- [DC] it is the index-level echo of `Kernel.Block.Fundamentals`: the compressed front, depth deferred to `Index.Appendix`
+- [DC] with `Index.Appendix`, `Index.Agendix`, and `Index.Router` it composes the `Index.Surface` ^20260716-9
 
 ### meta
 
-- aliases: `Index.Fundamentals`
+- aliases: `Index.Ontology`, `Index.Fundamentals`
 
 ****
 
 ## Index.Surface
 
-- `Index.Surface` is the file surface of one Index — `Index.Router`, `Index.Main`, and `Index.Appendix` taken as a single addressable surface
+- [DF] `Index.Surface` is the file surface of one `Project.Index` — `Index.Router`, `Index.Ontology`, `Index.Appendix`, and `Index.Agendix` taken as a single addressable surface ^20260716-8
+- [DC] the agendix is part of the surface — its touched, captured, ungated layer ^20260716-9
 - it is a `Surface.Concept`: the bytes on disk, distinct from `Agentos.Index.System`, which is what those bytes do (the operable `Soft.Programming.Language`)
 - it follows the `Index.Surface.Layout` directory protocol; one `Index.Surface` per `Index.Depot`
 - it is the outermost layer of the nested index — the index of the project across its surfaces (`Surface.Types`), foremost the `Chat.Surface` where design originates
+
+### meta
+
+- aliases: `Project.Index.Surface`
 
 ****
 
@@ -330,7 +335,7 @@
 ## Writing.Friction.Reduction
 
 - `Writing.Friction.Reduction` is the principle that the Agentos system lowers the cost of capturing design as it is discussed — by routing capture to the surface whose friction matches it ^20260705-3
-- friction is a designed gradient, and friction buys authority: `Chat.Surface` (free — talk is capture) → `Index.Agendix` (zero user friction, agent-driven, no authority) → `Index.Appendix` (`Kernel.Line`-level approval) → `Index.Main` (`Kernel.Block`-level work unit) ^20260705-2
+- friction is a designed gradient, and friction buys stability: `Chat.Surface` (free — talk is capture) → `Index.Agendix` (zero user friction, agent-driven, unstable wording) → `Index.Appendix` (`Kernel.Line`-level approval) → `Index.Ontology` (`Kernel.Block`-level work unit) ^20260705-2 ^20260716-10
 - the aim is to capture as much of the user's design as possible before it is lost — structure is deferred, not skipped ^20260705-3
 - the index keeps a friction floor on purpose — too-cheap writing would flush the hugentic surface; the friction is part of the alignment ^20260705-3
 - on touched surfaces the approval gate stays — friction drops, the gate does not ^20260705-3
@@ -339,9 +344,10 @@
 
 ## Index.Agendix
 
-- `Index.Agendix` is the agent-driven shadow of the Index — an untouched member of the index surface, one file per `Index.Main` concept: `agendix/Concept.X-agendix.md`, next to `appendix/` ^20260705-2
+- `Index.Agendix` is the agent-driven shadow of the Index — the ungated member of the index surface, one file per `Index.Ontology` concept: `agendix/Concept.X-agendix.md`, next to `appendix/` ^20260705-2 ^20260716-9
 - it is a cache the agent keeps to aid grounding on stable surfaces — no stable surface may link into it; promotion copies an entry out through the normal gates (including into the index)
-- the agent cannot mint concepts — it attaches lines under existing routed concepts; the ontology primes the capture, the agent fills the gaps — the index's shadow, not a second index ^20260705-2
+- [DC] it carries no reviewed wording, so staleness is benign: a stale agendix is a worse cache, never a corrupted source — consumers verify through the anchors, not the agendix line ^20260713-3
+- the agent cannot mint routed concepts — it attaches lines and candidate blocks under existing routed concepts; the ontology primes the capture, the agent fills the gaps — the index's shadow, not a second index ^20260716-0
 - hard rule: every line is a grounded summary of chat discussion — a rejection, a constraint, a highlight the index does not yet capture — carrying its `Anchory.Anchor`/`File.Mention` pointer; unsourced agent reasoning does not belong ^20260705-2
 - writing rules are the appendix's — `Kernel.Writing` discipline, the same block and line forms; only the supervision differs: all work is done and supervised by agents
 - capture is user-triggered but not gated — the agent may suggest a capture pass, never start one
@@ -350,12 +356,28 @@
 - it is index-adjacent, not part of the index — it softens the index principles on the fly, replacing the direct user touch with a grounding link to the touch event
 - it is self-similar to the appendix — an untouched appendix, same form and rules; it exists because the user gate is the bottleneck: a surface for the agent to run ahead of the gate
 - agendix and appendix must not duplicate content — over time the agendix drains: entries reviewed by the user are promoted through the gate or dropped
-- in alignment terms: `Untouched.Space` made durable — visible, assumed untouched by the user, non-aligned; no authority of its own (`Touched.Authority`: well-grounded lines carry second-order authority); everything in it is promotion evidence ^20260711-9
+- in alignment terms: durable touched-but-ungated space — its lines carry the same turn-grounded authority as any `Index.Line` (`Touched.Authority`), but not the reviewed wording or stable addresses the gate buys; everything in it is promotion evidence ^20260711-9 ^20260716-10
 - agendix lines are typed: every line carries a `Line.Type` from the vocabulary — the validation point applies to agent capture too ^20260707-2
-- [DC] agendix lines may be assistant-grounded, marked `[AS:XX]`; promotion re-grounds on the approving user turn and drops the marker
 - [DC] agendix files follow appendix writing rules with the block headed `Concept.X/Agendix`, one file per concept in `agendix/` next to `appendix/`
 - [DC] captures with no routed concept land in `agendix/Unassigned-agendix.md` — the homeless pool, promotion evidence for concepts the index does not yet name, never a dump
+- [DC] agendix entries may group into blocks — the appendix's block forms apply; a candidate block attaches as a path-child of a routed concept (`Concept.X/Agendix/Candidate.Name`) or pools in `Unassigned` ^20260716-0
+- [DC] a candidate block's name is provisional — unrouted, zero authority, not citable from stable surfaces; promotion may rename it ^20260716-0
+- [DC] blocks promote like lines: copied out through the normal gates into index main or appendix ^20260716-0
+- [CT] the agendix holds touched but ungated material — every line grounded by a user-turn support set, no line landed through a user-gated capture ^20260716-0 ^20260716-10
+- [RJ] assistant-grounded capture (`[AS:XX]`, anchoring assistant turns) is excluded — assistant material enters only through the user turn that touched it ^20260716-0
 - [PR] the agendix is the agentic path of the alignment workflow the gated edit runs hugentically — same primitives (typed `Kernel.Line`s, anchors, the current concept set), the user gate replaced by hard provenance ^20260708-4
+
+****
+
+## Capture.Gradient
+
+- [DF] `Capture.Gradient` is the ladder a touched statement climbs across surfaces: chat → agendix → appendix/ontology ^20260716-11
+- [DC] chat — touched, uncaptured, volatile ^20260716-10
+- [DC] agendix — touched, captured, ungated: agent-authored wording, not a `Stable.Surface` — nothing may link into it ^20260716-10
+- [DC] appendix/ontology — touched, captured, gated: wording passed `User.Attention`, a `Stable.Surface` — citable from other surfaces ^20260716-10
+- [PR] the gate buys stability, not authority: authority is per-line, living in its `Chat.Support.Set` — a thinly grounded gated line can carry less weight than an agendix line grounded on an explicit user statement ^20260716-11
+- [DC] reading order follows the gradient — ontology and appendix first, agendix later: a prior, not a verdict on any line ^20260716-11
+
 ****
 
 ## Concept.Explosion
@@ -385,8 +407,9 @@
 - `Kernel.Line` is the atom of index content — one statement carried by a block, the unit that accretes
 - it is read in the context of its block: the block is the frame, so a line stays terse and may omit what the block already establishes (`Name.As.Index`)
 - one point per line is a soft direction, not a rule — the violation is one line carrying two distinct facts; a single point spanning a few lines is fine
-- every line is precious — it reflects something the user asked for or approved (`Content.Verbatim.Gated`), never filler
+- every line is precious — it reflects something the user asked for or approved (`Verbatim.User.Gated`), never filler
 - lines order along the `Block.Line.Gradient`; block coherence is tight in the fundamentals and relaxes in the appendix
+- [DC] `Index.Line` is its grounded specialization — a `Kernel.Line` carrying the `Touched.Surface.Index` grounding invariant ^20260716-4
 
 ****
 
@@ -396,7 +419,7 @@
 - the moves: `Index.Edit.Create.Block`, `Index.Edit.Append.Line`, `Index.Edit.Modify.Line`, `Index.Edit.Revise.Block`
 - two tempos: hot capture (append during the `Alignment.Loop`) and cold consolidation (a maintenance pass over accumulated lines, where `Index.Edit.Create.Block` and `Index.Edit.Revise.Block` mostly live)
 - the bias is the lowest-cost action that captures the aligned content (`Writing.Friction.Reduction`)
-- every action is user-gated and `Content.Verbatim.Gated` — it is the index
+- every action is user-gated and `Verbatim.User.Gated` — it is the index
 
 ****
 
@@ -425,7 +448,7 @@
 - `Index.Edit.Modify.Line` is the `Index.Edit.Action` of refining or correcting an existing `Kernel.Line`, keeping its block
 - the case: a statement already in the block is wrong, imprecise, or superseded by aligned discussion
 - like `Index.Edit.Append.Line` it is load-then-word — the block and the existing line both frame the new wording
-- it is `Content.Verbatim.Gated` — the replacement wording is approved before commit
+- it is `Verbatim.User.Gated` — the replacement wording is approved before commit
 - prefer it over stacking a contradicting append: a corrected line beats two lines that disagree
 
 ****
@@ -471,7 +494,7 @@
 - `Index.Linking` is constructing and maintaining the index's pointers back to the surfaces it indexes — support on the `Chat.Surface` (or code, or files) for index blocks and lines
 - without the links back, the index cannot be checked for completeness or correctness against the touched record
 - it lands in the block's grounding section (`Concept.X/Grounding`), carried as grounding lines — an `Anchory.Anchor` plus a one-sentence note
-- it is an index edit — user-gated like any edit (`Edit.Trigger.Gated`, `Content.Verbatim.Gated`); in the `Agendix` linking runs open, agent-driven (dealt with later)
+- it is an index edit — user-gated like any edit (`Edition.Trigger.User.Gated`, `Verbatim.User.Gated`); in the `Agendix` linking runs open, agent-driven (dealt with later)
 - [CT] linking accesses chat data only through `agentos chatlas` commands — never provider raw stores or transcript files ^20260708-0
 - it is the dual of `Context.Grounding`: linking builds the pointers, grounding follows them
 
@@ -520,3 +543,46 @@
 - [DC] an offer arrives landing-ready: proposed type carried, target scouted for each destination it offers
 - [DC] it is the hugentic sibling of agendix capture — same trigger instinct, the user gate in place of hard provenance
 - [DC] offers ride any workflow — impl execution, design, review; declining is cheap and normal, the offer must never block the work
+
+****
+
+## Touched.Surface.Index
+
+- [DF] `Touched.Surface.Index` is the general category of surfaces composed of `Index.Line`s — statements grounded to a `Chat.Support.Set` of user turns ^20260716-1
+- [CT] membership is the grounding invariant: every line carries at least one anchor resolving to its `Chat.Support.Set` — nothing else is required of a member ^20260716-1
+- [DC] the `Chat.Surface` user turn is the first and unique source of user authority; every member surface roots there ^20260716-1
+- [DC] "index" is earned by construction: every line finally points down to its chat support — a member is a cache over the chats, never authority; consumers verify through the support turns ^20260716-1
+- [FR] the nature of the annotation varies by application: a line may restate the turn content, or contextualize why the support turns support what is being annotated ^20260716-1
+- [DC] member surfaces differ by design axes on top of the invariant: attachment point, gating, format, ordering ^20260716-1
+- [EX] the `Agentos.Index` is the first member — lines attached to concepts; `Chat.Agendix` attaches them to chats; `Skw.Agendix` to any `Skw.Annotation` ^20260716-1
+
+****
+
+## Index.Line
+
+- [DF] `Index.Line` is the atom of the `Touched.Surface.Index`: one statement, grounded to a `Chat.Support.Set` by its trailing anchor ^20260716-4
+- [CT] one line, one fact — atomic and reorderable, surviving on its own (`Kernel.Writing` granularity) ^20260716-4
+- [DC] the line is the unit of grounding, approval, and audit: gates, linters, and drift checks run per line ^20260716-4
+- [DC] lines carry a `Line.Type` classifying their act ^20260716-4
+- [EX] on a `Verbatim.User.Gated` surface, each line's support set holds a `Turn.Type::Project.Index.Gate` turn ^20260716-4 ^20260716-10
+- [PR] everything above the line is organization — blocks, surfaces, attachment points; everything below it is evidence — anchors, support sets, turns ^20260716-4
+
+****
+
+## User.Attention
+
+- [DF] `User.Attention` is the scarce resource of the hugentic system: what the user can actually read, judge, and approve ^20260716-6
+- [PR] the system economizes it deliberately — surfaces are designed by how much of it they spend ^20260716-6
+- [DC] `Verbatim.User.Gated` spends it on purpose — that spend is what buys stability; the `Index.Agendix` scales precisely because it spends none ^20260716-6 ^20260716-10
+- [DC] analogous to attention in LLMs: the limited context the human can condition on — "we must make Y pass through the `User.Attention`" ^20260716-6
+- [EX] spend it on the `Project.Index`; offload everything else to agent-driven surfaces ^20260716-6
+
+****
+
+## Skw.Network
+
+- [DF] `Skw.Network` is the graph of annotated surfaces linked by the relationships the skw system defines between them ^20260715-6
+- [DC] relationships are explicit or implicit: explicit ones are the declared links a `Module.Import` carries; implicit ones are derived by the system, such as support-set intersection between chat anchors ^20260715-6
+- [DC] the network is computed from consumer-side declarations — a target never registers its dependents; followers are derived, so an imported surface stays ignorant of its importers ^20260715-6
+- [PR] the network's job is notification, not judgment: when a surface changes, the `CPU.Program` notifies every surface the network links to it — a purely mechanical fan-out along the edges ^20260715-6
+- [DC] an `Agentic.Program` interprets each notification: whether the change is benign or a real change to propagate is a semantic verdict only the agent carries ^20260715-6

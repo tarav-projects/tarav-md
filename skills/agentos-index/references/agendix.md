@@ -12,20 +12,21 @@ Authority lives in the index: `Index.Agendix`, `Writing.Friction.Reduction`, `Ke
 
 | primitive | index main + appendix (hugentic) | agendix (agentic) |
 |---|---|---|
-| unit | `Kernel.Line` under a concept | same |
+| unit | `Kernel.Line`s and `Kernel.Block`s | same — lines and candidate blocks, same forms |
 | significance gate | `Line.Type` + validation point | same — untypeable lines do not enter |
 | evidence | grounding lines / inline anchors | same — every line carries an anchor, mandatory |
-| concept set | user can mint concepts | primed: existing routed concepts only |
+| concept set | user can mint routed concepts | primed: candidate names only, attached under routed concepts |
 | authority gate | `Edit.Trigger.Gated` + `Content.Verbatim.Gated` | trigger-gated — provenance replaces review |
 | surface | chapter files + `appendix/` | `agendix/Concept.X-agendix.md` next to `appendix/` |
 
 ## Surface Rules
 
-- only `User.Touched` material enters: summaries of chat discussion — a correction, a decision, a rejection, a boundary, a constraint the index does not yet carry (`Grounding.Hugentic.Authority`: user turns primarily; assistant material only when the user accepted, corrected toward, or acted on it)
+- the agendix holds touched but uncaptured material: summaries of chat discussion — a correction, a decision, a rejection, a boundary, a constraint the index does not yet carry — every line grounded by a user-turn support set, no line landed through a user-gated capture
+- assistant-grounded capture is excluded: anchors target user turns; assistant material enters only through the user turn that touched it (`Grounding.Hugentic.Authority`: accepted, corrected toward, or acted on)
 - every line is typed: pick the `Line.Type` first (`references/type.md`); a line that takes no type does not enter
-- assistant-grounded lines are allowed here (only here), marked on the source axis: `[AS:CT] … @anchor` — the anchor targets the assistant turn; promotion re-grounds on the approving user turn and drops the marker
 - every line ends with its anchor: hard provenance, no unanchored agendix lines
-- lines attach only under existing routed concepts — no concept minting on this surface; a candidate with no concept goes to the fallback file
+- entries may group into blocks — the appendix's block forms apply; a candidate block attaches as a path-child of a routed concept (`Concept.X/Agendix/Candidate.Name`)
+- no routed-concept minting on this surface — a candidate block's name is provisional: unrouted, zero authority, not citable from stable surfaces; promotion may rename it
 - no duplication: content the index, appendix, or agendix already carries does not enter
 - unsourced agent reasoning does not belong — every line must be recoverable from the anchored chat neighborhood
 
@@ -33,7 +34,7 @@ Authority lives in the index: `Index.Agendix`, `Writing.Friction.Reduction`, `Ke
 
 When landing material on the agendix — from `references/capture.md`, an accepted `Capture.Offer` routed here, or any other trigger:
 
-1. **Route** each line under a routed concept. No match → `agendix/Unassigned-agendix.md`, the homeless pool: accumulated evidence that a concept may be missing — promotion evidence, never a dump. A would-be-new-concept block is decomposed the same way: its lines pool under `Unassigned` until the concept earns a gated landing.
+1. **Route** each entry under a routed concept — a line appends to `Concept.X/Agendix`, a candidate block attaches intact as `Concept.X/Agendix/Candidate.Name`. No routed concept → `agendix/Unassigned-agendix.md`, the homeless pool: accumulated evidence that a concept may be missing — promotion evidence, never a dump; an intact candidate block there is the strongest form of that evidence.
 2. **Fence**: type each line; drop what cannot take a type.
 3. **Anchor**: mint one anchor per line through the linking primitive (`references/link.md`) — chatlas-only session/turn resolution, `Chatlas.Anchory` record shape, `YYYYMMDD-N` keys.
 4. **Write** `agendix/Concept.X-agendix.md` in the engaged depot, next to `appendix/` — appendix writing rules, block heading `Concept.X/Agendix`, lines appended:

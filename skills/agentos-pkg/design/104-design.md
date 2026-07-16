@@ -241,24 +241,37 @@
 
 ****
 
-## Edit.Trigger.Gated
+## Edition.Trigger.User.Gated
 
-- `Edit.Trigger.Gated` is a gating constraint: the user must explicitly initiate the edit — the agent never starts editing on its own
+- [DF] `Edition.Trigger.User.Gated` is the convenience gate: the user explicitly initiates the edit workflow — the agent never starts writing mid-conversation on its own ^20260716-6
+- [PR] its value is workflow control: the user owns the conversation tempo; capture does not interrupt discussion ^20260716-6
+- [DC] auditable but low value: the triggering turn is on the chat like any other, but nothing rides on checking it — a skip's worst case is a premature draft ^20260716-6
+- [DC] distinct from `Verbatim.User.Gated`, which gates what is written rather than when
 - asking "should I write this?" is allowed; opening an editor without approval is not
-- applies to any surface that wants human control over when mutation happens
-- distinct from `Content.Verbatim.Gated`, which gates what is written rather than when
 - a surface can apply one or both gates independently
-- operational detail: `agentos-index --edit`
+
+### meta
+
+- aliases: `Edit.Trigger.Gated`
 
 ****
 
-## Content.Verbatim.Gated
+## Verbatim.User.Gated
 
-- `Content.Verbatim.Gated` is a gating constraint: the user must approve the exact wording before it is committed
+- [DF] `Verbatim.User.Gated` is the authority gate: the user approves the exact wording before it is committed — content passes through `User.Attention` ^20260716-5
+- [PR] this is the gate's value: the touched index moves at user speed because the user actually saw every line land ^20260716-5
+- [DC] approval is per line: each line's `Chat.Support.Set` holds a `Turn.Type::Project.Index.Gate` turn — the evidence the user saw it ^20260716-5 ^20260716-10
+- [DC] approving a block is approving all its lines — one user act, every line grounded to that approval turn ^20260716-5
+- [DC] the gate is auditable state: presence of the gate turn is CPU-lintable; correspondence of text to turn is an agent check ^20260716-5
+- [DC] the verbatim evidence precedes or is contained in the approval turn: the agent shows the exact line in chat, the user approves — the lint searches at-or-before the approval turn, and a miss is a linter POI for agent judgment, not a failure ^20260716-7
+- [PR] the gate aligns both directions: user → index carries authority; system → user shows the user every line, refreshing their model of the system bit by bit ^20260716-7
+- [DC] implies `Edition.Trigger.User.Gated` — gated content necessarily has a gated trigger
 - the agent proposes; the user settles — no silent rewrites or unreviewed content
-- implies `Edit.Trigger.Gated` — if content is gated, the trigger is necessarily gated too
 - supports `Hugentic.Alignment` — the review point is where human judgment shapes the surface
-- operational detail: `agentos-index --edit`
+
+### meta
+
+- aliases: `Content.Verbatim.Gated`
 
 ****
 

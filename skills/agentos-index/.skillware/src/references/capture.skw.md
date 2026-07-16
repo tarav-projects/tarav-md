@@ -30,7 +30,7 @@ A pass over the chat's uncaptured content, repeated until the content is exhaust
 Landing form-fits approved material to the named surface, under that surface's own gate:
 
 - **index main / appendix** — gated (`Edit.Trigger.Gated`, `Content.Verbatim.Gated`): a draft that already matches the surface lands as an approved forward pass through the `references/edit.md` landing procedure; a cluster approved in chat lands under one gate
-- **agendix** — trigger-gated, not content-gated: the user's routing verdict is the whole gate; the agent refactors the material into agendix form per `references/agendix.md` and lands it, reporting at the end — a would-be-new-concept block has no agendix home, so its lines pool as promotion evidence
+- **agendix** — trigger-gated, not content-gated: the user's routing verdict is the whole gate; material lands in kernel form per `references/agendix.md` — lines under routed concepts, candidate blocks intact as path-children — promotion-ready, reported at the end
 - the grounding anchor for a landed item targets its approval turn — where the user accepted the form; the landing trigger is execution, not evidence
 
 > $kw. end-derived
@@ -38,6 +38,7 @@ Landing form-fits approved material to the named surface, under that surface's o
 ## Behavior
 
 - the discussion is free: capture is pulled by the user, never a standing obligation on the conversation — not every discussion involves blocks
+- `Not.A.Wall.Of.Text` governs the loop: the opening turn may be a larger grounding summary, but it ends landing on the first candidate draft — prime the discussion, the user redirects if they want another; from there stay on target: one to a few drafts per turn, alignment per block, never a re-dump of the full harvest
 - know what is approved and unlanded at any moment — the conversation itself is the record; no tracking mechanism is required
 - material not worth the full hugentic review can always take the agendix exit rather than staying stranded in chat
 - load `references/type.md` before drafting lines and `agentos-pkg/references/index-block-catalog.md` before proposing block wording
