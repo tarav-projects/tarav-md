@@ -7,7 +7,7 @@
 - the user's model (accepted in chat, 2026-07-16): declarations are **normative intent** — part of the generation contract ("this surface MUST depend on these"); mentions are the artifact's actual references; the CPU checks set-sync in **both directions**, modulo blessings; auto-derived implicit edges were explicitly rejected — two surfaces must exist to be synced
 - scope: `agentos-py` skillware subsystem (`agentos-py/src/agentos/skillware/`) — parser vocabulary, check pass, bless ergonomics, tests
 - out of scope: index-linter changes, `Skw.Network` notification/fan-out machinery, prose-paraphrase detection (only backticked `Dotted.Notation` mentions are visible — the fence is what the syntax can see), any index/markdown content edits
-- status: ready for execution
+- status: executed
 
 ## Impl.Index
 
@@ -76,4 +76,9 @@ Each slice is independently observable; run `python -m pytest agentos-py/tests/t
 
 ## Impl.Log
 
-- (execution entries land here)
+- 2026-07-16 — pre-edit checkpoints created per execution workflow: `agentos-md` commit `50e07e0`, `agentos-py` empty commit `507a46f`.
+- 2026-07-16 — implemented parser support for void `$kw: depends --from ...` declarations, preserving explicit close requirements for body-bearing commands.
+- 2026-07-16 — implemented backticked dotted-name mention extraction/resolution, dependency-sync POIs (`undeclared-dependency`, `unhonored-dependency`), and hash-based suppression for blessed dependency-sync situations.
+- 2026-07-16 — extended `agentos skillware bless` with `--kind <poi-kind> --all`; single `--poi` form remains supported.
+- 2026-07-16 — verification: `uv run python -m pytest tests/test_skillware.py -q` passed (`60 passed`); `agentos skillware bless --help` shows `--kind` and `--all`.
+- 2026-07-16 — real-surface acceptance: `agentos skillware check --skill /Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-index` reported 77 `undeclared-dependency` POIs across 13 checked files; no blessings or content edits were applied to `agentos-index`.
