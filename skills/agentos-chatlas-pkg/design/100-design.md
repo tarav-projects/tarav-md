@@ -441,3 +441,17 @@
 ### meta
 
 - aliases: `Turn.Type::Index.Approved` (of `Turn.Type::Project.Index.Gate`)
+
+****
+
+## Chat.Agendix
+
+- [DF] `Chat.Agendix` is the agendix of a chat: `Index.Line`s attached to the chat itself — the `Touched.Surface.Index` member whose attachment point is the `Chat.Surface` ^20260717-2
+- [DC] a line grounds through its `Chat.Support.Set`: a claim may involve several turns — the set carries them all ^20260717-1
+- [DC] one member is the attachment turn — the line's tape position and ordering key, typed `Turn.Type::Attachment`; a single-turn set attaches where it grounds ^20260717-1 ^20260717-2
+- [DC] its axes: ungated, tape-ordered — lines sort by their attachment turn, a kernel pass over the chat length, not a relevance sort ^20260713-7
+- [CT] terminal: it never drains — nothing promotes out of it; it digests the chat where the chat is, an inbox for no one ^20260713-6
+- [DC] consumers cite the chat evidence, never the agendix line — a reading aid over the source, a cache with no authority of its own ^20260713-6
+- [DC] on a closed chat the digest converges: a finished tape admits a stable, complete pass ^20260713-6
+- [DC] provenance is hard: every line anchored to its turns — the agendix of a chat is chat indexing in the most literal sense ^20260713-7
+- lint follows the gate pattern: exactly one attachment per line is CPU-checkable presence ^20260717-1
