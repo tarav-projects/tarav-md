@@ -13,7 +13,7 @@ Authority lives in the index: `Agentos.Index.System`, `Hugentic.Concept`, `Kerne
 A pass over the chat's uncaptured content, repeated until the content is exhausted or the user stops:
 
 1. **Ground.** Run `references/ground.md` behavior over the conversation with a capture lens: what the index already models is out; gaps, tensions, and fresh `User.Touched` material are candidates.
-2. **Propose.** Draft candidates in kernel writing form — new blocks, appended lines, revisions — typed and index-grade by default: user-touched content is index-eligible by right. The destination surface stays implicit; do not force it in advance — it is usually already present in the discussion.
+2. **Propose.** Draft candidates in kernel writing form — new blocks, appended lines, revisions — typed and index-grade by default: user-touched content is index-eligible by right. The destination surface may stay implicit while exploring; approval-ready drafts show the concrete landing target per `references/edit.md`.
 3. **Discuss.** Iterate each draft with the user. The goal is to reason while preparing the kernel text — convergence happens in the discussion, not at the write. (`Interactive` only — an `Autonomous` pass skips to landing.)
 4. **Approve.** User approval accepts the current form in chat — it is not a write. Approved material accumulates while the discussion rolls to the next item; the natural rhythm is a converging concept cluster, not item-by-item write ceremony. (`Interactive` only.)
 5. **Land.** A separate, user-triggered act over approved material — all of it or a specific piece, to whatever surfaces the user names. After landing, re-ground: the index changed, and the next pass computes against it.

@@ -539,10 +539,11 @@
 
 - [DF] `Capture.Offer` is the practice of proposing an index capture at the moment the content is born — the exact typed line or block, verbatim, user-gated
 - [PR] capture is cheapest at the moment for both sides: the agent's context is hot and the anchor mintable on the spot; the user's judgment is hot too — reviewing now beats reconstructing later
-- [DC] an offer presents destination options: index main, appendix, agendix, or decline — the user picks the landing with the gate
+- [DC] an offer presents destination options: ontology, appendix, agendix, or decline — the user picks the landing with the gate ^20260718-0
 - [DC] an offer arrives landing-ready: proposed type carried, target scouted for each destination it offers
 - [DC] it is the hugentic sibling of agendix capture — same trigger instinct, the user gate in place of hard provenance
 - [DC] offers ride any workflow — impl execution, design, review; declining is cheap and normal, the offer must never block the work
+- [DC] destinations generalize with the `Touched.Surface.Index`: an offer may target any member within reach — the project index's landings, a chat's agendix, an annotation's touched lines ^20260718-0
 
 ****
 
@@ -576,11 +577,23 @@
 
 ****
 
+## Demoted.Anchored.Line
+
+- [DF] a `Demoted.Anchored.Line` is a demoted network edge: the anchored line, with its `Support.Set` and `Anchor.Metadata`, existed in some version of `Touched.Support.Network` and exists in none now — the relation demotes as one ^20260716-30 ^20260716-31
+- [DF] an `Index.Demoted.Turn` is a turn with no live edge left ^20260716-27 ^20260716-30
+- [CT] distinct from unindexed: past edges are the witness ^20260716-26 ^20260716-27
+- [DC] demotion is evidence-based and computed: git holds every surface version — presence in history, absence in the live cut; no surface is constrained by it and none is required for it ^20260716-28 ^20260716-29
+- [DC] the nature of a demotion is unknown by design: the edge existed and now it does not — no stored account; a turn rejoins by a fresh edge ^20260716-25 ^20260716-27
+- [RJ] archive surfaces, frozen drift lines, maintained drift explanations as demotion machinery — git and the chat already hold the full context ^20260716-25 ^20260716-27
+
+****
+
 ## Index.Line
 
 - [DF] `Index.Line` is the atom of the `Touched.Surface.Index`: one statement, grounded to a `Chat.Support.Set` by its trailing anchor ^20260716-4
 - [CT] one line, one fact — atomic and reorderable, surviving on its own (`Kernel.Writing` granularity) ^20260716-4
 - [DC] the line is the unit of grounding, approval, and audit: gates, linters, and drift checks run per line ^20260716-4
+- [DC] a line with its anchor in place is a `Grounded.Line`; one still missing it is an `Ungrounded.Line` — a legacy backlog, not a licensed state ^20260716-33 ^20260717-0
 - [DC] lines carry a `Line.Type` classifying their act ^20260716-4
 - [EX] on a `Verbatim.User.Gated` surface, each line's support set holds a `Turn.Type::Project.Index.Gate` turn ^20260716-4 ^20260716-10
 - [PR] everything above the line is organization — blocks, surfaces, attachment points; everything below it is evidence — anchors, support sets, turns ^20260716-4
@@ -594,6 +607,16 @@
 - [DC] `Verbatim.User.Gated` spends it on purpose — that spend is what buys stability; the `Index.Agendix` scales precisely because it spends none ^20260716-6 ^20260716-10
 - [DC] analogous to attention in LLMs: the limited context the human can condition on — "we must make Y pass through the `User.Attention`" ^20260716-6
 - [EX] spend it on the `Project.Index`; offload everything else to agent-driven surfaces ^20260716-6
+
+****
+
+## Skw.Touched.Index
+
+- [DF] `Skw.Touched.Index` is the `Touched.Surface.Index` member attached to `Skw.Annotation`s: `Index.Line`s riding annotations on generated surfaces — file, module, region, construct ^20260717-7 ^20260717-10
+- [DC] one mixed surface: gated and ungated lines share the place — a line is gated iff its support set holds the gate-typed turn (`Turn.Type::<Surface>.Gate`); the split is computed, not geographic ^20260717-6 ^20260717-7
+- [DF] `Skw.Appendix` and `Skw.Agendix` are its computed strata — the gated and the ungated lines: the appendix and agendix of a block, where the block is the annotation — same mechanics, no file split ^20260717-9
+- [DC] promotion is a state change, not a relocation: a line passes the gate where it stands — the gate turn joins its set; nothing moves ^20260717-6 ^20260717-10
+- [DC] two worlds meet at the annotation: the skw development stack reads it to generate, judge, and evolve the surface; the touched lines ground to the `Chat.Surface` — the user-grounded part of that context ^20260717-8
 
 ****
 

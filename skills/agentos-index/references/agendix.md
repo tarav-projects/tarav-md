@@ -34,6 +34,15 @@ Authority lives in the index: `Index.Agendix`, `Writing.Friction.Reduction`, `Ke
 
 When landing material on the agendix — from `references/capture.md`, an accepted `Capture.Offer` routed here, or any other trigger:
 
+Present the landing target before the draft text:
+
+```md
+Landing: <depot>/agendix/Concept.X-agendix.md
+Target: append under ## Concept.X/Agendix
+```
+
+For candidate blocks, name the attachment path: `Target: create ## Concept.X/Agendix/Candidate.Name`. For unrouted material, show `Landing: <depot>/agendix/Unassigned-agendix.md` and the provisional target path.
+
 1. **Route** each entry under a routed concept — a line appends to `Concept.X/Agendix`, a candidate block attaches intact as `Concept.X/Agendix/Candidate.Name`. No routed concept → `agendix/Unassigned-agendix.md`, the homeless pool: accumulated evidence that a concept may be missing — promotion evidence, never a dump; an intact candidate block there is the strongest form of that evidence.
 2. **Fence**: type each line; drop what cannot take a type.
 3. **Anchor**: mint one anchor per line through the linking primitive (`references/link.md`) — chatlas-only session/turn resolution, `Chatlas.Anchory` record shape, `YYYYMMDD-N` keys.

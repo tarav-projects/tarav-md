@@ -1,13 +1,13 @@
 ---
 name: agentos-parking-note
-description: "Capture an idea, todo, or issue into a project Parking.Note through a short discussion. USE WHEN the user wants to quickly park a thought without actioning it. Called like a terminal command — a bare idea is the `--idea` to park."
+description: "Capture a sidequest idea into a project Parking.Note through a short interruption workflow. USE WHEN the user wants to park a thought without derailing the main task. Called like a terminal command — a bare idea is the `--idea` to park."
 ---
 
 # Agentos Parking Note
 
-Short-lived workflow for capturing a thought into a project `Parking.Note`.
+Short-lived interruption workflow for capturing a sidequest thought into a project `Parking.Note`.
 
-The user presents an idea. The agent discusses it briefly, drafts a `Kernel.Block`-style entry, proposes a target file, and writes on approval.
+The user presents an idea while another task is underway. The agent preserves the main-thread return context, discusses the idea lightly, drafts a `Kernel.Block`-style entry, gets explicit user approval of the exact text, mints an `Anchory.Anchor` back to the approval turn, writes the note, and reports how to resume the interrupted work.
 
 This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
 
@@ -24,7 +24,17 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 
 ## Activation
 
-Use when the user wants to park an idea, todo, issue, or observation for later. Typical phrases: "park this", "notebook this", "I want to capture an idea", or an explicit `$parking-note` invocation.
+Use when the user wants to park an idea, todo, issue, or observation for later without switching the session's main task. Typical phrases: "park this", "capture this side idea", "parking note", "I want to capture an idea", or an explicit `$parking-note` invocation.
+
+This skill is an `Alignment.Loop.Interruptions` workflow: it intentionally branches away from the main flow and must return the session to that flow after the write.
+
+## Boundary
+
+- this skill captures sidequest ideas; it does not execute them
+- this skill enriches lightly; a growing design discussion should move to the relevant design workflow
+- this skill writes only `Parking.Note` files; index edits and agendix captures stay with `agentos-index`
+- this skill consumes `agentos-index --link` behavior for chat anchors, but the note file remains the landing surface
+- this skill is user-gated: file writes require explicit approval of the exact text
 
 ## Parking.Note Files
 
@@ -32,22 +42,27 @@ Each project may have these reserved files under `notes/live/`:
 
 | File | Role |
 |---|---|
-| `012.NOTEBOOK.md` | Catch-all — ideas, observations, design seeds, anything |
+| `012.PARKING.md` | Catch-all — ideas, observations, design seeds, anything |
 | `010.TODOS.md` | Something to do |
 | `011.ISSUES.md` | Something wrong |
 
-`012.NOTEBOOK.md` is the default. Nothing is out of place in NOTEBOOK.
+`012.PARKING.md` is the default. Nothing is out of place in PARKING.
+
+DEPRECATED: `012.NOTEBOOK.md` was the former parking-note filename. Prefer `012.PARKING.md` for new notes.
 
 ## Workflow
 
 1. The user presents whatever they have — a sentence, a paragraph, a vague notion.
-2. The agent drafts a block and picks a target file.
-3. The agent shows the draft: the proposed block, the target file path, and a follow-up question about something missing or unclear.
-4. The user refines, redirects the target, or approves.
-5. Repeat until the user approves.
-6. The agent writes the block to the target file.
+2. The agent records the return context in chat: the interrupted task, the last concrete next step, and any active files or artifacts.
+3. The agent discusses the idea lightly: ask at most one focused question at a time, enough to enrich the idea, not enough to start a full design session.
+4. The agent drafts a block, picks a target file, and shows the exact proposed text with placeholder anchors such as `^<approval-anchor>`.
+5. The user refines, redirects the target, rejects the note, or explicitly approves the exact block text for writing.
+6. If the user rejects the note, the agent writes nothing, mints no anchor, and returns a rejection report with the compact resume point.
+7. After approval, the agent mints an `Anchory.Anchor` for the approval turn through `agentos-index --link` behavior.
+8. The agent replaces placeholder anchors with the minted anchor and writes the block to the target file.
+9. The agent returns a close-out report: what was parked, where it was written, the anchor, and the compact resume point for the interrupted task.
 
-The workflow is short-lived. It ends after the write.
+The workflow is short-lived. It ends after the write report or rejection report.
 
 ## Block Format
 
@@ -55,30 +70,76 @@ Entries follow `Kernel.Writing` style with relaxed constraints:
 
 - Heading uses `Dotted.Notation` based on the note content (e.g. `## Idea.About.Fish.Based.APIs`)
 - Each line describes an independent facet — direct, orthogonal
+- Lines carry `Line.Type` codes when the entry is concept-shaped enough to support them
+- Each landed kernel line carries trailing `Anchory.Anchor` provenance; a single approval-turn anchor may support the whole block when the final text was approved as a unit
 - No space budget — write as much as the idea needs
-- Free to include tags, links, context, or any useful material
-- No required metadata fields
+- Free to include tags, links, context, or any useful material after the grounded kernel lines
+- No required metadata fields beyond the anchors needed for chat provenance
 
 Example:
 
 ```md
 ## Fish.Based.APIs
 
-- a single gateway with species-aware routing could unify the aquatic data layer
-- the current approach fragments marine endpoints across three services
-- simplifying the client SDK is the main motivation
-- related to the marine-data project discussion
+- [DF] `Fish.Based.APIs` is a sidequest idea for modeling service clients around domain species instead of raw endpoint groups ^20260717-0
+- [PR] species-aware routing could make the gateway easier to reason about than scattered marine-data endpoints ^20260717-0
+- [CT] simplifying the client SDK is the main motivation ^20260717-0
+- [FR] the idea is parked for later and should not interrupt the current marine-data task ^20260717-0
 ```
+
+## Anchory Requirement
+
+Parking notes preserve the compact idea in the file and the full idea in the chat.
+
+- Use `agentos-index --link` behavior to mint the anchor: resolve the current session, locate the user approval turn, register the anchor, and verify the returned neighborhood.
+- The anchor target is a user turn. When the agent drafted the block, anchor the user's explicit approval turn.
+- The anchor hint should name the parking-note sidequest and the approved idea in one sentence.
+- Do not write the block until the approval anchor is minted and verified. If anchoring is unavailable, stop before the file write and report the blocker.
+- Do not reuse anchors. A wrong target or wrong hint requires a new anchor.
 
 ## Draft Presentation
 
 When showing the draft to the user, include:
 
-- The target file as a full path from `~` (e.g. `~/projects/agentos-project/agentos-py/notes/live/012.NOTEBOOK.md`) — removes ambiguity in multi-project workspaces
-- The proposed block (heading + body)
+- The target file as a full path from `~` (e.g. `~/projects/agentos-project/agentos-py/notes/live/012.PARKING.md`) — removes ambiguity in multi-project workspaces
+- The proposed block (heading + body) with placeholder anchors
+- The anchor plan: usually "on approval, anchor the approval turn and stamp each line with that anchor"
 - One follow-up question about something missing or unclear
 
-The user may approve, edit the block, or redirect to a different target file.
+The user may approve, edit the block, reject the note, redirect to a different target file, or keep discussing. The agent writes only after explicit approval of the exact text.
+
+## Option Banner
+
+While the parking note is unresolved, every assistant turn ends with a compact named-options banner.
+
+The banner keeps the interruption easy to exit. It should stay at the bottom of the assistant message and use stable option names:
+
+```text
+Options: approve | discuss | reject
+```
+
+- `approve` means the user approves the exact block text for anchoring and writing
+- `discuss` means the user wants one more light enrichment turn, wording change, or destination change
+- `reject` means the user wants no write and no anchor
+
+If no exact draft has been shown yet, omit `approve` from the banner. Terminal write and rejection reports do not need the banner because the interruption is already closed.
+
+## Return Report
+
+After writing, report:
+
+- the parked concept name
+- the target file path
+- the minted anchor
+- the short reason the idea was worth parking
+- the interrupted task and the next concrete step to resume
+
+After rejection, report:
+
+- that nothing was written
+- that no anchor was minted
+- the rejected concept name or short idea label, if useful
+- the interrupted task and the next concrete step to resume
 
 ## File Creation
 
@@ -86,4 +147,4 @@ If the target file does not exist, create it with a minimal header before writin
 
 - `010.TODOS.md` → `# TODOs`
 - `011.ISSUES.md` → `# Live Issues`
-- `012.NOTEBOOK.md` → `# Notebook`
+- `012.PARKING.md` → `# Parking`
