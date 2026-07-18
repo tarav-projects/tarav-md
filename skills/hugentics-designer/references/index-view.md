@@ -41,7 +41,7 @@ Origin: `agentos-pkg/design/102-design.md` (`Kernel.Writing`, `Kernel.Block`) an
 - a block should center one main topic; related material belongs in separate blocks, grounding, or appendix — relations to other concepts use `Inline.Relatedness`
 - body lines are mostly bullets that enrich the topic from different perspectives
 - a block applies `Kernel.Writing` at section scale
-- its sections are named `Kernel.Block.Section`s: `Kernel.Block.Fundamentals` (the only required one) + `Kernel.Block.Grounding` + `Kernel.Block.Appendix` + `Kernel.Block.Meta`; `###` is just the inblock form of a section
+- its sections are named `Kernel.Block.Section`s: `Kernel.Block.Fundamentals` (the only required one) + `Kernel.Block.Appendix` + `Kernel.Block.Meta`; `###` is just the inblock form of a section
 - the dividing rule: fundamentals and appendix are about the concept; grounding cites evidence; meta is about the block itself
 - meta is non-conceptual block data only — aliases, outlinks, findability; the strip-test: remove the line and the conceptual load is unchanged
 - block types are `Kernel.Block` placed on a specific surface with that surface's constraints — surface-placement variants: `Index.Block`, `Appendix.Block`, `Design.Block`

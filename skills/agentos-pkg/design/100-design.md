@@ -158,12 +158,11 @@
 
 ## Grounding.Audit
 
-- `Grounding.Audit` reviews a block's `Grounding.Head` lines against the block as currently written
+- `Grounding.Audit` reviews a block's line anchors against the block as currently written
 - a fundamental block change is the trigger; editorial diffs usually do not require one
-- a line whose turn no longer supports the current content moves to `Grounding.Drift` — demoted, not deleted
-- a line unrelated to the block's concept is dropped: relatedness is the retention gate
-- git history provides the block diff between a line's insertion and the current block
-- demoted inline grounding also lands in `Grounding.Drift`
+- an anchor whose turn no longer supports the current content is dropped — the edge demotes (`Demoted.Anchored.Line`); git and the anchory history keep the account
+- an anchor unrelated to the line it trails is dropped: relatedness is the retention gate
+- git history provides the block diff between an anchor's insertion and the current block
 - it is part of `Index.Linking` maintenance — an index edit, user-gated like any other
 
 ****
@@ -185,9 +184,9 @@
 - projection is not authority transfer: each projection stays SSOT of its own curated form
 - `Chat.Surface` stays SSOT of the generative record, so projections remain re-derivable and drift-checkable
 - boundary: chat is the dominant ingress, not total
-- an out-of-band edit lands with no chat event; the gap is content no `Grounding.Head` line can support
+- an out-of-band edit lands with no chat event; the gap is content no anchor can support
 - closure is self-healing: discussing ungrounded material is itself the grounding act
-- the discussion emits the missing event and can become `Grounding.Head` evidence
+- the discussion emits the missing event and can become grounding evidence — an anchor on the new turns
 - grounding is therefore never blocked, only pending; the discussion must re-establish the content, not just mention it
 - closure (groundable in principle) holds at every moment; completeness (grounded now) is only the limit
 - in the limit the chat log is a sufficient generative basis: every projection is reconstructable from it

@@ -13,7 +13,7 @@ This module is NOT `Workflow.Neutral`: it applies gated index writes (`Edition.T
 1. **Show**: the target line as it stands today (re-locate by content, never trust stale line numbers), the proposed anchor + hint + why, the landing form.
 2. **On doubt, resolve live**: `agentos chatlas views inline --anchor <key> --radius 3 --filter turns` — the user judges the actual turns, not the maker's summary.
 3. **Verdict**:
-   - land → apply the edit (trailing inline anchor, or `[GR]` line in `appendix/Concept.X/Grounding.Head` + router `[+N]` if the appendix is new); status → `landed`
+   - land → apply the edit (trailing inline anchor on the supported line); status → `landed`
    - drop → status → `dropped`, reason into `Gr.Log`
    - skip → stays `proposed`; the review is resumable across sittings — state lives in the artifact, not the chat
 4. Batch small runs of verdicts are fine (the user may approve a table of entries at once — that approval is the gate for those entries).

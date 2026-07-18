@@ -4,7 +4,7 @@ Use this module when a caller needs an `Anchory.Anchor` minted for a chat contex
 
 This module is `Workflow.Neutral`: it produces an anchor and returns it — it writes no index surface. Consumers decide where the anchor lands: `--edit` writes gated `[GR]` grounding lines and inline anchors; `--agendix` tags captured lines. Minting an anchor mutates only the anchory depot, which is register plumbing, not an index edit.
 
-Authority lives in the index: `Anchory.System`, `Chatlas.Anchory`, `Index.Linking`, `Kernel.Block.Grounding` own the concepts.
+Authority lives in the index: `Anchory.System`, `Chatlas.Anchory`, `Index.Linking`, `Index.Line` own the concepts.
 
 ## Linking Pipeline
 

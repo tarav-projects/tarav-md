@@ -1,6 +1,6 @@
 # agentos-index --back-link
 
-> $kw: depends --from Edition.Trigger.User.Gated --from Gr.Req --from Grounding.Hugentic.Authority --from Verbatim.User.Gated --from Workflow.Neutral
+> $kw: depends --from Demoted.Anchored.Line --from Edition.Trigger.User.Gated --from Gr.Req --from Grounding.Hugentic.Authority --from Verbatim.User.Gated --from Workflow.Neutral
 
 Use this module when the caller wants an existing index block grounded backward: from the block as written, through git history, to the chat turns that produced it.
 
@@ -27,7 +27,7 @@ This module is `Workflow.Neutral` in the same sense as `--link`: it produces ver
    - `agentos chatlas views inline --identity-hash <H> --contains "<distinctive block wording>" --role user --around "<commit time>" --radius 6 --filter turns`
    - the user turn that proposed, corrected, or accepted the block's content is the landing point; `Grounding.Hugentic.Authority` applies — user turns primarily
 4. **Turn → anchor.** Mint through the linking primitive (`references/link.md` step 3): `agentos chatlas anchory register --identity-hash <H> --at "<turn time>" --hint "…"` — read the echo, confirm the neighborhood.
-5. **Anchor → index.** USER-GATED: show the proposed `[GR]` line verbatim in chat and write only on explicit user approval (`Edition.Trigger.User.Gated`, `Verbatim.User.Gated`, via `--edit`). The landing is a `[GR]` line in `appendix/Concept.X/Grounding.Head` (router gains `[+N]` if the appendix file is new), or an inline trailing anchor when one line is the target. Steps 1–4 are free; step 5 never is.
+5. **Anchor → index.** USER-GATED: show the proposed `[GR]` line verbatim in chat and write only on explicit user approval (`Edition.Trigger.User.Gated`, `Verbatim.User.Gated`, via `--edit`). The landing is an inline trailing anchor on the line(s) the turn supports. Steps 1–4 are free; step 5 never is.
 
 > $kw. end-derived
 
@@ -35,7 +35,7 @@ This module is `Workflow.Neutral` in the same sense as `--link`: it produces ver
 
 - the commit dates the *write*; the *evidence* is earlier — search around and before the commit time, not at it
 - a block repaired, migrated, or reworded later still grounds on the original design discussion: follow `git log -L` past mechanical commits to the content-bearing ones
-- multiple sessions may have shaped one block (design + migration + revision): ground the current wording; older shaping evidence stays on the `Grounding.Head` board only while it remains an interesting spot for the current text — otherwise it drifts
+- multiple sessions may have shaped one block (design + migration + revision): ground the current wording; a superseded anchor is simply dropped — the edge demotes (`Demoted.Anchored.Line`), git keeps the history
 - approval-turn authority: index content lands through gated verbatim proposals — when no design-discussion turn exists, the user's approval turn ("write"/"apply" following the shown text) IS the grounding authority (`Grounding.Hugentic.Authority`: assistant material accepted or acted on); anchor the acceptance, hint it as such
 - relatedness gate as always: no supporting turn found is a finding, not a failure — an ungrounded block stays ungrounded rather than gaining a weak link
 

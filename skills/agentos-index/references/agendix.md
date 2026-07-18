@@ -6,7 +6,7 @@ This module is a `Workflow.Neutral.Module`: it runs no workflow — its rules bi
 
 The agendix is the agentic path of the same alignment writing the index runs hugentically: same primitives — `Kernel.Line`s, `Line.Type`s, anchors, the current concept set — with the user's review gate replaced by hard provenance. On the `Capture.Gradient` it sits **touched, captured, ungated**: a user routing verdict ("send it to the agendix") triggers the pass, and the writes within it are not individually reviewed — the gate buys stability, not authority; authority lives per-line in its `Chat.Support.Set`.
 
-Authority lives in the index: `Index.Agendix`, `Writing.Friction.Reduction`, `Kernel.Block.Grounding`, `Inline.Grounding`, `Grounding.Hugentic.Authority`, `Chatlas.Anchory` own the concepts.
+Authority lives in the index: `Index.Agendix`, `Writing.Friction.Reduction`, `Index.Line`, `Grounding.Hugentic.Authority`, `Chatlas.Anchory` own the concepts.
 
 ## The Two Surfaces, Same Primitives
 

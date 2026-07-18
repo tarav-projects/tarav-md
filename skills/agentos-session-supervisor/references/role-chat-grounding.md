@@ -4,7 +4,7 @@
 
 The role watches the transcript for turns that materially ground durable concepts — evidence a grounding line should eventually anchor. It proposes anchor candidates: a turn locator plus a one-sentence hint, mapped to a target block. It does not mint anchors, write the index, mutate the target session, or decide canonical design truth.
 
-Model context: grounding lines live in `Concept.X/Grounding.Head`; each is an `Anchory.Anchor` plus a one-sentence explanation (`Kernel.Block.Grounding`). Anchors resolve through `Chatlas.Anchory`. Writing them is `Index.Linking` — a user-gated index edit. This role feeds that workflow; it never runs it.
+Model context: grounding is a line property (`Index.Line`) — `Anchory.Anchor`s trail on the lines they support and resolve through `Chatlas.Anchory`. Writing them is `Index.Linking` — a user-gated index edit. This role feeds that workflow; it never runs it.
 
 ## Activation
 

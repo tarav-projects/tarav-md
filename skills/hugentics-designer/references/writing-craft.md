@@ -52,7 +52,7 @@ The test: can you reorder the lines without breaking meaning, and does each line
 - a markdown section whose heading names the block's main topic — the heading is a conceptual commitment
 - one block, one main topic — related material belongs in other blocks, grounding, appendix, or meta
 - body lines are mostly bullets enriching the topic from different perspectives
-- sections are named `Kernel.Block.Section`s: `Kernel.Block.Fundamentals` (the only required one) + `Kernel.Block.Grounding` + `Kernel.Block.Appendix` + `Kernel.Block.Meta`; `###` is just the inblock form
+- sections are named `Kernel.Block.Section`s: `Kernel.Block.Fundamentals` (the only required one) + `Kernel.Block.Appendix` + `Kernel.Block.Meta`; `###` is just the inblock form
 - dividing rule: fundamentals and appendix are about the concept; grounding cites evidence; meta is about the block itself
 - meta is non-conceptual block data only — aliases, outlinks, findability; the strip-test: drop the line and the conceptual load is unchanged
 

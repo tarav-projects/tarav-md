@@ -1,6 +1,6 @@
 # agentos-index --type
 
-> $kw: depends --from Concept.Hardness --from Design.Space --from Design.Variable --from Edition.Trigger.User.Gated --from Inline.Grounding --from Kernel.Line --from Line.Type --from Line.Type.Vocabulary --from Verbatim.User.Gated --from Workflow.Neutral
+> $kw: depends --from Concept.Hardness --from Design.Space --from Design.Variable --from Edition.Trigger.User.Gated --from Index.Line --from Kernel.Line --from Line.Type --from Line.Type.Vocabulary --from Verbatim.User.Gated --from Workflow.Neutral
 
 Use this module when the caller wants line typing understood, read, or proposed: classifying `Kernel.Line`s with the `Line.Type.Vocabulary`.
 
@@ -11,7 +11,7 @@ Authority lives in the index: `Line.Type`, `Line.Type.Vocabulary`, and the `Line
 ## Syntax
 
 - a typed line carries a leading bracketed code: `- [CT] the anchor token stays small`
-- the type is read first and primes the line; the tail stays free for `Inline.Grounding` anchors
+- the type is read first and primes the line; the tail stays free for trailing evidence anchors (`Index.Line` grounding)
 - the definition first line of a block is explicitly typed `[DF]`
 - untyped lines are mechanically detectable (no leading bracket) — pre-fence legacy, worked down by calibration passes
 

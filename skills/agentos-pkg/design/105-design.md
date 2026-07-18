@@ -47,7 +47,7 @@
 - every chat grounding target is a `Index.Block` or `Appendix.Block`
 - if an issue or topic needs grounding, it must first resolve to an existing block or become a new block
 - if a subtopic inside a block needs independent grounding, it should become its own kernel block
-- a `Kernel.Block.Grounding` is scoped to its one target block
+- a block's grounding is scoped to that one target block: its lines' anchors support its content only
 - other surfaces cite grounded blocks instead of inventing separate grounding targets
 
 ****

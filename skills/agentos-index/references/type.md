@@ -9,7 +9,7 @@ Authority lives in the index: `Line.Type`, `Line.Type.Vocabulary`, and the `Line
 ## Syntax
 
 - a typed line carries a leading bracketed code: `- [CT] the anchor token stays small`
-- the type is read first and primes the line; the tail stays free for `Inline.Grounding` anchors
+- the type is read first and primes the line; the tail stays free for trailing evidence anchors (`Index.Line` grounding)
 - the definition first line of a block is explicitly typed `[DF]`
 - untyped lines are mechanically detectable (no leading bracket) — pre-fence legacy, worked down by calibration passes
 

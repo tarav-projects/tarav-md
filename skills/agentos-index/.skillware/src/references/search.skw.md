@@ -1,6 +1,6 @@
 # agentos-index --search
 
-> $kw: depends --from Appendix.Discovery --from Context.Grounding --from Index.Chapter --from Index.Depot --from Index.Grounding --from Line.Type
+> $kw: depends --from Appendix.Discovery --from Context.Grounding --from Index.Chapter --from Index.Depot --from Index.Grounding --from Index.Line --from Line.Type
 
 Use this module when the caller wants cited index context, conceptual lookup, appendix depth, or the current discussion grounded against the index.
 
@@ -40,7 +40,7 @@ Search is read-only and ungated. It changes the agent's context, never a surface
 - parser-backed tools read index surfaces as typed nodes: `RouterEntry` rows, `BlockHeading`s, `KernelLine`s, `MetaLine`s, code fences, and inline spans such as anchors, concept cites, type brackets, and file mentions
 - untyped lines are pre-fence legacy — same authority, just not yet classified
 - a trailing `^YYYYMMDD-N` token is an `Anchory.Anchor`: a pointer to chat evidence, resolvable via `agentos chatlas views inline --anchor <token> --filter turns`; see `references/link.md` — resolution is optional depth, not required reading
-- appendix blocks named `Concept.X/Grounding.Head` and `Concept.X/Grounding.Drift` are evidence sections, not conceptual content: Head supports the block as written, Drift is kept provenance
+- appendix blocks named `Concept.X/Grounding.Head` and `Concept.X/Grounding.Drift` are inert legacy sections from the retired block-grounding scheme, not conceptual content; current grounding lives on the lines themselves (`Index.Line`)
 - `agendix/` files are agent-captured, user-unreviewed material — zero authority, useful as leads, never citable as accepted design
 
 ## Citation Behavior

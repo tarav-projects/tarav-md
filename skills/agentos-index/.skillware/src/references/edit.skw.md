@@ -1,6 +1,6 @@
 # agentos-index --edit
 
-> $kw: depends --from Capture.Offer --from Cited.Duplication --from Dotted.Notation --from Edition.Trigger.User.Gated --from Explicit.Namespace --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Edit.Action --from Index.Edit.Modify.Line --from Index.Ontology --from Inline.Grounding --from Kernel.Line --from Line.Type --from Name.As.Index --from Verbatim.User.Gated
+> $kw: depends --from Capture.Offer --from Cited.Duplication --from Dotted.Notation --from Edition.Trigger.User.Gated --from Explicit.Namespace --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Edit.Action --from Index.Edit.Modify.Line --from Index.Line --from Index.Ontology --from Kernel.Line --from Line.Type --from Name.As.Index --from Verbatim.User.Gated
 
 The knowledge of writing Agentos index and appendix surfaces: gates, structure, naming, block quality, edit actions, and the landing procedure.
 
@@ -33,7 +33,7 @@ This module is a `Workflow.Neutral.Module`: it does not run a workflow — its r
 - place conceptual fundamentals in the index
 - place extended depth, grounded history, scoped views, specs, and parked depth in the appendix
 - place operational procedure in skills or references, not in the index
-- place evidence links in grounding surfaces: `[GR]` lines in the appendix `Concept.X/Grounding.Head` block (demotions to `Concept.X/Grounding.Drift`), or a trailing anchor inline on the line it supports — anchors come from `references/link.md`
+- place evidence links as trailing anchors inline on the lines they support (grounding is a line property, `Index.Line`) — anchors come from `references/link.md`
 
 ## Block Independence
 
@@ -77,7 +77,7 @@ When a draft is being shaped for an index or appendix surface — inside `refere
   - modified line: `Landing: <file>` plus `Target: modify line under ## Concept.Name`
   - revised block: `Landing: <file>` plus `Target: revise block ## Concept.Name`
   - appendix material: `Landing: <appendix-file>` plus `Target: <Concept.Name>/<Section.Or.Child>`
-  - grounding material: `Landing: <appendix-file>` plus `Target: <Concept.Name>/Grounding.Head` or the exact inline line target
+  - grounding material: the exact inline line target the anchor will trail
 - screen it for `Block Independence` — strip any deixis to the authoring conversation; state the concept positively
 - screen each line's `Line.Type`: the line must perform its typed act (`references/type.md`); a line that takes no type belongs elsewhere — flag it, do not force a type
 - review with the user and revise until accepted — acceptance is a chat state, not a write
@@ -98,7 +98,7 @@ Draft:
 When landing an approved edit:
 
 1. Apply the approved edit to the natural surface.
-2. Stamp grounding at landing: mint the approval-turn anchor (`references/link.md`) and set it as the trailing anchor on every landed line that has no more specific evidence turn — the fallback pointer per `Inline.Grounding`; line-specific turns win where they exist.
+2. Stamp grounding at landing: mint the approval-turn anchor (`references/link.md`) and set it as the trailing anchor on every landed line that has no more specific evidence turn — the fallback pointer per `Index.Line` grounding; line-specific turns win where they exist.
 3. Update the router when concepts are added, renamed, moved, or gain appendix depth.
 4. Run a linter check over the edited depot or explicit surfaces.
 

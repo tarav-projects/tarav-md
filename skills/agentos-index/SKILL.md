@@ -131,7 +131,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - the active chapter defaults to `design`; chapter files are named `NNN-<chapter>.md`
 - index work happens over engaged `Index.Depot`s; `--depot` scopes which depots are engaged and `--chapter` scopes within them
 - its lines carry `Line.Type` codes (`- [CT] ...`) classifying each line's act; untyped lines are pre-fence legacy
-- its evidence links are `Anchory.Anchor`s (`^YYYYMMDD-N`): trailing on lines and collected in appendix `Grounding.Head`/`Grounding.Drift` sections, resolving through chatlas back to the chats
+- its evidence links are `Anchory.Anchor`s (`^YYYYMMDD-N`): trailing on the lines they support — grounding is a line property (`Index.Line`) — resolving through chatlas back to the chats
 - agents operate it by loading routers, concept blocks, appendix material, and references relevant to the current task
 
 ## Router Table

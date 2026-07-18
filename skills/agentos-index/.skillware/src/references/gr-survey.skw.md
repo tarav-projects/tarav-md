@@ -1,6 +1,6 @@
 # agentos-index --gr-survey
 
-> $kw: depends --from Gr.Req --from Grounding.Hugentic.Authority --from Inline.Grounding
+> $kw: depends --from Gr.Req --from Grounding.Hugentic.Authority --from Index.Line
 
 Use this module to run a grounding campaign's survey phase: sweep a scope, mint anchors, and produce a `Gr.Req` artifact. The grounding analogue of `agentos-hugentics-impl --design` — reconnaissance that reports back and does not act.
 
@@ -22,7 +22,7 @@ Engine: `references/back-link.md` (archaeology) and `references/link.md` (edge l
    - user-originated wording → hunt the topical user turn (the statement itself)
    - agent-drafted wording the user gated through (most index blocks) → the **approval turn is the primary route, not a fallback**: date the block's landing commit, find the user's acceptance turn — the "write"/"apply"/"ok" after the verbatim proposal — and mint there (`Grounding.Hugentic.Authority` appendix). Do not burn the pass hunting for a topical turn that never existed.
 3. **Entry per target** in the `Gr.Set`:
-   - evidence found → mint (`chatlas anchory register`, echo-verified), entry at `status: proposed` with anchor, hint, why, landing form (a `[GR]` board spot in `Grounding.Head` for a noticeable turn; inline best pointers on the lines the turn specifically touched — per `Inline.Grounding`, an anchor is the line's best known evidence place, so a block-approval turn may stamp lines as the fallback); approval-turn mints say so in the hint, and the hint states what the approval covered (a whole block, one line's rewrite)
+   - evidence found → mint (`chatlas anchory register`, echo-verified), entry at `status: proposed` with anchor, hint, why, landing form (inline best pointers trailing on the lines the turn specifically touched — per `Index.Line` grounding, an anchor is the line's best known evidence place, so a block-approval turn may stamp lines as the fallback); approval-turn mints say so in the hint, and the hint states what the approval covered (a whole block, one line's rewrite)
    - no honest evidence on either route → entry at `status: ambiguous` with what was searched and what is missing — never a weak link
 4. **Write the `Gr.Req`** (`notes/live/NNN-<scope>-gr-req.md`, numbering per `agentos-live-surfaces`): `Gr.Abstract` (scope, coverage before + projected-if-landed, status `gated set ready`), the `Gr.Set`, `Gr.Log` (unattached anchors, search dead ends worth recording).
 5. **Report** compactly: entries by status, coverage delta on offer, the `Gr.Req` path.

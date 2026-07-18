@@ -222,7 +222,7 @@
 - `Kernel.Block` is the base writing object of `Kernel.Writing`
 - its heading is a conceptual commitment — it names what the block is about
 - one block is one topic — a single concept, issue, or subject
-- it has a defined format of named `Kernel.Block.Section`s: `Kernel.Block.Fundamentals`, `Kernel.Block.Grounding`, `Kernel.Block.Appendix`, `Kernel.Block.Meta`
+- it has a defined format of named `Kernel.Block.Section`s: `Kernel.Block.Fundamentals`, `Kernel.Block.Appendix`, `Kernel.Block.Meta`
 - only `Kernel.Block.Fundamentals` is required; grounding, appendix, and meta are optional
 - its sections separate conceptual content from cited chat evidence and from non-conceptual block data
 - it is surface-neutral — the surface it lives on sets what a block may hold and how writing is gated
