@@ -17,7 +17,7 @@ Date: 2026-07-08
 ### 1. `Grounding.Hugentic.Authority`
 
 - target: [105-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/105-design.md:81)
-- proposed anchor: `^20260708-8`
+- proposed anchor: `^c20260708-8u`
 - hint: user says chat/index anchors should always target user turns; approval-turn authority rule
 - why: exact user-side authority for the user-turn-only grounding rule; stronger than assistant-side explanation and matches the approval-turn authority judgment
 - landing form:
@@ -28,7 +28,7 @@ Date: 2026-07-08
 ### 2. `Anchory.System`
 
 - target: [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/107-design.md:324)
-- proposed anchor: `^20260706-1`
+- proposed anchor: `^c20260706-1u`
 - hint: user says Anchory is an Agentos subsystem, not per-project, and connects with Chatlas
 - why: exact user correction for subsystem scope and Chatlas coupling
 - landing form:
@@ -39,7 +39,7 @@ Date: 2026-07-08
 ### 3. `Writing.Friction.Reduction`
 
 - target: [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/107-design.md:173)
-- proposed anchor: `^20260705-3`
+- proposed anchor: `^c20260705-3u`
 - hint: user lays out the friction gradient: chat, agendix, appendix, index main
 - why: exact user-side statement of the friction gradient and the "do not flush the index" floor
 - landing form:
@@ -50,7 +50,7 @@ Date: 2026-07-08
 ### 4. `Index.Agendix`
 
 - target: [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/107-design.md:183)
-- proposed anchor: `^20260705-2`
+- proposed anchor: `^c20260705-2u`
 - hint: user authority for agendix as the untouched-member / grounded-summary layer
 - why: already-supported authority turn remains the strongest fit for the block's current core claim set
 - landing form:
@@ -61,7 +61,7 @@ Date: 2026-07-08
 ### 5. `Grounding.Retrieval.Boundary`
 
 - target: [105-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/105-design.md:59)
-- proposed anchor: `^20260707-4`
+- proposed anchor: `^c20260707-4u`
 - hint: approval turn: user accepts the paired `Grounding.Retrieval.Boundary` and `Grounding.Hugentic.Authority` survivor rewrites
 - why: approval-turn authority route; the assistant showed the verbatim replacement block, the user then accepted, and the landed commit follows immediately. The current `Grounding.Retrieval.Boundary` lines match that approved rewrite.
 - landing form:
@@ -72,7 +72,7 @@ Date: 2026-07-08
 ### 6. `Chat.Grounding.Target.Block`
 
 - target: [105-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/105-design.md:69)
-- proposed anchor: `^20260707-3`
+- proposed anchor: `^c20260707-3u`
 - hint: approval turn: user applies the one-line `Chat.Grounding.Target.Block` rewrite replacing `Active.Grounding` with `Kernel.Block.Grounding`
 - why: approval-turn authority route; the assistant proposed the exact one-line survivor fix, the user replied `apply`, and the landed block preserves that approved replacement verbatim.
 - landing form:
@@ -102,15 +102,15 @@ Date: 2026-07-08
   - `agentos chatlas views inline --identity-hash ... --contains ... --role user --around ... --radius 6 --filter turns --format json`
   - `agentos chatlas anchory register --identity-hash ... --at ... --hint ...`
 - review sitting 2026-07-09 (batch-approved: "land all"):
-  - entries 1-4 landed: 3 `[GR]` head lines (`Grounding.Hugentic.Authority`, `Anchory.System` — new `Grounding.Head` sections; `Writing.Friction.Reduction` — second head line) + 8 inline anchors (`105:86`; `107:175,177,178,179` ^20260705-3; `107:187,191` ^20260705-2; `107:329` ^20260706-1)
-  - entry 4 landed as inline-only: `^20260705-2` spread to the two block lines its turn verbatim supports (ontology-primes, `Block.Line.Gradient`) — no stretch onto the rest
+  - entries 1-4 landed: 3 `[GR]` head lines (`Grounding.Hugentic.Authority`, `Anchory.System` — new `Grounding.Head` sections; `Writing.Friction.Reduction` — second head line) + 8 inline anchors (`105:86`; `107:175,177,178,179` ^c20260705-3u; `107:187,191` ^c20260705-2u; `107:329` ^c20260706-1u)
+  - entry 4 landed as inline-only: `^c20260705-2u` spread to the two block lines its turn verbatim supports (ontology-primes, `Block.Line.Gradient`) — no stretch onto the rest
   - close-out lint: `0 error(s), 0 warning(s)`, 17 checks — provenance bridge re-verified all four anchors landing on user turns
   - meter method note: the survey's `1202` baseline and this review's `1208` differ by counting filter; same-method before/after is `1208 → 1200`, exactly the 8 inline landings
   - entries 5-6 remain `ambiguous` — need a fresh `--gr-survey` discovery pass (or an approval-turn mint), not review time
 - survey sitting 2026-07-09 (ambiguous-resolution pass):
   - route taken: approval-turn authority for both remaining 105 blocks, per `Grounding.Hugentic.Authority/Appendix`
-  - `Chat.Grounding.Target.Block` dated through `aaa9726` / survivor-revisit neighborhood; minted `^20260707-3` on the user's `apply` turn after the one-line verbatim proposal replacing `Active.Grounding` with `Kernel.Block.Grounding`
-  - `Grounding.Retrieval.Boundary` dated through `e90c949`; `--tool-contains '105-design.md' --tool-name Bash` again recovered the right session; minted `^20260707-4` on the user's approval turn after the paired verbatim survivor proposal covering `Grounding.Retrieval.Boundary` and `Grounding.Hugentic.Authority`
+  - `Chat.Grounding.Target.Block` dated through `aaa9726` / survivor-revisit neighborhood; minted `^c20260707-3u` on the user's `apply` turn after the one-line verbatim proposal replacing `Active.Grounding` with `Kernel.Block.Grounding`
+  - `Grounding.Retrieval.Boundary` dated through `e90c949`; `--tool-contains '105-design.md' --tool-name Bash` again recovered the right session; minted `^c20260707-4u` on the user's approval turn after the paired verbatim survivor proposal covering `Grounding.Retrieval.Boundary` and `Grounding.Hugentic.Authority`
   - commands used in this pass:
     - `git log -L 59,67:skills/agentos-pkg/design/105-design.md --format='%h %aI %s'`
     - `git log -L 69,79:skills/agentos-pkg/design/105-design.md --format='%h %aI %s'`
@@ -124,7 +124,7 @@ Date: 2026-07-08
   - minted-but-unattached anchors: none
 - review sitting 2026-07-09 (second, batch-approved: "land"):
   - entries 5-6 landed: two new appendix files (`Grounding.Retrieval.Boundary-appendix.md`, `Chat.Grounding.Target.Block-appendix.md`) each with a `Grounding.Head` `[GR]` line; router rows gained `[+1]` for both concepts
-  - both anchors verified live as approval turns: ^20260707-4 = "ok" on the verbatim survivor rewrite (commit `e90c949`); ^20260707-3 = "apply" on the one-line `Active.Grounding` → `Kernel.Block.Grounding` fix (commit `aaa9726`); the entry-6 head line states the one-line scope explicitly
+  - both anchors verified live as approval turns: ^c20260707-4u = "ok" on the verbatim survivor rewrite (commit `e90c949`); ^c20260707-3u = "apply" on the one-line `Active.Grounding` → `Kernel.Block.Grounding` fix (commit `aaa9726`); the entry-6 head line states the one-line scope explicitly
   - meter: unchanged at `1200` — head-only landings, no inline anchors
   - close-out lint: `0 error(s), 0 warning(s)`, 17 checks
   - campaign closed: no `proposed` or `ambiguous` entries remain

@@ -13,22 +13,22 @@ Status: first backlink pass complete; gated edit set LANDED 2026-07-09 (9 inline
 
 ## Minted anchors
 
-- `^20260627-0`
+- `^c20260627-0u`
   - turn: 2026-06-27T17:06:31.682Z
   - user: asks `Agentos.Skillware` to add tooling support like linters/builders/compilers
-- `^20260705-2`
+- `^c20260705-2u`
   - turn: 2026-07-05T15:00:17.475Z
   - user: confirms agendix as an untouched index member, hard grounded-summary rule, and a fallback place next to `appendix/`
-- `^20260707-2`
+- `^c20260707-2u`
   - turn: 2026-07-07T20:05:57.218Z
   - user: separates `Line.Type` from `User.Touched`
-- `^20260708-5`
+- `^c20260708-5u`
   - turn: 2026-07-08T06:12:45.416Z
   - user: proposes `agentos-index --agendix` as an automatic appendix-scoped capture module
-- `^20260627-1`
+- `^c20260627-1u`
   - turn: 2026-06-27T20:08:12.369Z
   - user: defines `Skill.Build.Surface` as builder workspace and as the place for anything that should not be on a runnable surface
-- `^20260627-2`
+- `^c20260627-2u`
   - turn: 2026-06-27T21:18:03.122Z
   - user: says a runnable surface must not pay bookkeeping noise for builder addressing
 
@@ -36,50 +36,50 @@ Status: first backlink pass complete; gated edit set LANDED 2026-07-09 (9 inline
 
 - [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/107-design.md:9)
   - line: `it is supported by a development toolchain ...`
-  - proposed grounding: inline anchor `^20260627-0`
+  - proposed grounding: inline anchor `^c20260627-0u`
   - why: direct user request to add tooling support under `Agentos.Skillware`
   - git: `52a6f84` restored the block on 2026-07-05, but the content-bearing discussion is earlier on 2026-06-27
 
 - [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/107-design.md:176)
   - line: friction gradient with `Index.Agendix`
-  - proposed grounding: inline anchor `^20260705-2`
+  - proposed grounding: inline anchor `^c20260705-2u`
   - why: user explicitly accepts the agendix as the cheap capture layer and approves it as an untouched index member
   - git: introduced in `52a6f84`, renamed from `Agendix` to `Index.Agendix` in `4d957cc`
 
 - [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/107-design.md:185)
   - line: `Index.Agendix` as an untouched member of the index surface
-  - proposed grounding: inline anchor `^20260705-2`
+  - proposed grounding: inline anchor `^c20260705-2u`
   - why: user says the agendix is a member of the index, untouched, and should live next to `appendix/`
 
 - [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/107-design.md:188)
   - line: hard rule that every agendix line is a grounded summary of chat discussion
-  - proposed grounding: inline anchor `^20260705-2`
+  - proposed grounding: inline anchor `^c20260705-2u`
   - why: user explicitly says it must be summaries of chat discussions, covering rejections/constraints/highlights
 
 - [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/107-design.md:192)
   - line: homeless material lands in a fallback file
-  - proposed grounding: inline anchor `^20260705-2`
+  - proposed grounding: inline anchor `^c20260705-2u`
   - why: user explicitly accepts a fallback place for material that has no routed concept
   - note: this supports the fallback concept, not yet the exact `Unassigned-agendix.md` filename
 
 - [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/107-design.md:197)
   - line: agendix lines are typed; validation point applies to agent capture
-  - proposed grounding: inline anchor `^20260707-2`
+  - proposed grounding: inline anchor `^c20260707-2u`
   - why: user explicitly rejects tying `Line.Type` to `User.Touched`, which is the direct authority behind typed agendix lines
 
 - [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/107-design.md:28)
   - line: `Skill.Build.Surface` complements `Skill.Runnable.Surface` and holds runnable-maintenance artifacts
-  - proposed grounding: inline anchor `^20260627-1`
+  - proposed grounding: inline anchor `^c20260627-1u`
   - why: user directly defines `Skill.Build.Surface` as the builder workspace and the home for anything that should not be on a runnable surface
 
 - [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/107-design.md:29)
   - line: home for derivation context, dependency declarations, lineage, dev material
-  - proposed grounding: inline anchor `^20260627-1`
+  - proposed grounding: inline anchor `^c20260627-1u`
   - why: same turn directly supports the "anything it needs for doing its job" part of the current wording
 
 - [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/107-design.md:21)
   - line: runnable surface stays free of non-runnable artifacts
-  - proposed grounding: inline anchor `^20260627-2`
+  - proposed grounding: inline anchor `^c20260627-2u`
   - why: user explicitly says the runnable surface must not pay bookkeeping noise for builder addressing
 
 ## Partial / still ambiguous
@@ -98,17 +98,17 @@ Status: first backlink pass complete; gated edit set LANDED 2026-07-09 (9 inline
 
 - [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/107-design.md:199)
   - `agendix/Unassigned-agendix.md` is weaker than the general fallback concept.
-  - current evidence: `^20260705-2` supports fallback existence; the exact `Unassigned-agendix.md` name appears in assistant proposal text, not in a confirming user turn I can cite yet.
+  - current evidence: `^c20260705-2u` supports fallback existence; the exact `Unassigned-agendix.md` name appears in assistant proposal text, not in a confirming user turn I can cite yet.
   - finding: this is currently proposal-level, not strongly user-grounded.
 
 ## Next gated edit set
 
 - If the user approves index mutation, the first safe inline-grounding patch is:
-  - add `^20260627-0` to line 9
-  - add `^20260627-2` to line 21
-  - add `^20260627-1` to lines 28 and 29
-  - add `^20260705-2` to lines 176, 185, 188, and likely 192
-  - add `^20260707-2` to line 197
+  - add `^c20260627-0u` to line 9
+  - add `^c20260627-2u` to line 21
+  - add `^c20260627-1u` to lines 28 and 29
+  - add `^c20260705-2u` to lines 176, 185, 188, and likely 192
+  - add `^c20260707-2u` to line 197
 
 - Keep these out of the first patch:
   - line 20

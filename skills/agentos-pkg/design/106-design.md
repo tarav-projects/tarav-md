@@ -151,7 +151,7 @@
 - [DF] `Untouched.Space` is the region of a `QA.Space` with no `User.Touched` evidence
 - [DC] it is the part of the modeled space the hugentic process has not reached
 - [CT] touch does not decide whether the agent may act; the `Open.Space` / `Constrained.Space` axis decides action
-- [DC] untouched material never becomes an index line directly; and touch alone lands nothing — material, touched or not, remains in chat, work surfaces, source surfaces, or `Index.Agendix` until landed through the gate ^20260716-0
+- [DC] untouched material never becomes an index line directly; and touch alone lands nothing — material, touched or not, remains in chat, work surfaces, source surfaces, or `Index.Agendix` until landed through the gate ^c20260716-0u
 - [PR] alignment grows by moving important regions from `Untouched.Space` into `Touched.Space`
 
 ****
@@ -185,11 +185,11 @@
 
 ## Touched.Authority
 
-- [DF] `Touched.Authority` is the rule that content's authority flows from its grounding, not from its writer — agent-written material carries whatever its evidence supports ^20260711-6
-- the gradient: **untouched** — agent-generated, user-untouched, no grounding: zero authority of its own, rewritable only within `Open.Space` — the complement of the span of grounded constraints, never against them; **grounded** — linked to a `User.Turn`: second-order authority through the link, and rewriting must answer to that evidence; **`User.Turn`** — the grounding itself: the user's touch, first-order authority ^20260711-6
-- lower tiers are bound by the span of the higher ones: untouched content moves in what grounded statements leave open; grounded content moves in what its `User.Turn`s leave open ^20260711-6
-- linkability fences by surface, not by gradient: stable surfaces link only into touched surfaces — grounded content on an untouched surface may be authoritative yet stays unlinkable-into ^20260711-6
-- no authority status is stored — authority is read from provenance on the surface: types, anchors, the gate trail ^20260711-6
+- [DF] `Touched.Authority` is the rule that content's authority flows from its grounding, not from its writer — agent-written material carries whatever its evidence supports ^c20260711-6u
+- the gradient: **untouched** — agent-generated, user-untouched, no grounding: zero authority of its own, rewritable only within `Open.Space` — the complement of the span of grounded constraints, never against them; **grounded** — linked to a `User.Turn`: second-order authority through the link, and rewriting must answer to that evidence; **`User.Turn`** — the grounding itself: the user's touch, first-order authority ^c20260711-6u
+- lower tiers are bound by the span of the higher ones: untouched content moves in what grounded statements leave open; grounded content moves in what its `User.Turn`s leave open ^c20260711-6u
+- linkability fences by surface, not by gradient: stable surfaces link only into touched surfaces — grounded content on an untouched surface may be authoritative yet stays unlinkable-into ^c20260711-6u
+- no authority status is stored — authority is read from provenance on the surface: types, anchors, the gate trail ^c20260711-6u
 
 ****
 
@@ -200,9 +200,9 @@
 - naming once bundled three filters — identification, boundary, significance; the line-level tests unbundle them: a crisp single point (`Kernel.Line`), attaching to a block (`Index.Edit.Append.Line`), and significance (`Line.Type`)
 - syntax: a leading bracketed code — `- [CT] the anchor token stays small`; the type is read first and primes the line, the tail stays free for inline anchors
 - every line is typed, the definition first line explicitly `[DF]` — untyped lines are mechanically detectable (no leading bracket), the pre-fence legacy the calibration passes work down
-- [DC] the act axis (`CT`, `DC`, …) is the type — the assistant-grounded source marker (`[AS:XX]`) is retired: all typed lines are user-grounded on every surface ^20260716-0
+- [DC] the act axis (`CT`, `DC`, …) is the type — the assistant-grounded source marker (`[AS:XX]`) is retired: all typed lines are user-grounded on every surface ^c20260716-0u
 
-- [PR] typing makes the index computable — backward, lint for coherence; forward, agents derive their bounds and freedoms mechanically instead of interpreting prose ^20260707-1
+- [PR] typing makes the index computable — backward, lint for coherence; forward, agents derive their bounds and freedoms mechanically instead of interpreting prose ^c20260707-1u
 ****
 
 ## Line.Type.Vocabulary
@@ -278,7 +278,7 @@
 - [DF] `Line.Type::GR` marks a grounding line — a one-sentence account of what an anchored evidence neighborhood grounds
 - [CT] validation point: the line must carry a trailing anchor and state what the evidence grounds; a `GR` without an anchor is mistyped
 - [DC] lint: an anchor that does not resolve, and a `GR` account contradicted by its anchored neighborhood
-- [DC] grounding is factual evidence, not authority: the gate turn (`Turn.Type::<Surface>.Gate`) lives in a line's own support set; a `GR` line accounts for what separate evidence grounds ^20260716-18
+- [DC] grounding is factual evidence, not authority: the gate turn (`Turn.Type::<Surface>.Gate`) lives in a line's own support set; a `GR` line accounts for what separate evidence grounds ^c20260716-18u
 
 ****
 
@@ -419,29 +419,29 @@
 
 ## Delta.Normalization
 
-- [DF] `Delta.Normalization` is incremental derivation in a `Normalization.Pipeline`: normalize only source records added since the last pass plus the model's volatile tail, instead of re-deriving the whole `Normal.Model` ^20260712-14
-- [PR] it applies better to append-friendly target models — an append-only body with per-line provenance and finality; the `Normalization.Pipeline` does not require its targets to be append-friendly ^20260712-13
-- [DC] the unit of work is the stable-prefix / volatile-tail split — content whose derivation is final is frozen and skipped; only the volatile tail and new source records are recomputed ^20260712-14
-- [DC] resume state persists in a `Normalization.Delta.Checkpoint`; a checkpoint that fails validation discards itself and the pass falls back to full derivation ^20260712-14
-- [CT] full derivation from raw sources remains always available and authoritative — delta passes are an optimization, never a new source of truth ^20260712-14
+- [DF] `Delta.Normalization` is incremental derivation in a `Normalization.Pipeline`: normalize only source records added since the last pass plus the model's volatile tail, instead of re-deriving the whole `Normal.Model` ^c20260712-14u
+- [PR] it applies better to append-friendly target models — an append-only body with per-line provenance and finality; the `Normalization.Pipeline` does not require its targets to be append-friendly ^c20260712-13u
+- [DC] the unit of work is the stable-prefix / volatile-tail split — content whose derivation is final is frozen and skipped; only the volatile tail and new source records are recomputed ^c20260712-14u
+- [DC] resume state persists in a `Normalization.Delta.Checkpoint`; a checkpoint that fails validation discards itself and the pass falls back to full derivation ^c20260712-14u
+- [CT] full derivation from raw sources remains always available and authoritative — delta passes are an optimization, never a new source of truth ^c20260712-14u
 
 ****
 
 ## Normalization.Delta.Checkpoint
 
-- [DF] `Normalization.Delta.Checkpoint` is the persisted resume state of `Delta.Normalization` for one source — whatever the producer needs to continue derivation from the recorded source position ^20260712-15
-- [DC] the checkpoint is producer-private — only the pipeline that wrote it reads it; it is never a consumer surface of the `Normal.Model` ^20260712-15
-- [DC] it validates before use: the source must still extend the position it recorded; a failed validation discards the checkpoint and the pass re-derives fully ^20260712-15
-- [CT] the checkpoint is disposable at any time with no data loss — deleting it costs one full derivation, nothing else ^20260712-15
+- [DF] `Normalization.Delta.Checkpoint` is the persisted resume state of `Delta.Normalization` for one source — whatever the producer needs to continue derivation from the recorded source position ^c20260712-15u
+- [DC] the checkpoint is producer-private — only the pipeline that wrote it reads it; it is never a consumer surface of the `Normal.Model` ^c20260712-15u
+- [DC] it validates before use: the source must still extend the position it recorded; a failed validation discards the checkpoint and the pass re-derives fully ^c20260712-15u
+- [CT] the checkpoint is disposable at any time with no data loss — deleting it costs one full derivation, nothing else ^c20260712-15u
 
 ****
 
 ## Normalization.Trust.Tier
 
-- [DF] `Normalization.Trust.Tier` is the verification level a caller selects for a `Delta.Normalization` pass — how much of the existing `Normal.Model` is re-checked against source before being trusted ^20260712-16
-- [DC] three tiers: trust-append assumes the source only grew and resumes blindly from the checkpoint; verify re-checks provenance over the frozen content and recomputes from the first divergence; rebuild re-derives everything from source ^20260712-16
-- [PR] staleness is a price point, not a defect — when raw sources are preserved and authoritative, a wrong cheap pass is always recoverable by a more expensive one ^20260712-16
-- [CT] tier selection changes cost and staleness risk only, never the model contract — every tier produces the same model shape ^20260712-16
+- [DF] `Normalization.Trust.Tier` is the verification level a caller selects for a `Delta.Normalization` pass — how much of the existing `Normal.Model` is re-checked against source before being trusted ^c20260712-16u
+- [DC] three tiers: trust-append assumes the source only grew and resumes blindly from the checkpoint; verify re-checks provenance over the frozen content and recomputes from the first divergence; rebuild re-derives everything from source ^c20260712-16u
+- [PR] staleness is a price point, not a defect — when raw sources are preserved and authoritative, a wrong cheap pass is always recoverable by a more expensive one ^c20260712-16u
+- [CT] tier selection changes cost and staleness risk only, never the model contract — every tier produces the same model shape ^c20260712-16u
 
 ****
 
@@ -474,7 +474,7 @@
 - invariant across all outcomes: the agent surfaces its interpretation and makes the resolved canonical name(s) explicit before building on it
 - ambiguity → surface the top candidates and confirm; unresolvable → degrade to `Unresolved.Index.Name`
 - direction is symmetric: the user emits `~` to ask; the agent emits `~` to flag an unverified, approximate recall
-- soft meaning surfaced as a chat sigil — rides `Concept.Hardness`, sibling to `::` type statements (`Addressing.Sigil.Vocabulary`) and the variable `<Concept>.Name` form ^20260712-6
+- soft meaning surfaced as a chat sigil — rides `Concept.Hardness`, sibling to `::` type statements (`Addressing.Sigil.Vocabulary`) and the variable `<Concept>.Name` form ^c20260712-6u
 
 ****
 

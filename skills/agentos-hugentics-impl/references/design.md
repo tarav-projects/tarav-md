@@ -73,6 +73,15 @@ The caller's explicit `--design` or `--develop` invocation authorizes writing th
 
 See `references/example.md` for a concrete artifact sample.
 
+### Grounding
+
+The `Impl.Req` carries a `Chat.Support.Set`: trailing `Anchory.Anchor`s rooting it in the user turns that authorize and shape it (see `agentos-anchory-pkg` for minting; discipline-only — notes are not yet linted).
+
+- mint on the ordering turn (the `--design` request) and on the readiness approval; cite them in `Impl.Abstract`
+- a `Design.Decisions` line settled by a specific user turn trails that turn's anchor; the rest are covered by the gate stamp — coarse but honest, upgradable
+- in `Autonomous` mode the invocation turn is the gate; one anchor may cover the artifact
+- wildcard or unresolvable citations are worse than none — every written anchor must resolve
+
 ## Updating And Feedback
 
 - prefer focused updates over full rewrites

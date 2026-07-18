@@ -216,7 +216,7 @@
 ## Index.Block
 
 - `Index.Block` is a `Kernel.Block` placed in an `Index.Chapter` — the routed, loadable unit of meaning in the Index
-- [DC] its heading is a legal `Skw.Address.Schema` name — the root of the concept's `Block.Path`s and what `000-INDEX.md` routes ^20260712-5
+- [DC] its heading is a legal `Skw.Address.Schema` name — the root of the concept's `Block.Path`s and what `000-INDEX.md` routes ^c20260712-5u
 - it is `Kernel.Writing` under tight compression — conceptual completeness in few lines, depth pushed to `Concept.X/Appendix`
 - it must carry enough signal for an agent to reason correctly about the concept
 - the Index must have a block for any meaningful concept; it may link out rather than define everything inline
@@ -264,15 +264,15 @@
 ## Dotted.Notation
 
 - `Dotted.Notation` identifies named concepts in an ontology surface
-- [DF] it is the concept form of `Skw.Address.Schema` — compact, symbolic, natural-text friendly ^20260712-3
+- [DF] it is the concept form of `Skw.Address.Schema` — compact, symbolic, natural-text friendly ^c20260712-3u
 - a dotted name is a signal that the phrase refers to a concept, not casual prose
-- [CT] every name has at least two parts — the schema's minimum-sigil rule applied to `.`; dot depth is flexible and natural to the concept ^20260712-3
+- [CT] every name has at least two parts — the schema's minimum-sigil rule applied to `.`; dot depth is flexible and natural to the concept ^c20260712-3u
 - dots provide context but are not a strict hierarchy — definition and relationships live in notes and registry entries, not the name
 - `Explicit.Namespace` must be explicit; do not infer a namespace from a dotted prefix alone
 - a dotted name can appear before it is registered
     - agents infer concept maturity from the repository: prose-only, registry entry, or dedicated note
 - registry lookup is opportunistic, not mandatory — use it when concept identity matters, avoid turning ordinary work into ontology maintenance
-- [DF] type statements extend a dotted name with `::` (`Line.Type::DF`) — the full string names the entity (`Addressing.Sigil.Vocabulary`) ^20260712-3
+- [DF] type statements extend a dotted name with `::` (`Line.Type::DF`) — the full string names the entity (`Addressing.Sigil.Vocabulary`) ^c20260712-3u
 - an approximate chat-side form exists — see `Fuzzy.Dotted.Name`
 
 ****

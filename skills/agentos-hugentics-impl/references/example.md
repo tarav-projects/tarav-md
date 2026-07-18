@@ -10,6 +10,7 @@ Adapt the wording and section weight to the current request.
 - **scope:** add project-scoped configuration loading without changing global defaults
 - **status:** ready for implementation
 - **source:** direct user request plus current repository inspection
+- **support set:** ordering turn ^c<YYYYMMDD>-<N>u, readiness approval ^c<YYYYMMDD>-<M>u (chatlas anchory)
 
 ## Impl.Index
 
@@ -37,5 +38,6 @@ Adapt the wording and section weight to the current request.
 
 ## Impl.Log
 
+- execution gate: `--exec` invocation anchored ^c<YYYYMMDD>-<K>u
 - no deviations or blockers
 ```

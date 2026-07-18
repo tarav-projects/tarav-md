@@ -2,8 +2,8 @@
 
 ## Impl.Abstract
 
-- **Goal**: implement Skillware v2 per the landed `Skillware.Construct` index block (107, `^20260710-4`): one universal declaration+body+owned-end construct, fully explicit closure, position-free primitives (`text`, `copy`, `derived`), first structural commands (`router`, `when`, `then`), and migration of ALL existing srcs to the strict form — no v1 dialect survives (`No.Legacy.Allowed`).
-- **Design source**: this session's design discussion (2026-07-10 evening) + the `Skillware.Construct` and recast `Skillware.Recipe` blocks; anchors `^20260710-4`.
+- **Goal**: implement Skillware v2 per the landed `Skillware.Construct` index block (107, `^c20260710-4u`): one universal declaration+body+owned-end construct, fully explicit closure, position-free primitives (`text`, `copy`, `derived`), first structural commands (`router`, `when`, `then`), and migration of ALL existing srcs to the strict form — no v1 dialect survives (`No.Legacy.Allowed`).
+- **Design source**: this session's design discussion (2026-07-10 evening) + the `Skillware.Construct` and recast `Skillware.Recipe` blocks; anchors `^c20260710-4u`.
 - **Out of scope**: structured outlink annotations on `then` and the findability lint family (deferred — "just text at the moment", user); `libs`/stdlib cross-skill resolution; shapes; `pointer` binding.
 - **Repos**: `agentos-py` (parser + build/check + tests), `agentos-md` (migration of 19 srcs, agentos-skillware content update).
 - **Status**: executed 2026-07-10 — all slices done; verification green; changes uncommitted for review

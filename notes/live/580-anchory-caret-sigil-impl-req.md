@@ -49,7 +49,7 @@
 - flip `ANCHOR_RE` in `agentos-py/src/agentos/index/model/parser.py:41` to `r"\^(?P<anchor>\d{8}-\d+)\b"`
 - update `blocks_by_anchor` input stripping in `agentos-py/src/agentos/index/model/nodes.py:108` to strip a leading `^` or `@`
 - update the four `@{anchor}` display strings in `agentos-chatlas-py/src/agentos_chatlas/index_checks.py` to `^{anchor}`
-- observable: parser emits anchor spans for `^20260708-7` and no longer for `@20260708-7`
+- observable: parser emits anchor spans for `^c20260708-7u` and no longer for `@20260708-7`
 - check: both packages' test suites pass GREEN
 - status: done
 

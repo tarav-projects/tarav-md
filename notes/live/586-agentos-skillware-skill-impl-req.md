@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **Goal**: create `agentos-md/skills/agentos-skillware` — the center of all Skillware content: doctrine, language spec, authoring discipline, adoption playbook, and toolchain operation — absorbing and retiring `agentos-skill-pkg-builder`. The skill is itself Skillware-built. Plus one engine addition: `agentos skillware build` constitutively stamps `.skillware/AGENTS.md`.
-- **Design source**: this session's aligned design (2026-07-10): module set, 3-arg public surface, five derived recipes, constitutive AGENTS.md (grounded `^20260710-3`, appendix `Skill.Build.Surface/Appendix`), index recast already landed (`Skillware.Recipe`, `^20260710-2`).
+- **Design source**: this session's aligned design (2026-07-10): module set, 3-arg public surface, five derived recipes, constitutive AGENTS.md (grounded `^c20260710-3u`, appendix `Skill.Build.Surface/Appendix`), index recast already landed (`Skillware.Recipe`, `^c20260710-2u`).
 - **Self-containment contract**: an agent loading only this skill has everything needed to be a competent Skillware user.
 - **Out of scope**: `inline-drift` (dropped — future test-engine redesign owns it); `pointer` binding tooling; any further index edits beyond mention sweeps.
 - **Repos**: `agentos-py` (engine + tests), `agentos-md` (the skill, the retirement, index2 provenance cleanup).
@@ -32,7 +32,7 @@
 - **skill links**: skills are symlinked via `agentos skills import` (state in `.agentos/state/skills-routing-links.json`, links in `.claude/skills/`); after create+delete, re-run the import for affected projects (agentos-md, agentos-py) and verify the old link is gone, the new one resolves.
 - **engine — constitutive `.skillware/AGENTS.md`**: `build_skill` (agentos-py `src/agentos/skillware/build.py:342`) writes a canonical constant text to `<skill>/.skillware/AGENTS.md`, overwrite-always, engine-owned like `lock.json`. Content (~6 lines): build surface identification; targets are compiled from `src/` — never hand-edit; edit src then `agentos skillware build`; drift via `agentos skillware check`; this file + lock are engine-owned; load `agentos-skillware` for the discipline. `check`/`status` do not require it (old builds tolerated), build always (re)stamps it.
 - **index2 provenance cleanup**: remove the two provenance additions from `agentos-index2/.skillware/src/SKILL.skw.md` (description prefix + provenance line), rebuild → index2 reaches zero-delta parity ("keep the execution surface clean", user 2026-07-10).
-- **grounding**: the design decisions of this artifact are grounded on this session; key anchors `^20260710-2` (recast + skill decision), `^20260710-3` (constitutive AGENTS.md).
+- **grounding**: the design decisions of this artifact are grounded on this session; key anchors `^c20260710-2u` (recast + skill decision), `^c20260710-3u` (constitutive AGENTS.md).
 
 ### Current.State *(inspected)*
 

@@ -157,12 +157,12 @@
 
 ## Workflow.Neutral
 
-- [DF] `Workflow.Neutral` is the property of a surface that provides context — rules, structure, routing, boundaries — without steering the caller into a workflow; loading it does not change the caller's current task, action mode, or execution path ^20260715-4
-- [CT] a `Workflow.Neutral` surface may describe a workflow, but frames it conditionally — "if you are in this situation, you must ..." — never as an imperative to act now ^20260715-4
-- [CT] a workflow surface takes control of the session; a `Workflow.Neutral` surface only informs whatever module has control ^20260715-4
-- [DF] `Workflow.Neutral.Skill` is the property held by a whole skill — useful for `Package.Skill` roots because roots welcome many caller intentions transparently ^20260715-4
-- [DF] `Workflow.Neutral.Module` is the property held by a single `Skill.Module` — the fundamental unit: a skill with only a SKILL.md is a skill with one module ^20260715-4
-- [CT] contrasts with `Aux.Workflow.Skill`, which intentionally guides a recurring task ^20260715-4
+- [DF] `Workflow.Neutral` is the property of a surface that provides context — rules, structure, routing, boundaries — without steering the caller into a workflow; loading it does not change the caller's current task, action mode, or execution path ^c20260715-4u
+- [CT] a `Workflow.Neutral` surface may describe a workflow, but frames it conditionally — "if you are in this situation, you must ..." — never as an imperative to act now ^c20260715-4u
+- [CT] a workflow surface takes control of the session; a `Workflow.Neutral` surface only informs whatever module has control ^c20260715-4u
+- [DF] `Workflow.Neutral.Skill` is the property held by a whole skill — useful for `Package.Skill` roots because roots welcome many caller intentions transparently ^c20260715-4u
+- [DF] `Workflow.Neutral.Module` is the property held by a single `Skill.Module` — the fundamental unit: a skill with only a SKILL.md is a skill with one module ^c20260715-4u
+- [CT] contrasts with `Aux.Workflow.Skill`, which intentionally guides a recurring task ^c20260715-4u
 
 ****
 
@@ -329,7 +329,7 @@
 - when a skill takes arguments, they are declared as `Skill.Arg` blocks inside its `Skill.Arg.Section`
 - each argument has a canonical name (e.g. `Skill.Arg::Target.Project`); loose flags, abbreviations, and positionals resolve to it
 - tokens are written `--flag`-style by preference so they read as commands inside natural text (`do a --run on stripe-pkg`); loose forms still resolve
-- switch flags map to `::` type-statement values (`Addressing.Sigil.Vocabulary`) (`--AUTO` -> `Alignment.Mode::Autonomous`) ^20260712-6
+- switch flags map to `::` type-statement values (`Addressing.Sigil.Vocabulary`) (`--AUTO` -> `Alignment.Mode::Autonomous`) ^c20260712-6u
 - a skill's files and sections are `Skill.Module`s — named parts loaded on mention; a `Skill.Arg` may carry an `action` that activates one
 - missing required arguments follow `Skill.Explicit.Args`: ask or orient, never guess; declared defaults fill silently
 - exposes terminal-style help through `Batchy.Skill.Help`
@@ -369,7 +369,7 @@
 ## Skill.Arg
 
 - `Skill.Arg` is a single argument of a `Batchy.Skill`, written as a kernel block
-- named with `::` type statements (`Addressing.Sigil.Vocabulary`): `Skill.Arg::Context`, `Skill.Arg::Main.Prompt` ^20260712-6
+- named with `::` type statements (`Addressing.Sigil.Vocabulary`): `Skill.Arg::Context`, `Skill.Arg::Main.Prompt` ^c20260712-6u
 - its fundamentals state what the argument means; bullet settings carry its calling metadata
 - settings: `required`, `default`, `type` (switch vs valued), `help`, `examples`, `aliases` (non-obvious only), `action`
 - `action` (optional): the behavior the arg activates when set — usually loads a `Skill.Module`; a switch (`--dry-run`) layers behavior, a selector whose values are operations (`Command:Run`) picks one

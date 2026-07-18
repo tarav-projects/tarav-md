@@ -7,7 +7,7 @@
 - **Design center** (user direction: "use the index parser — integrate nicely with the existing infra"): computation lives in the model layer (`agentos.index.model`), the CLI is a thin renderer. `parse_depot()` is the only parsing entry; no second parser, no linter dependency.
 - **Out of scope**: refactoring the linter's `_grounded_block_paths` to share the stats module (future unification, note only); appendix/agendix blocks in the listing (concept blocks are chapter-surface, same denominator rule as the 579 block meter); additional sort keys beyond `gr-density` (add on demand).
 - **Repos**: `agentos-py` (model stats, commands, tests); `agentos-md` docs (S3: `--enrich` module update per the user's explicit follow-up, `agentos-py/AGENTS.md`). Reinstall from `agentos-cli/` after CLI changes.
-- **Source**: user turns 2026-07-09 (session `9d194db7...`): density worklist as default selector ^20260709-7, single axis / `--sort gr-density` naming, "use the index parser — integrate nicely"; index concepts `Index.Enrichment` (107), `Inline.Grounding` + appendix metric lines (105), `Index.Model`.
+- **Source**: user turns 2026-07-09 (session `9d194db7...`): density worklist as default selector ^c20260709-7u, single axis / `--sort gr-density` naming, "use the index parser — integrate nicely"; index concepts `Index.Enrichment` (107), `Inline.Grounding` + appendix metric lines (105), `Index.Model`.
 - **Status**: implemented; suite green; live worklist verified
 
 ## Impl.Index
@@ -16,14 +16,14 @@
 
 - **stats in the model layer**: `src/agentos/index/model/stats.py` — `BlockGroundingStats` dataclass (`block_path`, `path`, `line`, `kernel_lines`, `unique_anchors`, `gr_density`, `board`) and `block_grounding_stats(model: IndexDepotModel) -> list[BlockGroundingStats]`; exported from `agentos.index.model`
 - **denominator**: chapter-surface `BlockHeading`s with `parsed["valid"]` and `parsed["segments"] == []` — identical to the 579 block-meter rule; block identity is full `parsed["path"]`
-- **numerator**: unique anchor tokens over the block's chapter `KernelLine`s (`parsed["block_path"] == block path`, spans `kind == "anchor"`); inline-only — board anchors do not count (`^20260709-4` decision)
+- **numerator**: unique anchor tokens over the block's chapter `KernelLine`s (`parsed["block_path"] == block path`, spans `kind == "anchor"`); inline-only — board anchors do not count (`^c20260709-4u` decision)
 - **board flag**: appendix-surface heading `parsed["path"] == f"{block}/Grounding.Head"` containing ≥1 `[GR]` kernel line with an anchor span — same rule as the linter's check; small logic duplication accepted, unification noted as future work
 - **CLI**: `agentos index blocks --depot <path>... [--scope <path>...] [--sort gr-density] [--limit N] [--json]`
   - `--depot` repeatable, resolved like the linter's; each depot parsed via `parse_depot`
   - `--scope` same reporting-filter semantics as 579: filters listed blocks by file-path prefix; unmatched scope entry errors
   - `--sort gr-density`: ascending density, ties by `kernel_lines` descending then block name; default (no `--sort`) is document order; unknown sort value errors
   - `--limit N` truncates after sorting
-  - text render: aligned table (block, density, anchors/lines, board, path:line); JSON: `{blocks: [...], summary: {blocks, kernel_lines, unique_anchors, gr_density}}` — summary density is the scoped aggregate (unique within scope / lines in scope, `^20260709-5`)
+  - text render: aligned table (block, density, anchors/lines, board, path:line); JSON: `{blocks: [...], summary: {blocks, kernel_lines, unique_anchors, gr_density}}` — summary density is the scoped aggregate (unique within scope / lines in scope, `^c20260709-5u`)
 - **anchor syntax**: the parser's `ANCHOR_RE` is the single authority (now `^YYYYMMDD-N` after 580) — stats reads spans, never regexes text itself
 
 ### Current.State *(inspect before coding)*
@@ -66,7 +66,7 @@
 ## Impl.Log
 
 - 2026-07-09: designed and executed in-session (--dev --AUTO); review round skipped (same-agent develop, user-triggered)
-- 2026-07-09: open-space decision: `BlockGroundingStats` retains the per-block anchor SET (frozenset) so the scoped aggregate counts unique-within-scope exactly — summing per-block uniques would double-count shared stamps (^20260709-5 semantics)
+- 2026-07-09: open-space decision: `BlockGroundingStats` retains the per-block anchor SET (frozenset) so the scoped aggregate counts unique-within-scope exactly — summing per-block uniques would double-count shared stamps (^c20260709-5u semantics)
 - 2026-07-09: fixture arithmetic error in the RED (8 kernel lines, not 9) — test corrected, not the implementation
 - 2026-07-09: live: `agentos index blocks --depot skills/agentos-pkg --sort gr-density` → 227 blocks, aggregate 0.0161; tail is exactly this week's worked blocks (Inline.Grounding 0.75, Kernel.Block.Grounding 0.67, Index.Enrichment 0.6) — metric validates against known history
 - 2026-07-09: verification: agentos-py suite 290 passed, ruff clean; CLI reinstalled; docs updated (enrich.md fallback replaced with the real command, gr-survey.md selector, agentos-py/AGENTS.md)

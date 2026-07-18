@@ -81,10 +81,10 @@ Example:
 ```md
 ## Fish.Based.APIs
 
-- [DF] `Fish.Based.APIs` is a sidequest idea for modeling service clients around domain species instead of raw endpoint groups ^20260717-0
-- [PR] species-aware routing could make the gateway easier to reason about than scattered marine-data endpoints ^20260717-0
-- [CT] simplifying the client SDK is the main motivation ^20260717-0
-- [FR] the idea is parked for later and should not interrupt the current marine-data task ^20260717-0
+- [DF] `Fish.Based.APIs` is a sidequest idea for modeling service clients around domain species instead of raw endpoint groups ^c20260717-0u
+- [PR] species-aware routing could make the gateway easier to reason about than scattered marine-data endpoints ^c20260717-0u
+- [CT] simplifying the client SDK is the main motivation ^c20260717-0u
+- [FR] the idea is parked for later and should not interrupt the current marine-data task ^c20260717-0u
 ```
 
 ## Anchory Requirement

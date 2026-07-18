@@ -4,7 +4,7 @@
 
 - **scope:** migrate single-colon type statements (`Concept.Name:Param`) to the `::` form (`Concept.Name::Param`) across markdown surfaces, code docstrings, and the index linter, per `Naming.Sigil.Vocabulary` (`design/108-design.md`)
 - **status:** complete
-- **source:** `Block.Naming.Schema` design session (`notes/live/582-block-naming-schema-design-session.md`), landed to the index 2026-07-12 with anchors `^20260712-0`…`-6`; this migration was recorded there as the landing-phase follow-up
+- **source:** `Block.Naming.Schema` design session (`notes/live/582-block-naming-schema-design-session.md`), landed to the index 2026-07-12 with anchors `^c20260712-0u`…`-6`; this migration was recorded there as the landing-phase follow-up
 - **out of scope:** the `:` line-position form itself (already defined in the index, nothing to migrate); `path.py::symbol` pytest-style code references (coexisting convention, see `Impl.Index`); `_DEPRECATED/` trees; re-syncing imported skill copies in other projects (follow-up)
 
 ## Impl.Index

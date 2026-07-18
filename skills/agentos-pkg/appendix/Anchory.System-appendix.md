@@ -105,4 +105,4 @@
 
 ## Anchory.System/Grounding.Head
 
-- [GR] the user corrects Anchory's scope — an Agentos subsystem rather than per-project, coupled with Chatlas ^20260706-1
+- [GR] the user corrects Anchory's scope — an Agentos subsystem rather than per-project, coupled with Chatlas ^c20260706-1u

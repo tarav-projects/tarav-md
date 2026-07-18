@@ -50,6 +50,10 @@ Read the `Impl.Req` cold and confirm:
 
 Resolve minor drift yourself. In `Interactive`, raise unresolved mismatches before editing. In `Autonomous`, record mismatches in `Impl.Log` and proceed only when the plan remains faithfully executable.
 
+## Execution Gate Anchor
+
+The `--exec` invocation turn is the execution authorization gate: mint an `Anchory.Anchor` on it and cite it in the first `Impl.Log` entry. It joins the artifact's `Chat.Support.Set` alongside the design-phase gate anchors.
+
 ## Git Checkpoint
 
 Before the first implementation edit, create the mandatory git checkpoint used by the existing execution workflow:
@@ -82,7 +86,7 @@ Design-reality mismatch activates the declared deviation checkpoint:
 - `Interactive` - stop, describe the mismatch concretely, offer the viable adjustments, and wait.
 - `Autonomous` - record the deviation and take the most faithful corrective action; abort only when external input is required.
 
-Never silently adapt.
+Never silently adapt. When a user turn resolves a deviation or changes scope, mint an anchor on that turn and trail it on the `Impl.Log` entry recording the resolution.
 
 ## Completion
 

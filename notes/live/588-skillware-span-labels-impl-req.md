@@ -2,8 +2,8 @@
 
 ## Impl.Abstract
 
-- **Goal**: implement span labels per the landed `Skillware.Construct` lines (`^20260711-1`): a `^label` token on any declaration (bare `^label` = labeled `text`), `end-^label` closers, `path^label` / file-local `^label` locators, fine-grained span hashing, src-only stripping — plus the skill teaching it.
-- **Design source**: this session (2026-07-11 morning); index capture `^20260711-1` on 107 `Skillware.Construct`.
+- **Goal**: implement span labels per the landed `Skillware.Construct` lines (`^c20260711-1u`): a `^label` token on any declaration (bare `^label` = labeled `text`), `end-^label` closers, `path^label` / file-local `^label` locators, fine-grained span hashing, src-only stripping — plus the skill teaching it.
+- **Design source**: this session (2026-07-11 morning); index capture `^c20260711-1u` on 107 `Skillware.Construct`.
 - **Out of scope**: labels on hand-owned plain files (labels are src machinery); `to:` label targets beyond what `from:` resolution gives for free; label renaming tooling.
 - **Repos**: `agentos-py` (parser, locators, lock keys, tests), `agentos-md` (agentos-skillware content).
 - **Status**: executed 2026-07-11 — all slices done; verification green; changes uncommitted for review
@@ -26,7 +26,7 @@
 - v2 parser (`model.py`): stack parser, owned ends, multi-close token loop (`end-` prefix parse), `recipe_key` heading/ordinal; 23 skillware tests / 313 suite green (587).
 - `build.py`: `_resolve_locator` splits on `#` only; `expand_file` hashes resolved locator lines; lock keyed via `recipe_key`.
 - `agentos-skillware`: 7 all-ok surfaces; `lang.md#Construct Grammar` is the doctrine digest's dep.
-- 107 `Skillware.Construct` carries the three label lines (`^20260711-1`); linter clean.
+- 107 `Skillware.Construct` carries the three label lines (`^c20260711-1u`); linter clean.
 
 ## Execution.Plan
 

@@ -6,6 +6,7 @@
 - deliverables: (a) alias-aware `Dotted.Name` resolution in the skillware depot resolver, (b) baseline `depends` declarations on the `agentos-index` skill, (c) resolution of the exposed drift POIs by updating the stale citations to current names, ending with a clean check
 - scope: `agentos-py/src/agentos/skillware/build.py` + tests; `agentos-md/skills/agentos-pkg/design/107-design.md` (one meta data fix); `agentos-md/skills/agentos-index/.skillware/src/**` (declarations + drift fixes, then rebuild)
 - out of scope: index-linter changes; alias support anywhere outside the skillware resolver; declaring or fixing skills other than `agentos-index`; the project-root `.claude/skills` copies (they regenerate from the same src)
+- support set (retro-minted 2026-07-18): ordering gate ^c20260716-34u (`--design --AUTO` — the order is the design gate); execution ran in an external session, its gate turn unrecorded
 - status: executed
 
 ## Impl.Index

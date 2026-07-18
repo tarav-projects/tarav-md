@@ -3,8 +3,8 @@
 ## Session.Abstract
 
 - **Scope**: generalize skw beyond skills — an embedded annotation language for agentic production and maintenance of any surface: language vs backends, annotated surfaces (code first), annotation points, the authority model, POI semantics, satellite indexes.
-- **Source**: session 2026-07-11 (this conversation), continuing the Skillware v1/v2/labels thread (Impl.Reqs 584–588); prior art: 107 `Agentos.Skillware` namespace as recast 2026-07-10/11 (`^20260710-4`, `^20260711-0`, `^20260711-1`).
-- **Status**: converged and landed — all 8 blocks reviewed, approved, and landed on the real index (2026-07-11, anchors `^20260711-2..-9`); implementation pending an Impl.Req.
+- **Source**: session 2026-07-11 (this conversation), continuing the Skillware v1/v2/labels thread (Impl.Reqs 584–588); prior art: 107 `Agentos.Skillware` namespace as recast 2026-07-10/11 (`^c20260710-4u`, `^c20260711-0u`, `^c20260711-1u`).
+- **Status**: converged and landed — all 8 blocks reviewed, approved, and landed on the real index (2026-07-11, anchors `^c20260711-2u..-9`); implementation pending an Impl.Req.
 - **Resolved in-session**: the language name — **skw** names the language and the system; backends are `skw-<surface>` (was a parked `Experience.Gated.Decision`; gate opened by design pressure).
 
 ## Design.Index
@@ -29,7 +29,7 @@
 
 #### meta
 
-- index follow-ups at landing: scope `Module.Import` ^20260709-13 ("declarations live on the `Skill.Build.Surface`") and `Skill.Runnable.Surface` ^20260627-2 ("kept free of non-runnable artifacts") to building backends; add one containment line relating skw to `Agentos.Skillware`
+- index follow-ups at landing: scope `Module.Import` ^c20260709-13u ("declarations live on the `Skill.Build.Surface`") and `Skill.Runnable.Surface` ^c20260627-2u ("kept free of non-runnable artifacts") to building backends; add one containment line relating skw to `Agentos.Skillware`
 
 ### Surface.Annotation
 
@@ -141,7 +141,7 @@
 
 ## Session.Notes
 
-- **landing follow-ups accumulated** (index edits riding the cluster's landing, all gated): scope `Skillware.Construct` "closure is fully explicit" to body-bearing constructs; scope `Module.Import` ^20260709-13 and `Skill.Runnable.Surface` ^20260627-2 to building backends; one containment line skw ← `Agentos.Skillware`; soften `Index.Agendix` "zero authority" with a `Touched.Authority` cite
+- **landing follow-ups accumulated** (index edits riding the cluster's landing, all gated): scope `Skillware.Construct` "closure is fully explicit" to body-bearing constructs; scope `Module.Import` ^c20260709-13u and `Skill.Runnable.Surface` ^c20260627-2u to building backends; one containment line skw ← `Agentos.Skillware`; soften `Index.Agendix` "zero authority" with a `Touched.Authority` cite
 - **code-backend lock location**: project-level sidecar (lean) vs hashes embedded in annotations — undecided
 - **checker vocabulary rename**: `derived-stale` → POI-flavored; decide with the annotated-backend Impl.Req
 - **carrier syntax per host**: comment-prefix tolerance (`#`, `//`, `--`, `<!-- -->`); ends and labels inside docstrings vs line comments
@@ -154,5 +154,5 @@
 ## Session.Log
 
 - 2026-07-11 — session opened in artifact mode; Design.Index initialized from the in-chat convergence (six draft blocks).
-- 2026-07-11 — index landing (`--edit`, user-gated): 7 blocks into 107 (skw cluster after `Skillware.Recipe`; `Experience.Gated.Decision` after `Specified.By.Precedence`), `Touched.Authority` into 106 after `Open.Space`; six appendix files; per-block approval anchors `^20260711-2..-8`, scoping edits + containment line under `^20260711-9` (`Skillware.Construct` closure, `Module.Import`, `Skill.Runnable.Surface`, `Index.Agendix` softening, `Agentos.Skillware` ← skw); routers updated; the landing tripped two `Drift.POI`s in agentos-skillware (`SKILL#What Skillware Is`, `doctrine#The Model`) — re-derived, rebuilt, all-ok; linter clean.
+- 2026-07-11 — index landing (`--edit`, user-gated): 7 blocks into 107 (skw cluster after `Skillware.Recipe`; `Experience.Gated.Decision` after `Specified.By.Precedence`), `Touched.Authority` into 106 after `Open.Space`; six appendix files; per-block approval anchors `^c20260711-2u..-8`, scoping edits + containment line under `^c20260711-9u` (`Skillware.Construct` closure, `Module.Import`, `Skill.Runnable.Surface`, `Index.Agendix` softening, `Agentos.Skillware` ← skw); routers updated; the landing tripped two `Drift.POI`s in agentos-skillware (`SKILL#What Skillware Is`, `doctrine#The Model`) — re-derived, rebuilt, all-ok; linter clean.
 - 2026-07-11 — block-by-block review, all 8 approved: `Skw.Language` reframed around generation annotation (etymology and construct cites dropped); `Skw.Backend` split out of it, naming resolved (skw / `skw-<surface>`), gained host-point ownership; `Annotated.Surface` dissolved into `Skw.Backend` + `Surface.Annotation`; `Surface.Annotation` refounded as "the skw content of a file", fundamentals/appendix split; `Annotation.Point` added mid-review (host-native vs skw-native families, end-free sections, coarsest-fit); `Touched.Authority` extracted as a general hugentic concept (untouched < grounded < `User.Turn`, Open.Space-bounded rewritability, surface-fenced linkability); `Annotation.Authority` slimmed onto it, agent-free insertion regulated to the file point; `Drift.POI` narrowed to dependency-change POIs; `Experience.Gated.Decision` gained its lifecycle example.

@@ -5,7 +5,7 @@
 - status: executed 2026-07-12
 - mode: `Alignment.Mode::Autonomous` (--dev --AUTO)
 - scope: rework the skw parser to the captured v3 surface grammar (`$kw:` / `$kw.`), recast the engine in the new 107 vocabulary (`Closure.Parser`, `Poi.Linter`, `Poi.Bless`), add the `agentos skillware bless` verb, recast `check` output to legend + bare rows with stable POI identities, migrate all srcs off `[!skw]` with byte-identical compile verification, re-derive the affected skill modules, and land the realization lines on 107.
-- source context: the v3 syntax capture on `Skillware.Construct` (107, `^20260712-7`); the parser/linter cluster landed 2026-07-12 (`Closure.Parser`, `Poi.Linter`, `Poi.Bless`, `Structure.Ratchet`, all `^20260712-17`); the md-library linter steal (legend + hash/resolve model) accepted in chat.
+- source context: the v3 syntax capture on `Skillware.Construct` (107, `^c20260712-7u`); the parser/linter cluster landed 2026-07-12 (`Closure.Parser`, `Poi.Linter`, `Poi.Bless`, `Structure.Ratchet`, all `^c20260712-17u`); the md-library linter steal (legend + hash/resolve model) accepted in chat.
 - out of scope: dividers / end-free `Annotation.Point` sections (annotated-only backend feature); non-`>` carriers (`#`, `//` for code backends); `pointer` materialization; renaming the verdict vocabulary (`derived-stale` etc. stay; they are presented as POI types); any `agentos skw` CLI rename.
 
 ## Impl.Index
@@ -48,9 +48,9 @@
 
 ### Index landing (realization lines, gated by this Impl.Req's user-approved scope)
 
-- `Closure.Parser`: append `- [DC] realized: the skw parser is `Closure.Parser::Skw` — floor: well-formed, closed `$kw` machinery; above it, construct nodes and opaque text ^20260712-17`
-- `Poi.Linter`: append `- [DC] realized: `agentos skillware check` — parse errors gate per file; POIs carry stable identity hashes; legend + bare-row output ^20260712-17`
-- `Poi.Bless`: append `- [DC] realized: `agentos skillware bless --poi <hash>` — rewrites the recipe's locked dep hashes, body untouched ^20260712-17`
+- `Closure.Parser`: append `- [DC] realized: the skw parser is `Closure.Parser::Skw` — floor: well-formed, closed `$kw` machinery; above it, construct nodes and opaque text ^c20260712-17u`
+- `Poi.Linter`: append `- [DC] realized: `agentos skillware check` — parse errors gate per file; POIs carry stable identity hashes; legend + bare-row output ^c20260712-17u`
+- `Poi.Bless`: append `- [DC] realized: `agentos skillware bless --poi <hash>` — rewrites the recipe's locked dep hashes, body untouched ^c20260712-17u`
 
 ## Execution.Plan
 

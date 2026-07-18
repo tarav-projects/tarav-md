@@ -37,7 +37,7 @@ Search is read-only and ungated. It changes the agent's context, never a surface
 - lines may carry a leading `Line.Type` code (`- [CT] ...`): the type is the line's act — `[CT]`/`[DC]`/`[RJ]` bind, `[PR]` orients, `[FR]` frees, `[DF]`/`[EX]` inform, `[GR]` cites evidence; see `references/type.md` to read them as constraints
 - parser-backed tools read index surfaces as typed nodes: `RouterEntry` rows, `BlockHeading`s, `KernelLine`s, `MetaLine`s, code fences, and inline spans such as anchors, concept cites, type brackets, and file mentions
 - untyped lines are pre-fence legacy — same authority, just not yet classified
-- a trailing `^YYYYMMDD-N` token is an `Anchory.Anchor`: a pointer to chat evidence, resolvable via `agentos chatlas views inline --anchor <token> --filter turns`; see `references/link.md` — resolution is optional depth, not required reading
+- a trailing `^c<YYYYMMDD>-<N><tag>` token is an `Anchory.Anchor`: a pointer to chat evidence (`c` = chatlas namespace; tag `u`/`a` = user/assistant landing turn), resolvable via `agentos chatlas views inline --anchor <token> --filter turns`; see `references/link.md` — resolution is optional depth, not required reading
 - appendix blocks named `Concept.X/Grounding.Head` and `Concept.X/Grounding.Drift` are inert legacy sections from the retired block-grounding scheme, not conceptual content; current grounding lives on the lines themselves (`Index.Line`)
 - `agendix/` files are agent-captured, user-unreviewed material — zero authority, useful as leads, never citable as accepted design
 

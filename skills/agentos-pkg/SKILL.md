@@ -45,7 +45,7 @@ The **router** maps every concept name to the file that holds it — always read
 Two further layers ride on the blocks — gesture-level here, the index owns the detail:
 
 - **Typed lines** — index lines carry a `Line.Type` from a small vocabulary (`- [CT] ...`), classifying each line's act: define, decide, constrain, reject, orient, free, exemplify. Load `agentos-index` (`--type`) for reading and proposing types.
-- **Grounding** — grounding is a line property: a concept's evidence links trail inline on its lines as anchors (`^20260630-0`), resolved through the Anchory subsystem back to the chats. See `Index.Line` and `Anchory.System` in the index.
+- **Grounding** — grounding is a line property: a concept's evidence links trail inline on its lines as anchors (`^c20260630-0u`), resolved through the Anchory subsystem back to the chats. See `Index.Line` and `Anchory.System` in the index.
 
 Both project folders and package skills can have their own index. If a project is developing a package skill, the agent can access both indexes locally.
 

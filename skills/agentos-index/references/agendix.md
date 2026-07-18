@@ -45,11 +45,11 @@ For candidate blocks, name the attachment path: `Target: create ## Concept.X/Age
 
 1. **Route** each entry under a routed concept — a line appends to `Concept.X/Agendix`, a candidate block attaches intact as `Concept.X/Agendix/Candidate.Name`. No routed concept → `agendix/Unassigned-agendix.md`, the homeless pool: accumulated evidence that a concept may be missing — promotion evidence, never a dump; an intact candidate block there is the strongest form of that evidence.
 2. **Fence**: type each line; drop what cannot take a type.
-3. **Anchor**: mint one anchor per line through the linking primitive (`references/link.md`) — chatlas-only session/turn resolution, `Chatlas.Anchory` record shape, `YYYYMMDD-N` keys.
+3. **Anchor**: mint one anchor per line through the linking primitive (`references/link.md`) — chatlas-only session/turn resolution, `Chatlas.Anchory` record shape, composed `c<YYYYMMDD>-<N><tag>` keys.
 4. **Write** `agendix/Concept.X-agendix.md` in the engaged depot, next to `appendix/` — appendix writing rules, block heading `Concept.X/Agendix`, lines appended:
 
    ```md
-   - [CT] no stable surface links into the agendix — promotion copies content out ^YYYYMMDD-N
+   - [CT] no stable surface links into the agendix — promotion copies content out ^c<YYYYMMDD>-<N>u
    ```
 
 5. **Report** compactly: lines captured per concept, fallback entries, candidates dropped at the fence and why.
