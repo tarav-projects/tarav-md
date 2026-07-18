@@ -70,9 +70,28 @@ This module is a `Workflow.Neutral.Module`: it does not run a workflow — its r
 
 When a draft is being shaped for an index or appendix surface — inside `references/capture.md`, a `Capture.Offer`, or direct edit work:
 
+- show the landing target before the draft text; the user approves destination and wording together
+- express the landing target as both file path and ontology location:
+  - new block: `Landing: <file>` plus `Target: create block ## Concept.Name`
+  - appended line: `Landing: <file>` plus `Target: append under ## Concept.Name`
+  - modified line: `Landing: <file>` plus `Target: modify line under ## Concept.Name`
+  - revised block: `Landing: <file>` plus `Target: revise block ## Concept.Name`
+  - appendix material: `Landing: <appendix-file>` plus `Target: <Concept.Name>/<Section.Or.Child>`
+  - grounding material: `Landing: <appendix-file>` plus `Target: <Concept.Name>/Grounding.Head` or the exact inline line target
 - screen it for `Block Independence` — strip any deixis to the authoring conversation; state the concept positively
 - screen each line's `Line.Type`: the line must perform its typed act (`references/type.md`); a line that takes no type belongs elsewhere — flag it, do not force a type
 - review with the user and revise until accepted — acceptance is a chat state, not a write
+
+Example approval screen:
+
+```md
+Landing: ~/projects/agentos-project/agentos-md/skills/agentos-pkg/design/107-design.md
+Target: append under ## Capture.Offer
+
+Draft:
+
+- [DC] a capture offer shows its landing target before the proposed text, so the user approves destination and wording together ^<approval-anchor>
+```
 
 ## Landing Procedure
 

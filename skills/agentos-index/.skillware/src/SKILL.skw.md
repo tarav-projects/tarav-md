@@ -9,7 +9,7 @@ description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem
 
 Workflow-neutral `Package.Aux.Skill` for the Agentos Index subsystem.
 
-This skill is the public Batchy router for index work. It orients the caller to the subsystem by default and routes explicit operations such as `--search`, `--capture`, `--edit`, `--ground`, `--type`, `--link`, `--back-link`, `--gr-survey`, `--gr-review`, `--enrich`, and `--agendix` into named `Skill.Module`s.
+This skill is the public Batchy router for index work. It orients the caller to the subsystem by default and routes explicit operations such as `--search`, `--capture`, `--edit`, `--type`, `--link`, `--back-link`, `--gr-survey`, `--gr-review`, `--enrich`, and `--agendix` into named `Skill.Module`s.
 
 This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
@@ -18,10 +18,11 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 ## Skill.Arg.Section
 
 ### Skill.Arg::Search
-- search the index through routing-first selective loading
+- search the index through routing-first selective loading, grounded against the current visible discussion
 - required: false
-- help: "search the index and return cited context"
-- examples: --search "Index.AGENTS.MD"
+- aliases: --research, --ground
+- help: "search the index and return cited context grounded against the current discussion"
+- examples: --search "Index.AGENTS.MD", --research "Parking.Note", --ground "check this design discussion against the index"
 
 ### Skill.Arg::Capture
 - run the capture loop: work the chat's content into kernel writing form through discussion, and land approved material on user-named index surfaces
@@ -73,12 +74,6 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - default: design
 - help: "scope index work to a chapter"
 - examples: --chapter design, --chapter impl
-
-### Skill.Arg::Ground
-- ground the current conversation or prompt against the index
-- required: false
-- help: "ground the current conversation against the index and report what matters"
-- examples: --ground "check this design discussion against the index"
 
 ### Skill.Arg::Type
 - read or propose `Line.Type` classification for index lines
@@ -145,10 +140,9 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 | Situation | Module / Surface |
 |---|---|
-| When the caller wants to find concepts, retrieve cited index context, inspect related blocks, discover whether appendix depth exists, or understand how the index already models a topic before proposing changes | `references/search.md` |
+| When the caller wants to find concepts, retrieve cited index context, inspect related blocks, discover whether appendix depth exists, understand how the index already models a topic, or ground the current visible discussion against the index; `--search`, `--research`, and `--ground` all call this module | `references/search.md` |
 | When the user wants the chat's content captured — "let's capture": the discussion-landing loop that grounds against the index, drafts kernel-form candidates, iterates to chat approval, and lands approved material on user-named surfaces; `--capture` calls this module, `--agendix` calls it with the agendix preset | `references/capture.md` |
 | When an index or appendix surface is being written or an approved edit needs landing — the gates, structure, naming, block quality, edit actions, drafting screens, and landing procedure that govern index writing; direct edit work (a stale line, a block revision) also starts here; `--edit`, `--write`, and `--append` all call this module | `references/edit.md` |
-| When the caller wants the current prompt or ongoing conversation grounded against the index; when the task is to surface the most relevant concepts, tensions, contradictions, significant accepted remarks, or missing coverage; when the caller wants the relationship between the live discussion and the existing index made explicit rather than running a raw lookup | `references/ground.md` |
 | When the caller wants deterministic diagnosis, linter findings, or post-edit validation for an index depot or explicit index/appendix surface; `--check` and `--lint` both call this module | `references/check.md` |
 | When the caller wants line typing understood, read, or proposed — the `[XX]` syntax, the `Line.Type.Vocabulary`, validation points, reading typed lines as constraints, calibration passes and their residue | `references/type.md` |
 | When material lands on the agendix or the caller needs the agendix surface understood — `agendix/` files under existing concepts, typed and anchored lines, ungated with hard provenance | `references/agendix.md` |
@@ -157,8 +151,8 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 | When the caller wants a grounding campaign surveyed — a scope swept, anchors minted, a `Gr.Req` produced with `proposed`/`ambiguous` entries, no index writes; `--gr-scout`/`--gr-scan`/`--gr-linker` are aliases | `references/gr-survey.md` |
 | When the caller wants a `Gr.Req` reviewed — proposed entries walked with the user, statuses flipped, approved links landed through the gates, provenance re-verified | `references/gr-review.md` |
 | When the caller wants a block enriched — `Index.Enrichment`: a scoped discussion with the user generating new touched surface, minted and landed through the gates; low-but-nonzero density blocks are the default targets | `references/enrich.md` |
-| When the caller provides `--depot`, scope the selected operation to those `Index.Depot`s; otherwise use task-relevant engaged depots | applies to `references/search.md`, `references/edit.md`, and `references/ground.md` |
-| When the caller provides `--chapter`, scope the selected operation to that `Index.Chapter` inside the engaged depots; default to `design` when no chapter is named | applies to `references/search.md`, `references/edit.md`, and `references/ground.md` |
+| When the caller provides `--depot`, scope the selected operation to those `Index.Depot`s; otherwise use task-relevant engaged depots | applies to `references/search.md` and `references/edit.md` |
+| When the caller provides `--chapter`, scope the selected operation to that `Index.Chapter` inside the engaged depots; default to `design` when no chapter is named | applies to `references/search.md` and `references/edit.md` |
 | When the caller needs package-level understanding of how the index subsystem is designed, structured, and distributed across public and local surfaces | `agentos-pkg/design/`, `agentos-pkg/appendix/`, `agentos-pkg/references/` |
 | When the caller needs concrete examples of good and bad block shape before proposing or judging block wording | `agentos-pkg/references/index-block-catalog.md` |
 | When the caller needs behavioral testing of index entry paths, selection behavior, or usage patterns | `agentos-testground` |
@@ -179,7 +173,7 @@ An agent operating the index should:
 - respect `--chapter` as an `Index.Chapter` scope inside engaged depots; default chapter is `design`
 - return context with source block citations so the caller can verify and maintain the summary
 - distinguish discovered context from inference
-- use `--ground` when the caller wants the live discussion compared against the index instead of a direct query lookup
+- treat the prompt as a focus argument and compare the current visible discussion against the index whenever there is discussion state to ground
 - make a `Capture.Offer` when work surfaces new aligned content: propose the exact typed line(s) at the moment, with destination options (index main, appendix, agendix, decline) — never self-write
 - use `--capture` when the user wants the chat's content worked into the index — approval in chat and landing on a surface are distinct acts
 - use file mutation only when the user has approved an index edit
@@ -191,10 +185,9 @@ For delegated read-only research that protects the caller's context, use `Packag
 
 ## Skill Modules
 
-- `references/search.md` — routing-first search, selective loading, appendix discovery, and citation behavior
+- `references/search.md` — routing-first search, selective loading, appendix discovery, citation behavior, and conversation-to-index grounding
 - `references/capture.md` — the capture workflow: the discussion-landing loop from chat content to index surfaces
 - `references/edit.md` — the knowledge of index and appendix writing: gates, actions, naming, placement, drafting screens, landing procedure, and maintenance
-- `references/ground.md` — conversation-to-index grounding: derive the active themes, search selectively, and report matches, tensions, and gaps
 - `references/check.md` — deterministic index checks through `agentos index linter`
 - `references/type.md` — line typing: syntax, vocabulary, validation points, reading typed lines, fence and residue
 - `references/agendix.md` — the knowledge of the agendix surface: rules, landing form, boundaries — typed, anchored, ungated

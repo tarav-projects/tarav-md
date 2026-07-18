@@ -12,7 +12,7 @@ Authority lives in the index: `Agentos.Index.System`, `Hugentic.Concept`, `Kerne
 
 A pass over the chat's uncaptured content, repeated until the content is exhausted or the user stops:
 
-1. **Ground.** Run `references/ground.md` behavior over the conversation with a capture lens: what the index already models is out; gaps, tensions, and fresh `User.Touched` material are candidates.
+1. **Ground.** Run `references/search.md` behavior over the conversation with a capture lens: what the index already models is out; gaps, tensions, and fresh `User.Touched` material are candidates.
 2. **Propose.** Draft candidates in kernel writing form — new blocks, appended lines, revisions — typed and index-grade by default: user-touched content is index-eligible by right. The destination surface may stay implicit while exploring; approval-ready drafts show the concrete landing target per `references/edit.md`.
 3. **Discuss.** Iterate each draft with the user. The goal is to reason while preparing the kernel text — convergence happens in the discussion, not at the write. (`Interactive` only — an `Autonomous` pass skips to landing.)
 4. **Approve.** User approval accepts the current form in chat — it is not a write. Approved material accumulates while the discussion rolls to the next item; the natural rhythm is a converging concept cluster, not item-by-item write ceremony. (`Interactive` only.)
@@ -28,7 +28,7 @@ A pass over the chat's uncaptured content, repeated until the content is exhaust
 
 ## Landing
 
-Landing form-fits approved material to the named surface, one rung up the `Capture.Gradient`, under that surface's own gate:
+Landing form-fits approved material to the named surface, one rung up the `Capture.Gradient`, under that surface's own gate. Approval-ready candidates show the concrete `Landing:` file and `Target:` ontology location before the draft text; the destination can stay loose only while the discussion is still exploratory.
 
 - **ontology / appendix** — gated (`Edition.Trigger.User.Gated`, `Verbatim.User.Gated`): a draft that already matches the surface lands as an approved forward pass through the `references/edit.md` landing procedure; a cluster approved in chat lands under one gate
 - **agendix** — ungated, user-triggered: the routing verdict is the whole trigger; material lands in kernel form per `references/agendix.md` — lines under routed concepts, candidate blocks intact as path-children — captured but ungated, promotion-ready, reported at the end

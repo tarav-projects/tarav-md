@@ -2,21 +2,21 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "5b764b37a98e5bad3070b2e3daab1b734c0f2cbee187f154101119e4a657ef22",
+      "output_sha256": "5645545762e19323e4df62dd3bcd0bfdca7864fae6e3ff83473f5d98f0fac1ae",
       "recipes": [
         {
           "heading": "Index Operating Behavior",
           "verb": "derived",
-          "body_sha256": "b4562c0f739deb284b6a2d5f6fac0d5de0a4b2d8029899735a7abcd301cad0c5",
+          "body_sha256": "b2a4cb85fa4238fe671ed3929276805404176a0548ef6bc68d3639d0ecd3a2de",
           "deps": {
-            "references/search.skw.md#Search Model": "3aad398a81c24d82880bca1b075a19bc33da25e36bb786392ec6cc941f886024",
+            "references/search.skw.md#Search Model": "3772bfb8e7de9969e366b0e3ef7081ba15838fe4f6ff33cd945a667ceb3d9c7c",
             "references/search.skw.md#Citation Behavior": "e57e94bf2adedb5f4bde5e498c1feb6342c70412564a0e8d8a1a8734a673a8a9"
           }
         }
       ]
     },
     "references/agendix.md": {
-      "output_sha256": "fa37671e8edc6e76b70fc6b52a66ff7efb9b4219161eac9bba4f5c02ff2c3675",
+      "output_sha256": "866dd1133c5a1c6e7b2e962322c3cd681bcaebc2068dd269de468e375cea821b",
       "recipes": []
     },
     "references/back-link.md": {
@@ -33,15 +33,15 @@
       ]
     },
     "references/capture.md": {
-      "output_sha256": "9697bdd6319db27dacad88dfa6cb5402c7b466c6e56cef9c7c2a712413eda770",
+      "output_sha256": "0765ccddfcc0d32fa77a3b9433b4925d567d13aea09f1667722cb47b75e65358",
       "recipes": [
         {
           "heading": "Landing",
           "verb": "derived",
-          "body_sha256": "5b658b9cdfde0e2a6a1e3afaf36c1a214fb9d2a3736645f62baca471ed788e74",
+          "body_sha256": "202d81a3cccd6ae8c49cfa579ffc9d5b1c4bb4466608ed499ead921168a3a9f2",
           "deps": {
             "references/edit.skw.md#Landing Procedure": "11f76adfaf1626849bc476163b3bbdefd8b4e10da87a2788f9d3ccfe41904b7e",
-            "references/agendix.skw.md#Landing Form": "a5a020ea13b8cf4e3941260112c0a66098225fbf50c2d2944e14eaab49674028"
+            "references/agendix.skw.md#Landing Form": "1189eaf5e695e3c2522a4ba55ab289d5447d3e166c8741b9c18a745ff3dfacd1"
           }
         }
       ]
@@ -60,7 +60,7 @@
       ]
     },
     "references/edit.md": {
-      "output_sha256": "b1dc4ab698644e578f341f736d1fe4a23e83dd5a8669fcbd8640ac7bee8511ce",
+      "output_sha256": "2f6e9ee1c1b5477b7ecbd4b1d63f4203362a0bf47a4d219629290c8dc809eadb",
       "recipes": [
         {
           "heading": "Block Independence",
@@ -73,7 +73,7 @@
       ]
     },
     "references/enrich.md": {
-      "output_sha256": "77de20ae946678878ea915d12e9df4f1fdfb1375963636de892affc3c77fd9ef",
+      "output_sha256": "524f23a05ac46dc7dc3614f2ca82e0162b4109ffd7334aec03bd0b69cf99c20f",
       "recipes": []
     },
     "references/gr-review.md": {
@@ -84,34 +84,12 @@
       "output_sha256": "1e256dcbc451b5e2dc747a5f3f8ec59ebb850e020edaf2dc5bb94f266eea6256",
       "recipes": []
     },
-    "references/ground.md": {
-      "output_sha256": "f051f8ed37e14ad6f6ba3bd7622a8659bbdfb64c96bc96ced2fd9c78986ed34a",
-      "recipes": [
-        {
-          "heading": "Grounding Levels",
-          "verb": "derived",
-          "body_sha256": "cbed914eb00efcb1b7f2fbfad675124d81de249eb9955f6b119ab04b6b75c833",
-          "deps": {
-            "Context.Grounding": "8891b0d11d7cf45ec447609004fe0a9e54aa82ae8086dd2f459e897b10760285"
-          }
-        },
-        {
-          "heading": "Grounding Model",
-          "verb": "derived",
-          "body_sha256": "790b01f7d2a068e2d0a04af8dabab9de5708cee46b3a774f8d3f41b3f0f42605",
-          "deps": {
-            "references/search.skw.md#Search Model": "3aad398a81c24d82880bca1b075a19bc33da25e36bb786392ec6cc941f886024",
-            "Context.Grounding": "8891b0d11d7cf45ec447609004fe0a9e54aa82ae8086dd2f459e897b10760285"
-          }
-        }
-      ]
-    },
     "references/link.md": {
       "output_sha256": "0cf147f10530511e8802f709af736ff357b78d89ce94f108bf6c838157ff81b0",
       "recipes": []
     },
     "references/search.md": {
-      "output_sha256": "81142c0562f912d2074777f68cb5ee98591574974937310fd925c7dbf3760645",
+      "output_sha256": "6353a08fbbcbee7678cbbee196f15a00db83527b60aff5599c6523c79bfd3858",
       "recipes": []
     },
     "references/type.md": {

@@ -29,5 +29,5 @@ This module is NOT `Workflow.Neutral`: it drives a discussion and applies gated 
 - one block at a time; the user picks when to stop — enrichment has no completion state (`Index.Enrichment`: no block is finished)
 - do not interrogate: if a probe gets no traction, move on or end the pass — forced turns are weak evidence
 - do not re-litigate settled design as a probe; enrichment deepens evidence, it does not reopen decisions (a genuine contradiction is an `--edit` proposal, not a debate)
-- not `--ground` (read-only conversation-to-index comparison) and not a full `agentos-hugentics-designer` session (unscoped) — block-scoped, gated, receipt-measured
+- not `--search` (read-only conversation-to-index comparison) and not a full `agentos-hugentics-designer` session (unscoped) — block-scoped, gated, receipt-measured
 - linter check after any landing, per the edit path
