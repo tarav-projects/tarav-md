@@ -93,7 +93,7 @@ agentos chatlas views inline --identity-hash <H> --contains "<text>" --filter tu
 
 ## Anchor Workflow
 
-Chat anchors (`^YYYYMMDD-N`) are the chat application of the Anchory subsystem — see `Chatlas.Anchory` in the index.
+Chat anchors (`^c<YYYYMMDD>-<N><tag>` — `c` namespace prefix, date, counter, turn tag `u`/`a`) are the chat application of the Anchory subsystem — see `Chatlas.Anchory` in the index.
 
 ```sh
 agentos chatlas anchory register --identity-hash <H> --at "<iso-time>" --hint "<one sentence>"

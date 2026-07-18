@@ -79,11 +79,11 @@
 
 ## Workflow.Update
 
-- [DF] `Workflow.Update` is the update capability of one workflow: bring everything current along the path from `Provider.Home` to that workflow's target, and nothing past it ^20260714-3
-- plain `agentos chatlas update` is itself a workflow — its target is the `Chatlas.Session.Index` ^20260714-4
-- [CT] no update touches another workflow's caches — a stale downstream artifact is detected by its own workflow's read-time freshness check and re-derived on demand ^20260714-2
-- [PR] a stale `Session.Model.Artifact` is an asset, not garbage — `Delta.Normalization::Chatlas` resumes from it; deleting it destroys the resume base ^20260714-2
-- [FR] a workflow may offer forced re-materialization that ignores freshness — a correctness-testing tool, never the default ^20260714-2
+- [DF] `Workflow.Update` is the update capability of one workflow: bring everything current along the path from `Provider.Home` to that workflow's target, and nothing past it ^c20260714-3u
+- plain `agentos chatlas update` is itself a workflow — its target is the `Chatlas.Session.Index` ^c20260714-4u
+- [CT] no update touches another workflow's caches — a stale downstream artifact is detected by its own workflow's read-time freshness check and re-derived on demand ^c20260714-2u
+- [PR] a stale `Session.Model.Artifact` is an asset, not garbage — `Delta.Normalization::Chatlas` resumes from it; deleting it destroys the resume base ^c20260714-2u
+- [FR] a workflow may offer forced re-materialization that ignores freshness — a correctness-testing tool, never the default ^c20260714-2u
 
 ****
 
@@ -118,16 +118,16 @@
 - unknown, unindexed, failed-parse, missing-archive, or mismatched originals are not delete candidates.
 - dry-run/report mode is the default; destructive deletion requires an explicit apply gate.
 - the goal is faster `agentos chatlas update` by shrinking old provider-home scan surfaces.
-- a `Provider.Home.Adapter` capability — the adapter owns all provider-home contact, including this gated deletion of captured originals ^20260714-6
+- a `Provider.Home.Adapter` capability — the adapter owns all provider-home contact, including this gated deletion of captured originals ^c20260714-6u
 
 ****
 
 ## View.GC
 
-- [DF] `View.GC` is the depot-side maintenance subsystem for deleting stale view caches — orphaned view identities, superseded parameter variants, caches of sessions no longer indexed ^20260714-5
-- the depot sibling of `Provider.GC`, same grammar: report-first default, destructive deletion behind an explicit apply gate ^20260714-5
-- eligibility is proven from depot evidence: view manifests checked against current `View.Identity` and the `Chatlas.Session.Index` ^20260714-5
-- [PR] cache hygiene is an explicit maintenance action, never a side effect of update — deletion gets its own audit trail ^20260714-5
+- [DF] `View.GC` is the depot-side maintenance subsystem for deleting stale view caches — orphaned view identities, superseded parameter variants, caches of sessions no longer indexed ^c20260714-5u
+- the depot sibling of `Provider.GC`, same grammar: report-first default, destructive deletion behind an explicit apply gate ^c20260714-5u
+- eligibility is proven from depot evidence: view manifests checked against current `View.Identity` and the `Chatlas.Session.Index` ^c20260714-5u
+- [PR] cache hygiene is an explicit maintenance action, never a side effect of update — deletion gets its own audit trail ^c20260714-5u
 
 ****
 
@@ -167,7 +167,7 @@
 ## Chatlas.Dataset
 
 - `Chatlas.Dataset` is the Agentos-maintained dataset of chat sessions collected from AI assistant providers
-- lifecycle: `Provider.Home.Adapter` → `Raw.Archive` → `Chatlas.Session.Model` → `Chatlas.Session.Index` → `Chatlas.Query.Surface` → `Chatlas.View.Model` ^20260714-0
+- lifecycle: `Provider.Home.Adapter` → `Raw.Archive` → `Chatlas.Session.Model` → `Chatlas.Session.Index` → `Chatlas.Query.Surface` → `Chatlas.View.Model` ^c20260714-0u
 - user-scoped, not project-scoped — queries can filter by project but the dataset spans all projects
 - the raw archive is the authoritative preservation layer; all derived surfaces rebuild from it
 
@@ -201,16 +201,16 @@
 - targeted update runs the same mechanics for one provider instance, provider-home locator, or known `Session.Identity`
 - targeted refresh is not a separate system — it is an atomized invocation of the existing update mechanics
 - the pipeline preserves the lifecycle invariant: `Provider.Home` → `Raw.Archive` → `Chatlas.Session.Index`
-- [CT] the update pipeline's native scan is the only Chatlas system that reads `Provider.Home`; query and view surfaces answer from the depot ^20260712-9
+- [CT] the update pipeline's native scan is the only Chatlas system that reads `Provider.Home`; query and view surfaces answer from the depot ^c20260712-9u
 
 ****
 
 ## Scan.Scope
 
-- [DF] `Scan.Scope` is the selection an update run hands the `Provider.Home.Adapter`'s scan: which sessions the scan considers — everything configured, one provider, one instance, one session, or an activity window ^20260714-2
-- [CT] narrowing the scope never changes the mechanics — every scoped run performs the same discover → signature-compare → archive → derive stages over its selection ^20260714-2
-- [PR] a single-session refresh is the whole pipeline at one-session scope, not a parallel code path ^20260714-2
-- cold-cache trust and `--full-scan` are comparison policies, orthogonal to scope — scope picks the candidates, policy picks how hard to look at them ^20260714-2
+- [DF] `Scan.Scope` is the selection an update run hands the `Provider.Home.Adapter`'s scan: which sessions the scan considers — everything configured, one provider, one instance, one session, or an activity window ^c20260714-2u
+- [CT] narrowing the scope never changes the mechanics — every scoped run performs the same discover → signature-compare → archive → derive stages over its selection ^c20260714-2u
+- [PR] a single-session refresh is the whole pipeline at one-session scope, not a parallel code path ^c20260714-2u
+- cold-cache trust and `--full-scan` are comparison policies, orthogonal to scope — scope picks the candidates, policy picks how hard to look at them ^c20260714-2u
 
 ****
 
@@ -227,10 +227,10 @@
 
 ## Provider.Home.Adapter
 
-- [DF] `Provider.Home.Adapter` is the Chatlas component owning all `Provider.Home` contact for one provider family — discovery scan, change signatures, archive copy, home-query diagnostics, and provider-GC eligibility checks ^20260714-1
-- [CT] it is the only component that touches the `Provider.Home` filesystem — every other Chatlas system answers from the depot or reaches provider data by means of the adapter ^20260714-0
-- [CT] the adapter provides the files of the `Raw.Archive` ^20260714-1
-- [PR] one component owning the entire provider-home contact surface keeps the depot boundary auditable ^20260714-0
+- [DF] `Provider.Home.Adapter` is the Chatlas component owning all `Provider.Home` contact for one provider family — discovery scan, change signatures, archive copy, home-query diagnostics, and provider-GC eligibility checks ^c20260714-1u
+- [CT] it is the only component that touches the `Provider.Home` filesystem — every other Chatlas system answers from the depot or reaches provider data by means of the adapter ^c20260714-0u
+- [CT] the adapter provides the files of the `Raw.Archive` ^c20260714-1u
+- [PR] one component owning the entire provider-home contact surface keeps the depot boundary auditable ^c20260714-0u
 
 ****
 
@@ -241,8 +241,8 @@
 - returns provider-home matches or locators, not `Chatlas.Session.Index` rows
 - used when freshness or direct source lookup matters before relying on archived material
 - does not mutate `Raw.Archive` or `Chatlas.Session.Index`
-- [CT] a diagnostic surface, not a query path — `Chatlas.Query.Surface` never routes through it ^20260712-9
-- a capability of the `Provider.Home.Adapter` — the same discovery machinery exposed as a diagnostic read ^20260714-6
+- [CT] a diagnostic surface, not a query path — `Chatlas.Query.Surface` never routes through it ^c20260712-9u
+- a capability of the `Provider.Home.Adapter` — the same discovery machinery exposed as a diagnostic read ^c20260714-6u
 
 ****
 
@@ -291,22 +291,22 @@
 - one event captures one thing that happened in the session
 - an event carries its identity, its order, its kind, who produced it, its content, and a link back to raw evidence
 - projections are derived and disposable — rebuildable from the tape, never authoritative on their own
-- [DC] the tape is a jsonl file: one frozen event per line, appended in order ^20260712-12
-- [DC] each tape line carries provenance beside its payload: `source_refs` to the raw records it derives from, a `source_hash` over those records, a finality flag, and a chain hash over the line and its predecessor ^20260712-12
-- [DF] a final line's validity depends only on its source records — its `source_hash` re-verifies it; a non-final line consumed end-of-file context (open tool groups, run status, last-prompt residue) and is recomputed on every delta pass ^20260712-12
-- [DC] tail revision is truncate-and-reappend: cut the tape at the last final line, re-derive the volatile tail plus new events, append ^20260712-12
-- [RJ] serving reads through a checkpoint overlay of shadow events — the tape on disk is always the complete served tape ^20260712-12
-- [PR] per-line provenance turns staleness detection mechanical: divergence is located at a line, recomputation starts there, never from zero ^20260712-12
+- [DC] the tape is a jsonl file: one frozen event per line, appended in order ^c20260712-12u
+- [DC] each tape line carries provenance beside its payload: `source_refs` to the raw records it derives from, a `source_hash` over those records, a finality flag, and a chain hash over the line and its predecessor ^c20260712-12u
+- [DF] a final line's validity depends only on its source records — its `source_hash` re-verifies it; a non-final line consumed end-of-file context (open tool groups, run status, last-prompt residue) and is recomputed on every delta pass ^c20260712-12u
+- [DC] tail revision is truncate-and-reappend: cut the tape at the last final line, re-derive the volatile tail plus new events, append ^c20260712-12u
+- [RJ] serving reads through a checkpoint overlay of shadow events — the tape on disk is always the complete served tape ^c20260712-12u
+- [PR] per-line provenance turns staleness detection mechanical: divergence is located at a line, recomputation starts there, never from zero ^c20260712-12u
 
 ****
 
 ## Session.Model.Artifact
 
-- [DF] `Session.Model.Artifact` is the on-disk form of one `Chatlas.Session.Model` — a per-session folder of purpose-split files rather than one monolithic document ^20260712-11
-- [DC] the folder holds a small mutable head (`session.json` — identity, session payload, sources, normalization meta), the append-only `Session.Event.Tape` (`events.jsonl`), and the projections as sibling derived files ^20260712-11
-- [DC] the head is freely rewritten on update; only the tape carries append discipline ^20260712-11
-- [RJ] a single-file model with a head line inside the tape — rewriting the head would break the tape's append-only economics ^20260712-11
-- [PR] mutable aggregates live in cheap-to-rewrite surfaces (head, index row); append-only surfaces hold only frozen content ^20260712-11
+- [DF] `Session.Model.Artifact` is the on-disk form of one `Chatlas.Session.Model` — a per-session folder of purpose-split files rather than one monolithic document ^c20260712-11u
+- [DC] the folder holds a small mutable head (`session.json` — identity, session payload, sources, normalization meta), the append-only `Session.Event.Tape` (`events.jsonl`), and the projections as sibling derived files ^c20260712-11u
+- [DC] the head is freely rewritten on update; only the tape carries append discipline ^c20260712-11u
+- [RJ] a single-file model with a head line inside the tape — rewriting the head would break the tape's append-only economics ^c20260712-11u
+- [PR] mutable aggregates live in cheap-to-rewrite surfaces (head, index row); append-only surfaces hold only frozen content ^c20260712-11u
 
 ****
 
@@ -328,30 +328,30 @@
 - `Normalizer.Context` is provider-scoped — one provider's session artifacts, loaded once per assembly
 - the `Normal.Assembler` produces the target a caller needs over `Chatlas.Session.Model`: a lite session ref, an index row, or a full session
 - two assembly regimes meet here — flat session metadata merges by path; `Session.Event.Tape` events assemble by order + `Session.Lineage`
-- [CT] `Raw.Normalizer`s read raw only from the `Raw.Archive` — never from provider-home paths ^20260714-1
+- [CT] `Raw.Normalizer`s read raw only from the `Raw.Archive` — never from provider-home paths ^c20260714-1u
 
 ****
 
 ## Delta.Normalization::Chatlas
 
-- [DF] `Delta.Normalization::Chatlas` is the application of `Delta.Normalization` to `Normalization.Pipeline::Chatlas.Session.Model`, enabled by the append-friendly `Session.Event.Tape` ^20260712-14
-- [PR] cost scales with what changed, not with session size — the active session pays for its new turns, not its history ^20260712-14
-- [CT] full re-derivation reads `Raw.Archive`, honoring the depot boundary: delta passes never read `Provider.Home` ^20260712-9
+- [DF] `Delta.Normalization::Chatlas` is the application of `Delta.Normalization` to `Normalization.Pipeline::Chatlas.Session.Model`, enabled by the append-friendly `Session.Event.Tape` ^c20260712-14u
+- [PR] cost scales with what changed, not with session size — the active session pays for its new turns, not its history ^c20260712-14u
+- [CT] full re-derivation reads `Raw.Archive`, honoring the depot boundary: delta passes never read `Provider.Home` ^c20260712-9u
 
 ****
 
 ## Normalization.Delta.Checkpoint::Chatlas
 
-- [DF] `Normalization.Delta.Checkpoint::Chatlas` is the per-session checkpoint of `Delta.Normalization::Chatlas` — the frozen/volatile boundary in the raw record stream plus the state to resume derivation past it ^20260712-15
-- [DC] it lives with the scanner's derivation caches under the Chatlas depot, beside — never inside — the `Session.Model.Artifact` ^20260712-15
+- [DF] `Normalization.Delta.Checkpoint::Chatlas` is the per-session checkpoint of `Delta.Normalization::Chatlas` — the frozen/volatile boundary in the raw record stream plus the state to resume derivation past it ^c20260712-15u
+- [DC] it lives with the scanner's derivation caches under the Chatlas depot, beside — never inside — the `Session.Model.Artifact` ^c20260712-15u
 
 ****
 
 ## Normalization.Trust.Tier::Chatlas
 
-- [DF] `Normalization.Trust.Tier::Chatlas` is the tier choice surfaced through the Chatlas update ladder — callers of `agentos chatlas update` pick how much verification a refresh pays for ^20260712-16
-- [PR] applications choose their point: a fast caller accepts a possibly-stale normal model; a caller needing certainty pays for verify or rebuild ^20260712-16
-- [CT] `Raw.Archive` preservation is what licenses the cheap tiers — a stale or wrong normal model is recoverable, lost raw is not ^20260712-16
+- [DF] `Normalization.Trust.Tier::Chatlas` is the tier choice surfaced through the Chatlas update ladder — callers of `agentos chatlas update` pick how much verification a refresh pays for ^c20260712-16u
+- [PR] applications choose their point: a fast caller accepts a possibly-stale normal model; a caller needing certainty pays for verify or rebuild ^c20260712-16u
+- [CT] `Raw.Archive` preservation is what licenses the cheap tiers — a stale or wrong normal model is recoverable, lost raw is not ^c20260712-16u
 
 ****
 
@@ -370,14 +370,15 @@
 
 - `Chatlas.Anchory` is the Chatlas application of `Anchory.System` — anchors standing for turn neighborhoods on the `Chat.Surface`
 - its `Anchory.Depot` lives at `<chatlas-root>/anchory/`; every action uses the active Chatlas depot
-- the anchor key convention is date-based: `YYYYMMDD-N`, a daily position suffix
+- the anchor key convention is the composed grammar `c<YYYYMMDD>-<N><tag>`: the `chatlas` namespace prefix, the evidence turn's date, a daily counter, and a turn tag ^c20260718-3
+- [DC] the tag is computed from the landing turn's producer at mint time — `u` user, `a` assistant; a mistagged citation still resolves and reports the lie; an uncomputable producer mints tag-less, surfaced by the tagless-anchor lint ^c20260718-3
 - Chatlas owns the `Anchory.Record` payload and the traversal from record to session and turn neighborhood
 - registration validates the session exists and the timestamp falls inside its bounds
 - [DC] registration echoes the landing neighborhood — the minting agent double-checks the anchor before tagging lines
-- [CT] a chat anchor resolves to its `Chat.Support.Set`; you land on the set and read the neighborhoods ^20260715-5
+- [CT] a chat anchor resolves to its `Chat.Support.Set`; you land on the set and read the neighborhoods ^c20260715-5u
 - record format: `appendix/Chatlas.Anchory-appendix.md`
-- [PR] chatlas anchory and the chatlas query language are one system, co-designed — anchors are native selectors of the query language ^20260708-2
-- [DC] the anchor key's date is the evidence turn's date, not the minting date — a wrong date means a new anchor, never an amendment ^20260706-0
+- [PR] chatlas anchory and the chatlas query language are one system, co-designed — anchors are native selectors of the query language ^c20260708-2u
+- [DC] the anchor key's date is the evidence turn's date, not the minting date — a wrong date means a new anchor, never an amendment ^c20260706-0u
 ****
 
 ## Chatlas.View
@@ -411,17 +412,17 @@
 
 ## Chat.Support.Set
 
-- [DF] `Chat.Support.Set` is the ordered, relevance-sorted set of `Chat.Surface` user turns that support an anchored statement ^20260716-1
-- [CT] support turns are user turns only — the authority moments; assistant content is recovered by neighborhood reading ^20260715-5
-- [DC] a support set may hold a single turn when one turn is the actual support, or many when the fact spans them ^20260715-5
-- [DC] the set is relevance-sorted — a reader consumes top-down, as deep as its budget allows ^20260715-5
-- [DC] support turns may be typed: a `Turn.Type` names the role a turn plays for the annotated statement, orthogonal to the sort order ^20260716-2
-- [DC] an untyped member is plain evidence — the default role; typed members carry specific duties ^20260716-2
-- [EX] `Turn.Type::Project.Index.Gate` — the turn where the user approved the line's verbatim text onto the index ^20260716-2 ^20260716-10
-- [PR] types make gates checkable: a surface's gate can require a turn of a given type in every line's set — presence is CPU-lintable, correspondence stays an agent check ^20260716-2
-- [PR] anchor the authority, read the content around it — the user reaction is the touch event; the idea it reacts to is the neighborhood ^20260715-5
-- [DC] registration echoes the set's neighborhoods for the minting agent to verify ^20260715-5
-- [DC] the support set is a general primitive: any anchored statement has one, whatever surface it lives on; specializations name the subject — `Support.Set::Index.Line` is an `Index.Line`'s set ^20260716-15
+- [DF] `Chat.Support.Set` is the ordered, relevance-sorted set of `Chat.Surface` user turns that support an anchored statement ^c20260716-1u
+- [CT] support turns are user turns only — the authority moments; assistant content is recovered by neighborhood reading ^c20260715-5u
+- [DC] a support set may hold a single turn when one turn is the actual support, or many when the fact spans them ^c20260715-5u
+- [DC] the set is relevance-sorted — a reader consumes top-down, as deep as its budget allows ^c20260715-5u
+- [DC] support turns may be typed: a `Turn.Type` names the role a turn plays for the annotated statement, orthogonal to the sort order ^c20260716-2u
+- [DC] an untyped member is plain evidence — the default role; typed members carry specific duties ^c20260716-2u
+- [EX] `Turn.Type::Project.Index.Gate` — the turn where the user approved the line's verbatim text onto the index ^c20260716-2u ^c20260716-10u
+- [PR] types make gates checkable: a surface's gate can require a turn of a given type in every line's set — presence is CPU-lintable, correspondence stays an agent check ^c20260716-2u
+- [PR] anchor the authority, read the content around it — the user reaction is the touch event; the idea it reacts to is the neighborhood ^c20260715-5u
+- [DC] registration echoes the set's neighborhoods for the minting agent to verify ^c20260715-5u
+- [DC] the support set is a general primitive: any anchored statement has one, whatever surface it lives on; specializations name the subject — `Support.Set::Index.Line` is an `Index.Line`'s set ^c20260716-15u
 
 ### meta
 
@@ -431,12 +432,12 @@
 
 ## Turn.Type
 
-- [DF] `Turn.Type` is the role a member turn plays inside a `Chat.Support.Set` — a per-member tag, orthogonal to the set's relevance sort ^20260716-3
-- [DC] the untyped member is the default: plain evidence for the annotated statement ^20260716-3
-- [DC] the vocabulary is soft and extensible (`Concept.Hardness`) — a new type is an index edit, mirroring `Line.Type.Vocabulary` ^20260716-3
-- [DC] gates consume types by name: a surface gate may require a turn of a given type in every line's set; the linter checks presence, the agent checks correspondence ^20260716-3
-- [DC] gate types follow the surface: each `Verbatim.User.Gated` surface names its own gate type — `Turn.Type::<Surface>.Gate` ^20260716-10
-- [EX] `Turn.Type::Project.Index.Gate` — the turn that opened the project index gate for a line's verbatim text; required by the `Project.Index`'s gated surfaces ^20260716-10
+- [DF] `Turn.Type` is the role a member turn plays inside a `Chat.Support.Set` — a per-member tag, orthogonal to the set's relevance sort ^c20260716-3u
+- [DC] the untyped member is the default: plain evidence for the annotated statement ^c20260716-3u
+- [DC] the vocabulary is soft and extensible (`Concept.Hardness`) — a new type is an index edit, mirroring `Line.Type.Vocabulary` ^c20260716-3u
+- [DC] gates consume types by name: a surface gate may require a turn of a given type in every line's set; the linter checks presence, the agent checks correspondence ^c20260716-3u
+- [DC] gate types follow the surface: each `Verbatim.User.Gated` surface names its own gate type — `Turn.Type::<Surface>.Gate` ^c20260716-10u
+- [EX] `Turn.Type::Project.Index.Gate` — the turn that opened the project index gate for a line's verbatim text; required by the `Project.Index`'s gated surfaces ^c20260716-10u
 
 ### meta
 
@@ -446,12 +447,12 @@
 
 ## Chat.Agendix
 
-- [DF] `Chat.Agendix` is the agendix of a chat: `Index.Line`s attached to the chat itself — the `Touched.Surface.Index` member whose attachment point is the `Chat.Surface` ^20260717-2
-- [DC] a line grounds through its `Chat.Support.Set`: a claim may involve several turns — the set carries them all ^20260717-1
-- [DC] one member is the attachment turn — the line's tape position and ordering key, typed `Turn.Type::Attachment`; a single-turn set attaches where it grounds ^20260717-1 ^20260717-2
-- [DC] its axes: ungated, tape-ordered — lines sort by their attachment turn, a kernel pass over the chat length, not a relevance sort ^20260713-7
-- [CT] terminal: it never drains — nothing promotes out of it; it digests the chat where the chat is, an inbox for no one ^20260713-6
-- [DC] consumers cite the chat evidence, never the agendix line — a reading aid over the source, a cache with no authority of its own ^20260713-6
-- [DC] on a closed chat the digest converges: a finished tape admits a stable, complete pass ^20260713-6
-- [DC] provenance is hard: every line anchored to its turns — the agendix of a chat is chat indexing in the most literal sense ^20260713-7
-- lint follows the gate pattern: exactly one attachment per line is CPU-checkable presence ^20260717-1
+- [DF] `Chat.Agendix` is the agendix of a chat: `Index.Line`s attached to the chat itself — the `Touched.Surface.Index` member whose attachment point is the `Chat.Surface` ^c20260717-2u
+- [DC] a line grounds through its `Chat.Support.Set`: a claim may involve several turns — the set carries them all ^c20260717-1u
+- [DC] one member is the attachment turn — the line's tape position and ordering key, typed `Turn.Type::Attachment`; a single-turn set attaches where it grounds ^c20260717-1u ^c20260717-2u
+- [DC] its axes: ungated, tape-ordered — lines sort by their attachment turn, a kernel pass over the chat length, not a relevance sort ^c20260713-7u
+- [CT] terminal: it never drains — nothing promotes out of it; it digests the chat where the chat is, an inbox for no one ^c20260713-6u
+- [DC] consumers cite the chat evidence, never the agendix line — a reading aid over the source, a cache with no authority of its own ^c20260713-6u
+- [DC] on a closed chat the digest converges: a finished tape admits a stable, complete pass ^c20260713-6u
+- [DC] provenance is hard: every line anchored to its turns — the agendix of a chat is chat indexing in the most literal sense ^c20260713-7u
+- lint follows the gate pattern: exactly one attachment per line is CPU-checkable presence ^c20260717-1u
