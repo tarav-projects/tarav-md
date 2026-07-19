@@ -216,6 +216,8 @@
 ## Index.Block
 
 - `Index.Block` is a `Kernel.Block` placed in an `Index.Chapter` — the routed, loadable unit of meaning in the Index
+- [DC] a block is a named grouping of `Index.Line`s — it attaches lines to the concept its heading names ^c20260718-14u
+- [DC] blocks are one grouping of lines, not the only one; grounding, approval, and audit run per line ^c20260718-14u
 - [DC] its heading is a legal `Skw.Address.Schema` name — the root of the concept's `Block.Path`s and what `000-INDEX.md` routes ^c20260712-5u
 - it is `Kernel.Writing` under tight compression — conceptual completeness in few lines, depth pushed to `Concept.X/Appendix`
 - it must carry enough signal for an agent to reason correctly about the concept

@@ -26,9 +26,9 @@ Each row: block · depot · relationship with `2026:07:15-17:34:41` · status. A
 ### Axis 2 — Index.Line atom + grouping
 
 - `Index.Line` · agentos-pkg · NEW — the restate's atom: a user-turn-grounded line; layered on `Kernel.Line` (general atom + grounding invariant) · **landed 2026-07-16**
-- `Index.Block` (100) · agentos-pkg · restate: "a named set of related lines"; grouping is one of many — carries relocated line "blocks are one grouping of lines, not the only one" · revisit-pending
+- `Index.Block` (100) · agentos-pkg · two lines added: named grouping of `Index.Line`s (attaches lines to the heading's concept); one grouping among many — grounding/approval/audit per line · **landed 2026-07-18 ^c20260718-14u**
 - `Kernel.Line` (107) · agentos-pkg · resolved by layering: stays the general writing atom; `Index.Line` = `Kernel.Line` + grounding invariant; light revision citing the specialization · revisit-light
-- `Block.Line.Gradient` (107) · agentos-pkg · reconcile with the line-first model · revisit-pending
+- `Block.Line.Gradient` (107) · agentos-pkg · one line added: gradient is organization above the `Index.Line` — position never changes grounding/authority · **landed 2026-07-18 ^c20260718-15u — axis 2 closed**
 
 ### Axis 3 — gating axis + User.Attention
 
@@ -54,23 +54,25 @@ Each row: block · depot · relationship with `2026:07:15-17:34:41` · status. A
 - `Inline.Grounding` (105) · agentos-pkg · RETIRED — block removed; surviving mechanics (≤3 curated anchors, gate-turn fallback stamp, reading rule, `Grounding.Density`) migrated to new `Index.Line` appendix (`Grounding.Mechanics`/`Grounding.Density`/`Grounding.Head` sections); `Grounded.Line`/`Ungrounded.Line` inlined on `Index.Line` (`[+2]` concepts) · **landed 2026-07-17 ^c20260716-33u ^c20260717-0u**
 - grounding-retirement follow-ups · pending — (a) tooling Impl.Req: `--coverage block` / evidence-board flag in linter.py + stats.py measure by `Grounding.Head` presence, axis now retired; (b) citation drift: `Grounding.Head`/`Inline.Grounding`/`Kernel.Block.Grounding` still cited in 100/102/103, SKILL.md, index-block-catalog, ~5 appendix files — dependency-sync territory; (c) existing `Grounding.Head`/`Grounding.Drift` appendix sections across depots demote in place, cleaned opportunistically · **594 EXECUTED 2026-07-18: tooling recut to line-property coverage + citations synced; (c) stays opportunistic; open follow-up: appendix-section names invisible to the Dotted.Name resolver (Capture.Offer depends blessed) ^c20260718-1u**
 
-### Axis 5 — attachment-point generalization
+### Axis 5 — attachment-point generalization (CLOSED 2026-07-18 — chat-derivative rows split to axis 11)
 
 - `Chat.Agendix` (defines `Turn.Type::Attachment` inline) · chatlas (100, after `Turn.Type`) · NEW — TSI member attached to the `Chat.Surface`; lines ground through `Chat.Support.Set` (multi-turn claims), one member is the attachment turn (`Turn.Type::Attachment`, tape position + ordering key, gate-pattern presence lint); ungated, tape-ordered, terminal (never drains), consumers cite the chat, converges on closed chats, hard provenance · **landed 2026-07-17 ^c20260713-6u ^c20260713-7u ^c20260717-1u ^c20260717-2u**
 - `Skw.Touched.Index` (defines `Skw.Appendix`/`Skw.Agendix` inline; supersedes the standalone `Skw.Agendix` row) · agentos-pkg (107, before `Skw.Network`) · NEW — TSI member on `Skw.Annotation`s; one mixed surface, gated/ungated computed per line from the gate-typed turn (not geographic); promotion = state change, not relocation; two worlds meet at the annotation (skw = whole agentic development stack, not just maintenance — axis-6 wording consequence: "maintenance substrate" → "development substrate") · **landed 2026-07-17 ^c20260717-6u..10**
-- `Chat.Derivative` · chatlas · NEW — the derived-data family over chats: views (closed, model-space) vs agendix (user-touch digest) vs general derivatives (free output); skw-governed generation · revisit-pending
 - `Skw.Address.Schema` (108) · agentos-pkg · schema shape holds against all new systems; chat space stays registration-only (anchory detaches link shape from link content — pollution cap); raw path-like chat address `[RJ]`-parked + prefix-ripple noted in new `Skw.Address.Schema` agendix; code-construct addressing stays free-form under the `[FR]` line; no fourth space — accounts/namespaces are registers, not spaces · **revisited 2026-07-17, agendix capture only ^c20260717-11u**
 - `Capture.Offer` (107) · agentos-pkg · destinations line fixed ("index main" → "ontology") + generalization line (offer may target any TSI member within reach); demoted to `Touched.Surface.Index` appendix, then PROMOTED BACK to a 107 block after 594 execution showed appendix sections are invisible to the Dotted.Name resolver — needing to be referenceable is a reason to create a block (new closing line captures this); appendix file removed, router restored · **revisited, demoted, promoted back 2026-07-18 ^c20260718-0u ^c20260718-1u ^c20260718-2u**
 
-### Axis 6 — skw maintenance substrate
+### Axis 6 — skw development substrate (CLOSED 2026-07-19)
 
 - `Skw.Network` · agentos-pkg · NEW — graph of annotated surfaces linked by explicit + implicit relationships; CPU notifies, agent judges · **landed 2026-07-16**
-- `Agentos.Skillware` (107) · agentos-pkg · umbrella; restate: two-substrate split — authority substrate (`Touched.Surface.Index`) vs maintenance substrate (skw, not user-grounded, integrated) · revisit-pending
-- `Skw.Language` (107) · agentos-pkg · restate: not all lines user-grounded; not part of `Touched.Surface.Index` but fully integrated — annotations may depend on index elements · revisit-pending
-- `Drift.POI` (107) · agentos-pkg · restate: the POI is the notification and carries all drift evidence · revisit-pending
-- `Surface.Annotation` (107) · agentos-pkg · restate: surfaces annotated with semantic context — how/why created — read by agents at resolution time · revisit-pending
-- `Derivation.Rule` / `Derived.Content` / `Import.Management` (107) · agentos-pkg · generation-context + drift story the restate leans on · revisit-pending
-- `Semantic.Router` (107) · agentos-pkg · neighboring; verify against the restate · revisit-pending
+- `Agentos.Skillware` (107) · agentos-pkg · restate's two-substrate split REJECTED in discussion: no split — touch is an orthogonal axis over skw objects, TSI = the computed set of touched things; +3 lines (no-split, annotation-touched-itself, integration-at-scale promoted from agendix) · **landed 2026-07-19 ^c20260719-0u ^c20260718-23u**
+- `Skw.Quote.Binding` (107) · agentos-pkg · NEW — dependency declared by its own quoted content (`--quote` refining nearest `--from`); designed in-session, agendix-captured, promoted · **landed 2026-07-18 ^c20260718-25u..29u**
+- `Skw.Touched.Index` (107) · agentos-pkg · +syntax line: `--supp <line> ^<anchor>` — the annotation is its own block; deps bind content, supps ground the annotation itself · **landed 2026-07-19 ^c20260719-0u**
+- `Skw.Language` (107) · agentos-pkg · +boundary line: skw lines need no user grounding, touch opt-in per object · **landed 2026-07-19 ^c20260719-0u**
+- `Drift.POI` (107) · agentos-pkg · restate's "POI carries all drift evidence" already stated by the trigger line · **revisited 2026-07-19, no edit**
+- `Surface.Annotation` (107) · agentos-pkg · restate's resolution-time semantic context = the local-grounding-recipe line · **revisited 2026-07-19, no edit**
+- `Derivation.Rule` / `Derived.Content` / `Import.Management` (107) · agentos-pkg · generation-context + drift story intact, no contradiction · **revisited 2026-07-19, no edit**
+- `Semantic.Router` (107) · agentos-pkg · neighboring only, restate does not touch it · **revisited 2026-07-19, no edit**
+- PARKED: label sigil collision (`^label` vs anchory `^c…` keys; candidate: labels move to `@`) · parked 2026-07-19
 
 ### Axis 7 — copy/reuse mechanic
 
@@ -110,6 +112,11 @@ Each row: block · depot · relationship with `2026:07:15-17:34:41` · status. A
 - `Agentos.Forum` (adjacent system, ^c20260717-5u): agendix-captured; Impl.Req at `agentos-py/notes/live/693-agentos-forum-impl-req.md` · **EXECUTED 2026-07-18** (external agent; `agentos forum post|check|read` live, banner on `chatlas update`, `agentos-forum` skill; deviations: root corrected to `~/Documents/agentos/forum/`, retired `agentos future forum` replaced without aliases)
 - DO NOT FORGET — first real forum post: "update your anchors — namespace/prefix changes, see more..." · **POSTED 2026-07-18T10:36:53Z** — "update your anchors: anchory namespace grammar shipped", the forum's first real post
 
+### Axis 11 — chat derivative family (split from axis 5 2026-07-18 — less mature design, own maturation track)
+
+- `Chat.Derivative` · chatlas · NEW — the derived-data family over chats: views (closed, model-space) vs agendix (user-touch digest) vs general derivatives (free output); skw-governed generation · revisit-pending
+- `Chatlas.View.Model` / `View.Identity` / `View.Class` / `View.Workflow` / `Session.Set` (CH 100) · chatlas · legacy view family merge against `Chat.Derivative` model (moved from Flagged) · merge-pending
+
 ### Reconciliation — against parallel-session landed text (2026-07-16 anchors)
 
 - 107 gradient line "friction buys authority" → "friction buys stability" · **landed 2026-07-16**
@@ -118,10 +125,6 @@ Each row: block · depot · relationship with `2026:07:15-17:34:41` · status. A
 - `references/type.md` still teaches the retired `AS:` source axis · pending sync
 - SKW DRIFT FINDING (landing pass): `agentos-index` skill references (SKILL.md, edit/capture/enrich/gr-review/back-link/agendix/type .md) still cite `Index.Main` / `Content.Verbatim.Gated` / `Edit.Trigger.Gated`; `agentos skillware check` reports 0 POIs — these name-dependencies are undeclared, so the rename drifted silently; the `Skw.Network` design is the fix (pointer bindings on block names) · pending sync
 - same drift in `agentos-hugentics-designer/references/index-view.md` and the project-root `.claude/skills/agentos-index` copy · pending sync
-
-### Flagged (not a block revisit)
-
-- `Chatlas.View.Model` / `View.Identity` / `View.Class` / `View.Workflow` / `Session.Set` (CH 100) · chatlas · legacy view family merge against `Chat.Derivative` model · merge-pending
 
 ## Session.Notes
 
@@ -308,3 +311,8 @@ plus meta aliases gain `Project.Index`; namespace-members: `Index.Main` → `Ind
 - 2026-07-16 — `Capture.Gradient` block approved: gate buys stability not authority; authority is per-line in the support set; reading order a prior, not a verdict; reconciliation section opened against parallel-session landed text
 - 2026-07-16 — LANDING PASS: all 15 approved items landed (agentos-pkg: Touched.Surface.Index, Index.Line, User.Attention, Capture.Gradient, Skw.Network new; Index.Ontology, Index.Surface, Agentos.Index.System, Edition.Trigger.User.Gated, Verbatim.User.Gated, Index.Agendix, Kernel.Line, Index.Appendix revised; 106/107 reconciliations · chatlas: Chat.Support.Set, Turn.Type new; Chatlas.Anchory revised); routers updated; linters clean; 14 approval anchors minted and stamped
 - 2026-07-16 — skw test observations recorded in reconciliation section: silent drift in skill references (undeclared name-dependencies), skillware check blind to it — Skw.Network pointer bindings are the designed fix
+- 2026-07-18 — chat-derivative rows split from axis 5 into new axis 11 (less mature design, own maturation track); axis 5 closed
+- 2026-07-18 — axis 2 closed: `Index.Block` gains the line-first pair (^c20260718-14u), `Block.Line.Gradient` gains the organization-above-the-line boundary (^c20260718-15u); `Index.Line` row was already landed 2026-07-16, `Kernel.Line` resolved by layering
+- 2026-07-18 — axis 6 opened as alignment discussion: skw = integration substrate (deps between any two surfaces, TSI expansion via backends, gates as skw primitive deferred); `Quote.Binding` designed and named — dependency declared by its own quoted content (`--quote` flag refining nearest `--from`, exact syntax approved on a python example; machinery out of docstrings); agendix capture landed (candidate block `Module.Import/Agendix/Quote.Binding` + lines on `Module.Import`, `Skw.Backend`, `Agentos.Skillware`, `Verbatim.User.Gated`; ^c20260718-23u..28u)
+- 2026-07-19 — axis 6 CLOSED: no-split model approved (touch orthogonal over skw objects; TSI = computed set of touched things); `--supp` designed — the annotation's own `Index.Line`s, "the annotation is its own block"; revision set landed on `Agentos.Skillware` (+3), `Skw.Touched.Index` (+1), `Skw.Language` (+1); Drift.POI/Surface.Annotation/derivation-trio/Semantic.Router revisited no-edit; label-sigil question parked (^c20260719-0u)
+- 2026-07-18 — `Quote.Binding` PROMOTED to 107 as `Skw.Quote.Binding` (alias `Quote.Binding`; +content-addressing PR line; `Module.Import` gains the refinement cross-line; candidate block removed from agendix; router + namespace members updated) ^c20260718-29u

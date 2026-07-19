@@ -9,10 +9,13 @@
 - it is supported by a development toolchain — linters, builders, compilers — spanning agentic and `CPU.Impl` work, that moves package maintenance off the human. ^c20260627-0u
 - a discipline realized by capabilities, not a single mechanism — it names the stance; specific members implement it.
 - **skw** is the system realizing the discipline: the general annotation language (`Skw.Language`) and its `Skw.Backend`s ^c20260711-9u
+- [DC] the `Touched.Surface.Index` is not a separate substrate: touch is an orthogonal axis over skw objects — any annotation, span, or line may be touched or not, and the TSI is the computed set of touched things ^c20260719-0u
+- [DC] an annotation can be touched itself, independently of its dependencies: its support lines ground its own existence and shape to user turns — annotations range from fully agent-built to user-discussed ^c20260719-0u
+- [PR] skw is where the touched-index concepts integrate at scale: declared dependencies between any two project surfaces make maintenance and change propagation explicit, and extend the `Touched.Surface.Index` to further surfaces ^c20260718-23u
 
 ### meta
 
-- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Derivation.Rule`, `Derived.Content`, `Module.Import`, `Import.Management`, `Derived.Module`, `Skillware.Construct`, `Skillware.Recipe`, `Skw.Language`, `Skw.Backend`, `Surface.Annotation`, `Annotation.Point`, `Annotation.Authority`, `Drift.POI`, `Semantic.Router`, `Usage.Pattern.Routing`.
+- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Derivation.Rule`, `Derived.Content`, `Module.Import`, `Skw.Quote.Binding`, `Import.Management`, `Derived.Module`, `Skillware.Construct`, `Skillware.Recipe`, `Skw.Language`, `Skw.Backend`, `Surface.Annotation`, `Annotation.Point`, `Annotation.Authority`, `Drift.POI`, `Semantic.Router`, `Usage.Pattern.Routing`.
 
 ****
 
@@ -54,6 +57,23 @@
 - [DC] a failed check is a drift finding with no predefined winner — resolution is case-by-case; a particular workflow may set auto-regeneration as its own rule ^c20260709-15u
 - it is the Skillware linking system: copy and derived are static binding, pointer is dynamic ^c20260709-12u
 - [DC] v1 realization: declarations are `[!skw]` recipe callouts inline in src (`.skw.md`); the toolchain materializes `copy` and `derived` — `pointer` remains routed prose, not yet toolchain-checked ^c20260710-2u
+- [DC] a `--from` may be refined by a `Skw.Quote.Binding` — quoted lines pinning the exact interest range inside the target ^c20260718-29u
+
+****
+
+## Skw.Quote.Binding
+
+- [DF] `Skw.Quote.Binding` is a dependency declared by its own actual content: a `--from` address plus explicitly quoted lines defining the interest range ^c20260718-25u ^c20260718-29u
+- [DC] the address is the selector — what the alarm uses to narrow the dependency; the quoted lines pin the exact range by content, not position ^c20260718-26u
+- [CT] the quoted lines live on the annotation, not the generated surface — the annotation itself is maintained: a non-existing or drifted line cannot attach ^c20260718-25u
+- [PR] plain block links stay legal; quoting is opt-in remarking — the quoted content sits next to the annotated surface so the generator agent cannot miss it ^c20260718-26u
+- [PR] content-addressing makes the reference honest: it survives source reordering and breaks loudly under change, never silently pointing at the wrong lines ^c20260718-26u
+- [DC] a quoted line no longer verbatim-present at its source raises a POI on the declaring construct — the existing unresolvable-`--from` POI extended to content ^c20260718-26u
+- [DC] syntax: a repeatable `--quote` flag refining the nearest preceding `--from`; each value is one verbatim line of interest, plain continuations append ^c20260718-27u ^c20260718-28u
+
+### meta
+
+- aliases: `Quote.Binding`
 
 ****
 
@@ -135,6 +155,7 @@
 - it annotates any content, but earns most on agent-generated surfaces — where the rule and its current solution living side by side is what makes maintenance checkable ^c20260711-2u
 - it is embedded — skw lives inside the host surface's own format, next to the content it governs, and never replaces it ^c20260711-2u
 - the language is surface-blind; a `Skw.Backend` binds it to each surface class ^c20260711-2u
+- [DC] skw lines need no user grounding to be legal — touch is opt-in per object: annotations cite index blocks by `Dotted.Name`, and carry their own touched lines through `Skw.Touched.Index` ^c20260719-0u
 
 ****
 
@@ -319,6 +340,7 @@
 - the index/appendix split — and the cuts between appendix pages — are artificial cuts on this sequence, placed for token economy
 - fundamentals are the prefix you keep if you can read only a few lines; the appendix is the rest, loaded on demand
 - coherence is a gradient too: tight in the fundamentals, relaxing in the appendix, where loosely-related lines accrete without earning the core's coherence
+- [DC] the gradient is organization above the `Index.Line` — position in the sequence never changes a line's grounding or authority ^c20260718-15u
 
 ****
 
@@ -621,6 +643,7 @@
 - [DF] `Skw.Appendix` and `Skw.Agendix` are its computed strata — the gated and the ungated lines: the appendix and agendix of a block, where the block is the annotation — same mechanics, no file split ^c20260717-9u
 - [DC] promotion is a state change, not a relocation: a line passes the gate where it stands — the gate turn joins its set; nothing moves ^c20260717-6u ^c20260717-10u
 - [DC] two worlds meet at the annotation: the skw development stack reads it to generate, judge, and evolve the surface; the touched lines ground to the `Chat.Surface` — the user-grounded part of that context ^c20260717-8u
+- [DC] syntax: `--supp <line> ^<anchor>` — the construct's own touched lines: the annotation is its own block, deps (`--from`/`--quote`) bind its content while supps ground the annotation itself ^c20260719-0u
 
 ****
 
