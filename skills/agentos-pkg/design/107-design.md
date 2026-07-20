@@ -12,10 +12,11 @@
 - [DC] the `Touched.Surface.Index` is not a separate substrate: touch is an orthogonal axis over skw objects — any annotation, span, or line may be touched or not, and the TSI is the computed set of touched things ^c20260719-0u
 - [DC] an annotation can be touched itself, independently of its dependencies: its support lines ground its own existence and shape to user turns — annotations range from fully agent-built to user-discussed ^c20260719-0u
 - [PR] skw is where the touched-index concepts integrate at scale: declared dependencies between any two project surfaces make maintenance and change propagation explicit, and extend the `Touched.Surface.Index` to further surfaces ^c20260718-23u
+- [DC] the toolchain speaks skw: `agentos skw` (build, check, bless, status) over `.skw/` build homes and `skw.json` config — `skillware` remains a deprecation alias; `agentos skw check` with no target runs project-wide over every discovered `Skw.Package`, making the whole `Skw.Network` checkable in one pass ^c20260720-13u
 
 ### meta
 
-- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Skw.Dependency`, `Skw.Quote.Binding`, `Skw.Language`, `Skw.Annotation`, `Skw.Backend`, `Annotation.Point`, `Annotation.Authority`, `Drift.POI`, `Semantic.Router`, `Usage.Pattern.Routing`.
+- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Skw.Package`, `Skw.Dependency`, `Skw.Quote.Binding`, `Skw.Language`, `Skw.Annotation`, `Skw.Backend`, `Annotation.Point`, `Annotation.Authority`, `Drift.POI`, `Semantic.Router`, `Usage.Pattern.Routing`.
 
 ****
 
@@ -32,7 +33,15 @@
 - `Skill.Build.Surface` is the complement of `Skill.Runnable.Surface` — it holds the artifacts that produce and maintain runnable content, and is never loaded at run time. ^c20260627-1u
 - it is the home for everything kept off the runnable surface: derivation context, dependency declarations, lineage, dev material. ^c20260627-1u
 - never run, it carries no "stay clean" constraint — an unconstrained workspace; that freedom is what the two-surface split buys.
-- realized as the per-package `.skillware/` folder — `src/` mirror, settings, lock — organized by capability, discovered by convention. ^c20260710-2u
+- realized as the per-package `.skw/` folder (legacy `.skillware/`, still read during the rename window) — `src/` mirror, `skw.json` settings, lock — organized by capability, discovered by convention. ^c20260710-2u ^c20260720-13u
+
+****
+
+## Skw.Package
+
+- [DF] a `Skw.Package` is a folder whose `.skw/` holds a `src/` of `*.skw.md` sources — the unit skw discovers, checks, and builds; the `src/` is what makes it a package ^c20260720-13u
+- [DC] git-tracked: `.skw/` holds `skw.json` config, the `src/`, and `lock.json`; `.agentos/` keeps only project identity and runtime, while the tracked skw source lives in `.skw/` ^c20260720-9u ^c20260720-13u
+- [DC] scope mirror: one `skw.json` schema (`depots`, `surfaces`, `exclude`, `projects`) read at both project and package scope, the package extending the project via cascade; absent config means discover every `.skw/` and check all ^c20260720-9u
 
 ****
 

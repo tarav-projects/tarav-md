@@ -9,7 +9,7 @@
           "verb": "derived",
           "body_sha256": "6fe9025344420f8831ed9df45d63aa97f6eb73373bfcc4fc79abcd5d5b84aeeb",
           "deps": {
-            "Agentos.Skillware": "0c9dbbcf846f31d206eb16dfa8fd700033abd9f3b4efb76edc006b72bf337619"
+            "Agentos.Skillware": "4187cdbf49b3585c5b7ebc992cf79b9fc835b7c6c46e90dcdcf8f462500cfe1e"
           }
         }
       ]
@@ -58,9 +58,9 @@
           "verb": "derived",
           "body_sha256": "1784a6a76ed81da5e54cf47b4dab9ee4058d2851ca0dc4392268daf5ed66f28b",
           "deps": {
-            "Agentos.Skillware": "0c9dbbcf846f31d206eb16dfa8fd700033abd9f3b4efb76edc006b72bf337619",
+            "Agentos.Skillware": "4187cdbf49b3585c5b7ebc992cf79b9fc835b7c6c46e90dcdcf8f462500cfe1e",
             "Skill.Runnable.Surface": "4a4e47af449430fdd12978fc671f689e68a5cd084f34369117b65c10d14f10d9",
-            "Skill.Build.Surface": "21aa33d8e8d266ade124f1c721dc4a3ff81c8b4ece108976fda59bdacaee72f1",
+            "Skill.Build.Surface": "91fd496e297964f88b046695ba1ed5c9e0abd1ad53ce9b5fdcb57129152e8773",
             "Skw.Dependency": "f752daab89e56c8ae67eb120fcd372b1c2618e214737dd1a97f8df029b7ad9b7",
             "Skw.Annotation": "34e0600ffa618ac0017227926091100d0b11c76256412823f23e4bc5ffdcc1de"
           }
