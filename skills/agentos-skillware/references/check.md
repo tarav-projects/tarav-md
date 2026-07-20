@@ -33,6 +33,12 @@ Per recipe:
 - `copy-drift` — a copy body no longer equals its target's expansion; mechanical: `build` repairs it
 - `derived-stale` — a dependency changed since the derived body was written; **agentic**: real drift → re-derive in src; benign change → bless (below). The only blessable kind.
 
+Dependency sync — the declared graph vs the compiled text, blessable when the mismatch is deliberate:
+
+- `undeclared-dependency` — a mention resolves to a block but no dependency declares it; declare it (`depends --from`) or accept the mismatch by blessing
+- `unhonored-dependency` — a declared `depends` target resolves but is not mentioned in the compiled text; drop the stale declaration or bless a deliberately-silent binding
+- `dangling-dependency` — a declared `--from` target no longer resolves in the configured depots: a rename-without-alias or a retirement broke the binding; fix or remove the stale `--from`, restore an alias on the target, or bless if the reference is deliberately kept
+
 Housekeeping:
 
 - `legacy-callout` — a v2 `[!skw]` callout line survives outside a fence; it is inert prose to the parser — rewrite it in the `$kw` grammar

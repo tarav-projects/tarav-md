@@ -36,12 +36,12 @@
       "recipes": []
     },
     "references/check.md": {
-      "output_sha256": "46b27b03ba7bbd1de3be877048152e898dc16e57935d0eaa0875c0168b402175",
+      "output_sha256": "bc83d881f222ababf475d3bf936d092bd3dddf9d7ba6659d826f1ba5c7f4ae23",
       "recipes": [
         {
           "heading": "POI Kinds",
           "verb": "derived",
-          "body_sha256": "c322600256797e8825b1d1784255635f8cfb9795353e80263bbf646818202eb5",
+          "body_sha256": "954565c1304ee265a5242a5385c55b1bded6a182ab79acf293f18b346fee92bd",
           "deps": {
             "Skw.Dependency": "f752daab89e56c8ae67eb120fcd372b1c2618e214737dd1a97f8df029b7ad9b7",
             "Poi.Linter": "5653719effb9041043372ee9a4853d945452339648663a4660e45e2b36454ef9",
