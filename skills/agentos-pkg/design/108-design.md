@@ -9,6 +9,7 @@
 - [DF] a name traverses three spaces: ontology space (concepts), file space (surfaces and their spans), and chat space (registered moments) ^c20260712-0u ^c20260712-10u
 - [DC] legal forms: `Dotted.Name` (compact symbolic), `Block.Path` (ontology topology), `Locator.Name` (`@`-anchored file, region, or span address), `Anchory.Anchor` (`^`-registered chat moment) ^c20260712-0u ^c20260712-10u
 - [PR] the root concept is the address — `Dotted.Name` exists to make ontology addresses inlinable in natural prose, not the other way around ^c20260712-10u
+- [DC] an address is a block's identity, not only a citation — a `Skw.Annotation` is named by one explicit `Locator.Name`, resolved by context: the region alone resolves against the current surface (the declaration form), the fully-qualified locator is the citation form used from elsewhere ^c20260720-20u ^c20260720-21u
 - [DF] the full string is the name of the entity at hand — sigils compose names, they are not operations on them ^c20260712-0u
 - [CT] name syntax does not change the named entity's semantics — a block is a block, a span a span, under any legal form ^c20260712-0u ^c20260712-10u
 - [CT] a legal name carries at least one sigil; a single bare word is not a name ^c20260712-0u

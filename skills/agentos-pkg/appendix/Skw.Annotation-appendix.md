@@ -13,18 +13,21 @@
 
 ## Skw.Annotation/Construct.Grammar
 
-Construct-form depth, absorbed from the retired `Skillware.Construct` block; the operational spec lives in the `agentos-skillware` lang module.
+The written form of a `Skw.Annotation` — shown, not described. The normative spec lives in the `agentos-skillware` lang module; the parser is migrated to this grammar in the toolchain pass.
 
-- the sigil pair splits open from belong: `$kw:` opens a construct (or declares a divider); `$kw.` marks everything belonging to the open construct — further flags, value continuations, and the closer ^c20260712-7u
-- closure is fully explicit for body-bearing constructs: a bare `end` is invalid; a multi-close line (`end-a end-b`) unwinds the open stack innermost-first; a heading closes nothing — a construct left open at a heading or EOF is a finding ^c20260710-4u ^c20260711-9u
-- closure is declared, never positional: beyond owned ends, the registry may grant a command peer-closure — opening it closes its open peers (`when` closes `when`/`then`; a leveled `section` closes sections of level ≥ its own) — and a parent's end closes its open scoped children; every closure still happens at a marked machinery line ^c20260713-0u
-- peer-closure is only for vocabularies where the next declaration IS the boundary by construction (rows, sections); body-bearing primitives (`text`, `copy`, `derived`) keep mandatory owned ends — nothing can infer where an arbitrary body stops ^c20260713-0u
-- end-free annotation sections are this mechanism, not an exception: a divider is a peer-closing command, so explicit closure survives intact ^c20260713-0u
-- no indentation: bodies sit at column 0 — nesting is logical (the parse stack + owned ends), never visual; the body is runnable prose first ^c20260710-4u
-- three primitives instantiate the construct anywhere in a src: `text` (a literal, tag optional), `copy`, and `derived` — a generation function whose declaration describes the generated body and whose body is the current output ^c20260710-4u
-- structural commands (`router`, `when`, `then`) compose primitives ^c20260710-4u
-- arg flags are trait annotations, orthogonal to the command list: a command gives core semantics, annotations layer constraints on the body (`--from` inbound dependency, `--intent` derivation context, `--to` sends the agent to another surface) ^c20260711-0u ^c20260712-7u
-- trait semantics are reserved by JSONPath-style paths: `*.key` reserves the key's meaning on every command, `command.key` scopes it to one; validation is registry-driven, and a scoped semantic that generalizes is promoted up the path ^c20260711-0u
-- any declaration may carry a `^label` token — identity riding the construct; `label ^x` is the explicit command for a labeled literal (no command-less declarations); owned ends accept either owner, `end-<command>` or `end-^label` ^c20260711-1u ^c20260712-7u
-- labels extend the address grammar — `@path^label` (labeled span), `^label` (file-local); a `--from` on a labeled span hashes only that span, so drift is heading-independent and fine-grained ^c20260711-1u ^c20260712-10u
-- labels are src-only machinery, stripped at compile — distinct from `Anchory.Anchor`s (global evidence links that survive in the text); renaming a label breaks importers, caught by the dead-link check ^c20260711-1u
+```python
+# $kw: #_dependency_sync_pois
+# --from Skw.Dependency
+# --derived realize the three-kind split declared in Skw.Dependency:
+# --cont undeclared / unhonored / dangling
+# --note [DF] emits POIs for the declared-graph vs compiled-text mismatch ^<anchor>
+# --supp split dangling out of unhonored with the user ^<anchor>
+def _dependency_sync_pois(...):
+    ...
+# $kw. end
+```
+
+- [DC] `$kw` marks the fence, `--` fills it: `$kw:` opens and names the block by its `Skw.Address.Schema` address, `$kw. end` closes, and every line between is a self-marked `--flag` — the sigil rides the host carrier (blockquote in markdown, comments in code) only on the two fence lines ^c20260720-22u ^c20260712-7u
+- [DC] `--cont` continues the previous flag generically; a `--cont` before any flag is a finding ^c20260720-23u
+- [DC] the body between the fences is the block's generated target; where it wraps a named host element, that element's name checks the declared address ^c20260720-19u
+- [DC] a nameless span is named by a `^label` address, src-only and stripped at compile; renaming it breaks importers, caught by the dead-link check ^c20260711-1u ^c20260720-20u

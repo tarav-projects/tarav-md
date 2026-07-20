@@ -95,11 +95,12 @@
 
 - [DF] skw is an embedded annotation language for the generation of surfaces — an annotation states how a span of content is produced: from which dependencies, under which rule ^c20260711-2u
 - the annotation constrains the span: the content must not contradict or drift from its declaration — every annotation is a checkable claim ^c20260711-2u
-- everything frames as generation: a copy is deterministic generation (the inlining of a source, itself possibly generated); a derived span is agentic generation under its rule; a literal carries no generation claim; a link's text is a typed generated span, annotated independently of the target it points at ^c20260711-2u
+- [DC] one written form — a named block whose features are `--flag`s ^c20260720-22u
+- the binding mode is a flag: `--copy` is deterministic generation (inlining a source, itself possibly generated), `--derived` is agentic generation under its `--intent`, a block with no binding flag makes no generation claim; a link's text is a typed generated span ^c20260711-2u ^c20260720-18u
 - it annotates any content, but earns most on agent-generated surfaces — where the rule and its current solution living side by side is what makes maintenance checkable ^c20260711-2u
 - it is embedded — skw lives inside the host surface's own format, next to the content it governs, and never replaces it ^c20260711-2u
 - the language is surface-blind; a `Skw.Backend` binds it to each surface class ^c20260711-2u
-- [DC] skw lines need no user grounding to be legal — touch is opt-in per object: annotations cite index blocks by `Dotted.Name`, and carry their own touched lines through `Skw.Touched.Index` ^c20260719-0u
+- [DC] skw lines need no user grounding to be legal — touch is opt-in per object: annotations carry documentation and citations by address, and their own touched lines through `Skw.Touched.Index` ^c20260719-0u
 
 ****
 
@@ -116,15 +117,15 @@
 
 ## Skw.Annotation
 
-- [DF] `Skw.Annotation` is the unit of skw: one annotation attached at an `Annotation.Point`, stating extra things *about* the content it governs ^c20260711-4u ^c20260719-1u
-- [DC] its written form is the construct: a `$kw:` declaration line — a CLI-style command, optional `^label`, `--flag` traits — with `$kw.` belonging lines, a flat native body, and a mandatory owned closer ^c20260710-4u ^c20260712-7u
-- [DC] every machinery line carries the sigil, riding the host's carrier (blockquote in markdown, comments in code) — carrier-neutral, nothing skw inferred from bare host syntax ^c20260712-7u
-- [DC] the flag vocabulary separates by what each thing binds: deps (`--from`/`--quote`) bind the governed content to its sources; supps (`--supp`) ground the annotation itself; `--intent` carries the derivation context ^c20260719-0u ^c20260719-1u
+- [DF] `Skw.Annotation` is the unit of skw: a named block attached at an `Annotation.Point`, stating things *about* the content it names — its identity is one explicit `Skw.Address.Schema` address ^c20260711-4u ^c20260720-18u ^c20260720-20u
+- [DC] features are additive `--flag`s: `--note` (documentation), `--from` (dependency), `--derived`/`--copy`/`--pointer` (binding mode), `--intent`, `--supp` (its own touched lines); a pure note carries only `--note` lines ^c20260720-18u ^c20260719-0u
+- [DC] the address is declared relative (resolved against the current surface) and cited absolute (the full locator); a block may fence its generated target, whose element name checks the address ^c20260720-19u ^c20260720-20u ^c20260720-21u
+- [DC] `--note [TYPE] <text> ^anchor` carries documentation as an `Index.Line` — typed and grounded; a block's `--note` lines are the index attached to whatever it names, reaching any surface without a `.md` ^c20260720-15u
+- [CT] `Index.Block` and `Skw.Annotation` are the same object — a named block of typed lines: an index concept is it addressed by a `Dotted.Name` with only `--note` lines; a pure dependency is it with `--from` and no notes ^c20260720-18u ^c20260720-15u
 - [PR] every annotation is a checkable constraint: the CPU checks its decidable face (resolution, structure, hashes); agents check its semantic face (does the body honor the declaration) — annotations are to prose what types are to code ^c20260711-0u
-- it is a deliberate subset: the fragment's fundamentals, never an exhaustive dependency capture — it answers *what context can't I miss to understand this fragment?* ^c20260711-4u
-- it is a satellite index of the design — a leaf citing the canonical index by `Dotted.Name`; the hub stays the center ^c20260711-4u
+- it is a deliberate subset: the fragment's fundamentals — it answers *what context can't I miss to understand this fragment?* ^c20260711-4u
 - it is a local grounding recipe: an agent landing on the fragment loads the declared dependencies and holds the minimal sufficient context by declaration, not by search ^c20260711-4u
-- the command vocabulary is the language's growth axis: new capability is a new command over the same construct ^c20260710-4u
+- [DC] the flag vocabulary is the language's growth axis: new capability is a new flag on the same named block ^c20260710-4u ^c20260720-18u
 
 ### meta
 
