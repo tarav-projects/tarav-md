@@ -2,14 +2,14 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "437c5772845065fdb986ee0890f60dd92e2d64cef26f382e12a17e231dee4b2c",
+      "output_sha256": "6813638c45ef39f89d9f84a10ae878110d3646f773a8d995374a8abb53b09b14",
       "recipes": [
         {
           "heading": "What Skillware Is",
           "verb": "derived",
-          "body_sha256": "640ef647bf6ba70affa4b7007cce3e179117968cf8f04b994c4032e90f6c23b0",
+          "body_sha256": "6fe9025344420f8831ed9df45d63aa97f6eb73373bfcc4fc79abcd5d5b84aeeb",
           "deps": {
-            "Agentos.Skillware": "b9d2d55483b77f00d2d3fea147cdc38b592f33508d46316fa08244047680c57f"
+            "Agentos.Skillware": "0c9dbbcf846f31d206eb16dfa8fd700033abd9f3b4efb76edc006b72bf337619"
           }
         }
       ]
@@ -19,14 +19,14 @@
       "recipes": []
     },
     "references/author.md": {
-      "output_sha256": "8a270fc0f78935d05cd771d0595f41505719b42599f6f9d95b2ce435c4e7bde7",
+      "output_sha256": "aeb6d0a62ad11ee92736583579cbe012d6ae58cd33b1e2a0688840bcb1960da6",
       "recipes": [
         {
           "heading": "Division Of Labor",
           "verb": "derived",
-          "body_sha256": "32bff6f3f436dee427fb3e1ac4d5e4f9580e1983c52f2348643b0d8e972edd34",
+          "body_sha256": "0c030d2793fc10d3192eaf86da0920e568a86f86b83e281eb80428f592c43919",
           "deps": {
-            "Import.Management": "e802eb67222aba31968aae95ad62520923f0b8c08c4342ffcaa4fc375dd7d35f"
+            "Skw.Dependency": "f752daab89e56c8ae67eb120fcd372b1c2618e214737dd1a97f8df029b7ad9b7"
           }
         }
       ]
@@ -43,43 +43,42 @@
           "verb": "derived",
           "body_sha256": "c322600256797e8825b1d1784255635f8cfb9795353e80263bbf646818202eb5",
           "deps": {
-            "Import.Management": "e802eb67222aba31968aae95ad62520923f0b8c08c4342ffcaa4fc375dd7d35f",
-            "Poi.Linter": "49ae12f7c632edaef1024271385beb43f48f5753b83e2473ff2ae3b59670466e",
-            "Poi.Bless": "4c82ae55afd37168b2aa23fec823716592a6cb72dc56d1fc7799c9acae22dd59"
+            "Skw.Dependency": "f752daab89e56c8ae67eb120fcd372b1c2618e214737dd1a97f8df029b7ad9b7",
+            "Poi.Linter": "5653719effb9041043372ee9a4853d945452339648663a4660e45e2b36454ef9",
+            "Poi.Bless": "b0cf61d48d079014b071299ba9300b7def20969367fba20890c93709f878455b"
           }
         }
       ]
     },
     "references/doctrine.md": {
-      "output_sha256": "9a892589532973b9519e4385aa684f1ccaeccfdecc6e79a3543ebbde88106eaa",
+      "output_sha256": "d97578ecec4b469accdcaeeb07e5d2547c6e617e972587c4aaf97be39e7308e8",
       "recipes": [
         {
           "heading": "The Model",
           "verb": "derived",
-          "body_sha256": "7acac548482756e65c80fd650c74220793ecaa2f22c604e5c9939e3b1e8ed459",
+          "body_sha256": "e824615663bce914a8a94a0a5a280c1ca282be96cf35db81089e4e6670536300",
           "deps": {
-            "Agentos.Skillware": "b9d2d55483b77f00d2d3fea147cdc38b592f33508d46316fa08244047680c57f",
-            "Skill.Runnable.Surface": "1b53ecdf4f6a6a124363552a9fa0b5f95ca54ee07d602d7ff59c236c9b36dea8",
-            "Skill.Build.Surface": "6a86daf0304d1c612e9660851d24592cec13d087090fa6980f8353a45af6e8a6",
-            "Module.Import": "c73a157bd484c261bc5d55f37fd4abcf749fd1a800e2f3ba5f041fcab0ca8dff",
-            "Skillware.Recipe": "fe56b09f87def261cc00fd892f0b5293061797c625d9bc147a3fc29be197717f",
-            "Derivation.Rule": "ee265f9f6c4395716e253a13347654bc45dcf120fb01e22d3aae897a6b3fad11",
-            "Derived.Content": "f1f93a46f6e4793ddac2d9b243b209ee85980cbb5e1ae72b0146da5d81abbb7e"
+            "Agentos.Skillware": "0c9dbbcf846f31d206eb16dfa8fd700033abd9f3b4efb76edc006b72bf337619",
+            "Skill.Runnable.Surface": "4a4e47af449430fdd12978fc671f689e68a5cd084f34369117b65c10d14f10d9",
+            "Skill.Build.Surface": "21aa33d8e8d266ade124f1c721dc4a3ff81c8b4ece108976fda59bdacaee72f1",
+            "Skw.Dependency": "f752daab89e56c8ae67eb120fcd372b1c2618e214737dd1a97f8df029b7ad9b7",
+            "Skw.Annotation": "34e0600ffa618ac0017227926091100d0b11c76256412823f23e4bc5ffdcc1de"
           }
         },
         {
           "heading": "The Construct In Brief",
           "verb": "derived",
-          "body_sha256": "addf3c58ce8c6b682a0d6cd77a4d9314097ff9096769c4a4af06a107c801448f",
+          "body_sha256": "624bebecb7d1243c36a3fe6692948cfcd33f89cb8dff5ba1702efb19bc74669a",
           "deps": {
-            "references/lang.skw.md#Construct Grammar": "4284328f82160a6821141b3d2404cf10985132d9d45fc80860f20b3f87c2ada8"
+            "references/lang.skw.md#Construct Grammar": "71058a51777a157b0b621b72523de07952a026f6d1fab1e8b9943dd9979f1691"
           }
         }
       ]
     },
     "references/lang.md": {
-      "output_sha256": "ea9f93c5f9c4db134384881a24b280f2e1d2979da47f5f867419d201e30a2277",
+      "output_sha256": "7011668cb79a0595f4c6895d6ec63b307494124ed536ecaa7fd353c14530a06b",
       "recipes": []
     }
-  }
+  },
+  "blessings": []
 }

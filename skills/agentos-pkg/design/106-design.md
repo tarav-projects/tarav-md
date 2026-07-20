@@ -134,6 +134,7 @@
 - [CT] touch is general over stated, discussed, approved, corrected, rejected, co-drafted, or explicitly delegated material
 - [DC] it is a cross-surface predicate; the index is a `User.Touched` surface, and the `Chat.Surface` is another
 - [CT] `User.Touched` separates `Touched.Space` from `Untouched.Space`; it does not decide whether a region is open, constrained, or fixed
+- [DC] the `Touched.Surface.Index` is the computed enumeration of this predicate — the set of touched things across all surfaces, per object, never stored ^c20260719-2u
 
 ****
 
@@ -193,6 +194,30 @@
 
 ****
 
+## Constraint.Steering
+
+- [DF] `Constraint.Steering` is the design principle that we steer agent work by designing constraints — saturating surfaces with checkable assertions so that consistency pressure pulls the work in the designed direction ^c20260719-8u ^c20260719-10u
+- [DC] mint-time test: a finite vocabulary forces commitment at write time — confused content fails to type, the earliest and cheapest drift detection ^c20260719-8u
+- [DC] standing test: the assertion rides next to the content forever; every later pass has a small, local, closed-set claim to check against ^c20260719-8u
+- [DC] graded checkability: part of each assertion is CPU-checkable (presence, vocabulary membership, resolution), the rest agent-checkable — design pushes each assertion down the gradient; agent-checkable is the floor, never zero ^c20260719-8u
+- [DC] direction-forcing: designing the constraint vocabulary IS steering the system — assertions encode what better looks like, so many small consistency checks pull the surfaces toward it ^c20260719-8u
+- [DC] stability: an assertion is a semantic invariant a rewrite must preserve — constraints make a surface stable under agent rewriting; the agent may rephrase, never drop the pinned semantics ^c20260719-8u
+- [PR] the compiler loop: agent-generated code must compile, and that feedback loop bounds generation — it either never converges or converges at least to compilable output; assertions + linting generalize the loop to text: the generated surface must comply with many tests, it is never "generate what you like" ^c20260719-9u
+- [DC] instances: `Line.Type`, anchors + support sets (`Touched.Support.Network`), skw claims (`Skw.Dependency`), the annotation↔generated-surface sync (`Skw.Annotation`), gates, bless records ^c20260719-9u
+
+****
+
+## Accountable.Assertion
+
+- [DF] an `Accountable.Assertion` is the unit `Constraint.Steering` deposits: a recorded claim carrying frozen judgment (the stamp) and its audit path, so any agent can call it to account on demand ^c20260719-10u
+- [DC] a stamp is judgment cached at mint time, never truth — checking recomputes the claim against its evidence ^c20260719-10u
+- [DC] the trail has two realizations — integrated on-surface (for example an `Index.Line`'s type tag: evidence local to the value) or held in an external general schema (for example an `Anchory` dossier: audit requires descent); the axis between them is audit cost ^c20260719-3u ^c20260719-10u
+- [DC] the frozen judgment is someone's — user or agent — and the stamp says whose; accountability is the general property, authority stays read from provenance (`Touched.Authority`) ^c20260719-10u
+- [DC] the audit path can accumulate evaluation records — verdicts by any evaluator, appended openly, folded on read; a second record family beside the gated evidence dossier ^c20260720-0u
+- [CT] evaluation is confidence, never authority — no fold of verdicts changes what the assertion's evidence supports ^c20260720-0u
+
+****
+
 ## Line.Type
 
 - `Line.Type` is the classification a `Kernel.Line` carries, written as a typed prefix from the `Line.Type.Vocabulary`
@@ -203,6 +228,9 @@
 - [DC] the act axis (`CT`, `DC`, …) is the type — the assistant-grounded source marker (`[AS:XX]`) is retired: all typed lines are user-grounded on every surface ^c20260716-0u
 
 - [PR] typing makes the index computable — backward, lint for coherence; forward, agents derive their bounds and freedoms mechanically instead of interpreting prose ^c20260707-1u
+- [PR] static typing for agent-produced surfaces: the type disciplines the content, not describes it — most of its value is paid at write time ^c20260719-9u
+- [DC] the type adds stability: it pins what any rewrite must preserve — an agent cannot rewrite a line "just because"; the rewrite must still satisfy the tag ^c20260719-8u
+
 ****
 
 ## Line.Type.Vocabulary

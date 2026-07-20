@@ -15,7 +15,7 @@
 
 ### meta
 
-- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Derivation.Rule`, `Derived.Content`, `Module.Import`, `Skw.Quote.Binding`, `Import.Management`, `Derived.Module`, `Skillware.Construct`, `Skillware.Recipe`, `Skw.Language`, `Skw.Backend`, `Surface.Annotation`, `Annotation.Point`, `Annotation.Authority`, `Drift.POI`, `Semantic.Router`, `Usage.Pattern.Routing`.
+- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Skw.Dependency`, `Skw.Quote.Binding`, `Skw.Language`, `Skw.Annotation`, `Skw.Backend`, `Annotation.Point`, `Annotation.Authority`, `Drift.POI`, `Semantic.Router`, `Usage.Pattern.Routing`.
 
 ****
 
@@ -47,17 +47,22 @@
 
 ****
 
-## Module.Import
+## Skw.Dependency
 
-- [DF] `Module.Import` is a declared dependency between surfaces — a consumer surface imports a target named by any legal `Skw.Address.Schema` name ^c20260709-12u ^c20260712-10u
-- [DC] three binding modes: `pointer` — resolved at load time, always fresh; `copy` — verbatim materialization at build time; `derived` — a semantic transformation materialized at build time, governed by a `Derivation.Rule` ^c20260709-14u
-- [DC] the binding is the consumer's declaration — the imported surface never knows its importers ^c20260709-12u
-- [DC] on building `Skw.Backend`s, declarations live on the `Skill.Build.Surface` and the `Skill.Runnable.Surface` carries only the materialized result; annotated-only backends keep declarations in place on the surface itself ^c20260709-13u ^c20260711-9u
+- [DF] `Skw.Dependency` is a declared dependency between any two surfaces — a consumer declares a target named by any legal `Skw.Address.Schema` name ^c20260709-12u ^c20260712-10u ^c20260719-1u
+- [DC] three binding modes: `pointer` — resolved at load time, always fresh; `copy` — verbatim materialization at build time; `derived` — a semantic transformation materialized at build time under a recorded intent ^c20260709-14u
+- [DC] the binding is the consumer's declaration — the target never knows its dependents ^c20260709-12u
+- [DC] a `--from` may be refined by a `Skw.Quote.Binding` — quoted lines pinning the exact interest range inside the target ^c20260718-29u
 - each binding carries a checkable claim: pointer — the target resolves at its address; copy — equality with the target; derived — the rule still holds ^c20260709-16u
 - [DC] a failed check is a drift finding with no predefined winner — resolution is case-by-case; a particular workflow may set auto-regeneration as its own rule ^c20260709-15u
 - it is the Skillware linking system: copy and derived are static binding, pointer is dynamic ^c20260709-12u
-- [DC] v1 realization: declarations are `[!skw]` recipe callouts inline in src (`.skw.md`); the toolchain materializes `copy` and `derived` — `pointer` remains routed prose, not yet toolchain-checked ^c20260710-2u
-- [DC] a `--from` may be refined by a `Skw.Quote.Binding` — quoted lines pinning the exact interest range inside the target ^c20260718-29u
+- [PR] division of labor: the CPU materializes copy bindings and detects drift; the agent performs derivations — in src, where the declaration and its current solution live side by side ^c20260710-0u
+- [DC] on building `Skw.Backend`s, declarations live on the `Skill.Build.Surface` and the `Skill.Runnable.Surface` carries only the materialized result; annotated-only backends keep declarations in place on the surface itself ^c20260709-13u ^c20260711-9u
+- [DC] v1 realization: `lock.json` holds the per-dependency record; check verdicts (`copy-drift`, `derived-stale`, `hand-edited`) surface drift — a rebuild can never silently clear `derived-stale`; only an actual re-derive does ^c20260710-2u
+
+### meta
+
+- aliases: `Module.Import`, `Import.Management`
 
 ****
 
@@ -74,76 +79,6 @@
 ### meta
 
 - aliases: `Quote.Binding`
-
-****
-
-## Derivation.Rule
-
-- `Derivation.Rule` is the relation `Dependencies + Context → Derived` — the unit that produces a piece of derived content from declared dependencies, interpreted through a context.
-- `Context` is everything informing the derivation other than the declared dependencies — case by case, from implicit (the derived surface itself + ambient knowledge) to explicit (written down).
-- both dependencies and context span **inline + external** — carried inline in the derived surface, or external on a build surface; whatever isn't inline is written externally.
-- run **forward** it (re)generates the derived; run as a **check** it answers the drift question — does the current derived still match what its dependencies + context would now produce?
-- the check is the payoff: maintenance becomes a query the system runs, not vigilance the user keeps — and maintenance is derivation's main cost.
-- it is the mechanics of the `derived` binding of `Module.Import`; the `copy` binding needs no rule — equality is its whole check ^c20260709-14u
-
-****
-
-## Derived.Content
-
-- `Derived.Content` is the *Derived* side of a `Derivation.Rule` — content produced from declared dependencies and a context, a projection of those sources rather than authored standalone.
-- granular — any span of a module can be `Derived.Content`; the rest is original content, and the original/derived ratio is just how much of a module is derived.
-- its tie to its sources automates drift detection and aids regeneration — drift is caught when sources change; regeneration is supported by the kept context.
-
-****
-
-## Import.Management
-
-- `Import.Management` is the part of the Skillware module model that maintains a module's `Module.Import`s — tracking each import's target and binding so materialized content can be checked and regenerated ^c20260709-16u
-- it records, per import, the target (by durable address), the binding, and any context, and re-runs the check or the materialization on demand
-- pointer bindings are checked for address validity, copy for equality, derived for `Derivation.Rule` drift ^c20260709-14u
-- the more imported a module's content, the more its maintenance automates — imported spans re-materialize, while original content and the seams where it meets them stay manual
-- targets are addressed by `Skw.Address.Schema` names — `Dotted.Name`s for blocks, `Locator.Name`s for files, regions, and spans, `Anchory.Anchor`s for chat moments ^c20260712-10u
-- [PR] division of labor: the CPU materializes copy bindings and detects drift; the agent performs derivations — and performs them in src, where the `Derivation.Rule` and its current solution live side by side ^c20260710-0u
-- [DC] v1 realization: `lock.json` holds the per-import record; check verdicts (`copy-drift`, `derived-stale`, `hand-edited`) surface drift — and a rebuild can never silently clear `derived-stale`; only an actual re-derive does ^c20260710-2u
-
-****
-
-## Derived.Module
-
-- `Derived.Module` is a `Skill.Module` whose content is mostly `Derived.Content` — the high-derivation pole.
-- source-agnostic — its sources may be index blocks or other modules; derived-ness is the ratio, not the surface.
-- the more derived it is, the more its maintenance automates — largely a projection of its sources, re-derived on change, with human work only at the seam with original content.
-
-****
-
-## Skillware.Construct
-
-- [DF] `Skillware.Construct` is the single syntactic form of the skw language: a `$kw:` declaration line — a CLI-style command, `<command> [^label] [--flag value …]` — with `$kw.` continuation lines, a flat native body, and a mandatory owned closer `$kw. end-<command>` ^c20260710-4u ^c20260712-7u
-- [DC] the sigil pair splits open from belong: `$kw:` opens a construct (or declares a divider); `$kw.` marks everything belonging to the open construct — further flags, value continuations, and the closer ^c20260712-7u
-- [DC] every machinery line carries the sigil — uniform marking, so nothing skw is ever inferred from bare host syntax; the sigil rides the host's carrier (blockquote in markdown, comments in code), making the form carrier-neutral ^c20260712-7u
-- [DC] closure is fully explicit for body-bearing constructs: a bare `end` is invalid; a multi-close line (`end-a end-b`) unwinds the open stack innermost-first; a heading closes nothing — a construct left open at a heading or EOF is a finding ^c20260710-4u ^c20260711-9u
-- [DC] closure is declared, never positional: beyond owned ends, the registry may grant a command peer-closure — opening it closes its open peers (`when` closes `when`/`then`; a leveled `section` closes sections of level ≥ its own) — and a parent's end closes its open scoped children (`end-router` closes an open row); every closure still happens at a marked machinery line, and headings/EOF still close nothing ^c20260713-0u
-- [CT] peer-closure is only for vocabularies where the next declaration IS the boundary by construction (rows, sections); body-bearing primitives (`text`, `copy`, `derived`) keep mandatory owned ends — nothing can infer where an arbitrary body stops ^c20260713-0u
-- end-free annotation sections are this mechanism, not an exception: a divider is a peer-closing command, so explicit closure survives intact ^c20260713-0u
-- [DC] no indentation: bodies sit at column 0 — nesting is logical (the parse stack + owned ends), never visual; the body is runnable prose first ^c20260710-4u
-- [DC] three primitives instantiate it anywhere in a src: `text` (a literal, tag optional), `copy`, and `derived` — a generation function whose declaration describes the generated body and whose body is the current output ^c20260710-4u
-- the command vocabulary is the language's growth axis: new capability is a new command over the same construct — structural commands (`router`, `when`, `then`) compose primitives ^c20260710-4u
-- [DC] arg flags are trait annotations, orthogonal to the command list: a command gives core semantics, annotations layer constraints on the body (`--from` inbound dependency, `--intent` derivation rule, `--to` the prose explicitly sends the agent to another surface — carriable by any construct) ^c20260711-0u ^c20260712-7u
-- [PR] every annotation is a checkable constraint: the CPU checks its decidable face (resolution, structure, hashes); agents check its semantic face (does the body honor the declaration) — annotations are to prose what types are to code ^c20260711-0u
-- [DC] trait semantics are reserved by JSONPath-style paths: `*.key` reserves the key's meaning on every command, `command.key` scopes it to one; validation is registry-driven, and a scoped semantic that generalizes is promoted up the path ^c20260711-0u
-- [DC] any declaration may carry a `^label` token — identity riding the construct (`*.label` spelled inline); `label ^x` is the explicit command for a labeled literal (no command-less declarations); owned ends accept either owner, `end-<command>` or `end-^label`, the label matching exactly ^c20260711-1u ^c20260712-7u
-- [DC] labels extend the address grammar — `@path^label` (labeled span; the `@` agent-maintained), `^label` (file-local); a `--from` on a labeled span hashes only that span, so drift is heading-independent and fine-grained ^c20260711-1u ^c20260712-10u
-- [DC] labels are src-only machinery, stripped at compile — distinct from `Anchory.Anchor`s (global evidence links that survive in the text); renaming a label breaks importers, caught by the dead-link check ^c20260711-1u
-
-****
-
-## Skillware.Recipe
-
-- [DF] `Skillware.Recipe` is the inline declaration form of a `Module.Import`: a `$kw:` declaration in a `.skw.md` src, carrying the verb (binding), `--from` targets, and `--intent` (the `Derivation.Rule` context), with the produced body directly below ^c20260710-2u ^c20260712-7u
-- the recipe and its current solution live side by side in src — declaration, rule, and result in one place ^c20260710-2u
-- compile is deterministic: the toolchain strips the callout machinery; the runnable surface carries only the produced content ^c20260710-2u
-- [RJ] `Import.Manifest` — a separate flat artifact per consuming module (`build/<...>-imports.md`) — was superseded before implementation: declarations live inline; `lock.json` is the machine record ^c20260709-13u ^c20260710-2u
-- [DC] recast by `Skillware.Construct`: the recipe is the section-scoped v1 instance of the general declaration+body form; v2 makes the construct position-free with enforced owned ends ^c20260710-4u
 
 ****
 
@@ -170,13 +105,21 @@
 
 ****
 
-## Surface.Annotation
+## Skw.Annotation
 
-- [DF] a `Surface.Annotation` is the skw content of a file — the machinery that states extra things *about* the surface it annotates, next to the content it governs ^c20260711-4u
-- it is a deliberate subset: the fragment's fundamentals, never an exhaustive dependency capture ^c20260711-4u
-- it answers one question: *what context can't I miss to understand this fragment?* ^c20260711-4u
+- [DF] `Skw.Annotation` is the unit of skw: one annotation attached at an `Annotation.Point`, stating extra things *about* the content it governs ^c20260711-4u ^c20260719-1u
+- [DC] its written form is the construct: a `$kw:` declaration line — a CLI-style command, optional `^label`, `--flag` traits — with `$kw.` belonging lines, a flat native body, and a mandatory owned closer ^c20260710-4u ^c20260712-7u
+- [DC] every machinery line carries the sigil, riding the host's carrier (blockquote in markdown, comments in code) — carrier-neutral, nothing skw inferred from bare host syntax ^c20260712-7u
+- [DC] the flag vocabulary separates by what each thing binds: deps (`--from`/`--quote`) bind the governed content to its sources; supps (`--supp`) ground the annotation itself; `--intent` carries the derivation context ^c20260719-0u ^c20260719-1u
+- [PR] every annotation is a checkable constraint: the CPU checks its decidable face (resolution, structure, hashes); agents check its semantic face (does the body honor the declaration) — annotations are to prose what types are to code ^c20260711-0u
+- it is a deliberate subset: the fragment's fundamentals, never an exhaustive dependency capture — it answers *what context can't I miss to understand this fragment?* ^c20260711-4u
 - it is a satellite index of the design — a leaf citing the canonical index by `Dotted.Name`; the hub stays the center ^c20260711-4u
 - it is a local grounding recipe: an agent landing on the fragment loads the declared dependencies and holds the minimal sufficient context by declaration, not by search ^c20260711-4u
+- the command vocabulary is the language's growth axis: new capability is a new command over the same construct ^c20260710-4u
+
+### meta
+
+- aliases: `Skillware.Construct`, `Surface.Annotation`
 
 ****
 
@@ -650,7 +593,7 @@
 ## Skw.Network
 
 - [DF] `Skw.Network` is the graph of annotated surfaces linked by the relationships the skw system defines between them ^c20260715-6u
-- [DC] relationships are explicit or implicit: explicit ones are the declared links a `Module.Import` carries; implicit ones are derived by the system, such as support-set intersection between chat anchors ^c20260715-6u
+- [DC] relationships are explicit or implicit: explicit ones are the declared links a `Skw.Dependency` carries; implicit ones are derived by the system, such as support-set intersection between chat anchors ^c20260715-6u
 - [DC] the network is computed from consumer-side declarations — a target never registers its dependents; followers are derived, so an imported surface stays ignorant of its importers ^c20260715-6u
 - [PR] the network's job is notification, not judgment: when a surface changes, the `CPU.Program` notifies every surface the network links to it — a purely mechanical fan-out along the edges ^c20260715-6u
 - [DC] an `Agentic.Program` interprets each notification: whether the change is benign or a real change to propagate is a semantic verdict only the agent carries ^c20260715-6u

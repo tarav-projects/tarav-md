@@ -241,12 +241,26 @@
 
 ****
 
+## User.Gate
+
+- [DF] a `User.Gate` is an `Accountable.Assertion` whose claim is about the `Chat.Surface`: evidence of a declared kind can be found in the gated object's dossier ^c20260719-12u ^c20260719-15u
+- [DC] one declaration, two systems read it — **flow** (pre-evidence): the declaration shapes agent behavior before any evidence exists — stop, surface the thing, spend `User.Attention`, wait; runtime conversation control, honored in-session; **audit** (post-evidence): the recomputable assert over the dossier — checker territory, run any time, by anyone ^c20260719-13u
+- [DC] the predicate family — existence: a turn of the declared `Turn.Type` is in the support set; correspondence: the turn's content matches the surface content; order: the evidence sequence is right — an approval that predates the current wording gates nothing ^c20260719-12u
+- [DC] gate strength is predicate composition: `Verbatim.User.Gated` = existence + correspondence + order; `Edition.Trigger.User.Gated` = existence only ^c20260719-15u
+- [DC] gate state is computed from evidence, never stored — invalidation is not an operation, it is recomputation returning failed ^c20260719-14u
+- [PR] the robustness: enforcing the flow is hard; auditing it is cheap — the system does not prevent flow violations, it detects them and the gate invalidates retroactively; design for audit, not for enforcement ^c20260719-14u ^c20260719-15u
+- [DC] graded checkability: turn-exists, turn-typed, timestamp-order are CPU; "this turn really approves this content" is the agent floor ^c20260719-15u
+- [DC] gates attach to any assertable object — index lines, blocks, skw annotations: gates-as-skw-primitive is this concept applied there, not a separate design ^c20260719-15u
+
+****
+
 ## Edition.Trigger.User.Gated
 
 - [DF] `Edition.Trigger.User.Gated` is the convenience gate: the user explicitly initiates the edit workflow — the agent never starts writing mid-conversation on its own ^c20260716-6u
 - [PR] its value is workflow control: the user owns the conversation tempo; capture does not interrupt discussion ^c20260716-6u
 - [DC] auditable but low value: the triggering turn is on the chat like any other, but nothing rides on checking it — a skip's worst case is a premature draft ^c20260716-6u
 - [DC] distinct from `Verbatim.User.Gated`, which gates what is written rather than when
+- [DC] an instance of `User.Gate` — its assert composes existence only, the weak gate ^c20260719-15u
 - asking "should I write this?" is allowed; opening an editor without approval is not
 - a surface can apply one or both gates independently
 
@@ -266,6 +280,7 @@
 - [DC] the verbatim evidence precedes or is contained in the approval turn: the agent shows the exact line in chat, the user approves — the lint searches at-or-before the approval turn, and a miss is a linter POI for agent judgment, not a failure ^c20260716-7u
 - [PR] the gate aligns both directions: user → index carries authority; system → user shows the user every line, refreshing their model of the system bit by bit ^c20260716-7u
 - [DC] implies `Edition.Trigger.User.Gated` — gated content necessarily has a gated trigger
+- [DC] an instance of `User.Gate` — its assert composes existence + correspondence + order, the strong gate ^c20260719-15u
 - the agent proposes; the user settles — no silent rewrites or unreviewed content
 - supports `Hugentic.Alignment` — the review point is where human judgment shapes the surface
 

@@ -12,7 +12,7 @@ The operational spec of the Skillware source language. This module is normative 
 
 ## Construct Grammar
 
-The language has one syntactic form — the `Skillware.Construct`: a `$kw:` declaration, `$kw.` belonging lines, a flat markdown body, and a mandatory owned closer. Every machinery line carries the sigil, riding the host carrier (blockquote in markdown):
+The language has one syntactic form — the construct, the written form of a `Skw.Annotation`: a `$kw:` declaration, `$kw.` belonging lines, a flat markdown body, and a mandatory owned closer. Every machinery line carries the sigil, riding the host carrier (blockquote in markdown):
 
 ```md
 ## Grounding Model
@@ -47,7 +47,7 @@ Position-free leaves — any number per section, anywhere; a construct may not o
 
 - `text` — a tagged literal: plain content, no binding; the tag only makes the span addressable (`label ^x` is its labeled spelling)
 - `copy` — the body is the target's expanded body, verbatim; `agentos skillware build` refreshes it mechanically in src (CPU-owned); flags: `--from` (exactly one)
-- `derived` — the body is the agent-authored current solution of the construct's `Derivation.Rule`; the build never touches it — only an agentic re-derive changes it; flags: `--from` (repeatable), `--intent` (the rule's context, free prose)
+- `derived` — the body is the agent-authored current solution of the construct's derivation rule; the build never touches it — only an agentic re-derive changes it; flags: `--from` (repeatable), `--intent` (the rule's context, free prose)
 
 ## Structural Commands
 

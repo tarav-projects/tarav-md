@@ -24,6 +24,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - "as software" means the artifacts agents run gain engineering structure — modules, dependencies, builds, versions, lineage — so they are reused and evolved rather than written once and forked
 - a development toolchain of builders and checkers, spanning agentic and `CPU.Impl` work, moves package maintenance off the human
 - it is a discipline realized by capabilities, not a single mechanism — **skw**, the general annotation language and its backends, is the system realizing it; this skill carries the capabilities
+- skw is the integration fabric: declared dependencies between any two project surfaces make maintenance and change propagation explicit; touch is an orthogonal axis — any skw object may be user-grounded or not, and the `Touched.Surface.Index` is the computed set of touched things
 
 > $kw. end-derived
 

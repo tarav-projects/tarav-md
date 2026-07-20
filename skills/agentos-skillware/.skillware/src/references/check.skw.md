@@ -17,7 +17,7 @@ Report whether a skill's Skillware-managed surfaces still hold, and prescribe th
 ## POI Kinds
 
 > $kw: derived
-> $kw. --from Import.Management
+> $kw. --from Skw.Dependency
 > $kw. --from Poi.Linter
 > $kw. --from Poi.Bless
 > $kw. --intent expand the blocks' check realization into the operational
