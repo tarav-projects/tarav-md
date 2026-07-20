@@ -7,8 +7,8 @@ Use this module to bring an existing hand-owned skill under Skillware management
 1. **Inventory.** Read the whole skill — every module, in full. Adoption without a full read produces a decorative graph.
 2. **Parity contract.** Decide what the compiled surfaces must equal. For a pure adoption: each compiled file equals the current hand file byte-for-byte (compile normalization: blank-run collapse and trim). State any intended deltas up front — they are the only acceptable diffs.
 3. **Graph extraction.** Identify the real span-level relations (`references/author.md`): which sections restate an index block, digest another module's section, or duplicate a span verbatim. Everything else is a root.
-4. **Author srcs.** Per adopted file, create the mirrored `.skw.md`: passthrough for roots (verbatim content), recipes for the identified relations with the current content as the derived body. Create `.skillware/skillware.json` if `Dotted.Name` deps exist. Delete hand files being superseded by compiled ones *before* building.
-5. **Build and verify.** `agentos skillware build`, then `check` (expect all-ok), then the mechanical parity diff:
+4. **Author srcs.** Per adopted file, create the mirrored `.skw.md`: passthrough for roots (verbatim content), recipes for the identified relations with the current content as the derived body. Create `.skw/skw.json` if `Dotted.Name` deps exist. Delete hand files being superseded by compiled ones *before* building.
+5. **Build and verify.** `agentos skw build`, then `check` (expect all-ok), then the mechanical parity diff:
 
    ```
    diff <compiled-file> <original-file>

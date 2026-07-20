@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "6813638c45ef39f89d9f84a10ae878110d3646f773a8d995374a8abb53b09b14",
+      "output_sha256": "50e53daba38c33918ad2569a277f6c2c4e9e2dc000ac063a134ffc11d7060b9a",
       "recipes": [
         {
           "heading": "What Skillware Is",
@@ -15,11 +15,11 @@
       ]
     },
     "references/adopt.md": {
-      "output_sha256": "c4850a05ca50e9b9aff4f02612369859fcf8a0e1e92109f8ec58350fea8c96a7",
+      "output_sha256": "0fe5f37b10c48c4d848c0f00cf55ce39503c20a5816b941cf51c8b2100998c4f",
       "recipes": []
     },
     "references/author.md": {
-      "output_sha256": "aeb6d0a62ad11ee92736583579cbe012d6ae58cd33b1e2a0688840bcb1960da6",
+      "output_sha256": "948ce4e63c5f370a6a81c67bbc30e97e498e0b80e70652c02073d6ddc3a8b6f0",
       "recipes": [
         {
           "heading": "Division Of Labor",
@@ -32,11 +32,11 @@
       ]
     },
     "references/build.md": {
-      "output_sha256": "e4aee322b2c266a22c7f6e94e52566c1a464003f94b1c131f9a9452fa3474533",
+      "output_sha256": "367d889e8c3860d9b4d8db3e02448be5fde11a4cb0acf455694764854d52c5e9",
       "recipes": []
     },
     "references/check.md": {
-      "output_sha256": "bc83d881f222ababf475d3bf936d092bd3dddf9d7ba6659d826f1ba5c7f4ae23",
+      "output_sha256": "b0ac48363f66581ee95eb1305902797edbc132d569dc138237538f8860498691",
       "recipes": [
         {
           "heading": "POI Kinds",
@@ -51,12 +51,12 @@
       ]
     },
     "references/doctrine.md": {
-      "output_sha256": "d97578ecec4b469accdcaeeb07e5d2547c6e617e972587c4aaf97be39e7308e8",
+      "output_sha256": "ac8860b3465fa5779bee8c503c0f3b72b3940c42a3a2196d2c3105f71464c5a2",
       "recipes": [
         {
           "heading": "The Model",
           "verb": "derived",
-          "body_sha256": "e824615663bce914a8a94a0a5a280c1ca282be96cf35db81089e4e6670536300",
+          "body_sha256": "1784a6a76ed81da5e54cf47b4dab9ee4058d2851ca0dc4392268daf5ed66f28b",
           "deps": {
             "Agentos.Skillware": "0c9dbbcf846f31d206eb16dfa8fd700033abd9f3b4efb76edc006b72bf337619",
             "Skill.Runnable.Surface": "4a4e47af449430fdd12978fc671f689e68a5cd084f34369117b65c10d14f10d9",
@@ -76,7 +76,7 @@
       ]
     },
     "references/lang.md": {
-      "output_sha256": "7011668cb79a0595f4c6895d6ec63b307494124ed536ecaa7fd353c14530a06b",
+      "output_sha256": "66191571e37fd6d1c0d7659bbe58ffd30208ec75fc52cdb7b5d293d1f17b9b68",
       "recipes": []
     }
   },

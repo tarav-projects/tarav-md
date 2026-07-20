@@ -1,6 +1,6 @@
 ---
 name: agentos-skillware
-description: "Workflow-neutral Package.Aux.Skill for the Skillware subsystem of agentos-pkg — skills developed as software, compiled from .skillware/src sources. USE WHEN understanding Skillware, authoring or adopting .skw.md sources, building managed surfaces, or checking drift."
+description: "Workflow-neutral Package.Aux.Skill for the Skillware subsystem of agentos-pkg — skills developed as software, compiled from .skw/src sources. USE WHEN understanding Skillware, authoring or adopting .skw.md sources, building managed surfaces, or checking drift."
 ---
 
 # agentos-skillware
@@ -47,7 +47,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 | Situation | Module |
 |---|---|
 | When the caller is new to Skillware, needs the mental model, or asks conceptual questions — what the system is, why two surfaces, how derivation works | `references/doctrine.md` |
-| When the caller needs exact syntax — the construct grammar, commands, arg lines, owned ends, locator forms, `skillware.json`, what the compiler does | `references/lang.md` |
+| When the caller needs exact syntax — the construct grammar, commands, arg lines, owned ends, locator forms, `skw.json`, what the compiler does | `references/lang.md` |
 | When the caller is writing or restructuring src — deciding roots vs derived consumers, declaring imports, crafting an `--intent`, judging whether a relation earns an import | `references/author.md` |
 | When the caller wants an existing hand-owned skill brought under Skillware management | `references/adopt.md` |
 | When the caller wants surfaces produced or refreshed from src, or asks about the lock or the build's mechanics | `references/build.md` |
@@ -72,7 +72,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 ## When To Load This Skill
 
-- when working on or inside any `.skillware/` build surface
+- when working on or inside any `.skw/` build surface
 - when authoring, building, checking, or adopting Skillware-managed skills
 - when a `check` POI needs interpreting or acting on
 - when discussing or modifying the Skillware system design itself

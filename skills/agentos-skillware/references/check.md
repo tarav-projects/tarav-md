@@ -7,7 +7,7 @@ Report whether a skill's Skillware-managed surfaces still hold, and prescribe th
 1. Run the CPU linter and take its output as given:
 
    ```
-   agentos skillware check --skill <path> [--json]
+   agentos skw check --skill <path> [--json]
    ```
 
 2. The output is a POI report: a once-per-kind legend, then bare rows — `[kind] target :: key (hash)`. A POI marks a place worth attention, nothing more: it may be wrong, and the linter is deliberately cheap — inspect before acting.
@@ -51,7 +51,7 @@ For each `derived-stale` POI where the drift is real:
 
 1. Open the src file; read the recipe's `--from` targets (current state) and its `--intent`.
 2. Re-derive the body in src: the intent is the rule, the fresh targets are the inputs.
-3. `agentos skillware build`, then `check` — the body change re-blesses the dependency hashes; a clean run ends the pass.
+3. `agentos skw build`, then `check` — the body change re-blesses the dependency hashes; a clean run ends the pass.
 4. For a gated package, the re-derived wording passes the package's edit gates before landing.
 
 ## The Bless Act
@@ -59,7 +59,7 @@ For each `derived-stale` POI where the drift is real:
 When the dependency change is benign — the current body already transforms the new state faithfully — accept it explicitly instead of editing around the flag:
 
 ```
-agentos skillware bless --skill <path> --poi <hash>
+agentos skw bless --skill <path> --poi <hash>
 ```
 
 - the hash comes from the check row; it binds to the exact current situation — if the dependency moves again, that is a new POI with a new hash

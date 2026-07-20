@@ -4,11 +4,11 @@ The operational spec of the Skillware source language. This module is normative 
 
 ## The Src Surface
 
-- `<skill>/.skillware/src/` mirrors the skill tree: `src/references/ground.skw.md` compiles to `references/ground.md` (strip `.skw`); `src/SKILL.skw.md` to `SKILL.md`
+- `<skill>/.skw/src/` mirrors the skill tree: `src/references/ground.skw.md` compiles to `references/ground.md` (strip `.skw`); `src/SKILL.skw.md` to `SKILL.md`
 - no `.skw.md` = the file is hand-owned; Skillware never touches it — adoption is per-file, a skill can be partially managed
-- `.skillware/skillware.json` — settings: `{"depots": [...]}` for `Dotted.Name` resolution, paths relative to the skill root
-- `.skillware/lock.json` — build output (output and per-construct hashes); engine-owned, never hand-edit
-- `.skillware/AGENTS.md` — engine-stamped on every build, overwrite-always; redirects agents outside skillware activity to src + toolchain
+- `.skw/skw.json` — settings: `{"depots": [...]}` for `Dotted.Name` resolution, paths relative to the skill root
+- `.skw/lock.json` — build output (output and per-construct hashes); engine-owned, never hand-edit
+- `.skw/AGENTS.md` — engine-stamped on every build, overwrite-always; redirects agents outside skillware activity to src + toolchain
 
 ## Construct Grammar
 
@@ -46,7 +46,7 @@ Hand-written tail in the same section, outside the produced body.
 Position-free leaves — any number per section, anywhere; a construct may not open inside a primitive body:
 
 - `text` — a tagged literal: plain content, no binding; the tag only makes the span addressable (`label ^x` is its labeled spelling)
-- `copy` — the body is the target's expanded body, verbatim; `agentos skillware build` refreshes it mechanically in src (CPU-owned); flags: `--from` (exactly one)
+- `copy` — the body is the target's expanded body, verbatim; `agentos skw build` refreshes it mechanically in src (CPU-owned); flags: `--from` (exactly one)
 - `derived` — the body is the agent-authored current solution of the construct's derivation rule; the build never touches it — only an agentic re-derive changes it; flags: `--from` (repeatable), `--intent` (the rule's context, free prose)
 
 ## Structural Commands
@@ -81,7 +81,7 @@ A `--from` value is one of:
 
 - **`path#Region`** — a heading-section body in a file, resolved against the src root first, then the skill root. The region is the section's body: heading excluded, subsections included. A `.skw.md` target is recursively expanded before extraction (innermost first); expansion cycles are an error naming the chain. A plain (non-skw) file yields the raw region body.
 - **`path^label`** — a labeled span in a src file; **`^label`** alone is file-local (the current src). Labels are heading-independent, so the import survives section renames, and the dependency hash covers only the span — a consumer drifts with its fragment, not the file. Labels live only in src machinery (stripped at compile), so they address src files exclusively; renaming a label breaks importers, which the unresolvable-`--from` POI catches.
-- **`Dotted.Name`** — an index block resolved in the configured depots (`skillware.json`); the value is the block's kernel-line body.
+- **`Dotted.Name`** — an index block resolved in the configured depots (`skw.json`); the value is the block's kernel-line body.
 
 ## Compilation
 

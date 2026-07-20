@@ -1,11 +1,11 @@
 # agentos-skillware --dev (build)
 
-Make a skill's Skillware-managed surfaces match their sources. The builder never generates a surface from scratch — building means compiling `.skillware/src/` and reconciling drift.
+Make a skill's Skillware-managed surfaces match their sources. The builder never generates a surface from scratch — building means compiling `.skw/src/` and reconciling drift.
 
 ## Commands
 
-- `agentos skillware build --skill <path>` — the deterministic compile: refresh `copy` bodies in src, compile every `.skw.md` to its target, write `lock.json`, stamp `.skillware/AGENTS.md`
-- `agentos skillware status --skill <path>` — inventory: managed files, recipe counts, lock state
+- `agentos skw build --skill <path>` — the deterministic compile: refresh `copy` bodies in src, compile every `.skw.md` to its target, write `lock.json`, stamp `.skw/AGENTS.md`
+- `agentos skw status --skill <path>` — inventory: managed files, recipe counts, lock state
 - both take `--json` for machine-readable output
 
 ## What Build Does
@@ -26,4 +26,4 @@ Make a skill's Skillware-managed surfaces match their sources. The builder never
 - all work happens in src — never edit a compiled file directly; `check` reports hand edits as findings
 - src edits are workspace edits; content reaches the runnable surface only through `build`
 - writing to src for a gated package still follows the package's own edit gates — propose, get approval, then rebuild
-- after a build, run `agentos skillware check` — a build that leaves `derived-stale` flags has surfaced agentic work, not completed it (`references/check.md`)
+- after a build, run `agentos skw check` — a build that leaves `derived-stale` flags has surfaced agentic work, not completed it (`references/check.md`)
