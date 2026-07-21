@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "files": {
+    "SKILL.md": {
+      "output_sha256": "a44cb227176bbf92adee8173ded0203668829c5a0dd040827bd44213105bb417",
+      "recipes": []
+    },
+    "references/index-notes.md": {
+      "output_sha256": "3af5bdbb9835023cfc54f4982a1de8a75a7013d7f062709e68960339b5601a17",
+      "recipes": []
+    },
+    "references/numbering.md": {
+      "output_sha256": "0b9bb97401d3e6ced81a842813158bd6b7530b11ea0b91ef640da59e1b453eb9",
+      "recipes": []
+    },
+    "references/ontology-registry.md": {
+      "output_sha256": "ba159ddd6b56355b5564fa4372b5aff6132d8e1918661fa06f26d47ec86b5dc4",
+      "recipes": []
+    },
+    "references/package-orientation-prompt.md": {
+      "output_sha256": "3dc738e35f5b9f6300b5994554a792793c371be608814b9b8e764d26edc229e1",
+      "recipes": []
+    },
+    "references/project-identity.md": {
+      "output_sha256": "ed8d07841d5e5d94d63abf4bc4f2c6817a5841ecf846cd171d648b69f1386800",
+      "recipes": []
+    },
+    "references/reserved-notes.md": {
+      "output_sha256": "08a7749220099fd975968fd334437e452bd3e616fb323bd5122652bb7f53ee94",
+      "recipes": []
+    },
+    "references/surface-alignment-drift.md": {
+      "output_sha256": "310e38bac575af432f5a5226b2d57195721814fe399a0b46efbe585fca551462",
+      "recipes": []
+    },
+    "references/surface-presence.md": {
+      "output_sha256": "a373d84bb32a408d38cadf228c713d3b2f6d5735d6ba2c35739f5a59cdd262e9",
+      "recipes": []
+    }
+  },
+  "blessings": []
+}

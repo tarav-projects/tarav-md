@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "files": {
+    "SKILL.md": {
+      "output_sha256": "74f73f89eb6ebbfcff1ff6e8d8674d47c1701ed1a7ed1987edf324e39be3462f",
+      "recipes": []
+    },
+    "references/role-chat-grounding.md": {
+      "output_sha256": "455830485bd46a042298f94b2227a019c54858399f84114ea387a0669c0a407a",
+      "recipes": []
+    }
+  },
+  "blessings": []
+}

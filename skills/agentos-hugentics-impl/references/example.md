@@ -12,6 +12,13 @@ Adapt the wording and section weight to the current request.
 - **source:** direct user request plus current repository inspection
 - **support set:** ordering turn ^c<YYYYMMDD>-<N>u, readiness approval ^c<YYYYMMDD>-<M>u (chatlas anchory)
 
+## Impl.Agendix
+
+- **touched (index):** `Project.Boundary` — the resolution seam the loader must honor ^c<YYYYMMDD>-<N>u
+- **touched (chat):** override-scope decision — project values win only for the active command ^c<YYYYMMDD>-<P>u
+- **structural:** none — no surface is derived from another in this change
+- **open space:** cache/reload behavior has no index home yet — left provisional, unanchored
+
 ## Impl.Index
 
 ### Project.Configuration.Scope

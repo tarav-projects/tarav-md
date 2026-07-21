@@ -103,14 +103,29 @@ See `references/example.md` for a concrete artifact sample.
 
 > $kw. end
 
-### Grounding
+### Impl.Agendix
 
-The `Impl.Req` carries a `Chat.Support.Set`: trailing `Anchory.Anchor`s rooting it in the user turns that authorize and shape it (see `agentos-anchory-pkg` for minting; discipline-only — notes are not yet linted).
+> $kw: --from Annotation.Authority --from Skw.Network --from Skw.Address.Schema --from Skw.Annotation --from Open.Space
+> --intent the living grounding reservoir on the Impl.Req: what it is,
+> --cont the designer's before/after dual-level capture, and the record-by-kind rule
 
-- mint on the ordering turn (the `--design` request) and on the readiness approval; cite them in `Impl.Abstract`
-- a `Design.Decisions` line settled by a specific user turn trails that turn's anchor; the rest are covered by the gate stamp — coarse but honest, upgradable
-- in `Autonomous` mode the invocation turn is the gate; one anchor may cover the artifact
-- wildcard or unresolvable citations are worse than none — every written anchor must resolve
+The `Impl.Req` carries a living **`Impl.Agendix`**: the touched-authority reservoir the implementation grounds against. It accumulates ungated, the way the index agendix does, and is never the durable home of what it holds — durable grounding survives on the code, not here (see `references/execute.md`). The `Impl.Agendix` is the working reservoir the executer both consumes and extends.
+
+The designer captures into it **twice, bracketing the write** — before, from the design chat that shaped the plan; after, grounding the produced artifact. Because it holds the design chat live, the designer grounds at **both levels**:
+
+- **chat → touched**: mint `Anchory.Anchor`s on the user turns that authorize and shape the plan — the ordering turn (the `--design` request), the readiness approval, and each turn that settles a `Design.Decisions` line.
+- **index → touched**: cite the index blocks the implementation must honor, each addressed by its `Skw.Address.Schema`.
+
+Record every dependency by its `Skw.Network` kind:
+
+- **structural** — the surface is derived or copied from another surface; self-authorizing, no grounding needed (the derivation is the evidence).
+- **touched** — a link to a touched index block or user turn carrying a decision; it carries `Annotation.Authority`, and each `--from` addresses another annotation by its `Skw.Address.Schema` — to link any point, fence it with a `Skw.Annotation` and reference its address.
+
+Discipline:
+
+- every written anchor and address must resolve — wildcard or unresolvable citations are worse than none.
+- in `Autonomous` mode the invocation turn is the coarse gate; one anchor may cover the artifact, with finer touches anchored as they settle.
+- where the plan reaches territory with no index home, that is `Open.Space` — leave it provisional and unanchored, never a logged gap.
 
 ## Updating And Feedback
 

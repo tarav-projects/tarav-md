@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "files": {
+    "SKILL.md": {
+      "output_sha256": "2594d3b88dfab0148547b59c129efc64107144136c1db8e393d2020583bff394",
+      "recipes": []
+    },
+    "references/alignment-loop.md": {
+      "output_sha256": "0363f25cf6d987b0c578f7deebfba0f71d9fff336489f4e12cce20810634e6c2",
+      "recipes": []
+    },
+    "references/artifact.md": {
+      "output_sha256": "7b3bf4f008e345d22d1fc75b15fdbd8ad976f2cf75c57ce0d9bcda401cec85ac",
+      "recipes": []
+    },
+    "references/backend-artifact.md": {
+      "output_sha256": "6986597acf8af357477f89a75111c5904d442e88f0a0810081b0d24cb786cfcf",
+      "recipes": []
+    },
+    "references/backend-inchat.md": {
+      "output_sha256": "6d04290fc138d6667a7dfecc5b606a052b5204c3469a1c1a2816fe595a7f56fc",
+      "recipes": []
+    },
+    "references/capture-audit.md": {
+      "output_sha256": "66f6346f3ca4ad903febeaa85f53c071d6f7cc95a72041cc12bed80151a718c1",
+      "recipes": []
+    },
+    "references/concept-discovery.md": {
+      "output_sha256": "3b5b2d24831dfb694cb08975142fd0cdceec4cda7174ab7470db98b25e035c4e",
+      "recipes": []
+    },
+    "references/consolidation-plan-example.md": {
+      "output_sha256": "f213fa814a9f25ac6862fe99e1cc5218c45df2ba7528da1cb370b5ce3979633d",
+      "recipes": []
+    },
+    "references/design-anti-patterns.md": {
+      "output_sha256": "0cbbd95ddfb0708a85e3d9bcc29d2b34060da3e69d83e45deb07234905484c50",
+      "recipes": []
+    },
+    "references/design-index.md": {
+      "output_sha256": "66d39ec591ad63d328e2261cdbe446a47bf152e537d0f0ff0919c392c260fa8a",
+      "recipes": []
+    },
+    "references/discussion.md": {
+      "output_sha256": "609a8041bc4330b4fc0c8c718f48e223721184f6870322901ab777d7e589364a",
+      "recipes": []
+    },
+    "references/impl-req.md": {
+      "output_sha256": "56b4f1e982eb6f548519d0d09e2cc421cc7e8e1b9eac040e5c45d674e8dd78b1",
+      "recipes": []
+    },
+    "references/index-view.md": {
+      "output_sha256": "20ff4c9d10ec7b96d6b43b42c65e16b433e5562938f24bdfc18fc19a9880b0f6",
+      "recipes": []
+    },
+    "references/interview.md": {
+      "output_sha256": "572b469ad1ec637cd44d458fc12d48257e0bfd0dc98a61f2be8299de79f65be2",
+      "recipes": []
+    },
+    "references/session-abstract.md": {
+      "output_sha256": "e6331a213b74df74ae7f2ed0a46201c55fe75f106678c928fe08f528c2773da6",
+      "recipes": []
+    },
+    "references/session-interruptions.md": {
+      "output_sha256": "b6ccf783723e5d324ef0e9510f916f7d2de613f4cb9db29cb18c0e8d494bfc18",
+      "recipes": []
+    },
+    "references/session-log.md": {
+      "output_sha256": "21e3c16a1995a560bce7388d344865d131a8f700bee4a8dfa5e5c3ad27420de6",
+      "recipes": []
+    },
+    "references/session-notes.md": {
+      "output_sha256": "c05bcc750250498250c95b72d43b491379cfb759155bb7d6514e491a59fb676f",
+      "recipes": []
+    },
+    "references/status-report.md": {
+      "output_sha256": "d17883e1c23ae6afc3f7a9fe3ec602d5e0a1e1ac6dab1e02eee4fa19ac5d0b2f",
+      "recipes": []
+    },
+    "references/uncommitted-work.md": {
+      "output_sha256": "75645cd049b800f0edbe56da6ea4ec1696b86599899530809b114b791ace001d",
+      "recipes": []
+    },
+    "references/writing-craft.md": {
+      "output_sha256": "a956865e626c859f4013abcfa7a5592268f693a1fe3d020cc9955e8a233d8b43",
+      "recipes": []
+    }
+  },
+  "blessings": []
+}

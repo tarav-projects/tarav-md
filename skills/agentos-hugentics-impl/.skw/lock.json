@@ -6,7 +6,7 @@
       "recipes": []
     },
     "references/design.md": {
-      "output_sha256": "31380e73e6304c9d0d0c65a3368817d4e359515755134ebe4043828692e47b10",
+      "output_sha256": "1319c36eb7254653dde4bd8289a9df52bf47889c2244fe0091f9b2d4133ce130",
       "recipes": [
         {
           "heading": "^how-loop",
@@ -68,20 +68,21 @@
       ]
     },
     "references/example.md": {
-      "output_sha256": "59aaeb53f56507cd9b768bbaeb2367db69832643ab5310e060470aee101171c1",
+      "output_sha256": "383f92d278260ba2346b7f33ca31c0a7dd8fcb1f5e293ce5e02c419c32aa3cbb",
       "recipes": [
         {
           "heading": "Impl.Req Example",
           "verb": "derived",
-          "body_sha256": "ac48500ea5f8e649456e5972a6c7f187efabeb974ea6c971c613401f799cee4f",
+          "body_sha256": "4d7346dfa2fb6ca1e9bce938efa97e3d4f9d3cc913fd0d42428b2b65e23a1a89",
           "deps": {
-            "references/design.skw.md#Impl.Req Artifact": "6d8b21aa5c9c9d9b1c687d9d39c94e96941e734f2615c73b81f71393f30cfbc6"
+            "references/design.skw.md#Impl.Req Artifact": "15a719a3ef880345b22032bb50d24fbaa697ab3add8d93075eeeb15d3e3cb4f3",
+            "references/design.skw.md#impl-agendix": null
           }
         }
       ]
     },
     "references/execute.md": {
-      "output_sha256": "d319f8cb01b5e4dd05b10f6d24c5ade375bc99b533fe96e222e0424f18af3b24",
+      "output_sha256": "60b1fc1b0b0d64dd8957c5015a5b1242f96edbb4046c5c249787a21f7f41f060",
       "recipes": [
         {
           "heading": "^exec-loop",
@@ -102,10 +103,11 @@
         {
           "heading": "Per-Slice Execution",
           "verb": "derived",
-          "body_sha256": "44ce10b9da763f6efa3a0bc300aa6d1dd5706fae3e407965be79708735525523",
+          "body_sha256": "acfa8a91dcfc7e050982b4831df1f191b75152628369ef81846dc669b608c1c2",
           "deps": {
             "Vertical.Slice": "a670e07fadf5c8183dd3de285fc558dcd9aa06bf86ff24e56e5452cf654afbbc",
-            "RED.GREEN.Test.Suite": "d2b1d3f40cf2b16f1c70127a6f03cc2ddfb93b13023b0fb288c5c76c5ad4c8e5"
+            "RED.GREEN.Test.Suite": "d2b1d3f40cf2b16f1c70127a6f03cc2ddfb93b13023b0fb288c5c76c5ad4c8e5",
+            "Annotation.Point": "5338db50a85c355e30e4cdd8680e2f0933ef7e8c3b000169d9a7199a005b7771"
           }
         }
       ]

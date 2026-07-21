@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "files": {
+    "SKILL.md": {
+      "output_sha256": "2d77f86dc33facd0820a2caddf129d30096dfeaa085eb296c8b939476b139932",
+      "recipes": []
+    }
+  },
+  "blessings": []
+}

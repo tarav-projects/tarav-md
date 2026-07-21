@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "files": {
+    "SKILL.md": {
+      "output_sha256": "266f4020e86cfbe6ad779eb4898b06adff200ea1ea6841cdc1f1024891856dfd",
+      "recipes": []
+    },
+    "references/custom-recommendations/001-skill-frontmatter-use-when.md": {
+      "output_sha256": "7f2c13f85881c5f746e510f5a01fc90a21c69e278b2e3bb7510da196042b434d",
+      "recipes": []
+    },
+    "references/custom-recommendations/README.md": {
+      "output_sha256": "170afb106fc326f3b9ff0e45932baa5208da06b1a96ed5a878f77f260bbc458d",
+      "recipes": []
+    },
+    "references/mining-rubric.md": {
+      "output_sha256": "7967e5ec0b9ceeb59f55e7b5fb523ffa7adc400754291c4aea0efe994c90db18",
+      "recipes": []
+    },
+    "references/source-registry.md": {
+      "output_sha256": "8c0cdcd47b9c99dffa82be2d8e190be193a756ee13e96b2f5d94f17209df4e72",
+      "recipes": []
+    }
+  },
+  "blessings": []
+}

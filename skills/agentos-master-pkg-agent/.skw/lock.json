@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "files": {
+    "SKILL.md": {
+      "output_sha256": "2246c2386b73c5451e09e676de83f7a95a1b9522c6f62d056efb73effb9edde0",
+      "recipes": []
+    },
+    "references/index-grounding.md": {
+      "output_sha256": "af1f390f71e44c263a3949952892bc3deb02eee7cabe3ecbee5c3c3f91a884b7",
+      "recipes": []
+    }
+  },
+  "blessings": []
+}

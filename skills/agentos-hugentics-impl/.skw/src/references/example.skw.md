@@ -1,8 +1,8 @@
 # Impl.Req Example
 
-> $kw: --derived --from references/design.skw.md#Impl.Req Artifact
+> $kw: --derived --from references/design.skw.md#Impl.Req Artifact --from references/design.skw.md#Impl.Agendix
 > --intent one minimal concrete artifact instantiating the spec's
-> --cont structure; adapt wording and section weight to the request
+> --cont structure, including the Impl.Agendix reservoir; adapt wording and weight to the request
 
 Adapt the wording and section weight to the current request.
 
@@ -15,6 +15,13 @@ Adapt the wording and section weight to the current request.
 - **status:** ready for implementation
 - **source:** direct user request plus current repository inspection
 - **support set:** ordering turn ^c<YYYYMMDD>-<N>u, readiness approval ^c<YYYYMMDD>-<M>u (chatlas anchory)
+
+## Impl.Agendix
+
+- **touched (index):** `Project.Boundary` — the resolution seam the loader must honor ^c<YYYYMMDD>-<N>u
+- **touched (chat):** override-scope decision — project values win only for the active command ^c<YYYYMMDD>-<P>u
+- **structural:** none — no surface is derived from another in this change
+- **open space:** cache/reload behavior has no index home yet — left provisional, unanchored
 
 ## Impl.Index
 
