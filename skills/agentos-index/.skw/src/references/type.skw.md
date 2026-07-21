@@ -1,6 +1,6 @@
 # agentos-index --type
 
-> $kw: depends --from Concept.Hardness --from Design.Space --from Design.Variable --from Edition.Trigger.User.Gated --from Index.Line --from Kernel.Line --from Line.Type --from Line.Type.Vocabulary --from Verbatim.User.Gated --from Workflow.Neutral
+> $kw: --from Concept.Hardness --from Design.Space --from Design.Variable --from Edition.Trigger.User.Gated --from Index.Line --from Kernel.Line --from Line.Type --from Line.Type.Vocabulary --from Verbatim.User.Gated --from Workflow.Neutral
 
 Use this module when the caller wants line typing understood, read, or proposed: classifying `Kernel.Line`s with the `Line.Type.Vocabulary`.
 

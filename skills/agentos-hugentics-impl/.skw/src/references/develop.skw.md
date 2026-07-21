@@ -6,10 +6,10 @@ Develop takes an idea or design source through implementation design and executi
 
 ## Workflow
 
-> $kw: derived --from references/design.skw.md^how-loop --from references/execute.skw.md^exec-loop
-> $kw. --intent the two-phase composition contract: design produces the
-> $kw. Impl.Req, the exact artifact is re-read and passed into execution,
-> $kw. one mode preserved across both phases
+> $kw: --derived --from references/design.skw.md^how-loop --from references/execute.skw.md^exec-loop
+> --intent the two-phase composition contract: design produces the
+> --cont Impl.Req, the exact artifact is re-read and passed into execution,
+> --cont one mode preserved across both phases
 
 1. Load `references/design.md`.
 2. Run `Alignment.Loop::How` with the resolved `Input` and `Alignment.Mode`.
@@ -22,7 +22,7 @@ Develop takes an idea or design source through implementation design and executi
 
 The phase transition remains inside the same skill invocation. An `Interactive` checkpoint may pause the call, but resumption continues the same develop workflow rather than requiring a new invocation.
 
-> $kw. end-derived
+> $kw. end
 
 ## Boundary Contract
 

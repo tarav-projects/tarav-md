@@ -1,6 +1,6 @@
 # agentos-index --capture
 
-> $kw: depends --from Agentos.Index.System --from Alignment.Mode --from Capture.Gradient --from Capture.Offer --from Edition.Trigger.User.Gated --from Grounding.Hugentic.Authority --from Hugentic.Concept --from Kernel.Writing --from Not.A.Wall.Of.Text --from User.Touched --from Verbatim.User.Gated --from Workflow.Neutral
+> $kw: --from Agentos.Index.System --from Alignment.Mode --from Capture.Gradient --from Capture.Offer --from Edition.Trigger.User.Gated --from Grounding.Hugentic.Authority --from Hugentic.Concept --from Kernel.Writing --from Not.A.Wall.Of.Text --from User.Touched --from Verbatim.User.Gated --from Workflow.Neutral
 
 Use this module when the user wants the chat's content worked into kernel writing form and landed on index surfaces — "let's capture".
 
@@ -30,12 +30,12 @@ A pass over the chat's uncaptured content, repeated until the content is exhaust
 
 ## Landing
 
-> $kw: derived
-> $kw. --from references/edit.skw.md#Landing Procedure
-> $kw. --from references/agendix.skw.md#Landing Form
-> $kw. --intent digest the two landing paths into the routing summary capture needs:
-> $kw. gate semantics per surface and the form-fit move; do not restate the
-> $kw. procedures — the knowledge modules own them
+> $kw: --derived
+> --from references/edit.skw.md#Landing Procedure
+> --from references/agendix.skw.md#Landing Form
+> --intent digest the two landing paths into the routing summary capture needs:
+> --cont gate semantics per surface and the form-fit move; do not restate the
+> --cont procedures — the knowledge modules own them
 
 Landing form-fits approved material to the named surface, one rung up the `Capture.Gradient`, under that surface's own gate. Approval-ready candidates show the concrete `Landing:` file and `Target:` ontology location before the draft text; the destination can stay loose only while the discussion is still exploratory.
 
@@ -43,7 +43,7 @@ Landing form-fits approved material to the named surface, one rung up the `Captu
 - **agendix** — ungated, user-triggered: the routing verdict is the whole trigger; material lands in kernel form per `references/agendix.md` — lines under routed concepts, candidate blocks intact as path-children — captured but ungated, promotion-ready, reported at the end
 - the grounding anchor for a landed item targets its approval turn — where the user accepted the form; the landing trigger is execution, not evidence
 
-> $kw. end-derived
+> $kw. end
 
 ## Behavior
 

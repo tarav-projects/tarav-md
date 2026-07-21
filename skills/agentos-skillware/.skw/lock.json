@@ -51,32 +51,32 @@
       ]
     },
     "references/doctrine.md": {
-      "output_sha256": "ac8860b3465fa5779bee8c503c0f3b72b3940c42a3a2196d2c3105f71464c5a2",
+      "output_sha256": "64e2fc5e93d646fe82d6f2d2e9722cd8373f082b825b0e990b6584e214b6f811",
       "recipes": [
         {
           "heading": "The Model",
           "verb": "derived",
-          "body_sha256": "1784a6a76ed81da5e54cf47b4dab9ee4058d2851ca0dc4392268daf5ed66f28b",
+          "body_sha256": "aa88f72575f3bdadd07c39be0a7d18a7c9ad47b8ab5fa451d883fb9d8692af1b",
           "deps": {
             "Agentos.Skillware": "4187cdbf49b3585c5b7ebc992cf79b9fc835b7c6c46e90dcdcf8f462500cfe1e",
             "Skill.Runnable.Surface": "4a4e47af449430fdd12978fc671f689e68a5cd084f34369117b65c10d14f10d9",
             "Skill.Build.Surface": "91fd496e297964f88b046695ba1ed5c9e0abd1ad53ce9b5fdcb57129152e8773",
             "Skw.Dependency": "f752daab89e56c8ae67eb120fcd372b1c2618e214737dd1a97f8df029b7ad9b7",
-            "Skw.Annotation": "34e0600ffa618ac0017227926091100d0b11c76256412823f23e4bc5ffdcc1de"
+            "Skw.Annotation": "0124f074d2400303b7a7321053f176f5ca36e47150cad26df14f08941e0b34db"
           }
         },
         {
-          "heading": "The Construct In Brief",
+          "heading": "The Block In Brief",
           "verb": "derived",
-          "body_sha256": "624bebecb7d1243c36a3fe6692948cfcd33f89cb8dff5ba1702efb19bc74669a",
+          "body_sha256": "2dad74014e1345724b2a0dafbffec21c38ad36276d8ed8f64b7b7051c786b9d7",
           "deps": {
-            "references/lang.skw.md#Construct Grammar": "71058a51777a157b0b621b72523de07952a026f6d1fab1e8b9943dd9979f1691"
+            "references/lang.skw.md#Block Grammar": "fba395e7798b7441f2b94245019068a4a09f52ccea1d0a646ad6371ece90bf9e"
           }
         }
       ]
     },
     "references/lang.md": {
-      "output_sha256": "66191571e37fd6d1c0d7659bbe58ffd30208ec75fc52cdb7b5d293d1f17b9b68",
+      "output_sha256": "1fb2300f07056aa140df2e2110da71eb6c74b7e6b64dc2c5b6035b4e14020812",
       "recipes": []
     }
   },

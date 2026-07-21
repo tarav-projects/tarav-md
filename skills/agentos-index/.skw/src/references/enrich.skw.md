@@ -1,6 +1,6 @@
 # agentos-index --enrich
 
-> $kw: depends --from Capture.Offer --from Edition.Trigger.User.Gated --from Index.Enrichment --from Index.Line --from Verbatim.User.Gated --from Workflow.Neutral
+> $kw: --from Capture.Offer --from Edition.Trigger.User.Gated --from Index.Enrichment --from Index.Line --from Verbatim.User.Gated --from Workflow.Neutral
 
 Use this module to run `Index.Enrichment` on a block: spawn a focused discussion with the user that produces new `Touched.Surface`, and land the resulting evidence through the gates.
 

@@ -6,9 +6,9 @@ Operate as the `impl.designer.agent`: inspect the implementation context, design
 
 ## Alignment.Loop::How
 
-> $kw: derived ^how-loop --from Alignment.Loop::How --from Alignment.Loop
-> $kw. --intent operationalize the How specialization of the loop as
-> $kw. designer instructions: the three moves and the continue-until bar
+> $kw: ^how-loop --derived --from Alignment.Loop::How --from Alignment.Loop
+> --intent operationalize the How specialization of the loop as
+> --cont designer instructions: the three moves and the continue-until bar
 
 Run the `How.Design` specialization of `Alignment.Loop`:
 
@@ -18,13 +18,13 @@ Run the `How.Design` specialization of `Alignment.Loop`:
 
 Continue until the implementation design is sufficiently aligned for execution.
 
-> $kw. end-derived
+> $kw. end
 
 ## Alignment.Mode
 
-> $kw: derived --from Alignment.Mode
-> $kw. --intent the mode contract scoped to design-phase checkpoints:
-> $kw. what Interactive prompts on, what Autonomous records instead
+> $kw: --derived --from Alignment.Mode
+> --intent the mode contract scoped to design-phase checkpoints:
+> --cont what Interactive prompts on, what Autonomous records instead
 
 Respect the mode resolved by the driver:
 
@@ -36,13 +36,13 @@ At a design-reality deviation:
 - `Interactive` - stop at the declared checkpoint and ask.
 - `Autonomous` - record the deviation in `Impl.Index` or `Impl.Log` and continue with the most faithful action.
 
-> $kw. end-derived
+> $kw. end
 
 ## Alignment.Checkpoint::Readiness
 
-> $kw: derived --from Alignment.Checkpoint::Readiness
-> $kw. --intent the checkpoint as the pre-write gate list an agent runs
-> $kw. immediately before writing the Impl.Req; keep the no-padding rule
+> $kw: --derived --from Alignment.Checkpoint::Readiness
+> --intent the checkpoint as the pre-write gate list an agent runs
+> --cont immediately before writing the Impl.Req; keep the no-padding rule
 
 Immediately before writing the `Impl.Req`, confirm:
 
@@ -58,7 +58,7 @@ Close each gap yourself where possible. In `Interactive`, raise unresolved gaps 
 
 Do not pad the artifact merely to satisfy the readiness check.
 
-> $kw. end-derived
+> $kw. end
 
 ## Impl.Req Artifact
 
@@ -66,16 +66,16 @@ An `Impl.Req` is the implementation-request artifact passed from design to execu
 
 ### Structure
 
-> $kw: derived --from Impl.Req
-> $kw. --intent the artifact's four parts as a compact list a designer
-> $kw. fills; keep the reevaluation duty on the abstract
+> $kw: --derived --from Impl.Req
+> --intent the artifact's four parts as a compact list a designer
+> --cont fills; keep the reevaluation duty on the abstract
 
 - `Impl.Abstract` - scope, status, and source context; reevaluate it after each design change
 - `Impl.Index` - implementation design alignment as `Design.Index.Blocks`
 - `Execution.Plan` - ordered vertical slices, checks, risks, deviation triggers, acceptance signals, and slice status
 - `Impl.Log` - deviations, blockers, and decisions made in open space
 
-> $kw. end-derived
+> $kw. end
 
 ### Location
 
@@ -85,9 +85,9 @@ An `Impl.Req` is the implementation-request artifact passed from design to execu
 
 ### Writing
 
-> $kw: derived --from Impl.Req --from Vertical.Slice --from RED.GREEN.Test.Suite
-> $kw. --intent the writing rules: cold-reader orientation, references over
-> $kw. pasted code, ordered independently-checkable slices, RED-GREEN where it applies
+> $kw: --derived --from Impl.Req --from Vertical.Slice --from RED.GREEN.Test.Suite
+> --intent the writing rules: cold-reader orientation, references over
+> --cont pasted code, ordered independently-checkable slices, RED-GREEN where it applies
 
 - write for an implementer who did not see the design discussion
 - preserve the user's accepted intent
@@ -101,7 +101,7 @@ The caller's explicit `--design` or `--develop` invocation authorizes writing th
 
 See `references/example.md` for a concrete artifact sample.
 
-> $kw. end-derived
+> $kw. end
 
 ### Grounding
 

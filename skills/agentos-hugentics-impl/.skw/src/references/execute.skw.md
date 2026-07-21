@@ -15,9 +15,9 @@ Load additional language or pattern references when they are added and the targe
 
 ## Alignment.Loop::Exec
 
-> $kw: derived ^exec-loop --from Alignment.Loop::Exec
-> $kw. --intent operationalize the Exec specialization: the recovery check
-> $kw. before execution, and both modes' checkpoint behavior
+> $kw: ^exec-loop --derived --from Alignment.Loop::Exec
+> --intent operationalize the Exec specialization: the recovery check
+> --cont before execution, and both modes' checkpoint behavior
 
 Before execution, run the lightweight execution realignment:
 
@@ -32,7 +32,7 @@ Respect the resolved `Alignment.Mode`:
 - `Interactive` - declared plan-confirmation and deviation checkpoints may prompt the user.
 - `Autonomous` - resolve every checkpoint without prompting and abort only on hard failure.
 
-> $kw. end-derived
+> $kw. end
 
 ## Orientation
 
@@ -47,9 +47,9 @@ Before editing:
 
 ## Alignment.Checkpoint::Executable
 
-> $kw: derived --from Alignment.Checkpoint::Executable
-> $kw. --intent the cold-read executability gate: what to confirm and how
-> $kw. each mode resolves drift found by it
+> $kw: --derived --from Alignment.Checkpoint::Executable
+> --intent the cold-read executability gate: what to confirm and how
+> --cont each mode resolves drift found by it
 
 Read the `Impl.Req` cold and confirm:
 
@@ -60,7 +60,7 @@ Read the `Impl.Req` cold and confirm:
 
 Resolve minor drift yourself. In `Interactive`, raise unresolved mismatches before editing. In `Autonomous`, record mismatches in `Impl.Log` and proceed only when the plan remains faithfully executable.
 
-> $kw. end-derived
+> $kw. end
 
 ## Execution Gate Anchor
 
@@ -79,9 +79,9 @@ This checkpoint is required in both alignment modes. Higher-priority project ins
 
 ## Per-Slice Execution
 
-> $kw: derived --from Vertical.Slice --from RED.GREEN.Test.Suite
-> $kw. --intent the slice loop as numbered steps: one failing boundary test
-> $kw. first where the suite applies, minimal change, per-slice review
+> $kw: --derived --from Vertical.Slice --from RED.GREEN.Test.Suite
+> --intent the slice loop as numbered steps: one failing boundary test
+> --cont first where the suite applies, minimal change, per-slice review
 
 Follow `Execution.Plan` order. For each slice:
 
@@ -95,7 +95,7 @@ Follow `Execution.Plan` order. For each slice:
 
 Do not write all tests up front. Keep each slice independently reviewable and observable.
 
-> $kw. end-derived
+> $kw. end
 
 ## Deviation Handling
 

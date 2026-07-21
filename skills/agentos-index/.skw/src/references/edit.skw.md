@@ -1,6 +1,6 @@
 # agentos-index --edit
 
-> $kw: depends --from Capture.Offer --from Cited.Duplication --from Dotted.Notation --from Edition.Trigger.User.Gated --from Explicit.Namespace --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Edit.Action --from Index.Edit.Modify.Line --from Index.Line --from Index.Ontology --from Kernel.Line --from Line.Type --from Name.As.Index --from Verbatim.User.Gated
+> $kw: --from Capture.Offer --from Cited.Duplication --from Dotted.Notation --from Edition.Trigger.User.Gated --from Explicit.Namespace --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Edit.Action --from Index.Edit.Modify.Line --from Index.Line --from Index.Ontology --from Kernel.Line --from Line.Type --from Name.As.Index --from Verbatim.User.Gated
 
 The knowledge of writing Agentos index and appendix surfaces: gates, structure, naming, block quality, edit actions, and the landing procedure.
 
@@ -37,11 +37,11 @@ This module is a `Workflow.Neutral.Module`: it does not run a workflow — its r
 
 ## Block Independence
 
-> $kw: derived
-> $kw. --from Independent.Reader.Block
-> $kw. --intent the section self-declares Cited.Duplication of the block: restate its
-> $kw. recoverable-cold / no-deixis / positive-statement / Name.As.Index lines
-> $kw. as the drafting checklist every index write enforces
+> $kw: --derived
+> --from Independent.Reader.Block
+> --intent the section self-declares Cited.Duplication of the block: restate its
+> --cont recoverable-cold / no-deixis / positive-statement / Name.As.Index lines
+> --cont as the drafting checklist every index write enforces
 
 `Cited.Duplication` of `[Independent.Reader.Block]` — the quality every drafted block must hold:
 
@@ -53,7 +53,7 @@ This module is a `Workflow.Neutral.Module`: it does not run a workflow — its r
 - define positively — say what the concept is, not what it is instead of
 - extended depth belongs in `appendix/Independent.Reader.Block-appendix.md`
 
-> $kw. end-derived
+> $kw. end
 
 ## Edit Decision Mechanics
 

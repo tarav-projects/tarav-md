@@ -1,6 +1,6 @@
 # agentos-index --link
 
-> $kw: depends --from Anchory.System --from Index.Line --from Index.Linking --from Workflow.Neutral
+> $kw: --from Anchory.System --from Index.Line --from Index.Linking --from Workflow.Neutral
 
 Use this module when a caller needs an `Anchory.Anchor` minted for a chat context: the linking primitive behind grounding lines, inline grounding, and agendix provenance.
 

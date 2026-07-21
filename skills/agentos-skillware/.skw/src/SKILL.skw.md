@@ -15,10 +15,10 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 ## What Skillware Is
 
-> $kw: derived
-> $kw. --from Agentos.Skillware
-> $kw. --intent orientation blurb — restate the discipline block for a caller
-> $kw. meeting the subsystem cold; keep it to the stance, not the mechanics
+> $kw: --derived
+> --from Agentos.Skillware
+> --intent orientation blurb — restate the discipline block for a caller
+> --cont meeting the subsystem cold; keep it to the stance, not the mechanics
 
 - `Agentos.Skillware` is the discipline of treating skills as software — the skill is the unit of software for agents
 - "as software" means the artifacts agents run gain engineering structure — modules, dependencies, builds, versions, lineage — so they are reused and evolved rather than written once and forked
@@ -26,7 +26,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - it is a discipline realized by capabilities, not a single mechanism — **skw**, the general annotation language and its backends, is the system realizing it; this skill carries the capabilities
 - skw is the integration fabric: declared dependencies between any two project surfaces make maintenance and change propagation explicit; touch is an orthogonal axis — any skw object may be user-grounded or not, and the `Touched.Surface.Index` is the computed set of touched things
 
-> $kw. end-derived
+> $kw. end
 
 ## Skill.Arg.Section
 

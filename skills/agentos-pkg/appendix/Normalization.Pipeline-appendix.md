@@ -174,5 +174,7 @@
 - its sections partition a record's whole path space — enumerated canonical interior, registered boundary, declared annotations, banned tombstones — so schema closure ("every path falls in exactly one region") is a mechanical test
 - versioned with the namespace — a version bump implies a corpus migration
 - not an instance validator: a schema checks shape, the contract declares meaning per column — a validator is derivable from it, the reverse is not
+- [CT] the contract governs meaning only — that a canonical path exists for a datum and what it means; it never governs whether an instance filled that path, or sourced it faithfully vs. invented it ^c20260721-3
+- [CT] faithful sourcing is producer discipline (the `Raw.Normalizer`'s), checked against the contract by `Projection.Test` and `Normalization.Coverage` — a constraint the model is measured by, never one it declares ^c20260721-3
 - g702-03 reference implementation: `subcontractor-g70203-db/references/normal-model.contract.json`, loaded by the projection battery
 - chatlas reference implementation: `agentos-chatlas-py/references/normal-model.contract.json`, loaded by the projection and path-source-split engines

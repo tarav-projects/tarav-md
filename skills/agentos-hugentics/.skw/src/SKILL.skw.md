@@ -25,33 +25,27 @@ This skill is workflow neutral. It maps the Hugentic subsystem without entering 
 
 ## Workflow Map
 
-> $kw: router ^phase-router
+> $kw: ^phase-router
 
-> $kw: when
+> $kw: --when
 `What.Design` — the caller wants scoped human-agent convergence on what to build.
-> $kw. end-when
 
-> $kw: then
+> $kw: --then
 Act as `Main.Designer.Agent`; load `hugentics-designer`.
-> $kw. end-then
 
-> $kw: when
+> $kw: --when
 `How.Design` — the caller wants implementation design forked into an `Impl.Req`.
-> $kw. end-when
 
-> $kw: then
+> $kw: --then
 Act as `impl.designer.agent`; load `agentos-hugentics-impl --design`.
-> $kw. end-then
 
-> $kw: when
+> $kw: --when
 `Impl.Exec` — the caller wants an existing `Impl.Req` executed.
-> $kw. end-when
 
-> $kw: then
+> $kw: --then
 Act as `impl.executer.agent`; load `agentos-hugentics-impl --execute`.
-> $kw. end-then
 
-> $kw. end-^phase-router
+> $kw. end
 
 ## Artifacts
 
@@ -69,9 +63,9 @@ Act as `impl.executer.agent`; load `agentos-hugentics-impl --execute`.
 
 ## Alignment.Loop.Interruptions
 
-> $kw: derived --from Alignment.Loop.Interruptions
-> $kw. --intent the interruption vocabulary as a caller-facing list: what can
-> $kw. pause any loop, plus the return-to-session-state guarantee
+> $kw: --derived --from Alignment.Loop.Interruptions
+> --intent the interruption vocabulary as a caller-facing list: what can
+> --cont pause any loop, plus the return-to-session-state guarantee
 
 During any workflow, the user can trigger `Alignment.Loop.Interruptions` — sidequests that pause the current loop; the agent always returns to session state afterward:
 
@@ -81,13 +75,13 @@ During any workflow, the user can trigger `Alignment.Loop.Interruptions` — sid
 - `Artifact.Upgrade` — upgrade session backend
 - `Session.Split` / `Close.Topic` / `Park.Topic` — session management
 
-> $kw. end-derived
+> $kw. end
 
 ## Shared Principles
 
-> $kw: derived --from Development.Principles --from Vertical.Slice --from No.Legacy.Allowed --from Test.At.Boundaries --from Deep.Modules --from Agent.Navigable.Codebase
-> $kw. --intent the principle set as a load list: one recognition line per
-> $kw. principle; definitions stay in the index chapter this points to
+> $kw: --derived --from Development.Principles --from Vertical.Slice --from No.Legacy.Allowed --from Test.At.Boundaries --from Deep.Modules --from Agent.Navigable.Codebase
+> --intent the principle set as a load list: one recognition line per
+> --cont principle; definitions stay in the index chapter this points to
 
 All agents in the harness should have `Development.Principles` loaded. These include:
 
@@ -99,25 +93,25 @@ All agents in the harness should have `Development.Principles` loaded. These inc
 
 See `skills/agentos-pkg/design/102-design.md` for definitions and how they apply to impl-req work.
 
-> $kw. end-derived
+> $kw. end
 
 ## Hugentic Concept Space
 
-> $kw: derived --from Hugentic.Concept
-> $kw. --intent the naming concept and its both-sides test, framed as the
-> $kw. entry to the concept map an agent reasons with
+> $kw: --derived --from Hugentic.Concept
+> --intent the naming concept and its both-sides test, framed as the
+> --cont entry to the concept map an agent reasons with
 
 The concept vocabulary a design agent reasons *with*. Definitions live in the `agentos-pkg` index — this is the map, not the definitions. The index carries no loading policy of its own; this harness is the `Package.Driver` that brings these concepts into context. Reach any one by name (`Name.As.Index` — search the name to find every surface that uses it).
 
 **`Hugentic.Concept`** (`103`) — the qualifier the harness is named for: designed for the human-agent interface. The test — it changes *both* how the human works and how the agent works; if only one side, it is a human tool or an agent tool, not hugentic.
 
-> $kw. end-derived
+> $kw. end
 
 ### Alignment frame — what alignment *is* (`101`–`102`)
 
-> $kw: derived --from Hugentic.Alignment --from Forward.Alignment --from Internal.Alignment --from Progress.Gradient --from Design.Implementation.CoEvolution
-> $kw. --intent one recall line per concept: what alignment is and the
-> $kw. gradient it moves along
+> $kw: --derived --from Hugentic.Alignment --from Forward.Alignment --from Internal.Alignment --from Progress.Gradient --from Design.Implementation.CoEvolution
+> --intent one recall line per concept: what alignment is and the
+> --cont gradient it moves along
 
 - `Hugentic.Alignment` — bringing human + agent to shared understanding of where they are and where they're going
 - `Forward.Alignment` — moving the design point into new territory (the creative act)
@@ -125,20 +119,20 @@ The concept vocabulary a design agent reasons *with*. Definitions live in the `a
 - `Progress.Gradient` — `Forward` + `Internal` combined; the project is never finished, only moving along the gradient
 - `Design.Implementation.CoEvolution` — the rhythm: move forward, then realign surfaces; neither side frozen
 
-> $kw. end-derived
+> $kw. end
 
 ### Communication form — how a designer *speaks* (`100`, `102`, `105`)
 
-> $kw: derived --from Kernel.Writing --from Kernel.Block --from Designer.Turn.Kernel.Form --from Dotted.Notation
-> $kw. --intent one recall line per concept: the block form a designer
-> $kw. speaks in and the naming convention that keys the index
+> $kw: --derived --from Kernel.Writing --from Kernel.Block --from Designer.Turn.Kernel.Form --from Dotted.Notation
+> --intent one recall line per concept: the block form a designer
+> --cont speaks in and the naming convention that keys the index
 
 - `Kernel.Writing` — orthogonal, compressed bullet lines, each an independent fundamental point, direct language — not prose
 - `Kernel.Block` / `Kernel.Block::Design` — every design turn is a *block*: an H2 `Dotted.Notation` heading + orthogonal fundamentals + optional `### meta`
 - `Designer.Turn.Kernel.Form` — the turn shape: render the block, then pair it with the question (`Question / Why-now / Recommended / Evidence`); re-render the same block as it evolves
 - `Dotted.Notation` [`:Param`] — name concepts with dotted names; the name signals "this is a concept" and is the key for `Name.As.Index`
 
-> $kw. end-derived
+> $kw. end
 
 ## Related Concepts
 

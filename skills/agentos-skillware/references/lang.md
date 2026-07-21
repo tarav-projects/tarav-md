@@ -10,74 +10,81 @@ The operational spec of the Skillware source language. This module is normative 
 - `.skw/lock.json` — build output (output and per-construct hashes); engine-owned, never hand-edit
 - `.skw/AGENTS.md` — engine-stamped on every build, overwrite-always; redirects agents outside skillware activity to src + toolchain
 
-## Construct Grammar
+## Block Grammar
 
-The language has one syntactic form — the construct, the written form of a `Skw.Annotation`: a `$kw:` declaration, `$kw.` belonging lines, a flat markdown body, and a mandatory owned closer. Every machinery line carries the sigil, riding the host carrier (blockquote in markdown):
+The language has one syntactic form — the **block**, the written form of a `Skw.Annotation`. A block is `> $kw:` open fence, `> --flag` belonging lines, a native body, and — for a content block — a `> $kw. end` closer. The `$kw` sigil rides the host carrier (blockquote in markdown) only on the two **fence** lines; every other machinery line is a self-marked `--flag`:
 
 ```md
 ## Grounding Model
 
-> $kw: derived ^grounding-model
-> $kw. --from references/search.skw.md^search-model
-> $kw. --from Context.Grounding
-> $kw. --intent adapt the search doctrine to grounding use; keep depot
-> $kw. routing aligned; do not collapse into a copy of search
+> $kw: ^grounding-model --derived
+> --from references/search.skw.md^search-model
+> --from Context.Grounding
+> --intent adapt the search doctrine to grounding use; keep depot
+> --cont routing aligned; do not collapse into a copy of search
 
 - the current derived solution, as ordinary markdown
 - develop it here, in src — never on the compiled surface
 
-> $kw. end-^grounding-model
+> $kw. end
 
 Hand-written tail in the same section, outside the produced body.
 ```
 
-- declaration: `> $kw: <command> [^label] [--flag value …]` — CLI-style, inline when short (`> $kw: copy --from references/lib.skw.md#Alpha`); the optional `^label` token gives the span a stable, heading-independent identity; `label ^x` is the explicit command for a labeled literal (command-less declarations are invalid); a label duplicated within one file is a finding
-- belonging lines: `> $kw. …` directly under the declaration — `--flag value` adds a flag occurrence (`--from` repeats), a plain continuation appends to the previous flag's value; a non-end `$kw.` line separated from its declaration is a stray-line finding
-- flags are the registered trait vocabulary: `--from` (inbound dependency, repeatable), `--intent` (the derivation rule's context), `--to` (outbound send, reserved); only registered flags bound values — an unregistered `--token` mid-value is prose, but in flag position it is a finding
-- body: flat markdown at column 0 — never indented; nesting is logical (the parse stack + owned ends), never visual; the body is runnable prose first
-- closure is fully explicit: every construct ends with `> $kw. end-<command>` or `> $kw. end-^label` (either owner matches; the label is the more precise); a bare `end` is invalid; a heading closes nothing — a construct still open at a heading or EOF is a finding (bodies cannot span headings)
-- multi-close: `> $kw. end-a end-b` unwinds the open stack innermost-first; a mismatched or wrongly ordered owner is a finding naming the expected close; end lines take no args
-- fenced code blocks are inert: machinery inside ``` fences is an example, not a construct
-- everything outside constructs is hand-owned prose; a src file with no constructs is a plain passthrough
-- the parser is a `Closure.Parser`: below its `Parse.Floor` (well-formed machinery, explicit closure, unique labels, sane router rows) it emits parse errors; above the floor everything it does not recognize is opaque text, and nothing else can fail the parse
+- **open fence**: `> $kw: [address] [--flags]` — the address (optional, orthogonal) is the block's identity; inline flags are legal when short (`> $kw: --copy --from references/lib.skw.md#Alpha`)
+- **belonging lines**: `> --flag value` directly under the open — each self-marked by `--`; `--from` repeats; `--cont value` appends to the previous flag's value; a non-`--` `$kw.` line, or a stray `--flag` line separated from its open, is a finding
+- **address**: one explicit `Skw.Address.Schema` locator — `#region` (relative, resolved against the current surface), `path#region` (absolute, cited from elsewhere), or `^label` (a src-only span, stripped at compile). It is the block's identity, not a second id; a duplicated address in one file is a finding
+- **body**: native surface text at column 0 — never indented; nesting is logical (the parse stack + owned ends), never visual
+- **fenced code blocks are inert**: machinery inside ``` fences is an example, not a block
 
-## Primitives
+## Features are flags
 
-Position-free leaves — any number per section, anywhere; a construct may not open inside a primitive body:
+The binding mode and every other feature is an additive `--flag`; there are no command words:
 
-- `text` — a tagged literal: plain content, no binding; the tag only makes the span addressable (`label ^x` is its labeled spelling)
-- `copy` — the body is the target's expanded body, verbatim; `agentos skw build` refreshes it mechanically in src (CPU-owned); flags: `--from` (exactly one)
-- `derived` — the body is the agent-authored current solution of the construct's derivation rule; the build never touches it — only an agentic re-derive changes it; flags: `--from` (repeatable), `--intent` (the rule's context, free prose)
+- `--derived` — the body is the agent-authored current solution of the block's derivation rule; the build never touches it, only an agentic re-derive does (materializing)
+- `--copy` — the body is the target's expanded body, verbatim; `agentos skw build` refreshes it mechanically in src, CPU-owned; exactly one `--from` (materializing)
+- `--pointer` — a by-reference binding (non-materializing)
+- `--from <locator>` — an inbound dependency edge (`Skw.Dependency`), repeatable
+- `--intent <text>` — the derivation rule's context, free prose; a binding flag's own trailing text folds into it
+- `--note [TYPE] <text> ^anchor` — a documentation line: a typed, anchored `Index.Line` carried on the block
+- `--supp <text> ^anchor` — the block's own touched lines, anchored
+- `--cont <text>` — continues the previous flag generically; orphaned (no previous flag) it is a finding
+- `--to <locator>` — reserved; parsed and preserved, no behavior yet
+- a flag-less block is a **content span** (a tagged literal): plain body, no binding — its `^label`/`#address` only makes the span addressable
 
-## Structural Commands
+## Closure is by role
 
-Structural commands compose primitives and carry no lock state — their checks are parse findings:
+A block owns an `end` by its role, in three cases:
 
-- `router` — a `Semantic.Router` section: its body holds alternating `when`/`then` rows (plus free prose); a row out of order or a `when` with no `then` is a finding
-- `when` — a row's key: the situation, as full markdown (paragraphs welcome); valid only inside an open `router`
-- `then` — the row's response: what to load or do, as prose; valid only inside an open `router`
+- a **materializing** block (`--derived`/`--copy`) owns a mandatory `> $kw. end` — its body is the generated target and there is no other way to bound it
+- a **router** block (one that acquires `--when`/`--then` children) owns a `> $kw. end`; its rows **peer-close** at the next row or the parent's end
+- a **declaration-only** block — one carrying only `--from`/`--note`/`--supp` — **self-closes** at its declaration and owns no `end`; following native text stays surface. This subsumes the void dependency (`> $kw: --from Concept.A`, a one-liner) and a pure documentation note attached to its address
+- a bare `> $kw. end` closes the innermost open content block; a legacy `end-<command>`/`end-^label` closer is a finding directing to migration; a heading closes nothing — a content block still open at a heading or EOF is a finding
+- the parser is a `Closure.Parser`: below its `Parse.Floor` (well-formed machinery, explicit closure of content blocks, unique addresses, sane router rows) it emits parse errors; above the floor everything it does not recognize is opaque text, and nothing else can fail the parse
+
+## Router — composition by nesting
+
+A `Semantic.Router` is a block whose children are nameless `--when`/`--then` **rows**, each carrying a native-text body (the situation / the response). Rows alternate; a row out of order or a `--when` with no `--then` is a finding. One `> $kw. end` closes the router; the rows peer-close:
 
 ```md
 ## Router Table
 
-> $kw: router
+> $kw: ^search-router
 
-> $kw: when
+> $kw: --when
 When the caller wants to find concepts or retrieve cited index context.
 
 Includes the read-only pass that precedes any edit proposal.
-> $kw. end-when
 
-> $kw: then
+> $kw: --then
 Load `references/search.md`.
-> $kw. end-then
 
-> $kw. end-router
+> $kw. end
 ```
 
 ## Locators
 
-A `--from` value is one of:
+A `--from` (or address) value is one of:
 
 - **`path#Region`** — a heading-section body in a file, resolved against the src root first, then the skill root. The region is the section's body: heading excluded, subsections included. A `.skw.md` target is recursively expanded before extraction (innermost first); expansion cycles are an error naming the chain. A plain (non-skw) file yields the raw region body.
 - **`path^label`** — a labeled span in a src file; **`^label`** alone is file-local (the current src). Labels are heading-independent, so the import survives section renames, and the dependency hash covers only the span — a consumer drifts with its fragment, not the file. Labels live only in src machinery (stripped at compile), so they address src files exclusively; renaming a label breaks importers, which the unresolvable-`--from` POI catches.
@@ -85,8 +92,8 @@ A `--from` value is one of:
 
 ## Compilation
 
-- deterministic — no agent in the loop: strip every construct's machinery (declaration, belonging lines, owned ends), keep the bodies and all hand prose; blank-line runs collapse; output is trimmed
-- `copy` bodies are refreshed in src before targets are emitted; `derived` bodies pass through as materialized
+- deterministic — no agent in the loop: strip every block's machinery (open fence, belonging flag lines, owned ends), keep the bodies and all hand prose; blank-line runs collapse; output is trimmed
+- `--copy` bodies are refreshed in src before targets are emitted; `--derived` bodies pass through as materialized
 - the compiled target never carries Skillware syntax — zero machinery lands on the runnable surface
 
 ## Settings

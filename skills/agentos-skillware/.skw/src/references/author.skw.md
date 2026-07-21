@@ -28,18 +28,18 @@ The `--intent` is the derivation context — written so a cold agent can re-deri
 
 ## Division Of Labor
 
-> $kw: derived
-> $kw. --from Skw.Dependency
-> $kw. --intent restate the block's division-of-labor principle and maintenance
-> $kw. model as authoring guidance — who does what, and why authoring derived
-> $kw. work always happens in src
+> $kw: --derived
+> --from Skw.Dependency
+> --intent restate the block's division-of-labor principle and maintenance
+> --cont model as authoring guidance — who does what, and why authoring derived
+> --cont work always happens in src
 
 - the CPU materializes `copy` bindings and detects drift; the agent performs derivations — and performs them **in src**, where the declaration and its current solution live side by side
 - per import, the system records the target (by durable address), the binding, and the context, and re-runs the check or the materialization on demand — `lock.json` holds the record
 - targets are addressed by `Skw.Address.Schema` names: `Dotted.Name`s for index blocks, `Locator.Name`s for files, regions, and labeled spans
 - the more imported a module's content, the more its maintenance automates — imported spans re-materialize, while original content and the seams where it meets them stay manual
 
-> $kw. end-derived
+> $kw. end
 
 ## Workflow
 

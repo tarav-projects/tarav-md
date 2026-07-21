@@ -4,9 +4,9 @@
 
 ## Concepts
 
-> $kw: derived --from Alignment.Session --from Design.Space --from Hugentic.Variable --from Agentic.Variable --from Alignment.Loop --from Alignment.Backend --from Alignment.Checkpoint --from Alignment.Mode
-> $kw. --intent the session vocabulary as one-line recalls with aliases;
-> $kw. shallow-container framing, no behavioral protocol at this level
+> $kw: --derived --from Alignment.Session --from Design.Space --from Hugentic.Variable --from Agentic.Variable --from Alignment.Loop --from Alignment.Backend --from Alignment.Checkpoint --from Alignment.Mode
+> --intent the session vocabulary as one-line recalls with aliases;
+> --cont shallow-container framing, no behavioral protocol at this level
 
 - **Design.Space** — the total decision space of an artifact; every choice its design comprises (`Conceptual.Space`, `Alignment.Space` are aliases)
 - **Hugentic.Variable** — a `Design.Variable` that needs human-agent convergence; each workflow defines its own set (alias `Touched.Variable`)
@@ -18,14 +18,14 @@
 - **Alignment.Checkpoint** — a declared point in a workflow where the agent checks something; an alignment opportunity gated by `Alignment.Mode`
 - **Alignment.Mode** — the caller argument setting who resolves each `Alignment.Checkpoint`: `Interactive` (default) or `Autonomous` (see below)
 
-> $kw. end-derived
+> $kw. end
 
 ## Alignment.Checkpoint and Alignment.Mode
 
-> $kw: derived --from Alignment.Checkpoint --from Alignment.Mode
-> $kw. --intent the operational copy (Cited.Duplication): full checkpoint
-> $kw. definition, mode table, declaration discipline, deviation contract,
-> $kw. and boundary-gated autonomy
+> $kw: --derived --from Alignment.Checkpoint --from Alignment.Mode
+> --intent the operational copy (Cited.Duplication): full checkpoint
+> --cont definition, mode table, declaration discipline, deviation contract,
+> --cont and boundary-gated autonomy
 
 Both concepts are defined in the index (`Cited.Duplication`); this is the operational copy.
 
@@ -49,7 +49,7 @@ When unspecified, default to `Interactive`. The mode is one skill axis, not a gl
 
 **Boundary-gated autonomy:** a caller wanting autonomous execution within a phase with a single confirmation at the artifact boundary owns that boundary as its own declared `Alignment.Checkpoint` and invokes downstream skills in `Alignment.Mode::Autonomous`.
 
-> $kw. end-derived
+> $kw. end
 
 ## Phase Semantic Roots
 
@@ -61,9 +61,9 @@ When unspecified, default to `Interactive`. The mode is one skill axis, not a gl
 
 ## Workflow Parameterization
 
-> $kw: derived ^loop-params --from Alignment.Loop --from Alignment.Backend
-> $kw. --intent the phase parameterization spelled out: loop-component and
-> $kw. backend families expanded per phase
+> $kw: ^loop-params --derived --from Alignment.Loop --from Alignment.Backend
+> --intent the phase parameterization spelled out: loop-component and
+> --cont backend families expanded per phase
 
 The `Alignment.Loop` and its components are parameterized by phase:
 
@@ -73,4 +73,4 @@ The `Alignment.Loop` and its components are parameterized by phase:
 
 Similarly for backends: `Alignment.Backend::InChat::What`, `Alignment.Backend::Artifact::What`, etc.
 
-> $kw. end-derived
+> $kw. end

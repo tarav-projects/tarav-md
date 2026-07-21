@@ -1,6 +1,6 @@
 # agentos-index --back-link
 
-> $kw: depends --from Demoted.Anchored.Line --from Edition.Trigger.User.Gated --from Gr.Req --from Grounding.Hugentic.Authority --from Verbatim.User.Gated --from Workflow.Neutral
+> $kw: --from Demoted.Anchored.Line --from Edition.Trigger.User.Gated --from Gr.Req --from Grounding.Hugentic.Authority --from Verbatim.User.Gated --from Workflow.Neutral
 
 Use this module when the caller wants an existing index block grounded backward: from the block as written, through git history, to the chat turns that produced it.
 
@@ -10,11 +10,11 @@ This module is `Workflow.Neutral` in the same sense as `--link`: it produces ver
 
 ## Back-Link Pipeline
 
-> $kw: derived
-> $kw. --from references/link.skw.md#Linking Pipeline
-> $kw. --intent invert the linking pipeline for archaeology: block→time (git log -L),
-> $kw. time→session (truth tiers), session→turn (vocabulary search around the
-> $kw. commit), then mint through link's registration step; landing stays gated
+> $kw: --derived
+> --from references/link.skw.md#Linking Pipeline
+> --intent invert the linking pipeline for archaeology: block→time (git log -L),
+> --cont time→session (truth tiers), session→turn (vocabulary search around the
+> --cont commit), then mint through link's registration step; landing stays gated
 
 1. **Block → time.** Git history dates the block's current wording:
    - `git log -L "/## Concept.X/,/^\*\*\*\*/:<chapter-file>" --format="%h %aI %s"` — the commits that shaped the block, newest first
@@ -29,7 +29,7 @@ This module is `Workflow.Neutral` in the same sense as `--link`: it produces ver
 4. **Turn → anchor.** Mint through the linking primitive (`references/link.md` step 3): `agentos chatlas anchory register --identity-hash <H> --at "<turn time>" --hint "…"` — read the echo, confirm the neighborhood.
 5. **Anchor → index.** USER-GATED: show the proposed `[GR]` line verbatim in chat and write only on explicit user approval (`Edition.Trigger.User.Gated`, `Verbatim.User.Gated`, via `--edit`). The landing is an inline trailing anchor on the line(s) the turn supports. Steps 1–4 are free; step 5 never is.
 
-> $kw. end-derived
+> $kw. end
 
 ## Judgment Points
 

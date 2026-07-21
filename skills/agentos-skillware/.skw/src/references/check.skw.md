@@ -16,14 +16,14 @@ Report whether a skill's Skillware-managed surfaces still hold, and prescribe th
 
 ## POI Kinds
 
-> $kw: derived
-> $kw. --from Skw.Dependency
-> $kw. --from Poi.Linter
-> $kw. --from Poi.Bless
-> $kw. --intent expand the blocks' check realization into the operational
-> $kw. POI table — what each kind means, which response it demands, and
-> $kw. which kinds are blessable; keep the no-silent-blessing rule and the
-> $kw. parse-error gate explicit
+> $kw: --derived
+> --from Skw.Dependency
+> --from Poi.Linter
+> --from Poi.Bless
+> --intent expand the blocks' check realization into the operational
+> --cont POI table — what each kind means, which response it demands, and
+> --cont which kinds are blessable; keep the no-silent-blessing rule and the
+> --cont parse-error gate explicit
 
 Gating — checked first, never blessable:
 
@@ -54,7 +54,7 @@ Housekeeping:
 
 The no-silent-blessing rule: a rebuild carries a stale derivation's old dependency hashes forward while its body is unchanged — `derived-stale` survives any number of builds and clears only through a re-derive or an explicit bless. Dependency targets are `Skw.Address.Schema` names.
 
-> $kw. end-derived
+> $kw. end
 
 ## The Re-Derive Pass
 

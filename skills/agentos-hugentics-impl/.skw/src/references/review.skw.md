@@ -18,9 +18,9 @@ Read the `Impl.Req` end to end **before** opening any linked design artifact, so
 
 ### 2. Evidence audit
 
-> $kw: derived --from Hard.Evidence
-> $kw. --intent the claim-grading protocol: verify each load-bearing claim
-> $kw. against the world as it is now; verified/stale/unverifiable grades
+> $kw: --derived --from Hard.Evidence
+> --intent the claim-grading protocol: verify each load-bearing claim
+> --cont against the world as it is now; verified/stale/unverifiable grades
 
 Walk the claims in `Impl.Abstract` and `Impl.Index` (especially any `Current.State` section) and verify each against the world as it is **now**:
 
@@ -31,13 +31,13 @@ Walk the claims in `Impl.Abstract` and `Impl.Index` (especially any `Current.Sta
 
 Grade each checked claim: **verified** / **stale** (was true, no longer) / **unverifiable** (no way to check from here). Sample proportionally to risk — every load-bearing claim gets checked; incidental color does not.
 
-> $kw. end-derived
+> $kw. end
 
 ### 3. Readiness audit
 
-> $kw: derived --from Alignment.Checkpoint::Readiness
-> $kw. --intent the designer's readiness checkpoint re-run from outside,
-> $kw. as an audit list over an artifact the reviewer did not write
+> $kw: --derived --from Alignment.Checkpoint::Readiness
+> --intent the designer's readiness checkpoint re-run from outside,
+> --cont as an audit list over an artifact the reviewer did not write
 
 The designer's `Alignment.Checkpoint::Readiness` list, re-run from outside:
 
@@ -49,7 +49,7 @@ The designer's `Alignment.Checkpoint::Readiness` list, re-run from outside:
 - risks/deviation triggers cover the failure modes the evidence audit exposed
 - the plan is followable without the design chat — the cold-read notes are the verdict on this one
 
-> $kw. end-derived
+> $kw. end
 
 ### 4. Report (in chat)
 

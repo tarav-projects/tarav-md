@@ -18,16 +18,16 @@ Apply these practices on every execution task.
 
 ## Moving Forward
 
-> $kw: derived --from No.Legacy.Allowed
-> $kw. --intent the principle as per-change execution practices: replace
-> $kw. within scope, no shims or legacy fallbacks unless requested
+> $kw: --derived --from No.Legacy.Allowed
+> --intent the principle as per-change execution practices: replace
+> --cont within scope, no shims or legacy fallbacks unless requested
 
 - Do not add compatibility shims, legacy fallbacks, or migration behavior unless explicitly requested.
 - Replace superseded behavior within scope instead of preserving it "just in case."
 - Update tests to the accepted design rather than retaining obsolete behavior.
 - Avoid feature flags and unrelated refactors.
 
-> $kw. end-derived
+> $kw. end
 
 ## After Each Change
 

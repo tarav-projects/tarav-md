@@ -66,41 +66,33 @@ If neither an input nor actionable current context exists, orient to the availab
 
 ## Skill Modules
 
-> $kw: router ^workflow-router
+> $kw: ^workflow-router
 
-> $kw: when
+> $kw: --when
 `Workflow:Design` is selected — the caller wants implementation planning.
-> $kw. end-when
 
-> $kw: then
+> $kw: --then
 Load `references/design.md` — produce an implementation-ready `Impl.Req`.
-> $kw. end-then
 
-> $kw: when
+> $kw: --when
 `Workflow:Review` is selected — the caller wants an `Impl.Req` double-checked.
-> $kw. end-when
 
-> $kw: then
+> $kw: --then
 Load `references/review.md` — verify the artifact's claims against `Hard.Evidence` and report readiness in chat; read-only.
-> $kw. end-then
 
-> $kw: when
+> $kw: --when
 `Workflow:Execute` is selected — the caller wants an existing `Impl.Req` executed.
-> $kw. end-when
 
-> $kw: then
+> $kw: --then
 Load `references/execute.md` — execute the artifact's `Execution.Plan`.
-> $kw. end-then
 
-> $kw: when
+> $kw: --when
 `Workflow:Develop` is selected — the caller wants an idea taken through both phases.
-> $kw. end-when
 
-> $kw: then
+> $kw: --then
 Load `references/develop.md` — produce an `Impl.Req`, then execute that exact artifact.
-> $kw. end-then
 
-> $kw. end-^workflow-router
+> $kw. end
 
 Load only the selected workflow module. The develop module composes design and execute and therefore loads both in sequence. Review is designed to run in a fresh agent that did not design the artifact — that is where the blind-spot check has value.
 

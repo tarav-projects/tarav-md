@@ -1,8 +1,8 @@
 # Impl.Req Example
 
-> $kw: derived --from references/design.skw.md#Impl.Req Artifact
-> $kw. --intent one minimal concrete artifact instantiating the spec's
-> $kw. structure; adapt wording and section weight to the request
+> $kw: --derived --from references/design.skw.md#Impl.Req Artifact
+> --intent one minimal concrete artifact instantiating the spec's
+> --cont structure; adapt wording and section weight to the request
 
 Adapt the wording and section weight to the current request.
 
@@ -46,4 +46,4 @@ Adapt the wording and section weight to the current request.
 - no deviations or blockers
 ```
 
-> $kw. end-derived
+> $kw. end

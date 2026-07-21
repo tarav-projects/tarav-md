@@ -5,7 +5,7 @@ description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem
 
 # agentos-index
 
-> $kw: depends --from Alignment.Mode --from Alignment.Surface --from Batchy.Skill --from Capture.Offer --from Gr.Req --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Enrichment --from Index.Line --from Index.Ontology --from Index.Skillware --from Line.Type --from Line.Type.Vocabulary --from Package.Aux.Skill --from Packages.Master.Agent --from Skill.Module
+> $kw: --from Alignment.Mode --from Alignment.Surface --from Batchy.Skill --from Capture.Offer --from Gr.Req --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Enrichment --from Index.Line --from Index.Ontology --from Index.Skillware --from Line.Type --from Line.Type.Vocabulary --from Package.Aux.Skill --from Packages.Master.Agent --from Skill.Module
 
 Workflow-neutral `Package.Aux.Skill` for the Agentos Index subsystem.
 
@@ -159,12 +159,12 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 ## Index Operating Behavior
 
-> $kw: derived
-> $kw. --from references/search.skw.md#Search Model
-> $kw. --from references/search.skw.md#Citation Behavior
-> $kw. --intent restate the search doctrine (routing-first selective loading, depot and
-> $kw. chapter scoping) and citation behavior as the operating checklist, and
-> $kw. extend it with the gate/capture lines the modules own
+> $kw: --derived
+> --from references/search.skw.md#Search Model
+> --from references/search.skw.md#Citation Behavior
+> --intent restate the search doctrine (routing-first selective loading, depot and
+> --cont chapter scoping) and citation behavior as the operating checklist, and
+> --cont extend it with the gate/capture lines the modules own
 
 An agent operating the index should:
 
@@ -181,7 +181,7 @@ An agent operating the index should:
 
 For delegated read-only research that protects the caller's context, use `Packages.Master.Agent` against the relevant package or packages.
 
-> $kw. end-derived
+> $kw. end
 
 ## Skill Modules
 

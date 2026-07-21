@@ -1,6 +1,6 @@
 # agentos-index --gr-survey
 
-> $kw: depends --from Gr.Req --from Grounding.Hugentic.Authority --from Index.Line
+> $kw: --from Gr.Req --from Grounding.Hugentic.Authority --from Index.Line
 
 Use this module to run a grounding campaign's survey phase: sweep a scope, mint anchors, and produce a `Gr.Req` artifact. The grounding analogue of `agentos-hugentics-impl --design` — reconnaissance that reports back and does not act.
 
