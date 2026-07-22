@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "b59964922d97cfa03782de20f8f82b028116c46d2866553084429244dce6437b",
+      "output_sha256": "aebb0377ea586a418feb18fa2b8af6ea51574d0f354a57067fb0d11576d38edd",
       "recipes": [
         {
           "heading": "Alignment.Loop.Interruptions",
@@ -15,14 +15,16 @@
         {
           "heading": "Shared Principles",
           "verb": "derived",
-          "body_sha256": "c83b622b8c2240b64ab3e4b492fd74781255e2d9a43c70c335560fa260e0226e",
+          "body_sha256": "2f5f5cc6f792edcdc69325cae8d325243025ca30fa7e3cb90c6c2e1e81a45bae",
           "deps": {
             "Development.Principles": "35aa9c6593ecbd4c2d0f5c446b4a8d519e6ae25a3814970f2f52c5c94848bbed",
-            "Vertical.Slice": "b10a10691ae102b35da52072bf0bcbd53cdc82de47ccd8c9fd81ee5a8e45259d",
-            "No.Legacy.Allowed": "13b70b46b197531fe439921ca95d9dca8fb80b1c0f1b9ba7f40031c906f25b80",
-            "Test.At.Boundaries": "679f3344635cea8183f897e5c82300b32b17e367f12a93bfbba118ce773ee698",
             "Deep.Modules": "22c34b76c25164b05e356da4646e80ee11b113fe66d0b1075eb56c9d6fdde800",
-            "Agent.Navigable.Codebase": "048c59e65c21d3ff485534c96841f99fd958d2a688737bbcce0a86109dc9ec34"
+            "Agent.Navigable.Codebase": "048c59e65c21d3ff485534c96841f99fd958d2a688737bbcce0a86109dc9ec34",
+            "Vertical.Slice": "a670e07fadf5c8183dd3de285fc558dcd9aa06bf86ff24e56e5452cf654afbbc",
+            "No.Legacy.Allowed": "13b70b46b197531fe439921ca95d9dca8fb80b1c0f1b9ba7f40031c906f25b80",
+            "No.Regression.Tests.Allowed": "3b71e5c343af8ccbde6f052255895dadeca133dbc2cd46026fb5bcc9e240e22a",
+            "Test.At.Boundaries": "679f3344635cea8183f897e5c82300b32b17e367f12a93bfbba118ce773ee698",
+            "RED.GREEN.Test.Suite": "d2b1d3f40cf2b16f1c70127a6f03cc2ddfb93b13023b0fb288c5c76c5ad4c8e5"
           }
         },
         {
@@ -48,28 +50,33 @@
         {
           "heading": "Communication form \u2014 how a designer *speaks* (`100`, `102`, `105`)",
           "verb": "derived",
-          "body_sha256": "7051941abb8804909a836f1d8bf917af358f60a6e322b1f12ccb020b0e6f8994",
+          "body_sha256": "2f237d3c6732ec5097baa44dc1a32a355c55f5413aeb609a362ca1ff8502100b",
           "deps": {
             "Kernel.Writing": "33fbda2bbdeccbf151315f818c8b442b7476076d1669673a3b3dbb5be0d05e5c",
-            "Kernel.Block": "83829ca9a071366ac242b8f7b3d1860df24ed605d0f02672d30ac7da20081599",
+            "Kernel.Block": "27e35d3040cf8bad276705b460a9529a41c387aa4bf134149e7ffcfd953dc2c9",
             "Designer.Turn.Kernel.Form": "9bba43c4a768e893cf8ae90d7f9e6fc5cab2ee55f7d5ffbe84e5d82ec7f294b2",
-            "Dotted.Notation": "1af4971655acabc24d274ac1080dd0478e5d691ee87b0d515e46410ca12c3623"
+            "Dotted.Notation": "8cac1983cfd7b5d5b190eb0e844c86d299953973b8ca0d03701933a2b0ace51b",
+            "Skw.Address.Schema": "b0fb3240fe612be05f618f1e79e04c90afa4d01a52024f547c3c9a5571ae425f"
           }
         }
       ]
     },
     "references/alignment-session.md": {
-      "output_sha256": "5fdc9c5ab79d15af5cdc38e0157703cce8dc006590d1efcdaa34bcb299710ff1",
+      "output_sha256": "881a1da3c7b7fd3ee71eaa8a9f3676b6eeff7685ae6771050bf978dbb23a0d6e",
       "recipes": [
         {
           "heading": "Concepts",
           "verb": "derived",
-          "body_sha256": "ba244b6afcad97c1fc8249fc94f7205cc60cf6d6e58209f4156241033c991e9c",
+          "body_sha256": "a1d212f132d40bcacadcf468f5139c85e8ed281b1f2906505b124d1cd919949c",
           "deps": {
             "Alignment.Session": "e4f1d0d62a81f17ed631ef4e0bf57a38cad354a6f2254bd1f4b22c863c4a3d48",
-            "Design.Space": "acca355ea5d29e919f6f32b5411fe6790a3d30e392f7db59db04d69b51a687e2",
+            "Design.Space": "68a879d4733c715bbada8ca3a4ac70d0c868d016a673983c095c4ae332e2694c",
+            "QA.Space": "60632fdaf93443227264be81b28c8eea108d7e533ef1e63506ef960f4a45277f",
+            "Design.Variable": "583f05f8a29f0b03074587816b8d6ce7f68008ec5413f7035bc7f882fafc1732",
             "Hugentic.Variable": "e87d84d1409856bf164b4c26075900a267c75dd05bf6cfdc4e44db90d8a966bc",
+            "Touched.Space": "e78243e3d841dfc243a1927b0afecc812da6c1bfc843407cf3d2a846da1cb0cd",
             "Agentic.Variable": "30e09b8e3d25504958c496722ed6a697930aad4b9d366b6095a5c17231e1b4ea",
+            "Open.Space": "68868ebf26c9385523070a879705ff29327910e0a9c131c1972ab53100724903",
             "Alignment.Loop": "57d7e83a7e26a2e653edc8b63f6dfb560cf9c92204a5eb27d3ef8865113b7985",
             "Alignment.Backend": "90db8db81e4e728732ebb35a4f54cc03a789b476bb42a12ea214c18a61701da6",
             "Alignment.Checkpoint": "e4c60c9e0dea4a7a6f7dc9912bed9716f0516b80015366cb5acf6332b794050d",

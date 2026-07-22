@@ -4,13 +4,13 @@
 
 ## Concepts
 
-> $kw: --derived --from Alignment.Session --from Design.Space --from Hugentic.Variable --from Agentic.Variable --from Alignment.Loop --from Alignment.Backend --from Alignment.Checkpoint --from Alignment.Mode
+> $kw: --derived --from Alignment.Session --from Design.Space --from QA.Space --from Design.Variable --from Hugentic.Variable --from Touched.Space --from Agentic.Variable --from Open.Space --from Alignment.Loop --from Alignment.Backend --from Alignment.Checkpoint --from Alignment.Mode
 > --intent the session vocabulary as one-line recalls with aliases;
 > --cont shallow-container framing, no behavioral protocol at this level
 
-- **Design.Space** — the total decision space of an artifact; every choice its design comprises (`Conceptual.Space`, `Alignment.Space` are aliases)
-- **Hugentic.Variable** — a `Design.Variable` that needs human-agent convergence; each workflow defines its own set (alias `Touched.Variable`)
-- **Agentic.Variable** — a `Design.Variable` the agent resolves autonomously (alias `Open.Variable`)
+- **Design.Space** — a `QA.Space` about artifact design: a vector space of `Design.Variable`s, each variable one axis
+- **Hugentic.Variable** — a `Design.Variable` that needs human-agent convergence, collapsed inside the `Touched.Space` (alias `Touched.Variable`)
+- **Agentic.Variable** — a `Design.Variable` the agent resolves autonomously; the variable form of `Open.Space`, provisional until touched (alias `Open.Variable`)
 - **Alignment.Loop** — the machinery: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`; parameterized by workflow phase (`:What`, `:How`, `:Exec`)
 - **Alignment.User.Turn** — user drives, agent follows
 - **Alignment.Maintenance.Turn** — agent drives one session move

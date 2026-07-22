@@ -79,17 +79,24 @@ During any workflow, the user can trigger `Alignment.Loop.Interruptions` — sid
 
 ## Shared Principles
 
-> $kw: --derived --from Development.Principles --from Vertical.Slice --from No.Legacy.Allowed --from Test.At.Boundaries --from Deep.Modules --from Agent.Navigable.Codebase
-> --intent the principle set as a load list: one recognition line per
-> --cont principle; definitions stay in the index chapter this points to
+> $kw: --derived --from Development.Principles --from Deep.Modules --from Agent.Navigable.Codebase --from Vertical.Slice --from No.Legacy.Allowed --from No.Regression.Tests.Allowed --from Test.At.Boundaries --from RED.GREEN.Test.Suite
+> --intent the principle set as a load list, split by the phase each serves:
+> --cont one recognition line per principle; definitions stay in the index chapter
 
-All agents in the harness should have `Development.Principles` loaded. These include:
+All agents in the harness should have `Development.Principles` loaded — the set splits by the phase each principle serves.
 
-- `Vertical.Slice` — thin end-to-end changes
-- `No.Legacy.Allowed` — no stale state left behind
-- `Test.At.Boundaries` — test through public interfaces
+`How.Design` — shape the implementation design:
+
 - `Deep.Modules` — small interface, hidden complexity
 - `Agent.Navigable.Codebase` — code organized for agent exploration
+
+`Impl.Exec` — guide execution discipline:
+
+- `Vertical.Slice` — cut through the stack for one observable end-to-end result
+- `No.Legacy.Allowed` — no stale state left behind
+- `No.Regression.Tests.Allowed` — no regression test by default; a fix need not add one
+- `Test.At.Boundaries` — test through public interfaces, not implementation details
+- `RED.GREEN.Test.Suite` — RED/GREEN tests written test-first to drive the implementation
 
 See `skills/agentos-pkg/design/102-design.md` for definitions and how they apply to impl-req work.
 
@@ -123,14 +130,14 @@ The concept vocabulary a design agent reasons *with*. Definitions live in the `a
 
 ### Communication form — how a designer *speaks* (`100`, `102`, `105`)
 
-> $kw: --derived --from Kernel.Writing --from Kernel.Block --from Designer.Turn.Kernel.Form --from Dotted.Notation
+> $kw: --derived --from Kernel.Writing --from Kernel.Block --from Designer.Turn.Kernel.Form --from Dotted.Notation --from Skw.Address.Schema
 > --intent one recall line per concept: the block form a designer
 > --cont speaks in and the naming convention that keys the index
 
-- `Kernel.Writing` — orthogonal, compressed bullet lines, each an independent fundamental point, direct language — not prose
-- `Kernel.Block` / `Kernel.Block::Design` — every design turn is a *block*: an H2 `Dotted.Notation` heading + orthogonal fundamentals + optional `### meta`
+- `Kernel.Writing` — a conceptual writing system for fundamental signal: orthogonal, compressed bullet lines, each an independent fundamental point, direct language — not prose
+- `Kernel.Block` / `Kernel.Block::Design` — the base writing object: every design turn is a *block*, an H2 `Dotted.Notation` heading (a conceptual commitment) + orthogonal fundamentals + optional `### meta`
 - `Designer.Turn.Kernel.Form` — the turn shape: render the block, then pair it with the question (`Question / Why-now / Recommended / Evidence`); re-render the same block as it evolves
-- `Dotted.Notation` [`:Param`] — name concepts with dotted names; the name signals "this is a concept" and is the key for `Name.As.Index`
+- `Dotted.Notation` [`:Param`] — the concept form of `Skw.Address.Schema`: name concepts with compact dotted names; the name signals "this is a concept" and is the key for `Name.As.Index`
 
 > $kw. end
 
