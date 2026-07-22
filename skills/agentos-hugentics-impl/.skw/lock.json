@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "d8f094fb0a57c869f0ce2b2637da9d01eb75ca853ef4bf53c97d2373159982d8",
+      "output_sha256": "ba739fa09bd9b54980d62ad5136c9f628cc3760f2a6bde2c2c17ffb7547c40b3",
       "recipes": []
     },
     "references/design.md": {
@@ -128,6 +128,20 @@
     "references/general-preferences.md": {
       "output_sha256": "279129aa9f66007de98fa9360c1207a4ff1f54fee943b80a6611f6c8f1945259",
       "recipes": []
+    },
+    "references/impl-capture.md": {
+      "output_sha256": "4dc0bb76bcad7b5c48373efcc61e824b914f38342280f9502a6c3fcc4e4f1105",
+      "recipes": [
+        {
+          "heading": "Alignment.Checkpoint::Candidate",
+          "verb": "derived",
+          "body_sha256": "fc6f860c6145db9a39d781dd636fc68ad8bb7f4298486b8f461f6e351b4aca7e",
+          "deps": {
+            "Alignment.Checkpoint": "e4c60c9e0dea4a7a6f7dc9912bed9716f0516b80015366cb5acf6332b794050d",
+            "Alignment.Mode": "8127bef68ccab8f921f4ee7bb39eb8cb9ac1998875f45ad30be54ef7204b1747"
+          }
+        }
+      ]
     },
     "references/review.md": {
       "output_sha256": "a274d763206d218288a4822ee3c96b7ff83d0fdb797ea4b9a33bbce91d1aaa30",

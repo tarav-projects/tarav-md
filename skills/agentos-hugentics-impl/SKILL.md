@@ -1,6 +1,6 @@
 ---
 name: agentos-hugentics-impl
-description: "Unified Hugentic implementation workflow for designing Impl.Req artifacts, reviewing them, executing them, or developing an idea through both phases. USE WHEN the user wants implementation planning, an Impl.Req double-checked, execution of an Impl.Req, or end-to-end design and implementation. Called with an optional input plus --design, --review, --execute/--exec, --develop/--dev/--impl, and --AUTO."
+description: "Unified Hugentic implementation workflow for designing Impl.Req artifacts, reviewing them, executing them, developing an idea through both phases, or capturing the session's ready implementation work. USE WHEN the user wants implementation planning, an Impl.Req double-checked, execution of an Impl.Req, end-to-end design and implementation, or to bank the touched, non-design-gated work from a session and park the rest. Called with an optional input plus --design, --review, --execute/--exec, --develop/--dev/--impl, --impl-capture/--capture, and --AUTO."
 ---
 
 # Agentos Hugentics Impl
@@ -29,12 +29,13 @@ This is a `Batchy.Skill` - called like a terminal command. Load `agentos-batchy-
 - required: false
 - default: infer `Workflow:Execute` when `Input` resolves to an `Impl.Req`; otherwise infer `Workflow:Design`
 - type: selector
-- help: "design an Impl.Req, review one, execute one, or develop an idea through both phases"
-- examples: --design, --review, --execute, --develop
+- help: "design an Impl.Req, review one, execute one, develop an idea through both phases, or capture the ready implementation work from the session"
+- examples: --design, --review, --execute, --develop, --impl-capture
 - `Workflow:Design`: --design; action: load `references/design.md`
 - `Workflow:Review`: --review; action: load `references/review.md`
 - `Workflow:Execute`: --execute; aliases: --exec; action: load `references/execute.md`
 - `Workflow:Develop`: --develop; aliases: --dev, --impl; action: load `references/develop.md`
+- `Workflow:Capture`: --impl-capture; aliases: --capture; action: load `references/impl-capture.md`
 
 ### Skill.Arg::Alignment.Mode
 - whether the workflow prompts at declared `Alignment.Checkpoint`s or resolves them autonomously
@@ -55,6 +56,7 @@ Resolve the workflow in this order:
 3. Otherwise resolve to `Workflow:Design`.
 4. Never infer `Workflow:Develop`; end-to-end execution requires `--develop`, `--dev`, or `--impl`.
 5. Never infer `Workflow:Review`; the blind-spot check requires an explicit `--review`.
+6. Never infer `Workflow:Capture`; harvesting the session's ready work requires an explicit `--impl-capture`.
 
 Treat input as an `Impl.Req` when it is:
 
@@ -81,6 +83,10 @@ Load `references/execute.md` — execute the artifact's `Execution.Plan`.
 `Workflow:Develop` is selected — the caller wants an idea taken through both phases.
 
 Load `references/develop.md` — produce an `Impl.Req`, then execute that exact artifact.
+
+`Workflow:Capture` is selected — the caller wants the session's ready implementation work banked and the rest parked.
+
+Load `references/impl-capture.md` — rank the touched, implementation-ready candidates, gate on the best pick, and hand it to develop.
 
 Load only the selected workflow module. The develop module composes design and execute and therefore loads both in sequence. Review is designed to run in a fresh agent that did not design the artifact — that is where the blind-spot check has value.
 
