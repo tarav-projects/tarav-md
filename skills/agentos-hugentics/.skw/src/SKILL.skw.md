@@ -151,3 +151,5 @@ The concept vocabulary a design agent reasons *with*. Definitions live in the `a
 ## Design Surface
 
 The visual map of this harness lives in `Hugentic-Harness.canvas`.
+
+> $kw: --from Alignment.Checkpoint --from Batchy.Skill --from Impl.Req --from Name.As.Index --from Package.Driver

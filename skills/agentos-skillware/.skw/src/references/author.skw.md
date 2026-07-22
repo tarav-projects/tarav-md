@@ -47,3 +47,5 @@ The `--intent` is the derivation context — written so a cold agent can re-deri
 2. `agentos skw build --skill <path>` — copy refresh, compile, lock, AGENTS.md stamp.
 3. `agentos skw check --skill <path>` — confirm all-ok; interpret POIs per `references/check.md` (re-derive real drift; `bless` benign dep changes).
 4. For a gated package, src edits still pass the package's own edit gates before landing.
+
+> $kw: --from Inline.Relatedness --from Skw.Address.Schema

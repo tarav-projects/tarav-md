@@ -81,3 +81,5 @@ agentos skw bless --skill <path> --poi <hash>
 
 - this module reports and prescribes; it never applies — `--dev` owns src edits, rebuilds, and blesses
 - a drift POI has no predefined winner: source, derivation, or hand edit may each be the truth — resolution is case-by-case
+
+> $kw: --from Skw.Address.Schema

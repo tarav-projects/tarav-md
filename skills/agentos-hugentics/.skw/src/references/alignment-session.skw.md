@@ -74,3 +74,5 @@ The `Alignment.Loop` and its components are parameterized by phase:
 Similarly for backends: `Alignment.Backend::InChat::What`, `Alignment.Backend::Artifact::What`, etc.
 
 > $kw. end
+
+> $kw: --from Cited.Duplication --from Open.Variable --from Touched.Variable

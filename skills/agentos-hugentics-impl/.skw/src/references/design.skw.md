@@ -145,3 +145,5 @@ Discipline:
 ## Output
 
 Exit with the complete `Impl.Req` path and a concise readiness summary. Under `Workflow:Develop`, return control to `references/develop.md` instead of ending the overall skill.
+
+> $kw: --from Hard.Evidence

@@ -46,3 +46,5 @@ Return one concise report covering:
 - the implemented result
 - verification performed
 - deviations, blockers, or deferred work
+
+> $kw: --from Alignment.Mode --from Impl.Req

@@ -48,3 +48,5 @@ The language has one syntactic form — the block, the written form of a `Skw.An
 - the operational spec: `references/lang.md`
 - the working discipline: `references/author.md` (writing), `references/check.md` (maintaining)
 - the toolchain: `agentos skw build / check / bless / status`
+
+> $kw: --from Annotation.Point --from Cited.Duplication --from Closure.Parser --from Skw.Address.Schema --from Skw.Backend --from Skw.Language --from Skw.Network --from Skw.Quote.Binding

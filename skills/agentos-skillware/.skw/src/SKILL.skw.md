@@ -83,3 +83,5 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - when authoring, building, checking, or adopting Skillware-managed skills
 - when a `check` POI needs interpreting or acting on
 - when discussing or modifying the Skillware system design itself
+
+> $kw: --from Batchy.Skill --from Package.Aux.Skill --from Semantic.Router --from Skill.Module --from Touched.Surface.Index

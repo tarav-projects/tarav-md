@@ -105,3 +105,5 @@ A `--from` (or address) value is one of:
 ```
 
 - `depots` — index depots for `Dotted.Name` resolution, relative to the skill root; list order is search order
+
+> $kw: --from Closure.Parser --from Index.Line --from Semantic.Router --from Skw.Address.Schema --from Skw.Annotation --from Skw.Dependency

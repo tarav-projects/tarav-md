@@ -158,3 +158,5 @@ After all slices:
 2. Confirmed understanding from the current discussion.
 3. The `Impl.Req`.
 4. Current codebase state, diffs, and referenced surfaces.
+
+> $kw: --from Alignment.Mode --from Impl.Req --from No.Legacy.Allowed

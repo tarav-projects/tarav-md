@@ -71,3 +71,5 @@ Lead with the verdict, then findings ranked by severity:
 
 - `Interactive` — may ask the caller to resolve genuinely ambiguous claims (e.g. which repo a relative path means) before grading them `unverifiable`
 - `Autonomous` — grade with what can be established; ambiguity becomes an explicit finding, never a guess
+
+> $kw: --from Impl.Req --from RED.GREEN.Test.Suite
