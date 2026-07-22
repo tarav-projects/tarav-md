@@ -128,6 +128,22 @@
 
 ****
 
+## Index.Depot.Dependency
+
+- [DF] `Index.Depot.Dependency` is a directed visibility edge between `Index.Depot`s: a depot may resolve a `Dotted.Name` mention against another depot only when it declares that depot as a dependency — package-visibility in the software sense ^c20260722-15u
+- [PR] visibility is non-transitive: a depot's resolution set is its own concepts plus those of its directly declared dependency depots only — a dependency's own dependencies are not visible through it ^c20260722-16u
+- [DF] the edge is declared in two tiers: a local config names the dependency depots by name (the machine source the `Index.Linter` reads), and a global registry resolves each name to a location, so local configs carry no absolute paths ^c20260722-15u
+- [PR] the depot's `Index.Router` also names its dependency depots, so an agent orienting through `000-INDEX.md` sees the depot's upstreams ^c20260722-15u
+- [CT] `Index.Depot.Dependency` directs `Index.Discovery`: engaged-depot composition follows the declared edges (own ∪ direct dependencies), not an undeclared flat union ^c20260722-15u
+- [CT] a mention resolving against a name defined in more than one visible depot is a collision `Drift.POI`: the linter reports it and never repairs it — consistent with `Index.Depot` surfacing collisions rather than preventing them; the human resolves by namespacing ^c20260722-16u
+- [CT] reachability and privilege are orthogonal — an `Index.Depot.Dependency` grants sight of another depot without ranking them, so it does not overturn "no depot privileged" ^c20260722-16u
+
+### meta
+
+- aliases: `Index.Depot.Visibility`
+
+****
+
 ## Agent.Profile
 
 - `Agent.Profile` is the meta-configuration for working with a `runnable` agent — it defines the span of configuration that agent is allowed to run under
