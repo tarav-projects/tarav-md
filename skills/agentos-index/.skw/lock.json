@@ -16,7 +16,7 @@
       ]
     },
     "references/agendix.md": {
-      "output_sha256": "9d591d7b33dbdaece882cbdb34dda4e53f93558787b800f326ba76d4b9509433",
+      "output_sha256": "c31aadbce801bfdb7447732f539bb0edac8164ce5b35716a79791da97658afa9",
       "recipes": []
     },
     "references/back-link.md": {
@@ -89,7 +89,7 @@
       "recipes": []
     },
     "references/search.md": {
-      "output_sha256": "3e0a0c9b5a7dad15048b5d95e9cf120280f7f48a187054c5a8d855b8c03f4094",
+      "output_sha256": "687a4017aaf74a9485d3efd6b1654a5a3924b33c492a7519c33c0b814a2408d6",
       "recipes": []
     },
     "references/type.md": {
@@ -97,5 +97,30 @@
       "recipes": []
     }
   },
-  "blessings": []
+  "blessings": [
+    {
+      "hash": "0a2f7c53b5",
+      "kind": "undeclared-dependency",
+      "target": "references/agendix.md",
+      "key": "Reviewed.Cite.Closure"
+    },
+    {
+      "hash": "32890cd731",
+      "kind": "undeclared-dependency",
+      "target": "references/agendix.md",
+      "key": "Touched.Authority"
+    },
+    {
+      "hash": "7770774856",
+      "kind": "undeclared-dependency",
+      "target": "references/search.md",
+      "key": "Reviewed.Cite.Closure"
+    },
+    {
+      "hash": "d0a84f7220",
+      "kind": "undeclared-dependency",
+      "target": "references/search.md",
+      "key": "Touched.Authority"
+    }
+  ]
 }

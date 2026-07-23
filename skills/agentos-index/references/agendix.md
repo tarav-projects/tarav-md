@@ -26,7 +26,7 @@ Authority lives in the index: `Index.Agendix`, `Writing.Friction.Reduction`, `In
 - every line is typed: pick the `Line.Type` first (`references/type.md`); a line that takes no type does not enter
 - every line ends with its anchor: hard provenance, no unanchored agendix lines
 - entries may group into blocks — the appendix's block forms apply; a candidate block attaches as a path-child of a routed concept (`Concept.X/Agendix/Candidate.Name`)
-- no routed-concept minting on this surface — a candidate block's name is provisional: unrouted, zero authority, not citable from stable surfaces; promotion may rename it
+- no routed-concept minting on this surface — a candidate block's name is provisional: unrouted, citable from unreviewed surfaces but not reviewed ones (`Reviewed.Cite.Closure`); promotion may rename it
 - no duplication: content the index, appendix, or agendix already carries does not enter
 - unsourced agent reasoning does not belong — every line must be recoverable from the anchored chat neighborhood
 
@@ -49,7 +49,7 @@ For candidate blocks, name the attachment path: `Target: create ## Concept.X/Age
 4. **Write** `agendix/Concept.X-agendix.md` in the engaged depot, next to `appendix/` — appendix writing rules, block heading `Concept.X/Agendix`, lines appended:
 
    ```md
-   - [CT] no stable surface links into the agendix — promotion copies content out ^c<YYYYMMDD>-<N>u
+   - [CT] `Reviewed.Cite.Closure`: reviewed surfaces may not cite the agendix, unreviewed surfaces may — promotion copies content out before an index cite ^c<YYYYMMDD>-<N>u
    ```
 
 5. **Report** compactly: lines captured per concept, fallback entries, candidates dropped at the fence and why.
@@ -60,4 +60,4 @@ For candidate blocks, name the attachment path: `Target: create ## Concept.X/Age
 - no promotion from this surface: promotion and drop are user decisions on later review; the agendix only accumulates
 - the agendix does not restate index content — it holds what the index does not yet capture
 - nothing lands without a user trigger; the trigger covers the pass, the writes within it are not individually gated
-- agendix content has zero authority — freely rewritable, assumed unreviewed by every reader
+- agendix content is unreviewed, not authority-less — its lines carry `Touched.Authority` per their `Chat.Support.Set`; what they lack is the reviewed wording, so a reader treats them as freely rewritable leads, not accepted wording

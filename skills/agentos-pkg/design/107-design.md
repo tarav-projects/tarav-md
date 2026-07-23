@@ -142,6 +142,9 @@
 - the file is the universal host point; each backend declares the rest of its host vocabulary — functions, modules, namespaces for code; sections for markdown ^c20260711-5u
 - the skw-native points: the **annotation section** (a leveled, end-free divider sectioning a file for annotation purposes only) and the **span** (an explicit construct body — the finest grain) ^c20260711-5u
 - the agent attaches at the coarsest point that honestly fits ^c20260711-5u
+- [DC] the sanctioned points are a configurable policy the linter enforces, not a fixed set: a per-surface allow-set, each point carrying placement, cardinality, and presence rules — strict defaults that `skw.json` relaxes as finer points earn their place ^c20260723-4u
+- [DF] `illegal-attachment` is a well-parsed annotation at a point outside the allow-set — attached nowhere sanctioned; opening a finer point in config moves its attachments illegal→legal ^c20260723-5u
+- [DC] skw-code starts strict: its one point is the file, its block at line 1, exactly one, required — a block off line 1 or a second block is an `illegal-attachment`, a managed file with no line-1 block a `missing-header` ^c20260723-6u ^c20260723-7u
 
 ****
 
@@ -173,6 +176,7 @@
 - [CT] a pure `--note` (no `--from`) is a legal wrap: an explanation with no design target is still tracked by its type and anchor — the floor is "every comment is an annotation," not "every comment links to design" ^c20260722-21u
 - [DC] three resolutions close it: wrap the comment as whatever `Skw.Annotation` fits (the same authoring as any annotation), delete the comment, or bless it as genuine throwaway (`Poi.Bless`) — the POI is only the trigger ^c20260722-20u
 - [PR] the flood is closed elsewhere: because finer `Annotation.Point`s are user-gated (`Annotation.Authority`), an agent cannot spray notes — this POI closes the raw-comment leak, gating prevents an unregulated annotation system ^c20260722-20u
+- [CT] the regulated unit is the full-line comment: only full-line comments must be annotations — an inline trailing comment (or `#` inside a string) is free space, because skw machinery needs its own full comment line and cannot ride an inline one ^c20260723-4u
 
 ### meta
 
@@ -335,7 +339,8 @@
 ## Index.Agendix
 
 - `Index.Agendix` is the agent-driven shadow of the Index — the ungated member of the index surface, one file per `Index.Ontology` concept: `agendix/Concept.X-agendix.md`, next to `appendix/` ^c20260705-2u ^c20260716-9u
-- it is a cache the agent keeps to aid grounding on stable surfaces — no stable surface may link into it; promotion copies an entry out through the normal gates (including into the index)
+- it is a cache the agent keeps to aid grounding on stable surfaces — an unreviewed `Touched.Surface.Index` member ^c20260723-3u
+- [DC] `Reviewed.Cite.Closure` governs citations into it: unreviewed surfaces may cite it, reviewed surfaces may not — the promotion pressure, an agendix entry must be reviewed before the index can cite it ^c20260723-3u
 - [DC] it carries no reviewed wording, so staleness is benign: a stale agendix is a worse cache, never a corrupted source — consumers verify through the anchors, not the agendix line ^c20260713-3u
 - the agent cannot mint routed concepts — it attaches lines and candidate blocks under existing routed concepts; the ontology primes the capture, the agent fills the gaps — the index's shadow, not a second index ^c20260716-0u
 - hard rule: every line is a grounded summary of chat discussion — a rejection, a constraint, a highlight the index does not yet capture — carrying its `Anchory.Anchor`/`File.Mention` pointer; unsourced agent reasoning does not belong ^c20260705-2u
@@ -346,12 +351,11 @@
 - it is index-adjacent, not part of the index — it softens the index principles on the fly, replacing the direct user touch with a grounding link to the touch event
 - it is self-similar to the appendix — an untouched appendix, same form and rules; it exists because the user gate is the bottleneck: a surface for the agent to run ahead of the gate
 - agendix and appendix must not duplicate content — over time the agendix drains: entries reviewed by the user are promoted through the gate or dropped
-- in alignment terms: durable touched-but-ungated space — its lines carry the same turn-grounded authority as any `Index.Line` (`Touched.Authority`), but not the reviewed wording or stable addresses the gate buys; everything in it is promotion evidence ^c20260711-9u ^c20260716-10u
 - agendix lines are typed: every line carries a `Line.Type` from the vocabulary — the validation point applies to agent capture too ^c20260707-2u
 - [DC] agendix files follow appendix writing rules with the block headed `Concept.X/Agendix`, one file per concept in `agendix/` next to `appendix/`
 - [DC] captures with no routed concept land in `agendix/Unassigned-agendix.md` — the homeless pool, promotion evidence for concepts the index does not yet name, never a dump
 - [DC] agendix entries may group into blocks — the appendix's block forms apply; a candidate block attaches as a path-child of a routed concept (`Concept.X/Agendix/Candidate.Name`) or pools in `Unassigned` ^c20260716-0u
-- [DC] a candidate block's name is provisional — unrouted, zero authority, not citable from stable surfaces; promotion may rename it ^c20260716-0u
+- [DC] a candidate block's name is provisional — unrouted, citable from unreviewed surfaces but not reviewed ones (`Reviewed.Cite.Closure`); promotion may rename it ^c20260716-0u ^c20260723-3u
 - [DC] blocks promote like lines: copied out through the normal gates into index main or appendix ^c20260716-0u
 - [CT] the agendix holds touched but ungated material — every line grounded by a user-turn support set, no line landed through a user-gated capture ^c20260716-0u ^c20260716-10u
 - [RJ] assistant-grounded capture (`[AS:XX]`, anchoring assistant turns) is excluded — assistant material enters only through the user turn that touched it ^c20260716-0u
@@ -548,8 +552,27 @@
 - [DC] the `Chat.Surface` user turn is the first and unique source of user authority; every member surface roots there ^c20260716-1u
 - [DC] "index" is earned by construction: every line finally points down to its chat support — a member is a cache over the chats, never authority; consumers verify through the support turns ^c20260716-1u
 - [FR] the nature of the annotation varies by application: a line may restate the turn content, or contextualize why the support turns support what is being annotated ^c20260716-1u
-- [DC] member surfaces differ by design axes on top of the invariant: attachment point, gating, format, ordering ^c20260716-1u
+- [DC] member surfaces differ by design axes on top of the invariant: attachment point, review, format, ordering ^c20260716-1u ^c20260723-3u
 - [EX] the `Agentos.Index` is the first member — lines attached to concepts; `Chat.Agendix` attaches them to chats; `Skw.Agendix` to any `Skw.Annotation` ^c20260716-1u
+- [DC] `Reviewed.Cite.Closure` governs citation across members: a reviewed line's cite-closure stays reviewed regardless of which member it lives on ^c20260723-3u
+
+****
+
+## Reviewed.Content
+
+- [DF] `Reviewed.Content` is the property that content's exact wording was explicitly approved by the user through `User.Attention` — distinct from `Touched.Authority`, which requires only grounding to a user-turn support set ^c20260723-3u
+- [DC] review implies touch: the approval act is itself a user turn entering the line's `Chat.Support.Set` — there is no untouched-reviewed content ^c20260723-3u
+- [DC] it refines `Touched.Surface.Index` into a three-rung ladder — untouched → touched-unreviewed (the `Index.Agendix`) → touched-reviewed (the `Agentos.Index`) — the review boundary is where a member is gated ^c20260723-3u
+- [DC] `Verbatim.User.Gated` is currently the sole review mechanism: "review" names the property, the gate names the mechanism that evidences it ^c20260723-3u
+
+****
+
+## Reviewed.Cite.Closure
+
+- [DF] `Reviewed.Cite.Closure` is the citation invariant over `Reviewed.Content`: a reviewed line may cite only reviewed lines, so a reviewed line's transitive cite-closure is entirely reviewed ^c20260723-3u
+- [CT] one forbidden edge: reviewed→unreviewed; reviewed→reviewed and any unreviewed→anything are legal ^c20260723-3u
+- [DC] the boundary is verbatim review specifically: a cite depends on wording, so `Edition.Trigger.User.Gated` (edit-event approval, wording unseen) does not count as reviewed for this rule ^c20260723-3u
+- [DC] CPU-lintable per `User.Gate`: resolve each cite's target and check its support set for the review turn; a reviewed line citing an unreviewed target is a linter finding ^c20260723-3u
 
 ****
 

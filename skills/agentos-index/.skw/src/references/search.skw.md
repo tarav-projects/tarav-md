@@ -41,7 +41,7 @@ Search is read-only and ungated. It changes the agent's context, never a surface
 - untyped lines are pre-fence legacy — same authority, just not yet classified
 - a trailing `^c<YYYYMMDD>-<N><tag>` token is an `Anchory.Anchor`: a pointer to chat evidence (`c` = chatlas namespace; tag `u`/`a` = user/assistant landing turn), resolvable via `agentos chatlas views inline --anchor <token> --filter turns`; see `references/link.md` — resolution is optional depth, not required reading
 - appendix blocks named `Concept.X/Grounding.Head` and `Concept.X/Grounding.Drift` are inert legacy sections from the retired block-grounding scheme, not conceptual content; current grounding lives on the lines themselves (`Index.Line`)
-- `agendix/` files are agent-captured, user-unreviewed material — zero authority, useful as leads, never citable as accepted design
+- `agendix/` files are agent-captured, unreviewed material carrying `Touched.Authority` — useful as leads and citable from other unreviewed surfaces, but a reviewed surface may not cite them (`Reviewed.Cite.Closure`); not accepted design wording
 
 ## Citation Behavior
 
