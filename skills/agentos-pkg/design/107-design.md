@@ -16,7 +16,7 @@
 
 ### meta
 
-- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Skw.Package`, `Skw.Dependency`, `Skw.Quote.Binding`, `Skw.Language`, `Skw.Annotation`, `Skw.Backend`, `Annotation.Point`, `Annotation.Authority`, `Drift.POI`, `Semantic.Router`, `Usage.Pattern.Routing`.
+- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Skw.Package`, `Skw.Dependency`, `Skw.Quote.Binding`, `Skw.Language`, `Skw.Annotation`, `Skw.Backend`, `Annotation.Point`, `Annotation.Authority`, `Drift.POI`, `Non.Skw.Annotation`, `Semantic.Router`, `Usage.Pattern.Routing`.
 
 ****
 
@@ -111,7 +111,8 @@
 - every backend is annotated; some backends additionally build — annotation + check is the universal layer, build is backend-local ^c20260711-3u
 - a building backend generates its runnable form from annotated src and strips the machinery; an annotated-only backend keeps declarations in place on the surface itself, trading surface cleanliness for constraint co-location ^c20260711-3u
 - **skw-skills** is the first backend, a building one: annotated src compiles to the skill's runnable files ^c20260711-3u
-- **skw-code** is the first annotated-only candidate: declarations ride the host language's comments; the body is the live fragment ^c20260711-3u
+- [DC] skw-code is annotated-only — the comment is its carrier (`# $kw:` opens, `# --flag` belongs, `# $kw. end` closes) and the annotated code is the body itself ^c20260722-24u
+- [DC] a backend is a `Carrier` over one shared `$kw` frame core: the core consumes carrier-stripped tokens, the carrier strips its host syntax (markdown `>`, code comment `#`) — the split keeps `Skw.Language` surface-blind ^c20260722-24u
 
 ****
 
@@ -162,6 +163,20 @@
 - the CPU never rules on drift: whether the surface actually drifted is an agent's finding — the agent is always the fixer and supervisor ^c20260711-7u
 - a POI carries its trigger — which dependency, what changed — so the responding agent starts contextualized ^c20260711-7u
 - resolution is agentic: real drift → re-derive the span; benign change → re-bless the dependencies ^c20260711-7u
+
+****
+
+## Non.Skw.Annotation
+
+- [DF] a `Non.Skw.Annotation` is a raw comment on a skw-managed surface that resolves to no `Skw.Annotation` — a `Drift.POI` kind: an annotation leaking outside the language ^c20260722-20u
+- [PR] skw owns the annotation channel completely: on a managed surface every comment must be a `Skw.Annotation` — prose is content skw may annotate, structured comments are directives it replaces ^c20260722-21u
+- [CT] a pure `--note` (no `--from`) is a legal wrap: an explanation with no design target is still tracked by its type and anchor — the floor is "every comment is an annotation," not "every comment links to design" ^c20260722-21u
+- [DC] it is blessable per `Poi.Bless`: bless accepts a raw comment as genuine throwaway; the standing fix is wrapping it as a `--note`, a `--from` link, or a directive annotation ^c20260722-20u
+- [PR] the flood is closed elsewhere: because finer `Annotation.Point`s are user-gated (`Annotation.Authority`), an agent cannot spray notes — this POI closes the raw-comment leak, gating prevents an unregulated annotation system ^c20260722-20u
+
+### meta
+
+- aliases: `Non.Skw.Comment`
 
 ****
 
