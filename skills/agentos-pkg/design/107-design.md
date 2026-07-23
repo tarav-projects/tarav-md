@@ -171,7 +171,7 @@
 - [DF] a `Non.Skw.Annotation` is a raw comment on a skw-managed surface that resolves to no `Skw.Annotation` — a `Drift.POI` kind: an annotation leaking outside the language ^c20260722-20u
 - [PR] skw owns the annotation channel completely: on a managed surface every comment must be a `Skw.Annotation` — prose is content skw may annotate, structured comments are directives it replaces ^c20260722-21u
 - [CT] a pure `--note` (no `--from`) is a legal wrap: an explanation with no design target is still tracked by its type and anchor — the floor is "every comment is an annotation," not "every comment links to design" ^c20260722-21u
-- [DC] it is blessable per `Poi.Bless`: bless accepts a raw comment as genuine throwaway; the standing fix is wrapping it as a `--note`, a `--from` link, or a directive annotation ^c20260722-20u
+- [DC] three resolutions close it: wrap the comment as whatever `Skw.Annotation` fits (the same authoring as any annotation), delete the comment, or bless it as genuine throwaway (`Poi.Bless`) — the POI is only the trigger ^c20260722-20u
 - [PR] the flood is closed elsewhere: because finer `Annotation.Point`s are user-gated (`Annotation.Authority`), an agent cannot spray notes — this POI closes the raw-comment leak, gating prevents an unregulated annotation system ^c20260722-20u
 
 ### meta
