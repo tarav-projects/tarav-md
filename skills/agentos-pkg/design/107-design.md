@@ -16,7 +16,16 @@
 
 ### meta
 
-- `Explicit.Namespace`; members: `Skill.Module`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Skw.Package`, `Skw.Dependency`, `Skw.Quote.Binding`, `Skw.Language`, `Skw.Annotation`, `Skw.Backend`, `Annotation.Point`, `Annotation.Authority`, `Drift.POI`, `Non.Skw.Annotation`, `Semantic.Router`, `Usage.Pattern.Routing`.
+- `Explicit.Namespace`; members: `Skill.Module`, `Runnable.Surface`, `Inline.Annotation`, `Build.Surface`, `Build.Annotation`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Skw.Package`, `Skw.Dependency`, `Skw.Quote.Binding`, `Skw.Language`, `Skw.Annotation`, `Skw.Backend`, `Annotation.Point`, `Annotation.Authority`, `Drift.POI`, `Non.Skw.Annotation`, `Semantic.Router`, `Usage.Pattern.Routing`.
+
+****
+
+## Runnable.Surface
+
+- [DF] a `Runnable.Surface` is a surface whose purpose is to be run, loaded, or used ^c20260723-13u
+- [DF] an `Inline.Annotation` is a `Skw.Annotation` embedded in the runnable surface itself — no separate source, no compile step ^c20260723-13u
+- [PR] splitting a `Build.Surface` out of the runnable is a response, not a default: reach for it only when the runnable cannot carry annotations without interference — otherwise annotate inline ^c20260723-13u
+- [EX] skills split out a `Build.Surface` — the runnable loads into agent context, so embedded machinery would pollute the run; code annotates inline — comments are inert to execution, so the runnable hosts annotations for free ^c20260723-14u
 
 ****
 
@@ -25,6 +34,14 @@
 - `Skill.Runnable.Surface` is a surface whose purpose is to be run — loaded into agent context to do work; it carries only the executable substance.
 - the system keeps it free of non-runnable artifacts, so nothing obscures or dilutes what runs — a building-backend discipline; annotated-only `Skw.Backend`s trade it for constraint co-location. ^c20260627-2u ^c20260711-9u
 - forced by context being executable — anything on it is read into context and shapes the run; non-runnable artifacts there are not inert, they interfere.
+- [DC] it specializes `Runnable.Surface`: loaded into agent context, it is kept clean — its annotations split out to the `Skill.Build.Surface` ^c20260723-13u
+
+****
+
+## Build.Surface
+
+- [DF] a `Build.Surface` is the off-runnable home for the source skw compiles into its `Runnable.Surface` — never loaded at run time ^c20260723-13u
+- [DF] a `Build.Annotation` is a `Skw.Annotation` on the `Build.Surface`, stripped from the compiled runnable so no machinery reaches what runs ^c20260723-13u
 
 ****
 
@@ -34,14 +51,17 @@
 - it is the home for everything kept off the runnable surface: derivation context, dependency declarations, lineage, dev material. ^c20260627-1u
 - never run, it carries no "stay clean" constraint — an unconstrained workspace; that freedom is what the two-surface split buys.
 - realized as the per-package `.skw/` folder (legacy `.skillware/`, still read during the rename window) — `src/` mirror, `skw.json` settings, lock — organized by capability, discovered by convention. ^c20260710-2u ^c20260720-13u
+- [DC] it specializes `Build.Surface` — the `.skw/` realization of the off-runnable source home ^c20260723-13u
 
 ****
 
 ## Skw.Package
 
-- [DF] a `Skw.Package` is a folder whose `.skw/` holds a `src/` of `*.skw.md` sources — the unit skw discovers, checks, and builds; the `src/` is what makes it a package ^c20260720-13u
+- [DF] a `Skw.Package` is a folder with a `.skw/` — the `.skw/` makes it a package: the unit skw discovers, checks, and builds ^c20260720-13u ^c20260723-15u
 - [DC] git-tracked: `.skw/` holds `skw.json` config, the `src/`, and `lock.json`; `.agentos/` keeps only project identity and runtime, while the tracked skw source lives in `.skw/` ^c20260720-9u ^c20260720-13u
 - [DC] scope mirror: one `skw.json` schema (`depots`, `surfaces`, `exclude`, `projects`) read at both project and package scope, the package extending the project via cascade; absent config means discover every `.skw/` and check all ^c20260720-9u
+- [DC] a package holds managed surfaces of both kinds: a `Build.Surface` under `.skw/src`, and inline-annotated `Runnable.Surface`s elsewhere in its tree — a code-only package carries no `src/` ^c20260723-15u
+- [DC] a surface belongs to the nearest-enclosing `.skw/`, co-located in the same repo; reach across packages or repos is `Skw.Dependency` only — a `.skw/` never manages surfaces outside its own tree ^c20260723-16u
 
 ****
 

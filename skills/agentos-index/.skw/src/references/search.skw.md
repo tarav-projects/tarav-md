@@ -1,6 +1,6 @@
 # agentos-index --search
 
-> $kw: --from Appendix.Discovery --from Context.Grounding --from Index.Chapter --from Index.Depot --from Index.Grounding --from Index.Line --from Line.Type
+> $kw: --from Appendix.Discovery --from Context.Grounding --from Index.Chapter --from Index.Depot --from Index.Grounding --from Index.Line --from Line.Type --from Reviewed.Cite.Closure --from Touched.Authority
 
 Use this module when the caller wants cited index context, conceptual lookup, appendix depth, or the current discussion grounded against the index.
 

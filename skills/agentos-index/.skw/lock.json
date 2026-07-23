@@ -97,42 +97,5 @@
       "recipes": []
     }
   },
-  "blessings": [
-    {
-      "hash": "0a2f7c53b5",
-      "kind": "undeclared-dependency",
-      "target": "references/agendix.md",
-      "key": "Reviewed.Cite.Closure"
-    },
-    {
-      "hash": "32890cd731",
-      "kind": "undeclared-dependency",
-      "target": "references/agendix.md",
-      "key": "Touched.Authority"
-    },
-    {
-      "hash": "7770774856",
-      "kind": "undeclared-dependency",
-      "target": "references/search.md",
-      "key": "Reviewed.Cite.Closure"
-    },
-    {
-      "hash": "d0a84f7220",
-      "kind": "undeclared-dependency",
-      "target": "references/search.md",
-      "key": "Touched.Authority"
-    },
-    {
-      "hash": "20d4b398f8",
-      "kind": "undeclared-dependency",
-      "target": "references/agendix.md",
-      "key": "Reviewed.Cite.Closure"
-    },
-    {
-      "hash": "f7149c68dd",
-      "kind": "undeclared-dependency",
-      "target": "references/search.md",
-      "key": "Reviewed.Cite.Closure"
-    }
-  ]
+  "blessings": []
 }
