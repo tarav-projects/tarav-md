@@ -8,3 +8,9 @@
 - the touched-versus-reviewed distinction it rests on is formalized by `Reviewed.Content`: the agendix is the touched-unreviewed rung, the `Agentos.Index` the touched-reviewed one ^c20260723-3u
 
 ****
+
+## Index.Agendix/Citation
+
+- [DC] the agendix is cited only through file-referenced line quotes (`--from <agendix-file>` + `--quote`) — candidate block names are provisional, so block-name cites are disallowed, not merely discouraged ^c20260723-12
+
+****

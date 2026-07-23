@@ -84,6 +84,10 @@
 - [PR] content-addressing makes the reference honest: it survives source reordering and breaks loudly under change, never silently pointing at the wrong lines ^c20260718-26u
 - [DC] a quoted line no longer verbatim-present at its source raises a POI on the declaring construct — the existing unresolvable-`--from` POI extended to content ^c20260718-26u
 - [DC] syntax: a repeatable `--quote` flag refining the nearest preceding `--from`; each value is one verbatim line of interest, plain continuations append ^c20260718-27u ^c20260718-28u
+- [DC] `Touched.Surface.Index` lines are cited through it: a block cite is a bare `--from Block.Path`, a line cite adds `--quote` ^c20260723-12
+- [DC] a block cite needs a stable-named target; a provisionally-named block (promotion may rename) is cited by file line quote only — the rename then surfaces as a loud POI, not a silent miss ^c20260723-12
+- [CT] an ungrounded line is never quoted — it could leak assistant-untouched content into the cite; a quoted TSI line carries its anchor verbatim, the pin and the grounding handle ^c20260723-12
+- [DC] re-grounding is not transparent to citers: reinterpretation mints a new anchor (`Demoted.Anchored.Line`), changing the quoted content and raising the drift POI even when prose is unchanged — a re-confirm signal, not silent drift ^c20260723-12
 
 ### meta
 
@@ -214,6 +218,25 @@
 - [PR] blessing is loud: drift never clears as a side effect of rebuilds or unrelated edits — only a re-derivation of the content or an explicit bless (the no-silent-blessing rule generalized) ^c20260712-17u
 - [CT] not every POI is blessable: parse errors are never blessable — a surface below the `Parse.Floor` is not in the language and must be fixed; blessability belongs to semantic POIs, where the current state might genuinely be the truth ^c20260712-17u
 - [DC] realized: `agentos skillware bless --poi <hash>` — rewrites the recipe's locked dependency hashes to current, body untouched; only `derived-stale` accepts it ^c20260712-17u
+
+****
+
+## Poi.Unlock.Token
+
+- [DF] `Poi.Unlock.Token` is a context-read receipt required before a `Poi.Bless` act can accept a POI ^c20260723-11u
+- [PR] the token is a robustness gate, not a proof of understanding ^c20260723-11u
+- [DC] a blessable POI kind may require multiple unlock tokens when evaluating it requires multiple context surfaces ^c20260723-11u
+- [DC] `Poi.Bless` refuses when any required unlock token is missing ^c20260723-11u
+- [PR] the gate makes the correct workflow concrete: read the required context before blessing ^c20260723-11u
+
+****
+
+## Poi.Bless.Question
+
+- [DF] `Poi.Bless.Question` is a future stronger bless gate: a checkable question about the context required to evaluate a POI ^c20260723-11u
+- [PR] questions test understanding more directly than unlock tokens ^c20260723-11u
+- [CT] questions add authoring, validation, versioning, and stale-question costs ^c20260723-11u
+- [DC] `Poi.Bless.Question` stays a later level; `Poi.Unlock.Token` is the simpler first gate ^c20260723-11u
 
 ****
 
@@ -573,6 +596,7 @@
 - [CT] one forbidden edge: reviewed→unreviewed; reviewed→reviewed and any unreviewed→anything are legal ^c20260723-3u
 - [DC] the boundary is verbatim review specifically: a cite depends on wording, so `Edition.Trigger.User.Gated` (edit-event approval, wording unseen) does not count as reviewed for this rule ^c20260723-3u
 - [DC] CPU-lintable per `User.Gate`: resolve each cite's target and check its support set for the review turn; a reviewed line citing an unreviewed target is a linter finding ^c20260723-3u
+- [DC] the check is local: a line cite quotes the target verbatim including its anchor, so resolving that embedded anchor reaches the support set directly — no container walk ^c20260723-12
 
 ****
 

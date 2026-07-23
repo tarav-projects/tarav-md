@@ -16,7 +16,7 @@
       ]
     },
     "references/agendix.md": {
-      "output_sha256": "c31aadbce801bfdb7447732f539bb0edac8164ce5b35716a79791da97658afa9",
+      "output_sha256": "7c94f32843b2f046131266844fc41c2400a98d7f0b16842688d5d27b3519a216",
       "recipes": []
     },
     "references/back-link.md": {
@@ -121,6 +121,18 @@
       "kind": "undeclared-dependency",
       "target": "references/search.md",
       "key": "Touched.Authority"
+    },
+    {
+      "hash": "20d4b398f8",
+      "kind": "undeclared-dependency",
+      "target": "references/agendix.md",
+      "key": "Reviewed.Cite.Closure"
+    },
+    {
+      "hash": "f7149c68dd",
+      "kind": "undeclared-dependency",
+      "target": "references/search.md",
+      "key": "Reviewed.Cite.Closure"
     }
   ]
 }

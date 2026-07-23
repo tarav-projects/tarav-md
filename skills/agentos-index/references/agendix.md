@@ -27,6 +27,7 @@ Authority lives in the index: `Index.Agendix`, `Writing.Friction.Reduction`, `In
 - every line ends with its anchor: hard provenance, no unanchored agendix lines
 - entries may group into blocks — the appendix's block forms apply; a candidate block attaches as a path-child of a routed concept (`Concept.X/Agendix/Candidate.Name`)
 - no routed-concept minting on this surface — a candidate block's name is provisional: unrouted, citable from unreviewed surfaces but not reviewed ones (`Reviewed.Cite.Closure`); promotion may rename it
+- cite the agendix only through file-referenced line quotes (`--from <agendix-file>` + `--quote`) — its block names are provisional, so block-name cites are disallowed, not merely discouraged
 - no duplication: content the index, appendix, or agendix already carries does not enter
 - unsourced agent reasoning does not belong — every line must be recoverable from the anchored chat neighborhood
 
