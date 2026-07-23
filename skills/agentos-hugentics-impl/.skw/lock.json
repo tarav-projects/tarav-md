@@ -107,7 +107,7 @@
           "deps": {
             "Vertical.Slice": "a670e07fadf5c8183dd3de285fc558dcd9aa06bf86ff24e56e5452cf654afbbc",
             "RED.GREEN.Test.Suite": "d2b1d3f40cf2b16f1c70127a6f03cc2ddfb93b13023b0fb288c5c76c5ad4c8e5",
-            "Annotation.Point": "5338db50a85c355e30e4cdd8680e2f0933ef7e8c3b000169d9a7199a005b7771"
+            "Annotation.Point": "ffd09205f65934940bb8f3b8c5027d298a4c475c7b738792cd86f8b25dc67592"
           }
         }
       ]
