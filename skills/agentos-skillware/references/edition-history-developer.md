@@ -6,7 +6,7 @@ Use this module when the caller wants to recover, record, inspect, or lint the c
 
 ## Inputs
 
-- require one explicit Bloberia `--depot`; never infer or substitute a global depot
+- use the target file's Agentos-project depot by default; pass `--depot` only for an intentional lifecycle or test override
 - require one or more target files inside initialized Agentos projects
 - work with project-relative file paths when querying Git and Chatlas
 - treat the target list as the linter scope; no package-wide completeness claim follows from checking it
@@ -20,11 +20,16 @@ Use this module when the caller wants to recover, record, inspect, or lint the c
    git log --follow --format='%H%x09%cI' -- <project-relative-path>
    ```
 
-3. Refresh Chatlas and build a candidate session list from several independent signals. Start with normalized file touches, then broaden through tool input/output containing the path or basename, transcript text, repository attribution, working directory, and the Git edition's time neighborhood. Do not require every signal to agree, and do not exclude umbrella-workspace sessions merely because the file belongs to a nested project.
+3. Refresh Chatlas and build a candidate session list from several independent signals. Start with normalized file touches and tool events, but always include raw transcript matching for both the project-relative path and basename; normalization can miss generic editing mechanisms or whole-session candidates. Also search visible transcript text, repository attribution, working directory, and the Git edition's time neighborhood. Use newest-first ordering and a scan limit large enough to reach the edition window. Do not require every signal to agree, and do not exclude umbrella-workspace sessions merely because the file belongs to a nested project.
 
    ```bash
    agentos chatlas query --file-touched <project-relative-path> --update
-   agentos chatlas views inline --tool-contains <path-or-basename> --format json
+   agentos chatlas query --tool-contains <path-or-basename> \
+     --sort newest --scan-limit 5000 --field identity_hash
+   agentos chatlas query --raw-contains <project-relative-path> \
+     --sort newest --scan-limit 5000 --field identity_hash
+   agentos chatlas query --raw-contains <basename> \
+     --sort newest --scan-limit 5000 --field identity_hash
    agentos chatlas views inline --contains <path-or-basename> --format json
    ```
 
@@ -61,16 +66,24 @@ Use this module when the caller wants to recover, record, inspect, or lint the c
    agentos skw edition-history record \
      --file <file> --commit <commit> --session <chatlas-identity> \
      --session-started-at <ISO-time> \
-     --support-file <support-set.json> \
-     --depot <depot>
+     --support-file <support-set.json>
    ```
 
 8. Repeat safely as more Chatlas material becomes available; equivalent record calls are idempotent.
-9. Close by reading the grouped history and running the explicit-target linter. Through the umbrella `agentos` executable, both operations resolve every support member against Chatlas and reject unavailable sessions, missing events, or timestamp mismatches.
+9. If better or corrected proof becomes available, replace the association's complete support set through the service rather than editing Bloberia directly:
 
    ```bash
-   agentos skw edition-history list --file <file> --depot <depot>
-   agentos skw edition-history check --target <file> --depot <depot>
+   agentos skw edition-history amend \
+     --file <file> --record <record-id> \
+     --support-file <replacement-support-set.json>
+   ```
+
+10. Close by reading the Git-complete grouped history and running both linter levels. Through the umbrella `agentos` executable, these operations resolve every support member against Chatlas and reject unavailable sessions, missing events, or timestamp mismatches.
+
+   ```bash
+   agentos skw edition-history list --file <file>
+   agentos skw edition-history check --target <file>
+   agentos skw edition-history check --target <file> --complete
    ```
 
 ## Judgment Rules
@@ -82,8 +95,10 @@ Use this module when the caller wants to recover, record, inspect, or lint the c
 - persist the support consumers need; never persist discovery signals or search mechanics
 - preserve Chatlas session start time when available so stored timing can later be reconciled
 - if support remains ambiguous, leave the association unrecorded and report the candidate rather than guessing
+- treat the default check as the minimum presence gate; run `--complete` on demand to measure every unsupported Git edition without making that backlog the normal inner loop
+- amendment replaces the complete support set and may update the stored session start time; preserve still-valid members when enriching proof
 - never write `skw.edition-session` records directly with `agentos bloberia`; callers consume the Skillware schema through its service
 
 ## Completion
 
-Return the target files, editions inspected, associations created versus already present, unresolved candidates, and the final check findings. A clean minimal check means every target has at least one structurally valid association whose support resolves through Chatlas; it does not prove historical completeness or semantic correctness.
+Return the target files, total/supported/unsupported Git editions, associations created versus already present or amended, unresolved candidates, and both minimal and requested completeness findings. A clean minimal check means every target has at least one structurally valid association whose support resolves through Chatlas; only the opt-in completeness check measures the remaining Git-edition backlog, and neither check judges semantic correctness.

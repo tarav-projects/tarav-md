@@ -248,13 +248,36 @@
 
 ## POI.Linter
 
-- [DF] a `POI.Linter` consumes a `Floor.Model` and evaluates it for situations that require agent judgment ^c20260724-12u
-- [CT] it emits `Point.Of.Interest` instances attached to a `POI.Class` ^c20260724-12u
-- [CT] each emitted instance carries enough occurrence evidence to identify the observed situation ^c20260724-12u
-- [PR] heuristic and policy concerns become reviewable POIs rather than failures of the model producer ^c20260724-12u
-- [RJ] a `POI.Linter` does not produce its input model ^c20260724-12u
-- [RJ] it does not own authoritative documentation or resolution policy ^c20260724-12u
-- [PR] a `POI.Linter` is one producer within a broader `POI.System` ^c20260724-12u
+- [DF] a `POI.Linter` evaluates a `Floor.Model` by executing one or more `POI.Check`s ^c20260725-31u
+- [CT] it emits zero or more `POI.Instance`s carrying their `POI.Class` identities and occurrence evidence ^c20260725-31u
+- [CT] it consumes the dependable model supplied to it, not the producer’s raw source ^c20260725-31u
+- [PR] heuristic and policy concerns become reviewable instances rather than failures of the model producer ^c20260725-31u
+- [CT] its instances enter the shared `POI.System` for class resolution, presentation, documentation, and permitted resolution acts ^c20260725-31u
+- [RJ] a linter does not produce its input model or own authoritative class semantics ^c20260725-31u
+- [RJ] it does not render final policy by itself or resolve the instances it emits ^c20260725-31u
+
+****
+
+## POI.System
+
+- [DF] a `POI.System` is the shared machinery that carries POIs from detection through presentation, documentation discovery, and resolution ^c20260725-29u
+- [CT] producers emit `POI.Instance`s carrying stable `POI.Class` identities ^c20260725-29u
+- [CT] the system resolves classes through engaged `POI.Catalog`s before rendering, explaining, or resolving instances ^c20260725-29u
+- [CT] `POI.Renderer`, `POI.Explain`, and `Poi.Bless` consume the same resolved class-and-instance model ^c20260725-29u
+- [CT] catalog or documentation failures are reported without hiding the original instances ^c20260725-29u
+- [PR] different linters share one POI lifecycle while domain semantics remain with their owning packages ^c20260725-29u
+- [RJ] the system does not own producer input models, domain checks, or authoritative documentation ^c20260725-29u
+
+****
+
+## POI.Check
+
+- [DF] a `POI.Check` is one named evaluation that a `POI.Linter` runs over its `Floor.Model` ^c20260725-30u
+- [CT] it declares the `POI.Class` identities it may emit ^c20260725-30u
+- [CT] each match produces a `POI.Instance` with stable identity, target location, and concrete evidence ^c20260725-30u
+- [PR] checks own detection mechanics while classes own meaning, documentation, and resolution policy ^c20260725-30u
+- [CT] several checks may participate in one linter, and several linters may emit instances of the same class ^c20260725-30u
+- [RJ] a check does not bless instances or determine their final disposition ^c20260725-30u
 
 ****
 
