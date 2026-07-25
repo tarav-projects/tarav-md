@@ -56,7 +56,7 @@
 - build `agentos-index`, then run `agentos skw check --skill skills/agentos-index`
 - observable RED: `context-assembly-bypass` appears on existing consumers that directly use covered sources
 - record the observed targets/count in `Impl.Log`; do not bless the POIs
-- status: not started
+- status: completed
 
 ### Slice 2 - Wire the complete builder context
 
@@ -109,3 +109,5 @@
 - execution plan confirmed and authorized ^c20260725-39u
 - current `agentos-md` worktree contains the landed context-assembly appendix material, `::land-all-approved`, and concurrent Skillware edition-history changes; the mandatory execution checkpoint must preserve all of them
 - current `agentos-py` worktree is clean and requires an empty mandatory execution checkpoint
+- RED observation: adding the general assembly produced 147 `context-assembly-bypass` POIs across all 14 managed surfaces; no POIs were blessed
+- deviation: 15 concepts are covered by both the general and capture assemblies, so the symmetric checker requires the general assembly to `--dev-from` the capture specialization while the plan requires capture to `--dev-from` general; the resulting cycle makes the planned hierarchy non-executable without a hierarchy rule or a non-overlapping boundary
