@@ -44,6 +44,10 @@ Every Agentos skill is a `Batchy.Skill` — called like a terminal command. `-h`
 - `Batchy.Skill.Help` — the non-executing `-h`/`--help` call rendered from the skill's `Skill.Arg` blocks.
 - `Batchy.Skill.Banner` — the resolved-argument banner printed as the first step of every run.
 - `Skill.Module` — a named, on-demand-loadable part of the skill (file or section); progressive disclosure made addressable-by-name. A former subcommand is just a `Skill.Arg` with an `action` that activates one.
+- `User.Command` — an explicit `::`-prefixed transition available at declared workflow points.
+- `User.Command.Trigger` — one accepted spelling for a canonical command; several triggers may invoke the same command.
+- `User.Command.Arg` — one command input, resolved by its declared `Explicit`, `Contextual`, or `Defaulted` policy.
+- `User.Command.Section` — the command declarations a workflow-bearing skill exposes.
 
 Detail is split by audience: running a Batchy skill → [references/batchy-skill-run.md](references/batchy-skill-run.md); building one → [references/batchy-skill-designer.md](references/batchy-skill-designer.md).
 
@@ -56,6 +60,7 @@ Detail is split by audience: running a Batchy skill → [references/batchy-skill
 - Duplicate package knowledge only through `Cited.Duplication`, citing origin blocks.
 - Place each piece by `Natural.Placement`: conceptual truth in the index, depth in the appendix or references, behavior in the skill body.
 - Name concepts in `Dotted.Notation` so they are referenceable from skill text and the index.
+- Declare explicit workflow transitions in a `User.Command.Section`; keep natural conversation free while their gates remain unresolved.
 
 ## References
 

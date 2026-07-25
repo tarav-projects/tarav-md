@@ -2,12 +2,12 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "51c5a63bff210129f3b047e068135dedc2fa952724d550cd69add2902d55eb46",
+      "output_sha256": "d49cd3eeafa6524ab369c50e47334023939fa911952f116a347c077226eacae1",
       "recipes": [
         {
           "heading": "Index Operating Behavior",
           "verb": "derived",
-          "body_sha256": "d71d2b39913c6e4a273931c4a0c0f06a56a926d4ee6220755023d49417b80275",
+          "body_sha256": "eeac790220e3acb3ef263f32edf6e5e6e2839f7ce657fc936c5b574a7bc3dec2",
           "deps": {
             "references/search.skw.md#Search Model": "d99456d67e9e34cc75808c67dc06536a3e43e47cb119d4304d5d0e948d3a780f",
             "references/search.skw.md#Citation Behavior": "e57e94bf2adedb5f4bde5e498c1feb6342c70412564a0e8d8a1a8734a673a8a9"
@@ -33,7 +33,7 @@
       ]
     },
     "references/capture.md": {
-      "output_sha256": "0765ccddfcc0d32fa77a3b9433b4925d567d13aea09f1667722cb47b75e65358",
+      "output_sha256": "77371fec3d11cbf3dcbb032e57cc5ee5bc3694543723a0b747d08488a6c5b283",
       "recipes": [
         {
           "heading": "Landing",
@@ -60,7 +60,7 @@
       ]
     },
     "references/edit.md": {
-      "output_sha256": "9f808ac6d8cced17a7e01072e2a6ceb849490400988ade6d59a310680bb63cba",
+      "output_sha256": "8d301b72ac23619827489d65665dfdd181f520b0b4f1741dc150d3184b18d270",
       "recipes": [
         {
           "heading": "Block Independence",

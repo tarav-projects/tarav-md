@@ -1,6 +1,6 @@
 # Batchy Skills — Designing One
 
-How to *build* a `Batchy.Skill`. This is the designer-facing guide — best practices for authoring a skill. For operating one, see `batchy-skill-run.md`. Concepts are canonical in `agentos-pkg/design/101-design.md` (`Batchy.Skill`, `Batchy.Skill.Template`, `Batchy.Skill.Contract`, `Skill.Index.Section`, `Skill.Arg`, `Skill.Arg.Section`, `Batchy.Skill.Help`, `Batchy.Skill.Banner`, `Skill.Module`).
+How to *build* a `Batchy.Skill`. This is the designer-facing guide — best practices for authoring a skill. For operating one, see `batchy-skill-run.md`. Concepts are canonical in `agentos-pkg/design/101-design.md` (`Batchy.Skill`, `Batchy.Skill.Template`, `Batchy.Skill.Contract`, `Skill.Index.Section`, `Skill.Arg`, `Skill.Arg.Section`, `Batchy.Skill.Help`, `Batchy.Skill.Banner`, `Skill.Module`, `User.Command`, `User.Command.Trigger`, `User.Command.Arg`, `User.Command.Section`).
 
 ## The Skill Template
 
@@ -10,7 +10,8 @@ Every Batchy skill instantiates one `Batchy.Skill.Template` — the same skeleto
 2. a `Batchy.Skill.Contract` block — the in-skill mini-course (below);
 3. a `## Skill.Index.Section` defining the skill's own key concepts — only when the skill hinges on a few defined terms;
 4. a `## Skill.Arg.Section` of `### Skill.Arg:<Name>` blocks — only when the skill takes arguments;
-5. any `Skill.Module`s — named files or sections, optionally fronted by an arg.
+5. a `## User.Command.Section` of `### User.Command::<Name>` blocks — only when the skill exposes explicit workflow transitions;
+6. any `Skill.Module`s — named files or sections, optionally fronted by an arg.
 
 Adapt the template to the skill: a zero-argument skill omits the `Skill.Arg.Section` (and its Contract carries only the help rule); a single-operation skill needs no extra modules; most skills omit the `Skill.Index.Section`. The `Batchy.Skill.Contract` and the frontmatter `Skill.Trigger.Clause` (a `USE WHEN` line) are always present.
 
@@ -33,6 +34,13 @@ A zero-argument skill carries only the help rule:
 This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
+```
+
+A command-bearing skill also carries the workflow-gate rule:
+
+```markdown
+- declared `User.Command`s are the only way to cross their explicit workflow gates.
+- when the workflow pauses, print only the commands available at that checkpoint.
 ```
 
 ## Skill.Index.Section
@@ -103,6 +111,34 @@ What used to be a subcommand is now an `action`-bearing `Skill.Arg`:
 
 The action body lives wherever `Natural.Placement` puts it: inline in the arg block, a `##` section, or a file.
 
+## User.Command.Section
+
+Declare explicit workflow transitions in a `## User.Command.Section`. Each canonical command is a `### User.Command::<Name>` block. A command declaration states:
+
+- `triggers` — one or more accepted `::`-prefixed spellings; aliases remain semantically identical.
+- `available` — the workflow checkpoints where the command may execute.
+- `action` — the single transition the command performs.
+- nested `#### User.Command.Arg::<Name>` blocks — inputs required by the transition.
+
+Each command argument states what it means, whether it is required, and one `resolution` policy: `Explicit`, `Contextual`, or `Defaulted`. A contextual required argument may be omitted from the command line only when the foreground workflow resolves it uniquely.
+
+```markdown
+## User.Command.Section
+
+### User.Command::Approve
+- accept the selected draft without writing it
+- triggers: `::approve`, `::approved`
+- available: when an approval-ready draft is foregrounded
+- action: mark the resolved draft approved and unlanded
+
+#### User.Command.Arg::Target
+- the draft to approve
+- required: true
+- resolution: Contextual
+```
+
+At every declared pause, print the commands available there. Do not append command menus to ordinary conversational turns. Keep the gate unresolved through free-form discussion, fail closed on ambiguous targets or arguments, and invalidate commands whose underlying proposal has changed.
+
 ## Namespace Discipline (designer's responsibility)
 
 Argument names, file names, and section names **share one resolution space** — they are all activatable handles. Keep them distinct and unambiguous so a mention maps to exactly one thing:
@@ -132,7 +168,7 @@ Restate a short banner section in the target skill (a `Cited.Duplication` of the
 
 ## Authoring Checklist
 
-- Body follows the `Batchy.Skill.Template`: description, `Batchy.Skill.Contract`, `Skill.Index.Section` (if the skill hinges on defined concepts), `Skill.Arg.Section` (if any args), modules (if any).
+- Body follows the `Batchy.Skill.Template`: description, `Batchy.Skill.Contract`, `Skill.Index.Section` (if the skill hinges on defined concepts), `Skill.Arg.Section` (if any args), `User.Command.Section` (if any), modules (if any).
 - A `Batchy.Skill.Contract` block near the top restates the `-h`, banner, and resolution rules standalone.
 - Arguments declared as `### Skill.Arg:<Name>` blocks, never a table.
 - Each argument advertised enough that `-h` is useful.
@@ -141,3 +177,5 @@ Restate a short banner section in the target skill (a `Cited.Duplication` of the
 - Arg / file / section names share one namespace — keep them collision-free.
 - `description` frontmatter carries a `Skill.Trigger.Clause` and names the key arguments.
 - Missing-argument behavior stated: ask, orient, or noop — never guess.
+- Commands declare canonical identity, triggers, availability, action, and argument resolution; equivalent triggers never fork semantics.
+- Command-bearing workflows print available commands only at pauses or on status requests.

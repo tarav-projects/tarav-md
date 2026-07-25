@@ -592,6 +592,15 @@
 - it is the entry step of backward grounding: git dates the wording, chatlas finds the session and turns ^c20260709-11u
 ****
 
+## Skw.Edition.History.Service
+
+- [DF] `Skw.Edition.History.Service` is the canonical Skillware boundary for recording, reading, and checking `Skw.Edition.History`. ^c20260725-5u
+- [DC] Git supplies editions, Chatlas supplies possible sessions, Skillware defines their association, and `Agentos.Bloberia` stores and queries the resulting records. ^c20260725-5u
+- [CT] the service owns its payload schema, validation, idempotency, history projection, and check findings while Bloberia remains application-agnostic. ^c20260725-5u
+- [PR] agents and linters consume the service instead of depending on raw Bloberia records. ^c20260725-5u
+- [CT] discovery and reconciliation belong to a specialized developer workflow; the service persists and validates the associations that workflow supplies. ^c20260725-5u
+****
+
 ## Anchory.System
 
 - `Anchory.System` is the Agentos subsystem for stable symbolic links to contexts on other surfaces

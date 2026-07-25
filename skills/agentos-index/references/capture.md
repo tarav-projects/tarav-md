@@ -18,6 +18,23 @@ A pass over the chat's uncaptured content, repeated until the content is exhaust
 4. **Approve.** User approval accepts the current form in chat — it is not a write. Approved material accumulates while the discussion rolls to the next item; the natural rhythm is a converging concept cluster, not item-by-item write ceremony. (`Interactive` only.)
 5. **Land.** A separate, user-triggered act over approved material — all of it or a specific piece, to whatever surfaces the user names. After landing, re-ground: the index changed, and the next pass computes against it.
 
+## User.Command Checkpoints
+
+- These checkpoints apply the skill's declared `User.Command` transitions and resolve each required `User.Command.Arg` against the foreground capture state.
+- When an approval-ready draft becomes foreground, pause with `::approve [target]` (`::approved` equivalent). The command accepts that exact draft and never writes it.
+- Approved material accumulates as unlanded workflow state. At a later pause, expose `::land [target]` (`::write` equivalent) whenever at least one approved target is available.
+- A bare command may resolve its contextual target only when one foreground target is possible. If several drafts or approved sets could receive it, ask which one and leave every transition unresolved.
+- Free-form replies continue the discussion without crossing either gate. If discussion changes an approved draft's wording or landing target, return that draft to approval-ready state.
+- Print the available command line only at a real pause or on a status request. Do not append it to ordinary conversational turns.
+
+Example pause footer:
+
+```text
+Available User.Commands:
+  ::approve [target]  (also ::approved)
+  ::land [target]     (also ::write; approved material only)
+```
+
 ## Mode
 
 - capture accepts `Alignment.Mode` — `Interactive` (default) or `Autonomous`

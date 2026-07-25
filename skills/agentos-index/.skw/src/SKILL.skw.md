@@ -5,7 +5,7 @@ description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem
 
 # agentos-index
 
-> $kw: --from Alignment.Mode --from Alignment.Surface --from Batchy.Skill --from Capture.Offer --from Gr.Req --from Index.Agendix --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Enrichment --from Index.Line --from Index.Ontology --from Index.Skillware --from Line.Type --from Line.Type.Vocabulary --from Package.Aux.Skill --from Packages.Master.Agent --from Reviewed.Cite.Closure --from Skill.Module --from User.Attention
+> $kw: --from Alignment.Mode --from Alignment.Surface --from Batchy.Skill --from Capture.Offer --from Gr.Req --from Index.Agendix --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Enrichment --from Index.Line --from Index.Ontology --from Index.Skillware --from Line.Type --from Line.Type.Vocabulary --from Package.Aux.Skill --from Packages.Master.Agent --from Reviewed.Cite.Closure --from Skill.Module --from User.Attention --from User.Command --from User.Command.Arg --from User.Command.Section --from User.Command.Trigger
 
 Workflow-neutral `Package.Aux.Skill` for the Agentos Index subsystem.
 
@@ -14,6 +14,8 @@ This skill is the public Batchy router for index work. It orients the caller to 
 This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints usage and the public args without running.
+- declared `User.Command`s are the only way to cross their explicit workflow gates.
+- when an index workflow pauses, print only the commands available at that checkpoint.
 
 ## Skill.Arg.Section
 
@@ -118,6 +120,34 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - help: "enrich a block: generate new grounding surface through a scoped discussion"
 - examples: --enrich "Writing.Friction.Reduction", --enrich (default: head of the gr-density worklist)
 
+## User.Command.Section
+
+This `User.Command.Section` declares the canonical commands below. Each accepted `User.Command.Trigger` resolves to one command, whose nested `User.Command.Arg` blocks govern target resolution.
+
+### User.Command::Approve
+- accept an approval-ready index draft in its current form without writing it
+- triggers: `::approve`, `::approved`
+- available: when `--capture`, direct `--edit`, a `Capture.Offer`, or an `--enrich` capture offer has one or more approval-ready drafts
+- action: mark the resolved target approved and unlanded
+
+#### User.Command.Arg::Target
+- the draft, block, line, or revision to approve
+- required: true
+- resolution: Contextual
+- examples: `::approve`, `::approved the block after the correction`
+
+### User.Command::Land
+- write approved, unlanded index material through its declared landing procedure
+- triggers: `::land`, `::write`
+- available: when the foreground index workflow holds one or more approved, unlanded targets
+- action: land the resolved target set; never approve material implicitly
+
+#### User.Command.Arg::Target
+- the approved item or set to land
+- required: true
+- resolution: Contextual
+- examples: `::land`, `::write all approved blocks`
+
 ## Boundary
 
 - this skill is the canonical public entry surface for working with the Agentos Index system
@@ -177,6 +207,8 @@ An agent operating the index should:
 - treat the prompt as a focus argument and compare the current visible discussion against the index whenever there is discussion state to ground
 - make a `Capture.Offer` when work surfaces new aligned content: propose the exact typed line(s) at the moment, with destination options (index main, appendix, agendix, decline) — never self-write
 - use `--capture` when the user wants the chat's content worked into the index — approval in chat and landing on a surface are distinct acts
+- resolve `::approve` / `::approved` to `User.Command::Approve` and `::land` / `::write` to `User.Command::Land`; `--write` remains a skill argument while `::write` is an in-workflow transition
+- keep command targets foregrounded and fail closed when more than one draft or approved set could receive the command
 - use file mutation only when the user has approved an index edit
 - run a linter check after applying an approved index or appendix edit
 

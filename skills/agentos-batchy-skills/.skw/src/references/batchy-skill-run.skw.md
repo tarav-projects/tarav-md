@@ -46,9 +46,25 @@ $my-skill — banner
 - An argument may carry an `action` that activates a module when set; otherwise the module's name is itself the handle.
 - Load only the modules the current call needs — progressive disclosure keeps context lean.
 
+## User Commands During A Workflow
+
+- Read the active skill's `User.Command.Section` as the authoritative command inventory.
+- A `User.Command` is an explicit `::<command line>` inside a user turn; it may appear anywhere in that turn.
+- Resolve the written `User.Command.Trigger` to the canonical command declared by the active skill. Equivalent triggers execute the same action and carry no trigger-specific meaning.
+- Treat quoted examples and discussion about command syntax as ordinary conversation unless the user's intent to invoke the command is clear.
+- Execute only when the command is available at the foreground workflow checkpoint and every required `User.Command.Arg` resolves under its declared policy.
+- An `Explicit` argument must be present in the command turn. A `Contextual` argument may come from the conversation or foreground workflow only when unique. A `Defaulted` argument uses its declared default.
+- If the target, availability, or a required argument is ambiguous, ask for the missing input and do not advance any workflow.
+- Natural conversation may interrupt or reshape the workflow, but it does not cross an unresolved explicit command gate. If the underlying proposal changes, invalidate any approval that no longer addresses its current form.
+- Print the commands currently available when the workflow pauses or when status is requested, not after ordinary conversational turns.
+
 > $kw: --from Addressing.Sigil.Vocabulary
 > $kw: --from Batchy.Skill
 > $kw: --from Batchy.Skill.Banner
 > $kw: --from Skill.Arg
 > $kw: --from Skill.Explicit.Args
 > $kw: --from Skill.Module
+> $kw: --from User.Command
+> $kw: --from User.Command.Arg
+> $kw: --from User.Command.Section
+> $kw: --from User.Command.Trigger

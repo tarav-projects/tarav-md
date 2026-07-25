@@ -2,15 +2,15 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "fcb0eb299681a67c9ffaaee2944679f58fcff67b9d65c579e6bc644142d427d9",
+      "output_sha256": "bfe8dd7a0d141cc4807f79b64f6dae82c12c9b5bc8311f1df6bcb5dad23a7c2d",
       "recipes": []
     },
     "references/batchy-skill-designer.md": {
-      "output_sha256": "8a22ba75316d9473880cce752ea3ac099532add31607c3cd75f7ce17eb35c549",
+      "output_sha256": "052c75a3f97d613076574a9520bab15790343e6a75979b626851e942c0bb4cdc",
       "recipes": []
     },
     "references/batchy-skill-run.md": {
-      "output_sha256": "ee7f434931e25097bab38f6dcf7942c506cb441e88b5661f644b8b4d854dbd58",
+      "output_sha256": "e67a795310d0fe0ade22ea5abb3656b428e7cfac6a3fd74bd3b0c98391272cf5",
       "recipes": []
     }
   },

@@ -441,6 +441,7 @@
 
 - [DF] `User.Command` is a formal user-authored instruction that advances or redirects a declared workflow transition ^c20260725-1u
 - [DC] its canonical form is `::<command line>` ^c20260725-1u
+- [DC] each command has one canonical identity and one or more equivalent `User.Command.Trigger`s ^c20260725-6u
 - [FR] a `User.Command` may appear anywhere in a user turn; it does not need to begin a line ^c20260725-1u
 - [CT] a skill declares which `User.Command`s exist and the workflow points where each is available ^c20260725-1u
 - [CT] natural conversation may interrupt or reshape a workflow, but a gated transition remains unresolved until a valid explicit `User.Command` ^c20260725-1u
@@ -449,6 +450,14 @@
 - [CT] ambiguity makes the agent ask for the missing command input without advancing the workflow ^c20260725-1u
 - [PR] `User.Command` supplies deterministic workflow transitions inside natural conversation while the agent maintains coherence across free-form turns ^c20260725-1u
 - [CT] later conversation may invalidate a pending command by changing the transition or proposal it addresses ^c20260725-1u
+
+****
+
+## User.Command.Trigger
+
+- [DF] `User.Command.Trigger` is one accepted `::`-prefixed spelling that invokes a canonical `User.Command` ^c20260725-6u
+- [CT] several triggers may resolve to the same command; every trigger shares that command's availability, arguments, action, and workflow transition ^c20260725-6u
+- [CT] trigger choice carries no additional state or semantics beyond selecting the canonical command ^c20260725-6u
 
 ****
 
@@ -466,5 +475,5 @@
 ## User.Command.Section
 
 - [DF] `User.Command.Section` is the section of a skill that declares its `User.Command` blocks ^c20260725-1u
-- [CT] each command declaration names its syntax, available workflow points, action, and `User.Command.Arg`s ^c20260725-1u
+- [CT] each command declaration names its canonical identity, triggers, available workflow points, action, and `User.Command.Arg`s ^c20260725-6u
 - [CT] command declarations make a skill's user-controlled workflow transitions inspectable before execution ^c20260725-1u

@@ -1,6 +1,6 @@
 # agentos-index --edit
 
-> $kw: --from Capture.Offer --from Cited.Duplication --from Dotted.Notation --from Edition.Trigger.User.Gated --from Explicit.Namespace --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Edit.Action --from Index.Edit.Modify.Line --from Index.Line --from Index.Ontology --from Kernel.Line --from Line.Type --from Name.As.Index --from Verbatim.User.Gated
+> $kw: --from Capture.Offer --from Cited.Duplication --from Dotted.Notation --from Edition.Trigger.User.Gated --from Explicit.Namespace --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Edit.Action --from Index.Edit.Modify.Line --from Index.Line --from Index.Ontology --from Kernel.Line --from Line.Type --from Name.As.Index --from User.Command --from Verbatim.User.Gated
 
 The knowledge of writing Agentos index and appendix surfaces: gates, structure, naming, block quality, edit actions, and the landing procedure.
 
@@ -12,8 +12,16 @@ This module is a `Workflow.Neutral.Module`: it does not run a workflow — its r
 
 - index work is gated by `Edition.Trigger.User.Gated`
 - wording-sensitive index-block work is also gated by `Verbatim.User.Gated`
-- the agent may propose an edit path or draft, but must not commit an index or appendix edit without explicit approval
+- the agent may propose an edit path or draft, but must not land an index or appendix edit without explicit approval
 - approval and landing are distinct acts: user approval accepts a form in chat; the write happens only on a landing trigger
+
+## User.Command Transitions
+
+- The declared `User.Command` transitions make the existing approval and landing gates explicit.
+- `User.Command::Approve` (`::approve`, `::approved`) accepts the resolved draft exactly as shown, including its landing target, and records it as approved but unlanded.
+- `User.Command::Land` (`::land`, `::write`) executes the `Landing Procedure` only for resolved approved material; it never supplies missing approval.
+- `--write` invokes this skill module from a skill call. `::write` is a trigger inside an already-running workflow; the sigil keeps the two surfaces distinct.
+- When a command target is not unique, ask for the target and do nothing. When approved wording or destination changes, invalidate that approval and require `User.Command::Approve` again.
 
 ## Structure
 
