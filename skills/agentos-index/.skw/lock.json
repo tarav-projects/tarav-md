@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "e8b0639de5e8e05b11810a1ec6d375268c72f410cdc98996325ae41820be216c",
+      "output_sha256": "cc3a31ab63b3d11cabd6bae9faf237127df34b115a18035837a8daf4c4e4faca",
       "recipes": [
         {
           "heading": "Index Operating Behavior",
@@ -33,7 +33,7 @@
       ]
     },
     "references/capture.md": {
-      "output_sha256": "ddcc5e77f2e4f0ff3f33be8b7ef60e1b3214db0417450a527c97ea8241b9a1f4",
+      "output_sha256": "c50802e89555b14f3341657e097baf1f7ad0f0a63707cae1c60e114a6b02f2eb",
       "recipes": [
         {
           "heading": "Landing",
@@ -84,12 +84,12 @@
       "output_sha256": "8e6563fad57b6376672ad4639df93ffe6a48a436ebde9df95fffc2c20669afef",
       "recipes": []
     },
-    "references/index-capture-context-assembly.md": {
-      "output_sha256": "b2a9ede1bb516c2f36c76829a56954715378c62fb4767f5f714c309f017b2131",
+    "references/index-capture-context.md": {
+      "output_sha256": "1eedeccec453e2b765b7901caa7ef6a701ef2548f3bd567ca6907edfd1d4eb13",
       "recipes": []
     },
     "references/index-context-assembly.md": {
-      "output_sha256": "bffe59b58b21ca09a6bf52dab8fb0bfed89c30536a23631d8a741256c001d568",
+      "output_sha256": "decc9c5c89d384f95e3e08b3e2bb47749ae197b24c3188b69510592117260a82",
       "recipes": []
     },
     "references/link.md": {

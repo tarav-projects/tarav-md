@@ -450,6 +450,8 @@
 - [CT] ambiguity makes the agent ask for the missing command input without advancing the workflow ^c20260725-1u
 - [PR] `User.Command` supplies deterministic workflow transitions inside natural conversation while the agent maintains coherence across free-form turns ^c20260725-1u
 - [CT] later conversation may invalidate a pending command by changing the transition or proposal it addresses ^c20260725-1u
+- [DC] printed commands render in resolved, copy-pasteable form — targets pre-filled from the foreground draft and approved set — with the `::<command> [target]` template form used only when nothing resolves yet ^c20260725-42u
+- [CT] when several targets could receive a command, each resolved invocation prints as its own line, so selecting a line both disambiguates and stays copy-pasteable ^c20260725-42u
 
 ****
 

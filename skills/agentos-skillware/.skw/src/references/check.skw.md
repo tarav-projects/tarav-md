@@ -29,7 +29,7 @@ Report whether a skill's Skillware-managed surfaces still hold, and prescribe th
 Gating — checked first, never blessable:
 
 - `parse-error` — the src is below the `Parse.Floor`: malformed machinery or an unclosed construct; the file's other checks do not run until it is fixed, and files importing it go `unresolvable`
-- `unresolvable` — a materializing dependency, `--dev-from`, `--cite`, or context-assembly claim does not resolve at its address; fix the address or restore the target
+- `unresolvable` — a materializing dependency, `--dev-from`, `--cite`, or context-assembly coverage target does not resolve at its address; fix the address or restore the target
 
 Per compiled file:
 
@@ -49,7 +49,7 @@ Dependency sync — the declared graph vs the compiled text, blessable when the 
 - `unhonored-dependency` — a declared `depends` target resolves but is not mentioned in the compiled text; drop the stale declaration or bless a deliberately-silent binding
 - `dangling-dependency` — a declared `--from` target no longer resolves in the configured depots: a rename-without-alias or a retirement broke the binding; fix or remove the stale `--from`, restore an alias on the target, or bless if the reference is deliberately kept
 - `uncited-dependency` — a `--cite` target is absent from the compiled surface; cite it explicitly, change the role, or bless the intentional mismatch
-- `context-assembly-bypass` — a surface uses an assembly-claimed source through any dependency role without a companion `--dev-from` to the assembly; load the whole assembly or bless the intentional bypass
+- `context-assembly-bypass` — a surface uses an assembly-covered source through any dependency role without a companion `--dev-from` to the assembly; load the whole assembly or bless the intentional bypass
 
 Housekeeping:
 

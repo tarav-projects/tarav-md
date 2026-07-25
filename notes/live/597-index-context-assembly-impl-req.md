@@ -3,8 +3,8 @@
 ## Impl.Abstract
 
 - **scope:** adopt `Index.Context.Assembly` as the complete shared builder context for every managed `agentos-index` surface; prove `context-assembly-bypass` against the real package; align coverage terminology in Skillware; retire the superseded agendix candidate
-- **status:** ready for execution
-- **source:** current design and capture session, the existing `Index.Capture.Context.Assembly`, the complete `agentos-index/.skw/src` dependency graph, and current Skillware linter implementation
+- **status:** implemented
+- **source:** current design and capture session, the former capture context assembly, the complete `agentos-index/.skw/src` dependency graph, and current Skillware linter implementation
 - **repositories:** `agentos-md`, `agentos-py`
 - **out of scope:** runtime auto-loading, transitive or cross-package coverage inference, changes to direct dependency/materialization choices, and execution of model-backed testground scenarios
 
@@ -31,8 +31,10 @@
 
 - every existing managed `agentos-index` source declares `--dev-from references/index-context-assembly.skw.md`
 - the general assembly does not depend on itself
-- `Index.Capture.Context.Assembly` remains a specialized, overlapping context universe and declares the general assembly as development context
-- existing consumers retain their capture-assembly dependencies where present; overlapping coverage intentionally accumulates applicable builder-context requirements
+- `Index.Context.Assembly` is the package's only builder-context assembly
+- rename and reclassify the former capture assembly as the normal runtime-selected `Index.Capture.Context.Module`
+- the capture context module declares the general assembly as development context like every other managed consumer
+- remove capture-assembly development edges from unrelated consumers; capture loads its runtime context module through explicit workflow guidance
 - no direct `--from`, `--copy`, `--derived`, or `--cite` choice is replaced or mediated
 
 ### Coverage Terminology
@@ -60,12 +62,13 @@
 
 ### Slice 2 - Wire the complete builder context
 
-- add the general assembly `--dev-from` edge to every existing managed source, including the specialized capture assembly
-- keep existing capture-specialization edges intact
+- rename and reclassify the former capture assembly as `Index.Capture.Context.Module`, then correct capture and router references
+- add the general assembly `--dev-from` edge to every existing managed source, including the capture context module
+- remove the obsolete capture-assembly development edges
 - build and check `agentos-index`
 - observable GREEN: all managed surfaces compile and `context-assembly-bypass` returns to zero
 - check: `agentos skw check --skill skills/agentos-index`
-- status: not started
+- status: completed
 
 ### Slice 3 - Align coverage language and linter diagnostics
 
@@ -75,7 +78,7 @@
 - update maintained `agentos-skillware/.skw/src` language, authoring, doctrine, and check wording, then rebuild
 - preserve generic ownership terminology unrelated to context assemblies
 - checks: focused Skillware Python tests, focused Ruff, `agentos skw check --skill skills/agentos-skillware`
-- status: not started
+- status: completed
 
 ### Slice 4 - Reconcile the promoted candidate and close validation
 
@@ -83,7 +86,7 @@
 - run the package index linter and no-legacy terminology searches
 - run the complete `agentos-py` test suite
 - checks: `agentos index linter --depot skills/agentos-pkg`, both managed-skill checks, `uv run pytest -q`, scoped Ruff, and `git diff --check`
-- status: not started
+- status: completed
 
 ## Risks And Deviation Triggers
 
@@ -98,7 +101,7 @@
 - `Index.Context.Assembly` exists as a whole-file managed module and is routed by `agentos-index`
 - every pre-existing managed `agentos-index` source carries the general `--dev-from`
 - the real package produces `context-assembly-bypass` before wiring and 0 POIs after wiring
-- specialized capture coverage remains intact
+- capture retains its complete workflow-selected runtime context without creating a second builder assembly
 - maintained context-assembly language consistently describes coverage rather than ownership
 - the obsolete `Skill.Module` agendix candidate is reconciled without losing durable content
 - relevant Python, Skillware, and index checks pass
@@ -111,3 +114,10 @@
 - current `agentos-py` worktree is clean and requires an empty mandatory execution checkpoint
 - RED observation: adding the general assembly produced 147 `context-assembly-bypass` POIs across all 14 managed surfaces; no POIs were blessed
 - deviation: 15 concepts are covered by both the general and capture assemblies, so the symmetric checker requires the general assembly to `--dev-from` the capture specialization while the plan requires capture to `--dev-from` general; the resulting cycle makes the planned hierarchy non-executable without a hierarchy rule or a non-overlapping boundary
+- deviation resolved: the user confirmed that there should be one builder assembly; the former capture assembly becomes the runtime-selected `Index.Capture.Context.Module`, and implementation continues under that model ^c20260725-40u
+- corrected RED observation: after reclassifying capture runtime context, the one-assembly model produced 133 `context-assembly-bypass` POIs across all 13 consumers and no other POI kinds; this supersedes the discarded two-assembly count, and no POIs were blessed
+- GREEN observation: one `Index.Context.Assembly` covers the package, all 13 other managed sources declare it through `--dev-from`, and `agentos skw check --skill skills/agentos-index` reports 0 POIs
+- coverage terminology now reaches maintained Skillware sources, generated docs, private Python identifiers, diagnostics, tests, and `agentos-py/AGENTS.md`; the public POI kind remains `context-assembly-bypass`
+- the superseded `Skill.Module` agendix candidate was removed after its assembly decisions were confirmed in the landed `Skill.Module` and `Skw.Ann.Dependency` appendices and its dependency-role syntax in maintained Skillware documentation
+- validation: `agentos skw check` reports 0 POIs for both `agentos-index` and `agentos-skillware`; the package index linter reports 0 findings; focused Skillware tests pass 97/97; full `agentos-py` tests pass 551/551; focused Ruff and both repositories' `git diff --check` pass
+- unrelated concurrent `User.Command` rendering and `Agentos.Daemon` index edits were preserved and were not treated as part of this implementation

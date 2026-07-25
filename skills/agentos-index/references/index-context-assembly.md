@@ -20,7 +20,7 @@ Close every category below before developing an `agentos-index` consumer:
 - treat the covered set as the common universe a builder knows, not as content every consumer must reproduce
 - inspect the consumer's direct dependencies and intent after loading the assembly, then choose its materialization and citation behavior locally
 - follow related routed concepts and appendix depth when a direct block leaves a material decision unresolved
-- preserve specialized assemblies such as `Index.Capture.Context.Assembly`; overlapping coverage means the builder loads every applicable context boundary
+- keep builder assemblies distinct from workflow-selected runtime context modules such as `Index.Capture.Context.Module`
 - re-check the package after changing dependencies because coverage supervision is a semantic POI, not a parser failure
 
 ## Runtime Boundary

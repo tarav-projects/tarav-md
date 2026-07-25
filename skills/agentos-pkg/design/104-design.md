@@ -340,3 +340,18 @@
 ### appendix
 
 - full sub-concept blocks in `appendix/Account.Management-appendix.md`: `Auth.Data.Capture`, `Auth.Data.Activation`, `Auth.Data.Materialization`, `Account.Model`, `Account.Model::Auth.Method`, `Account.Identity`, `Materializable.Account`, `Home.State`, `Auth.Data`, `Auth.Ref`, `Auth.Data.Artifact`, `Valid.Credentials`, `Auth.Registry`, `Account.Registry`, `Keep.Up.With.Rotation`, `Capture.Over.Materialization`, `Unknown.Account`, `Active.Auth.Data`, `Auth.Data.Aligned`, `Auth.Data.Drift`, `Auth.Data.Rotation`
+
+****
+
+## Agentos.Daemon
+
+- [DF] `Agentos.Daemon` is a single long-lived background process that runs registered `Background.Job`s, extending Agentos beyond one-shot CLI invocation ^c20260725-41u
+- [DC] its process lifecycle is owned by the OS service manager (`launchd` on macOS) — start-at-login, keep-alive, and restart-on-crash come from the platform, not from hand-written daemonization ^c20260725-41u
+- [DC] exactly one global instance runs per machine, making it the sole owner of background work and the sole writer of the shared state its jobs maintain ^c20260725-41u
+- [DC] work reaches the daemon from two feeds — the internal scheduler firing jobs on their natural frequency, and external run-now triggers from the CLI (`Daemon.Trigger`) ^c20260725-41u
+- [DC] both feeds converge on one serialized work lane: a single worker running one job to completion at a time ^c20260725-41u
+- [DC] the single lane is what makes single-writer serialization and trigger coalescing fall out for free — without locks, a job queue, or async state ^c20260725-41u
+- [DC] the daemon and the CLI are peer consumers of one core library; the daemon holds only scheduling and the trigger interface, never the work logic itself ^c20260725-41u
+- [DC] each command is either daemon-path or CLI-local — exactly one path per command, chosen once ^c20260725-41u
+- [RJ] v1 adds no inline fallback when a daemon-path command finds the daemon down — dual-path redundancy is deferred, so daemon-path availability rests entirely on the service manager ^c20260725-41u
+- [EX] concrete hosted jobs: continuous Chatlas index refresh over active sessions, and `Account.Management` rotation and usage monitoring — work that today runs only while a foreground command stays open ^c20260725-41u

@@ -1,7 +1,7 @@
 # agentos-index --check
 
 > $kw: --from Appendix.Discovery --from Index.Depot --from Index.Linter --from Line.Type
-> --dev-from references/index-capture-context-assembly.skw.md
+> --dev-from references/index-context-assembly.skw.md
 
 Use this module when the caller wants deterministic diagnosis, linter findings, or post-edit validation for an index depot or explicit index/appendix surface.
 

@@ -47,7 +47,7 @@ The binding mode and every other feature is an additive `--flag`; there are no c
 - `--from <locator>` — a generic inbound dependency edge (`Skw.Ann.Dependency`), repeatable
 - `--dev-from <locator>` — whole-target builder context; the developing agent loads it, while the compiled surface need not mention it
 - `--cite <locator>` — a dependency that must remain explicit in the compiled surface; a missing visible citation raises `uncited-dependency`
-- `--context-assembly` — a line-1, self-closing file declaration marking the complete `.skw.md` module as a `Context.Assembly.Module`; its repeatable `--from` values are the direct package-local sources it claims
+- `--context-assembly` — a line-1, self-closing file declaration marking the complete `.skw.md` module as a `Context.Assembly.Module`; its repeatable `--from` values define its direct package-local coverage boundary
 - `--unlock-surface` — marks one explicitly addressed context surface represented by one token in the registry named by its single `--from`; takes no value
 - `--intent <text>` — the derivation rule's context, free prose; a binding flag's own trailing text folds into it
 - `--note [TYPE] <text> ^anchor` — a documentation line: a typed, anchored `Index.Line` carried on the block
@@ -101,9 +101,9 @@ The complete multi-section context module continues as normal markdown.
 ```
 
 - the marker must be the first line and carries no address; the `.skw.md` path is the module identity
-- the marker's `--from` values are the assembly's direct claimed sources inside the package
-- any dependency role that targets a claimed source should carry a companion `--dev-from <assembly.skw.md>`; otherwise `check` raises the suppressible `context-assembly-bypass` POI
-- v1 ownership is direct and package-local; transitive and cross-package claim supervision are not inferred
+- the marker's `--from` values are the assembly-covered sources inside its direct package-local context boundary
+- any dependency role that targets an assembly-covered source should carry a companion `--dev-from <assembly.skw.md>`; otherwise `check` raises the suppressible `context-assembly-bypass` POI
+- v1 coverage is direct and package-local; transitive and cross-package coverage supervision are not inferred
 - the assembly declaration is stripped at compile like all Skillware machinery, while the complete module body becomes the runnable context surface
 
 ## Locators

@@ -179,8 +179,8 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 |---|---|
 | When the caller wants to find concepts, retrieve cited index context, inspect related blocks, discover whether appendix depth exists, understand how the index already models a topic, or ground the current visible discussion against the index; `--search`, `--research`, and `--ground` all call this module | `references/search.md` |
 | When developing any managed `agentos-index` surface — load the complete common index subject universe before selecting direct dependencies, derivations, citations, or runtime-facing content | `references/index-context-assembly.md` |
-| When the user wants the chat's content captured — "let's capture": load the index-capture context assembly, ground the chat and adjacent evidence, present a lightweight candidate roadmap, then codesign and land small approved clusters; `--capture` calls this module, `--agendix` calls its autonomous path with the agendix preset | `references/capture.md` |
-| When a capture run needs its complete preparation context — index surface ontology, workflow-neutral writing modules, engaged-depot closure, and adjacent evidence categories — load the whole module as builder context | `references/index-capture-context-assembly.md` |
+| When the user wants the chat's content captured — "let's capture": load the index-capture context module, ground the chat and adjacent evidence, present a lightweight candidate roadmap, then codesign and land small approved clusters; `--capture` calls this module, `--agendix` calls its autonomous path with the agendix preset | `references/capture.md` |
+| When a capture run needs its complete preparation context — index surface ontology, workflow-neutral writing modules, engaged-depot closure, and adjacent evidence categories — load the whole runtime module | `references/index-capture-context.md` |
 | When an index or appendix surface is being written or an approved edit needs landing — the gates, structure, naming, block quality, edit actions, drafting screens, and landing procedure that govern index writing; direct edit work (a stale line, a block revision) also starts here; `--edit`, `--write`, and `--append` all call this module | `references/edit.md` |
 | When the caller wants deterministic diagnosis, linter findings, or post-edit validation for an index depot or explicit index/appendix surface; `--check` and `--lint` both call this module | `references/check.md` |
 | When the caller wants line typing understood, read, or proposed — the `[XX]` syntax, the `Line.Type.Vocabulary`, validation points, reading typed lines as constraints, calibration passes and their residue | `references/type.md` |
@@ -222,7 +222,7 @@ For delegated read-only research that protects the caller's context, use `Packag
 - `references/search.md` — routing-first search, selective loading, appendix discovery, citation behavior, and conversation-to-index grounding
 - `references/index-context-assembly.md` — the whole-file shared builder context for every managed `agentos-index` surface
 - `references/capture.md` — the capture workflow: the discussion-landing loop from chat content to index surfaces
-- `references/index-capture-context-assembly.md` — the whole-file context assembly and grounding closure for working across a touched index
+- `references/index-capture-context.md` — the whole-file runtime context and grounding closure for working across a touched index
 - `references/edit.md` — the knowledge of index and appendix writing: gates, actions, naming, placement, drafting screens, landing procedure, and maintenance
 - `references/check.md` — deterministic index checks through `agentos index linter`
 - `references/type.md` — line typing: syntax, vocabulary, validation points, reading typed lines, fence and residue

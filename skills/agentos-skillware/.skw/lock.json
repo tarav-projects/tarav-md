@@ -19,7 +19,7 @@
       "recipes": []
     },
     "references/author.md": {
-      "output_sha256": "4d11f111058c921295fc45a054b7ab0f3ab545ebc73246431581db2580092206",
+      "output_sha256": "6c92baa87115af8a603a602419b26373b482b304bb3c1b94c123eca457dc9635",
       "recipes": [
         {
           "heading": "Division Of Labor",
@@ -36,15 +36,15 @@
       "recipes": []
     },
     "references/check.md": {
-      "output_sha256": "6462cec3bd73acbb9a961e87d7dadff567e109936d619907e255f8d247bf3406",
+      "output_sha256": "0513b81a10a53240e7fdb792bae8bed914c825827678581f51519e50189cd071",
       "recipes": [
         {
           "heading": "POI Kinds",
           "verb": "derived",
-          "body_sha256": "75932da205fb2d756655c2b1136c669b2035451bf8151ebf50a09ec61ac81ba6",
+          "body_sha256": "33f55c359d64827ef531ebddf9b479927db0135f6d259bbf676598844e78cc3c",
           "deps": {
             "Skw.Ann.Dependency": "ed37c9cfc210f58a18d5b50e35c1d442ec5a0eb1dbf083c5f9a1949b141b37e2",
-            "POI.Linter": "c45cea0a121e88246e68f89983218acd98e54e7bbba59f7457998f8679a44c03",
+            "POI.Linter": "d63ddd163cce27dfe150e43843fb312e861d7f4cb0e45be167ac1e064731f504",
             "Poi.Bless": "cdad669af79f000c35e63cd890dcde1c9502e06d9ff03263d5c277d0c74e561e",
             "Poi.Unlock.Token": "a551975969e2e820a6579d22d4aeaa46eabfa6d06dce4e73341a0b824f6b725f"
           }
@@ -82,7 +82,7 @@
       "recipes": []
     },
     "references/lang.md": {
-      "output_sha256": "c9844198fd47990f29eb0ea37c5272a14115e75c6b0da530ffea2c35e699f34f",
+      "output_sha256": "61d1eff962c48586013c60432c953720360a1bf632299ce444539cf215895eaf",
       "recipes": []
     }
   },

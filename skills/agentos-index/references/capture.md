@@ -2,7 +2,7 @@
 
 Use this module when the user wants the chat's content worked into kernel writing form and landed on index surfaces — "let's capture".
 
-This module is a workflow module: it takes control of the session and runs the capture loop. Load the whole `references/index-capture-context-assembly.md` module before the first grounding pass. The surfaces capture lands on are governed by `Workflow.Neutral` knowledge modules — `references/edit.md` for the ontology and appendix, `references/agendix.md` for the agendix.
+This module is a workflow module: it takes control of the session and runs the capture loop. Load the whole `references/index-capture-context.md` module before the first grounding pass. The surfaces capture lands on are governed by `Workflow.Neutral` knowledge modules — `references/edit.md` for the ontology and appendix, `references/agendix.md` for the agendix.
 
 `Capture.Offer` is the same act at single-candidate scale: agent-initiated, one draft, same destination semantics. This module is the user-initiated, whole-conversation form.
 
@@ -12,7 +12,7 @@ Authority lives in the index: `Agentos.Index.System`, `Hugentic.Concept`, `Kerne
 
 A pass over the chat's uncaptured content, repeated until the content is exhausted or the user stops:
 
-1. **Assemble.** Load `Index.Capture.Context.Assembly`: the complete operational model and task-relevant knowledge categories needed to work across the touched index.
+1. **Assemble.** Load `Index.Capture.Context.Module`: the complete operational model and task-relevant knowledge categories needed to work across the touched index.
 2. **Discover.** Resolve the engaged depots and adjacent evidence surfaces before deciding what the chat adds.
 3. **Ground.** Ground both the visible conversation and relevant external evidence. What the touched index already models is out; gaps, tensions, and fresh `User.Touched` material are candidates.
 4. **Map.** Build an internal candidate map broad enough to understand the likely session, including overlap, dependencies, natural edit actions, and possible destinations.
@@ -50,20 +50,23 @@ The roadmap is not approval-ready material. Do not expose `::approve` merely bec
 - `::land-all-approved` removes target ambiguity, not workflow ambiguity: if several workflows could supply the approved cluster, ask which workflow is foreground and leave every transition unresolved.
 - Free-form replies continue the discussion without crossing either gate. If discussion changes an approved draft's wording or landing target, return that draft to approval-ready state.
 - Print the available command line only at a real pause or on a status request. Do not append it to ordinary conversational turns.
+- Render each command in resolved, copy-pasteable form: pre-fill the target from the foreground draft and the approved set so the user can copy the line verbatim. Use the `::<command> [target]` template form only when nothing resolves yet.
+- When several targets could receive a command, print each resolved invocation as its own line (`::approve X`, `::approve Y`) — the user disambiguates by selecting a line, which preserves both the copy-paste property and the ambiguity rule.
 
-Example review pause footer:
+Example review pause footer (targets resolved from foreground state):
 
 ```text
 Available User.Commands:
-  ::approve [target]  (also ::approved)
+  ::approve Background.Job      accept the foreground draft (also ::approved)
+  ::approve Serialized.Lane     accept the second foreground draft
 ```
 
 Example landing pause footer:
 
 ```text
 Available User.Commands:
-  ::land [target]     (also ::write; approved material only)
-  ::land-all-approved (entire foreground approved cluster)
+  ::land Agentos.Daemon         write this approved item (also ::write)
+  ::land-all-approved           write the whole approved cluster
 ```
 
 ## Mode

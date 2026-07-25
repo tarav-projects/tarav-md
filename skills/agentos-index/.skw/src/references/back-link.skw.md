@@ -1,6 +1,7 @@
 # agentos-index --back-link
 
 > $kw: --from Demoted.Anchored.Line --from Edition.Trigger.User.Gated --from Gr.Req --from Grounding.Hugentic.Authority --from Verbatim.User.Gated --from Workflow.Neutral
+> --dev-from references/index-context-assembly.skw.md
 
 Use this module when the caller wants an existing index block grounded backward: from the block as written, through git history, to the chat turns that produced it.
 

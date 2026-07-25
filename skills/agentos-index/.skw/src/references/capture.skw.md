@@ -1,11 +1,11 @@
 # agentos-index --capture
 
 > $kw: --from Agentos.Index.System --from Alignment.Mode --from Capture.Gradient --from Capture.Offer --from Edition.Trigger.User.Gated --from Grounding.Hugentic.Authority --from Hugentic.Concept --from Kernel.Writing --from Not.A.Wall.Of.Text --from User.Command --from User.Command.Arg --from User.Touched --from Verbatim.User.Gated --from Workflow.Neutral
-> --dev-from references/index-capture-context-assembly.skw.md
+> --dev-from references/index-context-assembly.skw.md
 
 Use this module when the user wants the chat's content worked into kernel writing form and landed on index surfaces — "let's capture".
 
-This module is a workflow module: it takes control of the session and runs the capture loop. Load the whole `references/index-capture-context-assembly.md` module before the first grounding pass. The surfaces capture lands on are governed by `Workflow.Neutral` knowledge modules — `references/edit.md` for the ontology and appendix, `references/agendix.md` for the agendix.
+This module is a workflow module: it takes control of the session and runs the capture loop. Load the whole `references/index-capture-context.md` module before the first grounding pass. The surfaces capture lands on are governed by `Workflow.Neutral` knowledge modules — `references/edit.md` for the ontology and appendix, `references/agendix.md` for the agendix.
 
 `Capture.Offer` is the same act at single-candidate scale: agent-initiated, one draft, same destination semantics. This module is the user-initiated, whole-conversation form.
 
@@ -15,7 +15,7 @@ Authority lives in the index: `Agentos.Index.System`, `Hugentic.Concept`, `Kerne
 
 A pass over the chat's uncaptured content, repeated until the content is exhausted or the user stops:
 
-1. **Assemble.** Load `Index.Capture.Context.Assembly`: the complete operational model and task-relevant knowledge categories needed to work across the touched index.
+1. **Assemble.** Load `Index.Capture.Context.Module`: the complete operational model and task-relevant knowledge categories needed to work across the touched index.
 2. **Discover.** Resolve the engaged depots and adjacent evidence surfaces before deciding what the chat adds.
 3. **Ground.** Ground both the visible conversation and relevant external evidence. What the touched index already models is out; gaps, tensions, and fresh `User.Touched` material are candidates.
 4. **Map.** Build an internal candidate map broad enough to understand the likely session, including overlap, dependencies, natural edit actions, and possible destinations.

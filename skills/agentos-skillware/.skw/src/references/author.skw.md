@@ -20,9 +20,9 @@ Use this module when writing or restructuring `.skw.md` src: deciding the module
 ## Context Assemblies
 
 - use a `Context.Assembly.Module` when builders repeatedly need the same broad context gathered from sparse surfaces
-- put `--context-assembly` on line 1 of the `.skw.md` file and declare the direct package-local sources it claims with repeatable `--from`
+- put `--context-assembly` on line 1 of the `.skw.md` file and define its direct package-local coverage boundary with repeatable `--from`
 - make the file complete for its scope; context assemblies are intentionally whole-file and may be large
-- a consumer depending on any claimed source adds `--dev-from <assembly.skw.md>`, even when its direct edge is `--from`, `--cite`, or another future dependency role
+- a consumer depending on any assembly-covered source adds `--dev-from <assembly.skw.md>`, even when its direct edge is `--from`, `--cite`, or another future dependency role
 - use `--cite` only when the generated surface must name the target explicitly; use `--dev-from` for context the builder needs but the runnable surface need not mention
 - treat `context-assembly-bypass` as a heuristic review point: add the companion edge when the assembly supplies relevant context, or bless an intentional bypass
 
