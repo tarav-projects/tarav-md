@@ -370,11 +370,12 @@
 
 - `Chatlas.Anchory` is the Chatlas application of `Anchory.System` — anchors standing for turn neighborhoods on the `Chat.Surface`
 - its `Anchory.Depot` lives at `<chatlas-root>/anchory/`; every action uses the active Chatlas depot
-- the anchor key convention is the composed grammar `c<YYYYMMDD>-<N><tag>`: the `chatlas` namespace prefix, the evidence turn's date, a daily counter, and a turn tag ^c20260718-3
-- [DC] the tag is computed from the landing turn's producer at mint time — `u` user, `a` assistant; a mistagged citation still resolves and reports the lie; an uncomputable producer mints tag-less, surfaced by the tagless-anchor lint ^c20260718-3
+- the anchor key convention is the composed grammar `c<YYYYMMDD>-<N>u`: the `chatlas` namespace prefix, the primary support turn's date, a daily counter, and the user-evidence tag ^c20260718-3
+- [DC] every newly minted Chatlas anchor carries `u` because every `Chat.Support.Set` member is a user turn; surrounding assistant content is recovered through neighborhood reading ^c20260718-3
 - Chatlas owns the `Anchory.Record` payload and the traversal from record to session and turn neighborhood
-- registration validates the session exists and the timestamp falls inside its bounds
-- [DC] registration echoes the landing neighborhood — the minting agent double-checks the anchor before tagging lines
+- [CT] the record format is `chatlas.support-set.v1`: an ordered `members` list whose entries identify exact turns by full session identity plus `event_id`, retaining `at` only for readability and integrity checking
+- registration validates every member resolves to a visible user turn and copies its event timestamp; it never selects a turn by timestamp proximity
+- [DC] registration echoes every member neighborhood — the minting agent double-checks the complete support set before tagging lines
 - [CT] a chat anchor resolves to its `Chat.Support.Set`; you land on the set and read the neighborhoods ^c20260715-5u
 - record format: `appendix/Chatlas.Anchory-appendix.md`
 - [PR] chatlas anchory and the chatlas query language are one system, co-designed — anchors are native selectors of the query language ^c20260708-2u

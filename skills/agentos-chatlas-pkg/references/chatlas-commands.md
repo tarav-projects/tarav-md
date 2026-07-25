@@ -9,8 +9,8 @@ Operational Chatlas command and workflow reference.
 - Aggregate dataset stats: `agentos chatlas stats`
 - Export attributed sessions into a project tree: `agentos chatlas local sync`
 - Print inline standard-model views: `agentos chatlas views inline`
-- Mint a chat anchor (validated, echoing the landing turns): `agentos chatlas anchory register`
-- Resolve a chat anchor to its turn neighborhood: `agentos chatlas views inline --anchor <key>`
+- Mint a support-set anchor (validated, echoing every member neighborhood): `agentos chatlas anchory register`
+- Resolve an anchor to its ordered support set: `agentos chatlas anchory resolve`
 - Export raw artifacts: `agentos chatlas raw path` / `agentos chatlas raw export`
 - Consume or produce materialized views: `agentos chatlas views`
 
@@ -93,16 +93,20 @@ agentos chatlas views inline --identity-hash <H> --contains "<text>" --filter tu
 
 ## Anchor Workflow
 
-Chat anchors (`^c<YYYYMMDD>-<N><tag>` — `c` namespace prefix, date, counter, turn tag `u`/`a`) are the chat application of the Anchory subsystem — see `Chatlas.Anchory` in the index.
+Chat anchors (`^c<YYYYMMDD>-<N>u` — `c` namespace prefix, primary-member date, counter, user-evidence tag) are the chat application of the Anchory subsystem — see `Chatlas.Anchory` in the index.
 
 ```sh
-agentos chatlas anchory register --identity-hash <H> --at "<iso-time>" --hint "<one sentence>"
-agentos chatlas views inline --anchor <key> --radius 4 --filter turns
+agentos chatlas anchory register \
+  --member <identity-hash>:<event-id> \
+  --member <identity-hash>:<event-id> \
+  --hint "<one sentence>"
+agentos chatlas anchory resolve <key> --radius 4
 ```
 
-- registration validates the session and time bounds, allocates the date-prefixed key atomically, and echoes the landing neighborhood for double-checking
-- resolution returns the landing-turn neighborhood as a model fragment — read the landing turn and around it
-- with `--filter turns` the radius counts turns, chronologically — `--radius 3` around an approval turn shows the preceding proposal and the follow-up, the review reading pattern
+- repeat `--member` in relevance order; each session identity may be a unique prefix on input and is stored as the full identity
+- registration validates every exact event as a visible user turn, allocates from the first member's date, and echoes all member neighborhoods
+- resolution returns the record plus ordered `{member, neighborhood}` entries; each neighborhood remains an independent model fragment
+- radius counts visible turns around each exact member event — `--radius 3` shows the preceding proposal and follow-up without timestamp-nearest selection
 
 ## File Touch Workflow
 
