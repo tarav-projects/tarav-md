@@ -11,6 +11,6 @@
 
 ## Index.Agendix/Citation
 
-- [DC] the agendix is cited only through file-referenced line quotes (`--from <agendix-file>` + `--quote`) — candidate block names are provisional, so block-name cites are disallowed, not merely discouraged ^c20260723-12
+- [DC] the agendix is cited only through file-referenced line quotes (`--from <agendix-file>` + `--quote`) — candidate block names are provisional, so block-name cites are disallowed, not merely discouraged ^c20260723-12u
 
 ****
