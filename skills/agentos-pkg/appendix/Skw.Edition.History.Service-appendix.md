@@ -22,3 +22,12 @@
 - [PR] it is maintained incrementally and can be reconciled against full Git file history and the Chatlas corpus. ^c20260725-5u
 - [CT] it is historical provenance, not a statement of current authority over the file. ^c20260725-5u
 ****
+
+## Skw.Edition.History.Service/Skw.Edition.Session.Support
+
+- [DF] embedded Chat.Support.Set warranting the claim that a session contributed to an edition. ^c20260725-12u
+- [DC] reuse the Chatlas support-set record shape directly; no Anchory allocation or indirection is required. ^c20260725-12u
+- [CT] the support set has at least one member, every member resolves, and it includes the associated session. ^c20260725-12u
+- [RJ] candidate-discovery signals and search heuristics belong to the maintainer workflow, not the persisted history. ^c20260725-12u
+- [PR] the maintainer inspects transcript fragments before recording an association. ^c20260725-12u
+****

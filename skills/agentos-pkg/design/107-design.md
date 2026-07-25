@@ -258,6 +258,29 @@
 
 ****
 
+## POI.Class
+
+- [DF] a `POI.Class` is the durable, domain-owned semantic definition shared by occurrences of one reviewable situation ^c20260725-9u
+- [CT] it declares a stable identity, short runtime description, documentation entrypoints, allowed resolution acts, and required context gates ^c20260725-9u
+- [CT] documentation entrypoints are `Skw.Address.Schema` references to surfaces at their `Natural.Placement` ^c20260725-9u
+- [CT] many `POI.Instance`s may reference one class; class data is resolved when needed rather than duplicated into each instance ^c20260725-9u
+- [PR] domain ownership keeps documentation at its `Natural.Placement`, even when another subsystem emits the instance ^c20260725-9u
+- [PR] class stability lets checks, renderers, documentation discovery, and resolution machinery share one authoritative definition ^c20260725-9u
+- [RJ] a `POI.Class` is not a concrete occurrence, evaluation verdict, or resolution ^c20260725-9u
+
+****
+
+## POI.Instance
+
+- [DF] a `POI.Instance` is one concrete occurrence of a situation defined by a `POI.Class` ^c20260725-11u
+- [CT] it carries a stable instance identity, class reference, target location, and concrete evidence describing the current situation ^c20260725-11u
+- [CT] its identity remains stable across repeated checks while the same occurrence persists ^c20260725-11u
+- [CT] it is the unit of resolution acts; when its class permits blessing, `Poi.Bless` blesses only that instance ^c20260725-11u
+- [PR] class metadata is resolved through the class reference rather than duplicated into the instance ^c20260725-11u
+- [RJ] resolving one instance does not resolve its class, another instance, or a future occurrence ^c20260725-11u
+
+****
+
 ## Chat.POI.Linter
 
 - [DF] a `Chat.POI.Linter` is a `POI.Linter` that consumes a full `Chatlas.Session.Model` as its `Floor.Model` ^c20260724-14u
@@ -599,6 +622,8 @@
 - [CT] the service owns its payload schema, validation, idempotency, history projection, and check findings while Bloberia remains application-agnostic. ^c20260725-5u
 - [PR] agents and linters consume the service instead of depending on raw Bloberia records. ^c20260725-5u
 - [CT] discovery and reconciliation belong to a specialized developer workflow; the service persists and validates the associations that workflow supplies. ^c20260725-5u
+- [DC] Every edition-session association carries a nonempty, resolvable Chat.Support.Set; without it, the association is invalid. ^c20260725-12u
+- [CT] Deterministic checking validates support structure and resolution; the maintainer judges whether the resolved fragment proves the edit. ^c20260725-12u
 ****
 
 ## Anchory.System

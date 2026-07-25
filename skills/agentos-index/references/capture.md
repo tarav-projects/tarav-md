@@ -2,7 +2,7 @@
 
 Use this module when the user wants the chat's content worked into kernel writing form and landed on index surfaces — "let's capture".
 
-This module is a workflow module: it takes control of the session and runs the capture loop. The surfaces it lands on are governed by `Workflow.Neutral` knowledge modules — `references/edit.md` for the ontology and appendix, `references/agendix.md` for the agendix.
+This module is a workflow module: it takes control of the session and runs the capture loop. Load `references/touched-index-academy.md` before the first grounding pass. The surfaces capture lands on are governed by `Workflow.Neutral` knowledge modules — `references/edit.md` for the ontology and appendix, `references/agendix.md` for the agendix.
 
 `Capture.Offer` is the same act at single-candidate scale: agent-initiated, one draft, same destination semantics. This module is the user-initiated, whole-conversation form.
 
@@ -12,11 +12,30 @@ Authority lives in the index: `Agentos.Index.System`, `Hugentic.Concept`, `Kerne
 
 A pass over the chat's uncaptured content, repeated until the content is exhausted or the user stops:
 
-1. **Ground.** Run `references/search.md` behavior over the conversation with a capture lens: what the index already models is out; gaps, tensions, and fresh `User.Touched` material are candidates.
-2. **Propose.** Draft candidates in kernel writing form — new blocks, appended lines, revisions — typed and index-grade by default: user-touched content is index-eligible by right. The destination surface may stay implicit while exploring; approval-ready drafts show the concrete landing target per `references/edit.md`.
-3. **Discuss.** Iterate each draft with the user. The goal is to reason while preparing the kernel text — convergence happens in the discussion, not at the write. (`Interactive` only — an `Autonomous` pass skips to landing.)
-4. **Approve.** User approval accepts the current form in chat — it is not a write. Approved material accumulates while the discussion rolls to the next item; the natural rhythm is a converging concept cluster, not item-by-item write ceremony. (`Interactive` only.)
-5. **Land.** A separate, user-triggered act over approved material — all of it or a specific piece, to whatever surfaces the user names. After landing, re-ground: the index changed, and the next pass computes against it.
+1. **Academy.** Load `Touched.Index.Academy`: the complete operational model and task-relevant knowledge categories needed to work across the touched index.
+2. **Discover.** Resolve the engaged depots and adjacent evidence surfaces before deciding what the chat adds.
+3. **Ground.** Ground both the visible conversation and relevant external evidence. What the touched index already models is out; gaps, tensions, and fresh `User.Touched` material are candidates.
+4. **Map.** Build an internal candidate map broad enough to understand the likely session, including overlap, dependencies, natural edit actions, and possible destinations.
+5. **Roadmap.** In `Interactive` mode, present the small public `Capture.Roadmap`: the likely block or edit clusters and one sentence explaining each. This first-turn orientation precedes detailed drafting.
+6. **Focus.** Select one block or small coherent cluster from the roadmap. The user may redirect, reorder, remove, or add candidates through natural conversation.
+7. **Propose + Discuss.** Codesign only the foreground cluster with the user, then present its exact typed, landing-targeted draft. The goal is to reason while preparing kernel text — convergence happens in the discussion, not at the write.
+8. **Approve.** User approval accepts the current form in chat — it is not a write. Approved material accumulates while the discussion rolls to the next cluster.
+9. **Land + Re-ground.** A separate, user-triggered act lands all or selected approved material. Keep the review loop active, re-ground against the changed touched index, update the internal candidate map, and refresh only the roadmap entries whose meaning or order changed.
+
+`Autonomous` mode performs the same preparation and internal mapping but does not present a roadmap or run the review loop; it proceeds through its agendix-only landing path.
+
+## Capture.Roadmap
+
+`Capture.Roadmap` is an attention-budgeted index of what a good candidate capture session would cover. It is a selective projection of the internal candidate map, not an evidence report or exhaustive backlog.
+
+- list likely block or edit clusters in a useful review order
+- identify the relevant block or intended edit with one short sentence explaining the capture move
+- prefer names and terse pointers for concepts already present in the user's context; add a gloss only when a name would not resolve clearly
+- omit evidence inventories, source lists, uncertainty columns, and destination detail unless one materially changes the proposed session
+- recommend the first focus without presenting every candidate as a full draft
+- keep the roadmap provisional: natural conversation may reshape it at any time
+
+The roadmap is not approval-ready material. Do not expose `::approve` merely because a roadmap is foregrounded; that command becomes available only after one exact draft and landing target are presented.
 
 ## User.Command Checkpoints
 
@@ -38,7 +57,7 @@ Available User.Commands:
 ## Mode
 
 - capture accepts `Alignment.Mode` — `Interactive` (default) or `Autonomous`
-- `Interactive` runs the full loop: checkpoints are alignment opportunities, discussion and approval happen per item
+- `Interactive` presents the roadmap, then runs the focused codesign loop: checkpoints are alignment opportunities, discussion and approval happen per small cluster
 - `Autonomous` runs without user prompting: the loop collapses to ground → propose → land → report, and it can land only on the agendix — a user gate (`Edition.Trigger.User.Gated`) cannot be resolved autonomously
 - `--AUTO` is the extreme case as a flag: the full workflow automatic, chat to agendix, the invocation is the one trigger that covers the pass
 - `--agendix` presets the agendix destination and defaults to `Autonomous`; the user engaging mid-pass simply is `Interactive`
@@ -54,7 +73,8 @@ Landing form-fits approved material to the named surface, one rung up the `Captu
 ## Behavior
 
 - the discussion is free: capture is pulled by the user, never a standing obligation on the conversation — not every discussion involves blocks
-- `Not.A.Wall.Of.Text` governs the loop: the opening turn may be a larger grounding summary, but it ends landing on the first candidate draft — prime the discussion, the user redirects if they want another; from there stay on target: one to a few drafts per turn, alignment per block, never a re-dump of the full harvest
+- `Not.A.Wall.Of.Text` governs the loop: the opening turn may show the broader `Capture.Roadmap`, but not the Academy load or evidence inventory; after orientation stay on one block or small coherent cluster, never re-dump the full harvest
+- after a write, refresh the internal map; show only a compact roadmap delta unless the session's big picture materially changed
 - know what is approved and unlanded at any moment — the conversation itself is the record; no tracking mechanism is required
 - material not worth the full hugentic review can always take the agendix exit rather than staying stranded in chat
 - load `references/type.md` before drafting lines and `agentos-pkg/references/index-block-catalog.md` before proposing block wording

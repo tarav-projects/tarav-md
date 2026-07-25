@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "d49cd3eeafa6524ab369c50e47334023939fa911952f116a347c077226eacae1",
+      "output_sha256": "c1603e06972ce86f3a30700e90ac5914d4114a9941eebd7448cd1846bf74d6ed",
       "recipes": [
         {
           "heading": "Index Operating Behavior",
@@ -33,7 +33,7 @@
       ]
     },
     "references/capture.md": {
-      "output_sha256": "77371fec3d11cbf3dcbb032e57cc5ee5bc3694543723a0b747d08488a6c5b283",
+      "output_sha256": "0ec2de3da8b82a2dd397e36a997fa7d3179894070303653076fa86bda66a8ae0",
       "recipes": [
         {
           "heading": "Landing",
@@ -90,6 +90,10 @@
     },
     "references/search.md": {
       "output_sha256": "74f6fbf1913e653917980f8beac591f86118ffaf2f15ce0a39a84e2195df45de",
+      "recipes": []
+    },
+    "references/touched-index-academy.md": {
+      "output_sha256": "85d271b31466e4d39ae85a61436fb36858012135227d80eea66b5b100fc52fdd",
       "recipes": []
     },
     "references/type.md": {
