@@ -2,7 +2,7 @@
 
 Use this module when the user wants the chat's content worked into kernel writing form and landed on index surfaces — "let's capture".
 
-This module is a workflow module: it takes control of the session and runs the capture loop. Load `references/touched-index-academy.md` before the first grounding pass. The surfaces capture lands on are governed by `Workflow.Neutral` knowledge modules — `references/edit.md` for the ontology and appendix, `references/agendix.md` for the agendix.
+This module is a workflow module: it takes control of the session and runs the capture loop. Load the whole `references/index-capture-context-assembly.md` module before the first grounding pass. The surfaces capture lands on are governed by `Workflow.Neutral` knowledge modules — `references/edit.md` for the ontology and appendix, `references/agendix.md` for the agendix.
 
 `Capture.Offer` is the same act at single-candidate scale: agent-initiated, one draft, same destination semantics. This module is the user-initiated, whole-conversation form.
 
@@ -12,7 +12,7 @@ Authority lives in the index: `Agentos.Index.System`, `Hugentic.Concept`, `Kerne
 
 A pass over the chat's uncaptured content, repeated until the content is exhausted or the user stops:
 
-1. **Academy.** Load `Touched.Index.Academy`: the complete operational model and task-relevant knowledge categories needed to work across the touched index.
+1. **Assemble.** Load `Index.Capture.Context.Assembly`: the complete operational model and task-relevant knowledge categories needed to work across the touched index.
 2. **Discover.** Resolve the engaged depots and adjacent evidence surfaces before deciding what the chat adds.
 3. **Ground.** Ground both the visible conversation and relevant external evidence. What the touched index already models is out; gaps, tensions, and fresh `User.Touched` material are candidates.
 4. **Map.** Build an internal candidate map broad enough to understand the likely session, including overlap, dependencies, natural edit actions, and possible destinations.
@@ -82,7 +82,7 @@ Landing form-fits approved material to the named surface, one rung up the `Captu
 ## Behavior
 
 - the discussion is free: capture is pulled by the user, never a standing obligation on the conversation — not every discussion involves blocks
-- `Not.A.Wall.Of.Text` governs the loop: the opening turn may show the broader `Capture.Roadmap`, but not the Academy load or evidence inventory; after orientation stay on one block or small coherent cluster, never re-dump the full harvest
+- `Not.A.Wall.Of.Text` governs the loop: the opening turn may show the broader `Capture.Roadmap`, but not the context-assembly load or evidence inventory; after orientation stay on one block or small coherent cluster, never re-dump the full harvest
 - after approval, continue directly to the next roadmap cluster while the approved material accumulates; landing is a batch checkpoint rather than the default response to each approval
 - after a write, refresh the internal map; show only a compact roadmap delta unless the session's big picture materially changed
 - know what is approved and unlanded at any moment — the conversation itself is the record; no tracking mechanism is required

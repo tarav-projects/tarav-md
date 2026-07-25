@@ -1,6 +1,7 @@
 # agentos-index --link
 
 > $kw: --from Anchory.System --from Index.Line --from Index.Linking --from Workflow.Neutral
+> --dev-from references/index-capture-context-assembly.skw.md
 
 Use this module when a caller needs an `Anchory.Anchor` minted for a chat context: the linking primitive behind grounding lines, inline grounding, and agendix provenance.
 

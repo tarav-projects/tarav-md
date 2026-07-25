@@ -2,12 +2,12 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "c1603e06972ce86f3a30700e90ac5914d4114a9941eebd7448cd1846bf74d6ed",
+      "output_sha256": "a3a59286932d610a2e6da61b13edaca36a0a70832a2c898e3ea7f4c6880e34b3",
       "recipes": [
         {
           "heading": "Index Operating Behavior",
           "verb": "derived",
-          "body_sha256": "eeac790220e3acb3ef263f32edf6e5e6e2839f7ce657fc936c5b574a7bc3dec2",
+          "body_sha256": "54c753d95cbd4354c32319b79302f78e6d468eb550887fb57d2a61e8061dcc0b",
           "deps": {
             "references/search.skw.md#Search Model": "d99456d67e9e34cc75808c67dc06536a3e43e47cb119d4304d5d0e948d3a780f",
             "references/search.skw.md#Citation Behavior": "e57e94bf2adedb5f4bde5e498c1feb6342c70412564a0e8d8a1a8734a673a8a9"
@@ -33,7 +33,7 @@
       ]
     },
     "references/capture.md": {
-      "output_sha256": "0ec2de3da8b82a2dd397e36a997fa7d3179894070303653076fa86bda66a8ae0",
+      "output_sha256": "30303f92586fdb8d0049f7e497a0560af6d892dc9d348d22b22950f433833b1a",
       "recipes": [
         {
           "heading": "Landing",
@@ -84,16 +84,16 @@
       "output_sha256": "8e6563fad57b6376672ad4639df93ffe6a48a436ebde9df95fffc2c20669afef",
       "recipes": []
     },
+    "references/index-capture-context-assembly.md": {
+      "output_sha256": "b2a9ede1bb516c2f36c76829a56954715378c62fb4767f5f714c309f017b2131",
+      "recipes": []
+    },
     "references/link.md": {
       "output_sha256": "42856e4898b6256a9873155fef710b2182d301f3659d8bf77282f81cc56fbf41",
       "recipes": []
     },
     "references/search.md": {
       "output_sha256": "74f6fbf1913e653917980f8beac591f86118ffaf2f15ce0a39a84e2195df45de",
-      "recipes": []
-    },
-    "references/touched-index-academy.md": {
-      "output_sha256": "85d271b31466e4d39ae85a61436fb36858012135227d80eea66b5b100fc52fdd",
       "recipes": []
     },
     "references/type.md": {

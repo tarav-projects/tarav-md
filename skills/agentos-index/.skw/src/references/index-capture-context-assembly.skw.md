@@ -1,10 +1,10 @@
-# Touched.Index.Academy
+> $kw: --context-assembly --from Agentos.Index.System --from Anchory.System --from Capture.Gradient --from Context.Grounding --from Index.Agendix --from Index.Appendix --from Index.Depot --from Index.Discovery --from Index.Ontology --from Index.Surface --from Kernel.Block --from Kernel.Writing --from Line.Type --from Touched.Surface.Index --from User.Attention
 
-> $kw: --from Agentos.Index.System --from Anchory.System --from Capture.Gradient --from Context.Grounding --from Index.Agendix --from Index.Appendix --from Index.Depot --from Index.Discovery --from Index.Ontology --from Index.Surface --from Kernel.Block --from Kernel.Writing --from Line.Type --from Touched.Surface.Index --from User.Attention
+# Index.Capture.Context.Assembly
 
-`Touched.Index.Academy` is the capture-time knowledge curriculum for working safely across a `Touched.Surface.Index`. Load it once at the start of every `--capture` run, before discovering candidates or drafting text.
+`Index.Capture.Context.Assembly` is the whole-file `Context.Assembly.Module` containing the complete context an agent needs to work safely across a `Touched.Surface.Index`. Load the entire module at the start of every `--capture` run, before discovering candidates or drafting text.
 
-The Academy is internal context, not a user-facing report. It makes the agent's preparation exhaustive while allowing the visible capture workflow to remain small.
+The assembly is internal builder context, not a user-facing report. It makes the agent's preparation exhaustive while allowing the visible capture workflow to remain small.
 
 ## Knowledge Closure
 
@@ -20,8 +20,8 @@ Exhaustive means closing these categories for the engaged task, not reading ever
 
 ## Context Discipline
 
-- Keep the Academy load and evidence inventory internal unless a missing or conflicting source materially affects the user's decision.
+- Keep the assembly load and evidence inventory internal unless a missing or conflicting source materially affects the user's decision.
 - Treat the visible conversation as already shared context: do not restate what the user just established merely to prove it was grounded.
 - Separate reviewed ontology and appendix knowledge from unreviewed agendix leads.
 - Use adjacent evidence to improve candidates, not to widen the visible session without need.
-- `Touched.Index.Academy` owns index-capture preparation; `--capture` does not require a separate design-workflow skill at runtime.
+- `Index.Capture.Context.Assembly` owns index-capture preparation; `--capture` does not require a separate design-workflow skill at runtime.

@@ -1,6 +1,7 @@
 # agentos-index --agendix
 
 > $kw: --from Capture.Gradient --from Capture.Offer --from Edition.Trigger.User.Gated --from Grounding.Hugentic.Authority --from Index.Agendix --from Index.Line --from Kernel.Block --from Kernel.Line --from Line.Type --from Reviewed.Cite.Closure --from Touched.Authority --from Verbatim.User.Gated --from Writing.Friction.Reduction
+> --dev-from references/index-capture-context-assembly.skw.md
 
 The knowledge of the `Index.Agendix` surface: what it is, what may enter it, and the form material takes to land there.
 

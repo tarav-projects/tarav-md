@@ -1,6 +1,7 @@
 # agentos-index --edit
 
 > $kw: --from Capture.Offer --from Cited.Duplication --from Dotted.Notation --from Edition.Trigger.User.Gated --from Explicit.Namespace --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Edit.Action --from Index.Edit.Modify.Line --from Index.Line --from Index.Ontology --from Kernel.Line --from Line.Type --from Name.As.Index --from User.Command --from Verbatim.User.Gated
+> --dev-from references/index-capture-context-assembly.skw.md
 
 The knowledge of writing Agentos index and appendix surfaces: gates, structure, naming, block quality, edit actions, and the landing procedure.
 

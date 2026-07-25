@@ -17,7 +17,7 @@ Make a skill's Skillware-managed surfaces match their sources. The builder never
 
 ## The Lock Model
 
-- per target file: the output hash, plus per-recipe state — verb, body hash, and dependency hashes
+- per target file: the output hash, plus per-recipe state — verb, body hash, and role-qualified dependency hashes; `--dev-from` and `--cite` participate alongside generic `--from`
 - **derived dependency hashes persist until the body itself changes**: a rebuild carries the old dep hashes forward while the derived body is unchanged, so building can never silently bless a stale derivation — only an actual re-derive (a body change) re-blesses
 - the lock is engine-owned; never hand-edit it
 

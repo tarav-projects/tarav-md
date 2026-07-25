@@ -44,7 +44,10 @@ The binding mode and every other feature is an additive `--flag`; there are no c
 - `--derived` — the body is the agent-authored current solution of the block's derivation rule; the build never touches it, only an agentic re-derive does (materializing)
 - `--copy` — the body is the target's expanded body, verbatim; `agentos skw build` refreshes it mechanically in src, CPU-owned; exactly one `--from` (materializing)
 - `--pointer` — a by-reference binding (non-materializing)
-- `--from <locator>` — an inbound dependency edge (`Skw.Ann.Dependency`), repeatable
+- `--from <locator>` — a generic inbound dependency edge (`Skw.Ann.Dependency`), repeatable
+- `--dev-from <locator>` — whole-target builder context; the developing agent loads it, while the compiled surface need not mention it
+- `--cite <locator>` — a dependency that must remain explicit in the compiled surface; a missing visible citation raises `uncited-dependency`
+- `--context-assembly` — a line-1, self-closing file declaration marking the complete `.skw.md` module as a `Context.Assembly.Module`; its repeatable `--from` values are the direct package-local sources it claims
 - `--unlock-surface` — marks one explicitly addressed context surface represented by one token in the registry named by its single `--from`; takes no value
 - `--intent <text>` — the derivation rule's context, free prose; a binding flag's own trailing text folds into it
 - `--note [TYPE] <text> ^anchor` — a documentation line: a typed, anchored `Index.Line` carried on the block
@@ -59,7 +62,7 @@ A block owns an `end` by its role, in three cases:
 
 - a **materializing** block (`--derived`/`--copy`) owns a mandatory `> $kw. end` — its body is the generated target and there is no other way to bound it
 - a **router** block (one that acquires `--when`/`--then` children) owns a `> $kw. end`; its rows **peer-close** at the next row or the parent's end
-- a **declaration-only** block — one carrying only `--from`/`--note`/`--supp`/`--unlock-surface` — **self-closes** at its declaration and owns no `end`; following native text stays surface. This subsumes the void dependency (`> $kw: --from Concept.A`, a one-liner), a pure documentation note, and an unlock-surface marker attached to its address
+- a **declaration-only** block — one carrying dependency roles, `--note`/`--supp`, `--unlock-surface`, or the file-level `--context-assembly` marker — **self-closes** at its declaration and owns no `end`; following native text stays surface
 - a bare `> $kw. end` closes the innermost open content block; a legacy `end-<command>`/`end-^label` closer is a finding directing to migration; a heading closes nothing — a content block still open at a heading or EOF is a finding
 - the parser is a `Closure.Parser`: below its `Parse.Floor` (well-formed machinery, explicit closure of content blocks, unique addresses, sane router rows) it emits parse errors; above the floor everything it does not recognize is opaque text, and nothing else can fail the parse
 
@@ -83,9 +86,29 @@ Load `references/search.md`.
 > $kw. end
 ```
 
+## Context Assemblies
+
+A `Context.Assembly.Module` is deliberately file-grain and large enough to hold all builder context for its declared scope:
+
+```md
+> $kw: --context-assembly
+> --from Concept.One
+> --from references/policy.md#Rules
+
+# Complete Context
+
+The complete multi-section context module continues as normal markdown.
+```
+
+- the marker must be the first line and carries no address; the `.skw.md` path is the module identity
+- the marker's `--from` values are the assembly's direct claimed sources inside the package
+- any dependency role that targets a claimed source should carry a companion `--dev-from <assembly.skw.md>`; otherwise `check` raises the suppressible `context-assembly-bypass` POI
+- v1 ownership is direct and package-local; transitive and cross-package claim supervision are not inferred
+- the assembly declaration is stripped at compile like all Skillware machinery, while the complete module body becomes the runnable context surface
+
 ## Locators
 
-A `--from` (or address) value is one of:
+A dependency-role (or address) value is one of:
 
 - **`path#Region`** — a heading-section body in a file, resolved against the src root first, then the skill root. The region is the section's body: heading excluded, subsections included. A `.skw.md` target is recursively expanded before extraction (innermost first); expansion cycles are an error naming the chain. A plain (non-skw) file yields the raw region body.
 - **`path^label`** — a labeled span in a src file; **`^label`** alone is file-local (the current src). Labels are heading-independent, so the import survives section renames, and the dependency hash covers only the span — a consumer drifts with its fragment, not the file. Labels live only in src machinery (stripped at compile), so they address src files exclusively; renaming a label breaks importers, which the unresolvable-`--from` POI catches.
@@ -96,6 +119,7 @@ A `--from` (or address) value is one of:
 
 - deterministic — no agent in the loop: strip every block's machinery (open fence, belonging flag lines, owned ends), keep the bodies and all hand prose; blank-line runs collapse; output is trimmed
 - `--copy` bodies are refreshed in src before targets are emitted; `--derived` bodies pass through as materialized
+- `--dev-from` and `--cite` targets resolve through the same locator machinery; on derived recipes their hashes participate in stale detection
 - the compiled target never carries Skillware syntax — zero machinery lands on the runnable surface
 
 ## Settings

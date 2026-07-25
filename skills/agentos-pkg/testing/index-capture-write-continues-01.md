@@ -45,7 +45,7 @@ Explain the transition and the next user-facing capture move.
 
 ### Overwork
 
-- Reprints the Academy curriculum or complete evidence inventory after landing.
+- Reprints the context assembly or complete evidence inventory after landing.
 - Restarts the entire capture session ceremonially.
 
 ### Failure Signs

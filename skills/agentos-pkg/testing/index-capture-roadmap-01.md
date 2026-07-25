@@ -6,7 +6,7 @@ Evaluate whether interactive `agentos-index --capture` performs broad internal p
 
 ## Entry Path
 
-`AGENTS.md -> load agentos-pkg -> load agentos-index -> references/capture.md -> references/touched-index-academy.md`
+`AGENTS.md -> load agentos-pkg -> load agentos-index -> references/capture.md -> references/index-capture-context-assembly.md`
 
 ## How To Run
 
@@ -29,7 +29,7 @@ Assume relevant ontology, appendix, agendix, code, and adjacent surfaces exist. 
 
 ### Minimal Pass
 
-- Loads `Touched.Index.Academy` before candidate discovery.
+- Loads the complete `Index.Capture.Context.Assembly` before candidate discovery.
 - Grounds the chat and relevant external surfaces.
 - Shows a `Capture.Roadmap` before detailed approval-ready drafts.
 - Keeps the roadmap to short block or edit-cluster entries with one sentence each.
@@ -37,7 +37,7 @@ Assume relevant ontology, appendix, agendix, code, and adjacent surfaces exist. 
 ### Expected Behavior
 
 - Maintains a broader internal candidate map than the roadmap.
-- Avoids showing an evidence inventory, source matrix, or Academy transcript.
+- Avoids showing an evidence inventory, source matrix, or context-assembly transcript.
 - Uses the user's existing context instead of re-explaining every concept.
 - Recommends one first focus while allowing natural conversational redirection.
 - Does not expose `::approve` for the roadmap itself.
@@ -62,7 +62,7 @@ Assume relevant ontology, appendix, agendix, code, and adjacent surfaces exist. 
 
 ## Navigation Trace
 
-Expected: `agentos-pkg -> agentos-index -> capture -> touched-index-academy -> answer`.
+Expected: `agentos-pkg -> agentos-index -> capture -> index-capture-context-assembly -> answer`.
 
 ## Run Log
 
@@ -71,7 +71,7 @@ Expected: `agentos-pkg -> agentos-index -> capture -> touched-index-academy -> a
 - **Session**: `019f9955-691f-76e1-8de5-28d3e43c148a`
 - **Model**: `gpt-5.4`
 - **Tier**: expected
-- **Trace**: `AGENTS.md -> agentos-pkg -> agentos-index -> capture -> touched-index-academy -> answer`
+- **Trace**: `AGENTS.md -> agentos-pkg -> agentos-index -> capture -> index-capture-context-assembly -> answer`
 - **Tool calls**: 7
 - **Tokens**: 60,707 input; 1,305 output
 - **Notes**: produced a four-entry roadmap, recommended one focus, kept grounding internal, and exposed no approval command

@@ -29,7 +29,7 @@ Report whether a skill's Skillware-managed surfaces still hold, and prescribe th
 Gating — checked first, never blessable:
 
 - `parse-error` — the src is below the `Parse.Floor`: malformed machinery or an unclosed construct; the file's other checks do not run until it is fixed, and files importing it go `unresolvable`
-- `unresolvable` — a `--from` target does not resolve at its address; fix the address or restore the target
+- `unresolvable` — a materializing dependency, `--dev-from`, `--cite`, or context-assembly claim does not resolve at its address; fix the address or restore the target
 
 Per compiled file:
 
@@ -48,6 +48,8 @@ Dependency sync — the declared graph vs the compiled text, blessable when the 
 - `undeclared-dependency` — a mention resolves to a block but no dependency declares it; declare it (`depends --from`) or accept the mismatch by blessing
 - `unhonored-dependency` — a declared `depends` target resolves but is not mentioned in the compiled text; drop the stale declaration or bless a deliberately-silent binding
 - `dangling-dependency` — a declared `--from` target no longer resolves in the configured depots: a rename-without-alias or a retirement broke the binding; fix or remove the stale `--from`, restore an alias on the target, or bless if the reference is deliberately kept
+- `uncited-dependency` — a `--cite` target is absent from the compiled surface; cite it explicitly, change the role, or bless the intentional mismatch
+- `context-assembly-bypass` — a surface uses an assembly-claimed source through any dependency role without a companion `--dev-from` to the assembly; load the whole assembly or bless the intentional bypass
 
 Housekeeping:
 
@@ -61,7 +63,7 @@ The no-silent-blessing rule: a rebuild carries a stale derivation's old dependen
 
 For each `derived-stale` POI where the drift is real:
 
-1. Open the src file; read the recipe's `--from` targets (current state) and its `--intent`.
+1. Open the src file; read the recipe's `--from` and `--dev-from` targets (current state), its citations, and its `--intent`.
 2. Re-derive the body in src: the intent is the rule, the fresh targets are the inputs.
 3. `agentos skw build`, then `check` — the body change re-blesses the dependency hashes; a clean run ends the pass.
 4. For a gated package, the re-derived wording passes the package's edit gates before landing.
