@@ -41,16 +41,25 @@ The roadmap is not approval-ready material. Do not expose `::approve` merely bec
 
 - These checkpoints apply the skill's declared `User.Command` transitions and resolve each required `User.Command.Arg` against the foreground capture state.
 - When an approval-ready draft becomes foreground, pause with `::approve [target]` (`::approved` equivalent). The command accepts that exact draft and never writes it.
-- Approved material accumulates as unlanded workflow state. At a later pause, expose `::land [target]` (`::write` equivalent) whenever at least one approved target is available.
+- Approval adds the resolved draft to the approved, unlanded cluster and returns the loop to **Focus**. When roadmap candidates remain, the default next move is to codesign and present the next approval-ready draft, not to pause for landing.
+- An explicit `::land [target]` (`::write` equivalent) remains valid whenever its approved target resolves clearly, including before the workflow suggests it.
+- Suggest landing at a deliberate landing pause: when the roadmap is exhausted, when the approved cluster is significant and coherent enough to land together, or when the user asks to land or requests status.
+- Do not create a landing pause solely because the first draft entered the approved cluster.
 - A bare command may resolve its contextual target only when one foreground target is possible. If several drafts or approved sets could receive it, ask which one and leave every transition unresolved.
 - Free-form replies continue the discussion without crossing either gate. If discussion changes an approved draft's wording or landing target, return that draft to approval-ready state.
 - Print the available command line only at a real pause or on a status request. Do not append it to ordinary conversational turns.
 
-Example pause footer:
+Example review pause footer:
 
 ```text
 Available User.Commands:
   ::approve [target]  (also ::approved)
+```
+
+Example landing pause footer:
+
+```text
+Available User.Commands:
   ::land [target]     (also ::write; approved material only)
 ```
 
@@ -74,6 +83,7 @@ Landing form-fits approved material to the named surface, one rung up the `Captu
 
 - the discussion is free: capture is pulled by the user, never a standing obligation on the conversation — not every discussion involves blocks
 - `Not.A.Wall.Of.Text` governs the loop: the opening turn may show the broader `Capture.Roadmap`, but not the Academy load or evidence inventory; after orientation stay on one block or small coherent cluster, never re-dump the full harvest
+- after approval, continue directly to the next roadmap cluster while the approved material accumulates; landing is a batch checkpoint rather than the default response to each approval
 - after a write, refresh the internal map; show only a compact roadmap delta unless the session's big picture materially changed
 - know what is approved and unlanded at any moment — the conversation itself is the record; no tracking mechanism is required
 - material not worth the full hugentic review can always take the agendix exit rather than staying stranded in chat

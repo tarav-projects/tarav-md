@@ -139,6 +139,7 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 - triggers: `::land`, `::write`
 - available: when the foreground index workflow holds one or more approved, unlanded targets
 - action: land the resolved target set; never approve material implicitly
+- presentation: workflow modules decide when to suggest landing; in `--capture`, approval normally advances to the next review item while explicit early landing remains valid
 
 #### User.Command.Arg::Target
 - the approved item or set to land
@@ -200,6 +201,7 @@ An agent operating the index should:
 - make a `Capture.Offer` when work surfaces new aligned content: propose the exact typed line(s) at the moment, with destination options (index main, appendix, agendix, decline) — never self-write
 - use `--capture` when the user wants the chat's content worked into the index — approval in chat and landing on a surface are distinct acts
 - resolve `::approve` / `::approved` to `User.Command::Approve` and `::land` / `::write` to `User.Command::Land`; `--write` remains a skill argument while `::write` is an in-workflow transition
+- during interactive capture, add approved drafts to the approved cluster and continue reviewing the roadmap; do not make immediate landing the default next move
 - keep command targets foregrounded and fail closed when more than one draft or approved set could receive the command
 - use file mutation only when the user has approved an index edit
 - run a linter check after applying an approved index or appendix edit
