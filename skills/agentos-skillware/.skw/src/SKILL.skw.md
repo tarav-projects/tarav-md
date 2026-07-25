@@ -38,10 +38,10 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - examples: --about, --about "how do derived recipes track staleness?"
 
 ### Skill.Arg::Dev
-- authoring, adoption, and building — the write side
+- authoring, adoption, building, and edition-history maintenance — the write side
 - required: false
-- help: "do Skillware development: write src, adopt a skill, build surfaces"
-- examples: --dev "add a derived section to ground.skw.md", --dev "adopt agentos-batchy-skills"
+- help: "do Skillware development: write src, adopt or build a skill, maintain edition history"
+- examples: --dev "add a derived section to ground.skw.md", --dev "adopt agentos-batchy-skills", --dev "recover edition history for src/example.py"
 
 ### Skill.Arg::Check
 - read-only POI report over a skill's managed surfaces, with per-kind prescriptions
@@ -59,6 +59,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 | When the caller wants an existing hand-owned skill brought under Skillware management | `references/adopt.md` |
 | When the caller wants surfaces produced or refreshed from src, or asks about the lock or the build's mechanics | `references/build.md` |
 | When the caller wants drift inspected — what changed, what each POI kind means, what response each demands (re-derive vs bless); read-only | `references/check.md` |
+| When the caller wants to recover, record, inspect, or lint the chat sessions associated with a managed file's Git editions | `references/edition-history-developer.md` |
 | When the caller needs the canonical index concepts behind all of this | `agentos-pkg/design/107-design.md` (the `Agentos.Skillware` namespace) |
 
 ## Boundary
@@ -76,6 +77,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - `references/adopt.md` — converting an existing skill to Skillware management
 - `references/build.md` — producing surfaces: build and status mechanics, the lock model
 - `references/check.md` — drift: the POI kinds, prescriptions, the re-derive pass, the bless act
+- `references/edition-history-developer.md` — recover and maintain file edition/chat associations through Git, Chatlas, and the edition-history service
 
 ## When To Load This Skill
 
