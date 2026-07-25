@@ -292,6 +292,42 @@
 
 ****
 
+## POI.Documentation
+
+- [DF] `POI.Documentation` is the set of Skw-addressable surfaces that define a `POI.Class` and how its instances should be evaluated ^c20260725-16u
+- [CT] a `POI.Class` references one or more documentation entrypoints through `Skw.Address.Schema` ^c20260725-16u
+- [CT] documentation may span multiple surfaces and packages while remaining at each surface’s `Natural.Placement` ^c20260725-16u
+- [CT] common POI machinery follows the explicit references across engaged `Index.Depot`s ^c20260725-16u
+- [PR] runtime summaries orient the agent, while the referenced documentation remains authoritative for meaning, evaluation, and repair ^c20260725-16u
+- [FR] a documentation surface may represent a required `Skw.Context.Gate` for an act such as `Poi.Bless` ^c20260725-16u
+- [RJ] documentation is not duplicated into each `POI.Instance` ^c20260725-16u
+
+****
+
+## POI.Renderer
+
+- [DF] a `POI.Renderer` presents `POI.Instance`s using their resolved `POI.Class` definitions ^c20260725-19u
+- [CT] it resolves class identities through the engaged `POI.Catalog`s ^c20260725-19u
+- [CT] it prints each class identity and short description once, followed by its compact instances ^c20260725-19u
+- [CT] each instance presentation identifies its target, current situation, and instance identity ^c20260725-19u
+- [PR] the output orients the agent and provides a path to deeper `POI.Documentation` ^c20260725-19u
+- [CT] unresolved or ambiguous classes are reported without hiding their instances ^c20260725-19u
+- [RJ] a renderer does not own class semantics, documentation, or resolution policy ^c20260725-19u
+
+****
+
+## POI.Explain
+
+- [DF] `POI.Explain` is the common discovery act that retrieves the authoritative documentation for a POI class or instance ^c20260725-20u
+- [CT] an instance request first resolves its `POI.Class` through the engaged `POI.Catalog`s ^c20260725-20u
+- [CT] it follows the class’s `Skw.Address.Schema` entrypoints across packages and `Index.Depot`s ^c20260725-20u
+- [PR] agents request documentation through one interface without needing to understand package ownership or depot layout ^c20260725-20u
+- [CT] missing packages, classes, or documentation surfaces are reported precisely ^c20260725-20u
+- [RJ] `POI.Explain` resolves and presents documentation; it does not copy or own it ^c20260725-20u
+- [EX] a command surface may expose the act as `agentos poi explain <class-or-instance>` ^c20260725-20u
+
+****
+
 ## Chat.POI.Linter
 
 - [DF] a `Chat.POI.Linter` is a `POI.Linter` that consumes a full `Chatlas.Session.Model` as its `Floor.Model` ^c20260724-14u
@@ -304,20 +340,38 @@
 
 ## Poi.Bless
 
-- [DF] `Poi.Bless` is the explicit act of accepting a POI's current state as correct: an auditable command rewrites the POI's recorded expectation to match reality, and the flag clears without the surface being touched ^c20260712-17u
-- [PR] blessing is loud: drift never clears as a side effect of rebuilds or unrelated edits — only a re-derivation of the content or an explicit bless (the no-silent-blessing rule generalized) ^c20260712-17u
-- [CT] not every POI is blessable: parse errors are never blessable — a surface below the `Parse.Floor` is not in the language and must be fixed; blessability belongs to semantic POIs, where the current state might genuinely be the truth ^c20260712-17u
-- [DC] realized: `agentos skillware bless --poi <hash>` — rewrites the recipe's locked dependency hashes to current, body untouched; only `derived-stale` accepts it ^c20260712-17u
+- [DF] `Poi.Bless` is the explicit, auditable act of accepting one `POI.Instance` in its current situation ^c20260725-21u
+- [CT] blessing is available only when the instance’s `POI.Class` declares it as an allowed resolution act ^c20260725-21u
+- [CT] the class owns the blessing policy and declares its required `Poi.Unlock.Token`s ^c20260725-21u
+- [CT] blessing validates every required `Poi.Unlock.Token` and may require several ^c20260725-21u
+- [CT] refusal identifies each missing required surface without disclosing its token ^c20260725-21u
+- [FR] a blessing policy may later use `Poi.Bless.Question` as a stronger context checkpoint ^c20260725-21u
+- [RJ] blessing one instance does not bless its class, another instance, or a future occurrence ^c20260725-21u
+- [PR] blessing is loud: an instance never clears through rebuilds, unrelated edits, or implicit baseline changes ^c20260725-21u
 
 ****
 
 ## Poi.Unlock.Token
 
-- [DF] `Poi.Unlock.Token` is a context-read receipt required before a `Poi.Bless` act can accept a POI ^c20260723-11u
-- [PR] the token is a robustness gate, not a proof of understanding ^c20260723-11u
-- [DC] a blessable POI kind may require multiple unlock tokens when evaluating it requires multiple context surfaces ^c20260723-11u
-- [DC] `Poi.Bless` refuses when any required unlock token is missing ^c20260723-11u
-- [PR] the gate makes the correct workflow concrete: read the required context before blessing ^c20260723-11u
+- [DF] a `Poi.Unlock.Token` is an opaque context receipt associated by a `Poi.Unlock.Registry` with one Skw-addressable surface ^c20260725-23u
+- [CT] the represented surface’s Skw annotation declares its registry dependency; reading the surface exposes the route to its current token ^c20260725-23u
+- [CT] registry associations determine which `POI.Class`es require the token ^c20260725-23u
+- [CT] `Poi.Bless` may require tokens representing several surfaces and validates all of them ^c20260725-23u
+- [PR] the token prevents a protected act from completing when a required context-loading checkpoint was omitted ^c20260725-23u
+- [PR] it provides mechanically checkable pre-validation that can be examined more deeply through the supporting chat ^c20260725-23u
+- [RJ] token satisfaction alone does not guarantee that the context was read, understood, or correctly applied ^c20260725-23u
+
+****
+
+## Poi.Unlock.Registry
+
+- [DF] a `Poi.Unlock.Registry` is the machine-readable authority relating unlock tokens, represented surfaces, and the `POI.Class`es they unlock ^c20260725-22u
+- [CT] each registration identifies one represented surface through `Skw.Address.Schema` ^c20260725-22u
+- [CT] each represented surface has one current opaque unlock token ^c20260725-22u
+- [CT] a registration may associate its surface token with multiple `POI.Class`es ^c20260725-22u
+- [CT] the represented surface carries a Skw annotation that declares its registry dependency, allowing tooling to verify the relationship ^c20260725-22u
+- [PR] resolving tokens by surface identity allows token rotation without changing class or documentation references ^c20260725-22u
+- [RJ] token values are registry data and are not duplicated into the surface annotation ^c20260725-22u
 
 ****
 
