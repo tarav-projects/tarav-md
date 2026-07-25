@@ -61,8 +61,14 @@ After selection, `--random` and `--target` run the same recovery workflow.
      --around <ISO-time> --radius 6 --format json
    ```
 
-5. Associate a session only when the inspected fragment proves that its work contributed to the edition. Temporal proximity helps rank candidates but is never sufficient support by itself.
-6. Build one embedded `chatlas.support-set.v1` object from the exact supporting events. Use the neutral Chatlas `identity_hash` as both `--session` and each relevant member's `session`; copy each `event_id` and timestamp exactly. The set must be nonempty and must include the associated session.
+5. Establish a content bridge from the transcript mutation to the Git edition. Inspect the target file's commit diff and verify that the supported mutation produced content represented in that edition:
+
+   ```bash
+   git show --format=fuller --find-renames <commit> -- <project-relative-path>
+   ```
+
+   A direct write inside the edition's time window proves that the session edited the file, but does not by itself prove contribution to that edition: the write may have been reverted, superseded, or committed later. Associate the session only when the inspected mutation fragment and the commit diff describe the same resulting change. Temporal proximity helps rank candidates but is never sufficient support by itself.
+6. Build one embedded `chatlas.support-set.v1` object from the exact supporting events used by that content bridge. Use the neutral Chatlas `identity_hash` as both `--session` and each relevant member's `session`; copy each `event_id` and timestamp exactly. The set must be nonempty and must include the associated session.
 
    ```json
    {
@@ -111,6 +117,7 @@ After selection, `--random` and `--target` run the same recovery workflow.
 - a session association records historical contribution; it does not claim sole authorship or `Touched.Authority`
 - use a battery of discovery heuristics because agents may edit through patch tools, shell commands, scripts, or batch operations
 - inspect surrounding transcript detail for every candidate and record only exact events that prove contribution
+- require correspondence between the supported mutation and the target commit's file diff; an edit event plus temporal proximity is not edition attribution
 - persist the support consumers need; never persist discovery signals or search mechanics
 - preserve Chatlas session start time when available so stored timing can later be reconciled
 - if support remains ambiguous, leave the association unrecorded and report the candidate rather than guessing

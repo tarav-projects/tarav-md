@@ -355,3 +355,25 @@
 - [DC] each command is either daemon-path or CLI-local — exactly one path per command, chosen once ^c20260725-41u
 - [RJ] v1 adds no inline fallback when a daemon-path command finds the daemon down — dual-path redundancy is deferred, so daemon-path availability rests entirely on the service manager ^c20260725-41u
 - [EX] concrete hosted jobs: continuous Chatlas index refresh over active sessions, and `Account.Management` rotation and usage monitoring — work that today runs only while a foreground command stays open ^c20260725-41u
+
+****
+
+## Background.Job
+
+- [DF] `Background.Job` is a named unit of recurring work an `Agentos.Daemon` hosts — a name, a natural frequency, and a `run()` body ^c20260725-43u
+- [DC] the `run()` body lives in the core library — the same function the CLI would invoke directly — so the daemon carries scheduling, never a second copy of the work logic ^c20260725-43u
+- [DC] the job registry is the shared interface between daemon and CLI: the daemon schedules jobs by it, the CLI names a job through it to trigger a run ^c20260725-43u
+- [CT] a job must be safe to run more often than its natural frequency, because an external trigger can fire it between scheduled runs ^c20260725-43u
+- [PR] a job stays incremental and cheap when nothing changed, so both frequent ticks and burst triggers stay affordable ^c20260725-43u
+- [EX] Chatlas refresh is a job — each run re-ingests only sessions touched since the last run (`chatlas update --since`), keyed off recently active sessions detected at minute granularity ^c20260725-43u
+
+****
+
+## Daemon.Trigger
+
+- [DF] `Daemon.Trigger` is the interface by which a CLI force-runs a registered `Background.Job` now and receives its completion ^c20260725-44u
+- [DC] its transport is a local unix domain socket — local-only, with filesystem permissions as the sole authorization; no TCP port or network surface ^c20260725-44u
+- [DC] the submitting connection stays open for the request's lifetime and is at once the request, the wait, and the completion signal — one JSON line in, one JSON line out, then close ^c20260725-44u
+- [DC] a trigger is satisfied by a job run that completes at or after the request moment; concurrent triggers arriving during one in-flight run all resolve off that single run (the coalescing rule) ^c20260725-44u
+- [CT] the interface can fire only pre-registered jobs, never arbitrary operations — the trigger surface is the job registry, not remote code execution ^c20260725-44u
+- [EX] failure detection falls out of the open connection: a daemon crash surfaces as EOF on the waiting read, and a CLI exit surfaces as a peer close to the daemon ^c20260725-44u
