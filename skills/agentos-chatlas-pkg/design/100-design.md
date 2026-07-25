@@ -370,8 +370,9 @@
 
 - `Chatlas.Anchory` is the Chatlas application of `Anchory.System` — anchors standing for turn neighborhoods on the `Chat.Surface`
 - its `Anchory.Depot` lives at `<chatlas-root>/anchory/`; every action uses the active Chatlas depot
-- the anchor key convention is the composed grammar `c<YYYYMMDD>-<N>u`: the `chatlas` namespace prefix, the primary support turn's date, a daily counter, and the user-evidence tag ^c20260718-3
-- [DC] every newly minted Chatlas anchor carries `u` because every `Chat.Support.Set` member is a user turn; surrounding assistant content is recovered through neighborhood reading ^c20260718-3
+- the anchor key convention is the composed grammar `c<YYYYMMDD>-<N>u`: the `chatlas` namespace prefix, the primary support turn's date, a daily counter, and the user-evidence tag ^c20260718-3u
+- [DC] every newly minted Chatlas anchor carries `u` because every `Chat.Support.Set` member is a user turn; surrounding assistant content is recovered through neighborhood reading ^c20260718-3u
+- [CT] Index grounding-provenance lint rejects a resolved Chatlas citation whose key does not carry the `u` user-evidence tag ^c20260725-2u
 - Chatlas owns the `Anchory.Record` payload and the traversal from record to session and turn neighborhood
 - [CT] the record format is `chatlas.support-set.v1`: an ordered `members` list whose entries identify exact turns by full session identity plus `event_id`, retaining `at` only for readability and integrity checking
 - registration validates every member resolves to a visible user turn and copies its event timestamp; it never selects a turn by timestamp proximity
