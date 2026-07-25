@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **Goal:** add a backend-neutral `Event.Pattern` query path that can discover relational turn patterns through either an authoritative normal-model scan or a disposable SQLite candidate index.
-- **Status:** ready for execution.
+- **Status:** implemented and verified; changes remain uncommitted after the execution checkpoint.
 - **Target:** `agentos-chatlas-py`.
 - **Observable workflow:** find an assistant turn containing candidate text immediately followed by a user turn with exact approval text, then return the selected events from the current `Chatlas.Session.Model`.
 - **Authority rule:** backends return coordinates only. Every candidate is reloaded and fully re-evaluated against the current normal model, and public event payloads are projected only from that model.
@@ -77,7 +77,7 @@
 - **RED:** tests demonstrate adjacent assistant-containing/user-exact matching, invalid pattern rejection, selection, and cardinality behavior are absent.
 - **GREEN:** the tests pass over synthetic `Chatlas.Session.Model` fixtures.
 - **Observable:** one structured pattern returns deterministic event-id sequences from a normal model.
-- **Status:** pending.
+- **Status:** completed.
 
 ### Slice 2 - Backend protocol and SQLite candidate discovery
 
@@ -87,7 +87,7 @@
 - **RED:** parity, tampered-row, and stale-fingerprint tests fail before implementation.
 - **GREEN:** scan and fresh SQLite discover equivalent candidates; a SQLite false positive is rejected after authoritative reload; stale SQLite falls back to scan and still finds new matches.
 - **Observable:** rebuilding then querying with `sqlite` uses SQLite for discovery while results remain authoritative.
-- **Status:** pending.
+- **Status:** completed.
 
 ### Slice 3 - End-to-end CLI workflow
 
@@ -96,14 +96,14 @@
 - **RED:** CLI behavior test fails because the command group is absent.
 - **GREEN:** an assistant candidate followed by exact user approval is found through scan and SQLite; returned content reflects the normal model rather than a tampered derived row.
 - **Observable:** the complete rebuild/query workflow runs through `agentos chatlas events`.
-- **Status:** pending.
+- **Status:** completed.
 
 ### Slice 4 - Regression and documentation pass
 
 - Document the command and pattern JSON in the Chatlas package skill/reference surface that owns CLI usage.
 - Run targeted tests, full package tests, and scoped lint.
 - Verify existing `query`, `views inline`, indexing, and anchory behavior remain unchanged.
-- **Status:** pending.
+- **Status:** completed.
 
 ### Acceptance.Signals
 
@@ -123,3 +123,7 @@
 ## Impl.Log
 
 - 2026-07-25: Impl.Req created in autonomous develop mode. The first version deliberately limits relations to adjacent visible turns while preserving a backend abstraction for later vocabulary.
+- 2026-07-25: Implemented the evaluator, scan backend, SQLite candidate index, authoritative revalidation/projection, freshness fallback, `events index`, and `events query`.
+- 2026-07-25: SQLite applies structural predicates and turn adjacency for candidate discovery. Text predicates deliberately remain broad candidates so backend collation cannot create false negatives; current-model Python evaluation establishes exact and case-folded text semantics.
+- 2026-07-25: Documentation is not a compiled Skillware surface (`.skw/src` is absent), so `agentos skw check` is inapplicable. The owning Chatlas index linter passed all 23 checks.
+- 2026-07-25: Verification passed: 12 focused Event.Pattern/backend/CLI tests, all 188 `agentos-chatlas-py` tests, scoped Ruff, CLI help, and diff checks.

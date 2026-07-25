@@ -6,6 +6,7 @@ Operational Chatlas command and workflow reference.
 
 - Refresh dataset: `agentos chatlas update`
 - Inventory/query sessions: `agentos chatlas query`
+- Query relational turn patterns: `agentos chatlas events query`
 - Aggregate dataset stats: `agentos chatlas stats`
 - Export attributed sessions into a project tree: `agentos chatlas local sync`
 - Print inline standard-model views: `agentos chatlas views inline`
@@ -53,6 +54,37 @@ agentos chatlas update --scan-cache false
 agentos chatlas update --session-index-cache false
 agentos chatlas update --verbose-mode=quiet --output-mode=json
 ```
+
+## Event.Pattern Workflow
+
+`Event.Pattern` queries relations between visible turns without exposing a SQL
+contract. The normal scan is authoritative; SQLite is a disposable candidate
+index whose coordinates are reloaded and re-evaluated against current
+`Chatlas.Session.Model` events.
+
+```sh
+agentos chatlas events index
+agentos chatlas events query \
+  --backend sqlite \
+  --pattern-json '{
+    "steps": [
+      {"role": "assistant", "text_contains": "candidate:"},
+      {"role": "user", "text_exact": "::approve POI.Class"}
+    ],
+    "relation": "next_turn",
+    "select": "all",
+    "project": "match",
+    "cardinality": "many"
+  }'
+```
+
+- Predicates: `role`, `kind`, `event_id`, `text_exact`, `text_contains`.
+- V1 relation: `next_turn`, where tool events do not interrupt adjacent visible message turns.
+- Selection: `all`, `first`, `latest`.
+- Projection: `match`, `first`, `last`.
+- Cardinality: `many`, `one`, `zero-or-one`.
+- Backends: `auto`, `scan`, `sqlite`. Missing, stale, or incomplete SQLite coverage falls back to `scan` and reports `backend_used`.
+- Existing index selectors such as `--session-id`, `--identity-hash`, and `--provider` can constrain the queried sessions.
 
 ## Inline View Workflow
 
