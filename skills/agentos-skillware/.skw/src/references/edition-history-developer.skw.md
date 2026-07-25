@@ -1,6 +1,6 @@
 # agentos-skillware --dev (edition-history developer)
 
-> $kw: ^edition-history-developer --from Skw.Edition.History.Service --from Touched.Authority --note [DF] the agentic workflow that recovers and maintains file edition/chat associations with required transcript support through the Skillware service ^c20260725-12u
+> $kw: ^edition-history-developer --from Skw.Edition.History.Service --from Touched.Authority --note [DF] the agentic workflow that recovers and maintains file edition/chat associations with required transcript support through the Skillware service ^c20260725-12u --supp live Chatlas resolution authorized ^c20260725-15u
 
 Use this module when the caller wants to recover, record, inspect, or lint the chat sessions associated with a managed file's Git editions.
 
@@ -68,7 +68,7 @@ Use this module when the caller wants to recover, record, inspect, or lint the c
    ```
 
 8. Repeat safely as more Chatlas material becomes available; equivalent record calls are idempotent.
-9. Close by reading the grouped history and running the explicit-target linter:
+9. Close by reading the grouped history and running the explicit-target linter. Through the umbrella `agentos` executable, both operations resolve every support member against Chatlas and reject unavailable sessions, missing events, or timestamp mismatches.
 
    ```bash
    agentos skw edition-history list --file <file> --depot <depot>
@@ -88,4 +88,4 @@ Use this module when the caller wants to recover, record, inspect, or lint the c
 
 ## Completion
 
-Return the target files, editions inspected, associations created versus already present, unresolved candidates, and the final check findings. A clean minimal check means every target has at least one valid association; it does not prove historical completeness.
+Return the target files, editions inspected, associations created versus already present, unresolved candidates, and the final check findings. A clean minimal check means every target has at least one structurally valid association whose support resolves through Chatlas; it does not prove historical completeness or semantic correctness.
