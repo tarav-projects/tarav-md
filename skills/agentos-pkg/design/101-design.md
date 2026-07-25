@@ -434,3 +434,37 @@
 - makes fuzzy flag resolution auditable — a misread is visible before side effects
 - printed on every run except the non-executing `-h` call
 - a short banner section in the target skill restates the convention via `Cited.Duplication`, improving compliance
+
+****
+
+## User.Command
+
+- [DF] `User.Command` is a formal user-authored instruction that advances or redirects a declared workflow transition ^c20260725-1u
+- [DC] its canonical form is `::<command line>` ^c20260725-1u
+- [FR] a `User.Command` may appear anywhere in a user turn; it does not need to begin a line ^c20260725-1u
+- [CT] a skill declares which `User.Command`s exist and the workflow points where each is available ^c20260725-1u
+- [CT] natural conversation may interrupt or reshape a workflow, but a gated transition remains unresolved until a valid explicit `User.Command` ^c20260725-1u
+- [CT] the agent prints available commands when the workflow pauses or status is requested, not after ordinary conversational turns ^c20260725-1u
+- [CT] a command executes only when its target, availability, and required arguments resolve clearly ^c20260725-1u
+- [CT] ambiguity makes the agent ask for the missing command input without advancing the workflow ^c20260725-1u
+- [PR] `User.Command` supplies deterministic workflow transitions inside natural conversation while the agent maintains coherence across free-form turns ^c20260725-1u
+- [CT] later conversation may invalidate a pending command by changing the transition or proposal it addresses ^c20260725-1u
+
+****
+
+## User.Command.Arg
+
+- [DF] `User.Command.Arg` is one declared input a `User.Command` requires before execution ^c20260725-1u
+- [DC] each argument uses one resolution policy: `Explicit`, `Contextual`, or `Defaulted` ^c20260725-1u
+- [CT] `Explicit` arguments must appear in the user's command turn ^c20260725-1u
+- [CT] `Contextual` arguments may resolve from the conversation or foreground workflow only when unambiguous ^c20260725-1u
+- [CT] `Defaulted` arguments use their declared value when absent ^c20260725-1u
+- [CT] an unresolved required argument prevents execution and causes the agent to ask for it ^c20260725-1u
+
+****
+
+## User.Command.Section
+
+- [DF] `User.Command.Section` is the section of a skill that declares its `User.Command` blocks ^c20260725-1u
+- [CT] each command declaration names its syntax, available workflow points, action, and `User.Command.Arg`s ^c20260725-1u
+- [CT] command declarations make a skill's user-controlled workflow transitions inspectable before execution ^c20260725-1u
