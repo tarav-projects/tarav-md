@@ -45,3 +45,13 @@
 ### meta
 
 - aliases: `Naming.Sigil.Vocabulary`
+
+****
+
+## Skw.Kernel.Index
+
+- [DF] a `Skw.Kernel.Index` is a Skw data structure that applies `Kernel.Writing` through routed `Kernel.Block`s organized into selectively loadable chapters ^c20260724-0u
+- [CT] each chapter may declare the gate policy governing its content ^c20260724-0u
+- [CT] authority and review are properties of content provenance, not consequences of index membership ^c20260724-0u
+- [EX] the `Agentos.Index.System` is a `Skw.Kernel.Index` application whose curated chapters require user gates ^c20260724-0u
+- [EX] a `POI.Catalog` is a `Skw.Kernel.Index` application whose `poi` chapter registers `POI.Class` blocks ^c20260724-0u
