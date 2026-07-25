@@ -203,7 +203,7 @@
 - [DC] direction-forcing: designing the constraint vocabulary IS steering the system — assertions encode what better looks like, so many small consistency checks pull the surfaces toward it ^c20260719-8u
 - [DC] stability: an assertion is a semantic invariant a rewrite must preserve — constraints make a surface stable under agent rewriting; the agent may rephrase, never drop the pinned semantics ^c20260719-8u
 - [PR] the compiler loop: agent-generated code must compile, and that feedback loop bounds generation — it either never converges or converges at least to compilable output; assertions + linting generalize the loop to text: the generated surface must comply with many tests, it is never "generate what you like" ^c20260719-9u
-- [DC] instances: `Line.Type`, anchors + support sets (`Touched.Support.Network`), skw claims (`Skw.Dependency`), the annotation↔generated-surface sync (`Skw.Annotation`), gates, bless records ^c20260719-9u
+- [DC] instances: `Line.Type`, anchors + support sets (`Touched.Support.Network`), skw claims (`Skw.Ann.Dependency`), the annotation↔generated-surface sync (`Skw.Annotation`), gates, bless records ^c20260719-9u
 
 ****
 

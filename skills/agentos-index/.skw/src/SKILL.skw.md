@@ -5,7 +5,7 @@ description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem
 
 # agentos-index
 
-> $kw: --from Alignment.Mode --from Alignment.Surface --from Batchy.Skill --from Capture.Offer --from Gr.Req --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Enrichment --from Index.Line --from Index.Ontology --from Index.Skillware --from Line.Type --from Line.Type.Vocabulary --from Package.Aux.Skill --from Packages.Master.Agent --from Skill.Module
+> $kw: --from Alignment.Mode --from Alignment.Surface --from Batchy.Skill --from Capture.Offer --from Gr.Req --from Index.Agendix --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Enrichment --from Index.Line --from Index.Ontology --from Index.Skillware --from Line.Type --from Line.Type.Vocabulary --from Package.Aux.Skill --from Packages.Master.Agent --from Reviewed.Cite.Closure --from Skill.Module --from User.Attention
 
 Workflow-neutral `Package.Aux.Skill` for the Agentos Index subsystem.
 
@@ -169,6 +169,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 An agent operating the index should:
 
 - search routing surfaces in the engaged `Index.Depot`s first, then load only relevant concept blocks, appendix material, or references
+- read down the `User.Attention` gradient — the reviewed block and appendix first, then the top concept's unreviewed `Index.Agendix` leads; surface agendix material as leads, never as accepted citations (`Reviewed.Cite.Closure`)
 - respect `--depot` as an `Index.Depot` scope; otherwise use task-relevant engaged depots
 - respect `--chapter` as an `Index.Chapter` scope inside engaged depots; default chapter is `design`
 - return context with source block citations so the caller can verify and maintain the summary

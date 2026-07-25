@@ -16,7 +16,7 @@
 
 ### meta
 
-- `Explicit.Namespace`; members: `Skill.Module`, `Runnable.Surface`, `Inline.Annotation`, `Build.Surface`, `Build.Annotation`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Skw.Package`, `Skw.Dependency`, `Skw.Quote.Binding`, `Skw.Language`, `Skw.Annotation`, `Skw.Backend`, `Annotation.Point`, `Annotation.Authority`, `Drift.POI`, `Non.Skw.Annotation`, `Semantic.Router`, `Usage.Pattern.Routing`.
+- `Explicit.Namespace`; members: `Skill.Module`, `Runnable.Surface`, `Inline.Annotation`, `Build.Surface`, `Build.Annotation`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Skw.Package`, `Skw.Ann.Dependency`, `Skw.Pkg.Dependency`, `Skw.Quote.Binding`, `Skw.Language`, `Skw.Annotation`, `Skw.Backend`, `Annotation.Point`, `Annotation.Authority`, `Drift.POI`, `Non.Skw.Annotation`, `Semantic.Router`, `Usage.Pattern.Routing`.
 
 ****
 
@@ -61,7 +61,8 @@
 - [DC] git-tracked: `.skw/` holds `skw.json` config, the `src/`, and `lock.json`; `.agentos/` keeps only project identity and runtime, while the tracked skw source lives in `.skw/` ^c20260720-9u ^c20260720-13u
 - [DC] scope mirror: one `skw.json` schema (`depots`, `surfaces`, `exclude`, `projects`) read at both project and package scope, the package extending the project via cascade; absent config means discover every `.skw/` and check all ^c20260720-9u
 - [DC] a package holds managed surfaces of both kinds: a `Build.Surface` under `.skw/src`, and inline-annotated `Runnable.Surface`s elsewhere in its tree — a code-only package carries no `src/` ^c20260723-15u
-- [DC] a surface belongs to the nearest-enclosing `.skw/`, co-located in the same repo; reach across packages or repos is `Skw.Dependency` only — a `.skw/` never manages surfaces outside its own tree ^c20260723-16u
+- [DC] a package may also host an `Index.Depot` — its concept store, co-located under the same `.skw/` and addressed by `Dotted.Name` ^c20260724-2u
+- [DC] a surface belongs to the nearest-enclosing `.skw/`, co-located in the same repo; reach across packages or repos is `Skw.Pkg.Dependency` only — a `.skw/` never manages surfaces outside its own tree ^c20260723-16u
 
 ****
 
@@ -76,22 +77,29 @@
 
 ****
 
-## Skw.Dependency
+## Skw.Ann.Dependency
 
-- [DF] `Skw.Dependency` is a declared dependency between any two surfaces — a consumer declares a target named by any legal `Skw.Address.Schema` name ^c20260709-12u ^c20260712-10u ^c20260719-1u
-- [DC] three binding modes: `pointer` — resolved at load time, always fresh; `copy` — verbatim materialization at build time; `derived` — a semantic transformation materialized at build time under a recorded intent ^c20260709-14u
-- [DC] the binding is the consumer's declaration — the target never knows its dependents ^c20260709-12u
+- [DF] `Skw.Ann.Dependency` is the annotation-level dependency edge — a `--from` declaring a target by `Skw.Address.Schema` name: the declaration and how it resolves, not how the target is materialized ^c20260724-6u
+- [DC] the consumer declares; the target never knows its dependents ^c20260709-12u
 - [DC] a `--from` may be refined by a `Skw.Quote.Binding` — quoted lines pinning the exact interest range inside the target ^c20260718-29u
-- each binding carries a checkable claim: pointer — the target resolves at its address; copy — equality with the target; derived — the rule still holds ^c20260709-16u
-- [DC] a failed check is a drift finding with no predefined winner — resolution is case-by-case; a particular workflow may set auto-regeneration as its own rule ^c20260709-15u
-- it is the Skillware linking system: copy and derived are static binding, pointer is dynamic ^c20260709-12u
-- [PR] division of labor: the CPU materializes copy bindings and detects drift; the agent performs derivations — in src, where the declaration and its current solution live side by side ^c20260710-0u
-- [DC] on building `Skw.Backend`s, declarations live on the `Skill.Build.Surface` and the `Skill.Runnable.Surface` carries only the materialized result; annotated-only backends keep declarations in place on the surface itself ^c20260709-13u ^c20260711-9u
-- [DC] v1 realization: `lock.json` holds the per-dependency record; check verdicts (`copy-drift`, `derived-stale`, `hand-edited`) surface drift — a rebuild can never silently clear `derived-stale`; only an actual re-derive does ^c20260710-2u
+- [DC] resolution: an in-package target resolves by address; a cross-package target resolves through `Skw.Pkg.Dependency` ^c20260724-4u
 
 ### meta
 
 - aliases: `Module.Import`, `Import.Management`
+
+****
+
+## Skw.Pkg.Dependency
+
+- [DF] `Skw.Pkg.Dependency` is the named registry resolving a cross-package dependency: an `id → package` map a package declares, the sole sanctioned way a `--from` leaves its own package ^c20260724-4u
+- [CT] a `--from` may not address a surface outside its package by raw path — a path leaving the package is rejected; the cross-package edge resolves only through a declared id ^c20260724-4u
+- [DC] one `id → package` resolution reaches both of the package's addressable stores: its `Index.Depot` by `Dotted.Name` and its `.skw.md` src by `@<id>/<rel-path>` — same id, two addressing forms ^c20260724-4u
+- [CT] only skw-parsable targets cross the boundary: index concepts (`Dotted.Name`) and `.skw.md` regions or spans — never a compiled target or a raw file ^c20260724-4u
+- [DC] the `@<id>/<rel-path>` form: `@` anchors file space, `<id>` is the registry-resolved root (`Addressing.Sigil.Vocabulary`'s context variable), the tail resolves inside that package's src, recursively expanded ^c20260724-4u
+- [PR] the indirection is the point: the location lives once in config, so a dependent's address survives the target package moving — layout-independence a raw path cannot give ^c20260724-4u
+- [DC] target design is two-tier: local config names the dependency, a global registry resolves name → location — no config carries absolute paths (migrated from `Index.Depot.Dependency`) ^c20260722-15u
+- [DC] the current `skw.json` `deps` map is one-tier relative paths — the `Current.Implementation`, not yet the target ^c20260724-4u
 
 ****
 
@@ -121,6 +129,7 @@
 - the annotation constrains the span: the content must not contradict or drift from its declaration — every annotation is a checkable claim ^c20260711-2u
 - [DC] one written form — a named block whose features are `--flag`s ^c20260720-22u
 - the binding mode is a flag: `--copy` is deterministic generation (inlining a source, itself possibly generated), `--derived` is agentic generation under its `--intent`, a block with no binding flag makes no generation claim; a link's text is a typed generated span ^c20260711-2u ^c20260720-18u
+- [DC] the three binding modes differ by when they resolve: `--copy`/`--derived` materialize statically at build time, `--pointer` resolves dynamically at load time, always fresh ^c20260709-14u
 - it annotates any content, but earns most on agent-generated surfaces — where the rule and its current solution living side by side is what makes maintenance checkable ^c20260711-2u
 - it is embedded — skw lives inside the host surface's own format, next to the content it governs, and never replaces it ^c20260711-2u
 - the language is surface-blind; a `Skw.Backend` binds it to each surface class ^c20260711-2u
@@ -137,6 +146,9 @@
 - **skw-skills** is the first backend, a building one: annotated src compiles to the skill's runnable files ^c20260711-3u
 - [DC] skw-code is annotated-only — the comment is its carrier (`# $kw:` opens, `# --flag` belongs, `# $kw. end` closes) and the annotated code is the body itself ^c20260722-24u
 - [DC] a backend is a `Carrier` over one shared `$kw` frame core: the core consumes carrier-stripped tokens, the carrier strips its host syntax (markdown `>`, code comment `#`) — the split keeps `Skw.Language` surface-blind ^c20260722-24u
+- [DC] a failed check is a drift finding with no predefined winner — resolution is case-by-case; a workflow may set auto-regeneration as its own rule ^c20260709-15u
+- [PR] division of labor: the CPU materializes copy bindings and detects drift; the agent performs derivations — in src, where the declaration and its current solution live side by side ^c20260710-0u
+- [DC] v1 realization: `lock.json` holds the per-dependency record; check verdicts (`copy-drift`, `derived-stale`, `hand-edited`) surface drift — a rebuild can never silently clear `derived-stale`; only an actual re-derive does ^c20260710-2u
 
 ****
 
@@ -208,27 +220,51 @@
 
 ****
 
-## Closure.Parser
+## Floor.Model
 
-- [DF] a `Closure.Parser` demands a minimal structure — the `Parse.Floor` — and is closed above it: a surface below the floor is a hard parse error; a surface at the floor always yields a full AST, and no finer detail can fail the parse ^c20260712-17u
-- from the `Parse.Floor` up, the parser cares only about what it recognizes: recognized regions become structured nodes, everything else becomes text nodes, and no further errors exist ^c20260712-17u
-- above the floor, an unrecognized region is simply an opaque text node — the parser does not judge it; whatever might be wrong inside is a linter concern, not a parse concern ^c20260712-17u
-- the parser emits exactly one kind of failure: parse errors, only below the floor — it emits no POIs ^c20260712-17u
-- [PR] one broken construct never blinds the system to the whole file ^c20260712-17u
-- [CT] closed also means lossless: above the floor, every byte of the input lands in some node ^c20260712-17u
-- [DC] realized: the skw parser is `Closure.Parser::Skw` — its floor is well-formed, explicitly closed `$kw` machinery; above it, construct nodes and opaque text ^c20260712-17u
+- [DF] a `Floor.Model` is a structured representation whose declared minimum guarantees support dependable downstream interpretation ^c20260724-11u
+- [CT] its floor identifies the structural facts consumers may rely on ^c20260724-11u
+- [RJ] it does not promise semantic resolution or completeness beyond its declared floor ^c20260724-11u
+- [PR] a `Floor.Model` decouples consumers from the mechanism that produced their input ^c20260724-11u
+- [FR] a parser, normalization pipeline, or another model producer may provide a `Floor.Model` ^c20260724-11u
+- [EX] a `Closure.Parser` AST is a `Floor.Model` when its source satisfies the `Parse.Floor` ^c20260724-11u
+- [EX] `Chatlas.Session.Model` is a `Floor.Model` produced through normalization ^c20260724-11u
 
 ****
 
-## Poi.Linter
+## Closure.Parser
 
-- [DF] a `Poi.Linter` lints the AST of a `Closure.Parser`, never the native text — every lint rule is a rule about node types, not text patterns ^c20260712-17u
-- [CT] the no-shadow-parser constraint: a rule targets node types and may read inside a text node, but re-parsing the surface around the AST is forbidden ^c20260712-17u
-- checks are layered: parse errors gate everything — below the `Parse.Floor` the linter reports the parse errors as POIs and advances no further ^c20260712-17u
-- its output is the POI stream: each POI marks a place worth an agent's attention, and nothing more — it may carry a suggested resolution, but it asserts no verdict; the agent inspects and decides ^c20260712-17u
-- [PR] the softness is bought, not accidental: a linter that is always right costs a robust parser — the system stays cheap and simple by tolerating wrong and missed flags, and agents are told so ^c20260712-17u
-- opaque text nodes are its territory: what the parser deliberately ignores, linter rules may inspect and flag ^c20260712-17u
-- [DC] realized: `agentos skillware check` — parse errors gate per file, POIs carry stable identity hashes, output is a once-per-kind legend plus bare rows ^c20260712-17u
+- [DF] a `Closure.Parser` enforces a `Parse.Floor`, the minimum source structure required to produce a dependable `Floor.Model` ^c20260724-13u
+- [PR] the `Parse.Floor` stays minimal: only structurally certain failures belong below it ^c20260724-13u
+- [DC] below the `Parse.Floor`, the source is unprocessable and the parser is not required to return an AST ^c20260724-13u
+- [DC] at or above the `Parse.Floor`, the parser returns an AST that is a `Floor.Model` ^c20260724-13u
+- [CT] the AST contains every detectable parsable element from the source ^c20260724-13u
+- [CT] unresolved regions above the floor are preserved as fallback structure ^c20260724-13u
+- [RJ] unresolved detail above the floor does not produce parser errors or warnings ^c20260724-13u
+- [RJ] a `Closure.Parser` does not emit `Point.Of.Interest` instances ^c20260724-13u
+- [PR] its AST may serve `POI.Linter` and other model consumers ^c20260724-13u
+
+****
+
+## POI.Linter
+
+- [DF] a `POI.Linter` consumes a `Floor.Model` and evaluates it for situations that require agent judgment ^c20260724-12u
+- [CT] it emits `Point.Of.Interest` instances attached to a `POI.Class` ^c20260724-12u
+- [CT] each emitted instance carries enough occurrence evidence to identify the observed situation ^c20260724-12u
+- [PR] heuristic and policy concerns become reviewable POIs rather than failures of the model producer ^c20260724-12u
+- [RJ] a `POI.Linter` does not produce its input model ^c20260724-12u
+- [RJ] it does not own authoritative documentation or resolution policy ^c20260724-12u
+- [PR] a `POI.Linter` is one producer within a broader `POI.System` ^c20260724-12u
+
+****
+
+## Chat.POI.Linter
+
+- [DF] a `Chat.POI.Linter` is a `POI.Linter` that consumes a full `Chatlas.Session.Model` as its `Floor.Model` ^c20260724-14u
+- [CT] it consumes normalized session data, never provider-native data ^c20260724-14u
+- [DC] its rules inspect facts represented by the `Session.Event.Tape` ^c20260724-14u
+- [CT] each emitted POI identifies the relevant session state and routes to its `POI.Documentation` ^c20260724-14u
+- [RJ] a `Chat.POI.Linter` does not modify the session or determine how its POIs are resolved ^c20260724-14u
 
 ****
 
@@ -264,7 +300,7 @@
 
 - [DF] the `Structure.Ratchet` is the system's direction of travel: over time, content moves from opaque text nodes into recognized structure — the target state is a fully structured surface where all remaining prose is ACTUAL prose: no parsable objects remain in the text ^c20260712-17u
 - progress is measurable: the `Closure.Parser` knows exactly what fraction of a surface is structured nodes versus opaque text — the ratio is the ratchet's gauge ^c20260712-17u
-- promoting a text pattern into the grammar converts a class of soft `Poi.Linter` flags into hard parse-level guarantees ^c20260712-17u
+- promoting a text pattern into the grammar converts a class of soft `POI.Linter` flags into hard parse-level guarantees ^c20260712-17u
 - [CT] promotion is an `Experience.Gated.Decision`: promote a pattern when it keeps generating the same manual POI toil, never speculatively — premature grammar is how the language dies ^c20260712-17u
 
 ****
@@ -685,7 +721,7 @@
 ## Skw.Network
 
 - [DF] `Skw.Network` is the graph of annotated surfaces linked by the relationships the skw system defines between them ^c20260715-6u
-- [DC] relationships are explicit or implicit: explicit ones are the declared links a `Skw.Dependency` carries; implicit ones are derived by the system, such as support-set intersection between chat anchors ^c20260715-6u
+- [DC] relationships are explicit or implicit: explicit ones are the declared links a `Skw.Ann.Dependency` carries; implicit ones are derived by the system, such as support-set intersection between chat anchors ^c20260715-6u
 - [DC] the network is computed from consumer-side declarations — a target never registers its dependents; followers are derived, so an imported surface stays ignorant of its importers ^c20260715-6u
 - [PR] the network's job is notification, not judgment: when a surface changes, the `CPU.Program` notifies every surface the network links to it — a purely mechanical fan-out along the edges ^c20260715-6u
 - [DC] an `Agentic.Program` interprets each notification: whether the change is benign or a real change to propagate is a semantic verdict only the agent carries ^c20260715-6u

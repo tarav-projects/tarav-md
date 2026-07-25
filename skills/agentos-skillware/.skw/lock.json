@@ -26,7 +26,7 @@
           "verb": "derived",
           "body_sha256": "0c030d2793fc10d3192eaf86da0920e568a86f86b83e281eb80428f592c43919",
           "deps": {
-            "Skw.Dependency": "f752daab89e56c8ae67eb120fcd372b1c2618e214737dd1a97f8df029b7ad9b7"
+            "Skw.Backend": "969198a4f589d0dfd3e89d45288afbacfc6a2830517af7c5a914625ca71f0369"
           }
         }
       ]
@@ -36,32 +36,34 @@
       "recipes": []
     },
     "references/check.md": {
-      "output_sha256": "b0ac48363f66581ee95eb1305902797edbc132d569dc138237538f8860498691",
+      "output_sha256": "aa197c8501e455b92528cc7dcd37ae43fd42eee1d36467bb128ddad9193f6b21",
       "recipes": [
         {
           "heading": "POI Kinds",
           "verb": "derived",
           "body_sha256": "954565c1304ee265a5242a5385c55b1bded6a182ab79acf293f18b346fee92bd",
           "deps": {
-            "Skw.Dependency": "f752daab89e56c8ae67eb120fcd372b1c2618e214737dd1a97f8df029b7ad9b7",
-            "Poi.Linter": "5653719effb9041043372ee9a4853d945452339648663a4660e45e2b36454ef9",
-            "Poi.Bless": "b0cf61d48d079014b071299ba9300b7def20969367fba20890c93709f878455b"
+            "Skw.Ann.Dependency": "ed37c9cfc210f58a18d5b50e35c1d442ec5a0eb1dbf083c5f9a1949b141b37e2",
+            "POI.Linter": "c45cea0a121e88246e68f89983218acd98e54e7bbba59f7457998f8679a44c03",
+            "Poi.Bless": "b0cf61d48d079014b071299ba9300b7def20969367fba20890c93709f878455b",
+            "Poi.Unlock.Token": "73cad4df761aaa6046f30e9870309aaae0a1193b5636e45900c6d57cc1344a68"
           }
         }
       ]
     },
     "references/doctrine.md": {
-      "output_sha256": "64e2fc5e93d646fe82d6f2d2e9722cd8373f082b825b0e990b6584e214b6f811",
+      "output_sha256": "27022222a8a4b07b8da668b6aa5b0b9286ed21c8b339b3da8178380637b20d1c",
       "recipes": [
         {
           "heading": "The Model",
           "verb": "derived",
-          "body_sha256": "aa88f72575f3bdadd07c39be0a7d18a7c9ad47b8ab5fa451d883fb9d8692af1b",
+          "body_sha256": "90475f6e943ac6c2720f0211319fec26b59222bc9ecf4e09ab32c47de32c807a",
           "deps": {
             "Agentos.Skillware": "4187cdbf49b3585c5b7ebc992cf79b9fc835b7c6c46e90dcdcf8f462500cfe1e",
-            "Skill.Runnable.Surface": "4a4e47af449430fdd12978fc671f689e68a5cd084f34369117b65c10d14f10d9",
-            "Skill.Build.Surface": "91fd496e297964f88b046695ba1ed5c9e0abd1ad53ce9b5fdcb57129152e8773",
-            "Skw.Dependency": "f752daab89e56c8ae67eb120fcd372b1c2618e214737dd1a97f8df029b7ad9b7",
+            "Skill.Runnable.Surface": "911d175375e108d030418301cefa990ccb55ecda521a6884244bdd13b3b7982e",
+            "Skill.Build.Surface": "d7df0f76bb89342f3989dddeac7c6fd7b934266c6a9ec3eaa5cc727f1ba9c30a",
+            "Skw.Ann.Dependency": "ed37c9cfc210f58a18d5b50e35c1d442ec5a0eb1dbf083c5f9a1949b141b37e2",
+            "Skw.Pkg.Dependency": "c056e4b8c39a92fd9d2a0eca4b55ba1b089767358863c921d9b3ecb463d39ea5",
             "Skw.Annotation": "0124f074d2400303b7a7321053f176f5ca36e47150cad26df14f08941e0b34db"
           }
         },
@@ -76,7 +78,7 @@
       ]
     },
     "references/lang.md": {
-      "output_sha256": "1fb2300f07056aa140df2e2110da71eb6c74b7e6b64dc2c5b6035b4e14020812",
+      "output_sha256": "f42c65c5c693f0c42c06db2733d0cdff59f801b1fd0fec1f48eca84eb7aa7920",
       "recipes": []
     }
   },

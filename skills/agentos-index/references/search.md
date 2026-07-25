@@ -16,6 +16,7 @@ Search is read-only and ungated. It changes the agent's context, never a surface
 - use the prompt as the focus argument; a bare concept name is a valid focus, not a separate mode
 - find the concept or nearby related names before loading chapter files
 - load only the concept blocks, appendix pages, and references that are relevant to the current task
+- escalate down the `User.Attention` gradient: the reviewed block and its appendix first (presumably higher attention), then the concept's unreviewed `Index.Agendix` leads, then raw chat/code — a heuristic order, not a guarantee, which is why the steps are explicit
 - compare loaded index material against the visible discussion and focus argument
 - distinguish what the index explicitly says from what the agent infers by comparing discussion against index material
 - do not preload the full index as a default runtime
@@ -29,8 +30,9 @@ Search is read-only and ungated. It changes the agent's context, never a surface
 4. Identify the target concept or nearby related concepts.
 5. Read the chapter file (`<chapter>/NNN-<chapter>.md`) that owns the routed concept.
 6. Load appendix depth only when the block does not carry enough signal.
-7. Load references only when the task needs operational detail or concrete examples.
-8. Compare the loaded material against the visible discussion and report what matters.
+7. Read the top-relevant concept's agendix (`agendix/Concept.Name-agendix.md`) when it exists — unreviewed `Touched.Authority` leads, surfaced separately from accepted citations.
+8. Load references only when the task needs operational detail or concrete examples.
+9. Compare the loaded material against the visible discussion and report what matters.
 
 ## Reading What You Find
 
@@ -56,7 +58,8 @@ Use a compact report shape. Include only sections that help the current task:
 - `discussion-grounding` — how the visible discussion or focus argument aligns with the index
 - `possible-contradictions` — tensions between the current discussion and current index material
 - `significant-remarks` — accepted or high-signal observations from the discussion that matter for continuation
-- `missing-index-coverage` — meaningful discussion content that appears not to be modeled yet
+- `agendix-leads` — unreviewed `Index.Agendix` material surfaced for the top concepts, kept distinct from `supporting-citations` (leads, not citations); flag any the pass relied on as promotion candidates
+- `missing-index-coverage` — meaningful discussion content that appears not to be modeled yet, and not already harvested in the agendix
 - `recommended-next-index-action` — the single best next move from the index perspective
 
 For a bare concept lookup with no live claim beyond the focus argument, keep the grounding section brief: say there is no additional discussion claim to compare.
@@ -67,6 +70,14 @@ For a bare concept lookup with no live claim beyond the focus argument, keep the
 - check `appendix/Concept.Name-appendix.md` by naming convention
 - load only the appendix pages that matter to the current question
 
+## Agendix Loading Rules
+
+- always check the top-relevant concept's `agendix/Concept.Name-agendix.md` by naming convention — unlike the appendix, do not gate this on the block being thin: the agendix holds user-touched leads worth surfacing whenever the concept is central
+- read agendix lines as unreviewed `Touched.Authority` leads, never as accepted wording — they inform continuation, they do not settle it
+- keep them out of `supporting-citations`: report them under `agendix-leads` — a reviewed surface may not cite the agendix (`Reviewed.Cite.Closure`)
+- before reporting `missing-index-coverage`, check the agendix — a lead already harvested there is promotion-ready, not missing
+- when the pass actually leans on an agendix lead, recommend its promotion through `--edit` (gated) — use is the promotion signal
+
 ## Unresolved Names
 
 - when a name appears unresolved, search nearby routed concepts first
@@ -76,7 +87,8 @@ For a bare concept lookup with no live claim beyond the focus argument, keep the
 ## Grounding Depth
 
 - this module runs `Index.Grounding` as the first `Context.Grounding` level: enrich the agent's context with the index's digest of the topic
-- when the digest is not enough, escalate to full grounding: follow the blocks' anchors out to the original surfaces — chat evidence via `references/link.md` resolution (`views inline --anchor … --filter turns`), code and files directly
+- next down the `User.Attention` gradient, read the concept's `Index.Agendix` — the last index-local rung: unreviewed touched leads already harvested from chat, cheaper than resolving anchors back out
+- when the index-local rungs are not enough, escalate to full grounding: follow the blocks' anchors out to the original surfaces — chat evidence via `references/link.md` resolution (`views inline --anchor … --filter turns`), code and files directly
 - do not pretend to ground against conversation state that is not actually visible in the current prompt or thread
 - recommend `--edit` when the search pass reveals a likely needed block revision, new concept, line append, or appendix update
 - keep the report continuation-oriented: make it easier to continue the work, not just easier to inspect the search

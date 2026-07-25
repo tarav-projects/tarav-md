@@ -58,11 +58,18 @@ For each `derived-stale` POI where the drift is real:
 
 When the dependency change is benign — the current body already transforms the new state faithfully — accept it explicitly instead of editing around the flag:
 
+`Poi.Unlock.Token` makes any configured read-before-bless workflow concrete:
+
 ```
-agentos skw bless --skill <path> --poi <hash>
+agentos skw bless --skill <path> --poi <hash> \
+  --unlock <token> [--unlock <token> ...]
 ```
 
 - the hash comes from the check row; it binds to the exact current situation — if the dependency moves again, that is a new POI with a new hash
+- when the POI kind has configured unlock requirements, `check` names every represented context surface and registry without disclosing tokens; read each whole surface, retrieve its registry token, and provide every receipt with repeatable `--unlock`
+- one context surface has one token; several registry entries may name the same POI kind, making all of their receipts mandatory; a missing receipt refuses before any lock mutation and names only the missing surfaces
+- token values live only in their provider registry; the source carries an addressed `--unlock-surface` annotation whose single `--from` points back to that registry, so rotation does not touch the surface
+- a POI kind absent from the target package's configured `unlock_registries` retains ordinary blessing behavior, allowing incremental adoption
 - bless rewrites that recipe's locked dependency hashes to current; body and target stay untouched; the lock diff is the audit record
 - only `derived-stale` is blessable; blessing anything else is refused — parse errors are not in the language, mechanical kinds have mechanical fixes
 

@@ -2,14 +2,14 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "0dcd0d2770babeb868b8e3007b823e4603eb36a534137f8fca25e6159d54f03f",
+      "output_sha256": "51c5a63bff210129f3b047e068135dedc2fa952724d550cd69add2902d55eb46",
       "recipes": [
         {
           "heading": "Index Operating Behavior",
           "verb": "derived",
-          "body_sha256": "b2a4cb85fa4238fe671ed3929276805404176a0548ef6bc68d3639d0ecd3a2de",
+          "body_sha256": "d71d2b39913c6e4a273931c4a0c0f06a56a926d4ee6220755023d49417b80275",
           "deps": {
-            "references/search.skw.md#Search Model": "3772bfb8e7de9969e366b0e3ef7081ba15838fe4f6ff33cd945a667ceb3d9c7c",
+            "references/search.skw.md#Search Model": "d99456d67e9e34cc75808c67dc06536a3e43e47cb119d4304d5d0e948d3a780f",
             "references/search.skw.md#Citation Behavior": "e57e94bf2adedb5f4bde5e498c1feb6342c70412564a0e8d8a1a8734a673a8a9"
           }
         }
@@ -89,7 +89,7 @@
       "recipes": []
     },
     "references/search.md": {
-      "output_sha256": "687a4017aaf74a9485d3efd6b1654a5a3924b33c492a7519c33c0b814a2408d6",
+      "output_sha256": "74f6fbf1913e653917980f8beac591f86118ffaf2f15ce0a39a84e2195df45de",
       "recipes": []
     },
     "references/type.md": {

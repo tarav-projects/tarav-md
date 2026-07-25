@@ -17,8 +17,8 @@ The written form of a `Skw.Annotation` — shown, not described. The normative s
 
 ```python
 # $kw: #_dependency_sync_pois
-# --from Skw.Dependency
-# --derived realize the three-kind split declared in Skw.Dependency:
+# --from Skw.Ann.Dependency
+# --derived realize the three-kind split declared in Skw.Ann.Dependency:
 # --cont undeclared / unhonored / dangling
 # --note [DF] emits POIs for the declared-graph vs compiled-text mismatch ^<anchor>
 # --supp split dangling out of unhonored with the user ^<anchor>

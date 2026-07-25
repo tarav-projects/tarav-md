@@ -1,8 +1,8 @@
-# Skw.Dependency — Appendix
+# Skw.Ann.Dependency — Appendix
 
 ****
 
-## Skw.Dependency/Appendix
+## Skw.Ann.Dependency/Appendix
 
 Derivation mechanics and address depth, absorbed from the retired `Derivation.Rule`, `Derived.Content`, `Derived.Module`, and `Skillware.Recipe` blocks.
 

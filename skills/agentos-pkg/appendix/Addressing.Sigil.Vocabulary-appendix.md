@@ -7,5 +7,6 @@
 - [DF] `::` mirrors Julia type ascription; its type reading subsumes the retired "applied to a target" phrasing: `Maintenance.System::Agentos` is the `Maintenance.System` instance identified by `Agentos` ^c20260712-1u
 - [DF] `:` mirrors the universal `path:line` convention; `::` longest-matches over `:`, so parsing is unambiguous ^c20260712-1u
 - [PR] `#` and `:` are the two file-internal addressers — `#` by heading region (stable), `:` by line number (volatile); prefer regions for durable names ^c20260712-1u
+- [CT] a `<...>` variable is resolved only where the context calls for it — the skw `--from` context binds it through `Skw.Pkg.Dependency`; a documentation or example context communicates it unresolved ^c20260724-7u
 
 ****

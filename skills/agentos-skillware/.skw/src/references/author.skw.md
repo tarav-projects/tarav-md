@@ -29,7 +29,7 @@ The `--intent` is the derivation context — written so a cold agent can re-deri
 ## Division Of Labor
 
 > $kw: --derived
-> --from Skw.Dependency
+> --from Skw.Backend
 > --intent restate the block's division-of-labor principle and maintenance
 > --cont model as authoring guidance — who does what, and why authoring derived
 > --cont work always happens in src
