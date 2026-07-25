@@ -1,17 +1,34 @@
-# agentos-skillware --dev (edition-history developer)
+# agentos-skillware --edition-history
 
 > $kw: ^edition-history-developer --from Skw.Edition.History.Service --from Touched.Authority --note [DF] the agentic workflow that recovers and maintains file edition/chat associations with required transcript support through the Skillware service ^c20260725-12u --supp live Chatlas resolution authorized ^c20260725-15u --supp default depot, completeness metric, amendment, and stronger discovery requested ^c20260725-32u
 
-Use this module when the caller wants to recover, record, inspect, or lint the chat sessions associated with a managed file's Git editions.
+Use this module when the caller wants to recover, record, amend, inspect, or lint the chat sessions associated with a managed file's Git editions.
 
 `Skw.Edition.History.Service` is deterministic; this module performs the agentic discovery and support judgment around it. Git supplies editions, Chatlas supplies candidate sessions and transcript fragments, and `agentos skw edition-history` is the only persistence boundary.
 
 ## Inputs
 
 - use the target file's Agentos-project depot by default; pass `--depot` only for an intentional lifecycle or test override
-- require one or more target files inside initialized Agentos projects
+- require exactly one selection mode:
+  - `--target <file>` — repeatable; every target must be an eligible file selected by the project-level `.skw/skw.json` `edition_history.targets` minus `edition_history.exclude`
+  - `--random` — select one eligible file from the current Agentos project
+- reject `--target` with `--random`, either selector without `--edition-history`, or `--edition-history` without a selector
 - work with project-relative file paths when querying Git and Chatlas
 - treat the target list as the linter scope; no package-wide completeness claim follows from checking it
+
+## Target Selection
+
+For `--target`, resolve every path inside the current Agentos project and verify that it belongs to the configured eligible set before recovery.
+
+For `--random`, expand the configured eligible set and choose one file from the first nonempty tier:
+
+1. files reported by the default project check as `missing-edition-history`
+2. files reported by `agentos skw check --check unsupported-git-edition --json` as `unsupported-git-edition`
+3. any configured eligible file
+
+Deduplicate paths within each tier. Selection is random only inside the highest-priority nonempty tier. Print the selected project-relative path and its tier before starting recovery. Fail clearly when the current directory is not inside an Agentos project, edition-history policy is absent, or the configured eligible set is empty.
+
+After selection, `--random` and `--target` run the same recovery workflow.
 
 ## Recovery Workflow
 

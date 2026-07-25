@@ -46,9 +46,11 @@ The roadmap is not approval-ready material. Do not expose `::approve` merely bec
 - When an approval-ready draft becomes foreground, pause with `::approve [target]` (`::approved` equivalent). The command accepts that exact draft and never writes it.
 - Approval adds the resolved draft to the approved, unlanded cluster and returns the loop to **Focus**. When roadmap candidates remain, the default next move is to codesign and present the next approval-ready draft, not to pause for landing.
 - An explicit `::land [target]` (`::write` equivalent) remains valid whenever its approved target resolves clearly, including before the workflow suggests it.
+- `::land-all-approved` takes no target argument and lands the complete approved, unlanded cluster of the single foreground index workflow.
 - Suggest landing at a deliberate landing pause: when the roadmap is exhausted, when the approved cluster is significant and coherent enough to land together, or when the user asks to land or requests status.
 - Do not create a landing pause solely because the first draft entered the approved cluster.
-- A bare command may resolve its contextual target only when one foreground target is possible. If several drafts or approved sets could receive it, ask which one and leave every transition unresolved.
+- A bare targeted command may resolve its contextual target only when one foreground target is possible. If several drafts or approved sets could receive it, ask which one and leave every transition unresolved.
+- `::land-all-approved` removes target ambiguity, not workflow ambiguity: if several workflows could supply the approved cluster, ask which workflow is foreground and leave every transition unresolved.
 - Free-form replies continue the discussion without crossing either gate. If discussion changes an approved draft's wording or landing target, return that draft to approval-ready state.
 - Print the available command line only at a real pause or on a status request. Do not append it to ordinary conversational turns.
 
@@ -64,6 +66,7 @@ Example landing pause footer:
 ```text
 Available User.Commands:
   ::land [target]     (also ::write; approved material only)
+  ::land-all-approved (entire foreground approved cluster)
 ```
 
 ## Mode

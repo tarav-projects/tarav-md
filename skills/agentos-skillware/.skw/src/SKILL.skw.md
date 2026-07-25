@@ -1,13 +1,13 @@
 ---
 name: agentos-skillware
-description: "Workflow-neutral Package.Aux.Skill for the Skillware subsystem of agentos-pkg — skills developed as software, compiled from .skw/src sources. USE WHEN understanding Skillware, authoring or adopting .skw.md sources, building managed surfaces, or checking drift."
+description: "Workflow-neutral Package.Aux.Skill for the Skillware subsystem of agentos-pkg — skills developed as software, compiled from .skw/src sources. USE WHEN understanding Skillware, authoring or adopting .skw.md sources, building managed surfaces, maintaining edition history, or checking drift."
 ---
 
 # agentos-skillware
 
 Workflow-neutral `Package.Aux.Skill` for the Skillware subsystem — the center of all Skillware content: doctrine, language, authoring discipline, adoption, and toolchain operation.
 
-This skill is the public Batchy router for Skillware work. It orients the caller by default and routes `--about`, `--dev`, and `--check` into named `Skill.Module`s; the agent selects the concrete module from the live situation (`Semantic.Router`).
+This skill is the public Batchy router for Skillware work. It orients the caller by default and routes `--about`, `--dev`, `--edition-history`, and `--check` into named `Skill.Module`s; the agent selects the concrete module from the live situation (`Semantic.Router`).
 
 This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
@@ -38,10 +38,34 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - examples: --about, --about "how do derived recipes track staleness?"
 
 ### Skill.Arg::Dev
-- authoring, adoption, building, and edition-history maintenance — the write side
+- authoring, adoption, and building — the general write side
 - required: false
-- help: "do Skillware development: write src, adopt or build a skill, maintain edition history"
-- examples: --dev "add a derived section to ground.skw.md", --dev "adopt agentos-batchy-skills", --dev "recover edition history for src/example.py"
+- help: "do Skillware development: write src, adopt a skill, or build managed surfaces"
+- examples: --dev "add a derived section to ground.skw.md", --dev "adopt agentos-batchy-skills"
+
+### Skill.Arg::Edition.History
+- recover, record, amend, inspect, or lint the chat-supported Git edition history of managed files
+- required: false
+- help: "maintain file edition/chat history through Git, Chatlas, and the Skillware service"
+- activates: `references/edition-history-developer.md`
+- requires exactly one selection mode: `--target` or `--random`
+- examples: --edition-history --target src/example.py, --edition-history --random
+
+### Skill.Arg::Edition.History.Target
+- flag: --target
+- active only with: --edition-history
+- value: one configured eligible file; repeatable for an explicit batch
+- required: false
+- mutually exclusive with: --random
+- help: "maintain edition history for an explicit configured file"
+
+### Skill.Arg::Edition.History.Random
+- flag: --random
+- active only with: --edition-history
+- value: none
+- required: false
+- mutually exclusive with: --target
+- help: "select one configured file, preferring missing then incomplete history"
 
 ### Skill.Arg::Check
 - read-only POI report over a skill's managed surfaces, with per-kind prescriptions
@@ -59,7 +83,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 | When the caller wants an existing hand-owned skill brought under Skillware management | `references/adopt.md` |
 | When the caller wants surfaces produced or refreshed from src, or asks about the lock or the build's mechanics | `references/build.md` |
 | When the caller wants drift inspected — what changed, what each POI kind means, what response each demands (re-derive vs bless); read-only | `references/check.md` |
-| When the caller wants to recover, record, inspect, or lint the chat sessions associated with a managed file's Git editions | `references/edition-history-developer.md` |
+| When `--edition-history` is supplied, or the caller wants to recover, record, amend, inspect, or lint the chat sessions associated with a managed file's Git editions | `references/edition-history-developer.md` |
 | When the caller needs the canonical index concepts behind all of this | `agentos-pkg/design/107-design.md` (the `Agentos.Skillware` namespace) |
 
 ## Boundary
@@ -83,6 +107,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - when working on or inside any `.skw/` build surface
 - when authoring, building, checking, or adopting Skillware-managed skills
+- when maintaining or auditing a managed file's edition/chat history
 - when a `check` POI needs interpreting or acting on
 - when discussing or modifying the Skillware system design itself
 

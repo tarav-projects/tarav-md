@@ -21,8 +21,9 @@ This module is a `Workflow.Neutral.Module`: it does not run a workflow — its r
 - The declared `User.Command` transitions make the existing approval and landing gates explicit.
 - `User.Command::Approve` (`::approve`, `::approved`) accepts the resolved draft exactly as shown, including its landing target, and records it as approved but unlanded.
 - `User.Command::Land` (`::land`, `::write`) executes the `Landing Procedure` only for resolved approved material; it never supplies missing approval.
+- `User.Command::LandAllApproved` (`::land-all-approved`) executes the `Landing Procedure` for the complete approved, unlanded cluster of one foreground index workflow; it takes no target argument and never supplies missing approval.
 - `--write` invokes this skill module from a skill call. `::write` is a trigger inside an already-running workflow; the sigil keeps the two surfaces distinct.
-- When a command target is not unique, ask for the target and do nothing. When approved wording or destination changes, invalidate that approval and require `User.Command::Approve` again.
+- When a command target is not unique, ask for the target and do nothing. When `::land-all-approved` has no unique foreground workflow, ask for the workflow and do nothing. When approved wording or destination changes, invalidate that approval and require `User.Command::Approve` again.
 
 ## Structure
 

@@ -147,6 +147,14 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 - resolution: Contextual
 - examples: `::land`, `::write all approved blocks`
 
+### User.Command::LandAllApproved
+- write the complete approved, unlanded cluster held by one foreground index workflow
+- triggers: `::land-all-approved`
+- available: when the foreground index workflow holds one or more approved, unlanded targets
+- args: none
+- action: land every approved, unlanded target in that foreground workflow; never approve material implicitly
+- resolution: fail closed unless exactly one foreground index workflow supplies the approved cluster
+
 ## Boundary
 
 - this skill is the canonical public entry surface for working with the Agentos Index system
@@ -200,9 +208,9 @@ An agent operating the index should:
 - treat the prompt as a focus argument and compare the current visible discussion against the index whenever there is discussion state to ground
 - make a `Capture.Offer` when work surfaces new aligned content: propose the exact typed line(s) at the moment, with destination options (index main, appendix, agendix, decline) — never self-write
 - use `--capture` when the user wants the chat's content worked into the index — approval in chat and landing on a surface are distinct acts
-- resolve `::approve` / `::approved` to `User.Command::Approve` and `::land` / `::write` to `User.Command::Land`; `--write` remains a skill argument while `::write` is an in-workflow transition
+- resolve `::approve` / `::approved` to `User.Command::Approve`, `::land` / `::write` to targeted `User.Command::Land`, and `::land-all-approved` to zero-argument `User.Command::LandAllApproved`; `--write` remains a skill argument while `::write` is an in-workflow transition
 - during interactive capture, add approved drafts to the approved cluster and continue reviewing the roadmap; do not make immediate landing the default next move
-- keep command targets foregrounded and fail closed when more than one draft or approved set could receive the command
+- keep command targets foregrounded; targeted commands fail closed on ambiguous targets, and `::land-all-approved` fails closed unless one foreground index workflow owns the cluster
 - use file mutation only when the user has approved an index edit
 - run a linter check after applying an approved index or appendix edit
 

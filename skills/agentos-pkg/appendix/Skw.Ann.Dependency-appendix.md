@@ -14,3 +14,13 @@ Derivation mechanics and address depth, absorbed from the retired `Derivation.Ru
 - targets are addressed by `Skw.Address.Schema` names — `Dotted.Name`s for blocks, `Locator.Name`s for files, regions, and spans, `Anchory.Anchor`s for chat moments ^c20260712-10u
 - v1 recipe realization: declarations were `[!skw]` recipe callouts inline in `.skw.md` src, declaration and current solution side by side; the toolchain materializes `copy` and `derived` — `pointer` remains routed prose, not yet toolchain-checked ^c20260710-2u
 - [RJ] `Import.Manifest` — a separate flat artifact per consuming module — was superseded before implementation: declarations live inline; `lock.json` is the machine record ^c20260709-13u ^c20260710-2u
+
+****
+
+## Skw.Ann.Dependency/Context.Assembly.Coverage
+
+- [DF] an assembly-covered source is a dependency target included within a `Context.Assembly.Module` context boundary ^c20260725-33u
+- [DC] every dependency role using an assembly-covered source requires a companion `--dev-from` edge to each covering assembly ^c20260725-33u
+- [PR] a missing companion edge raises `context-assembly-bypass` because the builder may lack the shared subject context; the direct dependency remains valid ^c20260725-33u
+- [RJ] coverage is not ownership or import mediation and does not restrict direct dependency, copy, derivation, or citation ^c20260725-33u
+- [CT] `--dev-from` governs development context and does not force the assembly into the running agent’s workflow context ^c20260725-33u

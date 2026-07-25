@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "74d310d869283fe0390f8d6fa3c61c50b8e7ef3a813beae7b879dda0a588c7be",
+      "output_sha256": "38a952a0ba65b01ba7c4fa2a5dba37feab70cd3e32120089828d0e6a2d5b7a44",
       "recipes": [
         {
           "heading": "What Skillware Is",
@@ -78,7 +78,7 @@
       ]
     },
     "references/edition-history-developer.md": {
-      "output_sha256": "27b6f6fd3d907a16b73fcdedab76cc1a4de8817f3bc7c5c86bc32dd7ba4134ce",
+      "output_sha256": "8e0fef244cec80c2bfe44b46bf3761e2416b78eb5da3bbd04e7a0738d042b769",
       "recipes": []
     },
     "references/lang.md": {
