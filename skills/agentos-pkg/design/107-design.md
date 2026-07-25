@@ -281,6 +281,17 @@
 
 ****
 
+## POI.Catalog
+
+- [DF] a `POI.Catalog` is a federated `Skw.Kernel.Index` application that registers package-owned `POI.Class` blocks for machine discovery ^c20260725-13u
+- [DC] each catalog uses a dedicated `poi` chapter for the classes owned by its `Index.Depot` ^c20260725-13u
+- [CT] each entry routes a stable class identity to its owning `Skill.Package` and class block ^c20260725-13u
+- [CT] common POI machinery resolves class identities across all engaged catalogs, independently of which subsystem emitted the instance ^c20260725-13u
+- [CT] a class identity must resolve uniquely; missing or duplicate registrations are reported without hiding the original instance ^c20260725-13u
+- [RJ] a catalog registers classes, not instances, and routes documentation rather than duplicating it ^c20260725-13u
+
+****
+
 ## Chat.POI.Linter
 
 - [DF] a `Chat.POI.Linter` is a `POI.Linter` that consumes a full `Chatlas.Session.Model` as its `Floor.Model` ^c20260724-14u
