@@ -778,6 +778,23 @@
 
 ****
 
+## Edition.Approval.Token
+
+- [DF] `Edition.Approval.Token` is the mechanism that evidences `Verbatim.User.Gated`: the agent proposes an index edition as verbatim lines plus a copy-pasteable token, and the user approves by echoing that token on a user turn ^c20260726-1u
+- [DC] the proposed lines appear verbatim in an assistant turn — that explicitness is the contract; the token binds them, it does not carry them ^c20260726-1u
+- [DC] the token is an opaque nonce: its identity, not its content, does the linking work ^c20260726-1u
+- [RJ] the token is not a content hash — deriving it from the edition burdens the producer for no gain, since integrity comes from locate-then-compare, not from the token itself ^c20260726-1u
+- [DC] the approving user turn is the review turn entering the line's `Chat.Support.Set`, so the token is how `Reviewed.Content` is evidenced rather than merely asserted ^c20260726-1u
+- [DC] the token lives in the line's `Anchor.Metadata` — the external `Anchory` dossier realization of the audit trail (`Index.Line`), recoverable from the landed line alone ^c20260726-1u
+- [DC] it binds three turns: a proposal turn holding the verbatim line, the approval turn echoing the token, and the file line whose anchor carries the token; resolving that anchor reaches all three ^c20260726-1u
+- [DC] the check is flexible over the conversation: the landed line must appear verbatim in some assistant turn that carries the token and precedes the approval turn — any such turn, not one canonical turn, so discussing or re-showing across turns never breaks the audit ^c20260726-1u
+- [CT] verbatim here excludes the trailing anchor — the proposal shows a placeholder, the landed line carries the minted anchor, and only the content between is compared ^c20260726-1u
+- [DC] the agent mints a fresh token when the edition's wording changes and reuses it while the wording holds, so every turn bearing a token carries the same edition — the discipline that keeps the flexible check unambiguous without encoding content in the token ^c20260726-1u
+- [DC] the token rides `User.Command::Approve` as its Explicit arg: `::approve <token>` is the canonical form, making one user turn both the workflow transition and the review evidence, with the agent pre-filling the token under the resolved copy-pasteable rendering ^c20260726-1u
+- [DC] the token is optional and its presence is the upgrade — a bare `::approve` (contextual foreground target) stays edit-event approval (`Edition.Trigger.User.Gated`), while `::approve <token>` binds the reviewed wording and yields `Reviewed.Content` ^c20260726-1u
+
+****
+
 ## Touched.Support.Network
 
 - [DF] `Touched.Support.Network` is the network relating anchored statements across all touched surfaces to their chat evidence — edges of the form `Support.Set` ↔ `Anchor.Metadata` ↔ `Anchored.Line` ^c20260716-21u ^c20260716-23u

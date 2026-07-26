@@ -471,6 +471,7 @@
 - [CT] `Contextual` arguments may resolve from the conversation or foreground workflow only when unambiguous ^c20260725-1u
 - [CT] `Defaulted` arguments use their declared value when absent ^c20260725-1u
 - [CT] an unresolved required argument prevents execution and causes the agent to ask for it ^c20260725-1u
+- [DC] an Explicit `User.Command.Arg` may carry an `Edition.Approval.Token` — echoing the command is then at once the workflow transition and the `Verbatim.User.Gated` review evidence for the edition it approves ^c20260726-2u
 
 ****
 
