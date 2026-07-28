@@ -15,18 +15,20 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
    - filter with verbatim user turns from your own context — the more distinctive the phrasing, the better: `agentos chatlas query --user-contains "<exact snippet>" --field identity_hash`
    - repeat with more snippets until exactly one candidate remains: that is you (the conversation is a fingerprint; chatlas has indexed it)
    - shortcuts: a native session id already in hand → `agentos chatlas query --session-id <native-id> --field identity_hash --update`; a past session → normal `query` filters
-2. **Locate the evidence events.** The agent chooses semantic support; Chatlas formalizes that choice against the authoritative event tape:
-   - use `agentos chatlas events query --identity-hash <hash> --pattern-json '<Event.Pattern JSON>' --backend auto` to locate exact, adjacent, or distinctive turns and return authoritative event coordinates
+2. **Locate the evidence turns.** The agent chooses semantic support; Chatlas formalizes that choice against the authoritative event tape:
+   - use `agentos chatlas events query --identity-hash <hash> --pattern-json '<Event.Pattern JSON>' --backend auto` to locate exact, adjacent, or distinctive turns
+   - read `turn_id` off each returned event — that is the registration key. The pattern language and its `event_ids` projection still address *events*; a member addresses the `Normal.Turn` the matched event belongs to
    - for a proposal followed by token approval, query a two-step `next_turn` pattern with an assistant `text_contains` token predicate and a user `text_exact` approval predicate; select `latest` or require cardinality `one` when that matches the situation
-   - assistant events may aid retrieval and may be referenced by approval cargo, but only selected user turns become `Chat.Support.Set` members
+   - assistant events may aid retrieval and their turns may be referenced by approval cargo, but only selected user turns become `Chat.Support.Set` members
    - reload enough normal-model context to judge the result; a derived query backend discovers candidates but never establishes support
-3. **Register the anchor.** Register exact user event members — never timestamps:
-   - plain support: `agentos chatlas anchory register --member <identity-hash>:<user-event-id> --hint "<one sentence: what this support set means>"`
-   - tokenized approval: `agentos chatlas anchory register --member <identity-hash>:<approval-event-id> --hint "<one sentence>" --member-types '{"<identity-hash>:<approval-event-id>":{"tokenized.approval.turn":{"token":"<token>","verbatim_turn":"<identity-hash>:<proposal-event-id>","approval_turn":"<identity-hash>:<approval-event-id>"}}}'`
+3. **Register the anchor.** Register exact user turn members — never timestamps, never tape ordinals:
+   - plain support: `agentos chatlas anchory register --member <identity-hash>:<user-turn-id> --hint "<one sentence: what this support set means>"`
+   - tokenized approval: `agentos chatlas anchory register --member <identity-hash>:<approval-turn-id> --hint "<one sentence>" --member-types '{"<identity-hash>:<approval-turn-id>":{"tokenized.approval.turn":{"token":"<token>","verbatim_turn":"<identity-hash>:<proposal-turn-id>","approval_turn":"<identity-hash>:<approval-turn-id>"}}}'`
+   - a proposal and the approval that answers it often share one turn, since the assistant reply belongs to the user turn that prompted it; identical `verbatim_turn` and `approval_turn` refs are legitimate
    - semantic approval is representable with `semantic.approval.turn` cargo containing `verbatim_turn` and `approval_turn`, but `agentos-index` workflows require tokenized approval
    - chatlas validates member coordinates, preserves member order, derives the `chatlas` namespace and user tag, registers through anchory, and returns the composed anchor (`c<YYYYMMDD>-<N>u`)
    - the raw plumbing remains available: `agentos anchory register --depot <chatlas-root>/anchory --namespace chatlas --alloc-prefix <YYYYMMDD> [--tag u|a] --record-json '…'`
-4. **Verify.** Resolve the record and neighborhood after registration. Confirm every member is the intended user event and typed cargo references the intended proposal and approval events; for later re-checks, `agentos chatlas views inline --anchor <anchor> [--radius N] --filter turns` returns the neighborhood.
+4. **Verify.** Resolve the record and neighborhood after registration with `agentos chatlas anchory resolve <anchor> [--radius N]`. Confirm every member is the intended user turn and typed cargo references the intended proposal and approval turns.
 5. **Return the anchor** to the caller, which tags its line: trailing position, `… ^c20260707-0u`.
 
 ## Code-Side Evidence
@@ -36,8 +38,8 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
 ## Anchor Discipline
 
 - an anchor for index grounding targets a USER turn — touch is the landing point, assistant context is recovered by neighborhood reading; when the wording originated agent-side, anchor the approval turn
-- event identity is `<session-identity>:<event-id>`; timestamps are readability metadata and never the registration key
-- a tokenized approval anchor has one user support member whose `tokenized.approval.turn` cargo points to the assistant proposal and user approval events
+- member identity is `<session-identity>:<turn-id>` — the `Normal.Turn` identity, stable across re-materialization of an open session; timestamps are readability metadata and `event_id` is a tape ordinal, neither of which may be a registration key
+- a tokenized approval anchor has one user support member whose `tokenized.approval.turn` cargo points to the proposal and approval turns
 - an anchor's meaning is immutable: no reuse; a wrong hint or wrong date means minting a new anchor, never repurposing
 - `agentos anchory amend` exists only to correct an error or improve resolution of the same context
 - the hint is the desync tripwire: write it so a reader can tell whether the resolved neighborhood matches
@@ -46,6 +48,6 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
 
 ## Resolution (reading an anchor)
 
-- `agentos chatlas views inline --anchor <anchor> [--radius N] --filter turns` — resolves through the chatlas anchory depot and returns the landing-turn neighborhood as a clean model fragment; read the landing turn and around it
-- `Chatlas.Filter` presets tune the noise: `turns` (message turns, plumbing stripped) is the grounding reader's default; drop the flag when you need full envelopes (`source_refs`, event ids)
-- `agentos anchory resolve --depot … --anchor <anchor>` remains the record-level (plumbing) view
+- `agentos chatlas anchory resolve <anchor> [--radius N]` — resolves through the chatlas anchory depot and returns each member's landing turn with its neighborhood, already reduced to message turns; `--radius` counts visible turns either side (default 4)
+- the landing turn is the member turn's own user message; assistant context is recovered by reading the neighborhood around it
+- `agentos anchory resolve --anchor <anchor> [--depot …]` remains the record-level (plumbing) view
