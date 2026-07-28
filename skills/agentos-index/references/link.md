@@ -38,13 +38,23 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
 ## Anchor Discipline
 
 - an anchor for index grounding targets a USER turn — touch is the landing point, assistant context is recovered by neighborhood reading; when the wording originated agent-side, anchor the approval turn
-- member identity is `<session-identity>:<turn-id>` — the `Normal.Turn` identity, stable across re-materialization of an open session; timestamps are readability metadata and `event_id` is a tape ordinal, neither of which may be a registration key
+- member identity is `<session-identity>:<turn-id>` — the `Normal.Turn` identity, stable across re-materialization of an open session; timestamps are readability metadata and `event_id` is a tape-local join key, neither of which may be a registration key
+- the model separates two kinds of address, and storing the wrong one is how anchors silently rot: `event_id`, `message_id`, `model_run_id` and their siblings are **section-local join keys**, valid only inside one materialization; `turn_id` and `Event.Ref` are **durable**, and only those may be written down
 - a tokenized approval anchor has one user support member whose `tokenized.approval.turn` cargo points to the proposal and approval turns
 - an anchor's meaning is immutable: no reuse; a wrong hint or wrong date means minting a new anchor, never repurposing
 - `agentos anchory amend` exists only to correct an error or improve resolution of the same context
 - the hint is the desync tripwire: write it so a reader can tell whether the resolved neighborhood matches
 - the register is plumbing, not truth — the information lives on the surfaces; agents detect desync by reading them
 - one anchor per claim: if two lines ground on the same neighborhood, they may share the anchor
+
+## Addressing One Event
+
+Anchors ground on turns, but some evidence is finer than a turn — a specific tool call, one event a pattern matched. That address is an `Event.Ref`, not an `event_id`.
+
+- an `Event.Ref` is `<event_hash>:<index>` (schema `chatlas.event-ref.v1`): a minimal assertion that the event with this content hash sat at this tape index
+- neither half stands alone — the index moves when the tape re-segments ahead of it, and event content genuinely repeats — so the index disambiguates the hash and the hash validates the index
+- resolving one reports what it found: the assertion holds; the event drifted to a new index (repairable, and a repair is offered); the content is gone entirely (desync, never auto-repaired); or the hash occurs several times and the index decided
+- a failed assertion is a POI to research, never an error to swallow and never an automatic rewrite — repair is an explicit act, like `agentos anchory amend`
 
 ## Resolution (reading an anchor)
 
