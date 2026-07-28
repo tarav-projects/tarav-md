@@ -2,11 +2,11 @@
 
 ## Impl.Abstract
 
-**Scope.** Give `Chatlas.Session.Model` a canonical `event_hash`, define the `<hash>:<idx>` reference form consumers store to address one event, move `Delta.Normalization` bookkeeping into a declared `extras` namespace, and retire `event_id`.
+**Scope.** Give `Chatlas.Session.Model` a canonical `event_hash`, define the `Event.Ref` object consumers store to address one event, move `Delta.Normalization` bookkeeping into a declared `extras` namespace, and replace `event_id` with `Event.Ref` at every reference site before retiring it.
 
 **Why.** Impl.Req 513 gave *turns* a stable identity and re-keyed every durable reference onto it. Sub-turn addressing was left unsolved: `event_id` is still `"event-" + sequence`, and `Event.Pattern`, `inline`, and `file_edition_pois` genuinely need to address one event, not a whole turn. 513's Slice 5 attempted a straight retirement and was blocked — removing the field breaks an agent-facing DSL with nothing to replace it. This artifact supplies the replacement first.
 
-**Status.** Designed, not started. Supersedes 513's blocked Slice 5.
+**Status.** Partially executed. Slices 1–3 done (Slice 3 reshaped after review: `Event.Ref` is an object, the string is sugar). Slice 4 landed its documentation half; its retirement half was first abandoned, then on review **deferred rather than abandoned** — an `Event.Ref` is an `event_id` plus a change-check, so consumers can take the upgrade. The replacement is planned as Slices 5–7 and not started. Suites green: `agentos-chatlas-py` 237, `agentos-py` 551, `agentos-cli` 62. Corpus GREEN. Index linter byte-clean on both depots.
 
 **Source context.** Design discussion anchored at `^c20260728-4u`. Concepts landed in 513: `Event.Grouping`, `Normal.Turn`, the `Session.Event.Tape` amendments, and the `Chatlas.Session.Model` boundary line.
 
@@ -37,8 +37,11 @@
 
 ### Design.Decisions
 
-- A reference is a **minimal assertion**, not an identity: `<hash>:<idx>` claims "the event with this hash was at this index". Neither half is stable alone; together they are self-verifying. The index disambiguates what the hash cannot, and the hash validates what the index cannot.
-- **The event carries the hash; nothing carries the index.** `event_hash` is a canonical field so consumers never recompute semantics — only chatlas does, which keeps the derivation pinned in one place. The index is computable from the tape and is never stored on an event.
+- A reference is a **minimal assertion**, not an identity: an `Event.Ref` claims "the event with this digest was at this sequence". Neither half is stable alone; together they are self-verifying. The sequence disambiguates what the digest cannot, and the digest validates what the sequence cannot.
+- **An `Event.Ref` is an `event_id` plus a change-check** — the same positional address, plus the ability to notice the answer moved. It is therefore an upgrade wherever a reference is stored, not an alternative addressing scheme competing with the local id.
+- **The reference is an object; the string is sugar.** A composite packed into `"<hash>:<sequence>"` is a raw-ish encoding posing as canonical, and the model already carries composite references structurally (`source_refs`). The object is also field-additive, which is what a schema marker would otherwise buy.
+- **The event carries the digest; the reference carries the position.** `event_hash` is a canonical field so consumers never recompute semantics — only chatlas does, which keeps the derivation pinned in one place.
+- **Verification strength is the storer's choice, with a floor.** The stored digest is a prefix, so short and full are one dial rather than two hashes; 8 bytes is the minimum, because below it the check still reads as safety while providing almost none.
 - `event_hash` is **core model semantics, not `extras`** — it is a property of the chat event, in the same category as `turn_id`. Keeping it canonical is what stops `extras` absorbing identity on its first use.
 - The digest covers `kind + producer + payload + timestamp`, excluding `sequence`/`event_id` (positional — including them recreates the original defect), `source_refs` (raw indices shift), the provenance fields (segmentation-sensitive and claude-only), `turn_id` (would couple event identity to turn grouping, so a purity change would move hashes), and `native` (measured worthless).
 - **Where it is computed is free today**, and the plan does not mandate a placement. Every post-append mutation writes `tool_invocation_ref`, `model_run_ref`, `lineage`, `native`, or the provenance keys — none of which the digest covers — so the mutated set and the hashed set are disjoint. Compute at append or in a later pass; a mutated event simply recomputes if the sets ever meet. What the plan does mandate is the **detection**: the covered and mutated sets could intersect later (someone adds `outcome` to the digest, or a post-pass starts touching `payload`), and a missed recompute then goes stale silently. The invariant is enforced by test, not by placement.
@@ -60,7 +63,11 @@
 
 ## Execution.Plan
 
-### Slice 1 — `extras` region, and close the envelope
+### Slice 1 — `extras` region, and close the envelope — **DONE**
+
+**Result.** `extras` added to `SEMANTIC_EVENT_ENVELOPE_KEYS` with `event_extras`/`set_event_extra` accessors mirroring the existing `native` pair; `source_hash`, `chain_hash`, `final` moved under it, with `event_is_final`/`event_chain_hash`/`event_stored_source_hash` readers so consumers never reach into the dict. `chain_event_hash` and `strip_tape_provenance` handle the nesting. Contract declares the `extras` region (`$..extras..*`, outside projection semantics) plus the three paths with their null policy. Slim filter drops `extras` wholesale. Tests: `tests/test_event_envelope_closure.py` (2, RED→GREEN); suite 218 green. Corpus: zero undeclared top-level keys on claude and codex; claude 89/89 carry `extras`, codex 0/101 — the null policy holding exactly as declared.
+
+**The corpus harness is GREEN again — 19/19 sessions across all three scripts.** It had been RED throughout Impl.Req 513.
 
 - add `extras` to `SEMANTIC_EVENT_ENVELOPE_KEYS`; move `source_hash`, `chain_hash`, `final` under it.
 - declare the region in `Chatlas.Session.Model.Contract` by full path, with a null policy ("present where `Delta.Normalization` applies") and an explicit exclusion from projection semantics.
@@ -68,7 +75,11 @@
 - **Check (corpus)**: `Path.Source.Split.Test` no longer queues the provenance paths as source-split candidates; `Normalization.Coverage` does not count them as chat expressiveness.
 - **Observable**: `agentos chatlas update --trust rebuild` produces tapes whose provenance rides under `extras`.
 
-### Slice 2 — `event_hash`
+### Slice 2 — `event_hash` — **DONE**
+
+**Result.** `compute_event_hash` and `EVENT_HASH_FIELDS = (kind, producer, payload, timestamp)` live in `events.py` beside the builder, so all three providers inherit it; `SemanticEventBuilder.append` stamps it. Contract entry states the covered set explicitly and records that the digest is deliberately *not* unique. Tests: `tests/test_event_hash.py` (6, RED→GREEN) — coverage, the standing recompute invariant, stability across re-derivation, stability across tail growth, position-independence under an inserted earlier turn, and sensitivity to changed content. Suite 224 green.
+
+**Corpus:** coverage 89/89 claude, 101/101 codex, 5955/5955 live; recompute reproduces every stored value on all three; ambiguity 13.5% / 0.0% / 12.4% — the recorded baseline, so the covered set means what it meant when it was measured.
 
 - add the canonical field, populated by all three normalizers, reusing `_canonical_json`.
 - contract entry: meaning, `null: never`, and the covered field set stated explicitly — the set *is* the contract, since consumers depend on reproducibility.
@@ -76,20 +87,77 @@
 - **Check (corpus)**: present on 100% of events for claude *and* codex — the generality bar 513 set. `Path.Source.Split.Test` shows no source split.
 - **Check**: measured ambiguity stays near the recorded baseline (~12% live, 0% codex) — a large move means the covered set changed meaning.
 
-### Slice 3 — the reference form
+### Slice 3 — the reference form — **DONE**
+
+**Result.** `src/agentos_chatlas/event_ref.py`: `resolve_event_ref` returns an `EventRefResolution` (outcome, event, finding, repaired_ref) across four outcomes — `MATCHED`, `DRIFTED`, `MISSING`, `AMBIGUOUS`. A repair is always *offered*, never applied. Tests: `tests/test_event_ref.py` (12), including that resolution mutates neither the tape nor the reference. Suite 237 green.
+
+**Reshaped after review — the object is the model, the string is sugar.** The first cut made `"<hash>:<idx>"` primary, which is a composite packed into a delimited string: the raw-ish encoding posing as canonical that `Under.Normalization` warns about, and inconsistent with `source_refs`, which the model already carries as objects (`{line, record_index, source_ref_id}`). The reference is now:
+
+```json
+{ "event_hash": "caa55f90bec3cf7e", "sequence": 2042 }
+```
+
+- **`sequence`, not a list index** — the reference speaks the model's own coordinates, so its assertion is statable in contract terms. This also removed a real defect: the first cut addressed by 0-based Python list position while the model's positional field is 1-based.
+- **`event_hash` is a digest prefix, and its length is the storer's choice** — short is a prefix of full, so strength is one dial rather than two hashes, and a resolver compares only the characters it was given. `EVENT_HASH_MIN_CHARS = 16` (8 bytes) is the floor: below it the check still *looks* like verification while providing almost none, which is worse than no check.
+- **`schema`, `session`, `at` are optional**, added only where a reference escapes a context that already supplies them. The object is field-additive, so extension needs no marker — that is what the schema string was buying, and an object provides it structurally.
+- `format_event_ref` / `parse_event_ref` remain for CLI arguments and log lines, over the model rather than as it.
+
+**Verified against the defect that started all of this.** On the live tape, the event anchored by `c20260726-9u` sits at index 2042 having been minted at 2052. A reference asserting the old index resolves `drifted`, returns the correct event, and offers `…:2042` — where `event_id` silently returned a different turn.
 
 - define `Event.Ref` = `<event_hash>:<index>` plus a schema marker on whatever stores it, so a future revision is a migration rather than archaeology.
 - resolution returns the event plus a finding, with the four outcomes: hash matches at index (no finding); hash differs but found elsewhere (drift, repairable POI, repair proposable); hash found nowhere (real desync, never auto-repaired); hash found several times (nearest-to-index wins, still surfaced).
 - **RED→GREEN**: a test per outcome, each asserting the finding *and* the returned event.
 - **Check**: resolution never mutates a stored reference.
 
-### Slice 4 — consumers, retirement, and docs
+### Slice 4 — consumers, retirement, and docs — **DONE for docs; retirement deferred to Slices 5–7, not abandoned**
+
+**Correction after review.** This slice originally concluded that `event_id` should stay because consumers need a section-local join key. The evidence for *that* holds — `event_id` is the events member of a uniform convention, not a duplicate of `sequence`. But the conclusion drawn from it was wrong, for a reason the review made plain: **an `Event.Ref` is an `event_id` plus a way to check whether the event it names changed — an upgrade, not an alternative.** The consumers can take that upgrade.
+
+The argument used here to say otherwise was that the assertion "cannot fire inside one document, so the check is pure overhead". That is false. It cannot fire from *re-derivation*, but it fires on a **normalizer defect** — events reordered after `event_refs` were computed, a projection built against a stale event list. Slice 2 hit exactly that class when 63 `lineage.rollback` events turned out to bypass the builder. A check that is silent in the happy path and catches real defects in the unhappy one is a checksum, not overhead.
+
+What survives against migrating is therefore cost, not correctness: artifact size (addressed by the 8-byte prefix floor) and symmetry with sibling sections (`message_id`, `model_run_id`, …), which is a uniformity preference rather than a constraint. Recorded below as Slices 5–7.
+
+**The retirement's original premise was still wrong, and the slice's own deviation trigger caught it.** `event_id` is not an anomalous duplicate of `sequence` — it is the events section's member of a uniform, deliberate convention. The contract declares a section-local id for every section: `message_id` ("projection-local"), `model_run_id` ("record-local … target of model_run_ref"), `tool_invocation_id`, `usage_id`, `reasoning_id`, and `event_id` ("tape-local"). All are local string ids serving intra-document joins through one generic validator (`standard_model_record_by_id`), and `event_refs` are declared "join checked intra-document". Retiring `event_id` would leave events the only section without a local id and force `event_refs` to become either integers (breaking the uniformity the generic validator relies on) or `str(sequence)` — a rename with no gain.
+
+**Done instead — fixing the actual hazard.** The defect was never that `event_id` existed; it was that anchory bound a *durable* reference to a *local* id. `Event.Ref` now serves durable addressing, so the fix is to state the boundary rather than delete the field:
+
+- contract: `event_id`'s meaning rewritten to name it a section-local join key, valid only within one materialization, reassigned on re-segmentation, and **never to be stored in a durable reference** — with `Event.Ref` named as the durable form. Both `event_refs[*]` entries say the same.
+- `agentos-index` `link.skw.md`: a new **Addressing One Event** section documenting `Event.Ref`, its four resolution outcomes, and POI-not-error disposition; plus a discipline line drawing the general boundary — `event_id`/`message_id`/`model_run_id` are section-local and unwritable-down, `turn_id` and `Event.Ref` are durable. Rebuilt (1 built, `skw check` 0 POIs).
+
+**Verification:** `agentos-chatlas-py` 232, `agentos-py` 551, `agentos-cli` 62; corpus GREEN 0 failing; index linter 0 errors / 0 warnings on both depots.
 
 - migrate `event_query` (drop and re-derive the sqlite index — it is derived, so no upgrade path), `event_pattern` (predicate and projection move to the reference form), `inline`, `file_edition_pois`, `traceability`, `_views`.
 - stop emitting `event_id`; add it to `retired_keys`. Hard break on the DSL — patterns are composed ad hoc, there is no stored corpus.
 - **update `agentos-md/skills/agentos-index` `.skw/src` and rebuild in this slice** — not after it.
 - **Check**: no emitted event carries `event_id`; contract schema closure passes; all three suites green; default linter byte-clean on both depots.
 - **Check (corpus)**: `Normalization.Coverage` unmoved against baseline — retiring a duplicate must not drop information.
+
+### Slice 5 — stored event references become `Event.Ref`
+
+The two places the model *stores* an event reference. Both are declared `str` today (`$.chat.model_runs[*].event_refs[*]`, `$.chat.tool_invocations[*].event_refs[*]`) and hold `event_id` values.
+
+- `event_refs[*]` becomes an `Event.Ref` object; contract entries change from `str` to the object's paths, with the old entries tombstoned in `retired_keys`.
+- `_views.py` (13 refs) — `_event_ids` becomes a sequence set, `_filtered_model_runs`/`_filtered_tool_invocations` filter by `sequence`, message projection emits refs.
+- `traceability.py` (1 ref) — `standard_model_record_by_id(events, id_key="event_id")` becomes an `Event.Ref` resolution; this is where the checksum earns its place, since a stale ref is exactly the normalizer defect it should report.
+- **RED→GREEN**: a projection whose `event_refs` point at re-ordered events resolves `DRIFTED` and is reported, where today it silently joins wrong.
+- **Check**: every stored ref in a materialized session resolves `MATCHED`; a deliberately corrupted one resolves `DRIFTED` and surfaces.
+- **Check (corpus)**: `Normalization.Coverage` unmoved; artifact size delta recorded (the reason the 8-byte floor exists).
+
+### Slice 6 — query and selection surfaces
+
+- `event_query.py` (13 refs) — sqlite PK `(session_identity, event_id)` → `(session_identity, sequence)`; the index is derived, so drop and re-derive rather than migrate. Results carry refs.
+- `event_pattern.py` (7 refs) — the `event_id` predicate and `event_ids` projection become `event_ref`; **hard break on the DSL**, since patterns are composed ad hoc and there is no stored corpus.
+- `inline.py` (4 refs), `file_edition_pois.py` (5 refs) — selection and POI evidence move to refs; `file_edition_pois` is the first real consumer of a *durable* `Event.Ref`, since a POI outlives the derivation that produced it.
+- **Check**: `agentos chatlas events query` returns refs that resolve against a freshly re-derived tape.
+- **Update `agentos-md/skills/agentos-index` `.skw/src` and rebuild in this slice**, not after it.
+
+### Slice 7 — retire `event_id`
+
+Only once nothing references it.
+
+- stop emitting `event_id`; add it to `retired_keys` beside `message_id`/`request_id`.
+- `sequence` remains the single positional field; the events section's local id is gone, and the asymmetry with `message_id`/`model_run_id`/`usage_id` is accepted deliberately — events are the only section whose references escape the document.
+- **Check**: no emitted event carries `event_id`; contract schema closure passes; all three suites green; corpus GREEN; linter byte-clean on both depots.
 
 ### Risks and deviation triggers
 
@@ -103,9 +171,27 @@
 - `event_hash` present on every event for claude and codex, stable across re-derivation and across tail growth.
 - provenance keys ride under `extras`, declared, and the envelope closure test passes.
 - the four resolution outcomes each produce their finding, and no read path mutates a reference.
-- `event_id` gone from the model and tombstoned; suites green; linter byte-clean.
+- `event_id` gone from the model and tombstoned — deferred to Slice 7, once Slices 5–6 leave nothing referencing it. Until then the contract states its boundary (section-local, never durable) and `Event.Ref` carries durable addressing.
+- every stored event reference is an `Event.Ref` object resolving `MATCHED` against its own tape, and a corrupted one resolves `DRIFTED` rather than joining silently.
 - the `agentos-index` skill docs describe the reference form that actually exists, verified by running the documented commands.
 
 ## Impl.Log
 
-- (empty — not yet executed)
+### Slice 4
+
+- **Deviation, and the plan caught itself.** The risk section said: *"if a consumer needs semantics beyond 'address one event', stop and record — that consumer wants a different concept, not a renamed field."* That is exactly what happened. Migrating `_views`, `traceability`, and the `event_refs` projections revealed that consumers need a **section-local join key uniform with `message_id`/`model_run_id`/`tool_invocation_id`**, which is a different concept from a durable address. `event_id` already serves it correctly. The retirement was abandoned rather than forced.
+- **The premise had been wrong since Impl.Req 513.** "A stringified duplicate of `sequence`" is true of the value and false of the role. 513's Slice 5 stalled on the same field for a different stated reason (the `Event.Pattern` DSL); the deeper reason was always that the field is load-bearing. Recording it here so a third attempt does not start from the same premise.
+- **What the two artifacts actually bought:** 513 moved durable *turn* references off an ordinal; 514 gave durable *event* references a self-verifying form and drew the boundary in the contract. That much stands. What this slice got wrong was concluding the split was therefore *right* rather than merely *sufficient* — `Event.Ref` dominates `event_id` wherever a reference is stored, and Slices 5–7 act on that.
+- **Twice now the same shape of error:** treating a cost trade-off as a correctness constraint, and stating it with more confidence than the evidence carried. First in 513 ("stringified duplicate"), then here ("consumers need a local id, so the split is correct"). The field was never the problem; what a reference *asserts* was.
+
+### Slice 1
+
+- **Root cause of the "stale corpus harness" found and fixed.** Across Impl.Req 513 I twice dismissed `validate.py`'s `envelope leakage` failures as harness staleness. They were real, and the harness was right both times: `SEMANTIC_EVENT_ENVELOPE_KEYS` genuinely omitted the three provenance keys. But the harness also kept its **own copy** of the envelope key set, so it additionally reported `turn_id` (a legitimate 513 addition) and then `extras` as leakage. Fixed at the source: `validate.py` now imports `SEMANTIC_EVENT_ENVELOPE_KEYS` instead of duplicating it, so a legitimate envelope change can never again present as corpus failure. Result: **GREEN — 0 failing, 19 sessions**, first time green in this work.
+### Slice 2
+
+- **The corpus caught an event-construction path the plan had not accounted for.** Coverage came back 5837/5900 on the live session: 63 `lineage.rollback` events are built as inline dicts and `events.insert`-ed by `_claude_mark_fork_lineage`, bypassing `SemanticEventBuilder.append` entirely. Fixed by stamping the digest at that construction site. The unit tests could not have found this — no fixture forks — which is the argument for the corpus being a first-class instrument rather than a convenience.
+- **Note for Slice 4:** that same bypass is why an envelope field cannot be assumed present just because the builder sets it. Any future required field needs the same audit.
+
+### Slice 1 (continued)
+
+- **Out-of-plan edit, deliberate.** Touching `dev/user-script-invariant-test/validate.py` was not in the slice. It was the difference between having and not having the corpus instrument the plan depends on for every remaining slice, and the change removes duplicated knowledge rather than adding behaviour.
