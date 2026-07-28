@@ -25,9 +25,10 @@ This module is `Workflow.Neutral` in the same sense as `--link`: it produces ver
    - recall: `agentos chatlas query --tool-contains "<chapter-file basename>" [--tool-name Bash]` — total coverage, no verb claim
    - content: `agentos chatlas query --message-contains "Concept.X"` — sessions that discussed the concept by name
 3. **Session → turn.** Search the tape with the block's own vocabulary, biased toward the write moment:
-   - `agentos chatlas views inline --identity-hash <H> --contains "<distinctive block wording>" --role user --around "<commit time>" --radius 6 --filter turns`
+   - use `agentos chatlas events query --identity-hash <H> --pattern-json '<Event.Pattern JSON>' --backend auto` to retrieve authoritative event IDs for distinctive user wording or an assistant-proposal/user-approval pair
+   - use the commit time only to choose among candidate neighborhoods; tape sequence and `event_id`, not timestamps, establish event identity and order
    - the user turn that proposed, corrected, or accepted the block's content is the landing point; `Grounding.Hugentic.Authority` applies — user turns primarily
-4. **Turn → anchor.** Mint through the linking primitive (`references/link.md` step 3): `agentos chatlas anchory register --identity-hash <H> --at "<turn time>" --hint "…"` — read the echo, confirm the neighborhood.
+4. **Turn → anchor.** Mint through the linking primitive (`references/link.md` step 3): `agentos chatlas anchory register --member <H>:<user-event-id> --hint "…"`; when the recovered evidence is an approval pair, add the appropriate `--member-types` cargo. Read the echo and confirm the neighborhood.
 5. **Anchor → index.** USER-GATED: show the proposed `[GR]` line verbatim in chat and write only on explicit user approval (`Edition.Trigger.User.Gated`, `Verbatim.User.Gated`, via `--edit`). The landing is an inline trailing anchor on the line(s) the turn supports. Steps 1–4 are free; step 5 never is.
 
 > $kw. end

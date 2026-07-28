@@ -40,7 +40,9 @@ The roadmap is not approval-ready material. Do not expose `::approve` merely bec
 ## User.Command Checkpoints
 
 - These checkpoints apply the skill's declared `User.Command` transitions and resolve each required `User.Command.Arg` against the foreground capture state.
-- When an approval-ready draft becomes foreground, pause with `::approve [target]` (`::approved` equivalent). The command accepts that exact draft and never writes it.
+- When an approval-ready draft becomes foreground, mint a fresh opaque `Edition.Approval.Token`, show it in the same assistant turn as the exact draft, and pause with the resolved `::approve <token>` command (`::approved` equivalent). The command accepts that exact draft and never writes it.
+- The token identifies one exact proposal and may cover several verbatim lines. Reuse it while the wording and landing target hold; if either changes, invalidate it, mint a fresh token, and show the complete revised proposal again.
+- Do not offer or use bare `::approve` in this workflow. If the user gives it anyway, explain that it records at most semantic edit-event approval, leave the draft approval-ready, and reprint the exact `::approve <token>` command required to satisfy `Line.Verbatim.Gate`.
 - Approval adds the resolved draft to the approved, unlanded cluster and returns the loop to **Focus**. When roadmap candidates remain, the default next move is to codesign and present the next approval-ready draft, not to pause for landing.
 - An explicit `::land [target]` (`::write` equivalent) remains valid whenever its approved target resolves clearly, including before the workflow suggests it.
 - `::land-all-approved` takes no target argument and lands the complete approved, unlanded cluster of the single foreground index workflow.
@@ -50,23 +52,23 @@ The roadmap is not approval-ready material. Do not expose `::approve` merely bec
 - `::land-all-approved` removes target ambiguity, not workflow ambiguity: if several workflows could supply the approved cluster, ask which workflow is foreground and leave every transition unresolved.
 - Free-form replies continue the discussion without crossing either gate. If discussion changes an approved draft's wording or landing target, return that draft to approval-ready state.
 - Print the available command line only at a real pause or on a status request. Do not append it to ordinary conversational turns.
-- Render each command in resolved, copy-pasteable form: pre-fill the target from the foreground draft and the approved set so the user can copy the line verbatim. Use the `::<command> [target]` template form only when nothing resolves yet.
-- When several targets could receive a command, print each resolved invocation as its own line (`::approve X`, `::approve Y`) — the user disambiguates by selecting a line, which preserves both the copy-paste property and the ambiguity rule.
+- Render each command in resolved, copy-pasteable form: pre-fill the token or target from foreground state. Use template placeholders only when nothing resolves yet.
+- When several drafts are approval-ready, print each proposal's distinct token command on its own line. The user disambiguates by echoing one token.
 
-Example review pause footer (targets resolved from foreground state):
+Example review pause footer:
 
 ```text
 Available User.Commands:
-  ::approve Background.Job      accept the foreground draft (also ::approved)
-  ::approve Serialized.Lane     accept the second foreground draft
+  ::approve idx-edition:7d2f91c4  approve the exact Background.Job proposal
+  ::approve idx-edition:3a84e6d2  approve the exact Serialized.Lane proposal
 ```
 
 Example landing pause footer:
 
 ```text
 Available User.Commands:
-  ::land Agentos.Daemon         write this approved item (also ::write)
-  ::land-all-approved           write the whole approved cluster
+  ::land Agentos.Daemon  write this approved item (also ::write)
+  ::land-all-approved    write the whole approved cluster
 ```
 
 ## Mode
@@ -83,7 +85,7 @@ Landing form-fits approved material to the named surface, one rung up the `Captu
 
 - **ontology / appendix** — gated (`Edition.Trigger.User.Gated`, `Verbatim.User.Gated`): a draft that already matches the surface lands as an approved forward pass through the `references/edit.md` landing procedure; a cluster approved in chat lands under one gate
 - **agendix** — ungated, user-triggered: the routing verdict is the whole trigger; material lands in kernel form per `references/agendix.md` — lines under routed concepts, candidate blocks intact as path-children — captured but ungated, promotion-ready, reported at the end
-- the grounding anchor for a landed item targets its approval turn — where the user accepted the form; the landing trigger is execution, not evidence
+- the grounding anchor for a landed ontology or appendix item targets its tokenized approval turn and carries the proposal/approval event refs needed by `Line.Verbatim.Gate`; the landing trigger is execution, not evidence
 
 ## Behavior
 

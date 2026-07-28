@@ -127,12 +127,20 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 - triggers: `::approve`, `::approved`
 - available: when `--capture`, direct `--edit`, a `Capture.Offer`, or an `--enrich` capture offer has one or more approval-ready drafts
 - action: mark the resolved target approved and unlanded
+- policy: index workflows mint and advertise only `::approve <token>`; a bare approval is a supported semantic approval form in the general command model but does not cross this workflow's `Line.Verbatim.Gate`
+
+#### User.Command.Arg::Token
+- the fresh `Edition.Approval.Token` printed with the exact proposal
+- required: false
+- resolution: Explicit
+- examples: `::approve idx-edition:7d2f91c4`
+- when present, resolves the proposal it was minted for and upgrades its lines to CPU-checkable `Reviewed.Content`
 
 #### User.Command.Arg::Target
 - the draft, block, line, or revision to approve
 - required: true
 - resolution: Contextual
-- examples: `::approve`, `::approved the block after the correction`
+- examples: `::approve`, `::approved the block after the correction`, `::approve idx-edition:7d2f91c4`
 
 ### User.Command::Land
 - write approved, unlanded index material through its declared landing procedure
@@ -209,7 +217,7 @@ An agent operating the index should:
 - treat the prompt as a focus argument and compare the current visible discussion against the index whenever there is discussion state to ground
 - make a `Capture.Offer` when work surfaces new aligned content: propose the exact typed line(s) at the moment, with destination options (index main, appendix, agendix, decline) — never self-write
 - use `--capture` when the user wants the chat's content worked into the index — approval in chat and landing on a surface are distinct acts
-- resolve `::approve` / `::approved` to `User.Command::Approve`, `::land` / `::write` to targeted `User.Command::Land`, and `::land-all-approved` to zero-argument `User.Command::LandAllApproved`; `--write` remains a skill argument while `::write` is an in-workflow transition
+- resolve `::approve` / `::approved` to `User.Command::Approve`, but in index workflows mint, render, and require the proposal's explicit token; if the user gives a bare approval, leave the verbatim gate unresolved and reprint the exact tokenized command; resolve `::land` / `::write` to targeted `User.Command::Land`, and `::land-all-approved` to zero-argument `User.Command::LandAllApproved`; `--write` remains a skill argument while `::write` is an in-workflow transition
 - during interactive capture, add approved drafts to the approved cluster and continue reviewing the roadmap; do not make immediate landing the default next move
 - keep command targets foregrounded; targeted commands fail closed on ambiguous targets, and `::land-all-approved` fails closed unless one foreground index workflow owns the cluster
 - use file mutation only when the user has approved an index edit

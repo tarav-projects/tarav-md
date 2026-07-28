@@ -21,6 +21,8 @@ Use this module when the caller wants deterministic diagnosis, linter findings, 
 - line coverage check: add `--coverage line` to warn for unanchored chapter and appendix kernel lines; `--warn-unlinked` is a compatibility alias; agendix kernel lines are checked for anchors without this flag
 - block coverage check: add `--coverage block` to warn for chapter concept blocks with kernel lines missing trailing anchors; `--coverage all` enables both line and block meters
 - scoped reporting: add `--scope <path>` to filter findings, per-check counts, summaries, and coverage meters to a file or directory while checks still run over the full configured depot
+- approval evidence: add `--check line-approval` to require an approval-typed user member on each anchored line in scope
+- verbatim review: add `--check line-verbatim-gate` to verify `Line.Verbatim.Gate` tokenized approval cargo and exact proposed wording modulo the trailing anchor; a passing line is `Reviewed.Content`
 
 ## Built-In Grounding Checks
 
@@ -29,6 +31,7 @@ Use this module when the caller wants deterministic diagnosis, linter findings, 
 - `--coverage block` enables `Index.Linter/Block.Ungrounded`: a block is covered iff every kernel line carries a trailing anchor (empty blocks count covered)
 - a missing chatlas backend renders `Index.Linter/Grounding.Provenance` as a blocked check, never a silent skip
 - `agentos anchory scan --depot <chatlas-root>/anchory --src-file <file> --regex '\^(?P<anchor>[0-9]{8}-[0-9]+)'` remains the record-level spot check for a single file
+- `Index.Linter/Line.Approval` and `Index.Linter/Line.Verbatim.Gate` are currently opt-in because legacy lines have not completed the approval-evidence campaign; their warnings are review debt, while malformed token cargo or a mismatched proposal is an error
 
 ## Beyond The Linter
 
@@ -37,6 +40,7 @@ Use this module when the caller wants deterministic diagnosis, linter findings, 
 ## Post-Edit Check
 
 - after an approved index or appendix edit, run the linter over the edited depot or explicit edited surfaces
+- for newly approved lines, also run `--check line-approval --check line-verbatim-gate --scope <edited-path>`; new tokenized lines should add no findings even while legacy warnings remain elsewhere
 - if the edit added or touched anchors, run the anchor resolvability scan over the edited files
 - if findings existed before the edit, do not treat them as new regressions unless the edit worsened or touched them
 - if the edit creates a new error or warning, report it before considering the edit complete

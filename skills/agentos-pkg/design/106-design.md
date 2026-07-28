@@ -218,6 +218,17 @@
 
 ****
 
+## Producer.Aids.Checker
+
+- [DF] `Producer.Aids.Checker` is the principle that the capable producer bears the structuring burden so the verifier can stay simple — complexity moves to the producer, not the checker ^c20260726-5u
+- [PR] in an agent–CPU pair the `Agentic.Program` produces and shapes its output so the verifying `CPU.Program`'s job is trivial ^c20260726-5u
+- [DC] it is a division of labor, not redundancy: the producer deposits the claim and its audit path (`Accountable.Assertion`), the checker only walks that path ^c20260726-5u
+- [CT] the checker judges form and audit-path, never meaning — semantic judgment stays with the human or the producer ^c20260726-5u
+- [PR] prefer it whenever richer producer output would simplify a check: structuring is paid once by the producer, the check then runs cheaply and lowers audit cost (`Index.Line`) ^c20260726-5u
+- [EX] `Line.Verbatim.Gate` applies it: the agent emits the verbatim line plus an `Edition.Approval.Token` so the linter verifies review by a deterministic token walk, not semantic inspection ^c20260726-5u
+
+****
+
 ## Line.Type
 
 - `Line.Type` is the classification a `Kernel.Line` carries, written as a typed prefix from the `Line.Type.Vocabulary`

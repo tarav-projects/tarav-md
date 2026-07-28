@@ -16,9 +16,9 @@ Run from `agentos-pkg-testground/` in a fresh session. Give the tested agent onl
 
 Use `agentos-index` to reason about this hypothetical interactive capture state. Do not edit files.
 
-`Draft.A` is the foreground approval-ready block. `Draft.B` is the next unresolved roadmap cluster. Nothing is approved yet. The user says:
+`Draft.A` is the foreground approval-ready block with token `idx-edition:a1b2c3d4`. `Draft.B` is the next unresolved roadmap cluster. Nothing is approved yet. The user says:
 
-`::approve Draft.A`
+`::approve idx-edition:a1b2c3d4`
 
 Explain the transition and show the next user-facing capture move.
 
@@ -34,7 +34,7 @@ Explain the transition and show the next user-facing capture move.
 ### Expected Behavior
 
 - Codesigns or presents only the next small approval-ready draft for `Draft.B`.
-- Shows `::approve Draft.B` when that exact draft and landing target are ready.
+- Mints and shows a fresh `::approve <token>` command when the exact `Draft.B` wording and landing target are ready.
 - Does not show a landing-only command pause merely because `Draft.A` is approved.
 - Retains `Draft.A` as available for a later explicit or suggested landing.
 
@@ -42,6 +42,7 @@ Explain the transition and show the next user-facing capture move.
 
 - Distinguishes the approved cluster from the foreground review item.
 - Notes that an explicit, clearly targeted `::land Draft.A` would still be valid.
+- Treats the echoed token as tokenized verbatim approval rather than only semantic approval.
 
 ### Overwork
 

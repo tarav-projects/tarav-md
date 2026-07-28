@@ -16,12 +16,12 @@ Run from `agentos-pkg-testground/` in a fresh session. Give the tested agent onl
 
 Use `agentos-index` to reason about this hypothetical interactive capture state. Do not edit files.
 
-There is one foreground approval-ready block named `Draft.A`, with a concrete landing target. Nothing is approved yet.
+There is one foreground approval-ready block named `Draft.A`, with a concrete landing target and token `idx-edition:a1b2c3d4`. Nothing is approved yet.
 
 Explain the state transition for each user turn independently:
 
-1. `I agree with the wording. ::approve`
-2. `I agree with the wording. ::approved`
+1. `I agree with the wording. ::approve idx-edition:a1b2c3d4`
+2. `I agree with the wording. ::approved idx-edition:a1b2c3d4`
 
 Then assume `Draft.A` is approved and unlanded. Explain the state transition for:
 
@@ -41,6 +41,7 @@ State whether any pair differs semantically and whether approval itself writes a
 ### Expected Behavior
 
 - Names `User.Command::Approve` and `User.Command::Land`.
+- Treats both approval aliases as tokenized verbatim approval of the exact proposal.
 - Treats the prose surrounding a command as normal conversation without losing the command.
 - Lands only after the target is already approved.
 - Distinguishes the in-workflow `::write` trigger from the `--write` skill argument.
@@ -48,6 +49,7 @@ State whether any pair differs semantically and whether approval itself writes a
 ### Above Expected
 
 - Notes that the unique foreground target satisfies the contextual target argument.
+- Notes that `agentos-index` advertises and requires the tokenized form even though the general command model can represent bare semantic approval.
 - Mentions that a later change to wording or destination invalidates approval.
 
 ### Overwork

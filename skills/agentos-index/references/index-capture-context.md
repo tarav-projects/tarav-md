@@ -8,7 +8,7 @@ The module is internal workflow context, not a user-facing report. It makes the 
 
 Close every category below before building the candidate map:
 
-1. **Surface model.** Load the owning blocks for `Agentos.Index.System`, `Index.Surface`, `Index.Ontology`, `Index.Appendix`, `Index.Agendix`, `Touched.Surface.Index`, `Capture.Gradient`, `User.Attention`, `Context.Grounding`, `Kernel.Writing`, `Kernel.Block`, `Line.Type`, and `Anchory.System`, plus appendix depth for those concepts when present.
+1. **Surface model.** Load the owning blocks for `Agentos.Index.System`, `Index.Surface`, `Index.Ontology`, `Index.Appendix`, `Index.Agendix`, `Touched.Surface.Index`, `Index.Chat.Capture`, `InContext.Index.Chat.Capture`, `Capture.Gradient`, `User.Attention`, `Context.Grounding`, `Kernel.Writing`, `Kernel.Block`, `Line.Type`, `Anchory.System`, `Edition.Approval.Token`, and `Line.Verbatim.Gate`, plus appendix depth for those concepts when present.
 2. **Operational model.** Load `references/search.md`, `references/edit.md`, `references/agendix.md`, `references/type.md`, `references/link.md`, and `agentos-pkg/references/index-block-catalog.md`. These are the workflow-neutral rules capture consumes.
 3. **Depot model.** Run `Index.Discovery` and resolve the task-relevant engaged `Index.Depot`s through their routers. Respect explicit `--depot` and `--chapter` scope; otherwise include every depot materially engaged by the conversation.
 4. **Touched concept closure.** For every concept materially touched by the chat, load its routed ontology block, appendix page, and agendix file when those surfaces exist. Follow related routed concepts until the proposed edit can be judged without unresolved overlap or contradiction.

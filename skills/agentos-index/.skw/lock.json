@@ -2,12 +2,12 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "cc3a31ab63b3d11cabd6bae9faf237127df34b115a18035837a8daf4c4e4faca",
+      "output_sha256": "ea2365734aece3790f43adc15e305e8d11b65848ac1476dcf2cf2d079bd17281",
       "recipes": [
         {
           "heading": "Index Operating Behavior",
           "verb": "derived",
-          "body_sha256": "f19facdbd04e75754795faef6b5bd33215e607d65cbc9ca4ddd32d0786cecdfd",
+          "body_sha256": "1a264f345971d70f6411fbf8efe1d69e54f276888a4df73caa4495a171107497",
           "deps": {
             "references/search.skw.md#Search Model": "d99456d67e9e34cc75808c67dc06536a3e43e47cb119d4304d5d0e948d3a780f",
             "references/search.skw.md#Citation Behavior": "e57e94bf2adedb5f4bde5e498c1feb6342c70412564a0e8d8a1a8734a673a8a9"
@@ -20,34 +20,34 @@
       "recipes": []
     },
     "references/back-link.md": {
-      "output_sha256": "dbeabc0777a1a88893487a9612c5e674d30769787197e193aaf62f885073742f",
+      "output_sha256": "b5eea6d9de9fb8fabcd86d273bb5306bba26b9244f2606608baa7eeca5f24f3c",
       "recipes": [
         {
           "heading": "Back-Link Pipeline",
           "verb": "derived",
-          "body_sha256": "15661a7ae6a59aa6422243ab1716df2f8f6eac2b3ac5b62383c65d0c3cb92ba6",
+          "body_sha256": "4e6c3d832c95649501ae43cbb8f092cbc3388ef90b0cca1e58eb858edddc3535",
           "deps": {
-            "references/link.skw.md#Linking Pipeline": "df1d72985deab7e6651512b472727a104116029782a7fe4ae5d1d6e0d49652e9"
+            "references/link.skw.md#Linking Pipeline": "02db3ff532b7702f9b456350eb81eb3f4f416509b575966118dcf42c45397c42"
           }
         }
       ]
     },
     "references/capture.md": {
-      "output_sha256": "c50802e89555b14f3341657e097baf1f7ad0f0a63707cae1c60e114a6b02f2eb",
+      "output_sha256": "f25774ad323ccb196d67511ac5ea276d5cff8a3a3a31034e40df791d4091d0b8",
       "recipes": [
         {
           "heading": "Landing",
           "verb": "derived",
-          "body_sha256": "202d81a3cccd6ae8c49cfa579ffc9d5b1c4bb4466608ed499ead921168a3a9f2",
+          "body_sha256": "7d811e83c1c7a1f6e1ee1938e5bf3b0d33071410fa776f76ceaffec67aa4a41e",
           "deps": {
-            "references/edit.skw.md#Landing Procedure": "ab7957bff4802e34c480f7fc29510c9dba310b059ac3e20e7f86551faf554188",
+            "references/edit.skw.md#Landing Procedure": "68721fb60a0bea9fc81f3a9bcfcc688d49aeb2f5ae5c2dc515851068d93ad332",
             "references/agendix.skw.md#Landing Form": "1bfc24ac8f38ab42bcbdcda5a297cebcb9e3b5e7b1a992e468d0d264db0554fb"
           }
         }
       ]
     },
     "references/check.md": {
-      "output_sha256": "7ec05802676d19d81d71b347f2293b8e30f4e52c5d35a5dbf13cf7e096800824",
+      "output_sha256": "c3088acd6c82f3993cfaeb361d01f449d0168c22d81b667c0c55c408483a81fa",
       "recipes": [
         {
           "heading": "Beyond The Linter",
@@ -60,7 +60,7 @@
       ]
     },
     "references/edit.md": {
-      "output_sha256": "1aac53c505f43821379c501bb6c5f26416faacdecc78bdde7f44b5ed4b67da42",
+      "output_sha256": "944dc9a0e8eb41a849d5da373ca147f4f0be3177ccfec315a16b8c46635de8df",
       "recipes": [
         {
           "heading": "Block Independence",
@@ -85,15 +85,15 @@
       "recipes": []
     },
     "references/index-capture-context.md": {
-      "output_sha256": "1eedeccec453e2b765b7901caa7ef6a701ef2548f3bd567ca6907edfd1d4eb13",
+      "output_sha256": "2dcdfe861981c659e8f327b00959fc08a148ca37aab32baf2d3e3ffaf664ad7c",
       "recipes": []
     },
     "references/index-context-assembly.md": {
-      "output_sha256": "decc9c5c89d384f95e3e08b3e2bb47749ae197b24c3188b69510592117260a82",
+      "output_sha256": "0b9f299c1874779409114ba8790bbbb0b89d32d6dba947b06b2cb3ec00b61ab2",
       "recipes": []
     },
     "references/link.md": {
-      "output_sha256": "42856e4898b6256a9873155fef710b2182d301f3659d8bf77282f81cc56fbf41",
+      "output_sha256": "e09389ac86c22c6593ea1b8b0eee978396791bc97d3e741ccad828fb6017d2a8",
       "recipes": []
     },
     "references/search.md": {

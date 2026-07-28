@@ -16,13 +16,13 @@ Run from `agentos-pkg-testground/` in a fresh session. Give the tested agent onl
 
 Use `agentos-index` to reason about this hypothetical interactive capture state. Do not edit files.
 
-Two approval-ready blocks, `Draft.A` and `Draft.B`, are active. Neither is uniquely foregrounded.
+Two approval-ready blocks, `Draft.A` and `Draft.B`, are active. Neither is uniquely foregrounded. Their tokens are `idx-edition:aaaa1111` and `idx-edition:bbbb2222`.
 
 Explain what the agent should do after each user turn:
 
 1. `I want to discuss whether both blocks should use the same boundary.`
 2. `::approve`
-3. `::approved Draft.B after the boundary correction`
+3. `::approved idx-edition:bbbb2222`
 
 Then assume both blocks are approved and unlanded, with no unique foreground target:
 
@@ -41,7 +41,8 @@ Include when available commands should be printed.
 
 ### Expected Behavior
 
-- Resolves the explicit `Draft.B` target and approves only its current corrected form.
+- Resolves the explicit `Draft.B` token and approves only its current corrected form.
+- Reprints the two resolved token commands after bare `::approve`.
 - Resolves `all approved blocks` as the landing set.
 - Prints available commands only at workflow pauses or when status is requested.
 - Performs no transition after an ambiguous command.

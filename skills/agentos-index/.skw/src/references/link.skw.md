@@ -1,13 +1,13 @@
 # agentos-index --link
 
-> $kw: --from Anchory.System --from Index.Line --from Index.Linking --from Workflow.Neutral
+> $kw: --from Anchory.System --from Edition.Approval.Token --from Index.Chat.Capture --from Index.Line --from Index.Linking --from Line.Verbatim.Gate --from Workflow.Neutral
 > --dev-from references/index-context-assembly.skw.md
 
 Use this module when a caller needs an `Anchory.Anchor` minted for a chat context: the linking primitive behind grounding lines, inline grounding, and agendix provenance.
 
 This module is `Workflow.Neutral`: it produces an anchor and returns it — it writes no index surface. Consumers decide where the anchor lands: `--edit` writes gated `[GR]` grounding lines and inline anchors; `--agendix` tags captured lines. Minting an anchor mutates only the anchory depot, which is register plumbing, not an index edit.
 
-Authority lives in the index: `Anchory.System`, `Chatlas.Anchory`, `Index.Linking`, `Index.Line` own the concepts.
+Authority lives in the index: `Anchory.System`, `Chatlas.Anchory`, `Index.Linking`, `Index.Line`, `Index.Chat.Capture`, `Edition.Approval.Token`, and `Line.Verbatim.Gate` own the concepts.
 
 ## Linking Pipeline
 
@@ -18,15 +18,18 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
    - filter with verbatim user turns from your own context — the more distinctive the phrasing, the better: `agentos chatlas query --user-contains "<exact snippet>" --field identity_hash`
    - repeat with more snippets until exactly one candidate remains: that is you (the conversation is a fingerprint; chatlas has indexed it)
    - shortcuts: a native session id already in hand → `agentos chatlas query --session-id <native-id> --field identity_hash --update`; a past session → normal `query` filters
-2. **Locate the evidence turn.** Same trick at turn granularity — the agent holds the conversation in context, so it can quote the moment it wants to anchor:
-   - `agentos chatlas views inline --identity-hash <hash> --contains "<distinctive text from that moment>" [--role user] --filter turns --format json` — the matching events come back as a clean model fragment with timestamps
-   - add `--around <approximate ISO time>` to get a proximity blast: nearest events first, useful when the quote is weak or repeated
-   - the anchor lands in a neighborhood: pick the turn that best *lands* the reader, not a span that contains everything
-3. **Register the anchor.** One command — chatlas owns the record, validates, allocates, and echoes:
-   - `agentos chatlas anchory register --identity-hash <hash> --at "<ISO time>" --hint "<one sentence: what is at this location>"`
-   - chatlas validates the session and that `at` falls inside its event-time bounds, derives the date alloc-prefix, the `chatlas` namespace (`c`), and the turn tag (`u` user / `a` assistant, computed from the landing turn's producer), registers atomically through anchory, and returns the composed anchor (`c<YYYYMMDD>-<N><tag>`) PLUS the landing neighborhood — double-check it shows the intended turns before tagging
+2. **Locate the evidence events.** The agent chooses semantic support; Chatlas formalizes that choice against the authoritative event tape:
+   - use `agentos chatlas events query --identity-hash <hash> --pattern-json '<Event.Pattern JSON>' --backend auto` to locate exact, adjacent, or distinctive turns and return authoritative event coordinates
+   - for a proposal followed by token approval, query a two-step `next_turn` pattern with an assistant `text_contains` token predicate and a user `text_exact` approval predicate; select `latest` or require cardinality `one` when that matches the situation
+   - assistant events may aid retrieval and may be referenced by approval cargo, but only selected user turns become `Chat.Support.Set` members
+   - reload enough normal-model context to judge the result; a derived query backend discovers candidates but never establishes support
+3. **Register the anchor.** Register exact user event members — never timestamps:
+   - plain support: `agentos chatlas anchory register --member <identity-hash>:<user-event-id> --hint "<one sentence: what this support set means>"`
+   - tokenized approval: `agentos chatlas anchory register --member <identity-hash>:<approval-event-id> --hint "<one sentence>" --member-types '{"<identity-hash>:<approval-event-id>":{"tokenized.approval.turn":{"token":"<token>","verbatim_turn":"<identity-hash>:<proposal-event-id>","approval_turn":"<identity-hash>:<approval-event-id>"}}}'`
+   - semantic approval is representable with `semantic.approval.turn` cargo containing `verbatim_turn` and `approval_turn`, but `agentos-index` workflows require tokenized approval
+   - chatlas validates member coordinates, preserves member order, derives the `chatlas` namespace and user tag, registers through anchory, and returns the composed anchor (`c<YYYYMMDD>-<N>u`)
    - the raw plumbing remains available: `agentos anchory register --depot <chatlas-root>/anchory --namespace chatlas --alloc-prefix <YYYYMMDD> [--tag u|a] --record-json '…'`
-4. **Verify.** The mint echo already shows the neighborhood; for later re-checks, `agentos chatlas views inline --anchor <anchor> [--radius N] --filter turns` returns it again, plumbing stripped.
+4. **Verify.** Resolve the record and neighborhood after registration. Confirm every member is the intended user event and typed cargo references the intended proposal and approval events; for later re-checks, `agentos chatlas views inline --anchor <anchor> [--radius N] --filter turns` returns the neighborhood.
 5. **Return the anchor** to the caller, which tags its line: trailing position, `… ^c20260707-0u`.
 
 ## Code-Side Evidence
@@ -36,6 +39,8 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
 ## Anchor Discipline
 
 - an anchor for index grounding targets a USER turn — touch is the landing point, assistant context is recovered by neighborhood reading; when the wording originated agent-side, anchor the approval turn
+- event identity is `<session-identity>:<event-id>`; timestamps are readability metadata and never the registration key
+- a tokenized approval anchor has one user support member whose `tokenized.approval.turn` cargo points to the assistant proposal and user approval events
 - an anchor's meaning is immutable: no reuse; a wrong hint or wrong date means minting a new anchor, never repurposing
 - `agentos anchory amend` exists only to correct an error or improve resolution of the same context
 - the hint is the desync tripwire: write it so a reader can tell whether the resolved neighborhood matches

@@ -1,6 +1,6 @@
 # agentos-index --edit
 
-> $kw: --from Capture.Offer --from Cited.Duplication --from Dotted.Notation --from Edition.Trigger.User.Gated --from Explicit.Namespace --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Edit.Action --from Index.Edit.Modify.Line --from Index.Line --from Index.Ontology --from Kernel.Line --from Line.Type --from Name.As.Index --from User.Command --from Verbatim.User.Gated
+> $kw: --from Capture.Offer --from Cited.Duplication --from Dotted.Notation --from Edition.Approval.Token --from Edition.Trigger.User.Gated --from Explicit.Namespace --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Edit.Action --from Index.Edit.Modify.Line --from Index.Line --from Index.Ontology --from Kernel.Line --from Line.Type --from Line.Verbatim.Gate --from Name.As.Index --from Reviewed.Content --from User.Command --from Verbatim.User.Gated
 > --dev-from references/index-context-assembly.skw.md
 
 The knowledge of writing Agentos index and appendix surfaces: gates, structure, naming, block quality, edit actions, and the landing procedure.
@@ -20,6 +20,7 @@ This module is a `Workflow.Neutral.Module`: it does not run a workflow — its r
 
 - The declared `User.Command` transitions make the existing approval and landing gates explicit.
 - `User.Command::Approve` (`::approve`, `::approved`) accepts the resolved draft exactly as shown, including its landing target, and records it as approved but unlanded.
+- `::approve <token>` binds the approval to the exact proposal carrying that `Edition.Approval.Token`. Index workflows require this form; a bare approval remains representable as semantic edit-event approval by the general machinery but does not satisfy the index workflow's verbatim gate.
 - `User.Command::Land` (`::land`, `::write`) executes the `Landing Procedure` only for resolved approved material; it never supplies missing approval.
 - `User.Command::LandAllApproved` (`::land-all-approved`) executes the `Landing Procedure` for the complete approved, unlanded cluster of one foreground index workflow; it takes no target argument and never supplies missing approval.
 - `--write` invokes this skill module from a skill call. `::write` is a trigger inside an already-running workflow; the sigil keeps the two surfaces distinct.
@@ -91,6 +92,8 @@ When a draft is being shaped for an index or appendix surface — inside `refere
 - screen it for `Block Independence` — strip any deixis to the authoring conversation; state the concept positively
 - screen each line's `Line.Type`: the line must perform its typed act (`references/type.md`); a line that takes no type belongs elsewhere — flag it, do not force a type
 - review with the user and revise until accepted — acceptance is a chat state, not a write
+- mint a fresh opaque `Edition.Approval.Token` for the exact proposal; show the token and every proposed line verbatim in the same assistant turn
+- rotate the token whenever wording or landing destination changes; a stale token never approves a revised proposal
 
 Example approval screen:
 
@@ -101,16 +104,21 @@ Target: append under ## Capture.Offer
 Draft:
 
 - [DC] a capture offer shows its landing target before the proposed text, so the user approves destination and wording together ^<approval-anchor>
+
+Approval:
+
+`::approve idx-edition:7d2f91c4`
 ```
 
 ## Landing Procedure
 
 When landing an approved edit:
 
-1. Apply the approved edit to the natural surface.
-2. Stamp grounding at landing: mint the approval-turn anchor (`references/link.md`) and set it as the trailing anchor on every landed line that has no more specific evidence turn — the fallback pointer per `Index.Line` grounding; line-specific turns win where they exist.
-3. Update the router when concepts are added, renamed, moved, or gain appendix depth.
-4. Run a linter check over the edited depot or explicit surfaces.
+1. Resolve the exact proposal and approval events from the authoritative `Chatlas.Session.Model`.
+2. Mint the approval-turn anchor through `references/link.md`, registering the user approval member with `tokenized.approval.turn` cargo containing `token`, `verbatim_turn`, and `approval_turn`.
+3. Apply the approved edit to the natural surface and set that anchor as the trailing anchor on every approved line with no more specific evidence turn. The tokenized member makes each line eligible for `Line.Verbatim.Gate` and, when verified, `Reviewed.Content`.
+4. Update the router when concepts are added, renamed, moved, or gain appendix depth.
+5. Run the default linter plus the opt-in `line-approval` and `line-verbatim-gate` checks over the edited scope.
 
 A cluster of edits approved together lands under one gate — the landing trigger covers the batch; each item's grounding still anchors its own approval turn.
 

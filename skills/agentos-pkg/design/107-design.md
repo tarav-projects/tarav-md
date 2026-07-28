@@ -746,6 +746,27 @@
 
 ****
 
+## Index.Chat.Capture
+
+- [DF] `Index.Chat.Capture` is transforming material from one or more `Chat.Surface`s into grounded editions of a `Touched.Surface.Index` ^c20260726-7u
+- [CT] it separates retrieval from capture judgment: retrieval surfaces candidate turns and authoritative coordinates; capture selects the material, its `Chat.Support.Set`, and its landing ^c20260726-7u
+- [CT] every captured line is grounded to an agent-selected `Chat.Support.Set` of user turns before entering a touched index ^c20260726-7u
+- [FR] capture may operate over chats already loaded in agent context or mine chats that have not yet been loaded; specializations define the source-access mode ^c20260726-7u
+- [RJ] `Index.Chat.Capture` does not depend on one retrieval backend or query heuristic ^c20260726-7u
+
+****
+
+## InContext.Index.Chat.Capture
+
+- [DF] `InContext.Index.Chat.Capture` is an `Index.Chat.Capture` whose source chats are already present in the capturing agent’s active context ^c20260726-8u
+- [DC] the capturing agent performs semantic selection of the material and its supporting user turns from that context ^c20260726-8u
+- [CT] Chatlas assists by discovering candidate event coordinates and projecting matches from the authoritative `Chatlas.Session.Model`; it does not decide semantic support ^c20260726-8u
+- [FR] retrieval may use assistant turns and any useful query heuristic, but only agent-selected user turns enter the captured line’s `Chat.Support.Set` ^c20260726-8u
+- [CT] the specialization is defined by context availability, not chat age — an older chat loaded into active context qualifies ^c20260726-8u
+- [RJ] it does not cover mining a chat corpus for material whose meaning and support have not yet been loaded ^c20260726-8u
+
+****
+
 ## Touched.Surface.Index
 
 - [DF] `Touched.Surface.Index` is the general category of surfaces composed of `Index.Line`s — statements grounded to a `Chat.Support.Set` of user turns ^c20260716-1u
@@ -775,6 +796,23 @@
 - [DC] the boundary is verbatim review specifically: a cite depends on wording, so `Edition.Trigger.User.Gated` (edit-event approval, wording unseen) does not count as reviewed for this rule ^c20260723-3u
 - [DC] CPU-lintable per `User.Gate`: resolve each cite's target and check its support set for the review turn; a reviewed line citing an unreviewed target is a linter finding ^c20260723-3u
 - [DC] the check is local: a line cite quotes the target verbatim including its anchor, so resolving that embedded anchor reaches the support set directly — no container walk ^c20260723-12u
+
+****
+
+## Line.Verbatim.Gate
+
+- [DF] `Line.Verbatim.Gate` is `Verbatim.User.Gated` realized per `Index.Line` and made CPU-lintable — a gate asserting that one line's exact wording was approved by a user turn, on machine-checkable evidence ^c20260726-4u
+- [DC] the gated object is a single line's verbatim wording — not the block, not the edit event — so review authority is tracked at line granularity ^c20260726-4u
+- [DC] the claim is a `User.Gate` claim about the `Chat.Surface`: a user turn approved this exact wording ^c20260726-4u
+- [DC] its dossier is a `Chat.Support.Set` edge whose review turn is made findable by the line's `Edition.Approval.Token`, carried in `Anchor.Metadata` ^c20260726-4u
+- [DC] its checker is a `CPU.Program` verifying that `Edition.Approval.Token` evidence — deterministic, the hard end of `Program.Hardness` ^c20260726-4u
+- [DC] the check is line-local: everything needed resolves from that line's own anchor, with no block or container walk ^c20260726-4u
+- [DC] it is a standing property of the line, re-checkable anytime from the line alone; running the linter only over an edit's changed lines is a cost optimization, not the gate's nature ^c20260726-4u
+- [CT] the gate binds exact wording, so any change to it breaks the gate until re-approved — verbatim review has no other meaning ^c20260726-4u
+- [DC] gate granularity stays per-line while approval may batch: one `Edition.Approval.Token` can satisfy several lines' gates at once ^c20260726-4u
+- [DC] a satisfied gate makes the line `Reviewed.Content`; a line without token evidence carries at most edit-event approval (`Edition.Trigger.User.Gated`), the weaker tier ^c20260726-4u
+- [DC] the producer carries the structuring burden — the agent emits the verbatim line and token so the checker stays trivial (`Producer.Aids.Checker`) ^c20260726-4u
+- [DC] defined general over `Anchored.Line` and applied to `Index.Line`, so agendix, archive, and annotation lines can ride the same gate ^c20260726-4u
 
 ****
 
@@ -832,6 +870,7 @@
 - [DC] a line with its anchor in place is a `Grounded.Line`; one still missing it is an `Ungrounded.Line` — a legacy backlog, not a licensed state ^c20260716-33u ^c20260717-0u
 - [DC] lines carry a `Line.Type` classifying their act ^c20260716-4u
 - [EX] on a `Verbatim.User.Gated` surface, each line's support set holds a `Turn.Type::Project.Index.Gate` turn ^c20260716-4u ^c20260716-10u
+- [DC] beyond grounding, a landed line's `Chat.Support.Set` holds at least one approval turn — a member carrying an approval `Turn.Type` (`semantic.approval.turn` or `tokenized.approval.turn`); an anchor with only base support turns is review-debt, not a licensed state ^c20260726-9u
 - [PR] everything above the line is organization — blocks, surfaces, attachment points; everything below it is evidence — anchors, support sets, turns ^c20260716-4u
 
 ****
