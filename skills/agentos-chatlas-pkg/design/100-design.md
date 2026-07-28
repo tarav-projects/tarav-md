@@ -258,6 +258,8 @@
 - provider-specific richness with no neutral concept lives in `native` / `source_refs` — recoverable, never canonical
 - consumers are read-side: search, summary, replay, UI, `Chatlas.View.Model`
 - its namespace is reified as `Chatlas.Session.Model.Contract` — the machine-readable path table model consumers and corpus tests share
+- [CT] the model carries chat data, never a consumer's interpretation of it — what a turn or event means to a downstream application is that application's read, not a model field
+- [PR] the boundary is what keeps the model general: every consumer's semantics would otherwise accrete into the standard until it stopped being about chat
 
 ### meta
 
@@ -297,6 +299,34 @@
 - [DC] tail revision is truncate-and-reappend: cut the tape at the last final line, re-derive the volatile tail plus new events, append ^c20260712-12u
 - [RJ] serving reads through a checkpoint overlay of shadow events — the tape on disk is always the complete served tape ^c20260712-12u
 - [PR] per-line provenance turns staleness detection mechanical: divergence is located at a line, recomputation starts there, never from zero ^c20260712-12u
+- [DC] `sequence` carries tape position and is the only positional field — order is a real tape property, identity is not derived from it
+- [RJ] `event_id` as a distinct field: it was `"event-" + sequence`, a stringified duplicate whose name invited durable references onto an ordinal — retired to a contract tombstone
+- [EX] anchors keyed on `event_id` mis-pointed after re-segmentation: a stored user turn slid three ordinals while its timestamp held, and the position it vacated resolved to a later assistant turn
+- [DC] durable references key on an `Event.Grouping` carrying a stability contract — `Normal.Turn` for chat evidence
+
+****
+
+## Event.Grouping
+
+- [DF] `Event.Grouping` is a derived partition over `Session.Event.Tape` events — a named way of collecting events into a larger unit the flat tape does not itself express
+- [CT] the tape stays the single source of truth: a grouping is a tag carried on its events, never a container holding them; collecting a group is software over the tape
+- [DC] groupings are open and orthogonal — the model carries as many as it needs, each independent of the others
+- [EX] `Normal.Turn` is the chat-semantic grouping; a request/response cycle is another
+- [CT] a grouping is partial by nature — an event may belong to no group, and carrying no group is a contracted verdict rather than a gap
+- [DC] grouping is normalization work — the model owns each grouping's semantic, and a `Raw.Normalizer` maps its native structure onto it
+- [DC] a stability contract binds only a grouping something grounds on; the rest stay free to be re-derived at will
+
+****
+
+## Normal.Turn
+
+- [DF] `Normal.Turn` is the chat-semantic `Event.Grouping` — what a chat reader means by "a turn", derived by normalization rather than present in the tape's flat order
+- [DC] the grouping boundary is defined per turn kind — an assistant turn legitimately spans reasoning, message, and tool events; a user turn is one authored turn
+- [CT] a user turn groups only user-authored content — injected instructions, environment context, and harness-produced records never join it
+- [PR] user-turn purity is what the `Touched.Index` rests on: grounding a line to a contaminated turn would launder non-user content as first-order user authority
+- [DC] `Normal.Turn` identity carries the stability contract — stable across re-materialization of one session and never positional; it is the grounded grouping, so the obligation lands here and nowhere else
+- [DC] each `Raw.Normalizer` maps its native handle onto the semantic — a native grouping that over-merges is refined, never inherited; a provider offering no handle gets a synthesized identity
+- [CT] Chatlas supplies turn identity, never turn interpretation — what a turn means for a consumer (`Turn.Type`, surface gates) is the consumer's read, not a model field
 
 ****
 
@@ -374,7 +404,7 @@
 - [DC] every newly minted Chatlas anchor carries `u` because every `Chat.Support.Set` member is a user turn; surrounding assistant content is recovered through neighborhood reading ^c20260718-3u
 - [CT] Index grounding-provenance lint rejects a resolved Chatlas citation whose key does not carry the `u` user-evidence tag ^c20260725-2u
 - Chatlas owns the `Anchory.Record` payload and the traversal from record to session and turn neighborhood
-- [CT] the record format is `chatlas.support-set.v1`: an ordered `members` list whose entries identify exact turns by full session identity plus `event_id`, retaining `at` only for readability and integrity checking
+- [CT] the record format is `chatlas.support-set.v2`: an ordered `members` list whose entries identify exact turns by full session identity plus `Normal.Turn` identity, retaining `at` only for readability and integrity checking
 - registration validates every member resolves to a visible user turn and copies its event timestamp; it never selects a turn by timestamp proximity
 - [DC] registration echoes every member neighborhood — the minting agent double-checks the complete support set before tagging lines
 - [CT] a chat anchor resolves to its `Chat.Support.Set`; you land on the set and read the neighborhoods ^c20260715-5u
