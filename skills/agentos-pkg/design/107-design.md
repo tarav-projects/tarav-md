@@ -9,9 +9,9 @@
 - it is supported by a development toolchain — linters, builders, compilers — spanning agentic and `CPU.Impl` work, that moves package maintenance off the human. ^c20260627-0u
 - a discipline realized by capabilities, not a single mechanism — it names the stance; specific members implement it.
 - **skw** is the system realizing the discipline: the general annotation language (`Skw.Language`) and its `Skw.Backend`s ^c20260711-9u
-- [DC] the `Touched.Surface.Index` is not a separate substrate: touch is an orthogonal axis over skw objects — any annotation, span, or line may be touched or not, and the TSI is the computed set of touched things ^c20260719-0u
-- [DC] an annotation can be touched itself, independently of its dependencies: its support lines ground its own existence and shape to user turns — annotations range from fully agent-built to user-discussed ^c20260719-0u
-- [PR] skw is where the touched-index concepts integrate at scale: declared dependencies between any two project surfaces make maintenance and change propagation explicit, and extend the `Touched.Surface.Index` to further surfaces ^c20260718-23u
+- [CT] touch is an orthogonal axis over skw objects: an annotation, span, or line becomes touched only through its own touch provenance ^c20260729-21u
+- [DC] `Skw.Touched.Index` materializes `Touched.Index` through grounded `Index.Line`s attached to `Skw.Annotation` instances ^c20260729-21u
+- [PR] declared dependencies across project surfaces make maintenance and change propagation explicit around those indexed annotations ^c20260729-21u
 - [DC] the toolchain speaks skw: `agentos skw` (build, check, bless, status) over `.skw/` build homes and `skw.json` config — `skillware` remains a deprecation alias; `agentos skw check` with no target runs project-wide over every discovered `Skw.Package`, making the whole `Skw.Network` checkable in one pass ^c20260720-13u
 
 ### meta
@@ -115,7 +115,7 @@
 - [DC] `Touched.Surface.Index` lines are cited through it: a block cite is a bare `--from Block.Path`, a line cite adds `--quote` ^c20260723-12u
 - [DC] a block cite needs a stable-named target; a provisionally-named block (promotion may rename) is cited by file line quote only — the rename then surfaces as a loud POI, not a silent miss ^c20260723-12u
 - [CT] an ungrounded line is never quoted — it could leak assistant-untouched content into the cite; a quoted TSI line carries its anchor verbatim, the pin and the grounding handle ^c20260723-12u
-- [DC] re-grounding is not transparent to citers: reinterpretation mints a new anchor (`Demoted.Anchored.Line`), changing the quoted content and raising the drift POI even when prose is unchanged — a re-confirm signal, not silent drift ^c20260723-12u
+- [DC] re-grounding is not transparent to citers: reinterpretation mints a new anchor (`Demoted.Index.Line`), changing the quoted content and raising the drift POI even when prose is unchanged — a re-confirm signal, not silent drift ^c20260723-12u
 
 ### meta
 
@@ -262,7 +262,7 @@
 
 - [DF] a `POI.System` is the shared machinery that carries POIs from detection through presentation, documentation discovery, and resolution ^c20260725-29u
 - [CT] producers emit `POI.Instance`s carrying stable `POI.Class` identities ^c20260725-29u
-- [CT] the system resolves classes through engaged `POI.Catalog`s before rendering, explaining, or resolving instances ^c20260725-29u
+- [CT] the system resolves each instance’s canonical `Wayfinder.Reference` through `Agentos.Wayfinder` before rendering, explaining, or resolving the instance ^c20260729-44u
 - [CT] `POI.Renderer`, `POI.Explain`, and `Poi.Bless` consume the same resolved class-and-instance model ^c20260725-29u
 - [CT] catalog or documentation failures are reported without hiding the original instances ^c20260725-29u
 - [PR] different linters share one POI lifecycle while domain semantics remain with their owning packages ^c20260725-29u
@@ -283,54 +283,56 @@
 
 ## POI.Class
 
-- [DF] a `POI.Class` is the durable, domain-owned semantic definition shared by occurrences of one reviewable situation ^c20260725-9u
-- [CT] it declares a stable identity, short runtime description, documentation entrypoints, allowed resolution acts, and required context gates ^c20260725-9u
-- [CT] documentation entrypoints are `Skw.Address.Schema` references to surfaces at their `Natural.Placement` ^c20260725-9u
-- [CT] many `POI.Instance`s may reference one class; class data is resolved when needed rather than duplicated into each instance ^c20260725-9u
-- [PR] domain ownership keeps documentation at its `Natural.Placement`, even when another subsystem emits the instance ^c20260725-9u
-- [PR] class stability lets checks, renderers, documentation discovery, and resolution machinery share one authoritative definition ^c20260725-9u
-- [RJ] a `POI.Class` is not a concrete occurrence, evaluation verdict, or resolution ^c20260725-9u
+- [DF] a `POI.Class` is the durable domain-owned semantic definition shared by occurrences of one reviewable situation ^c20260729-40u
+- [DC] each class is a `Kernel.Block` contained in the `POI.Catalog` of its owning `Package.Skill` ^c20260729-40u
+- [DC] the stable identity of a class is its canonical `Wayfinder.Reference.Type::Index.Block` reference ^c20260729-40u
+- [CT] the class block is its canonical `POI.Documentation` root and declares its short runtime description, evaluation protocol, allowed resolution acts, and required context gates ^c20260729-40u
+- [CT] many `POI.Instance`s may carry the same class reference; class data is resolved when needed rather than duplicated into each instance ^c20260729-40u
+- [PR] package ownership keeps class meaning and evaluation guidance with the domain that owns them, independently of which subsystem emits an instance ^c20260729-40u
+- [RJ] a `POI.Class` is not a concrete occurrence, evaluation verdict, or resolution ^c20260729-40u
 
 ****
 
 ## POI.Instance
 
 - [DF] a `POI.Instance` is one concrete occurrence of a situation defined by a `POI.Class` ^c20260725-11u
-- [CT] it carries a stable instance identity, class reference, target location, and concrete evidence describing the current situation ^c20260725-11u
+- [CT] it carries a stable instance identity, the canonical `Wayfinder.Reference` of its `POI.Class`, target location, and concrete evidence describing the current situation ^c20260729-43u
 - [CT] its identity remains stable across repeated checks while the same occurrence persists ^c20260725-11u
 - [CT] it is the unit of resolution acts; when its class permits blessing, `Poi.Bless` blesses only that instance ^c20260725-11u
 - [PR] class metadata is resolved through the class reference rather than duplicated into the instance ^c20260725-11u
 - [RJ] resolving one instance does not resolve its class, another instance, or a future occurrence ^c20260725-11u
+- [CT] a `POI.Instance` signals a situation requiring attention; its existence alone does not determine resolution, which is evaluated through its evidence and resolved `POI.Class` guidance ^c20260729-27u
 
 ****
 
 ## POI.Catalog
 
-- [DF] a `POI.Catalog` is a federated `Skw.Kernel.Index` application that registers package-owned `POI.Class` blocks for machine discovery ^c20260725-13u
-- [DC] each catalog uses a dedicated `poi` chapter for the classes owned by its `Index.Depot` ^c20260725-13u
-- [CT] each entry routes a stable class identity to its owning `Skill.Package` and class block ^c20260725-13u
-- [CT] common POI machinery resolves class identities across all engaged catalogs, independently of which subsystem emitted the instance ^c20260725-13u
-- [CT] a class identity must resolve uniquely; missing or duplicate registrations are reported without hiding the original instance ^c20260725-13u
-- [RJ] a catalog registers classes, not instances, and routes documentation rather than duplicating it ^c20260725-13u
+- [DF] a `POI.Catalog` is the dedicated `poi` chapter of a `Package.Skill.Index`, containing the package-owned `POI.Class` blocks available for machine discovery ^c20260729-39u
+- [DC] a `Package.Skill` that owns POI classes registers them as blocks in its catalog ^c20260729-39u
+- [CT] each `POI.Class` block is the canonical indexed documentation root for that class ^c20260729-39u
+- [CT] a class is addressed by a `Wayfinder.Reference.Type::Index.Block` reference rooted at its owning `Package.Skill` ^c20260729-39u
+- [CT] common POI machinery resolves the class reference through `Agentos.Wayfinder`, independently of which subsystem emitted its instances ^c20260729-39u
+- [CT] missing or ambiguous class resolution emits a resolution POI without hiding the original `POI.Instance` ^c20260729-39u
+- [RJ] a catalog contains class definitions and documentation roots, not `POI.Instance` occurrences ^c20260729-39u
 
 ****
 
 ## POI.Documentation
 
-- [DF] `POI.Documentation` is the set of Skw-addressable surfaces that define a `POI.Class` and how its instances should be evaluated ^c20260725-16u
-- [CT] a `POI.Class` references one or more documentation entrypoints through `Skw.Address.Schema` ^c20260725-16u
-- [CT] documentation may span multiple surfaces and packages while remaining at each surface’s `Natural.Placement` ^c20260725-16u
-- [CT] common POI machinery follows the explicit references across engaged `Index.Depot`s ^c20260725-16u
-- [PR] runtime summaries orient the agent, while the referenced documentation remains authoritative for meaning, evaluation, and repair ^c20260725-16u
-- [FR] a documentation surface may represent a required `Skw.Context.Gate` for an act such as `Poi.Bless` ^c20260725-16u
-- [RJ] documentation is not duplicated into each `POI.Instance` ^c20260725-16u
+- [DF] `POI.Documentation` is the authoritative content that defines a `POI.Class` and how its instances should be evaluated ^c20260729-41u
+- [DC] its canonical root is the class block contained in the owning `Package.Skill` index’s `POI.Catalog` ^c20260729-41u
+- [CT] the class block contains the class definition, evaluation protocol, and guidance required to reason about its instances ^c20260729-41u
+- [CT] common POI machinery retrieves the documentation root by resolving the class’s `Wayfinder.Reference` through `Agentos.Wayfinder` ^c20260729-41u
+- [FR] a class block may reference additional documentation surfaces through further `Wayfinder.Reference`s without changing its canonical root ^c20260729-41u
+- [FR] a documentation region may participate in a required `Skw.Context.Gate` for an act such as `Poi.Bless` ^c20260729-41u
+- [RJ] documentation is not duplicated into each `POI.Instance` ^c20260729-41u
 
 ****
 
 ## POI.Renderer
 
 - [DF] a `POI.Renderer` presents `POI.Instance`s using their resolved `POI.Class` definitions ^c20260725-19u
-- [CT] it resolves class identities through the engaged `POI.Catalog`s ^c20260725-19u
+- [CT] it resolves each instance’s canonical `Wayfinder.Reference` through `Agentos.Wayfinder` before presenting its `POI.Class` definition ^c20260729-45u
 - [CT] it prints each class identity and short description once, followed by its compact instances ^c20260725-19u
 - [CT] each instance presentation identifies its target, current situation, and instance identity ^c20260725-19u
 - [PR] the output orients the agent and provides a path to deeper `POI.Documentation` ^c20260725-19u
@@ -341,13 +343,14 @@
 
 ## POI.Explain
 
-- [DF] `POI.Explain` is the common discovery act that retrieves the authoritative documentation for a POI class or instance ^c20260725-20u
-- [CT] an instance request first resolves its `POI.Class` through the engaged `POI.Catalog`s ^c20260725-20u
-- [CT] it follows the class’s `Skw.Address.Schema` entrypoints across packages and `Index.Depot`s ^c20260725-20u
-- [PR] agents request documentation through one interface without needing to understand package ownership or depot layout ^c20260725-20u
-- [CT] missing packages, classes, or documentation surfaces are reported precisely ^c20260725-20u
-- [RJ] `POI.Explain` resolves and presents documentation; it does not copy or own it ^c20260725-20u
-- [EX] a command surface may expose the act as `agentos poi explain <class-or-instance>` ^c20260725-20u
+- [DF] `POI.Explain` is the common discovery act that retrieves the authoritative documentation for a POI class or instance ^c20260729-42u
+- [CT] an instance request obtains the canonical `Wayfinder.Reference` carried by its `POI.Instance` ^c20260729-42u
+- [CT] a class request accepts a canonical reference or a `Wayfinder.Reference.Sugar` form that parses into one ^c20260729-42u
+- [CT] `POI.Explain` resolves the class reference through `Agentos.Wayfinder` and presents the resolved `POI.Class` block ^c20260729-42u
+- [CT] failed class or documentation resolution surfaces its `Wayfinder.Resolution.POI` without hiding the original explain request ^c20260729-42u
+- [PR] agents use one explanation interface without needing to understand package ownership, registry state, or index layout ^c20260729-42u
+- [RJ] `POI.Explain` resolves and presents documentation; it does not copy or own it ^c20260729-42u
+- [EX] a command surface may expose the act as `agentos poi explain <class-or-instance>` ^c20260729-42u
 
 ****
 
@@ -559,7 +562,7 @@
 - [DC] chat — touched, uncaptured, volatile ^c20260716-10u
 - [DC] agendix — touched, captured, ungated: agent-authored wording, not a `Stable.Surface` — nothing may link into it ^c20260716-10u
 - [DC] appendix/ontology — touched, captured, gated: wording passed `User.Attention`, a `Stable.Surface` — citable from other surfaces ^c20260716-10u
-- [PR] the gate buys stability, not authority: authority is per-line, living in its `Chat.Support.Set` — a thinly grounded gated line can carry less weight than an agendix line grounded on an explicit user statement ^c20260716-11u
+- [PR] the gate buys wording stability, not touched authority: a line derives `Touched.Authority` from its `Support.Set`, so strongly supported unreviewed content may outweigh weakly supported reviewed content ^c20260729-25u
 - [DC] reading order follows the gradient — ontology and appendix first, agendix later: a prior, not a verdict on any line ^c20260716-11u
 
 ****
@@ -593,7 +596,7 @@
 - one point per line is a soft direction, not a rule — the violation is one line carrying two distinct facts; a single point spanning a few lines is fine
 - every line is precious — it reflects something the user asked for or approved (`Verbatim.User.Gated`), never filler
 - lines order along the `Block.Line.Gradient`; block coherence is tight in the fundamentals and relaxes in the appendix
-- [DC] `Index.Line` is its grounded specialization — a `Kernel.Line` carrying the `Touched.Surface.Index` grounding invariant ^c20260716-4u
+- [DC] `Index.Line` is its touched-index specialization — a `Kernel.Line` whose grounding standing determines whether it carries `Touched.Authority` or the weaker `Index.Presumption` ^c20260716-4u
 
 ****
 
@@ -663,13 +666,14 @@
 
 ## Context.Grounding
 
-- `Context.Grounding` is enriching an agent's context with `Hard.Evidence`-linked data before it acts
-- foundation: all `User.Touched` data is on the `Chat.Surface`; the index is an index of it and points back to it — for completeness and correctness checking
-- it runs at levels: `Index.Grounding` loads the index's digest of the topic; full grounding also follows the pointers out to the original surfaces — the chats via Chatlas + git history, the code directly
-- it is read-only and ungated — it changes the agent's context, never a surface
-- grounded blocks make prior work reusable — settled context reaches the agent without the user re-explaining it
-- [CT] grounding reaches chat surfaces only through `agentos chatlas` commands — never provider raw stores or transcript files ^c20260708-0u
-- `Index.Linking` is its dual: linking builds and maintains the pointers grounding follows
+- [DF] `Context.Grounding` is the active pursuit of relevant evidence to condition an agent's context, reasoning, and action ^c20260729-21u
+- [CT] relevant evidence may live on any reachable surface; `Touched.Data` is a primary grounding set, not the whole evidence universe ^c20260729-21u
+- [DC] `Index.Grounding` is the cheap first pass through the `Touched.Index` for evidence of historical touch ^c20260729-21u
+- [DC] full touch grounding follows each `Support.Reference` through its `Support.Set` to the original `Touch.Authority.Surface` ^c20260729-21u
+- [CT] because a qualifying `User.Turn` is presently the only registered authority surface, every current touch-evidence descent terminates on `Chat.Surface` and resolves through Chatlas ^c20260729-21u
+- [EX] code, git history, documentation, and runtime state may supply relevant evidence independently of touch provenance ^c20260729-21u
+- [CT] context grounding is read-only and ungated; it changes the agent's context, never a surface ^c20260729-21u
+- [DC] `Index.Linking` is the dual only for touched-index evidence paths: it builds and maintains the references that touch grounding follows ^c20260729-21u
 
 ****
 
@@ -767,25 +771,61 @@
 
 ****
 
+## Touched.Index
+
+- [DF] `Touched.Index` is the global system for curating and densely presenting relevant `Touched.Data` ^c20260729-10u
+- [DC] it aims to index every relevant region of touched data without reproducing the source data ^c20260729-10u
+- [CT] relevance is the coverage boundary; curation governs how the material is presented, organized, and compressed ^c20260729-10u
+- [PR] `Kernel.Writing` supplies the density filter: indexed material should change future agent judgment ^c20260729-10u
+- [DC] `Index.Line` is its atomic presentation unit ^c20260729-10u
+- [CT] every `Index.Line` is intended to link its dense statement to supporting touch evidence; a missing or unresolvable link is a grounding POI, not loss of index membership ^c20260729-10u
+- [PR] `Chat.Surface` is the preferred evidence source because it carries the richest Hugentic context ^c20260729-10u
+- [CT] support is not restricted to chat when another surface carries direct `User.Touch` ^c20260729-10u
+- [DC] the index is the default first-line context for agent action over historical touch ^c20260729-10u
+- [DC] each entry is both a trace of previous alignment and a portal to deeper evidence ^c20260729-10u
+- [CT] curation does not transfer authority from the underlying `User.Touch` ^c20260729-10u
+- [FR] missing index coverage never blocks agent action or direct evidence retrieval ^c20260729-10u
+- [DC] `Touched.Surface.Index` is the category of surfaces that materialize this system ^c20260729-10u
+- [EX] the Markdown `Agentos.Index.System` is its first implementation ^c20260729-10u
+- [PR] by contextualizing prior touched work, the index makes alignment reusable without requiring the user to restate it ^c20260729-21u
+
+****
+
+## Support.Set
+
+- [DF] `Support.Set` is the evidence bundle linking a grounded statement to exact `Touched.Data` materialized on one or more `Touch.Authority.Surface` instances ^c20260729-19u
+- [CT] its references address observable data or durable coordinates on those surfaces, never the underlying `User.Touch` directly ^c20260729-19u
+- [CT] a support set may reference one or several authority surfaces while preserving the provenance of each member ^c20260729-19u
+- [DC] a nonempty resolvable `Support.Set` makes an `Index.Line` a second-order touched projection of its referenced data ^c20260729-19u
+- [DC] `Chat.Support.Set` is presently the only implemented specialization because a qualifying `User.Turn` is the only registered `Touch.Authority.Surface` ^c20260729-19u
+- [CT] that implementation constraint does not restrict the general support model to chat ^c20260729-19u
+
+****
+
 ## Touched.Surface.Index
 
-- [DF] `Touched.Surface.Index` is the general category of surfaces composed of `Index.Line`s — statements grounded to a `Chat.Support.Set` of user turns ^c20260716-1u
-- [CT] membership is the grounding invariant: every line carries at least one anchor resolving to its `Chat.Support.Set` — nothing else is required of a member ^c20260716-1u
-- [DC] the `Chat.Surface` user turn is the first and unique source of user authority; every member surface roots there ^c20260716-1u
-- [DC] "index" is earned by construction: every line finally points down to its chat support — a member is a cache over the chats, never authority; consumers verify through the support turns ^c20260716-1u
-- [FR] the nature of the annotation varies by application: a line may restate the turn content, or contextualize why the support turns support what is being annotated ^c20260716-1u
-- [DC] member surfaces differ by design axes on top of the invariant: attachment point, review, format, ordering ^c20260716-1u ^c20260723-3u
-- [EX] the `Agentos.Index` is the first member — lines attached to concepts; `Chat.Agendix` attaches them to chats; `Skw.Agendix` to any `Skw.Annotation` ^c20260716-1u
-- [DC] `Reviewed.Cite.Closure` governs citation across members: a reviewed line's cite-closure stays reviewed regardless of which member it lives on ^c20260723-3u
+- [DF] `Touched.Surface.Index` is the category of surfaces that materialize `Touched.Index` through `Index.Line`s ^c20260729-19u
+- [CT] surface membership does not require every live line to be grounded; missing or unresolvable support leaves the line live under `Index.Presumption` and creates a grounding POI ^c20260729-19u
+- [DC] each grounded line is second-order `Touched.Data` linked to first-order touched data on its authority surfaces ^c20260729-19u
+- [CT] an indexed surface is a curated projection, not a `Touch.Authority.Surface` merely because it contains touched data ^c20260729-19u
+- [DC] touch provenance remains at the authority surfaces referenced by each line's support set ^c20260729-19u
+- [FR] a line may restate its supporting data or contextualize why that data supports the indexed statement ^c20260729-19u
+- [DC] member surfaces vary independently by attachment point, review, format, and ordering ^c20260729-19u
+- [EX] `Agentos.Index` attaches lines to concepts, `Chat.Agendix` attaches them to chats, and `Skw.Agendix` attaches them to `Skw.Annotation` instances ^c20260729-19u
+- [DC] `Reviewed.Cite.Closure` governs citation across members regardless of which member contains a reviewed line ^c20260729-19u
 
 ****
 
 ## Reviewed.Content
 
-- [DF] `Reviewed.Content` is the property that content's exact wording was explicitly approved by the user through `User.Attention` — distinct from `Touched.Authority`, which requires only grounding to a user-turn support set ^c20260723-3u
-- [DC] review implies touch: the approval act is itself a user turn entering the line's `Chat.Support.Set` — there is no untouched-reviewed content ^c20260723-3u
-- [DC] it refines `Touched.Surface.Index` into a three-rung ladder — untouched → touched-unreviewed (the `Index.Agendix`) → touched-reviewed (the `Agentos.Index`) — the review boundary is where a member is gated ^c20260723-3u
-- [DC] `Verbatim.User.Gated` is currently the sole review mechanism: "review" names the property, the gate names the mechanism that evidences it ^c20260723-3u
+- [DF] `Reviewed.Content` is the protocol state established when materially equivalent content is presented and later explicitly approved by the user ^c20260729-25u
+- [CT] the state records protocol completion, not whether the user read, understood, remembered, or evaluated the content ^c20260729-25u
+- [CT] review is distinct from `Touched.Authority`, which derives from the content's `Support.Set` rather than approval of its wording ^c20260729-25u
+- [DC] review implies touch when the approval is a qualifying authority-surface edition that enters the content's support set ^c20260729-25u
+- [DC] a qualifying approval `User.Turn` in `Chat.Support.Set` is the current realization of that review evidence ^c20260729-25u
+- [CT] review does not certify factual truth or support strength ^c20260729-25u
+- [DC] review partitions grounded touched-index content into touched-unreviewed and touched-reviewed strata; an ungrounded live line remains index content under `Index.Presumption` rather than acquiring touched authority ^c20260729-25u
+- [DC] `Verbatim.User.Gated` is presently the sole mechanism that produces `Reviewed.Content` ^c20260729-25u
 
 ****
 
@@ -799,34 +839,49 @@
 
 ****
 
+## Index.Edition.Turn
+
+- [DF] `Index.Edition.Turn` is an assistant turn that presents a proposed index edition for explicit user approval ^c20260729-22u
+- [PR] its presentation helps the user distinguish added, modified, removed, and unchanged content before approving ^c20260729-22u
+- [DC] it identifies the landing surface, ontology target, edit operation, and `Edition.Approval.Token` ^c20260729-22u
+- [DC] a modification may present current content under `Before` and proposed content under `After · Verbatim` ^c20260729-22u
+- [DC] an addition needs only proposed content, while a removal needs only current content ^c20260729-22u
+- [FR] unchanged context may be shown when it improves interpretation and omitted when it adds noise ^c20260729-22u
+- [CT] proposed landing lines appear undecorated somewhere in the turn so materially equivalent content can be found without interpreting the presentation layout ^c20260729-22u
+- [CT] the presentation format is not gate syntax; no heading, ordering, fence language, or diff notation is required by `Line.Verbatim.Gate` ^c20260729-22u
+- [FR] agents may evolve the rendering while preserving clear targets, change distinctions, and approval commands ^c20260729-22u
+
+****
+
 ## Line.Verbatim.Gate
 
-- [DF] `Line.Verbatim.Gate` is `Verbatim.User.Gated` realized per `Index.Line` and made CPU-lintable — a gate asserting that one line's exact wording was approved by a user turn, on machine-checkable evidence ^c20260726-4u
-- [DC] the gated object is a single line's verbatim wording — not the block, not the edit event — so review authority is tracked at line granularity ^c20260726-4u
-- [DC] the claim is a `User.Gate` claim about the `Chat.Surface`: a user turn approved this exact wording ^c20260726-4u
-- [DC] its dossier is a `Chat.Support.Set` edge whose review turn is made findable by the line's `Edition.Approval.Token`, carried in `Anchor.Metadata` ^c20260726-4u
-- [DC] its checker is a `CPU.Program` verifying that `Edition.Approval.Token` evidence — deterministic, the hard end of `Program.Hardness` ^c20260726-4u
-- [DC] the check is line-local: everything needed resolves from that line's own anchor, with no block or container walk ^c20260726-4u
-- [DC] it is a standing property of the line, re-checkable anytime from the line alone; running the linter only over an edit's changed lines is a cost optimization, not the gate's nature ^c20260726-4u
-- [CT] the gate binds exact wording, so any change to it breaks the gate until re-approved — verbatim review has no other meaning ^c20260726-4u
-- [DC] gate granularity stays per-line while approval may batch: one `Edition.Approval.Token` can satisfy several lines' gates at once ^c20260726-4u
-- [DC] a satisfied gate makes the line `Reviewed.Content`; a line without token evidence carries at most edit-event approval (`Edition.Trigger.User.Gated`), the weaker tier ^c20260726-4u
-- [DC] the producer carries the structuring burden — the agent emits the verbatim line and token so the checker stays trivial (`Producer.Aids.Checker`) ^c20260726-4u
-- [DC] defined general over `Anchored.Line` and applied to `Index.Line`, so agendix, archive, and annotation lines can ride the same gate ^c20260726-4u
+- [DF] `Line.Verbatim.Gate` is the per-`Index.Line` certificate that explicit user approval followed presentation of materially equivalent line content ^c20260729-23u
+- [DC] its dossier connects the landed line, proposal turn, and approval turn through `Edition.Approval.Token` evidence in `Support.Reference.Metadata` ^c20260729-23u
+- [DC] the proposal turn must contain the token and the proposed line before a user turn explicitly approves that token ^c20260729-23u
+- [CT] the checker searches the proposal turn without requiring any `Index.Edition.Turn` presentation format ^c20260729-23u
+- [DC] the checker requires sufficient evidence that the proposed and landed lines preserve materially equivalent wording rather than byte-for-byte identity ^c20260729-23u
+- [CT] presentation differences irrelevant to attention certification do not break the gate; the checker applies a deterministic equivalence policy ^c20260729-23u
+- [DC] the gate passes when content correspondence is sufficient and token approval follows its presentation ^c20260729-23u
+- [CT] the gate certifies protocol events, not whether the user read, understood, remembered, or evaluated the line ^c20260729-23u
+- [DC] a satisfied gate gives the line the `Reviewed.Content` protocol state ^c20260729-23u
+- [CT] materially significant wording changes break the gate until equivalent content is presented and explicitly approved again ^c20260729-23u
+- [DC] one token may approve several lines while each line retains its own independently checkable gate ^c20260729-23u
+- [DC] the gate remains line-local and re-checkable from the line's own support reference ^c20260729-23u
+- [PR] format-insensitive comparison protects `User.Attention` from reapproval caused only by presentation noise ^c20260729-23u
 
 ****
 
 ## Edition.Approval.Token
 
-- [DF] `Edition.Approval.Token` is the mechanism that evidences `Verbatim.User.Gated`: the agent proposes an index edition as verbatim lines plus a copy-pasteable token, and the user approves by echoing that token on a user turn ^c20260726-1u
-- [DC] the proposed lines appear verbatim in an assistant turn — that explicitness is the contract; the token binds them, it does not carry them ^c20260726-1u
+- [DF] `Edition.Approval.Token` is the mechanism that evidences `Verbatim.User.Gated`: the agent presents materially equivalent line content plus a copy-pasteable token, and the user explicitly approves that token on a later user turn ^c20260726-1u
+- [DC] materially equivalent proposed lines appear in an assistant turn — that explicitness is the contract; the token binds them, it does not carry them ^c20260726-1u
 - [DC] the token is an opaque nonce: its identity, not its content, does the linking work ^c20260726-1u
 - [RJ] the token is not a content hash — deriving it from the edition burdens the producer for no gain, since integrity comes from locate-then-compare, not from the token itself ^c20260726-1u
 - [DC] the approving user turn is the review turn entering the line's `Chat.Support.Set`, so the token is how `Reviewed.Content` is evidenced rather than merely asserted ^c20260726-1u
-- [DC] the token lives in the line's `Anchor.Metadata` — the external `Anchory` dossier realization of the audit trail (`Index.Line`), recoverable from the landed line alone ^c20260726-1u
-- [DC] it binds three turns: a proposal turn holding the verbatim line, the approval turn echoing the token, and the file line whose anchor carries the token; resolving that anchor reaches all three ^c20260726-1u
-- [DC] the check is flexible over the conversation: the landed line must appear verbatim in some assistant turn that carries the token and precedes the approval turn — any such turn, not one canonical turn, so discussing or re-showing across turns never breaks the audit ^c20260726-1u
-- [CT] verbatim here excludes the trailing anchor — the proposal shows a placeholder, the landed line carries the minted anchor, and only the content between is compared ^c20260726-1u
+- [DC] the token lives in the line's `Support.Reference.Metadata` — the current external Anchory dossier realization of the audit trail, recoverable from the landed line alone ^c20260726-1u
+- [DC] it binds a proposal turn holding materially equivalent line content, the later approval turn carrying the explicit approval command, and the file line whose support reference carries the token; resolving that reference reaches all three ^c20260726-1u
+- [DC] the check is flexible over the conversation: materially equivalent landed content may appear in any assistant turn that carries the token and precedes the explicit approval turn, so discussing or re-showing across turns does not break the audit ^c20260726-1u
+- [CT] material comparison excludes trailing support references; the proposal may show a placeholder while the landed line carries the minted reference ^c20260726-1u
 - [DC] the agent mints a fresh token when the edition's wording changes and reuses it while the wording holds, so every turn bearing a token carries the same edition — the discipline that keeps the flexible check unambiguous without encoding content in the token ^c20260726-1u
 - [DC] the token rides `User.Command::Approve` as its Explicit arg: `::approve <token>` is the canonical form, making one user turn both the workflow transition and the review evidence, with the agent pre-filling the token under the resolved copy-pasteable rendering ^c20260726-1u
 - [DC] the token is optional and its presence is the upgrade — a bare `::approve` (contextual foreground target) stays edit-event approval (`Edition.Trigger.User.Gated`), while `::approve <token>` binds the reviewed wording and yields `Reviewed.Content` ^c20260726-1u
@@ -835,15 +890,16 @@
 
 ## Touched.Support.Network
 
-- [DF] `Touched.Support.Network` is the network relating anchored statements across all touched surfaces to their chat evidence — edges of the form `Support.Set` ↔ `Anchor.Metadata` ↔ `Anchored.Line` ^c20260716-21u ^c20260716-23u
-- [DC] two surfaces meet at the edge: the `Chat.Surface` holds the turns, the anchored surface holds the line; the anchory between them can carry metadata ^c20260716-22u
-- [DC] `Anchored.Line` is the general node: an `Index.Line` is one case — agendix, archive, and annotation lines ride the same edge shape ^c20260716-21u
-- [DC] metadata is free at this level: optional and implementation-defined — hint, explanation, whatever the integration needs; the bare edge `Support.Set` ↔ `Anchored.Line` is valid, the line itself explaining the relationship ^c20260716-21u ^c20260716-22u
-- [DC] it is a dynamic system: nodes and edges are created and eliminated as both sides evolve — the index is a view over the `Chat.Surface` contextualized by its current semantics ^c20260716-19u
-- [DC] the surface holds the live cut — utility for the current model; git holds the network's history; the `Chat.Surface` holds the invariant turns ^c20260716-19u
-- [DC] a turn's grounding history is traced by following the edit history of the anchors and the index — no history log on the surface ^c20260716-20u
-- [DC] reinterpretation mints a new anchor rather than amending — new meaning is a new anchor, generalizing the wrong-date doctrine ^c20260716-19u
-- [PR] `Chat.Support.Set` is the local view: one node's edge bundle; the network is the global object the sets compose ^c20260716-20u
+- [DF] `Touched.Support.Network` is the network relating `Index.Line`s across touched index surfaces to supporting data on `Touch.Authority.Surface` instances ^c20260729-20u
+- [DC] its edges have the form `Support.Set` ↔ `Support.Reference` ↔ `Index.Line` ^c20260729-20u
+- [DF] `Support.Reference` is the abstract link connecting an `Index.Line` to its `Support.Set` ^c20260729-20u
+- [CT] `Support.Reference.Metadata` may describe that link but is not the link itself ^c20260729-20u
+- [DC] an authority surface holds the first-order touched data while an index surface holds its grounded line ^c20260729-20u
+- [DC] the network is dynamic: nodes and edges change as authority surfaces and their grounded projections evolve ^c20260729-20u
+- [DC] touched surfaces hold the live cut, source surfaces preserve their evidence, and surface history preserves prior network states ^c20260729-20u
+- [DC] reinterpretation creates a new `Support.Reference` because a new support meaning is a new network edge ^c20260729-20u
+- [PR] `Support.Set` is one line's local evidence view; `Touched.Support.Network` is the global object those sets compose ^c20260729-20u
+- [DC] `Anchory.Anchor` and its Anchory record metadata are the current realizations of `Support.Reference` and `Support.Reference.Metadata` ^c20260729-20u
 
 ### meta
 
@@ -851,37 +907,68 @@
 
 ****
 
-## Demoted.Anchored.Line
+## Live.Index.Line
 
-- [DF] a `Demoted.Anchored.Line` is a demoted network edge: the anchored line, with its `Support.Set` and `Anchor.Metadata`, existed in some version of `Touched.Support.Network` and exists in none now — the relation demotes as one ^c20260716-30u ^c20260716-31u
-- [DF] an `Index.Demoted.Turn` is a turn with no live edge left ^c20260716-27u ^c20260716-30u
-- [CT] distinct from unindexed: past edges are the witness ^c20260716-26u ^c20260716-27u
-- [DC] demotion is evidence-based and computed: git holds every surface version — presence in history, absence in the live cut; no surface is constrained by it and none is required for it ^c20260716-28u ^c20260716-29u
-- [DC] the nature of a demotion is unknown by design: the edge existed and now it does not — no stored account; a turn rejoins by a fresh edge ^c20260716-25u ^c20260716-27u
-- [RJ] archive surfaces, frozen drift lines, maintained drift explanations as demotion machinery — git and the chat already hold the full context ^c20260716-25u ^c20260716-27u
+- [DF] `Live.Index.Line` is an `Index.Line` present in the current live cut of a `Touched.Surface.Index` ^c20260729-27u
+- [CT] only a live index line conditions current reasoning through `Touched.Authority` or `Index.Presumption` ^c20260729-27u
+- [DC] a `Grounded.Index.Line` carries touched authority while an `Ungrounded.Index.Line` carries index presumption ^c20260729-27u
+- [DC] conflict involving a live line becomes a `Point.Of.Interest` while the line retains its current standing ^c20260729-27u
+- [FR] gated reconciliation may keep, ground, modify, add, replace, remove, reorganize, or leave the relevant index material unresolved ^c20260729-27u
+- [CT] demotion is only one possible reconciliation result ^c20260729-27u
+
+****
+
+## Demoted.Index.Line
+
+- [DF] `Demoted.Index.Line` is a historical `Index.Line` whose live standing was overruled by later `Touched.Data` and retired through gated reconciliation ^c20260729-27u
+- [CT] an overrule POI does not demote the line while it remains part of the live index ^c20260729-27u
+- [CT] demotion changes index participation, not the touched status of supporting source data ^c20260729-27u
+- [DC] surface history preserves the former line, its support state, and the later index edition that displaced it ^c20260729-27u
+- [PR] demoted lines trace evolution of the indexed model without acting as current guidance ^c20260729-27u
+- [CT] historical recoverability does not restore `Index.Presumption` or live standing ^c20260729-27u
 
 ****
 
 ## Index.Line
 
-- [DF] `Index.Line` is the atom of the `Touched.Surface.Index`: one statement, grounded to a `Chat.Support.Set` by its trailing anchor ^c20260716-4u
-- [CT] one line, one fact — atomic and reorderable, surviving on its own (`Kernel.Writing` granularity) ^c20260716-4u
-- [DC] the line is the unit of grounding, approval, and audit: gates, linters, and drift checks run per line ^c20260716-4u
-- [DC] a line with its anchor in place is a `Grounded.Line`; one still missing it is an `Ungrounded.Line` — a legacy backlog, not a licensed state ^c20260716-33u ^c20260717-0u
-- [DC] lines carry a `Line.Type` classifying their act ^c20260716-4u
-- [EX] on a `Verbatim.User.Gated` surface, each line's support set holds a `Turn.Type::Project.Index.Gate` turn ^c20260716-4u ^c20260716-10u
-- [DC] beyond grounding, a landed line's `Chat.Support.Set` holds at least one approval turn — a member carrying an approval `Turn.Type` (`semantic.approval.turn` or `tokenized.approval.turn`); an anchor with only base support turns is review-debt, not a licensed state ^c20260726-9u
-- [PR] everything above the line is organization — blocks, surfaces, attachment points; everything below it is evidence — anchors, support sets, turns ^c20260716-4u
+- [DF] `Index.Line` is the atom of `Touched.Surface.Index`: one statement whose support standing is evaluated through its `Support.Reference` ^c20260729-20u
+- [CT] an `Index.Line` is interpreted within its containing `Index.Block`; block membership supplies context the line need not repeat ^c20260729-20u
+- [PR] lines within a block aim for semantic orthogonality: each contributes a distinct dimension with minimal overlap among sibling lines ^c20260729-20u
+- [CT] a line may be fully intelligible by itself, but standalone completeness is not required ^c20260729-20u
+- [DC] the line is the unit of grounding, approval, audit, and drift checking ^c20260729-20u
+- [DF] `Grounded.Index.Line` is an `Index.Line` whose support reference resolves to a nonempty `Support.Set` linking it to `Touched.Data` ^c20260729-20u
+- [DF] `Ungrounded.Index.Line` is a live `Index.Line` whose touched-data support is missing or unresolvable ^c20260729-20u
+- [DC] an ungrounded line remains index content and carries `Index.Presumption`; missing grounding is debt, not a deletion trigger ^c20260729-20u
+- [DC] each line carries a `Line.Type` classifying its act ^c20260729-20u
+- [CT] approval is a member-surface invariant rather than a requirement for `Index.Line` membership itself ^c20260729-20u
+- [EX] on a `Verbatim.User.Gated` surface, the support set includes a qualifying approval `User.Turn` through the current `Chat.Support.Set` specialization ^c20260729-20u
+- [DC] the current Markdown implementation materializes the line's `Support.Reference` as a trailing `Anchory.Anchor` ^c20260729-20u
+- [PR] support references, support sets, and authority data ground the line without replacing the semantic context supplied by its block ^c20260729-20u
+
+****
+
+## Index.Presumption
+
+- [DF] `Index.Presumption` is the defeasible decision weight carried by a live `Ungrounded.Index.Line` because it occupies a gated index surface ^c20260729-26u
+- [PR] gated placement makes the line likely to reflect prior user interaction even when its touched-data support is missing ^c20260729-26u
+- [CT] index presumption is not `Touched.Authority` and does not certify truth, consistency, or currentness ^c20260729-26u
+- [DC] it conditions `Open.Inference` unless stronger applicable evidence overrules it ^c20260729-26u
+- [CT] the agent must reason about its applicability rather than obeying it mechanically ^c20260729-26u
+- [CT] missing grounding is debt, not a deletion or demotion trigger ^c20260729-26u
+- [DC] conflict between index presumption and applicable `Touched.Data` becomes a `Point.Of.Interest` ^c20260729-26u
+- [DC] resolving that conflict on the live index is a separate gated reconciliation action ^c20260729-26u
 
 ****
 
 ## User.Attention
 
-- [DF] `User.Attention` is the scarce resource of the hugentic system: what the user can actually read, judge, and approve ^c20260716-6u
-- [PR] the system economizes it deliberately — surfaces are designed by how much of it they spend ^c20260716-6u
-- [DC] `Verbatim.User.Gated` spends it on purpose — that spend is what buys stability; the `Index.Agendix` scales precisely because it spends none ^c20260716-6u ^c20260716-10u
-- [DC] analogous to attention in LLMs: the limited context the human can condition on — "we must make Y pass through the `User.Attention`" ^c20260716-6u
-- [EX] spend it on the `Project.Index`; offload everything else to agent-driven surfaces ^c20260716-6u
+- [DF] `User.Attention` is the scarce human capacity that a Hugentic workflow may request but cannot directly observe ^c20260729-24u
+- [DC] a workflow creates an attention opportunity by presenting bounded material and requiring an explicit user response ^c20260729-24u
+- [CT] protocol evidence may certify presentation and response, never that the user read, understood, remembered, or evaluated the material ^c20260729-24u
+- [PR] Hugentic workflows must economize `User.Attention` as a scarce resource ^c20260729-24u
+- [EX] format-insensitive verbatim comparison avoids additional approval checkpoints for immaterial presentation differences ^c20260729-24u
+- [DC] `Verbatim.User.Gated` allocates an explicit attention checkpoint before wording lands on a gated surface ^c20260729-24u
+- [EX] `Index.Agendix` avoids per-line attention checkpoints by remaining unreviewed and grounding its content through provenance ^c20260729-24u
 
 ****
 

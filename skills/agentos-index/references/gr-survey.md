@@ -6,6 +6,8 @@ Aliases: `--gr-scout`, `--gr-scan`, `--gr-linker` all call this module.
 
 This module NEVER writes index or appendix surfaces. Its only outputs are anchors in the register (minting is free) and the `Gr.Req` live note. Landing is the reviewer's job (`references/gr-review.md`), gated per entry.
 
+The survey locates `Touched.Data` on the current chat `Touch.Authority.Surface` realization and proposes one resolvable `Support.Set` per target.
+
 Engine: `references/back-link.md` (archaeology) and `references/link.md` (edge linking) are the primitives this module drives — load both.
 
 ## Inputs
@@ -17,8 +19,8 @@ Engine: `references/back-link.md` (archaeology) and `references/link.md` (edge l
 
 1. **Baseline.** `agentos index linter --depot <depot> --coverage all --scope <scope> --json` — record the exact command plus the line and block coverage meters in `Gr.Abstract` (coverage before); use `--coverage line` when a campaign deliberately tracks only inline anchors.
 2. **Target selection.** Default selector: `agentos index blocks --depot <depot> --sort gr-density --scope <scope> --json` — the worklist head (zero-density blocks) is the grounding queue. Worked block by block per `back-link.md`'s pipeline (git-date → session tiers → user turn → mint-with-echo). Pick the route per block first:
-   - user-originated wording → hunt the topical user turn (the statement itself)
-   - agent-drafted wording the user gated through (most index blocks) → the **approval turn is the primary route, not a fallback**: date the block's landing commit, find the user's acceptance turn — the "write"/"apply"/"ok" after the verbatim proposal — and mint there (`Grounding.Hugentic.Authority` appendix). Do not burn the pass hunting for a topical turn that never existed.
+   - user-originated wording → hunt the qualifying topical user turn
+   - agent-drafted wording the user gated through → the qualifying approval or correction turn is the primary route, not a fallback; do not hunt for a topical statement that never existed
 3. **Entry per target** in the `Gr.Set`:
    - evidence found → mint (`chatlas anchory register`, echo-verified), entry at `status: proposed` with anchor, hint, why, landing form (inline best pointers trailing on the lines the turn specifically touched — per `Index.Line` grounding, an anchor is the line's best known evidence place, so a block-approval turn may stamp lines as the fallback); approval-turn mints say so in the hint, and the hint states what the approval covered (a whole block, one line's rewrite)
    - no honest evidence on either route → entry at `status: ambiguous` with what was searched and what is missing — never a weak link
@@ -27,7 +29,7 @@ Engine: `references/back-link.md` (archaeology) and `references/link.md` (edge l
 
 ## Discipline
 
-- anchors target USER turns only (`Grounding.Hugentic.Authority`); the reviewer's linter pass will mechanically verify every landing — mint accordingly
+- the current Chatlas specialization registers qualifying user turns only; user authorship alone does not establish subject-relevant touch
 - one anchor may serve several entries when they ground on the same neighborhood
 - mint after a target firms up, not speculatively; list any orphan mints in `Gr.Log`
 - the module is resumable: re-running over the same scope extends the existing `Gr.Req` rather than forking a second one

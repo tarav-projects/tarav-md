@@ -41,7 +41,7 @@
 - concrete evidence: user instructions, inspected codebase state, active session artifacts, stable project surfaces, `Chat.Surface` content (especially user turns)
 - a summary is not `Hard.Evidence` — without a link to the evidence it stands on, it is low-confidence (`We.Distrust.Summaries`)
 - when evidence and assumption conflict, evidence wins
-- [DC] anchors make the descent mechanical — an anchored line names its evidence path into the `Chat.Surface`, and the `Touched.Surface.Index` is the computed set of claims that survive it ^c20260719-2u
+- [DC] references make evidence descent mechanical: an `Index.Line` resolves through its `Support.Set` to touched data on the referenced `Touch.Authority.Surface` ^c20260729-21u
 
 ****
 

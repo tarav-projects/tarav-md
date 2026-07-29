@@ -2,6 +2,23 @@
 
 ****
 
+## Product.Design.Session
+
+- [DF] `Target.Product` is the intended result that gives design work its purpose ^c20260729-11u
+- [CT] a `Target.Product` is identified by its intended outcome rather than by one required artifact kind ^c20260729-11u
+- [EX] a design, system, artifact, surface edition, implementation, or decision may each be a `Target.Product` ^c20260729-11u
+- [DF] `Product.Design.Session` is an alignment session organized around advancing a `Target.Product` ^c20260729-11u
+- [DC] `What.Design`, `How.Design`, and `Impl.Exec` are general concerns available within the session ^c20260729-11u
+- [CT] those concerns are not a mandatory three-step pipeline ^c20260729-11u
+- [DC] a workflow exposes only the concerns that remain unresolved for its product ^c20260729-11u
+- [DC] a concern may already be resolved by `Touched.Data`, a skill contract, or another stable surface ^c20260729-11u
+- [FR] resolved concerns may remain implicit while the workflow advances through the others ^c20260729-11u
+- [DC] reconciliation may reopen an earlier concern when later work exposes a design gap ^c20260729-11u
+- [PR] the concerns form an abstraction gradient without imposing a rigid execution sequence ^c20260729-11u
+- [DC] `Touched.Decision.Cycle` governs decisions inside every exposed concern ^c20260729-11u
+
+****
+
 ## What.Design.Session
 
 - `What.Design.Session` is a scoped human-agent convergence surface for design work — the `What.Design` specialization of `Alignment.Session`, run through `Alignment.Loop::What`
@@ -93,10 +110,12 @@
 
 ## User.Model.Space
 
-- [DF] `User.Model.Space` is a `QA.Space` about the user
-- [DC] it models what the system knows about the user: what they said, wanted, rejected, approved, left open, or asked to process
-- [CT] `User.Model.Space` is evidence-scoped; user claims belong there only to the extent that a surface grounds them
-- [PR] growing `Touched.Space` improves the user model because more of it is backed by user-grounded interaction
+- [DF] `User.Model.Space` is a `QA.Space` about the user ^c20260729-9u
+- [DC] it models what the system knows about what the user said, wanted, rejected, approved, left open, or delegated ^c20260729-9u
+- [CT] its claims are evidence-scoped and belong only to the extent that a touched surface grounds them ^c20260729-9u
+- [PR] `Hugentic.Chat.Surface` is its natural placement because repeated dialogue records changing judgment and context ^c20260729-9u
+- [CT] non-chat `User.Touch` may also condition the model when its provenance is available ^c20260729-9u
+- [PR] growing `Touched.Space` improves the user model by increasing its grounded interaction evidence ^c20260729-9u
 
 ****
 
@@ -128,13 +147,37 @@
 
 ## User.Touched
 
-- [DF] `User.Touched` is a property of a fact produced by a user-gated hugentic process
-- [DC] it carries evidence of user-agent collaboration, not agent ONLY invention
-- [DC] the agent may construct and tag the fact; the user gates it, so authorship is not the touch boundary
-- [CT] touch is general over stated, discussed, approved, corrected, rejected, co-drafted, or explicitly delegated material
-- [DC] it is a cross-surface predicate; the index is a `User.Touched` surface, and the `Chat.Surface` is another
-- [CT] `User.Touched` separates `Touched.Space` from `Untouched.Space`; it does not decide whether a region is open, constrained, or fixed
-- [DC] the `Touched.Surface.Index` is the computed enumeration of this predicate — the set of touched things across all surfaces, per object, never stored ^c20260719-2u
+- [DF] `User.Touched` is the property of data carrying evidence of `User.Touch` ^c20260729-8u
+- [DF] `User.Touch` is an event in which the user engages a subject, providing the primitive evidence that the subject entered `Touched.Space` ^c20260729-8u
+- [CT] the system does not observe `User.Touch` directly; it reaches touch only through its materialization on a `Touch.Authority.Surface` ^c20260729-18u
+- [CT] touch is general over stated, discussed, approved, corrected, rejected, co-drafted, or explicitly delegated material ^c20260729-8u
+- [DC] authorship is not the touch boundary: an agent may construct the data while its touch comes from user evidence ^c20260729-8u
+- [CT] `User.Touched` separates `Touched.Space` from `Untouched.Space`; it does not decide whether a region is open, constrained, or fixed ^c20260729-8u
+- [DC] `User.Touched` is derived per datum from touch provenance rather than stored as membership in a surface category ^c20260729-20u
+
+****
+
+## Touch.Authority.Surface
+
+- [DF] `Touch.Authority.Surface` is a registered surface that serves as an inbox for direct `Touched.Data` ^c20260729-18u
+- [DF] a qualifying edition is a change that the surface recognizes as materializing `User.Touch` ^c20260729-18u
+- [CT] the system observes qualifying surface editions, not the underlying `User.Touch` itself ^c20260729-18u
+- [DC] data materialized by a qualifying edition is considered first-order `Touched.Data` by default ^c20260729-18u
+- [CT] first-order touch classification is defeasible: later evidence may disqualify the edition or exclude particular data from its touched extent ^c20260729-18u
+- [DC] each `Touch.Authority.Surface` defines which editions qualify and which data within them was touched ^c20260729-18u
+- [CT] registration does not make every edition touched; a nonqualifying edition carries no direct touch ^c20260729-18u
+- [CT] disqualification concerns touch provenance; factual error, staleness, or contradiction alone does not mean the data was never touched ^c20260729-18u
+- [DC] a qualifying `User.Turn` is presently the only registered realization of `Touch.Authority.Surface` ^c20260729-18u
+- [PR] `Chat.Surface` is the natural container and context surface for that realization ^c20260729-18u
+
+****
+
+## Touched.Data
+
+- [DF] `Touched.Data` is data whose provenance reaches `User.Touch` through a qualifying `Touch.Authority.Surface` edition or through grounding ^c20260729-18u
+- [DC] data materialized on the authority surface has defeasible first-order provenance; a grounded projection carries second-order provenance ^c20260729-18u
+- [CT] touch provenance does not certify factual truth, internal consistency, or currentness ^c20260729-8u
+- [PR] touched data conditions agent action according to what its evidence supports ^c20260729-8u
 
 ****
 
@@ -167,6 +210,19 @@
 
 ****
 
+## Open.Inference
+
+- [DF] `Open.Inference` is an agent conclusion or decision made where applicable `Touched.Data` leaves the answer unresolved ^c20260729-26u
+- [CT] an answer may remain unresolved because touched data is absent, incomplete, ambiguous, or contradictory ^c20260729-26u
+- [DC] the agent evaluates provenance, applicability, currentness, support strength, and consequences before selecting an answer ^c20260729-26u
+- [DC] open inference selects a coherent provisional action within the answer region left available by touched constraints ^c20260729-26u
+- [CT] its conclusion carries no `Touched.Authority` of its own ^c20260729-26u
+- [CT] it does not silently rewrite or discard touched positions that remain unresolved ^c20260729-26u
+- [FR] the agent may act on open inference without waiting for additional `User.Touch` ^c20260729-26u
+- [CT] changing a gated touched surface remains a separate reconciliation action even when open inference permits other work to proceed ^c20260729-26u
+
+****
+
 ## Constrained.Space
 
 - [DF] `Constrained.Space` is the region of a `QA.Space` where possible answers have been narrowed below total freedom
@@ -186,11 +242,27 @@
 
 ## Touched.Authority
 
-- [DF] `Touched.Authority` is the rule that content's authority flows from its grounding, not from its writer — agent-written material carries whatever its evidence supports ^c20260711-6u
-- the gradient: **untouched** — agent-generated, user-untouched, no grounding: zero authority of its own, rewritable only within `Open.Space` — the complement of the span of grounded constraints, never against them; **grounded** — linked to a `User.Turn`: second-order authority through the link, and rewriting must answer to that evidence; **`User.Turn`** — the grounding itself: the user's touch, first-order authority ^c20260711-6u
-- lower tiers are bound by the span of the higher ones: untouched content moves in what grounded statements leave open; grounded content moves in what its `User.Turn`s leave open ^c20260711-6u
-- linkability fences by surface, not by gradient: stable surfaces link only into touched surfaces — grounded content on an untouched surface may be authoritative yet stays unlinkable-into ^c20260711-6u
-- no authority status is stored — authority is read from provenance on the surface: types, anchors, the gate trail ^c20260711-6u
+- [DF] `Touched.Authority` is the precedence rule by which `Touched.Data` conditions `Open.Inference` according to its provenance and meaning ^c20260729-8u
+- [CT] touched authority is relative to `Open.Inference`; it is not a certificate of truth ^c20260729-8u
+- [CT] touched data may be incomplete, stale, false, or mutually contradictory ^c20260729-8u
+- [CT] an agent may not silently replace coherent touched data with its own `Open.Inference` ^c20260729-8u
+- [CT] an agent must not blindly follow touched data whose applicable claims are incoherent ^c20260729-8u
+- [DC] every `Touched.Surface` maintains a coherent live projection; detected incoherence is a `Point.Of.Interest` ^c20260729-8u
+- [PR] resolution descends through provenance and may create new `User.Touch` while preserving the contradictory history ^c20260729-8u
+- [DC] authority status is derived from provenance on the surface rather than stored ^c20260729-8u
+
+****
+
+## Touched.Decision.Cycle
+
+- [DF] `Touched.Decision.Cycle` is the decision discipline repeated within product design and realization ^c20260729-11u
+- [DC] contextualization loads the `Touched.Data` relevant to the active decision ^c20260729-11u
+- [DC] incoherent touched constraints become `Point.Of.Interest` instances before they are treated as guidance ^c20260729-11u
+- [CT] coherent touched constraints condition the valid answer region ^c20260729-11u
+- [FR] regions not determined by touched constraints are completed through `Open.Inference` ^c20260729-11u
+- [DC] action advances the current `Target.Product` ^c20260729-11u
+- [DC] reconciliation compares the changed product with its touched design and adjacent surfaces ^c20260729-11u
+- [PR] reconciliation may expose another decision and begin a nested cycle ^c20260729-11u
 
 ****
 
@@ -376,11 +448,14 @@
 
 ## Alignment.Loop.Gradient
 
-- `Alignment.Loop.Gradient` orders the three `Alignment.Loop` phases by the shape-distance between their staging state and the `Stable.Surface` they target
-- all three are non-`Stable.Surface` staging that lands on a `Stable.Surface`; the route and timing are not fixed
-- `:What` has low shape-distance — its state is already nearly index-shaped, so little translation is needed
-- `:How`/`:Exec` have high shape-distance — they target code and runnable surfaces their state is not shaped like; closing that distance is the convergence work
-- flow is bidirectional — content can also be promoted up-gradient, a `:How` insight landing in the index
+- [DF] `Alignment.Loop.Gradient` orders `What.Design`, `How.Design`, and `Impl.Exec` by their abstraction and distance from concrete realization ^c20260729-11u
+- [CT] the ordering is not a mandatory workflow sequence; a `Product.Design.Session` may expose any subset of the concerns ^c20260729-11u
+- [DC] concerns already resolved by touched data, skill contracts, or stable surfaces remain implicit ^c20260729-11u
+- [CT] every exposed loop is non-stable staging that advances a `Target.Product` ^c20260729-11u
+- [DC] `What.Design` works closest to the abstract ontology ^c20260729-11u
+- [DC] `How.Design` contextualizes that design against implementation concerns and plans a path ^c20260729-11u
+- [DC] `Impl.Exec` works closest to concrete implementation surfaces ^c20260729-11u
+- [FR] movement is bidirectional; later concerns may reopen earlier design or land insights into the `Touched.Index` ^c20260729-11u
 
 ****
 

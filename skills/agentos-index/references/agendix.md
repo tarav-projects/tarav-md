@@ -4,9 +4,9 @@ The knowledge of the `Index.Agendix` surface: what it is, what may enter it, and
 
 This module is a `Workflow.Neutral.Module`: it runs no workflow — its rules bind whenever material lands on the agendix, whichever module has control. The capture workflow that harvests chat content lives in `references/capture.md`; `--agendix` runs that workflow with the agendix as preset destination.
 
-The agendix is the agentic path of the same alignment writing the index runs hugentically: same primitives — `Kernel.Line`s, `Line.Type`s, anchors, the current concept set — with the user's review gate replaced by hard provenance. On the `Capture.Gradient` it sits **touched, captured, ungated**: a user routing verdict ("send it to the agendix") triggers the pass, and the writes within it are not individually reviewed — the gate buys stability, not authority; authority lives per-line in its `Chat.Support.Set`.
+The agendix is the agentic path of the same alignment writing the index runs hugentically: same kernel primitives, but no per-line review gate. On the `Capture.Gradient` it sits **touched, captured, unreviewed**: each `Index.Line` projects `Touched.Data`, while its authority derives independently from its resolvable `Support.Set`.
 
-Authority lives in the index: `Index.Agendix`, `Writing.Friction.Reduction`, `Index.Line`, `Grounding.Hugentic.Authority`, `Chatlas.Anchory` own the concepts.
+The current realization accepts only qualifying user-turn evidence through Chatlas and Anchory. This is an implementation specialization of `Touch.Authority.Surface`, not a general restriction of the agendix model.
 
 ## The Two Surfaces, Same Primitives
 
@@ -14,15 +14,16 @@ Authority lives in the index: `Index.Agendix`, `Writing.Friction.Reduction`, `In
 |---|---|---|
 | unit | `Kernel.Line`s and `Kernel.Block`s | same — lines and candidate blocks, same forms |
 | significance gate | `Line.Type` + validation point | same — untypeable lines do not enter |
-| evidence | grounding lines / inline anchors | same — every line carries an anchor, mandatory |
+| evidence | `Support.Reference` / `Support.Set` | same — every line carries resolvable support |
 | concept set | user can mint routed concepts | primed: candidate names only, attached under routed concepts |
 | authority gate | `Edition.Trigger.User.Gated` + `Verbatim.User.Gated` | ungated, user-triggered — provenance replaces review |
 | surface | chapter files + `appendix/` | `agendix/Concept.X-agendix.md` next to `appendix/` |
 
 ## Surface Rules
 
-- the agendix holds touched but ungated material: summaries of chat discussion — a correction, a decision, a rejection, a boundary, a constraint the index does not yet carry — every line grounded by its `Chat.Support.Set` of user turns, no line's wording passed the user gate
-- assistant-grounded capture is excluded: anchors target user turns; assistant material enters only through the user turn that touched it (`Grounding.Hugentic.Authority`: accepted, corrected toward, or acted on)
+- the agendix holds touched but unreviewed material: summaries of qualifying authority-surface data that the reviewed index does not yet carry
+- in the current chat specialization, every line resolves to one or more qualifying user turns; assistant material enters only through user acceptance, correction, rejection, action, or delegation that qualifies as touch
+- preset or administrative user turns with no relevant touch do not become support merely because they are user-authored
 - every line is typed: pick the `Line.Type` first (`references/type.md`); a line that takes no type does not enter
 - every line ends with its anchor: hard provenance, no unanchored agendix lines
 - entries may group into blocks — the appendix's block forms apply; a candidate block attaches as a path-child of a routed concept (`Concept.X/Agendix/Candidate.Name`)
@@ -46,7 +47,7 @@ For candidate blocks, name the attachment path: `Target: create ## Concept.X/Age
 
 1. **Route** each entry under a routed concept — a line appends to `Concept.X/Agendix`, a candidate block attaches intact as `Concept.X/Agendix/Candidate.Name`. No routed concept → `agendix/Unassigned-agendix.md`, the homeless pool: accumulated evidence that a concept may be missing — promotion evidence, never a dump; an intact candidate block there is the strongest form of that evidence.
 2. **Fence**: type each line; drop what cannot take a type.
-3. **Anchor**: mint one anchor per line through the linking primitive (`references/link.md`) — chatlas-only session/turn resolution, `Chatlas.Anchory` record shape, composed `c<YYYYMMDD>-<N><tag>` keys.
+3. **Support**: build one `Support.Set` per line through `references/link.md`; the current implementation mints a trailing Anchory anchor over qualifying Chatlas user-turn members.
 4. **Write** `agendix/Concept.X-agendix.md` in the engaged depot, next to `appendix/` — appendix writing rules, block heading `Concept.X/Agendix`, lines appended:
 
    ```md
@@ -61,4 +62,4 @@ For candidate blocks, name the attachment path: `Target: create ## Concept.X/Age
 - no promotion from this surface: promotion and drop are user decisions on later review; the agendix only accumulates
 - the agendix does not restate index content — it holds what the index does not yet capture
 - nothing lands without a user trigger; the trigger covers the pass, the writes within it are not individually gated
-- agendix content is unreviewed, not authority-less — its lines carry `Touched.Authority` per their `Chat.Support.Set`; what they lack is the reviewed wording, so a reader treats them as freely rewritable leads, not accepted wording
+- agendix content is unreviewed, not authority-less — grounded lines carry `Touched.Authority` through their support sets; what they lack is reviewed wording, so a reader treats them as freely rewritable leads rather than accepted wording

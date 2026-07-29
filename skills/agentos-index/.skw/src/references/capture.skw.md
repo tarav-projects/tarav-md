@@ -1,6 +1,6 @@
 # agentos-index --capture
 
-> $kw: --from Agentos.Index.System --from Alignment.Mode --from Capture.Gradient --from Capture.Offer --from Edition.Approval.Token --from Edition.Trigger.User.Gated --from Grounding.Hugentic.Authority --from Hugentic.Concept --from Kernel.Writing --from Line.Verbatim.Gate --from Not.A.Wall.Of.Text --from User.Command --from User.Command.Arg --from User.Touched --from Verbatim.User.Gated --from Workflow.Neutral
+> $kw: --from Agentos.Index.System --from Alignment.Mode --from Capture.Gradient --from Capture.Offer --from Edition.Approval.Token --from Edition.Trigger.User.Gated --from Index.Edition.Turn --from Index.Presumption --from Kernel.Writing --from Line.Verbatim.Gate --from Live.Index.Line --from Not.A.Wall.Of.Text --from Open.Inference --from POI.Instance --from Support.Set --from Touch.Authority.Surface --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from User.Command --from User.Command.Arg --from Verbatim.User.Gated --from Workflow.Neutral
 > --dev-from references/index-context-assembly.skw.md
 
 Use this module when the user wants the chat's content worked into kernel writing form and landed on index surfaces — "let's capture".
@@ -9,23 +9,28 @@ This module is a workflow module: it takes control of the session and runs the c
 
 `Capture.Offer` is the same act at single-candidate scale: agent-initiated, one draft, same destination semantics. This module is the user-initiated, whole-conversation form.
 
-Authority lives in the index: `Agentos.Index.System`, `Hugentic.Concept`, `Kernel.Writing`, `Grounding.Hugentic.Authority`, `Workflow.Neutral` own the concepts.
+Load `references/touched-data.md` for authority and line standing, and `references/decision-cycle.md` for contextualize-act-reconcile. The current chat protocol supplies qualifying user turns and Chatlas support records; it does not make chat the conceptual boundary of `Touched.Index`.
+
+Operationally, capture applies `Touched.Decision.Cycle` to `Touch.Authority.Surface` editions and adjacent evidence. It distinguishes `Touched.Data`, `Support.Set`, `Live.Index.Line`, `Open.Inference`, and `POI.Instance` while producing `Kernel.Writing` for the current `Agentos.Index.System` realization.
 
 ## The Capture Loop
 
 A pass over the chat's uncaptured content, repeated until the content is exhausted or the user stops:
 
-1. **Assemble.** Load `Index.Capture.Context.Module`: the complete operational model and task-relevant knowledge categories needed to work across the touched index.
-2. **Discover.** Resolve the engaged depots and adjacent evidence surfaces before deciding what the chat adds.
-3. **Ground.** Ground both the visible conversation and relevant external evidence. What the touched index already models is out; gaps, tensions, and fresh `User.Touched` material are candidates.
-4. **Map.** Build an internal candidate map broad enough to understand the likely session, including overlap, dependencies, natural edit actions, and possible destinations.
-5. **Roadmap.** In `Interactive` mode, present the small public `Capture.Roadmap`: the likely block or edit clusters and one sentence explaining each. This first-turn orientation precedes detailed drafting.
-6. **Focus.** Select one block or small coherent cluster from the roadmap. The user may redirect, reorder, remove, or add candidates through natural conversation.
-7. **Propose + Discuss.** Codesign only the foreground cluster with the user, then present its exact typed, landing-targeted draft. The goal is to reason while preparing kernel text — convergence happens in the discussion, not at the write.
-8. **Approve.** User approval accepts the current form in chat — it is not a write. Approved material accumulates while the discussion rolls to the next cluster.
-9. **Land + Re-ground.** A separate, user-triggered act lands all or selected approved material. Keep the review loop active, re-ground against the changed touched index, update the internal candidate map, and refresh only the roadmap entries whose meaning or order changed.
+1. **Contextualize / Assemble.** Load `Index.Capture.Context.Module`, including the touched-data and decision-cycle modules.
+2. **Contextualize / Discover.** Resolve engaged depots, live line standing, authority-surface evidence, and adjacent non-touch evidence.
+3. **Contextualize / Ground.** Treat only qualifying user-turn editions as direct touched data. Follow existing support references when the digest is insufficient; preserve ungrounded live lines as `Index.Presumption`.
+4. **Contextualize / POIs.** Make gaps, contradictions, ambiguity, stale projections, and missing grounding explicit before choosing a capture move.
+5. **Act / Map.** Build an internal candidate map covering overlap, dependencies, natural edit actions, possible destinations, and POIs that may legitimately remain unresolved.
+6. **Act / Roadmap.** In `Interactive` mode, present the small public `Capture.Roadmap`: likely block or edit clusters and one sentence explaining each.
+7. **Act / Focus.** Select one block or small coherent cluster. The user may redirect, reorder, remove, or add candidates through natural conversation.
+8. **Act / Propose + Discuss.** Codesign only the foreground cluster, then present a typed, landing-targeted `Index.Edition.Turn`.
+9. **Act / Approve.** User approval records the current proposal as approved but unlanded. Approved material accumulates while review moves to the next cluster.
+10. **Reconcile / Land + Re-ground.** A separate user command lands selected approved material, then re-contextualizes against the changed live cut and support network.
 
 `Autonomous` mode performs the same preparation and internal mapping but does not present a roadmap or run the review loop; it proceeds through its agendix-only landing path.
+
+Destinations occupy different positions on `Capture.Gradient`; ontology and appendix wording remains `Verbatim.User.Gated`, while the agendix is grounded but unreviewed.
 
 ## Capture.Roadmap
 
@@ -38,13 +43,24 @@ A pass over the chat's uncaptured content, repeated until the content is exhaust
 - recommend the first focus without presenting every candidate as a full draft
 - keep the roadmap provisional: natural conversation may reshape it at any time
 
-The roadmap is not approval-ready material. Do not expose `::approve` merely because a roadmap is foregrounded; that command becomes available only after one exact draft and landing target are presented.
+The roadmap is not approval-ready material. Do not expose `::approve` merely because a roadmap is foregrounded; that command becomes available only after one concrete draft and landing target are presented.
+
+## Index.Edition.Turn
+
+An approval-ready turn optimizes the user's ability to distinguish the proposed change:
+
+- identify `Landing`, `Target`, edit operation, and `Edition.Approval.Token`
+- for a modification, show current content under `Before` and proposed content under `After · Verbatim`
+- for an addition, show the proposed content; for a removal, show the current content
+- show unchanged context only when it improves interpretation
+- place each proposed landing line undecorated somewhere in the turn
+- treat this rendering as user experience, not linter syntax; headings, order, fences, and diff notation may evolve
 
 ## User.Command Checkpoints
 
 - These checkpoints apply the skill's declared `User.Command` transitions and resolve each required `User.Command.Arg` against the foreground capture state.
-- When an approval-ready draft becomes foreground, mint a fresh opaque `Edition.Approval.Token`, show it in the same assistant turn as the exact draft, and pause with the resolved `::approve <token>` command (`::approved` equivalent). The command accepts that exact draft and never writes it.
-- The token identifies one exact proposal and may cover several verbatim lines. Reuse it while the wording and landing target hold; if either changes, invalidate it, mint a fresh token, and show the complete revised proposal again.
+- When an approval-ready draft becomes foreground, mint a fresh opaque `Edition.Approval.Token`, show it in the same assistant turn as the proposed landing content, and pause with the resolved `::approve <token>` command (`::approved` equivalent). The command approves that presented edition and never writes it.
+- The token identifies one proposal and may cover several lines. Reuse it while materially significant wording and the landing target hold; presentation-only changes do not require a new attention checkpoint.
 - Do not offer or use bare `::approve` in this workflow. If the user gives it anyway, explain that it records at most semantic edit-event approval, leave the draft approval-ready, and reprint the exact `::approve <token>` command required to satisfy `Line.Verbatim.Gate`.
 - Approval adds the resolved draft to the approved, unlanded cluster and returns the loop to **Focus**. When roadmap candidates remain, the default next move is to codesign and present the next approval-ready draft, not to pause for landing.
 - An explicit `::land [target]` (`::write` equivalent) remains valid whenever its approved target resolves clearly, including before the workflow suggests it.
@@ -62,8 +78,8 @@ Example review pause footer:
 
 ```text
 Available User.Commands:
-  ::approve idx-edition:7d2f91c4  approve the exact Background.Job proposal
-  ::approve idx-edition:3a84e6d2  approve the exact Serialized.Lane proposal
+  ::approve idx-edition:7d2f91c4  approve the presented Background.Job proposal
+  ::approve idx-edition:3a84e6d2  approve the presented Serialized.Lane proposal
 ```
 
 Example landing pause footer:
@@ -91,11 +107,11 @@ Available User.Commands:
 > --cont gate semantics per surface and the form-fit move; do not restate the
 > --cont procedures — the knowledge modules own them
 
-Landing form-fits approved material to the named surface, one rung up the `Capture.Gradient`, under that surface's own gate. Approval-ready candidates show the concrete `Landing:` file and `Target:` ontology location before the draft text; the destination can stay loose only while the discussion is still exploratory.
+Landing form-fits material to the named surface under that surface's own gate. Approval-ready candidates show the concrete `Landing`, `Target`, operation, and proposed content; the destination may remain loose only while discussion is exploratory.
 
-- **ontology / appendix** — gated (`Edition.Trigger.User.Gated`, `Verbatim.User.Gated`): a draft that already matches the surface lands as an approved forward pass through the `references/edit.md` landing procedure; a cluster approved in chat lands under one gate
-- **agendix** — ungated, user-triggered: the routing verdict is the whole trigger; material lands in kernel form per `references/agendix.md` — lines under routed concepts, candidate blocks intact as path-children — captured but ungated, promotion-ready, reported at the end
-- the grounding anchor for a landed ontology or appendix item targets its tokenized approval turn and carries the proposal/approval event refs needed by `Line.Verbatim.Gate`; the landing trigger is execution, not evidence
+- **ontology / appendix** — token approval establishes reviewed content, while a separate landing command executes the gated edit; the approval turn enters the line's support set only when it qualifies under the current chat authority protocol
+- **agendix** — one user trigger covers the pass without per-line review; each line still lands typed and grounded through a resolvable support set under a routed concept or provisional path
+- every landing updates the live cut; capture re-contextualizes afterward and reports remaining POIs without treating them as automatic edits
 
 > $kw. end
 
@@ -106,5 +122,6 @@ Landing form-fits approved material to the named surface, one rung up the `Captu
 - after approval, continue directly to the next roadmap cluster while the approved material accumulates; landing is a batch checkpoint rather than the default response to each approval
 - after a write, refresh the internal map; show only a compact roadmap delta unless the session's big picture materially changed
 - know what is approved and unlanded at any moment — the conversation itself is the record; no tracking mechanism is required
+- never silently delete, demote, or rewrite a contradictory live line; capture may propose reconciliation, while the landing gate controls the surface change
 - material not worth the full hugentic review can always take the agendix exit rather than staying stranded in chat
 - load `references/type.md` before drafting lines and `agentos-pkg/references/index-block-catalog.md` before proposing block wording

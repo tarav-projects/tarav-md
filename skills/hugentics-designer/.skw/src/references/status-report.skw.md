@@ -1,5 +1,3 @@
-# Status Report
+# Compatibility Forwarder
 
-`Status.Report` is a hugentics-level practice, not design-session-specific.
-
-Load `hugentics-workflow-status` for the full report protocol.
+Load `agentos-index/references/design/status-report.md`; this file carries no independent behavior.

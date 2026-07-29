@@ -4,6 +4,8 @@ Use this module when the caller wants deterministic diagnosis, linter findings, 
 
 `--check` and `--lint` both call this module.
 
+`Line.Verbatim.Gate` is a protocol check that economizes `User.Attention`; it is independent of touched-data authority.
+
 ## Check Model
 
 - use `agentos index linter` for deterministic index checks
@@ -18,24 +20,37 @@ Use this module when the caller wants deterministic diagnosis, linter findings, 
 - depot check: `agentos index linter --depot <depot-root>`
 - explicit surface check: `agentos index linter --index <index-path> --appendix <appendix-path>`
 - structured output when useful: add `--json`
-- line coverage check: add `--coverage line` to warn for unanchored chapter and appendix kernel lines; `--warn-unlinked` is a compatibility alias; agendix kernel lines are checked for anchors without this flag
-- block coverage check: add `--coverage block` to warn for chapter concept blocks with kernel lines missing trailing anchors; `--coverage all` enables both line and block meters
+- missing-reference POI: `Index.Linter/Line.Unlinked` warns by default for every live chapter, appendix, or agendix kernel line without a support reference; `--coverage line` adds the reference-presence meter and `--warn-unlinked` remains a compatibility alias
+- block grounding check: add `--coverage block` to report chapter concept blocks containing lines without a resolvable nonempty `Support.Set`; `--coverage all` enables the reference-presence and resolved-grounding meters
 - scoped reporting: add `--scope <path>` to filter findings, per-check counts, summaries, and coverage meters to a file or directory while checks still run over the full configured depot
 - approval evidence: add `--check line-approval` to require an approval-typed user member on each anchored line in scope
-- verbatim review: add `--check line-verbatim-gate` to verify `Line.Verbatim.Gate` tokenized approval cargo and exact proposed wording modulo the trailing anchor; a passing line is `Reviewed.Content`
+- reviewed-content gate: add `--check line-verbatim-gate` to verify tokenized approval cargo and deterministic material equivalence between presented and landed line content; a passing line is `Reviewed.Content`
+
+## Material Equivalence
+
+The checker verifies sufficient deterministic evidence of content correspondence without parsing an `Index.Edition.Turn` layout:
+
+- the proposal and approval turns must resolve and both carry the token
+- the proposal must contain the landed line after removing trailing anchors
+- Unicode-equivalent characters are normalized
+- case and whitespace differences are ignored, including indentation and wrapping
+- every other character remains significant
+
+This policy certifies presentation followed by explicit token approval. It does not certify that the user read or evaluated the content, and it does not establish `Touched.Authority`; authority derives independently from the line's `Support.Set`.
 
 ## Built-In Grounding Checks
 
-- the installed `agentos index linter` runs parser-backed `Line.Type` syntax checks (bracket form, known act codes, `[GR]` trailing anchor; `AS:` outside `agendix/` is an ERROR), `Index.Linter/Line.Unlinked` for agendix lines, and the chatlas grounding-provenance check (anchors resolve; landing turns exist; roles match the source axis)
-- `--coverage line` extends `Index.Linter/Line.Unlinked` to chapter and appendix kernel lines as a coverage meter; warnings do not change the exit code
-- `--coverage block` enables `Index.Linter/Block.Ungrounded`: a block is covered iff every kernel line carries a trailing anchor (empty blocks count covered)
+- the installed `agentos index linter` runs parser-backed `Line.Type` syntax checks (bracket form, known act codes, `[GR]` trailing anchor; `AS:` outside `agendix/` is an ERROR), default `Index.Linter/Line.Unlinked` POIs for every live line missing a reference, and the chatlas grounding-provenance check
+- `--coverage line` measures syntactic support-reference presence; it never claims that a present reference resolves
+- `--coverage block` enables `Index.Linter/Block.Ungrounded`: a block is grounded iff every kernel line has a support reference resolving to a nonempty `Support.Set` (empty blocks count grounded)
 - a missing chatlas backend renders `Index.Linter/Grounding.Provenance` as a blocked check, never a silent skip
-- `agentos anchory scan --depot <chatlas-root>/anchory --src-file <file> --regex '\^(?P<anchor>[0-9]{8}-[0-9]+)'` remains the record-level spot check for a single file
-- `Index.Linter/Line.Approval` and `Index.Linter/Line.Verbatim.Gate` are currently opt-in because legacy lines have not completed the approval-evidence campaign; their warnings are review debt, while malformed token cargo or a mismatched proposal is an error
+- `agentos anchory scan --depot <chatlas-root>/anchory --src-file <file> --regex '\^(?P<anchor>[a-z][0-9]{8}-[0-9]+[a-z]?)'` remains the record-level spot check for a single file
+- `Index.Linter/Line.Approval` and `Index.Linter/Line.Verbatim.Gate` are currently opt-in because legacy lines have not completed the approval-evidence campaign; their warnings are review debt, while malformed token cargo or materially different proposed content is an error
 
 ## Beyond The Linter
 
 - semantic lints on typed lines (contradicting `[DC]`s, violated `[CT]`s, reintroduced `[RJ]`s, overridden `[FR]`s) are agent work, not linter checks — see `references/type.md`; report findings, route fixes through `--edit`
+- an ungrounded live line is grounding debt carrying `Index.Presumption`, not disposable text; a finding does not prescribe deletion or demotion
 
 ## Post-Edit Check
 

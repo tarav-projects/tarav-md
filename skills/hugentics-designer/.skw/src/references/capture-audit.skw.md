@@ -1,5 +1,3 @@
-# Capture Audit
+# Compatibility Forwarder
 
-`Capture.Audit` is a hugentics-level practice, not design-session-specific.
-
-Load `hugentics-capture-audit` for the full audit protocol.
+Load `agentos-index/references/design/capture-audit.md`; this file carries no independent behavior.

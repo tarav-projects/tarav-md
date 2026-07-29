@@ -21,13 +21,15 @@ The Hugentic Harness is the integrated standard workflow that connects three pha
 
 Each phase has a named agent role and an operational workflow-master skill with full instructions.
 
+These are selectable design concerns, not a rigid mandatory pipeline. A workflow exposes only the unresolved What/How/Exec concerns needed for its `Product.Design.Session`; each material decision applies `Touched.Decision.Cycle`, with `Touched.Index` as the default first-line context for prior touch.
+
 This skill is workflow neutral. It maps the Hugentic subsystem without entering a specific workflow mode.
 
 ## Workflow Map
 
 `What.Design` — the caller wants scoped human-agent convergence on what to build.
 
-Act as `Main.Designer.Agent`; load `hugentics-designer`.
+Load `agentos-index --design`. `hugentics-designer` remains a compatibility entry during the broader migration.
 
 `How.Design` — the caller wants implementation design forked into an `Impl.Req`.
 
@@ -41,7 +43,7 @@ Act as `impl.executer.agent`; load `agentos-hugentics-impl --execute`.
 
 | Artifact | Defined In |
 |---|---|
-| `Alignment.Backend::Artifact::What` | `hugentics-designer` |
+| `Alignment.Backend::Artifact::What` | `agentos-index --design` (`hugentics-designer` compatibility entry during the broader migration) |
 | `Impl.Req` | `agentos-hugentics-impl` design module |
 
 ## How To Use
@@ -105,7 +107,7 @@ The concept vocabulary a design agent reasons *with*. Definitions live in the `a
 
 - **Alignment.Session** — the general alignment model; see `references/alignment-session.md`
 - **Alignment.Mode** — two-value autonomy axis (`Interactive` default / `Autonomous`) over declared `Alignment.Checkpoint`s, respected across hugentic skills; defined in `references/alignment-session.md`
-- **Index** — `agentos-index` skill, independent subsystem for durable design truth
+- **Index** — `agentos-index`, the global touched-data contextualization system and canonical product-design entry
 - **Orientation** — `agentos-pkg` skill, workflow-neutral Agentos package root
 
 ## Design Surface

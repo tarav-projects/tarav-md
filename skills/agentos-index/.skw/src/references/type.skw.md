@@ -7,7 +7,7 @@ Use this module when the caller wants line typing understood, read, or proposed:
 
 This module is `Workflow.Neutral`: it is a cited surface explaining how to make and read proper index line typing. It runs no workflow and mutates no file — typing lands on the index only through the `--edit` path and its gates.
 
-Authority lives in the index: `Line.Type`, `Line.Type.Vocabulary`, and the `Line.Type:*` blocks in `agentos-pkg/design/` own the concepts. This file is operating guidance over them.
+The index definitions of `Line.Type`, `Line.Type.Vocabulary`, and the `Line.Type:*` blocks own the vocabulary. This file is operating guidance over them.
 
 ## Syntax
 

@@ -290,17 +290,16 @@
 
 ## Verbatim.User.Gated
 
-- [DF] `Verbatim.User.Gated` is the authority gate: the user approves the exact wording before it is committed — content passes through `User.Attention` ^c20260716-5u
-- [PR] this is the gate's value: the touched index moves at user speed because the user actually saw every line land ^c20260716-5u
-- [DC] approval is per line: each line's `Chat.Support.Set` holds a `Turn.Type::Project.Index.Gate` turn — the evidence the user saw it ^c20260716-5u ^c20260716-10u
-- [DC] approving a block is approving all its lines — one user act, every line grounded to that approval turn ^c20260716-5u
-- [DC] the gate is auditable state: presence of the gate turn is CPU-lintable; correspondence of text to turn is an agent check ^c20260716-5u
-- [DC] the verbatim evidence precedes or is contained in the approval turn: the agent shows the exact line in chat, the user approves — the lint searches at-or-before the approval turn, and a miss is a linter POI for agent judgment, not a failure ^c20260716-7u
-- [PR] the gate aligns both directions: user → index carries authority; system → user shows the user every line, refreshing their model of the system bit by bit ^c20260716-7u
-- [DC] implies `Edition.Trigger.User.Gated` — gated content necessarily has a gated trigger
-- [DC] an instance of `User.Gate` — its assert composes existence + correspondence + order, the strong gate ^c20260719-15u
-- the agent proposes; the user settles — no silent rewrites or unreviewed content
-- supports `Hugentic.Alignment` — the review point is where human judgment shapes the surface
+- [DF] `Verbatim.User.Gated` is a wording gate requiring presentation of materially equivalent content and later explicit user approval before that content is committed ^c20260729-24u
+- [PR] the gate creates a deliberate `User.Attention` opportunity at the landing boundary ^c20260729-24u
+- [DC] `Line.Verbatim.Gate` is its independently checkable per-`Index.Line` realization ^c20260729-24u
+- [DC] one approval may cover several presented lines while each line retains its own gate evidence ^c20260729-24u
+- [DC] the auditable predicate composes presentation, sufficient content correspondence, approval, and event order ^c20260729-24u
+- [CT] sufficient correspondence does not require byte identity ^c20260729-24u
+- [CT] the gate certifies protocol events rather than actual user cognition ^c20260729-24u
+- [DC] it implies `Edition.Trigger.User.Gated` because explicit wording approval also approves the landing trigger ^c20260729-24u
+- [PR] the system exposes proposed content while the user explicitly controls whether it may enter the gated surface ^c20260729-24u
+- [CT] approval settles permission to land the presented wording; it does not certify factual truth ^c20260729-24u
 
 ### meta
 

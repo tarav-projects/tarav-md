@@ -2,65 +2,153 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "ea2365734aece3790f43adc15e305e8d11b65848ac1476dcf2cf2d079bd17281",
+      "output_sha256": "4c88102cd17a75d8349731e007292fd1e4c15df6fc5f33d1672cd48cf1562bf3",
       "recipes": [
         {
           "heading": "Index Operating Behavior",
           "verb": "derived",
-          "body_sha256": "1a264f345971d70f6411fbf8efe1d69e54f276888a4df73caa4495a171107497",
+          "body_sha256": "2c1c0ef93b15575a2de7dd4e5839648d0be1cfdf4f1f57228525c33340f00b81",
           "deps": {
-            "references/search.skw.md#Search Model": "d99456d67e9e34cc75808c67dc06536a3e43e47cb119d4304d5d0e948d3a780f",
+            "references/search.skw.md#Search Model": "35a6d9e8ba7764c7d6f717cc25e780cbae80f8e5f0102c70d1a4b880849393c6",
             "references/search.skw.md#Citation Behavior": "e57e94bf2adedb5f4bde5e498c1feb6342c70412564a0e8d8a1a8734a673a8a9"
           }
         }
       ]
     },
     "references/agendix.md": {
-      "output_sha256": "7c94f32843b2f046131266844fc41c2400a98d7f0b16842688d5d27b3519a216",
+      "output_sha256": "302e5bc48a31b60b3875dbd7d95ad4c4945dd325e58d8cbe5c0f39124c8f75a4",
       "recipes": []
     },
     "references/back-link.md": {
-      "output_sha256": "6f039da95a5bcf95b7b9e9f306e6a0620ad61721502cc476334b2bd9be2dcbfa",
+      "output_sha256": "28ee07e7792e6328f86957d37dbef1edcf4014e10fc083fc7de8abee5ad1906f",
       "recipes": [
         {
           "heading": "Back-Link Pipeline",
           "verb": "derived",
-          "body_sha256": "9e145100db8a6ef90b27d5b270b1d6aa31223c128847cb46345597f9d6c8e56f",
+          "body_sha256": "7b837d6821c4cefad23114d12edd95786c6f3cbac15ef1942073058d63d0e10b",
           "deps": {
-            "references/link.skw.md#Linking Pipeline": "80e9d525cb8dc9f6a8a059f9b144b4935ebbe26ca2c9296dfc0aedbf3c05d57d"
+            "references/link.skw.md#Linking Pipeline": "a48f70fa24194ca205094e1148ce6634a9c9ff11707afcc68347d013c712e32f"
           }
         }
       ]
     },
     "references/capture.md": {
-      "output_sha256": "f25774ad323ccb196d67511ac5ea276d5cff8a3a3a31034e40df791d4091d0b8",
+      "output_sha256": "449bebbc59ab1db01d6c49d14620f084b25afaba4332b1702152bfeb9a97096c",
       "recipes": [
         {
           "heading": "Landing",
           "verb": "derived",
-          "body_sha256": "7d811e83c1c7a1f6e1ee1938e5bf3b0d33071410fa776f76ceaffec67aa4a41e",
+          "body_sha256": "d9d16c71df477cc61297b72a9cc2dc0d8fcd8777b8c7151f9ea2beb68c8e79c1",
           "deps": {
-            "references/edit.skw.md#Landing Procedure": "68721fb60a0bea9fc81f3a9bcfcc688d49aeb2f5ae5c2dc515851068d93ad332",
-            "references/agendix.skw.md#Landing Form": "1bfc24ac8f38ab42bcbdcda5a297cebcb9e3b5e7b1a992e468d0d264db0554fb"
+            "references/edit.skw.md#Landing Procedure": "b9a33c89d247c893d10ca81d597e1f87fa696377fcf5fbaea2012358c467462d",
+            "references/agendix.skw.md#Landing Form": "d6922d77a486406558376d575c386b20dc931b46291ea7c737457640b7b9ae9b"
           }
         }
       ]
     },
     "references/check.md": {
-      "output_sha256": "c3088acd6c82f3993cfaeb361d01f449d0168c22d81b667c0c55c408483a81fa",
+      "output_sha256": "cd719f9a2e973198bb4b2c765b0ca8f0e2dbbb2756cfe752a9a92c4f863365cd",
       "recipes": [
         {
           "heading": "Beyond The Linter",
           "verb": "derived",
-          "body_sha256": "4b77d38d04eabdd5a8cb0ca4413ce0c4909d6974dab278de3e823311c2d82322",
+          "body_sha256": "942c693c1467cd4ad1354ca8378c52a3bd6c9db1e0920668d1cfb49cd9aa3d50",
           "deps": {
             "references/type.skw.md#Semantic Lints": "be7a92fda6aaa525d18eefe5d2389d9ebf3ea5c91e484ff17906b4d45058193c"
           }
         }
       ]
     },
+    "references/decision-cycle.md": {
+      "output_sha256": "fb2954b2fb05b9af0d0bd0f717368c5231ee878ca9edb938344639356475786b",
+      "recipes": []
+    },
+    "references/design/alignment-loop.md": {
+      "output_sha256": "3900125624b790c52c0c67741678822e801e40ac7e991ee649827423cf2677c6",
+      "recipes": []
+    },
+    "references/design/artifact.md": {
+      "output_sha256": "1f66e14b270acf32666b67aae7e70be8b711c96f2f42ad5fb93a2c1bacebd55d",
+      "recipes": []
+    },
+    "references/design/backend-artifact.md": {
+      "output_sha256": "8a749d0f00d182e457b8d94e3556f869e817280ed97fa42f2084addf7d13127f",
+      "recipes": []
+    },
+    "references/design/backend-inchat.md": {
+      "output_sha256": "be15c14d44111deb0d4a0835c95367d2dc29542bbe8ddf06346ff3f81c32886e",
+      "recipes": []
+    },
+    "references/design/capture-audit.md": {
+      "output_sha256": "9e84010c0dd2e2234e51d5e6b0858359fe9202e5db72884fa8b475599b568b91",
+      "recipes": []
+    },
+    "references/design/concept-discovery.md": {
+      "output_sha256": "310390706035947d5a4a3db881df4511445008995ee2db79b0e306238587cc9e",
+      "recipes": []
+    },
+    "references/design/consolidation-plan-example.md": {
+      "output_sha256": "f4f280aa0730f2d02a3d2fcf06ee052a5c00da8771d0ff33c78b0654f7afd4ed",
+      "recipes": []
+    },
+    "references/design/design-anti-patterns.md": {
+      "output_sha256": "f9edd1720b3fddc8394d0497c0589cf5af29716664f8778cd920c05694b25a06",
+      "recipes": []
+    },
+    "references/design/design-index.md": {
+      "output_sha256": "5557baede376b1f66ce26ae87385990f97877ca2de1b12a50767eaca74b3525e",
+      "recipes": []
+    },
+    "references/design/discussion.md": {
+      "output_sha256": "2699bd944b14d3b56adbec9607f7a6873ca2501fde55f7fe36790e033cfff186",
+      "recipes": []
+    },
+    "references/design/impl-req.md": {
+      "output_sha256": "86ced7f0055eb1bd6b7489f96b55657e600d7659a40056d46e853901d0d22969",
+      "recipes": []
+    },
+    "references/design/index-view.md": {
+      "output_sha256": "ef7506350bf665aa5e76d4af7ffd66112c664b005125f343195395f49b153d3d",
+      "recipes": []
+    },
+    "references/design/interview.md": {
+      "output_sha256": "b863bb23740131e1b4b4a0402ede7db178980c5953ce283b27a8082ff8379f2f",
+      "recipes": []
+    },
+    "references/design/session-abstract.md": {
+      "output_sha256": "1a03c94db6ea5f94e714133140f306f870b9fd67891ccf60549b83b02238df9e",
+      "recipes": []
+    },
+    "references/design/session-interruptions.md": {
+      "output_sha256": "e3b741a37868b67d6f976a0134bc41e66fc7b73dda8397972041b1a5a9862429",
+      "recipes": []
+    },
+    "references/design/session-log.md": {
+      "output_sha256": "e687b3882c2de5ef8494d3156bfde6a5986d8940d3786c67e8b2b75d4d4879a6",
+      "recipes": []
+    },
+    "references/design/session-notes.md": {
+      "output_sha256": "de994fc00efa53a0c3ee7569db8f81f16041fb0f44d0f0b02b3e05dd2a2d92e6",
+      "recipes": []
+    },
+    "references/design/status-report.md": {
+      "output_sha256": "d585de0eb4a206236bb5e2fb23337b9e3aed898b2f622a51343b4c8c8b9bb42d",
+      "recipes": []
+    },
+    "references/design/uncommitted-work.md": {
+      "output_sha256": "b8cb7ce65d63895d3f3da8ccced8bc76ec051dd84733c45f6366fd5e52ea1cdb",
+      "recipes": []
+    },
+    "references/design/writing-craft.md": {
+      "output_sha256": "68637916f2d32c51626e3d6156e0739c4448fbd61f57253bfca4df4843ee150f",
+      "recipes": []
+    },
+    "references/design.md": {
+      "output_sha256": "a8011a7d46a3653f01f5ea22f36bf02bb38f0e30bd213c25c25f160b2a45f7bc",
+      "recipes": []
+    },
     "references/edit.md": {
-      "output_sha256": "944dc9a0e8eb41a849d5da373ca147f4f0be3177ccfec315a16b8c46635de8df",
+      "output_sha256": "ff816c0caeebf7537384f9f1aa0a598045ee4dfce95e9313edb5b5620e1316b2",
       "recipes": [
         {
           "heading": "Block Independence",
@@ -73,7 +161,7 @@
       ]
     },
     "references/enrich.md": {
-      "output_sha256": "290a5c3166bb88781ee80782306405c439868225d800d0f92cd502bc6494b931",
+      "output_sha256": "958c257690b9ea157d9747d22ff2651ab22ca24ada2d8baf63b6a1f1b3443556",
       "recipes": []
     },
     "references/gr-review.md": {
@@ -81,27 +169,31 @@
       "recipes": []
     },
     "references/gr-survey.md": {
-      "output_sha256": "8e6563fad57b6376672ad4639df93ffe6a48a436ebde9df95fffc2c20669afef",
+      "output_sha256": "e1338c8c434a2afd298015a58062336442bafe365e8e4abfc9192bd14f1598b6",
       "recipes": []
     },
     "references/index-capture-context.md": {
-      "output_sha256": "2dcdfe861981c659e8f327b00959fc08a148ca37aab32baf2d3e3ffaf664ad7c",
+      "output_sha256": "9dda42999feaf8e0086e4d854a8f1fee4945c337baefae7688e5024210145c60",
       "recipes": []
     },
     "references/index-context-assembly.md": {
-      "output_sha256": "0b9f299c1874779409114ba8790bbbb0b89d32d6dba947b06b2cb3ec00b61ab2",
+      "output_sha256": "5f064c24babd16b2dc3358299f26191164ce25746ac99fb840a41e7ea757513e",
       "recipes": []
     },
     "references/link.md": {
-      "output_sha256": "1837c58286e2d2c726d3237046e594a4224af9d442563ba6c217be5d0bd9056e",
+      "output_sha256": "361f1bbbb675fd23a8d13780eb524113ad4c28bf7e14cf34c985b8d88aa0c089",
       "recipes": []
     },
     "references/search.md": {
-      "output_sha256": "74f6fbf1913e653917980f8beac591f86118ffaf2f15ce0a39a84e2195df45de",
+      "output_sha256": "974da619b1d73cf1004796a542ff7f5588a4095bcaac7e4216150343772aad79",
+      "recipes": []
+    },
+    "references/touched-data.md": {
+      "output_sha256": "c38880620a5592b1efd46491fe42b8f90e2c7c8be047efd3c929d08cfa907298",
       "recipes": []
     },
     "references/type.md": {
-      "output_sha256": "2bfc32e30c8ca91c6f8ef42c8e337e902976da65982d0f5e4fdd9fcd36ff2d8a",
+      "output_sha256": "db20c1fbf74b1d03c30054387b22a3c60024544afe3cd6fb3ab68112602b176c",
       "recipes": []
     }
   },

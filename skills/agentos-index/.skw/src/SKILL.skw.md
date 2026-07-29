@@ -1,16 +1,18 @@
 ---
 name: agentos-index
-description: "Workflow-neutral Package.Aux.Skill for the Agentos Index subsystem of agentos-pkg. USE WHEN you need index research, editing, diagnosis, testing, maintenance, or index design context."
+description: "Workflow-neutral router for the global Touched.Index system and its current Agentos.Index realization. USE WHEN you need touched-data contextualization, product design, index capture, reconciliation, research, editing, diagnosis, testing, or maintenance."
 ---
 
 # agentos-index
 
-> $kw: --from Alignment.Mode --from Alignment.Surface --from Batchy.Skill --from Capture.Offer --from Edition.Approval.Token --from Gr.Req --from Index.Agendix --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Enrichment --from Index.Line --from Index.Ontology --from Index.Skillware --from Line.Type --from Line.Type.Vocabulary --from Line.Verbatim.Gate --from Package.Aux.Skill --from Packages.Master.Agent --from Reviewed.Cite.Closure --from Reviewed.Content --from Skill.Module --from User.Attention --from User.Command --from User.Command.Arg --from User.Command.Section --from User.Command.Trigger
+> $kw: --from Agentos.Index.System --from Alignment.Mode --from Alignment.Surface --from Batchy.Skill --from Capture.Offer --from Demoted.Index.Line --from Edition.Approval.Token --from Gr.Req --from Index.Agendix --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Enrichment --from Index.Line --from Index.Ontology --from Index.Presumption --from Index.Skillware --from Line.Type --from Line.Type.Vocabulary --from Line.Verbatim.Gate --from Live.Index.Line --from Open.Inference --from Package.Aux.Skill --from Packages.Master.Agent --from POI.Instance --from Product.Design.Session --from Reviewed.Content --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from Touched.Support.Network --from User.Attention --from User.Command --from User.Command.Arg --from User.Command.Section --from User.Command.Trigger
 > --dev-from references/index-context-assembly.skw.md
 
-Workflow-neutral `Package.Aux.Skill` for the Agentos Index subsystem.
+Workflow-neutral `Package.Aux.Skill` and public router for `Touched.Index`.
 
-This skill is the public Batchy router for index work. It orients the caller to the subsystem by default and routes explicit operations such as `--search`, `--capture`, `--edit`, `--type`, `--link`, `--back-link`, `--gr-survey`, `--gr-review`, `--enrich`, and `--agendix` into named `Skill.Module`s.
+`Touched.Index` is the global system for contextualizing relevant `Touched.Data`. The Markdown `Agentos.Index.System`, trailing Anchory anchors, and Chatlas support records are its current realization, not its conceptual boundary.
+
+This skill stays small by routing explicit operations such as `--search`, `--design`, `--capture`, `--edit`, `--reconcile`, `--type`, `--link`, `--back-link`, `--gr-survey`, `--gr-review`, `--enrich`, and `--agendix` into named knowledge and workflow modules.
 
 This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
@@ -34,6 +36,25 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - help: "capture the current chat into the index: ground, draft, discuss, approve, land"
 - examples: --capture, --capture "capture the design discussion we just had", --capture --AUTO
 
+### Skill.Arg::Design
+- run a `Product.Design.Session` whose decisions are contextualized through the touched index
+- required: false
+- help: "design a target product through touched-data contextualization and explicit What/How/Exec concerns"
+- examples: --design "the Batchy skill framework", --design --artifact
+
+### Skill.Arg::Design.Scope
+- the `Target.Product` subject and boundary for `--design`
+- required: false
+- help: "what product or design result the session should advance"
+- examples: --scope "the Batchy skill framework"
+
+### Skill.Arg::Session.Backend
+- use the artifact-backed design-session backend instead of the default in-chat backend
+- required: false
+- type: switch
+- help: "persist the design session in an artifact"
+- examples: --artifact
+
 ### Skill.Arg::Edit
 - work the approved edit path for index or appendix changes
 - required: false
@@ -51,6 +72,12 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - required: false
 - help: "use the index edit path for approved changes"
 - examples: --append "add a line to Context.Hook"
+
+### Skill.Arg::Reconcile
+- compare a changed `Target.Product` with applicable touched design and route any required gated index changes
+- required: false
+- help: "reconcile implementation or surface reality with the touched index"
+- examples: --reconcile "compare the current agentos-index skill with its design"
 
 ### Skill.Arg::Check
 - run deterministic checks over index depots or explicit index surfaces
@@ -133,11 +160,11 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 - policy: index workflows mint and advertise only `::approve <token>`; a bare approval is a supported semantic approval form in the general command model but does not cross this workflow's `Line.Verbatim.Gate`
 
 #### User.Command.Arg::Token
-- the fresh `Edition.Approval.Token` printed with the exact proposal
+- the fresh `Edition.Approval.Token` printed with the proposed landing content
 - required: false
 - resolution: Explicit
 - examples: `::approve idx-edition:7d2f91c4`
-- when present, resolves the proposal it was minted for and upgrades its lines to CPU-checkable `Reviewed.Content`
+- when present, resolves the proposal it was minted for and upgrades materially equivalent landed lines to CPU-checkable `Reviewed.Content`
 
 #### User.Command.Arg::Target
 - the draft, block, line, or revision to approve
@@ -168,31 +195,42 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 
 ## Boundary
 
-- this skill is the canonical public entry surface for working with the Agentos Index system
+- this skill is the canonical public entry surface for the global `Touched.Index` system
+- it distinguishes the general authority, support, and decision model from the current Markdown/Anchory/Chatlas realization
 - it remains a `Workflow.Neutral.Skill` when no explicit arg is selected
 - it routes into named modules for concrete index operations instead of splitting those operations into separate public skills
-- later modules such as diagnosis or testing may be added without changing the public package entry surface
+- `hugentics-designer` remains a compatibility entry after its design workflow moved behind `--design`
+- `agentos-hugentics` remains available until the broader migration is complete
 
 ## What The Index Is
 
-- the index is `Index.Skillware` — an executable artifact for project knowledge
-- it is an `Alignment.Surface` between humans and agents
-- it contains `Named.Concepts` written in `Kernel.Block::Index` blocks, organized in `Index.Chapter` files under `Index.Ontology`, routed by `000-INDEX.md`, with on-demand `Index.Appendix` depth
+- `Touched.Index` curates and densely presents relevant touched data so prior alignment can condition later work
+- the authority path is `Touch.Authority.Surface` → `Touched.Data` → `Support.Set` → `Support.Reference` → `Index.Line`
+- the support sets of current and historical projections compose `Touched.Support.Network`
+- grounded `Live.Index.Line` content carries `Touched.Authority`; ungrounded live content carries weaker `Index.Presumption`
+- `Demoted.Index.Line` content is historical rather than current guidance
+- contradictory or ambiguous touched positions become `POI.Instance`s and are resolved through `Open.Inference` plus, when needed, a separate gated reconciliation
+- the current `Agentos.Index.System` realization is `Index.Skillware` and an `Alignment.Surface` between humans and agents
+- it contains `Named.Concepts` written in `Kernel.Block::Index` blocks, organized in `Index.Chapter` files under `Index.Ontology`, routed by `000-INDEX.md`, with `Index.Appendix` depth and `Index.Agendix` leads
 - the active chapter defaults to `design`; chapter files are named `NNN-<chapter>.md`
 - index work happens over engaged `Index.Depot`s; `--depot` scopes which depots are engaged and `--chapter` scopes within them
 - its lines carry `Line.Type` codes (`- [CT] ...`) classifying each line's act; untyped lines are pre-fence legacy
-- its evidence links are `Anchory.Anchor`s (composed keys, `^c<YYYYMMDD>-<N><tag>` — namespace prefix + date + counter + optional turn tag): trailing on the lines they support — grounding is a line property (`Index.Line`) — resolving through chatlas back to the chats
+- its current support references are trailing `Anchory.Anchor`s resolving through Chatlas to qualifying user-turn evidence
 - agents operate it by loading routers, concept blocks, appendix material, and references relevant to the current task
 
 ## Router Table
 
 | Situation | Module / Surface |
 |---|---|
+| When a consumer needs the general authority, support-network, line-standing, and current-realization model behind every index operation | `references/touched-data.md` |
+| When an operation makes a decision or changes a target product — contextualize touched constraints, act through the remaining open region, then reconcile changed surfaces | `references/decision-cycle.md` |
 | When the caller wants to find concepts, retrieve cited index context, inspect related blocks, discover whether appendix depth exists, understand how the index already models a topic, or ground the current visible discussion against the index; `--search`, `--research`, and `--ground` all call this module | `references/search.md` |
+| When the caller wants product design or organic design work begins; `--design` is the canonical entry and `hugentics-designer` remains a compatibility entry | `references/design.md`, then the selected module under `references/design/` |
 | When developing any managed `agentos-index` surface — load the complete common index subject universe before selecting direct dependencies, derivations, citations, or runtime-facing content | `references/index-context-assembly.md` |
 | When the user wants the chat's content captured — "let's capture": load the index-capture context module, ground the chat and adjacent evidence, present a lightweight candidate roadmap, then codesign and land small approved clusters; `--capture` calls this module, `--agendix` calls its autonomous path with the agendix preset | `references/capture.md` |
 | When a capture run needs its complete preparation context — index surface ontology, workflow-neutral writing modules, engaged-depot closure, and adjacent evidence categories — load the whole runtime module | `references/index-capture-context.md` |
 | When an index or appendix surface is being written or an approved edit needs landing — the gates, structure, naming, block quality, edit actions, drafting screens, and landing procedure that govern index writing; direct edit work (a stale line, a block revision) also starts here; `--edit`, `--write`, and `--append` all call this module | `references/edit.md` |
+| When a changed product or implementation must be compared with touched design; `--reconcile` applies the decision cycle and routes any surface mutation through the edit gate | `references/decision-cycle.md`, then `references/edit.md` when a write is needed |
 | When the caller wants deterministic diagnosis, linter findings, or post-edit validation for an index depot or explicit index/appendix surface; `--check` and `--lint` both call this module | `references/check.md` |
 | When the caller wants line typing understood, read, or proposed — the `[XX]` syntax, the `Line.Type.Vocabulary`, validation points, reading typed lines as constraints, calibration passes and their residue | `references/type.md` |
 | When material lands on the agendix or the caller needs the agendix surface understood — `agendix/` files under existing concepts, typed and anchored lines, ungated with hard provenance | `references/agendix.md` |
@@ -218,19 +256,22 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 
 An agent operating the index should:
 
+- apply `Touched.Decision.Cycle` to material decisions: contextualize, surface incoherence as POIs, act through the remaining open region, and reconcile changed products
 - search routing surfaces in the engaged `Index.Depot`s first, then load only relevant concept blocks, appendix material, or references
-- read down the `User.Attention` gradient — the reviewed block and appendix first, then the top concept's unreviewed `Index.Agendix` leads; surface agendix material as leads, never as accepted citations (`Reviewed.Cite.Closure`)
+- distinguish grounded live lines, ungrounded live lines, and demoted history; apply `Touched.Authority`, `Index.Presumption`, or no current decision weight accordingly
+- read down the `User.Attention` gradient — reviewed live blocks and appendix first, then unreviewed grounded leads and finally original authority surfaces
 - respect `--depot` as an `Index.Depot` scope; otherwise use task-relevant engaged depots
 - respect `--chapter` as an `Index.Chapter` scope inside engaged depots; default chapter is `design`
 - return context with source block citations so the caller can verify and maintain the summary
 - distinguish discovered context from inference
 - treat the prompt as a focus argument and compare the current visible discussion against the index whenever there is discussion state to ground
-- make a `Capture.Offer` when work surfaces new aligned content: propose the exact typed line(s) at the moment, with destination options (index main, appendix, agendix, decline) — never self-write
+- make a `Capture.Offer` when work surfaces new aligned content: propose typed line content and its landing operation at the moment, with destination options (index main, appendix, agendix, decline) — never self-write on a gated surface
 - use `--capture` when the user wants the chat's content worked into the index — approval in chat and landing on a surface are distinct acts
 - resolve `::approve` / `::approved` to `User.Command::Approve`, but in index workflows mint, render, and require the proposal's explicit token; if the user gives a bare approval, leave the verbatim gate unresolved and reprint the exact tokenized command; resolve `::land` / `::write` to targeted `User.Command::Land`, and `::land-all-approved` to zero-argument `User.Command::LandAllApproved`; `--write` remains a skill argument while `::write` is an in-workflow transition
 - during interactive capture, add approved drafts to the approved cluster and continue reviewing the roadmap; do not make immediate landing the default next move
 - keep command targets foregrounded; targeted commands fail closed on ambiguous targets, and `::land-all-approved` fails closed unless one foreground index workflow owns the cluster
-- use file mutation only when the user has approved an index edit
+- use file mutation only when the applicable surface gate is satisfied
+- keep action separate from index reconciliation: open inference may advance other work without silently rewriting touched positions
 - run a linter check after applying an approved index or appendix edit
 
 For delegated read-only research that protects the caller's context, use `Packages.Master.Agent` against the relevant package or packages.
@@ -239,6 +280,9 @@ For delegated read-only research that protects the caller's context, use `Packag
 
 ## Skill Modules
 
+- `references/touched-data.md` — the authority flow, support network, line standing, decision weight, and current implementation mapping
+- `references/decision-cycle.md` — contextualize-act-reconcile discipline shared by search, design, capture, implementation, and reconciliation
+- `references/design.md` — `Product.Design.Session` entry and router for the detailed move library under `references/design/`
 - `references/search.md` — routing-first search, selective loading, appendix discovery, citation behavior, and conversation-to-index grounding
 - `references/index-context-assembly.md` — the whole-file shared builder context for every managed `agentos-index` surface
 - `references/capture.md` — the capture workflow: the discussion-landing loop from chat content to index surfaces

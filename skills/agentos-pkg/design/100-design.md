@@ -135,24 +135,25 @@
 
 ## Chat.Surface
 
-- `Chat.Surface` is the surface of user/agent direct communication — the recorded conversation itself
-- it is a `Stable.Surface`, but append-only and emit-driven — a byproduct of interaction, not curation; a session is a tape, turns superseded, never edited
-- it is the largest, most complete record of a project's design — user data lands here first, before any digestion
-- `Natural.Placement` claim: SSOT of user/agent alignment evidence — what was said, accepted, surfaced, overwritten, and when
-- primary signal lives in user turns; assistant turns supply context and forensic trace ("why did the agent do that")
-- in alignment terms it holds the raw touch events: user turns are `User.Touched` surface, assistant turns are touched-adjacent — the context around the touch, not the touch itself
-- the index is a curated cache over the `Chat.Surface`, not a gate: an undigested concept is retrieved from the chats, never a reason to stall (no design-paralysis)
-- not every cycle starts with design; work may run implement-first, with digestion deferred to cold consolidation (`Index.Edit.Action`)
-- referenceable from any surface via `Anchory.Anchor`; it participates in alignment as a precedent bank — earlier exchanges inform later reasoning
-- all access is through Chatlas (`agentos-chatlas-pkg`); the project's attributed chats are `Projects.Chats`, searched by `Chat.Retrieval`
+- [DF] `Chat.Surface` is a recorded surface of conversational interaction among human and agentic participants ^c20260729-9u
+- [FR] a chat may be fully agentic and contain no `User.Touch` ^c20260729-9u
+- [DF] `Hugentic.Chat.Surface` is a `Chat.Surface` containing significant `Touched.Data` ^c20260729-9u
+- [CT] a surface does not acquire touched authority merely by being a chat ^c20260729-9u
+- [PR] `Hugentic.Chat.Surface` is the natural placement of `User.Touch` and the preferred record of Hugentic alignment ^c20260729-9u
+- [CT] user turns carry direct touch; assistant turns provide conversational context and may remain `Open.Inference` ^c20260729-9u
+- [DC] repeated Hugentic discussion makes chat the natural surface for `User.Model.Space` to evolve ^c20260729-9u
+- [PR] the index contextualizes touched chat data; undigested chat remains retrievable and never blocks agent action ^c20260729-9u
+- [CT] every chat is referenceable through `Anchory.Anchor` and accessed through Chatlas ^c20260729-9u
 
 ****
 
 ## Chat.Grounding
 
-- `Chat.Grounding` is grounding whose evidence source is the `Chat.Surface` — a block or line linked back to the user/agent interaction that touched it
-- it is the canonical source: the `Chat.Surface` holds the touch events, so index content should ultimately link there — built and maintained by `Index.Linking`
-- other sources converge toward it: drift resolves on the `Chat.Surface`, and the resolution becomes a new link
+- [DF] `Chat.Grounding` is grounding whose evidence source is a `Chat.Surface` ^c20260729-9u
+- [PR] `Hugentic.Chat.Surface` is the preferred grounding path because it carries the richest record of user-agent alignment ^c20260729-9u
+- [CT] fully agentic chat may supply context but does not establish `User.Touch` ^c20260729-9u
+- [CT] direct touch held at a non-chat surface may ground data from its own `Natural.Placement` ^c20260729-9u
+- [PR] relevant non-chat authority tends to acquire chat grounding when later Hugentic discussion contextualizes it ^c20260729-9u
 
 ****
 
@@ -160,7 +161,7 @@
 
 - `Grounding.Audit` reviews a block's line anchors against the block as currently written
 - a fundamental block change is the trigger; editorial diffs usually do not require one
-- an anchor whose turn no longer supports the current content is dropped — the edge demotes (`Demoted.Anchored.Line`); git and the anchory history keep the account
+- an anchor whose turn no longer supports the current content is dropped — the edge demotes (`Demoted.Index.Line`); git and the anchory history keep the account
 - an anchor unrelated to the line it trails is dropped: relatedness is the retention gate
 - git history provides the block diff between an anchor's insertion and the current block
 - it is part of `Index.Linking` maintenance — an index edit, user-gated like any other
@@ -177,19 +178,17 @@
 
 ## Chat.Surface.Closure
 
-- `Chat.Surface.Closure` is the principle that the system is closed over `Chat.Surface`
-- chat is the near-universal ingress: users and heterogeneous agents both work through it
-- in the limit, all meaningful information is contained in, or groundable to, the chat log
-- the append-only `Chat.Surface` is an event log; other surfaces are materialized projections of it
-- projection is not authority transfer: each projection stays SSOT of its own curated form
-- `Chat.Surface` stays SSOT of the generative record, so projections remain re-derivable and drift-checkable
-- boundary: chat is the dominant ingress, not total
-- an out-of-band edit lands with no chat event; the gap is content no anchor can support
-- closure is self-healing: discussing ungrounded material is itself the grounding act
-- the discussion emits the missing event and can become grounding evidence — an anchor on the new turns
-- grounding is therefore never blocked, only pending; the discussion must re-establish the content, not just mention it
-- closure (groundable in principle) holds at every moment; completeness (grounded now) is only the limit
-- in the limit the chat log is a sufficient generative basis: every projection is reconstructable from it
+- [DF] `Chat.Surface.Closure` is the principle that relevant system information tends toward `Chat.Surface` through interaction and digestion ^c20260729-9u
+- [PR] chat is the near-universal interaction ingress for human and agentic work ^c20260729-9u
+- [CT] closure is preferential rather than exclusive; out-of-band surfaces may carry authority before any chat event exists ^c20260729-9u
+- [PR] relevant static material tends to be discussed repeatedly and thereby acquires conversational context ^c20260729-9u
+- [CT] chat digestion contextualizes non-chat authority rather than replacing it ^c20260729-9u
+- [CT] digestion through fully agentic chat does not create `User.Touch` ^c20260729-9u
+- [DC] the append-only `Chat.Surface` preserves the generative interaction record while other surfaces preserve their curated forms ^c20260729-9u
+- [DC] projections remain re-derivable and drift-checkable through their evidence paths ^c20260729-9u
+- [DC] closure is self-healing: Hugentic discussion of insufficiently grounded material creates new touch and possible grounding evidence ^c20260729-9u
+- [FR] incomplete chat grounding never blocks agent action; it remains pending while the agent acts inside applicable `Open.Space` ^c20260729-9u
+- [PR] in the limit, chat becomes a sufficient generative basis for reconstructing relevant projections ^c20260729-9u
 
 ****
 

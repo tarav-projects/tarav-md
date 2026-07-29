@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "aebb0377ea586a418feb18fa2b8af6ea51574d0f354a57067fb0d11576d38edd",
+      "output_sha256": "29bd47ebc3a01ad4bc56da9e5d896e538e7ff51dab1f78b9ebc0d59044a4ee50",
       "recipes": [
         {
           "heading": "Alignment.Loop.Interruptions",
