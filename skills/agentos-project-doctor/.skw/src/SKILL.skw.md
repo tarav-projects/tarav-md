@@ -24,7 +24,14 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 
 ## Source Model
 
-Load `agentos-pkg` and `agentos-index` if not yet loaded.
+> $kw: --derived
+> --from @<agentos-hugentics>/SKILL.skw.md^index-ground-entry
+> --intent project the Index grounding entry into doctor orientation so diagnosis
+> --cont has touched context without a runtime skill-to-skill instruction
+
+Use package orientation plus the Hugentics Index grounding contract before diagnosis.
+
+> $kw. end
 
 ## Trigger Boundary
 

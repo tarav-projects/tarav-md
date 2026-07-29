@@ -2,14 +2,14 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "38a952a0ba65b01ba7c4fa2a5dba37feab70cd3e32120089828d0e6a2d5b7a44",
+      "output_sha256": "32fdeb9f9dbede7b5d1a03bd4f9b0c20f82fe18b155b39ba5db0b8f222cdcc42",
       "recipes": [
         {
           "heading": "What Skillware Is",
           "verb": "derived",
-          "body_sha256": "6fe9025344420f8831ed9df45d63aa97f6eb73373bfcc4fc79abcd5d5b84aeeb",
+          "body_sha256": "94de427cb5e8cd3d5b87d6c484838504118bceab4aca59fc0d6bb4abde8194dd",
           "deps": {
-            "Agentos.Skillware": "4187cdbf49b3585c5b7ebc992cf79b9fc835b7c6c46e90dcdcf8f462500cfe1e"
+            "Agentos.Skillware": "032cd19f3007794e9070b8769afbd4f3a346ba9377dac840be0111ef74827bf2"
           }
         }
       ]
@@ -52,14 +52,14 @@
       ]
     },
     "references/doctrine.md": {
-      "output_sha256": "f36515f0afdedb68f68e587ed54ae519c7f243e32b9d736107229caa6dfe2569",
+      "output_sha256": "c9cc5140234a35305cffa95bc9ce11815be9a544b4eb730d01cf4cf2f92fe4a9",
       "recipes": [
         {
           "heading": "The Model",
           "verb": "derived",
-          "body_sha256": "121808f3df0d84a37b6da5893ace4bd716647c33222dcaebb01bdf2d1c9d8b72",
+          "body_sha256": "96167aeaa8631f791fbe3dad44e52b09eaa67d3c4aaac8bcf68ed4ebcabf9fab",
           "deps": {
-            "Agentos.Skillware": "4187cdbf49b3585c5b7ebc992cf79b9fc835b7c6c46e90dcdcf8f462500cfe1e",
+            "Agentos.Skillware": "032cd19f3007794e9070b8769afbd4f3a346ba9377dac840be0111ef74827bf2",
             "Skill.Runnable.Surface": "911d175375e108d030418301cefa990ccb55ecda521a6884244bdd13b3b7982e",
             "Skill.Build.Surface": "d7df0f76bb89342f3989dddeac7c6fd7b934266c6a9ec3eaa5cc727f1ba9c30a",
             "Skw.Ann.Dependency": "ed37c9cfc210f58a18d5b50e35c1d442ec5a0eb1dbf083c5f9a1949b141b37e2",

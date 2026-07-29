@@ -1,3 +1,4 @@
 {
-  "depots": ["../agentos-pkg"]
+  "depots": ["../agentos-pkg"],
+  "deps": {"agentos-hugentics": "../agentos-hugentics"}
 }

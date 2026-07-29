@@ -2,8 +2,17 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "a44cb227176bbf92adee8173ded0203668829c5a0dd040827bd44213105bb417",
-      "recipes": []
+      "output_sha256": "ca86efea94546828c30ec251061cf0c142d88d8f519f3d7b36d60f500347c036",
+      "recipes": [
+        {
+          "heading": "Source Model",
+          "verb": "derived",
+          "body_sha256": "98ee213c868058cb994de06656d2f71beeb57c494536db74781033d9e906ce7d",
+          "deps": {
+            "@<agentos-hugentics>/SKILL.skw.md^index-ground-entry": "a8b6e776f53489288c7c60e8f39b58bca4f506d46ed9d106269418511712dba6"
+          }
+        }
+      ]
     },
     "references/index-notes.md": {
       "output_sha256": "3af5bdbb9835023cfc54f4982a1de8a75a7013d7f062709e68960339b5601a17",

@@ -171,7 +171,7 @@
 ## Index.Grounding
 
 - `Index.Grounding` is the first `Context.Grounding` level — enriching the agent's context with the index's content on a topic
-- routing-first selective loading: router → concept blocks → appendix depth as needed (`agentos-index --ground` is this level)
+- routing-first selective loading: router → concept blocks → appendix depth as needed (`agentos-hugentics --ground` is this level)
 - it is the cheap default; when the digest is not enough, escalate to full grounding and reach the original surfaces
 
 ****

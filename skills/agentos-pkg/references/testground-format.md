@@ -97,8 +97,8 @@ Traces should come from the session transcript (via chatlas), not from the agent
 
 Example trace notation:
 ```
-SKILL.md -> agentos-index -> 000-INDEX.md -> proposed block    (expected)
-SKILL.md -> agentos-index -> 000-INDEX.md -> 100 -> 101 -> ... (overwork)
+SKILL.md -> agentos-hugentics -> 000-INDEX.md -> proposed block    (expected)
+SKILL.md -> agentos-hugentics -> 000-INDEX.md -> 100 -> 101 -> ... (overwork)
 ```
 
 ## Test Design Guidelines

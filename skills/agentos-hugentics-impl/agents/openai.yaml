@@ -1,4 +1,4 @@
 interface:
   display_name: "Agentos Hugentics Impl"
   short_description: "Design, execute, or develop implementation work"
-  default_prompt: "Use $agentos-hugentics-impl to design an Impl.Req, execute one, or develop an idea end to end."
+  default_prompt: "Use $agentos-hugentics for implementation design, review, execution, capture, or end-to-end development."

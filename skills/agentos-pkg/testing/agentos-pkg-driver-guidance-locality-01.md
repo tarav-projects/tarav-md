@@ -68,7 +68,7 @@ Semantic match, not exact wording. Evaluate what the agent did, not just what it
 
 When evaluating, note which surfaces the agent loaded and in what order. This makes the test diagnostic for entry-path quality, not just pass/fail.
 
-Example trace: `SKILL.md -> agentos-index -> 000-INDEX.md -> proposed block` (expected), vs. `SKILL.md -> agentos-index -> 000-INDEX.md -> 100-design.md -> 101-design.md -> ...` (overwork).
+Example trace: `SKILL.md -> agentos-hugentics -> 000-INDEX.md -> proposed block` (expected), vs. `SKILL.md -> agentos-hugentics -> 000-INDEX.md -> 100-design.md -> 101-design.md -> ...` (overwork).
 
 ## Evolution Notes
 

@@ -2,8 +2,17 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "bfe8dd7a0d141cc4807f79b64f6dae82c12c9b5bc8311f1df6bcb5dad23a7c2d",
-      "recipes": []
+      "output_sha256": "046e544d0f94af3650ddd6c1596d79db2e0d687dd0d7c4c5c692ea5605251920",
+      "recipes": [
+        {
+          "heading": "Boundary",
+          "verb": "derived",
+          "body_sha256": "8aefcd3998d2a243319c7e406fb0a54830be00a7de53d0135151e0a7d1189b70",
+          "deps": {
+            "@<agentos-hugentics>/SKILL.skw.md^index-write-entry": "d44d07e1bc59ea1143442aa08218e695e51109c0e7e3ae8ec3a222ba201ec778"
+          }
+        }
+      ]
     },
     "references/batchy-skill-designer.md": {
       "output_sha256": "052c75a3f97d613076574a9520bab15790343e6a75979b626851e942c0bb4cdc",

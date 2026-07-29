@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **Goal:** implement the first shared `POI.System` runtime cut by adapting Index linter findings into deterministic `POI.Instance`s, resolving their registered `POI.Class` references through Wayfinder, grouping output by class, and exposing `agentos poi explain`.
-- **Status:** designed; execution authorized in `Alignment.Mode::Autonomous`.
+- **Status:** implemented and verified.
 - **Source design:** the POI blocks in `skills/agentos-pkg/design/107-design.md`, Wayfinder in `skills/agentos-pkg/design/110-design.md`, and the execution authorization at `^c20260729-47u`.
 - **In scope:** common POI models/catalog/rendering, Index finding adaptation, complete core and injected-Chatlas class registration, grouped text/JSON output, package-owned documentation resolution, explain CLI, tests, and architecture guidance.
 - **Out of scope:** blessing, dispositions, context gates, authoring missing POI documentation blocks, changing check execution/state dependencies, and converting Skillware or other linters.
@@ -127,3 +127,7 @@
 ## Impl.Log
 
 - 2026-07-29: design phase completed in `Alignment.Mode::Autonomous`; repository grounding confirmed addressable core class blocks, newer undocumented core codes, and Chatlas-owned injected findings.
+- 2026-07-29: implemented the shared POI model, strict composable catalogs, deterministic occurrence identity, one-resolution grouped rendering, and `POI.Explain`.
+- 2026-07-29: adapted scoped Index findings at the reporting boundary, replaced public `findings` JSON with `poi_classes` and `pois`, and registered all core and injected Chatlas finding codes under their owning packages.
+- 2026-07-29: complete suites passed in `agentos-py` (574), `agentos-chatlas-py` (257), and `agentos-cli` (66); scoped Ruff, format, and diff checks passed for every changed Python surface.
+- 2026-07-29: refreshed the installed editable CLI, resolved `Index.Linter/Block.TooLong` through the live Wayfinder registry, and verified real grouped text/JSON linter output with a stable POI instance ID.

@@ -2,11 +2,11 @@
 
 ## Purpose
 
-Evaluate whether `agentos-index` treats approval tokens as exact proposal capabilities and fails closed for unknown or stale tokens.
+Evaluate whether `agentos-hugentics` treats approval tokens as exact proposal capabilities and fails closed for unknown or stale tokens.
 
 ## Entry Path
 
-`AGENTS.md -> load agentos-pkg -> load agentos-index -> references/capture.md -> references/edit.md`
+`AGENTS.md -> load agentos-pkg -> load agentos-hugentics -> references/capture.md -> references/edit.md`
 
 ## How To Run
 
@@ -14,7 +14,7 @@ Run from `agentos-pkg-testground/` in a fresh session. Give the tested agent onl
 
 ## Subagent Prompt
 
-Use `agentos-index` to reason about this hypothetical interactive capture state. Do not edit files.
+Use `agentos-hugentics` to reason about this hypothetical interactive capture state. Do not edit files.
 
 `Draft.A` was shown with token `idx-edition:old11111`. Its wording was then revised, invalidating that token. The complete revised proposal is now shown with token `idx-edition:new22222`.
 
@@ -45,7 +45,7 @@ Show the command the workflow should expose after each rejected attempt.
 
 ### Above Expected
 
-- Distinguishes general semantic approval support from the stricter `agentos-index` workflow policy.
+- Distinguishes general semantic approval support from the stricter `agentos-hugentics` workflow policy.
 - Notes that the accepted draft enters the approved, unlanded cluster.
 
 ### Overwork
@@ -61,4 +61,4 @@ Show the command the workflow should expose after each rejected attempt.
 
 ## Navigation Trace
 
-Expected: `agentos-pkg -> agentos-index -> capture -> edit -> answer`.
+Expected: `agentos-pkg -> agentos-hugentics -> capture -> edit -> answer`.

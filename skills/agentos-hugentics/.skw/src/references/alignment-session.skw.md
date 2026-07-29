@@ -1,5 +1,7 @@
 # Alignment.Session — Reference
 
+> $kw: --dev-from references/index-context-assembly.skw.md
+
 `Alignment.Session` is a shallow container for the general concepts that compose an alignment session. No behavioral protocol of its own — each workflow specialization defines its own axes and behavioral detail.
 
 ## Concepts

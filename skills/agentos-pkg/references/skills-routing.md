@@ -152,7 +152,7 @@ Sources can include `include` and `exclude` arrays to limit selected skills:
 ```json
 {
   "name": "agentos",
-  "include": ["agentos-pkg", "agentos-index"]
+  "include": ["agentos-pkg", "agentos-hugentics"]
 }
 ```
 

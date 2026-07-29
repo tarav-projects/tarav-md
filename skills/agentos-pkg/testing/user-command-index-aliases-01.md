@@ -2,11 +2,11 @@
 
 ## Purpose
 
-Evaluate whether an agent operating `agentos-index` resolves equivalent command triggers to one canonical transition while preserving approval and landing as separate acts.
+Evaluate whether an agent operating `agentos-hugentics` resolves equivalent command triggers to one canonical transition while preserving approval and landing as separate acts.
 
 ## Entry Path
 
-`AGENTS.md -> load agentos-pkg -> load agentos-index -> load agentos-batchy-skills`
+`AGENTS.md -> load agentos-pkg -> load agentos-hugentics -> load agentos-batchy-skills`
 
 ## How To Run
 
@@ -14,7 +14,7 @@ Run from `agentos-pkg-testground/` in a fresh session. Give the tested agent onl
 
 ## Subagent Prompt
 
-Use `agentos-index` to reason about this hypothetical interactive capture state. Do not edit files.
+Use `agentos-hugentics` to reason about this hypothetical interactive capture state. Do not edit files.
 
 There is one foreground approval-ready block named `Draft.A`, with a concrete landing target and token `idx-edition:a1b2c3d4`. Nothing is approved yet.
 
@@ -49,7 +49,7 @@ State whether any pair differs semantically and whether approval itself writes a
 ### Above Expected
 
 - Notes that the unique foreground target satisfies the contextual target argument.
-- Notes that `agentos-index` advertises and requires the tokenized form even though the general command model can represent bare semantic approval.
+- Notes that `agentos-hugentics` advertises and requires the tokenized form even though the general command model can represent bare semantic approval.
 - Mentions that a later change to wording or destination invalidates approval.
 
 ### Overwork
@@ -66,7 +66,7 @@ State whether any pair differs semantically and whether approval itself writes a
 
 ## Navigation Trace
 
-Expected: `agentos-pkg -> agentos-index -> agentos-batchy-skills -> answer`.
+Expected: `agentos-pkg -> agentos-hugentics -> agentos-batchy-skills -> answer`.
 
 ## Evolution Notes
 

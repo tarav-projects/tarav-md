@@ -8,15 +8,17 @@ Use this module to understand Skillware: the mental model behind skills develope
 > --from Agentos.Skillware
 > --from Skill.Runnable.Surface
 > --from Skill.Build.Surface
+> --from Index.Line
 > --from Skw.Ann.Dependency
 > --from Skw.Pkg.Dependency
 > --from Skw.Annotation
+> --from Skw.Touched.Index
 > --intent the self-contained doctrine — restate the 107 cluster as one
 > --cont coherent narrative an agent can hold: discipline, two surfaces, imports
 > --cont and bindings, the recipe form, derivation and its drift check; stay
 > --cont faithful to the blocks, do not invent mechanics
 
-**Skills as software.** `Agentos.Skillware` treats the skill as the unit of software for agents: the artifacts agents run gain engineering structure — modules, dependencies, builds, lineage — so they are reused and evolved rather than written once and forked. A toolchain spanning agentic and CPU work moves package maintenance off the human. The system realizing the discipline is **skw**: the general annotation language (`Skw.Language`) and its `Skw.Backend`s — skills are the first backend, `skw-skills`.
+**Skills as software.** `Agentos.Skillware` treats the skill as the unit of software for agents: the artifacts agents run gain engineering structure — modules, dependencies, builds, lineage — so they are reused and evolved rather than written once and forked. A toolchain spanning agentic and CPU work moves package maintenance off the human. The system realizing the discipline is **skw**: the general annotation language (`Skw.Language`) and its `Skw.Backend`s — skills are the first backend, `skw-skills`. Touch remains orthogonal to this structure: an skw object becomes touched only through its own provenance, while `Skw.Touched.Index` materializes grounded `Index.Line`s attached to annotations.
 
 **Two surfaces.** A skill splits into a `Skill.Runnable.Surface` — loaded into agent context to do work, carrying only executable substance, kept clean because anything on it shapes the run — and its complement, the `Skill.Build.Surface`: everything that produces and maintains runnable content, never loaded at run time, an unconstrained workspace. It is realized as the per-package `.skw/` folder and constitutively carries an engine-stamped `AGENTS.md` redirecting agents outside skillware activity. The clean-surface rule is a building-backend discipline: annotated-only `Skw.Backend`s deliberately trade it for constraint co-location, keeping declarations in place on the surface itself.
 

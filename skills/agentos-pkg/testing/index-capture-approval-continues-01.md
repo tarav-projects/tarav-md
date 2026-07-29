@@ -6,7 +6,7 @@ Evaluate whether approving one draft during interactive capture accumulates it a
 
 ## Entry Path
 
-`AGENTS.md -> load agentos-pkg -> load agentos-index -> references/capture.md`
+`AGENTS.md -> load agentos-pkg -> load agentos-hugentics -> references/capture.md`
 
 ## How To Run
 
@@ -14,7 +14,7 @@ Run from `agentos-pkg-testground/` in a fresh session. Give the tested agent onl
 
 ## Subagent Prompt
 
-Use `agentos-index` to reason about this hypothetical interactive capture state. Do not edit files.
+Use `agentos-hugentics` to reason about this hypothetical interactive capture state. Do not edit files.
 
 `Draft.A` is the foreground approval-ready block with token `idx-edition:a1b2c3d4`. `Draft.B` is the next unresolved roadmap cluster. Nothing is approved yet. The user says:
 
@@ -58,4 +58,4 @@ Explain the transition and show the next user-facing capture move.
 
 ## Navigation Trace
 
-Expected: `agentos-pkg -> agentos-index -> capture -> next foreground cluster`.
+Expected: `agentos-pkg -> agentos-hugentics -> capture -> next foreground cluster`.

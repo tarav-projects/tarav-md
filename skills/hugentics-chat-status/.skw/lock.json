@@ -2,8 +2,17 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "16d65919af124d2f74ab7d9d55056f42f4b913f756450495c54a93cdc1cfe2c3",
-      "recipes": []
+      "output_sha256": "acb7917b5c8a4502da61dc4c4a7f4b9625d188d9a227a4bb13346b91db8c3e8e",
+      "recipes": [
+        {
+          "heading": "Hugentics Chat Status",
+          "verb": "derived",
+          "body_sha256": "8a6a5a941d51ff91544ee0e513517aa17ec2e4c9be8f6df727518afa17f8f048",
+          "deps": {
+            "@<agentos-hugentics>/references/chat-status.skw.md": "828f6d9801e1176ab09186660f121b2e911e766358cdeab3a681a3452a0a4d0f"
+          }
+        }
+      ]
     }
   },
   "blessings": []

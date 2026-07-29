@@ -6,7 +6,7 @@ Evaluate whether landing approved material during capture preserves the active r
 
 ## Entry Path
 
-`AGENTS.md -> load agentos-pkg -> load agentos-index -> references/capture.md`
+`AGENTS.md -> load agentos-pkg -> load agentos-hugentics -> references/capture.md`
 
 ## How To Run
 
@@ -14,7 +14,7 @@ Run from `agentos-pkg-testground/` in a fresh session. Give the tested agent onl
 
 ## Subagent Prompt
 
-Use `agentos-index` to reason about this hypothetical interactive capture state. Do not edit files.
+Use `agentos-hugentics` to reason about this hypothetical interactive capture state. Do not edit files.
 
 `Draft.A` and `Draft.B` are approved and unlanded. `Draft.C` is the next roadmap cluster and has not been drafted. The user says:
 
@@ -56,7 +56,7 @@ Explain the transition and the next user-facing capture move.
 
 ## Navigation Trace
 
-Expected: `agentos-pkg -> agentos-index -> capture -> edit landing procedure -> capture`.
+Expected: `agentos-pkg -> agentos-hugentics -> capture -> edit landing procedure -> capture`.
 
 ## Run Log
 
@@ -65,7 +65,7 @@ Expected: `agentos-pkg -> agentos-index -> capture -> edit landing procedure -> 
 - **Session**: `019f9956-b1bf-78b1-a7e0-8b4c08e6be70`
 - **Model**: `gpt-5.4`
 - **Tier**: expected
-- **Trace**: `AGENTS.md -> agentos-pkg -> agentos-index -> capture -> edit -> answer`
+- **Trace**: `AGENTS.md -> agentos-pkg -> agentos-hugentics -> capture -> edit -> answer`
 - **Tool calls**: 5
 - **Tokens**: 61,002 input; 1,118 output
 - **Notes**: landed only `Draft.A`, preserved `Draft.B`, left `Draft.C` undrafted, re-grounded, and continued the capture loop

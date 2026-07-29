@@ -262,7 +262,7 @@
 - uses `Cited.Duplication` to carry known context directly instead of searching the index on every run
 - becomes a contextualized execution surface rather than only a thin router
 - should cite origin blocks for duplicated concept material
-- should still use `agentos-index` for unknown, custom, or exploratory index context needs
+- should still use `agentos-hugentics --ground` for unknown, custom, or exploratory index context needs
 - contrasts with `Workflow.Neutral.Skill`, which provides orientation without steering the caller's current task
 - may be deployed from `Usage.Pattern.Routing` when a hot path deserves its own skill surface
 

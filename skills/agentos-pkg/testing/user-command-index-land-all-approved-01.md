@@ -2,11 +2,11 @@
 
 ## Purpose
 
-Evaluate whether `agentos-index` treats `::land-all-approved` as a zero-argument batch transition scoped to one foreground workflow.
+Evaluate whether `agentos-hugentics` treats `::land-all-approved` as a zero-argument batch transition scoped to one foreground workflow.
 
 ## Entry Path
 
-`AGENTS.md -> load agentos-pkg -> load agentos-index -> load agentos-batchy-skills`
+`AGENTS.md -> load agentos-pkg -> load agentos-hugentics -> load agentos-batchy-skills`
 
 ## How To Run
 
@@ -14,7 +14,7 @@ Run from `agentos-pkg-testground/` in a fresh session. Give the tested agent onl
 
 ## Subagent Prompt
 
-Use `agentos-index` to reason about this hypothetical interactive capture state. Do not edit files.
+Use `agentos-hugentics` to reason about this hypothetical interactive capture state. Do not edit files.
 
 One foreground index capture workflow holds approved, unlanded `Draft.A` and `Draft.B`; `Draft.C` is unapproved. The user says:
 
@@ -56,4 +56,4 @@ Explain the transition and the next capture move. Then explain what must happen 
 
 ## Navigation Trace
 
-Expected: `agentos-pkg -> agentos-index -> agentos-batchy-skills -> capture/edit landing procedure -> answer`.
+Expected: `agentos-pkg -> agentos-hugentics -> agentos-batchy-skills -> capture/edit landing procedure -> answer`.

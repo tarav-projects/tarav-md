@@ -2,8 +2,17 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "c2e2993c4fab5a02c539476d2fb1d6cd194b6f248accb06562bc892f505f8f1a",
-      "recipes": []
+      "output_sha256": "aaa651b2ab49ddbd2d6803226b625d2ec020f7b4aca5b5ff26ee7f94dfaea810",
+      "recipes": [
+        {
+          "heading": "Hugentics Workflow Status",
+          "verb": "derived",
+          "body_sha256": "4b86d7bca8dbff961f049d597b4e6e25450473a1f548b0619016d66fe4b276dc",
+          "deps": {
+            "@<agentos-hugentics>/references/workflow-status.skw.md": "710b1d796fe45f1eb6d0bd0d1b57f38702464ac4dfb1eb109e8863db147d4775"
+          }
+        }
+      ]
     }
   },
   "blessings": []

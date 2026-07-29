@@ -6,7 +6,7 @@ Evaluate whether landing token-approved index lines records typed Chatlas eviden
 
 ## Entry Path
 
-`AGENTS.md -> load agentos-pkg -> load agentos-index -> references/edit.md -> references/link.md -> references/check.md`
+`AGENTS.md -> load agentos-pkg -> load agentos-hugentics -> references/edit.md -> references/link.md -> references/check.md`
 
 ## How To Run
 
@@ -14,7 +14,7 @@ Run from `agentos-pkg-testground/` in a fresh session. Give the tested agent onl
 
 ## Subagent Prompt
 
-Use `agentos-index` to describe, without executing, the landing procedure for this hypothetical approved line:
+Use `agentos-hugentics` to describe, without executing, the landing procedure for this hypothetical approved line:
 
 - session identity: `sessionhash`
 - proposal event: `event-40`
@@ -58,4 +58,4 @@ Show the relevant `agentos chatlas anchory register` shape and the post-edit lin
 
 ## Navigation Trace
 
-Expected: `agentos-pkg -> agentos-index -> edit -> link -> check -> answer`.
+Expected: `agentos-pkg -> agentos-hugentics -> edit -> link -> check -> answer`.

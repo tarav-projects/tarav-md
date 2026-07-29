@@ -17,6 +17,9 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 > $kw: --derived
 > --from Agentos.Skillware
+> --from Index.Line
+> --from Skw.Annotation
+> --from Skw.Touched.Index
 > --intent orientation blurb — restate the discipline block for a caller
 > --cont meeting the subsystem cold; keep it to the stance, not the mechanics
 
@@ -24,7 +27,8 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - "as software" means the artifacts agents run gain engineering structure — modules, dependencies, builds, versions, lineage — so they are reused and evolved rather than written once and forked
 - a development toolchain of builders and checkers, spanning agentic and `CPU.Impl` work, moves package maintenance off the human
 - it is a discipline realized by capabilities, not a single mechanism — **skw**, the general annotation language and its backends, is the system realizing it; this skill carries the capabilities
-- skw is the integration fabric: declared dependencies between any two project surfaces make maintenance and change propagation explicit; touch is an orthogonal axis — any skw object may be user-grounded or not, and the `Touched.Surface.Index` is the computed set of touched things
+- skw is the integration fabric: declared dependencies between project surfaces make maintenance and change propagation explicit
+- touch is an orthogonal axis over skw objects; `Skw.Touched.Index` materializes grounded `Index.Line`s attached to `Skw.Annotation` instances without making every annotation touched
 
 > $kw. end
 
@@ -71,7 +75,7 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - read-only POI report over a skill's managed surfaces, with per-kind prescriptions
 - required: false
 - help: "check managed surfaces for drift and prescribe responses (read-only)"
-- examples: --check --skill skills/agentos-index, --check
+- examples: --check --skill skills/agentos-hugentics, --check
 
 ## Router Table
 
@@ -111,4 +115,4 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 - when a `check` POI needs interpreting or acting on
 - when discussing or modifying the Skillware system design itself
 
-> $kw: --from Batchy.Skill --from Package.Aux.Skill --from Semantic.Router --from Skill.Module --from Touched.Surface.Index
+> $kw: --from Batchy.Skill --from Package.Aux.Skill --from Semantic.Router --from Skill.Module

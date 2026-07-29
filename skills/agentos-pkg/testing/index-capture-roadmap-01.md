@@ -2,11 +2,11 @@
 
 ## Purpose
 
-Evaluate whether interactive `agentos-index --capture` performs broad internal preparation while presenting a lightweight, context-aware roadmap before detailed drafting.
+Evaluate whether interactive `agentos-hugentics --capture` performs broad internal preparation while presenting a lightweight, context-aware roadmap before detailed drafting.
 
 ## Entry Path
 
-`AGENTS.md -> load agentos-pkg -> load agentos-index -> references/capture.md -> references/index-capture-context.md`
+`AGENTS.md -> load agentos-pkg -> load agentos-hugentics -> references/capture.md -> references/index-capture-context.md`
 
 ## How To Run
 
@@ -14,7 +14,7 @@ Run from `agentos-pkg-testground/` in a fresh session. Give the tested agent onl
 
 ## Subagent Prompt
 
-Use `agentos-index --capture` to describe the opening response for this hypothetical interactive capture.
+Use `agentos-hugentics --capture` to describe the opening response for this hypothetical interactive capture.
 
 The visible conversation has already established four possible changes:
 
@@ -62,7 +62,7 @@ Assume relevant ontology, appendix, agendix, code, and adjacent surfaces exist. 
 
 ## Navigation Trace
 
-Expected: `agentos-pkg -> agentos-index -> capture -> index-capture-context -> answer`.
+Expected: `agentos-pkg -> agentos-hugentics -> capture -> index-capture-context -> answer`.
 
 ## Run Log
 
@@ -71,7 +71,7 @@ Expected: `agentos-pkg -> agentos-index -> capture -> index-capture-context -> a
 - **Session**: `019f9955-691f-76e1-8de5-28d3e43c148a`
 - **Model**: `gpt-5.4`
 - **Tier**: expected
-- **Trace**: `AGENTS.md -> agentos-pkg -> agentos-index -> capture -> index-capture-context -> answer`
+- **Trace**: `AGENTS.md -> agentos-pkg -> agentos-hugentics -> capture -> index-capture-context -> answer`
 - **Tool calls**: 7
 - **Tokens**: 60,707 input; 1,305 output
 - **Notes**: produced a four-entry roadmap, recommended one focus, kept grounding internal, and exposed no approval command

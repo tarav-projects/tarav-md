@@ -44,7 +44,7 @@ The **router** maps every concept name to the file that holds it — always read
 
 Two further layers ride on the blocks — gesture-level here, the index owns the detail:
 
-- **Typed lines** — index lines carry a `Line.Type` from a small vocabulary (`- [CT] ...`), classifying each line's act: define, decide, constrain, reject, orient, free, exemplify. Load `agentos-index` (`--type`) for reading and proposing types.
+- **Typed lines** — index lines carry a `Line.Type` from a small vocabulary (`- [CT] ...`), classifying each line's act: define, decide, constrain, reject, orient, free, exemplify. Load `agentos-hugentics --type` for reading and proposing types.
 - **Grounding** — grounding is a line property: a concept's evidence links trail inline on its lines as anchors (`^c20260630-0u`), resolved through the Anchory subsystem back to the chats. See `Index.Line` and `Anchory.System` in the index.
 
 Both project folders and package skills can have their own index. If a project is developing a package skill, the agent can access both indexes locally.
@@ -131,9 +131,9 @@ For provider account credential artifact reconciliation and troubleshooting, use
 
 When the Driver is not enough, load a narrower surface:
 
-- **Index operations** — load `agentos-index` for index research, editing, diagnosis, and maintenance
+- **Hugentic and Index operations** — load `agentos-hugentics` for session control, index research, editing, diagnosis, and maintenance
 - **Human-agent workflows** — load `agentos-hugentics` for structured design, implementation, and alignment workflows
-- **Design sessions** — load `agentos-index --design` for touched-data-contextualized product design; `hugentics-designer` remains a compatibility entry during migration
+- **Design sessions** — load `agentos-hugentics --design` for touched-data-contextualized product design
 - **Implementation workflows** — load `agentos-hugentics-impl` to design an `Impl.Req`, execute one, or develop an idea through both phases
 - **Workflow status** — load `hugentics-workflow-status` for a structured checkpoint
 - **Live surfaces** — load `agentos-live-surfaces` for live-note and live-script location, naming, and numbering

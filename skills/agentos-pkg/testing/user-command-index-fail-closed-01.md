@@ -6,7 +6,7 @@ Evaluate whether an agent keeps index workflow gates unresolved through natural 
 
 ## Entry Path
 
-`AGENTS.md -> load agentos-pkg -> load agentos-index -> load agentos-batchy-skills`
+`AGENTS.md -> load agentos-pkg -> load agentos-hugentics -> load agentos-batchy-skills`
 
 ## How To Run
 
@@ -14,7 +14,7 @@ Run from `agentos-pkg-testground/` in a fresh session. Give the tested agent onl
 
 ## Subagent Prompt
 
-Use `agentos-index` to reason about this hypothetical interactive capture state. Do not edit files.
+Use `agentos-hugentics` to reason about this hypothetical interactive capture state. Do not edit files.
 
 Two approval-ready blocks, `Draft.A` and `Draft.B`, are active. Neither is uniquely foregrounded. Their tokens are `idx-edition:aaaa1111` and `idx-edition:bbbb2222`.
 
@@ -66,7 +66,7 @@ Include when available commands should be printed.
 
 ## Navigation Trace
 
-Expected: `agentos-pkg -> agentos-index -> agentos-batchy-skills -> answer`.
+Expected: `agentos-pkg -> agentos-hugentics -> agentos-batchy-skills -> answer`.
 
 ## Evolution Notes
 

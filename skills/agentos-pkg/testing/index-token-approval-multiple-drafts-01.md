@@ -6,7 +6,7 @@ Evaluate whether distinct approval tokens disambiguate simultaneous approval-rea
 
 ## Entry Path
 
-`AGENTS.md -> load agentos-pkg -> load agentos-index -> references/capture.md`
+`AGENTS.md -> load agentos-pkg -> load agentos-hugentics -> references/capture.md`
 
 ## How To Run
 
@@ -14,7 +14,7 @@ Run from `agentos-pkg-testground/` in a fresh session. Give the tested agent onl
 
 ## Subagent Prompt
 
-Use `agentos-index` to reason about this hypothetical interactive capture state. Do not edit files.
+Use `agentos-hugentics` to reason about this hypothetical interactive capture state. Do not edit files.
 
 Two exact proposals are approval-ready:
 
@@ -55,4 +55,4 @@ First show the available approval commands. Then explain what happens when the u
 
 ## Navigation Trace
 
-Expected: `agentos-pkg -> agentos-index -> capture -> answer`.
+Expected: `agentos-pkg -> agentos-hugentics -> capture -> answer`.

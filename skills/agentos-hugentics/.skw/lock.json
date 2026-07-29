@@ -2,7 +2,241 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "29bd47ebc3a01ad4bc56da9e5d896e538e7ff51dab1f78b9ebc0d59044a4ee50",
+      "output_sha256": "b43350563e68cefc887f033a80f3c05eb4ca12fc99b905537f4ce4108d00e055",
+      "recipes": [
+        {
+          "heading": "Index Operating Behavior",
+          "verb": "derived",
+          "body_sha256": "2c1c0ef93b15575a2de7dd4e5839648d0be1cfdf4f1f57228525c33340f00b81",
+          "deps": {
+            "references/search.skw.md#Search Model": "35a6d9e8ba7764c7d6f717cc25e780cbae80f8e5f0102c70d1a4b880849393c6",
+            "references/search.skw.md#Citation Behavior": "e57e94bf2adedb5f4bde5e498c1feb6342c70412564a0e8d8a1a8734a673a8a9"
+          }
+        },
+        {
+          "heading": "Unified Harness Model",
+          "verb": "derived",
+          "body_sha256": "9f90880fe5161c8fbafc7429e568b4ae1201a5efbb95da6bf07f227c2bc880c3",
+          "deps": {
+            "references/harness.skw.md#What This Is": "b6d24187aa52f0058b96063380c798516c17cc3349f162249eaea57f3e939f1e",
+            "references/harness.skw.md#Alignment.Loop.Interruptions": "bf6bc23f0447af7d201681a78640106247719bff62f23e0e6e3f053978101711"
+          }
+        }
+      ]
+    },
+    "references/agendix.md": {
+      "output_sha256": "a3b981ca690c6a1989ab771d1c87334167c6be585b80e5ed77e9c146c7d1343e",
+      "recipes": []
+    },
+    "references/alignment-session.md": {
+      "output_sha256": "881a1da3c7b7fd3ee71eaa8a9f3676b6eeff7685ae6771050bf978dbb23a0d6e",
+      "recipes": [
+        {
+          "heading": "Concepts",
+          "verb": "derived",
+          "body_sha256": "a1d212f132d40bcacadcf468f5139c85e8ed281b1f2906505b124d1cd919949c",
+          "deps": {
+            "Alignment.Session": "e4f1d0d62a81f17ed631ef4e0bf57a38cad354a6f2254bd1f4b22c863c4a3d48",
+            "Design.Space": "68a879d4733c715bbada8ca3a4ac70d0c868d016a673983c095c4ae332e2694c",
+            "QA.Space": "60632fdaf93443227264be81b28c8eea108d7e533ef1e63506ef960f4a45277f",
+            "Design.Variable": "583f05f8a29f0b03074587816b8d6ce7f68008ec5413f7035bc7f882fafc1732",
+            "Hugentic.Variable": "e87d84d1409856bf164b4c26075900a267c75dd05bf6cfdc4e44db90d8a966bc",
+            "Touched.Space": "e78243e3d841dfc243a1927b0afecc812da6c1bfc843407cf3d2a846da1cb0cd",
+            "Agentic.Variable": "30e09b8e3d25504958c496722ed6a697930aad4b9d366b6095a5c17231e1b4ea",
+            "Open.Space": "68868ebf26c9385523070a879705ff29327910e0a9c131c1972ab53100724903",
+            "Alignment.Loop": "57d7e83a7e26a2e653edc8b63f6dfb560cf9c92204a5eb27d3ef8865113b7985",
+            "Alignment.Backend": "90db8db81e4e728732ebb35a4f54cc03a789b476bb42a12ea214c18a61701da6",
+            "Alignment.Checkpoint": "e4c60c9e0dea4a7a6f7dc9912bed9716f0516b80015366cb5acf6332b794050d",
+            "Alignment.Mode": "8127bef68ccab8f921f4ee7bb39eb8cb9ac1998875f45ad30be54ef7204b1747"
+          }
+        },
+        {
+          "heading": "Alignment.Checkpoint and Alignment.Mode",
+          "verb": "derived",
+          "body_sha256": "9bd7bfed8ecda86013d17abe37ea4c5335e6a350529e1f57b866dfbbda0dd70f",
+          "deps": {
+            "Alignment.Checkpoint": "e4c60c9e0dea4a7a6f7dc9912bed9716f0516b80015366cb5acf6332b794050d",
+            "Alignment.Mode": "8127bef68ccab8f921f4ee7bb39eb8cb9ac1998875f45ad30be54ef7204b1747"
+          }
+        },
+        {
+          "heading": "^loop-params",
+          "verb": "derived",
+          "body_sha256": "8428e5cda987b852b57b7d40f0e834a9997204d86a7b88dad4f17ea7dfc5db89",
+          "deps": {
+            "Alignment.Loop": "57d7e83a7e26a2e653edc8b63f6dfb560cf9c92204a5eb27d3ef8865113b7985",
+            "Alignment.Backend": "90db8db81e4e728732ebb35a4f54cc03a789b476bb42a12ea214c18a61701da6"
+          }
+        }
+      ]
+    },
+    "references/back-link.md": {
+      "output_sha256": "1a64056a782d14e795b8342e932e81b261f1211b05cbaf8efcf76e09fd82ff7a",
+      "recipes": [
+        {
+          "heading": "Back-Link Pipeline",
+          "verb": "derived",
+          "body_sha256": "7b837d6821c4cefad23114d12edd95786c6f3cbac15ef1942073058d63d0e10b",
+          "deps": {
+            "references/link.skw.md#Linking Pipeline": "5830f32772a0e3035eec53a7f2e6a45a4b0fd98736786993d6c751229c38a20e"
+          }
+        }
+      ]
+    },
+    "references/capture-audit.md": {
+      "output_sha256": "1cffe2fabf456ea09d43a2d0fa8870a74c738ff3c387f5f02059c64812662fc0",
+      "recipes": []
+    },
+    "references/capture.md": {
+      "output_sha256": "e557828378a95b49698e602c52f9046df2684367803612cb75c7ff02eb0367ba",
+      "recipes": [
+        {
+          "heading": "Landing",
+          "verb": "derived",
+          "body_sha256": "d9d16c71df477cc61297b72a9cc2dc0d8fcd8777b8c7151f9ea2beb68c8e79c1",
+          "deps": {
+            "references/edit.skw.md#Landing Procedure": "b9a33c89d247c893d10ca81d597e1f87fa696377fcf5fbaea2012358c467462d",
+            "references/agendix.skw.md#Landing Form": "d6922d77a486406558376d575c386b20dc931b46291ea7c737457640b7b9ae9b"
+          }
+        }
+      ]
+    },
+    "references/chat-status.md": {
+      "output_sha256": "1ad4c98888eaa626c8015739bfd543d569d9823622c1a318b1f6aa931ad11b25",
+      "recipes": []
+    },
+    "references/check.md": {
+      "output_sha256": "c4652b01cd11f88caca1b447a86adc3620d3cb570ba58f9ef1ff73d3ff91815c",
+      "recipes": [
+        {
+          "heading": "Beyond The Linter",
+          "verb": "derived",
+          "body_sha256": "942c693c1467cd4ad1354ca8378c52a3bd6c9db1e0920668d1cfb49cd9aa3d50",
+          "deps": {
+            "references/type.skw.md#Semantic Lints": "be7a92fda6aaa525d18eefe5d2389d9ebf3ea5c91e484ff17906b4d45058193c"
+          }
+        }
+      ]
+    },
+    "references/codebase-cleaner.md": {
+      "output_sha256": "feb99b2bfc0524e2c587c5b7e09c1c1718058f6bcfd90695c09f0b6fb9d0dfb9",
+      "recipes": []
+    },
+    "references/decision-cycle.md": {
+      "output_sha256": "fb2954b2fb05b9af0d0bd0f717368c5231ee878ca9edb938344639356475786b",
+      "recipes": []
+    },
+    "references/design/alignment-loop.md": {
+      "output_sha256": "b49b357e826c074423d85b5ff16520a790409620893b43461af6cef0324292db",
+      "recipes": []
+    },
+    "references/design/artifact.md": {
+      "output_sha256": "651cd323a9bc21308b3ffe6b90426de4a62c111c6f0ad153f14bf75b3e038162",
+      "recipes": []
+    },
+    "references/design/backend-artifact.md": {
+      "output_sha256": "52a74ee69da6c7dbcb77e8a4f8b7a58709e2a3279bac14df4ead412404a65e6e",
+      "recipes": []
+    },
+    "references/design/backend-inchat.md": {
+      "output_sha256": "b46a46c6da05c9590d6208cad9929401b8cc0fa38ee450dd8cc1f4ec21712ec6",
+      "recipes": []
+    },
+    "references/design/capture-audit.md": {
+      "output_sha256": "88fe51109201411b32a3c4764e291ac0e4aea53f7a02c1e947f151473b94863d",
+      "recipes": []
+    },
+    "references/design/concept-discovery.md": {
+      "output_sha256": "f859109b39a41bbae23622658655317ed0cecde8664b39d0890e3cf1ee5fc16f",
+      "recipes": []
+    },
+    "references/design/consolidation-plan-example.md": {
+      "output_sha256": "309070d9735ac5fc627c2f35d0e5c632b874f253ea5c3c39e96fa5ed9db35df7",
+      "recipes": []
+    },
+    "references/design/design-anti-patterns.md": {
+      "output_sha256": "cbfec10d0aa5bf04605e6a8cce1f69065fa5d5edb208ac93425b88dcdc2f225b",
+      "recipes": []
+    },
+    "references/design/design-index.md": {
+      "output_sha256": "4f650fe009d1d9170a8bb7f16904630f7da83a7920953d99b6463ffd7e2bf8e5",
+      "recipes": []
+    },
+    "references/design/discussion.md": {
+      "output_sha256": "9b1929c2b87e114a8df3538b7f6ce2be6d20856b80b75853fccdb58457a989d5",
+      "recipes": []
+    },
+    "references/design/impl-req.md": {
+      "output_sha256": "2f6fb0c32b98046ac4ac680b700d11240cd4376c0606ba25f02f464d64eb0783",
+      "recipes": []
+    },
+    "references/design/index-view.md": {
+      "output_sha256": "9407edb17bb9250d16f3212c7d4fcd1a5b2d204f679703e2162ddbfe51a69f09",
+      "recipes": []
+    },
+    "references/design/interview.md": {
+      "output_sha256": "27f5fb5f5966b0dda8a5c2bdb49b2236f255c0215825cac628c9edf55c2f35a9",
+      "recipes": []
+    },
+    "references/design/session-abstract.md": {
+      "output_sha256": "e19c109ee6b04c13be8455cde63cfe473d539459b8ae857371c3b752be4f71d8",
+      "recipes": []
+    },
+    "references/design/session-interruptions.md": {
+      "output_sha256": "2212a50808c937f24b4db375b1a823cfde9f51bd3c0b304601b6f83a43237a70",
+      "recipes": []
+    },
+    "references/design/session-log.md": {
+      "output_sha256": "0012b5de53745073e1a330c2af72ad280e5726ad8692468cb8b1c20cbbf88e7a",
+      "recipes": []
+    },
+    "references/design/session-notes.md": {
+      "output_sha256": "1ee57457e1db075a25beea4404e3fadadb60ece5462b387d607ac0fe0111db67",
+      "recipes": []
+    },
+    "references/design/status-report.md": {
+      "output_sha256": "cd34be751e7f738dd9178e14709cb11d1126a2f39c7530d11b7f29edd68fcf59",
+      "recipes": []
+    },
+    "references/design/uncommitted-work.md": {
+      "output_sha256": "ab64db51ec0ef8fe2a33a733b4f0514bf96cb103f0004489b983f7cbea0821d2",
+      "recipes": []
+    },
+    "references/design/writing-craft.md": {
+      "output_sha256": "e5211e5e9e620d5153f4932ecc0bcffe14aecd4229ac7e32d16ae8f4c51c72d5",
+      "recipes": []
+    },
+    "references/design.md": {
+      "output_sha256": "4005cffe7ffdc8ed696327b4094a56920b77466562cf2636b12bda858c6fcbbf",
+      "recipes": []
+    },
+    "references/edit.md": {
+      "output_sha256": "6096c8ed957f8cd61800d4096476ae73ab3362369800b235b76444c51bac33eb",
+      "recipes": [
+        {
+          "heading": "Block Independence",
+          "verb": "derived",
+          "body_sha256": "79222e12b6610528d3dcb618f182f5d0defe2c99d0b6e625bb48b4b1d96a060f",
+          "deps": {
+            "Independent.Reader.Block": "12d798ef629eacfa0d0bc4fa6a2fb4cd64c73376e7f4097eae62fd3ac9a2a098"
+          }
+        }
+      ]
+    },
+    "references/enrich.md": {
+      "output_sha256": "f56d34a01aacd4b83d867466857b88c7a5aaae6991e998844f4597706ac02e76",
+      "recipes": []
+    },
+    "references/gr-review.md": {
+      "output_sha256": "048cecf50503793af567703ad6ee30efa8177f32d13d4dec03277cfd416a4df5",
+      "recipes": []
+    },
+    "references/gr-survey.md": {
+      "output_sha256": "8342c40e94128f63e7d5e7e754f1d6672d7617c3033f3d13698bdd5c50819716",
+      "recipes": []
+    },
+    "references/harness.md": {
+      "output_sha256": "5f1ee9648088221c5fe335403ab56fdb31c518308353256b03548ce373a77b4f",
       "recipes": [
         {
           "heading": "Alignment.Loop.Interruptions",
@@ -61,47 +295,200 @@
         }
       ]
     },
-    "references/alignment-session.md": {
-      "output_sha256": "881a1da3c7b7fd3ee71eaa8a9f3676b6eeff7685ae6771050bf978dbb23a0d6e",
+    "references/impl/design.md": {
+      "output_sha256": "12647ded89115ef54961dc8648558ad18bee136e5e46682d50d6d54f74ade261",
       "recipes": [
         {
-          "heading": "Concepts",
+          "heading": "^how-loop",
           "verb": "derived",
-          "body_sha256": "a1d212f132d40bcacadcf468f5139c85e8ed281b1f2906505b124d1cd919949c",
+          "body_sha256": "7df7092eefc7b026e486208f44ac89bc66e64664b911cbbe6dfeaa385c429da8",
           "deps": {
-            "Alignment.Session": "e4f1d0d62a81f17ed631ef4e0bf57a38cad354a6f2254bd1f4b22c863c4a3d48",
-            "Design.Space": "68a879d4733c715bbada8ca3a4ac70d0c868d016a673983c095c4ae332e2694c",
-            "QA.Space": "60632fdaf93443227264be81b28c8eea108d7e533ef1e63506ef960f4a45277f",
-            "Design.Variable": "583f05f8a29f0b03074587816b8d6ce7f68008ec5413f7035bc7f882fafc1732",
-            "Hugentic.Variable": "e87d84d1409856bf164b4c26075900a267c75dd05bf6cfdc4e44db90d8a966bc",
-            "Touched.Space": "e78243e3d841dfc243a1927b0afecc812da6c1bfc843407cf3d2a846da1cb0cd",
-            "Agentic.Variable": "30e09b8e3d25504958c496722ed6a697930aad4b9d366b6095a5c17231e1b4ea",
-            "Open.Space": "68868ebf26c9385523070a879705ff29327910e0a9c131c1972ab53100724903",
-            "Alignment.Loop": "57d7e83a7e26a2e653edc8b63f6dfb560cf9c92204a5eb27d3ef8865113b7985",
-            "Alignment.Backend": "90db8db81e4e728732ebb35a4f54cc03a789b476bb42a12ea214c18a61701da6",
-            "Alignment.Checkpoint": "e4c60c9e0dea4a7a6f7dc9912bed9716f0516b80015366cb5acf6332b794050d",
+            "Alignment.Loop::How": "45e2ae4cfd145feded33f66f9fc2fb0f26f00aaf8b245833c293c5dbdc823f35",
+            "Alignment.Loop": "57d7e83a7e26a2e653edc8b63f6dfb560cf9c92204a5eb27d3ef8865113b7985"
+          }
+        },
+        {
+          "heading": "Alignment.Mode",
+          "verb": "derived",
+          "body_sha256": "c6faace91d3c4cb26e4f7cec66e92e04015557c2abd4499b78775a1fee6ce604",
+          "deps": {
             "Alignment.Mode": "8127bef68ccab8f921f4ee7bb39eb8cb9ac1998875f45ad30be54ef7204b1747"
           }
         },
         {
-          "heading": "Alignment.Checkpoint and Alignment.Mode",
+          "heading": "Alignment.Checkpoint::Readiness",
           "verb": "derived",
-          "body_sha256": "9bd7bfed8ecda86013d17abe37ea4c5335e6a350529e1f57b866dfbbda0dd70f",
+          "body_sha256": "98b12950bc2e4582c6ced4dec4aa28ef5abbd29bb72df07ac7e00e9213605775",
           "deps": {
-            "Alignment.Checkpoint": "e4c60c9e0dea4a7a6f7dc9912bed9716f0516b80015366cb5acf6332b794050d",
-            "Alignment.Mode": "8127bef68ccab8f921f4ee7bb39eb8cb9ac1998875f45ad30be54ef7204b1747"
+            "Alignment.Checkpoint::Readiness": "29a0d82b3f264201b4359f76b91658a2280709e43fc626cd7c9cfa9fe575e123"
           }
         },
         {
-          "heading": "^loop-params",
+          "heading": "Structure",
           "verb": "derived",
-          "body_sha256": "8428e5cda987b852b57b7d40f0e834a9997204d86a7b88dad4f17ea7dfc5db89",
+          "body_sha256": "578d4ee608de9997b97fda5f92e6584899151599e909958581b0a20f08fead88",
           "deps": {
-            "Alignment.Loop": "57d7e83a7e26a2e653edc8b63f6dfb560cf9c92204a5eb27d3ef8865113b7985",
-            "Alignment.Backend": "90db8db81e4e728732ebb35a4f54cc03a789b476bb42a12ea214c18a61701da6"
+            "Impl.Req": "4d6addffc2f215b37cca055f1b19d3afe6e3e9d4d6a1e67012e1b44a983c4f5f"
+          }
+        },
+        {
+          "heading": "Writing",
+          "verb": "derived",
+          "body_sha256": "e88993ff84912f2b2e008f87510016711998eeac033e777eec3ce8402ee7de20",
+          "deps": {
+            "Impl.Req": "4d6addffc2f215b37cca055f1b19d3afe6e3e9d4d6a1e67012e1b44a983c4f5f",
+            "Vertical.Slice": "a670e07fadf5c8183dd3de285fc558dcd9aa06bf86ff24e56e5452cf654afbbc",
+            "RED.GREEN.Test.Suite": "d2b1d3f40cf2b16f1c70127a6f03cc2ddfb93b13023b0fb288c5c76c5ad4c8e5"
           }
         }
       ]
+    },
+    "references/impl/develop.md": {
+      "output_sha256": "abca49f12bc71fe5cbce0543bfe7a9b92e76402207b69d98ada730433b3873db",
+      "recipes": [
+        {
+          "heading": "Workflow",
+          "verb": "derived",
+          "body_sha256": "ca438466e550fb8399ce8a34d7369ecc5576e4c8a92adf02e6c2f7088a8cbc37",
+          "deps": {
+            "references/design.skw.md^how-loop": null,
+            "references/execute.skw.md^exec-loop": null
+          }
+        }
+      ]
+    },
+    "references/impl/example.md": {
+      "output_sha256": "383f92d278260ba2346b7f33ca31c0a7dd8fcb1f5e293ce5e02c419c32aa3cbb",
+      "recipes": [
+        {
+          "heading": "Impl.Req Example",
+          "verb": "derived",
+          "body_sha256": "4d7346dfa2fb6ca1e9bce938efa97e3d4f9d3cc913fd0d42428b2b65e23a1a89",
+          "deps": {
+            "references/design.skw.md#Impl.Req Artifact": null,
+            "references/design.skw.md#Impl.Agendix": null
+          }
+        }
+      ]
+    },
+    "references/impl/execute.md": {
+      "output_sha256": "2c448fc0803fb3db164c0211ec164791cc29f5033c3de02eed2485b20de75c5b",
+      "recipes": [
+        {
+          "heading": "^exec-loop",
+          "verb": "derived",
+          "body_sha256": "52f8d1b38f2d59eed03cf9634316ba2d44fdb7db765b830a3a4222c2b86f1fbd",
+          "deps": {
+            "Alignment.Loop::Exec": "b8656199b118e822eedd82b065c770e378cc468658759d3f4f5466e7c41bea34"
+          }
+        },
+        {
+          "heading": "Alignment.Checkpoint::Executable",
+          "verb": "derived",
+          "body_sha256": "2e47195bf5a41fbdbe85ae8477d3fa041d264e683fc26c1932d2ad3a317c7af1",
+          "deps": {
+            "Alignment.Checkpoint::Executable": "0b94c7373a64e4fe130f921989cacf4b624505ac9e6ceb320b9e4e6c15e1d959"
+          }
+        },
+        {
+          "heading": "Per-Slice Execution",
+          "verb": "derived",
+          "body_sha256": "acfa8a91dcfc7e050982b4831df1f191b75152628369ef81846dc669b608c1c2",
+          "deps": {
+            "Vertical.Slice": "a670e07fadf5c8183dd3de285fc558dcd9aa06bf86ff24e56e5452cf654afbbc",
+            "RED.GREEN.Test.Suite": "d2b1d3f40cf2b16f1c70127a6f03cc2ddfb93b13023b0fb288c5c76c5ad4c8e5",
+            "Annotation.Point": "ffd09205f65934940bb8f3b8c5027d298a4c475c7b738792cd86f8b25dc67592"
+          }
+        }
+      ]
+    },
+    "references/impl/general-practices.md": {
+      "output_sha256": "9f76cf3f9bb2febf4e55e467dd8cdffb6033fb4b91e6dde827a13c9203e811e4",
+      "recipes": [
+        {
+          "heading": "Moving Forward",
+          "verb": "derived",
+          "body_sha256": "7834888bc1e618d5dde04871e3f3b754e556148108ac42d4d0e4cf585252fdcc",
+          "deps": {
+            "No.Legacy.Allowed": "13b70b46b197531fe439921ca95d9dca8fb80b1c0f1b9ba7f40031c906f25b80"
+          }
+        }
+      ]
+    },
+    "references/impl/general-preferences.md": {
+      "output_sha256": "279129aa9f66007de98fa9360c1207a4ff1f54fee943b80a6611f6c8f1945259",
+      "recipes": []
+    },
+    "references/impl/impl-capture.md": {
+      "output_sha256": "03fa338c5ceace8e22b5a152a9191e22186e2139a6260d937d5e58e8e5502669",
+      "recipes": [
+        {
+          "heading": "Alignment.Checkpoint::Candidate",
+          "verb": "derived",
+          "body_sha256": "fc6f860c6145db9a39d781dd636fc68ad8bb7f4298486b8f461f6e351b4aca7e",
+          "deps": {
+            "Alignment.Checkpoint": "e4c60c9e0dea4a7a6f7dc9912bed9716f0516b80015366cb5acf6332b794050d",
+            "Alignment.Mode": "8127bef68ccab8f921f4ee7bb39eb8cb9ac1998875f45ad30be54ef7204b1747"
+          }
+        }
+      ]
+    },
+    "references/impl/review.md": {
+      "output_sha256": "a274d763206d218288a4822ee3c96b7ff83d0fdb797ea4b9a33bbce91d1aaa30",
+      "recipes": [
+        {
+          "heading": "2. Evidence audit",
+          "verb": "derived",
+          "body_sha256": "8d7168f028cfc193330d93a8310d3a3dd8c2e137af3f4c125628677b4f8c3bb4",
+          "deps": {
+            "Hard.Evidence": "e40a5a1bf8de89b4a789fa87b3543d903ac44f505dca2c08ff8277649bc3d23f"
+          }
+        },
+        {
+          "heading": "3. Readiness audit",
+          "verb": "derived",
+          "body_sha256": "24335d3bfb5a17afab66ac098b9c248965071a4a673e6c26f33a969d8846f93a",
+          "deps": {
+            "Alignment.Checkpoint::Readiness": "29a0d82b3f264201b4359f76b91658a2280709e43fc626cd7c9cfa9fe575e123"
+          }
+        }
+      ]
+    },
+    "references/impl.md": {
+      "output_sha256": "403c3d115d958d39b74f9d69e2d68f281981f6d5d5de6c1103ad65feed8a2a26",
+      "recipes": []
+    },
+    "references/index-capture-context.md": {
+      "output_sha256": "9dda42999feaf8e0086e4d854a8f1fee4945c337baefae7688e5024210145c60",
+      "recipes": []
+    },
+    "references/index-context-assembly.md": {
+      "output_sha256": "ab02f3b520a37eab1d56b281c47616873e3379e703ced3c185f14b38e6b19bbf",
+      "recipes": []
+    },
+    "references/link.md": {
+      "output_sha256": "757997c9fa16c362974fd79b95bbba18c59bc64bd114dbe42c52d98e008324fa",
+      "recipes": []
+    },
+    "references/parking-note.md": {
+      "output_sha256": "fde77f58d250495df1235249774f9cffbe14f7dab6712f73db6088f10c212509",
+      "recipes": []
+    },
+    "references/search.md": {
+      "output_sha256": "d2f89ba0828581cc6d1f0930b1de4419481d16680e943904d8469294c5dc85ab",
+      "recipes": []
+    },
+    "references/touched-data.md": {
+      "output_sha256": "c38880620a5592b1efd46491fe42b8f90e2c7c8be047efd3c929d08cfa907298",
+      "recipes": []
+    },
+    "references/type.md": {
+      "output_sha256": "4ae8f5566762f972e9c4dae84e053f7708672af492441bec13d02fd08fd1f26a",
+      "recipes": []
+    },
+    "references/workflow-status.md": {
+      "output_sha256": "23d69feaa8d112d0dff450dfd33158ae1880d7a4ef2ebc0ba7feed2be508236f",
+      "recipes": []
     }
   },
   "blessings": []

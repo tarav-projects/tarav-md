@@ -69,7 +69,7 @@ Semantic match, not exact wording. Evaluate what the agent did, not just what it
 When evaluating, note which surfaces the agent loaded. Key signal: did the agent go to live-note surfaces directly, or did it detour through index/hugentics?
 
 Expected trace: `SKILL.md -> agentos-live-surfaces -> draft`
-Overwork trace: `SKILL.md -> agentos-index -> ... -> live-note`
+Overwork trace: `SKILL.md -> agentos-hugentics -> ... -> live-note`
 
 ## Evolution Notes
 

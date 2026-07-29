@@ -18,7 +18,9 @@ This is itself a `Batchy.Skill` — the convention it defines applies to it too.
 - This skill defines conventions; it does not execute a skill-building workflow.
 - For source mining, design discussion, and applying a new or upgraded skill, use `agentos-skills-ingenier`.
 - For behavioral testing of a skill, use `agentos-testground`.
-- For writing the index blocks a skill's concepts live in, use `agentos-index --write` and follow `Kernel.Writing`.
+
+Write the index blocks a skill's concepts live in through the gated Hugentics Index edit path and follow `Kernel.Writing`.
+
 - Conventions are conventions an agent knows, not rigid mandates — a clear prompt is always honored.
 
 ## Skill Model
@@ -67,4 +69,4 @@ Detail is split by audience: running a Batchy skill → [references/batchy-skill
 - [references/batchy-skill-run.md](references/batchy-skill-run.md) — operating a Batchy skill (runner-facing).
 - [references/batchy-skill-designer.md](references/batchy-skill-designer.md) — building a Batchy skill (designer-facing).
 - `agentos-pkg` index `design/101-design.md` — skill model and Batchy concept blocks.
-- `agentos-index --write` — how to write the index blocks a skill's concepts live in.
+- the derived Hugentics Index write contract above — how to write the index blocks a skill's concepts live in
