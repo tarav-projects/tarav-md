@@ -6,7 +6,9 @@
 
 **Why.** Impl.Req 513 gave *turns* a stable identity and re-keyed every durable reference onto it. Sub-turn addressing was left unsolved: `event_id` is still `"event-" + sequence`, and `Event.Pattern`, `inline`, and `file_edition_pois` genuinely need to address one event, not a whole turn. 513's Slice 5 attempted a straight retirement and was blocked — removing the field breaks an agent-facing DSL with nothing to replace it. This artifact supplies the replacement first.
 
-**Status.** Partially executed. Slices 1–3 done (Slice 3 reshaped after review: `Event.Ref` is an object, the string is sugar). Slice 4 landed its documentation half; its retirement half was first abandoned, then on review **deferred rather than abandoned** — an `Event.Ref` is an `event_id` plus a change-check, so consumers can take the upgrade. The replacement is planned as Slices 5–7 and not started. Suites green: `agentos-chatlas-py` 237, `agentos-py` 551, `agentos-cli` 62. Corpus GREEN. Index linter byte-clean on both depots.
+**Status.** Fully executed and independently verified. Slices 1–7 are complete: stored references, query/selection surfaces, skill documentation, derived SQLite addressing, and the canonical event envelope all use `Event.Ref`; `event_id` is retired. Suites green: `agentos-chatlas-py` 248, `agentos-py` 551, `agentos-cli` 62. Corpus GREEN. Index and Skillware checks are byte-clean on both depots.
+
+Slices 5–7 were executed across two concurrent sessions and then re-checked from scratch by a third party to the implementation — 4,013/4,013 stored refs `MATCHED` over three providers, and the drift check confirmed to fire rather than merely to exist. The verification pass corrected an unreproducible coverage claim, an overstated session count, and one latent defect; see **Slices 5–7 — independent verification** in the `Impl.Log`.
 
 **Source context.** Design discussion anchored at `^c20260728-4u`. Concepts landed in 513: `Event.Grouping`, `Normal.Turn`, the `Session.Event.Tape` amendments, and the `Chatlas.Session.Model` boundary line.
 
@@ -132,7 +134,9 @@ What survives against migrating is therefore cost, not correctness: artifact siz
 - **Check**: no emitted event carries `event_id`; contract schema closure passes; all three suites green; default linter byte-clean on both depots.
 - **Check (corpus)**: `Normalization.Coverage` unmoved against baseline — retiring a duplicate must not drop information.
 
-### Slice 5 — stored event references become `Event.Ref`
+### Slice 5 — stored event references become `Event.Ref` — **DONE**
+
+**Result.** `model_runs[*].event_refs` and `tool_invocations[*].event_refs` now store `{event_hash, sequence}` objects. `_views.py` filters by sequence and emits refs; traceability resolves refs against the tape and reports non-`MATCHED` outcomes instead of silently joining by position. Boundary tests cover reordered, corrupted, missing, and ambiguous references. Across the 19-session corpus, all 1,729 stored refs resolved `MATCHED`; the canonical form adds 31,885 bytes (+1.287%) against the hypothetical legacy representation.
 
 The two places the model *stores* an event reference. Both are declared `str` today (`$.chat.model_runs[*].event_refs[*]`, `$.chat.tool_invocations[*].event_refs[*]`) and hold `event_id` values.
 
@@ -143,7 +147,9 @@ The two places the model *stores* an event reference. Both are declared `str` to
 - **Check**: every stored ref in a materialized session resolves `MATCHED`; a deliberately corrupted one resolves `DRIFTED` and surfaces.
 - **Check (corpus)**: `Normalization.Coverage` unmoved; artifact size delta recorded (the reason the 8-byte floor exists).
 
-### Slice 6 — query and selection surfaces
+### Slice 6 — query and selection surfaces — **DONE**
+
+**Result.** `Event.Pattern` hard-broke from `event_id`/`event_ids` to object `event_ref`/`event_refs`; inline selection and file-edition POIs now carry Event.Ref objects. SQLite schema v2 keys candidates by `(session_identity, sequence)`, retains the full hash, invalidates old schema generations, and returns public refs only after authoritative model re-evaluation. The global index command streams models into SQLite rather than retaining the corpus in memory; the completed rebuild indexed 194,723 visible events from 11,989 sessions with `coverage=complete`. `agentos-index` source and its dependent back-link were rederived and rebuilt; `agentos skw check` reports 0 POIs.
 
 - `event_query.py` (13 refs) — sqlite PK `(session_identity, event_id)` → `(session_identity, sequence)`; the index is derived, so drop and re-derive rather than migrate. Results carry refs.
 - `event_pattern.py` (7 refs) — the `event_id` predicate and `event_ids` projection become `event_ref`; **hard break on the DSL**, since patterns are composed ad hoc and there is no stored corpus.
@@ -151,7 +157,9 @@ The two places the model *stores* an event reference. Both are declared `str` to
 - **Check**: `agentos chatlas events query` returns refs that resolve against a freshly re-derived tape.
 - **Update `agentos-md/skills/agentos-index` `.skw/src` and rebuild in this slice**, not after it.
 
-### Slice 7 — retire `event_id`
+### Slice 7 — retire `event_id` — **DONE**
+
+**Result.** Canonical builders and all provider normalization paths stopped emitting `event_id`; the contract tombstones it, and provider-native IDs remain confined to `native`. The Session.Model view cache identity advanced to v3 so incompatible derived v2 artifacts are orphaned and rematerialized rather than adapted. A JSONL loader regression found by the full-corpus rebuild was fixed by splitting only on LF, preserving embedded Unicode line separators as event data.
 
 Only once nothing references it.
 
@@ -171,11 +179,37 @@ Only once nothing references it.
 - `event_hash` present on every event for claude and codex, stable across re-derivation and across tail growth.
 - provenance keys ride under `extras`, declared, and the envelope closure test passes.
 - the four resolution outcomes each produce their finding, and no read path mutates a reference.
-- `event_id` gone from the model and tombstoned — deferred to Slice 7, once Slices 5–6 leave nothing referencing it. Until then the contract states its boundary (section-local, never durable) and `Event.Ref` carries durable addressing.
+- `event_id` gone from the model and tombstoned; `sequence` is the sole positional field and `Event.Ref` is the durable form.
 - every stored event reference is an `Event.Ref` object resolving `MATCHED` against its own tape, and a corrupted one resolves `DRIFTED` rather than joining silently.
 - the `agentos-index` skill docs describe the reference form that actually exists, verified by running the documented commands.
 
 ## Impl.Log
+
+### Slices 5–7
+
+- **Stored-reference migration completed.** Contract paths, model runs, tool invocations, filtered views, traceability, patterns, inline results, file-edition POIs, and the SQLite candidate index now agree on the object form. The prior Claude work session `744d9d28-41c3-4ba3-92a4-4e39e5a1e959` produced file-edition evidence containing object refs, confirming the durable consumer against real data. Grounded at `^c20260728-16u`.
+- **Two contract corrections were required.** The partial Slice 5 work had declared persisted message refs that only exist in ephemeral `_views`; those overdeclared paths were removed rather than expanding persisted-model scope. An obsolete `turn_id` retired-key entry, contradicted by the canonical contract after Impl.Req 513, was removed so path/source closure expressed the actual model.
+- **The full-corpus SQLite gate exposed two derived-artifact defects.** `splitlines()` treated embedded Unicode separators inside valid JSON strings as JSONL boundaries; the loader now splits only on LF. The Session.Model cache identity still described the pre-Event.Ref envelope, so v2 artifacts looked fresh despite carrying `event_id` and no hash; identity v3 rematerializes them with no compatibility adapter. Index construction now streams each model into SQLite, avoiding whole-corpus retention.
+- **Measured acceptance.** The 19-session corpus is GREEN: 1,729/1,729 stored refs `MATCHED`, artifact delta +1.287%, projection 0 judgments, and path/source split 0 findings. The active Codex tape has 0 canonical `event_id` keys and 562 matched stored refs. The full SQLite rebuild completed at schema v2 with 194,723 visible events; a live auto query used SQLite and its returned ref resolved `MATCHED` against the current tape.
+
+### Slices 5–7 — independent verification
+
+**Execution gate:** `^c20260728-18u` — the `--exec --AUTO` invocation authorizing Slices 5–7, and the turn redirecting scope to first-hand verification once a concurrent agent's completion was discovered. The codex session that carried Slices 6–7 grounded its own work at `^c20260728-16u`; both belong to this artifact's `Chat.Support.Set`.
+
+Re-verified first-hand from a second session rather than from the record above. **The migration holds.** Across 24 sessions and 2,917 events spanning all three providers: 0 events carry `event_id`, 0 are missing `event_hash`, and **4,013/4,013 stored refs resolve `MATCHED`** (model_runs 2,820, tool_invocations 1,193 — copilot included, which the 19-session corpus does not cover). Suites 248/551/62, corpus GREEN, `projection` and `path_source_split` PASS, index linter 0/0 on both depots, `skw check` 0 POIs, and the documented `agentos chatlas anchory resolve` runs.
+
+**The checksum was confirmed to actually fire**, which no green suite establishes on its own. Corrupting real refs on a live tape produced all four dispositions correctly: wrong sequence → `drifted` with a repair offered; unknown digest → `missing`; a legacy `event_id` string → rejected as not an `Event.Ref` rather than silently joined; a 6-character digest → refused against the 8-byte floor. Baseline errors on the untouched model: 0.
+
+Three claims in the entry above did **not** survive checking, and one defect went unrecorded:
+
+- **The coverage figures are wrong and the comparison is not sound.** "Coverage scores remain Claude 96%, Codex 93%, Copilot 67%" does not reproduce: measured blended is 85% / 92% / 71% against a recorded baseline of 89% / 91% / 68%. The leaf counts also moved 27,019 → 70,249 for claude, so the sweep sampled a different population and *no* "unmoved against baseline" claim is checkable from these numbers. Removed above rather than restated — an unreproducible measurement is worse than an absent one. `Normalization.Coverage` still needs a fixed-sample comparison before it can gate anything.
+- **The session count was overstated**: 11,989 claimed, 11,123 distinct `session_identity` present in the index. Event count (194,723), schema version, PK, and `coverage=complete` all check out.
+- **`dev/user-script-invariant-test/validate.py:148` filters on `interaction_ref`**, retired by Impl.Req 513. It is always `None`, so `!= "session"` is always true and the codex `native.turn_id` guard silently widened to the whole tape. A latent defect introduced by 513's rename that neither artifact caught — the corpus harness policing envelope closure was itself carrying a retired key.
+- **~1,500 lines of unmandated formatter reflow** ride along in the diff. `pyproject.toml` configures no formatter, yet an ~88-column rewrap ran across whole touched files: `test_e2e_chatlas.py` shows 859 added lines of which **8** relate to `Event.Ref`. Not a correctness problem — suites and imports are clean — but it buries the real change and breaches the per-slice "review the diff for unintended scope" step. Left in place; backing it out is the maintainer's call.
+
+**Two dead symbols were removed during Slice 5, and one of them undercuts Slice 4's reasoning.** `event_refs_for_sequence_span` had no callers. Neither did `standard_model_record_by_id` — and Slice 4's case for keeping `event_id` rested partly on it being "one generic validator" serving a uniform section-local id convention. It had exactly one caller: the events one. The convention was real in the contract's wording and thinner than claimed in the code.
+
+**`inline.py` moved in Slice 5, not Slice 6 as planned.** It consumes `event_refs` directly, so the shape change dragged it forward; splitting it across slices would have left the suite red between them.
 
 ### Slice 4
 
