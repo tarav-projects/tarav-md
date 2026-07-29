@@ -163,7 +163,7 @@ Each source entry should capture:
 - `why-it-matters`: main working skill collection with real trigger descriptions, workflow structure, and packaging choices
 - `best-for`: `SKILL.md` structure, `agents/openai.yaml` patterns, progressive disclosure, validation conventions, full skill-stack design
 - `caveats`: contains a mix of mature, experimental, and copied skills; compare before imitating
-- `search-hints`: `skill-creator`, `design-session`, `hugentics-codebase-cleaner`, `codebase-quality-review`, `index-*`
+- `search-hints`: `skill-creator`, `design-session`, `agentos-hugentics`, `codebase-quality-review`, `index-*`
 
 ## agentos-project-skills
 

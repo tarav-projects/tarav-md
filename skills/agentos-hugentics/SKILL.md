@@ -1,6 +1,6 @@
 ---
 name: agentos-hugentics
-description: "Canonical public control surface for Hugentic sessions. USE WHEN you need touched-data contextualization, product design, implementation design or execution, capture, reconciliation, parking, status, index research, editing, diagnosis, testing, or maintenance."
+description: "Canonical public control surface for Hugentic sessions. USE WHEN you need session routing, touched-data contextualization, product design, implementation design or execution, capture, reconciliation, parking, status, index research, editing, diagnosis, testing, or maintenance."
 ---
 
 # Agentos Hugentics
@@ -175,6 +175,13 @@ This is a `Batchy.Skill`; the public arguments and user commands below are its c
 - help: "report the active workflow's done, current, stale, open, and next state"
 - examples: --workflow-status
 
+### Skill.Arg::SessionRouter
+- inspect the current chat for coherent workflow continuations, resumptions, entries, and interruptions
+- required: false
+- aliases: --session-router, --what-now
+- help: "rank workflow candidates for the current session and print a resolved command for each"
+- examples: --session-router, --what-now, --session-router "focus on incomplete implementation work"
+
 ### Skill.Arg::Park
 - capture a sidequest thought into a project `Parking.Note`, then return to the interrupted session
 - required: false
@@ -285,6 +292,7 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 | When the caller asks whether significant session material remains uncaptured | `references/capture-audit.md` |
 | When the caller wants to reconnect with the current chat and its todo state | `references/chat-status.md` |
 | When the caller wants a structured checkpoint against an active workflow | `references/workflow-status.md` |
+| When the caller is unsure what workflow should handle the current chat, or the agent detects a useful routing opportunity; rank continuing, resuming, entering, and interrupting candidates without entering one | `references/session-router.md` |
 | When the caller wants to park a sidequest thought and return to the current session | `references/parking-note.md` |
 | When the caller wants a codebase cleanup designed and executed through one gated handoff | `references/codebase-cleaner.md`, then `references/impl/` |
 | When the caller needs the phase model, alignment frame, shared development principles, or interruption vocabulary | `references/harness.md` |
@@ -340,6 +348,7 @@ For delegated read-only research that protects the caller's context, use `Packag
 - `references/capture-audit.md` — whole-session capture audit
 - `references/chat-status.md` — lightweight current-chat realignment
 - `references/workflow-status.md` — artifact-aware workflow checkpoint
+- `references/session-router.md` — evidence-backed workflow candidate ranking with resolved route commands
 - `references/parking-note.md` — short-lived sidequest capture and return
 - `references/codebase-cleaner.md` — scan, scope, gate, and execute a targeted cleanup
 - `references/harness.md` — phase model, alignment frame, shared principles, and interruption vocabulary
@@ -354,6 +363,7 @@ Any active loop may be interrupted for capture, audit, consolidation, implementa
 
 - when a session needs index-grounded context or a custom index research pass
 - when the user wants to control, inspect, interrupt, or resume a Hugentic session
+- when the user is unsure what to do next and needs ranked workflow routes
 - when designing or realizing a target product
 - when editing, diagnosing, testing, or maintaining the index
 - when discussing or modifying the index design itself

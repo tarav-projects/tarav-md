@@ -50,4 +50,4 @@ Load only the detailed design modules needed for the current move:
 - status or capture audit → `references/design/status-report.md` or `references/design/capture-audit.md`
 - implementation handoff → `references/design/impl-req.md`
 
-These files are the canonical detailed implementation. The legacy `hugentics-designer` entry is only a derived compatibility projection.
+These files are the canonical detailed implementation of `agentos-hugentics --design`.

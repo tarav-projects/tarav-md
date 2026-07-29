@@ -1,12 +1,14 @@
 ---
 name: agentos-hugentics
-description: "Canonical public control surface for Hugentic sessions. USE WHEN you need touched-data contextualization, product design, implementation design or execution, capture, reconciliation, parking, status, index research, editing, diagnosis, testing, or maintenance."
+description: "Canonical public control surface for Hugentic sessions. USE WHEN you need session routing, touched-data contextualization, product design, implementation design or execution, capture, reconciliation, parking, status, index research, editing, diagnosis, testing, or maintenance."
 ---
 
 # Agentos Hugentics
 
 > $kw: --from Agentos.Index.System --from Alignment.Mode --from Alignment.Surface --from Batchy.Skill --from Capture.Offer --from Demoted.Index.Line --from Edition.Approval.Token --from Gr.Req --from Impl.Req --from Index.Agendix --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Enrichment --from Index.Line --from Index.Ontology --from Index.Presumption --from Index.Skillware --from Line.Type --from Line.Type.Vocabulary --from Line.Verbatim.Gate --from Live.Index.Line --from Open.Inference --from Package.Driver --from Packages.Master.Agent --from Parking.Note --from POI.Instance --from Product.Design.Session --from Reviewed.Content --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from Touched.Support.Network --from User.Attention --from User.Command --from User.Command.Arg --from User.Command.Section --from User.Command.Trigger
 > --dev-from references/index-context-assembly.skw.md
+> $kw: ^driver-critical-context --from Cited.Duplication --from Context.Loading.Path --from Package.Driver.Base --from SKILL.Loading
+> --supp root driver context is selected by the alignment failure its absence could cause, not by minimizing line count; preserve context whose omission could make the agent misunderstand authority, violate a gate, select the wrong workflow, or lose the session model ^c20260729-48u
 
 Canonical `Package.Driver` and single public session-control surface for the Agentos Hugentic Harness.
 
@@ -186,6 +188,13 @@ This is a `Batchy.Skill`; the public arguments and user commands below are its c
 - help: "report the active workflow's done, current, stale, open, and next state"
 - examples: --workflow-status
 
+### Skill.Arg::SessionRouter
+- inspect the current chat for coherent workflow continuations, resumptions, entries, and interruptions
+- required: false
+- aliases: --session-router, --what-now
+- help: "rank workflow candidates for the current session and print a resolved command for each"
+- examples: --session-router, --what-now, --session-router "focus on incomplete implementation work"
+
 ### Skill.Arg::Park
 - capture a sidequest thought into a project `Parking.Note`, then return to the interrupted session
 - required: false
@@ -257,6 +266,16 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 
 ## What The Index Is
 
+> $kw: ^driver-index-literacy --derived
+> --from references/touched-data.skw.md#Authority Flow
+> --from references/touched-data.skw.md#Support Network
+> --from references/touched-data.skw.md#Line Standing
+> --from references/touched-data.skw.md#Coherence And Decision Weight
+> --from references/touched-data.skw.md#Current Realization
+> --intent project the authority model, line standing, and current realization
+> --cont into always-loaded driver literacy; retain the distinctions whose
+> --cont absence could make an agent misread authority or reason from stale data
+
 - `Touched.Index` curates and densely presents relevant touched data so prior alignment can condition later work
 - the authority path is `Touch.Authority.Surface` → `Touched.Data` → `Support.Set` → `Support.Reference` → `Index.Line`
 - the support sets of current and historical projections compose `Touched.Support.Network`
@@ -270,6 +289,8 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 - its lines carry `Line.Type` codes (`- [CT] ...`) classifying each line's act; untyped lines are pre-fence legacy
 - its current support references are trailing `Anchory.Anchor`s resolving through Chatlas to qualifying user-turn evidence
 - agents operate it by loading routers, concept blocks, appendix material, and references relevant to the current task
+
+> $kw. end
 
 ## Router Table
 
@@ -296,6 +317,7 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 | When the caller asks whether significant session material remains uncaptured | `references/capture-audit.md` |
 | When the caller wants to reconnect with the current chat and its todo state | `references/chat-status.md` |
 | When the caller wants a structured checkpoint against an active workflow | `references/workflow-status.md` |
+| When the caller is unsure what workflow should handle the current chat, or the agent detects a useful routing opportunity; rank continuing, resuming, entering, and interrupting candidates without entering one | `references/session-router.md` |
 | When the caller wants to park a sidequest thought and return to the current session | `references/parking-note.md` |
 | When the caller wants a codebase cleanup designed and executed through one gated handoff | `references/codebase-cleaner.md`, then `references/impl/` |
 | When the caller needs the phase model, alignment frame, shared development principles, or interruption vocabulary | `references/harness.md` |
@@ -308,11 +330,20 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 ## Index Operating Behavior
 
 > $kw: --derived
+> --from references/touched-data.skw.md#Line Standing
+> --from references/touched-data.skw.md#Coherence And Decision Weight
+> --from references/decision-cycle.skw.md#Contextualize
+> --from references/decision-cycle.skw.md#Act
+> --from references/decision-cycle.skw.md#Reconcile
 > --from references/search.skw.md#Search Model
 > --from references/search.skw.md#Citation Behavior
-> --intent restate the search doctrine (routing-first selective loading, depot and
-> --cont chapter scoping) and citation behavior as the operating checklist, and
-> --cont extend it with the gate/capture lines the modules own
+> --from references/capture.skw.md#User.Command Checkpoints
+> --from references/capture.skw.md#Landing
+> --from references/edit.skw.md#Edit Gates
+> --from references/edit.skw.md#User.Command Transitions
+> --intent assemble the risk-critical operating contract that must already be
+> --cont present when the driver loads: authority-aware reasoning, routing-first
+> --cont search, explicit gates, unambiguous commands, and separate reconciliation
 
 An agent operating the index should:
 
@@ -338,39 +369,14 @@ For delegated read-only research that protects the caller's context, use `Packag
 
 > $kw. end
 
-## Skill Modules
-
-- `references/touched-data.md` — the authority flow, support network, line standing, decision weight, and current implementation mapping
-- `references/decision-cycle.md` — contextualize-act-reconcile discipline shared by search, design, capture, implementation, and reconciliation
-- `references/design.md` — `Product.Design.Session` entry and router for the detailed move library under `references/design/`
-- `references/search.md` — routing-first search, selective loading, appendix discovery, citation behavior, and conversation-to-index grounding
-- `references/index-context-assembly.md` — the whole-file shared builder context for every managed Hugentics Index surface
-- `references/capture.md` — the capture workflow: the discussion-landing loop from chat content to index surfaces
-- `references/index-capture-context.md` — the whole-file runtime context and grounding closure for working across a touched index
-- `references/edit.md` — the knowledge of index and appendix writing: gates, actions, naming, placement, drafting screens, landing procedure, and maintenance
-- `references/check.md` — deterministic index checks through `agentos index linter`
-- `references/type.md` — line typing: syntax, vocabulary, validation points, reading typed lines, fence and residue
-- `references/agendix.md` — the knowledge of the agendix surface: rules, landing form, boundaries — typed, anchored, ungated
-- `references/link.md` — the linking primitive: mint and verify chat anchors through chatlas + anchory commands
-- `references/back-link.md` — backward grounding: git history to evidence turns for existing blocks
-- `references/gr-survey.md` — grounding campaign survey: scope sweep, minting, `Gr.Req` production (no index writes)
-- `references/gr-review.md` — grounding campaign gate: per-entry user verdicts, gated landings, provenance close-out
-- `references/enrich.md` — `Index.Enrichment`: block-scoped discussion generating new grounding surface, gated landings, density-delta receipt
-- `references/impl.md` and `references/impl/` — implementation design, review, execution, development, and ready-work capture
-- `references/capture-audit.md` — whole-session capture audit
-- `references/chat-status.md` — lightweight current-chat realignment
-- `references/workflow-status.md` — artifact-aware workflow checkpoint
-- `references/parking-note.md` — short-lived sidequest capture and return
-- `references/codebase-cleaner.md` — scan, scope, gate, and execute a targeted cleanup
-- `references/harness.md` — phase model, alignment frame, shared principles, and interruption vocabulary
-
 ## Unified Harness Model
 
 > $kw: --derived
 > --from references/harness.skw.md#What This Is
 > --from references/harness.skw.md#Alignment.Loop.Interruptions
-> --intent project the phase model and interruption contract into the canonical
-> --cont driver without duplicating the harness module's deeper concept map
+> --intent project only the phase and interruption model whose absence could
+> --cont make the agent lose the active session shape; leave deeper vocabulary
+> --cont and operating detail in the harness module
 
 The Hugentic Harness exposes `What.Design`, `How.Design`, and `Impl.Exec` as selectable concerns rather than a rigid pipeline. A workflow exposes only the unresolved concerns needed for its `Target.Product`; `Touched.Decision.Cycle` governs material decisions inside each concern.
 
@@ -382,6 +388,7 @@ Any active loop may be interrupted for capture, audit, consolidation, implementa
 
 - when a session needs index-grounded context or a custom index research pass
 - when the user wants to control, inspect, interrupt, or resume a Hugentic session
+- when the user is unsure what to do next and needs ranked workflow routes
 - when designing or realizing a target product
 - when editing, diagnosing, testing, or maintaining the index
 - when discussing or modifying the index design itself

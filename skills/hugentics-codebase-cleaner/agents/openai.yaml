@@ -1,4 +1,0 @@
-interface:
-  display_name: "hugentics-codebase-cleaner"
-  short_description: "Scan-design-execute code cleanup via the hugentic harness"
-  default_prompt: "Use $agentos-hugentics --clean to improve this repository in place: scan, produce an Impl.Req, confirm once, then execute autonomously."

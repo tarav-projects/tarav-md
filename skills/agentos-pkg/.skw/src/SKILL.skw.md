@@ -5,6 +5,9 @@ description: "Agentos provides shared tools for agent-project workflows: concept
 
 # agentos-pkg
 
+> $kw: ^driver-critical-context --from Cited.Duplication --from Context.Loading.Path --from Package.Driver.Base --from SKILL.Loading
+> --supp root driver context is selected by the alignment failure its absence could cause, not by minimizing line count; preserve context whose omission could make the agent misunderstand authority, violate a gate, select the wrong workflow, or lose the session model ^c20260729-48u
+
 Agentos is a toolkit for agent-project workflows. It gives agents shared, durable surfaces for orientation, design knowledge, working state, and structured collaboration. Instead of starting from scratch each session, agents working in an agentos project find maintained tools and persistent context.
 
 The main tools: concept indexes, live surfaces, package skills, and human-agent workflows.
@@ -23,7 +26,7 @@ Two important locations for agentos surfaces: project folders and package skills
 
 A **Project Folder** is where the project that users and agents are developing lives — in practice, a folder that stores notes, code, data, and other project material. A `.agentos` folder is a hint that a folder might be an agentos project. At the project level, look for `AGENTS.md`, `notes/` (live notes, index, appendix), and `dev/` (scripts and tooling).
 
-A **Package Skill** is a reachable skill that serves as the agentic interface to a package — it contains data, documentation, and operational instructions for using a package's functionalities. For instance, `agentos-pkg` is the Package Skill of the agentos framework. At the package level, a package skill contains its own `000-INDEX.md`, `design/`, `appendix/`, `references/`, and `SKILL.md`.
+A **Package Skill** is a reachable skill that serves as the agentic interface to a package — it contains data, documentation, and operational instructions for using a package's functionalities. For instance, `agentos-pkg` is the Package Skill of the agentos framework. At the package level, a package skill contains its own `000-INDEX.md`, `design/`, optional specialized chapters such as `poi/`, `appendix/`, `references/`, and `SKILL.md`.
 
 When working in a project, the agent may encounter several workspaces — multiple project folders, multiple package skills, or both. Keep clear which workspace an action or prompt is referring to — surfaces from different workspaces should not be confused.
 
@@ -31,13 +34,29 @@ When a surface mentions another skill or reference, load it only if the relevant
 
 ## The Index
 
+> $kw: ^driver-index-literacy --derived
+> --from Agentos.Index.System
+> --from Cited.Duplication
+> --from Dotted.Notation
+> --from Index.Appendix
+> --from Index.Chapter
+> --from Index.Line
+> --from Kernel.Block
+> --from Line.Type
+> --from Package.Skill
+> --from Touched.Index
+> --intent adapt the index ontology into package-driver literacy sufficient for
+> --cont discovery, correct routing, and interpretation of typed and grounded
+> --cont content; keep operational mechanics outside this guaranteed projection
+
 The Agentos Index is a concept and design knowledge base — a searchable collection of named entries that capture what a project or package knows about itself. Each entry is a **Kernel Block** — a short, named section that describes one concept from multiple angles using direct, orthogonal lines. The index is the primary discovery surface — where agents go to understand, question, or extend a project's design.
 
 Concepts are named using **Dotted Notation** — compound names like `Vertical.Slice` or `Agentos.Index.System` that serve as stable identifiers.
 
-Indexes are distributed across two scopes:
+Indexes are distributed across routed chapters plus appendix depth:
 
 - `design/` — the default `Index.Chapter`: conceptual fundamentals in flat numbered files (`100-design.md`, `101-design.md`, ...) whose suffix names the chapter. The loading policy is open — when in doubt, search the default chapter only.
+- specialized chapters such as `poi/` — indexed data with a narrower role; `poi/` is the machine-discoverable `POI.Catalog` of package-owned class blocks.
 - `appendix/` — on-demand depth. Contains concept-named files (`Concept.Name-appendix.md`) — check if one exists when you need depth beyond the index block.
 
 The **router** maps every concept name to the file that holds it — always read this first. Package indexes use `000-INDEX.md`; project-local indexes use `001-index.md`.
@@ -71,6 +90,8 @@ skills/some-pkg/
 ├── design/
 │   ├── 100-design.md           ← package concept blocks
 │   └── 101-design.md
+├── poi/
+│   └── 100-poi.md              ← optional package-owned POI classes
 └── appendix/
     └── Some.Concept-appendix.md
 ```
@@ -94,6 +115,8 @@ my-project/
 ```
 
 **To search an index:** read the router, find the concept or a related name, read the file it points to, then check the appendix for depth — or just wander around following your intuition.
+
+> $kw. end
 
 ## Local Surfaces
 
@@ -129,17 +152,19 @@ For provider account credential artifact reconciliation and troubleshooting, use
 
 ## Go Deeper
 
+> $kw: --from Package.Driver.Router
+
 When the Driver is not enough, load a narrower surface:
 
 - **Hugentic and Index operations** — load `agentos-hugentics` for session control, index research, editing, diagnosis, and maintenance
 - **Human-agent workflows** — load `agentos-hugentics` for structured design, implementation, and alignment workflows
 - **Design sessions** — load `agentos-hugentics --design` for touched-data-contextualized product design
-- **Implementation workflows** — load `agentos-hugentics-impl` to design an `Impl.Req`, execute one, or develop an idea through both phases
-- **Workflow status** — load `hugentics-workflow-status` for a structured checkpoint
+- **Implementation workflows** — load `agentos-hugentics --implementation` to design an `Impl.Req`, execute one, or develop an idea through both phases
+- **Workflow status** — load `agentos-hugentics --workflow-status` for a structured checkpoint
 - **Live surfaces** — load `agentos-live-surfaces` for live-note and live-script location, naming, and numbering
 - **Skill conventions** — load `agentos-batchy-skills` for the conventions a proper Agentos skill follows (skill taxonomy, the Batchy calling convention, argument parsing)
 - **Skill engineering** — load `agentos-skills-ingenier` for creating or upgrading skills
-- **Codebase cleanup** — load `hugentics-codebase-cleaner` for targeted refactoring through the hugentic harness
+- **Codebase cleanup** — load `agentos-hugentics --clean` for targeted refactoring through the hugentic harness
 - **Git commits** — load `agentos-git-commit` for deterministic semantic commit workflows
 - **Project health** — load `agentos-project-doctor` to diagnose project conformance
 - **Previous agent sessions** — load `agentos-chatlas-pkg` for querying, exporting, and continuing previous agent sessions across projects

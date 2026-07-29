@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "b43350563e68cefc887f033a80f3c05eb4ca12fc99b905537f4ce4108d00e055",
+      "output_sha256": "fce81617a166ff08844f1dae2bccc516722e8e1e0f3bc8d48f03b64d368dab26",
       "recipes": [
         {
           "heading": "Index Operating Behavior",
@@ -207,7 +207,7 @@
       "recipes": []
     },
     "references/design.md": {
-      "output_sha256": "4005cffe7ffdc8ed696327b4094a56920b77466562cf2636b12bda858c6fcbbf",
+      "output_sha256": "3903a3590b21f7d931c65b5f5c11c6b201f4ffcc692c4894082c9f1ab772b0ac",
       "recipes": []
     },
     "references/edit.md": {
@@ -477,6 +477,19 @@
     "references/search.md": {
       "output_sha256": "d2f89ba0828581cc6d1f0930b1de4419481d16680e943904d8469294c5dc85ab",
       "recipes": []
+    },
+    "references/session-router.md": {
+      "output_sha256": "fe5b84bea4645c5802cc06c95b6dcce442dcd5f9bb46046a9badf8e81d95fe82",
+      "recipes": [
+        {
+          "heading": "Evidence",
+          "verb": "derived",
+          "body_sha256": "78e486317e59789a408f6b4d4eb34df8e2e08026cc0b9db045a796aafdb32001",
+          "deps": {
+            "references/chat-status.skw.md#Evidence Rules": "ff9df0bf96cef8c6b8ac7dd62095430ffcc2ad96cdfbab2c17f9a75f0eb7d3c9"
+          }
+        }
+      ]
     },
     "references/touched-data.md": {
       "output_sha256": "c38880620a5592b1efd46491fe42b8f90e2c7c8be047efd3c929d08cfa907298",
