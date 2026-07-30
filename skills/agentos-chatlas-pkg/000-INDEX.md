@@ -15,3 +15,5 @@
 ### poi
 
 - `poi/100-poi.md` — Index.Linter/Anchor.Chatlas.Tag
+- `poi/101-poi.md` — Index.Linter/Anchor.Unresolvable, Index.Linter/Anchor.Turn.Missing, Index.Linter/Anchor.Provenance.StaleMarker, Index.Linter/Line.Approval.Missing, Index.Linter/Line.Verbatim.Gate.Unreviewed, Index.Linter/Line.Verbatim.Gate.TokenMismatch, Index.Linter/Line.Verbatim.Gate.NoProposal, Index.Linter/Line.Verbatim.Gate.ApprovalMemberMismatch, Index.Linter/Line.Verbatim.Gate.RoleMismatch, Index.Linter/Line.Verbatim.Gate.OrderMismatch
+- `poi/102-poi.md` — Chatlas.Commit.Linter/Session.Mismatch, Chatlas.Commit.Linter/Turn.CountMismatch, Chatlas.Commit.Linter/Turn.InvalidObject, Chatlas.Commit.Linter/Turn.RoleMismatch, Chatlas.Commit.Linter/Turn.TextNotString, Chatlas.Commit.Linter/Turn.UserTextNotVerbatim, Chatlas.Commit.Linter/Turn.AssistantTextBlank
