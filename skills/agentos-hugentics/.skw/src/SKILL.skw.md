@@ -7,7 +7,7 @@ description: "Canonical public control surface for Hugentic sessions. USE WHEN y
 
 > $kw: --from Agentos.Index.System --from Alignment.Mode --from Alignment.Surface --from Batchy.Skill --from Capture.Offer --from Demoted.Index.Line --from Edition.Approval.Token --from Gr.Req --from Impl.Req --from Index.Agendix --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Enrichment --from Index.Line --from Index.Ontology --from Index.Presumption --from Index.Skillware --from Line.Type --from Line.Type.Vocabulary --from Line.Verbatim.Gate --from Live.Index.Line --from Open.Inference --from Package.Driver --from Packages.Master.Agent --from Parking.Note --from POI.Instance --from Product.Design.Session --from Reviewed.Content --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from Touched.Support.Network --from User.Attention --from User.Command --from User.Command.Arg --from User.Command.Section --from User.Command.Trigger
 > --dev-from references/index-context-assembly.skw.md
-> $kw: ^driver-critical-context --from Cited.Duplication --from Context.Loading.Path --from Package.Driver.Base --from SKILL.Loading
+> $kw: ^driver-critical-context --dev-from Cited.Duplication --dev-from Context.Loading.Path --dev-from Package.Driver.Base --dev-from SKILL.Loading
 > --supp root driver context is selected by the alignment failure its absence could cause, not by minimizing line count; preserve context whose omission could make the agent misunderstand authority, violate a gate, select the wrong workflow, or lose the session model ^c20260729-48u
 
 Canonical `Package.Driver` and single public session-control surface for the Agentos Hugentic Harness.
@@ -191,9 +191,9 @@ This is a `Batchy.Skill`; the public arguments and user commands below are its c
 ### Skill.Arg::SessionRouter
 - inspect the current chat for coherent workflow continuations, resumptions, entries, and interruptions
 - required: false
-- aliases: --session-router, --what-now
+- aliases: --session-router, --what-now, --what-next
 - help: "rank workflow candidates for the current session and print a resolved command for each"
-- examples: --session-router, --what-now, --session-router "focus on incomplete implementation work"
+- examples: --session-router, --what-now, --what-next, --session-router "focus on incomplete implementation work"
 
 ### Skill.Arg::Park
 - capture a sidequest thought into a project `Parking.Note`, then return to the interrupted session

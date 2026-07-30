@@ -106,17 +106,6 @@
 
 ****
 
-## Wayfinder.Resolution.POI
-
-- [DF] a `Wayfinder.Resolution.POI` is a `POI.Instance` emitted when a `Wayfinder.Resolution` cannot establish one verified reachable result ^c20260729-37u
-- [CT] its `POI.Class` identifies the failed condition, including missing, ambiguous, stale, malformed, or unreachable resolution ^c20260729-37u
-- [CT] the instance carries the original reference, resolution context, resolver trace, registry candidates, and available relocation hints ^c20260729-37u
-- [PR] the POI gives agents enough mechanical evidence to investigate, relocate, register, and retry the requested resource ^c20260729-37u
-- [CT] the blocked operation retains its original `Wayfinder.Reference` so repair can retry without rewriting the requesting surface ^c20260729-37u
-- [RJ] failed mechanical resolution is not proof that the referenced resource does not exist ^c20260729-37u
-
-****
-
 ## Wayfinder.Reference.Type::Index.Block
 
 - [DF] `Wayfinder.Reference.Type::Index.Block` is the reference type for a `Kernel.Block` contained in a package-owned `Index.Depot` ^c20260729-38u

@@ -3,7 +3,7 @@
 > $kw: --from Semantic.Router --from Alignment.Loop.Interruptions
 > --dev-from references/index-context-assembly.skw.md
 
-Use this module for `--session-router` and its `--what-now` alias.
+Use this module for `--session-router` and its `--what-now` and `--what-next` aliases.
 
 The session router is a report-only `Semantic.Router` over the current chat. It helps a user who is unsure what to do next by exposing a short ranked set of workflow candidates. It may recommend continuing or resuming existing work as well as entering or interrupting with another workflow.
 
@@ -13,7 +13,7 @@ It does not enter a workflow, mutate a surface, or silently change session contr
 
 Run when:
 
-- the user invokes `--session-router` or `--what-now`
+- the user invokes `--session-router`, `--what-now`, or `--what-next`
 - the user asks which workflow fits the current situation
 - the user is unsure whether to continue, resume, capture, design, implement, park, or inspect work
 - the agent detects a strong workflow opportunity and a brief routing suggestion would reduce confusion

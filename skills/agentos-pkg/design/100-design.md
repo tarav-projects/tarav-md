@@ -107,7 +107,7 @@
 - entries follow `Kernel.Writing` style with relaxed constraints — direct, orthogonal lines, no space budget
 - each entry is a `Kernel.Block`-style heading using `Dotted.Notation` plus prose (e.g. `## Idea.About.Fishing`)
 - the capture workflow is short-lived: discuss → draft → approve → write
-- operational skill: `agentos-parking-note`
+- operational route: `agentos-hugentics --park`
 
 ****
 

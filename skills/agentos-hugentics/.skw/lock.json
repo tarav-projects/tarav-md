@@ -2,8 +2,20 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "fce81617a166ff08844f1dae2bccc516722e8e1e0f3bc8d48f03b64d368dab26",
+      "output_sha256": "ca889cda31cd969a9b8ac0818de280eeafdb9744f1b87f28788a7dc68ce0d3c5",
       "recipes": [
+        {
+          "heading": "^driver-index-literacy",
+          "verb": "derived",
+          "body_sha256": "13bf1a364d46137d7ea3be1ff81b41873246e97fdc53de1c589f7374c9342c4d",
+          "deps": {
+            "references/touched-data.skw.md#Authority Flow": "e6333bc6e88195e2c7140e937d46eaef874b3cd0a1fd80d7209bcb5d6ca19757",
+            "references/touched-data.skw.md#Support Network": "f6838c58fd81dfea48904543a66cdfe4bce4d74febf1f2bfb1c7f721163ba47f",
+            "references/touched-data.skw.md#Line Standing": "2bc1780bf6384c537cff3089d3aa547092f81dba496c26bc8976d4f455c6b174",
+            "references/touched-data.skw.md#Coherence And Decision Weight": "6a23c0cfcf0865ea3b5e36274da927ab577287916aae91f3a091ce27f4bd2505",
+            "references/touched-data.skw.md#Current Realization": "aa788b82354dc30a12d477301e553374abfa658cae9b527a20ba8967bc720e06"
+          }
+        },
         {
           "heading": "Index Operating Behavior",
           "verb": "derived",
@@ -479,7 +491,7 @@
       "recipes": []
     },
     "references/session-router.md": {
-      "output_sha256": "fe5b84bea4645c5802cc06c95b6dcce442dcd5f9bb46046a9badf8e81d95fe82",
+      "output_sha256": "fac2ae7e2c4a1f10801de60936ed199df826cb18af0150ca58ea3f72f54bdb9c",
       "recipes": [
         {
           "heading": "Evidence",

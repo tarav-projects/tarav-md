@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **Goal:** migrate the active Python Agentos linters identified in `agentos-py`, `agentos-chatlas-py`, and `agentos-canvas-py` onto the common `POI.System` representation and reporting path.
-- **Status:** ready for execution.
+- **Status:** complete.
 - **Nature:** a marathon, behavior-preserving normalization. Checks keep deciding exactly what they decide today; this effort changes how their results are identified, registered, documented, rendered, explained, and, where already supported, blessed.
 - **Source design:** `POI.System`, `POI.Check`, `POI.Class`, `POI.Instance`, `POI.Catalog`, `POI.Documentation`, `POI.Renderer`, `POI.Explain`, and `Poi.Bless` in `skills/agentos-pkg/design/107-design.md`; Wayfinder resolution in `skills/agentos-pkg/design/110-design.md`.
 - **Predecessors:** `notes/live/601-poi-catalog-renderer-impl-req.md`, `agentos-py/notes/live/700-linter-core-unification-impl-req.md`, and `agentos-py/notes/live/706-skw-poi-unlock-token-mvp-impl-req.md`.
@@ -228,3 +228,51 @@
 - 2026-07-29: implementation design started from a repository-wide linter usage inventory.
 - 2026-07-29: classified deterministic actionable validators separately from parsers, diagnostics, status commands, readiness gates, runtime errors, and evidence queries.
 - 2026-07-29: established behavior freeze, honest-placeholder, identity-preservation, diagnostic-separation, package-ownership, and Wayfinder-bootstrap requirements.
+- 2026-07-29: execution authorized and grounded by `^c20260729-49u`.
+- 2026-07-29: added the common linter report and diagnostic channels, producer-established instance IDs, catalog completeness checks, and shared check selection under `agentos.poi`.
+- 2026-07-29: adapted Index completion, Markdown blocks, Anchory, Bloberia, Wayfinder registry/bootstrap, Skillware, edition history, Tara tape, Chatlas summary commit, and Canvas render boundaries without changing their predicates.
+- 2026-07-29: retired `agentos.skwlint.Poi`; moved backend-neutral dependency drift into `agentos.skw.network`.
+- 2026-07-29: retained Skillware's legacy hash formula, lock and blessing behavior, unlock gates, parser compatibility POIs, and distinct `Closure.Parser` diagnostics.
+- 2026-07-29: normalized raw producer codes into valid canonical Skw class addresses while preserving the raw codes as selectors and evidence.
+- 2026-07-29: added package-owned catalog blocks and composition-root completeness and `poi explain` tests for `agentos-pkg`, `agentos-chatlas-pkg`, and `agentos-canvas-pkg`.
+- 2026-07-29: moved the duplicate `Wayfinder.Resolution.POI` definition into its canonical POI chapter and completed six missing Index class blocks discovered by runtime-resolution audit.
+- 2026-07-29: strengthened catalog completeness to cover foundation and Chatlas-injected Index classes plus the bootstrap Wayfinder class.
+- 2026-07-29: completed installed-CLI smoke tests, package checks, full suites, static checks, obsolete-model search, and the acceptance audit.
+
+## Impl.Status
+
+- [complete] slices 0-4: common boundary, Index completion, foundation adapters, and Wayfinder bootstrap
+- [complete] slice 5: Skillware common reporting, diagnostics, hash/blessing preservation, and old-model retirement
+- [complete] slice 6: edition-history and Tara adapters
+- [complete] slice 7: Chatlas commit-linter refusal POIs
+- [complete] slice 8: Canvas render POIs with actions kept separate
+- [complete] slice 9: full suites, package checks, installed CLI smoke tests, and final acceptance audit
+
+### Verification
+
+- Full suites: `agentos-py` 586 passed; `agentos-chatlas-py` 265 passed; `agentos-canvas-py` 4 passed; `agentos-cli` 70 passed.
+- Static checks: every changed Python file passes Ruff and `ruff format --check`; every modified repository passes `git diff --check`.
+- Catalogs: the completeness test covers Index, Chatlas-injected Index, Anchory, Bloberia, Markdown blocks, Wayfinder registry/bootstrap, Skillware, edition history, Tara, Chatlas commit, and Canvas runtime classes.
+- Explanation: the installed editable CLI resolved all 134 registered classes through `agentos poi explain`; no class documentation resolution remained unresolved in package-linter output.
+- Installed-CLI smokes: structured common output and preserved exit policy were exercised for Index, Skillware drift, distinct parser diagnostics, Anchory, Bloberia, Markdown blocks, Wayfinder bootstrap failure, Tara failure, and Canvas dry-run refusal.
+- Boundary tests: edition-history project policy and every Chatlas commit-refusal branch exercise their real command-domain boundaries.
+- Skillware invariants: tests preserve the exact 10-character hash formula, blessing and suppression behavior, repeatable unlock receipts, lock nonmutation on gate failure, and new identity after re-drift.
+- Consolidation: `agentos.skwlint.Poi` and its module are retired; repository-wide search found no included Python consumer or parallel `Poi` model.
+- Package checks: `agentos-pkg` and `agentos-chatlas-pkg` pass structural Index checks when optional line-grounding coverage is excluded; `agentos-pkg` also passes `agentos skw check --skill`.
+- Baseline note: `agentos-canvas-pkg` catalog discovery and all Canvas class explanations pass, while its package-wide Index check still rejects the pre-existing committed `index/000-index.md` and `index/100-index.md` legacy layout. Normalizing that package structure is outside this linter-result migration.
+- Baseline note: whole-repository Ruff remains noisy in unrelated deprecated and pre-existing files; changed-file Ruff coverage is clean.
+
+### Migration Matrix
+
+| Producer | Internal result retained | Public POI owner | Identity | Exit policy |
+| --- | --- | --- | --- | --- |
+| Index | `LinterFinding` | producer-declared package | common deterministic ID | unchanged |
+| Markdown blocks | issue dictionaries | `agentos-pkg` | common deterministic ID | unchanged |
+| Anchory | `AnchoryCheckFinding` | `agentos-pkg` | common deterministic ID | unchanged |
+| Bloberia | `BloberiaCheckFinding` | `agentos-pkg` | common deterministic ID | unchanged |
+| Wayfinder | registry finding plus bootstrap resolution POI | `agentos-pkg` | common or bootstrap-safe deterministic ID | unchanged |
+| Skillware | `SkillwarePOIInstance` adapter over existing situations | `agentos-pkg` | legacy 10-character hash | unchanged |
+| Edition history | `EditionHistoryFinding` | `agentos-pkg` | legacy-formula deterministic hash | unchanged |
+| Tara tape | existing issue strings | `agentos-pkg` | target, code, message, and ordinal | unchanged success exit |
+| Chatlas summary commit | existing invariant branches | `agentos-chatlas-pkg` | common deterministic ID carried by `CliError` | unchanged refusal |
+| Canvas render | `RenderError` and separate `RenderAction` | `agentos-canvas-pkg` | target, rule, message, and ordinal | unchanged |

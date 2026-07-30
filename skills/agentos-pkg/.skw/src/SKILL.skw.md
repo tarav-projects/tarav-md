@@ -5,8 +5,9 @@ description: "Agentos provides shared tools for agent-project workflows: concept
 
 # agentos-pkg
 
-> $kw: ^driver-critical-context --from Cited.Duplication --from Context.Loading.Path --from Package.Driver.Base --from SKILL.Loading
+> $kw: ^driver-critical-context --dev-from Cited.Duplication --dev-from Context.Loading.Path --dev-from Package.Driver.Base --dev-from SKILL.Loading
 > --supp root driver context is selected by the alignment failure its absence could cause, not by minimizing line count; preserve context whose omission could make the agent misunderstand authority, violate a gate, select the wrong workflow, or lose the session model ^c20260729-48u
+> $kw: --from Alignment.Loop --from Anchory.System --from Batchy.Skill --from Development.Principles --from Impl.Req --from Kernel.Writing --from POI.Catalog --from Vertical.Slice
 
 Agentos is a toolkit for agent-project workflows. It gives agents shared, durable surfaces for orientation, design knowledge, working state, and structured collaboration. Instead of starting from scratch each session, agents working in an agentos project find maintained tools and persistent context.
 
@@ -36,7 +37,6 @@ When a surface mentions another skill or reference, load it only if the relevant
 
 > $kw: ^driver-index-literacy --derived
 > --from Agentos.Index.System
-> --from Cited.Duplication
 > --from Dotted.Notation
 > --from Index.Appendix
 > --from Index.Chapter
@@ -152,7 +152,7 @@ For provider account credential artifact reconciliation and troubleshooting, use
 
 ## Go Deeper
 
-> $kw: --from Package.Driver.Router
+> $kw: --dev-from Package.Driver.Router
 
 When the Driver is not enough, load a narrower surface:
 

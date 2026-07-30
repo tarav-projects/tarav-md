@@ -178,9 +178,9 @@ This is a `Batchy.Skill`; the public arguments and user commands below are its c
 ### Skill.Arg::SessionRouter
 - inspect the current chat for coherent workflow continuations, resumptions, entries, and interruptions
 - required: false
-- aliases: --session-router, --what-now
+- aliases: --session-router, --what-now, --what-next
 - help: "rank workflow candidates for the current session and print a resolved command for each"
-- examples: --session-router, --what-now, --session-router "focus on incomplete implementation work"
+- examples: --session-router, --what-now, --what-next, --session-router "focus on incomplete implementation work"
 
 ### Skill.Arg::Park
 - capture a sidequest thought into a project `Parking.Note`, then return to the interrupted session
@@ -325,33 +325,6 @@ An agent operating the index should:
 - run a linter check after applying an approved index or appendix edit
 
 For delegated read-only research that protects the caller's context, use `Packages.Master.Agent` against the relevant package or packages.
-
-## Skill Modules
-
-- `references/touched-data.md` — the authority flow, support network, line standing, decision weight, and current implementation mapping
-- `references/decision-cycle.md` — contextualize-act-reconcile discipline shared by search, design, capture, implementation, and reconciliation
-- `references/design.md` — `Product.Design.Session` entry and router for the detailed move library under `references/design/`
-- `references/search.md` — routing-first search, selective loading, appendix discovery, citation behavior, and conversation-to-index grounding
-- `references/index-context-assembly.md` — the whole-file shared builder context for every managed Hugentics Index surface
-- `references/capture.md` — the capture workflow: the discussion-landing loop from chat content to index surfaces
-- `references/index-capture-context.md` — the whole-file runtime context and grounding closure for working across a touched index
-- `references/edit.md` — the knowledge of index and appendix writing: gates, actions, naming, placement, drafting screens, landing procedure, and maintenance
-- `references/check.md` — deterministic index checks through `agentos index linter`
-- `references/type.md` — line typing: syntax, vocabulary, validation points, reading typed lines, fence and residue
-- `references/agendix.md` — the knowledge of the agendix surface: rules, landing form, boundaries — typed, anchored, ungated
-- `references/link.md` — the linking primitive: mint and verify chat anchors through chatlas + anchory commands
-- `references/back-link.md` — backward grounding: git history to evidence turns for existing blocks
-- `references/gr-survey.md` — grounding campaign survey: scope sweep, minting, `Gr.Req` production (no index writes)
-- `references/gr-review.md` — grounding campaign gate: per-entry user verdicts, gated landings, provenance close-out
-- `references/enrich.md` — `Index.Enrichment`: block-scoped discussion generating new grounding surface, gated landings, density-delta receipt
-- `references/impl.md` and `references/impl/` — implementation design, review, execution, development, and ready-work capture
-- `references/capture-audit.md` — whole-session capture audit
-- `references/chat-status.md` — lightweight current-chat realignment
-- `references/workflow-status.md` — artifact-aware workflow checkpoint
-- `references/session-router.md` — evidence-backed workflow candidate ranking with resolved route commands
-- `references/parking-note.md` — short-lived sidequest capture and return
-- `references/codebase-cleaner.md` — scan, scope, gate, and execute a targeted cleanup
-- `references/harness.md` — phase model, alignment frame, shared principles, and interruption vocabulary
 
 ## Unified Harness Model
 
