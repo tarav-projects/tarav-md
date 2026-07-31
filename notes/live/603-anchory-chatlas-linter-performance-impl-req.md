@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **scope:** remove repeated Anchory registry writes and provenance work, prune dead registry entries, isolate test registries, and make Chatlas identity lookup shard-aware with reusable command-lifetime RAM caches
-- **status:** ready for implementation
+- **status:** implemented and verified
 - **source:** direct user request plus profiling of `agentos index linter --depot agentos-md/skills/agentos-pkg --skip line-unlinked --show-passed`
 - **out of scope:** changing Index checks, POI semantics, Anchory record authority, Chatlas normal-model authority, or adding persistent derived caches
 
@@ -37,6 +37,7 @@
 
 - identity-hash lookup reads only matching index shards
 - a caller-owned RAM cache may reuse already-read partitions during one command
+- a caller-owned support cache indexes each loaded session tape once for turn lookup
 - selected rows and loaded session models continue to come from authoritative Chatlas JSON surfaces
 
 ## Execution.Plan
@@ -48,13 +49,13 @@
 - prune missing roots during registry updates
 - add RED/GREEN tests for one-touch behavior, cached resolution, mutation invalidation, and dead-entry pruning
 - **observable:** repeated resolution performs no repeated registry write or shard read
-- **status:** not started
+- **status:** complete
 
 ### Slice 2 - Test registry isolation
 
 - install temporary Anchory registry/global-depot fixtures in affected Python test suites
 - **observable:** test depots do not appear in the operator registry
-- **status:** not started
+- **status:** complete
 
 ### Slice 3 - Chatlas shard-aware lookup
 
@@ -63,7 +64,7 @@
 - thread the cache through index query and single-row selection
 - add RED/GREEN tests proving partition narrowing and reuse without changing query results
 - **observable:** repeated identity selections read each matching partition at most once per cache
-- **status:** not started
+- **status:** complete
 
 ### Slice 4 - Index provenance integration and benchmark
 
@@ -71,10 +72,13 @@
 - share the Chatlas partition cache and session-model cache across the run
 - run focused suites, full relevant suites, and benchmark the original linter command
 - **acceptance:** behavior is unchanged and runtime is materially below the profiled 22-34 second baseline
-- **status:** not started
+- **status:** complete
 
 ## Impl.Log
 
 - profiling found 1,087 resolution calls for 241 distinct anchors, 1,087 global registry rewrites, and 18 full 768-partition Chatlas index scans
 - the operator registry contained 1,305 stale pytest depot entries; pruning and test isolation are therefore part of the performance fix
-- no deviations or blockers
+- implementation reduced the operator registry from 1,310 entries / 357,218 bytes to 20 live entries / 5,359 bytes
+- the final target linter completed in 5.71 seconds and 6.46 seconds on consecutive verification runs, down from the 22-34 second baseline
+- verification: `agentos-py` 590 tests pass; `agentos-chatlas-py` 270 tests pass; changed-file Ruff and formatting pass
+- Chatlas repository-wide Ruff remains blocked by seven pre-existing findings in unrelated annotation, delta-scan, normalization, and freshness-test files

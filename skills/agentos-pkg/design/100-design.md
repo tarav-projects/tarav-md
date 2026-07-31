@@ -21,21 +21,21 @@
 
 ## Natural.Placement
 
-- `Natural.Placement` is the principle that each surface holds the facet of a concept that is natural to its function
-- primarily governs where origin material naturally belongs
-- the full description of a concept is distributed across surfaces — each complements the others
-    - index → conceptual grounding (what it is, why, how it connects) and discovery (where to find it)
-    - appendix → extended depth, rationale, scoped views through `Concept.Scoping`
-    - skills → operational behavior, workflows
-    - code → the implementation itself (the code IS the description)
+- `Natural.Placement` is the principle that each surface holds the facet of a concept that is natural to its function ^c20260511-0u
+- primarily governs where origin material naturally belongs ^c20260511-0u
+- the full description of a concept is distributed across surfaces — each complements the others ^c20260511-0u
+    - index → conceptual grounding (what it is, why, how it connects) and discovery (where to find it) ^c20260511-0u
+    - appendix → extended depth, rationale, scoped views through `Concept.Scoping` ^c20260511-0u
+    - skills → operational behavior, workflows ^c20260511-0u
+    - code → the implementation itself (the code IS the description) ^c20260511-0u
     - chat → user/agent interaction record, the evidence trail for alignment moves
-- describing in markdown what code already holds naturally is redundant placement, not useful duplication — the question is placement
+- describing in markdown what code already holds naturally is redundant placement, not useful duplication — the question is placement ^c20260511-0u
 - cited duplicates can also be naturally placed when local use strongly benefits from repeated content
 - duplication is justified when avoiding it would harm bootstrapping, workflow performance, local readability, or agent orientation
-- content that feels unnatural in a surface is probably misplaced
+- content that feels unnatural in a surface is probably misplaced ^c20260511-0u
 - uncited or stale duplication is the anti-pattern, not duplication itself
 - when multiple implementations exist, one may serve as a `Canonical.Reference.Implementation` — the go-to surface for implementation details, chosen by natural fit rather than hierarchy
-- drift between any surfaces is always an error to resolve, not a hierarchy to adjudicate
+- drift between any surfaces is always an error to resolve, not a hierarchy to adjudicate ^c20260511-0u
 
 ****
 

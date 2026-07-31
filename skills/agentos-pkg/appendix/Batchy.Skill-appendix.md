@@ -2,10 +2,11 @@
 
 ****
 
-## Batchy.Skill/Skill.Module
+## Batchy.Skill/Router.Testability
 
-- in a `Batchy.Skill`, a `Skill.Module` is a named, on-demand-loadable part — a file or section, loaded by mentioning its name (progressive disclosure made addressable)
-- it generalizes the subcommand — any sub-file or section is an implicit module, activatable without a declared argument
-- a `Skill.Arg` carrying an `action` is the optional formal front for a module — for help text, parameters, or selector-exclusivity
-- placement is `Natural.Placement` — an inline section, a skill-root file, or a `references/` file, never a mandated subfolder
-- the agent resolves loose mentions (`--examples`, `examples`, `EXAMPLES`) to the canonical module name; arg, file, and section names share one collision-free resolution space
+- [DF] `Batchy.Skill/Router.Testability` is the ability to test a skill’s configured `Batchy.Router.Row`s against expected routing outcomes ^c20260731-9u
+- [DC] a row’s permitted resolution inputs provide explicit calls or conversational situations to test ^c20260731-9u
+- [DC] the row’s destination provides the expected routing outcome ^c20260731-9u
+- [CT] tests respect whether the applicable table permits selecting none, one, or several rows ^c20260731-9u
+- [DC] behavioral tests run through `agentos-testground` ^c20260731-9u
+- [PR] a wrong or missed resolution indicates that the row’s inputs, configuration, or destination need refinement ^c20260731-9u

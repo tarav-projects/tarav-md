@@ -16,7 +16,7 @@
 
 ### meta
 
-- `Explicit.Namespace`; members: `Skill.Module`, `Runnable.Surface`, `Inline.Annotation`, `Build.Surface`, `Build.Annotation`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Skw.Package`, `Skw.Ann.Dependency`, `Skw.Pkg.Dependency`, `Skw.Quote.Binding`, `Skw.Language`, `Skw.Annotation`, `Skw.Backend`, `Annotation.Point`, `Annotation.Authority`, `Drift.POI`, `Non.Skw.Annotation`, `Semantic.Router`, `Usage.Pattern.Routing`.
+- `Explicit.Namespace`; members: `Skill.Module`, `Runnable.Surface`, `Inline.Annotation`, `Build.Surface`, `Build.Annotation`, `Skill.Runnable.Surface`, `Skill.Build.Surface`, `Skill.Package.Builder`, `Skw.Package`, `Skw.Ann.Dependency`, `Skw.Pkg.Dependency`, `Skw.Quote.Binding`, `Skw.Language`, `Skw.Annotation`, `Skw.Backend`, `Annotation.Point`, `Annotation.Authority`, `Drift.POI`, `Non.Skw.Annotation`, `Batchy.Router`, `Batchy.Router.Row`, `Routing.Table`, `Usage.Pattern.Routing`.
 
 ****
 
@@ -283,13 +283,13 @@
 
 ## POI.Class
 
-- [DF] a `POI.Class` is the durable domain-owned semantic definition shared by occurrences of one reviewable situation ^c20260729-40u
-- [DC] each class is a `Kernel.Block` contained in the `POI.Catalog` of its owning `Package.Skill` ^c20260729-40u
-- [DC] the stable identity of a class is its canonical `Wayfinder.Reference.Type::Index.Block` reference ^c20260729-40u
-- [CT] the class block is its canonical `POI.Documentation` root and declares its short runtime description, evaluation protocol, allowed resolution acts, and required context gates ^c20260729-40u
-- [CT] many `POI.Instance`s may carry the same class reference; class data is resolved when needed rather than duplicated into each instance ^c20260729-40u
-- [PR] package ownership keeps class meaning and evaluation guidance with the domain that owns them, independently of which subsystem emits an instance ^c20260729-40u
-- [RJ] a `POI.Class` is not a concrete occurrence, evaluation verdict, or resolution ^c20260729-40u
+- [DF] a `POI.Class` is the durable domain-owned semantic definition shared by occurrences of one reviewable situation ^c20260730-32u
+- [DC] each class is a `Kernel.Block` contained in the `POI.Catalog` of its owning `Package.Skill` ^c20260730-32u
+- [DC] the stable identity of a class is its canonical `Wayfinder.Reference.Type::Index.Block` reference ^c20260730-32u
+- [CT] the class block is its canonical `POI.Documentation` root and declares its short runtime description, evaluation protocol, allowed resolution acts, and required context surfaces ^c20260730-32u
+- [CT] many `POI.Instance`s may carry the same class reference; class data is resolved when needed rather than duplicated into each instance ^c20260730-32u
+- [PR] package ownership keeps class meaning and evaluation guidance with the domain that owns them, independently of which subsystem emits an instance ^c20260730-32u
+- [RJ] a `POI.Class` is not a concrete occurrence, evaluation verdict, or resolution ^c20260730-32u
 
 ****
 
@@ -319,13 +319,25 @@
 
 ## POI.Documentation
 
-- [DF] `POI.Documentation` is the authoritative content that defines a `POI.Class` and how its instances should be evaluated ^c20260729-41u
-- [DC] its canonical root is the class block contained in the owning `Package.Skill` index’s `POI.Catalog` ^c20260729-41u
-- [CT] the class block contains the class definition, evaluation protocol, and guidance required to reason about its instances ^c20260729-41u
-- [CT] common POI machinery retrieves the documentation root by resolving the class’s `Wayfinder.Reference` through `Agentos.Wayfinder` ^c20260729-41u
-- [FR] a class block may reference additional documentation surfaces through further `Wayfinder.Reference`s without changing its canonical root ^c20260729-41u
-- [FR] a documentation region may participate in a required `Skw.Context.Gate` for an act such as `Poi.Bless` ^c20260729-41u
-- [RJ] documentation is not duplicated into each `POI.Instance` ^c20260729-41u
+- [DF] `POI.Documentation` is the authoritative content that defines a `POI.Class` and how its instances should be evaluated ^c20260730-32u
+- [DC] its canonical root is the class block contained in the owning `Package.Skill` index’s `POI.Catalog` ^c20260730-32u
+- [CT] the class block contains the class definition, evaluation protocol, and guidance required to reason about its instances ^c20260730-32u
+- [CT] common POI machinery retrieves the documentation root by resolving the class’s `Wayfinder.Reference` through `Agentos.Wayfinder` ^c20260730-32u
+- [FR] a class block may reference additional documentation surfaces through further `Wayfinder.Reference`s without changing its canonical root ^c20260730-32u
+- [FR] a documentation surface may carry a `Skw.Surface.Token` and participate in a required context checkpoint for an act such as `Poi.Bless` ^c20260730-32u
+- [RJ] documentation is not duplicated into each `POI.Instance` ^c20260730-32u
+
+****
+
+## Skw.Surface.Token
+
+- [DF] a `Skw.Surface.Token` is a machine-readable opaque token attached to one addressable managed surface ^c20260730-31u
+- [CT] the token is parsable from the surface itself ^c20260730-31u
+- [CT] a block surface may carry its token in `### meta` ^c20260730-31u
+- [CT] a file surface may carry its token in its surface-level Skw annotation or header ^c20260730-31u
+- [CT] a managed surface carries at most one current surface token ^c20260730-31u
+- [PR] surface-owned tokens let tooling retrieve the current checkpoint mechanically without copying token values into dependent policies ^c20260730-31u
+- [RJ] a surface token does not declare what acts or POI classes it unlocks ^c20260730-31u
 
 ****
 
@@ -366,38 +378,39 @@
 
 ## Poi.Bless
 
-- [DF] `Poi.Bless` is the explicit, auditable act of accepting one `POI.Instance` in its current situation ^c20260725-21u
-- [CT] blessing is available only when the instance’s `POI.Class` declares it as an allowed resolution act ^c20260725-21u
-- [CT] the class owns the blessing policy and declares its required `Poi.Unlock.Token`s ^c20260725-21u
-- [CT] blessing validates every required `Poi.Unlock.Token` and may require several ^c20260725-21u
-- [CT] refusal identifies each missing required surface without disclosing its token ^c20260725-21u
-- [FR] a blessing policy may later use `Poi.Bless.Question` as a stronger context checkpoint ^c20260725-21u
-- [RJ] blessing one instance does not bless its class, another instance, or a future occurrence ^c20260725-21u
-- [PR] blessing is loud: an instance never clears through rebuilds, unrelated edits, or implicit baseline changes ^c20260725-21u
+- [DF] `Poi.Bless` is the explicit, auditable act of accepting one `POI.Instance` in its current situation ^c20260730-31u
+- [CT] blessing is available only when the instance’s `POI.Class` declares it as an allowed resolution act ^c20260730-31u
+- [CT] the class owns the blessing policy and declares its required context surfaces ^c20260730-31u
+- [CT] a required context surface may or may not carry a `Skw.Surface.Token` ^c20260730-31u
+- [CT] when a required context surface carries a token, blessing validates the matching provided unlock receipt ^c20260730-31u
+- [CT] blessing may require receipts for several tokened surfaces ^c20260730-31u
+- [CT] refusal identifies each missing required surface without disclosing its token ^c20260730-31u
+- [FR] a blessing policy may later route required surfaces through reusable `Skw.Context.Gate`s ^c20260730-31u
+- [FR] a blessing policy may later use `Poi.Bless.Question` as a stronger context checkpoint ^c20260730-31u
+- [RJ] blessing one instance does not bless its class, another instance, or a future occurrence ^c20260730-31u
+- [PR] blessing is loud: an instance never clears through rebuilds, unrelated edits, or implicit baseline changes ^c20260730-31u
 
 ****
 
 ## Poi.Unlock.Token
 
-- [DF] a `Poi.Unlock.Token` is an opaque context receipt associated by a `Poi.Unlock.Registry` with one Skw-addressable surface ^c20260725-23u
-- [CT] the represented surface’s Skw annotation declares its registry dependency; reading the surface exposes the route to its current token ^c20260725-23u
-- [CT] registry associations determine which `POI.Class`es require the token ^c20260725-23u
-- [CT] `Poi.Bless` may require tokens representing several surfaces and validates all of them ^c20260725-23u
-- [PR] the token prevents a protected act from completing when a required context-loading checkpoint was omitted ^c20260725-23u
-- [PR] it provides mechanically checkable pre-validation that can be examined more deeply through the supporting chat ^c20260725-23u
-- [RJ] token satisfaction alone does not guarantee that the context was read, understood, or correctly applied ^c20260725-23u
+- [DF] a `Poi.Unlock.Token` is the returned receipt value proving satisfaction of one tokened surface checkpoint for a protected act ^c20260730-31u
+- [CT] its value is the current `Skw.Surface.Token` of the represented surface ^c20260730-31u
+- [CT] a protected act may require several unlock tokens when it requires several tokened surfaces ^c20260730-31u
+- [PR] the token prevents a protected act from completing when a required tokened context checkpoint was omitted ^c20260730-31u
+- [PR] it provides mechanically checkable pre-validation that can be examined more deeply through the supporting chat ^c20260730-31u
+- [RJ] token satisfaction alone does not guarantee that the context was read, understood, or correctly applied ^c20260730-31u
 
 ****
 
 ## Poi.Unlock.Registry
 
-- [DF] a `Poi.Unlock.Registry` is the machine-readable authority relating unlock tokens, represented surfaces, and the `POI.Class`es they unlock ^c20260725-22u
-- [CT] each registration identifies one represented surface through `Skw.Address.Schema` ^c20260725-22u
-- [CT] each represented surface has one current opaque unlock token ^c20260725-22u
-- [CT] a registration may associate its surface token with multiple `POI.Class`es ^c20260725-22u
-- [CT] the represented surface carries a Skw annotation that declares its registry dependency, allowing tooling to verify the relationship ^c20260725-22u
-- [PR] resolving tokens by surface identity allows token rotation without changing class or documentation references ^c20260725-22u
-- [RJ] token values are registry data and are not duplicated into the surface annotation ^c20260725-22u
+- [DF] a `Poi.Unlock.Registry` is a derived tooling surface that indexes tokened managed surfaces and their current unlock values for mechanical lookup ^c20260730-31u
+- [CT] its source authority is the token-bearing surfaces themselves, not independent registry-written token values ^c20260730-31u
+- [CT] a registry entry identifies the represented surface through `Skw.Address.Schema` ^c20260730-31u
+- [CT] tooling may derive or refresh the registry by scanning managed surfaces for `Skw.Surface.Token`s ^c20260730-31u
+- [PR] a derived registry accelerates lookup, validation, and linting without making token state a second authority ^c20260730-31u
+- [RJ] a `Poi.Unlock.Registry` does not decide what acts or `POI.Class`es require a surface token ^c20260730-31u
 
 ****
 
@@ -419,20 +432,50 @@
 
 ****
 
-## Semantic.Router
+## Batchy.Router
 
-- `Semantic.Router` is a Skillware primitive: a key:value table where keys are natural-language situation descriptions and values are linked resources (a prompt, a `Skill.Module`, content, or another `Semantic.Router`).
-- routing is semantic and agentic — the agent matches the live situation against the key descriptions and selects; keys must be discriminative.
-- it offers options, not an order — an unordered set; the router states a `Router.Selection.Contract` so the reader knows that selecting none, one, or several rows is all normal.
-- it composes — a value can be another `Semantic.Router`, giving progressive, multi-level selection.
+- [DF] `Batchy.Router` is the single runtime routing mechanism of a `Batchy.Skill` ^c20260731-6u
+- [DC] it resolves the current run configuration from explicit `Batchy.Skill.Flag`s, the live conversation, and declared defaults ^c20260731-6u
+- [DC] a `Batchy.Skill.Flag` supplies explicit routing configuration for the current run ^c20260731-6u
+- [CT] explicit configuration takes precedence over inferred or default configuration for the same route ^c20260731-6u
+- [DC] the live conversation may automatically resolve routes that permit semantic discovery ^c20260731-6u
+- [DC] a declared default resolves when no higher-authority configuration supplies the route ^c20260731-6u
+- [CT] each route declares whether an explicit flag is required, automatic routing is permitted, or a default is available ^c20260731-6u
+- [CT] a resolved route may bind a `Skill.Arg`, select a `Skill.Module`, or contribute or continue routing through a `Routing.Table` ^c20260731-6u
+
+****
+
+## Batchy.Router.Row
+
+- [DF] `Batchy.Router.Row` is one configured route available to `Batchy.Router` ^c20260731-8u
+- [DC] it relates its permitted resolution inputs to one routed destination ^c20260731-8u
+- [CT] a row may require an explicit `Batchy.Skill.Flag`, permit automatic discovery from the live conversation, declare a default, or combine the permitted resolution paths ^c20260731-8u
+- [CT] its destination may bind a `Skill.Arg`, select a `Skill.Module`, or contribute or continue routing through a `Routing.Table` ^c20260731-8u
+- [CT] explicit configuration takes precedence when several permitted paths resolve the same row ^c20260731-8u
+- [FR] a row style may specialize how resolution and its routed effect are described without creating another runtime router ^c20260731-8u
+
+****
+
+## Routing.Table
+
+- [DF] `Routing.Table` is the declarative router artifact consumed by `Batchy.Router` ^c20260731-6u
+- [DC] each row pairs a key prompt describing when the route applies with a value prompt describing what it contributes ^c20260731-6u
+- [DC] Skillware represents each row as alternating `--when` and `--then` blocks ^c20260731-6u
+- [CT] a key prompt may use a strict structured key or a semantic situation description ^c20260731-6u
+- [CT] a table declares whether resolution may select none, one, or several rows ^c20260731-6u
+- [DC] rows are routing options rather than ordered steps ^c20260731-6u
+- [DC] a value prompt may contribute run configuration or continue routing through another `Routing.Table` ^c20260731-6u
 
 ****
 
 ## Usage.Pattern.Routing
 
-- `Usage.Pattern.Routing` is `Semantic.Router` routing whose rows are usage patterns — keys are usage situations, values are the response for each (knowledge/surfaces to load, what to produce).
-- its keys are mined from real usage — chats, repeated questions, observed friction — so the routing grows cheaply and stays reality-weighted.
-- it optimizes frequent or important situations (a hot path); an unmatched situation selects nothing and falls back to the package's general routing.
+- [DF] `Usage.Pattern.Routing` is a `Batchy.Router.Row` style whose discovery key describes a usage situation and whose destination describes the response that situation needs ^c20260731-8u
+- [PR] usage patterns are mined from chats, repeated questions, and observed friction so routing remains weighted by real use ^c20260731-8u
+- [CT] the style targets frequent or important situations where a prepared route provides a valuable hot path ^c20260731-8u
+- [CT] its destination may identify knowledge or surfaces to load, behavior to perform, or output to produce ^c20260731-8u
+- [DC] a usage-pattern row may be selected automatically from the live conversation when its configuration permits discovery ^c20260731-8u
+- [DC] an unmatched situation leaves the row unresolved and allows the broader `Batchy.Router` run resolution to continue ^c20260731-8u
 
 ****
 
@@ -491,7 +534,7 @@
 - a depot is marked by a `000-INDEX.md` — its presence identifies an engageable index on a skill or project
 - declared discovery walks the dependency graph: a project's `Project.Manifest` and each package's `Package.Manifest`
 - fallback discovery: when nothing declares them, search for `000-INDEX.md` across skills and projects — cheap
-- discovery is hierarchical (the dependency graph) but engagement is flat — discovered depots are peers, each router a `Semantic.Router`, routed equally
+- [DC] discovered index depots are peers whose entry `Package.Driver.Router` tables are consumed equally by the running `Batchy.Router` ^c20260731-10u
 - a workflow scopes the discovered set by agent common sense — conversation context, skill descriptions, task relevance — defaulting to the whole engaged set
 
 ****
