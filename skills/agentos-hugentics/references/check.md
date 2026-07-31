@@ -1,4 +1,4 @@
-# agentos-hugentics --check
+# Index.Check.Operation.Module
 
 Use this module when the caller wants deterministic diagnosis, linter findings, or post-edit validation for an index depot or explicit index/appendix surface.
 

@@ -1,4 +1,4 @@
-# Chat Status
+# Chat.Status.Operation.Module
 
 Reconnect the user with the current session state. Maintain a running todo list of session work items and provide enough context to resume focus quickly.
 

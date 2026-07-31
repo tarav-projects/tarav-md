@@ -1,8 +1,8 @@
-# agentos-hugentics --search
+# Index.Search.Operation.Module
 
 Use this module when the caller wants cited index context, conceptual lookup, appendix depth, or the current discussion grounded against the index.
 
-`--search`, `--research`, and `--ground` all route here. The prompt is a focus argument: it narrows the search frame, but the search pass still compares the current visible discussion against the index when discussion context exists.
+`--search`, `--research`, `--ground`, and their `--index`-prefixed forms are exact aliases of this one Index search route. When the namespace flag is omitted, the route supplies its declared Index default. The prompt is a focus argument: it narrows the search frame, but the search pass still compares the current visible discussion against the index when discussion context exists.
 
 Search is read-only and ungated. It changes the agent's context, never a surface.
 

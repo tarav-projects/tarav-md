@@ -1,8 +1,8 @@
-# agentos-hugentics --agendix
+# Index.Agendix.Knowledge.Module
 
 The knowledge of the `Index.Agendix` surface: what it is, what may enter it, and the form material takes to land there.
 
-This module is a `Workflow.Neutral.Module`: it runs no workflow — its rules bind whenever material lands on the agendix, whichever module has control. The capture workflow that harvests chat content lives in `references/capture.md`; `--agendix` runs that workflow with the agendix as preset destination.
+This module is a `Workflow.Neutral.Module`: it runs no workflow — its rules bind whenever material lands on the agendix, whichever module has control. The capture workflow that harvests chat content lives in `references/capture.md`; `--agendix` is shorthand for `--index --capture --agendix` and runs that workflow with the agendix as preset destination.
 
 The agendix is the agentic path of the same alignment writing the index runs hugentically: same kernel primitives, but no per-line review gate. On the `Capture.Gradient` it sits **touched, captured, unreviewed**: each `Index.Line` projects `Touched.Data`, while its authority derives independently from its resolvable `Support.Set`.
 

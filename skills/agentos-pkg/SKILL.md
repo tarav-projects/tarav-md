@@ -13,9 +13,10 @@ Any project can adopt agentos incrementally — an AGENTS.md and one package ski
 
 Paths in this skill are package-root-relative unless explicitly absolute. For example, `000-INDEX.md` means `agentos-pkg/000-INDEX.md`.
 
-This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
+This is a `Batchy.Skill`. Its `Package.Driver.Router` is a specialized `Routing.Table` consumed by `Batchy.Router`. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
+- natural conversation may select an applicable route; a written `--<flag>` is intentional run configuration and must be resolved as such.
 
 ## Agentos Workspace
 
@@ -130,22 +131,53 @@ For configuring and syncing project-local imported skills, read `references/skil
 
 For provider account credential artifact reconciliation and troubleshooting, use the `agentos-agent-account-management` skill.
 
-## Go Deeper
+## Package.Driver.Router
 
-When the Driver is not enough, load a narrower surface:
+This specialized `Routing.Table` sends a package-level need to the narrower skill or configured Hugentics route that owns it.
 
-- **Hugentic and Index operations** — load `agentos-hugentics` for session control, index research, editing, diagnosis, and maintenance
-- **Human-agent workflows** — load `agentos-hugentics` for structured design, implementation, and alignment workflows
-- **Design sessions** — load `agentos-hugentics --design` for touched-data-contextualized product design
-- **Implementation workflows** — load `agentos-hugentics --implementation` to design an `Impl.Req`, execute one, or develop an idea through both phases
-- **Workflow status** — load `agentos-hugentics --workflow-status` for a structured checkpoint
-- **Live surfaces** — load `agentos-live-surfaces` for live-note and live-script location, naming, and numbering
-- **Skill conventions** — load `agentos-batchy-skills` for the conventions a proper Agentos skill follows (skill taxonomy, the Batchy calling convention, argument parsing)
-- **Skill engineering** — load `agentos-skills-ingenier` for creating or upgrading skills
-- **Codebase cleanup** — load `agentos-hugentics --clean` for targeted refactoring through the hugentic harness
-- **Git commits** — load `agentos-git-commit` for deterministic semantic commit workflows
-- **Project health** — load `agentos-project-doctor` to diagnose project conformance
-- **Previous agent sessions** — load `agentos-chatlas-pkg` for querying, exporting, and continuing previous agent sessions across projects
+When the caller needs Hugentic session control, Index research, editing, diagnosis, maintenance, or a structured human-agent workflow.
+
+Load `agentos-hugentics`.
+
+When the caller wants touched-data-contextualized product design.
+
+Load `agentos-hugentics --design`.
+
+When the caller wants implementation design, execution, review, or end-to-end development.
+
+Load `agentos-hugentics --implementation`.
+
+When the caller wants a structured checkpoint for an active workflow.
+
+Load `agentos-hugentics --workflow-status`.
+
+When the caller needs live-note or live-script location, naming, or numbering.
+
+Load `agentos-live-surfaces`.
+
+When the caller needs Agentos skill taxonomy, calling conventions, argument parsing, or routing conventions.
+
+Load `agentos-batchy-skills`.
+
+When the caller wants to create or upgrade a skill.
+
+Load `agentos-skills-ingenier`.
+
+When the caller wants a targeted codebase cleanup through the Hugentic harness.
+
+Load `agentos-hugentics --clean`.
+
+When the caller explicitly requests a deterministic semantic commit workflow.
+
+Load `agentos-git-commit`.
+
+When the caller wants a project-health or Agentos-conformance diagnosis.
+
+Load `agentos-project-doctor`.
+
+When the caller needs to query, export, or continue a previous agent session.
+
+Load `agentos-chatlas-pkg`.
 
 For deeper understanding of agentos concepts, search the `agentos-pkg` index:
 

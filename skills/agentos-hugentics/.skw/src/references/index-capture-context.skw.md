@@ -1,9 +1,9 @@
-> $kw: --from Agentos.Index.System --from Anchory.System --from Capture.Gradient --from Context.Grounding --from Edition.Approval.Token --from InContext.Index.Chat.Capture --from Index.Agendix --from Index.Appendix --from Index.Chat.Capture --from Index.Depot --from Index.Discovery --from Index.Line --from Index.Ontology --from Index.Presumption --from Index.Surface --from Kernel.Block --from Kernel.Writing --from Line.Type --from Line.Verbatim.Gate --from Live.Index.Line --from Open.Inference --from POI.Instance --from Skill.Module --from Support.Set --from Touch.Authority.Surface --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from Touched.Support.Network --from Touched.Surface.Index --from User.Attention
+> $kw: --from Agentos.Index.System --from Anchory.System --from Capture.Gradient --from Context.Grounding --from Edition.Approval.Token --from InContext.Index.Chat.Capture --from Index.Agendix --from Index.Appendix --from Index.Chat.Capture --from Index.Depot --from Index.Discovery --from Index.Line --from Index.Ontology --from Index.Presumption --from Index.Surface --from Kernel.Block --from Kernel.Writing --from Line.Type --from Line.Verbatim.Gate --from Live.Index.Line --from Open.Inference --from POI.Instance --from Support.Set --from Touch.Authority.Surface --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from Touched.Support.Network --from Touched.Surface.Index --from User.Attention
 > --dev-from references/index-context-assembly.skw.md
 
-# Index.Capture.Context.Module
+# Hugentic.Capture.Context.Assembly.Module
 
-`Index.Capture.Context.Module` is the runtime-selected `Skill.Module` containing the complete context an agent needs to curate touched data into the current index realization. Load the entire module at the start of every `--capture` run, before discovering candidates or drafting text.
+`Hugentic.Capture.Context.Assembly.Module` contains the complete preparation context an agent needs to curate touched data into the current index realization. Load the entire assembly at the start of every Index-targeted `--capture` run, before discovering candidates or drafting text.
 
 The module contextualizes the task against `Touched.Index`; it does not assume the current Markdown surface contains all relevant touched data.
 
@@ -31,4 +31,4 @@ Exhaustive means closing these categories for the engaged task, not reading ever
 - Separate grounded authority, ungrounded index presumption, review state, and demoted history; these are independent distinctions.
 - Use adjacent evidence to improve candidates, not to widen the visible session without need.
 - Surface contradictions and support gaps as POIs; their existence does not prescribe a capture or deletion.
-- `Index.Capture.Context.Module` carries index-capture preparation; `--capture` does not require a separate design-workflow skill at runtime.
+- `Hugentic.Capture.Context.Assembly.Module` carries index-capture preparation; `--capture` does not require a separate design-workflow skill at runtime.

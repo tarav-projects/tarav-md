@@ -1,4 +1,4 @@
-# Index.Context.Assembly
+# Hugentic.Index.Context.Assembly.Module
 
 `Index.Context.Assembly` is the whole-file `Context.Assembly.Module` containing the complete shared subject context for developing any managed Hugentics Index surface. Every consumer builder loads this module; running agents continue to load only the operational modules selected by their actual workflows.
 
@@ -23,7 +23,7 @@ Close every category below before developing a Hugentics Index consumer:
 - preserve the general-model/current-realization boundary; chat-only mechanics must not redefine the global touched-data model
 - inspect the consumer's direct dependencies and intent after loading the assembly, then choose its materialization and citation behavior locally
 - follow related routed concepts and appendix depth when a direct block leaves a material decision unresolved
-- keep builder assemblies distinct from workflow-selected runtime context modules such as `Index.Capture.Context.Module`
+- keep builder assemblies distinct from workflow-selected preparation assemblies such as `Hugentic.Capture.Context.Assembly.Module`
 - re-check the package after changing dependencies because coverage supervision is a semantic POI, not a parser failure
 
 ## Runtime Boundary

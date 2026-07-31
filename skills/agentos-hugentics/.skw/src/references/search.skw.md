@@ -1,11 +1,11 @@
-# agentos-hugentics --search
+# Index.Search.Operation.Module
 
 > $kw: --from Appendix.Discovery --from Context.Grounding --from Demoted.Index.Line --from Index.Agendix --from Index.Chapter --from Index.Depot --from Index.Grounding --from Index.Line --from Index.Presumption --from Line.Type --from Live.Index.Line --from Open.Inference --from POI.Instance --from Reviewed.Cite.Closure --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from User.Attention
 > --dev-from references/index-context-assembly.skw.md
 
 Use this module when the caller wants cited index context, conceptual lookup, appendix depth, or the current discussion grounded against the index.
 
-`--search`, `--research`, and `--ground` all route here. The prompt is a focus argument: it narrows the search frame, but the search pass still compares the current visible discussion against the index when discussion context exists.
+`--search`, `--research`, `--ground`, and their `--index`-prefixed forms are exact aliases of this one Index search route. When the namespace flag is omitted, the route supplies its declared Index default. The prompt is a focus argument: it narrows the search frame, but the search pass still compares the current visible discussion against the index when discussion context exists.
 
 Search is read-only and ungated. It changes the agent's context, never a surface.
 

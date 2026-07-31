@@ -1,7 +1,7 @@
 > $kw: --from Context.Grounding --from Index.Presumption --from Open.Inference --from POI.Instance --from Product.Design.Session --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle
 > --dev-from references/index-context-assembly.skw.md
 
-# Touched.Decision.Cycle
+# Touched.Decision.Knowledge.Module
 
 Use this workflow-neutral module whenever index work makes a decision or advances a `Target.Product`. It operationalizes `Touched.Decision.Cycle` beneath search, design, capture, implementation, and reconciliation; it does not replace their distinct purposes.
 

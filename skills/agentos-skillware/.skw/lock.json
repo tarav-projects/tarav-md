@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "32fdeb9f9dbede7b5d1a03bd4f9b0c20f82fe18b155b39ba5db0b8f222cdcc42",
+      "output_sha256": "6fe994c84b2d5439e4d49a43517a781b729b6245ea24c16d7c0e89a36a115e33",
       "recipes": [
         {
           "heading": "What Skillware Is",
@@ -52,7 +52,7 @@
       ]
     },
     "references/doctrine.md": {
-      "output_sha256": "c9cc5140234a35305cffa95bc9ce11815be9a544b4eb730d01cf4cf2f92fe4a9",
+      "output_sha256": "7a3a2129dddd571a6ac9295f497d54a9a23623e9d67306e60df70e6514ec9b25",
       "recipes": [
         {
           "heading": "The Model",
@@ -70,7 +70,7 @@
         {
           "heading": "The Block In Brief",
           "verb": "derived",
-          "body_sha256": "efa598c6bd7f11bcff2c8a9215150af2bbecc60a6e255dc8883f948cdc245b81",
+          "body_sha256": "11bb1d418d114526cc1ea4519733d6981dc4300ef04005a5aff4163ebfe9136f",
           "deps": {
             "references/lang.skw.md#Block Grammar": "fba395e7798b7441f2b94245019068a4a09f52ccea1d0a646ad6371ece90bf9e"
           }
@@ -82,7 +82,7 @@
       "recipes": []
     },
     "references/lang.md": {
-      "output_sha256": "61d1eff962c48586013c60432c953720360a1bf632299ce444539cf215895eaf",
+      "output_sha256": "b014ec8c6b02422c9b4a8006d7ba8c23a69c046afde34c816cffde5c35e059fe",
       "recipes": []
     }
   },

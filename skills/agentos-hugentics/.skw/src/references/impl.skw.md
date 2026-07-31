@@ -1,16 +1,16 @@
-# Implementation Workflows
+# Implementation.Workflow.Router.Module
 
 > $kw: --dev-from references/index-context-assembly.skw.md
 
-Unified `Aux.Workflow.Skill` for the implementation side of the Hugentic Harness.
+`Implementation.Workflow.Router.Module` is the internal namespace router for implementation work in the Hugentic system.
 
 The skill routes into implementation design, implementation execution, or both in sequence while keeping each workflow in an on-demand `Skill.Module`.
 
 The unified driver supplies the `Batchy.Skill` calling convention.
 
 - `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
-- every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
-- supplied flags, aliases, loose forms, and positionals resolve to the `Skill.Arg` names below.
+- every run prints a banner of the resolved run configuration as its first step (`Batchy.Skill.Banner`).
+- explicit workflow flags configure `Batchy.Router`; input flags and applicable conversational data bind the `Skill.Arg` names below.
 
 ## Skill.Arg.Section
 
@@ -20,19 +20,6 @@ The unified driver supplies the `Batchy.Skill` calling convention.
 - default: the caller's current explicit request or supplied context
 - help: "the idea, design source, or Impl.Req to operate on"
 - examples: --input "add project-scoped configuration"
-
-### Skill.Arg::Workflow
-- selects one implementation workflow
-- required: false
-- default: infer `Workflow:Execute` when `Input` resolves to an `Impl.Req`; otherwise infer `Workflow:Design`
-- type: selector
-- help: "design an Impl.Req, review one, execute one, develop an idea through both phases, or capture the ready implementation work from the session"
-- examples: --design, --review, --execute, --develop, --impl-capture
-- `Workflow:Design`: --impl-design; action: load `references/impl/design.md`
-- `Workflow:Review`: --review; action: load `references/impl/review.md`
-- `Workflow:Execute`: --execute; aliases: --exec; action: load `references/impl/execute.md`
-- `Workflow:Develop`: --develop; aliases: --dev, --impl; action: load `references/impl/develop.md`
-- `Workflow:Capture`: --impl-capture; action: load `references/impl/impl-capture.md`
 
 ### Skill.Arg::Alignment.Mode
 - whether the workflow prompts at declared `Alignment.Checkpoint`s or resolves them autonomously
@@ -44,16 +31,29 @@ The unified driver supplies the `Batchy.Skill` calling convention.
 - aliases: --auto, --autonomous
 - detail: `agentos-hugentics/references/alignment-session.md`
 
-## Workflow Resolution
+## Batchy.Router
 
-Resolve the workflow in this order:
+The implementation flags call the same running `Batchy.Router` as the root skill. They select rows in the `Routing.Table` below; they are not a workflow-valued `Skill.Arg`.
 
-1. An explicit workflow flag always wins.
-2. Without a workflow flag, resolve `Input` to `Workflow:Execute` when it is an `Impl.Req`.
-3. Otherwise resolve to `Workflow:Design`.
-4. Never infer `Workflow:Develop`; end-to-end execution requires `--develop`, `--dev`, or `--impl`.
-5. Never infer `Workflow:Review`; the blind-spot check requires an explicit `--review`.
-6. Never infer `Workflow:Capture`; harvesting the session's ready work requires an explicit `--impl-capture`.
+| Explicit configuration | Selected row |
+|---|---|
+| `--impl --design` | `Implementation.Design.Workflow.Module` |
+| `--impl --review` | `Implementation.Review.Workflow.Module` |
+| `--impl --execute` | `Implementation.Execute.Workflow.Module` |
+| `--impl --develop` | `Implementation.Develop.Workflow.Module` |
+| `--impl --capture` | `Implementation.Capture.Workflow.Module` |
+
+`--implementation` is an alias for the `--impl` namespace. The shortcuts `--impl-design`, `--review`, `--execute`, `--exec`, `--develop`, `--dev`, and `--impl-capture` normalize to the corresponding namespaced calls above.
+
+Without an explicit workflow flag, the router may use the resolved input, live conversation, and declared defaults. Resolve the workflow in this order:
+
+1. A composed namespaced workflow flag or its exact shortcut always wins.
+2. Bare `--impl` or `--implementation` contributes only the namespace; it does not mean develop.
+3. Without a workflow selector, resolve `Input` to `Implementation.Execute.Workflow.Module` when it is an `Impl.Req`.
+4. Otherwise resolve to `Implementation.Design.Workflow.Module` when actionable implementation input or conversation exists.
+5. Never infer `Implementation.Develop.Workflow.Module`; end-to-end execution requires `--impl --develop`, `--develop`, or `--dev`.
+6. Never infer `Implementation.Review.Workflow.Module`; the blind-spot check requires `--impl --review` or `--review`.
+7. Never infer `Implementation.Capture.Workflow.Module`; harvesting ready work requires `--impl --capture` or `--impl-capture`.
 
 Treat input as an `Impl.Req` when it is:
 
@@ -63,36 +63,36 @@ Treat input as an `Impl.Req` when it is:
 
 If neither an input nor actionable current context exists, orient to the available workflows and do not guess a target.
 
-## Skill Modules
+## Routing.Table
 
 > $kw: ^workflow-router
 
 > $kw: --when
-`Workflow:Design` is selected — the caller wants implementation planning.
+`Implementation.Design.Workflow.Module` is selected - the caller wants implementation planning.
 
 > $kw: --then
 Load `references/impl/design.md` — produce an implementation-ready `Impl.Req`.
 
 > $kw: --when
-`Workflow:Review` is selected — the caller wants an `Impl.Req` double-checked.
+`Implementation.Review.Workflow.Module` is selected - the caller wants an `Impl.Req` double-checked.
 
 > $kw: --then
 Load `references/impl/review.md` — verify the artifact's claims against `Hard.Evidence` and report readiness in chat; read-only.
 
 > $kw: --when
-`Workflow:Execute` is selected — the caller wants an existing `Impl.Req` executed.
+`Implementation.Execute.Workflow.Module` is selected - the caller wants an existing `Impl.Req` executed.
 
 > $kw: --then
 Load `references/impl/execute.md` — execute the artifact's `Execution.Plan`.
 
 > $kw: --when
-`Workflow:Develop` is selected — the caller wants an idea taken through both phases.
+`Implementation.Develop.Workflow.Module` is selected - the caller wants an idea taken through both phases.
 
 > $kw: --then
 Load `references/impl/develop.md` — produce an `Impl.Req`, then execute that exact artifact.
 
 > $kw: --when
-`Workflow:Capture` is selected — the caller wants the session's ready implementation work banked and the rest parked.
+`Implementation.Capture.Workflow.Module` is selected - the caller wants the session's ready implementation work banked and the rest parked.
 
 > $kw: --then
 Load `references/impl/impl-capture.md` — rank the touched, implementation-ready candidates, gate on the best pick, and hand it to develop.
@@ -110,4 +110,4 @@ Load only the selected workflow module. The develop module composes design and e
 - Load the relevant Index module in this skill when the task needs index-grounded context or index mutation.
 - Respect project-local `AGENTS.md` and repository instructions before any implementation edit.
 
-> $kw: --from Alignment.Checkpoint --from Alignment.Mode --from Aux.Workflow.Skill --from Batchy.Skill --from Batchy.Skill.Banner --from Batchy.Skill.Help --from Hard.Evidence --from Impl.Req --from Skill.Arg --from Skill.Module
+> $kw: --from Alignment.Checkpoint --from Alignment.Mode --from Batchy.Router --from Batchy.Skill --from Batchy.Skill.Banner --from Batchy.Skill.Help --from Hard.Evidence --from Impl.Req --from Routing.Table --from Skill.Arg --from Skill.Module

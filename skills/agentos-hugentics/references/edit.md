@@ -1,4 +1,4 @@
-# agentos-hugentics --edit
+# Index.Landing.Knowledge.Module
 
 The knowledge of writing Agentos index and appendix surfaces: gates, structure, naming, block quality, edit actions, and the landing procedure.
 

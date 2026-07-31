@@ -7,11 +7,14 @@ description: "Workflow-neutral Package.Aux.Skill for the Skillware subsystem of 
 
 Workflow-neutral `Package.Aux.Skill` for the Skillware subsystem — the center of all Skillware content: doctrine, language, authoring discipline, adoption, and toolchain operation.
 
-This skill is the public Batchy router for Skillware work. It orients the caller by default and routes `--about`, `--dev`, `--edition-history`, and `--check` into named `Skill.Module`s; the agent selects the concrete module from the live situation (`Semantic.Router`).
+This skill is the public Batchy router for Skillware work. `Batchy.Router` resolves explicit flags, the live situation, and declared defaults against the `Routing.Table` below, then loads only the selected `Skill.Module`s.
 
 This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints usage and the public args without running.
+- a written `--<flag>` is intentional run configuration and must be resolved as such.
+- without an explicit route, conversational discovery remains available wherever the applicable row permits it.
+- every non-help run with custom configuration prints its resolved configuration first (`Batchy.Skill.Banner`).
 
 ## What Skillware Is
 
@@ -24,61 +27,81 @@ This is a `Batchy.Skill`. Load `agentos-batchy-skills` for the full convention.
 
 ## Skill.Arg.Section
 
-### Skill.Arg::About
-- orientation, doctrine, and language questions — the read-to-understand side
-- required: false
-- aliases: --info, --doctrine
-- help: "explain Skillware: doctrine, model, recipe language, locators"
-- examples: --about, --about "how do derived recipes track staleness?"
+Only external data consumed by the selected module is a `Skill.Arg`. Operation and selection flags belong to `Batchy.Router`.
 
-### Skill.Arg::Dev
-- authoring, adoption, and building — the general write side
+### Skill.Arg::Main.Prompt
+- the caller-supplied Skillware question, development request, or check focus consumed by the selected module
 - required: false
-- help: "do Skillware development: write src, adopt a skill, or build managed surfaces"
-- examples: --dev "add a derived section to ground.skw.md", --dev "adopt agentos-batchy-skills"
+- default: the caller's current explicit request or applicable conversation context
+- help: "the question or task for the selected Skillware operation"
+- examples: --about "how do derived recipes track staleness?", --dev "adopt agentos-batchy-skills"
 
-### Skill.Arg::Edition.History
-- recover, record, amend, inspect, or lint the chat-supported Git edition history of managed files
+### Skill.Arg::Target.Skill
+- the package skill whose managed surfaces are being developed or checked
 - required: false
-- help: "maintain file edition/chat history through Git, Chatlas, and the Skillware service"
-- activates: `references/edition-history-developer.md`
-- requires exactly one selection mode: `--target` or `--random`
-- examples: --edition-history --target src/example.py, --edition-history --random
+- default: the skill resolved from the current project and request when unique
+- flags: --skill
+- help: "the package skill to develop or check"
+- examples: --skill skills/agentos-hugentics
 
 ### Skill.Arg::Edition.History.Target
-- flag: --target
-- active only with: --edition-history
-- value: one configured eligible file; repeatable for an explicit batch
+- one or more configured eligible files whose edition history should be maintained
 - required: false
-- mutually exclusive with: --random
+- flags: --target
+- repeatable: true
+- active only with: --edition-history
 - help: "maintain edition history for an explicit configured file"
+- examples: --edition-history --target src/example.py
 
-### Skill.Arg::Edition.History.Random
-- flag: --random
-- active only with: --edition-history
-- value: none
-- required: false
-- mutually exclusive with: --target
-- help: "select one configured file, preferring missing then incomplete history"
+## Batchy.Router
 
-### Skill.Arg::Check
-- read-only POI report over a skill's managed surfaces, with per-kind prescriptions
-- required: false
-- help: "check managed surfaces for drift and prescribe responses (read-only)"
-- examples: --check --skill skills/agentos-hugentics, --check
+The public flags below configure the single running `Batchy.Router`. A trailing value binds `Skill.Arg::Main.Prompt`; data flags bind their named argument without independently selecting a module.
 
-## Router Table
-
-| Situation | Module |
+| Explicit configuration | Routed effect |
 |---|---|
-| When the caller is new to Skillware, needs the mental model, or asks conceptual questions — what the system is, why two surfaces, how derivation works | `references/doctrine.md` |
-| When the caller needs exact syntax — the construct grammar, commands, arg lines, owned ends, locator forms, `skw.json`, what the compiler does | `references/lang.md` |
-| When the caller is writing or restructuring src — deciding roots vs derived consumers, declaring imports, crafting an `--intent`, judging whether a relation earns an import | `references/author.md` |
-| When the caller wants an existing hand-owned skill brought under Skillware management | `references/adopt.md` |
-| When the caller wants surfaces produced or refreshed from src, or asks about the lock or the build's mechanics | `references/build.md` |
-| When the caller wants drift inspected — what changed, what each POI kind means, what response each demands (re-derive vs bless); read-only | `references/check.md` |
-| When `--edition-history` is supplied, or the caller wants to recover, record, amend, inspect, or lint the chat sessions associated with a managed file's Git editions | `references/edition-history-developer.md` |
-| When the caller needs the canonical index concepts behind all of this | `agentos-pkg/design/107-design.md` (the `Agentos.Skillware` namespace) |
+| `--about`, `--info`, `--doctrine` | contribute orientation routing through the doctrine and language rows |
+| `--dev` | contribute development routing through the author, adopt, and build rows |
+| `--edition-history` | select `references/edition-history-developer.md` |
+| `--check` | select `references/check.md` |
+| `--skill` | bind `Skill.Arg::Target.Skill` |
+| `--target` | bind `Skill.Arg::Edition.History.Target` |
+| `--random` | configure edition-history selection to choose one eligible file, preferring missing then incomplete history; mutually exclusive with `--target` |
+
+## Routing.Table
+
+This table may select the one or several modules needed by a composed request. Explicit operation flags constrain the applicable family; conversational discovery selects within that family or routes a clear unflagged call.
+
+When `--about`, `--info`, or `--doctrine` is supplied, or the caller is new to Skillware, needs its mental model, or asks what the system is, why two surfaces exist, or how derivation works.
+
+Load `references/doctrine.md`; also load `references/lang.md` when the question requires exact syntax.
+
+When the caller needs exact syntax: construct grammar, flags, owned ends, locator forms, `skw.json`, or compiler behavior.
+
+Load `references/lang.md`.
+
+When `--dev` is supplied or the caller is writing or restructuring src: deciding roots versus derived consumers, declaring imports, crafting an `--intent`, or judging whether a relation earns an import.
+
+Load `references/author.md`.
+
+When `--dev` is supplied with an adoption request, or the caller wants an existing hand-owned skill brought under Skillware management.
+
+Load `references/adopt.md`.
+
+When `--dev` is supplied with a build request, or the caller wants managed surfaces produced or refreshed or asks about the lock and build mechanics.
+
+Load `references/build.md`.
+
+When `--check` is supplied or the caller wants read-only drift inspection, POI interpretation, or prescriptions such as re-derive versus bless.
+
+Load `references/check.md`.
+
+When `--edition-history` is supplied, or the caller wants to recover, record, amend, inspect, or lint the chat sessions associated with managed-file Git editions.
+
+Load `references/edition-history-developer.md`; require exactly one selection mode, `--target` or `--random`.
+
+When the caller needs the canonical index concepts behind Skillware.
+
+Load `agentos-pkg/design/107-design.md` under the `Agentos.Skillware` namespace.
 
 ## Boundary
 

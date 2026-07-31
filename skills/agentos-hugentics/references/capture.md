@@ -1,8 +1,35 @@
-# agentos-hugentics --capture
+# Hugentic.Capture.Workflow.Module
 
-Use this module when the user wants the chat's content worked into kernel writing form and landed on index surfaces — "let's capture".
+Use this module when the user wants active conversation and adjacent evidence worked into maintained durable state: "let's capture".
 
-This module is a workflow module: it takes control of the session and runs the capture loop. Load the whole `references/index-capture-context.md` module before the first grounding pass. The surfaces capture lands on are governed by `Workflow.Neutral` knowledge modules — `references/edit.md` for the ontology and appendix, `references/agendix.md` for the agendix.
+`Hugentic.Capture.Workflow` is the primary user-facing alignment workflow. Its target may be the reviewed main Index surfaces, `Design.Req`, or `Index.Agendix`; changing target changes the applicable landing gate, not the conversational loop. `--capture` selects the loop without selecting a durable target. Compatible flags, conversation, and declared defaults may complete the route where their rows permit it.
+
+`Design.Req.Promotion` is the interruption that temporarily retargets this loop from an active design request to the index, an `Impl.Req`, or both.
+
+## Target Resolution
+
+| Call configuration | Resolved target |
+|---|---|
+| `--capture` outside the Implementation namespace | unresolved; continue discussion or permitted conversational discovery |
+| `--capture --index`, `--capture --main`, `--index --capture --main` | reviewed main Index surfaces: `Index.Ontology` or `Index.Appendix` |
+| `--capture --agendix`, `--agendix`, `--index --capture --agendix` | `Index.Agendix` |
+| `--design` outside the Implementation namespace | `Design.Req` |
+
+`--agendix` is the shorthand row that supplies the capture workflow and agendix target together. `--index` contributes the Index namespace and, in a capture call without a narrower target, resolves the reviewed main target; `--main` names that target directly. A `Design.Req` target loads `references/design-req.md` as `Design.Req.Knowledge.Module`.
+
+Inside the Implementation namespace, `--impl --design` and `--impl --capture` belong to `Implementation.Workflow.Router.Module`; they do not select this module through the root meanings of `--design` or `--capture`.
+
+## Shared Capture Loop
+
+1. **Contextualize.** Resolve the target, active conversation, touched state, and adjacent evidence.
+2. **Map.** Identify small coherent candidate clusters, overlap, dependencies, and unresolved POIs.
+3. **Focus.** Foreground one cluster; let natural conversation redirect or reshape it.
+4. **Propose + Discuss.** Form-fit the candidate to its target and expose the wording or material decision that needs attention.
+5. **Approve.** Apply the target's gate. Approval records proposal state; it does not imply landing where the target separates those acts.
+6. **Land.** Write only through the resolved target procedure.
+7. **Reconcile.** Re-read the changed target and maintain any active workflow artifact before continuing or completing.
+
+The index specialization loads `Hugentic.Capture.Context.Assembly.Module` from `references/index-capture-context.md` before its first grounding pass. Its surfaces are governed by `Workflow.Neutral` knowledge modules: `Index.Landing.Knowledge.Module` for ontology and appendix, and `Index.Agendix.Knowledge.Module` for agendix.
 
 `Capture.Offer` is the same act at single-candidate scale: agent-initiated, one draft, same destination semantics. This module is the user-initiated, whole-conversation form.
 
@@ -10,11 +37,11 @@ Load `references/touched-data.md` for authority and line standing, and `referenc
 
 Operationally, capture applies `Touched.Decision.Cycle` to `Touch.Authority.Surface` editions and adjacent evidence. It distinguishes `Touched.Data`, `Support.Set`, `Live.Index.Line`, `Open.Inference`, and `POI.Instance` while producing `Kernel.Writing` for the current `Agentos.Index.System` realization.
 
-## The Capture Loop
+## Index Target Specialization
 
 A pass over the chat's uncaptured content, repeated until the content is exhausted or the user stops:
 
-1. **Contextualize / Assemble.** Load `Index.Capture.Context.Module`, including the touched-data and decision-cycle modules.
+1. **Contextualize / Assemble.** Load `Hugentic.Capture.Context.Assembly.Module`, including the touched-data and decision-cycle knowledge modules.
 2. **Contextualize / Discover.** Resolve engaged depots, live line standing, authority-surface evidence, and adjacent non-touch evidence.
 3. **Contextualize / Ground.** Treat only qualifying user-turn editions as direct touched data. Follow existing support references when the digest is insufficient; preserve ungrounded live lines as `Index.Presumption`.
 4. **Contextualize / POIs.** Make gaps, contradictions, ambiguity, stale projections, and missing grounding explicit before choosing a capture move.

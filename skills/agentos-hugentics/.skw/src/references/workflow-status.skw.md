@@ -1,4 +1,4 @@
-# Workflow Status
+# Workflow.Status.Operation.Module
 
 > $kw: --dev-from references/index-context-assembly.skw.md
 
@@ -12,7 +12,7 @@ The unified driver supplies the `Batchy.Skill` calling convention.
 
 ## Activation
 
-Use when the user asks for workflow status, a structured checkpoint, or a workflow-aware report during an active Hugentic workflow: design session, impl-req design, or impl execution.
+Use when the user asks for workflow status, a structured checkpoint, or a workflow-aware report during an active Hugentic workflow: Design.Req capture, impl-req design, or impl execution.
 
 Triggers: "workflow status", "hugentic status", "where are we on the design?", "what's the plan status?"
 
@@ -22,7 +22,7 @@ The agent may also suggest it at natural checkpoints or when the user seems disc
 
 This practice applies to any explicit hugentic workflow:
 
-- **Design session** — report against `Design.Index`, `Session.Notes`, session state
+- **Design.Req capture** — report its `Open` or `Closed` status, maintained `Design.Index`, `Session.Notes`, promotions, and uncommitted chat delta
 - **Impl-req design** — report against `Impl.Index`, `Execution.Plan`, alignment progress
 - **Impl execution** — report against `Impl.Log`, slice progress, deviations
 

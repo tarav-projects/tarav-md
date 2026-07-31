@@ -1,6 +1,6 @@
-# Implementation Execution Module
+# Implementation.Execute.Workflow.Module
 
-Load this module for `Workflow:Execute` and as the second phase of `Workflow:Develop`.
+Load this canonical workflow module for `--impl --execute` and as the second phase of `Implementation.Develop.Workflow.Module`.
 
 Operate as the `impl.executer.agent`: load an `Impl.Req`, recover alignment, and execute its `Execution.Plan` through disciplined vertical slices.
 

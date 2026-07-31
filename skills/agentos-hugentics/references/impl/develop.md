@@ -1,6 +1,6 @@
-# End-To-End Development Module
+# Implementation.Develop.Workflow.Module
 
-Load this module only for `Workflow:Develop`.
+Load this canonical workflow module only for `--impl --develop` or one of its exact shortcuts.
 
 Develop takes an idea or design source through implementation design and execution in one skill call.
 

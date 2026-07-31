@@ -37,13 +37,13 @@ Use this module to understand Skillware: the mental model behind skills develope
 > --intent one-paragraph digest of the grammar for a reader who wants the
 > --cont shape without the full spec; route to lang.md for the normative rules
 
-The language has one syntactic form — the block, the written form of a `Skw.Annotation` — marked by the `$kw` sigil on its two fence lines: `> $kw: [address] [--flags]` opens, `> --flag …` lines belong to it, and the native body sits below. Bindings and dependency roles (`--from`/`--dev-from`/`--cite`) are additive flags; `--context-assembly` is the self-closing line-1 declaration whose product is the complete file. Materializing blocks and routers own an end; declaration-only blocks self-close. The parser is a `Closure.Parser`: parse errors exist only below its `Parse.Floor`; above it, unrecognized content is simply text. The full grammar, locator forms, and compilation rules live in `references/lang.md`.
+The language has one syntactic form — the block, the written form of a `Skw.Annotation` — marked by the `$kw` sigil on its two fence lines: `> $kw: [address] [--flags]` opens, `> --flag …` lines belong to it, and the native body sits below. Bindings and dependency roles (`--from`/`--dev-from`/`--cite`) are additive flags; `--context-assembly` is the self-closing line-1 declaration whose product is the complete file. Materializing blocks and `Routing.Table`s own an end; declaration-only blocks self-close. The parser is a `Closure.Parser`: parse errors exist only below its `Parse.Floor`; above it, unrecognized content is simply text. The full grammar, locator forms, and compilation rules live in `references/lang.md`.
 
 > $kw. end
 
 ## Design Notes
 
-> $kw: #closure-rule --note [DF] closure is by role in three cases — a materializing block (`--derived`/`--copy`) owns a mandatory `end`, a router owns an `end` while its `--when`/`--then` rows peer-close, and a declaration-only block (a `--from` dependency or a `--note` attach) self-closes with no `end` ^c20260721-1u
+> $kw: #closure-rule --note [DF] closure is by role in three cases — a materializing block (`--derived`/`--copy`) owns a mandatory `end`, a `Routing.Table` owns an `end` while its `--when`/`--then` rows peer-close, and a declaration-only block (a `--from` dependency or a `--note` attach) self-closes with no `end` ^c20260721-1u
 
 ## Where Things Live
 
@@ -52,4 +52,4 @@ The language has one syntactic form — the block, the written form of a `Skw.An
 - the working discipline: `references/author.md` (writing), `references/check.md` (maintaining)
 - the toolchain: `agentos skw build / check / bless / status`
 
-> $kw: --from Annotation.Point --from Cited.Duplication --from Closure.Parser --from Skw.Address.Schema --from Skw.Backend --from Skw.Language --from Skw.Network --from Skw.Quote.Binding
+> $kw: --from Annotation.Point --from Cited.Duplication --from Closure.Parser --from Routing.Table --from Skw.Address.Schema --from Skw.Backend --from Skw.Language --from Skw.Network --from Skw.Quote.Binding

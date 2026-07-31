@@ -1,4 +1,4 @@
-# Capture Audit
+# Capture.Audit.Operation.Module
 
 Scan for converged material stuck upstream in the info flow. The goal is to avoid forgetting work and ideas — advance them across the progress pipeline:
 

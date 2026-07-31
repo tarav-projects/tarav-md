@@ -1,4 +1,4 @@
-# General Implementation Preferences
+# Implementation.Execution.Preferences.Knowledge.Module
 
 Apply these preferences across implementation work.
 

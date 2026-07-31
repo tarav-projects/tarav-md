@@ -1,4 +1,4 @@
-# agentos-hugentics --back-link
+# Anchory.Back.Link.Operation.Module
 
 Use this module when the caller wants an existing index block grounded backward: from the block as written, through git history, to the chat turns that produced it.
 
@@ -19,7 +19,7 @@ The current archaeology path recovers `Touched.Data` from a qualifying `Touch.Au
    - content: `agentos chatlas query --message-contains "Concept.X"` — sessions that discussed the concept by name
 3. **Session → turn.** Search the tape with the block's own vocabulary, biased toward the write moment:
    - use `agentos chatlas events query --identity-hash <H> --pattern-json '<Event.Pattern JSON>' --backend auto` to retrieve authoritative `Event.Ref` objects for distinctive user wording or an assistant-proposal/user-approval pair
-   - use the commit time only to choose among candidate neighborhoods; `turn_id` establishes turn identity and `sequence` establishes tape order — never timestamps
+   - use the commit time only to choose among candidate neighborhoods; the returned `turn_ref` identifies and verifies the `Normal.Turn`, while `sequence` establishes tape order — never use timestamps as identity
    - select only a user turn whose edition qualifies as touch for the supported subject; approval, correction, rejection, delegation, or direct statement may qualify
 4. **Turn → anchor.** Mint through the linking primitive (`references/link.md` step 3): `agentos chatlas anchory register --member <H>:<user-turn-id> --hint "…"`; when the recovered evidence is an approval pair, add the appropriate `--member-types` cargo. Read the echo and confirm the neighborhood.
 5. **Support reference → index.** USER-GATED: show the proposed inline support change through `--edit` and write only after the gate. Steps 1–4 build plumbing; step 5 changes the live index.

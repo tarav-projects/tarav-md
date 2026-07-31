@@ -162,10 +162,13 @@
 
 ## Normal.Model.Contract
 
-- `Normal.Model.Contract` is the `Normal.Model.Namespace` reified as a machine-readable document — the model's public contract, one entry per canonical path
-- each path entry carries the column's semantic commitments: value domain, null policy (what a bare absence means — the column's `Null.Legend`), and a closed vocabulary where a string column's value set is finite
-- each entry records the path's intended `meaning` — the semantic definition the projected column is judged against; the contract is the canonical home of per-path meaning, anchored to the source standard's own coordinates where one exists, defining the neutral role where none does
-- `meaning` owns presence semantics, the null policy owns absence semantics — together they fully specify the column; concept depth stays in the index, which a meaning line may cite by `Dotted.Name`
+- [DF] `Normal.Model.Contract` is the `Normal.Model.Namespace` reified as a machine-readable flat table with one independently addressable entry per fully qualified canonical path ^c20260731-17u
+- [DC] contract paths are fully rooted selectors; parent and descendant paths receive independent entries when both belong to the namespace ^c20260731-17u
+- [DC] every path entry carries `semantics`; semantics declare what the path means and may declare recursively scoped meaning inherited by descendants ^c20260731-17u
+- [DC] a path entry may carry `schema`; schema is an optional contraction of the model's open space, and any supplied schema is binding ^c20260731-17u
+- [DC] schema is a standard JSON Schema fragment applied to the value at that path; a parent schema may constrain its own container and child presence but does not define descendant schemas ^c20260731-17u
+- [CT] absence of a local schema leaves the path's value domain open wherever no applicable ancestor constraint binds it ^c20260731-17u
+- [CT] the contract governs namespace validity and meaning; it does not establish whether an instance populated a path or whether a source was normalized faithfully ^c20260731-17u
 - paths are written in JSONPath notation (RFC 9535) — the full selector language is available as models need it; the constructs in use so far: child steps, the `[*]` array collapse (one entry describes a field for every element, putting the quantifier in the path itself), and the discriminated collapse `[?@.<tag>=='v']` for tagged-union arrays (an entry scoped to the elements matching the tag, so per-variant vocabulary and cross-variant fields are both plain path entries)
 - one artifact, two consumers: `Raw.Normalizer`s target it, `Projection.Test`s load their judgments from it — the shared load point is what keeps model and tests from drifting apart
 - it declares the boundary as well as the interior: a registry of demotion keys (the marked source-anchor area where source-native data may legally live) and the retired keys; the registry may itself be path-based — regions declared in the contract's own path notation — keeping interior and boundary in one language and making the closure test uniform
@@ -173,8 +176,109 @@
 - annotation conventions (field notes, provenance anchors) are declared in it but marked annotation-class: outside projection semantics, never content, absence never a failure
 - its sections partition a record's whole path space — enumerated canonical interior, registered boundary, declared annotations, banned tombstones — so schema closure ("every path falls in exactly one region") is a mechanical test
 - versioned with the namespace — a version bump implies a corpus migration
-- not an instance validator: a schema checks shape, the contract declares meaning per column — a validator is derivable from it, the reverse is not
-- [CT] the contract governs meaning only — that a canonical path exists for a datum and what it means; it never governs whether an instance filled that path, or sourced it faithfully vs. invented it ^c20260721-3u
 - [CT] faithful sourcing is producer discipline (the `Raw.Normalizer`'s), checked against the contract by `Projection.Test` and `Normalization.Coverage` — a constraint the model is measured by, never one it declares ^c20260721-3u
-- g702-03 reference implementation: `subcontractor-g70203-db/references/normal-model.contract.json`, loaded by the projection battery
-- chatlas reference implementation: `agentos-chatlas-py/references/normal-model.contract.json`, loaded by the projection and path-source-split engines
+
+****
+
+## Normal.Model.Contract/Path.Table
+
+- [DF] a `Normal.Model.Contract/Path.Table` is the flat map from fully qualified canonical paths to their independently addressable contract entries ^c20260731-18u
+- [DC] paths use RFC 9535 JSONPath rooted at `$`; array elements use `[*]`, and models may adopt additional standard selectors as needed ^c20260731-18u
+- [DC] parent and descendant paths are enumerated independently when both belong to the `Normal.Model.Namespace` ^c20260731-18u
+- [CT] a parent entry may affect descendants through constraints or semantic inheritance, but it never substitutes for their path entries ^c20260731-18u
+
+****
+
+## Normal.Model.Contract/Path.Entry
+
+- [DF] a `Normal.Model.Contract/Path.Entry` declares the commitments attached to one canonical path ^c20260731-18u
+- [DC] every path entry carries `semantics`; a semantics-only entry is a complete and valid contract entry ^c20260731-18u
+- [FR] each `Normal.Model` may develop the declarative semantics vocabulary its domain requires ^c20260731-18u
+- [CT] semantic statements remain declarative; executable behavior is introduced only when concrete model tooling requires it ^c20260731-18u
+
+****
+
+## Normal.Model.Contract/Path.Schema
+
+- [DF] `Normal.Model.Contract/Path.Schema` is an optional standard JSON Schema fragment applied to the value resolved at one contracted path ^c20260731-18u
+- [DC] schema is an optional contraction of the model's open space; when supplied, every matching value is required to satisfy it ^c20260731-18u
+- [DC] the contract declares the JSON Schema dialect under which its fragments are interpreted ^c20260731-18u
+- [DC] a parent schema constrains the parent value and may constrain child presence through rules such as `required` ^c20260731-18u
+- [CT] a parent schema does not embed descendant definitions through `properties` or `items`; descendant schemas belong to their fully qualified path entries ^c20260731-18u
+- [CT] absence of a local schema makes no local value-domain claim; applicable ancestor constraints remain binding ^c20260731-18u
+- [DC] nullability is a constraint on the child value and therefore belongs to the child's schema; required presence is a relation of the parent and therefore belongs to the parent schema ^c20260731-18u
+
+****
+
+## Normal.Model.Contract/Semantic.Scope
+
+- [DF] `Normal.Model.Contract/Semantic.Scope` determines where semantics attached to a contracted path apply ^c20260731-18u
+- [DC] semantics attached with subtree scope are inherited by every descendant path ^c20260731-18u
+- [DC] effective semantics at a path are resolved from the applicable ancestor entries together with the path's own entry ^c20260731-18u
+- [CT] inherited semantics need not be repeated in descendant entries or serialized beside descendant values ^c20260731-18u
+- [CT] semantic inheritance annotates descendants without changing their canonical paths or structural values ^c20260731-18u
+
+****
+
+## Normal.Model.Contract/Closure
+
+- [DF] `Normal.Model.Contract/Closure` is the mechanical judgment that every populated model path belongs to exactly one contract region ^c20260731-18u
+- [DC] the contract partitions path space into canonical interior, registered boundary, annotation-class paths, and retired tombstones ^c20260731-18u
+- [DC] every canonical interior path has an entry in the path table ^c20260731-18u
+- [CT] a populated path outside every declared region is namespace leakage ^c20260731-18u
+- [CT] a populated retired path is a contract violation even when its value would otherwise validate ^c20260731-18u
+
+****
+
+## Normal.Model.Contract/Derived.Tooling
+
+- [DF] `Normal.Model.Contract/Derived.Tooling` is tooling generated from or driven by the authored path table ^c20260731-18u
+- [DC] path projection, path-local schema validation, namespace-closure checks, and retired-path checks read the path table directly ^c20260731-18u
+- [FR] tooling may compile the flat table into a whole-document JSON Schema or another consumer-specific projection ^c20260731-18u
+- [CT] generated validators and projections are derivatives; they never become a second authored contract authority ^c20260731-18u
+- [CT] schema validity establishes model validity, not faithful sourcing; source fidelity remains producer discipline judged through normalization evidence and tests ^c20260731-18u
+
+****
+
+## Normal.Model.Contract/Document
+
+- [DF] a `Normal.Model.Contract/Document` is the versioned artifact containing one model's path table and the dialect declarations needed to interpret it ^c20260731-19u
+- [DC] the document identifies the contracted `Normal.Model`, the contract version, the path dialect, and the path table ^c20260731-19u
+- [CT] `schema_dialect` is required when any path entry supplies `schema`; it identifies the standard JSON Schema dialect governing every fragment ^c20260731-19u
+- [DC] the `paths` map is the authored authority; nested whole-document schemas and consumer projections are derived surfaces ^c20260731-19u
+
+****
+
+## Normal.Model.Contract/Document/Example
+
+```json
+{
+  "contract_version": "0.1",
+  "model": {"name": "plot.scatter", "version": 1},
+  "path_dialect": "RFC 9535 JSONPath",
+  "schema_dialect": "https://json-schema.org/draft/2020-12/schema",
+  "paths": {
+    "$.series[*]": {
+      "schema": {"type": "object", "required": ["axis_selection", "points"]},
+      "semantics": {"meaning": "A collection of observations sharing annotations and an axis selection.", "scope": "subtree"}
+    },
+    "$.series[*].axis_selection.x": {
+      "schema": {"type": "integer", "minimum": 0},
+      "semantics": {"meaning": "Index of the governing axis in $.x_axes."}
+    },
+    "$.series[*].points[*].x": {
+      "schema": {"type": "number"},
+      "semantics": {"meaning": "Coordinate governed by the selected x-axis."}
+    }
+  }
+}
+```
+
+****
+
+## Normal.Model.Contract/Reference.Implementations
+
+- [EX] the Chatlas contract is the reference implementation of a fully expanded path table, path projection, region closure, and retired-path enforcement ^c20260731-19u
+- [EX] Chatlas predates `Path.Schema` and expresses domains through custom `type`, `vocab`, and `null` fields; it demonstrates the path model without constraining the general contract to that encoding ^c20260731-19u
+- [EX] the g702-03 contract is an earlier path-table implementation loaded by its projection battery ^c20260731-19u
+- [PR] a domain adopting standard path-local JSON Schema should preserve the flat path authority demonstrated by those implementations rather than replacing it with an authored nested schema ^c20260731-19u

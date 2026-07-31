@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "8c2cf702ddbef7bfd19856bd16dcccd7716c09460c8529f677829ec8dc1e933c",
+      "output_sha256": "5194111dd55bccbee4de3f6548b377112cceb2daac87af92d9a09e458345c5a4",
       "recipes": [
         {
           "heading": "^driver-index-literacy",

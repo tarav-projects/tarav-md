@@ -1,6 +1,6 @@
 # Batchy Skills — Designing One
 
-How to *build* a `Batchy.Skill`. This is the designer-facing guide — best practices for authoring a skill. For operating one, see `batchy-skill-run.md`. Concepts are canonical in `agentos-pkg/design/101-design.md` (`Batchy.Skill`, `Batchy.Skill.Template`, `Batchy.Skill.Contract`, `Skill.Index.Section`, `Skill.Arg`, `Skill.Arg.Section`, `Batchy.Skill.Help`, `Batchy.Skill.Banner`, `Skill.Module`, `User.Command`, `User.Command.Trigger`, `User.Command.Arg`, `User.Command.Section`).
+How to *build* a `Batchy.Skill`. This is the designer-facing guide — best practices for authoring a skill. For operating one, see `batchy-skill-run.md`. The skill primitives are canonical in `agentos-pkg/design/101-design.md`; the runtime routing model is canonical in `agentos-pkg/design/107-design.md`.
 
 ## The Skill Template
 
@@ -10,8 +10,9 @@ Every Batchy skill instantiates one `Batchy.Skill.Template` — the same skeleto
 2. a `Batchy.Skill.Contract` block — the in-skill mini-course (below);
 3. a `## Skill.Index.Section` defining the skill's own key concepts — only when the skill hinges on a few defined terms;
 4. a `## Skill.Arg.Section` of `### Skill.Arg:<Name>` blocks — only when the skill takes arguments;
-5. a `## User.Command.Section` of `### User.Command::<Name>` blocks — only when the skill exposes explicit workflow transitions;
-6. any `Skill.Module`s — named files or sections, optionally fronted by an arg.
+5. any `Routing.Table`s needed for prompt context, module selection, or multi-level routing;
+6. a `## User.Command.Section` of `### User.Command::<Name>` blocks — only when the skill exposes explicit workflow transitions;
+7. any `Skill.Module`s — named files or sections selected by the router when applicable.
 
 Adapt the template to the skill: a zero-argument skill omits the `Skill.Arg.Section` (and its Contract carries only the help rule); a single-operation skill needs no extra modules; most skills omit the `Skill.Index.Section`. The `Batchy.Skill.Contract` and the frontmatter `Skill.Trigger.Clause` (a `USE WHEN` line) are always present.
 
@@ -24,8 +25,9 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 for the full convention.
 
 - `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
-- every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
-- supplied flags resolve to the `Skill.Arg` names below; loose and positional forms resolve too.
+- a written `--<flag>` is intentional run configuration and must be resolved by `Batchy.Router`.
+- without an explicit route, conversational discovery remains available only where the applicable row permits it.
+- every non-help run with custom configuration prints its resolved configuration first (`Batchy.Skill.Banner`).
 ```
 
 A zero-argument skill carries only the help rule:
@@ -65,15 +67,15 @@ Write each concept as a compact block — a `Dotted.Name` heading plus a few ort
 
 Declare arguments in a `## Skill.Arg.Section`. Each argument is a `### Skill.Arg:<Name>` block nested in it, never a markdown table. The blocks are the single declaration of the skill's arguments: they teach the agent the arguments and render `Batchy.Skill.Help`.
 
-Each `Skill.Arg` block has fundamentals (what the argument means) plus bullet settings:
+Each `Skill.Arg` block has fundamentals (what the external data means) plus bullet settings:
 
 - `required` — true/false.
 - `default` — value filled when the flag is omitted.
 - `type` — `switch` (boolean, no value) or `valued`. Default assumption: `valued`.
 - `help` — one line of meaning; this is what `-h` prints.
 - `examples` — the canonical flag spelling, e.g. `--project "stripe-pkg"`.
-- `aliases` — only for non-obvious flags; the agent infers obvious ones.
-- `action` — optional; the behavior the arg activates when set (see below).
+- `flags` or `examples` — the explicit flag spellings that route values to this argument.
+- `aliases` — additional exact flag keys when the route deliberately supports them.
 
 ```markdown
 ## Skill.Arg.Section
@@ -94,26 +96,38 @@ Each `Skill.Arg` block has fundamentals (what the argument means) plus bullet se
 - aliases: --autonomous, --auto
 ```
 
-## Skill.Module — Files and Sections as Addressable Parts
+`Skill.Arg` owns this data identity and contract. `Batchy.Router` owns extracting, defaulting, validating, and binding its value. Do not model an operation, module, or workflow selection as a `Skill.Arg` merely because a flag can select it.
 
-A `Skill.Module` is a named, on-demand-loadable part of the skill — a file or a section. This is **progressive disclosure made addressable-by-name**: any sub-file or section is implicitly a module, and mentioning its name reinforces loading it. It generalizes the old subcommand — no dedicated structure or `subcommands/` subfolder.
+## Batchy.Router
+
+Every call is resolved by one `Batchy.Router`. Its resolution inputs are:
+
+- explicit `Batchy.Skill.Flag`s written as `--<flag>`;
+- the live conversation, when a row permits automatic discovery;
+- declared defaults, when a row supplies one.
+
+Every `Batchy.Router.Row` relates its permitted resolution inputs to one destination. A resolved row may bind a `Skill.Arg`, select a `Skill.Module`, or contribute or continue routing through a `Routing.Table`. Explicit configuration takes precedence when several permitted inputs resolve the same row.
+
+Declare each custom flag with the primitive or row that owns its effect. There is no separate flag section. Exact and alias keys are appropriate for strict routes; a semantic keyword family is appropriate only when the row deliberately accepts that softer key model.
+
+Use a `Routing.Table` when the skill needs declarative prompt routing. In Skillware, write the table as a labeled parent block containing alternating `--when` and `--then` rows. State whether the table may select none, one, or several rows when that is not obvious from the skill contract.
+
+`Usage.Pattern.Routing` is one row style, not another router. Its `--when` body describes a recurring usage situation and its `--then` body describes the response, surface, behavior, or further route that situation needs.
+
+## Skill.Module — Encapsulated Routing Targets
+
+A `Skill.Module` is a named, encapsulated subsystem of the skill — a file or a section. This is **progressive disclosure made addressable-by-name**: the module owns its boundary and content while `Batchy.Router` owns selecting and loading it.
 
 - **Placement is `Natural.Placement`** — an inline `##` section, a skill-root file, or a `references/` file. Never a mandated folder.
-- **Implicit by default** — you do not need to declare an arg for a module. `examples.md` is already addressable as `--examples`; the agent maps the mention to the file.
-- **Declare a `Skill.Arg` with an `action` only when you want more** — help text, parameters, or selector-exclusivity. The arg's `action` says "when set, activate this module/behavior."
-
-### Subcommands are just arguments with an action
-
-What used to be a subcommand is now an `action`-bearing `Skill.Arg`:
-
-- a **switch** with an action layers a behavior — `--dry-run` activates a read-only "dry-run" module;
-- a **selector** with an action picks one operation among enumerated values — `--run`/`--list`/`--evaluate` are values of one `Command` arg (`Command:Run`, `Command:List`…), each carrying an action; the `--run` token is sugar resolving to that value.
-
-The action body lives wherever `Natural.Placement` puts it: inline in the arg block, a `##` section, or a file.
+- **Addressable by default** — files and sections provide stable module targets without requiring an argument declaration.
+- **Explicit or automatic selection** — a row may require a flag, permit conversational discovery, accept a route contributed by another table, or combine those paths.
+- **Not an argument** — a flag selecting a module routes directly to the module. Declare a separate `Skill.Arg` only for external data the loaded subsystem consumes.
 
 ## User.Command.Section
 
 Declare explicit workflow transitions in a `## User.Command.Section`. Each canonical command is a `### User.Command::<Name>` block. A command declaration states:
+
+`User.Command.Section` owns the inventory, `User.Command.Trigger` owns each accepted invocation spelling, and `User.Command.Arg` owns each transition input and its resolution policy.
 
 - `triggers` — one or more accepted `::`-prefixed spellings; aliases remain semantically identical.
 - `available` — the workflow checkpoints where the command may execute.
@@ -141,15 +155,15 @@ At every declared pause, print the commands available there. Do not append comma
 
 ## Namespace Discipline (designer's responsibility)
 
-Argument names, file names, and section names **share one resolution space** — they are all activatable handles. Keep them distinct and unambiguous so a mention maps to exactly one thing:
+Flag keys and routing destinations participate in one run-configuration space. Keep strict keys, aliases, arguments, module names, and table routes distinguishable enough that the applicable row can resolve them coherently:
 
-- `--examples` must unambiguously mean `examples.md` (or the `## Examples` section), not collide with an `examples` argument that means something else.
-- name modules and args so loose forms (`--run`, `RUN`, `run`) resolve without contest.
-- when two handles could collide, rename one — this is the skill designer's job, not the runner's.
+- `--examples` may select `examples.md`; it must not also bind unrelated external data unless one row explicitly defines that combined effect.
+- only `--<flag>` carries explicit flag semantics; bare prose may still discover an automatic route but is not silently reclassified as a flag.
+- when two strict routes collide, rename or scope one — this is the skill designer's job, not the runner's.
 
 ## Batchy.Skill.Help
 
-`-h` renders from the `Skill.Arg` blocks. Lead with one paragraph on what the skill is and does, then each argument's flag, meaning, default, and required state. A zero-argument skill's help is just the paragraph plus "takes no arguments."
+`-h` renders callable help from the `Batchy.Router` configuration reachable through `Skill.Arg` blocks, `Skill.Module` targets, and `Routing.Table`s. Lead with one paragraph on what the skill is and does, then show the explicit flags and value shapes the caller may configure. A skill with no custom flags or arguments says so.
 
 ```text
 $my-skill — operate on an Agentos project. Runs the maintenance pass over the
@@ -164,17 +178,19 @@ usage: $my-skill --project <name> [--AUTO]
 
 ## Batchy.Skill.Banner
 
-Restate a short banner section in the target skill (a `Cited.Duplication` of the convention) so the run does not forget to print it — deliberate repetition for compliance. The banner echoes resolved flags → canonical args, marking supplied vs default values. See `batchy-skill-run.md` for the runtime behavior and an example.
+Restate a short banner section in the target skill (a `Cited.Duplication` of the convention) so the run does not forget to print it — deliberate repetition for compliance. The banner reports every supplied flag with its resolved effect, resolved argument values, declared defaults, and semantically discovered configuration. See `batchy-skill-run.md` for the runtime behavior and an example.
 
 ## Authoring Checklist
 
-- Body follows the `Batchy.Skill.Template`: description, `Batchy.Skill.Contract`, `Skill.Index.Section` (if the skill hinges on defined concepts), `Skill.Arg.Section` (if any args), `User.Command.Section` (if any), modules (if any).
-- A `Batchy.Skill.Contract` block near the top restates the `-h`, banner, and resolution rules standalone.
-- Arguments declared as `### Skill.Arg:<Name>` blocks, never a table.
+- Body follows the `Batchy.Skill.Template`: description, `Batchy.Skill.Contract`, optional index and argument sections, applicable routing tables, optional command section, and naturally placed modules.
+- A `Batchy.Skill.Contract` block near the top restates help, explicit-flag, automatic-discovery, banner, and command-gate rules that apply.
+- Arguments declared as `### Skill.Arg::<Name>` blocks, never a table.
 - Each argument advertised enough that `-h` is useful.
-- Tokens written `--flag`-style.
-- Subcommands expressed as `action`-bearing args (switch or selector), not a dedicated structure.
-- Arg / file / section names share one namespace — keep them collision-free.
+- Every operation flag routes to its actual destination; it is not modeled as an argument unless its effect is external-data binding.
+- Explicit tokens use `--<flag>`; bare or loose prose is available only through rows that permit automatic discovery.
+- Each router row declares whether explicit flags, conversation, defaults, or a combination may resolve it.
+- Module selection targets `Skill.Module` directly; argument binding targets `Skill.Arg`; prompt composition targets `Routing.Table`.
+- Strict keys and destinations remain collision-free.
 - `description` frontmatter carries a `Skill.Trigger.Clause` and names the key arguments.
 - Missing-argument behavior stated: ask, orient, or noop — never guess.
 - Commands declare canonical identity, triggers, availability, action, and argument resolution; equivalent triggers never fork semantics.

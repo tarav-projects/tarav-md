@@ -1,4 +1,4 @@
-# Touched.Decision.Cycle
+# Touched.Decision.Knowledge.Module
 
 Use this workflow-neutral module whenever index work makes a decision or advances a `Target.Product`. It operationalizes `Touched.Decision.Cycle` beneath search, design, capture, implementation, and reconciliation; it does not replace their distinct purposes.
 

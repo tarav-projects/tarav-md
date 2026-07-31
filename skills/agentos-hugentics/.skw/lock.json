@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "ca889cda31cd969a9b8ac0818de280eeafdb9744f1b87f28788a7dc68ce0d3c5",
+      "output_sha256": "03bc3b0038e5719d2a24bad319260784fec2f6c9bfc6cdeebdae196b099bd3f6",
       "recipes": [
         {
           "heading": "^driver-index-literacy",
@@ -19,34 +19,34 @@
         {
           "heading": "Index Operating Behavior",
           "verb": "derived",
-          "body_sha256": "2c1c0ef93b15575a2de7dd4e5839648d0be1cfdf4f1f57228525c33340f00b81",
+          "body_sha256": "df0c5a7b80101dbba13a73eb81f3c3d430240eaa064b2be1e962ac0bcd9b4836",
           "deps": {
+            "references/touched-data.skw.md#Line Standing": "2bc1780bf6384c537cff3089d3aa547092f81dba496c26bc8976d4f455c6b174",
+            "references/touched-data.skw.md#Coherence And Decision Weight": "6a23c0cfcf0865ea3b5e36274da927ab577287916aae91f3a091ce27f4bd2505",
+            "references/decision-cycle.skw.md#Contextualize": "d2f3a8cc670a831f6636b915275863c21da6635671f48d36929b13c5369f71c6",
+            "references/decision-cycle.skw.md#Act": "c84b915694ffe0c92f73831c73c623da2d936f6d8caf393c6620131fdaea9c5a",
+            "references/decision-cycle.skw.md#Reconcile": "c7715d9a2d6a8527532cbbf3cf1bc0362a0418e1b876bd3bccb8cb2627161ca2",
             "references/search.skw.md#Search Model": "35a6d9e8ba7764c7d6f717cc25e780cbae80f8e5f0102c70d1a4b880849393c6",
-            "references/search.skw.md#Citation Behavior": "e57e94bf2adedb5f4bde5e498c1feb6342c70412564a0e8d8a1a8734a673a8a9"
-          }
-        },
-        {
-          "heading": "Unified Harness Model",
-          "verb": "derived",
-          "body_sha256": "9f90880fe5161c8fbafc7429e568b4ae1201a5efbb95da6bf07f227c2bc880c3",
-          "deps": {
-            "references/harness.skw.md#What This Is": "b6d24187aa52f0058b96063380c798516c17cc3349f162249eaea57f3e939f1e",
-            "references/harness.skw.md#Alignment.Loop.Interruptions": "bf6bc23f0447af7d201681a78640106247719bff62f23e0e6e3f053978101711"
+            "references/search.skw.md#Citation Behavior": "e57e94bf2adedb5f4bde5e498c1feb6342c70412564a0e8d8a1a8734a673a8a9",
+            "references/capture.skw.md#User.Command Checkpoints": "5cb7be6f8d0c0d6350b621bc7d58b02881f5be87bd312f7b0e60116d1437ec6e",
+            "references/capture.skw.md#Landing": "d9d16c71df477cc61297b72a9cc2dc0d8fcd8777b8c7151f9ea2beb68c8e79c1",
+            "references/edit.skw.md#Edit Gates": "34b988e36fa60f35bfbca549056fdb439fc41a3ff107f44c58ed7bbed07ad926",
+            "references/edit.skw.md#User.Command Transitions": "c92bec72a5749b0a9a7eafae35b8c3686d53bb17ddf5f5007b94eab2c17fcf81"
           }
         }
       ]
     },
     "references/agendix.md": {
-      "output_sha256": "a3b981ca690c6a1989ab771d1c87334167c6be585b80e5ed77e9c146c7d1343e",
+      "output_sha256": "bf74a55edeae4ab140b814216bcb3f15e3bb94aa122858c1e369da4a2ead4bfe",
       "recipes": []
     },
     "references/alignment-session.md": {
-      "output_sha256": "881a1da3c7b7fd3ee71eaa8a9f3676b6eeff7685ae6771050bf978dbb23a0d6e",
+      "output_sha256": "6149cd8fcafaa10ae67a8688117562aa496ca6935b314b464ea9cdac87975768",
       "recipes": [
         {
           "heading": "Concepts",
           "verb": "derived",
-          "body_sha256": "a1d212f132d40bcacadcf468f5139c85e8ed281b1f2906505b124d1cd919949c",
+          "body_sha256": "0ac782ac6e4385e323264ea93f37512055657f374e392d2f87a4afeb429d6361",
           "deps": {
             "Alignment.Session": "e4f1d0d62a81f17ed631ef4e0bf57a38cad354a6f2254bd1f4b22c863c4a3d48",
             "Design.Space": "68a879d4733c715bbada8ca3a4ac70d0c868d016a673983c095c4ae332e2694c",
@@ -57,7 +57,6 @@
             "Agentic.Variable": "30e09b8e3d25504958c496722ed6a697930aad4b9d366b6095a5c17231e1b4ea",
             "Open.Space": "68868ebf26c9385523070a879705ff29327910e0a9c131c1972ab53100724903",
             "Alignment.Loop": "57d7e83a7e26a2e653edc8b63f6dfb560cf9c92204a5eb27d3ef8865113b7985",
-            "Alignment.Backend": "90db8db81e4e728732ebb35a4f54cc03a789b476bb42a12ea214c18a61701da6",
             "Alignment.Checkpoint": "e4c60c9e0dea4a7a6f7dc9912bed9716f0516b80015366cb5acf6332b794050d",
             "Alignment.Mode": "8127bef68ccab8f921f4ee7bb39eb8cb9ac1998875f45ad30be54ef7204b1747"
           }
@@ -74,33 +73,32 @@
         {
           "heading": "^loop-params",
           "verb": "derived",
-          "body_sha256": "8428e5cda987b852b57b7d40f0e834a9997204d86a7b88dad4f17ea7dfc5db89",
+          "body_sha256": "02370860a403fc0383a264021c1f4123490f9a34eb58002b724369c0064be0ef",
           "deps": {
-            "Alignment.Loop": "57d7e83a7e26a2e653edc8b63f6dfb560cf9c92204a5eb27d3ef8865113b7985",
-            "Alignment.Backend": "90db8db81e4e728732ebb35a4f54cc03a789b476bb42a12ea214c18a61701da6"
+            "Alignment.Loop": "57d7e83a7e26a2e653edc8b63f6dfb560cf9c92204a5eb27d3ef8865113b7985"
           }
         }
       ]
     },
     "references/back-link.md": {
-      "output_sha256": "1a64056a782d14e795b8342e932e81b261f1211b05cbaf8efcf76e09fd82ff7a",
+      "output_sha256": "58d3367c1c72dc93b55d4473ef52856c2fe988e58330ab628f750b32b18f0096",
       "recipes": [
         {
           "heading": "Back-Link Pipeline",
           "verb": "derived",
-          "body_sha256": "7b837d6821c4cefad23114d12edd95786c6f3cbac15ef1942073058d63d0e10b",
+          "body_sha256": "40067b02666cd1db0d852cf6a69f63bbcc02e52f7f13f71826c24816d492c346",
           "deps": {
-            "references/link.skw.md#Linking Pipeline": "5830f32772a0e3035eec53a7f2e6a45a4b0fd98736786993d6c751229c38a20e"
+            "references/link.skw.md#Linking Pipeline": "5d0f6387f16344cd1da2c5bb17e94678efb35bf1e16d166801ad87f8d8130bf3"
           }
         }
       ]
     },
     "references/capture-audit.md": {
-      "output_sha256": "1cffe2fabf456ea09d43a2d0fa8870a74c738ff3c387f5f02059c64812662fc0",
+      "output_sha256": "e1dc5a519e9b5254c45405b55251e73e3e144de4247452cac1999a219f9e4832",
       "recipes": []
     },
     "references/capture.md": {
-      "output_sha256": "e557828378a95b49698e602c52f9046df2684367803612cb75c7ff02eb0367ba",
+      "output_sha256": "e187ef21bf25e85ce225300fecd29972747743a8c1232d65a038e2f0e7b3de51",
       "recipes": [
         {
           "heading": "Landing",
@@ -114,11 +112,11 @@
       ]
     },
     "references/chat-status.md": {
-      "output_sha256": "1ad4c98888eaa626c8015739bfd543d569d9823622c1a318b1f6aa931ad11b25",
+      "output_sha256": "0dd4fd0069f5bbf8130bfa77717dc634700fa003af876896dd41e6238e3c0b69",
       "recipes": []
     },
     "references/check.md": {
-      "output_sha256": "c4652b01cd11f88caca1b447a86adc3620d3cb570ba58f9ef1ff73d3ff91815c",
+      "output_sha256": "c5241a43dd4389cf02a73f5532f17e78d214efcf69da4f5adc15f7821da309b9",
       "recipes": [
         {
           "heading": "Beyond The Linter",
@@ -131,99 +129,19 @@
       ]
     },
     "references/codebase-cleaner.md": {
-      "output_sha256": "feb99b2bfc0524e2c587c5b7e09c1c1718058f6bcfd90695c09f0b6fb9d0dfb9",
+      "output_sha256": "22f60b934909fcf2706ac634bc812bfe43a8565458aa58b5f1374b74492801d2",
       "recipes": []
     },
     "references/decision-cycle.md": {
-      "output_sha256": "fb2954b2fb05b9af0d0bd0f717368c5231ee878ca9edb938344639356475786b",
+      "output_sha256": "7c644fe7cdff6e87b7b2654f2d872f96f38f2c683abb11a0c4d6ba9218ff0827",
       "recipes": []
     },
-    "references/design/alignment-loop.md": {
-      "output_sha256": "b49b357e826c074423d85b5ff16520a790409620893b43461af6cef0324292db",
-      "recipes": []
-    },
-    "references/design/artifact.md": {
-      "output_sha256": "651cd323a9bc21308b3ffe6b90426de4a62c111c6f0ad153f14bf75b3e038162",
-      "recipes": []
-    },
-    "references/design/backend-artifact.md": {
-      "output_sha256": "52a74ee69da6c7dbcb77e8a4f8b7a58709e2a3279bac14df4ead412404a65e6e",
-      "recipes": []
-    },
-    "references/design/backend-inchat.md": {
-      "output_sha256": "b46a46c6da05c9590d6208cad9929401b8cc0fa38ee450dd8cc1f4ec21712ec6",
-      "recipes": []
-    },
-    "references/design/capture-audit.md": {
-      "output_sha256": "88fe51109201411b32a3c4764e291ac0e4aea53f7a02c1e947f151473b94863d",
-      "recipes": []
-    },
-    "references/design/concept-discovery.md": {
-      "output_sha256": "f859109b39a41bbae23622658655317ed0cecde8664b39d0890e3cf1ee5fc16f",
-      "recipes": []
-    },
-    "references/design/consolidation-plan-example.md": {
-      "output_sha256": "309070d9735ac5fc627c2f35d0e5c632b874f253ea5c3c39e96fa5ed9db35df7",
-      "recipes": []
-    },
-    "references/design/design-anti-patterns.md": {
-      "output_sha256": "cbfec10d0aa5bf04605e6a8cce1f69065fa5d5edb208ac93425b88dcdc2f225b",
-      "recipes": []
-    },
-    "references/design/design-index.md": {
-      "output_sha256": "4f650fe009d1d9170a8bb7f16904630f7da83a7920953d99b6463ffd7e2bf8e5",
-      "recipes": []
-    },
-    "references/design/discussion.md": {
-      "output_sha256": "9b1929c2b87e114a8df3538b7f6ce2be6d20856b80b75853fccdb58457a989d5",
-      "recipes": []
-    },
-    "references/design/impl-req.md": {
-      "output_sha256": "2f6fb0c32b98046ac4ac680b700d11240cd4376c0606ba25f02f464d64eb0783",
-      "recipes": []
-    },
-    "references/design/index-view.md": {
-      "output_sha256": "9407edb17bb9250d16f3212c7d4fcd1a5b2d204f679703e2162ddbfe51a69f09",
-      "recipes": []
-    },
-    "references/design/interview.md": {
-      "output_sha256": "27f5fb5f5966b0dda8a5c2bdb49b2236f255c0215825cac628c9edf55c2f35a9",
-      "recipes": []
-    },
-    "references/design/session-abstract.md": {
-      "output_sha256": "e19c109ee6b04c13be8455cde63cfe473d539459b8ae857371c3b752be4f71d8",
-      "recipes": []
-    },
-    "references/design/session-interruptions.md": {
-      "output_sha256": "2212a50808c937f24b4db375b1a823cfde9f51bd3c0b304601b6f83a43237a70",
-      "recipes": []
-    },
-    "references/design/session-log.md": {
-      "output_sha256": "0012b5de53745073e1a330c2af72ad280e5726ad8692468cb8b1c20cbbf88e7a",
-      "recipes": []
-    },
-    "references/design/session-notes.md": {
-      "output_sha256": "1ee57457e1db075a25beea4404e3fadadb60ece5462b387d607ac0fe0111db67",
-      "recipes": []
-    },
-    "references/design/status-report.md": {
-      "output_sha256": "cd34be751e7f738dd9178e14709cb11d1126a2f39c7530d11b7f29edd68fcf59",
-      "recipes": []
-    },
-    "references/design/uncommitted-work.md": {
-      "output_sha256": "ab64db51ec0ef8fe2a33a733b4f0514bf96cb103f0004489b983f7cbea0821d2",
-      "recipes": []
-    },
-    "references/design/writing-craft.md": {
-      "output_sha256": "e5211e5e9e620d5153f4932ecc0bcffe14aecd4229ac7e32d16ae8f4c51c72d5",
-      "recipes": []
-    },
-    "references/design.md": {
-      "output_sha256": "3903a3590b21f7d931c65b5f5c11c6b201f4ffcc692c4894082c9f1ab772b0ac",
+    "references/design-req.md": {
+      "output_sha256": "1101fa1f4cc30ff8dc87e59823c0f79985be20dc49cef8ab4b61d72dda9ffd64",
       "recipes": []
     },
     "references/edit.md": {
-      "output_sha256": "6096c8ed957f8cd61800d4096476ae73ab3362369800b235b76444c51bac33eb",
+      "output_sha256": "1345fb85b7767c798700b6ae24d669b65d5829927504c6a9d2e05647043e745e",
       "recipes": [
         {
           "heading": "Block Independence",
@@ -236,79 +154,19 @@
       ]
     },
     "references/enrich.md": {
-      "output_sha256": "f56d34a01aacd4b83d867466857b88c7a5aaae6991e998844f4597706ac02e76",
+      "output_sha256": "a9286bffa83f4dddb8a691aba50b193c542d2c1bf826f62b06e52c875d4867e0",
       "recipes": []
     },
     "references/gr-review.md": {
-      "output_sha256": "048cecf50503793af567703ad6ee30efa8177f32d13d4dec03277cfd416a4df5",
+      "output_sha256": "91bc6673e2fe7fb857dcc6e6b7c26f10c2470c8f10be516914966480882b5c09",
       "recipes": []
     },
     "references/gr-survey.md": {
-      "output_sha256": "8342c40e94128f63e7d5e7e754f1d6672d7617c3033f3d13698bdd5c50819716",
+      "output_sha256": "ded14227350211223c25d94ebd6afdcdc99e004e449156e578984e9cabe19283",
       "recipes": []
     },
-    "references/harness.md": {
-      "output_sha256": "5f1ee9648088221c5fe335403ab56fdb31c518308353256b03548ce373a77b4f",
-      "recipes": [
-        {
-          "heading": "Alignment.Loop.Interruptions",
-          "verb": "derived",
-          "body_sha256": "bf6bc23f0447af7d201681a78640106247719bff62f23e0e6e3f053978101711",
-          "deps": {
-            "Alignment.Loop.Interruptions": "2c86024638a3a62884b0951b050c83d579c59cfc40a489e231d54ff5620b46a5"
-          }
-        },
-        {
-          "heading": "Shared Principles",
-          "verb": "derived",
-          "body_sha256": "2f5f5cc6f792edcdc69325cae8d325243025ca30fa7e3cb90c6c2e1e81a45bae",
-          "deps": {
-            "Development.Principles": "35aa9c6593ecbd4c2d0f5c446b4a8d519e6ae25a3814970f2f52c5c94848bbed",
-            "Deep.Modules": "22c34b76c25164b05e356da4646e80ee11b113fe66d0b1075eb56c9d6fdde800",
-            "Agent.Navigable.Codebase": "048c59e65c21d3ff485534c96841f99fd958d2a688737bbcce0a86109dc9ec34",
-            "Vertical.Slice": "a670e07fadf5c8183dd3de285fc558dcd9aa06bf86ff24e56e5452cf654afbbc",
-            "No.Legacy.Allowed": "13b70b46b197531fe439921ca95d9dca8fb80b1c0f1b9ba7f40031c906f25b80",
-            "No.Regression.Tests.Allowed": "3b71e5c343af8ccbde6f052255895dadeca133dbc2cd46026fb5bcc9e240e22a",
-            "Test.At.Boundaries": "679f3344635cea8183f897e5c82300b32b17e367f12a93bfbba118ce773ee698",
-            "RED.GREEN.Test.Suite": "d2b1d3f40cf2b16f1c70127a6f03cc2ddfb93b13023b0fb288c5c76c5ad4c8e5"
-          }
-        },
-        {
-          "heading": "Hugentic Concept Space",
-          "verb": "derived",
-          "body_sha256": "8edb762a961b8d2ce579b33576da88441cb55d5bc065a6aae30805ea003cf650",
-          "deps": {
-            "Hugentic.Concept": "b7e2f8cfd645b68367dd4efc8f0555cb1104baa570a870f294a351457a742482"
-          }
-        },
-        {
-          "heading": "Alignment frame \u2014 what alignment *is* (`101`\u2013`102`)",
-          "verb": "derived",
-          "body_sha256": "83f26c8f7efd39fe4aadf499239687eabffdb3caefb4c2ddfcf1a5c0ef759030",
-          "deps": {
-            "Hugentic.Alignment": "1f16dfaf5e1802c47289752cc6533ff6472b5a3456b57792b6e166b9d7a64956",
-            "Forward.Alignment": "459241b8471039de89980c49b05abbfb53d2416f7e3bb8422ab97157f188b46c",
-            "Internal.Alignment": "3d8df70c54dbc2de5708683d438ae1afd843c9866dc34245f5cac6bd937d57a8",
-            "Progress.Gradient": "d26e0f5d17079436660e5e10b85bc8ce6e9efff1100c2007e4b152dfd8bb5fe6",
-            "Design.Implementation.CoEvolution": "d81bb847bc4339e225aaa9482eb827af8fba53b3dc8d729bb054926174fda3a7"
-          }
-        },
-        {
-          "heading": "Communication form \u2014 how a designer *speaks* (`100`, `102`, `105`)",
-          "verb": "derived",
-          "body_sha256": "2f237d3c6732ec5097baa44dc1a32a355c55f5413aeb609a362ca1ff8502100b",
-          "deps": {
-            "Kernel.Writing": "33fbda2bbdeccbf151315f818c8b442b7476076d1669673a3b3dbb5be0d05e5c",
-            "Kernel.Block": "27e35d3040cf8bad276705b460a9529a41c387aa4bf134149e7ffcfd953dc2c9",
-            "Designer.Turn.Kernel.Form": "9bba43c4a768e893cf8ae90d7f9e6fc5cab2ee55f7d5ffbe84e5d82ec7f294b2",
-            "Dotted.Notation": "8cac1983cfd7b5d5b190eb0e844c86d299953973b8ca0d03701933a2b0ace51b",
-            "Skw.Address.Schema": "b0fb3240fe612be05f618f1e79e04c90afa4d01a52024f547c3c9a5571ae425f"
-          }
-        }
-      ]
-    },
     "references/impl/design.md": {
-      "output_sha256": "12647ded89115ef54961dc8648558ad18bee136e5e46682d50d6d54f74ade261",
+      "output_sha256": "e1abdeacd10d65c3bb20cc8fb4995f80f7c7d99685fd373ca8016414554e8447",
       "recipes": [
         {
           "heading": "^how-loop",
@@ -356,7 +214,7 @@
       ]
     },
     "references/impl/develop.md": {
-      "output_sha256": "abca49f12bc71fe5cbce0543bfe7a9b92e76402207b69d98ada730433b3873db",
+      "output_sha256": "e22ac7062a6b0cbbd4194d74d969cc442d996a6950f1564a0dac294c3539da82",
       "recipes": [
         {
           "heading": "Workflow",
@@ -384,7 +242,7 @@
       ]
     },
     "references/impl/execute.md": {
-      "output_sha256": "2c448fc0803fb3db164c0211ec164791cc29f5033c3de02eed2485b20de75c5b",
+      "output_sha256": "fac74b2be736a8c1def5f75e330ad5de550a6212a7df045527f41aa707336580",
       "recipes": [
         {
           "heading": "^exec-loop",
@@ -415,7 +273,7 @@
       ]
     },
     "references/impl/general-practices.md": {
-      "output_sha256": "9f76cf3f9bb2febf4e55e467dd8cdffb6033fb4b91e6dde827a13c9203e811e4",
+      "output_sha256": "9e0f545a5c559c01286e343b72ae7064c6f09c4267e961531ad4d8c8a8aec95b",
       "recipes": [
         {
           "heading": "Moving Forward",
@@ -428,11 +286,11 @@
       ]
     },
     "references/impl/general-preferences.md": {
-      "output_sha256": "279129aa9f66007de98fa9360c1207a4ff1f54fee943b80a6611f6c8f1945259",
+      "output_sha256": "58853b4716b977bfb7a073da666b4a08aeee765e9f7f6308ed331e14c9877e99",
       "recipes": []
     },
     "references/impl/impl-capture.md": {
-      "output_sha256": "03fa338c5ceace8e22b5a152a9191e22186e2139a6260d937d5e58e8e5502669",
+      "output_sha256": "f9bbc7b705854bb9d91fe3ac97e76fdb66c053d68b41d58864495e7f966c6133",
       "recipes": [
         {
           "heading": "Alignment.Checkpoint::Candidate",
@@ -446,7 +304,7 @@
       ]
     },
     "references/impl/review.md": {
-      "output_sha256": "a274d763206d218288a4822ee3c96b7ff83d0fdb797ea4b9a33bbce91d1aaa30",
+      "output_sha256": "6886bd4e8fa7df3d8e2d9859a3c2d3929c3dfd2e653c8e2a523095556ff13f54",
       "recipes": [
         {
           "heading": "2. Evidence audit",
@@ -467,31 +325,31 @@
       ]
     },
     "references/impl.md": {
-      "output_sha256": "403c3d115d958d39b74f9d69e2d68f281981f6d5d5de6c1103ad65feed8a2a26",
+      "output_sha256": "238c71b4393d30115438c39e496d87b907f6e19dac5e26960e8bc8b33ef17f4a",
       "recipes": []
     },
     "references/index-capture-context.md": {
-      "output_sha256": "9dda42999feaf8e0086e4d854a8f1fee4945c337baefae7688e5024210145c60",
+      "output_sha256": "fb56ff153864177793142d1f3186396ec17b6ae33dac4f538670dd3e515a2f91",
       "recipes": []
     },
     "references/index-context-assembly.md": {
-      "output_sha256": "ab02f3b520a37eab1d56b281c47616873e3379e703ced3c185f14b38e6b19bbf",
+      "output_sha256": "791e9a9fb2d73c5a69213f898cb58f540c14ac104d179b2d6dd9f491ed69044e",
       "recipes": []
     },
     "references/link.md": {
-      "output_sha256": "757997c9fa16c362974fd79b95bbba18c59bc64bd114dbe42c52d98e008324fa",
+      "output_sha256": "191b6723572b398efacc8ce4492f6036851a3b74e596ed4e5610e33ba3a63f09",
       "recipes": []
     },
     "references/parking-note.md": {
-      "output_sha256": "fde77f58d250495df1235249774f9cffbe14f7dab6712f73db6088f10c212509",
+      "output_sha256": "7e2ffaae74dbc2f85160747b7960f3a7275826efb2111734d861cda35e3dfb3e",
       "recipes": []
     },
     "references/search.md": {
-      "output_sha256": "d2f89ba0828581cc6d1f0930b1de4419481d16680e943904d8469294c5dc85ab",
+      "output_sha256": "199fce74408f835e9f88b7a86bb47ac05cb252b819389d8a99c8b60db6787750",
       "recipes": []
     },
     "references/session-router.md": {
-      "output_sha256": "fac2ae7e2c4a1f10801de60936ed199df826cb18af0150ca58ea3f72f54bdb9c",
+      "output_sha256": "fcc87faa1ddf604497f267402887bbb6dd506bfba0ffc1efab2543cd545b0fd9",
       "recipes": [
         {
           "heading": "Evidence",
@@ -504,15 +362,15 @@
       ]
     },
     "references/touched-data.md": {
-      "output_sha256": "c38880620a5592b1efd46491fe42b8f90e2c7c8be047efd3c929d08cfa907298",
+      "output_sha256": "4192856b97a3fa64d6af4a0b65f0f6f84ba71d918b2c5ba1798cd6a34a09def3",
       "recipes": []
     },
     "references/type.md": {
-      "output_sha256": "4ae8f5566762f972e9c4dae84e053f7708672af492441bec13d02fd08fd1f26a",
+      "output_sha256": "a220c2baf748ac483010252315434f32a2402325942faf43a7e1b08e9fcab347",
       "recipes": []
     },
     "references/workflow-status.md": {
-      "output_sha256": "23d69feaa8d112d0dff450dfd33158ae1880d7a4ef2ebc0ba7feed2be508236f",
+      "output_sha256": "fad11b67d689e0238bdf6b5dbd6c416c951eb6eedcbd2b0b14d0a726cb0c3d90",
       "recipes": []
     }
   },

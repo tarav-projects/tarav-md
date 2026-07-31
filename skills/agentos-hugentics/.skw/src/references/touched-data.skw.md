@@ -1,7 +1,7 @@
 > $kw: --from Agentos.Index.System --from Anchory.System --from Chat.Surface --from Demoted.Index.Line --from Index.Line --from Index.Presumption --from Live.Index.Line --from Open.Inference --from POI.Instance --from Reviewed.Content --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Index --from Touched.Support.Network
 > --dev-from references/index-context-assembly.skw.md
 
-# Touched.Index Data Model
+# Touched.Data.Knowledge.Module
 
 Use this workflow-neutral knowledge module whenever an index operation must decide what carries touch, how an indexed statement is supported, or how much decision weight a line has.
 

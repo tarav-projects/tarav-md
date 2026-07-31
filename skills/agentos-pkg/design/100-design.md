@@ -53,12 +53,12 @@
 
 ## Placement.Balance
 
-- `Placement.Balance` is the maintained alignment state between origin surfaces and their useful local expressions across surfaces
-- balanced placement is not absence of repetition
-- the system is balanced when origin material lives in its natural source surfaces and cited duplicates exist only where locally useful
-- duplicates remain balanced when they cite origins and can be found, checked, and updated during maintenance
-- diagnostic signal: uncited repeated concept material, stale cited duplicates, or ambiguity about where the origin material lives
-- complementary to `Natural.Placement` — natural placement decides where material belongs; placement balance checks whether distributed material stays aligned
+- `Placement.Balance` is the maintained alignment state between origin surfaces and their useful local expressions across surfaces ^c20260522-0u
+- balanced placement is not absence of repetition ^c20260522-0u
+- the system is balanced when origin material lives in its natural source surfaces and cited duplicates exist only where locally useful ^c20260522-0u
+- duplicates remain balanced when they cite origins and can be found, checked, and updated during maintenance ^c20260522-0u
+- diagnostic signal: uncited repeated concept material, stale cited duplicates, or ambiguity about where the origin material lives ^c20260522-0u
+- complementary to `Natural.Placement` — natural placement decides where material belongs; placement balance checks whether distributed material stays aligned ^c20260522-0u
 
 ****
 
@@ -78,8 +78,8 @@
 
 ## Cited.Duplication
 
-- `Cited.Duplication` is intentional duplication of concept material into another surface with an explicit `Concept.Cite` to the origin
-- used when local access to repeated context improves agent performance, bootstrapping, workflow execution, package orientation, or readability
+- `Cited.Duplication` is intentional duplication of concept material into another surface with an explicit `Concept.Cite` to the origin ^c20260516-0u
+- used when local access to repeated context improves agent performance, bootstrapping, workflow execution, package orientation, or readability ^c20260516-0u
 - the duplicate may be rewritten, summarized, or adapted to local task shape, but must remain aligned with the cited origin
 - the cited origin anchors maintenance and gives agents or tooling a way to check drift
 - if a cited duplicate clearly mirrors an edited origin, the writer may update the duplicate in the same approved write pass

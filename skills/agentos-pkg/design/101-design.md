@@ -350,6 +350,7 @@
 - [CT] the applicable `Batchy.Router.Row` determines whether the flag key resolves exactly, through configured aliases, or through a semantic keyword family ^c20260731-10u
 - [CT] a flag route may bind a `Skill.Arg`, select a `Skill.Module`, or contribute or continue routing through a `Routing.Table` ^c20260731-10u
 - [CT] a flag may carry an explicit value or act as a switch whose routed value is declared by the skill ^c20260731-10u
+- [DC] a `Batchy.Skill.Flag` may contribute partial routing context, such as a namespace, without independently selecting a complete run ^c20260731-32u
 - [EX] `agentos-hugentics --index --capture` configures one run toward the index surface and capture-oriented routing ^c20260731-10u
 
 ****

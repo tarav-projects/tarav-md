@@ -1,4 +1,4 @@
-# Chat Status
+# Chat.Status.Operation.Module
 
 > $kw: --dev-from references/index-context-assembly.skw.md
 

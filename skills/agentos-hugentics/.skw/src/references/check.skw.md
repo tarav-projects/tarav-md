@@ -1,4 +1,4 @@
-# agentos-hugentics --check
+# Index.Check.Operation.Module
 
 > $kw: --from Appendix.Discovery --from Index.Depot --from Index.Edition.Turn --from Index.Linter --from Index.Presumption --from Line.Type --from Line.Verbatim.Gate --from Reviewed.Content --from Support.Set --from Touched.Authority --from User.Attention
 > --dev-from references/index-context-assembly.skw.md

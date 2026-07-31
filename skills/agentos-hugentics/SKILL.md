@@ -5,196 +5,154 @@ description: "Canonical public control surface for Hugentic sessions. USE WHEN y
 
 # Agentos Hugentics
 
-Canonical `Package.Driver` and single public session-control surface for the Agentos Hugentic Harness.
+Canonical `Package.Driver` and single public session-control surface for the Agentos Hugentic system.
 
 `Touched.Index` is the global system for contextualizing relevant `Touched.Data`. The Markdown `Agentos.Index.System`, trailing Anchory anchors, and Chatlas support records are its current realization, not its conceptual boundary.
 
 Index capabilities remain a distinct internal subsystem because nearly every Hugentic workflow depends on touched-data contextualization. The caller nevertheless controls the whole session here: product design, implementation design and execution, capture, audit, status, parking, and every Index operation route through named modules without requiring another public skill.
 
-This is a `Batchy.Skill`; the public arguments and user commands below are its complete caller contract.
+This is a `Batchy.Skill`; `Batchy.Router` resolves every run from explicit flags, the live conversation, and declared defaults.
 
-- `-h` / `--help` prints usage and the public args without running.
+`Hugentic.Capture.Workflow` is the shared public alignment loop. A `Design.Req.Promotion` temporarily retargets that loop without creating another router or workflow identity.
+
+- `-h` / `--help` explicitly routes to `Batchy.Skill.Help` and short-circuits the run.
+- a written `--<flag>` is intentional run configuration and must be resolved as such.
+- without an explicit route, conversational discovery remains available wherever the applicable row permits it.
 - declared `User.Command`s are the only way to cross their explicit workflow gates.
 - when an index workflow pauses, print only the commands available at that checkpoint.
 
 ## Skill.Arg.Section
 
-### Skill.Arg::Search
+Only external data consumed by the selected module is a `Skill.Arg`. Operation flags belong to `Batchy.Router` below.
 
-- search the index through routing-first selective loading, grounded against the current visible discussion
+### Skill.Arg::Main.Prompt
+- the caller-supplied focus, target, artifact reference, or request body consumed by the selected module
 - required: false
-- aliases: --research, --ground
-- help: "search the index and return cited context grounded against the current discussion"
-- examples: --search "Index.AGENTS.MD", --research "Parking.Note", --ground "check this design discussion against the index"
+- default: the caller's current explicit request or applicable conversation context
+- help: "the subject or input for the selected Hugentics operation"
+- examples: --search "Index.AGENTS.MD", --design "the Batchy skill framework", --execute 601
 
-### Skill.Arg::Capture
-- run the capture loop: work the chat's content into kernel writing form through discussion, and land approved material on user-named index surfaces
-- accepts `Alignment.Mode` (`Interactive` default); `--AUTO` is the fully automatic extreme — chat to agendix, no prompting
+### Skill.Arg::Alignment.Mode
+- whether declared workflow checkpoints are interactive or autonomous
 - required: false
-- help: "capture the current chat into the index: ground, draft, discuss, approve, land"
-- examples: --capture, --capture "capture the design discussion we just had", --capture --AUTO
-
-### Skill.Arg::Design
-- run a `Product.Design.Session` whose decisions are contextualized through the touched index
-- required: false
-- help: "design a target product through touched-data contextualization and explicit What/How/Exec concerns"
-- examples: --design "the Batchy skill framework", --design --artifact
-
-### Skill.Arg::Design.Scope
-- the `Target.Product` subject and boundary for `--design`
-- required: false
-- help: "what product or design result the session should advance"
-- examples: --scope "the Batchy skill framework"
-
-### Skill.Arg::Session.Backend
-- use the artifact-backed design-session backend instead of the default in-chat backend
-- required: false
-- type: switch
-- help: "persist the design session in an artifact"
-- examples: --artifact
-
-### Skill.Arg::Edit
-
-- work the approved edit path for index or appendix changes
-- required: false
-- help: "use the index edit path for approved changes"
-- examples: --edit "add Context.Hook"
-
-### Skill.Arg::Write
-- call the edit module
-- required: false
-- help: "use the index edit path for approved changes"
-- examples: --write "add Context.Hook"
-
-### Skill.Arg::Append
-- call the edit module
-- required: false
-- help: "use the index edit path for approved changes"
-- examples: --append "add a line to Context.Hook"
-
-### Skill.Arg::Reconcile
-- compare a changed `Target.Product` with applicable touched design and route any required gated index changes
-- required: false
-- help: "reconcile implementation or surface reality with the touched index"
-- examples: --reconcile "compare the current Hugentics Index modules with their design"
-
-### Skill.Arg::Check
-- run deterministic checks over index depots or explicit index surfaces
-- required: false
-- help: "run index checks"
-- examples: --check --depot agentos-pkg
-
-### Skill.Arg::Lint
-- call the check module
-- required: false
-- help: "run index checks"
-- examples: --lint --depot agentos-pkg
+- default: Interactive
+- type: enum
+- values: `Alignment.Mode::Interactive`, `Alignment.Mode::Autonomous`
+- flags: --AUTO, --auto, --autonomous
 
 ### Skill.Arg::Depot
-- scope index work to one or more engaged index depots
+- one or more engaged `Index.Depot`s that scope index work
 - required: false
 - default: task-relevant engaged depots
-- help: "scope index work to an index depot"
+- flags: --depot
 - examples: --depot agentos-pkg, --depot agentos-chatlas-pkg
 
 ### Skill.Arg::Chapter
-- scope index work to one chapter within the engaged depots
+- the `Index.Chapter` selected within the engaged depots
 - required: false
 - default: design
-- help: "scope index work to a chapter"
+- flags: --chapter
 - examples: --chapter design, --chapter impl
 
-### Skill.Arg::Type
-- read or propose `Line.Type` classification for index lines
-- required: false
-- help: "explain, read, or propose index line typing"
-- examples: --type "type the Anchory.System block", --type "what binds me in this block?"
+## Batchy.Router
 
-### Skill.Arg::Agendix
-- run the capture loop with the agendix as preset destination — `Alignment.Mode::Autonomous` by default, the agent lands and reports
-- required: false
-- help: "run an agendix capture pass over the current conversation"
-- examples: --agendix, --agendix "capture the grounding discussion"
+The public flags below call the single running `Batchy.Router`. A trailing value binds `Skill.Arg::Main.Prompt` for the selected module; data-only flags bind their named `Skill.Arg` without selecting a module.
 
-### Skill.Arg::Link
-- mint an `Anchory.Anchor` for a chat context — the linking primitive other modules consume
-- required: false
-- help: "mint an anchor for a chat evidence turn and return it"
-- examples: --link "anchor the turn where the user picked syntax B"
+| Explicit configuration | Routed effect |
+|---|---|
+| `--index` | contribute the Index namespace/context; with capture and no narrower target, select the reviewed main Index surfaces |
+| `--main` | select the reviewed main Index target for the applicable Index workflow; with capture, equivalent to `--index` |
+| `--search`, `--research`, `--ground` | select `Index.Search.Operation.Module`; omitting `--index` uses its declared namespace default |
+| `--capture` | select `Hugentic.Capture.Workflow.Module`; leave the durable target unresolved until another route or conversation supplies it |
+| `--agendix` | shorthand for `--index --capture --agendix`; add `Index.Agendix.Knowledge.Module` and the autonomous default |
+| `--design` | select `Hugentic.Capture.Workflow.Module` with `Design.Req.Knowledge.Module` as target knowledge |
+| `--edit`, `--write`, `--append` | route directly through `Index.Landing.Knowledge.Module` |
+| `--reconcile` | compose `Touched.Decision.Knowledge.Module` with `Index.Landing.Knowledge.Module` when a write is selected |
+| `--check`, `--lint` | select `Index.Check.Operation.Module` |
+| `--type` | select `Index.Line.Type.Knowledge.Module` |
+| `--link` | select `Anchory.Link.Operation.Module` |
+| `--back-link` | select `Anchory.Back.Link.Operation.Module` |
+| `--gr-survey`, `--gr-scout`, `--gr-scan`, `--gr-linker` | select `Grounding.Survey.Workflow.Module` |
+| `--gr-review` | select `Grounding.Review.Workflow.Module` |
+| `--enrich` | select `Index.Enrichment.Workflow.Module` |
+| `--implementation`, `--impl` | contribute the Implementation namespace; its router resolves a workflow from a composed flag, input, conversation, or default |
+| `--impl --design` | select `Implementation.Design.Workflow.Module`; shortcut: `--impl-design` |
+| `--impl --review` | select `Implementation.Review.Workflow.Module`; shortcut: `--review` |
+| `--impl --execute` | select `Implementation.Execute.Workflow.Module`; shortcuts: `--execute`, `--exec` |
+| `--impl --develop` | select `Implementation.Develop.Workflow.Module`; shortcuts: `--develop`, `--dev` |
+| `--impl --capture` | select `Implementation.Capture.Workflow.Module`; shortcut: `--impl-capture` |
+| `--capture-audit` | select `Capture.Audit.Operation.Module` |
+| `--status`, `--chat-status` | select `Chat.Status.Operation.Module` |
+| `--workflow-status` | select `Workflow.Status.Operation.Module` |
+| `--session-router`, `--what-now`, `--what-next` | select `Hugentic.Session.Router.Operation.Module` |
+| `--park`, `--parking-note` | select `Parking.Note.Operation.Module` |
+| `--clean`, `--codebase-cleaner`, `--cleanup` | select `Codebase.Cleanup.Workflow.Module`, then enter the Implementation namespace |
+| `--AUTO`, `--auto`, `--autonomous` | bind `Skill.Arg::Alignment.Mode` |
+| `--depot` | bind `Skill.Arg::Depot` |
+| `--chapter` | bind `Skill.Arg::Chapter` |
 
-### Skill.Arg::BackLink
-- ground an existing index block backward: git history → session → turns → anchor
-- required: false
-- help: "recover chat evidence for an existing block and propose its grounding"
-- examples: --back-link "Writing.Friction.Reduction", --back-link "ground the 107 chapter"
+## Skill.Module Catalog
 
-### Skill.Arg::GrSurvey
-- run a grounding campaign's survey phase: sweep a scope, mint anchors, produce a `Gr.Req`
-- required: false
-- aliases: --gr-scout, --gr-scan, --gr-linker
-- help: "survey grounding evidence for a scope into a Gr.Req artifact"
-- examples: --gr-survey "design/105-design.md", --gr-survey "the whole agentos-pkg depot"
+Canonical module identity is explicit and independent from invocation spelling. `Batchy.Router` rows may use aliases, composed flags, conversational discovery, or defaults to select one canonical module; those routes do not create additional modules.
 
-### Skill.Arg::GrReview
-- walk a `Gr.Req`'s proposed entries with the user and land the approved links
-- required: false
-- help: "review a Gr.Req: flip statuses, land gated grounding edits"
-- examples: --gr-review 577, --gr-review "notes/live/577-105-gr-req.md"
+### Router Modules
 
-### Skill.Arg::Enrich
-- run `Index.Enrichment` on a block: a focused discussion producing new touched surface, landed through the gates
-- required: false
-- help: "enrich a block: generate new grounding surface through a scoped discussion"
-- examples: --enrich "Writing.Friction.Reduction", --enrich (default: head of the gr-density worklist)
+| Canonical module | Managed source | Role |
+|---|---|---|
+| `Agentos.Hugentics.Package.Driver.Router` | `SKILL.md` | public router for the complete Hugentics call surface |
+| `Implementation.Workflow.Router.Module` | `references/impl.md` | internal router entered through the `--impl` namespace |
 
-### Skill.Arg::Implementation
-- select implementation design, review, execution, end-to-end development, or ready-work capture
-- required: false
-- aliases: --impl, --impl-design, --review, --execute, --exec, --develop, --dev, --impl-capture
-- help: "run an implementation workflow"
-- examples: --impl-design "add project-scoped configuration", --execute 601, --develop "add project-scoped configuration", --impl-capture
+### Workflow Modules
 
-### Skill.Arg::CaptureAudit
-- audit the current session and its active artifacts for material that remains upstream of its maturity
-- required: false
-- aliases: --capture-audit
-- help: "report significant session material not yet captured in the right durable surface"
-- examples: --capture-audit, --capture-audit "audit the current chat and Impl.Req"
+| Canonical module | Managed source | Routing |
+|---|---|---|
+| `Hugentic.Capture.Workflow.Module` | `references/capture.md` | `--capture`; also selected by target shortcuts such as `--design` and `--agendix` |
+| `Grounding.Survey.Workflow.Module` | `references/gr-survey.md` | `--gr-survey` and its declared aliases |
+| `Grounding.Review.Workflow.Module` | `references/gr-review.md` | `--gr-review` |
+| `Index.Enrichment.Workflow.Module` | `references/enrich.md` | `--enrich` |
+| `Implementation.Design.Workflow.Module` | `references/impl/design.md` | `--impl --design`; shortcut `--impl-design`; implementation default for non-`Impl.Req` input |
+| `Implementation.Review.Workflow.Module` | `references/impl/review.md` | `--impl --review`; shortcut `--review` |
+| `Implementation.Execute.Workflow.Module` | `references/impl/execute.md` | `--impl --execute`; shortcuts `--execute`, `--exec`; implementation default for `Impl.Req` input |
+| `Implementation.Develop.Workflow.Module` | `references/impl/develop.md` | `--impl --develop`; shortcuts `--develop`, `--dev` |
+| `Implementation.Capture.Workflow.Module` | `references/impl/impl-capture.md` | `--impl --capture`; shortcut `--impl-capture` |
+| `Codebase.Cleanup.Workflow.Module` | `references/codebase-cleaner.md` | `--clean`, `--codebase-cleaner`, `--cleanup` |
 
-### Skill.Arg::ChatStatus
-- reconnect the user with the current chat's main thread and session todo state
-- required: false
-- aliases: --status, --chat-status
-- help: "report the current session state and likely next move"
-- examples: --status, --chat-status "what remains?"
+### Knowledge Modules
 
-### Skill.Arg::WorkflowStatus
-- report a structured checkpoint against the active Hugentic workflow and its artifacts
-- required: false
-- aliases: --workflow-status
-- help: "report the active workflow's done, current, stale, open, and next state"
-- examples: --workflow-status
+| Canonical module | Managed source | Consumer |
+|---|---|---|
+| `Design.Req.Knowledge.Module` | `references/design-req.md` | capture runs targeting `Design.Req` |
+| `Index.Landing.Knowledge.Module` | `references/edit.md` | any ontology or appendix write |
+| `Index.Agendix.Knowledge.Module` | `references/agendix.md` | any agendix landing |
+| `Touched.Data.Knowledge.Module` | `references/touched-data.md` | index-grounded reasoning |
+| `Touched.Decision.Knowledge.Module` | `references/decision-cycle.md` | decisions and reconciliation |
+| `Alignment.Session.Knowledge.Module` | `references/alignment-session.md` | workflows with declared alignment checkpoints |
+| `Index.Line.Type.Knowledge.Module` | `references/type.md` | line classification and typing proposals |
+| `Implementation.Execution.Practices.Knowledge.Module` | `references/impl/general-practices.md` | implementation execution workflows |
+| `Implementation.Execution.Preferences.Knowledge.Module` | `references/impl/general-preferences.md` | implementation execution workflows |
 
-### Skill.Arg::SessionRouter
-- inspect the current chat for coherent workflow continuations, resumptions, entries, and interruptions
-- required: false
-- aliases: --session-router, --what-now, --what-next
-- help: "rank workflow candidates for the current session and print a resolved command for each"
-- examples: --session-router, --what-now, --what-next, --session-router "focus on incomplete implementation work"
+### Operation Modules
 
-### Skill.Arg::Park
-- capture a sidequest thought into a project `Parking.Note`, then return to the interrupted session
-- required: false
-- aliases: --parking-note
-- help: "park an idea without changing the main session focus"
-- examples: --park "revisit retry backoff", --parking-note "investigate a second authority surface"
+| Canonical module | Managed source |
+|---|---|
+| `Index.Search.Operation.Module` | `references/search.md` |
+| `Index.Check.Operation.Module` | `references/check.md` |
+| `Anchory.Link.Operation.Module` | `references/link.md` |
+| `Anchory.Back.Link.Operation.Module` | `references/back-link.md` |
+| `Capture.Audit.Operation.Module` | `references/capture-audit.md` |
+| `Chat.Status.Operation.Module` | `references/chat-status.md` |
+| `Workflow.Status.Operation.Module` | `references/workflow-status.md` |
+| `Hugentic.Session.Router.Operation.Module` | `references/session-router.md` |
+| `Parking.Note.Operation.Module` | `references/parking-note.md` |
 
-### Skill.Arg::Clean
-- scan a git-tracked codebase for a targeted cleanup, produce an `Impl.Req`, gate once, and execute autonomously
-- required: false
-- aliases: --codebase-cleaner, --cleanup
-- help: "design and execute a scoped codebase cleanup"
-- examples: --clean, --cleanup "centralize repeated configuration parsing"
+### Context Assembly Modules
+
+| Canonical module | Managed source | Availability |
+|---|---|---|
+| `Hugentic.Index.Context.Assembly.Module` | `references/index-context-assembly.md` | build-time development context; not a public route |
+| `Hugentic.Capture.Context.Assembly.Module` | `references/index-capture-context.md` | capture preparation context; not an independent public route |
+
+Supporting examples such as `references/impl/example.md` are reference assets, not runnable modules.
 
 ## User.Command.Section
 
@@ -267,40 +225,137 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 - its current support references are trailing `Anchory.Anchor`s resolving through Chatlas to qualifying user-turn evidence
 - agents operate it by loading routers, concept blocks, appendix material, and references relevant to the current task
 
-## Router Table
+## Routing.Table
 
-| Situation | Module / Surface |
-|---|---|
-| When a consumer needs the general authority, support-network, line-standing, and current-realization model behind every index operation | `references/touched-data.md` |
-| When an operation makes a decision or changes a target product — contextualize touched constraints, act through the remaining open region, then reconcile changed surfaces | `references/decision-cycle.md` |
-| When the caller wants to find concepts, retrieve cited index context, inspect related blocks, discover whether appendix depth exists, understand how the index already models a topic, or ground the current visible discussion against the index; `--search`, `--research`, and `--ground` all call this module | `references/search.md` |
-| When the caller wants product design or organic design work begins; `--design` is the canonical entry | `references/design.md`, then the selected module under `references/design/` |
-| When developing any managed Hugentics Index surface — load the complete common index subject universe before selecting direct dependencies, derivations, citations, or runtime-facing content | `references/index-context-assembly.md` |
-| When the user wants the chat's content captured — "let's capture": load the index-capture context module, ground the chat and adjacent evidence, present a lightweight candidate roadmap, then codesign and land small approved clusters; `--capture` calls this module, `--agendix` calls its autonomous path with the agendix preset | `references/capture.md` |
-| When a capture run needs its complete preparation context — index surface ontology, workflow-neutral writing modules, engaged-depot closure, and adjacent evidence categories — load the whole runtime module | `references/index-capture-context.md` |
-| When an index or appendix surface is being written or an approved edit needs landing — the gates, structure, naming, block quality, edit actions, drafting screens, and landing procedure that govern index writing; direct edit work (a stale line, a block revision) also starts here; `--edit`, `--write`, and `--append` all call this module | `references/edit.md` |
-| When a changed product or implementation must be compared with touched design; `--reconcile` applies the decision cycle and routes any surface mutation through the edit gate | `references/decision-cycle.md`, then `references/edit.md` when a write is needed |
-| When the caller wants deterministic diagnosis, linter findings, or post-edit validation for an index depot or explicit index/appendix surface; `--check` and `--lint` both call this module | `references/check.md` |
-| When the caller wants line typing understood, read, or proposed — the `[XX]` syntax, the `Line.Type.Vocabulary`, validation points, reading typed lines as constraints, calibration passes and their residue | `references/type.md` |
-| When material lands on the agendix or the caller needs the agendix surface understood — `agendix/` files under existing concepts, typed and anchored lines, ungated with hard provenance | `references/agendix.md` |
-| When a caller needs an `Anchory.Anchor` minted for a chat context — session resolution, turn location, registration, verification; consumed by `--capture`, `--edit`, and `--agendix` | `references/link.md` |
-| When the caller wants an existing block grounded backward — git dates the wording, chatlas finds the session and turns, the linking primitive mints, the gated edit lands the `[GR]` line | `references/back-link.md` |
-| When the caller wants a grounding campaign surveyed — a scope swept, anchors minted, a `Gr.Req` produced with `proposed`/`ambiguous` entries, no index writes; `--gr-scout`/`--gr-scan`/`--gr-linker` are aliases | `references/gr-survey.md` |
-| When the caller wants a `Gr.Req` reviewed — proposed entries walked with the user, statuses flipped, approved links landed through the gates, provenance re-verified | `references/gr-review.md` |
-| When the caller wants a block enriched — `Index.Enrichment`: a scoped discussion with the user generating new touched surface, minted and landed through the gates; low-but-nonzero density blocks are the default targets | `references/enrich.md` |
-| When the caller selects implementation design, review, execution, end-to-end development, or ready-work capture | `references/impl.md`, then the selected module under `references/impl/` |
-| When the caller asks whether significant session material remains uncaptured | `references/capture-audit.md` |
-| When the caller wants to reconnect with the current chat and its todo state | `references/chat-status.md` |
-| When the caller wants a structured checkpoint against an active workflow | `references/workflow-status.md` |
-| When the caller is unsure what workflow should handle the current chat, or the agent detects a useful routing opportunity; rank continuing, resuming, entering, and interrupting candidates without entering one | `references/session-router.md` |
-| When the caller wants to park a sidequest thought and return to the current session | `references/parking-note.md` |
-| When the caller wants a codebase cleanup designed and executed through one gated handoff | `references/codebase-cleaner.md`, then `references/impl/` |
-| When the caller needs the phase model, alignment frame, shared development principles, or interruption vocabulary | `references/harness.md` |
-| When the caller provides `--depot`, scope the selected operation to those `Index.Depot`s; otherwise use task-relevant engaged depots | applies to `references/search.md` and `references/edit.md` |
-| When the caller provides `--chapter`, scope the selected operation to that `Index.Chapter` inside the engaged depots; default to `design` when no chapter is named | applies to `references/search.md` and `references/edit.md` |
-| When the caller needs package-level understanding of how the index subsystem is designed, structured, and distributed across public and local surfaces | `agentos-pkg/design/`, `agentos-pkg/appendix/`, `agentos-pkg/references/` |
-| When the caller needs concrete examples of good and bad block shape before proposing or judging block wording | `agentos-pkg/references/index-block-catalog.md` |
-| When the caller needs behavioral testing of index entry paths, selection behavior, or usage patterns | `agentos-testground` |
+This `Routing.Table` is the package driver's declarative dispatch artifact. Explicit flags select applicable rows directly; conversation and defaults may select rows whose policy permits automatic discovery.
+
+- `--edit`, `--write`, and `--append` explicitly select the gated index or appendix edit route
+- their trailing value binds `Skill.Arg::Main.Prompt`; `--depot` and `--chapter` contribute the applicable index scope
+- load `references/edit.md` and do not mutate a gated surface until its declared approval and landing transitions resolve
+
+When a consumer needs the general authority, support-network, line-standing, and current-realization model behind every index operation.
+
+Load `references/touched-data.md`.
+
+When an operation makes a decision or changes a target product.
+
+Load `references/decision-cycle.md` to contextualize touched constraints, act through the remaining open region, and reconcile changed surfaces.
+
+When the caller wants to find concepts, retrieve cited index context, inspect related blocks, discover appendix depth, or ground the visible discussion; `--search`, `--research`, `--ground`, and their `--index`-prefixed forms are operationally equivalent and select this route.
+
+Load `references/search.md`.
+
+When the caller wants product design or organic design work begins; outside the Implementation namespace, `--design` explicitly selects a `Design.Req` target for the shared capture workflow.
+
+Load `references/capture.md` and `references/design-req.md`.
+
+When the caller writes `--index` to contribute Index namespace/context to a run; a compatible flag or the conversation supplies the operation focus.
+
+Apply the Index namespace/context to the selected focus. With capture and no narrower target, resolve the reviewed main Index surfaces; when no operation focus resolves, leave it unresolved and continue permitted conversational discovery.
+
+When the caller writes `--main` with an applicable Index workflow.
+
+Select the reviewed main Index target. With capture, this is operationally equivalent to `--index` and constrains landing to `Index.Ontology` or `Index.Appendix`.
+
+When developing any managed Hugentics Index surface.
+
+Load the complete `references/index-context-assembly.md` before selecting direct dependencies, derivations, citations, or runtime-facing content.
+
+When the user wants the chat's content captured; outside the Implementation namespace, `--capture` selects the shared loop without resolving its durable target, while `--index` or `--main` selects the reviewed main Index target and `--agendix` selects its autonomous agendix preset.
+
+Load `references/capture.md`.
+
+When a capture run needs its complete preparation context.
+
+Load `references/index-capture-context.md`.
+
+When an index or appendix surface is being written or an approved edit needs landing; `--edit`, `--write`, and `--append` explicitly select this route.
+
+Load `references/edit.md`.
+
+When a changed product or implementation must be compared with touched design; `--reconcile` explicitly selects this route.
+
+Load `references/decision-cycle.md`, then `references/edit.md` when a write is selected.
+
+When the caller wants deterministic diagnosis, linter findings, or post-edit validation; `--check` and `--lint` explicitly select this route.
+
+Load `references/check.md`.
+
+When the caller wants `Line.Type` classification understood, read, or proposed; `--type` explicitly selects this route.
+
+Load `references/type.md`.
+
+When material lands on the agendix or the caller needs the agendix surface understood.
+
+Load `references/agendix.md`.
+
+When a caller needs an `Anchory.Anchor` minted for chat context; `--link` explicitly selects this route.
+
+Load `references/link.md`.
+
+When the caller wants an existing block grounded backward; `--back-link` explicitly selects this route.
+
+Load `references/back-link.md`.
+
+When the caller wants a grounding campaign surveyed; `--gr-survey`, `--gr-scout`, `--gr-scan`, and `--gr-linker` explicitly select this route.
+
+Load `references/gr-survey.md`.
+
+When the caller wants a `Gr.Req` reviewed; `--gr-review` explicitly selects this route.
+
+Load `references/gr-review.md`.
+
+When the caller wants a block enriched; `--enrich` explicitly selects this route.
+
+Load `references/enrich.md`.
+
+When the caller supplies the `--impl` or `--implementation` namespace, a composed implementation call, or one of its declared shortcuts. Inside that namespace, `--design` and `--capture` select `Implementation.Design.Workflow.Module` and `Implementation.Capture.Workflow.Module`; they do not select the root Design.Req target or shared capture route.
+
+Load `references/impl.md`, then resolve exactly one canonical implementation workflow module from the namespaced flag, shortcut, input, conversation, or declared default.
+
+When the caller asks whether significant session material remains uncaptured; `--capture-audit` explicitly selects this route.
+
+Load `references/capture-audit.md`.
+
+When the caller wants to reconnect with the current chat and its todo state; `--status` and `--chat-status` explicitly select this route.
+
+Load `references/chat-status.md`.
+
+When the caller wants a structured checkpoint against an active workflow; `--workflow-status` explicitly selects this route.
+
+Load `references/workflow-status.md`.
+
+When the caller is unsure what workflow should handle the chat, or routing guidance would reduce confusion; `--session-router`, `--what-now`, and `--what-next` explicitly select this route.
+
+Load `references/session-router.md`.
+
+When the caller wants to park a sidequest thought and return to the current session; `--park` and `--parking-note` explicitly select this route.
+
+Load `references/parking-note.md`.
+
+When the caller wants a codebase cleanup designed and executed through one gated handoff; `--clean`, `--codebase-cleaner`, and `--cleanup` explicitly select this route.
+
+Load `references/codebase-cleaner.md`, then `references/impl/`.
+
+When the caller needs the shared alignment frame or checkpoint vocabulary.
+
+Load `references/alignment-session.md`; also load the applicable workflow and knowledge modules rather than a separate harness model.
+
+When the caller supplies `--depot` or `--chapter`.
+
+Bind `Skill.Arg::Depot` or `Skill.Arg::Chapter` and apply the resolved scope to the selected index operation.
+
+When the caller needs package-level understanding of the index subsystem.
+
+Load the relevant `agentos-pkg/design/`, `agentos-pkg/appendix/`, or `agentos-pkg/references/` surface.
+
+When the caller needs concrete examples of good and bad block shape.
+
+Load `agentos-pkg/references/index-block-catalog.md`.
+
+When the caller needs behavioral testing of index entry paths, selection behavior, or usage patterns.
+
+Load `agentos-testground`.
 
 ## Index Operating Behavior
 
@@ -316,7 +371,7 @@ An agent operating the index should:
 - distinguish discovered context from inference
 - treat the prompt as a focus argument and compare the current visible discussion against the index whenever there is discussion state to ground
 - make a `Capture.Offer` when work surfaces new aligned content: propose typed line content and its landing operation at the moment, with destination options (index main, appendix, agendix, decline) — never self-write on a gated surface
-- use `--capture` when the user wants the chat's content worked into the index — approval in chat and landing on a surface are distinct acts
+- use `--capture` when the user wants the chat's content worked through the shared loop; its durable target remains unresolved until conversation or a compatible route supplies it, while `--index` and `--main` select the reviewed main Index target, `--design` selects `Design.Req`, and `--agendix` selects `Index.Agendix`
 - resolve `::approve` / `::approved` to `User.Command::Approve`, but in index workflows mint, render, and require the proposal's explicit token; if the user gives a bare approval, leave the verbatim gate unresolved and reprint the exact tokenized command; resolve `::land` / `::write` to targeted `User.Command::Land`, and `::land-all-approved` to zero-argument `User.Command::LandAllApproved`; `--write` remains a skill argument while `::write` is an in-workflow transition
 - during interactive capture, add approved drafts to the approved cluster and continue reviewing the roadmap; do not make immediate landing the default next move
 - keep command targets foregrounded; targeted commands fail closed on ambiguous targets, and `::land-all-approved` fails closed unless one foreground index workflow owns the cluster
@@ -326,11 +381,13 @@ An agent operating the index should:
 
 For delegated read-only research that protects the caller's context, use `Packages.Master.Agent` against the relevant package or packages.
 
-## Unified Harness Model
+## Hugentic System Model
 
-The Hugentic Harness exposes `What.Design`, `How.Design`, and `Impl.Exec` as selectable concerns rather than a rigid pipeline. A workflow exposes only the unresolved concerns needed for its `Target.Product`; `Touched.Decision.Cycle` governs material decisions inside each concern.
+`Hugentic.Capture.Workflow.Module` owns the shared public alignment loop. `Design.Req.Knowledge.Module`, `Index.Landing.Knowledge.Module`, and `Index.Agendix.Knowledge.Module` configure durable targets without becoming parallel workflow identities.
 
-Any active loop may be interrupted for capture, audit, consolidation, implementation handoff, parking, splitting, or status work. The interruption preserves a compact return point and hands control back to the prior session state when it finishes.
+The Implementation namespace contains explicit design, review, execute, develop, and capture workflow modules. The namespace, its aliases, and its input-sensitive defaults are routing behavior; they do not create duplicate modules.
+
+Any active workflow may be interrupted for capture, audit, consolidation, `Design.Req.Promotion`, implementation handoff, parking, splitting, or status work. Completion reconciles and maintains changed artifact state before continuation; it never restores a stale prior state.
 
 ## When To Load This Skill
 

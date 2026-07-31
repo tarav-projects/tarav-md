@@ -1,13 +1,15 @@
-# Parking Note
+# Parking.Note.Operation.Module
 
 Short-lived interruption workflow for capturing a sidequest thought into a project `Parking.Note`.
 
 The user presents an idea while another task is underway. The agent preserves the main-thread return context, discusses the idea lightly, drafts a `Kernel.Block`-style entry, gets explicit user approval of the exact text, mints an `Anchory.Anchor` back to the approval turn, writes the note, and reports how to resume the interrupted work.
 
-The unified driver supplies the `Batchy.Skill` calling convention and receives the idea as `--park`.
+The unified driver supplies the `Batchy.Skill` calling convention. Its `--park` route selects this module and binds any trailing idea to `Skill.Arg::Idea`.
 
 - `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
-- supplied flags resolve to the `Skill.Arg` names below; a bare idea is `--idea`.
+- `--idea` binds `Skill.Arg::Idea`; a bare idea in the selected route binds the same input.
+
+This module models that external idea as a `Skill.Arg`; it does not model the routing operation as an argument.
 
 ## Skill.Arg.Section
 

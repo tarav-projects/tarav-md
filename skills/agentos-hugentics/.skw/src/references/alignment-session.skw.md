@@ -1,4 +1,4 @@
-# Alignment.Session — Reference
+# Alignment.Session.Knowledge.Module
 
 > $kw: --dev-from references/index-context-assembly.skw.md
 
@@ -6,7 +6,7 @@
 
 ## Concepts
 
-> $kw: --derived --from Alignment.Session --from Design.Space --from QA.Space --from Design.Variable --from Hugentic.Variable --from Touched.Space --from Agentic.Variable --from Open.Space --from Alignment.Loop --from Alignment.Backend --from Alignment.Checkpoint --from Alignment.Mode
+> $kw: --derived --from Alignment.Session --from Design.Space --from QA.Space --from Design.Variable --from Hugentic.Variable --from Touched.Space --from Agentic.Variable --from Open.Space --from Alignment.Loop --from Alignment.Checkpoint --from Alignment.Mode
 > --intent the session vocabulary as one-line recalls with aliases;
 > --cont shallow-container framing, no behavioral protocol at this level
 
@@ -16,7 +16,6 @@
 - **Alignment.Loop** — the machinery: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`; parameterized by workflow phase (`:What`, `:How`, `:Exec`)
 - **Alignment.User.Turn** — user drives, agent follows
 - **Alignment.Maintenance.Turn** — agent drives one session move
-- **Alignment.Backend** — where session state lives: `InChat` or `Artifact`
 - **Alignment.Checkpoint** — a declared point in a workflow where the agent checks something; an alignment opportunity gated by `Alignment.Mode`
 - **Alignment.Mode** — the caller argument setting who resolves each `Alignment.Checkpoint`: `Interactive` (default) or `Autonomous` (see below)
 
@@ -63,17 +62,15 @@ When unspecified, default to `Interactive`. The mode is one skill axis, not a gl
 
 ## Workflow Parameterization
 
-> $kw: ^loop-params --derived --from Alignment.Loop --from Alignment.Backend
-> --intent the phase parameterization spelled out: loop-component and
-> --cont backend families expanded per phase
+> $kw: ^loop-params --derived --from Alignment.Loop
+> --intent the phase parameterization spelled out for loop components;
+> --cont storage and target selection belong to the owning workflow
 
 The `Alignment.Loop` and its components are parameterized by phase:
 
 - `Alignment.Loop::What` / `Alignment.Question::What` / `Alignment.Discussion::What` / `Alignment.Consolidation::What`
 - `Alignment.Loop::How` / `Alignment.Question::How` / `Alignment.Discussion::How` / `Alignment.Consolidation::How`
 - `Alignment.Loop::Exec` / `Alignment.Question::Exec` / `Alignment.Discussion::Exec` / `Alignment.Consolidation::Exec`
-
-Similarly for backends: `Alignment.Backend::InChat::What`, `Alignment.Backend::Artifact::What`, etc.
 
 > $kw. end
 

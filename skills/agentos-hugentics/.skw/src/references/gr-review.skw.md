@@ -1,4 +1,4 @@
-# agentos-hugentics --gr-review
+# Grounding.Review.Workflow.Module
 
 > $kw: --from Edition.Trigger.User.Gated --from Gr.Req --from Verbatim.User.Gated --from Workflow.Neutral
 > --dev-from references/index-context-assembly.skw.md

@@ -1,12 +1,12 @@
-# Implementation Capture Module
+# Implementation.Capture.Workflow.Module
 
-Load this module only for `Workflow:Capture` (`impl-capture`).
+Load this canonical workflow module only for `--impl --capture` or its `--impl-capture` shortcut.
 
 `impl-capture` banks the implementation work that is *ready now* and parks what still needs design. It scans the live conversation and the current implementation for touched, implementation-ready drift, ranks the candidates, proposes its best pick behind the standard `Alignment.Mode` gate, and hands the chosen one to `references/impl/develop.md`.
 
 ## What It Is For
 
-The Hugentic Harness leaves a mix at the end of a working session: some threads are decided and clear, others still carry open design questions. `impl-capture` is the "bank the ready work, park the rest" move — the implementation-side dual of a capture audit. It does not design; it *selects* what is ready to be developed and routes it through the normal design-and-execution workflow.
+The Hugentic system may hold a mix at the end of a working session: some threads are decided and clear, others still carry open design questions. `--impl --capture` is the "bank the ready work, park the rest" move - the implementation-side dual of a capture audit. It does not design; it selects what is ready to be developed and routes it through the normal design-and-execution workflow.
 
 In harness terms it is an `Internal.Alignment` move: it advances the `Progress.Gradient` by syncing the implementation surfaces to the touched decisions the session already produced — the `Design.Implementation.CoEvolution` rhythm, applied one ready unit at a time.
 
@@ -45,7 +45,7 @@ Before any implementation, run the candidate-selection checkpoint:
 Once a candidate is selected, hand it to `references/impl/develop.md` as the resolved `Input`:
 
 1. Load `references/impl/develop.md`.
-2. Run the full `Workflow:Develop` — design the `Impl.Req`, then execute it — under the same resolved `Alignment.Mode`.
+2. Run `Implementation.Develop.Workflow.Module` - design the `Impl.Req`, then execute it - under the same resolved `Alignment.Mode`.
 3. The chosen candidate is develop's input; `impl-capture` adds no implementation logic of its own.
 
 Only the *selection* is new; the design and execution are the existing harness workflow.

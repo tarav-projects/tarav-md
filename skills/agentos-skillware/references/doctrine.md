@@ -16,7 +16,7 @@ Use this module to understand Skillware: the mental model behind skills develope
 
 ## The Block In Brief
 
-The language has one syntactic form — the block, the written form of a `Skw.Annotation` — marked by the `$kw` sigil on its two fence lines: `> $kw: [address] [--flags]` opens, `> --flag …` lines belong to it, and the native body sits below. Bindings and dependency roles (`--from`/`--dev-from`/`--cite`) are additive flags; `--context-assembly` is the self-closing line-1 declaration whose product is the complete file. Materializing blocks and routers own an end; declaration-only blocks self-close. The parser is a `Closure.Parser`: parse errors exist only below its `Parse.Floor`; above it, unrecognized content is simply text. The full grammar, locator forms, and compilation rules live in `references/lang.md`.
+The language has one syntactic form — the block, the written form of a `Skw.Annotation` — marked by the `$kw` sigil on its two fence lines: `> $kw: [address] [--flags]` opens, `> --flag …` lines belong to it, and the native body sits below. Bindings and dependency roles (`--from`/`--dev-from`/`--cite`) are additive flags; `--context-assembly` is the self-closing line-1 declaration whose product is the complete file. Materializing blocks and `Routing.Table`s own an end; declaration-only blocks self-close. The parser is a `Closure.Parser`: parse errors exist only below its `Parse.Floor`; above it, unrecognized content is simply text. The full grammar, locator forms, and compilation rules live in `references/lang.md`.
 
 ## Design Notes
 

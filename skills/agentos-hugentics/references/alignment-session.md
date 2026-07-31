@@ -1,4 +1,4 @@
-# Alignment.Session — Reference
+# Alignment.Session.Knowledge.Module
 
 `Alignment.Session` is a shallow container for the general concepts that compose an alignment session. No behavioral protocol of its own — each workflow specialization defines its own axes and behavioral detail.
 
@@ -10,7 +10,6 @@
 - **Alignment.Loop** — the machinery: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`; parameterized by workflow phase (`:What`, `:How`, `:Exec`)
 - **Alignment.User.Turn** — user drives, agent follows
 - **Alignment.Maintenance.Turn** — agent drives one session move
-- **Alignment.Backend** — where session state lives: `InChat` or `Artifact`
 - **Alignment.Checkpoint** — a declared point in a workflow where the agent checks something; an alignment opportunity gated by `Alignment.Mode`
 - **Alignment.Mode** — the caller argument setting who resolves each `Alignment.Checkpoint`: `Interactive` (default) or `Autonomous` (see below)
 
@@ -53,5 +52,3 @@ The `Alignment.Loop` and its components are parameterized by phase:
 - `Alignment.Loop::What` / `Alignment.Question::What` / `Alignment.Discussion::What` / `Alignment.Consolidation::What`
 - `Alignment.Loop::How` / `Alignment.Question::How` / `Alignment.Discussion::How` / `Alignment.Consolidation::How`
 - `Alignment.Loop::Exec` / `Alignment.Question::Exec` / `Alignment.Discussion::Exec` / `Alignment.Consolidation::Exec`
-
-Similarly for backends: `Alignment.Backend::InChat::What`, `Alignment.Backend::Artifact::What`, etc.

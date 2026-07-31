@@ -1,4 +1,4 @@
-# agentos-hugentics --type
+# Index.Line.Type.Knowledge.Module
 
 > $kw: --from Concept.Hardness --from Design.Space --from Design.Variable --from Edition.Trigger.User.Gated --from Index.Line --from Kernel.Line --from Line.Type --from Line.Type.Vocabulary --from Verbatim.User.Gated --from Workflow.Neutral
 > --dev-from references/index-context-assembly.skw.md

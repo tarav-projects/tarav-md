@@ -1,4 +1,4 @@
-# agentos-hugentics --link
+# Anchory.Link.Operation.Module
 
 Use this module when a caller needs the current chat-backed `Support.Reference` minted for an index line: the linking primitive behind ontology, appendix, and agendix provenance.
 
@@ -19,7 +19,7 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
    - shortcuts: a native session id already in hand → `agentos chatlas query --session-id <native-id> --field identity_hash --update`; a past session → normal `query` filters
 2. **Locate and qualify the evidence turns.** Chatlas locates observable editions; the agent chooses semantic support and applies the current chat authority-surface protocol:
    - use `agentos chatlas events query --identity-hash <hash> --pattern-json '<Event.Pattern JSON>' --backend auto` to locate exact, adjacent, or distinctive turns
-   - read `turn_id` off each returned event — that is the registration key. The pattern language's `event_refs` projection still addresses *events*; a member addresses the `Normal.Turn` the matched event belongs to
+   - read the returned `turn_ref` to identify the matched `Normal.Turn`; the pattern language's `event_refs` projection still addresses *events*, while `turn_ref` carries the session-local turn id plus its content hash
    - for a proposal followed by token approval, query a two-step `next_turn` pattern with an assistant `text_contains` token predicate and a user `text_exact` approval predicate; select `latest` or require cardinality `one` when that matches the situation
    - assistant events may aid retrieval and their turns may be referenced by approval cargo, but only selected qualifying user turns become `Chat.Support.Set` members
    - exclude preset prompts, administrative invocations, and other user turns that do not materially touch the supported subject
@@ -28,7 +28,7 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
 3. **Register the support reference.** Register exact qualifying user-turn members — never timestamps, never tape ordinals:
    - plain support: `agentos chatlas anchory register --member <identity-hash>:<user-turn-id> --hint "<one sentence: what this support set means>"`
    - tokenized approval: `agentos chatlas anchory register --member <identity-hash>:<approval-turn-id> --hint "<one sentence>" --member-types '{"<identity-hash>:<approval-turn-id>":{"tokenized.approval.turn":{"token":"<token>","verbatim_turn":"<identity-hash>:<proposal-turn-id>","approval_turn":"<identity-hash>:<approval-turn-id>"}}}'`
-   - a proposal and the approval that answers it often share one turn, since the assistant reply belongs to the user turn that prompted it; identical `verbatim_turn` and `approval_turn` refs are legitimate
+   - a proposal and the approval that answers it are independent turns: `verbatim_turn` references the assistant turn and `approval_turn` references the user turn
    - semantic approval is representable with `semantic.approval.turn` cargo containing `verbatim_turn` and `approval_turn`, but Hugentics Index workflows require tokenized approval
    - chatlas validates member coordinates, preserves member order, derives the `chatlas` namespace and user tag, registers through anchory, and returns the composed anchor (`c<YYYYMMDD>-<N>u`)
    - the raw plumbing remains available: `agentos anchory register --depot <chatlas-root>/anchory --namespace chatlas --alloc-prefix <YYYYMMDD> [--tag u|a] --record-json '…'`
@@ -42,8 +42,8 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
 ## Anchor Discipline
 
 - a chat-backed index anchor targets a qualifying user turn — the observable touch materialization; when wording originated agent-side, anchor the user turn that accepted, corrected, rejected, delegated, or acted on it
-- member identity is `<session-identity>:<turn-id>` — the `Normal.Turn` identity, stable across re-materialization of an open session; timestamps and tape ordinals are readability or ordering data, never registration keys
-- the model separates local IDs from durable addresses: `message_id`, `model_run_id`, and their siblings are **section-local join keys**, valid only inside one materialization; `turn_id` and `Event.Ref` are **durable**, and only those may be written down
+- `<session-identity>:<turn-id>` is registration CLI sugar; the stored member is a `Normal.Turn.Ref` carrying `session`, `turn_id`, `turn_hash`, and `at`
+- the model separates local IDs from durable assertions: `message_id`, `model_run_id`, and their siblings are **section-local join keys**; a bare `turn_id` only locates a grouping, while `Normal.Turn.Ref` and `Event.Ref` verify the content they address
 - a tokenized approval anchor has one user support member whose `tokenized.approval.turn` cargo points to the proposal and approval turns
 - an anchor's meaning is immutable: no reuse; a wrong hint or wrong date means minting a new anchor, never repurposing
 - `agentos anchory amend` exists only to correct an error or improve resolution of the same context

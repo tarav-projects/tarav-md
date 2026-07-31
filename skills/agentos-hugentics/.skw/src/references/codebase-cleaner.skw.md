@@ -1,4 +1,4 @@
-# Codebase Cleaner
+# Codebase.Cleanup.Workflow.Module
 
 > $kw: --dev-from references/index-context-assembly.skw.md
 
@@ -11,8 +11,8 @@ Default assumption: backward compatibility is not a goal unless the user explici
 The unified driver supplies the `Batchy.Skill` calling convention.
 
 - `-h` / `--help` prints usage and exits without running (`Batchy.Skill.Help`).
-- every run prints a banner of the resolved arguments as its first step (`Batchy.Skill.Banner`).
-- supplied flags resolve to the `Skill.Arg` names below; a bare path is `--codebase`.
+- every run prints a banner of the resolved run configuration as its first step (`Batchy.Skill.Banner`).
+- the root `--clean` route selects this module; local data flags bind the `Skill.Arg` names below, and a bare path binds `Skill.Arg::Target.Codebase`.
 
 ## Skill.Arg.Section
 

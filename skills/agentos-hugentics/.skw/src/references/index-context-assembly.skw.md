@@ -1,6 +1,6 @@
 > $kw: --context-assembly --from Agentos.Index.System --from Alignment.Mode --from Alignment.Surface --from Anchory.System --from Appendix.Discovery --from Batchy.Skill --from Capture.Gradient --from Capture.Offer --from Cited.Duplication --from Concept.Hardness --from Context.Grounding --from Demoted.Index.Line --from Design.Space --from Design.Variable --from Dotted.Notation --from Edition.Approval.Token --from Edition.Trigger.User.Gated --from Explicit.Namespace --from Gr.Req --from Grounding.Hugentic.Authority --from Hugentic.Concept --from Independent.Reader.Block --from InContext.Index.Chat.Capture --from Index.Agendix --from Index.Appendix --from Index.Chapter --from Index.Chat.Capture --from Index.Depot --from Index.Discovery --from Index.Edit.Action --from Index.Edit.Modify.Line --from Index.Enrichment --from Index.Grounding --from Index.Line --from Index.Linter --from Index.Ontology --from Index.Presumption --from Index.Skillware --from Index.Surface --from Kernel.Block --from Kernel.Line --from Kernel.Writing --from Line.Type --from Line.Type.Vocabulary --from Line.Verbatim.Gate --from Live.Index.Line --from Name.As.Index --from Not.A.Wall.Of.Text --from Open.Inference --from Package.Aux.Skill --from Packages.Master.Agent --from POI.Instance --from Producer.Aids.Checker --from Product.Design.Session --from Reviewed.Cite.Closure --from Reviewed.Content --from Skill.Module --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from Touched.Support.Network --from Touched.Surface.Index --from User.Attention --from User.Command --from User.Command.Arg --from User.Command.Section --from User.Command.Trigger --from User.Touched --from Verbatim.User.Gated --from Workflow.Neutral --from Writing.Friction.Reduction
 
-# Index.Context.Assembly
+# Hugentic.Index.Context.Assembly.Module
 
 `Index.Context.Assembly` is the whole-file `Context.Assembly.Module` containing the complete shared subject context for developing any managed Hugentics Index surface. Every consumer builder loads this module; running agents continue to load only the operational modules selected by their actual workflows.
 
@@ -25,7 +25,7 @@ Close every category below before developing a Hugentics Index consumer:
 - preserve the general-model/current-realization boundary; chat-only mechanics must not redefine the global touched-data model
 - inspect the consumer's direct dependencies and intent after loading the assembly, then choose its materialization and citation behavior locally
 - follow related routed concepts and appendix depth when a direct block leaves a material decision unresolved
-- keep builder assemblies distinct from workflow-selected runtime context modules such as `Index.Capture.Context.Module`
+- keep builder assemblies distinct from workflow-selected preparation assemblies such as `Hugentic.Capture.Context.Assembly.Module`
 - re-check the package after changing dependencies because coverage supervision is a semantic POI, not a parser failure
 
 ## Runtime Boundary

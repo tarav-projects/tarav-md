@@ -19,9 +19,9 @@ This is itself a `Batchy.Skill` — the convention it defines applies to it too.
 - For source mining, design discussion, and applying a new or upgraded skill, use `agentos-skills-ingenier`.
 - For behavioral testing of a skill, use `agentos-testground`.
 
-Write the index blocks a skill's concepts live in through the gated Hugentics Index edit path and follow `Kernel.Writing`.
+Route index or appendix concept writes through `agentos-hugentics --edit`; bind the requested change and index scope, load the edit contract, follow `Kernel.Writing`, and do not mutate the gated surface until its approval and landing transitions resolve.
 
-- Conventions are conventions an agent knows, not rigid mandates — a clear prompt is always honored.
+- Conventions are conventions an agent knows, not a Bash parser. Clear natural-language calls remain valid wherever the applicable `Batchy.Router.Row` permits automatic discovery.
 
 ## Skill Model
 
@@ -31,21 +31,26 @@ The skill taxonomy and roles are canonical in the `agentos-pkg` index (`design/1
 - `Package.Driver` — the minimal load (usually `SKILL.md`) to orient and route.
 - `Package.Aux.Skill` — a specialized skill hanging off a package, pointing back to its root.
 - `Workflow.Neutral.Skill` vs `Aux.Workflow.Skill` — orient-only vs steer-into-a-task. Choose deliberately; a base or router is neutral, an operation is not.
-- `Package.Driver.Router`, `Package.Skill.Index`, `Package.Skill.Install`, `Package.Skill.Dependency` — the internal subsystems of a package skill.
+- `Package.Driver.Router` — the package driver's entry `Routing.Table`; `Package.Skill.Index`, `Package.Skill.Install`, and `Package.Skill.Dependency` are the other package-skill subsystems.
 - `Skill.Explicit.Args` — the arguments a skill needs before it can do useful work, and its missing-argument behavior.
 
 ## Batchy Convention
 
-Every Agentos skill is a `Batchy.Skill` — called like a terminal command. `-h` help is universal; arguments, banner, and modules appear only when the skill needs them. The convention is canonical in the index and detailed for authors in the reference:
+Every Agentos skill is a `Batchy.Skill` — called like a terminal command and configured through one `Batchy.Router`. `-h` help is universal; custom flags, arguments, the banner, routing tables, and modules appear only when the skill needs them. The convention is canonical in the index and detailed for authors in the reference:
 
-- `Batchy.Skill` — the universal skill design style; a skill interpreted as a CLI-style command, with `-h` always and flag arguments when it has them.
+- `Batchy.Skill` — the universal skill design style; a skill interpreted as a CLI-style command, with `-h` always available.
+- `Batchy.Router` — the single runtime router; it resolves run configuration from explicit flags, the live conversation, and declared defaults.
+- `Batchy.Skill.Flag` — a `--<flag>` token explicitly configuring the current run; only this written form carries flag semantics.
+- `Batchy.Router.Row` — one configured route, including which resolution inputs are permitted and which destination receives the result.
+- `Routing.Table` — the declarative router artifact consumed by `Batchy.Router`; Skillware writes its rows as alternating `--when` and `--then` blocks.
+- `Usage.Pattern.Routing` — a `Batchy.Router.Row` style whose semantic situation key routes a recurring usage pattern.
 - `Batchy.Skill.Template` — the canonical skeleton every Batchy skill instantiates.
 - `Batchy.Skill.Contract` — the in-skill mini-course restating the convention standalone (a `Cited.Duplication`).
-- `Skill.Arg` — one argument of the skill, written as a `### Skill.Arg:<Name>` kernel block; may carry an `action`.
+- `Skill.Arg` — one named unit of external run data, written as a `### Skill.Arg::<Name>` kernel block; it owns the data identity and contract while `Batchy.Router` resolves its value.
 - `Skill.Arg.Section` — the section of the skill holding its `Skill.Arg` blocks.
-- `Batchy.Skill.Help` — the non-executing `-h`/`--help` call rendered from the skill's `Skill.Arg` blocks.
-- `Batchy.Skill.Banner` — the resolved-argument banner printed as the first step of every run.
-- `Skill.Module` — a named, on-demand-loadable part of the skill (file or section); progressive disclosure made addressable-by-name. A former subcommand is just a `Skill.Arg` with an `action` that activates one.
+- `Batchy.Skill.Help` — the non-executing `-h`/`--help` call assembled from reachable router configuration, arguments, modules, and routing tables.
+- `Batchy.Skill.Banner` — the resolved-run-configuration report printed before the routed effects of a non-help run.
+- `Skill.Module` — a named, encapsulated subsystem (file or section) that `Batchy.Router` may select and load without representing it as an argument.
 - `User.Command` — an explicit `::`-prefixed transition available at declared workflow points.
 - `User.Command.Trigger` — one accepted spelling for a canonical command; several triggers may invoke the same command.
 - `User.Command.Arg` — one command input, resolved by its declared `Explicit`, `Contextual`, or `Defaulted` policy.

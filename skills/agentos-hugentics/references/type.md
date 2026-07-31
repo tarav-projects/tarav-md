@@ -1,4 +1,4 @@
-# agentos-hugentics --type
+# Index.Line.Type.Knowledge.Module
 
 Use this module when the caller wants line typing understood, read, or proposed: classifying `Kernel.Line`s with the `Line.Type.Vocabulary`.
 

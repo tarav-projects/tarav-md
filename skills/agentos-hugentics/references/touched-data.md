@@ -1,4 +1,4 @@
-# Touched.Index Data Model
+# Touched.Data.Knowledge.Module
 
 Use this workflow-neutral knowledge module whenever an index operation must decide what carries touch, how an indexed statement is supported, or how much decision weight a line has.
 

@@ -61,14 +61,14 @@ The binding mode and every other feature is an additive `--flag`; there are no c
 A block owns an `end` by its role, in three cases:
 
 - a **materializing** block (`--derived`/`--copy`) owns a mandatory `> $kw. end` — its body is the generated target and there is no other way to bound it
-- a **router** block (one that acquires `--when`/`--then` children) owns a `> $kw. end`; its rows **peer-close** at the next row or the parent's end
+- a **`Routing.Table`** block (one that acquires `--when`/`--then` children) owns a `> $kw. end`; its rows **peer-close** at the next row or the parent's end
 - a **declaration-only** block — one carrying dependency roles, `--note`/`--supp`, `--unlock-surface`, or the file-level `--context-assembly` marker — **self-closes** at its declaration and owns no `end`; following native text stays surface
 - a bare `> $kw. end` closes the innermost open content block; a legacy `end-<command>`/`end-^label` closer is a finding directing to migration; a heading closes nothing — a content block still open at a heading or EOF is a finding
 - the parser is a `Closure.Parser`: below its `Parse.Floor` (well-formed machinery, explicit closure of content blocks, unique addresses, sane router rows) it emits parse errors; above the floor everything it does not recognize is opaque text, and nothing else can fail the parse
 
-## Router — composition by nesting
+## Routing.Table — composition by nesting
 
-A `Semantic.Router` is a block whose children are nameless `--when`/`--then` **rows**, each carrying a native-text body (the situation / the response). Rows alternate; a row out of order or a `--when` with no `--then` is a finding. One `> $kw. end` closes the router; the rows peer-close:
+A Skillware `Routing.Table` is a block whose children are nameless `--when`/`--then` `Batchy.Router.Row`s, each carrying a native-text body for its key prompt or value prompt. Rows alternate; a row out of order or a `--when` with no `--then` is a finding. One `> $kw. end` closes the table; the rows peer-close:
 
 ```md
 ## Router Table
@@ -158,4 +158,4 @@ The token appears only in the registry. The represented source points back to th
 > --from .skw/unlock-tokens.json
 ```
 
-> $kw: --from Closure.Parser --from Index.Line --from Semantic.Router --from Skw.Address.Schema --from Skw.Annotation --from Skw.Ann.Dependency --from Skw.Pkg.Dependency --from Poi.Unlock.Token
+> $kw: --from Batchy.Router.Row --from Closure.Parser --from Index.Line --from Routing.Table --from Skw.Address.Schema --from Skw.Annotation --from Skw.Ann.Dependency --from Skw.Pkg.Dependency --from Poi.Unlock.Token

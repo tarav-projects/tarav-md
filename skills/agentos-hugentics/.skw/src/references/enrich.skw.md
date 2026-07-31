@@ -1,4 +1,4 @@
-# agentos-hugentics --enrich
+# Index.Enrichment.Workflow.Module
 
 > $kw: --from Capture.Offer --from Edition.Trigger.User.Gated --from Index.Enrichment --from Index.Line --from POI.Instance --from Touch.Authority.Surface --from Touched.Data --from Touched.Decision.Cycle --from Verbatim.User.Gated --from Workflow.Neutral
 > --dev-from references/index-context-assembly.skw.md
@@ -20,7 +20,7 @@ This module is NOT `Workflow.Neutral`: it drives a discussion and applies gated 
 ## Enrichment Loop (per block)
 
 1. **Load** the block, its appendix depth, and its current grounding (board + inline anchors). Note the density before.
-2. **Probe.** Open a short, scoped discussion with the user about the block — a micro design-session one block wide. Good probes: a tension between two lines; a line that reads ambiguous cold; a missing example or boundary; a claim the user never stated in their own words; how the block relates to a newer concept. One probe at a time — this is a conversation, not a questionnaire.
+2. **Probe.** Open a short, scoped design discussion with the user about the block, one block wide. Good probes: a tension between two lines; a line that reads ambiguous cold; a missing example or boundary; a claim the user never stated in their own words; how the block relates to a newer concept. One probe at a time — this is a conversation, not a questionnaire.
 3. **Harvest.** Classify which user replies qualify as touched editions for the subject. For each touched outcome:
    - a line the user confirmed, corrected, or restated → mint on that turn (`references/link.md`) and land it as the line's inline best pointer (upgrade per `Index.Line` grounding, ≤3 per line)
    - a noticeable turn about the concept as a whole → stamp it as the fallback trailing anchor on the lines no more specific turn covers

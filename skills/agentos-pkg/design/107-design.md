@@ -442,6 +442,10 @@
 - [DC] a declared default resolves when no higher-authority configuration supplies the route ^c20260731-6u
 - [CT] each route declares whether an explicit flag is required, automatic routing is permitted, or a default is available ^c20260731-6u
 - [CT] a resolved route may bind a `Skill.Arg`, select a `Skill.Module`, or contribute or continue routing through a `Routing.Table` ^c20260731-6u
+- [DC] `Batchy.Router` composes compatible route contributions into one resolved run configuration ^c20260731-32u
+- [CT] flag order does not affect resolution; configured compatibility and precedence govern composition ^c20260731-32u
+- [CT] incompatible explicit contributions leave the run unresolved unless a configured row declares their composition ^c20260731-32u
+- [DC] calls that resolve to the same canonical run configuration are operationally equivalent ^c20260731-33u
 
 ****
 
@@ -453,6 +457,9 @@
 - [CT] its destination may bind a `Skill.Arg`, select a `Skill.Module`, or contribute or continue routing through a `Routing.Table` ^c20260731-8u
 - [CT] explicit configuration takes precedence when several permitted paths resolve the same row ^c20260731-8u
 - [FR] a row style may specialize how resolution and its routed effect are described without creating another runtime router ^c20260731-8u
+- [DC] configured aliases may map several flag keys to one routed effect ^c20260731-33u
+- [DC] a shorthand row may contribute the compatible configuration otherwise supplied by several flags ^c20260731-33u
+- [CT] omitted routing context may be filled only by defaults declared by applicable rows ^c20260731-33u
 
 ****
 

@@ -1,8 +1,8 @@
-# Session Router
+# Hugentic.Session.Router.Operation.Module
 
 Use this module for `--session-router` and its `--what-now` and `--what-next` aliases.
 
-The session router is a report-only `Semantic.Router` over the current chat. It helps a user who is unsure what to do next by exposing a short ranked set of workflow candidates. It may recommend continuing or resuming existing work as well as entering or interrupting with another workflow.
+The session router evaluates a report-only `Routing.Table` of `Usage.Pattern.Routing` rows over the current chat. It helps a user who is unsure what to do next by exposing a short ranked set of workflow candidates. It may recommend continuing or resuming existing work as well as entering or interrupting with another workflow.
 
 It does not enter a workflow, mutate a surface, or silently change session control. The user routes by running one of the printed commands.
 

@@ -1,6 +1,6 @@
-# Implementation Design Module
+# Implementation.Design.Workflow.Module
 
-Load this module for `Workflow:Design` and as the first phase of `Workflow:Develop`.
+Load this canonical workflow module for `--impl --design` and as the first phase of `Implementation.Develop.Workflow.Module`.
 
 Operate as the `impl.designer.agent`: inspect the implementation context, design an implementation path, and produce an `Impl.Req` artifact.
 
@@ -110,4 +110,4 @@ Discipline:
 
 ## Output
 
-Exit with the complete `Impl.Req` path and a concise readiness summary. Under `Workflow:Develop`, return control to `references/impl/develop.md` instead of ending the overall skill.
+Exit with the complete `Impl.Req` path and a concise readiness summary. Under `Implementation.Develop.Workflow.Module`, return control to `references/impl/develop.md` instead of ending the overall skill.
