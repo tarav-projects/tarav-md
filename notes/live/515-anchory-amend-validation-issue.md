@@ -4,7 +4,7 @@
 
 - **Type:** Issue / gap report — `agentos anchory amend` accepts records that `agentos chatlas anchory register` would never produce, and nothing catches it until resolve time.
 - **Intent:** Correcting an anchor's hint is a sanctioned, routine act. Today the only way to do it silently corrupts the record unless the caller happens to reproduce fields they were never asked for.
-- **State:** Open — reproduced, not yet designed.
+- **State:** Resolved — application-owned validation now runs inside atomic generic amendment; implementation record: note 516.
 - **Scope:** the `anchory amend` CLI surface and chatlas-side record validation. NOT the anchor model, not `Support.Set` semantics.
 - **Found by:** an agendix capture pass in `g70203-md`, correcting five hints written as `"probe"` during registration.
 
@@ -71,12 +71,17 @@ Between the amend and the next resolve, the anchor is live on an index surface a
 
 The resolve error is genuinely good: it names the member, the recorded value, and the true value. Recovery was possible only because of that message. Whatever the fix, that diagnostic should survive.
 
-## Proposal
+## Resolution
 
-Any one of these closes the hole; they are not exclusive.
+`AnchoryDepot.amend` now accepts an application validator that runs under the mutation lock with the current and proposed records. The generic command registrar carries that hook, `agentos-cli` injects Chatlas's implementation, and Chatlas rejects both unresolvable replacements and changes to ordered member identity or typed roles before anything is written.
+
+A corrected `hint` succeeds when support meaning and live resolution remain valid. A missing or wrong `at`, changed member, reordered set, or changed `types` fails at amend time and leaves the current record intact.
+
+## Remaining proposals
+
+These improve ergonomics or depot-wide detection; they are no longer required to close the write-path validation hole.
 
 - **A field-level amend.** `agentos anchory amend --anchor X --hint "…"` — read-modify-write the existing record, touching only the named field. This is the common case and removes the class of error entirely.
-- **Validate on write.** Route amend through the same schema validation resolve applies, dispatched on the record's `schema` (`chatlas.support-set.v2` here). A record that cannot resolve should not be writable.
 - **Chatlas-side amend.** `agentos chatlas anchory amend`, symmetric with `chatlas anchory register`: it knows the schema, can re-derive `at` from the turn, and keeps callers out of raw record JSON — the same reason `register` exists at that level.
 - **Make `anchory check` resolve-aware**, so a corrupted record is caught by a depot sweep rather than by whoever reads the anchor next.
 
@@ -87,8 +92,7 @@ Any one of these closes the hole; they are not exclusive.
 
 ## Open questions
 
-- Should `amend` refuse a record whose `members` differ from the current record's, given "an anchor's meaning is immutable: no reuse"? Today it will happily repoint an anchor at a different turn — arguably a larger version of this same bug.
-- Is `at` derivable at amend time, making it optional on input the way it is on register?
+- Should a future field-level or Chatlas-side amend derive `at`, making it optional on that higher-level input? Raw record replacement intentionally remains complete-record input.
 - Should `anchory check` resolve every anchor by default, or behind a flag, given the cost on a large depot?
 
 ## Housekeeping

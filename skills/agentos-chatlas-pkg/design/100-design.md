@@ -306,27 +306,85 @@
 
 ****
 
+## Event.Hash
+
+- [DF] `Event.Hash` is the deterministic content digest of one `Session.Event.Tape` event ^c20260731-22u ^c20260731-23u
+- [DC] its canonical input is the event data that `Chatlas.Session.Model` considers the event's content ^c20260731-22u ^c20260731-23u
+- [CT] `Event.Hash` excludes `Event.Annotation`, tape position, grouping identity, native identifiers, and derivation bookkeeping ^c20260731-22u ^c20260731-23u
+- [PR] the hash projection is a semantic model judgment about what constitutes event content, even when its concrete digest algorithm is an implementation detail ^c20260731-22u ^c20260731-23u
+- [CT] moving or re-annotating an unchanged event does not change its `Event.Hash` ^c20260731-22u ^c20260731-23u
+
+****
+
+## Event.Annotation
+
+- [DF] `Event.Annotation` is normalization-owned derived metadata attached to a `Session.Event.Tape` event without changing the event's content ^c20260731-21u ^c20260731-24u
+- [DC] an event carries annotations through an optional top-level `annotations` object ^c20260731-21u ^c20260731-24u
+- [CT] absence of `annotations` means the event carries no annotations ^c20260731-21u ^c20260731-24u
+- [DC] each annotation kind is a key whose value is a kind-specific object ^c20260731-21u ^c20260731-24u
+- [DC] annotation kinds are open and independent; one event may carry several kinds ^c20260731-21u ^c20260731-24u
+- [DC] annotation assignment is normalization work owned by the corresponding `Raw.Normalizer` ^c20260731-21u ^c20260731-24u
+- [CT] annotations remain outside `Event.Hash` because they annotate event content rather than constitute it ^c20260731-22u ^c20260731-24u
+
+****
+
 ## Event.Grouping
 
-- [DF] `Event.Grouping` is a derived partition over `Session.Event.Tape` events — a named way of collecting events into a larger unit the flat tape does not itself express ^c20260728-0u
-- [CT] the tape stays the single source of truth: a grouping is a tag carried on its events, never a container holding them; collecting a group is software over the tape ^c20260728-0u
-- [DC] groupings are open and orthogonal — the model carries as many as it needs, each independent of the others ^c20260728-0u
-- [EX] `Normal.Turn` is the chat-semantic grouping; a request/response cycle is another ^c20260728-0u
-- [CT] a grouping is partial by nature — an event may belong to no group, and carrying no group is a contracted verdict rather than a gap ^c20260728-0u
-- [DC] grouping is normalization work — the model owns each grouping's semantic, and a `Raw.Normalizer` maps its native structure onto it ^c20260728-0u
-- [DC] a stability contract binds only a grouping something grounds on; the rest stay free to be re-derived at will ^c20260728-0u
+- [DF] `Event.Grouping` is a semantic collection of `Session.Event.Tape` events derived through `Event.Annotation` ^c20260731-22u ^c20260731-25u
+- [DC] a grouping annotation kind assigns an identifier to its member events; events carrying the same kind and identifier form one group ^c20260731-22u ^c20260731-25u
+- [CT] the tape remains the single source of truth; collecting a group is software over annotations, never an authoritative container ^c20260731-22u ^c20260731-25u
+- [DC] grouping kinds are open and orthogonal; one event may participate in several independent groupings ^c20260728-0u ^c20260731-25u
+- [CT] grouping is partial; an event may belong to no group of a given kind ^c20260728-0u ^c20260731-25u
+- [DC] normalization owns each grouping kind's semantic and annotation assignment ^c20260728-0u ^c20260731-25u
+- [EX] `Normal.Turn` is the chat-semantic grouping; a request/response cycle may be another ^c20260731-22u ^c20260731-25u
+
+****
+
+## Event.Group.Hash
+
+- [DF] `Event.Group.Hash` is the deterministic content digest of one `Event.Grouping` ^c20260731-22u ^c20260731-26u
+- [DC] its canonical input is the ordered sequence of member `Event.Hash` values in tape order ^c20260731-22u ^c20260731-26u
+- [CT] it excludes the grouping annotation kind and identifier ^c20260731-22u ^c20260731-26u
+- [CT] changing member content, membership, or order changes the group hash ^c20260731-22u ^c20260731-26u
+- [CT] assigning the same unchanged members another group identifier does not change the group hash ^c20260731-22u ^c20260731-26u
+- [CT] `Event.Group.Hash` asserts grouped content rather than group identity; content-equivalent groups may share a hash ^c20260731-22u ^c20260731-26u
 
 ****
 
 ## Normal.Turn
 
-- [DF] `Normal.Turn` is the chat-semantic `Event.Grouping` — what a chat reader means by "a turn", derived by normalization rather than present in the tape's flat order ^c20260728-0u
-- [DC] the grouping boundary is defined per turn kind — an assistant turn legitimately spans reasoning, message, and tool events; a user turn is one authored turn ^c20260728-0u
-- [CT] a user turn groups only user-authored content — injected instructions, environment context, and harness-produced records never join it ^c20260728-0u
-- [PR] user-turn purity is what the `Touched.Index` rests on: grounding a line to a contaminated turn would launder non-user content as first-order user authority ^c20260728-0u
-- [DC] `Normal.Turn` identity carries the stability contract — stable across re-materialization of one session and never positional; it is the grounded grouping, so the obligation lands here and nowhere else ^c20260728-0u
-- [DC] each `Raw.Normalizer` maps its native handle onto the semantic — a native grouping that over-merges is refined, never inherited; a provider offering no handle gets a synthesized identity ^c20260728-0u
-- [CT] Chatlas supplies turn identity, never turn interpretation — what a turn means for a consumer (`Turn.Type`, surface gates) is the consumer's read, not a model field ^c20260728-0u
+- [DF] `Normal.Turn` is the normalization-owned `Event.Grouping` for one chat-semantic turn ^c20260731-22u ^c20260731-27u
+- [DC] it is realized through `annotations.normal_turn.id`, whose value is a `Normal.Turn.Id` ^c20260731-21u ^c20260731-27u
+- [CT] assigning `Normal.Turn` groups existing `Session.Event.Tape` events; it does not change their generation, payload, role, producer, sequence, or meaning ^c20260731-15u ^c20260731-27u
+- [DF] `Normal.Turn::User.Turn` groups normalized events carrying the data supplied in one user interaction ^c20260731-15u ^c20260731-27u
+- [DC] a `Raw.Normalizer` assigns `User.Turn` membership from normalized event semantics rather than inheriting provider record boundaries or raw role labels ^c20260731-15u ^c20260731-27u
+- [CT] a `User.Turn` has no semantic relationship to preceding or following assistant activity ^c20260731-15u ^c20260731-27u
+- [EX] user-turn data may include text, images, files, attachments, and structured command arguments ^c20260731-15u ^c20260731-27u
+- [PR] user-turn purity protects `User.Authority`; grouping assistant or injected data into a `User.Turn` corrupts that authority boundary ^c20260731-15u ^c20260731-27u
+- [DC] `Normal.Turn::Assistant.Turn` is grouped independently and may span reasoning, messages, tool activity, and response metadata ^c20260731-15u ^c20260731-27u
+- [DC] each `Raw.Normalizer` maps native handles onto the semantic; a native grouping that over-merges is refined, never inherited ^c20260728-0u ^c20260731-27u
+- [CT] Chatlas supplies turn grouping and identity, never turn interpretation; consumer meanings such as `Turn.Type` remain outside the model ^c20260728-0u ^c20260731-27u
+
+****
+
+## Normal.Turn.Id
+
+- [DF] `Normal.Turn.Id` is an opaque session-local label assigned to one `Normal.Turn` ^c20260731-16u ^c20260731-28u
+- [CT] a `Normal.Turn.Id` must be unique within its `Chatlas.Session.Model` ^c20260731-16u ^c20260731-28u
+- [PR] stability is desirable because it reduces reference repairs, but correctness does not depend on it ^c20260731-16u ^c20260731-28u
+- [CT] `Normal.Turn.Id` locates a grouping; by itself it does not assert the grouping's content ^c20260731-16u ^c20260731-28u
+
+****
+
+## Normal.Turn.Ref
+
+- [DF] `Normal.Turn.Ref` is the durable, self-verifying reference to one `Normal.Turn` ^c20260731-16u ^c20260731-29u
+- [DC] its canonical object carries `session`, `turn_id`, `turn_hash`, and `at` ^c20260731-16u ^c20260731-29u
+- [DC] `session` locates the expected `Chatlas.Session.Model` ^c20260731-16u ^c20260731-29u
+- [DC] `turn_id` locates the expected `Normal.Turn` within that session ^c20260731-16u ^c20260731-29u
+- [DC] `turn_hash` is the turn's `Event.Group.Hash` and asserts its grouped content ^c20260731-22u ^c20260731-29u
+- [CT] `at` is readability and diagnostic metadata, not the turn's identity or selection mechanism ^c20260731-16u ^c20260731-29u
+- [CT] resolution verifies the assertion by recomputing the current group hash and comparing it with `turn_hash` ^c20260731-16u ^c20260731-29u
 
 ****
 
