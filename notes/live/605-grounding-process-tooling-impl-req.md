@@ -4,7 +4,7 @@
 
 - **goal:** implement and continuously streamline the end-to-end process for grounding existing Index lines in historical Chatlas evidence
 - **scope:** compose Git dating, Chatlas turn discovery, support-set registration, anchor landing, and focused Index validation into explicit Agentos tooling
-- **status:** active implementation program; Slice 1 complete, Sidequest A ready for implementation
+- **status:** active implementation program; Slice 1 complete, compact-query and support-preview refactor in execution
 - **source:** the completed `Natural.Placement` stress test and the user's request for one durable file that accumulates the program's design and implementation state ^c20260731-11u
 - **owning projects:** `agentos-chatlas-py`, `agentos-py`, `agentos-cli`, and the affected workflow surfaces in `agentos-md`
 - **out of scope:** changing Index claims, automatically judging semantic support, reading provider-native stores directly, replacing `Event.Pattern`, or making a derived database authoritative
@@ -44,6 +44,15 @@
 - SQLite remains disposable and may return only candidate coordinates; it never produces authoritative public events
 - event-time constraints concern matched turns, not only a session's `last_activity_at`
 - callers may bound verbatim discovery with matched-turn before/after dates derived from Git or other hints ^c20260731-12u
+- when deterministic selectors have already reduced discovery to a small session set, `auto` bypasses SQLite and scans only those authoritative models; an event-time range alone does not pretend to be a session selector
+
+### Progressive.Detail
+
+- Chatlas read commands default to the smallest projection that preserves identity, matching evidence, and the next escalation coordinate ^c20260731-37u
+- `summary` detail is the default: references, exact matched `Event.Ref` values, and compact human-readable message text without full turn or session payloads
+- `turn` detail adds the complete authoritative `Normal.Turn` grouping
+- `context` detail is available only on commands that explicitly retrieve neighborhoods; it adds bounded surrounding turns and never changes the selected identity
+- callers escalate explicitly with `--detail`; detail levels change projection cost, not query meaning or authority ^c20260731-37u
 
 ### Chatlas.Verbatim.Finder
 
@@ -58,7 +67,7 @@
 
 ### Grounding.Handoff
 
-- turn-query results return authoritative `Normal.Turn` objects plus neutral session identity, without duplicating a second grounding-specific turn projection ^c20260731-12u
+- turn-query results default to compact authoritative summaries and can escalate to complete `Normal.Turn` objects, without creating a second grounding-specific identity model ^c20260731-12u ^c20260731-37u
 - turn-query results must identify the exact matched `Event.Ref` values inside each returned `Normal.Turn`; the grouping alone does not show which message satisfied the predicate
 - the returned coordinates are sufficient to request a turn neighborhood or derive an Anchory `<identity-hash>:<turn-id>` member reference
 - neighborhood retrieval belongs to another Chatlas command, not an option or projection of the finder query ^c20260731-13u
@@ -157,6 +166,17 @@
 - **observable:** no ad hoc `jq` is needed between Chatlas discovery and Anchory selection
 - **status:** complete
 
+### Slice 1B - Compact turn projection and bounded scan
+
+- add `--detail summary|turn` to `agentos chatlas turns query`, defaulting to `summary`
+- summary results carry `Normal.Turn.Ref`, Anchory-ready member sugar, and compact matched-event entries containing the exact `Event.Ref`, role, producer type, and matching text
+- `turn` detail adds the complete authoritative grouping without changing matching, ordering, or backend semantics
+- when selectors have already reduced the selected session rows to a small bounded set, `auto` scans those models directly instead of consulting the corpus SQLite candidate index
+- RED: current default emits complete turns, hides the exact event that matched, and still consults SQLite for one identity-selected session
+- GREEN: default output is compact and event-addressable; `--detail turn` restores full grouping; bounded `auto` reports scan use while unbounded `auto` retains SQLite acceleration
+- **observable:** grounding candidate output is useful without local `jq`, and session-scoped archaeology does not touch the corpus candidate backend
+- **status:** in progress ^c20260731-37u
+
 ### Slice 2 - Git-guided Index grounding inspection
 
 - add an Index grounding inspection command for an exact block path
@@ -171,14 +191,16 @@
 
 ### Slice 3 - Support-set preview and duplicate POI
 
-- add a no-write preview path that validates selected member references and returns their ordered neighborhoods
+- add `agentos chatlas anchory preview`, a no-write path that validates selected member references and assembles the exact prospective v3 record
 - accept Anchory-ready `<session-identity>:<turn-id>` references directly; agents should not have to recover and pass a timestamp to inspect a candidate
+- use `--detail summary|turn|context`, defaulting to compact member summaries; `turn` adds each selected turn and `context` adds bounded neighborhoods
+- make `anchory register` return the minted anchor, record, and compact member summaries by default; full neighborhoods require explicit escalation
 - detect an equivalent existing support set and surface a structured POI naming the candidate and existing anchor
 - preserve current immutable member meaning and application-owned validation
 - RED: uncertain registration or output handling can mint an equivalent second anchor
 - GREEN: preview is non-mutating and duplicate candidates are explicit without automatic merge
 - **observable:** the agent verifies the exact support set before minting and can reason about duplicates deterministically
-- **status:** planned; refine before execution
+- **status:** in progress ^c20260731-37u
 
 ### Slice 4 - Explicit anchor landing
 
@@ -219,8 +241,9 @@
 | E2E 3 | complete | `Cited.Duplication` partially grounded to `^c20260516-0u`; 2/7 kernel lines linked to the two-member support set | v3 record resolution, turn-boundary inspection, block coverage, and provenance lint passed |
 | Sidequest A | not started | - | - |
 | 1 | complete | `agentos chatlas turns query` returns authoritative `Normal.Turn` groupings and Anchory-ready member references through ergonomic Event.Pattern predicates | 22 focused tests pass; scan/SQLite real-corpus outputs agree; 12,062-session SQLite verbatim query completed in under 3 seconds while loading five candidate models |
+| 1B | in progress | compact matched-event summaries, explicit full-turn escalation, and bounded-selection scan bypass | pending RED/GREEN and real-corpus comparison |
 | 2 | not started | - | - |
-| 3 | not started | - | - |
+| 3 | in progress | non-mutating support preview and progressively detailed Anchory output | pending RED/GREEN and no-write verification |
 | 4 | not started | - | - |
 | 5 | not started | - | - |
 | 6 | not started | - | - |
@@ -241,4 +264,5 @@
 - 2026-07-31: a fully grounded 6/6 block reported `gr_density=0.1667`, confirming that coverage and support diversity must not be conflated in campaign priority
 - 2026-07-31: third E2E registered and landed `^c20260516-0u` for `Cited.Duplication`; evidence supports only the core cited-duplication frame, so landing remains deliberately partial
 - 2026-07-31: third E2E confirmed human-only user turn groupings in real registration neighborhoods and exposed corpus-query contention, oversized mutating registration output, and the need to preview before minting
+- 2026-07-31: compact-query and support-preview refactor authorized; `summary`, `turn`, and neighborhood-only `context` form the shared escalation vocabulary ^c20260731-37u
 - execution should continue with Sidequest A or refine Slice 2; later slices remain intentionally less specified until earlier feedback changes their natural shape
