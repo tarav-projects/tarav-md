@@ -95,7 +95,7 @@ frags = ["<fragment-1>", "<fragment-2>"]   # caller's own verbatim user-turn fra
 d = json.load(open("/tmp/chatlas-recents.json"))
 matches = []
 for e in d.get("entries", []):
-    blob = " ␟ ".join(e.get("last_user_turns", [])).lower()
+    blob = " ␟ ".join(t.get("text", "") for t in e.get("last_user_turns", [])).lower()
     if all(f.lower() in blob for f in frags):
         matches.append(e)
 if len(matches) == 1:

@@ -7,10 +7,12 @@ Operational Chatlas command and workflow reference.
 - Refresh dataset: `agentos chatlas update`
 - Inventory/query sessions: `agentos chatlas query`
 - Query relational turn patterns: `agentos chatlas events query`
+- Find matching authoritative turns: `agentos chatlas turns query`
 - Aggregate dataset stats: `agentos chatlas stats`
 - Export attributed sessions into a project tree: `agentos chatlas local sync`
 - Print inline standard-model views: `agentos chatlas views inline`
-- Mint a support-set anchor (validated, echoing every member neighborhood): `agentos chatlas anchory register`
+- Preview a support set without minting: `agentos chatlas anchory preview`
+- Mint a validated support-set anchor: `agentos chatlas anchory register`
 - Resolve an anchor to its ordered support set: `agentos chatlas anchory resolve`
 - Export raw artifacts: `agentos chatlas raw path` / `agentos chatlas raw export`
 - Consume or produce materialized views: `agentos chatlas views`
@@ -86,6 +88,17 @@ agentos chatlas events query \
 - Backends: `auto`, `scan`, `sqlite`. Missing, stale, or incomplete SQLite coverage falls back to `scan` and reports `backend_used`.
 - Existing index selectors such as `--session-id`, `--identity-hash`, and `--provider` can constrain the queried sessions.
 
+For one-step turn discovery, `turns query` is the compact ergonomic projection:
+
+```sh
+agentos chatlas turns query --identity-hash <H> --contains "<text>" --human
+agentos chatlas turns query --identity-hash <H> --contains "<text>" --human --detail turn
+```
+
+- default `summary` detail returns `Normal.Turn.Ref`, Anchory-ready `member_ref`, and compact matched-event entries with exact `Event.Ref` values
+- `--detail turn` adds the complete authoritative `Normal.Turn`
+- `auto` scans directly when deterministic selectors already reduce the selection to at most 16 sessions; explicit `--backend sqlite` still forces candidate-index use
+
 ## Inline View Workflow
 
 ```sh
@@ -129,16 +142,24 @@ Chat anchors (`^c<YYYYMMDD>-<N>u` — `c` namespace prefix, primary-member date,
 
 ```sh
 agentos chatlas anchory register \
-  --member <identity-hash>:<event-id> \
-  --member <identity-hash>:<event-id> \
+  --member <identity-hash>:<turn-id> \
+  --member <identity-hash>:<turn-id> \
   --hint "<one sentence>"
-agentos chatlas anchory resolve <key> --radius 4
+agentos chatlas anchory preview \
+  --member <identity-hash>:<turn-id> \
+  --hint "<one sentence>"
+agentos chatlas anchory preview \
+  --member <identity-hash>:<turn-id> \
+  --hint "<one sentence>" \
+  --detail context --radius 2
+agentos chatlas anchory resolve <key> --detail context --radius 4
 ```
 
 - repeat `--member` in relevance order; each session identity may be a unique prefix on input and is stored as the full identity
-- registration validates every exact event as a visible user turn, allocates from the first member's date, and echoes all member neighborhoods
-- resolution returns the record plus ordered `{member, neighborhood}` entries; each neighborhood remains an independent model fragment
-- radius counts visible turns around each exact member event — `--radius 3` shows the preceding proposal and follow-up without timestamp-nearest selection
+- preview validates and assembles the exact v3 record without allocating an anchor; it also reports equivalent existing anchors
+- preview, registration, and resolution default to compact member summaries; `--detail turn` adds exact turns and `--detail context` adds neighborhoods
+- registration allocates from the first member's date only after the support set has been reviewed
+- radius counts visible turns around each exact member turn only under `--detail context`
 
 ## File Touch Workflow
 
