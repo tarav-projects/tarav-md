@@ -61,101 +61,15 @@ Only external data consumed by the selected module is a `Skill.Arg`. Operation f
 
 ## Batchy.Router
 
-The public flags below call the single running `Batchy.Router`. A trailing value binds `Skill.Arg::Main.Prompt` for the selected module; data-only flags bind their named `Skill.Arg` without selecting a module.
+The public flags below call the single running `Batchy.Router`. A trailing value binds `Skill.Arg::Main.Prompt` for the selected module; data-only flags bind their named `Skill.Arg` without selecting a module. This call surface is compiled from the canonical `Routing.Table` below.
 
-| Explicit configuration | Routed effect |
-|---|---|
-| `--index` | contribute the Index namespace/context; with capture and no narrower target, select the reviewed main Index surfaces |
-| `--main` | select the reviewed main Index target for the applicable Index workflow; with capture, equivalent to `--index` |
-| `--search`, `--research`, `--ground` | select `Index.Search.Operation.Module`; omitting `--index` uses its declared namespace default |
-| `--capture` | select `Hugentic.Capture.Workflow.Module`; leave the durable target unresolved until another route or conversation supplies it |
-| `--agendix` | shorthand for `--index --capture --agendix`; add `Index.Agendix.Knowledge.Module` and the autonomous default |
-| `--design` | select `Hugentic.Capture.Workflow.Module` with `Design.Req.Knowledge.Module` as target knowledge |
-| `--edit`, `--write`, `--append` | route directly through `Index.Landing.Knowledge.Module` |
-| `--reconcile` | compose `Touched.Decision.Knowledge.Module` with `Index.Landing.Knowledge.Module` when a write is selected |
-| `--check`, `--lint` | select `Index.Check.Operation.Module` |
-| `--type` | select `Index.Line.Type.Knowledge.Module` |
-| `--link` | select `Anchory.Link.Operation.Module` |
-| `--back-link` | select `Anchory.Back.Link.Operation.Module` |
-| `--gr-survey`, `--gr-scout`, `--gr-scan`, `--gr-linker` | select `Grounding.Survey.Workflow.Module` |
-| `--gr-review` | select `Grounding.Review.Workflow.Module` |
-| `--enrich` | select `Index.Enrichment.Workflow.Module` |
-| `--implementation`, `--impl` | contribute the Implementation namespace; its router resolves a workflow from a composed flag, input, conversation, or default |
-| `--impl --design` | select `Implementation.Design.Workflow.Module`; shortcut: `--impl-design` |
-| `--impl --review` | select `Implementation.Review.Workflow.Module`; shortcut: `--review` |
-| `--impl --execute` | select `Implementation.Execute.Workflow.Module`; shortcuts: `--execute`, `--exec` |
-| `--impl --develop` | select `Implementation.Develop.Workflow.Module`; shortcuts: `--develop`, `--dev` |
-| `--impl --capture` | select `Implementation.Capture.Workflow.Module`; shortcut: `--impl-capture` |
-| `--capture-audit` | select `Capture.Audit.Operation.Module` |
-| `--status`, `--chat-status` | select `Chat.Status.Operation.Module` |
-| `--workflow-status` | select `Workflow.Status.Operation.Module` |
-| `--session-router`, `--what-now`, `--what-next` | select `Hugentic.Session.Router.Operation.Module` |
-| `--park`, `--parking-note` | select `Parking.Note.Operation.Module` |
-| `--clean`, `--codebase-cleaner`, `--cleanup` | select `Codebase.Cleanup.Workflow.Module`, then enter the Implementation namespace |
-| `--AUTO`, `--auto`, `--autonomous` | bind `Skill.Arg::Alignment.Mode` |
-| `--depot` | bind `Skill.Arg::Depot` |
-| `--chapter` | bind `Skill.Arg::Chapter` |
+> $kw: ^public-call-surface --routing-view calls --table ^package-driver-router
 
 ## Skill.Module Catalog
 
-Canonical module identity is explicit and independent from invocation spelling. `Batchy.Router` rows may use aliases, composed flags, conversational discovery, or defaults to select one canonical module; those routes do not create additional modules.
+Canonical module identity is explicit and independent from invocation spelling. `Batchy.Router` rows may use aliases, composed flags, conversational discovery, or defaults to select one canonical module; those routes do not create additional modules. This catalog is compiled from the same canonical table as the public call surface.
 
-### Router Modules
-
-| Canonical module | Managed source | Role |
-|---|---|---|
-| `Agentos.Hugentics.Package.Driver.Router` | `SKILL.md` | public router for the complete Hugentics call surface |
-| `Implementation.Workflow.Router.Module` | `references/impl.md` | internal router entered through the `--impl` namespace |
-
-### Workflow Modules
-
-| Canonical module | Managed source | Routing |
-|---|---|---|
-| `Hugentic.Capture.Workflow.Module` | `references/capture.md` | `--capture`; also selected by target shortcuts such as `--design` and `--agendix` |
-| `Grounding.Survey.Workflow.Module` | `references/gr-survey.md` | `--gr-survey` and its declared aliases |
-| `Grounding.Review.Workflow.Module` | `references/gr-review.md` | `--gr-review` |
-| `Index.Enrichment.Workflow.Module` | `references/enrich.md` | `--enrich` |
-| `Implementation.Design.Workflow.Module` | `references/impl/design.md` | `--impl --design`; shortcut `--impl-design`; implementation default for non-`Impl.Req` input |
-| `Implementation.Review.Workflow.Module` | `references/impl/review.md` | `--impl --review`; shortcut `--review` |
-| `Implementation.Execute.Workflow.Module` | `references/impl/execute.md` | `--impl --execute`; shortcuts `--execute`, `--exec`; implementation default for `Impl.Req` input |
-| `Implementation.Develop.Workflow.Module` | `references/impl/develop.md` | `--impl --develop`; shortcuts `--develop`, `--dev` |
-| `Implementation.Capture.Workflow.Module` | `references/impl/impl-capture.md` | `--impl --capture`; shortcut `--impl-capture` |
-| `Codebase.Cleanup.Workflow.Module` | `references/codebase-cleaner.md` | `--clean`, `--codebase-cleaner`, `--cleanup` |
-
-### Knowledge Modules
-
-| Canonical module | Managed source | Consumer |
-|---|---|---|
-| `Design.Req.Knowledge.Module` | `references/design-req.md` | capture runs targeting `Design.Req` |
-| `Index.Landing.Knowledge.Module` | `references/edit.md` | any ontology or appendix write |
-| `Index.Agendix.Knowledge.Module` | `references/agendix.md` | any agendix landing |
-| `Touched.Data.Knowledge.Module` | `references/touched-data.md` | index-grounded reasoning |
-| `Touched.Decision.Knowledge.Module` | `references/decision-cycle.md` | decisions and reconciliation |
-| `Alignment.Session.Knowledge.Module` | `references/alignment-session.md` | workflows with declared alignment checkpoints |
-| `Index.Line.Type.Knowledge.Module` | `references/type.md` | line classification and typing proposals |
-| `Implementation.Execution.Practices.Knowledge.Module` | `references/impl/general-practices.md` | implementation execution workflows |
-| `Implementation.Execution.Preferences.Knowledge.Module` | `references/impl/general-preferences.md` | implementation execution workflows |
-
-### Operation Modules
-
-| Canonical module | Managed source |
-|---|---|
-| `Index.Search.Operation.Module` | `references/search.md` |
-| `Index.Check.Operation.Module` | `references/check.md` |
-| `Anchory.Link.Operation.Module` | `references/link.md` |
-| `Anchory.Back.Link.Operation.Module` | `references/back-link.md` |
-| `Capture.Audit.Operation.Module` | `references/capture-audit.md` |
-| `Chat.Status.Operation.Module` | `references/chat-status.md` |
-| `Workflow.Status.Operation.Module` | `references/workflow-status.md` |
-| `Hugentic.Session.Router.Operation.Module` | `references/session-router.md` |
-| `Parking.Note.Operation.Module` | `references/parking-note.md` |
-
-### Context Assembly Modules
-
-| Canonical module | Managed source | Availability |
-|---|---|---|
-| `Hugentic.Index.Context.Assembly.Module` | `references/index-context-assembly.md` | build-time development context; not a public route |
-| `Hugentic.Capture.Context.Assembly.Module` | `references/index-capture-context.md` | capture preparation context; not an independent public route |
+> $kw: ^skill-module-catalog --routing-view modules --table ^package-driver-router
 
 Supporting examples such as `references/impl/example.md` are reference assets, not runnable modules.
 
@@ -244,206 +158,339 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 
 ## Routing.Table
 
-This `Routing.Table` is the package driver's declarative dispatch artifact. Explicit flags select applicable rows directly; conversation and defaults may select rows whose policy permits automatic discovery.
-
-> $kw: ^index-write-entry
-
-- `--edit`, `--write`, and `--append` explicitly select the gated index or appendix edit route
-- their trailing value binds `Skill.Arg::Main.Prompt`; `--depot` and `--chapter` contribute the applicable index scope
-- load `references/edit.md` and do not mutate a gated surface until its declared approval and landing transitions resolve
-
-> $kw. end
+This addressed `Routing.Table` is the package driver's single declarative dispatch artifact. Explicit flags select applicable rows directly; conversation and defaults may select rows whose policy permits automatic discovery. Rows compose because the table's selection cardinality is `many`.
 
 > $kw: --dev-from Package.Driver.Router
-> $kw: ^package-driver-router
+> $kw: ^package-driver-router --routing-table --select many
 
-> $kw: --when
-When a consumer needs the general authority, support-network, line-standing, and current-realization model behind every index operation.
+> $kw: ^route-index-namespace --router-row --table ^package-driver-router
+> --flag --index
+> --match explicit
+> --to Index.Namespace
+> --then contribute the Index namespace/context; with capture and no narrower target, select the reviewed main Index surfaces
 
-> $kw: --then
-Load `references/touched-data.md`.
+> $kw: ^route-index-main --router-row --table ^package-driver-router
+> --flag --main
+> --match explicit
+> --to Index.Main.Target
+> --then select the reviewed main Index target; with capture, this is operationally equivalent to --index
 
-> $kw: --when
-When an operation makes a decision or changes a target product.
+> $kw: ^route-index-search --router-row --table ^package-driver-router
+> --flag --search
+> --alias --research
+> --alias --ground
+> --match explicit-or-semantic
+> --default Index namespace when omitted
+> --to Index.Search.Operation.Module
+> --load references/search.md
+> --when the caller wants to find concepts, retrieve cited index context, inspect related blocks, discover appendix depth, or ground the visible discussion
+> --then select Index.Search.Operation.Module; --search, --research, and --ground are operationally equivalent
 
-> $kw: --then
-Load `references/decision-cycle.md` to contextualize touched constraints, act through the remaining open region, and reconcile changed surfaces.
+> $kw: ^route-capture --router-row --table ^package-driver-router
+> --flag --capture
+> --match explicit-or-semantic
+> --to Hugentic.Capture.Workflow.Module
+> --load references/capture.md
+> --when the caller wants chat material aligned into a durable target
+> --then select the shared capture loop and leave its durable target unresolved until another route or conversation supplies it
 
-> $kw: --when
-When the caller wants to find concepts, retrieve cited index context, inspect related blocks, discover appendix depth, or ground the visible discussion; `--search`, `--research`, `--ground`, and their `--index`-prefixed forms are operationally equivalent and select this route.
+> $kw: ^route-agendix --router-row --table ^package-driver-router
+> --flag --agendix
+> --match explicit
+> --default Alignment.Mode::Autonomous
+> --to Hugentic.Capture.Workflow.Module
+> --to Index.Agendix.Knowledge.Module
+> --load references/capture.md
+> --load references/agendix.md
+> --then apply the --index --capture --agendix shorthand and use the autonomous alignment default
 
-> $kw: --then
-Load `references/search.md`.
+> $kw: ^route-product-design --router-row --table ^package-driver-router
+> --flag --design
+> --match explicit-or-semantic
+> --to Hugentic.Capture.Workflow.Module
+> --to Design.Req.Knowledge.Module
+> --load references/capture.md
+> --load references/design-req.md
+> --when the caller wants product design or organic design work begins outside the Implementation namespace
+> --then select the shared capture loop with Design.Req target knowledge
 
-> $kw: --when
-When the caller wants product design or organic design work begins; outside the Implementation namespace, `--design` explicitly selects a `Design.Req` target for the shared capture workflow.
+> $kw: ^index-write-entry --router-row --table ^package-driver-router
+> --flag --edit
+> --alias --write
+> --alias --append
+> --match explicit-or-semantic
+> --to Index.Landing.Knowledge.Module
+> --load references/edit.md
+> --when an index or appendix surface is being written or an approved edit needs landing
+> --then route through the gated Index landing contract; trailing input binds Main.Prompt and --depot/--chapter bind scope
 
-> $kw: --then
-Load `references/capture.md` and `references/design-req.md`.
+> $kw: ^route-reconcile --router-row --table ^package-driver-router
+> --flag --reconcile
+> --match explicit-or-semantic
+> --to Touched.Decision.Knowledge.Module
+> --to Index.Landing.Knowledge.Module
+> --load references/decision-cycle.md
+> --load references/edit.md
+> --when a changed product or implementation must be compared with touched design
+> --then contextualize the decision and load the landing contract when a write is selected
 
-> $kw: --when
-When the caller writes `--index` to contribute Index namespace/context to a run; a compatible flag or the conversation supplies the operation focus.
+> $kw: ^route-index-check --router-row --table ^package-driver-router
+> --flag --check
+> --alias --lint
+> --match explicit-or-semantic
+> --to Index.Check.Operation.Module
+> --load references/check.md
+> --when the caller wants deterministic diagnosis, linter findings, or post-edit validation
+> --then select Index.Check.Operation.Module
 
-> $kw: --then
-Apply the Index namespace/context to the selected focus. With capture and no narrower target, resolve the reviewed main Index surfaces; when no operation focus resolves, leave it unresolved and continue permitted conversational discovery.
+> $kw: ^route-line-type --router-row --table ^package-driver-router
+> --flag --type
+> --match explicit-or-semantic
+> --to Index.Line.Type.Knowledge.Module
+> --load references/type.md
+> --when the caller wants Line.Type classification understood or proposed
+> --then load Index.Line.Type.Knowledge.Module
 
-> $kw: --when
-When the caller writes `--main` with an applicable Index workflow.
+> $kw: ^route-anchor-link --router-row --table ^package-driver-router
+> --flag --link
+> --match explicit-or-semantic
+> --to Anchory.Link.Operation.Module
+> --load references/link.md
+> --when the caller needs an Anchory.Anchor minted for chat context
+> --then select Anchory.Link.Operation.Module
 
-> $kw: --then
-Select the reviewed main Index target. With capture, this is operationally equivalent to `--index` and constrains landing to `Index.Ontology` or `Index.Appendix`.
+> $kw: ^route-anchor-back-link --router-row --table ^package-driver-router
+> --flag --back-link
+> --match explicit-or-semantic
+> --to Anchory.Back.Link.Operation.Module
+> --load references/back-link.md
+> --when the caller wants an existing block grounded backward
+> --then select Anchory.Back.Link.Operation.Module
 
-> $kw: --when
-When developing any managed Hugentics Index surface.
+> $kw: ^route-grounding-survey --router-row --table ^package-driver-router
+> --flag --gr-survey
+> --alias --gr-scout
+> --alias --gr-scan
+> --alias --gr-linker
+> --match explicit-or-semantic
+> --to Grounding.Survey.Workflow.Module
+> --load references/gr-survey.md
+> --when the caller wants a grounding campaign surveyed
+> --then select Grounding.Survey.Workflow.Module
 
-> $kw: --then
-Load the complete `references/index-context-assembly.md` before selecting direct dependencies, derivations, citations, or runtime-facing content.
+> $kw: ^route-grounding-review --router-row --table ^package-driver-router
+> --flag --gr-review
+> --match explicit-or-semantic
+> --to Grounding.Review.Workflow.Module
+> --load references/gr-review.md
+> --when the caller wants a `Gr.Req` reviewed
+> --then select Grounding.Review.Workflow.Module
 
-> $kw: --when
-When the user wants the chat's content captured; outside the Implementation namespace, `--capture` selects the shared loop without resolving its durable target, while `--index` or `--main` selects the reviewed main Index target and `--agendix` selects its autonomous agendix preset.
+> $kw: ^route-index-enrichment --router-row --table ^package-driver-router
+> --flag --enrich
+> --match explicit-or-semantic
+> --to Index.Enrichment.Workflow.Module
+> --load references/enrich.md
+> --when the caller wants a block enriched
+> --then select Index.Enrichment.Workflow.Module
 
-> $kw: --then
-Load `references/capture.md`.
+> $kw: ^route-implementation-namespace --router-row --table ^package-driver-router
+> --flag --impl
+> --alias --implementation
+> --match explicit-or-semantic
+> --to Implementation.Workflow.Router.Module
+> --load references/impl.md
+> --when the caller supplies the Implementation namespace, a composed implementation call, or one of its declared shortcuts
+> --then enter Implementation.Workflow.Router.Module and resolve exactly one implementation workflow from flags, input, conversation, or a declared default
 
-> $kw: --when
-When a capture run needs its complete preparation context.
+> $kw: ^route-implementation-design --router-row --table ^package-driver-router
+> --flag --impl --design
+> --alias --impl-design
+> --match explicit-or-semantic
+> --default implementation input without an `Impl.Req`
+> --to Implementation.Design.Workflow.Module
+> --load references/impl/design.md
+> --when implementation work needs a What/How design or non-`Impl.Req` input must be shaped before execution
+> --then select Implementation.Design.Workflow.Module
 
-> $kw: --then
-Load `references/index-capture-context.md`.
+> $kw: ^route-implementation-review --router-row --table ^package-driver-router
+> --flag --impl --review
+> --alias --review
+> --match explicit-or-semantic
+> --to Implementation.Review.Workflow.Module
+> --load references/impl/review.md
+> --when the caller wants an implementation reviewed
+> --then select Implementation.Review.Workflow.Module
 
-> $kw: --when
-When an index or appendix surface is being written or an approved edit needs landing; `--edit`, `--write`, and `--append` explicitly select this route.
+> $kw: ^route-implementation-execute --router-row --table ^package-driver-router
+> --flag --impl --execute
+> --alias --execute
+> --alias --exec
+> --match explicit-or-semantic
+> --default `Impl.Req` input
+> --to Implementation.Execute.Workflow.Module
+> --load references/impl/execute.md
+> --when the caller wants an existing `Impl.Req` executed
+> --then select Implementation.Execute.Workflow.Module
 
-> $kw: --then
-Load `references/edit.md`.
+> $kw: ^route-implementation-develop --router-row --table ^package-driver-router
+> --flag --impl --develop
+> --alias --develop
+> --alias --dev
+> --match explicit-or-semantic
+> --to Implementation.Develop.Workflow.Module
+> --load references/impl/develop.md
+> --when the caller wants one end-to-end implementation run that may design and execute an `Impl.Req`
+> --then select Implementation.Develop.Workflow.Module
 
-> $kw: --when
-When a changed product or implementation must be compared with touched design; `--reconcile` explicitly selects this route.
+> $kw: ^route-implementation-capture --router-row --table ^package-driver-router
+> --flag --impl --capture
+> --alias --impl-capture
+> --match explicit-or-semantic
+> --to Implementation.Capture.Workflow.Module
+> --load references/impl/impl-capture.md
+> --when the caller wants implementation evidence captured
+> --then select Implementation.Capture.Workflow.Module
 
-> $kw: --then
-Load `references/decision-cycle.md`, then `references/edit.md` when a write is selected.
+> $kw: ^route-capture-audit --router-row --table ^package-driver-router
+> --flag --capture-audit
+> --match explicit-or-semantic
+> --to Capture.Audit.Operation.Module
+> --load references/capture-audit.md
+> --when the caller asks whether significant session material remains uncaptured
+> --then select Capture.Audit.Operation.Module
 
-> $kw: --when
-When the caller wants deterministic diagnosis, linter findings, or post-edit validation; `--check` and `--lint` explicitly select this route.
+> $kw: ^route-chat-status --router-row --table ^package-driver-router
+> --flag --status
+> --alias --chat-status
+> --match explicit-or-semantic
+> --to Chat.Status.Operation.Module
+> --load references/chat-status.md
+> --when the caller wants to reconnect with the current chat and its todo state
+> --then select Chat.Status.Operation.Module
 
-> $kw: --then
-Load `references/check.md`.
+> $kw: ^route-workflow-status --router-row --table ^package-driver-router
+> --flag --workflow-status
+> --match explicit-or-semantic
+> --to Workflow.Status.Operation.Module
+> --load references/workflow-status.md
+> --when the caller wants a structured checkpoint against an active workflow
+> --then select Workflow.Status.Operation.Module
 
-> $kw: --when
-When the caller wants `Line.Type` classification understood, read, or proposed; `--type` explicitly selects this route.
+> $kw: ^route-session-router --router-row --table ^package-driver-router
+> --flag --session-router
+> --alias --what-now
+> --alias --what-next
+> --match explicit-or-semantic
+> --to Hugentic.Session.Router.Operation.Module
+> --load references/session-router.md
+> --when the caller is unsure what workflow should handle the chat or routing guidance would reduce confusion
+> --then select Hugentic.Session.Router.Operation.Module
 
-> $kw: --then
-Load `references/type.md`.
+> $kw: ^route-parking-note --router-row --table ^package-driver-router
+> --flag --park
+> --alias --parking-note
+> --match explicit-or-semantic
+> --to Parking.Note.Operation.Module
+> --load references/parking-note.md
+> --when the caller wants to park a sidequest thought and return to the current session
+> --then select Parking.Note.Operation.Module
 
-> $kw: --when
-When material lands on the agendix or the caller needs the agendix surface understood.
+> $kw: ^route-codebase-cleanup --router-row --table ^package-driver-router
+> --flag --clean
+> --alias --codebase-cleaner
+> --alias --cleanup
+> --match explicit-or-semantic
+> --to Codebase.Cleanup.Workflow.Module
+> --to Implementation.Workflow.Router.Module
+> --load references/codebase-cleaner.md
+> --load references/impl.md
+> --when the caller wants a codebase cleanup designed and executed through one gated handoff
+> --then select Codebase.Cleanup.Workflow.Module and enter the Implementation namespace
 
-> $kw: --then
-Load `references/agendix.md`.
+> $kw: ^route-alignment-mode --router-row --table ^package-driver-router
+> --flag --AUTO
+> --alias --auto
+> --alias --autonomous
+> --match explicit
+> --to Skill.Arg::Alignment.Mode
+> --then bind Skill.Arg::Alignment.Mode to Alignment.Mode::Autonomous
 
-> $kw: --when
-When a caller needs an `Anchory.Anchor` minted for chat context; `--link` explicitly selects this route.
+> $kw: ^route-depot-arg --router-row --table ^package-driver-router
+> --flag --depot
+> --match explicit
+> --to Skill.Arg::Depot
+> --then bind Skill.Arg::Depot and apply it to the selected Index operation
 
-> $kw: --then
-Load `references/link.md`.
+> $kw: ^route-chapter-arg --router-row --table ^package-driver-router
+> --flag --chapter
+> --match explicit
+> --to Skill.Arg::Chapter
+> --then bind Skill.Arg::Chapter and apply it to the selected Index operation
 
-> $kw: --when
-When the caller wants an existing block grounded backward; `--back-link` explicitly selects this route.
+> $kw: ^route-touched-data --router-row --table ^package-driver-router
+> --match semantic
+> --to Touched.Data.Knowledge.Module
+> --load references/touched-data.md
+> --when a consumer needs the authority, support-network, line-standing, or current-realization model behind Index operations
+> --then load Touched.Data.Knowledge.Module
 
-> $kw: --then
-Load `references/back-link.md`.
+> $kw: ^route-decision-cycle --router-row --table ^package-driver-router
+> --match semantic
+> --to Touched.Decision.Knowledge.Module
+> --load references/decision-cycle.md
+> --when an operation makes a decision or changes a target product
+> --then contextualize touched constraints, act through the open region, and reconcile changed surfaces
 
-> $kw: --when
-When the caller wants a grounding campaign surveyed; `--gr-survey`, `--gr-scout`, `--gr-scan`, and `--gr-linker` explicitly select this route.
+> $kw: ^route-index-context-assembly --router-row --table ^package-driver-router
+> --match semantic
+> --to Hugentic.Index.Context.Assembly.Module
+> --load references/index-context-assembly.md
+> --when developing any managed Hugentics Index surface
+> --then load the complete Index context assembly before selecting direct dependencies, derivations, citations, or runtime-facing content
 
-> $kw: --then
-Load `references/gr-survey.md`.
+> $kw: ^route-capture-context-assembly --router-row --table ^package-driver-router
+> --match semantic
+> --to Hugentic.Capture.Context.Assembly.Module
+> --load references/index-capture-context.md
+> --when a capture run needs its complete preparation context
+> --then load Hugentic.Capture.Context.Assembly.Module
 
-> $kw: --when
-When the caller wants a `Gr.Req` reviewed; `--gr-review` explicitly selects this route.
+> $kw: ^route-alignment-session --router-row --table ^package-driver-router
+> --match semantic
+> --to Alignment.Session.Knowledge.Module
+> --load references/alignment-session.md
+> --when the caller needs the shared alignment frame or checkpoint vocabulary
+> --then load the applicable workflow and knowledge modules with Alignment.Session.Knowledge.Module
 
-> $kw: --then
-Load `references/gr-review.md`.
+> $kw: ^route-implementation-execution-knowledge --router-row --table ^package-driver-router
+> --match semantic
+> --to Implementation.Execution.Practices.Knowledge.Module
+> --to Implementation.Execution.Preferences.Knowledge.Module
+> --load references/impl/general-practices.md
+> --load references/impl/general-preferences.md
+> --when an implementation execution workflow needs shared practices and preferences
+> --then load the shared implementation execution knowledge modules
 
-> $kw: --when
-When the caller wants a block enriched; `--enrich` explicitly selects this route.
+> $kw: ^route-package-knowledge --router-row --table ^package-driver-router
+> --match semantic
+> --to Agentos.Package.Knowledge.Module
+> --when the caller needs package-level understanding of the Index subsystem
+> --then load the relevant agentos-pkg design, appendix, or reference surface
 
-> $kw: --then
-Load `references/enrich.md`.
+> $kw: ^route-index-block-examples --router-row --table ^package-driver-router
+> --match semantic
+> --to Index.Block.Example.Knowledge.Module
+> --when the caller needs concrete examples of good and bad block shape
+> --then load agentos-pkg/references/index-block-catalog.md
 
-> $kw: --when
-When the caller supplies the `--impl` or `--implementation` namespace, a composed implementation call, or one of its declared shortcuts. Inside that namespace, `--design` and `--capture` select `Implementation.Design.Workflow.Module` and `Implementation.Capture.Workflow.Module`; they do not select the root Design.Req target or shared capture route.
+> $kw: ^route-index-testground --router-row --table ^package-driver-router
+> --match semantic
+> --to Agentos.Testground.Package.Skill
+> --when the caller needs behavioral testing of Index entry paths, selection behavior, or usage patterns
+> --then load agentos-testground
 
-> $kw: --then
-Load `references/impl.md`, then resolve exactly one canonical implementation workflow module from the namespaced flag, shortcut, input, conversation, or declared default.
-
-> $kw: --when
-When the caller asks whether significant session material remains uncaptured; `--capture-audit` explicitly selects this route.
-
-> $kw: --then
-Load `references/capture-audit.md`.
-
-> $kw: --when
-When the caller wants to reconnect with the current chat and its todo state; `--status` and `--chat-status` explicitly select this route.
-
-> $kw: --then
-Load `references/chat-status.md`.
-
-> $kw: --when
-When the caller wants a structured checkpoint against an active workflow; `--workflow-status` explicitly selects this route.
-
-> $kw: --then
-Load `references/workflow-status.md`.
-
-> $kw: --when
-When the caller is unsure what workflow should handle the chat, or routing guidance would reduce confusion; `--session-router`, `--what-now`, and `--what-next` explicitly select this route.
-
-> $kw: --then
-Load `references/session-router.md`.
-
-> $kw: --when
-When the caller wants to park a sidequest thought and return to the current session; `--park` and `--parking-note` explicitly select this route.
-
-> $kw: --then
-Load `references/parking-note.md`.
-
-> $kw: --when
-When the caller wants a codebase cleanup designed and executed through one gated handoff; `--clean`, `--codebase-cleaner`, and `--cleanup` explicitly select this route.
-
-> $kw: --then
-Load `references/codebase-cleaner.md`, then `references/impl/`.
-
-> $kw: --when
-When the caller needs the shared alignment frame or checkpoint vocabulary.
-
-> $kw: --then
-Load `references/alignment-session.md`; also load the applicable workflow and knowledge modules rather than a separate harness model.
-
-> $kw: --when
-When the caller supplies `--depot` or `--chapter`.
-
-> $kw: --then
-Bind `Skill.Arg::Depot` or `Skill.Arg::Chapter` and apply the resolved scope to the selected index operation.
-
-> $kw: --when
-When the caller needs package-level understanding of the index subsystem.
-
-> $kw: --then
-Load the relevant `agentos-pkg/design/`, `agentos-pkg/appendix/`, or `agentos-pkg/references/` surface.
-
-> $kw: --when
-When the caller needs concrete examples of good and bad block shape.
-
-> $kw: --then
-Load `agentos-pkg/references/index-block-catalog.md`.
-
-> $kw: --when
-When the caller needs behavioral testing of index entry paths, selection behavior, or usage patterns.
-
-> $kw: --then
-Load `agentos-testground`.
-
-> $kw. end
+> $kw: ^full-routing-table --routing-view full --table ^package-driver-router
 
 ## Index Operating Behavior
 

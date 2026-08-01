@@ -4,7 +4,7 @@
 
 - **goal:** implement and continuously streamline the end-to-end process for grounding existing Index lines in historical Chatlas evidence
 - **scope:** compose Git dating, Chatlas turn discovery, support-set registration, anchor landing, and focused Index validation into explicit Agentos tooling
-- **status:** active implementation program; Slice 1 complete, compact-query and support-preview refactor in execution
+- **status:** active implementation program; Slices 1 and 1B complete, Slice 3 preview mechanics complete with formal duplicate-POI reporting deferred
 - **source:** the completed `Natural.Placement` stress test and the user's request for one durable file that accumulates the program's design and implementation state ^c20260731-11u
 - **owning projects:** `agentos-chatlas-py`, `agentos-py`, `agentos-cli`, and the affected workflow surfaces in `agentos-md`
 - **out of scope:** changing Index claims, automatically judging semantic support, reading provider-native stores directly, replacing `Event.Pattern`, or making a derived database authoritative
@@ -61,7 +61,7 @@
 - Index machinery that is not line material, including trailing anchors, is removed before canonicalization
 - matches are ordered oldest-first by default because the earliest occurrence is usually closer to content production, while remaining only a retrieval hint
 - explicit event-time bounds narrow candidate discovery before authoritative normal-model evaluation ^c20260731-12u
-- the finder is only a query: it returns matching `Normal.Turn` objects with their neutral session identity and never materializes neighborhoods ^c20260731-13u
+- the finder is only a query: it returns compact authoritative turn summaries by default, can escalate to matching `Normal.Turn` objects, and never materializes neighborhoods ^c20260731-13u ^c20260731-37u
 - a separate Chatlas command consumes those coordinates when the agent wants the turn neighborhood ^c20260731-13u
 - the finder may return assistant or user turns because an assistant proposal can contain the line before a user approval; only later agent selection establishes support members
 
@@ -71,7 +71,7 @@
 - turn-query results must identify the exact matched `Event.Ref` values inside each returned `Normal.Turn`; the grouping alone does not show which message satisfied the predicate
 - the returned coordinates are sufficient to request a turn neighborhood or derive an Anchory `<identity-hash>:<turn-id>` member reference
 - neighborhood retrieval belongs to another Chatlas command, not an option or projection of the finder query ^c20260731-13u
-- Anchory accepts those member references in relevance order, previews their neighborhoods, and mints one immutable support-set meaning
+- Anchory accepts those member references in relevance order, previews compactly, escalates to neighborhoods only on request, and mints one immutable support-set meaning
 - equivalent existing support sets surface a POI; tooling does not silently merge or rewrite anchors
 - Index landing accepts explicit stable line identities and fails closed if line material changed after selection
 - anchor-only maintenance does not reopen the line's verbatim-content gate
@@ -124,6 +124,17 @@
 - five concurrent corpus-wide SQLite turn queries stalled, while identity-scoped scans remained responsive; bounded parallel discovery needs a performance and lock-contention check
 - the mutating register command emitted full neighborhoods and more than 10,000 output tokens, reinforcing the need for a compact preview command and on-demand neighborhood retrieval
 
+### Tested.Stable.Surface
+
+- target: zero-grounding `Stable.Surface` in `agentos-pkg/design/100-design.md`
+- Git isolated the original five-line block in the May 22 package-index promotion and one same-day wording refinement
+- compact identity-scoped turn queries returned exact matching `Event.Ref`, `Normal.Turn.Ref`, and Anchory-ready member references without local JSON projection
+- explicit neighborhood escalation separated the useful May 11 authority feedback and May 17 alignment statement from an unrelated apparent approval turn
+- the four-member support set was previewed before mutation; preview found no equivalent anchor, then registration minted `^c20260510-0u`
+- the anchor was applied to all five jointly supported lines; block statistics reported 5/5 grounding and focused provenance plus anchor-format checks passed
+- one project/date-bounded SQLite query declared its derived index stale, reported an authoritative fallback scan of 3,604 sessions, and took about 31 seconds; bounded search planning remains tooling work
+- `--human` candidate results still included provider-injected continuation summaries normalized as human user turns; semantic selection rejected them, but normalization must prevent injected content from acquiring `User.Authority`
+
 ### Design.Decisions
 
 | Date | Decision | Status |
@@ -175,7 +186,7 @@
 - RED: current default emits complete turns, hides the exact event that matched, and still consults SQLite for one identity-selected session
 - GREEN: default output is compact and event-addressable; `--detail turn` restores full grouping; bounded `auto` reports scan use while unbounded `auto` retains SQLite acceleration
 - **observable:** grounding candidate output is useful without local `jq`, and session-scoped archaeology does not touch the corpus candidate backend
-- **status:** in progress ^c20260731-37u
+- **status:** complete ^c20260731-37u
 
 ### Slice 2 - Git-guided Index grounding inspection
 
@@ -200,7 +211,7 @@
 - RED: uncertain registration or output handling can mint an equivalent second anchor
 - GREEN: preview is non-mutating and duplicate candidates are explicit without automatic merge
 - **observable:** the agent verifies the exact support set before minting and can reason about duplicates deterministically
-- **status:** in progress ^c20260731-37u
+- **status:** preview, compact registration, escalation, and equivalent-anchor reporting complete; formal duplicate POI pending ^c20260731-37u
 
 ### Slice 4 - Explicit anchor landing
 
@@ -239,11 +250,12 @@
 | Baseline | complete | `Natural.Placement` grounded to `^c20260511-0u`; 6/10 kernel lines linked | anchor resolution and Index provenance lint passed |
 | E2E 2 | complete | `Placement.Balance` grounded to `^c20260522-0u`; 6/6 kernel lines linked through a three-session support set | anchor resolution, block statistics, and Index provenance lint passed |
 | E2E 3 | complete | `Cited.Duplication` partially grounded to `^c20260516-0u`; 2/7 kernel lines linked to the two-member support set | v3 record resolution, turn-boundary inspection, block coverage, and provenance lint passed |
+| E2E 4 | complete | `Stable.Surface` grounded to `^c20260510-0u`; 5/5 kernel lines linked through a four-member support set | compact query, context escalation, no-write preview, duplicate check, block coverage, and provenance lint passed |
 | Sidequest A | not started | - | - |
 | 1 | complete | `agentos chatlas turns query` returns authoritative `Normal.Turn` groupings and Anchory-ready member references through ergonomic Event.Pattern predicates | 22 focused tests pass; scan/SQLite real-corpus outputs agree; 12,062-session SQLite verbatim query completed in under 3 seconds while loading five candidate models |
-| 1B | in progress | compact matched-event summaries, explicit full-turn escalation, and bounded-selection scan bypass | pending RED/GREEN and real-corpus comparison |
+| 1B | complete | compact matched-event summaries, explicit full-turn escalation, and bounded-selection scan bypass | focused RED/GREEN, real-session projection comparison, and full Chatlas suite pass |
 | 2 | not started | - | - |
-| 3 | in progress | non-mutating support preview and progressively detailed Anchory output | pending RED/GREEN and no-write verification |
+| 3 | partial | non-mutating preview, compact register/resolve, `summary|turn|context` escalation, and equivalent-anchor reporting implemented; formal duplicate POI remains | no-write fixture, equivalent-anchor fixture, live-session comparison, and full Chatlas suite pass |
 | 4 | not started | - | - |
 | 5 | not started | - | - |
 | 6 | not started | - | - |
@@ -265,4 +277,11 @@
 - 2026-07-31: third E2E registered and landed `^c20260516-0u` for `Cited.Duplication`; evidence supports only the core cited-duplication frame, so landing remains deliberately partial
 - 2026-07-31: third E2E confirmed human-only user turn groupings in real registration neighborhoods and exposed corpus-query contention, oversized mutating registration output, and the need to preview before minting
 - 2026-07-31: compact-query and support-preview refactor authorized; `summary`, `turn`, and neighborhood-only `context` form the shared escalation vocabulary ^c20260731-37u
-- execution should continue with Sidequest A or refine Slice 2; later slices remain intentionally less specified until earlier feedback changes their natural shape
+- 2026-07-31: Slice 1B completed; summary output carries exact matched `Event.Ref` values, bounded text, `Normal.Turn.Ref`, and member sugar, while identity-bounded `auto` scans the selected authoritative model directly
+- 2026-07-31: Slice 3 preview mechanics completed; preview does not allocate, reports equivalent anchors, and register/resolve no longer emit neighborhoods unless `--detail context` is explicit
+- 2026-07-31: live-session measurements were 1.6 KB turn summary versus 3.6 KB full turn, and 1.5 KB support preview versus 14.8 KB radius-2 context
+- 2026-07-31: verification passed with 297 Chatlas tests, 10 umbrella CLI integration tests, Ruff, and zero Hugentics Skillware POIs
+- 2026-07-31: fourth E2E grounded `Stable.Surface` with `^c20260510-0u`; the compact query and preview escalation removed local projection and pre-mutation uncertainty from the operator path
+- 2026-07-31: the fourth E2E exposed a stale SQLite candidate index falling back to a 3,604-session authoritative scan despite project and date bounds; the fallback was correctly reported but slow
+- 2026-07-31: the same candidate search exposed provider-injected continuation summaries carrying `producer.type=human` inside user turns; they were excluded manually and remain a normalization defect
+- execution should continue with the formal duplicate POI, Sidequest A, or refine Slice 2; later slices remain intentionally less specified until earlier feedback changes their natural shape

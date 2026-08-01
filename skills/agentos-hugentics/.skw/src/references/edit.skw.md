@@ -98,6 +98,8 @@ When a draft is being shaped for an index or appendix surface — inside `refere
 - review with the user and revise until accepted — acceptance is a chat state, not a write
 - for modifications, show `Before` and `After · Verbatim`; additions need only proposed content and removals need only current content
 - place every proposed landing line undecorated somewhere in the turn; presentation layout is not gate syntax
+- do not resolve support or allocate a new anchor while the proposal remains open to revision
+- when the proposed rendering needs to mark the future trailing anchor, use `^<anchor-on-landing>`; it is an inert landing placeholder, not an allocated support reference
 - mint a fresh opaque `Edition.Approval.Token` for the proposal and show it with the proposed landing content
 - rotate the token when materially significant wording or the landing destination changes; spacing, wrapping, capitalization, and presentation layout alone do not spend another attention checkpoint
 
@@ -109,7 +111,7 @@ Target: append under ## Capture.Offer
 
 After · Verbatim:
 
-- [DC] a capture offer shows its landing target before the proposed text, so the user approves destination and wording together ^<approval-anchor>
+- [DC] a capture offer shows its landing target before the proposed text, so the user approves destination and wording together ^<anchor-on-landing>
 
 Approval:
 
@@ -120,17 +122,20 @@ Approval:
 
 When landing an approved edit:
 
-1. Resolve the proposal and approval turns from the authoritative `Chatlas.Session.Model`.
-2. Confirm that the approval turn qualifies under the current chat `Touch.Authority.Surface` protocol.
-3. Mint the current support reference through `references/link.md`, registering the approval member with `tokenized.approval.turn` cargo containing `token`, `verbatim_turn`, and `approval_turn`.
-4. Apply the approved edit and set that anchor on every approved line with no more specific support. Its `Support.Set` gives touch provenance; the typed approval cargo independently makes the line eligible for `Reviewed.Content`.
-5. Update the router when concepts are added, renamed, moved, or gain appendix depth.
-6. Run the default linter plus the opt-in `line-approval` and `line-verbatim-gate` checks over the edited scope.
-7. Re-run `Touched.Decision.Cycle` contextualization over the changed live cut and report any remaining POIs separately from the completed edit.
+Support resolution begins only after both gates have been crossed: the final proposal has token approval and a landing command has selected it. Do not run this procedure while wording or destination remains open to revision.
+
+1. Resolve the final proposal and approval turns from the authoritative `Chatlas.Session.Model`.
+2. Locate and qualify the substantive user turns that support each approved line's claim.
+3. Confirm that the approval turn qualifies under the current chat `Touch.Authority.Surface` protocol.
+4. Mint the current support reference through `references/link.md`. Its `Support.Set` includes the qualifying substantive turns plus the approval turn; the approval member carries `tokenized.approval.turn` cargo containing `token`, `verbatim_turn`, and `approval_turn`.
+5. Apply the approved edit and replace `^<anchor-on-landing>` with the minted anchor on every approved line with no more specific support. The substantive members ground the claim; the typed approval cargo independently makes the line eligible for `Reviewed.Content`.
+6. Update the router when concepts are added, renamed, moved, or gain appendix depth.
+7. Run the default linter plus the opt-in `line-approval` and `line-verbatim-gate` checks over the edited scope.
+8. Re-run `Touched.Decision.Cycle` contextualization over the changed live cut and report any remaining POIs separately from the completed edit.
 
 The opt-in material-equivalence check implements `Line.Verbatim.Gate`.
 
-A cluster of edits approved together lands under one gate — the landing trigger covers the batch; each item's grounding still anchors its own approval turn.
+A cluster of edits approved together lands under one gate — the landing trigger covers the batch; each item still resolves its own substantive support and approval evidence.
 
 ## Capture.Offer Entry
 

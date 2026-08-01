@@ -53,37 +53,53 @@ The binding mode and every other feature is an additive `--flag`; there are no c
 - `--note [TYPE] <text> ^anchor` — a documentation line: a typed, anchored `Index.Line` carried on the block
 - `--supp <text> ^anchor` — the block's own touched lines, anchored
 - `--cont <text>` — continues the previous flag generically; orphaned (no previous flag) it is a finding
-- `--to <locator>` — reserved; parsed and preserved, no behavior yet
+- `--routing-table` — declares one addressed `Routing.Table`; requires one `--select zero-or-one|one|many`
+- `--router-row` — declares one addressed `Batchy.Router.Row`; requires one `--table` owner and one `--match explicit|semantic|explicit-or-semantic`
+- `--routing-view calls|modules|full` — emits one deterministic projection of its `--table` into the runnable surface
+- `--table <address>` — assigns a row or view to an addressed `Routing.Table`
+- `--flag <configuration>` / `--alias <configuration>` — declare a row's canonical explicit configuration and equivalent spellings
+- `--match <policy>` — declares whether a row resolves explicitly, semantically, or through either input
+- `--default <text>` — declares a lower-authority resolution default for the row, repeatable
+- `--to <destination>` — declares a routed destination, repeatable
+- `--load <path>` — declares a package-local load target, repeatable and checked during expansion
 - a flag-less block is a **content span** (a tagged literal): plain body, no binding — its `^label`/`#address` only makes the span addressable
 
 ## Closure is by role
 
-A block owns an `end` by its role, in three cases:
+A block closes according to its role:
 
 - a **materializing** block (`--derived`/`--copy`) owns a mandatory `> $kw. end` — its body is the generated target and there is no other way to bound it
-- a **`Routing.Table`** block (one that acquires `--when`/`--then` children) owns a `> $kw. end`; its rows **peer-close** at the next row or the parent's end
-- a **declaration-only** block — one carrying dependency roles, `--note`/`--supp`, `--unlock-surface`, or the file-level `--context-assembly` marker — **self-closes** at its declaration and owns no `end`; following native text stays surface
+- a **declaration-only** block — one carrying dependency roles, `--note`/`--supp`, `--unlock-surface`, the file-level `--context-assembly` marker, or a routing annotation — **self-closes** at its declaration and owns no `end`; following native text stays surface
 - a bare `> $kw. end` closes the innermost open content block; a legacy `end-<command>`/`end-^label` closer is a finding directing to migration; a heading closes nothing — a content block still open at a heading or EOF is a finding
-- the parser is a `Closure.Parser`: below its `Parse.Floor` (well-formed machinery, explicit closure of content blocks, unique addresses, sane router rows) it emits parse errors; above the floor everything it does not recognize is opaque text, and nothing else can fail the parse
+- the parser is a `Closure.Parser`: below its `Parse.Floor` (well-formed machinery, explicit closure of content blocks, unique addresses, resolvable table membership, sane router rows) it emits parse errors; above the floor everything it does not recognize is opaque text, and nothing else can fail the parse
 
-## Routing.Table — composition by nesting
+## Routing.Table — addressed annotations
 
-A Skillware `Routing.Table` is a block whose children are nameless `--when`/`--then` `Batchy.Router.Row`s, each carrying a native-text body for its key prompt or value prompt. Rows alternate; a row out of order or a `--when` with no `--then` is a finding. One `> $kw. end` closes the table; the rows peer-close:
+A Skillware-managed `Routing.Table` is one addressed `Skw.Annotation`. Every `Batchy.Router.Row` is another addressed annotation that declares table membership explicitly, so the row remains independently referenceable and table structure does not depend on physical nesting.
+
+Rows can expose strict flags and aliases, permit semantic discovery through `--when`, declare defaults, and route to modeled destinations or package-local load targets. A semantic row requires `--when`; an explicit row requires `--flag`; duplicate explicit keys and unresolved local loads are findings. `--then` remains the human-readable routed effect.
+
+One canonical table may project several runnable views. `calls` shows explicit invocation, `modules` inventories modeled module destinations, and `full` renders the complete addressed row model:
 
 ```md
 ## Router Table
 
-> $kw: ^search-router
+> $kw: ^package-router --routing-table --select many
 
-> $kw: --when
-When the caller wants to find concepts or retrieve cited index context.
+> $kw: ^search-route --router-row --table ^package-router
+> --flag --search
+> --alias --research
+> --alias --ground
+> --match explicit-or-semantic
+> --default Index namespace when omitted
+> --to Index.Search.Operation.Module
+> --load references/search.md
+> --when the caller wants to find concepts or retrieve cited index context
+> --then load the search module and perform a read-only grounding pass
 
-Includes the read-only pass that precedes any edit proposal.
-
-> $kw: --then
-Load `references/search.md`.
-
-> $kw. end
+> $kw: ^public-calls --routing-view calls --table ^package-router
+> $kw: ^module-catalog --routing-view modules --table ^package-router
+> $kw: ^full-router --routing-view full --table ^package-router
 ```
 
 ## Context Assemblies
@@ -111,7 +127,7 @@ The complete multi-section context module continues as normal markdown.
 A dependency-role (or address) value is one of:
 
 - **`path#Region`** — a heading-section body in a file, resolved against the src root first, then the skill root. The region is the section's body: heading excluded, subsections included. A `.skw.md` target is recursively expanded before extraction (innermost first); expansion cycles are an error naming the chain. A plain (non-skw) file yields the raw region body.
-- **`path^label`** — a labeled span in a src file; **`^label`** alone is file-local (the current src). Labels are heading-independent, so the import survives section renames, and the dependency hash covers only the span — a consumer drifts with its fragment, not the file. Labels live only in src machinery (stripped at compile), so they address src files exclusively; renaming a label breaks importers, which the unresolvable-`--from` POI catches.
+- **`path^label`** — a labeled span or addressed self-closing routing annotation in a src file; **`^label`** alone is file-local (the current src). Span dependencies resolve their native body; routing annotations resolve a canonical nonempty field representation, so changing a row's flags, matching policy, destinations, or loads invalidates its consumers. Labels are heading-independent, so the import survives section renames and a consumer drifts with its addressed fragment rather than the file. Labels live only in src machinery (stripped at compile), so they address src files exclusively; renaming a label breaks importers, which the unresolvable-`--from` POI catches.
 - **`Dotted.Name`** — an index block resolved in the configured depots (`skw.json`); the value is the block's kernel-line body.
 - **`@<id>/path`** — a cross-package address: `<id>` names a `Skw.Pkg.Dependency` in `skw.json` `deps`, resolving to another package; the tail (`path#Region` or `path^label`) then resolves inside that package's own src exactly as a local locator would. This is the only way a `--from` leaves its own package — a raw relative path escaping the package (e.g. `../other/...`) is rejected, not resolved.
 

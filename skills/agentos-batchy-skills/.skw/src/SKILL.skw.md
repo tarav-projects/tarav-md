@@ -23,7 +23,7 @@ This is itself a `Batchy.Skill` — the convention it defines applies to it too.
 > --intent project the canonical gated Index write entry into the skill-authoring
 > --cont boundary without requiring a runtime hop through another skill
 
-Route index or appendix concept writes through `agentos-hugentics --edit`; bind the requested change and index scope, load the edit contract, follow `Kernel.Writing`, and do not mutate the gated surface until its approval and landing transitions resolve.
+Route index or appendix concept writes through `agentos-hugentics --edit`, bind the requested change and index scope, and load its edit contract. Follow `Kernel.Writing`; do not mutate the gated surface until its approval and landing transitions resolve.
 
 > $kw. end
 - Conventions are conventions an agent knows, not a Bash parser. Clear natural-language calls remain valid wherever the applicable `Batchy.Router.Row` permits automatic discovery.
@@ -47,7 +47,7 @@ Every Agentos skill is a `Batchy.Skill` — called like a terminal command and c
 - `Batchy.Router` — the single runtime router; it resolves run configuration from explicit flags, the live conversation, and declared defaults.
 - `Batchy.Skill.Flag` — a `--<flag>` token explicitly configuring the current run; only this written form carries flag semantics.
 - `Batchy.Router.Row` — one configured route, including which resolution inputs are permitted and which destination receives the result.
-- `Routing.Table` — the declarative router artifact consumed by `Batchy.Router`; Skillware writes its rows as alternating `--when` and `--then` blocks.
+- `Routing.Table` — the declarative router artifact consumed by `Batchy.Router`; on a Skillware-managed surface, the table and each addressed `Batchy.Router.Row` are `Skw.Annotation`s, and generated call/module views derive from that one table.
 - `Usage.Pattern.Routing` — a `Batchy.Router.Row` style whose semantic situation key routes a recurring usage pattern.
 - `Batchy.Skill.Template` — the canonical skeleton every Batchy skill instantiates.
 - `Batchy.Skill.Contract` — the in-skill mini-course restating the convention standalone (a `Cited.Duplication`).
@@ -105,6 +105,7 @@ Detail is split by audience: running a Batchy skill → [references/batchy-skill
 > $kw: --from Skill.Arg.Section
 > $kw: --from Skill.Explicit.Args
 > $kw: --from Skill.Module
+> $kw: --from Skw.Annotation
 > $kw: --from Usage.Pattern.Routing
 > $kw: --from User.Command
 > $kw: --from User.Command.Arg

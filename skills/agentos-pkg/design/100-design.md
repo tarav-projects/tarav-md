@@ -4,11 +4,11 @@
 
 ## Stable.Surface
 
-- `Stable.Surface` is a durable, authoritative surface where a specific facet of project knowledge lives
-- the "stable" contract: the content aims to be maintained, current, and trustworthy
-- all `Stable.Surfaces` must stay aligned — no surface is positioned as more important than another by default
-- misalignments between surfaces are resolved context-dependently, not by a fixed hierarchy
-- drift between stable surfaces is the target of `Internal.Alignment` — a problem to detect and resolve
+- `Stable.Surface` is a durable, authoritative surface where a specific facet of project knowledge lives ^c20260510-0u
+- the "stable" contract: the content aims to be maintained, current, and trustworthy ^c20260510-0u
+- all `Stable.Surfaces` must stay aligned — no surface is positioned as more important than another by default ^c20260510-0u
+- misalignments between surfaces are resolved context-dependently, not by a fixed hierarchy ^c20260510-0u
+- drift between stable surfaces is the target of `Internal.Alignment` — a problem to detect and resolve ^c20260510-0u
 
 ****
 

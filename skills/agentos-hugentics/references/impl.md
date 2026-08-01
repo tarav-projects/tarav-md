@@ -31,17 +31,7 @@ The unified driver supplies the `Batchy.Skill` calling convention.
 
 ## Batchy.Router
 
-The implementation flags call the same running `Batchy.Router` as the root skill. They select rows in the `Routing.Table` below; they are not a workflow-valued `Skill.Arg`.
-
-| Explicit configuration | Selected row |
-|---|---|
-| `--impl --design` | `Implementation.Design.Workflow.Module` |
-| `--impl --review` | `Implementation.Review.Workflow.Module` |
-| `--impl --execute` | `Implementation.Execute.Workflow.Module` |
-| `--impl --develop` | `Implementation.Develop.Workflow.Module` |
-| `--impl --capture` | `Implementation.Capture.Workflow.Module` |
-
-`--implementation` is an alias for the `--impl` namespace. The shortcuts `--impl-design`, `--review`, `--execute`, `--exec`, `--develop`, `--dev`, and `--impl-capture` normalize to the corresponding namespaced calls above.
+The implementation flags call the same running `Batchy.Router` as the root skill. The root `Routing.Table` (`^package-driver-router`) owns the namespaced configurations, shortcuts, matching policies, defaults, destinations, and load paths; this module consumes that resolved configuration rather than redeclaring a second table. Workflow selection is not a workflow-valued `Skill.Arg`.
 
 Without an explicit workflow flag, the router may use the resolved input, live conversation, and declared defaults. Resolve the workflow in this order:
 
@@ -60,28 +50,6 @@ Treat input as an `Impl.Req` when it is:
 - supplied artifact content carrying the `Impl.Abstract`, `Impl.Index`, `Execution.Plan`, and `Impl.Log` structure
 
 If neither an input nor actionable current context exists, orient to the available workflows and do not guess a target.
-
-## Routing.Table
-
-`Implementation.Design.Workflow.Module` is selected - the caller wants implementation planning.
-
-Load `references/impl/design.md` — produce an implementation-ready `Impl.Req`.
-
-`Implementation.Review.Workflow.Module` is selected - the caller wants an `Impl.Req` double-checked.
-
-Load `references/impl/review.md` — verify the artifact's claims against `Hard.Evidence` and report readiness in chat; read-only.
-
-`Implementation.Execute.Workflow.Module` is selected - the caller wants an existing `Impl.Req` executed.
-
-Load `references/impl/execute.md` — execute the artifact's `Execution.Plan`.
-
-`Implementation.Develop.Workflow.Module` is selected - the caller wants an idea taken through both phases.
-
-Load `references/impl/develop.md` — produce an `Impl.Req`, then execute that exact artifact.
-
-`Implementation.Capture.Workflow.Module` is selected - the caller wants the session's ready implementation work banked and the rest parked.
-
-Load `references/impl/impl-capture.md` — rank the touched, implementation-ready candidates, gate on the best pick, and hand it to develop.
 
 Load only the selected workflow module. The develop module composes design and execute and therefore loads both in sequence. Review is designed to run in a fresh agent that did not design the artifact — that is where the blind-spot check has value.
 

@@ -52,7 +52,7 @@
       ]
     },
     "references/doctrine.md": {
-      "output_sha256": "7a3a2129dddd571a6ac9295f497d54a9a23623e9d67306e60df70e6514ec9b25",
+      "output_sha256": "5933e7f6d97581f65dd1ba9115d6bf9e490654804e57a684901235e456300b48",
       "recipes": [
         {
           "heading": "The Model",
@@ -70,7 +70,7 @@
         {
           "heading": "The Block In Brief",
           "verb": "derived",
-          "body_sha256": "11bb1d418d114526cc1ea4519733d6981dc4300ef04005a5aff4163ebfe9136f",
+          "body_sha256": "6b33b4dc661245cb9264c8c6276ae43f243c2c1933f8a9bfb149298e880a67d8",
           "deps": {
             "references/lang.skw.md#Block Grammar": "fba395e7798b7441f2b94245019068a4a09f52ccea1d0a646ad6371ece90bf9e"
           }
@@ -82,7 +82,7 @@
       "recipes": []
     },
     "references/lang.md": {
-      "output_sha256": "b014ec8c6b02422c9b4a8006d7ba8c23a69c046afde34c816cffde5c35e059fe",
+      "output_sha256": "fb325a9ee82040c22e357acf946fd0ce17528b55a9d02db1599a6525f58c333d",
       "recipes": []
     }
   },

@@ -78,6 +78,7 @@ An approval-ready turn optimizes the user's ability to distinguish the proposed 
 - for an addition, show the proposed content; for a removal, show the current content
 - show unchanged context only when it improves interpretation
 - place each proposed landing line undecorated somewhere in the turn
+- do not resolve support or allocate an anchor while the proposal remains open to revision; when a future anchor must be shown, use the inert `^<anchor-on-landing>` placeholder
 - treat this rendering as user experience, not linter syntax; headings, order, fences, and diff notation may evolve
 
 ## User.Command Checkpoints
@@ -126,8 +127,9 @@ Available User.Commands:
 
 Landing form-fits material to the named surface under that surface's own gate. Approval-ready candidates show the concrete `Landing`, `Target`, operation, and proposed content; the destination may remain loose only while discussion is exploratory.
 
-- **ontology / appendix** — token approval establishes reviewed content, while a separate landing command executes the gated edit; the approval turn enters the line's support set only when it qualifies under the current chat authority protocol
+- **ontology / appendix** — token approval establishes reviewed content, while a separate landing command executes the gated edit; landing resolves qualifying substantive support plus the approval turn into the line's support set
 - **agendix** — one user trigger covers the pass without per-line review; each line still lands typed and grounded through a resolvable support set under a routed concept or provisional path
+- support resolution and anchor allocation are landing work; they occur against the final approved proposal, its qualifying substantive support, and its approval turn, never while the proposal remains open to revision
 - every landing updates the live cut; capture re-contextualizes afterward and reports remaining POIs without treating them as automatic edits
 
 ## Behavior

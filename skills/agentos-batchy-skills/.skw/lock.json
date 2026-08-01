@@ -2,20 +2,20 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "b80743f36517f71ea044db816a61491b8631d17f9af99e3372c6da21ff84a6bb",
+      "output_sha256": "6452a97d3d11548a2d4f2e81247c156bad6f1bb3762c15c59225dd539d8e7c0f",
       "recipes": [
         {
           "heading": "Boundary",
           "verb": "derived",
-          "body_sha256": "91b8a408b3b890ca3bc4d19ad76ad36c9574e0a98f31b15ed0fb237c672d583f",
+          "body_sha256": "c5fb4660158122862d2cee0fe5420feb6f6d7eb980ed668803a5c2fab285bb20",
           "deps": {
-            "@<agentos-hugentics>/SKILL.skw.md^index-write-entry": "49049c3205b207c4271293d38fe0a5de0eacb7869351393e9c17cddf6e3b3861"
+            "@<agentos-hugentics>/SKILL.skw.md^index-write-entry": "4a7116c6802926b152534d23d333da5a0f064501c129bfd29b13099e8b258b86"
           }
         }
       ]
     },
     "references/batchy-skill-designer.md": {
-      "output_sha256": "f8b8b4bc98fdb1d29474c5889d9f5b985f7ac600dc1b0ae525a9f6b3fce23027",
+      "output_sha256": "ee38b603b7677871b0526123b80a8c45ec060fc1172ed6304a0577ec4ef73ae4",
       "recipes": []
     },
     "references/batchy-skill-run.md": {

@@ -110,7 +110,9 @@ Every `Batchy.Router.Row` relates its permitted resolution inputs to one destina
 
 Declare each custom flag with the primitive or row that owns its effect. There is no separate flag section. Exact and alias keys are appropriate for strict routes; a semantic keyword family is appropriate only when the row deliberately accepts that softer key model.
 
-Use a `Routing.Table` when the skill needs declarative prompt routing. In Skillware, write the table as a labeled parent block containing alternating `--when` and `--then` rows. State whether the table may select none, one, or several rows when that is not obvious from the skill contract.
+Use a `Routing.Table` when the skill needs declarative routing. In Skillware, declare one addressed `--routing-table` annotation and give every `Batchy.Router.Row` its own address plus explicit `--table` membership. A row declares its canonical flags, aliases, resolution policy, defaults, routed destinations, load targets, and optional `--when`/`--then` prompts. The table declares whether resolution may select none, one, or several rows.
+
+Treat the table as the canonical router model. Place `--routing-view calls`, `--routing-view modules`, and `--routing-view full` annotations where the runnable skill needs its public call surface, module catalog, or complete semantic table; Skillware derives those views rather than asking authors to keep parallel tables aligned.
 
 `Usage.Pattern.Routing` is one row style, not another router. Its `--when` body describes a recurring usage situation and its `--then` body describes the response, surface, behavior, or further route that situation needs.
 

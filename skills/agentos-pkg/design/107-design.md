@@ -466,12 +466,12 @@
 ## Routing.Table
 
 - [DF] `Routing.Table` is the declarative router artifact consumed by `Batchy.Router` ^c20260731-6u
-- [DC] each row pairs a key prompt describing when the route applies with a value prompt describing what it contributes ^c20260731-6u
-- [DC] Skillware represents each row as alternating `--when` and `--then` blocks ^c20260731-6u
-- [CT] a key prompt may use a strict structured key or a semantic situation description ^c20260731-6u
+- [DC] Skillware represents a `Routing.Table` and each of its `Batchy.Router.Row` members as independently addressed `Skw.Annotation` instances ^c20260731-38u
+- [CT] each row declares table membership explicitly and carries its canonical flags, aliases, matching policy, defaults, destinations, load paths, and `--when`/`--then` prompts as annotation fields ^c20260731-38u
+- [CT] a row matching policy may require explicit configuration, permit semantic discovery, or accept either resolution path ^c20260731-38u
 - [CT] a table declares whether resolution may select none, one, or several rows ^c20260731-6u
 - [DC] rows are routing options rather than ordered steps ^c20260731-6u
-- [DC] a value prompt may contribute run configuration or continue routing through another `Routing.Table` ^c20260731-6u
+- [DC] a row's routed effect may bind a `Skill.Arg`, select a `Skill.Module`, contribute run configuration, or continue routing through another `Routing.Table` ^c20260731-38u
 
 ****
 

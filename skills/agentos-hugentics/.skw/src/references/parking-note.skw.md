@@ -54,10 +54,10 @@ DEPRECATED: `012.NOTEBOOK.md` was the former parking-note filename. Prefer `012.
 1. The user presents whatever they have — a sentence, a paragraph, a vague notion.
 2. The agent records the return context in chat: the interrupted task, the last concrete next step, and any active files or artifacts.
 3. The agent discusses the idea lightly: ask at most one focused question at a time, enough to enrich the idea, not enough to start a full design session.
-4. The agent drafts a block, picks a target file, and shows the exact proposed text with placeholder anchors such as `^<approval-anchor>`.
+4. The agent drafts a block, picks a target file, and shows the exact proposed text with inert placeholder anchors such as `^<anchor-on-landing>`.
 5. The user refines, redirects the target, rejects the note, or explicitly approves the exact block text for writing.
 6. If the user rejects the note, the agent writes nothing, mints no anchor, and returns a rejection report with the compact resume point.
-7. After approval, the agent mints an `Anchory.Anchor` for the approval turn through `references/link.md`.
+7. After approval, the agent mints an `Anchory.Anchor` through `references/link.md` whose support set contains the qualifying substantive turns plus the approval turn.
 8. The agent replaces placeholder anchors with the minted anchor and writes the block to the target file.
 9. The agent returns a close-out report: what was parked, where it was written, the anchor, and the compact resume point for the interrupted task.
 
