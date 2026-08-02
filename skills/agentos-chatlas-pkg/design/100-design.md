@@ -502,47 +502,70 @@
 
 ## Chat.Support.Set
 
-- [DF] `Chat.Support.Set` is the ordered, relevance-sorted set of `Chat.Surface` user turns that support an anchored statement ^c20260716-1u
-- [CT] support turns are user turns only — the authority moments; assistant content is recovered by neighborhood reading ^c20260715-5u
-- [DC] a support set may hold a single turn when one turn is the actual support, or many when the fact spans them ^c20260715-5u
-- [DC] the set is relevance-sorted — a reader consumes top-down, as deep as its budget allows ^c20260715-5u
-- [DC] support turns may be typed: a `Turn.Type` names the role a turn plays for the annotated statement, orthogonal to the sort order ^c20260716-2u
-- [DC] an untyped member is plain evidence — the default role; typed members carry specific duties ^c20260716-2u
-- [EX] `Turn.Type::Project.Index.Gate` — the turn where the user approved the line's verbatim text onto the index ^c20260716-2u ^c20260716-10u
-- [PR] types make gates checkable: a surface's gate can require a turn of a given type in every line's set — presence is CPU-lintable, correspondence stays an agent check ^c20260716-2u
-- [PR] anchor the authority, read the content around it — the user reaction is the touch event; the idea it reacts to is the neighborhood ^c20260715-5u
-- [DC] registration echoes the set's neighborhoods for the minting agent to verify ^c20260715-5u
-- [DC] the support set is a general primitive: any anchored statement has one, whatever surface it lives on; specializations name the subject — `Support.Set::Index.Line` is an `Index.Line`'s set ^c20260716-15u
+- [DF] `Chat.Support.Set` is the nonempty set of exact `User.Turn`s an agent judges to support one grounded statement ^c20260802-2u
+- [DC] its current record preserves members as a duplicate-free, relevance-ordered list so readers can consume the strongest support first ^c20260802-2u
+- [DC] membership alone gives a turn its base-support role; a member with no `Turn.Type` annotation is plain support ^c20260802-2u
+- [DC] a member may carry one or more `Turn.Type` annotations for additional roles without losing its base-support standing ^c20260802-2u
+- [CT] annotations do not select support, change membership, or impose an ordering key ^c20260802-2u
+- [DC] one set may contain a single turn or several turns when the statement spans them ^c20260802-2u
+- [CT] the current Index-grounding realization accepts visible user turns only; assistant content is recovered through their neighborhoods ^c20260802-2u
+- [PR] anchor the authority turns and read their neighborhoods — the user turn carries touch while surrounding content supplies context ^c20260802-2u
+- [DC] registration echoes every member neighborhood for agent verification ^c20260802-2u
+- [CT] `Chat.Support.Set` realizes `Support.Set` for chat evidence without restricting the general support model to chat ^c20260802-2u
 
 ### meta
 
-- aliases: `Support.Set`, `Anchor.Support.Turns`, `Anchor.Landing.Turns`
+- aliases: `Anchor.Support.Turns`, `Anchor.Landing.Turns`
 
 ****
 
 ## Turn.Type
 
-- [DF] `Turn.Type` is the role a member turn plays inside a `Chat.Support.Set` — a per-member tag, orthogonal to the set's relevance sort ^c20260716-3u
-- [DC] the untyped member is the default: plain evidence for the annotated statement ^c20260716-3u
-- [DC] the vocabulary is soft and extensible (`Concept.Hardness`) — a new type is an index edit, mirroring `Line.Type.Vocabulary` ^c20260716-3u
-- [DC] gates consume types by name: a surface gate may require a turn of a given type in every line's set; the linter checks presence, the agent checks correspondence ^c20260716-3u
-- [DC] gate types follow the surface: each `Verbatim.User.Gated` surface names its own gate type — `Turn.Type::<Surface>.Gate` ^c20260716-10u
-- [EX] `Turn.Type::Project.Index.Gate` — the turn that opened the project index gate for a line's verbatim text; required by the `Project.Index`'s gated surfaces ^c20260716-10u
-
-### meta
-
-- aliases: `Turn.Type::Index.Approved` (of `Turn.Type::Project.Index.Gate`)
+- [DF] `Turn.Type` is an optional semantic annotation on a `Chat.Support.Set` member naming an additional role the turn plays ^c20260802-2u
+- [DC] absence of annotations means base support only ^c20260802-2u
+- [DC] one member may carry multiple `Turn.Type` annotations ^c20260802-2u
+- [CT] annotations are orthogonal to support membership and relevance order ^c20260802-2u
+- [DC] the vocabulary is soft and extensible; each type consumer owns validation of its cargo ^c20260802-2u
+- [EX] `semantic.approval.turn` marks an agent-judged approval member ^c20260802-2u
+- [EX] `tokenized.approval.turn` marks a CPU-verifiable verbatim approval member and carries its token, proposal turn, and approval turn ^c20260802-2u
 
 ****
 
-## Chat.Agendix
+## Chat.Touched.Index
 
-- [DF] `Chat.Agendix` is the agendix of a chat: `Index.Line`s attached to the chat itself — the `Touched.Surface.Index` member whose attachment point is the `Chat.Surface` ^c20260717-2u
-- [DC] a line grounds through its `Chat.Support.Set`: a claim may involve several turns — the set carries them all ^c20260717-1u
-- [DC] one member is the attachment turn — the line's tape position and ordering key, typed `Turn.Type::Attachment`; a single-turn set attaches where it grounds ^c20260717-1u ^c20260717-2u
-- [DC] its axes: ungated, tape-ordered — lines sort by their attachment turn, a kernel pass over the chat length, not a relevance sort ^c20260713-7u
-- [CT] terminal: it never drains — nothing promotes out of it; it digests the chat where the chat is, an inbox for no one ^c20260713-6u
-- [DC] consumers cite the chat evidence, never the agendix line — a reading aid over the source, a cache with no authority of its own ^c20260713-6u
-- [DC] on a closed chat the digest converges: a finished tape admits a stable, complete pass ^c20260713-6u
-- [DC] provenance is hard: every line anchored to its turns — the agendix of a chat is chat indexing in the most literal sense ^c20260713-7u
-- lint follows the gate pattern: exactly one attachment per line is CPU-checkable presence ^c20260717-1u
+- [DF] `Chat.Touched.Index` is the per-session projection of `Touched.Index` involved in one `Chat.Surface` ^c20260802-3u
+- [CT] its construction is closed over the target chat content and consults no external Project or Package Skill Index ^c20260802-3u
+- [DC] it contains the Index blocks and lines present in the chat plus additional touched knowledge captured from qualifying user turns ^c20260802-3u
+- [CT] imported and freshly captured lines have no structural distinction inside the projection ^c20260802-3u
+- [DC] present line contents retain their existing `Support.Reference`s while newly captured lines ground through support sets built from the session ^c20260802-98u
+- [CT] changing a recovered line’s `Line.Type` or body creates new line content and requires support reevaluation and reanchoring ^c20260802-99u
+
+****
+
+## Chat.Index
+
+- [DF] `Chat.Index` is the materialized surface of one `Chat.Touched.Index` ^c20260802-3u
+- [DC] it lives at `<chatlas-root>/session-index/<identity-hash>/` ^c20260802-3u
+- [DC] its two layers are `ontology/` and `appendix/` ^c20260802-3u
+- [CT] both layers are unreviewed; ontology versus appendix expresses density and depth, not review standing ^c20260802-3u
+- [DC] one unified construction recovers `Chat.Ontology` and then captures additional session knowledge into that structure ^c20260802-3u
+
+****
+
+## Chat.Ontology
+
+- [DF] `Chat.Ontology` is the set of Index blocks and lines present in the target chat ^c20260802-3u
+- [DC] recovered material preserves its existing block structure and support references ^c20260802-3u
+- [DC] it supplies the starting structure for constructing the `Chat.Index` ^c20260802-3u
+- [PR] newly captured lines attach preferentially to its existing blocks ^c20260802-3u
+- [DC] copying or moving recovered typed content without changing it preserves the line identity and its anchor ^c20260802-100u
+- [CT] attachment context may change the meaning of otherwise identical content; construction judges that semantic difference because deterministic line-identity linting cannot detect it ^c20260802-101u
+- [DC] when construction judges that an attachment changes the support relationship, it assigns an independent anchor even though the typed content remains identical ^c20260802-102u
+
+****
+
+## Chat.Appendix
+
+- [DF] `Chat.Appendix` is the depth layer of a `Chat.Index` ^c20260802-3u
+- [DC] it holds deeper captured lines beneath the concepts represented in `Chat.Ontology` ^c20260802-3u
+- [FR] when no recovered ontology block fits, construction may create a chat-local concept and place its depth here ^c20260802-3u
