@@ -1,4 +1,5 @@
 {
+  "id": "agentos-hugentics",
   "depots": ["../agentos-pkg"],
   "deps": {"agentos-batchy-skills": "../agentos-batchy-skills"}
 }

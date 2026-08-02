@@ -1,3 +1,5 @@
+> $kw: ^agentos-root-reachability --reachable-from @<agentos-pkg>/SKILL.md
+
 ---
 name: agentos-live-surfaces
 description: "Live surface protocols for notes and scripts. USE WHEN the user mentions live-note, live-script, live surface, or needs canonical location, naming, or numbering for notes/live/ or dev/live/."

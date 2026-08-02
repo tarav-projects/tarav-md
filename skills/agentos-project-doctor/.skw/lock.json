@@ -2,14 +2,14 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "ca86efea94546828c30ec251061cf0c142d88d8f519f3d7b36d60f500347c036",
+      "output_sha256": "8b1a290d67c8799d846d1ab05e3f705d871e1b651b30700ffad16a3cfd5d2c95",
       "recipes": [
         {
           "heading": "Source Model",
           "verb": "derived",
-          "body_sha256": "98ee213c868058cb994de06656d2f71beeb57c494536db74781033d9e906ce7d",
+          "body_sha256": "a0aa2fc03436e6b0f4a768dc10c99f08e61b97045f62fe9cef986c9f449bd15d",
           "deps": {
-            "@<agentos-hugentics>/SKILL.skw.md^index-ground-entry": "a8b6e776f53489288c7c60e8f39b58bca4f506d46ed9d106269418511712dba6"
+            "@<agentos-hugentics>/SKILL.skw.md^driver-index-literacy": "13bf1a364d46137d7ea3be1ff81b41873246e97fdc53de1c589f7374c9342c4d"
           }
         }
       ]

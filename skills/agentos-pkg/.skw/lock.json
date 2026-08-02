@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "734eb6fc426d4e81e131f0ae0bac28b3c98e7679c0d4592fb35266493f84e645",
+      "output_sha256": "9651f7a1b416c9f910e4db22c6aebcabadc9947a28e1e626587290aed983c3c8",
       "recipes": [
         {
           "heading": "^agentos-pkg-batchy-runtime-contract",
@@ -15,13 +15,13 @@
         {
           "heading": "^driver-index-literacy",
           "verb": "derived",
-          "body_sha256": "13b07c1f6207e8fb026eaadca0d53b03dbdb7f0409b97841c8caec921d5e23af",
+          "body_sha256": "16d17c8ae0b56d95b7a828e7c43924b7ca926c06c480f46bc8fab0565838d616",
           "deps": {
             "Agentos.Index.System": "ed9687e30d13e40d9bb1b734aa52491d0247c67e9d9dc5ed5eee28d0e14f9c04",
             "Dotted.Notation": "8cac1983cfd7b5d5b190eb0e844c86d299953973b8ca0d03701933a2b0ace51b",
             "Index.Appendix": "7d92425783d55ea55e717ea1411fee7ffffdcccb7b2981acafbcd6498572b8a4",
             "Index.Chapter": "d305dafdd1dc6d751bfd4ff827322d6db986c491c7e6f28419bb0a544b636c95",
-            "Index.Line": "27c0d8ba7f893fb84c75c184cd305c66871863a415361c46976ca60e9955ae64",
+            "Index.Line": "40ee689928d2dca780ca84f067704977672950f7e4df14bbe4f505e146aff651",
             "Kernel.Block": "27e35d3040cf8bad276705b460a9529a41c387aa4bf134149e7ffcfd953dc2c9",
             "Line.Type": "ff3916580bc6842eae6c9094e9878c2288f510662c3e93c642af65365a8fe682",
             "Package.Skill": "6d5459bf56a19e85e0311b2f1905bf96cd9a5ab5085de65b128ba32329ef2f06",

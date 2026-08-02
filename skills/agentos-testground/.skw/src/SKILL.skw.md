@@ -1,3 +1,5 @@
+> $kw: ^agentos-root-reachability --reachable-from @<agentos-pkg>/SKILL.md
+
 ---
 name: agentos-testground
 description: "Testing subsystem for package skills — behavioral tests that measure how agents use a Package.Skill in a controlled project environment. Covers test format, runner isolation, trace capture, and behavior-tier evaluation. USE WHEN running, listing, designing, or evaluating testground tests for a package skill. Called like a terminal command: a `--run`/`--list`/`--design`/`--evaluate` command on a target `--package`."

@@ -1,3 +1,5 @@
+> $kw: ^agentos-root-reachability --reachable-from @<agentos-pkg>/SKILL.md
+
 ---
 name: agentos-git-commit
 description: Run a deterministic semantic git commit flow across existing repositories. USE WHEN the user explicitly invokes `$agentos-git-commit` and wants changes grouped into focused Conventional Commits without tests, pushes, or repository initialization.

@@ -24,7 +24,7 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 
 ## Source Model
 
-Use package orientation plus the Hugentics Index grounding contract before diagnosis.
+Use package orientation plus Hugentics' always-loaded Index literacy before diagnosis.
 
 ## Trigger Boundary
 

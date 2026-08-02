@@ -1,3 +1,4 @@
 {
+  "id": "agentos-session-supervisor",
   "depots": ["../agentos-pkg"]
 }

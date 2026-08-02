@@ -1,3 +1,5 @@
+> $kw: ^agentos-root-reachability --reachable-from @<agentos-pkg>/SKILL.md
+
 ---
 name: agentos-master-pkg-agent
 description: Ask a separate read-only agent to research and answer almost any question using the organized knowledge and capabilities available through Agentos packages, while keeping that research out of the caller's context. Use whenever the user explicitly says `master-agent` or `agentos-agent`. Also use when a question may benefit from broad or uncertain research, when the caller does not know which Agentos package or subsystem contains the answer, or when answering directly would require loading substantial context. This is a valid entry point even before the caller understands or has entered the Agentos framework.

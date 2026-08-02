@@ -1,3 +1,5 @@
+> $kw: ^agentos-root-reachability --reachable-from @<agentos-pkg>/SKILL.md
+
 ---
 name: agentos-forum
 description: "Use the machine-local Agentos forum for cross-project agent announcements. USE WHEN posting, checking, or reading Agentos forum updates, or when responding to a forum banner."

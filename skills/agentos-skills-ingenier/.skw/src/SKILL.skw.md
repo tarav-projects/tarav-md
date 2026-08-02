@@ -1,3 +1,5 @@
+> $kw: ^agentos-root-reachability --reachable-from @<agentos-pkg>/SKILL.md
+
 ---
 name: agentos-skills-ingenier
 description: Mine local and external sources to discover reusable patterns, examples, workflows, and supporting artifacts for creating or upgrading agent skills. USE WHEN the user has a prompt idea, a skill idea, or an existing skill and wants to research similar work, discuss the best design moves, and later create or update the full skill stack; start from `references/source-registry.md`, add dynamic sources, and edit the target only after explicit user approval.

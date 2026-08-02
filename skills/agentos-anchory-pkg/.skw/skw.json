@@ -1,3 +1,4 @@
 {
+  "id": "agentos-anchory-pkg",
   "depots": ["../agentos-pkg"]
 }

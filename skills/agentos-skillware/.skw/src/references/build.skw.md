@@ -8,7 +8,8 @@ Make a skill's Skillware-managed surfaces match their sources. The builder never
 
 - `agentos skw build --skill <path>` — the deterministic compile: refresh `copy` bodies in src, compile every `.skw.md` to its target, write `lock.json`, stamp `.skw/AGENTS.md`
 - `agentos skw status --skill <path>` — inventory: managed files, recipe counts, lock state
-- `agentos skw context --skill <path> --target <runnable-file>` — resolve every declared `Context.Loading.Path`, validate its addressed `--loading-dep` requirements, and assemble each path-specific `Projected.Context`
+- `agentos skw context --skill <path>` — audit every `--reachable-from` assertion visible in the package graph and print its typed witness path
+- `agentos skw context --skill <path> --target <runnable-file>` — resolve local `Context.Loading.Path` declarations or a package-qualified target's reachability witness, validate applicable dependencies, and assemble each path-specific `Projected.Context`
 - all take `--json` for machine-readable output
 
 ## What Build Does

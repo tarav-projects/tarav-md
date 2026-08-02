@@ -32,7 +32,7 @@
       ]
     },
     "references/build.md": {
-      "output_sha256": "b23bf68adc22c51aab2a176f65bafa6080610ddb98ae38770ea94e0220f68626",
+      "output_sha256": "1d263fc5225f9c42f3aae014b0472603d1841a0aa4719db8cd566d166d2d00ff",
       "recipes": []
     },
     "references/check.md": {
@@ -82,7 +82,7 @@
       "recipes": []
     },
     "references/lang.md": {
-      "output_sha256": "ab4f60342de68163f3b114e2b7982c97e9dbca8137aa0d48a9d7272195e13a16",
+      "output_sha256": "b53163a31247c61447803495ca56980295cf768dfe4d6185f19fa20661c9ee0b",
       "recipes": []
     }
   },

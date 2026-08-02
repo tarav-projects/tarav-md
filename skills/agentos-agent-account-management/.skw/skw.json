@@ -1,3 +1,4 @@
 {
+  "id": "agentos-agent-account-management",
   "depots": ["../agentos-pkg"]
 }

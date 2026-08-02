@@ -1,3 +1,5 @@
+> $kw: ^agentos-root-reachability --reachable-from @<agentos-pkg>/SKILL.md
+
 ---
 name: agentos-project-doctor
 description: Diagnose how well a target folder conforms to the Agentos.Stack project model. USE WHEN the user asks for an Agentos doctor pass, project health check, adoption assessment, migration assessment, or wants to evaluate an Agentos.Project target. Called like a terminal command — `--target <folder>` (defaults to the current directory), report-only. Suitable for low-reasoning, cost-efficient models because the default task is report-only inspection. Do not fix unless explicitly asked in a follow-up.
@@ -25,11 +27,11 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 ## Source Model
 
 > $kw: --derived
-> --from @<agentos-hugentics>/SKILL.skw.md^index-ground-entry
+> --from @<agentos-hugentics>/SKILL.skw.md^driver-index-literacy
 > --intent project the Index grounding entry into doctor orientation so diagnosis
 > --cont has touched context without a runtime skill-to-skill instruction
 
-Use package orientation plus the Hugentics Index grounding contract before diagnosis.
+Use package orientation plus Hugentics' always-loaded Index literacy before diagnosis.
 
 > $kw. end
 

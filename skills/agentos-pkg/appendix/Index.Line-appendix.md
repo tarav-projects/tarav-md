@@ -4,29 +4,29 @@
 
 ## Index.Line/Grounding.Mechanics
 
-- [DC] a line's trailing anchors are a curated pointer set: the best known places to look for user-touched evidence about the line — up to 3, all high value, upgrading beats accumulating ^c20260709-0u
-- [DC] the whole-block gate turn is the legitimate fallback pointer — stamped at gated landing on every line no more specific turn covers; it is the line's `Turn.Type::<Surface>.Gate` member ^c20260709-1u ^c20260716-10u
-- fine and coarse are emergent, not marked: sibling lines sharing one anchor read as a block-approval stamp; a diverging anchor marks a line with its own history ^c20260709-1u
-- the fallback stamp is coarse but honest — new content is born grounded ^c20260709-1u
-- same reading rule everywhere: the anchor lands in an evidence neighborhood — read the landing turn and around it ^c20260709-2u
-- a superseded or removed anchor is simply dropped — the edge demotes (`Demoted.Index.Line`); git keeps the history ^c20260716-27u ^c20260716-28u
-- the `Index.Agendix` hard provenance rule is this grounding made mandatory ^c20260709-2u
-- grounding lives only on index/appendix blocks; downstream surfaces cite the grounded block instead of re-grounding ^c20260709-2u
+- [DC] each grounded line materialization carries one trailing `Anchory.Anchor` realizing its `Support.Reference` ^c20260802-82u
+- [CT] one anchor may occur on repeated materializations of the same typed content but never on different line contents ^c20260802-81u
+- [CT] distinct anchors may resolve to equivalent `Support.Set` contents without coupling their line relationships ^c20260802-73u
+- [DC] support added to unchanged line content extends its existing relationship; changed content requires support reevaluation and reanchoring ^c20260802-74u
+- [PR] evidence accumulates inside the support set rather than as additional anchor tokens on the line ^c20260802-75u
+- [DC] resolving the anchor reaches the line’s evidence set; readers escalate into member neighborhoods when the record alone is insufficient ^c20260802-79u
+- [DC] a superseded reference is dropped from the live line while surface history preserves the former relationship ^c20260802-76u
+- [CT] grounding applies across `Touched.Surface.Index` members and does not require attachment to an `Index.Block` ^c20260802-80u
 
 ****
 
 ## Index.Line/Grounding.Density
 
-- [DC] `Grounding.Density` is the first grounding metric: unique resolvable support references / kernel lines — evidence density relative to block size; anchor syntax alone contributes nothing ^c20260709-3u ^c20260709-6u
-- a fresh block-approval stamp reads 1/n — covered but coarse; the ratio may exceed 1 (up to 3 anchors per line); a resolution gauge, not a debt gauge ^c20260709-3u
-- the metric aggregates over any scope — block, chapter, depot: unique resolvable support references within the scope / kernel lines in the scope ^c20260709-5u
+- [DC] `Grounding.Density` is the ratio of grounded distinct line contents to all distinct live line contents within a scope ^c20260802-71u
+- [CT] repeated materializations of identical typed content count once within the measured scope ^c20260802-70u
+- [CT] only a resolvable nonempty support reference contributes grounding; anchor syntax alone contributes nothing ^c20260802-77u
 
 ****
 
 ## Index.Line/Grounding.Head
 
-- [GR] the user defines the line anchor as the best known place to look for user-touched evidence about the line — a curated, upgradeable pointer, up to 3 per line ^c20260709-0u
-- [GR] the user sets the whole-block approval turn as the legitimate fallback pointer stamped at gated landing ^c20260709-1u
-- [GR] the user retires block-level grounding machinery: grounding is a line property defined positively on `Index.Line`; `Grounding.Head`/`Grounding.Drift` demote, mechanics live in this appendix ^c20260716-33u ^c20260717-0u
+- [GR] the user defines the anchor as one line content’s support link and permits unchanged materializations to reuse it ^c20260802-78u
+- [GR] the user separates reusable support-set contents from independent support references for different line contents ^c20260802-83u
+- [GR] block-level grounding machinery remains retired because grounding is a line property ^c20260802-72u
 
 ****

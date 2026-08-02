@@ -1,3 +1,5 @@
+> $kw: ^agentos-root-reachability --reachable-from @<agentos-pkg>/SKILL.md
+
 ---
 name: agentos-session-supervisor
 description: "Observe another Chatlas-backed agent session as a non-mutating supervisor. USE WHEN the user wants an agent to follow a target session, check new turns, apply an evolving supervision brief, report deviations or risks, and optionally draft paste-ready interventions while keeping all supervisor state in the current conversation. Called like a terminal command — `--session <target>` plus an optional `--brief` and `--role` lenses."

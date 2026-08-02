@@ -40,7 +40,7 @@ When a surface mentions another skill or reference, load it only if the relevant
 
 ## The Index
 
-The Agentos Index is a concept and design knowledge base — a searchable collection of named entries that capture what a project or package knows about itself. Each entry is a **Kernel Block** — a short, named section that describes one concept from multiple angles using direct, orthogonal lines. The index is the primary discovery surface — where agents go to understand, question, or extend a project's design.
+The Agentos Index is a concept and design knowledge base — a searchable collection of named entries that capture what a project or package knows about itself. Its atomic content is the typed `Index.Line`; lines attach to a **Kernel Block**, a short named section that supplies their concept context and presents distinct dimensions with minimal overlap. The index is the primary discovery surface — where agents go to understand, question, or extend a project's design.
 
 Concepts are named using **Dotted Notation** — compound names like `Vertical.Slice` or `Agentos.Index.System` that serve as stable identifiers.
 
@@ -141,7 +141,7 @@ For provider account credential artifact reconciliation and troubleshooting, use
 
 ## Package.Driver.Router
 
-This `Package.Driver.Router` is a specialized `Routing.Table` that sends a package-level need to the narrower skill or configured Hugentics route that owns it. Its destinations are cross-skill calls, not local-file load edges.
+This `Package.Driver.Router` is a specialized `Routing.Table` that sends a package-level need to the narrower skill or configured Hugentics route that owns it. Each cross-skill call keeps its routed effect in `--to` and declares its typed whole-file loading edge separately in `--load`.
 
 Selection cardinality: `many`.
 
@@ -149,6 +149,7 @@ Selection cardinality: `many`.
 
 - match: `semantic`
 - destinations: `agentos-hugentics`
+- loads: `@<agentos-hugentics>/SKILL.md`
 - when: the caller needs Hugentic session control, Index research, editing, diagnosis, maintenance, or a structured human-agent workflow
 - then: load agentos-hugentics
 
@@ -156,6 +157,7 @@ Selection cardinality: `many`.
 
 - match: `semantic`
 - destinations: `agentos-hugentics --design`
+- loads: `@<agentos-hugentics>/SKILL.md`
 - when: the caller wants touched-data-contextualized product design
 - then: load agentos-hugentics --design
 
@@ -163,6 +165,7 @@ Selection cardinality: `many`.
 
 - match: `semantic`
 - destinations: `agentos-hugentics --impl`
+- loads: `@<agentos-hugentics>/SKILL.md`
 - when: the caller wants implementation design, execution, review, or end-to-end development
 - then: load agentos-hugentics --impl
 
@@ -170,6 +173,7 @@ Selection cardinality: `many`.
 
 - match: `semantic`
 - destinations: `agentos-hugentics --workflow-status`
+- loads: `@<agentos-hugentics>/SKILL.md`
 - when: the caller wants a structured checkpoint for an active workflow
 - then: load agentos-hugentics --workflow-status
 
@@ -177,6 +181,7 @@ Selection cardinality: `many`.
 
 - match: `semantic`
 - destinations: `agentos-live-surfaces`
+- loads: `@<agentos-live-surfaces>/SKILL.md`
 - when: the caller needs live-note or live-script location, naming, or numbering
 - then: load agentos-live-surfaces
 
@@ -184,6 +189,7 @@ Selection cardinality: `many`.
 
 - match: `semantic`
 - destinations: `agentos-batchy-skills`
+- loads: `@<agentos-batchy-skills>/SKILL.md`
 - when: the caller needs Agentos skill taxonomy, calling conventions, argument parsing, or routing conventions
 - then: load agentos-batchy-skills
 
@@ -191,6 +197,7 @@ Selection cardinality: `many`.
 
 - match: `semantic`
 - destinations: `agentos-skills-ingenier`
+- loads: `@<agentos-skills-ingenier>/SKILL.md`
 - when: the caller wants to create or upgrade a skill
 - then: load agentos-skills-ingenier
 
@@ -198,6 +205,7 @@ Selection cardinality: `many`.
 
 - match: `semantic`
 - destinations: `agentos-hugentics --clean`
+- loads: `@<agentos-hugentics>/SKILL.md`
 - when: the caller wants a targeted codebase cleanup through the Hugentic harness
 - then: load agentos-hugentics --clean
 
@@ -205,6 +213,7 @@ Selection cardinality: `many`.
 
 - match: `semantic`
 - destinations: `agentos-git-commit`
+- loads: `@<agentos-git-commit>/SKILL.md`
 - when: the caller explicitly requests a deterministic semantic commit workflow
 - then: load agentos-git-commit
 
@@ -212,6 +221,7 @@ Selection cardinality: `many`.
 
 - match: `semantic`
 - destinations: `agentos-project-doctor`
+- loads: `@<agentos-project-doctor>/SKILL.md`
 - when: the caller wants a project-health or Agentos-conformance diagnosis
 - then: load agentos-project-doctor
 
@@ -219,8 +229,65 @@ Selection cardinality: `many`.
 
 - match: `semantic`
 - destinations: `agentos-chatlas-pkg`
+- loads: `@<agentos-chatlas-pkg>/SKILL.md`
 - when: the caller needs to query, export, or continue a previous agent session
 - then: load agentos-chatlas-pkg
+
+### `^route-account-management`
+
+- match: `semantic`
+- destinations: `agentos-agent-account-management`
+- loads: `@<agentos-agent-account-management>/SKILL.md`
+- when: the caller needs to inspect, activate, repair, or diagnose provider accounts and provider homes
+- then: load agentos-agent-account-management
+
+### `^route-anchory-package`
+
+- match: `semantic`
+- destinations: `agentos-anchory-pkg`
+- loads: `@<agentos-anchory-pkg>/SKILL.md`
+- when: the caller needs anchor literacy, resolution, registration, or depot operation
+- then: load agentos-anchory-pkg
+
+### `^route-forum`
+
+- match: `semantic`
+- destinations: `agentos-forum`
+- loads: `@<agentos-forum>/SKILL.md`
+- when: the caller needs to post, check, or read the Agentos forum
+- then: load agentos-forum
+
+### `^route-master-package-agent`
+
+- match: `semantic`
+- destinations: `agentos-master-pkg-agent`
+- loads: `@<agentos-master-pkg-agent>/SKILL.md`
+- when: the caller asks a separate read-only agent to research across Agentos packages
+- then: load agentos-master-pkg-agent
+
+### `^route-session-supervisor`
+
+- match: `semantic`
+- destinations: `agentos-session-supervisor`
+- loads: `@<agentos-session-supervisor>/SKILL.md`
+- when: the caller wants read-only supervision of another Chatlas-backed agent session
+- then: load agentos-session-supervisor
+
+### `^route-skillware`
+
+- match: `semantic`
+- destinations: `agentos-skillware`
+- loads: `@<agentos-skillware>/SKILL.md`
+- when: the caller needs Skillware doctrine, authoring, building, checking, or adoption
+- then: load agentos-skillware
+
+### `^route-testground`
+
+- match: `semantic`
+- destinations: `agentos-testground`
+- loads: `@<agentos-testground>/SKILL.md`
+- when: the caller needs package-skill behavioral test design, execution, or evaluation
+- then: load agentos-testground
 
 ## Further Discovery
 

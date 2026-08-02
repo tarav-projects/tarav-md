@@ -1,4 +1,5 @@
 {
+  "id": "agentos-project-doctor",
   "depots": ["../agentos-pkg"],
   "deps": {"agentos-hugentics": "../agentos-hugentics"}
 }

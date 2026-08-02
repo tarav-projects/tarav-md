@@ -6,7 +6,7 @@ The operational spec of the Skillware source language. This module is normative 
 
 - `<skill>/.skw/src/` mirrors the skill tree: `src/references/ground.skw.md` compiles to `references/ground.md` (strip `.skw`); `src/SKILL.skw.md` to `SKILL.md`
 - no `.skw.md` = the file is hand-owned; Skillware never touches it — adoption is per-file, a skill can be partially managed
-- `.skw/skw.json` — settings: `{"depots": [...], "unlock_registries": [...]}` for `Dotted.Name` resolution and explicit `Poi.Unlock.Token` registry imports; paths are relative to the skill root
+- `.skw/skw.json` — package identity and settings: `{"id": "my-skill", "depots": [...], "deps": {...}}`; paths are relative to the skill root
 - `.skw/lock.json` — build output (output and per-construct hashes); engine-owned, never hand-edit
 - `.skw/AGENTS.md` — engine-stamped on every build, overwrite-always; redirects agents outside skillware activity to src + toolchain
 
@@ -50,6 +50,7 @@ The binding mode and every other feature is an additive `--flag`; there are no c
 - `--context-assembly` — a line-1, self-closing file declaration marking the complete `.skw.md` module as a `Context.Assembly.Module`; its repeatable `--from` values define its direct package-local coverage boundary
 - `--context-loading-path` — an addressed, top-of-file declaration of one complete normal runtime loading path for the current target; repeatable `--step` fields name ordered runnable files preceding the implicit target
 - `--loading-dep <source-locator>` — addressed runtime content the consuming file fundamentally requires from an earlier step of every declared loading path; repeatable on any annotation and normally carried by `--context-loading-path`
+- `--reachable-from <runtime-file>` — a file-point assertion that at least one typed loading path reaches the declaring target from the named local or `@<package>/...` runtime file; repeatable and independently witnessed
 - `--unlock-surface` — marks one explicitly addressed context surface represented by one token in the registry named by its single `--from`; takes no value
 - `--intent <text>` — the derivation rule's context, free prose; a binding flag's own trailing text folds into it
 - `--note [TYPE] <text> ^anchor` — a documentation line: a typed, anchored `Index.Line` carried on the block
@@ -63,7 +64,7 @@ The binding mode and every other feature is an additive `--flag`; there are no c
 - `--match <policy>` — declares whether a row resolves explicitly, semantically, or through either input
 - `--default <text>` — declares a lower-authority resolution default for the row, repeatable
 - `--to <destination>` — declares a routed destination, repeatable
-- `--load <path>` — declares a package-local load target, repeatable and checked during expansion
+- `--load <runtime-file>` — declares a typed whole-file loading edge; local paths stay in the package and `@<id>/path` targets a registered package, repeatable and checked during expansion
 - a flag-less block is a **content span** (a tagged literal): plain body, no binding — its `^label`/`#address` only makes the span addressable
 
 ## Closure is by role
@@ -79,7 +80,7 @@ A block closes according to its role:
 
 A Skillware-managed `Routing.Table` is one addressed `Skw.Annotation`. Every `Batchy.Router.Row` is another addressed annotation that declares table membership explicitly, so the row remains independently referenceable and table structure does not depend on physical nesting.
 
-Rows can expose strict flags and aliases, permit semantic discovery through `--when`, declare defaults, and route to modeled destinations or package-local load targets. A semantic row requires `--when`; an explicit row requires `--flag`; duplicate explicit keys and unresolved local loads are findings. `--then` remains the human-readable routed effect.
+Rows can expose strict flags and aliases, permit semantic discovery through `--when`, declare defaults, and route to modeled destinations or typed whole-file load targets. A semantic row requires `--when`; an explicit row requires `--flag`; duplicate explicit keys and unresolved local or registered-package loads are findings. `--to` remains the routed effect, `--load` is the graph edge, and `--then` is the operator-readable explanation.
 
 One canonical table may project several runnable views. `calls` shows explicit invocation, `modules` inventories modeled module destinations, and `full` renders the complete addressed row model:
 
@@ -146,7 +147,10 @@ The complete multi-section context module continues as normal markdown.
 - loading dependencies declare consumer assumptions, not build derivation: they do not replace `--from`, `--dev-from`, or `--cite`
 - `--dev-from` and `Context.Assembly.Module` remain builder-context mechanisms and never become runtime loading edges
 - `agentos skw context --skill <skill> --target <runnable-file> [--json]` returns each path's ordered steps, edge provenance, satisfied loading dependencies, per-file content, and assembled `Projected.Context`; it never unions alternatives
-- workspace prefixes, inline satisfaction modes, and semantic loading dependencies remain deferred beyond the local-path model
+- `agentos skw context --skill <root-skill>` audits every reachable package's `--reachable-from` assertion and returns one deterministic witness path per assertion
+- a package-qualified `--target @<id>/path` projects that target's reachability witnesses, while an unqualified target continues to project its declared local paths
+- `--reachable-from` is existential: one graph path must contain the named predecessor; `--loading-dep` remains universal over every declared path reaching its consumer
+- workspace prefixes, inline satisfaction modes, and semantic loading dependencies remain deferred beyond the current model
 
 ## Locators
 
@@ -168,17 +172,19 @@ A dependency-role (or address) value is one of:
 
 ```json
 {
+  "id": "my-skill",
   "depots": ["../agentos-pkg"],
   "deps": {"agentos-pkg": "../agentos-pkg"},
   "unlock_registries": ["../context-provider/.skw/unlock-tokens.json"]
 }
 ```
 
+- `id` — the stable package identity used by runtime graph nodes and checked against every importing registry key
 - `depots` — index depots for `Dotted.Name` resolution, relative to the skill root; list order is search order
 - `deps` — the `Skw.Pkg.Dependency` registry: an `id → package-root` map (relative to the skill root) whose entries resolve both `@<id>/…` file addresses and `Dotted.Name`s in that package's depot
 - `unlock_registries` — explicit context-provider registries used to gate blessing; no directory scanning or implicit global registry
 
-Each provider owns `.skw/unlock-tokens.json`. Schema v1 is strict: every entry contains only one opaque token, one addressed src surface, and the POI kinds it unlocks:
+Each provider owns `.skw/unlock-tokens.json`. Schema v1 is strict: every entry contains only one opaque `Poi.Unlock.Token`, one addressed src surface, and the POI kinds it unlocks:
 
 ```json
 {

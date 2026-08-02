@@ -1,3 +1,5 @@
+> $kw: ^agentos-root-reachability --reachable-from @<agentos-pkg>/SKILL.md
+
 ---
 name: agentos-batchy-skills
 description: Workflow-neutral conventions base for building Agentos package skills — skill taxonomy, the Batchy calling convention, argument parsing, and placement rules. USE WHEN authoring or upgrading an Agentos skill and you need the shared conventions a proper skill should follow, or when another skill or agent needs to learn how Agentos skills are structured. Loading it orients; it does not run a build workflow.

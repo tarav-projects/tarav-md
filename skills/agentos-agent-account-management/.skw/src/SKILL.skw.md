@@ -1,3 +1,5 @@
+> $kw: ^agentos-root-reachability --reachable-from @<agentos-pkg>/SKILL.md
+
 ---
 name: agentos-agent-account-management
 description: "Operational incident runbook for Agentos provider-account problems: inspecting account state, capturing auth artifacts, activating active credentials, materializing provider homes, diagnosing account monitor fallback, resolving aligned-vs-drifted homes, and troubleshooting Codex auth.json, Claude Code Keychain/browser auth, or Copilot CLI account state. USE WHEN the user asks to inspect, capture, activate, materialize, repair, or diagnose Agentos-managed provider accounts or provider homes."

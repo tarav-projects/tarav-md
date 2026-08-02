@@ -849,6 +849,7 @@
 - [DC] a nonempty resolvable `Support.Set` makes an `Index.Line` a second-order touched projection of its referenced data ^c20260729-19u
 - [DC] `Chat.Support.Set` is presently the only implemented specialization because a qualifying `User.Turn` is the only registered `Touch.Authority.Surface` ^c20260729-19u
 - [CT] that implementation constraint does not restrict the general support model to chat ^c20260729-19u
+- [CT] equivalent `Support.Set` contents may stand behind distinct `Support.Reference` edges; evidence equality does not make those references identical ^c20260802-60u
 
 ****
 
@@ -942,14 +943,16 @@
 
 - [DF] `Touched.Support.Network` is the network relating `Index.Line`s across touched index surfaces to supporting data on `Touch.Authority.Surface` instances ^c20260729-20u
 - [DC] its edges have the form `Support.Set` ↔ `Support.Reference` ↔ `Index.Line` ^c20260729-20u
-- [DF] `Support.Reference` is the abstract link connecting an `Index.Line` to its `Support.Set` ^c20260729-20u
+- [DF] `Support.Reference` is the abstract link connecting one line content to its `Support.Set` ^c20260802-62u
+- [CT] different line contents never share a `Support.Reference`, even when their support sets are equivalent ^c20260802-59u
+- [DC] repeated materializations of the same line content may retain the same `Support.Reference` across touched index surfaces ^c20260802-58u
 - [CT] `Support.Reference.Metadata` may describe that link but is not the link itself ^c20260729-20u
 - [DC] an authority surface holds the first-order touched data while an index surface holds its grounded line ^c20260729-20u
 - [DC] the network is dynamic: nodes and edges change as authority surfaces and their grounded projections evolve ^c20260729-20u
 - [DC] touched surfaces hold the live cut, source surfaces preserve their evidence, and surface history preserves prior network states ^c20260729-20u
-- [DC] reinterpretation creates a new `Support.Reference` because a new support meaning is a new network edge ^c20260729-20u
-- [PR] `Support.Set` is one line's local evidence view; `Touched.Support.Network` is the global object those sets compose ^c20260729-20u
-- [DC] `Anchory.Anchor` and its Anchory record metadata are the current realizations of `Support.Reference` and `Support.Reference.Metadata` ^c20260729-20u
+- [DC] extending support for unchanged line content evolves its existing evidence relationship; changing the content requires support reevaluation and a new `Support.Reference` ^c20260802-61u
+- [PR] `Support.Set` is one line content’s local evidence view; `Touched.Support.Network` is the global object those views compose ^c20260802-63u
+- [DC] `Anchory.Anchor` currently realizes `Support.Reference`: it is the link, while its application record carries the support set and reference metadata ^c20260802-64u
 
 ### meta
 
@@ -981,8 +984,11 @@
 
 ## Index.Line
 
-- [DF] `Index.Line` is the atom of `Touched.Surface.Index`: one statement whose support standing is evaluated through its `Support.Reference` ^c20260729-20u
-- [CT] an `Index.Line` is interpreted within its containing `Index.Block`; block membership supplies context the line need not repeat ^c20260729-20u
+- [DF] `Index.Line` is the atom of `Touched.Surface.Index`: one typed content statement whose support standing is evaluated through its `Support.Reference` ^c20260802-67u
+- [DF] an `Index.Line`’s content is its `Line.Type` and body; trailing support references are links and do not belong to that content ^c20260802-68u
+- [CT] when an `Index.Line` is attached to an `Index.Block`, block membership supplies context the line need not repeat ^c20260802-69u
+- [DC] repeated materializations of identical typed content are the same line for deterministic identity ^c20260802-66u
+- [CT] identical line content may carry different meaning through different attachments; this uncommon contextual distinction requires semantic judgment rather than deterministic identity linting ^c20260802-65u
 - [PR] lines within a block aim for semantic orthogonality: each contributes a distinct dimension with minimal overlap among sibling lines ^c20260729-20u
 - [CT] a line may be fully intelligible by itself, but standalone completeness is not required ^c20260729-20u
 - [DC] the line is the unit of grounding, approval, audit, and drift checking ^c20260729-20u

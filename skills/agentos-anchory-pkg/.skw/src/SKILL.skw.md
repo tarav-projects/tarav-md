@@ -1,3 +1,5 @@
+> $kw: ^agentos-root-reachability --reachable-from @<agentos-pkg>/SKILL.md
+
 ---
 name: agentos-anchory-pkg
 description: "Universal anchor literacy for the Anchory subsystem. USE WHEN encountering a ^-anchor citation on any surface and needing to resolve it, when registering new anchors, or when working with anchory depots, namespaces, or the depot registry."

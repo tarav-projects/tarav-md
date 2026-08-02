@@ -1,4 +1,20 @@
 {
+  "id": "agentos-pkg",
   "depots": ["."],
-  "deps": {"agentos-batchy-skills": "../agentos-batchy-skills"}
+  "deps": {
+    "agentos-agent-account-management": "../agentos-agent-account-management",
+    "agentos-anchory-pkg": "../agentos-anchory-pkg",
+    "agentos-batchy-skills": "../agentos-batchy-skills",
+    "agentos-chatlas-pkg": "../../../agentos-chatlas-md/skills/agentos-chatlas-pkg",
+    "agentos-forum": "../agentos-forum",
+    "agentos-git-commit": "../agentos-git-commit",
+    "agentos-hugentics": "../agentos-hugentics",
+    "agentos-live-surfaces": "../agentos-live-surfaces",
+    "agentos-master-pkg-agent": "../agentos-master-pkg-agent",
+    "agentos-project-doctor": "../agentos-project-doctor",
+    "agentos-session-supervisor": "../agentos-session-supervisor",
+    "agentos-skills-ingenier": "../agentos-skills-ingenier",
+    "agentos-skillware": "../agentos-skillware",
+    "agentos-testground": "../agentos-testground"
+  }
 }
