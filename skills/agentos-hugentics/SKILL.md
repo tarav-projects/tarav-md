@@ -9,7 +9,7 @@ Canonical `Package.Driver` and single public session-control surface for the Age
 
 `Touched.Index` is the global system for contextualizing relevant `Touched.Data`. The Markdown `Agentos.Index.System`, trailing Anchory anchors, and Chatlas support records are its current realization, not its conceptual boundary.
 
-Index capabilities remain a distinct internal subsystem because nearly every Hugentic workflow depends on touched-data contextualization. The caller nevertheless controls the whole session here: product design, implementation design and execution, capture, audit, status, parking, and every Index operation route through named modules without requiring another public skill.
+Index capabilities remain a distinct internal subsystem because nearly every Hugentic workflow depends on touched-data contextualization. The caller nevertheless controls the whole session here: product design, implementation design and execution, capture with optional read-only audit, status, parking, and every Index operation route through named modules without requiring another public skill.
 
 This is a `Batchy.Skill`; `Batchy.Router` resolves every run from explicit flags, the live conversation, and declared defaults.
 
@@ -81,7 +81,7 @@ The public flags below call the single running `Batchy.Router`. A trailing value
 | `--impl --execute` | `--execute`<br>`--exec` | explicit-or-semantic; default: `Impl.Req` input | select Implementation.Execute.Workflow.Module |
 | `--impl --develop` | `--develop`<br>`--dev` | explicit-or-semantic | select Implementation.Develop.Workflow.Module |
 | `--impl --capture` | `--impl-capture` | explicit-or-semantic | select Implementation.Capture.Workflow.Module |
-| `--capture-audit` | - | explicit-or-semantic | select Capture.Audit.Operation.Module |
+| `--capture --audit` | - | explicit-or-semantic | run Hugentic.Capture.Workflow.Module through its read-only roadmap and stop |
 | `--status` | `--chat-status` | explicit-or-semantic | select Chat.Status.Operation.Module |
 | `--workflow-status` | - | explicit-or-semantic | select Workflow.Status.Operation.Module |
 | `--session-router` | `--what-now`<br>`--what-next` | explicit-or-semantic | select Hugentic.Session.Router.Operation.Module |
@@ -105,7 +105,7 @@ Canonical module identity is explicit and independent from invocation spelling. 
 
 | Canonical module | Load target | Routing |
 |---|---|---|
-| `Hugentic.Capture.Workflow.Module` | `references/capture.md` | `--capture`<br>`--agendix`; default: Alignment.Mode::Autonomous<br>`--design` |
+| `Hugentic.Capture.Workflow.Module` | `references/capture.md` | `--capture`<br>`--agendix`; default: Alignment.Mode::Autonomous<br>`--design`<br>`--capture --audit` |
 | `Grounding.Survey.Workflow.Module` | `references/gr-survey.md` | `--gr-survey`, `--gr-scout`, `--gr-scan`, `--gr-linker` |
 | `Grounding.Review.Workflow.Module` | `references/gr-review.md` | `--gr-review` |
 | `Index.Enrichment.Workflow.Module` | `references/enrich.md` | `--enrich` |
@@ -140,7 +140,6 @@ Canonical module identity is explicit and independent from invocation spelling. 
 | `Index.Check.Operation.Module` | `references/check.md` | `--check`, `--lint` |
 | `Anchory.Link.Operation.Module` | `references/link.md` | `--link` |
 | `Anchory.Back.Link.Operation.Module` | `references/back-link.md` | `--back-link` |
-| `Capture.Audit.Operation.Module` | `references/capture-audit.md` | `--capture-audit` |
 | `Chat.Status.Operation.Module` | `references/chat-status.md` | `--status`, `--chat-status` |
 | `Workflow.Status.Operation.Module` | `references/workflow-status.md` | `--workflow-status` |
 | `Hugentic.Session.Router.Operation.Module` | `references/session-router.md` | `--session-router`, `--what-now`, `--what-next` |
@@ -430,14 +429,14 @@ Selection cardinality: `many`.
 - when: the caller wants implementation evidence captured
 - then: select Implementation.Capture.Workflow.Module
 
-### `^route-capture-audit`
+### `^route-capture-read-only`
 
 - match: `explicit-or-semantic`
-- flags: `--capture-audit`
-- destinations: `Capture.Audit.Operation.Module`
-- loads: `references/capture-audit.md`
-- when: the caller asks whether significant session material remains uncaptured
-- then: select Capture.Audit.Operation.Module
+- flags: `--capture --audit`
+- destinations: `Hugentic.Capture.Workflow.Module`
+- loads: `references/capture.md`
+- when: the caller wants the capture map without entering proposal, approval, or landing work
+- then: run Hugentic.Capture.Workflow.Module through its read-only roadmap and stop
 
 ### `^route-chat-status`
 
@@ -609,7 +608,7 @@ For delegated read-only research that protects the caller's context, use `Packag
 
 The Implementation namespace contains explicit design, review, execute, develop, and capture workflow modules. The namespace, its aliases, and its input-sensitive defaults are routing behavior; they do not create duplicate modules.
 
-Any active workflow may be interrupted for capture, audit, consolidation, `Design.Req.Promotion`, implementation handoff, parking, splitting, or status work. Completion reconciles and maintains changed artifact state before continuation; it never restores a stale prior state.
+Any active workflow may be interrupted for capture, optionally configured as a read-only audit, consolidation, `Design.Req.Promotion`, implementation handoff, parking, splitting, or status work. Completion reconciles and maintains changed artifact state before continuation; it never restores a stale prior state.
 
 ## When To Load This Skill
 

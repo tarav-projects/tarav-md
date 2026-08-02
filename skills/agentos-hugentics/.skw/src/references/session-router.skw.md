@@ -46,7 +46,7 @@ Each candidate has one transition:
 - `Continue` — advance the current foreground workflow from its next unresolved move.
 - `Resume` — re-enter an incomplete earlier workflow or active artifact already established by the session.
 - `Enter` — start a workflow that fits the current need and has no existing state to continue.
-- `Interrupt` — take an `Alignment.Loop.Interruptions` branch into a bounded helper such as capture audit, parking, status, or grounding, preserving the current return point.
+- `Interrupt` — take an `Alignment.Loop.Interruptions` branch into bounded capture, read-only capture mapping, parking, status, or grounding work while preserving the current return point.
 
 Prefer coherent continuation over unnecessary workflow creation, but do not preserve a workflow merely because it was previously active. Rank applicability, user intent, incompleteness, currentness, and the cost of switching.
 

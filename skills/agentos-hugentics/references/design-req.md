@@ -106,9 +106,9 @@ Prefer one `Design.Req` for one design lifecycle. Propose another only when leng
 
 Do not split merely because the request contains several concepts or sections.
 
-## Status And Audit
+## Status And Read-Only Capture
 
 - `Workflow.Status.Operation.Module` reports maintained artifact state and uncommitted conversational delta.
-- `Capture.Audit.Operation.Module` finds converged material that remains upstream of its appropriate durable surface.
+- `--capture --audit` uses `Hugentic.Capture.Workflow.Module` read-only to find converged material that remains upstream of its appropriate durable surface.
 
-These are routed operations, not Design.Req submodules.
+These are routed capabilities, not Design.Req submodules.

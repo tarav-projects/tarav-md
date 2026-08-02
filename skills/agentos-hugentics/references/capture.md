@@ -11,6 +11,7 @@ Use this module when the user wants active conversation and adjacent evidence wo
 | Call configuration | Resolved target |
 |---|---|
 | `--capture` outside the Implementation namespace | unresolved; continue discussion or permitted conversational discovery |
+| `--capture --audit` | read-only capture mapping; target flags may narrow the surfaces inspected but cannot enable writing |
 | `--capture --index`, `--capture --main`, `--index --capture --main` | reviewed main Index surfaces: `Index.Ontology` or `Index.Appendix` |
 | `--capture --agendix`, `--agendix`, `--index --capture --agendix` | `Index.Agendix` |
 | `--design` outside the Implementation namespace | `Design.Req` |
@@ -28,6 +29,12 @@ Inside the Implementation namespace, `--impl --design` and `--impl --capture` be
 5. **Approve.** Apply the target's gate. Approval records proposal state; it does not imply landing where the target separates those acts.
 6. **Land.** Write only through the resolved target procedure.
 7. **Reconcile.** Re-read the changed target and maintain any active workflow artifact before continuing or completing.
+
+### Read-Only Audit
+
+`--audit` configures `--capture`; it does not select another workflow or module. Run **Contextualize** and **Map**, present the target-appropriate `Capture.Roadmap`, and stop before **Focus**.
+
+This configuration is read-only. Do not draft approval-ready material, expose approval or landing commands, mutate a durable surface, or continue into later capture stages. The trailing prompt scopes the sources or surfaces to inspect; without an explicit scope, use the current conversation and active or mentioned artifacts. If the map is empty, report `Capture audit: all sources in sync.`
 
 The index specialization loads `Hugentic.Capture.Context.Assembly.Module` from `references/index-capture-context.md` before its first grounding pass. Its surfaces are governed by `Workflow.Neutral` knowledge modules: `Index.Landing.Knowledge.Module` for ontology and appendix, and `Index.Agendix.Knowledge.Module` for agendix.
 

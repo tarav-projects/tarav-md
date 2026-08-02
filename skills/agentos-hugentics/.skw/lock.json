@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "b04db499f942ce47b97f7530a4b7f4d256d90916c3fc5d82df01423d2efb6619",
+      "output_sha256": "895c369bcbb8056cf5b03a1620544afbc5ecf8ccba94157fc4b24a5b183bbdf1",
       "recipes": [
         {
           "heading": "^driver-index-literacy",
@@ -29,7 +29,7 @@
             "references/search.skw.md#Search Model": "35a6d9e8ba7764c7d6f717cc25e780cbae80f8e5f0102c70d1a4b880849393c6",
             "references/search.skw.md#Citation Behavior": "e57e94bf2adedb5f4bde5e498c1feb6342c70412564a0e8d8a1a8734a673a8a9",
             "references/capture.skw.md#User.Command Checkpoints": "5cb7be6f8d0c0d6350b621bc7d58b02881f5be87bd312f7b0e60116d1437ec6e",
-            "references/capture.skw.md#Landing": "d9d16c71df477cc61297b72a9cc2dc0d8fcd8777b8c7151f9ea2beb68c8e79c1",
+            "references/capture.skw.md#Landing": "a925155442d623daba52de3c0e894f66cd17a9e9dcc8b63f6b0bad19a7a8198c",
             "references/edit.skw.md#Edit Gates": "34b988e36fa60f35bfbca549056fdb439fc41a3ff107f44c58ed7bbed07ad926",
             "references/edit.skw.md#User.Command Transitions": "c92bec72a5749b0a9a7eafae35b8c3686d53bb17ddf5f5007b94eab2c17fcf81"
           }
@@ -93,12 +93,8 @@
         }
       ]
     },
-    "references/capture-audit.md": {
-      "output_sha256": "e1dc5a519e9b5254c45405b55251e73e3e144de4247452cac1999a219f9e4832",
-      "recipes": []
-    },
     "references/capture.md": {
-      "output_sha256": "8d7a6f461e9548ba7e6bebd0284df858604cfcfe9a8eb14a3914e3cb9df3db5e",
+      "output_sha256": "36430dd8e8927bb4ce81829e243c96a0490581f7ad242f0d44f39ba2713ec903",
       "recipes": [
         {
           "heading": "Landing",
@@ -137,7 +133,7 @@
       "recipes": []
     },
     "references/design-req.md": {
-      "output_sha256": "1101fa1f4cc30ff8dc87e59823c0f79985be20dc49cef8ab4b61d72dda9ffd64",
+      "output_sha256": "72731ff36311303fbbec4f148cc2606e27625b3ff9e6c2ed1038d8dd0823e76a",
       "recipes": []
     },
     "references/edit.md": {
@@ -290,7 +286,7 @@
       "recipes": []
     },
     "references/impl/impl-capture.md": {
-      "output_sha256": "f9bbc7b705854bb9d91fe3ac97e76fdb66c053d68b41d58864495e7f966c6133",
+      "output_sha256": "eeb6daeaca67c10cca9432639a088959ba5c1217b68334dc8c722bc3dc666631",
       "recipes": [
         {
           "heading": "Alignment.Checkpoint::Candidate",
@@ -349,7 +345,7 @@
       "recipes": []
     },
     "references/session-router.md": {
-      "output_sha256": "fcc87faa1ddf604497f267402887bbb6dd506bfba0ffc1efab2543cd545b0fd9",
+      "output_sha256": "4e13948e43455b6352f962a167abef019007f0c3ee1804254211e3ca2b3c60ff",
       "recipes": [
         {
           "heading": "Evidence",

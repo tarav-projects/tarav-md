@@ -6,7 +6,7 @@ Load this canonical workflow module only for `--impl --capture` or its `--impl-c
 
 ## What It Is For
 
-The Hugentic system may hold a mix at the end of a working session: some threads are decided and clear, others still carry open design questions. `--impl --capture` is the "bank the ready work, park the rest" move - the implementation-side dual of a capture audit. It does not design; it selects what is ready to be developed and routes it through the normal design-and-execution workflow.
+The Hugentic system may hold a mix at the end of a working session: some threads are decided and clear, others still carry open design questions. `--impl --capture` is the "bank the ready work, park the rest" move - the implementation-side counterpart to the map produced by `--capture --audit`. It does not design; it selects what is ready to be developed and routes it through the normal design-and-execution workflow.
 
 In harness terms it is an `Internal.Alignment` move: it advances the `Progress.Gradient` by syncing the implementation surfaces to the touched decisions the session already produced — the `Design.Implementation.CoEvolution` rhythm, applied one ready unit at a time.
 

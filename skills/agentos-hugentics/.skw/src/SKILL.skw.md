@@ -14,7 +14,7 @@ Canonical `Package.Driver` and single public session-control surface for the Age
 
 `Touched.Index` is the global system for contextualizing relevant `Touched.Data`. The Markdown `Agentos.Index.System`, trailing Anchory anchors, and Chatlas support records are its current realization, not its conceptual boundary.
 
-Index capabilities remain a distinct internal subsystem because nearly every Hugentic workflow depends on touched-data contextualization. The caller nevertheless controls the whole session here: product design, implementation design and execution, capture, audit, status, parking, and every Index operation route through named modules without requiring another public skill.
+Index capabilities remain a distinct internal subsystem because nearly every Hugentic workflow depends on touched-data contextualization. The caller nevertheless controls the whole session here: product design, implementation design and execution, capture with optional read-only audit, status, parking, and every Index operation route through named modules without requiring another public skill.
 
 This is a `Batchy.Skill`; `Batchy.Router` resolves every run from explicit flags, the live conversation, and declared defaults.
 
@@ -352,13 +352,13 @@ This addressed `Routing.Table` is the package driver's single declarative dispat
 > --when the caller wants implementation evidence captured
 > --then select Implementation.Capture.Workflow.Module
 
-> $kw: ^route-capture-audit --router-row --table ^package-driver-router
-> --flag --capture-audit
+> $kw: ^route-capture-read-only --router-row --table ^package-driver-router
+> --flag --capture --audit
 > --match explicit-or-semantic
-> --to Capture.Audit.Operation.Module
-> --load references/capture-audit.md
-> --when the caller asks whether significant session material remains uncaptured
-> --then select Capture.Audit.Operation.Module
+> --to Hugentic.Capture.Workflow.Module
+> --load references/capture.md
+> --when the caller wants the capture map without entering proposal, approval, or landing work
+> --then run Hugentic.Capture.Workflow.Module through its read-only roadmap and stop
 
 > $kw: ^route-chat-status --router-row --table ^package-driver-router
 > --flag --status
@@ -540,7 +540,7 @@ For delegated read-only research that protects the caller's context, use `Packag
 
 The Implementation namespace contains explicit design, review, execute, develop, and capture workflow modules. The namespace, its aliases, and its input-sensitive defaults are routing behavior; they do not create duplicate modules.
 
-Any active workflow may be interrupted for capture, audit, consolidation, `Design.Req.Promotion`, implementation handoff, parking, splitting, or status work. Completion reconciles and maintains changed artifact state before continuation; it never restores a stale prior state.
+Any active workflow may be interrupted for capture, optionally configured as a read-only audit, consolidation, `Design.Req.Promotion`, implementation handoff, parking, splitting, or status work. Completion reconciles and maintains changed artifact state before continuation; it never restores a stale prior state.
 
 ## When To Load This Skill
 
