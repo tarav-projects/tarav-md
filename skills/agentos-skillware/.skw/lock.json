@@ -32,7 +32,7 @@
       ]
     },
     "references/build.md": {
-      "output_sha256": "b9cc982a00f58d4a8bdfcc41ef42a1e9caeef0a13970c9029497554434f6af5a",
+      "output_sha256": "b23bf68adc22c51aab2a176f65bafa6080610ddb98ae38770ea94e0220f68626",
       "recipes": []
     },
     "references/check.md": {
@@ -45,8 +45,8 @@
           "deps": {
             "Skw.Ann.Dependency": "ed37c9cfc210f58a18d5b50e35c1d442ec5a0eb1dbf083c5f9a1949b141b37e2",
             "POI.Linter": "d63ddd163cce27dfe150e43843fb312e861d7f4cb0e45be167ac1e064731f504",
-            "Poi.Bless": "cdad669af79f000c35e63cd890dcde1c9502e06d9ff03263d5c277d0c74e561e",
-            "Poi.Unlock.Token": "a551975969e2e820a6579d22d4aeaa46eabfa6d06dce4e73341a0b824f6b725f"
+            "Poi.Bless": "7de5d3cea016e90808dee264512c9aba2007a269bc79033daa8916927ccae60f",
+            "Poi.Unlock.Token": "72a5bff90a04511020dab2d071f71637a6c872991f949067d250608dc143099f"
           }
         }
       ]
@@ -82,7 +82,7 @@
       "recipes": []
     },
     "references/lang.md": {
-      "output_sha256": "fb325a9ee82040c22e357acf946fd0ce17528b55a9d02db1599a6525f58c333d",
+      "output_sha256": "ab4f60342de68163f3b114e2b7982c97e9dbca8137aa0d48a9d7272195e13a16",
       "recipes": []
     }
   },

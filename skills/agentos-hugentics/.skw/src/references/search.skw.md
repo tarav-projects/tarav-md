@@ -1,3 +1,10 @@
+> $kw: ^index-search-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^hugentics-skill-arg-contract
+> --loading-dep SKILL.skw.md^driver-index-literacy
+> --loading-dep SKILL.skw.md^hugentics-authority-contract
+
 # Index.Search.Operation.Module
 
 > $kw: --from Appendix.Discovery --from Context.Grounding --from Demoted.Index.Line --from Index.Agendix --from Index.Chapter --from Index.Depot --from Index.Grounding --from Index.Line --from Index.Presumption --from Line.Type --from Live.Index.Line --from Open.Inference --from POI.Instance --from Reviewed.Cite.Closure --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from User.Attention

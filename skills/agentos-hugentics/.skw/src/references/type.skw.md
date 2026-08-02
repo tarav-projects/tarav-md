@@ -1,3 +1,10 @@
+> $kw: ^index-line-type-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^hugentics-skill-arg-contract
+> --loading-dep SKILL.skw.md^driver-index-literacy
+> --loading-dep SKILL.skw.md^hugentics-authority-contract
+
 # Index.Line.Type.Knowledge.Module
 
 > $kw: --from Concept.Hardness --from Design.Space --from Design.Variable --from Edition.Trigger.User.Gated --from Index.Line --from Kernel.Line --from Line.Type --from Line.Type.Vocabulary --from Verbatim.User.Gated --from Workflow.Neutral

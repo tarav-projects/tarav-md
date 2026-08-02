@@ -1,3 +1,8 @@
+> $kw: ^chat-status-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^hugentics-skill-arg-contract
+
 # Chat.Status.Operation.Module
 
 > $kw: --dev-from references/index-context-assembly.skw.md

@@ -1,3 +1,10 @@
+> $kw: ^link-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^hugentics-skill-arg-contract
+> --loading-dep SKILL.skw.md^driver-index-literacy
+> --loading-dep SKILL.skw.md^hugentics-authority-contract
+
 # Anchory.Link.Operation.Module
 
 > $kw: --from Anchory.System --from Edition.Approval.Token --from Index.Chat.Capture --from Index.Line --from Index.Linking --from Line.Verbatim.Gate --from Support.Set --from Touch.Authority.Surface --from Touched.Data --from Touched.Support.Network --from Workflow.Neutral

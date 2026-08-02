@@ -2,8 +2,16 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "895c369bcbb8056cf5b03a1620544afbc5ecf8ccba94157fc4b24a5b183bbdf1",
+      "output_sha256": "8cf2acfb0dd5586e79d7ac3b46d3678b77cf0d0dc9467e0dc217e394c6f33281",
       "recipes": [
+        {
+          "heading": "^hugentics-batchy-runtime-contract",
+          "verb": "copy",
+          "body_sha256": "6f0b76e1fad7d99c095a707ef53e460f84a1a8ff22feb4c00d91469a9f2c5234",
+          "deps": {
+            "@<agentos-batchy-skills>/references/batchy-skill-run.skw.md^batchy-skill-runtime-contract": "6f0b76e1fad7d99c095a707ef53e460f84a1a8ff22feb4c00d91469a9f2c5234"
+          }
+        },
         {
           "heading": "^driver-index-literacy",
           "verb": "derived",

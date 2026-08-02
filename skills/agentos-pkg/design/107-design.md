@@ -795,7 +795,7 @@
 - [DC] an offer arrives landing-ready: proposed type carried, target scouted for each destination it offers
 - [DC] it is the hugentic sibling of agendix capture — same trigger instinct, the user gate in place of hard provenance
 - [DC] offers ride any workflow — impl execution, design, review; declining is cheap and normal, the offer must never block the work
-- [DC] destinations generalize with the `Touched.Surface.Index`: an offer may target any member within reach — the project index's landings, a chat's agendix, an annotation's touched lines ^c20260718-0u
+- [DC] destinations generalize with the `Touched.Surface.Index`: an offer may target any member within reach — the project index's landings, a chat's index, an annotation's touched lines ^c20260802-4u
 - [DC] it holds block form because it must stay referenceable: downstream surfaces declare dependence on the name, and only blocks are addressable to the resolver ^c20260718-2u
 
 ****
@@ -861,7 +861,7 @@
 - [DC] touch provenance remains at the authority surfaces referenced by each line's support set ^c20260729-19u
 - [FR] a line may restate its supporting data or contextualize why that data supports the indexed statement ^c20260729-19u
 - [DC] member surfaces vary independently by attachment point, review, format, and ordering ^c20260729-19u
-- [EX] `Agentos.Index` attaches lines to concepts, `Chat.Agendix` attaches them to chats, and `Skw.Agendix` attaches them to `Skw.Annotation` instances ^c20260729-19u
+- [EX] `Agentos.Index` attaches lines to concepts, `Chat.Index` attaches them to chats, and `Skw.Agendix` attaches them to `Skw.Annotation` instances ^c20260802-4u
 - [DC] `Reviewed.Cite.Closure` governs citation across members regardless of which member contains a reviewed line ^c20260729-19u
 
 ****

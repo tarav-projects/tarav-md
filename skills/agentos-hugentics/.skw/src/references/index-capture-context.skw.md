@@ -1,3 +1,10 @@
+> $kw: ^index-capture-context-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^hugentics-skill-arg-contract
+> --loading-dep SKILL.skw.md^driver-index-literacy
+> --loading-dep SKILL.skw.md^hugentics-authority-contract
+
 > $kw: --from Agentos.Index.System --from Anchory.System --from Capture.Gradient --from Context.Grounding --from Edition.Approval.Token --from InContext.Index.Chat.Capture --from Index.Agendix --from Index.Appendix --from Index.Chat.Capture --from Index.Depot --from Index.Discovery --from Index.Line --from Index.Ontology --from Index.Presumption --from Index.Surface --from Kernel.Block --from Kernel.Writing --from Line.Type --from Line.Verbatim.Gate --from Live.Index.Line --from Open.Inference --from POI.Instance --from Support.Set --from Touch.Authority.Surface --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from Touched.Support.Network --from Touched.Surface.Index --from User.Attention
 > --dev-from references/index-context-assembly.skw.md
 

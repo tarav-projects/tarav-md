@@ -18,3 +18,9 @@
 - [DF] the `Skw.Network` splits into two dependency kinds — structural and touched — distinguished by what authorizes each ^c20260721-11u
 - [DC] a structural dep is a derivation edge, "this surface derived from that surface": self-authorizing and evident, needing no grounding because the derivation is re-runnable proof — the axis of architecture and surface reuse ^c20260721-11u ^c20260721-12u
 - [DC] a touched dep links to a touched surface — an index line/block or a user turn — carrying the user's decision: it needs `Annotation.Authority` and is gated — the axis of surface grounding ^c20260721-11u ^c20260721-12u
+
+****
+
+## Skw.Network/Agendix
+
+- [DC] the index surface may participate in the `Skw.Network`, which is what makes a blessing's documentation dependency mechanically checkable ^c20260802-8u

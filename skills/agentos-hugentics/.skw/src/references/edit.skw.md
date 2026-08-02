@@ -1,3 +1,11 @@
+> $kw: ^index-edit-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^hugentics-skill-arg-contract
+> --loading-dep SKILL.skw.md^hugentics-user-command-contract
+> --loading-dep SKILL.skw.md^driver-index-literacy
+> --loading-dep SKILL.skw.md^hugentics-authority-contract
+
 # Index.Landing.Knowledge.Module
 
 > $kw: --from Capture.Offer --from Cited.Duplication --from Demoted.Index.Line --from Dotted.Notation --from Edition.Approval.Token --from Edition.Trigger.User.Gated --from Explicit.Namespace --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Edit.Action --from Index.Edit.Modify.Line --from Index.Edition.Turn --from Index.Line --from Index.Ontology --from Index.Presumption --from Kernel.Line --from Line.Type --from Line.Verbatim.Gate --from Live.Index.Line --from Name.As.Index --from POI.Instance --from Reviewed.Content --from Support.Set --from Touch.Authority.Surface --from Touched.Decision.Cycle --from User.Command --from Verbatim.User.Gated

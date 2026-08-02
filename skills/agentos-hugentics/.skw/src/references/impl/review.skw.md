@@ -1,3 +1,8 @@
+> $kw: ^implementation-review-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^hugentics-skill-arg-contract
+
 # Implementation.Review.Workflow.Module
 
 Review an `Impl.Req` from outside its design context: verify its claims against `Hard.Evidence`, check it is well formed and ready for execution, and produce an in-chat report.

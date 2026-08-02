@@ -1,3 +1,9 @@
+> $kw: ^decision-cycle-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^driver-index-literacy
+> --loading-dep SKILL.skw.md^hugentics-authority-contract
+
 > $kw: --from Context.Grounding --from Index.Presumption --from Open.Inference --from POI.Instance --from Product.Design.Session --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle
 > --dev-from references/index-context-assembly.skw.md
 

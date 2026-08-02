@@ -18,7 +18,22 @@ Adapt the template to the skill: a zero-argument skill omits the `Skill.Arg.Sect
 
 ## The Batchy.Skill.Contract Block
 
-Carry a `Batchy.Skill.Contract` near the top of the skill body: a compact mini-course that restates the convention so the skill complies even when `agentos-batchy-skills` is not loaded. It is a `Cited.Duplication` — duplicate the few must-do behaviors, cite the base skill for depth.
+Carry a `Batchy.Skill.Contract` near the top of the skill body so the skill complies even when `agentos-batchy-skills` is not loaded. For a Skillware-managed skill, mechanically materialize the canonical addressed contract rather than asking an agent to rewrite it:
+
+```markdown
+> $kw: ^local-batchy-runtime-contract --copy
+> --from @<agentos-batchy-skills>/references/batchy-skill-run.skw.md^batchy-skill-runtime-contract
+
+<the canonical copied body>
+
+> $kw. end
+```
+
+Register `agentos-batchy-skills` in the consumer's `skw.json` `deps`. Child modules may then use the local copied address as a `--loading-dep`; they remain independent from the external package at runtime.
+
+Use `--derived` only when the skill genuinely needs an adapted contract, and state the adaptation boundary in `--intent`. Prefer an exact copied base plus a separate local extension over editing universal semantics into a fork.
+
+For a hand-managed skill, copy the same compact contract manually and identify `agentos-batchy-skills` as its source. The contract remains a `Cited.Duplication`; Skillware merely makes that duplication deterministic.
 
 ```markdown
 This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills`
@@ -185,7 +200,7 @@ Restate a short banner section in the target skill (a `Cited.Duplication` of the
 ## Authoring Checklist
 
 - Body follows the `Batchy.Skill.Template`: description, `Batchy.Skill.Contract`, optional index and argument sections, applicable routing tables, optional command section, and naturally placed modules.
-- A `Batchy.Skill.Contract` block near the top restates help, explicit-flag, automatic-discovery, banner, and command-gate rules that apply.
+- A `Batchy.Skill.Contract` block near the top materializes the canonical Batchy runtime contract; skill-specific behavior lives in separate local extensions.
 - Arguments declared as `### Skill.Arg::<Name>` blocks, never a table.
 - Each argument advertised enough that `-h` is useful.
 - Every operation flag routes to its actual destination; it is not modeled as an argument unless its effect is external-data binding.

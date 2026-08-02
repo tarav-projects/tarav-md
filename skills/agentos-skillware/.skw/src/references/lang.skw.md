@@ -1,5 +1,7 @@
 # agentos-skillware --about (language spec)
 
+> $kw: --from Context.Loading.Path
+
 The operational spec of the Skillware source language. This module is normative for syntax; the concepts behind it live in `references/doctrine.md`.
 
 ## The Src Surface
@@ -48,6 +50,8 @@ The binding mode and every other feature is an additive `--flag`; there are no c
 - `--dev-from <locator>` — whole-target builder context; the developing agent loads it, while the compiled surface need not mention it
 - `--cite <locator>` — a dependency that must remain explicit in the compiled surface; a missing visible citation raises `uncited-dependency`
 - `--context-assembly` — a line-1, self-closing file declaration marking the complete `.skw.md` module as a `Context.Assembly.Module`; its repeatable `--from` values define its direct package-local coverage boundary
+- `--context-loading-path` — an addressed, top-of-file declaration of one complete normal runtime loading path for the current target; repeatable `--step` fields name ordered runnable files preceding the implicit target
+- `--loading-dep <source-locator>` — addressed runtime content the consuming file fundamentally requires from an earlier step of every declared loading path; repeatable on any annotation and normally carried by `--context-loading-path`
 - `--unlock-surface` — marks one explicitly addressed context surface represented by one token in the registry named by its single `--from`; takes no value
 - `--intent <text>` — the derivation rule's context, free prose; a binding flag's own trailing text folds into it
 - `--note [TYPE] <text> ^anchor` — a documentation line: a typed, anchored `Index.Line` carried on the block
@@ -69,7 +73,7 @@ The binding mode and every other feature is an additive `--flag`; there are no c
 A block closes according to its role:
 
 - a **materializing** block (`--derived`/`--copy`) owns a mandatory `> $kw. end` — its body is the generated target and there is no other way to bound it
-- a **declaration-only** block — one carrying dependency roles, `--note`/`--supp`, `--unlock-surface`, the file-level `--context-assembly` marker, or a routing annotation — **self-closes** at its declaration and owns no `end`; following native text stays surface
+- a **declaration-only** block — one carrying dependency roles, `--note`/`--supp`, `--unlock-surface`, a file-level context declaration, or a routing annotation — **self-closes** at its declaration and owns no `end`; following native text stays surface
 - a bare `> $kw. end` closes the innermost open content block; a legacy `end-<command>`/`end-^label` closer is a finding directing to migration; a heading closes nothing — a content block still open at a heading or EOF is a finding
 - the parser is a `Closure.Parser`: below its `Parse.Floor` (well-formed machinery, explicit closure of content blocks, unique addresses, resolvable table membership, sane router rows) it emits parse errors; above the floor everything it does not recognize is opaque text, and nothing else can fail the parse
 
@@ -121,6 +125,30 @@ The complete multi-section context module continues as normal markdown.
 - any dependency role that targets an assembly-covered source should carry a companion `--dev-from <assembly.skw.md>`; otherwise `check` raises the suppressible `context-assembly-bypass` POI
 - v1 coverage is direct and package-local; transitive and cross-package coverage supervision are not inferred
 - the assembly declaration is stripped at compile like all Skillware machinery, while the complete module body becomes the runnable context surface
+
+## Context Loading Paths
+
+`Context.Loading.Path` declarations model the whole-file context a skill consumer normally accumulates before and through one managed target:
+
+```md
+> $kw: ^capture-path --context-loading-path
+> --step AGENTS.md
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^runtime-contract
+> --loading-dep SKILL.skw.md^command-contract
+
+# Capture Module
+```
+
+- declarations occupy the file point, require an explicit address, and may repeat so alternative paths remain independently projectable
+- `--step` values are skill-root-relative runnable files in loading order; the declaring file's compiled target is the implicit final step
+- every local path contains `SKILL.md`; existing skill-local `AGENTS.md` files may precede it, while `.skw/AGENTS.md` is builder-only and cannot participate
+- steps after `SKILL.md` must be connected by `Routing.Table --load` edges; Skillware reports an unrealized edge rather than inferring one from prose
+- every `--loading-dep` must be a local addressed `.skw.md` locator whose compiled provider file occurs earlier on every projected path and actually contains the resolved addressed body
+- loading dependencies declare consumer assumptions, not build derivation: they do not replace `--from`, `--dev-from`, or `--cite`
+- `--dev-from` and `Context.Assembly.Module` remain builder-context mechanisms and never become runtime loading edges
+- `agentos skw context --skill <skill> --target <runnable-file> [--json]` returns each path's ordered steps, edge provenance, satisfied loading dependencies, per-file content, and assembled `Projected.Context`; it never unions alternatives
+- workspace prefixes, inline satisfaction modes, and semantic loading dependencies remain deferred beyond the local-path model
 
 ## Locators
 

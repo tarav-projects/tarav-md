@@ -1,3 +1,11 @@
+> $kw: ^agendix-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^hugentics-skill-arg-contract
+> --loading-dep SKILL.skw.md^hugentics-user-command-contract
+> --loading-dep SKILL.skw.md^driver-index-literacy
+> --loading-dep SKILL.skw.md^hugentics-authority-contract
+
 # Index.Agendix.Knowledge.Module
 
 > $kw: --from Capture.Gradient --from Capture.Offer --from Edition.Trigger.User.Gated --from Index.Agendix --from Index.Line --from Kernel.Block --from Kernel.Line --from Line.Type --from Reviewed.Cite.Closure --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Verbatim.User.Gated

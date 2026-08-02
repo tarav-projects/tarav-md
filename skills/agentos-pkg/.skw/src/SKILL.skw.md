@@ -7,7 +7,7 @@ description: "Agentos provides shared tools for agent-project workflows: concept
 
 > $kw: ^driver-critical-context --dev-from Cited.Duplication --dev-from Context.Loading.Path --dev-from Package.Driver.Base --dev-from SKILL.Loading
 > --supp root driver context is selected by the alignment failure its absence could cause, not by minimizing line count; preserve context whose omission could make the agent misunderstand authority, violate a gate, select the wrong workflow, or lose the session model ^c20260729-48u
-> $kw: --from Alignment.Loop --from Anchory.System --from Batchy.Router --from Batchy.Skill --from Development.Principles --from Kernel.Writing --from Package.Driver.Router --from POI.Catalog --from Routing.Table --from Vertical.Slice
+> $kw: --from Alignment.Loop --from Anchory.System --from Batchy.Router --from Batchy.Skill --from Batchy.Skill.Banner --from Development.Principles --from Kernel.Writing --from Package.Driver.Router --from POI.Catalog --from Routing.Table --from Skill.Arg --from Skill.Module --from User.Command --from Vertical.Slice
 
 Agentos is a toolkit for agent-project workflows. It gives agents shared, durable surfaces for orientation, design knowledge, working state, and structured collaboration. Instead of starting from scratch each session, agents working in an agentos project find maintained tools and persistent context.
 
@@ -17,12 +17,27 @@ Any project can adopt agentos incrementally — an AGENTS.md and one package ski
 
 Paths in this skill are package-root-relative unless explicitly absolute. For example, `000-INDEX.md` means `agentos-pkg/000-INDEX.md`.
 
-This is a `Batchy.Skill`. Its `Package.Driver.Router` is a specialized `Routing.Table` consumed by `Batchy.Router`. Load `agentos-batchy-skills` for the full convention.
+> $kw: ^agentos-pkg-batchy-runtime-contract --copy
+> --from @<agentos-batchy-skills>/references/batchy-skill-run.skw.md^batchy-skill-runtime-contract
 
-- `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
-- natural conversation may select an applicable route; a written `--<flag>` is intentional run configuration and must be resolved as such.
+This is a `Batchy.Skill`, called like a CLI and resolved by one `Batchy.Router`. This compact contract is materialized from `agentos-batchy-skills`; load that skill when the full convention is needed.
+
+- `-h` / `--help` prints callable help into the chat and stops without running
+- a written `--<flag>` is intentional run configuration and must be resolved as such
+- explicit configuration wins over compatible inferred or default configuration for the same route
+- conversational discovery and declared defaults apply only where the applicable router row permits them
+- every non-help run with custom configuration first prints its resolved `Batchy.Skill.Banner`
+- only external data consumed by the selected behavior is a `Skill.Arg`; operation and module selection remain router effects
+- compatible routes may compose, but aliases and composed flags do not create new module identities
+- load only selected `Skill.Module`s and the additional context they explicitly require
+- declared `User.Command`s are the only way to cross their explicit workflow gates
+- when a configured run, command target, or required argument remains materially ambiguous, ask rather than guess
+
+> $kw. end
 
 ## Agentos Workspace
+
+> $kw: ^driver-workspace-literacy
 
 Two important locations for agentos surfaces: project folders and package skills.
 
@@ -33,6 +48,8 @@ A **Package Skill** is a reachable skill that serves as the agentic interface to
 When working in a project, the agent may encounter several workspaces — multiple project folders, multiple package skills, or both. Keep clear which workspace an action or prompt is referring to — surfaces from different workspaces should not be confused.
 
 When a surface mentions another skill or reference, load it only if the relevant guidance is not already in context. This applies across all agentos surfaces.
+
+> $kw. end
 
 ## The Index
 
@@ -121,6 +138,8 @@ my-project/
 
 ## Local Surfaces
 
+> $kw: ^driver-local-surfaces-literacy
+
 A project folder may contain several local surfaces — the project's own working and knowledge spaces:
 
 - `AGENTS.md` — project-level agent instructions
@@ -130,7 +149,11 @@ A project folder may contain several local surfaces — the project's own workin
 - `notes/canvas/` — visual collaboration surfaces
 - `dev/live/` — small maintained code scripts and tooling snippets that persist across sessions
 
+> $kw. end
+
 ## Package
+
+> $kw: ^driver-package-literacy
 
 `agentos-pkg` is the core package skill for the agentos framework. It is the dependency root — other agentos package skills depend on it for the project model, skill model, index model, and workflow concepts.
 
@@ -143,7 +166,11 @@ Separate packages exist for other systems:
 
 `agentos-pkg` is not the same as the `agentos-md` repository — `agentos-md` is one implementation project; `agentos-pkg` is the portable package skill that any project can use.
 
+> $kw. end
+
 ## Agentos CLI
+
+> $kw: ^driver-cli-literacy
 
 The `agentos` CLI is available for discovery and operations. Run `agentos --help` to see what it can do.
 
@@ -151,80 +178,86 @@ For configuring and syncing project-local imported skills, read `references/skil
 
 For provider account credential artifact reconciliation and troubleshooting, use the `agentos-agent-account-management` skill.
 
+> $kw. end
+
 ## Package.Driver.Router
 
 > $kw: --dev-from Package.Driver.Router
-> $kw: ^package-driver-router
+> $kw: ^package-driver-router --routing-table --select many
 
-This specialized `Routing.Table` sends a package-level need to the narrower skill or configured Hugentics route that owns it.
+This `Package.Driver.Router` is a specialized `Routing.Table` that sends a package-level need to the narrower skill or configured Hugentics route that owns it. Its destinations are cross-skill calls, not local-file load edges.
 
-> $kw: --when
-When the caller needs Hugentic session control, Index research, editing, diagnosis, maintenance, or a structured human-agent workflow.
+> $kw: ^route-hugentics-session --router-row --table ^package-driver-router
+> --match semantic
+> --to agentos-hugentics
+> --when the caller needs Hugentic session control, Index research, editing, diagnosis, maintenance, or a structured human-agent workflow
+> --then load agentos-hugentics
 
-> $kw: --then
-Load `agentos-hugentics`.
+> $kw: ^route-product-design --router-row --table ^package-driver-router
+> --match semantic
+> --to agentos-hugentics --design
+> --when the caller wants touched-data-contextualized product design
+> --then load agentos-hugentics --design
 
-> $kw: --when
-When the caller wants touched-data-contextualized product design.
+> $kw: ^route-implementation --router-row --table ^package-driver-router
+> --match semantic
+> --to agentos-hugentics --impl
+> --when the caller wants implementation design, execution, review, or end-to-end development
+> --then load agentos-hugentics --impl
 
-> $kw: --then
-Load `agentos-hugentics --design`.
+> $kw: ^route-workflow-status --router-row --table ^package-driver-router
+> --match semantic
+> --to agentos-hugentics --workflow-status
+> --when the caller wants a structured checkpoint for an active workflow
+> --then load agentos-hugentics --workflow-status
 
-> $kw: --when
-When the caller wants implementation design, execution, review, or end-to-end development.
+> $kw: ^route-live-surfaces --router-row --table ^package-driver-router
+> --match semantic
+> --to agentos-live-surfaces
+> --when the caller needs live-note or live-script location, naming, or numbering
+> --then load agentos-live-surfaces
 
-> $kw: --then
-Load `agentos-hugentics --implementation`.
+> $kw: ^route-batchy-skills --router-row --table ^package-driver-router
+> --match semantic
+> --to agentos-batchy-skills
+> --when the caller needs Agentos skill taxonomy, calling conventions, argument parsing, or routing conventions
+> --then load agentos-batchy-skills
 
-> $kw: --when
-When the caller wants a structured checkpoint for an active workflow.
+> $kw: ^route-skill-development --router-row --table ^package-driver-router
+> --match semantic
+> --to agentos-skills-ingenier
+> --when the caller wants to create or upgrade a skill
+> --then load agentos-skills-ingenier
 
-> $kw: --then
-Load `agentos-hugentics --workflow-status`.
+> $kw: ^route-codebase-cleanup --router-row --table ^package-driver-router
+> --match semantic
+> --to agentos-hugentics --clean
+> --when the caller wants a targeted codebase cleanup through the Hugentic harness
+> --then load agentos-hugentics --clean
 
-> $kw: --when
-When the caller needs live-note or live-script location, naming, or numbering.
+> $kw: ^route-git-commit --router-row --table ^package-driver-router
+> --match semantic
+> --to agentos-git-commit
+> --when the caller explicitly requests a deterministic semantic commit workflow
+> --then load agentos-git-commit
 
-> $kw: --then
-Load `agentos-live-surfaces`.
+> $kw: ^route-project-doctor --router-row --table ^package-driver-router
+> --match semantic
+> --to agentos-project-doctor
+> --when the caller wants a project-health or Agentos-conformance diagnosis
+> --then load agentos-project-doctor
 
-> $kw: --when
-When the caller needs Agentos skill taxonomy, calling conventions, argument parsing, or routing conventions.
+> $kw: ^route-chatlas-package --router-row --table ^package-driver-router
+> --match semantic
+> --to agentos-chatlas-pkg
+> --when the caller needs to query, export, or continue a previous agent session
+> --then load agentos-chatlas-pkg
 
-> $kw: --then
-Load `agentos-batchy-skills`.
+> $kw: ^package-driver-routing-view --routing-view full --table ^package-driver-router
 
-> $kw: --when
-When the caller wants to create or upgrade a skill.
+## Further Discovery
 
-> $kw: --then
-Load `agentos-skills-ingenier`.
-
-> $kw: --when
-When the caller wants a targeted codebase cleanup through the Hugentic harness.
-
-> $kw: --then
-Load `agentos-hugentics --clean`.
-
-> $kw: --when
-When the caller explicitly requests a deterministic semantic commit workflow.
-
-> $kw: --then
-Load `agentos-git-commit`.
-
-> $kw: --when
-When the caller wants a project-health or Agentos-conformance diagnosis.
-
-> $kw: --then
-Load `agentos-project-doctor`.
-
-> $kw: --when
-When the caller needs to query, export, or continue a previous agent session.
-
-> $kw: --then
-Load `agentos-chatlas-pkg`.
-
-> $kw. end
+> $kw: ^driver-further-discovery
 
 For deeper understanding of agentos concepts, search the `agentos-pkg` index:
 
@@ -233,3 +266,5 @@ For deeper understanding of agentos concepts, search the `agentos-pkg` index:
 - Search for `Agentos.Index.System` to understand how the index system is designed
 - Search for `Alignment.Loop` to understand how human-agent workflows converge
 - Search for `Development.Principles` to understand implementation discipline
+
+> $kw. end

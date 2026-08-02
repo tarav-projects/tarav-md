@@ -1,3 +1,11 @@
+> $kw: ^grounding-review-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^hugentics-skill-arg-contract
+> --loading-dep SKILL.skw.md^hugentics-user-command-contract
+> --loading-dep SKILL.skw.md^driver-index-literacy
+> --loading-dep SKILL.skw.md^hugentics-authority-contract
+
 # Grounding.Review.Workflow.Module
 
 > $kw: --from Edition.Trigger.User.Gated --from Gr.Req --from Verbatim.User.Gated --from Workflow.Neutral

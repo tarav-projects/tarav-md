@@ -1,3 +1,7 @@
+> $kw: ^implementation-preferences-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+
 # Implementation.Execution.Preferences.Knowledge.Module
 
 Apply these preferences across implementation work.

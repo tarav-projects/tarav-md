@@ -1,3 +1,10 @@
+> $kw: ^back-link-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^hugentics-skill-arg-contract
+> --loading-dep SKILL.skw.md^driver-index-literacy
+> --loading-dep SKILL.skw.md^hugentics-authority-contract
+
 # Anchory.Back.Link.Operation.Module
 
 > $kw: --from Demoted.Index.Line --from Gr.Req --from Index.Presumption --from Support.Set --from Touch.Authority.Surface --from Touched.Data --from Workflow.Neutral

@@ -1,3 +1,10 @@
+> $kw: ^grounding-survey-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^hugentics-skill-arg-contract
+> --loading-dep SKILL.skw.md^driver-index-literacy
+> --loading-dep SKILL.skw.md^hugentics-authority-contract
+
 # Grounding.Survey.Workflow.Module
 
 > $kw: --from Gr.Req --from Index.Line --from Support.Set --from Touch.Authority.Surface --from Touched.Data

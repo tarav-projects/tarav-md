@@ -1,12 +1,15 @@
 # agentos-skillware --dev (build)
 
+> $kw: --from Context.Loading.Path
+
 Make a skill's Skillware-managed surfaces match their sources. The builder never generates a surface from scratch — building means compiling `.skw/src/` and reconciling drift.
 
 ## Commands
 
 - `agentos skw build --skill <path>` — the deterministic compile: refresh `copy` bodies in src, compile every `.skw.md` to its target, write `lock.json`, stamp `.skw/AGENTS.md`
 - `agentos skw status --skill <path>` — inventory: managed files, recipe counts, lock state
-- both take `--json` for machine-readable output
+- `agentos skw context --skill <path> --target <runnable-file>` — resolve every declared `Context.Loading.Path`, validate its addressed `--loading-dep` requirements, and assemble each path-specific `Projected.Context`
+- all take `--json` for machine-readable output
 
 ## What Build Does
 

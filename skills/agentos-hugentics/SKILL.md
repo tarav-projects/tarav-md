@@ -21,6 +21,44 @@ This is a `Batchy.Skill`; `Batchy.Router` resolves every run from explicit flags
 - declared `User.Command`s are the only way to cross their explicit workflow gates.
 - when an index workflow pauses, print only the commands available at that checkpoint.
 
+## Shared Runtime Contracts
+
+These addressed contracts are always available after `SKILL.md` loads. The universal Batchy contract is copied mechanically from `agentos-batchy-skills`; Hugentics owns only its concrete extensions. Child modules may declare the local addresses as loading dependencies instead of restating their rules.
+
+### Batchy.Skill.Runtime.Contract
+
+This is a `Batchy.Skill`, called like a CLI and resolved by one `Batchy.Router`. This compact contract is materialized from `agentos-batchy-skills`; load that skill when the full convention is needed.
+
+- `-h` / `--help` prints callable help into the chat and stops without running
+- a written `--<flag>` is intentional run configuration and must be resolved as such
+- explicit configuration wins over compatible inferred or default configuration for the same route
+- conversational discovery and declared defaults apply only where the applicable router row permits them
+- every non-help run with custom configuration first prints its resolved `Batchy.Skill.Banner`
+- only external data consumed by the selected behavior is a `Skill.Arg`; operation and module selection remain router effects
+- compatible routes may compose, but aliases and composed flags do not create new module identities
+- load only selected `Skill.Module`s and the additional context they explicitly require
+- declared `User.Command`s are the only way to cross their explicit workflow gates
+- when a configured run, command target, or required argument remains materially ambiguous, ask rather than guess
+
+### Hugentics.Skill.Arg.Contract
+
+- `Main.Prompt` is the current explicit request or applicable conversational input for the selected module
+- `Alignment.Mode` defaults to interactive unless explicit configuration or a routed default selects autonomous operation
+- `Depot` and `Chapter` scope Index work without independently selecting an operation
+
+### Hugentics.User.Command.Contract
+
+- approval marks the resolved verbatim proposal approved without writing it
+- landing writes only approved material and never implies approval
+- `::land-all-approved` fails closed unless one foreground workflow supplies the approved cluster
+
+### Hugentics.Authority.Contract
+
+- treat `Touched.Data` as authoritative only through its qualifying `Touch.Authority.Surface` and current line standing
+- distinguish grounded `Touched.Authority`, ungrounded `Index.Presumption`, reviewed state, and demoted history
+- follow `Support.Set` references when the index digest is insufficient, disputed, or consequential
+- surface contradictions and support gaps as `POI.Instance`s rather than resolving them silently
+
 ## Skill.Arg.Section
 
 Only external data consumed by the selected module is a `Skill.Arg`. Operation flags belong to `Batchy.Router` below.

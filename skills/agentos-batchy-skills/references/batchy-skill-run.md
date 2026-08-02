@@ -4,6 +4,19 @@ How to *operate* a `Batchy.Skill`. This is the runner-facing convention — what
 
 Every Agentos skill is a `Batchy.Skill` — called like a terminal command and resolved by one `Batchy.Router`. The convention is agent-interpreted rather than a Bash parser: explicit flags are the crisp configuration path, while clear natural-language calls remain valid wherever the applicable rows permit automatic discovery.
 
+This is a `Batchy.Skill`, called like a CLI and resolved by one `Batchy.Router`. This compact contract is materialized from `agentos-batchy-skills`; load that skill when the full convention is needed.
+
+- `-h` / `--help` prints callable help into the chat and stops without running
+- a written `--<flag>` is intentional run configuration and must be resolved as such
+- explicit configuration wins over compatible inferred or default configuration for the same route
+- conversational discovery and declared defaults apply only where the applicable router row permits them
+- every non-help run with custom configuration first prints its resolved `Batchy.Skill.Banner`
+- only external data consumed by the selected behavior is a `Skill.Arg`; operation and module selection remain router effects
+- compatible routes may compose, but aliases and composed flags do not create new module identities
+- load only selected `Skill.Module`s and the additional context they explicitly require
+- declared `User.Command`s are the only way to cross their explicit workflow gates
+- when a configured run, command target, or required argument remains materially ambiguous, ask rather than guess
+
 ## The Call
 
 - A skill is invoked like a CLI command: a name, optional flags, optional a value or two.

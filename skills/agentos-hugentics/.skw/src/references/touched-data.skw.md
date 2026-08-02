@@ -1,3 +1,7 @@
+> $kw: ^touched-data-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+
 > $kw: --from Agentos.Index.System --from Anchory.System --from Chat.Surface --from Demoted.Index.Line --from Index.Line --from Index.Presumption --from Live.Index.Line --from Open.Inference --from POI.Instance --from Reviewed.Content --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Index --from Touched.Support.Network
 > --dev-from references/index-context-assembly.skw.md
 

@@ -9,23 +9,30 @@ The conventions base for building Agentos skills. This is a `Workflow.Neutral.Sk
 
 It exists so all `agentos-pkg` skills share one homogeneous framework instead of each reinventing structure, argument passing, and help.
 
-This is itself a `Batchy.Skill` — the convention it defines applies to it too.
+> $kw: ^batchy-root-runtime-contract --copy
+> --from references/batchy-skill-run.skw.md^batchy-skill-runtime-contract
 
-- `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
+This is a `Batchy.Skill`, called like a CLI and resolved by one `Batchy.Router`. This compact contract is materialized from `agentos-batchy-skills`; load that skill when the full convention is needed.
+
+- `-h` / `--help` prints callable help into the chat and stops without running
+- a written `--<flag>` is intentional run configuration and must be resolved as such
+- explicit configuration wins over compatible inferred or default configuration for the same route
+- conversational discovery and declared defaults apply only where the applicable router row permits them
+- every non-help run with custom configuration first prints its resolved `Batchy.Skill.Banner`
+- only external data consumed by the selected behavior is a `Skill.Arg`; operation and module selection remain router effects
+- compatible routes may compose, but aliases and composed flags do not create new module identities
+- load only selected `Skill.Module`s and the additional context they explicitly require
+- declared `User.Command`s are the only way to cross their explicit workflow gates
+- when a configured run, command target, or required argument remains materially ambiguous, ask rather than guess
+
+> $kw. end
 
 ## Boundary
 
 - This skill defines conventions; it does not execute a skill-building workflow.
 - For source mining, design discussion, and applying a new or upgraded skill, use `agentos-skills-ingenier`.
 - For behavioral testing of a skill, use `agentos-testground`.
-> $kw: --derived
-> --from @<agentos-hugentics>/SKILL.skw.md^index-write-entry
-> --intent project the canonical gated Index write entry into the skill-authoring
-> --cont boundary without requiring a runtime hop through another skill
-
 Route index or appendix concept writes through `agentos-hugentics --edit`, bind the requested change and index scope, and load its edit contract. Follow `Kernel.Writing`; do not mutate the gated surface until its approval and landing transitions resolve.
-
-> $kw. end
 - Conventions are conventions an agent knows, not a Bash parser. Clear natural-language calls remain valid wherever the applicable `Batchy.Router.Row` permits automatic discovery.
 
 ## Skill Model

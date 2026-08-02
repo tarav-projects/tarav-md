@@ -1,3 +1,11 @@
+> $kw: ^index-enrich-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^hugentics-skill-arg-contract
+> --loading-dep SKILL.skw.md^hugentics-user-command-contract
+> --loading-dep SKILL.skw.md^driver-index-literacy
+> --loading-dep SKILL.skw.md^hugentics-authority-contract
+
 # Index.Enrichment.Workflow.Module
 
 > $kw: --from Capture.Offer --from Edition.Trigger.User.Gated --from Index.Enrichment --from Index.Line --from POI.Instance --from Touch.Authority.Surface --from Touched.Data --from Touched.Decision.Cycle --from Verbatim.User.Gated --from Workflow.Neutral

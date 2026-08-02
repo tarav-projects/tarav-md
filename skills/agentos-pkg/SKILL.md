@@ -13,10 +13,18 @@ Any project can adopt agentos incrementally — an AGENTS.md and one package ski
 
 Paths in this skill are package-root-relative unless explicitly absolute. For example, `000-INDEX.md` means `agentos-pkg/000-INDEX.md`.
 
-This is a `Batchy.Skill`. Its `Package.Driver.Router` is a specialized `Routing.Table` consumed by `Batchy.Router`. Load `agentos-batchy-skills` for the full convention.
+This is a `Batchy.Skill`, called like a CLI and resolved by one `Batchy.Router`. This compact contract is materialized from `agentos-batchy-skills`; load that skill when the full convention is needed.
 
-- `-h` / `--help` prints this skill's help into the chat instead of running; it takes no arguments.
-- natural conversation may select an applicable route; a written `--<flag>` is intentional run configuration and must be resolved as such.
+- `-h` / `--help` prints callable help into the chat and stops without running
+- a written `--<flag>` is intentional run configuration and must be resolved as such
+- explicit configuration wins over compatible inferred or default configuration for the same route
+- conversational discovery and declared defaults apply only where the applicable router row permits them
+- every non-help run with custom configuration first prints its resolved `Batchy.Skill.Banner`
+- only external data consumed by the selected behavior is a `Skill.Arg`; operation and module selection remain router effects
+- compatible routes may compose, but aliases and composed flags do not create new module identities
+- load only selected `Skill.Module`s and the additional context they explicitly require
+- declared `User.Command`s are the only way to cross their explicit workflow gates
+- when a configured run, command target, or required argument remains materially ambiguous, ask rather than guess
 
 ## Agentos Workspace
 
@@ -133,51 +141,88 @@ For provider account credential artifact reconciliation and troubleshooting, use
 
 ## Package.Driver.Router
 
-This specialized `Routing.Table` sends a package-level need to the narrower skill or configured Hugentics route that owns it.
+This `Package.Driver.Router` is a specialized `Routing.Table` that sends a package-level need to the narrower skill or configured Hugentics route that owns it. Its destinations are cross-skill calls, not local-file load edges.
 
-When the caller needs Hugentic session control, Index research, editing, diagnosis, maintenance, or a structured human-agent workflow.
+Selection cardinality: `many`.
 
-Load `agentos-hugentics`.
+### `^route-hugentics-session`
 
-When the caller wants touched-data-contextualized product design.
+- match: `semantic`
+- destinations: `agentos-hugentics`
+- when: the caller needs Hugentic session control, Index research, editing, diagnosis, maintenance, or a structured human-agent workflow
+- then: load agentos-hugentics
 
-Load `agentos-hugentics --design`.
+### `^route-product-design`
 
-When the caller wants implementation design, execution, review, or end-to-end development.
+- match: `semantic`
+- destinations: `agentos-hugentics --design`
+- when: the caller wants touched-data-contextualized product design
+- then: load agentos-hugentics --design
 
-Load `agentos-hugentics --implementation`.
+### `^route-implementation`
 
-When the caller wants a structured checkpoint for an active workflow.
+- match: `semantic`
+- destinations: `agentos-hugentics --impl`
+- when: the caller wants implementation design, execution, review, or end-to-end development
+- then: load agentos-hugentics --impl
 
-Load `agentos-hugentics --workflow-status`.
+### `^route-workflow-status`
 
-When the caller needs live-note or live-script location, naming, or numbering.
+- match: `semantic`
+- destinations: `agentos-hugentics --workflow-status`
+- when: the caller wants a structured checkpoint for an active workflow
+- then: load agentos-hugentics --workflow-status
 
-Load `agentos-live-surfaces`.
+### `^route-live-surfaces`
 
-When the caller needs Agentos skill taxonomy, calling conventions, argument parsing, or routing conventions.
+- match: `semantic`
+- destinations: `agentos-live-surfaces`
+- when: the caller needs live-note or live-script location, naming, or numbering
+- then: load agentos-live-surfaces
 
-Load `agentos-batchy-skills`.
+### `^route-batchy-skills`
 
-When the caller wants to create or upgrade a skill.
+- match: `semantic`
+- destinations: `agentos-batchy-skills`
+- when: the caller needs Agentos skill taxonomy, calling conventions, argument parsing, or routing conventions
+- then: load agentos-batchy-skills
 
-Load `agentos-skills-ingenier`.
+### `^route-skill-development`
 
-When the caller wants a targeted codebase cleanup through the Hugentic harness.
+- match: `semantic`
+- destinations: `agentos-skills-ingenier`
+- when: the caller wants to create or upgrade a skill
+- then: load agentos-skills-ingenier
 
-Load `agentos-hugentics --clean`.
+### `^route-codebase-cleanup`
 
-When the caller explicitly requests a deterministic semantic commit workflow.
+- match: `semantic`
+- destinations: `agentos-hugentics --clean`
+- when: the caller wants a targeted codebase cleanup through the Hugentic harness
+- then: load agentos-hugentics --clean
 
-Load `agentos-git-commit`.
+### `^route-git-commit`
 
-When the caller wants a project-health or Agentos-conformance diagnosis.
+- match: `semantic`
+- destinations: `agentos-git-commit`
+- when: the caller explicitly requests a deterministic semantic commit workflow
+- then: load agentos-git-commit
 
-Load `agentos-project-doctor`.
+### `^route-project-doctor`
 
-When the caller needs to query, export, or continue a previous agent session.
+- match: `semantic`
+- destinations: `agentos-project-doctor`
+- when: the caller wants a project-health or Agentos-conformance diagnosis
+- then: load agentos-project-doctor
 
-Load `agentos-chatlas-pkg`.
+### `^route-chatlas-package`
+
+- match: `semantic`
+- destinations: `agentos-chatlas-pkg`
+- when: the caller needs to query, export, or continue a previous agent session
+- then: load agentos-chatlas-pkg
+
+## Further Discovery
 
 For deeper understanding of agentos concepts, search the `agentos-pkg` index:
 

@@ -1,3 +1,11 @@
+> $kw: ^capture-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^hugentics-skill-arg-contract
+> --loading-dep SKILL.skw.md^hugentics-user-command-contract
+> --loading-dep SKILL.skw.md^driver-index-literacy
+> --loading-dep SKILL.skw.md^hugentics-authority-contract
+
 # Hugentic.Capture.Workflow.Module
 
 > $kw: --from Agentos.Index.System --from Alignment.Mode --from Capture.Gradient --from Capture.Offer --from Design.Req --from Design.Req.Promotion --from Edition.Approval.Token --from Edition.Trigger.User.Gated --from Hugentic.Capture.Workflow --from Impl.Req --from Index.Agendix --from Index.Appendix --from Index.Edition.Turn --from Index.Ontology --from Index.Presumption --from Kernel.Writing --from Line.Verbatim.Gate --from Live.Index.Line --from Not.A.Wall.Of.Text --from Open.Inference --from POI.Instance --from Support.Set --from Touch.Authority.Surface --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from User.Command --from User.Command.Arg --from Verbatim.User.Gated --from Workflow.Neutral

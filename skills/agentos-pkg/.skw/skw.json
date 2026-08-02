@@ -1,3 +1,4 @@
 {
-  "depots": ["."]
+  "depots": ["."],
+  "deps": {"agentos-batchy-skills": "../agentos-batchy-skills"}
 }

@@ -1,5 +1,12 @@
 > $kw: --context-assembly --from Agentos.Index.System --from Alignment.Mode --from Alignment.Surface --from Anchory.System --from Appendix.Discovery --from Batchy.Skill --from Capture.Gradient --from Capture.Offer --from Cited.Duplication --from Concept.Hardness --from Context.Grounding --from Demoted.Index.Line --from Design.Space --from Design.Variable --from Dotted.Notation --from Edition.Approval.Token --from Edition.Trigger.User.Gated --from Explicit.Namespace --from Gr.Req --from Grounding.Hugentic.Authority --from Hugentic.Concept --from Independent.Reader.Block --from InContext.Index.Chat.Capture --from Index.Agendix --from Index.Appendix --from Index.Chapter --from Index.Chat.Capture --from Index.Depot --from Index.Discovery --from Index.Edit.Action --from Index.Edit.Modify.Line --from Index.Enrichment --from Index.Grounding --from Index.Line --from Index.Linter --from Index.Ontology --from Index.Presumption --from Index.Skillware --from Index.Surface --from Kernel.Block --from Kernel.Line --from Kernel.Writing --from Line.Type --from Line.Type.Vocabulary --from Line.Verbatim.Gate --from Live.Index.Line --from Name.As.Index --from Not.A.Wall.Of.Text --from Open.Inference --from Package.Aux.Skill --from Packages.Master.Agent --from POI.Instance --from Producer.Aids.Checker --from Product.Design.Session --from Reviewed.Cite.Closure --from Reviewed.Content --from Skill.Module --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from Touched.Support.Network --from Touched.Surface.Index --from User.Attention --from User.Command --from User.Command.Arg --from User.Command.Section --from User.Command.Trigger --from User.Touched --from Verbatim.User.Gated --from Workflow.Neutral --from Writing.Friction.Reduction
 
+> $kw: ^index-context-assembly-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^hugentics-skill-arg-contract
+> --loading-dep SKILL.skw.md^driver-index-literacy
+> --loading-dep SKILL.skw.md^hugentics-authority-contract
+
 # Hugentic.Index.Context.Assembly.Module
 
 `Index.Context.Assembly` is the whole-file `Context.Assembly.Module` containing the complete shared subject context for developing any managed Hugentics Index surface. Every consumer builder loads this module; running agents continue to load only the operational modules selected by their actual workflows.

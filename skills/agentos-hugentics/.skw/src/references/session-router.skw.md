@@ -1,3 +1,8 @@
+> $kw: ^session-router-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^hugentics-skill-arg-contract
+
 # Hugentic.Session.Router.Operation.Module
 
 > $kw: --from Alignment.Loop.Interruptions --from Routing.Table --from Usage.Pattern.Routing

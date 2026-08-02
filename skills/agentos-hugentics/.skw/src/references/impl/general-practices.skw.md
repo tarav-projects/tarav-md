@@ -1,3 +1,7 @@
+> $kw: ^implementation-practices-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+
 # Implementation.Execution.Practices.Knowledge.Module
 
 Apply these practices on every execution task.

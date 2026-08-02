@@ -5,7 +5,7 @@ description: "Canonical public control surface for Hugentic sessions. USE WHEN y
 
 # Agentos Hugentics
 
-> $kw: --from Agentos.Index.System --from Alignment.Surface --from Batchy.Router --from Batchy.Skill --from Batchy.Skill.Help --from Capture.Offer --from Demoted.Index.Line --from Design.Req --from Design.Req.Promotion --from Edition.Approval.Token --from Gr.Req --from Hugentic.Capture.Workflow --from Impl.Req --from Index.Agendix --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Line --from Index.Ontology --from Index.Presumption --from Index.Skillware --from Line.Type --from Line.Verbatim.Gate --from Live.Index.Line --from Open.Inference --from Package.Driver --from Packages.Master.Agent --from POI.Instance --from Reviewed.Content --from Routing.Table --from Skill.Arg --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from Touched.Support.Network --from User.Attention --from User.Command --from User.Command.Arg --from User.Command.Section --from User.Command.Trigger
+> $kw: --from Agentos.Index.System --from Alignment.Mode --from Alignment.Surface --from Batchy.Router --from Batchy.Skill --from Batchy.Skill.Banner --from Batchy.Skill.Help --from Capture.Offer --from Demoted.Index.Line --from Design.Req --from Design.Req.Promotion --from Edition.Approval.Token --from Gr.Req --from Hugentic.Capture.Workflow --from Impl.Req --from Index.Agendix --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Line --from Index.Ontology --from Index.Presumption --from Index.Skillware --from Line.Type --from Line.Verbatim.Gate --from Live.Index.Line --from Open.Inference --from Package.Driver --from Packages.Master.Agent --from POI.Instance --from Reviewed.Content --from Routing.Table --from Skill.Arg --from Skill.Module --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from Touched.Support.Network --from User.Attention --from User.Command --from User.Command.Arg --from User.Command.Section --from User.Command.Trigger
 > --dev-from references/index-context-assembly.skw.md
 > $kw: ^driver-critical-context --dev-from Cited.Duplication --dev-from Context.Loading.Path --dev-from Package.Driver.Base --dev-from SKILL.Loading
 > --supp root driver context is selected by the alignment failure its absence could cause, not by minimizing line count; preserve context whose omission could make the agent misunderstand authority, violate a gate, select the wrong workflow, or lose the session model ^c20260729-48u
@@ -25,6 +25,61 @@ This is a `Batchy.Skill`; `Batchy.Router` resolves every run from explicit flags
 - without an explicit route, conversational discovery remains available wherever the applicable row permits it.
 - declared `User.Command`s are the only way to cross their explicit workflow gates.
 - when an index workflow pauses, print only the commands available at that checkpoint.
+
+## Shared Runtime Contracts
+
+These addressed contracts are always available after `SKILL.md` loads. The universal Batchy contract is copied mechanically from `agentos-batchy-skills`; Hugentics owns only its concrete extensions. Child modules may declare the local addresses as loading dependencies instead of restating their rules.
+
+### Batchy.Skill.Runtime.Contract
+
+> $kw: ^hugentics-batchy-runtime-contract --copy
+> --from @<agentos-batchy-skills>/references/batchy-skill-run.skw.md^batchy-skill-runtime-contract
+
+This is a `Batchy.Skill`, called like a CLI and resolved by one `Batchy.Router`. This compact contract is materialized from `agentos-batchy-skills`; load that skill when the full convention is needed.
+
+- `-h` / `--help` prints callable help into the chat and stops without running
+- a written `--<flag>` is intentional run configuration and must be resolved as such
+- explicit configuration wins over compatible inferred or default configuration for the same route
+- conversational discovery and declared defaults apply only where the applicable router row permits them
+- every non-help run with custom configuration first prints its resolved `Batchy.Skill.Banner`
+- only external data consumed by the selected behavior is a `Skill.Arg`; operation and module selection remain router effects
+- compatible routes may compose, but aliases and composed flags do not create new module identities
+- load only selected `Skill.Module`s and the additional context they explicitly require
+- declared `User.Command`s are the only way to cross their explicit workflow gates
+- when a configured run, command target, or required argument remains materially ambiguous, ask rather than guess
+
+> $kw. end
+
+### Hugentics.Skill.Arg.Contract
+
+> $kw: ^hugentics-skill-arg-contract
+
+- `Main.Prompt` is the current explicit request or applicable conversational input for the selected module
+- `Alignment.Mode` defaults to interactive unless explicit configuration or a routed default selects autonomous operation
+- `Depot` and `Chapter` scope Index work without independently selecting an operation
+
+> $kw. end
+
+### Hugentics.User.Command.Contract
+
+> $kw: ^hugentics-user-command-contract
+
+- approval marks the resolved verbatim proposal approved without writing it
+- landing writes only approved material and never implies approval
+- `::land-all-approved` fails closed unless one foreground workflow supplies the approved cluster
+
+> $kw. end
+
+### Hugentics.Authority.Contract
+
+> $kw: ^hugentics-authority-contract
+
+- treat `Touched.Data` as authoritative only through its qualifying `Touch.Authority.Surface` and current line standing
+- distinguish grounded `Touched.Authority`, ungrounded `Index.Presumption`, reviewed state, and demoted history
+- follow `Support.Set` references when the index digest is insufficient, disputed, or consequential
+- surface contradictions and support gaps as `POI.Instance`s rather than resolving them silently
+
+> $kw. end
 
 ## Skill.Arg.Section
 

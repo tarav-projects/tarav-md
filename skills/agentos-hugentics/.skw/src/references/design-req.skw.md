@@ -1,3 +1,9 @@
+> $kw: ^design-req-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^hugentics-skill-arg-contract
+> --loading-dep SKILL.skw.md^hugentics-user-command-contract
+
 # Design.Req.Knowledge.Module
 
 > $kw: --from Batchy.Router --from Design.Block --from Design.Index.Block --from Design.Req --from Design.Req.Promotion --from Edition.Trigger.User.Gated --from Hard.Evidence --from Hugentic.Capture.Workflow --from Impl.Req --from Kernel.Writing --from Touched.Decision.Cycle --from Workflow.Neutral
