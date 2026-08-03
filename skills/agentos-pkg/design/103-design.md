@@ -20,7 +20,7 @@
 - loading an appendix is an intentional action — the agent displays intention by choosing to go deeper
 - it lives in one `appendix/` shared across chapters; files are concept-named and addressed as `Index.Pages`
 - it holds every concept's tail (`Block.Line.Gradient`): `Concept.X/Appendix` catch-alls and scoped `Concept.X/Concept.Y` blocks (`Appendix.Block`)
-- with `Index.Ontology`, `Index.Agendix`, and `Index.Router` it composes the `Index.Surface` ^c20260716-9u
+- with `Index.Ontology`, `Index.Agendix`, and `Index.Router` it composes the `Index.Surface` ^c20260716-36u
 
 ****
 
@@ -60,11 +60,11 @@
 ## Block.Path
 
 - `Block.Path` is a block name written as a `/`-separated path — the full path is the name
-- [DF] it is the ontology-topology form of `Skw.Address.Schema`; `/` states descent (`Addressing.Sigil.Vocabulary`) ^c20260712-4u
-- [CT] a segment may be a `Dotted.Name` concept, a free label, or a single-word atom — the `/` supplies the minimum sigil ^c20260712-4u
+- [DF] it is the ontology-topology form of `Skw.Address.Schema`; `/` states descent (`Addressing.Sigil.Vocabulary`) ^c20260712-80u
+- [CT] a segment may be a `Dotted.Name` concept, a free label, or a single-word atom — the `/` supplies the minimum sigil ^c20260712-27u
 - a concept segment carries `Concept.Scoping` semantics; a label segment just groups, claiming no ontology entry
-- [DC] an anchored path — its root names a routed index concept — attaches the block to that node and lives in the root's appendix by default; it is not itself a top-level index block ^c20260712-4u
-- [FR] an unanchored path is legal, mirroring pre-registration `Dotted.Name`s — placement is the author's call until the root matures ^c20260712-4u
+- [DC] an anchored path — its root names a routed index concept — attaches the block to that node and lives in the root's appendix by default; it is not itself a top-level index block ^c20260712-38u
+- [FR] an unanchored path is legal, mirroring pre-registration `Dotted.Name`s — placement is the author's call until the root matures ^c20260712-86u
 - section paths (`Concept.X/Appendix`, `Concept.X/Grounding`) are restricted to the appendix; a scoped concept-child defaults there but may be promoted
 
 ****
@@ -82,19 +82,19 @@
 
 ## Inline.Definition
 
-- [DF] `Inline.Definition` is a `[DF]` line that defines a concept by inlining it inside another concept's block, without granting it a block of its own ^c20260715-4u
-- [CT] the inline-defined name is a first-class `Named.Concept` — citable by `Dotted.Name` anywhere — but its truth lives on its host's line ^c20260715-4u
-- [EX] instances or variants of the host concept are the typical case — `Workflow.Neutral.Skill` and `Workflow.Neutral.Module` inlined in `Workflow.Neutral` ^c20260715-4u
-- [CT] use it when a concept is definable in one line and a block of its own would duplicate or dilute its host ^c20260715-4u
-- [PR] promote an `Inline.Definition` to its own block when it starts accumulating lines of its own ^c20260715-4u
-- [CT] differs from `Explicit.Namespace`, which declares a view over blocks that already exist — `Inline.Definition` names things that have no block ^c20260715-4u
+- [DF] `Inline.Definition` is a `[DF]` line that defines a concept by inlining it inside another concept's block, without granting it a block of its own ^c20260715-24u
+- [CT] the inline-defined name is a first-class `Named.Concept` — citable by `Dotted.Name` anywhere — but its truth lives on its host's line ^c20260715-13u
+- [EX] instances or variants of the host concept are the typical case — `Workflow.Neutral.Skill` and `Workflow.Neutral.Module` inlined in `Workflow.Neutral` ^c20260715-29u
+- [CT] use it when a concept is definable in one line and a block of its own would duplicate or dilute its host ^c20260715-14u
+- [PR] promote an `Inline.Definition` to its own block when it starts accumulating lines of its own ^c20260715-30u
+- [CT] differs from `Explicit.Namespace`, which declares a view over blocks that already exist — `Inline.Definition` names things that have no block ^c20260715-11u
 
 ****
 
 ## Agentos.Index.System
 
 - `Agentos.Index.System` is the Agentos Index taken as a whole — the operable system of named concepts agents reason with
-- [DC] it is a member of the `Touched.Surface.Index` category — `Index.Line`s attached to the project's named concepts ^c20260716-1u
+- [DC] it is a member of the `Touched.Surface.Index` category — `Index.Line`s attached to the project's named concepts ^c20260716-55u
 - it is a curated `User.Touched` surface — it indexes the `Touched.Space` of the project's other surfaces, the `Chat.Surface` foremost
 - it is a `Hugentic.Concept` surface — user and agent collaborate over it: the agent constructs, the user gates
 - it enables semantic computation over those concepts: composing them, finding contradictions, detecting design weakness

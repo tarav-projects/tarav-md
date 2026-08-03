@@ -30,9 +30,9 @@ For gated newly drafted content, this pipeline is landing work. Do not resolve p
    - disagreement, correction, rejection, delegation, and approval can all qualify; qualification does not certify factual truth
    - reload enough normal-model context to judge the result; a derived query backend discovers candidates but never establishes support
 3. **Preview, then register the support reference.** Validate exact qualifying user-turn members before allocation — never timestamps, never tape ordinals:
-   - preview: `agentos chatlas anchory preview --member <identity-hash>:<user-turn-id> --hint "<one sentence>"`; inspect equivalent anchors and use `--detail context --radius N` only when more context is required
-   - plain support: `agentos chatlas anchory register --member <identity-hash>:<user-turn-id> --hint "<one sentence: what this support set means>"`
-   - tokenized approval: `agentos chatlas anchory register --member <identity-hash>:<substantive-turn-id> --member <identity-hash>:<approval-turn-id> --hint "<one sentence>" --member-types '{"<identity-hash>:<approval-turn-id>":{"tokenized.approval.turn":{"token":"<token>","verbatim_turn":"<identity-hash>:<proposal-turn-id>","approval_turn":"<identity-hash>:<approval-turn-id>"}}}'`
+   - preview: `agentos chatlas anchory preview --line-content '- [<Line.Type>] <body>' --member <identity-hash>:<user-turn-id> --hint "<one sentence>"`; inspect equivalent anchors and use `--detail context --radius N` only when more context is required
+   - plain support: `agentos chatlas anchory register --line-content '- [<Line.Type>] <body>' --member <identity-hash>:<user-turn-id> --hint "<one sentence: what this support set means>"`
+   - tokenized approval: `agentos chatlas anchory register --line-content '- [<Line.Type>] <body>' --member <identity-hash>:<substantive-turn-id> --member <identity-hash>:<approval-turn-id> --hint "<one sentence>" --member-types '{"<identity-hash>:<approval-turn-id>":{"tokenized.approval.turn":{"token":"<token>","verbatim_turn":"<identity-hash>:<proposal-turn-id>","approval_turn":"<identity-hash>:<approval-turn-id>"}}}'`
    - a proposal and the approval that answers it are independent turns: `verbatim_turn` references the assistant turn and `approval_turn` references the user turn
    - semantic approval is representable with `semantic.approval.turn` cargo containing `verbatim_turn` and `approval_turn`, but Hugentics Index workflows require tokenized approval
    - chatlas validates member coordinates, preserves member order, derives the `chatlas` namespace and user tag, registers through anchory, and returns the composed anchor (`c<YYYYMMDD>-<N>u`)
@@ -54,7 +54,8 @@ For gated newly drafted content, this pipeline is landing work. Do not resolve p
 - `agentos anchory amend` exists only to correct an error or improve resolution of the same context
 - the hint is the desync tripwire: write it so a reader can tell whether the resolved neighborhood matches
 - the register is plumbing, not truth or authority — the information lives on the authority surfaces; agents detect desync by reading them
-- one anchor per claim: if two lines ground on the same neighborhood, they may share the anchor
+- one anchor per distinct line content: equal `Line.Type + body` may reuse one relationship across materializations, but different content must never share its mutable anchor record
+- changing line content requires revisiting support and minting a new line-bound anchor; never amend an old anchor onto a different line
 
 ## Addressing One Event
 

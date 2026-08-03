@@ -4,50 +4,50 @@
 
 ## Product.Design.Session
 
-- [DF] `Target.Product` is the intended result that gives design work its purpose ^c20260729-11u
-- [CT] a `Target.Product` is identified by its intended outcome rather than by one required artifact kind ^c20260729-11u
-- [EX] a design, system, artifact, surface edition, implementation, or decision may each be a `Target.Product` ^c20260729-11u
-- [DF] `Product.Design.Session` is an alignment session organized around advancing a `Target.Product` ^c20260729-11u
-- [DC] `What.Design`, `How.Design`, and `Impl.Exec` are general concerns available within the session ^c20260729-11u
-- [CT] those concerns are not a mandatory three-step pipeline ^c20260729-11u
-- [DC] a workflow exposes only the concerns that remain unresolved for its product ^c20260729-11u
-- [DC] a concern may already be resolved by `Touched.Data`, a skill contract, or another stable surface ^c20260729-11u
-- [FR] resolved concerns may remain implicit while the workflow advances through the others ^c20260729-11u
-- [DC] reconciliation may reopen an earlier concern when later work exposes a design gap ^c20260729-11u
-- [PR] the concerns form an abstraction gradient without imposing a rigid execution sequence ^c20260729-11u
-- [DC] `Touched.Decision.Cycle` governs decisions inside every exposed concern ^c20260729-11u
+- [DF] `Target.Product` is the intended result that gives design work its purpose ^c20260729-267u
+- [CT] a `Target.Product` is identified by its intended outcome rather than by one required artifact kind ^c20260729-54u
+- [EX] a design, system, artifact, surface edition, implementation, or decision may each be a `Target.Product` ^c20260729-295u
+- [DF] `Product.Design.Session` is an alignment session organized around advancing a `Target.Product` ^c20260729-264u
+- [DC] `What.Design`, `How.Design`, and `Impl.Exec` are general concerns available within the session ^c20260729-180u
+- [CT] those concerns are not a mandatory three-step pipeline ^c20260729-158u
+- [DC] a workflow exposes only the concerns that remain unresolved for its product ^c20260729-191u
+- [DC] a concern may already be resolved by `Touched.Data`, a skill contract, or another stable surface ^c20260729-183u
+- [FR] resolved concerns may remain implicit while the workflow advances through the others ^c20260729-317u
+- [DC] reconciliation may reopen an earlier concern when later work exposes a design gap ^c20260729-226u
+- [PR] the concerns form an abstraction gradient without imposing a rigid execution sequence ^c20260729-351u
+- [DC] `Touched.Decision.Cycle` governs decisions inside every exposed concern ^c20260729-174u
 
 ****
 
 ## Hugentic.Capture.Workflow
 
-- [DF] `Hugentic.Capture.Workflow` is the primary user-facing alignment workflow for turning active conversation and adjacent evidence into maintained durable state ^c20260731-31u
-- [DC] the workflow may target `Touched.Index`, `Design.Req`, or `Index.Agendix` without changing its conversational loop ^c20260731-31u
-- [DC] its general loop contextualizes, proposes and discusses, approves where required, lands through the target surface, and reconciles the resulting state ^c20260731-31u
-- [CT] changing the target changes the landing surface and applicable gate, not the identity of the workflow ^c20260731-31u
-- [CT] explicit `Batchy.Skill.Flag`s may configure the target or focus, while conversation and declared defaults may resolve rows that permit automatic discovery ^c20260731-31u
+- [DF] `Hugentic.Capture.Workflow` is the primary user-facing alignment workflow for turning active conversation and adjacent evidence into maintained durable state ^c20260731-201u
+- [DC] the workflow may target `Touched.Index`, `Design.Req`, or `Index.Agendix` without changing its conversational loop ^c20260731-185u
+- [DC] its general loop contextualizes, proposes and discusses, approves where required, lands through the target surface, and reconciles the resulting state ^c20260731-162u
+- [CT] changing the target changes the landing surface and applicable gate, not the identity of the workflow ^c20260731-76u
+- [CT] explicit `Batchy.Skill.Flag`s may configure the target or focus, while conversation and declared defaults may resolve rows that permit automatic discovery ^c20260731-80u
 
 ****
 
 ## Design.Req
 
-- [DF] `Design.Req` is a live artifact for accumulating large or unstable What/How design state before that state becomes suitable for a stable surface ^c20260731-31u
-- [PR] it lets extensive design evolve without forcing the main index to absorb unstable material prematurely ^c20260731-31u
-- [CT] it is not limited to pairing with an `Impl.Req`; its design may promote into the index, fork into implementation work, or do both ^c20260731-31u
-- [DC] its only required lifecycle status values are `Open` and `Closed` ^c20260731-31u
-- [CT] while its status is `Open` and its workflow is active, the agent maintains the artifact from the evolving conversation and workflow state ^c20260731-31u
-- [CT] completing work requires a maintenance pass that records the resulting design, approvals, promotions, and remaining open material before closure ^c20260731-31u
-- [DC] closure is initially user-gated; reopening is permitted, and every later completion repeats maintenance before returning to `Closed` ^c20260731-31u
+- [DF] `Design.Req` is a live artifact for accumulating large or unstable What/How design state before that state becomes suitable for a stable surface ^c20260731-196u
+- [PR] it lets extensive design evolve without forcing the main index to absorb unstable material prematurely ^c20260731-235u
+- [CT] it is not limited to pairing with an `Impl.Req`; its design may promote into the index, fork into implementation work, or do both ^c20260731-88u
+- [DC] its only required lifecycle status values are `Open` and `Closed` ^c20260731-163u
+- [CT] while its status is `Open` and its workflow is active, the agent maintains the artifact from the evolving conversation and workflow state ^c20260731-112u
+- [CT] completing work requires a maintenance pass that records the resulting design, approvals, promotions, and remaining open material before closure ^c20260731-77u
+- [DC] closure is initially user-gated; reopening is permitted, and every later completion repeats maintenance before returning to `Closed` ^c20260731-142u
 
 ****
 
 ## Design.Req.Promotion
 
-- [DF] `Design.Req.Promotion` is an `Alignment.Loop.Interruptions` branch that temporarily retargets `Hugentic.Capture.Workflow` from a `Design.Req` to the index, an `Impl.Req`, or both ^c20260731-31u
-- [DC] the agent may propose landing already-approved material, inspect applicable approved clusters, or continue discussion and approval before proposing the target landing ^c20260731-31u
-- [CT] source approval never bypasses the target surface gate; verbatim-preserved material may be reused as a proposal, but its target landing remains separately gated ^c20260731-31u
-- [DC] the typical sequence promotes stable design into the index before implementation work begins, keeping product and index surfaces aligned ^c20260731-31u
-- [CT] promotion completion includes maintaining the source `Design.Req` to record what was approved or landed before its closing gate is offered ^c20260731-31u
+- [DF] `Design.Req.Promotion` is an `Alignment.Loop.Interruptions` branch that temporarily retargets `Hugentic.Capture.Workflow` from a `Design.Req` to the index, an `Impl.Req`, or both ^c20260731-195u
+- [DC] the agent may propose landing already-approved material, inspect applicable approved clusters, or continue discussion and approval before proposing the target landing ^c20260731-175u
+- [CT] source approval never bypasses the target surface gate; verbatim-preserved material may be reused as a proposal, but its target landing remains separately gated ^c20260731-102u
+- [DC] the typical sequence promotes stable design into the index before implementation work begins, keeping product and index surfaces aligned ^c20260731-184u
+- [CT] promotion completion includes maintaining the source `Design.Req` to record what was approved or landed before its closing gate is offered ^c20260731-97u
 
 ****
 
@@ -142,12 +142,12 @@
 
 ## User.Model.Space
 
-- [DF] `User.Model.Space` is a `QA.Space` about the user ^c20260729-9u
-- [DC] it models what the system knows about what the user said, wanted, rejected, approved, left open, or delegated ^c20260729-9u
-- [CT] its claims are evidence-scoped and belong only to the extent that a touched surface grounds them ^c20260729-9u
-- [PR] `Hugentic.Chat.Surface` is its natural placement because repeated dialogue records changing judgment and context ^c20260729-9u
-- [CT] non-chat `User.Touch` may also condition the model when its provenance is available ^c20260729-9u
-- [PR] growing `Touched.Space` improves the user model by increasing its grounded interaction evidence ^c20260729-9u
+- [DF] `User.Model.Space` is a `QA.Space` about the user ^c20260729-277u
+- [DC] it models what the system knows about what the user said, wanted, rejected, approved, left open, or delegated ^c20260729-217u
+- [CT] its claims are evidence-scoped and belong only to the extent that a touched surface grounds them ^c20260729-114u
+- [PR] `Hugentic.Chat.Surface` is its natural placement because repeated dialogue records changing judgment and context ^c20260729-323u
+- [CT] non-chat `User.Touch` may also condition the model when its provenance is available ^c20260729-122u
+- [PR] growing `Touched.Space` improves the user model by increasing its grounded interaction evidence ^c20260729-335u
 
 ****
 
@@ -179,37 +179,37 @@
 
 ## User.Touched
 
-- [DF] `User.Touched` is the property of data carrying evidence of `User.Touch` ^c20260729-8u
-- [DF] `User.Touch` is an event in which the user engages a subject, providing the primitive evidence that the subject entered `Touched.Space` ^c20260729-8u
-- [CT] the system does not observe `User.Touch` directly; it reaches touch only through its materialization on a `Touch.Authority.Surface` ^c20260729-18u
-- [CT] touch is general over stated, discussed, approved, corrected, rejected, co-drafted, or explicitly delegated material ^c20260729-8u
-- [DC] authorship is not the touch boundary: an agent may construct the data while its touch comes from user evidence ^c20260729-8u
-- [CT] `User.Touched` separates `Touched.Space` from `Untouched.Space`; it does not decide whether a region is open, constrained, or fixed ^c20260729-8u
-- [DC] `User.Touched` is derived per datum from touch provenance rather than stored as membership in a surface category ^c20260729-20u
+- [DF] `User.Touched` is the property of data carrying evidence of `User.Touch` ^c20260729-279u
+- [DF] `User.Touch` is an event in which the user engages a subject, providing the primitive evidence that the subject entered `Touched.Space` ^c20260729-278u
+- [CT] the system does not observe `User.Touch` directly; it reaches touch only through its materialization on a `Touch.Authority.Surface` ^c20260729-155u
+- [CT] touch is general over stated, discussed, approved, corrected, rejected, co-drafted, or explicitly delegated material ^c20260729-160u
+- [DC] authorship is not the touch boundary: an agent may construct the data while its touch comes from user evidence ^c20260729-198u
+- [CT] `User.Touched` separates `Touched.Space` from `Untouched.Space`; it does not decide whether a region is open, constrained, or fixed ^c20260729-52u
+- [DC] `User.Touched` is derived per datum from touch provenance rather than stored as membership in a surface category ^c20260729-176u
 
 ****
 
 ## Touch.Authority.Surface
 
-- [DF] `Touch.Authority.Surface` is a registered surface that serves as an inbox for direct `Touched.Data` ^c20260729-18u
-- [DF] a qualifying edition is a change that the surface recognizes as materializing `User.Touch` ^c20260729-18u
-- [CT] the system observes qualifying surface editions, not the underlying `User.Touch` itself ^c20260729-18u
-- [DC] data materialized by a qualifying edition is considered first-order `Touched.Data` by default ^c20260729-18u
-- [CT] first-order touch classification is defeasible: later evidence may disqualify the edition or exclude particular data from its touched extent ^c20260729-18u
-- [DC] each `Touch.Authority.Surface` defines which editions qualify and which data within them was touched ^c20260729-18u
-- [CT] registration does not make every edition touched; a nonqualifying edition carries no direct touch ^c20260729-18u
-- [CT] disqualification concerns touch provenance; factual error, staleness, or contradiction alone does not mean the data was never touched ^c20260729-18u
-- [DC] a qualifying `User.Turn` is presently the only registered realization of `Touch.Authority.Surface` ^c20260729-18u
-- [PR] `Chat.Surface` is the natural container and context surface for that realization ^c20260729-18u
+- [DF] `Touch.Authority.Surface` is a registered surface that serves as an inbox for direct `Touched.Data` ^c20260729-268u
+- [DF] a qualifying edition is a change that the surface recognizes as materializing `User.Touch` ^c20260729-292u
+- [CT] the system observes qualifying surface editions, not the underlying `User.Touch` itself ^c20260729-156u
+- [DC] data materialized by a qualifying edition is considered first-order `Touched.Data` by default ^c20260729-204u
+- [CT] first-order touch classification is defeasible: later evidence may disqualify the edition or exclude particular data from its touched extent ^c20260729-102u
+- [DC] each `Touch.Authority.Surface` defines which editions qualify and which data within them was touched ^c20260729-206u
+- [CT] registration does not make every edition touched; a nonqualifying edition carries no direct touch ^c20260729-129u
+- [CT] disqualification concerns touch provenance; factual error, staleness, or contradiction alone does not mean the data was never touched ^c20260729-87u
+- [DC] a qualifying `User.Turn` is presently the only registered realization of `Touch.Authority.Surface` ^c20260729-187u
+- [PR] `Chat.Surface` is the natural container and context surface for that realization ^c20260729-321u
 
 ****
 
 ## Touched.Data
 
-- [DF] `Touched.Data` is data whose provenance reaches `User.Touch` through a qualifying `Touch.Authority.Surface` edition or through grounding ^c20260729-18u
-- [DC] data materialized on the authority surface has defeasible first-order provenance; a grounded projection carries second-order provenance ^c20260729-18u
-- [CT] touch provenance does not certify factual truth, internal consistency, or currentness ^c20260729-8u
-- [PR] touched data conditions agent action according to what its evidence supports ^c20260729-8u
+- [DF] `Touched.Data` is data whose provenance reaches `User.Touch` through a qualifying `Touch.Authority.Surface` edition or through grounding ^c20260729-270u
+- [DC] data materialized on the authority surface has defeasible first-order provenance; a grounded projection carries second-order provenance ^c20260729-205u
+- [CT] touch provenance does not certify factual truth, internal consistency, or currentness ^c20260729-161u
+- [PR] touched data conditions agent action according to what its evidence supports ^c20260729-357u
 
 ****
 
@@ -227,7 +227,7 @@
 - [DF] `Untouched.Space` is the region of a `QA.Space` with no `User.Touched` evidence
 - [DC] it is the part of the modeled space the hugentic process has not reached
 - [CT] touch does not decide whether the agent may act; the `Open.Space` / `Constrained.Space` axis decides action
-- [DC] untouched material never becomes an index line directly; and touch alone lands nothing — material, touched or not, remains in chat, work surfaces, source surfaces, or `Index.Agendix` until landed through the gate ^c20260716-0u
+- [DC] untouched material never becomes an index line directly; and touch alone lands nothing — material, touched or not, remains in chat, work surfaces, source surfaces, or `Index.Agendix` until landed through the gate ^c20260716-63u
 - [PR] alignment grows by moving important regions from `Untouched.Space` into `Touched.Space`
 
 ****
@@ -244,14 +244,14 @@
 
 ## Open.Inference
 
-- [DF] `Open.Inference` is an agent conclusion or decision made where applicable `Touched.Data` leaves the answer unresolved ^c20260729-26u
-- [CT] an answer may remain unresolved because touched data is absent, incomplete, ambiguous, or contradictory ^c20260729-26u
-- [DC] the agent evaluates provenance, applicability, currentness, support strength, and consequences before selecting an answer ^c20260729-26u
-- [DC] open inference selects a coherent provisional action within the answer region left available by touched constraints ^c20260729-26u
-- [CT] its conclusion carries no `Touched.Authority` of its own ^c20260729-26u
-- [CT] it does not silently rewrite or discard touched positions that remain unresolved ^c20260729-26u
-- [FR] the agent may act on open inference without waiting for additional `User.Touch` ^c20260729-26u
-- [CT] changing a gated touched surface remains a separate reconciliation action even when open inference permits other work to proceed ^c20260729-26u
+- [DF] `Open.Inference` is an agent conclusion or decision made where applicable `Touched.Data` leaves the answer unresolved ^c20260729-262u
+- [CT] an answer may remain unresolved because touched data is absent, incomplete, ambiguous, or contradictory ^c20260729-69u
+- [DC] the agent evaluates provenance, applicability, currentness, support strength, and consequences before selecting an answer ^c20260729-234u
+- [DC] open inference selects a coherent provisional action within the answer region left available by touched constraints ^c20260729-223u
+- [CT] its conclusion carries no `Touched.Authority` of its own ^c20260729-115u
+- [CT] it does not silently rewrite or discard touched positions that remain unresolved ^c20260729-110u
+- [FR] the agent may act on open inference without waiting for additional `User.Touch` ^c20260729-318u
+- [CT] changing a gated touched surface remains a separate reconciliation action even when open inference permits other work to proceed ^c20260729-76u
 
 ****
 
@@ -274,62 +274,62 @@
 
 ## Touched.Authority
 
-- [DF] `Touched.Authority` is the precedence rule by which `Touched.Data` conditions `Open.Inference` according to its provenance and meaning ^c20260729-8u
-- [CT] touched authority is relative to `Open.Inference`; it is not a certificate of truth ^c20260729-8u
-- [CT] touched data may be incomplete, stale, false, or mutually contradictory ^c20260729-8u
-- [CT] an agent may not silently replace coherent touched data with its own `Open.Inference` ^c20260729-8u
-- [CT] an agent must not blindly follow touched data whose applicable claims are incoherent ^c20260729-8u
-- [DC] every `Touched.Surface` maintains a coherent live projection; detected incoherence is a `Point.Of.Interest` ^c20260729-8u
-- [PR] resolution descends through provenance and may create new `User.Touch` while preserving the contradictory history ^c20260729-8u
-- [DC] authority status is derived from provenance on the surface rather than stored ^c20260729-8u
+- [DF] `Touched.Authority` is the precedence rule by which `Touched.Data` conditions `Open.Inference` according to its provenance and meaning ^c20260729-269u
+- [CT] touched authority is relative to `Open.Inference`; it is not a certificate of truth ^c20260729-162u
+- [CT] touched data may be incomplete, stale, false, or mutually contradictory ^c20260729-163u
+- [CT] an agent may not silently replace coherent touched data with its own `Open.Inference` ^c20260729-67u
+- [CT] an agent must not blindly follow touched data whose applicable claims are incoherent ^c20260729-68u
+- [DC] every `Touched.Surface` maintains a coherent live projection; detected incoherence is a `Point.Of.Interest` ^c20260729-210u
+- [PR] resolution descends through provenance and may create new `User.Touch` while preserving the contradictory history ^c20260729-346u
+- [DC] authority status is derived from provenance on the surface rather than stored ^c20260729-197u
 
 ****
 
 ## Touched.Decision.Cycle
 
-- [DF] `Touched.Decision.Cycle` is the decision discipline repeated within product design and realization ^c20260729-11u
-- [DC] contextualization loads the `Touched.Data` relevant to the active decision ^c20260729-11u
-- [DC] incoherent touched constraints become `Point.Of.Interest` instances before they are treated as guidance ^c20260729-11u
-- [CT] coherent touched constraints condition the valid answer region ^c20260729-11u
-- [FR] regions not determined by touched constraints are completed through `Open.Inference` ^c20260729-11u
-- [DC] action advances the current `Target.Product` ^c20260729-11u
-- [DC] reconciliation compares the changed product with its touched design and adjacent surfaces ^c20260729-11u
-- [PR] reconciliation may expose another decision and begin a nested cycle ^c20260729-11u
+- [DF] `Touched.Decision.Cycle` is the decision discipline repeated within product design and realization ^c20260729-271u
+- [DC] contextualization loads the `Touched.Data` relevant to the active decision ^c20260729-203u
+- [DC] incoherent touched constraints become `Point.Of.Interest` instances before they are treated as guidance ^c20260729-212u
+- [CT] coherent touched constraints condition the valid answer region ^c20260729-79u
+- [FR] regions not determined by touched constraints are completed through `Open.Inference` ^c20260729-315u
+- [DC] action advances the current `Target.Product` ^c20260729-192u
+- [DC] reconciliation compares the changed product with its touched design and adjacent surfaces ^c20260729-225u
+- [PR] reconciliation may expose another decision and begin a nested cycle ^c20260729-342u
 
 ****
 
 ## Constraint.Steering
 
-- [DF] `Constraint.Steering` is the design principle that we steer agent work by designing constraints — saturating surfaces with checkable assertions so that consistency pressure pulls the work in the designed direction ^c20260719-8u ^c20260719-10u
-- [DC] mint-time test: a finite vocabulary forces commitment at write time — confused content fails to type, the earliest and cheapest drift detection ^c20260719-8u
-- [DC] standing test: the assertion rides next to the content forever; every later pass has a small, local, closed-set claim to check against ^c20260719-8u
-- [DC] graded checkability: part of each assertion is CPU-checkable (presence, vocabulary membership, resolution), the rest agent-checkable — design pushes each assertion down the gradient; agent-checkable is the floor, never zero ^c20260719-8u
-- [DC] direction-forcing: designing the constraint vocabulary IS steering the system — assertions encode what better looks like, so many small consistency checks pull the surfaces toward it ^c20260719-8u
-- [DC] stability: an assertion is a semantic invariant a rewrite must preserve — constraints make a surface stable under agent rewriting; the agent may rephrase, never drop the pinned semantics ^c20260719-8u
-- [PR] the compiler loop: agent-generated code must compile, and that feedback loop bounds generation — it either never converges or converges at least to compilable output; assertions + linting generalize the loop to text: the generated surface must comply with many tests, it is never "generate what you like" ^c20260719-9u
-- [DC] instances: `Line.Type`, anchors + support sets (`Touched.Support.Network`), skw claims (`Skw.Ann.Dependency`), the annotation↔generated-surface sync (`Skw.Annotation`), gates, bless records ^c20260719-9u
+- [DF] `Constraint.Steering` is the design principle that we steer agent work by designing constraints — saturating surfaces with checkable assertions so that consistency pressure pulls the work in the designed direction ^c20260719-45u
+- [DC] mint-time test: a finite vocabulary forces commitment at write time — confused content fails to type, the earliest and cheapest drift detection ^c20260719-29u
+- [DC] standing test: the assertion rides next to the content forever; every later pass has a small, local, closed-set claim to check against ^c20260719-33u
+- [DC] graded checkability: part of each assertion is CPU-checkable (presence, vocabulary membership, resolution), the rest agent-checkable — design pushes each assertion down the gradient; agent-checkable is the floor, never zero ^c20260719-26u
+- [DC] direction-forcing: designing the constraint vocabulary IS steering the system — assertions encode what better looks like, so many small consistency checks pull the surfaces toward it ^c20260719-22u
+- [DC] stability: an assertion is a semantic invariant a rewrite must preserve — constraints make a surface stable under agent rewriting; the agent may rephrase, never drop the pinned semantics ^c20260719-32u
+- [PR] the compiler loop: agent-generated code must compile, and that feedback loop bounds generation — it either never converges or converges at least to compilable output; assertions + linting generalize the loop to text: the generated surface must comply with many tests, it is never "generate what you like" ^c20260719-50u
+- [DC] instances: `Line.Type`, anchors + support sets (`Touched.Support.Network`), skw claims (`Skw.Ann.Dependency`), the annotation↔generated-surface sync (`Skw.Annotation`), gates, bless records ^c20260719-28u
 
 ****
 
 ## Accountable.Assertion
 
-- [DF] an `Accountable.Assertion` is the unit `Constraint.Steering` deposits: a recorded claim carrying frozen judgment (the stamp) and its audit path, so any agent can call it to account on demand ^c20260719-10u
-- [DC] a stamp is judgment cached at mint time, never truth — checking recomputes the claim against its evidence ^c20260719-10u
-- [DC] the trail has two realizations — integrated on-surface (for example an `Index.Line`'s type tag: evidence local to the value) or held in an external general schema (for example an `Anchory` dossier: audit requires descent); the axis between them is audit cost ^c20260719-3u ^c20260719-10u
-- [DC] the frozen judgment is someone's — user or agent — and the stamp says whose; accountability is the general property, authority stays read from provenance (`Touched.Authority`) ^c20260719-10u
-- [DC] the audit path can accumulate evaluation records — verdicts by any evaluator, appended openly, folded on read; a second record family beside the gated evidence dossier ^c20260720-0u
-- [CT] evaluation is confidence, never authority — no fold of verdicts changes what the assertion's evidence supports ^c20260720-0u
+- [DF] an `Accountable.Assertion` is the unit `Constraint.Steering` deposits: a recorded claim carrying frozen judgment (the stamp) and its audit path, so any agent can call it to account on demand ^c20260719-47u
+- [DC] a stamp is judgment cached at mint time, never truth — checking recomputes the claim against its evidence ^c20260719-18u
+- [DC] the trail has two realizations — integrated on-surface (for example an `Index.Line`'s type tag: evidence local to the value) or held in an external general schema (for example an `Anchory` dossier: audit requires descent); the axis between them is audit cost ^c20260719-42u
+- [DC] the frozen judgment is someone's — user or agent — and the stamp says whose; accountability is the general property, authority stays read from provenance (`Touched.Authority`) ^c20260719-38u
+- [DC] the audit path can accumulate evaluation records — verdicts by any evaluator, appended openly, folded on read; a second record family beside the gated evidence dossier ^c20260720-44u
+- [CT] evaluation is confidence, never authority — no fold of verdicts changes what the assertion's evidence supports ^c20260720-32u
 
 ****
 
 ## Producer.Aids.Checker
 
-- [DF] `Producer.Aids.Checker` is the principle that the capable producer bears the structuring burden so the verifier can stay simple — complexity moves to the producer, not the checker ^c20260726-5u
-- [PR] in an agent–CPU pair the `Agentic.Program` produces and shapes its output so the verifying `CPU.Program`'s job is trivial ^c20260726-5u
-- [DC] it is a division of labor, not redundancy: the producer deposits the claim and its audit path (`Accountable.Assertion`), the checker only walks that path ^c20260726-5u
-- [CT] the checker judges form and audit-path, never meaning — semantic judgment stays with the human or the producer ^c20260726-5u
-- [PR] prefer it whenever richer producer output would simplify a check: structuring is paid once by the producer, the check then runs cheaply and lowers audit cost (`Index.Line`) ^c20260726-5u
-- [EX] `Line.Verbatim.Gate` applies it: the agent emits the verbatim line plus an `Edition.Approval.Token` so the linter verifies review by a deterministic token walk, not semantic inspection ^c20260726-5u
+- [DF] `Producer.Aids.Checker` is the principle that the capable producer bears the structuring burden so the verifier can stay simple — complexity moves to the producer, not the checker ^c20260726-39u
+- [PR] in an agent–CPU pair the `Agentic.Program` produces and shapes its output so the verifying `CPU.Program`'s job is trivial ^c20260726-44u
+- [DC] it is a division of labor, not redundancy: the producer deposits the claim and its audit path (`Accountable.Assertion`), the checker only walks that path ^c20260726-24u
+- [CT] the checker judges form and audit-path, never meaning — semantic judgment stays with the human or the producer ^c20260726-20u
+- [PR] prefer it whenever richer producer output would simplify a check: structuring is paid once by the producer, the check then runs cheaply and lowers audit cost (`Index.Line`) ^c20260726-45u
+- [EX] `Line.Verbatim.Gate` applies it: the agent emits the verbatim line plus an `Edition.Approval.Token` so the linter verifies review by a deterministic token walk, not semantic inspection ^c20260726-41u
 
 ****
 
@@ -340,11 +340,11 @@
 - naming once bundled three filters — identification, boundary, significance; the line-level tests unbundle them: a crisp single point (`Kernel.Line`), attaching to a block (`Index.Edit.Append.Line`), and significance (`Line.Type`)
 - syntax: a leading bracketed code — `- [CT] the anchor token stays small`; the type is read first and primes the line, the tail stays free for inline anchors
 - every line is typed, the definition first line explicitly `[DF]` — untyped lines are mechanically detectable (no leading bracket), the pre-fence legacy the calibration passes work down
-- [DC] the act axis (`CT`, `DC`, …) is the type — the assistant-grounded source marker (`[AS:XX]`) is retired: all typed lines are user-grounded on every surface ^c20260716-0u
+- [DC] the act axis (`CT`, `DC`, …) is the type — the assistant-grounded source marker (`[AS:XX]`) is retired: all typed lines are user-grounded on every surface ^c20260716-60u
 
-- [PR] typing makes the index computable — backward, lint for coherence; forward, agents derive their bounds and freedoms mechanically instead of interpreting prose ^c20260707-1u
-- [PR] static typing for agent-produced surfaces: the type disciplines the content, not describes it — most of its value is paid at write time ^c20260719-9u
-- [DC] the type adds stability: it pins what any rewrite must preserve — an agent cannot rewrite a line "just because"; the rewrite must still satisfy the tag ^c20260719-8u
+- [PR] typing makes the index computable — backward, lint for coherence; forward, agents derive their bounds and freedoms mechanically instead of interpreting prose ^c20260707-8u
+- [PR] static typing for agent-produced surfaces: the type disciplines the content, not describes it — most of its value is paid at write time ^c20260719-48u
+- [DC] the type adds stability: it pins what any rewrite must preserve — an agent cannot rewrite a line "just because"; the rewrite must still satisfy the tag ^c20260719-43u
 
 ****
 
@@ -421,7 +421,7 @@
 - [DF] `Line.Type::GR` marks a grounding line — a one-sentence account of what an anchored evidence neighborhood grounds
 - [CT] validation point: the line must carry a trailing anchor and state what the evidence grounds; a `GR` without an anchor is mistyped
 - [DC] lint: an anchor that does not resolve, and a `GR` account contradicted by its anchored neighborhood
-- [DC] grounding is factual evidence, not authority: the gate turn (`Turn.Type::<Surface>.Gate`) lives in a line's own support set; a `GR` line accounts for what separate evidence grounds ^c20260716-18u
+- [DC] grounding is factual evidence, not authority: the gate turn (`Turn.Type::<Surface>.Gate`) lives in a line's own support set; a `GR` line accounts for what separate evidence grounds ^c20260716-54u
 
 ****
 
@@ -480,14 +480,14 @@
 
 ## Alignment.Loop.Gradient
 
-- [DF] `Alignment.Loop.Gradient` orders `What.Design`, `How.Design`, and `Impl.Exec` by their abstraction and distance from concrete realization ^c20260729-11u
-- [CT] the ordering is not a mandatory workflow sequence; a `Product.Design.Session` may expose any subset of the concerns ^c20260729-11u
-- [DC] concerns already resolved by touched data, skill contracts, or stable surfaces remain implicit ^c20260729-11u
-- [CT] every exposed loop is non-stable staging that advances a `Target.Product` ^c20260729-11u
-- [DC] `What.Design` works closest to the abstract ontology ^c20260729-11u
-- [DC] `How.Design` contextualizes that design against implementation concerns and plans a path ^c20260729-11u
-- [DC] `Impl.Exec` works closest to concrete implementation surfaces ^c20260729-11u
-- [FR] movement is bidirectional; later concerns may reopen earlier design or land insights into the `Touched.Index` ^c20260729-11u
+- [DF] `Alignment.Loop.Gradient` orders `What.Design`, `How.Design`, and `Impl.Exec` by their abstraction and distance from concrete realization ^c20260729-250u
+- [CT] the ordering is not a mandatory workflow sequence; a `Product.Design.Session` may expose any subset of the concerns ^c20260729-148u
+- [DC] concerns already resolved by touched data, skill contracts, or stable surfaces remain implicit ^c20260729-200u
+- [CT] every exposed loop is non-stable staging that advances a `Target.Product` ^c20260729-98u
+- [DC] `What.Design` works closest to the abstract ontology ^c20260729-179u
+- [DC] `How.Design` contextualizes that design against implementation concerns and plans a path ^c20260729-166u
+- [DC] `Impl.Exec` works closest to concrete implementation surfaces ^c20260729-167u
+- [FR] movement is bidirectional; later concerns may reopen earlier design or land insights into the `Touched.Index` ^c20260729-313u
 
 ****
 
@@ -565,29 +565,29 @@
 
 ## Delta.Normalization
 
-- [DF] `Delta.Normalization` is incremental derivation in a `Normalization.Pipeline`: normalize only source records added since the last pass plus the model's volatile tail, instead of re-deriving the whole `Normal.Model` ^c20260712-14u
-- [PR] it applies better to append-friendly target models — an append-only body with per-line provenance and finality; the `Normalization.Pipeline` does not require its targets to be append-friendly ^c20260712-13u
-- [DC] the unit of work is the stable-prefix / volatile-tail split — content whose derivation is final is frozen and skipped; only the volatile tail and new source records are recomputed ^c20260712-14u
-- [DC] resume state persists in a `Normalization.Delta.Checkpoint`; a checkpoint that fails validation discards itself and the pass falls back to full derivation ^c20260712-14u
-- [CT] full derivation from raw sources remains always available and authoritative — delta passes are an optimization, never a new source of truth ^c20260712-14u
+- [DF] `Delta.Normalization` is incremental derivation in a `Normalization.Pipeline`: normalize only source records added since the last pass plus the model's volatile tail, instead of re-deriving the whole `Normal.Model` ^c20260712-69u
+- [PR] it applies better to append-friendly target models — an append-only body with per-line provenance and finality; the `Normalization.Pipeline` does not require its targets to be append-friendly ^c20260712-93u
+- [DC] the unit of work is the stable-prefix / volatile-tail split — content whose derivation is final is frozen and skipped; only the volatile tail and new source records are recomputed ^c20260712-55u
+- [DC] resume state persists in a `Normalization.Delta.Checkpoint`; a checkpoint that fails validation discards itself and the pass falls back to full derivation ^c20260712-47u
+- [CT] full derivation from raw sources remains always available and authoritative — delta passes are an optimization, never a new source of truth ^c20260712-31u
 
 ****
 
 ## Normalization.Delta.Checkpoint
 
-- [DF] `Normalization.Delta.Checkpoint` is the persisted resume state of `Delta.Normalization` for one source — whatever the producer needs to continue derivation from the recorded source position ^c20260712-15u
-- [DC] the checkpoint is producer-private — only the pipeline that wrote it reads it; it is never a consumer surface of the `Normal.Model` ^c20260712-15u
-- [DC] it validates before use: the source must still extend the position it recorded; a failed validation discards the checkpoint and the pass re-derives fully ^c20260712-15u
-- [CT] the checkpoint is disposable at any time with no data loss — deleting it costs one full derivation, nothing else ^c20260712-15u
+- [DF] `Normalization.Delta.Checkpoint` is the persisted resume state of `Delta.Normalization` for one source — whatever the producer needs to continue derivation from the recorded source position ^c20260712-71u
+- [DC] the checkpoint is producer-private — only the pipeline that wrote it reads it; it is never a consumer surface of the `Normal.Model` ^c20260712-51u
+- [DC] it validates before use: the source must still extend the position it recorded; a failed validation discards the checkpoint and the pass re-derives fully ^c20260712-43u
+- [CT] the checkpoint is disposable at any time with no data loss — deleting it costs one full derivation, nothing else ^c20260712-35u
 
 ****
 
 ## Normalization.Trust.Tier
 
-- [DF] `Normalization.Trust.Tier` is the verification level a caller selects for a `Delta.Normalization` pass — how much of the existing `Normal.Model` is re-checked against source before being trusted ^c20260712-16u
-- [DC] three tiers: trust-append assumes the source only grew and resumes blindly from the checkpoint; verify re-checks provenance over the frozen content and recomputes from the first divergence; rebuild re-derives everything from source ^c20260712-16u
-- [PR] staleness is a price point, not a defect — when raw sources are preserved and authoritative, a wrong cheap pass is always recoverable by a more expensive one ^c20260712-16u
-- [CT] tier selection changes cost and staleness risk only, never the model contract — every tier produces the same model shape ^c20260712-16u
+- [DF] `Normalization.Trust.Tier` is the verification level a caller selects for a `Delta.Normalization` pass — how much of the existing `Normal.Model` is re-checked against source before being trusted ^c20260712-73u
+- [DC] three tiers: trust-append assumes the source only grew and resumes blindly from the checkpoint; verify re-checks provenance over the frozen content and recomputes from the first divergence; rebuild re-derives everything from source ^c20260712-56u
+- [PR] staleness is a price point, not a defect — when raw sources are preserved and authoritative, a wrong cheap pass is always recoverable by a more expensive one ^c20260712-98u
+- [CT] tier selection changes cost and staleness risk only, never the model contract — every tier produces the same model shape ^c20260712-37u
 
 ****
 
@@ -620,7 +620,7 @@
 - invariant across all outcomes: the agent surfaces its interpretation and makes the resolved canonical name(s) explicit before building on it
 - ambiguity → surface the top candidates and confirm; unresolvable → degrade to `Unresolved.Index.Name`
 - direction is symmetric: the user emits `~` to ask; the agent emits `~` to flag an unverified, approximate recall
-- soft meaning surfaced as a chat sigil — rides `Concept.Hardness`, sibling to `::` type statements (`Addressing.Sigil.Vocabulary`) and the variable `<Concept>.Name` form ^c20260712-6u
+- soft meaning surfaced as a chat sigil — rides `Concept.Hardness`, sibling to `::` type statements (`Addressing.Sigil.Vocabulary`) and the variable `<Concept>.Name` form ^c20260712-21u
 
 ****
 

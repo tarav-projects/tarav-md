@@ -38,7 +38,7 @@ The current archaeology path recovers `Touched.Data` from a qualifying `Touch.Au
    - use `agentos chatlas events query --identity-hash <H> --pattern-json '<Event.Pattern JSON>' --backend auto` for an assistant-proposal/user-approval relation
    - use the commit time only to choose among candidate neighborhoods; the returned `turn_ref` identifies and verifies the `Normal.Turn`, while `sequence` establishes tape order — never use timestamps as identity
    - select only a user turn whose edition qualifies as touch for the supported subject; approval, correction, rejection, delegation, or direct statement may qualify
-4. **Turn → anchor.** Preview through `agentos chatlas anchory preview --member <H>:<user-turn-id> --hint "…"`; escalate to `--detail context` as needed, then mint with the same members through `register`.
+4. **Turn → anchor.** Preview through `agentos chatlas anchory preview --line-content '<exact typed line>' --member <H>:<user-turn-id> --hint "…"`; escalate to `--detail context` as needed, then mint the v4 relationship with the same line and members through `register`.
 5. **Support reference → index.** Append only the verified trailing anchor, preserve the line's material verbatim, and run focused coverage plus provenance lint. Anchor-only maintenance does not require an edition-approval token; changing line material does.
 
 > $kw. end

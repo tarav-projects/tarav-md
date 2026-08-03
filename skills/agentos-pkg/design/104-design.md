@@ -118,9 +118,9 @@
 
 - `Index.Depot` is a self-contained Index instance — its own `000-INDEX.md`, chapters, and appendix
 - it follows `Agentos.Index.System` conventions
-- [CT] every `Index.Depot` lives under a `Skw.Package` — it is that package's concept-store data structure, addressed by `Dotted.Name` ^c20260724-2u
-- [DC] the owning `Skw.Package` may be dedicated to the index or double as a `Package.Skill` — the same enclosing `.skw/`, one package ^c20260724-2u
-- [CT] a depot is engaged like any other — no depot privileged ^c20260724-2u
+- [CT] every `Index.Depot` lives under a `Skw.Package` — it is that package's concept-store data structure, addressed by `Dotted.Name` ^c20260724-50u
+- [DC] the owning `Skw.Package` may be dedicated to the index or double as a `Package.Skill` — the same enclosing `.skw/`, one package ^c20260724-79u
+- [CT] a depot is engaged like any other — no depot privileged ^c20260724-42u
 - the same concept name may exist in two engaged depots; the system surfaces the collision, it does not prevent or resolve it
 - it loads with its owner through the `Package.Driver` (`Context.Loading.Path`)
 
@@ -132,12 +132,12 @@
 
 ## Index.Depot.Dependency
 
-- [DF] `Index.Depot.Dependency` is the index-addressing case of `Skw.Pkg.Dependency`: a depot resolves a `Dotted.Name` against another package's depot only through a declared dependency — package-visibility in the software sense ^c20260722-15u ^c20260724-3u
-- [PR] visibility is non-transitive: a depot's resolution set is its own concepts plus those of its directly declared dependency depots only — a dependency's own dependencies are not visible through it ^c20260722-16u
-- [PR] the depot's `Index.Router` also names its dependency depots, so an agent orienting through `000-INDEX.md` sees the depot's upstreams ^c20260722-15u
-- [CT] `Index.Depot.Dependency` directs `Index.Discovery`: engaged-depot composition follows the declared edges (own ∪ direct dependencies), not an undeclared flat union ^c20260722-15u
-- [CT] a mention resolving against a name defined in more than one visible depot is a collision `Drift.POI`: the linter reports it and never repairs it — consistent with `Index.Depot` surfacing collisions rather than preventing them; the human resolves by namespacing ^c20260722-16u
-- [CT] reachability and privilege are orthogonal — an `Index.Depot.Dependency` grants sight of another depot without ranking them, so it does not overturn "no depot privileged" ^c20260722-16u
+- [DF] `Index.Depot.Dependency` is the index-addressing case of `Skw.Pkg.Dependency`: a depot resolves a `Dotted.Name` against another package's depot only through a declared dependency — package-visibility in the software sense ^c20260722-35u
+- [PR] visibility is non-transitive: a depot's resolution set is its own concepts plus those of its directly declared dependency depots only — a dependency's own dependencies are not visible through it ^c20260722-40u
+- [PR] the depot's `Index.Router` also names its dependency depots, so an agent orienting through `000-INDEX.md` sees the depot's upstreams ^c20260722-38u
+- [CT] `Index.Depot.Dependency` directs `Index.Discovery`: engaged-depot composition follows the declared edges (own ∪ direct dependencies), not an undeclared flat union ^c20260722-27u
+- [CT] a mention resolving against a name defined in more than one visible depot is a collision `Drift.POI`: the linter reports it and never repairs it — consistent with `Index.Depot` surfacing collisions rather than preventing them; the human resolves by namespacing ^c20260722-28u
+- [CT] reachability and privilege are orthogonal — an `Index.Depot.Dependency` grants sight of another depot without ranking them, so it does not overturn "no depot privileged" ^c20260722-30u
 
 ### meta
 
@@ -249,7 +249,7 @@
 ## Index.Linter
 
 - `Index.Linter` is the deterministic CLI checker for index and appendix surfaces
-- [DC] `Index.Linter` is a `POI.Linter` over the index AST ^c20260724-5u
+- [DC] `Index.Linter` is a `POI.Linter` over the index AST ^c20260724-59u
 - normal use is depot-first: lint an `Index.Depot` through its `000-INDEX.md`, chapter folders, and appendix
 - finding and check codes are scoped concept names under `Index.Linter/...`
 - each code names an appendix block that explains meaning, gating, or expected remediation
@@ -261,24 +261,24 @@
 
 ## User.Gate
 
-- [DF] a `User.Gate` is an `Accountable.Assertion` whose claim is about the `Chat.Surface`: evidence of a declared kind can be found in the gated object's dossier ^c20260719-12u ^c20260719-15u
-- [DC] one declaration, two systems read it — **flow** (pre-evidence): the declaration shapes agent behavior before any evidence exists — stop, surface the thing, spend `User.Attention`, wait; runtime conversation control, honored in-session; **audit** (post-evidence): the recomputable assert over the dossier — checker territory, run any time, by anyone ^c20260719-13u
-- [DC] the predicate family — existence: a turn of the declared `Turn.Type` is in the support set; correspondence: the turn's content matches the surface content; order: the evidence sequence is right — an approval that predates the current wording gates nothing ^c20260719-12u
-- [DC] gate strength is predicate composition: `Verbatim.User.Gated` = existence + correspondence + order; `Edition.Trigger.User.Gated` = existence only ^c20260719-15u
-- [DC] gate state is computed from evidence, never stored — invalidation is not an operation, it is recomputation returning failed ^c20260719-14u
-- [PR] the robustness: enforcing the flow is hard; auditing it is cheap — the system does not prevent flow violations, it detects them and the gate invalidates retroactively; design for audit, not for enforcement ^c20260719-14u ^c20260719-15u
-- [DC] graded checkability: turn-exists, turn-typed, timestamp-order are CPU; "this turn really approves this content" is the agent floor ^c20260719-15u
-- [DC] gates attach to any assertable object — index lines, blocks, skw annotations: gates-as-skw-primitive is this concept applied there, not a separate design ^c20260719-15u
+- [DF] a `User.Gate` is an `Accountable.Assertion` whose claim is about the `Chat.Surface`: evidence of a declared kind can be found in the gated object's dossier ^c20260719-46u
+- [DC] one declaration, two systems read it — **flow** (pre-evidence): the declaration shapes agent behavior before any evidence exists — stop, surface the thing, spend `User.Attention`, wait; runtime conversation control, honored in-session; **audit** (post-evidence): the recomputable assert over the dossier — checker territory, run any time, by anyone ^c20260719-30u
+- [DC] the predicate family — existence: a turn of the declared `Turn.Type` is in the support set; correspondence: the turn's content matches the surface content; order: the evidence sequence is right — an approval that predates the current wording gates nothing ^c20260719-39u
+- [DC] gate strength is predicate composition: `Verbatim.User.Gated` = existence + correspondence + order; `Edition.Trigger.User.Gated` = existence only ^c20260719-24u
+- [DC] gate state is computed from evidence, never stored — invalidation is not an operation, it is recomputation returning failed ^c20260719-23u
+- [PR] the robustness: enforcing the flow is hard; auditing it is cheap — the system does not prevent flow violations, it detects them and the gate invalidates retroactively; design for audit, not for enforcement ^c20260719-51u
+- [DC] graded checkability: turn-exists, turn-typed, timestamp-order are CPU; "this turn really approves this content" is the agent floor ^c20260719-27u
+- [DC] gates attach to any assertable object — index lines, blocks, skw annotations: gates-as-skw-primitive is this concept applied there, not a separate design ^c20260719-25u
 
 ****
 
 ## Edition.Trigger.User.Gated
 
-- [DF] `Edition.Trigger.User.Gated` is the convenience gate: the user explicitly initiates the edit workflow — the agent never starts writing mid-conversation on its own ^c20260716-6u
-- [PR] its value is workflow control: the user owns the conversation tempo; capture does not interrupt discussion ^c20260716-6u
-- [DC] auditable but low value: the triggering turn is on the chat like any other, but nothing rides on checking it — a skip's worst case is a premature draft ^c20260716-6u
+- [DF] `Edition.Trigger.User.Gated` is the convenience gate: the user explicitly initiates the edit workflow — the agent never starts writing mid-conversation on its own ^c20260716-67u
+- [PR] its value is workflow control: the user owns the conversation tempo; capture does not interrupt discussion ^c20260716-70u
+- [DC] auditable but low value: the triggering turn is on the chat like any other, but nothing rides on checking it — a skip's worst case is a premature draft ^c20260716-48u
 - [DC] distinct from `Verbatim.User.Gated`, which gates what is written rather than when
-- [DC] an instance of `User.Gate` — its assert composes existence only, the weak gate ^c20260719-15u
+- [DC] an instance of `User.Gate` — its assert composes existence only, the weak gate ^c20260719-19u
 - asking "should I write this?" is allowed; opening an editor without approval is not
 - a surface can apply one or both gates independently
 
@@ -290,16 +290,16 @@
 
 ## Verbatim.User.Gated
 
-- [DF] `Verbatim.User.Gated` is a wording gate requiring presentation of materially equivalent content and later explicit user approval before that content is committed ^c20260729-24u
-- [PR] the gate creates a deliberate `User.Attention` opportunity at the landing boundary ^c20260729-24u
-- [DC] `Line.Verbatim.Gate` is its independently checkable per-`Index.Line` realization ^c20260729-24u
-- [DC] one approval may cover several presented lines while each line retains its own gate evidence ^c20260729-24u
-- [DC] the auditable predicate composes presentation, sufficient content correspondence, approval, and event order ^c20260729-24u
-- [CT] sufficient correspondence does not require byte identity ^c20260729-24u
-- [CT] the gate certifies protocol events rather than actual user cognition ^c20260729-24u
-- [DC] it implies `Edition.Trigger.User.Gated` because explicit wording approval also approves the landing trigger ^c20260729-24u
-- [PR] the system exposes proposed content while the user explicitly controls whether it may enter the gated surface ^c20260729-24u
-- [CT] approval settles permission to land the presented wording; it does not certify factual truth ^c20260729-24u
+- [DF] `Verbatim.User.Gated` is a wording gate requiring presentation of materially equivalent content and later explicit user approval before that content is committed ^c20260729-280u
+- [PR] the gate creates a deliberate `User.Attention` opportunity at the landing boundary ^c20260729-353u
+- [DC] `Line.Verbatim.Gate` is its independently checkable per-`Index.Line` realization ^c20260729-171u
+- [DC] one approval may cover several presented lines while each line retains its own gate evidence ^c20260729-221u
+- [DC] the auditable predicate composes presentation, sufficient content correspondence, approval, and event order ^c20260729-236u
+- [CT] sufficient correspondence does not require byte identity ^c20260729-138u
+- [CT] the gate certifies protocol events rather than actual user cognition ^c20260729-145u
+- [DC] it implies `Edition.Trigger.User.Gated` because explicit wording approval also approves the landing trigger ^c20260729-216u
+- [PR] the system exposes proposed content while the user explicitly controls whether it may enter the gated surface ^c20260729-356u
+- [CT] approval settles permission to land the presented wording; it does not certify factual truth ^c20260729-74u
 
 ### meta
 
@@ -344,35 +344,35 @@
 
 ## Agentos.Daemon
 
-- [DF] `Agentos.Daemon` is a single long-lived background process that runs registered `Background.Job`s, extending Agentos beyond one-shot CLI invocation ^c20260725-41u
-- [DC] its process lifecycle is owned by the OS service manager (`launchd` on macOS) — start-at-login, keep-alive, and restart-on-crash come from the platform, not from hand-written daemonization ^c20260725-41u
-- [DC] exactly one global instance runs per machine, making it the sole owner of background work and the sole writer of the shared state its jobs maintain ^c20260725-41u
-- [DC] work reaches the daemon from two feeds — the internal scheduler firing jobs on their natural frequency, and external run-now triggers from the CLI (`Daemon.Trigger`) ^c20260725-41u
-- [DC] both feeds converge on one serialized work lane: a single worker running one job to completion at a time ^c20260725-41u
-- [DC] the single lane is what makes single-writer serialization and trigger coalescing fall out for free — without locks, a job queue, or async state ^c20260725-41u
-- [DC] the daemon and the CLI are peer consumers of one core library; the daemon holds only scheduling and the trigger interface, never the work logic itself ^c20260725-41u
-- [DC] each command is either daemon-path or CLI-local — exactly one path per command, chosen once ^c20260725-41u
-- [RJ] v1 adds no inline fallback when a daemon-path command finds the daemon down — dual-path redundancy is deferred, so daemon-path availability rests entirely on the service manager ^c20260725-41u
-- [EX] concrete hosted jobs: continuous Chatlas index refresh over active sessions, and `Account.Management` rotation and usage monitoring — work that today runs only while a foreground command stays open ^c20260725-41u
+- [DF] `Agentos.Daemon` is a single long-lived background process that runs registered `Background.Job`s, extending Agentos beyond one-shot CLI invocation ^c20260725-123u
+- [DC] its process lifecycle is owned by the OS service manager (`launchd` on macOS) — start-at-login, keep-alive, and restart-on-crash come from the platform, not from hand-written daemonization ^c20260725-108u
+- [DC] exactly one global instance runs per machine, making it the sole owner of background work and the sole writer of the shared state its jobs maintain ^c20260725-106u
+- [DC] work reaches the daemon from two feeds — the internal scheduler firing jobs on their natural frequency, and external run-now triggers from the CLI (`Daemon.Trigger`) ^c20260725-121u
+- [DC] both feeds converge on one serialized work lane: a single worker running one job to completion at a time ^c20260725-101u
+- [DC] the single lane is what makes single-writer serialization and trigger coalescing fall out for free — without locks, a job queue, or async state ^c20260725-117u
+- [DC] the daemon and the CLI are peer consumers of one core library; the daemon holds only scheduling and the trigger interface, never the work logic itself ^c20260725-115u
+- [DC] each command is either daemon-path or CLI-local — exactly one path per command, chosen once ^c20260725-104u
+- [RJ] v1 adds no inline fallback when a daemon-path command finds the daemon down — dual-path redundancy is deferred, so daemon-path availability rests entirely on the service manager ^c20260725-175u
+- [EX] concrete hosted jobs: continuous Chatlas index refresh over active sessions, and `Account.Management` rotation and usage monitoring — work that today runs only while a foreground command stays open ^c20260725-147u
 
 ****
 
 ## Background.Job
 
-- [DF] `Background.Job` is a named unit of recurring work an `Agentos.Daemon` hosts — a name, a natural frequency, and a `run()` body ^c20260725-43u
-- [DC] the `run()` body lives in the core library — the same function the CLI would invoke directly — so the daemon carries scheduling, never a second copy of the work logic ^c20260725-43u
-- [DC] the job registry is the shared interface between daemon and CLI: the daemon schedules jobs by it, the CLI names a job through it to trigger a run ^c20260725-43u
-- [CT] a job must be safe to run more often than its natural frequency, because an external trigger can fire it between scheduled runs ^c20260725-43u
-- [PR] a job stays incremental and cheap when nothing changed, so both frequent ticks and burst triggers stay affordable ^c20260725-43u
-- [EX] Chatlas refresh is a job — each run re-ingests only sessions touched since the last run (`chatlas update --since`), keyed off recently active sessions detected at minute granularity ^c20260725-43u
+- [DF] `Background.Job` is a named unit of recurring work an `Agentos.Daemon` hosts — a name, a natural frequency, and a `run()` body ^c20260725-124u
+- [DC] the `run()` body lives in the core library — the same function the CLI would invoke directly — so the daemon carries scheduling, never a second copy of the work logic ^c20260725-113u
+- [DC] the job registry is the shared interface between daemon and CLI: the daemon schedules jobs by it, the CLI names a job through it to trigger a run ^c20260725-116u
+- [CT] a job must be safe to run more often than its natural frequency, because an external trigger can fire it between scheduled runs ^c20260725-56u
+- [PR] a job stays incremental and cheap when nothing changed, so both frequent ticks and burst triggers stay affordable ^c20260725-153u
+- [EX] Chatlas refresh is a job — each run re-ingests only sessions touched since the last run (`chatlas update --since`), keyed off recently active sessions detected at minute granularity ^c20260725-144u
 
 ****
 
 ## Daemon.Trigger
 
-- [DF] `Daemon.Trigger` is the interface by which a CLI force-runs a registered `Background.Job` now and receives its completion ^c20260725-44u
-- [DC] its transport is a local unix domain socket — local-only, with filesystem permissions as the sole authorization; no TCP port or network surface ^c20260725-44u
-- [DC] the submitting connection stays open for the request's lifetime and is at once the request, the wait, and the completion signal — one JSON line in, one JSON line out, then close ^c20260725-44u
-- [DC] a trigger is satisfied by a job run that completes at or after the request moment; concurrent triggers arriving during one in-flight run all resolve off that single run (the coalescing rule) ^c20260725-44u
-- [CT] the interface can fire only pre-registered jobs, never arbitrary operations — the trigger surface is the job registry, not remote code execution ^c20260725-44u
-- [EX] failure detection falls out of the open connection: a daemon crash surfaces as EOF on the waiting read, and a CLI exit surfaces as a peer close to the daemon ^c20260725-44u
+- [DF] `Daemon.Trigger` is the interface by which a CLI force-runs a registered `Background.Job` now and receives its completion ^c20260725-125u
+- [DC] its transport is a local unix domain socket — local-only, with filesystem permissions as the sole authorization; no TCP port or network surface ^c20260725-109u
+- [DC] the submitting connection stays open for the request's lifetime and is at once the request, the wait, and the completion signal — one JSON line in, one JSON line out, then close ^c20260725-118u
+- [DC] a trigger is satisfied by a job run that completes at or after the request moment; concurrent triggers arriving during one in-flight run all resolve off that single run (the coalescing rule) ^c20260725-100u
+- [CT] the interface can fire only pre-registered jobs, never arbitrary operations — the trigger surface is the job registry, not remote code execution ^c20260725-90u
+- [EX] failure detection falls out of the open connection: a daemon crash surfaces as EOF on the waiting read, and a CLI exit surfaces as a peer close to the daemon ^c20260725-148u

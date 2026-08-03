@@ -41,7 +41,7 @@
 - concrete evidence: user instructions, inspected codebase state, active session artifacts, stable project surfaces, `Chat.Surface` content (especially user turns)
 - a summary is not `Hard.Evidence` — without a link to the evidence it stands on, it is low-confidence (`We.Distrust.Summaries`)
 - when evidence and assumption conflict, evidence wins
-- [DC] references make evidence descent mechanical: an `Index.Line` resolves through its `Support.Set` to touched data on the referenced `Touch.Authority.Surface` ^c20260729-21u
+- [DC] references make evidence descent mechanical: an `Index.Line` resolves through its `Support.Set` to touched data on the referenced `Touch.Authority.Surface` ^c20260729-227u
 
 ****
 
@@ -271,7 +271,7 @@
 
 ## Dependency.Profile.Split
 
-- [DF] `Dependency.Profile.Split` is the rule that implementation units are delimited by functionality AND dependency profile — when a capability needs a new dependency profile and the implementation can split, split it into its own package ^c20260708-7u
+- [DF] `Dependency.Profile.Split` is the rule that implementation units are delimited by functionality AND dependency profile — when a capability needs a new dependency profile and the implementation can split, split it into its own package ^c20260708-13u
 - [DC] a library is an independent core plus integration subsystems (bridges): the core imports nothing upward; a bridge is defined by its dependency set and may import any combination of cores
 - [CT] cores never import bridges — cycles become structurally impossible instead of carefully avoided
 - [DC] the composition root (the CLI) depends on the bridges and wires them into core sockets at startup

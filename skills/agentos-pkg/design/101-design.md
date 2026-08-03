@@ -136,12 +136,12 @@
 
 ## Dynamic.Loading
 
-- [DF] `Dynamic.Loading` is the `Context.Loading.Path` tier that pulls context selectively on demand rather than guaranteeing it ^c20260730-28u
-- [DC] it loads only the context selected for the live situation, keeping the active context minimal ^c20260730-28u
-- [DC] dynamic module selection is performed by `Batchy.Router`; selection may resolve from an explicit flag, the live conversation, or a `Routing.Table` ^c20260731-10u
-- [CT] argument binding may supply external data consumed by a loaded module, but binding data is not itself a context-loading effect ^c20260731-10u
-- [CT] dynamic loading can select only against routing keys and module targets made reachable through earlier `Cold.Loading` or `SKILL.Loading` tiers ^c20260730-28u
-- [FR] additional routing and pull mechanisms may extend `Dynamic.Loading` without changing the guarantees of earlier loading tiers ^c20260730-28u
+- [DF] `Dynamic.Loading` is the `Context.Loading.Path` tier that pulls context selectively on demand rather than guaranteeing it ^c20260730-93u
+- [DC] it loads only the context selected for the live situation, keeping the active context minimal ^c20260730-76u
+- [DC] dynamic module selection is performed by `Batchy.Router`; selection may resolve from an explicit flag, the live conversation, or a `Routing.Table` ^c20260731-146u
+- [CT] argument binding may supply external data consumed by a loaded module, but binding data is not itself a context-loading effect ^c20260731-71u
+- [CT] dynamic loading can select only against routing keys and module targets made reachable through earlier `Cold.Loading` or `SKILL.Loading` tiers ^c20260730-49u
+- [FR] additional routing and pull mechanisms may extend `Dynamic.Loading` without changing the guarantees of earlier loading tiers ^c20260730-105u
 
 ****
 
@@ -158,12 +158,12 @@
 
 ## Workflow.Neutral
 
-- [DF] `Workflow.Neutral` is the property of a surface that provides context — rules, structure, routing, boundaries — without steering the caller into a workflow; loading it does not change the caller's current task, action mode, or execution path ^c20260715-4u
-- [CT] a `Workflow.Neutral` surface may describe a workflow, but frames it conditionally — "if you are in this situation, you must ..." — never as an imperative to act now ^c20260715-4u
-- [CT] a workflow surface takes control of the session; a `Workflow.Neutral` surface only informs whatever module has control ^c20260715-4u
-- [DF] `Workflow.Neutral.Skill` is the property held by a whole skill — useful for `Package.Skill` roots because roots welcome many caller intentions transparently ^c20260715-4u
-- [DF] `Workflow.Neutral.Module` is the property held by a single `Skill.Module` — the fundamental unit: a skill with only a SKILL.md is a skill with one module ^c20260715-4u
-- [CT] contrasts with `Aux.Workflow.Skill`, which intentionally guides a recurring task ^c20260715-4u
+- [DF] `Workflow.Neutral` is the property of a surface that provides context — rules, structure, routing, boundaries — without steering the caller into a workflow; loading it does not change the caller's current task, action mode, or execution path ^c20260715-28u
+- [CT] a `Workflow.Neutral` surface may describe a workflow, but frames it conditionally — "if you are in this situation, you must ..." — never as an imperative to act now ^c20260715-7u
+- [CT] a workflow surface takes control of the session; a `Workflow.Neutral` surface only informs whatever module has control ^c20260715-9u
+- [DF] `Workflow.Neutral.Skill` is the property held by a whole skill — useful for `Package.Skill` roots because roots welcome many caller intentions transparently ^c20260715-27u
+- [DF] `Workflow.Neutral.Module` is the property held by a single `Skill.Module` — the fundamental unit: a skill with only a SKILL.md is a skill with one module ^c20260715-26u
+- [CT] contrasts with `Aux.Workflow.Skill`, which intentionally guides a recurring task ^c20260715-10u
 
 ****
 
@@ -179,12 +179,12 @@
 
 ## Package.Driver.Router
 
-- [DF] `Package.Driver.Router` is the specialized entry `Routing.Table` carried by a `Package.Driver` ^c20260731-9u
-- [DC] it is consumed by the skill’s `Batchy.Router`, not run as an independent router ^c20260731-9u
-- [DC] its rows map package-relevant situations to the surfaces that handle them ^c20260731-9u
-- [CT] its destinations may select a `Skill.Module`, a nested `Package.Driver`, or another `Routing.Table` ^c20260731-9u
-- [CT] an unmatched situation leaves the table unresolved and allows broader skill routing to continue ^c20260731-9u
-- [CT] it remains workflow-neutral: it routes without forcing the caller into a workflow ^c20260731-9u
+- [DF] `Package.Driver.Router` is the specialized entry `Routing.Table` carried by a `Package.Driver` ^c20260731-211u
+- [DC] it is consumed by the skill’s `Batchy.Router`, not run as an independent router ^c20260731-154u
+- [DC] its rows map package-relevant situations to the surfaces that handle them ^c20260731-164u
+- [CT] its destinations may select a `Skill.Module`, a nested `Package.Driver`, or another `Routing.Table` ^c20260731-92u
+- [CT] an unmatched situation leaves the table unresolved and allows broader skill routing to continue ^c20260731-69u
+- [CT] it remains workflow-neutral: it routes without forcing the caller into a workflow ^c20260731-89u
 
 ****
 
@@ -325,16 +325,16 @@
 
 ## Batchy.Skill
 
-- [DF] `Batchy.Skill` is the design style every Agentos skill follows: the skill is interpreted by an agent as a callable CLI-like surface ^c20260731-10u
-- [DC] every Agentos skill is a `Batchy.Skill`; custom flags, arguments, modules, and a run banner appear only when the skill needs them ^c20260731-10u
-- [DC] `Batchy.Router` resolves the configuration of each skill run ^c20260731-10u
-- [DC] `-h` and `--help` are built-in `Batchy.Skill.Flag`s that route to `Batchy.Skill.Help` and short-circuit the run ^c20260731-10u
-- [CT] a clear natural-language call remains valid wherever the applicable rows permit automatic discovery ^c20260731-10u
-- [CT] a written `Batchy.Skill.Flag` must be resolved as explicit routing configuration ^c20260731-10u
-- [CT] a resolved route may bind a `Skill.Arg`, select a `Skill.Module`, or contribute or continue routing through a `Routing.Table` ^c20260731-10u
-- [DC] arguments are declared as `Skill.Arg` blocks inside the skill's `Skill.Arg.Section` ^c20260731-10u
-- [DC] files and sections form the skill's addressable `Skill.Module`s ^c20260731-10u
-- [CT] unresolved required arguments follow `Skill.Explicit.Args`: ask or orient, never guess; declared defaults fill silently ^c20260731-10u
+- [DF] `Batchy.Skill` is the design style every Agentos skill follows: the skill is interpreted by an agent as a callable CLI-like surface ^c20260731-194u
+- [DC] every Agentos skill is a `Batchy.Skill`; custom flags, arguments, modules, and a run banner appear only when the skill needs them ^c20260731-149u
+- [DC] `Batchy.Router` resolves the configuration of each skill run ^c20260731-116u
+- [DC] `-h` and `--help` are built-in `Batchy.Skill.Flag`s that route to `Batchy.Skill.Help` and short-circuit the run ^c20260731-114u
+- [CT] a clear natural-language call remains valid wherever the applicable rows permit automatic discovery ^c20260731-50u
+- [CT] a written `Batchy.Skill.Flag` must be resolved as explicit routing configuration ^c20260731-63u
+- [CT] a resolved route may bind a `Skill.Arg`, select a `Skill.Module`, or contribute or continue routing through a `Routing.Table` ^c20260731-59u
+- [DC] arguments are declared as `Skill.Arg` blocks inside the skill's `Skill.Arg.Section` ^c20260731-138u
+- [DC] files and sections form the skill's addressable `Skill.Module`s ^c20260731-153u
+- [CT] unresolved required arguments follow `Skill.Explicit.Args`: ask or orient, never guess; declared defaults fill silently ^c20260731-111u
 
 ### meta
 
@@ -344,63 +344,63 @@
 
 ## Batchy.Skill.Flag
 
-- [DF] `Batchy.Skill.Flag` is a `--<flag>` token that explicitly calls `Batchy.Router` with configuration for the current run ^c20260731-10u
-- [DC] writing a `Batchy.Skill.Flag` means "I am configuring this run intentionally" ^c20260731-10u
-- [CT] only the `--<flag>` form carries flag semantics ^c20260731-10u
-- [CT] the applicable `Batchy.Router.Row` determines whether the flag key resolves exactly, through configured aliases, or through a semantic keyword family ^c20260731-10u
-- [CT] a flag route may bind a `Skill.Arg`, select a `Skill.Module`, or contribute or continue routing through a `Routing.Table` ^c20260731-10u
-- [CT] a flag may carry an explicit value or act as a switch whose routed value is declared by the skill ^c20260731-10u
-- [DC] a `Batchy.Skill.Flag` may contribute partial routing context, such as a namespace, without independently selecting a complete run ^c20260731-32u
-- [EX] `agentos-hugentics --index --capture` configures one run toward the index surface and capture-oriented routing ^c20260731-10u
+- [DF] `Batchy.Skill.Flag` is a `--<flag>` token that explicitly calls `Batchy.Router` with configuration for the current run ^c20260731-192u
+- [DC] writing a `Batchy.Skill.Flag` means "I am configuring this run intentionally" ^c20260731-186u
+- [CT] only the `--<flag>` form carries flag semantics ^c20260731-96u
+- [CT] the applicable `Batchy.Router.Row` determines whether the flag key resolves exactly, through configured aliases, or through a semantic keyword family ^c20260731-106u
+- [CT] a flag route may bind a `Skill.Arg`, select a `Skill.Module`, or contribute or continue routing through a `Routing.Table` ^c20260731-53u
+- [CT] a flag may carry an explicit value or act as a switch whose routed value is declared by the skill ^c20260731-52u
+- [DC] a `Batchy.Skill.Flag` may contribute partial routing context, such as a namespace, without independently selecting a complete run ^c20260731-122u
+- [EX] `agentos-hugentics --index --capture` configures one run toward the index surface and capture-oriented routing ^c20260731-224u
 
 ****
 
 ## Batchy.Skill.Template
 
-- [DF] `Batchy.Skill.Template` is the canonical skeleton every `Batchy.Skill` instantiates so Agentos skills share one adaptable shape ^c20260730-23u
-- [DC] the skill opens with a `Batchy.Skill.Contract` and carries a `Skill.Trigger.Clause` in its frontmatter description ^c20260730-23u
-- [CT] a `Skill.Index.Section` appears only when the skill needs local concept definitions ^c20260730-23u
-- [CT] a `Skill.Arg.Section` appears only when the skill accepts external run data; its blocks may carry the applicable `Batchy.Router` configuration ^c20260731-10u
-- [CT] `Skill.Module`s follow `Natural.Placement` and remain addressable routing targets without being represented as arguments ^c20260731-10u
-- [CT] additional prompt-context and multi-level routes are declared through `Routing.Table`s ^c20260731-10u
-- [DC] the template has no dedicated flag section: each custom flag is declared with the primitive or `Routing.Table` row that owns its effect ^c20260731-10u
-- [CT] a `User.Command.Section` appears only when the skill exposes explicit workflow transitions ^c20260730-23u
-- [CT] unused optional sections and modules are omitted rather than emitted empty ^c20260730-23u
-- [DC] the copy-pasteable skeleton lives in `agentos-batchy-skills/references/batchy-skill-designer.md` ^c20260730-23u
+- [DF] `Batchy.Skill.Template` is the canonical skeleton every `Batchy.Skill` instantiates so Agentos skills share one adaptable shape ^c20260730-92u
+- [DC] the skill opens with a `Batchy.Skill.Contract` and carries a `Skill.Trigger.Clause` in its frontmatter description ^c20260730-86u
+- [CT] a `Skill.Index.Section` appears only when the skill needs local concept definitions ^c20260730-35u
+- [CT] a `Skill.Arg.Section` appears only when the skill accepts external run data; its blocks may carry the applicable `Batchy.Router` configuration ^c20260731-48u
+- [CT] `Skill.Module`s follow `Natural.Placement` and remain addressable routing targets without being represented as arguments ^c20260731-44u
+- [CT] additional prompt-context and multi-level routes are declared through `Routing.Table`s ^c20260731-67u
+- [DC] the template has no dedicated flag section: each custom flag is declared with the primitive or `Routing.Table` row that owns its effect ^c20260731-183u
+- [CT] a `User.Command.Section` appears only when the skill exposes explicit workflow transitions ^c20260730-36u
+- [CT] unused optional sections and modules are omitted rather than emitted empty ^c20260730-63u
+- [DC] the copy-pasteable skeleton lives in `agentos-batchy-skills/references/batchy-skill-designer.md` ^c20260730-84u
 
 ****
 
 ## Batchy.Skill.Contract
 
-- [DF] `Batchy.Skill.Contract` is the compact in-skill statement of the Batchy calling convention that a `Batchy.Skill` carries ^c20260730-24u
-- [DC] it is a `Cited.Duplication` of the canonical convention and points to `agentos-batchy-skills` for depth ^c20260730-24u
-- [DC] it declares that the containing skill is a `Batchy.Skill` ^c20260730-24u
-- [DC] it states the universal built-in rule: `-h` and `--help` route to `Batchy.Skill.Help` and short-circuit the run ^c20260730-24u
-- [CT] when the skill exposes custom `Batchy.Skill.Flag`s, the contract states that they are explicit routing configuration whose declarations live with the routing primitives that own their effects ^c20260730-24u
-- [CT] when the skill exposes custom flags or arguments, the contract states how `Batchy.Skill.Banner` reports their resolved run configuration ^c20260730-24u
-- [CT] when the skill exposes `User.Command`s, the contract states that only declared commands may cross their explicit workflow gates ^c20260730-24u
-- [CT] the contract carries only the clauses applicable to that skill beyond the universal built-in rule ^c20260730-24u
-- [DC] it sits near the top of the skill body, before optional sections and modules ^c20260730-24u
+- [DF] `Batchy.Skill.Contract` is the compact in-skill statement of the Batchy calling convention that a `Batchy.Skill` carries ^c20260730-90u
+- [DC] it is a `Cited.Duplication` of the canonical convention and points to `agentos-batchy-skills` for depth ^c20260730-73u
+- [DC] it declares that the containing skill is a `Batchy.Skill` ^c20260730-72u
+- [DC] it states the universal built-in rule: `-h` and `--help` route to `Batchy.Skill.Help` and short-circuit the run ^c20260730-78u
+- [CT] when the skill exposes custom `Batchy.Skill.Flag`s, the contract states that they are explicit routing configuration whose declarations live with the routing primitives that own their effects ^c20260730-66u
+- [CT] when the skill exposes custom flags or arguments, the contract states how `Batchy.Skill.Banner` reports their resolved run configuration ^c20260730-67u
+- [CT] when the skill exposes `User.Command`s, the contract states that only declared commands may cross their explicit workflow gates ^c20260730-65u
+- [CT] the contract carries only the clauses applicable to that skill beyond the universal built-in rule ^c20260730-60u
+- [DC] it sits near the top of the skill body, before optional sections and modules ^c20260730-77u
 
 ****
 
 ## Skill.Arg
 
-- [DF] `Skill.Arg` is a named unit of external run data that a `Batchy.Skill` declares it accepts or needs to function ^c20260731-7u
-- [DC] its fundamentals define the data’s meaning; its settings define the data contract through `required`, `default`, and `type` ^c20260731-7u
-- [DC] a `Skill.Arg` is written as a `### Skill.Arg::<Name>` kernel block inside the skill’s `Skill.Arg.Section` ^c20260731-7u
-- [CT] behavior that depends on a required `Skill.Arg` may execute only after its value resolves ^c20260731-7u
-- [CT] `Skill.Arg` owns the external-data identity and contract; `Batchy.Router` resolves its value ^c20260731-7u
-- [DC] `Batchy.Skill.Help` and `Batchy.Skill.Banner` render argument meaning and resolved values from `Skill.Arg` blocks ^c20260731-7u
+- [DF] `Skill.Arg` is a named unit of external run data that a `Batchy.Skill` declares it accepts or needs to function ^c20260731-213u
+- [DC] its fundamentals define the data’s meaning; its settings define the data contract through `required`, `default`, and `type` ^c20260731-161u
+- [DC] a `Skill.Arg` is written as a `### Skill.Arg::<Name>` kernel block inside the skill’s `Skill.Arg.Section` ^c20260731-125u
+- [CT] behavior that depends on a required `Skill.Arg` may execute only after its value resolves ^c20260731-74u
+- [CT] `Skill.Arg` owns the external-data identity and contract; `Batchy.Router` resolves its value ^c20260731-42u
+- [DC] `Batchy.Skill.Help` and `Batchy.Skill.Banner` render argument meaning and resolved values from `Skill.Arg` blocks ^c20260731-117u
 
 ****
 
 ## Skill.Arg.Section
 
-- [DF] `Skill.Arg.Section` is the section of a `Batchy.Skill` that declares its accepted external run data as `Skill.Arg` blocks ^c20260730-25u
-- [CT] it appears only when the skill accepts external run data; a zero-argument skill omits it ^c20260730-25u
-- [DC] each argument is a `### Skill.Arg::<Name>` kernel block nested in the section ^c20260730-25u
-- [DC] `Batchy.Skill.Help` renders argument documentation from these blocks, while `Batchy.Skill.Banner` renders their resolved run values ^c20260730-25u
+- [DF] `Skill.Arg.Section` is the section of a `Batchy.Skill` that declares its accepted external run data as `Skill.Arg` blocks ^c20260730-96u
+- [CT] it appears only when the skill accepts external run data; a zero-argument skill omits it ^c20260730-50u
+- [DC] each argument is a `### Skill.Arg::<Name>` kernel block nested in the section ^c20260730-69u
+- [DC] `Batchy.Skill.Help` renders argument documentation from these blocks, while `Batchy.Skill.Banner` renders their resolved run values ^c20260730-68u
 
 ****
 
@@ -420,83 +420,83 @@
 
 ## Batchy.Skill.Help
 
-- [DF] `Batchy.Skill.Help` is the non-executing help surface selected by the built-in `-h` and `--help` flags of a `Batchy.Skill` ^c20260730-26u
-- [DC] it is available on every `Batchy.Skill`, including skills with no custom flags or arguments ^c20260730-26u
-- [CT] loading a skill silently orients the agent; selecting `Batchy.Skill.Help` deliberately presents help to the caller ^c20260730-26u
-- [DC] selecting it short-circuits the run before any other routed effect executes ^c20260730-26u
-- [DC] its output begins with a concise explanation of the skill and then presents its callable usage ^c20260730-26u
-- [DC] callable help is assembled from the `Batchy.Router` configuration reachable through `Skill.Arg` blocks, `Skill.Module` targets, and `Routing.Table`s ^c20260731-10u
-- [CT] argument-bound flags include their `Skill.Arg` meaning, value shape, required state, and default when applicable ^c20260730-26u
-- [CT] a skill with no custom flags or arguments states that it accepts no custom run configuration ^c20260730-26u
-- [DC] the help route has precedence over every other flag supplied in the same call ^c20260730-26u
+- [DF] `Batchy.Skill.Help` is the non-executing help surface selected by the built-in `-h` and `--help` flags of a `Batchy.Skill` ^c20260730-91u
+- [DC] it is available on every `Batchy.Skill`, including skills with no custom flags or arguments ^c20260730-74u
+- [CT] loading a skill silently orients the agent; selecting `Batchy.Skill.Help` deliberately presents help to the caller ^c20260730-53u
+- [DC] selecting it short-circuits the run before any other routed effect executes ^c20260730-83u
+- [DC] its output begins with a concise explanation of the skill and then presents its callable usage ^c20260730-80u
+- [DC] callable help is assembled from the `Batchy.Router` configuration reachable through `Skill.Arg` blocks, `Skill.Module` targets, and `Routing.Table`s ^c20260731-140u
+- [CT] argument-bound flags include their `Skill.Arg` meaning, value shape, required state, and default when applicable ^c20260730-45u
+- [CT] a skill with no custom flags or arguments states that it accepts no custom run configuration ^c20260730-44u
+- [DC] the help route has precedence over every other flag supplied in the same call ^c20260730-85u
 
 ****
 
 ## Skill.Module
 
-- [DF] `Skill.Module` is the unit of skill-software: a named, encapsulated subsystem with an addressable identity and hidden internals ^c20260731-7u
-- [CT] a concrete `Skill.Module` may be a file or a section, placed according to `Natural.Placement` ^c20260731-7u
-- [DC] the module name provides a stable routing target without exposing its internal organization ^c20260731-7u
-- [CT] `Skill.Module` owns the subsystem boundary and content; `Batchy.Router` selects and loads it ^c20260731-7u
-- [PR] loading only the modules selected for the current situation provides progressive disclosure while keeping the skill’s full capability surface addressable ^c20260731-7u
-- [PR] Skillware capabilities extend `Skill.Module`s without changing their fundamental subsystem identity ^c20260731-7u
+- [DF] `Skill.Module` is the unit of skill-software: a named, encapsulated subsystem with an addressable identity and hidden internals ^c20260731-214u
+- [CT] a concrete `Skill.Module` may be a file or a section, placed according to `Natural.Placement` ^c20260731-51u
+- [DC] the module name provides a stable routing target without exposing its internal organization ^c20260731-180u
+- [CT] `Skill.Module` owns the subsystem boundary and content; `Batchy.Router` selects and loads it ^c20260731-43u
+- [PR] loading only the modules selected for the current situation provides progressive disclosure while keeping the skill’s full capability surface addressable ^c20260731-236u
+- [PR] Skillware capabilities extend `Skill.Module`s without changing their fundamental subsystem identity ^c20260731-232u
 
 ****
 
 ## Batchy.Skill.Banner
 
-- [DF] `Batchy.Skill.Banner` is the resolved-run-configuration report a `Batchy.Skill` presents before executing routed effects ^c20260730-27u
-- [CT] a skill with custom flags or arguments presents the banner as the first step of each non-help run; a skill with no custom run configuration may omit it ^c20260730-27u
-- [DC] each supplied `Batchy.Skill.Flag` is shown with its resolved routing effect: argument binding, module selection, or contributed routing context ^c20260730-27u
-- [DC] resolved `Skill.Arg` values are shown with their canonical argument names ^c20260730-27u
-- [CT] the banner distinguishes caller-supplied flags and values, filled defaults, and semantically resolved configuration ^c20260730-27u
-- [DC] it is informational rather than a checkpoint: it exposes the interpretation without requesting confirmation ^c20260730-27u
-- [PR] exposing resolved routing before execution makes a semantic misinterpretation visible before its effects occur ^c20260730-27u
-- [DC] selecting `Batchy.Skill.Help` short-circuits before the banner ^c20260730-27u
-- [DC] the target skill restates its banner rule through `Cited.Duplication` when the banner applies ^c20260730-27u
+- [DF] `Batchy.Skill.Banner` is the resolved-run-configuration report a `Batchy.Skill` presents before executing routed effects ^c20260730-89u
+- [CT] a skill with custom flags or arguments presents the banner as the first step of each non-help run; a skill with no custom run configuration may omit it ^c20260730-43u
+- [DC] each supplied `Batchy.Skill.Flag` is shown with its resolved routing effect: argument binding, module selection, or contributed routing context ^c20260730-71u
+- [DC] resolved `Skill.Arg` values are shown with their canonical argument names ^c20260730-81u
+- [CT] the banner distinguishes caller-supplied flags and values, filled defaults, and semantically resolved configuration ^c20260730-56u
+- [DC] it is informational rather than a checkpoint: it exposes the interpretation without requesting confirmation ^c20260730-75u
+- [PR] exposing resolved routing before execution makes a semantic misinterpretation visible before its effects occur ^c20260730-108u
+- [DC] selecting `Batchy.Skill.Help` short-circuits before the banner ^c20260730-82u
+- [DC] the target skill restates its banner rule through `Cited.Duplication` when the banner applies ^c20260730-88u
 
 ****
 
 ## User.Command
 
-- [DF] `User.Command` is a formal user-authored instruction that advances or redirects a declared workflow transition ^c20260725-1u
-- [DC] its canonical form is `::<command line>` ^c20260725-1u
-- [DC] each command has one canonical identity and one or more equivalent `User.Command.Trigger`s ^c20260725-6u
-- [FR] a `User.Command` may appear anywhere in a user turn; it does not need to begin a line ^c20260725-1u
-- [CT] a skill declares which `User.Command`s exist and the workflow points where each is available ^c20260725-1u
-- [CT] natural conversation may interrupt or reshape a workflow, but a gated transition remains unresolved until a valid explicit `User.Command` ^c20260725-1u
-- [CT] the agent prints available commands when the workflow pauses or status is requested, not after ordinary conversational turns ^c20260725-1u
-- [CT] a command executes only when its target, availability, and required arguments resolve clearly ^c20260725-1u
-- [CT] ambiguity makes the agent ask for the missing command input without advancing the workflow ^c20260725-1u
-- [PR] `User.Command` supplies deterministic workflow transitions inside natural conversation while the agent maintains coherence across free-form turns ^c20260725-1u
-- [CT] later conversation may invalidate a pending command by changing the transition or proposal it addresses ^c20260725-1u
-- [DC] printed commands render in resolved, copy-pasteable form — targets pre-filled from the foreground draft and approved set — with the `::<command> [target]` template form used only when nothing resolves yet ^c20260725-42u
-- [CT] when several targets could receive a command, each resolved invocation prints as its own line, so selecting a line both disambiguates and stays copy-pasteable ^c20260725-42u
+- [DF] `User.Command` is a formal user-authored instruction that advances or redirects a declared workflow transition ^c20260725-133u
+- [DC] its canonical form is `::<command line>` ^c20260725-107u
+- [DC] each command has one canonical identity and one or more equivalent `User.Command.Trigger`s ^c20260725-103u
+- [FR] a `User.Command` may appear anywhere in a user turn; it does not need to begin a line ^c20260725-149u
+- [CT] a skill declares which `User.Command`s exist and the workflow points where each is available ^c20260725-57u
+- [CT] natural conversation may interrupt or reshape a workflow, but a gated transition remains unresolved until a valid explicit `User.Command` ^c20260725-81u
+- [CT] the agent prints available commands when the workflow pauses or status is requested, not after ordinary conversational turns ^c20260725-87u
+- [CT] a command executes only when its target, availability, and required arguments resolve clearly ^c20260725-55u
+- [CT] ambiguity makes the agent ask for the missing command input without advancing the workflow ^c20260725-58u
+- [PR] `User.Command` supplies deterministic workflow transitions inside natural conversation while the agent maintains coherence across free-form turns ^c20260725-152u
+- [CT] later conversation may invalidate a pending command by changing the transition or proposal it addresses ^c20260725-80u
+- [DC] printed commands render in resolved, copy-pasteable form — targets pre-filled from the foreground draft and approved set — with the `::<command> [target]` template form used only when nothing resolves yet ^c20260725-110u
+- [CT] when several targets could receive a command, each resolved invocation prints as its own line, so selecting a line both disambiguates and stays copy-pasteable ^c20260725-96u
 
 ****
 
 ## User.Command.Trigger
 
-- [DF] `User.Command.Trigger` is one accepted `::`-prefixed spelling that invokes a canonical `User.Command` ^c20260725-6u
-- [CT] several triggers may resolve to the same command; every trigger shares that command's availability, arguments, action, and workflow transition ^c20260725-6u
-- [CT] trigger choice carries no additional state or semantics beyond selecting the canonical command ^c20260725-6u
+- [DF] `User.Command.Trigger` is one accepted `::`-prefixed spelling that invokes a canonical `User.Command` ^c20260725-132u
+- [CT] several triggers may resolve to the same command; every trigger shares that command's availability, arguments, action, and workflow transition ^c20260725-86u
+- [CT] trigger choice carries no additional state or semantics beyond selecting the canonical command ^c20260725-94u
 
 ****
 
 ## User.Command.Arg
 
-- [DF] `User.Command.Arg` is one declared input a `User.Command` requires before execution ^c20260725-1u
-- [DC] each argument uses one resolution policy: `Explicit`, `Contextual`, or `Defaulted` ^c20260725-1u
-- [CT] `Explicit` arguments must appear in the user's command turn ^c20260725-1u
-- [CT] `Contextual` arguments may resolve from the conversation or foreground workflow only when unambiguous ^c20260725-1u
-- [CT] `Defaulted` arguments use their declared value when absent ^c20260725-1u
-- [CT] an unresolved required argument prevents execution and causes the agent to ask for it ^c20260725-1u
-- [DC] an Explicit `User.Command.Arg` may carry an `Edition.Approval.Token` — echoing the command is then at once the workflow transition and the `Verbatim.User.Gated` review evidence for the edition it approves ^c20260726-2u
+- [DF] `User.Command.Arg` is one declared input a `User.Command` requires before execution ^c20260725-130u
+- [DC] each argument uses one resolution policy: `Explicit`, `Contextual`, or `Defaulted` ^c20260725-102u
+- [CT] `Explicit` arguments must appear in the user's command turn ^c20260725-52u
+- [CT] `Contextual` arguments may resolve from the conversation or foreground workflow only when unambiguous ^c20260725-49u
+- [CT] `Defaulted` arguments use their declared value when absent ^c20260725-50u
+- [CT] an unresolved required argument prevents execution and causes the agent to ask for it ^c20260725-60u
+- [DC] an Explicit `User.Command.Arg` may carry an `Edition.Approval.Token` — echoing the command is then at once the workflow transition and the `Verbatim.User.Gated` review evidence for the edition it approves ^c20260726-22u
 
 ****
 
 ## User.Command.Section
 
-- [DF] `User.Command.Section` is the section of a skill that declares its `User.Command` blocks ^c20260725-1u
-- [CT] each command declaration names its canonical identity, triggers, available workflow points, action, and `User.Command.Arg`s ^c20260725-6u
-- [CT] command declarations make a skill's user-controlled workflow transitions inspectable before execution ^c20260725-1u
+- [DF] `User.Command.Section` is the section of a skill that declares its `User.Command` blocks ^c20260725-131u
+- [CT] each command declaration names its canonical identity, triggers, available workflow points, action, and `User.Command.Arg`s ^c20260725-67u
+- [CT] command declarations make a skill's user-controlled workflow transitions inspectable before execution ^c20260725-64u

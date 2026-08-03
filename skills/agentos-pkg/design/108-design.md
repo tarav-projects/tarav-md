@@ -4,22 +4,22 @@
 
 ## Skw.Address.Schema
 
-- [DF] `Skw.Address.Schema` is the accepted syntax set for naming any addressable entity of the workspace — concept blocks, files, regions, spans, chat moments ^c20260712-0u ^c20260712-10u
-- [DF] one grammar underlies every form: a name is a root plus an optional region path ^c20260712-0u
-- [DF] a name traverses three spaces: ontology space (concepts), file space (surfaces and their spans), and chat space (registered moments) ^c20260712-0u ^c20260712-10u
-- [DC] legal forms: `Dotted.Name` (compact symbolic), `Block.Path` (ontology topology), `Locator.Name` (`@`-anchored file, region, or span address), `Anchory.Anchor` (`^`-registered chat moment) ^c20260712-0u ^c20260712-10u
-- [PR] the root concept is the address — `Dotted.Name` exists to make ontology addresses inlinable in natural prose, not the other way around ^c20260712-10u
-- [DC] an address is a block's identity, not only a citation — a `Skw.Annotation` is named by one explicit `Locator.Name`, resolved by context: the region alone resolves against the current surface (the declaration form), the fully-qualified locator is the citation form used from elsewhere ^c20260720-20u ^c20260720-21u
-- [DF] the full string is the name of the entity at hand — sigils compose names, they are not operations on them ^c20260712-0u
-- [CT] name syntax does not change the named entity's semantics — a block is a block, a span a span, under any legal form ^c20260712-0u ^c20260712-10u
-- [CT] a legal name carries at least one sigil; a single bare word is not a name ^c20260712-0u
-- [PR] sigils keep names distinguishable from natural prose — inline-always, grep-able (`Name.As.Index`) ^c20260712-0u
-- [PR] choose the form that preserves the entity's natural identity — a native address over an artificial coinage ^c20260712-0u
-- [FR] locator roots follow common sense, often a `<...>` variable — no closed root vocabulary exists ^c20260712-2u
-- [DC] the `@` is agent-maintained: users may omit it, and a bare mention resolves to the locator-named entity when it matches (`Bla/Blo` → `@Bla/Blo`) ^c20260712-2u
-- [DC] friendly alternates live as aliases in `Kernel.Block.Meta`, not as competing names ^c20260712-0u
-- [CT] aliases resolve inbound references only — user input, queries, legacy mentions; a citation written on any stable surface canonicalizes to the block's title name — an alias in a cite fragments the `Name.As.Index` reverse lookup ^c20260716-17u
-- [DC] routing is form-neutral: `000-INDEX.md` routes any legal name ^c20260712-0u
+- [DF] `Skw.Address.Schema` is the accepted syntax set for naming any addressable entity of the workspace — concept blocks, files, regions, spans, chat moments ^c20260712-75u
+- [DF] one grammar underlies every form: a name is a root plus an optional region path ^c20260712-81u
+- [DF] a name traverses three spaces: ontology space (concepts), file space (surfaces and their spans), and chat space (registered moments) ^c20260712-78u
+- [DC] legal forms: `Dotted.Name` (compact symbolic), `Block.Path` (ontology topology), `Locator.Name` (`@`-anchored file, region, or span address), `Anchory.Anchor` (`^`-registered chat moment) ^c20260712-45u
+- [PR] the root concept is the address — `Dotted.Name` exists to make ontology addresses inlinable in natural prose, not the other way around ^c20260712-99u
+- [DC] an address is a block's identity, not only a citation — a `Skw.Annotation` is named by one explicit `Locator.Name`, resolved by context: the region alone resolves against the current surface (the declaration form), the fully-qualified locator is the citation form used from elsewhere ^c20260720-36u
+- [DF] the full string is the name of the entity at hand — sigils compose names, they are not operations on them ^c20260712-83u
+- [CT] name syntax does not change the named entity's semantics — a block is a block, a span a span, under any legal form ^c20260712-33u
+- [CT] a legal name carries at least one sigil; a single bare word is not a name ^c20260712-26u
+- [PR] sigils keep names distinguishable from natural prose — inline-always, grep-able (`Name.As.Index`) ^c20260712-97u
+- [PR] choose the form that preserves the entity's natural identity — a native address over an artificial coinage ^c20260712-91u
+- [FR] locator roots follow common sense, often a `<...>` variable — no closed root vocabulary exists ^c20260712-87u
+- [DC] the `@` is agent-maintained: users may omit it, and a bare mention resolves to the locator-named entity when it matches (`Bla/Blo` → `@Bla/Blo`) ^c20260712-50u
+- [DC] friendly alternates live as aliases in `Kernel.Block.Meta`, not as competing names ^c20260712-41u
+- [CT] aliases resolve inbound references only — user input, queries, legacy mentions; a citation written on any stable surface canonicalizes to the block's title name — an alias in a cite fragments the `Name.As.Index` reverse lookup ^c20260716-38u
+- [DC] routing is form-neutral: `000-INDEX.md` routes any legal name ^c20260712-48u
 
 ### meta
 
@@ -29,18 +29,18 @@
 
 ## Addressing.Sigil.Vocabulary
 
-- [DF] `Addressing.Sigil.Vocabulary` is the closed set of primitives a `Skw.Address.Schema` name composes from ^c20260712-1u ^c20260712-10u
-- [CT] each sigil carries exactly one meaning; expressivity comes from composition, never from overloading ^c20260712-1u
-- [DF] `.` joins words into one name atom: `Concept.X`, `AGENTS.md` ^c20260712-1u
-- [DF] `/` states descent — the right side lives inside the left side's namespace, in either space ^c20260712-1u
-- [DF] `#` switches space — the name leaves file space and enters the file's internal regions ^c20260712-1u
-- [DF] `::` states type — the right side is an entity of the left side's type: `Line.Type::DF` ^c20260712-1u
-- [DF] `:` states line position inside a file: `@<project>/AGENTS.md:42` ^c20260712-1u
-- [DF] `<...>` marks a variable part, resolved by context and legal in any space: `<project>` ^c20260712-1u
-- [DF] `@` is the locator prefix — it anchors a name in file space from its first character ^c20260712-1u
-- [DF] `^` marks a registered span or moment within a surface — one meaning across spaces, one owning register per space: `Anchory.Anchor` owns chat space (`^c20260712-1u`, a moment), skw labels own file space (`^archive-filter`, a span) ^c20260712-1u ^c20260712-10u
-- [CT] `^` never appears in ontology-space names — a registered mark belongs to a surface, never to a concept ^c20260712-10u
-- [CT] a sigil's meaning is invariant across positions; where it may appear is grammar, not meaning ^c20260712-1u
+- [DF] `Addressing.Sigil.Vocabulary` is the closed set of primitives a `Skw.Address.Schema` name composes from ^c20260712-67u
+- [CT] each sigil carries exactly one meaning; expressivity comes from composition, never from overloading ^c20260712-29u
+- [DF] `.` joins words into one name atom: `Concept.X`, `AGENTS.md` ^c20260712-59u
+- [DF] `/` states descent — the right side lives inside the left side's namespace, in either space ^c20260712-60u
+- [DF] `#` switches space — the name leaves file space and enters the file's internal regions ^c20260712-58u
+- [DF] `::` states type — the right side is an entity of the left side's type: `Line.Type::DF` ^c20260712-62u
+- [DF] `:` states line position inside a file: `@<project>/AGENTS.md:42` ^c20260712-64u
+- [DF] `<...>` marks a variable part, resolved by context and legal in any space: `<project>` ^c20260712-65u
+- [DF] `@` is the locator prefix — it anchors a name in file space from its first character ^c20260712-66u
+- [DF] `^` marks a registered span or moment within a surface — one meaning across spaces, one owning register per space: `Anchory.Anchor` owns chat space (`^c20260712-1u`, a moment), skw labels own file space (`^archive-filter`, a span) ^c20260712-76u
+- [CT] `^` never appears in ontology-space names — a registered mark belongs to a surface, never to a concept ^c20260712-24u
+- [CT] a sigil's meaning is invariant across positions; where it may appear is grammar, not meaning ^c20260712-28u
 
 ### meta
 
@@ -50,8 +50,8 @@
 
 ## Skw.Kernel.Index
 
-- [DF] a `Skw.Kernel.Index` is a Skw data structure that applies `Kernel.Writing` through routed `Kernel.Block`s organized into selectively loadable chapters ^c20260724-0u
-- [CT] each chapter may declare the gate policy governing its content ^c20260724-0u
-- [CT] authority and review are properties of content provenance, not consequences of index membership ^c20260724-0u
-- [EX] the `Agentos.Index.System` is a `Skw.Kernel.Index` application whose curated chapters require user gates ^c20260724-0u
-- [EX] a `POI.Catalog` is a `Skw.Kernel.Index` application whose `poi` chapter registers `POI.Class` blocks ^c20260724-0u
+- [DF] a `Skw.Kernel.Index` is a Skw data structure that applies `Kernel.Writing` through routed `Kernel.Block`s organized into selectively loadable chapters ^c20260724-90u
+- [CT] each chapter may declare the gate policy governing its content ^c20260724-45u
+- [CT] authority and review are properties of content provenance, not consequences of index membership ^c20260724-44u
+- [EX] the `Agentos.Index.System` is a `Skw.Kernel.Index` application whose curated chapters require user gates ^c20260724-101u
+- [EX] a `POI.Catalog` is a `Skw.Kernel.Index` application whose `poi` chapter registers `POI.Class` blocks ^c20260724-97u

@@ -4,11 +4,11 @@
 
 ## Stable.Surface
 
-- `Stable.Surface` is a durable, authoritative surface where a specific facet of project knowledge lives ^c20260510-0u
-- the "stable" contract: the content aims to be maintained, current, and trustworthy ^c20260510-0u
-- all `Stable.Surfaces` must stay aligned — no surface is positioned as more important than another by default ^c20260510-0u
-- misalignments between surfaces are resolved context-dependently, not by a fixed hierarchy ^c20260510-0u
-- drift between stable surfaces is the target of `Internal.Alignment` — a problem to detect and resolve ^c20260510-0u
+- `Stable.Surface` is a durable, authoritative surface where a specific facet of project knowledge lives ^c20260510-1u
+- the "stable" contract: the content aims to be maintained, current, and trustworthy ^c20260510-5u
+- all `Stable.Surfaces` must stay aligned — no surface is positioned as more important than another by default ^c20260510-2u
+- misalignments between surfaces are resolved context-dependently, not by a fixed hierarchy ^c20260510-4u
+- drift between stable surfaces is the target of `Internal.Alignment` — a problem to detect and resolve ^c20260510-3u
 
 ****
 
@@ -21,21 +21,21 @@
 
 ## Natural.Placement
 
-- `Natural.Placement` is the principle that each surface holds the facet of a concept that is natural to its function ^c20260511-0u
-- primarily governs where origin material naturally belongs ^c20260511-0u
-- the full description of a concept is distributed across surfaces — each complements the others ^c20260511-0u
+- `Natural.Placement` is the principle that each surface holds the facet of a concept that is natural to its function ^c20260511-1u
+- primarily governs where origin material naturally belongs ^c20260511-5u
+- the full description of a concept is distributed across surfaces — each complements the others ^c20260511-6u
     - index → conceptual grounding (what it is, why, how it connects) and discovery (where to find it) ^c20260511-0u
     - appendix → extended depth, rationale, scoped views through `Concept.Scoping` ^c20260511-0u
     - skills → operational behavior, workflows ^c20260511-0u
     - code → the implementation itself (the code IS the description) ^c20260511-0u
     - chat → user/agent interaction record, the evidence trail for alignment moves
-- describing in markdown what code already holds naturally is redundant placement, not useful duplication — the question is placement ^c20260511-0u
+- describing in markdown what code already holds naturally is redundant placement, not useful duplication — the question is placement ^c20260511-3u
 - cited duplicates can also be naturally placed when local use strongly benefits from repeated content
 - duplication is justified when avoiding it would harm bootstrapping, workflow performance, local readability, or agent orientation
-- content that feels unnatural in a surface is probably misplaced ^c20260511-0u
+- content that feels unnatural in a surface is probably misplaced ^c20260511-2u
 - uncited or stale duplication is the anti-pattern, not duplication itself
 - when multiple implementations exist, one may serve as a `Canonical.Reference.Implementation` — the go-to surface for implementation details, chosen by natural fit rather than hierarchy
-- drift between any surfaces is always an error to resolve, not a hierarchy to adjudicate ^c20260511-0u
+- drift between any surfaces is always an error to resolve, not a hierarchy to adjudicate ^c20260511-4u
 
 ****
 
@@ -53,12 +53,12 @@
 
 ## Placement.Balance
 
-- `Placement.Balance` is the maintained alignment state between origin surfaces and their useful local expressions across surfaces ^c20260522-0u
-- balanced placement is not absence of repetition ^c20260522-0u
-- the system is balanced when origin material lives in its natural source surfaces and cited duplicates exist only where locally useful ^c20260522-0u
-- duplicates remain balanced when they cite origins and can be found, checked, and updated during maintenance ^c20260522-0u
-- diagnostic signal: uncited repeated concept material, stale cited duplicates, or ambiguity about where the origin material lives ^c20260522-0u
-- complementary to `Natural.Placement` — natural placement decides where material belongs; placement balance checks whether distributed material stays aligned ^c20260522-0u
+- `Placement.Balance` is the maintained alignment state between origin surfaces and their useful local expressions across surfaces ^c20260522-1u
+- balanced placement is not absence of repetition ^c20260522-2u
+- the system is balanced when origin material lives in its natural source surfaces and cited duplicates exist only where locally useful ^c20260522-6u
+- duplicates remain balanced when they cite origins and can be found, checked, and updated during maintenance ^c20260522-5u
+- diagnostic signal: uncited repeated concept material, stale cited duplicates, or ambiguity about where the origin material lives ^c20260522-4u
+- complementary to `Natural.Placement` — natural placement decides where material belongs; placement balance checks whether distributed material stays aligned ^c20260522-3u
 
 ****
 
@@ -78,8 +78,8 @@
 
 ## Cited.Duplication
 
-- `Cited.Duplication` is intentional duplication of concept material into another surface with an explicit `Concept.Cite` to the origin ^c20260516-0u
-- used when local access to repeated context improves agent performance, bootstrapping, workflow execution, package orientation, or readability ^c20260516-0u
+- `Cited.Duplication` is intentional duplication of concept material into another surface with an explicit `Concept.Cite` to the origin ^c20260516-1u
+- used when local access to repeated context improves agent performance, bootstrapping, workflow execution, package orientation, or readability ^c20260516-2u
 - the duplicate may be rewritten, summarized, or adapted to local task shape, but must remain aligned with the cited origin
 - the cited origin anchors maintenance and gives agents or tooling a way to check drift
 - if a cited duplicate clearly mirrors an edited origin, the writer may update the duplicate in the same approved write pass
@@ -135,25 +135,25 @@
 
 ## Chat.Surface
 
-- [DF] `Chat.Surface` is a recorded surface of conversational interaction among human and agentic participants ^c20260729-9u
-- [FR] a chat may be fully agentic and contain no `User.Touch` ^c20260729-9u
-- [DF] `Hugentic.Chat.Surface` is a `Chat.Surface` containing significant `Touched.Data` ^c20260729-9u
-- [CT] a surface does not acquire touched authority merely by being a chat ^c20260729-9u
-- [PR] `Hugentic.Chat.Surface` is the natural placement of `User.Touch` and the preferred record of Hugentic alignment ^c20260729-9u
-- [CT] user turns carry direct touch; assistant turns provide conversational context and may remain `Open.Inference` ^c20260729-9u
-- [DC] repeated Hugentic discussion makes chat the natural surface for `User.Model.Space` to evolve ^c20260729-9u
-- [PR] the index contextualizes touched chat data; undigested chat remains retrievable and never blocks agent action ^c20260729-9u
-- [CT] every chat is referenceable through `Anchory.Anchor` and accessed through Chatlas ^c20260729-9u
+- [DF] `Chat.Surface` is a recorded surface of conversational interaction among human and agentic participants ^c20260729-253u
+- [FR] a chat may be fully agentic and contain no `User.Touch` ^c20260729-303u
+- [DF] `Hugentic.Chat.Surface` is a `Chat.Surface` containing significant `Touched.Data` ^c20260729-257u
+- [CT] a surface does not acquire touched authority merely by being a chat ^c20260729-65u
+- [PR] `Hugentic.Chat.Surface` is the natural placement of `User.Touch` and the preferred record of Hugentic alignment ^c20260729-324u
+- [CT] user turns carry direct touch; assistant turns provide conversational context and may remain `Open.Inference` ^c20260729-164u
+- [DC] repeated Hugentic discussion makes chat the natural surface for `User.Model.Space` to evolve ^c20260729-229u
+- [PR] the index contextualizes touched chat data; undigested chat remains retrievable and never blocks agent action ^c20260729-354u
+- [CT] every chat is referenceable through `Anchory.Anchor` and accessed through Chatlas ^c20260729-97u
 
 ****
 
 ## Chat.Grounding
 
-- [DF] `Chat.Grounding` is grounding whose evidence source is a `Chat.Surface` ^c20260729-9u
-- [PR] `Hugentic.Chat.Surface` is the preferred grounding path because it carries the richest record of user-agent alignment ^c20260729-9u
-- [CT] fully agentic chat may supply context but does not establish `User.Touch` ^c20260729-9u
-- [CT] direct touch held at a non-chat surface may ground data from its own `Natural.Placement` ^c20260729-9u
-- [PR] relevant non-chat authority tends to acquire chat grounding when later Hugentic discussion contextualizes it ^c20260729-9u
+- [DF] `Chat.Grounding` is grounding whose evidence source is a `Chat.Surface` ^c20260729-251u
+- [PR] `Hugentic.Chat.Surface` is the preferred grounding path because it carries the richest record of user-agent alignment ^c20260729-325u
+- [CT] fully agentic chat may supply context but does not establish `User.Touch` ^c20260729-104u
+- [CT] direct touch held at a non-chat surface may ground data from its own `Natural.Placement` ^c20260729-86u
+- [PR] relevant non-chat authority tends to acquire chat grounding when later Hugentic discussion contextualizes it ^c20260729-344u
 
 ****
 
@@ -178,17 +178,17 @@
 
 ## Chat.Surface.Closure
 
-- [DF] `Chat.Surface.Closure` is the principle that relevant system information tends toward `Chat.Surface` through interaction and digestion ^c20260729-9u
-- [PR] chat is the near-universal interaction ingress for human and agentic work ^c20260729-9u
-- [CT] closure is preferential rather than exclusive; out-of-band surfaces may carry authority before any chat event exists ^c20260729-9u
-- [PR] relevant static material tends to be discussed repeatedly and thereby acquires conversational context ^c20260729-9u
-- [CT] chat digestion contextualizes non-chat authority rather than replacing it ^c20260729-9u
-- [CT] digestion through fully agentic chat does not create `User.Touch` ^c20260729-9u
-- [DC] the append-only `Chat.Surface` preserves the generative interaction record while other surfaces preserve their curated forms ^c20260729-9u
-- [DC] projections remain re-derivable and drift-checkable through their evidence paths ^c20260729-9u
-- [DC] closure is self-healing: Hugentic discussion of insufficiently grounded material creates new touch and possible grounding evidence ^c20260729-9u
-- [FR] incomplete chat grounding never blocks agent action; it remains pending while the agent acts inside applicable `Open.Space` ^c20260729-9u
-- [PR] in the limit, chat becomes a sufficient generative basis for reconstructing relevant projections ^c20260729-9u
+- [DF] `Chat.Surface.Closure` is the principle that relevant system information tends toward `Chat.Surface` through interaction and digestion ^c20260729-252u
+- [PR] chat is the near-universal interaction ingress for human and agentic work ^c20260729-329u
+- [CT] closure is preferential rather than exclusive; out-of-band surfaces may carry authority before any chat event exists ^c20260729-78u
+- [PR] relevant static material tends to be discussed repeatedly and thereby acquires conversational context ^c20260729-345u
+- [CT] chat digestion contextualizes non-chat authority rather than replacing it ^c20260729-77u
+- [CT] digestion through fully agentic chat does not create `User.Touch` ^c20260729-85u
+- [DC] the append-only `Chat.Surface` preserves the generative interaction record while other surfaces preserve their curated forms ^c20260729-235u
+- [DC] projections remain re-derivable and drift-checkable through their evidence paths ^c20260729-224u
+- [DC] closure is self-healing: Hugentic discussion of insufficiently grounded material creates new touch and possible grounding evidence ^c20260729-199u
+- [FR] incomplete chat grounding never blocks agent action; it remains pending while the agent acts inside applicable `Open.Space` ^c20260729-311u
+- [PR] in the limit, chat becomes a sufficient generative basis for reconstructing relevant projections ^c20260729-336u
 
 ****
 
@@ -215,9 +215,9 @@
 ## Index.Block
 
 - `Index.Block` is a `Kernel.Block` placed in an `Index.Chapter` — the routed, loadable unit of meaning in the Index
-- [DC] a block is a named grouping of `Index.Line`s — it attaches lines to the concept its heading names ^c20260718-14u
-- [DC] blocks are one grouping of lines, not the only one; grounding, approval, and audit run per line ^c20260718-14u
-- [DC] its heading is a legal `Skw.Address.Schema` name — the root of the concept's `Block.Path`s and what `000-INDEX.md` routes ^c20260712-5u
+- [DC] a block is a named grouping of `Index.Line`s — it attaches lines to the concept its heading names ^c20260718-37u
+- [DC] blocks are one grouping of lines, not the only one; grounding, approval, and audit run per line ^c20260718-41u
+- [DC] its heading is a legal `Skw.Address.Schema` name — the root of the concept's `Block.Path`s and what `000-INDEX.md` routes ^c20260712-44u
 - it is `Kernel.Writing` under tight compression — conceptual completeness in few lines, depth pushed to `Concept.X/Appendix`
 - it must carry enough signal for an agent to reason correctly about the concept
 - the Index must have a block for any meaningful concept; it may link out rather than define everything inline
@@ -265,15 +265,15 @@
 ## Dotted.Notation
 
 - `Dotted.Notation` identifies named concepts in an ontology surface
-- [DF] it is the concept form of `Skw.Address.Schema` — compact, symbolic, natural-text friendly ^c20260712-3u
+- [DF] it is the concept form of `Skw.Address.Schema` — compact, symbolic, natural-text friendly ^c20260712-79u
 - a dotted name is a signal that the phrase refers to a concept, not casual prose
-- [CT] every name has at least two parts — the schema's minimum-sigil rule applied to `.`; dot depth is flexible and natural to the concept ^c20260712-3u
+- [CT] every name has at least two parts — the schema's minimum-sigil rule applied to `.`; dot depth is flexible and natural to the concept ^c20260712-30u
 - dots provide context but are not a strict hierarchy — definition and relationships live in notes and registry entries, not the name
 - `Explicit.Namespace` must be explicit; do not infer a namespace from a dotted prefix alone
 - a dotted name can appear before it is registered
     - agents infer concept maturity from the repository: prose-only, registry entry, or dedicated note
 - registry lookup is opportunistic, not mandatory — use it when concept identity matters, avoid turning ordinary work into ontology maintenance
-- [DF] type statements extend a dotted name with `::` (`Line.Type::DF`) — the full string names the entity (`Addressing.Sigil.Vocabulary`) ^c20260712-3u
+- [DF] type statements extend a dotted name with `::` (`Line.Type::DF`) — the full string names the entity (`Addressing.Sigil.Vocabulary`) ^c20260712-84u
 - an approximate chat-side form exists — see `Fuzzy.Dotted.Name`
 
 ****
