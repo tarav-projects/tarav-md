@@ -5,10 +5,10 @@ status: Open
 ## Session.Abstract
 
 - **target:** redesign `Chat.Index`, integrate it with the existing `Project.Index`, learn from that intermediate system, and only then redesign the more expensive Project Index surface
-- **current concern:** establish the rollout architecture, slice order, progress ledger, and decision gates without prematurely fixing final storage syntax
+- **current concern:** complete the first real incremental maintenance pass over the active v2 Chat.Index, including late-expanded and revised source evidence
 - **settled frame:** chats preserve the full evolution of touched reasoning; a Project Index is entirely about the present
 - **rollout order:** Chat Index first → compatibility integration with the current Project Index → observed-use gate → Project Index redesign
-- **next useful move:** settle the redesigned Chat Index product boundary and its smallest end-to-end pilot slice
+- **next useful move:** run the Chat.Index capture workflow over the active session's 11 pending turns and require the post-write tail to become `current`
 
 ## Design.Index
 
@@ -174,15 +174,15 @@ States: `planned`, `in-progress`, `blocked`, `done`.
 
 | Slice | Outcome | Owning surface | Depends on | State | Evidence / notes |
 |---|---|---|---|---|---|
-| 0.1 | Current Chat Index implementation and corpus map | chatlas md/py | - | planned | - |
-| 0.2 | Redesigned Chat Index concept and compatibility contract | chatlas md + agentos md | 0.1 | planned | this artifact holds the initial frame |
-| 0.3 | Migration and validation fixture plan | chatlas md/py | 0.1, 0.2 | planned | - |
-| 1.1 | User-turn-anchored reasoning-unit storage | chatlas py | 0.2, 0.3 | planned | - |
-| 1.2 | Line home and provenance dossier | chatlas py + anchory | 0.2 | planned | - |
-| 1.3 | Foreground incremental Chat Index capture | chatlas skill/py | 1.1, 1.2 | planned | - |
-| 1.4 | Retrospective rebuild and legacy compatibility | chatlas skill/py | 1.1, 1.2 | planned | - |
-| 1.5 | Chat Index query, validation, and behavioral tests | chatlas py + testground | 1.1-1.4 | planned | - |
-| 2.1 | Project Support Chats registry and maintenance workflow | agentos md + chatlas py | existing 606 Impl.Req | in-progress | `notes/live/606-project-support-chats-impl-req.md` |
+| 0.1 | Current Chat Index implementation and corpus map | chatlas md/py | - | done | v1 corpus and all capture/consumer surfaces inspected |
+| 0.2 | Redesigned Chat Index concept and compatibility contract | chatlas md + agentos md | 0.1 | done | Delta/HEAD v2 contract landed |
+| 0.3 | Migration and validation fixture plan | chatlas md/py | 0.1, 0.2 | done | v1 compatibility plus medium-chat v2 fixtures |
+| 1.1 | User-turn-anchored reasoning-unit storage | chatlas py | 0.2, 0.3 | done | `capture.json` v2, `deltas/`, and `HEAD.md` |
+| 1.2 | Line home and provenance dossier | chatlas py + anchory | 0.2 | in-progress | oldest-Delta home is live; maintained provenance cargo remains deferred |
+| 1.3 | Foreground incremental Chat Index capture | chatlas skill/py | 1.1, 1.2 | in-progress | tail mechanics/workflow verified; real 11-turn maintenance pass remains |
+| 1.4 | Retrospective rebuild and legacy compatibility | chatlas skill/py | 1.1, 1.2 | done | v1 remains readable; v2 is the only write target |
+| 1.5 | Chat Index query, validation, and behavioral tests | chatlas py + testground | 1.1-1.4 | done | 382-test suite; medium-session growth/revision/idempotency E2E |
+| 2.1 | Project Support Chats registry and maintenance workflow | agentos md + chatlas py | existing 606 Impl.Req | done | `notes/live/606-project-support-chats-impl-req.md` |
 | 2.2 | Project-line Chat-home POI checks | agentos md/py + chatlas py | 1.2, 2.1 | planned | findings are non-blocking |
 | 2.3 | Per-chat reconciliation cursors and incremental scan | agentos/chatlas | 1.5, 2.1 | planned | - |
 | 2.4 | Live reconciliation report and agendix capture workflow | agentos md | 2.2, 2.3 | planned | uses current Project Index unchanged |
@@ -198,7 +198,7 @@ States: `planned`, `in-progress`, `blocked`, `done`.
 
 | Gate | Required evidence | State |
 |---|---|---|
-| Chat.Index.Design.Ready | current implementation map, settled semantic unit, compatibility/migration contract | open |
+| Chat.Index.Design.Ready | current implementation map, settled semantic unit, compatibility/migration contract | met |
 | Chat.Index.Pilot.Ready | foreground and retrospective capture pass representative behavioral tests | open |
 | Project.Integration.Proven | support-chat routing, home POIs, incremental reconciliation, useful pilot reports | open |
 | Project.Index.Redesign.Ready | compatibility observation report shows the provisional target solves observed needs | open |
@@ -217,11 +217,8 @@ States: `planned`, `in-progress`, `blocked`, `done`.
 
 ### Open Design Questions
 
-- canonical name for `User.Turn.Index`
-- exact Chat Index on-disk organization and whether a materialized current/head view is stored or derived
 - exact causal-scope rule over branch and fork lineage
-- schema and ownership of `Line.Home`, `Line.Provenance`, and `Known.Origin`
-- whether homes may move and how a move preserves prior ownership history
+- maintained line-anchor cargo schema for `Line.Provenance` and `Known.Origin`
 - contradiction-router relation model and rendering
 - reconciliation cursor identity and cross-chat scheduling
 - final Project Index folder and block mechanics after Phase 2A learning
@@ -238,3 +235,5 @@ States: `planned`, `in-progress`, `blocked`, `done`.
 - 2026-08-03: created the consolidated redesign and rollout tracker from the Chat Index / Project Index design discussion
 - 2026-08-03: selected staged rollout—Chat Index redesign, compatibility integration with the existing Project Index, learning gate, Project Index redesign last
 - 2026-08-03: linked the active `Project.Support.Chats` implementation as an in-progress dependency rather than duplicating its execution plan
+- 2026-08-04: implemented and verified the chronological Delta/HEAD v2 surface, oldest-Delta Line.Home, v1 read compatibility, and medium-session E2E coverage
+- 2026-08-04: implemented read-only incremental tail maintenance with current, append-only, expanded, revised, diverged, and blocked states; active-session smoke found 11 pending turns and left the retained surface unchanged
