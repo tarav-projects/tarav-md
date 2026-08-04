@@ -98,14 +98,14 @@ Use `agentos chatlas` as the default substrate.
 Before resolving or reading the target, refresh Chatlas:
 
 ```sh
-agentos chatlas update --verbose-mode quiet --output-mode json
+agentos chatlas update --verbose-mode quiet --json
 ```
 
 Scope the update when the target is already known:
 
 ```sh
-agentos chatlas update --session-id <session-id> --verbose-mode quiet --output-mode json
-agentos chatlas update --provider <provider> --session-id <session-id> --verbose-mode quiet --output-mode json
+agentos chatlas update --session-id <session-id> --verbose-mode quiet --json
+agentos chatlas update --provider <provider> --session-id <session-id> --verbose-mode quiet --json
 ```
 
 Use the unscoped update when the user gives only a search query or when provider/session scoping is unclear. The supervisor should prefer fresh observations over stale index data.
@@ -121,13 +121,13 @@ If the user gives an exact `agentos://chat-session/...` URI, use it directly.
 For a full compact observation:
 
 ```sh
-agentos chatlas views inline --view zip-transcript --format json --uri <session-uri>
+agentos chatlas views get --view zip-transcript --uri <session-uri>
 ```
 
 For new turns since a known cursor:
 
 ```sh
-agentos chatlas views inline --view zip-transcript --format json --range <N>: --uri <session-uri>
+agentos chatlas views get --view zip-transcript --range <N>: --uri <session-uri>
 ```
 
 Interpret `zip-transcript.turns` as the ordered observation sequence. The `--range` result includes `range.total`; after reporting, update the in-chat `Last.Observed.Turn` to that total unless the user asks not to.
