@@ -185,14 +185,24 @@ agentos chatlas products list
 agentos chatlas products status --product zip-transcript-summary --identity-hash <H>
 agentos chatlas products path --product zip-transcript-summary --identity-hash <H>
 agentos chatlas products produce --product zip-transcript-summary --identity-hash <H>
+agentos chatlas products scaffold --stage-id <stage-id>
+agentos chatlas products check --stage-id <stage-id>
 agentos chatlas products commit --stage-id <stage-id>
 agentos chatlas products run-produce --product zip-transcript-summary --identity-hash <H>
 ```
 
 - product identity is `(product name, session identity hash)`; there is no caller-supplied prompt
 - `status --explain` reports the observed and current input/definition fingerprints
-- `produce` stages `input.json` (the input view payload) plus the production prompt; the producing agent writes the artifact into the stage and then commits it
-- `commit` validates the staged artifact and refuses with a canonical Chatlas POI on any invariant violation
+- `produce` stages `input.json` (the input view payload) plus the production prompt
+- the producer loop is **produce → scaffold → fill → check → commit**
+- `scaffold` writes the artifact skeleton: envelope fields, session, turn count, order, roles, and every user turn already copied verbatim, with assistant text left empty; `--force` overwrites an existing staged artifact
+- `check` runs the full commit linter without committing — exit `0` with `check.ok: true`, or exit `1` with `check.finding` naming the POI class and the offending `turn_index`
+- a blank-assistant refusal lists **every** remaining index in `evidence.blank_turn_indices`, so a partial fill can resume from the refusal instead of discovering one turn at a time
+- the linter also enforces a compression floor: above 50 KB of source assistant text, an artifact retaining more than 70% of it is refused as `Compression.Insufficient`, with the longest assistant turns named in the evidence. Resummarize those turns — never truncate to reach the ratio
+- a second guard windows the transcript by source assistant bytes and refuses `Compression.RegionUntouched` when a material share of those windows was left essentially uncompressed — the global ratio alone can be satisfied by crushing one region. One dense window is tolerated; the evidence names every offending turn range
+- `--allow-low-compression` on `check` and `commit` waives both compression gates for a session that genuinely cannot compress further, and records the exemption in the product manifest
+- `commit` runs the same linter and refuses with the same canonical Chatlas POI on any invariant violation
+- a producing agent should never hand-build the skeleton or write its own verification script; `scaffold` and `check` are the same code the commit gate runs
 - `run-produce` drives the whole loop through a configured agent; `--dry-run` prints the prompt and agent command without staging
 - registered products: `zip-transcript-summary` over the `zip-transcript` view — see `producer-zip-transcript-summary.md`
 

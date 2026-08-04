@@ -1,6 +1,6 @@
 ---
 name: chatlas-session-continue
-description: Resolve a prior Chatlas session from a session id, session URI, or provider-agnostic query, extract its conversation with `agentos chatlas`, and return a continuation handoff artifact for resuming the discussion here. USE WHEN the goal is to continue work from another chat while keeping all user turns verbatim. Called like a terminal command — `--session <id|uri|query>`.
+description: Resolve a prior Chatlas session from a session id, session URI, or provider-agnostic query, source its conversation from the `zip-transcript-summary` product (producing it when missing), and return a continuation handoff artifact for resuming the discussion here. USE WHEN the goal is to continue work from another chat while keeping all user turns verbatim. Called like a terminal command — `--session <id|uri|query>`.
 ---
 
 # Chatlas Session Continue
@@ -23,6 +23,14 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 - required: true
 - help: "the session to continue (id, URI, or query)"
 - examples: --session "agentos://chat-session/..."
+
+### Skill.Arg::Produce
+- whether a missing or stale `zip-transcript-summary` product may be produced during this run
+- required: false
+- default: true
+- type: flag
+- flags: --no-produce
+- help: "skip production and read the raw transcript view instead"
 
 ## Trigger Boundary
 
@@ -59,9 +67,10 @@ Hold the output to this quality bar:
 ## Workflow
 
 1. Resolve the session.
-2. Extract the conversation transcript.
+2. Source the conversation, preferring the `zip-transcript-summary` product and
+   producing it when it is missing or stale.
 3. Derive continuation state from the session.
-4. Compress the assistant turns.
+4. Compress the assistant turns — fallback path only.
 5. Return only the continuation handoff artifact.
 
 ## Missing Input
@@ -79,24 +88,36 @@ Could not resolve a prior session because no session identifier or query was pro
 Provide one of:
 - a session id
 - an agentos://chat-session/... URI
-- a query that can be resolved with `agentos chatlas query --include-match`
+- an identity hash
+- another Chatlas index selector that resolves exactly one session
 ```
 
 ## Step 1: Resolve The Session
 
-If the input is already an `agentos://chat-session/...` URI, use it directly.
+Use option-based selectors only. Chatlas has no positional session argument.
 
-Otherwise resolve it with:
+If the input is already an `agentos://chat-session/...` URI, use `--uri <uri>`.
+If it is a session id, use `--session-id <id>`. If it is an identity hash or a
+hash prefix, use `--identity-hash <hash>`.
+
+Otherwise resolve a free-text query with the content filters:
 
 ```bash
-agentos chatlas query "<query>" --include-match
+agentos chatlas query --message-contains "<text>" --sort newest --limit 10 --json
 ```
+
+Related filters worth reaching for: `--user-contains`, `--assistant-contains`,
+`--display-name`, `--project-base`, `--file-touched`, `--tool-name`,
+`--min-user-turns`, `--active-after`. Repeat a filter to AND it.
+
+Chatlas renders human-readable text by default, so pass `--json` on every step
+whose output you parse.
 
 Resolution rules:
 
-- If `session_count` is `1`, use the returned `sessions[0].uri`.
-- If `session_count` is `0`, fail clearly and say the session could not be found.
-- If `session_count` is greater than `1`, do not guess. Return this short ambiguity report shape:
+- If exactly one row matches, use its `uri` and `identity_hash`.
+- If no row matches, fail clearly and say the session could not be found.
+- If more than one row matches, do not guess. Return this short ambiguity report shape:
 
 ```text
 Multiple prior sessions matched the query. I did not choose one automatically.
@@ -108,22 +129,74 @@ Candidates:
 Reply with the exact `session_id` or `uri` to continue.
 ```
 
-## Step 2: Extract The Transcript
+## Step 2: Source The Conversation
 
-Extract transcript JSON with:
+Prefer the retained `zip-transcript-summary` product. It already applies the same
+compression policy this skill needs, so reusing it avoids compressing the same
+session twice.
 
 ```bash
-agentos chatlas views get "<resolved-uri>" --view transcript
+agentos chatlas products status --product zip-transcript-summary --identity-hash <hash> --json
 ```
 
-Use the transcript view as the source for the handoff. The final artifact remains a
-plain turn-based handoff, not raw JSON.
+Branch on `product.state`:
+
+- **`fresh`** — read the artifact and use it as the transcript source:
+
+  ```bash
+  agentos chatlas products path --product zip-transcript-summary --identity-hash <hash>
+  ```
+
+  Its user turns are already verbatim and its assistant turns are already
+  compressed. Skip Step 4 entirely.
+
+- **`production_required`** — produce it, then use it. Follow
+  `agentos-chatlas-pkg/references/producer-zip-transcript-summary.md` and run its
+  four-step loop: `produce` → `scaffold` → fill → `check` → `commit`. Do not
+  hand-build the artifact and do not write your own verification script. Then
+  read the committed artifact as above.
+
+Fall back to the raw view and compress it yourself with Step 4 when any of these
+holds:
+
+```bash
+agentos chatlas views get --identity-hash <hash> --view zip-transcript --json
+```
+
+This is the same input view the product is built from: turn-aligned, user turns
+verbatim, assistant turns uncompressed.
+
+- `--no-produce` was passed
+- the session is still being worked in, so a product would go stale immediately.
+  Check with `agentos chatlas query --identity-hash <hash> --idle-for 30m --json`;
+  an empty result means the session is still active
+- production failed, or the transcript is small enough that producing it costs
+  more than compressing it inline
+
+Producing is the expensive path — it is a full compression pass over the whole
+session. That is the intended trade when the artifact will be reused; say so in
+the run rather than doing it silently, and honor `--no-produce` when the caller
+wants the cheap path.
+
+The final artifact remains a plain turn-based handoff, not raw JSON.
 
 ## Step 3: Derive Continuation State
 
 Before writing the transcript section, derive the session state that matters for continuing here.
 
 Include only items supported by the session. Omit unknown items instead of inventing them.
+
+When the source is a `zip-transcript-summary` artifact, `recommended-next-step`
+and `open-threads` are the fields most exposed to compression loss — they usually
+hinge on detail in the last few turns. Read the tail of the raw view directly
+before writing them:
+
+```bash
+agentos chatlas views get --identity-hash <hash> --view zip-transcript --range=-10: --json
+```
+
+`--range` is supported only on the `zip-transcript` view, and the `=` form is
+required for a negative spec or argparse reads it as a flag.
 
 Preferred continuation-state fields:
 
@@ -144,6 +217,14 @@ Interpretation rules:
 - `recommended-next-step`: the single best next move for resuming in the current chat.
 
 ## Step 4: Compress Assistant Turns
+
+Skip this step when Step 2 sourced a `zip-transcript-summary` artifact — its
+assistant turns are already compressed under the same policy, and compressing
+them again only loses detail.
+
+This step applies on the fallback path only. Its rules are the same policy as
+`agentos-chatlas-pkg/references/producer-zip-transcript-summary.md`; when the two
+disagree, that reference wins.
 
 Always compress the assistant turns. Do not switch behavior based on transcript length.
 
@@ -232,11 +313,17 @@ Add a short provenance header before the continuation state when the information
 ```text
 source-session-id: <session-id>
 source-session-uri: <resolved-uri>
-resolved-via: agentos chatlas query --include-match
-extracted-via: agentos chatlas views get --view transcript
+source-identity-hash: <identity-hash>
+resolved-via: agentos chatlas query --message-contains
+sourced-via: agentos chatlas products path --product zip-transcript-summary
+product-state: fresh | produced-this-run | fallback-raw-view
 ```
 
 When both a session id and URI are available, include both. Treat these as first-class provenance data, not optional decoration.
+
+`product-state` matters to the reader: `fallback-raw-view` means the assistant
+turns were compressed inline for this handoff only, while the other two mean they
+came from a retained artifact that other callers share.
 
 Then emit the continuation state in a stable shape:
 

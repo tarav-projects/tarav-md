@@ -533,22 +533,80 @@
 
 ## Chat.Touched.Index
 
-- [DF] `Chat.Touched.Index` is the per-session projection of `Touched.Index` involved in one `Chat.Surface` ^c20260802-185u
-- [CT] its construction is closed over the target chat content and consults no external Project or Package Skill Index ^c20260802-126u
-- [DC] it contains the Index blocks and lines present in the chat plus additional touched knowledge captured from qualifying user turns ^c20260802-152u
-- [CT] imported and freshly captured lines have no structural distinction inside the projection ^c20260802-124u
-- [DC] present line contents retain their existing `Support.Reference`s while newly captured lines ground through support sets built from the session ^c20260802-163u
-- [CT] changing a recovered line’s `Line.Type` or body creates new line content and requires support reevaluation and reanchoring ^c20260802-114u
+- [DF] `Chat.Touched.Index` is the per-session projection of `Touched.Index` involved in one `Chat.Surface` ^c20260803-74u
+- [CT] its evidence is closed over the target chat; external material participates only insofar as it is observable within that chat's causal context ^c20260803-73u
+- [DC] its chronological model is formed by `Chat.Index.Delta`s and its present-facing model by `Chat.Index.HEAD` ^c20260804-32u
+- [DC] qualifying user turns delimit captured touched changes while preceding assistant and tool context may inform their interpretation without independently supplying touch ^c20260803-77u
+- [CT] material merely loaded into a chat does not create a Delta without a qualifying user touch event ^c20260803-76u
+- [CT] each Delta's extraction may be maintained using evidence within its fixed horizon but not later evidence ^c20260803-78u
+- [DC] repeated exact line content may retain its `Support.Reference`; changed `Line.Type` or body requires support reevaluation and a new reference ^c20260803-79u
 
 ****
 
 ## Chat.Index
 
-- [DF] `Chat.Index` is the materialized surface of one `Chat.Touched.Index` ^c20260802-182u
-- [DC] it lives at `<chatlas-root>/session-index/<identity-hash>/` ^c20260802-154u
-- [DC] its two layers are `ontology/` and `appendix/` ^c20260802-157u
-- [CT] both layers are unreviewed; ontology versus appendix expresses density and depth, not review standing ^c20260802-113u
-- [DC] one unified construction recovers `Chat.Ontology` and then captures additional session knowledge into that structure ^c20260802-162u
+- [DF] `Chat.Index` is the materialized per-session surface of one `Chat.Touched.Index` ^c20260803-71u
+- [DC] it lives at `<chatlas-root>/session-index/<identity-hash>/` ^c20260804-27u
+- [DC] its primary layout is `capture.json`, `deltas/`, and `HEAD.md` ^c20260804-28u
+- [DC] each `deltas/<turn-id>.md` file materializes exactly one `Chat.Index.Delta` identified by its `Delta.Horizon.Turn` ^c20260804-29u
+- [DC] `capture.json` records Delta files in the order resolved from their Chatlas tape positions; filenames and timestamps do not establish ordering ^c20260803-72u
+- [DC] `HEAD.md` materializes the session's `Chat.Index.HEAD` ^c20260804-30u
+- [CT] materialization on `Chat.Index` does not itself establish `Reviewed.Content`; grounding and review standing remain line-local ^c20260803-75u
+- [RJ] the legacy `Chat.Ontology` and `Chat.Appendix` split does not define the redesigned `Chat.Index` layout ^c20260804-31u
+
+****
+
+## Chat.Index.Delta
+
+- [DF] `Chat.Index.Delta` is a maintained chronological extraction of one or more touched changes ending at one `Delta.Horizon.Turn` ^c20260804-1u
+- [DF] `Delta.Horizon.Turn` is the qualifying `User.Turn` whose causal position closes the evidence available to one `Chat.Index.Delta` ^c20260804-2u
+- [CT] a delta may interpret the causal prefix ending at its horizon turn but not later evidence ^c20260803-52u
+- [FR] agents may create one delta per qualifying user turn or group several touched events into one meaningful delta ^c20260804-3u
+- [CT] the evidence horizon remains fixed while the extraction may be extended, corrected, or reorganized ^c20260803-48u
+- [DC] delta order is established by position on the chat tape; `Normal.Turn.Ref` supplies identity while timestamps remain diagnostic metadata ^c20260803-51u
+- [DC] the heading form is `Chat.Index.Delta/<turn-id> @ <timestamp>`; the horizon turn is not necessarily the delta's sole support ^c20260803-50u
+- [CT] when the horizon turn exposes a timestamp, omitting it raises a blessable `POI.Instance` ^c20260803-47u
+- [PR] delta lines attach preferentially to concepts visible within their evidence horizon and capture semantic change without unnecessarily restating earlier deltas ^c20260803-49u
+
+****
+
+## Chat.Index.HEAD
+
+- [DF] `Chat.Index.HEAD` is the agent-maintained present-facing model resolved for one chat from its transcript and `Chat.Index.Delta`s ^c20260804-4u
+- [CT] it interprets the complete chat context available within its evidence horizon rather than mechanically unioning or folding isolated delta lines ^c20260803-53u
+- [FR] its maintaining agent may select existing delta lines or synthesize better line content from the chat evidence ^c20260804-8u
+- [CT] every ordinary model line in `Chat.Index.HEAD` must eventually be materialized exactly in a `Chat.Index.Delta`; missing Delta coverage raises a `POI.Instance` rather than preventing the HEAD-first edition ^c20260804-7u
+- [PR] a HEAD-authored ordinary model line reconciles backward into the appropriate Delta so the HEAD is not its first durable home in the reconciled state ^c20260804-6u
+- [CT] a `POI.Line` may originate in `Chat.Index.HEAD` as maintenance state, but it owns a `Support.Set` grounding its claim about the indexed lines it evaluates ^c20260804-5u
+- [DC] the subject lines' support sets provide the qualifying user-turn evidence from which the `POI.Line` constructs its own support set ^c20260804-9u
+- [CT] its currentness is local to that chat's evidence horizon; later chats may revise the same ideas without rewriting the earlier `Chat.Index.HEAD` ^c20260803-54u
+- [CT] one `Chat.Index.HEAD` may support several Project HEADs, while each project selects its present model independently ^c20260804-10u
+- [RJ] resolving a `Chat.Index.HEAD` does not create a general line-to-line dependency or provenance network ^c20260803-55u
+
+****
+
+## Line.Home
+
+- [DF] `Line.Home` is the canonical `Chat.Index.Delta` materialization assigned as the home of one exact `Index.Line` content ^c20260803-60u
+- [DC] it identifies the owning chat session and Delta coordinate ^c20260804-25u
+- [PR] the active chat is the default home because its capturing agent holds fresh `User.Attention` and the richest semantic context ^c20260803-59u
+- [CT] identical line content may be materialized on several touched-index surfaces while retaining one canonical home ^c20260803-58u
+- [CT] home is independent from `Known.Origin`, `Support.Set`, review standing, and membership in any HEAD ^c20260803-61u
+- [CT] a line may advance on a HEAD before receiving its home; missing Delta coverage raises a reconciliation `POI.Instance` rather than an authoring error ^c20260804-26u
+- [RJ] assigning a home does not assert that the home contains the first known observation of the line content ^c20260803-64u
+
+****
+
+## Line.Provenance
+
+- [DF] `Line.Provenance` is the independently maintained dossier of observed occurrences and tracked materializations of one exact `Index.Line` content ^c20260803-62u
+- [DF] `Known.Origin` is the earliest currently evidenced observation of that line content within the searched scope ^c20260803-63u
+- [CT] a known-origin observation may be a user or assistant turn and does not confer `Touched.Authority` ^c20260803-65u
+- [CT] discovering earlier evidence revises `Known.Origin` without changing the line's semantic content ^c20260803-66u
+- [CT] provenance is independent from `Line.Home`, `Support.Set`, review standing, and HEAD membership ^c20260803-68u
+- [PR] `Known.Origin` helps agents distinguish previously materialized context from a newly touched delta without deciding support or home ^c20260803-67u
+- [FR] exact chat observations and available Git materialization or write-commit evidence may extend the dossier ^c20260803-69u
+- [RJ] `Line.Provenance` does not create a line-to-line dependency network ^c20260803-70u
 
 ****
 
