@@ -3,29 +3,31 @@
 > --loading-dep SKILL.skw.md^chatlas-pkg-batchy-runtime-contract
 > --loading-dep SKILL.skw.md^chat-index-capture-call-contract
 
-> $kw: --from Batchy.Skill.Banner --from Chat.Appendix --from Chat.Index --from Chat.Ontology --from Chat.Support.Set --from Chat.Touched.Index --from Chatlas.Anchory --from Index.Line --from Normal.Turn.Ref --from Turn.Type --from Unassigned
+> $kw: --from Batchy.Skill.Banner --from Chat.Index --from Chat.Index.Delta --from Chat.Index.HEAD --from Chat.Support.Set --from Chat.Touched.Index --from Chatlas.Anchory --from Index.Line --from Line.Home --from Line.Provenance --from Normal.Turn.Ref --from POI.Line --from Turn.Type --from Unassigned
 
 # Chat.Index Capture Operation Module
 
-Construct or refresh the unreviewed `Chat.Index` for exactly one Chatlas session.
+Construct or refresh the unreviewed chronological `Chat.Index` for exactly one Chatlas session.
 
-Treat the invocation itself as authority to write only the target `session-index/<identity-hash>/` surface and the Chatlas anchors needed by newly captured lines. Do not enter an Index review workflow: this product is intentionally unreviewed.
+Treat the invocation itself as authority to write only the target `session-index/<identity-hash>/` surface and the Chatlas anchors needed by captured lines. Do not enter an Index review workflow: this product is intentionally agent-maintained and unreviewed.
+
+This first implementation supports linear chats only.
 
 ## Capture Boundary
 
 > $kw: ^chat-index-capture-boundary --derived
 > --from Chat.Touched.Index
 > --from Chat.Index
-> --from Chat.Ontology
-> --from Chat.Appendix
-> --intent restate the four Chat.Index concepts as the operational capture boundary;
-> --cont preserve the closed-over-chat prohibition and the unreviewed ontology/appendix split
+> --from Chat.Index.Delta
+> --from Chat.Index.HEAD
+> --intent restate the chronological Chat.Index model as the operational capture boundary;
+> --cont preserve closed-over-chat evidence, qualifying user touch, fixed Delta horizons, and present-facing HEAD reconciliation
 
 - Construct one `Chat.Touched.Index` from the target chat and materialize it as `<chatlas-root>/session-index/<identity-hash>/`.
-- Recover `Chat.Ontology` from Index blocks and lines actually present in the source session, then capture additional touched knowledge from qualifying user turns.
-- Keep `ontology/` and `appendix/` unreviewed. Use `Chat.Ontology` for the recovered/core structure and `Chat.Appendix` for depth.
-- Preserve unchanged recovered line content and support relationships whenever they remain internally valid.
+- Capture touched semantic changes into tape-ordered `Chat.Index.Delta`s whose evidence ends at a fixed qualifying user turn.
+- Resolve `Chat.Index.HEAD` from the complete chat context and the Deltas; do not treat it as a mechanical union.
 - Consult no external Project Index or Package Skill Index during construction.
+- Never let material merely loaded into the chat create a Delta without a qualifying user touch event.
 
 > $kw. end
 
@@ -59,69 +61,78 @@ agentos chatlas query <exact-selector-flag> <value> --update
 
 Require exactly one returned row. Do not guess between candidates. Take `chatlas_root`, `identity_hash`, `session_id`, `provider`, and `uri` from that authoritative row.
 
-## 2. Materialize The Closed Source
+## 2. Materialize The Linear Source
 
-Create a temporary directory with `mktemp -d`. Keep the large source payload out of conversational context and write it directly to a file:
+Create a temporary directory with `mktemp -d`. Keep source payloads out of conversational context and write them directly to files:
 
 ```sh
+agentos chatlas chat-index source \
+  --identity-hash <full-identity-hash> \
+  > <temporary-directory>/source-meta.json
+
 agentos chatlas turns query \
   --identity-hash <full-identity-hash> \
   --detail turn --sort oldest --limit 100000 \
   > <temporary-directory>/source.json
 ```
 
-Require `selected_session_count = 1` and `returned_turn_count = match_count`. Every `normal_turn.events` entry—including message, reasoning, tool-call, and tool-result events—is source chat content for recovery. Use each returned `turn_ref` as the exact `Normal.Turn.Ref` when grounding new lines.
+Require `source-meta.json.source.linear = true`, exactly one selected source session, and `returned_turn_count = match_count`. If Chatlas reports rollback or inactive-lineage evidence, surface that finding and stop without writing: branch-aware Delta horizons are outside this first implementation.
 
-Do not use `agentos chatlas views`, named views, provider-home files, or paths mentioned inside the chat as alternate content sources.
+Use `source-meta.json.source.turn_refs` as the authoritative tape order. Join those entries to the detailed turns in `source.json` by `Normal.Turn.Ref`; never use filenames or timestamps to order the chat. Every `normal_turn.events` entry—including message, reasoning, tool-call, and tool-result events—is source chat content.
 
 ## 3. Enforce Content Closure
 
 During capture, allow knowledge to enter only from:
 
-1. the materialized `source.json` for this session; and
-2. an existing `session-index/<identity-hash>/` generated from the same session, used only as resumable prior state and revalidated against the current source.
+1. the two materialized source files for this session; and
+2. an existing `session-index/<identity-hash>/` from the same session, used only as resumable candidate state and revalidated against the current source and each fixed Delta horizon.
 
-Treat this skill, its loaded package concepts, the current agent conversation, repository files, and any Project or Package Skill Index as operational guidance only. Never copy their ontology or lines into the generated `Chat.Index` unless the same material is observable inside `source.json`.
+Treat this skill, its loaded package concepts, the current agent conversation, repository files, and any Project or Package Skill Index as operational guidance only. Never copy their ontology or lines into the generated `Chat.Index` unless the same material is observable inside the source chat.
 
 Resolving an anchor literally present in the source or prior surface through the Chatlas Anchory depot is allowed. Searching an external Index for a concept, attachment, missing line, or newer wording is forbidden.
 
-## 4. Recover `Chat.Ontology`
+## 4. Choose Delta Horizons
 
-Inspect text carried by source events, including tool-result content. Recover every observable Index block, partial block, and typed `Index.Line` without completing it from external memory.
+Inspect qualifying user turns in tape order. A qualifying user turn materially touches a durable definition, decision, constraint, rejection, preference, correction, accepted proposal, or open conceptual gap.
 
-- Preserve exact recovered `Line.Type + body` content.
-- Preserve observable block attachment when it is present.
-- Attach a recovered standalone line to an observable nearby block when the source establishes one; otherwise use a chat-local block, initially `Unassigned` when no honest name is available.
-- Deduplicate repeated materializations by canonical `Line.Type + body`; block path, file, and source position are not deterministic line identity.
-- Preserve a recovered trailing anchor when it remains one relationship for that same line content.
-- Keep an unanchored recovered line unanchored unless qualifying user turns in this session independently support it.
+- Create one Delta per qualifying user turn by default.
+- Group several touched events only when one meaningful extraction is clearer; use the last qualifying user turn in the group as `Delta.Horizon.Turn`.
+- A Delta may interpret only the causal prefix through its horizon `tape_position`.
+- Later maintenance may extend, correct, or reorganize the extraction using that same prefix, but must never use later chat evidence.
+- Assistant and tool context inside the prefix may inform interpretation but cannot independently provide user touch.
 
-Do not infer the remainder of a truncated block, update a recovered line to current package wording, or import sibling lines from a named concept.
+The Delta heading is:
 
-## 5. Capture Additional Touched Knowledge
+```markdown
+# Chat.Index.Delta/<turn-id> @ <timestamp>
+```
 
-Read the user turns and their neighborhoods from `source.json`. Capture durable definitions, decisions, constraints, rejections, preferences, corrections, accepted proposals, and open conceptual gaps.
+When the horizon `Normal.Turn.Ref` provides `at`, include it after `@`. Omission then creates a blessable POI; do not classify the cause mechanically. When the source has no timestamp, omit the suffix.
 
-- Exclude preset prompts, administrative capture invocations, and turns that do not materially touch the subject.
-- Prefer attachment to recovered ontology blocks.
-- Create a chat-local concept when no recovered block fits; use `Unassigned` while its name is genuinely unclear.
-- Put compact/core lines in ontology and deeper elaboration in appendix.
-- Type each new line using the normal `Index.Line` vocabulary.
-- Ground each new line only in exact supporting user-turn members from this session. Assistant content supplies neighborhood context but never substitutes for user support.
+## 5. Capture Delta Content
 
-Imported and freshly captured lines have no structural marker in the output. Their provenance remains inspectable through their support relationships.
+Capture only the semantic change touched within each Delta's bounded prefix. Preferentially attach lines to concepts already visible by that horizon, and avoid restating earlier Deltas without a meaningful new touch.
 
-## 6. Normalize Support Relationships
+- Preserve exact observable `Line.Type + body` when recovering a line already present in chat content.
+- Type synthesized extractions using the normal `Index.Line` vocabulary.
+- Ground every line in exact qualifying user turns from this session. The horizon need not be the only support member.
+- Keep a chat-local `Unassigned` block only while no honest attachment is visible inside the prefix.
+- Do not mark imported versus new lines syntactically; known origin is provenance, not authority.
 
-Make every grounded materialization end in exactly one trailing anchor.
+The same exact canonical line may appear in several Deltas. Its default `Line.Home` is derived as the oldest containing Delta in `capture.json.deltas` order. Do not write a second home registry or choose the known origin as home automatically.
+
+## 6. Normalize Line Anchors And Provenance
+
+Make every grounded materialization end in exactly one trailing line-bound Chatlas anchor.
 
 - Equal canonical line content may share one anchor across repeated materializations.
 - Different canonical line contents must never share an anchor, even when their `Chat.Support.Set` members are equivalent.
-- When one recovered anchor occurs on different contents, resolve its members and mint a distinct v4 line-bound relationship for each content; do not choose one meaning silently.
-- When one recovered line carries several anchors, union their ordered members and `Turn.Type` cargo, then mint one v4 line-bound relationship for the line.
+- Preserve member order and all `Turn.Type` cargo when reconstructing an existing set.
 - If a recovered anchor cannot resolve, preserve the literal relationship, record a capture finding, and mark the capture `needs-review`; never invent replacement support.
+- `Line.Provenance` belongs to this line anchor. Do not serialize known-origin observations, materialization history, or Git evidence into `capture.json` or a parallel Chat.Index registry.
+- Until the line-anchor provenance dossier has a maintained cargo schema, preserve only representable anchor state and leave richer provenance unasserted.
 
-For every new or normalized relationship, preview before registering:
+Preview every new or normalized relationship before registering it:
 
 ```sh
 agentos chatlas anchory preview \
@@ -132,53 +143,66 @@ agentos chatlas anchory preview \
   --detail context
 ```
 
-Omit `--member-types` only when every member uses the default base-support type. Preserve member order and all `Turn.Type` cargo when reconstructing an existing set. Treat `equivalent_anchors` only as a support-membership hint: reuse an equivalent anchor only when resolving it proves a v4 subject hash for this exact line content. Otherwise register a new anchor with the same members:
+Omit `--member-types` only when every member uses the default base-support type. Reuse an equivalent anchor only after resolving it proves a line-bound subject hash for this exact line content. Otherwise register a new anchor with the same members.
 
-```sh
-agentos chatlas anchory register \
-  --line-content '<exact typed line without trailing anchor>' \
-  --member <identity-hash>:<turn-id> \
-  --member-types '<typed member cargo JSON when present>' \
-  --hint '<what these turns support>'
-```
+## 7. Resolve `Chat.Index.HEAD`
 
-## 7. Write The Session Surface
+Construct `HEAD.md` as the present-facing model of the complete source chat.
 
-Create or resume:
+- Select exact Delta lines when they represent the current model well.
+- Synthesize better ordinary model lines when the full chat context requires it, then reconcile them backward into the appropriate bounded Delta before considering capture complete.
+- If an ordinary HEAD line has no exact Delta materialization, keep the HEAD-first edition but add a concrete missing-home finding and mark capture `needs-review`.
+- A `POI.Line` may remain HEAD-first as maintenance state only when it owns its own user-grounded support set. Its subject lines' anchors are inputs to the agent's investigation, not inherited authority.
+- Do not create general line-to-line provenance or supersession links.
+
+Use the last available source `Normal.Turn.Ref` as the HEAD horizon. HEAD currentness is local to this session.
+
+## 8. Write The V2 Session Surface
+
+Stage a complete replacement before changing managed paths:
 
 ```text
 <chatlas-root>/session-index/<identity-hash>/
 ├── capture.json
-├── ontology/
-│   └── chat-ontology.md
-└── appendix/
-    └── chat-appendix.md
+├── deltas/
+│   ├── <horizon-turn-id>.md
+│   └── ...
+└── HEAD.md
 ```
 
-Split the Markdown files only when size materially improves navigation; list every managed file in `capture.json`. Use ordinary `****`-delimited Kernel blocks in both layers. Do not add review-standing markers or distinguish imported lines from fresh lines.
+Retain unrelated files. When a prior surface exists, preserve a recoverable snapshot of its managed files until the staged v2 surface validates. Never silently convert a v1 descriptor in place or mint duplicate anchors for unchanged relationships.
 
 Write `capture.json` with:
 
-- schema `agentos.chat-index.capture.v1`
-- the resolved session row (`identity_hash`, `session_id`, `provider`, `uri`)
-- ordered source `Normal.Turn.Ref` values and source turn count
-- managed relative file paths
-- capture status: `complete` or `needs-review`
-- concrete findings, including unresolved anchors or ambiguous attachments
-- capture timestamp
+- schema `agentos.chat-index.capture.v2`;
+- capture status `complete` or `needs-review` and capture timestamp;
+- the resolved session locator;
+- `source.materialized_source_hash`, `turn_count`, `linear: true`, and tape-ordered source turn references from `source-meta.json`;
+- `deltas`, each containing safe relative `path`, exact horizon `Normal.Turn.Ref`, and integer `tape_position`, in strictly increasing order;
+- `head` containing `path: "HEAD.md"` and its horizon `Normal.Turn.Ref`;
+- `managed_files` containing exactly `capture.json`, every declared Delta path, and `HEAD.md`, without duplicates;
+- concrete findings.
 
-When the target exists, treat it as resumable state: snapshot or preserve its managed files before replacement, retain unrelated files, and never mint a duplicate anchor for an unchanged line whose existing relationship still validates.
+## 9. Validate And Report
 
-## 8. Validate And Report
+Run the public inspectors against the staged or landed surface:
+
+```sh
+agentos chatlas chat-index status --identity-hash <identity-hash>
+agentos chatlas chat-index deltas --identity-hash <identity-hash>
+agentos chatlas chat-index head --identity-hash <identity-hash>
+```
+
+For each ordinary HEAD line, run `chat-index home --line-content '<line>'`. Missing homes become explicit findings; repeated matches must select the oldest descriptor-ordered Delta.
 
 Before reporting completion, verify:
 
-- every generated knowledge line is either exact recovered content or grounded in qualifying user turns from the target session
-- every grounded materialization has one trailing anchor
-- no anchor spans distinct canonical line contents inside the capture
-- every newly minted v4 subject matches its line content
-- every retained imported anchor resolves, or appears as a concrete `needs-review` finding
-- `ontology/`, `appendix/`, and `capture.json` exist under the resolved identity-hash path
-- no external Project or Package Skill Index was read during construction
+- every Delta line is exact recovered content or grounded extraction from evidence at or before its fixed horizon;
+- every grounded materialization has one trailing line-bound anchor;
+- no anchor spans distinct canonical line contents;
+- Delta paths and horizons are unique and tape positions strictly increase;
+- `capture.json`, all declared Deltas, and `HEAD.md` exist under the resolved identity-hash path;
+- no external Project or Package Skill Index was read during construction;
+- inspection did not rewrite the surface.
 
-Return the materialized path, status, counts for ontology blocks/lines and appendix blocks/lines, anchors minted/reused, and any findings. Do not paste the captured session content into the caller chat unless explicitly requested.
+Return the materialized path, status, counts for Deltas, Delta lines, HEAD lines, anchors minted/reused, home findings, and other findings. Do not paste captured session content into the caller chat unless explicitly requested.

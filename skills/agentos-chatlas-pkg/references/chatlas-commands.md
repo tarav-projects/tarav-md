@@ -15,6 +15,7 @@ Operational Chatlas command and workflow reference.
 - Mint a validated support-set anchor: `agentos chatlas anchory register`
 - Resolve an anchor to its ordered support set: `agentos chatlas anchory resolve`
 - Export raw artifacts: `agentos chatlas raw path` / `agentos chatlas raw export`
+- Inspect chronological Chat.Index surfaces: `agentos chatlas chat-index`
 - Consume or produce retained agent products: `agentos chatlas products`
 
 ## Output Contract
@@ -69,6 +70,29 @@ agentos chatlas update --scan-cache false
 agentos chatlas update --session-index-cache false
 agentos chatlas update --verbose-mode=quiet --json
 ```
+
+## Chat.Index Workflow
+
+Chat.Index v2 uses `capture.json`, tape-ordered `deltas/`, and `HEAD.md`. Reads
+never repair, migrate, or recapture a surface. V1 ontology/appendix descriptors
+remain readable as `legacy-v1`, but only v2 is a current capture target.
+
+```sh
+agentos chatlas chat-index source --identity-hash <H> --json
+agentos chatlas chat-index status --identity-hash <H> --json
+agentos chatlas chat-index show --identity-hash <H> --json
+agentos chatlas chat-index path --identity-hash <H>
+agentos chatlas chat-index files --identity-hash <H> --json
+agentos chatlas chat-index deltas --identity-hash <H> --json
+agentos chatlas chat-index head --identity-hash <H> --json
+agentos chatlas chat-index home --identity-hash <H> \
+  --line-content '- [DC] exact line content' --json
+```
+
+- `source` emits the v2 source hash and `Normal.Turn.Ref` values in event-sequence tape order; it reports non-linear lineage instead of guessing branch semantics.
+- `deltas` returns descriptor order, which is authoritative over filenames and timestamps.
+- `home` compares canonical line content without trailing support anchors and selects the oldest matching Delta in descriptor order.
+- HEAD-only ordinary content returns a `missing-line-home` finding; inspection does not write backward automatically.
 
 ## Event.Pattern Workflow
 

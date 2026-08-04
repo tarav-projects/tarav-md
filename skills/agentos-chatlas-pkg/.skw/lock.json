@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "024334c7da18874c9b1b31e5969d67a9855260452a17075d9b17b20ffb347eb2",
+      "output_sha256": "ffd2c74f7c793da4daa0dd4e357605995f72ec588c81ff123af8a9122752ccbd",
       "recipes": [
         {
           "heading": "^chatlas-pkg-batchy-runtime-contract",
@@ -15,17 +15,17 @@
       ]
     },
     "references/capture.md": {
-      "output_sha256": "a8438b0f0e28993f8d00540077993ea2bfe5aa7fb2c032b40956764544524350",
+      "output_sha256": "8a7050448ea0b57f68fe6d4cfe8dddff1270a060c665d67ff7b8500bf6cd7a37",
       "recipes": [
         {
           "heading": "^chat-index-capture-boundary",
           "verb": "derived",
-          "body_sha256": "f1ceea03b5b97e6d4ef040a2fafcc63f9d92bc96d322f85f1e4397f459d224d0",
+          "body_sha256": "8342842a962e43206a4cadc89f5c0effb00a97b0377434196341256c70426751",
           "deps": {
-            "Chat.Touched.Index": "a86f8495fc2a94e49818e78e31a0f16da0d7e175d97caa4d067c5ff469efcffe",
-            "Chat.Index": "f1da807d523577a19bc2f800cbf9a09e03bf29fbd24a61bfaa35a309174fbe89",
-            "Chat.Ontology": "3a4f40b4d1ca643cc5e6fb354f36f3afb0439ddc57c9724eabf98734561419e4",
-            "Chat.Appendix": "010acefee316edbdd3af42f0fc852bac2012df40b152ad4a721129f0cf2ae207"
+            "Chat.Touched.Index": "1d429172c15c6261592521f11294da30b0084af5aaf691a12f62873cd79b052c",
+            "Chat.Index": "e4c27f41a94d68bb0b948b966cdf47cf96618ad3b916fe1e50c91a57dbde87f2",
+            "Chat.Index.Delta": "07a49d12ca877c898b8952f0fab55565cc93a783acbf3dc15d54e2c5c443bd83",
+            "Chat.Index.HEAD": "b00211f8c3581c161bb37731078d6de5312ad07ae165565ab8f317db2a00ebc5"
           }
         }
       ]

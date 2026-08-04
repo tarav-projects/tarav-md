@@ -2,7 +2,7 @@
 
 ---
 name: agentos-chatlas-pkg
-description: "Chatlas Package.Skill for the maintained chat-session dataset and its public agentic workflows. USE WHEN orienting to Chatlas, querying or recovering sessions, working with Chatlas Anchory, or capturing one session as a closed Chat.Index. Capture is called like a terminal command with `--capture --session SESSION_SELECTOR`."
+description: "Chatlas Package.Skill for the maintained chat-session dataset and its public agentic workflows. USE WHEN orienting to Chatlas, querying or recovering sessions, working with Chatlas Anchory, or capturing one session as a chronological Chat.Index. Capture is called like a terminal command with `--capture --session SESSION_SELECTOR`."
 ---
 
 # agentos-chatlas-pkg
@@ -58,7 +58,7 @@ The Chatlas index lives in `000-INDEX.md` over its `design/` and `poi/` chapters
 > --match explicit-or-semantic
 > --to Chat.Index.Capture.Operation.Module
 > --load references/capture.md
-> --when the caller wants to construct, refresh, or resume the closed Chat.Index projection of one Chatlas session
+> --when the caller wants to construct, refresh, or resume the chronological Chat.Index projection of one Chatlas session
 > --then load the capture module and materialize the target session under the Chatlas depot
 
 > $kw: ^route-session-arg --router-row --table ^chatlas-package-router

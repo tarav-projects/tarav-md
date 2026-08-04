@@ -587,9 +587,10 @@
 
 ## Line.Home
 
-- [DF] `Line.Home` is the canonical `Chat.Index.Delta` materialization assigned as the home of one exact `Index.Line` content ^c20260803-60u
+- [DF] `Line.Home` is the canonical `Chat.Index.Delta` materialization selected as the home of one exact `Index.Line` content ^c20260804-40u
 - [DC] it identifies the owning chat session and Delta coordinate ^c20260804-25u
-- [PR] the active chat is the default home because its capturing agent holds fresh `User.Attention` and the richest semantic context ^c20260803-59u
+- [DC] when exact line content has several known Delta materializations, its default `Line.Home` is the oldest evidenced materialization ^c20260804-41u
+- [RJ] an independent home registry does not duplicate the home derivable from Delta containment and `Line.Provenance` ^c20260804-42u
 - [CT] identical line content may be materialized on several touched-index surfaces while retaining one canonical home ^c20260803-58u
 - [CT] home is independent from `Known.Origin`, `Support.Set`, review standing, and membership in any HEAD ^c20260803-61u
 - [CT] a line may advance on a HEAD before receiving its home; missing Delta coverage raises a reconciliation `POI.Instance` rather than an authoring error ^c20260804-26u
@@ -600,6 +601,8 @@
 ## Line.Provenance
 
 - [DF] `Line.Provenance` is the independently maintained dossier of observed occurrences and tracked materializations of one exact `Index.Line` content ^c20260803-62u
+- [DC] `Line.Provenance` is maintained in the exact line content’s line-bound anchor record ^c20260804-43u
+- [RJ] `capture.json` records `Chat.Index` structure and Delta ordering without duplicating the line-anchor provenance dossier ^c20260804-44u
 - [DF] `Known.Origin` is the earliest currently evidenced observation of that line content within the searched scope ^c20260803-63u
 - [CT] a known-origin observation may be a user or assistant turn and does not confer `Touched.Authority` ^c20260803-65u
 - [CT] discovering earlier evidence revises `Known.Origin` without changing the line's semantic content ^c20260803-66u
@@ -607,23 +610,3 @@
 - [PR] `Known.Origin` helps agents distinguish previously materialized context from a newly touched delta without deciding support or home ^c20260803-67u
 - [FR] exact chat observations and available Git materialization or write-commit evidence may extend the dossier ^c20260803-69u
 - [RJ] `Line.Provenance` does not create a line-to-line dependency network ^c20260803-70u
-
-****
-
-## Chat.Ontology
-
-- [DF] `Chat.Ontology` is the set of Index blocks and lines present in the target chat ^c20260802-183u
-- [DC] recovered material preserves its existing block structure and support references ^c20260802-164u
-- [DC] it supplies the starting structure for constructing the `Chat.Index` ^c20260802-155u
-- [PR] newly captured lines attach preferentially to its existing blocks ^c20260802-207u
-- [DC] copying or moving recovered typed content without changing it preserves the line identity and its anchor ^c20260802-148u
-- [CT] attachment context may change the meaning of otherwise identical content; construction judges that semantic difference because deterministic line-identity linting cannot detect it ^c20260802-112u
-- [DC] when construction judges that an attachment changes the support relationship, it assigns an independent anchor even though the typed content remains identical ^c20260802-179u
-
-****
-
-## Chat.Appendix
-
-- [DF] `Chat.Appendix` is the depth layer of a `Chat.Index` ^c20260802-181u
-- [DC] it holds deeper captured lines beneath the concepts represented in `Chat.Ontology` ^c20260802-153u
-- [FR] when no recovered ontology block fits, construction may create a chat-local concept and place its depth here ^c20260802-199u
