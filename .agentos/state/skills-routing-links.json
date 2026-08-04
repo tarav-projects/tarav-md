@@ -73,6 +73,47 @@
         "paperson-usage": "../../../../Documents/PaperSON/skills/paperson-usage",
         "spec-surfaces": "../../../../projects/spec-surfaces/skills/spec-surfaces"
       }
+    },
+    "/Users/pereiro/.agentos/skills/depots/f8f323a2f1a52140": {
+      "links": {
+        "agentos-agent-account-management": "../../../../projects/agentos-project/agentos-md/skills/agentos-agent-account-management",
+        "agentos-anchory-pkg": "../../../../projects/agentos-project/agentos-md/skills/agentos-anchory-pkg",
+        "agentos-batchy-skills": "../../../../projects/agentos-project/agentos-md/skills/agentos-batchy-skills",
+        "agentos-forum": "../../../../projects/agentos-project/agentos-md/skills/agentos-forum",
+        "agentos-git-commit": "../../../../projects/agentos-project/agentos-md/skills/agentos-git-commit",
+        "agentos-hugentics": "../../../../projects/agentos-project/agentos-md/skills/agentos-hugentics",
+        "agentos-live-surfaces": "../../../../projects/agentos-project/agentos-md/skills/agentos-live-surfaces",
+        "agentos-master-pkg-agent": "../../../../projects/agentos-project/agentos-md/skills/agentos-master-pkg-agent",
+        "agentos-pkg": "../../../../projects/agentos-project/agentos-md/skills/agentos-pkg",
+        "agentos-project-doctor": "../../../../projects/agentos-project/agentos-md/skills/agentos-project-doctor",
+        "agentos-session-supervisor": "../../../../projects/agentos-project/agentos-md/skills/agentos-session-supervisor",
+        "agentos-skills-ingenier": "../../../../projects/agentos-project/agentos-md/skills/agentos-skills-ingenier",
+        "agentos-skillware": "../../../../projects/agentos-project/agentos-md/skills/agentos-skillware",
+        "agentos-support-chats": "../../../../projects/agentos-project/agentos-md/skills/agentos-support-chats",
+        "agentos-testground": "../../../../projects/agentos-project/agentos-md/skills/agentos-testground",
+        "chatlas-agentos-chatlas-my-session-id": "../../../../projects/agentos-project/agentos-chatlas-md/skills/agentos-chatlas-my-session-id",
+        "chatlas-agentos-chatlas-pkg": "../../../../projects/agentos-project/agentos-chatlas-md/skills/agentos-chatlas-pkg",
+        "chatlas-agentos-chatlas-retention-audit": "../../../../projects/agentos-project/agentos-chatlas-md/skills/agentos-chatlas-retention-audit",
+        "chatlas-grounding-agent": "../../../../projects/agentos-project/agentos-chatlas-md/skills/_DEPRECATED/chatlas-grounding-agent",
+        "chatlas-session-continue": "../../../../projects/agentos-project/agentos-chatlas-md/skills/chatlas-session-continue",
+        "chatlas-session-zip-transcript": "../../../../projects/agentos-project/agentos-chatlas-md/skills/chatlas-session-zip-transcript",
+        "chatlas-work-dashboard": "../../../../projects/agentos-project/agentos-chatlas-md/skills/chatlas-work-dashboard",
+        "g70203-appver-checklist": "../../../../projects/pereiros-projects/g70203-project/g70203-md/skills/appver-checklist",
+        "g70203-notebook": "../../../../projects/pereiros-projects/g70203-project/g70203-md/skills/notebook",
+        "g70203-ontology": "../../../../projects/pereiros-projects/g70203-project/g70203-md/skills/ontology",
+        "g70203-pkg": "../../../../projects/pereiros-projects/g70203-project/g70203-md/skills/g70203-pkg",
+        "iterante-agentos-iterante-pkg": "../../../../projects/agentos-project/agentos-iterante-md/skills/agentos-iterante-pkg",
+        "md-library-iterante": "../../../../Documents/md-library/skills/md-library-iterante",
+        "md-library-pkg": "../../../../Documents/md-library/skills/md-library-pkg",
+        "md-library-split": "../../../../Documents/md-library/skills/md-library-split",
+        "md-library-transcript-developer": "../../../../Documents/md-library/skills/md-library-transcript-developer",
+        "paperson-dataflow-loop-iterante": "../../../../projects/paperson-project/paperson-md/skills/paperson-dataflow-loop-iterante",
+        "paperson-package-developer": "../../../../projects/paperson-project/paperson-md/skills/paperson-package-developer",
+        "paperson-pkg": "../../../../projects/paperson-project/paperson-md/skills/paperson-pkg",
+        "paperson-usage": "../../../../projects/paperson-project/paperson-md/skills/_deprecated/paperson-usage",
+        "tankelab-admin-manual": "../../../../projects/tankefactory-projects/tankefac-md/skills/tankelab-admin-manual",
+        "tankelab-pkg": "../../../../projects/tankefactory-projects/tankefac-md/skills/tankelab-pkg"
+      }
     }
   }
 }

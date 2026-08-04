@@ -15,6 +15,7 @@
     "agentos-session-supervisor": "../agentos-session-supervisor",
     "agentos-skills-ingenier": "../agentos-skills-ingenier",
     "agentos-skillware": "../agentos-skillware",
+    "agentos-support-chats": "../agentos-support-chats",
     "agentos-testground": "../agentos-testground"
   }
 }

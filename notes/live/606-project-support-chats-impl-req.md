@@ -3,6 +3,7 @@
 ## Impl.Abstract
 
 - **goal:** materialize `009-SUPPORT-CHATS.md` for `agentos-pkg` and provide a reusable agentic workflow for deriving mandatory support-chat membership from Index anchors
+- **status:** implemented and verified
 - **scope:** add Chatlas-owned anchor-to-session extraction, an `agentos-pkg` auxiliary skill, root Package.Skill routing, and the first real `agentos-pkg/009-SUPPORT-CHATS.md`
 - **authority:** the user authorized autonomous development of this slice ^c20260803-2u
 - **owning projects:** `agentos-chatlas-py` owns Chatlas support-record interpretation and its CLI; `agentos-md` owns the Package.Aux.Skill and `agentos-pkg` Index surfaces
@@ -80,14 +81,18 @@
 
 | Slice | State | Result | Verification |
 |---|---|---|---|
-| 1 | planned | - | - |
-| 2 | planned | - | - |
-| 3 | planned | - | - |
-| 4 | planned | - | - |
+| 1 | complete | `agentos chatlas anchory sessions` scans repeatable file/directory sources, resolves support records, deduplicates sessions, preserves source coordinates, and reports review findings | 35 focused Anchory tests pass; RED covers duplicates, unresolved anchors, invalid records, tag mismatch, unindexed members, metadata, and Chat.Index discovery |
+| 2 | complete | `agentos-support-chats` Package.Aux.Skill added and routed from the Skillware-authored `agentos-pkg` root | Skill Creator validation passes; Skillware build and check report zero findings |
+| 3 | complete | `agentos-pkg/009-SUPPORT-CHATS.md` materializes 31 mandatory chats from 1,309 resolved anchors across 96 Index files | live extraction reports `status=ok`, zero findings, and exact registry identity/order agreement |
+| 4 | complete | scoped code, skill, registry, and Index verification pass | Ruff passes; Index lint reports zero findings; full Chatlas suite passes 330 / 330 tests |
 
 ## Impl.Log
 
 - 2026-08-03: implementation route selected as Hugentics develop with autonomous alignment ^c20260803-2u
 - 2026-08-03: ownership inspection placed source extraction in generic Anchory, record interpretation in Chatlas, and agentic maintenance in an `agentos-pkg` auxiliary skill
 - 2026-08-03: parser inspection confirmed `009-SUPPORT-CHATS.md` remains outside reviewed ontology/appendix parsing while staying discoverable through the router
-
+- 2026-08-03: checkpoints created before implementation edits: `agentos-md@91a6610` and `agentos-chatlas-py@a023f80`
+- 2026-08-03: Slice 1 added the Chatlas-owned command and integrated it with the concurrently introduced `--text|--json` output contract; JSON remains the stable agent handoff requested by this design
+- 2026-08-03: Slice 2 added the hand-managed Batchy auxiliary skill and the Skillware dependency/router row; the generic skill initializer was not used because repository editing is constrained to `apply_patch`, and the resulting skill passed the same validator
+- 2026-08-03: live extraction closed 1,309 / 1,309 anchors into 31 sessions with no unresolved, malformed, or tag-mismatched records; one session currently has a materialized Chat.Index
+- 2026-08-03: final verification passed after the concurrent output-normalization slice settled: 330 / 330 Chatlas tests, Ruff, Skillware check, skill validation, Index lint, and live registry comparison are green

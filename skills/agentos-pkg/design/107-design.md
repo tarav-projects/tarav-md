@@ -1046,3 +1046,29 @@
 - [DC] the network is computed from consumer-side declarations — a target never registers its dependents; followers are derived, so an imported surface stays ignorant of its importers ^c20260715-20u
 - [PR] the network's job is notification, not judgment: when a surface changes, the `CPU.Program` notifies every surface the network links to it — a purely mechanical fan-out along the edges ^c20260715-31u
 - [DC] an `Agentic.Program` interprets each notification: whether the change is benign or a real change to propagate is a semantic verdict only the agent carries ^c20260715-16u
+
+****
+
+## POI.Line
+
+- [DF] `POI.Line` is a grounded `Index.Line` stating one reviewable maintenance situation about one or more indexed lines ^c20260804-12u
+- [DC] it owns its own `Support.Reference` and `Support.Set` for the maintenance claim it makes ^c20260804-13u
+- [DC] its support set is constructed from qualifying user turns reached through the subject lines' support sets and any additional authority evidence selected for the claim ^c20260804-11u
+- [CT] references to subject lines identify the targets being evaluated without forming a general line-to-line dependency or provenance network ^c20260804-14u
+- [EX] “line X is not well supported” and “lines X and Y appear contradictory” are `POI.Line` forms ^c20260804-15u
+- [CT] its grounded standing does not make its evaluation indisputable or prescribe how the situation must be resolved ^c20260803-56u
+
+****
+
+## Index.HEAD.Reconciliation
+
+- [DF] `Index.HEAD.Reconciliation` is the POI-driven maintenance of ordinary model-line coverage across `Chat.Index.Delta`, `Chat.Index.HEAD`, and `Projects.HEAD` ^c20260804-16u
+- [DF] `Projects.HEAD` is the collection of independently maintained Project HEADs that may consume shared Chat HEADs ^c20260804-18u
+- [FR] any participating surface may materialize an ordinary model line first; reconciliation does not impose a transactional writing order ^c20260804-19u
+- [CT] an ordinary `Chat.Index.HEAD` line should eventually occur exactly in a `Chat.Index.Delta`; missing Delta coverage raises a `POI.Instance` ^c20260804-17u
+- [CT] an ordinary Project HEAD line should eventually occur exactly in at least one registered supporting `Chat.Index.HEAD`; missing Chat HEAD coverage raises a `POI.Instance` ^c20260803-57u
+- [CT] upward inclusion is selective: a Delta line need not enter its Chat HEAD, and a Chat HEAD line need not enter every Project HEAD ^c20260804-20u
+- [CT] Delta- and HEAD-coverage requirements apply to ordinary model lines; `POI.Line` follows its maintenance lifecycle ^c20260804-22u
+- [PR] writing on any participating surface creates reconciliation opportunities in both directions, and agents materialize the same line on missing surfaces when appropriate ^c20260804-21u
+- [RJ] reconciliation materializes lines across surfaces rather than moving them; chronological Delta occurrences remain in place ^c20260804-23u
+- [CT] coverage is an eventual invariant enforced through POIs, never a write-time development constraint ^c20260804-24u

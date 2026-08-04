@@ -249,6 +249,14 @@ Selection cardinality: `many`.
 - when: the caller needs anchor literacy, resolution, registration, or depot operation
 - then: load agentos-anchory-pkg
 
+### `^route-support-chats`
+
+- match: `semantic`
+- destinations: `agentos-support-chats`
+- loads: `@<agentos-support-chats>/SKILL.md`
+- when: the caller needs to discover, audit, or synchronize the chats supporting a Project or Package Index
+- then: load agentos-support-chats
+
 ### `^route-forum`
 
 - match: `semantic`

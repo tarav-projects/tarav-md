@@ -278,6 +278,13 @@ This `Package.Driver.Router` is a specialized `Routing.Table` that sends a packa
 > --when the caller needs anchor literacy, resolution, registration, or depot operation
 > --then load agentos-anchory-pkg
 
+> $kw: ^route-support-chats --router-row --table ^package-driver-router
+> --match semantic
+> --to agentos-support-chats
+> --load @<agentos-support-chats>/SKILL.md
+> --when the caller needs to discover, audit, or synchronize the chats supporting a Project or Package Index
+> --then load agentos-support-chats
+
 > $kw: ^route-forum --router-row --table ^package-driver-router
 > --match semantic
 > --to agentos-forum
