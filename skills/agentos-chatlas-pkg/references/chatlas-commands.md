@@ -10,12 +10,25 @@ Operational Chatlas command and workflow reference.
 - Find matching authoritative turns: `agentos chatlas turns query`
 - Aggregate dataset stats: `agentos chatlas stats`
 - Export attributed sessions into a project tree: `agentos chatlas local sync`
-- Print inline standard-model views: `agentos chatlas views inline`
+- Print a named standard-model view: `agentos chatlas views get`
 - Preview a support set without minting: `agentos chatlas anchory preview`
 - Mint a validated support-set anchor: `agentos chatlas anchory register`
 - Resolve an anchor to its ordered support set: `agentos chatlas anchory resolve`
 - Export raw artifacts: `agentos chatlas raw path` / `agentos chatlas raw export`
-- Consume or produce materialized views: `agentos chatlas views`
+- Consume or produce retained agent products: `agentos chatlas products`
+
+## Output Contract
+
+Every Chatlas command computes a JSON-like payload internally, renders it as
+human-readable text by default, and prints the raw payload under `--json`.
+
+- `--json` — the exact machine payload; what every script and agent should ask for
+- `--text` — the default; writable when the intent matters
+- the default never changes with TTY or pipe state, so a command's shape does not depend on how it was invoked
+- `stats` and `index doctor` render markdown as their text output
+- `raw path`, `chat-index path`, and `products path` render bare paths, so they stay pipe-friendly
+- `--field` on `query` and `products run-produce` extracts one value per row and wins over both flags
+- the mutating commands (`update`, `index update|reset|redo`, `gc`) add `--quiet` to print nothing at all; progress still follows `--verbose-mode`
 
 ## Working Rules
 
@@ -54,7 +67,7 @@ agentos chatlas query "<query>" --compact
 agentos chatlas update
 agentos chatlas update --scan-cache false
 agentos chatlas update --session-index-cache false
-agentos chatlas update --verbose-mode=quiet --output-mode=json
+agentos chatlas update --verbose-mode=quiet --json
 ```
 
 ## Event.Pattern Workflow
@@ -91,50 +104,97 @@ agentos chatlas events query \
 For one-step turn discovery, `turns query` is the compact ergonomic projection:
 
 ```sh
-agentos chatlas turns query --identity-hash <H> --contains "<text>" --human
-agentos chatlas turns query --identity-hash <H> --contains "<text>" --human --detail turn
+agentos chatlas turns query --identity-hash <H> --contains "<text>" --producer-type human
+agentos chatlas turns query --identity-hash <H> --contains "<text>" --producer-type human --detail turn
 ```
 
 - default `summary` detail returns `Normal.Turn.Ref`, Anchory-ready `member_ref`, and compact matched-event entries with exact `Event.Ref` values
 - `--detail turn` adds the complete authoritative `Normal.Turn`
 - `auto` scans directly when deterministic selectors already reduce the selection to at most 16 sessions; explicit `--backend sqlite` still forces candidate-index use
 
-## Inline View Workflow
+## View Workflow
+
+A `Chatlas.View` is a fixed, named projection of one session's Normal Model. It
+is cheap, pure, and recomputed on demand — views are never materialized, never
+cached, and never stale. `agentos chatlas views list` prints the fixed registry.
 
 ```sh
-agentos chatlas views inline "<query>" --view full --format json
-agentos chatlas views inline "<query>" --view transcript --format json
-agentos chatlas views inline "<query>" --view user --format json
-agentos chatlas views inline "<query>" --view replay --format json
-agentos chatlas views inline "<query>" --view events --format json
-agentos chatlas views inline "<query>" --view zip-transcript --format json
-agentos chatlas views inline "<query>" --view zip-transcript --range 10: --format json
+agentos chatlas views get "<query>" --view full
+agentos chatlas views get "<query>" --view transcript
+agentos chatlas views get "<query>" --view user
+agentos chatlas views get "<query>" --view replay
+agentos chatlas views get "<query>" --view events
+agentos chatlas views get "<query>" --view zip-transcript
+agentos chatlas views get "<query>" --view zip-transcript --range 10:
 agentos chatlas raw path "<query>"
-agentos chatlas raw export "<query>" --format json
+agentos chatlas raw export "<query>"
 ```
 
-`views inline --range <range>` is a view-specific slicing surface. Range
+`views get --range <range>` is a view-specific slicing surface. Range
 syntax is Python-style and half-open, with forms such as `N`, `A:B`, `A:`,
-`:B`, and `-N:`. The first rangeable inline view is `zip-transcript`, where
+`:B`, and `-N:`. The first rangeable view is `zip-transcript`, where
 the range applies to the top-level `turns` sequence and the output includes a
-`range` metadata object. Other inline views reject `--range` unless they define
+`range` metadata object. Other views reject `--range` unless they define
 their own range target.
 
 ## Event Selection And Filters
 
-`views inline` selects at event granularity and cleans fragments with named filters. Selection flags imply `--view events` when no view is named; every output stays a `Chatlas.Session.Model` fragment.
+`views get` selects at event granularity and cleans fragments with named filters. Selection flags imply `--view events` when no view is named; every output stays a `Chatlas.Session.Model` fragment.
 
 ```sh
-agentos chatlas views inline --identity-hash <H> --contains "<distinctive text>" --role user
-agentos chatlas views inline --identity-hash <H> --around <iso-timestamp> --radius 3
-agentos chatlas views inline --identity-hash <H> --contains "<text>" --filter turns
+agentos chatlas views get --identity-hash <H> --contains "<distinctive text>" --role user
+agentos chatlas views get --identity-hash <H> --around <iso-timestamp> --radius 3
+agentos chatlas views get --identity-hash <H> --contains "<text>" --filter turns
 ```
 
 - `--contains` — case-insensitive text match over event payloads
 - `--role` — message events with this role (`user`, `assistant`)
+- `--producer-type` (on `turns query`) — who produced the turn. `--role user` is **not** the same as a turn you typed: tool output, system reminders, and injected command stdout all arrive on the user channel, so `--producer-type human` is the filter that isolates real typed turns
 - `--around` + `--radius` — nearest events to a time; radius keeps the closest `2r+1`, output stays chronological
 - `--filter` — named `Chatlas.Filter`, repeatable and ordered: `slim` (strip provenance plumbing), `messages` (message events only, synced), `turns` (`messages` then `slim` — the grounding reader's preset)
 - composition: with `--contains`/`--role`/`--around` selection, named filters apply **before** the window, so radius counts filter-surviving events — `--around <t> --radius 3 --filter turns` means 3 turns each side, tool events don't eat the window
+
+## Maintenance Passes
+
+Batch production over many sessions. `run-produce` skips fresh products, so a
+pass is idempotent and safely resumable — rerun it and only the outstanding work
+repeats.
+
+```sh
+agentos chatlas products run-produce --product zip-transcript-summary \
+  --min-user-turns 10 --idle-for 2d --concurrency 4 --limit 50
+```
+
+- `--idle-for <duration>` keeps only sessions untouched for at least that long (`30s`, `10m`, `4h`, `3d`, `2w`). Summarizing a session you are still working in wastes the run: it goes stale on the next turn. It is a general `query` selector, so `chatlas query --idle-for 30d` also answers "what have I abandoned"
+- `--concurrency N` produces N sessions in parallel. Sessions are independent — each owns its own stage directory and a depot lock keyed by `(product, identity_hash)` — and results stay in input order. Default is 1
+- `--limit N` caps the batch; combine with `--sort oldest` to work through a backlog deterministically
+- `--dry-run` prints each prompt and agent command without staging anything
+- failures are collected in `failures` as `{identity_hash, error}` alongside the full `runs` array
+
+**Beware `--scan-limit` when counting.** Content filters like `--min-user-turns` are applied only to the rows that survive the scan limit, so a narrower index-level filter can return *more* rows than a broader one. Raise `--scan-limit` before comparing counts.
+
+## Product Workflow
+
+A `Chatlas.Product` is a retained agent production over one session and one named
+input view. Unlike a view it is expensive, non-deterministic, materialized, and
+subject to freshness. Reads never regenerate a product: a missing or stale
+product reports `production_required` and is an invitation to contribute one.
+
+```sh
+agentos chatlas products list
+agentos chatlas products status --product zip-transcript-summary --identity-hash <H>
+agentos chatlas products path --product zip-transcript-summary --identity-hash <H>
+agentos chatlas products produce --product zip-transcript-summary --identity-hash <H>
+agentos chatlas products commit --stage-id <stage-id>
+agentos chatlas products run-produce --product zip-transcript-summary --identity-hash <H>
+```
+
+- product identity is `(product name, session identity hash)`; there is no caller-supplied prompt
+- `status --explain` reports the observed and current input/definition fingerprints
+- `produce` stages `input.json` (the input view payload) plus the production prompt; the producing agent writes the artifact into the stage and then commits it
+- `commit` validates the staged artifact and refuses with a canonical Chatlas POI on any invariant violation
+- `run-produce` drives the whole loop through a configured agent; `--dry-run` prints the prompt and agent command without staging
+- registered products: `zip-transcript-summary` over the `zip-transcript` view — see `producer-zip-transcript-summary.md`
 
 ## Anchor Workflow
 
@@ -142,10 +202,12 @@ Chat anchors (`^c<YYYYMMDD>-<N>u` — `c` namespace prefix, primary-member date,
 
 ```sh
 agentos chatlas anchory register \
+  --line-content '- [CT] <Index line body>' \
   --member <identity-hash>:<turn-id> \
   --member <identity-hash>:<turn-id> \
   --hint "<one sentence>"
 agentos chatlas anchory preview \
+  --line-content '- [CT] <Index line body>' \
   --member <identity-hash>:<turn-id> \
   --hint "<one sentence>"
 agentos chatlas anchory preview \
@@ -156,7 +218,8 @@ agentos chatlas anchory resolve <key> --detail context --radius 4
 ```
 
 - repeat `--member` in relevance order; each session identity may be a unique prefix on input and is stored as the full identity
-- preview validates and assembles the exact v3 record without allocating an anchor; it also reports equivalent existing anchors
+- `--line-content` binds Index grounding to canonical `Line.Type + body` and previews/registers a v4 record; omit it only for generic non-line support, which remains v3
+- preview validates and assembles the exact record without allocating an anchor; it also reports equivalent existing anchors
 - preview, registration, and resolution default to compact member summaries; `--detail turn` adds exact turns and `--detail context` adds neighborhoods
 - registration allocates from the first member's date only after the support set has been reviewed
 - radius counts visible turns around each exact member turn only under `--detail context`
@@ -168,11 +231,11 @@ Which sessions read/wrote a file, and where — answered from the normal model's
 ```sh
 agentos chatlas query --file-touched "<path-fragment>"
 agentos chatlas query --file-write "<path-fragment>" --field identity_hash
-agentos chatlas views inline --identity-hash <H> --file-write "<path-fragment>" --filter slim
+agentos chatlas views get --identity-hash <H> --file-write "<path-fragment>" --filter slim
 ```
 
 - `query` flags answer *which sessions* (mentions in prose never match — touch means a tool invocation carried the path)
-- `views inline` flags answer *where in the session*: the touching invocations' events as a model fragment
+- `views get` flags answer *where in the session*: the touching invocations' events as a model fragment
 - blind-spot escape hatch: `--tool-contains "<text>"` (optionally `--tool-name Bash`) matches over the whole invocation — full recall, no verb claim; the reader judges read/write from the matched invocations
 
 ## Ping Workflow
@@ -188,14 +251,16 @@ agentos chatlas ping --provider claude-code --lines 1 --rounds 1
 - markers must actually reach the transcript: piping ping's stdout through `tail`/parsers hides them from the provider log and the probe silently loses them — run it unpiped
 - output is markers + update progress + one JSON payload on stdout; parse from the first `{`
 
-## Views Workflow
+## Views And Products Surface
 
 ```sh
 agentos chatlas views list
-agentos chatlas views inline --view <inline-view-name> <selector-options>
-agentos chatlas views status --view <view-name> <selector-options>
 agentos chatlas views get --view <view-name> <selector-options>
-agentos chatlas views path --view <view-name> <selector-options>
+agentos chatlas products list
+agentos chatlas products status --product <product-name> <selector-options>
+agentos chatlas products path --product <product-name> <selector-options>
 ```
 
-Producer references live in `agentos-chatlas-pkg/references/`.
+Views are disposable projections of the Normal Model; products are retained
+agent productions over one named input view. Producer references live in
+`agentos-chatlas-pkg/references/`.

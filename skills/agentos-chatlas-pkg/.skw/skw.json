@@ -1,0 +1,8 @@
+{
+  "id": "agentos-chatlas-pkg",
+  "depots": [".", "../../../agentos-md/skills/agentos-pkg"],
+  "deps": {
+    "agentos-batchy-skills": "../../../agentos-md/skills/agentos-batchy-skills",
+    "agentos-pkg": "../../../agentos-md/skills/agentos-pkg"
+  }
+}

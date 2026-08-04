@@ -113,7 +113,7 @@ Reply with the exact `session_id` or `uri` to continue.
 Extract transcript JSON with:
 
 ```bash
-agentos chatlas views inline "<resolved-uri>" --view transcript --format json
+agentos chatlas views get "<resolved-uri>" --view transcript
 ```
 
 Use the transcript view as the source for the handoff. The final artifact remains a
@@ -233,7 +233,7 @@ Add a short provenance header before the continuation state when the information
 source-session-id: <session-id>
 source-session-uri: <resolved-uri>
 resolved-via: agentos chatlas query --include-match
-extracted-via: agentos chatlas views inline --view transcript --format json
+extracted-via: agentos chatlas views get --view transcript
 ```
 
 When both a session id and URI are available, include both. Treat these as first-class provenance data, not optional decoration.

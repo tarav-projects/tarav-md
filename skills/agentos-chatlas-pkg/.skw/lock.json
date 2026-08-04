@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "files": {
+    "SKILL.md": {
+      "output_sha256": "024334c7da18874c9b1b31e5969d67a9855260452a17075d9b17b20ffb347eb2",
+      "recipes": [
+        {
+          "heading": "^chatlas-pkg-batchy-runtime-contract",
+          "verb": "copy",
+          "body_sha256": "6f0b76e1fad7d99c095a707ef53e460f84a1a8ff22feb4c00d91469a9f2c5234",
+          "deps": {
+            "@<agentos-batchy-skills>/references/batchy-skill-run.skw.md^batchy-skill-runtime-contract": "6f0b76e1fad7d99c095a707ef53e460f84a1a8ff22feb4c00d91469a9f2c5234"
+          }
+        }
+      ]
+    },
+    "references/capture.md": {
+      "output_sha256": "a8438b0f0e28993f8d00540077993ea2bfe5aa7fb2c032b40956764544524350",
+      "recipes": [
+        {
+          "heading": "^chat-index-capture-boundary",
+          "verb": "derived",
+          "body_sha256": "f1ceea03b5b97e6d4ef040a2fafcc63f9d92bc96d322f85f1e4397f459d224d0",
+          "deps": {
+            "Chat.Touched.Index": "a86f8495fc2a94e49818e78e31a0f16da0d7e175d97caa4d067c5ff469efcffe",
+            "Chat.Index": "f1da807d523577a19bc2f800cbf9a09e03bf29fbd24a61bfaa35a309174fbe89",
+            "Chat.Ontology": "3a4f40b4d1ca643cc5e6fb354f36f3afb0439ddc57c9724eabf98734561419e4",
+            "Chat.Appendix": "010acefee316edbdd3af42f0fc852bac2012df40b152ad4a721129f0cf2ae207"
+          }
+        }
+      ]
+    }
+  },
+  "blessings": []
+}
