@@ -85,12 +85,14 @@ agentos chatlas chat-index path --identity-hash <H>
 agentos chatlas chat-index files --identity-hash <H> --json
 agentos chatlas chat-index deltas --identity-hash <H> --json
 agentos chatlas chat-index head --identity-hash <H> --json
+agentos chatlas chat-index tail --identity-hash <H> --detail turn --json
 agentos chatlas chat-index home --identity-hash <H> \
   --line-content '- [DC] exact line content' --json
 ```
 
 - `source` emits the v2 source hash and `Normal.Turn.Ref` values in event-sequence tape order; it reports non-linear lineage instead of guessing branch semantics.
 - `deltas` returns descriptor order, which is authoritative over filenames and timestamps.
+- `tail` reports whether the stored v2 source is current, append-only, expanded by late evidence, revised at stable turn coordinates, divergent, or blocked; `--detail turn` includes only pending authoritative turn groupings and never rewrites the surface.
 - `home` compares canonical line content without trailing support anchors and selects the oldest matching Delta in descriptor order.
 - HEAD-only ordinary content returns a `missing-line-home` finding; inspection does not write backward automatically.
 

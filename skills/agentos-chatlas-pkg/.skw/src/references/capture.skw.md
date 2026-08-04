@@ -61,7 +61,37 @@ agentos chatlas query <exact-selector-flag> <value> --update
 
 Require exactly one returned row. Do not guess between candidates. Take `chatlas_root`, `identity_hash`, `session_id`, `provider`, and `uri` from that authoritative row.
 
-## 2. Materialize The Linear Source
+## 2. Inspect Existing Surface And Tail
+
+Keep inspection payloads in the temporary directory:
+
+```sh
+agentos chatlas chat-index show \
+  --identity-hash <full-identity-hash> \
+  > <temporary-directory>/existing.json
+```
+
+When `existing.json.capture.schema` is v2, inspect only the source evidence not yet represented by its stored source prefix:
+
+```sh
+agentos chatlas chat-index tail \
+  --identity-hash <full-identity-hash> \
+  --detail turn \
+  > <temporary-directory>/tail.json
+```
+
+Route by `tail.json.tail.state`:
+
+- `current` — report an idempotent no-op by default; maintain an existing fixed-horizon extraction only when the request explicitly calls for it.
+- `append-only` — focus semantic inspection on the returned pending turns, preserving prior Deltas whose bounded evidence and content remain valid.
+- `expanded` — newly observed turns occur inside the prior source range; inspect them and revalidate every Delta whose horizon follows affected evidence plus HEAD.
+- `revised` — one or more stable turn coordinates now carry revised hashes or timestamps; inspect the returned authoritative turns and revalidate affected Deltas plus HEAD.
+- `diverged` — stop without writing; a stored turn coordinate is missing, reordered, or replaced on the current tape.
+- `blocked` — stop without writing; branch-aware maintenance remains outside this linear implementation.
+
+A missing surface follows full initial capture. A legacy v1 surface follows full v2 recapture with the recoverable-snapshot rule in step 9; never treat it as incrementally maintainable or silently edit its descriptor in place.
+
+## 3. Materialize The Linear Source
 
 Create a temporary directory with `mktemp -d`. Keep source payloads out of conversational context and write them directly to files:
 
@@ -80,18 +110,18 @@ Require `source-meta.json.source.linear = true`, exactly one selected source ses
 
 Use `source-meta.json.source.turn_refs` as the authoritative tape order. Join those entries to the detailed turns in `source.json` by `Normal.Turn.Ref`; never use filenames or timestamps to order the chat. Every `normal_turn.events` entry—including message, reasoning, tool-call, and tool-result events—is source chat content.
 
-## 3. Enforce Content Closure
+## 4. Enforce Content Closure
 
 During capture, allow knowledge to enter only from:
 
-1. the two materialized source files for this session; and
+1. the materialized source and tail files for this session; and
 2. an existing `session-index/<identity-hash>/` from the same session, used only as resumable candidate state and revalidated against the current source and each fixed Delta horizon.
 
 Treat this skill, its loaded package concepts, the current agent conversation, repository files, and any Project or Package Skill Index as operational guidance only. Never copy their ontology or lines into the generated `Chat.Index` unless the same material is observable inside the source chat.
 
 Resolving an anchor literally present in the source or prior surface through the Chatlas Anchory depot is allowed. Searching an external Index for a concept, attachment, missing line, or newer wording is forbidden.
 
-## 4. Choose Delta Horizons
+## 5. Choose Delta Horizons
 
 Inspect qualifying user turns in tape order. A qualifying user turn materially touches a durable definition, decision, constraint, rejection, preference, correction, accepted proposal, or open conceptual gap.
 
@@ -109,7 +139,7 @@ The Delta heading is:
 
 When the horizon `Normal.Turn.Ref` provides `at`, include it after `@`. Omission then creates a blessable POI; do not classify the cause mechanically. When the source has no timestamp, omit the suffix.
 
-## 5. Capture Delta Content
+## 6. Capture Delta Content
 
 Capture only the semantic change touched within each Delta's bounded prefix. Preferentially attach lines to concepts already visible by that horizon, and avoid restating earlier Deltas without a meaningful new touch.
 
@@ -121,7 +151,7 @@ Capture only the semantic change touched within each Delta's bounded prefix. Pre
 
 The same exact canonical line may appear in several Deltas. Its default `Line.Home` is derived as the oldest containing Delta in `capture.json.deltas` order. Do not write a second home registry or choose the known origin as home automatically.
 
-## 6. Normalize Line Anchors And Provenance
+## 7. Normalize Line Anchors And Provenance
 
 Make every grounded materialization end in exactly one trailing line-bound Chatlas anchor.
 
@@ -145,7 +175,7 @@ agentos chatlas anchory preview \
 
 Omit `--member-types` only when every member uses the default base-support type. Reuse an equivalent anchor only after resolving it proves a line-bound subject hash for this exact line content. Otherwise register a new anchor with the same members.
 
-## 7. Resolve `Chat.Index.HEAD`
+## 8. Resolve `Chat.Index.HEAD`
 
 Construct `HEAD.md` as the present-facing model of the complete source chat.
 
@@ -157,7 +187,7 @@ Construct `HEAD.md` as the present-facing model of the complete source chat.
 
 Use the last available source `Normal.Turn.Ref` as the HEAD horizon. HEAD currentness is local to this session.
 
-## 8. Write The V2 Session Surface
+## 9. Write The V2 Session Surface
 
 Stage a complete replacement before changing managed paths:
 
@@ -170,7 +200,7 @@ Stage a complete replacement before changing managed paths:
 └── HEAD.md
 ```
 
-Retain unrelated files. When a prior surface exists, preserve a recoverable snapshot of its managed files until the staged v2 surface validates. Never silently convert a v1 descriptor in place or mint duplicate anchors for unchanged relationships.
+Retain unrelated files. When a prior surface exists, preserve a recoverable snapshot of its managed files until the staged v2 surface validates. During append-only maintenance, carry unaffected prior Deltas forward byte-for-byte; amend an old Delta only from evidence inside its unchanged horizon. Never silently convert a v1 descriptor in place or mint duplicate anchors for unchanged relationships.
 
 Write `capture.json` with:
 
@@ -183,7 +213,7 @@ Write `capture.json` with:
 - `managed_files` containing exactly `capture.json`, every declared Delta path, and `HEAD.md`, without duplicates;
 - concrete findings.
 
-## 9. Validate And Report
+## 10. Validate And Report
 
 Run the public inspectors against the staged or landed surface:
 
@@ -191,6 +221,7 @@ Run the public inspectors against the staged or landed surface:
 agentos chatlas chat-index status --identity-hash <identity-hash>
 agentos chatlas chat-index deltas --identity-hash <identity-hash>
 agentos chatlas chat-index head --identity-hash <identity-hash>
+agentos chatlas chat-index tail --identity-hash <identity-hash>
 ```
 
 For each ordinary HEAD line, run `chat-index home --line-content '<line>'`. Missing homes become explicit findings; repeated matches must select the oldest descriptor-ordered Delta.
@@ -202,7 +233,8 @@ Before reporting completion, verify:
 - no anchor spans distinct canonical line contents;
 - Delta paths and horizons are unique and tape positions strictly increase;
 - `capture.json`, all declared Deltas, and `HEAD.md` exist under the resolved identity-hash path;
+- the post-write tail state is `current` with zero pending turns;
 - no external Project or Package Skill Index was read during construction;
 - inspection did not rewrite the surface.
 
-Return the materialized path, status, counts for Deltas, Delta lines, HEAD lines, anchors minted/reused, home findings, and other findings. Do not paste captured session content into the caller chat unless explicitly requested.
+Return the materialized path, status, counts for Deltas, Delta lines, HEAD lines, pending turns consumed, anchors minted/reused, home findings, and other findings. Do not paste captured session content into the caller chat unless explicitly requested.
