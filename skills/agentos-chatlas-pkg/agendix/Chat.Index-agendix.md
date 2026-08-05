@@ -24,3 +24,19 @@
 - [DF] `Known.Origin` is the best currently evidenced candidate for where canonical line content first appeared within the searched scope ^c20260803-12u
 - [CT] an origin observation may be a user or assistant turn and does not become a `Chat.Support.Set` member merely by being the origin ^c20260803-13u
 - [FR] Git evidence may extend line provenance with the first known tracked materialization and write commit when available ^c20260803-14u
+
+****
+
+## Chat.Index/Agendix/Line.Dossier.V5
+
+- [DC] new line-bound anchor records use `chatlas.support-set.v5` while v3 and v4 remain readable ^c20260805-12u
+- [DC] the v5 dossier preserves immutable subject, support-member ordering and types, and predecessors while issue context and provenance observations grow monotonically ^c20260805-10u
+- [DC] `Known.Origin` is derived from the earliest currently known observation; `Line.Home` is independently recomputed from exact Delta containment ^c20260805-9u
+
+****
+
+## Chat.Index/Agendix/Project.Chat.Reconciliation
+
+- [DC] Project reconciliation reads exact support-chat identities from `009-SUPPORT-CHATS.md` and audits every available Chat.Index in one pass ^c20260805-13u
+- [DC] ordinary Project lines seek exact Delta home plus Chat HEAD coverage, while Issue.Block maintenance lines require an exact Delta home and may omit Chat HEAD ^c20260805-11u
+- [DC] reconciliation findings remain advisory POIs; cursor advancement is project-local machine state and never writes Project HEAD ^c20260805-14u
