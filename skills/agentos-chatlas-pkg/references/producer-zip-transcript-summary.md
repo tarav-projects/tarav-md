@@ -223,6 +223,9 @@ artifact and the staged input view. The linter requires:
   enough for compression to be meaningful
 - no material share of the transcript is left essentially uncompressed while
   other regions carry the reduction
+- no substantial assistant turn is reduced to a stub — the refusal names each
+  collapsed turn with its source and summary sizes
+- no material share of the transcript is reduced to almost nothing
 
 Because the artifact carries the `zip-transcript` shape, its provenance lives in
 the product manifest, not in the payload. Reach it through
@@ -252,8 +255,21 @@ average assistant turn length before you start, and calibrate:
 Compress every region. A summary that crushes a few huge turns and leaves whole
 stretches untouched is refused even when the overall ratio passes.
 
+**Summarize; do not stub.** The gates cut both ways, because over-retention
+leaves a fat but faithful artifact while over-compression leaves a wrong one
+that no reader can detect. A substantial assistant turn reduced to `"Yes."` or
+`"Batchy."` is refused however good the overall ratio looks — and both of those
+are real examples pulled from committed artifacts. If a turn resolved a
+question, name what it resolved.
+
 Never truncate text to reach a ratio. If a session genuinely cannot compress
 further, commit with `--allow-low-compression` and say why.
+
+Never pad text to escape a collapse refusal. The repair is to re-read that turn
+in the staged input and restore what a later turn depends on — writing filler to
+clear the gate is worse than the loss it was meant to prevent. If the turn
+genuinely carried nothing, commit with `--allow-aggressive-compression` and say
+why. The two waivers assert opposite things and are not interchangeable.
 
 Hard requirements:
 
@@ -298,3 +314,7 @@ structure the scaffold owns.
 If `check` refuses on compression, it names the longest assistant turns or the
 offending turn ranges. Resummarize those and re-run `check`; work down the list
 across passes rather than trying to clear it in one edit.
+
+If `check` refuses on collapse, it names each turn with its source and summary
+byte sizes. Re-read those turns in `stage.input_path` and rewrite them from the
+source. Do not write toward a byte count.

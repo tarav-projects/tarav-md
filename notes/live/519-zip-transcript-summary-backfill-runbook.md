@@ -137,21 +137,34 @@ python3 -c "import json,pathlib,sys; print(json.loads(pathlib.Path(sys.argv[1]).
   "$(dirname "$(agentos chatlas products path --product zip-transcript-summary --identity-hash <hash>)")/manifest.json"
 ```
 
-`compression.retained_ratio` is the number that matters. `allow_low_compression:
-true` means a worker waived the compression gates — legitimate, but read its
-stated reason. Products committed before the compression gates existed have no
+`compression.retained_ratio` is the number that matters, but read it against the
+source's average assistant turn length, not against other sessions. A very low
+ratio is not automatically a win. `allow_low_compression: true` means a worker
+waived the compression ceiling and `allow_aggressive_compression: true` means it
+waived the collapse gates — both legitimate, both requiring a stated reason. Products committed before the compression gates existed have no
 `compression` block at all; measure those against the source view directly.
 
 ## What the gates do and do not catch
 
 `products check` and `products commit` run one linter. It guarantees structure:
 turn count, order, roles, every user turn verbatim, no blank assistant turn, a
-compression ceiling, and no large uncompressed region.
+compression ceiling, no large uncompressed region, no assistant turn collapsed
+to a stub, and no large crushed region.
 
 It cannot see meaning. A summary that drops a blocker a later user turn refers
 back to passes every gate. That is why the reference tells workers to read the
 `user` view before compressing, and why worker feedback is part of the loop
 rather than a courtesy.
+
+The collapse gates narrow that hole from the other side but do not close it. A
+replay across the 326 committed products refused 47 of them, and the sampled
+refusals were unambiguous loss inside artifacts whose overall ratios looked
+good — one 1742-byte status-and-open-questions block had become `"Batchy."` in a
+product retaining 24% overall. Aggregate retention does not tell you whether a
+specific turn survived.
+
+Both gates skip sessions under 50 KB of source assistant text, so a small
+session crushed to nothing still passes. Spot-check small products by hand.
 
 ## Known hazards
 

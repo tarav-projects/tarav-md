@@ -85,16 +85,37 @@ agentos chatlas chat-index path --identity-hash <H>
 agentos chatlas chat-index files --identity-hash <H> --json
 agentos chatlas chat-index deltas --identity-hash <H> --json
 agentos chatlas chat-index head --identity-hash <H> --json
-agentos chatlas chat-index tail --identity-hash <H> --detail turn --json
+agentos chatlas chat-index tail --identity-hash <H> --detail chat --json
 agentos chatlas chat-index home --identity-hash <H> \
   --line-content '- [DC] exact line content' --json
+agentos chatlas chat-index audit --identity-hash <H> --json
 ```
 
 - `source` emits the v2 source hash and `Normal.Turn.Ref` values in event-sequence tape order; it reports non-linear lineage instead of guessing branch semantics.
 - `deltas` returns descriptor order, which is authoritative over filenames and timestamps.
-- `tail` reports whether the stored v2 source is current, append-only, expanded by late evidence, revised at stable turn coordinates, divergent, or blocked; `--detail turn` includes only pending authoritative turn groupings and never rewrites the surface.
+- `tail` reports whether the stored v2 source is current, append-only, expanded by late evidence, revised at stable turn coordinates, divergent, or blocked. `--detail chat` returns the transcript-visible user and assistant messages of each pending turn — the default semantic evidence, free of reasoning and tool payloads. `--detail turn` is the escape hatch that hands back complete `Normal.Turn` groupings. Neither rewrites the surface.
 - `home` compares canonical line content without trailing support anchors and selects the oldest matching Delta in descriptor order.
-- HEAD-only ordinary content returns a `missing-line-home` finding; inspection does not write backward automatically.
+- `audit` replaces the per-line inspection loop: one read-only pass over descriptor closure, source prefix compatibility, Delta and HEAD headings, one trailing anchor per line, anchor resolution and exact subject hashes, anchor/content collisions, Delta support horizons, and `Line.Home` selection. It exits nonzero on blocking findings, accepts `--surface <path>` to audit a staged directory against the same session, and never repairs what it reads.
+- HEAD-only ordinary content is advisory reconciliation work (`head-line-without-delta-home`), not a failed surface; inspection does not write backward automatically.
+
+### Capture.Plan
+
+Capture is a semantic handoff: the agent authors meaning, Chatlas owns every
+mechanical detail. `capture.json`, Delta headings, timestamps, descriptor order,
+managed files, and support anchors are all rendered, never hand-written.
+
+```sh
+agentos chatlas chat-index scaffold --identity-hash <H> --stage <dir> --json
+agentos chatlas chat-index validate --plan <dir>/plan.json --json
+agentos chatlas chat-index apply --plan <dir>/plan.json --json
+```
+
+- `scaffold` writes `plan.json` (a CPU-owned `agentos.chat-index.capture-plan.v1` envelope plus an empty semantic region) and `evidence.json` (chat-only messages for the turns this capture must read) into an empty stage. It detects `create` or `maintain-v2`; `replace-legacy-v1` must be requested with `--mode` and is never inferred.
+- The agent fills only `delta_edits`, `head`, `status`, and `findings`. Line content must be typed and must never carry a trailing anchor. Each Delta line names support once — ordered `members` plus a `hint`, or `{"anchor": "<key>"}` for an existing line-bound record. A HEAD line that occurs in the resulting Delta set inherits that occurrence's anchor; a HEAD-first `POI.Line` must supply its own.
+- `validate` is read-only. It reloads the authoritative source, requires the inspected prefix to be `current` or `append-only`, verifies the base-surface fingerprint, previews the whole support batch, builds the complete resulting model, and returns planned anchor actions plus the rendered-file inventory. It mints nothing and touches no surface.
+- `apply` takes a visible lock at `<chatlas-root>/locks/chat-index/<H>.lock`, revalidates under it, batch-ensures the anchors, renders the managed files, audits the stage, and installs through a recoverable rename. Unrelated files and unedited Deltas survive byte-for-byte; only formerly managed paths absent from the new descriptor are removed.
+- Anchors are written before the directory swap. They are append-only and idempotent, so a retry after a failed install reuses them rather than duplicating them — this is not cross-depot atomicity.
+- Append-only growth after scaffold is not a failure: `apply` installs exactly the inspected prefix, leaves HEAD and source metadata where the plan put them, and returns the remaining tail. A `revised`, `expanded`, `diverged`, or `blocked` prefix fails closed and requires a fresh scaffold.
 
 ## Event.Pattern Workflow
 
@@ -226,7 +247,10 @@ agentos chatlas products run-produce --product zip-transcript-summary --identity
 - a blank-assistant refusal lists **every** remaining index in `evidence.blank_turn_indices`, so a partial fill can resume from the refusal instead of discovering one turn at a time
 - the linter also enforces a compression floor: above 50 KB of source assistant text, an artifact retaining more than 70% of it is refused as `Compression.Insufficient`, with the longest assistant turns named in the evidence. Resummarize those turns — never truncate to reach the ratio
 - a second guard windows the transcript by source assistant bytes and refuses `Compression.RegionUntouched` when a material share of those windows was left essentially uncompressed — the global ratio alone can be satisfied by crushing one region. One dense window is tolerated; the evidence names every offending turn range
-- `--allow-low-compression` on `check` and `commit` waives both compression gates for a session that genuinely cannot compress further, and records the exemption in the product manifest
+- `--allow-low-compression` on `check` and `commit` waives both of the above for a session that genuinely cannot compress further, and records the exemption in the product manifest
+- the gates cut both ways. `Compression.TurnCollapsed` refuses an artifact where a substantial assistant turn was reduced to a stub, naming each one with its source and summary byte sizes; `Compression.RegionCrushed` refuses when a material share of the transcript retains almost nothing. Over-retention leaves a fat but faithful artifact — collapse leaves a wrong one no reader can detect
+- repair a collapse refusal by re-reading those turns in the staged input and restoring what later turns depend on. Never pad to clear the gate: the fix is restoration, and invented filler is unfalsifiable against the source
+- `--allow-aggressive-compression` waives the two collapse gates. It is a separate flag on purpose — it asserts the opposite of `--allow-low-compression`, so the two are not interchangeable
 - `commit` runs the same linter and refuses with the same canonical Chatlas POI on any invariant violation
 - a producing agent should never hand-build the skeleton or write its own verification script; `scaffold` and `check` are the same code the commit gate runs
 - `run-produce` drives the whole loop through a configured agent; `--dry-run` prints the prompt and agent command without staging
