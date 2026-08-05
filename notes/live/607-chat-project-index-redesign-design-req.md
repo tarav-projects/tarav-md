@@ -4,11 +4,11 @@ status: Open
 
 ## Session.Abstract
 
-- **target:** redesign `Chat.Index`, integrate it with the existing `Project.Index`, learn from that intermediate system, and only then redesign the more expensive Project Index surface
-- **current concern:** complete the first real incremental maintenance pass over the active v2 Chat.Index, including late-expanded and revised source evidence
-- **settled frame:** chats preserve the full evolution of touched reasoning; a Project Index is entirely about the present
-- **rollout order:** Chat Index first → compatibility integration with the current Project Index → observed-use gate → Project Index redesign
-- **next useful move:** run the Chat.Index capture workflow over the active session's 11 pending turns and require the post-write tail to become `current`
+- **target:** complete the chronological `Chat.Index`, integrate it with Project Indexes, and evolve the Project Index into a complex HEAD projection
+- **current concern:** close the Project Index surface model while the Chat Index capture-plan implementation proceeds in another session
+- **settled frame:** Chat Indexes preserve complete touched reasoning evolution; Project Indexes contain only currently relevant model and issue state
+- **rollout order:** Chat Index → Project integration → Project Index migration
+- **next useful move:** define the `Issue.Block` format, surface-specific line-type sets, and anchor gates; then incorporate feedback from the capture-plan implementation
 
 ## Design.Index
 
@@ -86,33 +86,46 @@ Live.Chat
 
 ### Project.Index.Target
 
-- the Project Index is entirely about the present; complete historical evolution belongs to Chat Indexes and their transcripts
-- the provisional fresh structure is four current projections:
+- `Project.Index` is one complex HEAD object: everything it contains is currently relevant, while review, grounding, and authority remain line-anchor properties
+- the accepted ontology is organized into configurable `Index.Chapter`s; each chapter defines its applicable gates and surface policy
+- `design` is the default chapter and the only chapter configuration implemented initially, not the semantic boundary of accepted fundamentals
+- `Index.Appendix` preserves accepted depth outside chapter fundamentals
+- `Index.Agendix` preserves current agentic and unreviewed model capture
+- `issues/` is a built-in ontology surface containing current `Issue.Block`s
+- `poi/` remains the catalog of POI classes and documentation; concrete project problems live in `issues/`
+- support and reconciliation mechanics remain intentionally outside this initial folder decision
 
 ```text
-Project.Index
-├── Model.Head
-├── Frontier.Head
-├── Resolution.Head
-└── Support.Map
+<Index.Depot>/
+├── 000-INDEX.md
+├── 009-SUPPORT-CHATS.md
+├── <chapter>/
+│   └── NNN-<chapter>.md
+├── appendix/
+├── agendix/
+├── issues/
+│   └── NNN-issues.md
+└── poi/
+    └── NNN-poi.md
 ```
 
-- `Model.Head` holds what currently conditions project work and remains user-gated
-- `Frontier.Head` holds current candidates, contradictions, gaps, drift, and missing-home POIs; it is agent-maintained and unreviewed
-- `Resolution.Head` holds the sparse, currently relevant contradiction-and-decision rationale explaining selected regions of `Model.Head`
-- `Support.Map` holds Project Support Chats, Chat homes, reconciliation cursors, availability, and mechanical coverage findings
-- ontology versus appendix becomes a presentation and loading concern rather than a semantic split; `Kernel.Block`, typed `Index.Line`, anchors, and concept routing remain useful primitives
-- this target is intentionally provisional until the compatibility integration produces operational evidence
+### Issue.Block
+
+- every Project model evolution is represented through an `Issue.Block`, analogous to a GitHub issue
+- an issue has a stable rolling numeric identity and may add an optional descriptive `Dotted.Name`
+- an `Issue.Block` may contain every Index.Line needed to state, investigate, and resolve its subject
+- resolving an issue may produce multiple edits: normal Design.Line changes on their natural ontology or appendix surfaces and gated Resolution.Lines recording the decision inside the issue
+- POI.Lines and Resolution.Lines are special-purpose Index.Lines; their permitted surfaces and type sets remain open design work
+- review standing is recorded by each line’s anchor record rather than inferred from its folder
 
 ### Project.Index.Target.Lifecycle
 
 ```text
-Chat line discovered      → Frontier.Head
-User accepts it           → Model.Head
-Contradiction detected    → Frontier.Head
-User resolves it          → Model.Head + Resolution.Head
-Project-first development → Model.Head + missing-home POI
-No longer current         → leaves Project.Index; remains in Chat.Index
+Change, problem, or request detected → Issue.Block
+Unreviewed model capture             → Agendix
+User resolution                      → accepted model edits + Resolution.Lines
+Resolution remains relevant          → Issue.Block remains in Project.Index
+Resolution ceases to matter          → leaves Project.Index; remains in Chat.Index and Git
 ```
 
 ### Rollout.Principles
@@ -122,7 +135,7 @@ No longer current         → leaves Project.Index; remains in Chat.Index
 - keep automatic Chat Index capture separate from reviewed Project Index landing
 - treat structural divergence as POIs and expected intermediate state, not as transactional failure
 - keep every phase reversible at the projection layer; do not destroy Chatlas source data or Git history
-- delay final Project Index folders, syntax, and migration mechanics until the intermediate integration has been exercised
+- preserve the low-migration chapter, appendix, agendix, issues, and POI-catalog layout as the current Project Index target; defer deeper syntax, support placement, and migration mechanics until the intermediate integration has been exercised
 
 ## Rollout.Plan
 
@@ -161,11 +174,14 @@ No longer current         → leaves Project.Index; remains in Chat.Index
 
 ### Phase 3 - Redesign Project.Index
 
-- finalize the `Model.Head`, `Frontier.Head`, `Resolution.Head`, and `Support.Map` contracts from observed use
-- settle folder layout, routing, writing formats, review gates, and machine-state separation
+- retain the existing chapter, appendix, agendix, POI-catalog, and router conventions
+- add `issues/` as the single new core surface
+- define `Project.Index` as one complex HEAD containing the current ontology, unreviewed capture, and current Issue.Blocks
+- define the `Issue.Block` identity, content model, resolution lifecycle, and routing rules
+- define the permitted and preferred Index.Line types for chapters, appendix, agendix, and issues
+- keep review and grounding standing in line-anchor records rather than deriving them from placement
 - migrate the current live model without importing obsolete history merely to preserve the old shape
-- retain resolved historical reasoning in Chat Indexes while keeping only presently relevant rationale in `Resolution.Head`
-- update capture, grounding, POI linting, package skills, and project guidance around the new Project Index model
+- update capture, grounding, routing, and POI linting around the new Issue.Block workflow
 - run a cold-read and maintenance pilot before declaring the old structure retired
 
 ## Progress.Ledger
@@ -188,7 +204,7 @@ States: `planned`, `in-progress`, `blocked`, `done`.
 | 2.4 | Live reconciliation report and agendix capture workflow | agentos md | 2.2, 2.3 | planned | uses current Project Index unchanged |
 | 2.5 | Agentos-pkg compatibility pilot | agentos-pkg | 2.1-2.4 | planned | learning evidence for Phase 3 |
 | 2A.1 | Compatibility-system observation report | agentos md | 2.5 | planned | Phase 3 gate |
-| 3.1 | Final Project Index product and file-format contract | agentos md | 2A.1 | planned | provisional four-head model above |
+| 3.1 | Final Project Index product and file-format contract | agentos md | 2A.1 | planned | minimal issues-folder extension selected; Issue.Block and surface contracts remain |
 | 3.2 | Project Index migration workflow | agentos md/py | 3.1 | planned | - |
 | 3.3 | Capture, grounding, and linter cutover | agentos md/py/cli | 3.2 | planned | - |
 | 3.4 | Cold-read and maintenance validation | testground + pilot project | 3.3 | planned | - |
@@ -208,6 +224,11 @@ States: `planned`, `in-progress`, `blocked`, `done`.
 
 ### Settled
 
+- `Project.Index` is one complex HEAD object rather than several independent HEADs
+- `design` is the default implemented `Index.Chapter`, not the boundary of the ontology
+- Project model evolution is organized through current `Issue.Block`s
+- resolved issues remain only while their decision rationale conditions the current model
+- complete evolution belongs in Chat Indexes and Git, not in a Project-local historical archive
 - complete reasoning history belongs in the Chat Index layer; the Project Index should not carry history merely to preserve provenance
 - Project-first development remains legal; Chat-home completeness is maintained through POIs and reconciliation
 - `Known.Origin` helps distinguish first-known occurrence from loaded context but does not confer authority or select the canonical home
@@ -219,9 +240,10 @@ States: `planned`, `in-progress`, `blocked`, `done`.
 
 - exact causal-scope rule over branch and fork lineage
 - maintained line-anchor cargo schema for `Line.Provenance` and `Known.Origin`
-- contradiction-router relation model and rendering
 - reconciliation cursor identity and cross-chat scheduling
-- final Project Index folder and block mechanics after Phase 2A learning
+- exact `Issue.Block` identity and rendering
+- surface-specific Index.Line type sets and anchor gates
+- eventual placement of support and reconciliation mechanics
 
 ### Explicitly Deferred
 

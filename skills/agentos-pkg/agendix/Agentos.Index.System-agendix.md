@@ -6,6 +6,19 @@
 - [CT] complete historical reasoning belongs in supporting `Chat.Index` tapes; the Project Index need not retain stale material solely for provenance ^c20260803-16u
 - [PR] a fresh Project Index structure separates the current model, unresolved frontier, current resolution rationale, and mechanical support map ^c20260803-17u
 - [DC] `Resolution.Head` retains contradiction lines and decision lines while they support the current Project model ^c20260803-18u
+- [DC] `Project.Index` remains one complex current `HEAD`; its ontology chapters, appendix, agendix, issues, and POI catalog are regions of that HEAD rather than independent heads ^c20260804-61u
+- [CT] review standing is defined by each line's anchor record, although default folders also route reviewed and unreviewed lines differently ^c20260804-62u
+- [RJ] separate `Model.Head`, `Frontier.Head`, `Resolution.Head`, and `Support.Map` top-level surfaces are not the selected first Project Index structure ^c20260805-1u
+
+****
+
+## Agentos.Index.System/Agendix/Issue.Block
+
+- [DF] an `Issue.Block` is a current Project Index block for one temporary topic ^c20260805-2u
+- [CT] an `Issue.Block` may hold any temporary topic, including useful work, problems, questions, changes, or other current work ^c20260805-3u
+- [DC] the first low-migration structure adds `issues/NNN-issues.md` to the existing Index layout without separate open and resolved folders ^c20260805-4u
+- [CT] an issue's state and review standing derive from its lines and anchor records; it remains while its rationale is current, then leaves the Project Index while history remains in Chat Indexes and Git ^c20260804-63u
+- [DC] all Project model evolution may be routed through `Issue.Block`s ^c20260805-5u
 
 ****
 
@@ -27,3 +40,4 @@
 
 - [DF] `Project.Index.Redesign.Rollout` is the staged transition from Chat Index redesign through compatibility integration to eventual Project Index redesign ^c20260803-24u
 - [DC] the expensive Project Index redesign happens last, after an intermediate phase integrates the redesigned Chat Index with the existing Project Index ^c20260803-25u
+- [PR] the `agentos-hugentics` Index is the first migration pilot and carries an open bootstrap `Issue.Block` for later end-to-end user review ^c20260805-6u
