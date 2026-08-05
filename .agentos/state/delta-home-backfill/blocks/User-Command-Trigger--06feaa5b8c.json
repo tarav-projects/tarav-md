@@ -1,0 +1,24 @@
+{
+ "block_path": "User.Command.Trigger",
+ "state": "done",
+ "owner": "supervisor:57663916-0731-494a-bfec-070b4a9c69d2",
+ "claimed_at": "20260805T054424Z",
+ "pending_chats": [
+  "942769cb32608188fa1acb30bb4fb07f09c3fbbf55431fa6ec51243f9609455f"
+ ],
+ "done_chats": [],
+ "workers": [
+  "w6"
+ ],
+ "history": [
+  {
+   "at": "20260805T061443Z",
+   "change": {
+    "state": "done",
+    "result": "14 lines homed (verified post-mortem via audit, worker died before reporting)"
+   }
+  }
+ ],
+ "result": "14 lines homed (verified post-mortem via audit, worker died before reporting)",
+ "updated_at": "20260805T061443Z"
+}

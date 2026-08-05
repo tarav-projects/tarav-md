@@ -105,7 +105,8 @@ The public flags below call the single running `Batchy.Router`. A trailing value
 | `--agendix` | - | explicit; default: Alignment.Mode::Autonomous | apply the --index --capture --agendix shorthand and use the autonomous alignment default |
 | `--design` | - | explicit-or-semantic | select the shared capture loop with Design.Req target knowledge |
 | `--edit` | `--write`<br>`--append` | explicit-or-semantic | route through the gated Index landing contract; trailing input binds Main.Prompt and --depot/--chapter bind scope |
-| `--reconcile` | - | explicit-or-semantic | contextualize the decision and load the landing contract when a write is selected |
+| `--reconcile` | - | explicit-or-semantic | run the bulk read-only coverage pass and advance cursors only when reconciliation was explicitly requested |
+| `--issues` | `--issue` | explicit-or-semantic | select the grounded Issue.Block lifecycle without inferring review from folder placement |
 | `--check` | `--lint` | explicit-or-semantic | select Index.Check.Operation.Module |
 | `--type` | - | explicit-or-semantic | load Index.Line.Type.Knowledge.Module |
 | `--link` | - | explicit-or-semantic | select Anchory.Link.Operation.Module |
@@ -160,10 +161,10 @@ Canonical module identity is explicit and independent from invocation spelling. 
 |---|---|---|
 | `Index.Agendix.Knowledge.Module` | `references/agendix.md` | `--agendix`; default: Alignment.Mode::Autonomous |
 | `Design.Req.Knowledge.Module` | `references/design-req.md` | `--design` |
-| `Index.Landing.Knowledge.Module` | `references/edit.md` | `--edit`, `--write`, `--append`<br>`--reconcile` |
-| `Touched.Decision.Knowledge.Module` | `references/decision-cycle.md` | `--reconcile`<br>semantic |
+| `Index.Landing.Knowledge.Module` | `references/edit.md` | `--edit`, `--write`, `--append` |
 | `Index.Line.Type.Knowledge.Module` | `references/type.md` | `--type` |
 | `Touched.Data.Knowledge.Module` | `references/touched-data.md` | semantic |
+| `Touched.Decision.Knowledge.Module` | `references/decision-cycle.md` | semantic |
 | `Alignment.Session.Knowledge.Module` | `references/alignment-session.md` | semantic |
 | `Implementation.Execution.Practices.Knowledge.Module` | `references/impl/general-practices.md` | semantic |
 | `Implementation.Execution.Preferences.Knowledge.Module` | `references/impl/general-preferences.md` | semantic |
@@ -175,6 +176,8 @@ Canonical module identity is explicit and independent from invocation spelling. 
 | Canonical module | Load target | Routing |
 |---|---|---|
 | `Index.Search.Operation.Module` | `references/search.md` | `--search`, `--research`, `--ground`; default: Index namespace when omitted |
+| `Project.Chat.Reconciliation.Operation.Module` | `references/reconcile.md` | `--reconcile` |
+| `Index.Issue.Operation.Module` | `references/issues.md` | `--issues`, `--issue` |
 | `Index.Check.Operation.Module` | `references/check.md` | `--check`, `--lint` |
 | `Anchory.Link.Operation.Module` | `references/link.md` | `--link` |
 | `Anchory.Back.Link.Operation.Module` | `references/back-link.md` | `--back-link` |
@@ -261,6 +264,10 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 - index work happens over engaged `Index.Depot`s; `--depot` scopes which depots are engaged and `--chapter` scopes within them
 - its lines carry `Line.Type` codes (`- [CT] ...`) classifying each line's act; untyped lines are pre-fence legacy
 - its current support references are trailing `Anchory.Anchor`s resolving through Chatlas to qualifying user-turn evidence
+- chronological chat capture lives in `Chat.Index.Delta` files; `Chat.Index.HEAD` is the chat's current projection
+- an ordinary Project line eventually needs an exact Delta home and, when current for that chat, a matching Chat HEAD line
+- each line's anchor dossier carries support, known-origin observations, provenance observations, and optional issue context
+- `issues/` holds grounded temporary Project topics; review is proven by the anchor record rather than folder placement
 - agents operate it by loading routers, concept blocks, appendix material, and references relevant to the current task
 
 ## Routing.Table
@@ -335,10 +342,20 @@ Selection cardinality: `many`.
 
 - match: `explicit-or-semantic`
 - flags: `--reconcile`
-- destinations: `Touched.Decision.Knowledge.Module`, `Index.Landing.Knowledge.Module`
-- loads: `references/decision-cycle.md`, `references/edit.md`
-- when: a changed product or implementation must be compared with touched design
-- then: contextualize the decision and load the landing contract when a write is selected
+- destinations: `Project.Chat.Reconciliation.Operation.Module`
+- loads: `references/reconcile.md`
+- when: Project Index lines, support Chat.Indexes, or their reconciliation cursors must be compared or maintained
+- then: run the bulk read-only coverage pass and advance cursors only when reconciliation was explicitly requested
+
+### `^route-issues`
+
+- match: `explicit-or-semantic`
+- flags: `--issues`
+- aliases: `--issue`
+- destinations: `Index.Issue.Operation.Module`
+- loads: `references/issues.md`
+- when: the caller wants to inspect, create, review, resolve, or retire Project Issue.Blocks
+- then: select the grounded Issue.Block lifecycle without inferring review from folder placement
 
 ### `^route-index-check`
 

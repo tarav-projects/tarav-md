@@ -42,6 +42,10 @@ The index specialization loads `Hugentic.Capture.Context.Assembly.Module` from `
 
 Load `references/touched-data.md` for authority and line standing, and `references/decision-cycle.md` for contextualize-act-reconcile. The current chat protocol supplies qualifying user turns and Chatlas support records; it does not make chat the conceptual boundary of `Touched.Index`.
 
+For chronological capture, work from the authoritative Chatlas transcript and delimit each semantic Delta by its `Delta.Horizon.Turn`. A Delta may summarize one user turn or a meaningful group ending at that turn. Ordinary model lines must acquire an exact Delta materialization before they are considered fully propagated; `Chat.Index.HEAD` and Project Index projections may be authored first, but the resulting missing-home condition remains a reconciliation POI until backfilled.
+
+Use the Chatlas `Capture.Plan` application boundary for mechanical writes. In maintain mode, `head.preserve: true` permits a Delta-only backfill while retaining the complete existing HEAD. The anchor dossier records support separately from provenance observations and issue context; neither a known-origin observation nor placement on a HEAD creates touched authority.
+
 Operationally, capture applies `Touched.Decision.Cycle` to `Touch.Authority.Surface` editions and adjacent evidence. It distinguishes `Touched.Data`, `Support.Set`, `Live.Index.Line`, `Open.Inference`, and `POI.Instance` while producing `Kernel.Writing` for the current `Agentos.Index.System` realization.
 
 ## Index Target Specialization
@@ -58,6 +62,7 @@ A pass over the chat's uncaptured content, repeated until the content is exhaust
 8. **Act / Propose + Discuss.** Codesign only the foreground cluster, then present a typed, landing-targeted `Index.Edition.Turn`.
 9. **Act / Approve.** User approval records the current proposal as approved but unlanded. Approved material accumulates while review moves to the next cluster.
 10. **Reconcile / Land + Re-ground.** A separate user command lands selected approved material, then re-contextualizes against the changed live cut and support network.
+11. **Reconcile / Propagate.** Audit Project lines against registered support Chat.Indexes. Missing Delta homes or current Chat HEAD projections remain advisory POIs and may be repaired in either direction without blocking the originating edit.
 
 `Autonomous` mode performs the same preparation and internal mapping but does not present a roadmap or run the review loop; it proceeds through its agendix-only landing path.
 

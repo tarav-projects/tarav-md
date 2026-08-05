@@ -1,0 +1,24 @@
+{
+ "block_path": "User.Command.Arg",
+ "state": "done",
+ "owner": "supervisor:57663916-0731-494a-bfec-070b4a9c69d2",
+ "claimed_at": "20260805T054424Z",
+ "pending_chats": [
+  "885eb562e7d741198b070a0c6679ccdee8772f9438a12984b334388783641c4f"
+ ],
+ "done_chats": [],
+ "workers": [
+  "w5"
+ ],
+ "history": [
+  {
+   "at": "20260805T055313Z",
+   "change": {
+    "state": "done",
+    "result": "assigned lines homed (line-level verified)"
+   }
+  }
+ ],
+ "result": "assigned lines homed (line-level verified)",
+ "updated_at": "20260805T055313Z"
+}

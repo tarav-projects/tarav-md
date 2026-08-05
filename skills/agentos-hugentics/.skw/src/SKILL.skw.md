@@ -209,6 +209,10 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 - index work happens over engaged `Index.Depot`s; `--depot` scopes which depots are engaged and `--chapter` scopes within them
 - its lines carry `Line.Type` codes (`- [CT] ...`) classifying each line's act; untyped lines are pre-fence legacy
 - its current support references are trailing `Anchory.Anchor`s resolving through Chatlas to qualifying user-turn evidence
+- chronological chat capture lives in `Chat.Index.Delta` files; `Chat.Index.HEAD` is the chat's current projection
+- an ordinary Project line eventually needs an exact Delta home and, when current for that chat, a matching Chat HEAD line
+- each line's anchor dossier carries support, known-origin observations, provenance observations, and optional issue context
+- `issues/` holds grounded temporary Project topics; review is proven by the anchor record rather than folder placement
 - agents operate it by loading routers, concept blocks, appendix material, and references relevant to the current task
 
 > $kw. end
@@ -284,12 +288,19 @@ This addressed `Routing.Table` is the package driver's single declarative dispat
 > $kw: ^route-reconcile --router-row --table ^package-driver-router
 > --flag --reconcile
 > --match explicit-or-semantic
-> --to Touched.Decision.Knowledge.Module
-> --to Index.Landing.Knowledge.Module
-> --load references/decision-cycle.md
-> --load references/edit.md
-> --when a changed product or implementation must be compared with touched design
-> --then contextualize the decision and load the landing contract when a write is selected
+> --to Project.Chat.Reconciliation.Operation.Module
+> --load references/reconcile.md
+> --when Project Index lines, support Chat.Indexes, or their reconciliation cursors must be compared or maintained
+> --then run the bulk read-only coverage pass and advance cursors only when reconciliation was explicitly requested
+
+> $kw: ^route-issues --router-row --table ^package-driver-router
+> --flag --issues
+> --alias --issue
+> --match explicit-or-semantic
+> --to Index.Issue.Operation.Module
+> --load references/issues.md
+> --when the caller wants to inspect, create, review, resolve, or retire Project Issue.Blocks
+> --then select the grounded Issue.Block lifecycle without inferring review from folder placement
 
 > $kw: ^route-index-check --router-row --table ^package-driver-router
 > --flag --check

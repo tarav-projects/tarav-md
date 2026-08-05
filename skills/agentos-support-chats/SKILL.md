@@ -49,7 +49,7 @@ $agentos-support-chats
 ## Workflow
 
 1. Resolve the target and require `<target>/000-INDEX.md`.
-2. Use only the existing target sources: `000-INDEX.md`, `design/`, `appendix/`, `agendix/`, and `poi/`. Never scan `009-SUPPORT-CHATS.md`, compiled skill references, or an external Index.
+2. Use only the existing target sources: `000-INDEX.md`, `design/`, `appendix/`, `agendix/`, `issues/`, and `poi/`. Never scan `009-SUPPORT-CHATS.md`, compiled skill references, or an external Index.
 3. Run one extraction call with repeatable sources:
 
    ```bash

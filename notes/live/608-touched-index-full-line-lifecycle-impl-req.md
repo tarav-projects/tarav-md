@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **goal:** complete the new `Touched.Index` line lifecycle across Chat Indexes, Project Indexes, anchor dossiers, Issue.Blocks, documentation, Hugentics workflows, POI linting, migration, and end-to-end validation
-- **status:** ready for implementation
+- **status:** implemented; the real bootstrap Issue.Block intentionally remains open for later user review
 - **source:** the maintained redesign in `notes/live/607-chat-project-index-redesign-design-req.md`, completed Chat.Index mechanics in `agentos-chatlas-py/notes/live/555-chat-index-capture-plan-audit-impl-req.md`, completed support-chat routing in `notes/live/606-project-support-chats-impl-req.md`, current repository inspection, and the implementation/pilot authorization in this session
 - **authority:** the user requested the full implementation, required indexes/documentation/linting to close together, selected a deliberately minimal first Issue.Block format, defined issues as any temporary topic rather than only problems, and selected `agentos-hugentics` as the first migrated Index with a real bootstrap review issue ^c20260805-0u
 - **first pilot:** initialize and migrate an independent `agentos-hugentics` Index depot, then leave `Issue.I0001.Bootstrap.Review` open for a later real user review
@@ -211,7 +211,7 @@ Use a deliberately small first format:
 
 ### Vertical.Slice 0 - Preserve And Verify The Base
 
-**status:** not started
+**status:** completed
 
 - checkpoint every owning repository without resetting dirty worktrees
 - verify Impl.Req 555 focused/full Chatlas tests and inspect its generated Skillware drift
@@ -224,7 +224,7 @@ Use a deliberately small first format:
 
 ### Vertical.Slice 1 - First-Class Issues Surface
 
-**status:** not started
+**status:** completed
 
 - add the explicit issues surface kind across parser models, depot discovery, linter configuration/state, scopes, summaries, block statistics where applicable, and CLI help
 - exclude `issues/` from accidental generic-chapter classification
@@ -238,7 +238,7 @@ Use a deliberately small first format:
 
 ### Vertical.Slice 2 - Surface Policies And Issue Standing
 
-**status:** not started
+**status:** completed
 
 - introduce the centralized surface-policy model and built-in v1 policies
 - require typed grounded Issue.Block lines
@@ -253,7 +253,7 @@ Use a deliberately small first format:
 
 ### Vertical.Slice 3 - Versioned Line Provenance Dossier
 
-**status:** not started
+**status:** completed
 
 - add the next versioned line-bound Chatlas support record with issue context and monotonic provenance observations
 - update validation, preview/register batching, exact equivalence, amendment rules, Capture.Plan rendering, audit, and resolution
@@ -267,7 +267,7 @@ Use a deliberately small first format:
 
 ### Vertical.Slice 4 - Project Support And Coverage Audit
 
-**status:** not started
+**status:** completed
 
 - extend support-chat source closure to issues
 - implement one bulk Project↔Chat audit using support registry identities and existing Chat.Index audit maps
@@ -281,7 +281,7 @@ Use a deliberately small first format:
 
 ### Vertical.Slice 5 - Incremental Reconciliation Workflow
 
-**status:** not started
+**status:** completed
 
 - persist project-scoped per-chat cursors outside the Index HEAD
 - inspect only unreconciled Delta tails by default and reopen changed ranges safely
@@ -295,7 +295,7 @@ Use a deliberately small first format:
 
 ### Vertical.Slice 6 - Hugentics Index Migration
 
-**status:** not started
+**status:** completed
 
 - inventory and migrate Hugentics-owned blocks/depth from `agentos-pkg`
 - initialize the independent Hugentics depot and preserve dependency direction to `agentos-pkg`
@@ -309,7 +309,7 @@ Use a deliberately small first format:
 
 ### Vertical.Slice 7 - Bootstrap Issue
 
-**status:** not started
+**status:** completed
 
 - allocate `Issue.I0001.Bootstrap.Review` in `issues/100-issues.md`
 - use the minimal grounded `[PR]` line from `Issue.Block.V1`
@@ -323,7 +323,7 @@ Use a deliberately small first format:
 
 ### Vertical.Slice 8 - Workflow And Documentation Closure
 
-**status:** not started
+**status:** completed
 
 - update all authored Hugentics Skillware modules and generated targets affected by issues, policies, dossiers, reconciliation, and edition closure
 - update Agentos/Chatlas Index concepts, appendix depth, POI catalogs, command references, examples, AGENTS files, and support-chat workflow
@@ -336,7 +336,7 @@ Use a deliberately small first format:
 
 ### Vertical.Slice 9 - Synthetic Full-Lifecycle E2E
 
-**status:** not started
+**status:** completed
 
 - create a medium-chat fixture with Chat-first and Project-first lines
 - create an issue, capture/project ordinary lines, simulate tokenized user approval, apply several model edits plus Resolution.Lines, and compute resolved standing
@@ -349,7 +349,7 @@ Use a deliberately small first format:
 
 ### Vertical.Slice 10 - Real Pilot Readiness Gate
 
-**status:** not started
+**status:** completed
 
 - run a cold-read and maintenance pass over the real Hugentics depot
 - confirm the bootstrap issue is the only intentionally open review checkpoint introduced by this request
@@ -372,23 +372,33 @@ Use a deliberately small first format:
 
 ## Acceptance.Checklist
 
-- [ ] `issues/` is a first-class parsed/linted/routed surface, not an accidental chapter
-- [ ] minimal Issue.Block identity and open/resolved projection are implemented
-- [ ] issues accept any temporary topic and all Issue.Block lines are grounded
-- [ ] review standing comes from anchor records
-- [ ] model editions carry issue context without a general line dependency graph
-- [ ] new line-bound records expose support, review, provenance, Known.Origin, issue context, and home as distinct axes
-- [ ] Project Support Chats include issues and Project↔Chat coverage is bulk-auditable
-- [ ] reconciliation cursors are external machine state and incremental scans are idempotent
-- [ ] Chat-first and Project-first propagation both work
-- [ ] `agentos-hugentics` owns an independent clean Index depot without duplicate concept ownership
-- [ ] the real grounded bootstrap issue is open and awaiting later user review
-- [ ] synthetic review/resolution/model-edit/retirement E2E passes
-- [ ] Agentos/Chatlas indexes, docs, skills, AGENTS guidance, CLI help, POI catalogs, and linters agree
-- [ ] full relevant test suites, Ruff, Skillware checks, Wayfinder resolution, support closure, and real pilot audits pass
+- [x] `issues/` is a first-class parsed/linted/routed surface, not an accidental chapter
+- [x] minimal Issue.Block identity and open/resolved projection are implemented
+- [x] issues accept any temporary topic and all Issue.Block lines are grounded
+- [x] review standing comes from anchor records
+- [x] new line-dossier-backed model editions carry issue context without a general line dependency graph; absent context is an advisory POI
+- [x] new line-bound records expose support, review, provenance, Known.Origin, issue context, and home as distinct axes
+- [x] Project Support Chats include issues and Project↔Chat coverage is bulk-auditable
+- [x] reconciliation cursors are external machine state and incremental scans are idempotent
+- [x] Chat-first and Project-first propagation both work
+- [x] `agentos-hugentics` owns an independent clean Index depot without duplicate concept ownership
+- [x] the real grounded bootstrap issue is open and awaiting later user review
+- [x] synthetic review/resolution/model-edit/retirement E2E passes
+- [x] Agentos/Chatlas indexes, docs, skills, AGENTS guidance, CLI help, POI catalogs, and linters agree
+- [x] full relevant test suites, Ruff, Skillware checks, Wayfinder resolution, support closure, and real pilot audits pass
 
 ## Impl.Log
 
+- 2026-08-05 - Slices 6-7 completed: `agentos-hugentics` now owns an independent low-migration Index depot and four unambiguous Hugentics blocks moved from `agentos-pkg` without content or anchor churn; Wayfinder resolves the new owner uniquely, and `Issue.I0001.Bootstrap.Review` reports as the single healthy grounded open issue
+- 2026-08-05 - Slice 8 completed: Hugentics authored Skillware gained issue and Project/Chat reconciliation routes plus chronological capture/check guidance; generated surfaces rebuild with 0 POIs/diagnostics, support-chat extraction includes `issues/`, AGENTS guidance and Chatlas v5/POI documentation are current
+- 2026-08-05 - Slice 9 completed: automated fixtures cover Chat-first promotion, Project-first missing-home/HEAD findings and backfill, reviewed Issue resolution, cursor idempotency, and Project retirement with the chronological Delta retained; the existing medium-chat Capture.Plan E2E also proves Delta-only maintenance preserves the complete HEAD
+- 2026-08-05 - Slice 10 completed: the real current-chat Capture.Plan added the bootstrap and implementation lines to chronological Deltas while preserving Chat HEAD; its bulk audit reports 20 Deltas, 102 Delta lines, 79 HEAD lines, and zero findings. The Hugentics Project audit reports no finding for `Issue.I0001`; 60 advisory findings remain explicit migration debt for older unavailable/unmaterialized support-chat homes
+- 2026-08-05 - final verification: `agentos-py` 639 tests, `agentos-chatlas-py` 443 tests, and `agentos-cli` 71 tests pass; changed Python surfaces are Ruff-clean, Skillware is clean, and both owning Index depots have zero linter errors
+- 2026-08-05 - Slices 1-2 completed: `issues/` is a first-class parsed and linted surface, surface gates are centralized, and issue standing is derived from grounded line-local review evidence; focused Agentos tests pass
+- 2026-08-05 - Slice 3 completed: new line writers emit readable v5 dossiers with independent support, issue context, monotonic observations, and derived Known.Origin while v3/v4 records remain readable; focused Chatlas suites pass
+- 2026-08-05 - Slices 4-5 completed: one read-only Project-to-support-Chat audit computes exact HEAD/Delta coverage and advisory POIs, while project-scoped cursors make unchanged passes no-ops and append-only passes inspect only new Deltas; focused audit/reconciliation tests pass
+- 2026-08-05 - execution authorized in autonomous mode; checkpointed all five owning repositories before implementation edits ^c20260805-7u
+- 2026-08-05 - Slice 0 baseline passed: Chatlas full suite reports 432 tests passing, Chatlas Skillware reports no drift, and agentos-pkg support extraction resolves 1,353 anchors with status `ok`; direct `anchory sessions` requires its documented regex explicitly, so execution records that CLI/default mismatch and proceeds
 - 2026-08-05 - implementation design authorized; user selected complete cross-surface closure rather than a partial parser or folder change ^c20260805-0u
 - 2026-08-05 - user selected a minimal first Issue.Block, defined issues as any temporary topic, and deferred richer tags/ergonomics until real use ^c20260805-0u
 - 2026-08-05 - user selected `agentos-hugentics` as the first migrated Index and requested one real bootstrap issue to remain for later review ^c20260805-0u

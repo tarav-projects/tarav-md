@@ -1,0 +1,59 @@
+{
+ "block_path": "Batchy.Skill.Template",
+ "state": "done",
+ "owner": "supervisor:57663916-0731-494a-bfec-070b4a9c69d2",
+ "claimed_at": "20260805T053339Z",
+ "pending_chats": [],
+ "done_chats": [
+  "8f55d036cdade82862c19e76c266d0a6f5c50bd5a8178d6cd9213a2439069b50"
+ ],
+ "workers": [
+  "w15"
+ ],
+ "history": [
+  {
+   "at": "20260805T054341Z",
+   "change": {
+    "state": "done",
+    "done_chats": [
+     "8f55d036cdade82862c19e76c266d0a6f5c50bd5a8178d6cd9213a2439069b50"
+    ],
+    "pending_chats": [],
+    "result": "all lines homed + HEAD"
+   }
+  },
+  {
+   "at": "20260805T055229Z",
+   "change": {
+    "state": "wip",
+    "pending_chats": [
+     "fb3b663159176ce44af1456ea6ea309a1caec77407d136754a571c29cdc8ab38"
+    ],
+    "result": "all lines homed + HEAD | REOPENED: 4 lines remain via chat fb3b6631"
+   }
+  },
+  {
+   "at": "20260805T072242Z",
+   "change": {
+    "state": "wip",
+    "pending_chats": [
+     "fb3b663159176ce44af1456ea6ea309a1caec77407d136754a571c29cdc8ab38"
+    ],
+    "workers": [
+     "w15"
+    ],
+    "result": "stale w4 claim reassigned by supervisor: w4 stood down, these lines belong to fb3b not 8f55d036"
+   }
+  },
+  {
+   "at": "20260805T073853Z",
+   "change": {
+    "state": "done",
+    "pending_chats": [],
+    "result": "landed; remainder is inspected drift"
+   }
+  }
+ ],
+ "result": "landed; remainder is inspected drift",
+ "updated_at": "20260805T073853Z"
+}

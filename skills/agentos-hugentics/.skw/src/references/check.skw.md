@@ -35,6 +35,9 @@ Use this module when the caller wants deterministic diagnosis, linter findings, 
 - scoped reporting: add `--scope <path>` to filter findings, per-check counts, summaries, and coverage meters to a file or directory while checks still run over the full configured depot
 - approval evidence: add `--check line-approval` to require an approval-typed user member on each anchored line in scope
 - reviewed-content gate: add `--check line-verbatim-gate` to verify tokenized approval cargo and deterministic material equivalence between presented and landed line content; a passing line is `Reviewed.Content`
+- issue standing: `agentos index issues --depot <depot-root> --json` reports grounded open/resolved Issue.Blocks; an open issue is healthy current work, not a finding
+- cross-surface coverage: `agentos chatlas project-index audit --depot <depot-root> --json` compares Project lines with the Chat.Indexes registered by `009-SUPPORT-CHATS.md` without advancing reconciliation cursors
+- incremental reconciliation: `agentos chatlas project-index reconcile --depot <depot-root> --json` advances project-local per-chat cursors and reports only new or revised Delta candidates; add `--reset` for a deliberate full pass
 
 ## Material Equivalence
 
@@ -56,6 +59,7 @@ This policy certifies presentation followed by explicit token approval. It does 
 - a missing chatlas backend renders `Index.Linter/Grounding.Provenance` as a blocked check, never a silent skip
 - `agentos anchory scan --depot <chatlas-root>/anchory --src-file <file> --regex '\^(?P<anchor>[a-z][0-9]{8}-[0-9]+[a-z]?)'` remains the record-level spot check for a single file
 - `Index.Linter/Line.Approval` and `Index.Linter/Line.Verbatim.Gate` are currently opt-in because legacy lines have not completed the approval-evidence campaign; their warnings are review debt, while malformed token cargo or materially different proposed content is an error
+- Project/Chat coverage findings are advisory lifecycle POIs: they expose incomplete propagation, unavailable support chats, ambiguous homes, or semantic-review candidates without making Project-first or Chat-first development invalid
 
 ## Beyond The Linter
 
@@ -74,5 +78,6 @@ This policy certifies presentation followed by explicit token approval. It does 
 - after an approved index or appendix edit, run the linter over the edited depot or explicit edited surfaces
 - for newly approved lines, also run `--check line-approval --check line-verbatim-gate --scope <edited-path>`; new tokenized lines should add no findings even while legacy warnings remain elsewhere
 - if the edit added or touched anchors, run the anchor resolvability scan over the edited files
+- if the depot has `009-SUPPORT-CHATS.md`, run the read-only Project/Chat audit; after deliberate reconciliation work, advance cursors with the reconcile command
 - if findings existed before the edit, do not treat them as new regressions unless the edit worsened or touched them
 - if the edit creates a new error or warning, report it before considering the edit complete

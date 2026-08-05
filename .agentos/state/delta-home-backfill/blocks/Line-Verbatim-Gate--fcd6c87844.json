@@ -1,0 +1,36 @@
+{
+ "block_path": "Line.Verbatim.Gate",
+ "state": "done",
+ "owner": "supervisor:57663916-0731-494a-bfec-070b4a9c69d2",
+ "claimed_at": "20260805T052605Z",
+ "pending_chats": [],
+ "done_chats": [
+  "02161ec9eb991d3811af60919194f86b715059aff583e42979dbf4e627738cf7"
+ ],
+ "workers": [
+  "w3"
+ ],
+ "history": [
+  {
+   "at": "20260805T052613Z",
+   "change": {
+    "workers": [
+     "w3"
+    ]
+   }
+  },
+  {
+   "at": "20260805T054002Z",
+   "change": {
+    "state": "done",
+    "done_chats": [
+     "02161ec9eb991d3811af60919194f86b715059aff583e42979dbf4e627738cf7"
+    ],
+    "pending_chats": [],
+    "result": "all lines homed + HEAD"
+   }
+  }
+ ],
+ "updated_at": "20260805T054002Z",
+ "result": "all lines homed + HEAD"
+}

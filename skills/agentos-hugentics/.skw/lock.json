@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "8cf2acfb0dd5586e79d7ac3b46d3678b77cf0d0dc9467e0dc217e394c6f33281",
+      "output_sha256": "8abe0f994503409652c5d2304a13a5505e5f03ab4570ae6d1fc925b67dd56e54",
       "recipes": [
         {
           "heading": "^hugentics-batchy-runtime-contract",
@@ -15,13 +15,13 @@
         {
           "heading": "^driver-index-literacy",
           "verb": "derived",
-          "body_sha256": "13bf1a364d46137d7ea3be1ff81b41873246e97fdc53de1c589f7374c9342c4d",
+          "body_sha256": "3c551ca14fe760118aef2e5e923a46043a5cf35de8b9d80ce8cf1327ced3a0a0",
           "deps": {
             "references/touched-data.skw.md#Authority Flow": "e6333bc6e88195e2c7140e937d46eaef874b3cd0a1fd80d7209bcb5d6ca19757",
             "references/touched-data.skw.md#Support Network": "f6838c58fd81dfea48904543a66cdfe4bce4d74febf1f2bfb1c7f721163ba47f",
             "references/touched-data.skw.md#Line Standing": "2bc1780bf6384c537cff3089d3aa547092f81dba496c26bc8976d4f455c6b174",
             "references/touched-data.skw.md#Coherence And Decision Weight": "6a23c0cfcf0865ea3b5e36274da927ab577287916aae91f3a091ce27f4bd2505",
-            "references/touched-data.skw.md#Current Realization": "aa788b82354dc30a12d477301e553374abfa658cae9b527a20ba8967bc720e06"
+            "references/touched-data.skw.md#Current Realization": "c811fca83042c1fcb0ba2d99940fc34123f34325168a65b3dccfca7761682d96"
           }
         },
         {
@@ -102,7 +102,7 @@
       ]
     },
     "references/capture.md": {
-      "output_sha256": "36430dd8e8927bb4ce81829e243c96a0490581f7ad242f0d44f39ba2713ec903",
+      "output_sha256": "25a2dadadec82ceeae03e985192ba1488a35a7af263c7d77de358c019ea10f90",
       "recipes": [
         {
           "heading": "Landing",
@@ -120,7 +120,7 @@
       "recipes": []
     },
     "references/check.md": {
-      "output_sha256": "c5241a43dd4389cf02a73f5532f17e78d214efcf69da4f5adc15f7821da309b9",
+      "output_sha256": "0e7393b37d04a3092f1abfb4f7b2def8ae1cf2e811cb3e048620ee11c7b3b1a5",
       "recipes": [
         {
           "heading": "Beyond The Linter",
@@ -337,7 +337,11 @@
       "recipes": []
     },
     "references/index-context-assembly.md": {
-      "output_sha256": "791e9a9fb2d73c5a69213f898cb58f540c14ac104d179b2d6dd9f491ed69044e",
+      "output_sha256": "f0a2daece5428af42f7a375acb2faf484b7f165e70c649a3f0221c9efeeeb283",
+      "recipes": []
+    },
+    "references/issues.md": {
+      "output_sha256": "241b24f17eafe2b8a2148ad0750627f28c3f89e69c2e78699252496833bb3496",
       "recipes": []
     },
     "references/link.md": {
@@ -346,6 +350,10 @@
     },
     "references/parking-note.md": {
       "output_sha256": "dc71c43813a882fbf4027e83ee52880ceeee0e1f6e2827f1934a22392b429c87",
+      "recipes": []
+    },
+    "references/reconcile.md": {
+      "output_sha256": "e2c7556397329532129b21f28802a2e3722ab170794de055b19bbe3b0e3c345b",
       "recipes": []
     },
     "references/search.md": {
@@ -366,7 +374,7 @@
       ]
     },
     "references/touched-data.md": {
-      "output_sha256": "4192856b97a3fa64d6af4a0b65f0f6f84ba71d918b2c5ba1798cd6a34a09def3",
+      "output_sha256": "933287f42abb78d03382439d4425546efca4bcabc0bca316caa3f176b0da626e",
       "recipes": []
     },
     "references/type.md": {

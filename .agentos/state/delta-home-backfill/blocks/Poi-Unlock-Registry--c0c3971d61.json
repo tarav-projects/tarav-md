@@ -1,0 +1,26 @@
+{
+ "block_path": "Poi.Unlock.Registry",
+ "state": "blocked",
+ "owner": "supervisor:57663916-0731-494a-bfec-070b4a9c69d2",
+ "claimed_at": "20260805T051635Z",
+ "pending_chats": [
+  "2952f074c94969292207921ffcc091b90b70b60f91801f58987d7ccdea8e9007"
+ ],
+ "done_chats": [],
+ "workers": [
+  "w4"
+ ],
+ "history": [
+  {
+   "at": "20260805T053247Z",
+   "change": {
+    "state": "blocked",
+    "blocker": "chat-source-non-linear",
+    "result": "0/6; evidence verified present, tooling blocker"
+   }
+  }
+ ],
+ "blocker": "chat-source-non-linear",
+ "result": "0/6; evidence verified present, tooling blocker",
+ "updated_at": "20260805T053247Z"
+}

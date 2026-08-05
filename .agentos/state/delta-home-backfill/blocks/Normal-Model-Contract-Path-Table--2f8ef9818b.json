@@ -1,0 +1,28 @@
+{
+ "block_path": "Normal.Model.Contract/Path.Table",
+ "state": "done",
+ "owner": "supervisor:57663916-0731-494a-bfec-070b4a9c69d2",
+ "claimed_at": "20260805T053339Z",
+ "pending_chats": [],
+ "done_chats": [
+  "6d5770642c5c982038f55e8534bd1732433c3fb847686f8f0c6626dd9c3009ac"
+ ],
+ "workers": [
+  "w1"
+ ],
+ "history": [
+  {
+   "at": "20260805T054134Z",
+   "change": {
+    "state": "done",
+    "done_chats": [
+     "6d5770642c5c982038f55e8534bd1732433c3fb847686f8f0c6626dd9c3009ac"
+    ],
+    "pending_chats": [],
+    "result": "all lines homed + HEAD"
+   }
+  }
+ ],
+ "result": "all lines homed + HEAD",
+ "updated_at": "20260805T054134Z"
+}

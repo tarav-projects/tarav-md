@@ -194,31 +194,31 @@ States: `planned`, `in-progress`, `blocked`, `done`.
 | 0.2 | Redesigned Chat Index concept and compatibility contract | chatlas md + agentos md | 0.1 | done | Delta/HEAD v2 contract landed |
 | 0.3 | Migration and validation fixture plan | chatlas md/py | 0.1, 0.2 | done | v1 compatibility plus medium-chat v2 fixtures |
 | 1.1 | User-turn-anchored reasoning-unit storage | chatlas py | 0.2, 0.3 | done | `capture.json` v2, `deltas/`, and `HEAD.md` |
-| 1.2 | Line home and provenance dossier | chatlas py + anchory | 0.2 | in-progress | oldest-Delta home is live; maintained provenance cargo remains deferred |
-| 1.3 | Foreground incremental Chat Index capture | chatlas skill/py | 1.1, 1.2 | in-progress | tail mechanics/workflow verified; real 11-turn maintenance pass remains |
+| 1.2 | Line home and provenance dossier | chatlas py + anchory | 0.2 | done | v5 line dossier, monotonic observations/context, Known.Origin, and recomputed oldest-Delta home |
+| 1.3 | Foreground incremental Chat Index capture | chatlas skill/py | 1.1, 1.2 | done | Capture.Plan apply plus real Delta-only maintenance preserve complete HEAD |
 | 1.4 | Retrospective rebuild and legacy compatibility | chatlas skill/py | 1.1, 1.2 | done | v1 remains readable; v2 is the only write target |
 | 1.5 | Chat Index query, validation, and behavioral tests | chatlas py + testground | 1.1-1.4 | done | 382-test suite; medium-session growth/revision/idempotency E2E |
 | 2.1 | Project Support Chats registry and maintenance workflow | agentos md + chatlas py | existing 606 Impl.Req | done | `notes/live/606-project-support-chats-impl-req.md` |
-| 2.2 | Project-line Chat-home POI checks | agentos md/py + chatlas py | 1.2, 2.1 | planned | findings are non-blocking |
-| 2.3 | Per-chat reconciliation cursors and incremental scan | agentos/chatlas | 1.5, 2.1 | planned | - |
-| 2.4 | Live reconciliation report and agendix capture workflow | agentos md | 2.2, 2.3 | planned | uses current Project Index unchanged |
-| 2.5 | Agentos-pkg compatibility pilot | agentos-pkg | 2.1-2.4 | planned | learning evidence for Phase 3 |
-| 2A.1 | Compatibility-system observation report | agentos md | 2.5 | planned | Phase 3 gate |
-| 3.1 | Final Project Index product and file-format contract | agentos md | 2A.1 | planned | minimal issues-folder extension selected; Issue.Block and surface contracts remain |
-| 3.2 | Project Index migration workflow | agentos md/py | 3.1 | planned | - |
-| 3.3 | Capture, grounding, and linter cutover | agentos md/py/cli | 3.2 | planned | - |
-| 3.4 | Cold-read and maintenance validation | testground + pilot project | 3.3 | planned | - |
-| 3.5 | Retire old Project Index structure | agentos md | 3.4 | planned | explicit decision gate |
+| 2.2 | Project-line Chat-home POI checks | agentos md/py + chatlas py | 1.2, 2.1 | done | one bulk advisory HEAD/Delta/home/dossier coverage audit |
+| 2.3 | Per-chat reconciliation cursors and incremental scan | agentos/chatlas | 1.5, 2.1 | done | project-local current/append-only/revised/reset cursor model |
+| 2.4 | Live reconciliation report and agendix capture workflow | agentos md | 2.2, 2.3 | done | structured candidates plus grounded Issue.Block routing |
+| 2.5 | Hugentics compatibility pilot | agentos-hugentics | 2.1-2.4 | done | real open bootstrap issue and current-chat Delta backfill |
+| 2A.1 | Compatibility-system observation report | agentos md | 2.5 | done | Impl.Req 608 records pilot debt/noise and the low-migration cutover decision |
+| 3.1 | Final Project Index product and file-format contract | agentos md | 2A.1 | done | existing layout retained with one first-class `issues/` surface |
+| 3.2 | Project Index migration workflow | agentos md/py | 3.1 | done | Hugentics pilot preserves exact moved line content and anchors |
+| 3.3 | Capture, grounding, and linter cutover | agentos md/py/cli | 3.2 | done | issue policy, review resolution, dossier context, and reconciliation checks composed |
+| 3.4 | Cold-read and maintenance validation | tests + pilot project | 3.3 | done | synthetic lifecycle plus real Hugentics issue/audit/Skillware pass |
+| 3.5 | Retire old Project Index structure | agentos md | 3.4 | done | obsolete multi-HEAD proposal rejected; compatible chapters/appendix/agendix retained with `issues/` added |
 
 ## Decision.Gates
 
 | Gate | Required evidence | State |
 |---|---|---|
 | Chat.Index.Design.Ready | current implementation map, settled semantic unit, compatibility/migration contract | met |
-| Chat.Index.Pilot.Ready | foreground and retrospective capture pass representative behavioral tests | open |
-| Project.Integration.Proven | support-chat routing, home POIs, incremental reconciliation, useful pilot reports | open |
-| Project.Index.Redesign.Ready | compatibility observation report shows the provisional target solves observed needs | open |
-| Old.Project.Index.Retirable | migrated current model, cold-read success, capture/grounding/linter cutover verified | open |
+| Chat.Index.Pilot.Ready | foreground and retrospective capture pass representative behavioral tests | met |
+| Project.Integration.Proven | support-chat routing, home POIs, incremental reconciliation, useful pilot reports | met |
+| Project.Index.Redesign.Ready | compatibility observation report shows the provisional target solves observed needs | met |
+| Old.Project.Index.Retirable | migrated current model, cold-read success, capture/grounding/linter cutover verified | met — the compatible structure was extended rather than replaced |
 
 ## Session.Notes
 
@@ -238,12 +238,9 @@ States: `planned`, `in-progress`, `blocked`, `done`.
 
 ### Open Design Questions
 
-- exact causal-scope rule over branch and fork lineage
-- maintained line-anchor cargo schema for `Line.Provenance` and `Known.Origin`
-- reconciliation cursor identity and cross-chat scheduling
-- exact `Issue.Block` identity and rendering
-- surface-specific Index.Line type sets and anchor gates
-- eventual placement of support and reconciliation mechanics
+- exact causal-scope rule over branch and fork lineage; the first implementation deliberately assumes linear chats
+- richer Issue.Block rendering, tags, and surface-specific preferred line-type vocabularies after the bootstrap issue is used
+- qualification of Issue identities if one line dossier participates in identically numbered Issue.Blocks from several Project Index namespaces
 
 ### Explicitly Deferred
 
@@ -259,3 +256,5 @@ States: `planned`, `in-progress`, `blocked`, `done`.
 - 2026-08-03: linked the active `Project.Support.Chats` implementation as an in-progress dependency rather than duplicating its execution plan
 - 2026-08-04: implemented and verified the chronological Delta/HEAD v2 surface, oldest-Delta Line.Home, v1 read compatibility, and medium-session E2E coverage
 - 2026-08-04: implemented read-only incremental tail maintenance with current, append-only, expanded, revised, diverged, and blocked states; active-session smoke found 11 pending turns and left the retained surface unchanged
+- 2026-08-05: Impl.Req 608 completed v5 line dossiers, bulk Project/Chat coverage, incremental reconciliation, first-class Issue.Blocks, and the low-migration Project Index cutover
+- 2026-08-05: migrated the first independent `agentos-hugentics` Index, left one healthy grounded bootstrap issue open, and backfilled the real supporting chat through a Delta-only Capture.Plan that preserved Chat HEAD
