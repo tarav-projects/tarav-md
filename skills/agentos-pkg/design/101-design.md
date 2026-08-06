@@ -99,28 +99,28 @@
 - the guarantee comes from redundant placement: the same context is wired into many `Context.Hook`s so the system cannot miss it
 - it is the bootstrap tier — it carries the minimal vocabulary and routing keys the later tiers need to act at all
 - only `Workflow.Neutral.Skill` orientation belongs here — non-steering, safe to always load; its cost is paid every session, so it stays minimal
-- [CT] `Cold.Loading` surfaces are linter-controlled because they shape every agent run before task-specific routing begins
+- [CT] `Cold.Loading` surfaces are linter-controlled because they shape every agent run before task-specific routing begins ^c20260709-33u
 
 ****
 
 ## Cold.Loading.Hook
 
-- [DF] `Cold.Loading.Hook` is a `Context.Hook` that the harness loads automatically before the agent acts
-- [CT] it injects a `Cold.Loading.Surface`
-- [EX] project-root `AGENTS.md` is a `Cold.Loading.Hook` when the harness reads it before the agent acts
-- [EX] skill descriptions are `Cold.Loading.Hook`s when the harness advertises them before skill selection
-- [CT] its loaded content is linter-controlled because every session receives it
+- [DF] `Cold.Loading.Hook` is a `Context.Hook` that the harness loads automatically before the agent acts ^c20260709-34u
+- [CT] it injects a `Cold.Loading.Surface` ^c20260709-35u
+- [EX] project-root `AGENTS.md` is a `Cold.Loading.Hook` when the harness reads it before the agent acts ^c20260709-36u
+- [EX] skill descriptions are `Cold.Loading.Hook`s when the harness advertises them before skill selection ^c20260709-37u
+- [CT] its loaded content is linter-controlled because every session receives it ^c20260709-38u
 
 ****
 
 ## Cold.Loading.Surface
 
-- [DF] `Cold.Loading.Surface` is a surface whose content is guaranteed present at `Cold.Loading`
-- [CT] it is identified by harness loading behavior, not only by file name or path
-- [EX] a project-root `AGENTS.md` loaded before the agent acts is a `Cold.Loading.Surface`
-- [CT] a `Context.Hook` is the injection mechanism; `Cold.Loading.Surface` is the loaded content surface
-- [CT] `Package.Driver` content may be projected into a `Cold.Loading.Surface` when the package must be reachable from cold
-- [CT] `Cold.Loading.Surface`s are linter-controlled because every session pays their context cost
+- [DF] `Cold.Loading.Surface` is a surface whose content is guaranteed present at `Cold.Loading` ^c20260709-39u
+- [CT] it is identified by harness loading behavior, not only by file name or path ^c20260709-40u
+- [EX] a project-root `AGENTS.md` loaded before the agent acts is a `Cold.Loading.Surface` ^c20260709-41u
+- [CT] a `Context.Hook` is the injection mechanism; `Cold.Loading.Surface` is the loaded content surface ^c20260709-42u
+- [CT] `Package.Driver` content may be projected into a `Cold.Loading.Surface` when the package must be reachable from cold ^c20260709-43u
+- [CT] `Cold.Loading.Surface`s are linter-controlled because every session pays their context cost ^c20260709-44u
 
 ****
 

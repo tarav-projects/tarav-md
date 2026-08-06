@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **Goal:** bring `agentos.tournament` and `agentos.bloberia` back into agreement with the index after the capture pass of `^c20260806-5u`…`^c20260806-45u`. The engine must stop holding a pool, stop authoring match prompts, and stop computing identity; Bloberia must gain record namespaces; the tournament must gain a real depot.
-- **Status:** ready for execution; not started.
+- **Status:** executed. All seven slices are implemented, the full `agentos-py` suite passes at 750 tests, and the engine was verified end to end against live `claude-code` judges on a namespaced global depot. Changes are uncommitted for review.
 - **Source design:** `agentos-pkg/design/111-design.md` (`Agentos.Tournament`, `Tournament.Definition`, `Tournament.Hook`, `Tournament.Match`, `Tournament.Judge`, `Tournament.Depot`) and `agentos-pkg/design/109-design.md` (`Agentos.Bloberia`, `Bloberia.Record.Namespace`).
 - **Prior implementation:** `notes/live/610-agentos-tournament-v0-impl-req.md` built the v0 this request corrects. Nothing in 610 was wrong when written; the design moved.
 - **In scope:** Bloberia record namespaces; a `Tournament.Depot` with a global default and `definitions/` + `records/<tournament-id>/`; the rewritten hook surface (`match_players`, `present_player`, `match_identity`, `verdict_slot`); engine-composed `Match.Verbatim` with position labels the consumer cannot touch; a `tournament.pairing` library replacing the engine sampler; a report that folds players from verdicts; the CLI surface that follows from all of it.
@@ -99,6 +99,7 @@ One live defect follows from the third: `_default_identity` hashes the rendering
 - GREEN: implement in `core.py`, then expose `--namespace` in `bloberia/commands.py`.
 - Check: `uv run pytest tests/test_bloberia.py -q`.
 - Observable: `agentos bloberia create --depot X --namespace a/b --value-json '{}'` then `query --namespace a` returns it and `query --namespace c` does not.
+- **Done** — `core.py` gains `_validate_namespace`, `_record_paths`, `_locate`, and `namespaces()`; `commands.py` gains `--namespace` on create/get/edit/query. 11 new tests in `tests/test_bloberia_namespace.py`, existing `tests/test_bloberia.py` unchanged and green.
 
 ### Slice 2 - Tournament depot and store
 
@@ -107,6 +108,7 @@ One live defect follows from the third: `_default_identity` hashes the rendering
 - GREEN: update `store.py` and add the depot resolution helper.
 - Check: `uv run pytest tests/test_tournament_store.py -q`.
 - Observable: a depot on disk shows `definitions/<tid>/` and `records/<tid>/`.
+- **Done** — new `depot.py` owns `resolve_depot_root`; `store.py` mints the tournament id, writes into the per-tournament namespace, and lists by directory. `Tournament` drops `players`. 6 tests in `tests/test_tournament_depot.py`, `tests/test_tournament_store.py` rewritten.
 - Depends on Slice 1.
 
 ### Slice 3 - Hook surface rewrite
@@ -116,6 +118,7 @@ One live defect follows from the third: `_default_identity` hashes the rendering
 - GREEN: rewrite `hooks.py`.
 - Check: `uv run pytest tests/test_tournament_hooks.py -q`.
 - Observable: a three-line definition file loads and its hooks resolve.
+- **Done** — `hooks.py` rewritten: `_require_hooks` fails at load naming every missing required hook, `HookContext` drops `presented`/`rendering` and gains `criteria`/`player`/`presentations`/`match_index`. 15 tests.
 - Depends on nothing; may run before Slices 1-2 if convenient.
 
 ### Slice 4 - Engine framing and the match loop
@@ -125,6 +128,7 @@ One live defect follows from the third: `_default_identity` hashes the rendering
 - GREEN: rewrite the composition and loop in `runner.py`.
 - Check: `uv run pytest tests/test_tournament_runner.py -q`.
 - Observable: one match runs end to end against a stub judge with no consumer-authored prompt.
+- **Done** — `runner.py` rewritten around `compose_verbatim`; `_presented_order` now shuffles players and presentations together; `_collect_pairs` drives the loop from the hook. 14 tests.
 - Depends on Slice 3.
 
 ### Slice 5 - Pairing library
@@ -134,6 +138,7 @@ One live defect follows from the third: `_default_identity` hashes the rendering
 - GREEN: implement, then delete the sampler.
 - Check: `uv run pytest tests/test_tournament_pairing.py -q`.
 - Observable: a definition importing `round_robin` runs a full pool without writing selection logic.
+- **Done** — `pairing.py` with `round_robin`, `least_played`, `random_pair`, `played_counts`. `sampling.py` and its test file deleted. 10 tests, one of which greps the engine to prove it never imports the library.
 - Depends on Slice 3.
 
 ### Slice 6 - Report folds from verdicts
@@ -143,6 +148,7 @@ One live defect follows from the third: `_default_identity` hashes the rendering
 - GREEN: update `report.py`.
 - Check: `uv run pytest tests/test_tournament_report.py -q`.
 - Observable: `tournament show` reports a player whose line was edited out of the definition.
+- **Done** — ran out of order, immediately after Slice 2 (see Deviation D1). `report.py` builds its rows from verdict envelopes. 13 tests.
 - Depends on Slice 2.
 
 ### Slice 7 - CLI, docs, and full-suite green
@@ -152,6 +158,7 @@ One live defect follows from the third: `_default_identity` hashes the rendering
 - GREEN: implement, then run the full `agentos-py` suite.
 - Check: `uv run pytest -q` and one live `agentos tournament run` against a real judge.
 - Observable: a tournament is created, run, and shown from the terminal with no `--depot`.
+- **Done** — `commands.py` updated, `AGENTS.md` `Tournament System` rewritten and `Bloberia System` extended. 10 tests. Live: 3 concurrent `claude-code` matches, 0 failures, `bloberia check` clean on the namespaced depot.
 - Depends on every prior slice.
 
 ## Impl.Log
@@ -166,6 +173,16 @@ One live defect follows from the third: `_default_identity` hashes the rendering
 - **`pairing.py` ships inside `agentos.tournament`.** A separate package would be truer to `^c20260806-15u` ("never in the engine") but buys nothing at this size. The boundary is enforced by the engine never importing it, and that is worth an explicit test rather than a convention.
 - **Flat-depot reads are kept deliberately.** `No.Legacy.Allowed` would normally delete the untyped path, but `^c20260806-34u` states the fallback as design, not compatibility debt.
 
+### Execution
+
+- **Gate `^c20260806-46u`** — the `--impl --dev --AUTO` turn authorized both phases. Git checkpoints were taken in `agentos-py`, `agentos-cli`, and `agentos-md` before the first edit.
+- **Result.** 750 tests pass across the whole `agentos-py` suite (up from 705: +11 bloberia namespace, +6 depot, +10 pairing, +2 report, and net additions across the rewritten hook/runner/command suites, less the 7 deleted sampler tests).
+- **Live verification.** A definition importing `pairing.round_robin` ran 3 concurrent matches against `claude-code` / `claude-sonnet-4-5-20250929`. 0 failures. The deliberately weak player (`- [CT] stuff should probably be handled well`) lost both its matches (w0 l2 m2) — the tail behaviour the system exists to surface. The depot shows `definitions/<tid>/` beside `records/<tid>/`, and `agentos bloberia check` reports 0 errors on it.
+- **Uncommitted.** Implementation changes are left uncommitted for user review.
+
 ### Deviations
 
-- Recorded during execution.
+- **D1 — Slice 6 ran immediately after Slice 2.** Removing `players` from `Tournament` breaks `report.py` in the same edit, so deferring the report to its planned position would have left the suite red across four slices. The plan's dependency note was right; its ordering was not. No slice content changed.
+- **D2 — the shuffle had to carry presentations, not just players.** The plan described shuffling the pair and composing from presentations, but the old `_presented_order` shuffled players alone. Presenting after the shuffle would have called `present_player` twice per match and let a non-deterministic hook disagree with itself; presenting before and shuffling only names would have mismatched each presentation to the wrong position. `_presented_order` now shuffles `zip(players, presentations)` and returns both, which is the only ordering that keeps a single presentation per player bound to its position.
+- **D3 — one report test asserted the declared-pool order.** `test_report_emits_no_ranking_or_ordering` checked `["a", "b", "c"]`, which only existed because the pool was declared. Rather than weaken it, the test now records a match whose *loser* is encountered first, so the assertion still proves no ranking is applied while ranging over a verdict-derived set.
+- **D4 — hook errors needed catching in the fan-out.** With identity now a required hook, a bad `match_identity` return raises `HookReturnError` mid-match. `run_pool` caught only `CliError`, so one bad hook would have aborted every sibling. It now catches `HookError` too and records the match as a failure row, which is what the failure-envelope design already promised.
