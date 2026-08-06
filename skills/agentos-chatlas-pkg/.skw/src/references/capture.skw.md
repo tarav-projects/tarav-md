@@ -163,7 +163,7 @@ Support members must be qualifying human user turns at or before that Delta's ho
 
 Chatlas ensures the whole `Chat.Support.Set` of each line in one ordered batch during `apply`: equal canonical line content with equal support reuses one anchor, and different canonical contents never share one. Preview a single relationship with `agentos chatlas anchory preview --line-content ... --member ... --hint ... --detail context` only while investigating; the workflow itself does not register anchors by hand.
 
-The Markdown occurrence records Delta materialization. A new line-bound anchor uses v6 and stores the immutable line subject, grounding members, predecessors, and optional issue context without accumulating provenance observations. When a grounding member is also the containing Delta's horizon, Chatlas marks that member with `delta.horizon`; otherwise Delta containment remains sufficient attachment evidence.
+The Markdown occurrence records Delta materialization. A new line-bound anchor uses v6 and stores the immutable line subject, grounding members, predecessors, and optional issue context without accumulating provenance observations. Where a line is attached is not recorded: Delta containment is the attachment, and `Line.Home` is derived from it.
 
 ## 7. Resolve `Chat.Index.HEAD`
 
@@ -210,7 +210,7 @@ Append-only growth after scaffold is not a failure. `apply` installs exactly the
 agentos chatlas chat-index audit --identity-hash <identity-hash> --json
 ```
 
-One read-only pass replaces the former per-anchor and per-line inspection loop. It derives the surface from its directory and Markdown, checks identity placement, source linearity and prefix compatibility, Delta and HEAD horizons against the authoritative chat, one trailing anchor per line, anchor resolution and exact subject hashes, anchor/content collisions, Delta support horizons and attachment markers, `Line.Home` selection, and HEAD-only support. It exits nonzero when blocking findings exist and never repairs what it inspects.
+One read-only pass replaces the former per-anchor and per-line inspection loop. It derives the surface from its directory and Markdown, checks identity placement, source linearity and prefix compatibility, Delta and HEAD horizons against the authoritative chat, one trailing anchor per line, anchor resolution and exact subject hashes, anchor/content collisions, Delta support horizons, `Line.Home` selection, and HEAD-only support. It exits nonzero when blocking findings exist and never repairs what it inspects.
 
 A `head-line-without-delta-home` finding is advisory reconciliation work, not a failed capture: keep the HEAD-first edition, record the finding, and reconcile it on a later pass.
 

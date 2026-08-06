@@ -13,7 +13,6 @@
 - line-bound records add immutable `subject` identity for the versioned hash of `Line.Type + body` without trailing anchors
 - `predecessors` records the duplicate-free former anchors whose support contributed to the relationship; it may be empty for newly authored lines
 - v6 retains monotonic `issue_context` and removes accumulated provenance observations; materialization and `Line.Home` are derived from exact Delta containment and authoritative tape order
-- a support member may carry the empty `delta.horizon` `Turn.Type` when that same turn is the containing Delta's horizon; the marker records attachment without changing grounding meaning
 - v3/v4/v5 remain readable, but new Index grounding supplies explicit line content and writes v6
 - the project is not a field — it is derivable from the session inside Chatlas; duplicating it invites desync
 
@@ -31,7 +30,7 @@ example record:
   "subject": {"kind": "index.line", "canonical_schema": "agentos.index-line-content.v1", "content_hash": "sha256:<hex>"},
   "predecessors": ["c20260707-0u"],
   "issue_context": ["Issue.I0001"],
-  "members": [{"session": "<full identity_hash>", "turn_id": "turn-r6894", "turn_hash": "<sha256>", "at": "2026-07-07T18:38:08.127Z", "types": {"delta.horizon": {}}}]
+  "members": [{"session": "<full identity_hash>", "turn_id": "turn-r6894", "turn_hash": "<sha256>", "at": "2026-07-07T18:38:08.127Z"}]
 }
 ```
 
@@ -42,4 +41,4 @@ example record:
 - `session + turn_id` locates the grouping while `turn_hash` verifies it; absent or changed turns fail stale instead of selecting nearby evidence
 - one anchor may contain members from several sessions; resolution returns one independent `Chatlas.Session.Model` neighborhood per member and never merges sessions
 - a line-dossier subject mismatch is `Index.Linter/Anchor.LineDrift`; different line contents sharing one anchor are `Index.Linter/Anchor.Collision`
-- line-record enrichment may append issue context and Delta attachments, but cannot rewrite canonical subject, grounding meaning, or predecessors; materialization history is recomputed rather than accumulated
+- line-record enrichment may append issue context, but cannot rewrite canonical subject, support meaning, or predecessors; Delta attachment and materialization history are derived from the surface rather than recorded
