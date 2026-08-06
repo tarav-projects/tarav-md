@@ -7,7 +7,7 @@
 
 # Anchory.Link.Operation.Module
 
-> $kw: --from Anchory.System --from Edition.Approval.Token --from Index.Chat.Capture --from Index.Line --from Index.Linking --from Line.Verbatim.Gate --from Support.Set --from Touch.Authority.Surface --from Touched.Data --from Touched.Support.Network --from Workflow.Neutral
+> $kw: --from Anchory.System --from Edition.Approval.Token --from Index.Chat.Capture --from Index.Line --from Line.Verbatim.Gate --from Support.Set --from Touch.Authority.Surface --from Touched.Data --from Touched.Support.Network --from Workflow.Neutral
 > --dev-from references/index-context-assembly.skw.md
 
 Use this module when a caller needs the current chat-backed `Support.Reference` minted for an index line: the linking primitive behind ontology, appendix, and agendix provenance.
@@ -16,7 +16,7 @@ This module is `Workflow.Neutral`: it produces an anchor and returns it without 
 
 Anchory is the current realization of `Support.Reference`; its Chatlas record realizes `Support.Set`, and typed record cargo realizes `Support.Reference.Metadata`.
 
-This implementation composes `Anchory.System`, `Index.Linking`, and `Index.Chat.Capture` to connect an `Index.Line` to qualifying `Touched.Data` on `Touch.Authority.Surface`. The resulting edges participate in `Touched.Support.Network`; tokenized review metadata serves `Edition.Approval.Token` and `Line.Verbatim.Gate`.
+This implementation composes `Anchory.System` and `Index.Chat.Capture` to connect an `Index.Line` to qualifying `Touched.Data` on `Touch.Authority.Surface`. The resulting edges participate in `Touched.Support.Network`; tokenized review metadata serves `Edition.Approval.Token` and `Line.Verbatim.Gate`.
 
 ## Linking Pipeline
 

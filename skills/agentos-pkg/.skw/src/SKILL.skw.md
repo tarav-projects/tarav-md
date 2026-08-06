@@ -250,13 +250,6 @@ This `Package.Driver.Router` is a specialized `Routing.Table` that sends a packa
 > --when the caller explicitly requests a deterministic semantic commit workflow
 > --then load agentos-git-commit
 
-> $kw: ^route-project-doctor --router-row --table ^package-driver-router
-> --match semantic
-> --to agentos-project-doctor
-> --load @<agentos-project-doctor>/SKILL.md
-> --when the caller wants a project-health or Agentos-conformance diagnosis
-> --then load agentos-project-doctor
-
 > $kw: ^route-chatlas-package --router-row --table ^package-driver-router
 > --match semantic
 > --to agentos-chatlas-pkg

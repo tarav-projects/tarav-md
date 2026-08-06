@@ -6,7 +6,7 @@ This module is `Workflow.Neutral`: it produces an anchor and returns it without 
 
 Anchory is the current realization of `Support.Reference`; its Chatlas record realizes `Support.Set`, and typed record cargo realizes `Support.Reference.Metadata`.
 
-This implementation composes `Anchory.System`, `Index.Linking`, and `Index.Chat.Capture` to connect an `Index.Line` to qualifying `Touched.Data` on `Touch.Authority.Surface`. The resulting edges participate in `Touched.Support.Network`; tokenized review metadata serves `Edition.Approval.Token` and `Line.Verbatim.Gate`.
+This implementation composes `Anchory.System` and `Index.Chat.Capture` to connect an `Index.Line` to qualifying `Touched.Data` on `Touch.Authority.Surface`. The resulting edges participate in `Touched.Support.Network`; tokenized review metadata serves `Edition.Approval.Token` and `Line.Verbatim.Gate`.
 
 ## Linking Pipeline
 

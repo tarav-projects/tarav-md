@@ -2,11 +2,11 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "74f73f89eb6ebbfcff1ff6e8d8674d47c1701ed1a7ed1987edf324e39be3462f",
+      "output_sha256": "eb9f85ad6f86a7f63a580228339b3ef690f6d215dbf508fa5e2a511bed759c1f",
       "recipes": []
     },
     "references/role-chat-grounding.md": {
-      "output_sha256": "455830485bd46a042298f94b2227a019c54858399f84114ea387a0669c0a407a",
+      "output_sha256": "d4c5d05722cd7c053bf5fc472dc9e3af6147c0efdafd23fe37cb7ea80a0cca60",
       "recipes": []
     }
   },

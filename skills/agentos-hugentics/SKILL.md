@@ -113,7 +113,6 @@ The public flags below call the single running `Batchy.Router`. A trailing value
 | `--back-link` | - | explicit-or-semantic | select Anchory.Back.Link.Operation.Module |
 | `--gr-survey` | `--gr-scout`<br>`--gr-scan`<br>`--gr-linker` | explicit-or-semantic | select Grounding.Survey.Workflow.Module |
 | `--gr-review` | - | explicit-or-semantic | select Grounding.Review.Workflow.Module |
-| `--enrich` | - | explicit-or-semantic | select Index.Enrichment.Workflow.Module |
 | `--impl` | `--implementation` | explicit-or-semantic | enter Implementation.Workflow.Router.Module and resolve exactly one implementation workflow from flags, input, conversation, or a declared default |
 | `--impl --design` | `--impl-design` | explicit-or-semantic; default: implementation input without an `Impl.Req` | select Implementation.Design.Workflow.Module |
 | `--impl --review` | `--review` | explicit-or-semantic | select Implementation.Review.Workflow.Module |
@@ -147,7 +146,6 @@ Canonical module identity is explicit and independent from invocation spelling. 
 | `Hugentic.Capture.Workflow.Module` | `references/capture.md` | `--capture`<br>`--agendix`; default: Alignment.Mode::Autonomous<br>`--design`<br>`--capture --audit` |
 | `Grounding.Survey.Workflow.Module` | `references/gr-survey.md` | `--gr-survey`, `--gr-scout`, `--gr-scan`, `--gr-linker` |
 | `Grounding.Review.Workflow.Module` | `references/gr-review.md` | `--gr-review` |
-| `Index.Enrichment.Workflow.Module` | `references/enrich.md` | `--enrich` |
 | `Implementation.Design.Workflow.Module` | `references/impl/design.md` | `--impl --design`, `--impl-design`; default: implementation input without an `Impl.Req` |
 | `Implementation.Review.Workflow.Module` | `references/impl/review.md` | `--impl --review`, `--review` |
 | `Implementation.Execute.Workflow.Module` | `references/impl/execute.md` | `--impl --execute`, `--execute`, `--exec`; default: `Impl.Req` input |
@@ -202,7 +200,7 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 ### User.Command::Approve
 - accept an approval-ready index draft in its current form without writing it
 - triggers: `::approve`, `::approved`
-- available: when `--capture`, direct `--edit`, a `Capture.Offer`, or an `--enrich` capture offer has one or more approval-ready drafts
+- available: when `--capture`, direct `--edit`, or a `Capture.Offer` has one or more approval-ready drafts
 - action: mark the resolved target approved and unlanded
 - policy: index workflows mint and advertise only `::approve <token>`; a bare approval is a supported semantic approval form in the general command model but does not cross this workflow's `Line.Verbatim.Gate`
 
@@ -412,15 +410,6 @@ Selection cardinality: `many`.
 - loads: `references/gr-review.md`
 - when: the caller wants a `Gr.Req` reviewed
 - then: select Grounding.Review.Workflow.Module
-
-### `^route-index-enrichment`
-
-- match: `explicit-or-semantic`
-- flags: `--enrich`
-- destinations: `Index.Enrichment.Workflow.Module`
-- loads: `references/enrich.md`
-- when: the caller wants a block enriched
-- then: select Index.Enrichment.Workflow.Module
 
 ### `^route-implementation-namespace`
 

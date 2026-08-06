@@ -79,7 +79,7 @@ Roles are not separate workflows. They do not replace the supervision brief, tar
 
 Available roles:
 
-- `references/role-chat-grounding.md` — propose `Index.Linking` candidates from observed transcript turns: anchor candidates (turn locator + hint) mapped to target blocks
+- `references/role-chat-grounding.md` — propose support-reference candidates from observed transcript turns: anchor candidates (turn locator + hint) mapped to target blocks
 
 Role discipline:
 
@@ -200,7 +200,6 @@ Rules:
 > $kw: --from Batchy.Skill
 > $kw: --from Batchy.Skill.Banner
 > $kw: --from Batchy.Skill.Help
-> $kw: --from Index.Linking
 > $kw: --from Skill.Arg
 > $kw: --from Soft.Program
 > $kw: --from Supervisor.Agent

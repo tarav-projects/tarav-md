@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "8abe0f994503409652c5d2304a13a5505e5f03ab4570ae6d1fc925b67dd56e54",
+      "output_sha256": "bf339ddff3fa92b3d7228a558a61042823214530c49f9a2533f9997f98ea8ba0",
       "recipes": [
         {
           "heading": "^hugentics-batchy-runtime-contract",
@@ -156,10 +156,6 @@
           }
         }
       ]
-    },
-    "references/enrich.md": {
-      "output_sha256": "a9286bffa83f4dddb8a691aba50b193c542d2c1bf826f62b06e52c875d4867e0",
-      "recipes": []
     },
     "references/gr-review.md": {
       "output_sha256": "91bc6673e2fe7fb857dcc6e6b7c26f10c2470c8f10be516914966480882b5c09",
@@ -345,7 +341,7 @@
       "recipes": []
     },
     "references/link.md": {
-      "output_sha256": "35a9e1bcffa115e9a610f3b2d1114fc84a62ff18245fcadce9e70349b77fcaff",
+      "output_sha256": "4e46d2740656b623f089bea88bb4e2330b82d7049957bcb7204fb48611edac09",
       "recipes": []
     },
     "references/parking-note.md": {
@@ -357,7 +353,7 @@
       "recipes": []
     },
     "references/search.md": {
-      "output_sha256": "199fce74408f835e9f88b7a86bb47ac05cb252b819389d8a99c8b60db6787750",
+      "output_sha256": "c19413dd44adb24610676e27be3ad81c2d95a3b716320d743632870f931ae72b",
       "recipes": []
     },
     "references/session-router.md": {

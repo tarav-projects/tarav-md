@@ -1,10 +1,10 @@
 # Supervisor.Role: Chat Grounding
 
-`role-chat-grounding` is an additive `Supervisor.Role` for spotting `Index.Linking` candidates in an observed target session.
+`role-chat-grounding` is an additive `Supervisor.Role` for spotting `Support.Reference` candidates in an observed target session.
 
 The role watches the transcript for turns that materially ground durable concepts — evidence a grounding line should eventually anchor. It proposes anchor candidates: a turn locator plus a one-sentence hint, mapped to a target block. It does not mint anchors, write the index, mutate the target session, or decide canonical design truth.
 
-Model context: grounding is a line property (`Index.Line`) — `Anchory.Anchor`s trail on the lines they support and resolve through `Chatlas.Anchory`. Writing them is `Index.Linking` — a user-gated index edit. This role feeds that workflow; it never runs it.
+Model context: grounding is a line property (`Index.Line`) — `Anchory.Anchor`s trail on the lines they support and resolve through `Chatlas.Anchory`. This role feeds the applicable capture or support-reference maintenance workflow; it never runs it.
 
 ## Activation
 
@@ -95,8 +95,7 @@ When checking new turns:
 - Do not mint anchors (`agentos anchory register`) from this role.
 - Do not rewrite candidate evidence into stable index wording unless asked.
 - Do not perform Agentos Index writes from this role.
-- If the user wants grounding written, route through `Index.Linking` and respect its gates.
+- If the user wants grounding written, route through the applicable capture or support-reference maintenance workflow and respect its gates.
 
 > $kw: --from Grounding.Hugentic.Authority
 > $kw: --from Index.Line
-> $kw: --from Index.Linking

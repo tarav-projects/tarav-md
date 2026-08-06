@@ -33,10 +33,8 @@
 ## Grounding.Retrieval.Boundary
 
 - `Grounding.Retrieval.Boundary` separates finding candidate evidence from linking it
-- retrieval finds candidates; `Index.Linking` selects, anchors, and cites accepted evidence on a block
 - retrieval quality affects linking quality, but retrieval mechanics are not the definition of grounding
 - search engines, vector databases, keyword indexes, and chatlas queries are candidate-discovery mechanisms
-- neither `Index.Linking` nor `Context.Grounding` depends on a specific retrieval backend
 
 ****
 

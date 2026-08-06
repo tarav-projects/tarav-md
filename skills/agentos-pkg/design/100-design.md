@@ -164,7 +164,6 @@
 - an anchor whose turn no longer supports the current content is dropped — the edge demotes (`Demoted.Index.Line`); git and the anchory history keep the account
 - an anchor unrelated to the line it trails is dropped: relatedness is the retention gate
 - git history provides the block diff between an anchor's insertion and the current block
-- it is part of `Index.Linking` maintenance — an index edit, user-gated like any other
 
 ****
 

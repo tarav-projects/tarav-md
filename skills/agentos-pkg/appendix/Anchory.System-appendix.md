@@ -90,7 +90,6 @@
 - every Chatlas Anchory action uses the active Chatlas depot
 - Chatlas owns traversal from an `Anchory.Record` to the session and evidence neighborhood
 - the reading rule after resolution: the anchor lands in an evidence neighborhood — read the landing turn and around it
-- `Index.Linking` writes anchors into grounding lines instead of embedding provider-coupled chat addresses
 - full `Context.Grounding` follows those anchors through Anchory and then through Chatlas
 - `Index.Agendix` can use anchors for its hard provenance rule
 
@@ -100,9 +99,3 @@
 
 - open: dictionary file format and sharding
 - open: whether `File.Mention` becomes an Anchory application or retains its independent resolution model
-
-****
-
-## Anchory.System/Grounding.Head
-
-- [GR] the user corrects Anchory's scope — an Agentos subsystem rather than per-project, coupled with Chatlas ^c20260706-4u

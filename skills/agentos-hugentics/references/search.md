@@ -46,7 +46,6 @@ This is the read-only `Touched.Decision.Cycle` entry: it classifies `Live.Index.
 - parser-backed tools read index surfaces as typed nodes: `RouterEntry` rows, `BlockHeading`s, `KernelLine`s, `MetaLine`s, code fences, and inline spans such as anchors, concept cites, type brackets, and file mentions
 - untyped lines are pre-fence legacy — same authority, just not yet classified
 - a trailing `^c<YYYYMMDD>-<N><tag>` token is the current `Support.Reference` realization: an `Anchory.Anchor` resolving to a Chatlas support set; see `references/link.md`
-- appendix blocks named `Concept.X/Grounding.Head` and `Concept.X/Grounding.Drift` are inert legacy sections from the retired block-grounding scheme, not conceptual content; current grounding lives on the lines themselves (`Index.Line`)
 - `agendix/` files are agent-captured, unreviewed material; grounded lines carry touched authority while any ungrounded live residue carries only index presumption
 
 ## Line Standing

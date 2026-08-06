@@ -217,14 +217,6 @@ Selection cardinality: `many`.
 - when: the caller explicitly requests a deterministic semantic commit workflow
 - then: load agentos-git-commit
 
-### `^route-project-doctor`
-
-- match: `semantic`
-- destinations: `agentos-project-doctor`
-- loads: `@<agentos-project-doctor>/SKILL.md`
-- when: the caller wants a project-health or Agentos-conformance diagnosis
-- then: load agentos-project-doctor
-
 ### `^route-chatlas-package`
 
 - match: `semantic`

@@ -137,7 +137,7 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 ### User.Command::Approve
 - accept an approval-ready index draft in its current form without writing it
 - triggers: `::approve`, `::approved`
-- available: when `--capture`, direct `--edit`, a `Capture.Offer`, or an `--enrich` capture offer has one or more approval-ready drafts
+- available: when `--capture`, direct `--edit`, or a `Capture.Offer` has one or more approval-ready drafts
 - action: mark the resolved target approved and unlanded
 - policy: index workflows mint and advertise only `::approve <token>`; a bare approval is a supported semantic approval form in the general command model but does not cross this workflow's `Line.Verbatim.Gate`
 
@@ -353,14 +353,6 @@ This addressed `Routing.Table` is the package driver's single declarative dispat
 > --load references/gr-review.md
 > --when the caller wants a `Gr.Req` reviewed
 > --then select Grounding.Review.Workflow.Module
-
-> $kw: ^route-index-enrichment --router-row --table ^package-driver-router
-> --flag --enrich
-> --match explicit-or-semantic
-> --to Index.Enrichment.Workflow.Module
-> --load references/enrich.md
-> --when the caller wants a block enriched
-> --then select Index.Enrichment.Workflow.Module
 
 > $kw: ^route-implementation-namespace --router-row --table ^package-driver-router
 > --flag --impl

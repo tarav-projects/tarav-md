@@ -7,7 +7,7 @@
 
 # Index.Search.Operation.Module
 
-> $kw: --from Appendix.Discovery --from Context.Grounding --from Demoted.Index.Line --from Index.Agendix --from Index.Chapter --from Index.Depot --from Index.Grounding --from Index.Line --from Index.Presumption --from Line.Type --from Live.Index.Line --from Open.Inference --from POI.Instance --from Reviewed.Cite.Closure --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from User.Attention
+> $kw: --from Appendix.Discovery --from Context.Grounding --from Demoted.Index.Line --from Index.Agendix --from Index.Chapter --from Index.Depot --from Index.Grounding --from Index.Presumption --from Line.Type --from Live.Index.Line --from Open.Inference --from POI.Instance --from Reviewed.Cite.Closure --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from User.Attention
 > --dev-from references/index-context-assembly.skw.md
 
 Use this module when the caller wants cited index context, conceptual lookup, appendix depth, or the current discussion grounded against the index.
@@ -56,7 +56,6 @@ This is the read-only `Touched.Decision.Cycle` entry: it classifies `Live.Index.
 - parser-backed tools read index surfaces as typed nodes: `RouterEntry` rows, `BlockHeading`s, `KernelLine`s, `MetaLine`s, code fences, and inline spans such as anchors, concept cites, type brackets, and file mentions
 - untyped lines are pre-fence legacy — same authority, just not yet classified
 - a trailing `^c<YYYYMMDD>-<N><tag>` token is the current `Support.Reference` realization: an `Anchory.Anchor` resolving to a Chatlas support set; see `references/link.md`
-- appendix blocks named `Concept.X/Grounding.Head` and `Concept.X/Grounding.Drift` are inert legacy sections from the retired block-grounding scheme, not conceptual content; current grounding lives on the lines themselves (`Index.Line`)
 - `agendix/` files are agent-captured, unreviewed material; grounded lines carry touched authority while any ungrounded live residue carries only index presumption
 
 ## Line Standing

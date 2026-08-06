@@ -723,20 +723,7 @@
 - [CT] because a qualifying `User.Turn` is presently the only registered authority surface, every current touch-evidence descent terminates on `Chat.Surface` and resolves through Chatlas ^c20260729-75u
 - [EX] code, git history, documentation, and runtime state may supply relevant evidence independently of touch provenance ^c20260729-297u
 - [CT] context grounding is read-only and ungated; it changes the agent's context, never a surface ^c20260729-81u
-- [DC] `Index.Linking` is the dual only for touched-index evidence paths: it builds and maintains the references that touch grounding follows ^c20260729-170u
 
-****
-
-## Index.Linking
-
-- `Index.Linking` is constructing and maintaining the index's pointers back to the surfaces it indexes — support on the `Chat.Surface` (or code, or files) for index blocks and lines
-- without the links back, the index cannot be checked for completeness or correctness against the touched record
-- it lands in the block's grounding section (`Concept.X/Grounding`), carried as grounding lines — an `Anchory.Anchor` plus a one-sentence note
-- it is an index edit — user-gated like any edit (`Edition.Trigger.User.Gated`, `Verbatim.User.Gated`); in the `Agendix` linking runs open, agent-driven (dealt with later)
-- [CT] linking accesses chat data only through `agentos chatlas` commands — never provider raw stores or transcript files ^c20260708-10u
-- it is the dual of `Context.Grounding`: linking builds the pointers, grounding follows them
-
-- [DC] linking mostly happens on the edge — anchoring content produced in the current session; self-session discovery by content matching is the entry step ^c20260708-12u
 ****
 
 ## Index.Enrichment
