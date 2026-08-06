@@ -110,9 +110,6 @@ The public flags below call the single running `Batchy.Router`. A trailing value
 | `--check` | `--lint` | explicit-or-semantic | select Index.Check.Operation.Module |
 | `--type` | - | explicit-or-semantic | load Index.Line.Type.Knowledge.Module |
 | `--link` | - | explicit-or-semantic | select Anchory.Link.Operation.Module |
-| `--back-link` | - | explicit-or-semantic | select Anchory.Back.Link.Operation.Module |
-| `--gr-survey` | `--gr-scout`<br>`--gr-scan`<br>`--gr-linker` | explicit-or-semantic | select Grounding.Survey.Workflow.Module |
-| `--gr-review` | - | explicit-or-semantic | select Grounding.Review.Workflow.Module |
 | `--impl` | `--implementation` | explicit-or-semantic | enter Implementation.Workflow.Router.Module and resolve exactly one implementation workflow from flags, input, conversation, or a declared default |
 | `--impl --design` | `--impl-design` | explicit-or-semantic; default: implementation input without an `Impl.Req` | select Implementation.Design.Workflow.Module |
 | `--impl --review` | `--review` | explicit-or-semantic | select Implementation.Review.Workflow.Module |
@@ -144,8 +141,6 @@ Canonical module identity is explicit and independent from invocation spelling. 
 | Canonical module | Load target | Routing |
 |---|---|---|
 | `Hugentic.Capture.Workflow.Module` | `references/capture.md` | `--capture`<br>`--agendix`; default: Alignment.Mode::Autonomous<br>`--design`<br>`--capture --audit` |
-| `Grounding.Survey.Workflow.Module` | `references/gr-survey.md` | `--gr-survey`, `--gr-scout`, `--gr-scan`, `--gr-linker` |
-| `Grounding.Review.Workflow.Module` | `references/gr-review.md` | `--gr-review` |
 | `Implementation.Design.Workflow.Module` | `references/impl/design.md` | `--impl --design`, `--impl-design`; default: implementation input without an `Impl.Req` |
 | `Implementation.Review.Workflow.Module` | `references/impl/review.md` | `--impl --review`, `--review` |
 | `Implementation.Execute.Workflow.Module` | `references/impl/execute.md` | `--impl --execute`, `--execute`, `--exec`; default: `Impl.Req` input |
@@ -178,7 +173,6 @@ Canonical module identity is explicit and independent from invocation spelling. 
 | `Index.Issue.Operation.Module` | `references/issues.md` | `--issues`, `--issue` |
 | `Index.Check.Operation.Module` | `references/check.md` | `--check`, `--lint` |
 | `Anchory.Link.Operation.Module` | `references/link.md` | `--link` |
-| `Anchory.Back.Link.Operation.Module` | `references/back-link.md` | `--back-link` |
 | `Chat.Status.Operation.Module` | `references/chat-status.md` | `--status`, `--chat-status` |
 | `Workflow.Status.Operation.Module` | `references/workflow-status.md` | `--workflow-status` |
 | `Hugentic.Session.Router.Operation.Module` | `references/session-router.md` | `--session-router`, `--what-now`, `--what-next` |
@@ -264,7 +258,7 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 - its current support references are trailing `Anchory.Anchor`s resolving through Chatlas to qualifying user-turn evidence
 - chronological chat capture lives in `Chat.Index.Delta` files; `Chat.Index.HEAD` is the chat's current projection
 - an ordinary Project line eventually needs an exact Delta home and, when current for that chat, a matching Chat HEAD line
-- each line's anchor dossier carries support, known-origin observations, provenance observations, and optional issue context
+- each line's anchor dossier carries its immutable line subject, grounding members, predecessors, and optional issue context; Delta materialization and `Line.Home` are derived
 - `issues/` holds grounded temporary Project topics; review is proven by the anchor record rather than folder placement
 - agents operate it by loading routers, concept blocks, appendix material, and references relevant to the current task
 
@@ -382,34 +376,6 @@ Selection cardinality: `many`.
 - loads: `references/link.md`
 - when: the caller needs an Anchory.Anchor minted for chat context
 - then: select Anchory.Link.Operation.Module
-
-### `^route-anchor-back-link`
-
-- match: `explicit-or-semantic`
-- flags: `--back-link`
-- destinations: `Anchory.Back.Link.Operation.Module`
-- loads: `references/back-link.md`
-- when: the caller wants an existing block grounded backward
-- then: select Anchory.Back.Link.Operation.Module
-
-### `^route-grounding-survey`
-
-- match: `explicit-or-semantic`
-- flags: `--gr-survey`
-- aliases: `--gr-scout`, `--gr-scan`, `--gr-linker`
-- destinations: `Grounding.Survey.Workflow.Module`
-- loads: `references/gr-survey.md`
-- when: the caller wants a grounding campaign surveyed
-- then: select Grounding.Survey.Workflow.Module
-
-### `^route-grounding-review`
-
-- match: `explicit-or-semantic`
-- flags: `--gr-review`
-- destinations: `Grounding.Review.Workflow.Module`
-- loads: `references/gr-review.md`
-- when: the caller wants a `Gr.Req` reviewed
-- then: select Grounding.Review.Workflow.Module
 
 ### `^route-implementation-namespace`
 

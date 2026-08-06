@@ -7,7 +7,7 @@ description: "Canonical public control surface for Hugentic sessions. USE WHEN y
 
 # Agentos Hugentics
 
-> $kw: --from Agentos.Index.System --from Alignment.Mode --from Alignment.Surface --from Batchy.Router --from Batchy.Skill --from Batchy.Skill.Banner --from Batchy.Skill.Help --from Capture.Offer --from Demoted.Index.Line --from Design.Req --from Design.Req.Promotion --from Edition.Approval.Token --from Gr.Req --from Hugentic.Capture.Workflow --from Impl.Req --from Index.Agendix --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Line --from Index.Ontology --from Index.Presumption --from Index.Skillware --from Line.Type --from Line.Verbatim.Gate --from Live.Index.Line --from Open.Inference --from Package.Driver --from Packages.Master.Agent --from POI.Instance --from Reviewed.Content --from Routing.Table --from Skill.Arg --from Skill.Module --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from Touched.Support.Network --from User.Attention --from User.Command --from User.Command.Arg --from User.Command.Section --from User.Command.Trigger
+> $kw: --from Agentos.Index.System --from Alignment.Mode --from Alignment.Surface --from Batchy.Router --from Batchy.Skill --from Batchy.Skill.Banner --from Batchy.Skill.Help --from Capture.Offer --from Demoted.Index.Line --from Design.Req --from Design.Req.Promotion --from Edition.Approval.Token --from Hugentic.Capture.Workflow --from Impl.Req --from Index.Agendix --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Line --from Index.Ontology --from Index.Presumption --from Index.Skillware --from Line.Type --from Line.Verbatim.Gate --from Live.Index.Line --from Open.Inference --from Package.Driver --from Packages.Master.Agent --from POI.Instance --from Reviewed.Content --from Routing.Table --from Skill.Arg --from Skill.Module --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from Touched.Support.Network --from User.Attention --from User.Command --from User.Command.Arg --from User.Command.Section --from User.Command.Trigger
 > --dev-from references/index-context-assembly.skw.md
 > $kw: ^driver-critical-context --dev-from Cited.Duplication --dev-from Context.Loading.Path --dev-from Package.Driver.Base --dev-from SKILL.Loading
 > --supp root driver context is selected by the alignment failure its absence could cause, not by minimizing line count; preserve context whose omission could make the agent misunderstand authority, violate a gate, select the wrong workflow, or lose the session model ^c20260729-48u
@@ -211,7 +211,7 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 - its current support references are trailing `Anchory.Anchor`s resolving through Chatlas to qualifying user-turn evidence
 - chronological chat capture lives in `Chat.Index.Delta` files; `Chat.Index.HEAD` is the chat's current projection
 - an ordinary Project line eventually needs an exact Delta home and, when current for that chat, a matching Chat HEAD line
-- each line's anchor dossier carries support, known-origin observations, provenance observations, and optional issue context
+- each line's anchor dossier carries its immutable line subject, grounding members, predecessors, and optional issue context; Delta materialization and `Line.Home` are derived
 - `issues/` holds grounded temporary Project topics; review is proven by the anchor record rather than folder placement
 - agents operate it by loading routers, concept blocks, appendix material, and references relevant to the current task
 
@@ -326,33 +326,6 @@ This addressed `Routing.Table` is the package driver's single declarative dispat
 > --load references/link.md
 > --when the caller needs an Anchory.Anchor minted for chat context
 > --then select Anchory.Link.Operation.Module
-
-> $kw: ^route-anchor-back-link --router-row --table ^package-driver-router
-> --flag --back-link
-> --match explicit-or-semantic
-> --to Anchory.Back.Link.Operation.Module
-> --load references/back-link.md
-> --when the caller wants an existing block grounded backward
-> --then select Anchory.Back.Link.Operation.Module
-
-> $kw: ^route-grounding-survey --router-row --table ^package-driver-router
-> --flag --gr-survey
-> --alias --gr-scout
-> --alias --gr-scan
-> --alias --gr-linker
-> --match explicit-or-semantic
-> --to Grounding.Survey.Workflow.Module
-> --load references/gr-survey.md
-> --when the caller wants a grounding campaign surveyed
-> --then select Grounding.Survey.Workflow.Module
-
-> $kw: ^route-grounding-review --router-row --table ^package-driver-router
-> --flag --gr-review
-> --match explicit-or-semantic
-> --to Grounding.Review.Workflow.Module
-> --load references/gr-review.md
-> --when the caller wants a `Gr.Req` reviewed
-> --then select Grounding.Review.Workflow.Module
 
 > $kw: ^route-implementation-namespace --router-row --table ^package-driver-router
 > --flag --impl

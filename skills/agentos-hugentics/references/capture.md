@@ -44,7 +44,7 @@ Load `references/touched-data.md` for authority and line standing, and `referenc
 
 For chronological capture, work from the authoritative Chatlas transcript and delimit each semantic Delta by its `Delta.Horizon.Turn`. A Delta may summarize one user turn or a meaningful group ending at that turn. Ordinary model lines must acquire an exact Delta materialization before they are considered fully propagated; `Chat.Index.HEAD` and Project Index projections may be authored first, but the resulting missing-home condition remains a reconciliation POI until backfilled.
 
-Use the Chatlas `Capture.Plan` application boundary for mechanical writes. In maintain mode, `head.preserve: true` permits a Delta-only backfill while retaining the complete existing HEAD. The anchor dossier records support separately from provenance observations and issue context; neither a known-origin observation nor placement on a HEAD creates touched authority.
+Use the Chatlas `Capture.Plan` application boundary for mechanical writes. In maintain mode, `head.preserve: true` permits a Delta-only backfill while retaining the complete existing HEAD. The v6 anchor dossier carries the immutable line subject, grounding members, predecessors, and optional issue context. It does not accumulate provenance observations; Delta materialization and `Line.Home` are derived from exact containment and authoritative tape order. Placement on a HEAD does not create touched authority.
 
 Operationally, capture applies `Touched.Decision.Cycle` to `Touch.Authority.Surface` editions and adjacent evidence. It distinguishes `Touched.Data`, `Support.Set`, `Live.Index.Line`, `Open.Inference`, and `POI.Instance` while producing `Kernel.Writing` for the current `Agentos.Index.System` realization.
 

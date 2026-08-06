@@ -1,6 +1,6 @@
 ---
 name: agentos-pkg
-description: "Agentos provides shared tools for agent-project workflows: concept indexes, human-agent design sessions, implementation workflows, live notes, package skills, and more. USE WHEN working with any of these — or when a project's AGENTS.md routes here. After loading, the agent gets workflow-neutral orientation: what tools exist, where each subsystem starts, and which narrower surface to load next."
+description: "Agentos provides shared tools for agent-project workflows: concept indexes, grounding campaigns, human-agent design sessions, implementation workflows, live notes, package skills, and more. USE WHEN working with any of these, surveying or grounding an Index depot, or when a project's AGENTS.md routes here. After loading, the agent gets workflow-neutral orientation and routes to the relevant subsystem."
 ---
 
 # agentos-pkg
@@ -139,6 +139,28 @@ For configuring and syncing project-local imported skills, read `references/skil
 
 For provider account credential artifact reconciliation and troubleshooting, use the `agentos-agent-account-management` skill.
 
+## Skill.Arg.Section
+
+Only external data consumed by the selected module is a `Skill.Arg`. Operation flags belong to `Batchy.Router` below.
+
+### Skill.Arg::Target.Depot
+- the Project or Package Index depot the grounding agent surveys
+- required: true
+- flags: --depot
+- active only with: --grounding-agent
+- help: "the Index depot to survey for grounding work"
+- examples: --depot agentos-chatlas-pkg, --depot skills/agentos-pkg
+
+### Skill.Arg::Target.Scope
+- an optional caller-imposed boundary inside the target depot
+- required: false
+- default: the grounding agent computes a useful bounded scope from the whole depot
+- flags: --scope
+- repeatable: true
+- active only with: --grounding-agent
+- help: "override automatic grounding scope selection"
+- examples: --scope design/100-design.md, --scope Chatlas.Anchory
+
 ## Package.Driver.Router
 
 This `Package.Driver.Router` is a specialized `Routing.Table` that sends a package-level need to the narrower skill or configured Hugentics route that owns it. Each cross-skill call keeps its routed effect in `--to` and declares its typed whole-file loading edge separately in `--load`.
@@ -176,6 +198,29 @@ Selection cardinality: `many`.
 - loads: `@<agentos-hugentics>/SKILL.md`
 - when: the caller wants a structured checkpoint for an active workflow
 - then: load agentos-hugentics --workflow-status
+
+### `^route-grounding-agent`
+
+- match: `explicit-or-semantic`
+- flags: `--grounding-agent`
+- destinations: `Grounding.Agent.Workflow.Module`
+- loads: `references/grounding-agent.md`, `references/grounding-worker.md`
+- when: the caller wants an Index depot surveyed and a supervisor-led grounding campaign proposed or run without loading transcripts into the supervisor context
+- then: load the grounding supervisor and worker contracts; survey first and pause before spawning research agents
+
+### `^route-grounding-depot-arg`
+
+- match: `explicit`
+- flags: `--depot`
+- destinations: `Skill.Arg::Target.Depot`
+- then: bind the target Index depot for Grounding.Agent.Workflow.Module
+
+### `^route-grounding-scope-arg`
+
+- match: `explicit`
+- flags: `--scope`
+- destinations: `Skill.Arg::Target.Scope`
+- then: bind an optional caller-imposed scope; otherwise let the grounding agent compute one
 
 ### `^route-live-surfaces`
 

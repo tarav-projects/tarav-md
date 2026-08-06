@@ -64,10 +64,10 @@ The current implementation maps the general model as follows:
 | chronological touched record | exact lines in `Chat.Index.Delta` files |
 | current chat projection | `Chat.Index.HEAD` |
 | current Project projection | chapters, appendix, agendix, and `Issue.Block`s |
-| provenance dossier | line-bound anchor record with independent support, issue context, and observations |
+| line dossier | line-bound anchor record with immutable subject, grounding members, predecessors, and optional issue context |
 | home | oldest evidenced exact Delta containment, derived rather than declared |
 | live cut / history | current Project/Chat HEAD files / Chat Deltas and Git history |
 
-`Project.Support.Chats` links a Project Index to the Chat.Index surfaces that may cover it. Exact containment is necessary mechanical evidence; when a dossier lacks a matching chat observation, reconciliation retains a semantic-review POI so passive contextual import cannot prove itself.
+`Project.Support.Chats` links a Project Index to the Chat.Index surfaces that may cover it. Exact Delta containment supplies materialization evidence, while grounding members supply support. Missing grounding, ambiguous home selection, or semantic uncertainty remains a reconciliation POI; passive contextual import cannot prove itself.
 
 Do not project current mechanics back into the general model. New authority surfaces or support implementations extend the realization without redefining touch.

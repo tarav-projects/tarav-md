@@ -13,4 +13,4 @@
 - digestion gradient (extends the `Block.Line.Gradient` capture axis): index block → appendix line (`Index.Edit.Append.Line`) → agendix line (ungated, grounded) → chat-in-place, retrieved on demand (the zero-digestion floor)
 - firing is user-triggered by default; the trigger mechanism is secondary to the retrieval design
 - open: `chatlas query --active-after` is a lower bound only; a true date range needs an upper bound (client-side trim or an `--active-before`)
-- mostly composition — Chatlas `query`/`recents`/`views` and `chatlas-grounding-agent` git-grounding already exist; this names them as a retrieval layer
+- [DC] `Chat.Retrieval` composes Chatlas `query`/`recents`/`views` with Git history ^c20260806-18u
