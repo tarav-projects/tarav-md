@@ -4,12 +4,15 @@
 
 - depot: `skills/agentos-pkg` (project `agentos-md`)
 - caller boundary: none supplied — scope computed by supervisor
-- state: `surveyed — campaign not started`
-- coverage before: `line 1407/3235 linked`, `block 128/328 grounded`, `gr-density 0.5051` (329 blocks, 2063 kernel lines, 1042 unique anchors)
+- state: `campaign active — pass 1, cluster C1 (Cold.Loading)`
+- coverage before — two different denominators, both correct:
+  - linter meter (all index lines, incl. non-kernel): `line 1407/3235 linked`, `block 128/328 grounded` (328 = coverage-eligible blocks)
+  - blocks meter (kernel lines only): `gr-density 0.5051` over 2063 kernel lines / 1042 unique anchors across 329 inventoried blocks
+  - the block counts differ by one because the linter excludes one block from coverage eligibility that the inventory still lists
 - ungrounded surface: 170 blocks / 887 kernel lines, all inside `design/100..107-design.md` (`design/108..111`, `poi/`, `issues/` carry no zero-grounded blocks)
 - computed scope: clusters `C1`–`C4` below — 24 blocks / ~121 kernel lines across 4 single-session packets
 - survey commands used:
-  - `agentos index linter --depot agentos-md/skills/agentos-pkg --coverage all`
+  - `agentos index linter --depot agentos-md/skills/agentos-pkg --coverage all --json`
   - `agentos index blocks --depot agentos-md/skills/agentos-pkg --sort gr-density --json`
   - `git log -S'## <Block.Path>' --format='%h %ad %s' --date=short` (introduction commit per block family)
   - `agentos chatlas query --project-base agentos-project --user-contains '<Concept>' --text`
@@ -82,11 +85,50 @@ Selection rank prefers: coherent concept family + one dominant candidate session
 
 ## Grounding.Work
 
-Packets materialize exact typed lines and content hashes at dispatch and revalidate them before attachment; the report stores coordinates only.
+Dispatched packets persist their materialized manifest below, so packet identity survives this session and attachment can revalidate line content without re-deriving it from the worker prompt. Undispatched packets carry coordinates only until dispatch.
+
+### `P1` manifest — dispatched pass 1
+
+- session: `918b793b73f8f94764311d7771b25da5ed60a8e1f7db869bbe28f9a05b6634a8`
+- source: `agentos-md/skills/agentos-pkg/design/101-design.md`, materialized at dispatch, all 28 lines verified anchor-free
+- `hash` is the packet-local line id used in the worker result contract; `sha` is the first 12 hex of the SHA-256 of the exact line text
+
+| hash | block | file line | sha | typed | exact content |
+|---|---|---|---|---|---|
+| L01 | Context.Loading.Path | 74 | — | no | `` - `Context.Loading.Path` is the tiered path by which context enters an agent, ordered from guaranteed-at-cold to pulled-on-demand `` |
+| L02 | Context.Loading.Path | 75 | — | no | `- each tier is a distinct loading mechanism with its own guarantee level; a later tier becomes reachable only once earlier tiers have loaded what it needs` |
+| L03 | Context.Loading.Path | 76 | — | no | ``- tier 1 `Cold.Loading` — context guaranteed present from a cold start`` |
+| L04 | Context.Loading.Path | 77 | — | no | ``- tier 2 `SKILL.Loading` — context that arrives whole when a skill is loaded`` |
+| L05 | Context.Loading.Path | 78 | — | no | ``- tier 3 `Dynamic.Loading` — context pulled selectively, on demand`` |
+| L06 | Context.Loading.Path | 79 | — | no | `- the path bootstraps itself: each tier loads the keys and surfaces the next tier needs to act` |
+| L07 | Cold.Loading | 97 | — | no | ``- `Cold.Loading` is the `Context.Loading.Path` tier guaranteed present from a cold start, before the agent takes any action`` |
+| L08 | Cold.Loading | 98 | — | no | ``- it loads through the `Cold.Loading.Hook`s an agent always sees on entry — skill descriptions and `AGENTS.md` `` |
+| L09 | Cold.Loading | 99 | — | no | ``- the guarantee comes from redundant placement: the same context is wired into many `Context.Hook`s so the system cannot miss it`` |
+| L10 | Cold.Loading | 100 | — | no | `- it is the bootstrap tier — it carries the minimal vocabulary and routing keys the later tiers need to act at all` |
+| L11 | Cold.Loading | 101 | — | no | ``- only `Workflow.Neutral.Skill` orientation belongs here — non-steering, safe to always load; its cost is paid every session, so it stays minimal`` |
+| L12 | Cold.Loading | 102 | — | CT | ``- [CT] `Cold.Loading` surfaces are linter-controlled because they shape every agent run before task-specific routing begins`` |
+| L13 | Cold.Loading.Hook | 108 | — | DF | ``- [DF] `Cold.Loading.Hook` is a `Context.Hook` that the harness loads automatically before the agent acts`` |
+| L14 | Cold.Loading.Hook | 109 | — | CT | ``- [CT] it injects a `Cold.Loading.Surface` `` |
+| L15 | Cold.Loading.Hook | 110 | — | EX | ``- [EX] project-root `AGENTS.md` is a `Cold.Loading.Hook` when the harness reads it before the agent acts`` |
+| L16 | Cold.Loading.Hook | 111 | — | EX | ``- [EX] skill descriptions are `Cold.Loading.Hook`s when the harness advertises them before skill selection`` |
+| L17 | Cold.Loading.Hook | 112 | — | CT | `- [CT] its loaded content is linter-controlled because every session receives it` |
+| L18 | Cold.Loading.Surface | 118 | — | DF | ``- [DF] `Cold.Loading.Surface` is a surface whose content is guaranteed present at `Cold.Loading` `` |
+| L19 | Cold.Loading.Surface | 119 | — | CT | `- [CT] it is identified by harness loading behavior, not only by file name or path` |
+| L20 | Cold.Loading.Surface | 120 | — | EX | ``- [EX] a project-root `AGENTS.md` loaded before the agent acts is a `Cold.Loading.Surface` `` |
+| L21 | Cold.Loading.Surface | 121 | — | CT | ``- [CT] a `Context.Hook` is the injection mechanism; `Cold.Loading.Surface` is the loaded content surface`` |
+| L22 | Cold.Loading.Surface | 122 | — | CT | ``- [CT] `Package.Driver` content may be projected into a `Cold.Loading.Surface` when the package must be reachable from cold`` |
+| L23 | Cold.Loading.Surface | 123 | — | CT | ``- [CT] `Cold.Loading.Surface`s are linter-controlled because every session pays their context cost`` |
+| L24 | SKILL.Loading | 129 | — | no | ``- `SKILL.Loading` is the `Context.Loading.Path` tier that arrives whole when a skill is loaded`` |
+| L25 | SKILL.Loading | 130 | — | no | ``- the `SKILL.md` file is its unit — the single discrete loading step between `Cold.Loading` and `Dynamic.Loading` `` |
+| L26 | SKILL.Loading | 131 | — | no | ``- it is atomic: loading a skill brings its entire `SKILL.md` at once, all-or-nothing, with no finer selection`` |
+| L27 | SKILL.Loading | 132 | — | no | ``- whatever an author wants present the moment a skill is in context belongs in its `SKILL.md` `` |
+| L28 | SKILL.Loading | 133 | — | no | ``- it sets up the next tier: the keys and routes loaded here are what `Dynamic.Loading` selects against`` |
+
+Anchorable subset: L12–L23 (12 typed lines). L01–L11 and L24–L28 are untyped legacy lines; `agentos chatlas anchory` rejects `--line-content` that is not a typed Index line, so they cannot receive a line-bound `Support.Set` until they are typed through the normal verbatim gate. This is a scope discovery from pass 1, not a research failure.
 
 | packet | cluster | session | lines | worker model class | state |
 |---|---|---|---|---|---|
-| `P1` | C1 | `918b793b73f8` | 28 | medium / medium reasoning | `surveyed` |
+| `P1` | C1 | `918b793b73f8` | 28 | medium / medium reasoning | `researching` |
 | `P2` | C2 | `3d91f5b30cc3` | 35 | medium / medium reasoning | `surveyed` |
 | `P3` | C3 | `27821fc60104` | 28 | medium / medium reasoning | `surveyed` |
 | `P4` | C4 | `ade6275355cc` | 30 | medium / medium reasoning | `surveyed` |
