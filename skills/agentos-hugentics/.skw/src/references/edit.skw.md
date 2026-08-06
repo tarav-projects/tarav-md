@@ -13,7 +13,7 @@
 
 The knowledge of writing Agentos index and appendix surfaces: gates, structure, naming, block quality, edit actions, and the landing procedure.
 
-This module is a `Workflow.Neutral.Module`: it does not run a workflow — its rules bind whenever an index or appendix surface is written, whichever module has control. Workflow modules such as `references/capture.md` and `references/enrich.md`, plus `agentos-pkg --grounding-agent`, steer sessions and consume this knowledge.
+This module is a `Workflow.Neutral.Module`: it does not run a workflow — its rules bind whenever an index or appendix surface is written, whichever module has control. Workflow modules such as `references/capture.md` and `references/enrich.md`, plus `agentos-pkg --index-retrofit`, steer sessions and consume this knowledge.
 
 `--edit`, `--write`, and `--append` all route here for direct edit work — a stale line to fix, a block to revise, an approved change to land. The context defines the edit action.
 

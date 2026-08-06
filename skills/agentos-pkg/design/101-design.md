@@ -82,12 +82,12 @@
 
 ## Agentos.AGENTS.Section
 
-- [DF] `Agentos.AGENTS.Section` is the structured Agentos section inside an `AGENTS.md` `Cold.Loading` surface
-- [DC] its canonical section heading is `## Agentos`
-- [CT] it may carry any Agentos-managed context agents should receive from `AGENTS.md`, including configuration, package-driver hints, subsystem routing, and local policy
-- [CT] configuration is a primary use, not the boundary of the section
-- [DC] nested `AGENTS.md` surfaces override parent `Agentos.AGENTS.Section` values by nearest-scope precedence
-- [CT] `Agentos.AGENTS.Section` is linter-controlled because it participates in `Cold.Loading`, where accidental or conflicting context is paid by every session
+- [DF] `Agentos.AGENTS.Section` is the structured Agentos section inside an `AGENTS.md` `Cold.Loading` surface ^c20260709-45u
+- [DC] its canonical section heading is `## Agentos` ^c20260709-46u
+- [CT] it may carry any Agentos-managed context agents should receive from `AGENTS.md`, including configuration, package-driver hints, subsystem routing, and local policy ^c20260709-47u
+- [CT] configuration is a primary use, not the boundary of the section ^c20260709-48u
+- [DC] nested `AGENTS.md` surfaces override parent `Agentos.AGENTS.Section` values by nearest-scope precedence ^c20260709-49u
+- [CT] `Agentos.AGENTS.Section` is linter-controlled because it participates in `Cold.Loading`, where accidental or conflicting context is paid by every session ^c20260709-50u
 - [PR] subsections should be named by subsystem, so each package can own and lint its own Agentos-facing content
 
 ****

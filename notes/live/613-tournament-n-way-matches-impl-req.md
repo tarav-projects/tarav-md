@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **Goal:** generalize `Agentos.Tournament` from pairwise matches with a single winner to matches over N players with a strict total ordering, following the capture of `^c20260806-47u`…`^c20260806-57u`.
-- **Status:** ready for execution; not started.
+- **Status:** executed. All six slices are implemented, the full `agentos-py` suite passes at 772 tests, and a 4-way tournament was verified end to end against live `claude-code` judges. Changes are uncommitted for review.
 - **Source design:** `agentos-pkg/design/111-design.md` — `Agentos.Tournament`, `Tournament.Hook`, `Tournament.Match`, `Tournament.Judge`, `Tournament.Verdict`.
 - **Prior implementation:** `notes/live/612-tournament-index-drift-impl-req.md` shipped the current pairwise engine. Nothing there was wrong; the design moved again.
 - **Motivation:** cost. Grading 1,033 index lines at ten comparisons each is 5,165 pairwise spawns; a 4-way match fills twelve comparison-slots per spawn, cutting it to ~861, and a 10-way match to ~115. Arity becomes the knob that trades inference budget against judge discrimination.
@@ -71,6 +71,7 @@ No durable records exist to migrate — `~/.agentos/tournament` is absent and ev
 - GREEN: implement `POSITION_LABELS`, arity-aware validation, and the widened `VERDICT_EXPECTS`.
 - Check: `uv run pytest tests/test_tournament_contract.py -q`.
 - Observable: a judge payload for any arity is accepted or rejected deterministically.
+- **Done** — `contract.py` gains `POSITION_LABELS`, `MIN_ARITY`/`MAX_ARITY`, `position_labels()`, and `_validate_ordering`. `outcome` left `VERDICT_EXPECTS` entirely (see Deviation D1). 25 tests.
 
 ### Slice 2 - Ordering record
 
@@ -79,6 +80,7 @@ No durable records exist to migrate — `~/.agentos/tournament` is absent and ev
 - GREEN: implement.
 - Check: `uv run pytest tests/test_tournament_store.py -q`.
 - Observable: a 4-player verdict reads back with its ordering intact.
+- **Done** — `VerdictOutcome.PREFERRED` became `ORDERED`; `_require_ordering` enforces the permutation at the store boundary; `Verdict.preferred` became `Verdict.ordering`. 9 tests.
 - Depends on nothing.
 
 ### Slice 3 - N-ary hook
@@ -88,6 +90,7 @@ No durable records exist to migrate — `~/.agentos/tournament` is absent and ev
 - GREEN: implement.
 - Check: `uv run pytest tests/test_tournament_hooks.py -q`.
 - Observable: a definition alternating 2-way and 6-way matches loads and resolves.
+- **Done** — `_validated_pair` became `_validated_players`, bounded by `MIN_ARITY`/`MAX_ARITY`. A test proves arity may differ between successive calls. 18 tests.
 
 ### Slice 4 - N-position framing and decode
 
@@ -96,6 +99,7 @@ No durable records exist to migrate — `~/.agentos/tournament` is absent and ev
 - GREEN: implement.
 - Check: `uv run pytest tests/test_tournament_runner.py -q`.
 - Observable: one 4-way match runs end to end against a stub judge.
+- **Done** — `compose_verbatim` labels N candidates and states the arity; `_presented_order` generalized to N; the decode maps the returned label ordering back through `presented`. 17 tests.
 - Depends on Slices 1–3.
 
 ### Slice 5 - Pairwise extraction
@@ -105,6 +109,7 @@ No durable records exist to migrate — `~/.agentos/tournament` is absent and ev
 - GREEN: implement.
 - Check: `uv run pytest tests/test_tournament_report.py -q`.
 - Observable: `tournament show` reports a 4-way tournament's win/loss counts beside its match counts.
+- **Done** — `report.py` extracts comparisons from each ordering. A test proves a 10-way match counts as one match while yielding 45 comparisons. `poi.py` untouched, as scoped. 15 tests.
 - Depends on Slice 2.
 
 ### Slice 6 - Library, docs, and full-suite green
@@ -114,6 +119,7 @@ No durable records exist to migrate — `~/.agentos/tournament` is absent and ev
 - GREEN: implement, then run the full `agentos-py` suite.
 - Check: `uv run pytest -q` and one live `agentos tournament run` with a 4-way definition.
 - Observable: a 4-way tournament runs from the terminal against a real judge.
+- **Done** — `pairing.random_players` added; `AGENTS.md` `Tournament System` refreshed. Live: 3 concurrent 4-way `claude-code` matches, 0 failures, 18 comparisons from 3 spawns.
 - Depends on every prior slice.
 
 ## Impl.Log
@@ -130,6 +136,15 @@ No durable records exist to migrate — `~/.agentos/tournament` is absent and ev
 - **Answer shape is an ordered array of labels** rather than a rank-per-label map, chosen at the readiness checkpoint: it is compact, and both shapes surface a dropped or duplicated label as a validation failure.
 - **Reading stays out.** The readiness checkpoint raised POI thresholds as a fork; the user ruled it a reader concern. `matches` already counts matches by construction, so the question dissolved into no work rather than into a decision.
 
+### Execution
+
+- **Gates `^c20260806-58u`** (ordering) and **`^c20260806-59u`** (readiness approval). Git checkpoints were taken in `agentos-py` and `agentos-md` before the first edit.
+- **Result.** 772 tests pass across the whole `agentos-py` suite, up from 750.
+- **Live verification.** A definition importing `pairing.random_players` ran 3 concurrent 4-way matches against `claude-code` / `claude-sonnet-4-5-20250929`. 0 failures. Three spawns produced **18 comparisons**, and the accumulation separated cleanly: the sharpest line took 9-0, the vaguest 0-9, and the two middle lines split 5-4 — equivalence emerging from orderings that disagree across repeats, which is exactly what `^c20260806-55u` predicts.
+- **Uncommitted.** Implementation changes are left uncommitted for user review.
+
 ### Deviations
 
-- Recorded during execution.
+- **D1 — `outcome` left the declarative schema entirely.** The plan said `VERDICT_EXPECTS` would be "widened". It could not be: the declarative markers express enums and types, not "a permutation of exactly these labels", and the label set is only known once a match is composed. `outcome` is now validated by hand in `validate_verdict_answer` and `VERDICT_EXPECTS` covers only `attribution` and `reason`. The contract is stricter than before, not looser, but the mechanism is no longer uniform across fields.
+- **D2 — a docstring default was silently wrong.** `DEFAULT_QUESTION` still read "Which of the two candidates below is better?" — harmless in tests, but it would have shipped a pairwise question to any definition that declared none. Now "Rank the candidates below from best to worst."
+- **D3 — one runner test asserted on a removed envelope key.** `test_a_declining_judge_records_a_no_contest_with_its_attribution` checked `envelope["preferred"] is None`; it now checks `verdict.ordering is None`. Same guarantee through the accessor rather than the raw key.

@@ -92,9 +92,21 @@
 - [DC] a judge answers by position rather than by player, and the engine decodes that position back through the order it ran ^c20260806-9u
 - [CT] the judge is the tournament's only semantic actor; the engine around it stays a `CPU.Program` ^c20260805-66u
 - [DC] a refusal requires a stated reason, so declining is an answer rather than an abstention ^c20260805-67u
+- [DC] a judge submits its verdict through a command rather than by printing it, so the engine validates the answer before anything is recorded ^c20260806-62u
+- [PR] submitting is what puts a contract violation in front of the judge that made it, while the context that could still fix it is alive ^c20260806-63u
 - [PR] refusal rate reads as a judge metric as much as a pool metric — a rate drifting across unrelated tournaments indicts the judge prompt ^c20260805-68u
 - [FR] the model, provider, and prompt behind a judge are consumer choices ^c20260805-69u
 - [RJ] a judge does not rank a pool or compare beyond the players it was given ^c20260806-52u
+
+****
+
+## Tournament.Ticket
+
+- [DF] a `Tournament.Ticket` authorizes one submission for one run of one `Tournament.Match` ^c20260806-64u
+- [DC] the engine mints a ticket and records the match's whole context before spawning, so a submission supplies only the outcome ^c20260806-65u
+- [CT] a judge cannot name a match it was not given: the ticket resolves the match, and the submission never carries it ^c20260806-66u
+- [DC] a rejected submission is counted on its ticket against a cap, so a judge cannot retry without bound ^c20260806-67u
+- [DC] tickets are mutable staging outside the record store, so the append-only rule over verdicts stays untouched ^c20260806-68u
 
 ****
 
@@ -119,7 +131,8 @@
 
 - [DF] `Tournament.Verdict::No.Contest` is the outcome of a match its judge completed but declined to decide ^c20260805-80u
 - [CT] it scores no player and enters no ranking fold ^c20260805-81u
-- [DC] it carries a reason attributing the refusal to the question, to a player, or to the prompt it was given ^c20260805-82u
+- [DC] it carries a stated reason for the refusal, in the judge's own words ^c20260806-60u
+- [RJ] a judge is not asked to attribute its own refusal; scattered-versus-clustered is read from the records, which already carry which players were in which refused match ^c20260806-61u
 - [PR] its distribution is the read: scattered across a pool indicts the `Tournament.Definition`, clustered on one player indicts that player ^c20260805-83u
 - [CT] it is a completed match record, and a match that failed to run is not a no-contest ^c20260805-84u
 - [PR] it is the only outcome that evaluates the tournament rather than its players ^c20260805-85u
@@ -130,7 +143,9 @@
 
 - [DF] a `Tournament.Depot` is one rooted directory holding every tournament's frozen definition and its accumulated records ^c20260806-25u
 - [DC] the depot resolves to a canonical global location by default and accepts an explicit root ^c20260806-26u
-- [DC] a depot separates `definitions/` from `records/`: the first holds each tournament's frozen definition, the second its `Agentos.Bloberia` record store ^c20260806-27u
+- [DC] a depot separates `definitions/`, `records/`, and `tickets/`: each tournament's frozen definition, its `Agentos.Bloberia` record store, and the mutable submission staging ^c20260806-69u
+- [DC] tickets are swept by age rather than on completion, and a run sweeps before it mints, so no run depends on cleanup having happened ^c20260806-70u
+- [CT] the sweep horizon is far longer than any match can run, which is what keeps collection from racing a live submission ^c20260806-71u
 - [DC] records are namespaced by tournament, so one tournament's records are reachable without reading another's ^c20260806-28u
 - [CT] `Agentos.Bloberia` owns record storage and query; the depot owns only the surrounding layout ^c20260806-29u
 - [PR] namespacing by tournament is what makes listing tournaments a directory read rather than a record scan ^c20260806-30u

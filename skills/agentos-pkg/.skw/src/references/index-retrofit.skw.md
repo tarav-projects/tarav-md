@@ -1,29 +1,39 @@
-# Grounding.Agent.Workflow.Module
+> $kw: ^index-retrofit-direct-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^agentos-pkg-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^driver-workspace-literacy
+> --loading-dep SKILL.skw.md^driver-index-literacy
+> --loading-dep SKILL.skw.md^driver-local-surfaces-literacy
+> --loading-dep SKILL.skw.md^driver-cli-literacy
 
-Survey an Index depot, propose a useful grounding campaign, and supervise transcript-reading research agents without loading transcript content into the supervisor context.
+# Index.Retrofit.Workflow.Module
+
+> $kw: --from Batchy.Skill.Banner --from Index.Presumption --from Line.Type --from Line.Type.Vocabulary --from Normal.Turn.Ref --from Support.Set --from Verbatim.User.Gated
+
+Survey an Index depot, propose a bounded retrofit campaign, and supervise transcript-reading research agents that type and ground eligible lines without loading transcript content into the supervisor context.
 
 Canonical call:
 
 ```text
-$agentos-pkg --grounding-agent --depot <target-depot>
+$agentos-pkg --index-retrofit --depot <target-depot>
 ```
 
 `--scope` is an optional override. Without it, compute the campaign scope from the depot's grounding deficit, block coherence, Git history, candidate-session strength, and the amount of useful work available for a bounded pass.
 
 ## Skill.Index.Section
 
-### Grounding.Supervisor.Agent
+### Index.Retrofit.Supervisor
 - owns depot survey, Git archaeology, session hints, scope selection, work packets, structural validation, anchor registration, support attachment, and the campaign report
 - uses only Index, Git, Chatlas session-query, worker-report, Anchory preview, and linter surfaces
 - never loads transcript fragments, turn neighborhoods, transcript views, or raw provider artifacts
 
-### Grounding.Research.Agent
+### Index.Retrofit.Research.Agent
 - a read-only subagent that receives one session-centered work packet
 - loads the assigned transcript deeply enough to judge support and returns one proposed `Support.Set` or an honest ambiguous result for each distinct line content
 - when the packet carries explicit type-migration authority, also classifies legacy untyped bodies against the applicable `Line.Type.Vocabulary`
 - never mutates the Index, registers anchors, or broadens its assigned depot/session boundary
 
-### Grounding.Work.Packet
+### Index.Retrofit.Packet
 - one candidate session plus a group of exact Index lines likely grounded there
 - carries stable typed content or exact legacy untyped bodies, content hashes, current locations and blocks, typing disposition, Git timing hints, cheap query hints, and the allowed session boundary
 - is session-centered so one transcript load can research several lines
@@ -34,7 +44,7 @@ $agentos-pkg --grounding-agent --depot <target-depot>
 - preserves the legacy body byte-for-byte and cannot retype, rewrite, split, move, or delete a line
 - is a workflow-specific exception to the normal verbatim gate, not a general relaxation of `Verbatim.User.Gated`
 
-### Grounding.Campaign.Report
+### Index.Retrofit.Campaign.Report
 - the single durable live note for survey, dispatch, results, attachment, coverage, and resumability
 - begins at `surveyed — campaign not started`; starting a campaign advances the same artifact instead of creating a second queue
 
@@ -42,7 +52,7 @@ $agentos-pkg --grounding-agent --depot <target-depot>
 
 Resolve `Skill.Arg::Target.Depot`; fail closed when it does not identify one writable Index depot. Resolve any explicit `Target.Scope` as a hard boundary. Then print the `Batchy.Skill.Banner` with:
 
-- module: `Grounding.Agent.Workflow.Module`
+- module: `Index.Retrofit.Workflow.Module`
 - target depot and owning project
 - scope: caller-supplied or `computed by supervisor`
 - phase: `survey`
@@ -65,10 +75,10 @@ The first invocation is always a cheap supervisor pass. Do not spawn agents, loa
 
 Keep the report compact and operational:
 
-- `Grounding.Abstract` — depot, coverage before, explicit boundary, computed scope, typed/untyped/residue counts, state, and survey commands
-- `Grounding.Clusters` — stable cluster ids, candidate session identities, exact target lines or legacy bodies with content hashes, typing disposition, cheap evidence hints, and selection rank
-- `Grounding.Work` — packet state: `surveyed`, `queued`, `researching`, `supported`, `ambiguous`, `residue`, `attached`, or `stale`, plus the worker model class used
-- `Grounding.Log` — structural failures, retries, model escalations, type migrations, scope changes, and coverage after completed passes
+- `Index.Retrofit.Abstract` — depot, coverage before, explicit boundary, computed scope, typed/untyped/residue counts, state, and survey commands
+- `Index.Retrofit.Clusters` — stable cluster ids, candidate session identities, exact target lines or legacy bodies with content hashes, typing disposition, cheap evidence hints, and selection rank
+- `Index.Retrofit.Work` — packet state: `surveyed`, `queued`, `researching`, `supported`, `ambiguous`, `residue`, `attached`, or `stale`, plus the worker model class used
+- `Index.Retrofit.Log` — structural failures, retries, model escalations, type migrations, scope changes, and coverage after completed passes
 
 Never store transcript fragments in the report. Exact `Normal.Turn.Ref` coordinates, hints, and worker rationales are sufficient.
 
@@ -82,9 +92,9 @@ After `User.Command::StartCampaign`:
 
 1. Re-read the report and revalidate that its target lines remain current.
 2. Convert only `groundable` typed lines in the selected cluster set into session-centered work packets; leave `typing-required` and `residue` lines unchanged in the report.
-3. Spawn read-only `Grounding.Research.Agent`s using `references/grounding-worker.md` and the worker-economics policy below; use available concurrency without placing multiple agents on the same packet.
+3. Spawn read-only `Index.Retrofit.Research.Agent`s using `references/index-retrofit-worker.md` and the worker-economics policy below; use available concurrency without placing multiple agents on the same packet.
 4. Keep the supervisor transcript-blind. Consume only worker result objects and cheap command results.
-5. Record every returned line result in `Grounding.Work`; `ambiguous` is a valid result and never becomes a weak anchor.
+5. Record every returned line result in `Index.Retrofit.Work`; `ambiguous` is a valid result and never becomes a weak anchor.
 6. Structurally validate each `supported` result, register its anchor, append the trailing support reference, and lint the edited scope.
 7. Refresh coverage, close the bounded pass, and survey the remaining boundary cheaply. Offer another campaign only when useful work remains.
 
@@ -96,7 +106,7 @@ After `User.Command::StartCampaignWithTyping`, follow the same execution loop wi
 2. Require the worker to return both an honest type classification and a nonempty `Support.Set` for every legacy untyped body it supports.
 3. Treat type uncertainty as `residue` and support uncertainty as `ambiguous`; neither permits a file change.
 4. For a successful legacy result, construct the exact typed candidate, preview and register support against that typed content, then land the type prefix and trailing support reference together.
-5. Record the original body, resulting typed content, worker rationale, support members, and delegated command authority in `Grounding.Log` for later quality evaluation.
+5. Record the original body, resulting typed content, worker rationale, support members, and delegated command authority in `Index.Retrofit.Log` for later quality evaluation.
 
 This is an atomic type-and-ground migration. Never leave a newly typed line ungrounded, and never use the exception to modify an existing type or any byte of the legacy body.
 
@@ -106,7 +116,7 @@ This is an atomic type-and-ground migration. Never leave a newly typed line ungr
 - treat the semantic model class as policy; resolve its current concrete model id at runtime rather than baking a provider-specific id into the skill
 - never use a large or frontier model for ordinary packet work
 - escalate only an unresolved packet whose strong session hints suggest that the medium worker's ambiguity is capability-limited rather than an honest absence of support
-- record the original model class, escalation reason, and escalated model class in `Grounding.Log`
+- record the original model class, escalation reason, and escalated model class in `Index.Retrofit.Log`
 - avoid speculative duplicate workers and dispatch only the concurrency justified by the selected bounded campaign
 
 ## Structural Validation And Attachment

@@ -1,6 +1,6 @@
-# Grounding.Research.Agent.Contract
+# Index.Retrofit.Research.Agent.Contract
 
-Act as a read-only transcript researcher for exactly one `Grounding.Work.Packet`. The supervisor does not send its conversation and must not receive transcript fragments back.
+Act as a read-only transcript researcher for exactly one `Index.Retrofit.Packet`. The supervisor does not send its conversation and must not receive transcript fragments back.
 
 The packet is either ordinary typed-line grounding or an explicitly authorized legacy type-and-ground migration. Never infer migration authority from an untyped body alone.
 

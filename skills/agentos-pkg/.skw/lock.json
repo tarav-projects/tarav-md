@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "8a0e3a677d30d9b5712b59584b8dac0200f0a7a36eef2309f85c7ccc7e2c372b",
+      "output_sha256": "052ddb39fd3003fafe7274ae46eb9da91304b9799ad639e12f6f713ea14c390e",
       "recipes": [
         {
           "heading": "^agentos-pkg-batchy-runtime-contract",
@@ -30,12 +30,12 @@
         }
       ]
     },
-    "references/grounding-agent.md": {
-      "output_sha256": "f0a0fc8a1b179b4da8b33e9468972da4c4cc567ecf4adb79699ebe83ee767365",
+    "references/index-retrofit-worker.md": {
+      "output_sha256": "98310ede1505c8608bd17659c9d0c39258716db18c52718d9613c8f20b5ff2d2",
       "recipes": []
     },
-    "references/grounding-worker.md": {
-      "output_sha256": "d2a001f4a5fd27b3451b8003a6b678af690b608b504261456a5029be735cdb61",
+    "references/index-retrofit.md": {
+      "output_sha256": "4f2566c90550cdabbe5ebe4962710ec756e1396cd93b80b8b2d3c8b334249a36",
       "recipes": []
     }
   },
