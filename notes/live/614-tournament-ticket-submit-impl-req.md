@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **Goal:** move the judge's answer off stdout and onto a validating CLI, authorized by a per-run ticket, and remove the refusal-attribution enum. Follows the capture of `^c20260806-60u`…`^c20260806-71u`.
-- **Status:** ready for execution; not started.
+- **Status:** executed. All six slices are implemented, the full `agentos-py` suite passes at 795 tests, and live `claude-code` judges answered by command on the first attempt. Changes are uncommitted for review.
 - **Source design:** `agentos-pkg/design/111-design.md` — `Tournament.Judge`, `Tournament.Ticket` (new), `Tournament.Depot`, `Tournament.Verdict::No.Contest`.
 - **Prior implementation:** `notes/live/613-*.md` shipped N-way matches with ordering outcomes; `notes/live/612-*.md` shipped the depot and hook surface. This request reverses one decision recorded in 610's `Impl.Log` — "judge output parsed from captured stdout" — which that note already flagged as provisional with a written-artifact fallback as the known escape hatch.
 - **Motivation:** a malformed answer currently burns the whole spawn and surfaces to an orchestrator. 610 declared the goal that "a contract violation is agent-facing and actionable in the iterante style"; stdout parsing cannot deliver that, because nothing reaches the judge. A submit command puts the error in front of the agent that made it, in the context that can still fix it.
@@ -77,6 +77,7 @@ Verified against source before this plan was written:
 - GREEN: implement over plain JSON files.
 - Check: `uv run pytest tests/test_tournament_tickets.py -q`.
 - Observable: a ticket file appears under `<depot>/tickets/` and survives redemption.
+- **Done** — `tickets.py`: `mint`, `load`, `set_verbatim_hash`, `set_slot`, `record_attempt`, `redeem`, `sweep`. Two setters beyond plan (see Deviation D1). 12 tests.
 
 ### Slice 2 - Attribution removal
 
@@ -85,6 +86,7 @@ Verified against source before this plan was written:
 - GREEN: implement.
 - Check: `uv run pytest tests/test_tournament_contract.py tests/test_tournament_report.py -q`.
 - Observable: the rendered frame drops the attribution sentence.
+- **Done** — `ATTRIBUTIONS` gone; `VERDICT_EXPECTS` replaced by `REFUSAL_REASON_FIELD`; envelope swaps `no_contest_attribution` for `refusal_reason` and `ticket`; `report.py` keys `reason_samples` by match.
 - Depends on nothing.
 
 ### Slice 3 - Submit command
@@ -94,6 +96,7 @@ Verified against source before this plan was written:
 - GREEN: implement.
 - Check: `uv run pytest tests/test_tournament_submit.py -q`.
 - Observable: `agentos tournament submit --ticket ... --ranking B,A` records a verdict by hand.
+- **Done** — `_cmd_submit` plus `_submitted_answer` and `_append_submitted`. 11 tests in `tests/test_tournament_submit.py`, including that the parser exposes no way to name players.
 - Depends on Slices 1-2.
 
 ### Slice 4 - Runner resolves by ticket
@@ -103,6 +106,7 @@ Verified against source before this plan was written:
 - GREEN: implement.
 - Check: `uv run pytest tests/test_tournament_runner.py -q`.
 - Observable: one match completes end to end against a stub judge that shells out.
+- **Done** — `run_match` mints, renders the command, spawns, and resolves via `_verdict_for_ticket`. `_append` deleted from the runner; the stub judge now submits through the real CLI handler. `JudgeSpawn.agent_argv` added (Deviation D2).
 - Depends on Slice 3.
 
 ### Slice 5 - Garbage collection
@@ -112,6 +116,7 @@ Verified against source before this plan was written:
 - GREEN: implement.
 - Check: `uv run pytest tests/test_tournament_commands.py -q`.
 - Observable: `agentos tournament gc` prints a count.
+- **Done** — `run` sweeps before minting; `agentos tournament gc` added.
 - Depends on Slice 1.
 
 ### Slice 6 - Docs and full-suite green
@@ -119,6 +124,7 @@ Verified against source before this plan was written:
 - Refresh `agentos-py/AGENTS.md`; run the full suite; one live run.
 - Check: `uv run pytest -q` and a live `agentos tournament run` with a real judge submitting through the CLI.
 - Observable: a real judge answers by command, and a deliberately malformed first attempt is corrected in-context.
+- **Done** — `AGENTS.md` refreshed. Live: 2 concurrent 3-way matches, both judges submitted successfully on their first attempt (0 recorded attempts, both tickets redeemed). The in-context correction path was exercised by the unit suite rather than live, since no live judge produced a malformed ranking.
 - Depends on every prior slice.
 
 ## Impl.Log
@@ -136,6 +142,16 @@ Verified against source before this plan was written:
 - **A validated verdict outranks a nonzero exit** (resolved at readiness, `^c20260806-73u`). Once the answer travels out of band the exit code stops being evidence that anything failed; it is recorded on the ticket rather than used as a gate. The cost is that `failures[]` no longer catches a judge misbehaving *after* it answered — acceptable, because the thing that run existed to produce is durable and valid.
 - **Only contract rejections count against the cap** (same gate). Those are the ones a retry can fix. A submission against a redeemed ticket, or one past the cap, is refused without incrementing, so a confused judge cannot exhaust a counter that no longer protects anything.
 
+### Execution
+
+- **Gates `^c20260806-72u`** (ordering) and **`^c20260806-73u`** (readiness approval, which also switched the run to `Autonomous`). Git checkpoints taken in `agentos-py` and `agentos-md` before the first edit.
+- **Result.** 795 tests pass, up from 772.
+- **Live verification.** Two concurrent 3-way matches against `claude-code` / `claude-sonnet-4-5-20250929`. Both judges ran the submitted command and were redeemed on the first attempt; the depot shows `definitions/`, `records/`, and `tickets/` side by side. Six comparisons from two spawns, and the vague line took 0-2.
+- **Uncommitted.** Implementation changes are left uncommitted for user review.
+
 ### Deviations
 
-- Recorded during execution.
+- **D1 — a ticket needs two post-mint setters the plan did not anticipate.** The frame embeds the ticket id, so the verbatim cannot exist before the ticket does, and therefore neither can its hash — `set_verbatim_hash` fills it in afterwards. Separately, `submit` runs in a process with no `TournamentDefinition`, so it cannot call `verdict_slot`; the runner computes the slot before the spawn and `set_slot` carries it on the ticket. Both are ordinary mutable staging, so neither strains the design, but the plan described the ticket as written once.
+- **D2 — the live run failed, and the cause was not in the design.** Both judges exited 0 having submitted nothing, with zero recorded attempts: they never ran the command at all. `claude-code` in non-interactive mode declines tool use without an explicit grant, and cannot prompt for one. Confirmed by hand — the same command succeeded immediately with `--allowedTools Bash`. `JudgeSpawn.agent_argv` and `tournament run --agent-arg` now pass provider flags through, keeping the engine provider-neutral rather than teaching it claude-code's permission model. **Nothing in the index anticipates this**: `^c20260806-62u` says a judge submits through a command and says nothing about the judge being *able* to. Worth a line if it recurs on another provider.
+- **D3 — `--agent-arg --allowedTools` does not work; `--agent-arg=--allowedTools` does.** argparse's `append` action swallows a following token that begins with `--`. Documented in the flag's help text and in `AGENTS.md` rather than worked around, since the `=` form is standard.
+- **D4 — `MatchResult` lost and regained its `match_id` field mid-edit.** A field-reordering edit dropped it; the runner tests caught it immediately. Recorded only because it briefly made every runner test fail for a reason unrelated to the slice.

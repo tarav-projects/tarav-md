@@ -4,7 +4,7 @@
 
 - depot: `skills/agentos-pkg` (project `agentos-md`)
 - caller boundary: none supplied — scope computed by supervisor
-- state: `pass 4 complete — P6 attached 6/7; P4 landed nothing (wrong side of a compaction boundary), fallback P4b pending`
+- state: `pass 5 BLOCKED — P4b research complete and validated, attachment blocked by a broken \`agentos\` CLI (unrelated in-progress refactor); resume by re-running the gate once the CLI imports`
 - coverage after pass 1: `line 1419/3235 linked` (+12), `block 130/328 grounded` (+2), `gr-density 0.5109` (+0.0058)
 - coverage after pass 2: `line 1449/3240 linked` (+30), `block 137/328 grounded` (+7), `gr-density 0.5242` (+0.0133)
 - coverage after pass 4: `line 1455/3240 linked` (+6), `block 137/328 grounded` (+0), `gr-density 0.5271` (+0.0029) — pass 3 attached nothing
@@ -149,6 +149,7 @@ Anchorable subset: L12–L23 (12 typed lines). L01–L11 and L24–L28 are untyp
 | `P5b` | C5 | `6f7f95adf906` | 7 (QA.Space) | medium / medium reasoning | `ambiguous` — 7/7 |
 | `P6` | C6 | `918b793b73f8` | 7 | medium / medium reasoning | `attached` — 6 supported and attached, 1 `ambiguous` |
 | `P4` | C4 | `4f7b47fffe9e` | 30 | medium / medium reasoning | `ambiguous` — 30/30; all typed confidently, none supported |
+| `P4b` | C4 | `9d194db7f404` | 30 | medium / medium reasoning | `supported` — 21 supported (17 queued, 4 held on type divergence), 9 `ambiguous`; **attachment blocked by broken CLI** |
 | `P4` | C4 | `ade6275355cc` | 30 | medium / medium reasoning | `surveyed` |
 
 ### `P1` attachment record — pass 1 closed
@@ -327,6 +328,54 @@ Resolving a neighbouring anchor back to its session is the strongest nomination 
 
 Both packets dispatched concurrently against different files and different sessions, so neither can interfere with the other's relocation or attachment.
 
+### `P4b` result — researched, validated, NOT yet attached
+
+Session `9d194db7f4040470babae7f3f02cd721acf5f5ad195b2edcf8bec57088329cc2` (claude-code, 2026-06-26 → 2026-07-10). **21 `supported`, 9 `ambiguous`, 0 `residue`** — a type honestly fit all 30 bodies.
+
+The compaction-boundary check (note 615) is vindicated: the same 30 lines returned 0/30 against `4f7b47fffe9e` and 21/30 here. Support clusters on three genuine authoring turns of 2026-07-01: a speech-transcribed germ turn `befa51e3`, an accepted synthesis `bbcd2ec4`, and the Partial.Cite naming exchange `e6d13004`/`46ba7d24`.
+
+#### Independent type agreement
+
+Both workers classified all 30 bodies. `P4` had no support and `P4b` had support, so their type calls are independent evidence. **They agree on 17 of the 21 supported lines (81%).** The 17 agreed lines are queued to land; the 4 divergent ones are held.
+
+| line | `P4` | `P4b` | status |
+|---|---|---|---|
+| N02 `the moves: ...` | CT | DF | **held** — enumerating the move set reads as bounding the set (CT) or as fixing its composition (DF/DC) |
+| N03 `two tempos: ...` | DF | DC | **held** — coins two named tempos (DF) or pins the tempo variable to a two-value scheme (DC) |
+| N10 `it mostly lives in the cold tempo ...` | CT | DC | **held** — "mostly" hedges, which argues CT; `P4b` read it as pinning placement |
+| N28 `it is pure ergonomics — Append.Line for ...` | EX | DF | **held** — the clause both characterizes the practice and illustrates N26 with a concrete case |
+
+Held lines are **not** `residue` (a type fits) and **not** `ambiguous` (support exists). They are a genuine two-candidate typing choice. Because adding a type prefix permanently changes line content, this is an Index content decision for the user rather than a supervisor tiebreak. Left untyped and unanchored pending that decision.
+
+#### Queued to land — 17 lines, both workers agreed
+
+`N01` DF · `N04` PR · `N05` DC · `N06` DF · `N07` CT · `N08` PR · `N11` DF · `N12` PR · `N13` CT · `N14` DF · `N15` RJ · `N16` DF · `N21` DF · `N23` DC · `N24` CT · `N26` DF · `N27` CT
+
+Member sets (session-local turn ids): `N01`←befa51e3,54bba030 · `N04`←befa51e3,bbcd2ec4,ac1ee973 · `N05`←befa51e3 · `N06`←05bb038e,d933397f · `N07`←befa51e3 · `N08`←d933397f · `N11`←bbcd2ec4,befa51e3 · `N12`←befa51e3 · `N13`←bbcd2ec4,93466ea7,de9e631c · `N14`←bbcd2ec4 · `N15`←bbcd2ec4 · `N16`←befa51e3,05bb038e · `N21`←befa51e3 · `N23`←bbcd2ec4,befa51e3 · `N24`←befa51e3 · `N26`←e6d13004,46ba7d24 · `N27`←e6d13004
+
+Supervisor precheck **passed** for all 17: valid vocabulary code, no pre-existing prefix, no pre-existing anchor, prefix-only delta verified by reconstruction, and the 4 held plus 9 ambiguous lines verified untouched.
+
+#### Ambiguous — 9 lines, left untouched
+
+`N09` `N17` `N18` `N19` `N20` `N22` `N25` `N29` `N30`. Mostly the specific triggering-case details for `Modify.Line` and `Revise.Block`, plus `N30`'s `Fuzzy.Dotted.Name` which has zero occurrences anywhere in the session. No third candidate session exists corpus-wide for `Index.Edit.Action`, so these are likely uncaptured in any transcript.
+
+#### Blocker
+
+Attachment could not proceed. The `agentos` CLI is broken by an **unrelated in-progress refactor**:
+
+```
+ImportError: cannot import name 'VERDICT_EXPECTS' from 'agentos.tournament.contract'
+  agentos-py/src/agentos/tournament/__init__.py:5
+```
+
+`agentos-py/src/agentos/tournament/` has 5 modified files and an untracked `tickets.py` — another workstream mid-edit. `__init__.py` still imports a symbol `contract.py` no longer defines. This breaks every `agentos` subcommand including `chatlas anchory`, so no preview, registration, or lint can run.
+
+**Not fixed by this campaign** — it is someone else's in-flight work and touching it risks conflicting with their refactor.
+
+All 17 previews returned the import error, not a validation failure. **No mutation occurred**: preview is read-only and the registration step was never reached. `design/107-design.md` is untouched.
+
+To resume: once `agentos` imports again, re-run the preview/register/attach gate for the 17 queued lines using the manifest and member sets above. Revalidate the bodies first — if any changed, drop that line as `stale`.
+
 Contingent packets (dispatch only on ambiguity in the parent packet): `P2b` → `fd6eaa31f7a2` (C2), `P4b` → `549979e6f80a` (C4), `P3b` → `4f7b47fffe9e` (C3), `P1b` → `549979e6f80a` (C1).
 
 ## Grounding.Log
@@ -387,6 +436,8 @@ Per `Index.Line`, that is not a defect to fix by force: an ungrounded line remai
 
 `C5` is retired as ungroundable-for-now, distinct from `C2`/`C4` which are merely `typing-required`.
 
+Parked as a standing open question in `notes/live/616-structurally-unreachable-index-content.md` — what an index should do with lines that have no user-touch evidence anywhere in the corpus. No policy decided; nothing deleted or weakened.
+
 - 2026-08-06 — `::start-campaign-with-typing` for the A+E pair. `P6` (C6, 7 `groundable` lines, session `918b793b73f8`) and `P4` (C4, 30 `typing-required` lines, session `4f7b47fffe9e`) dispatched **concurrently** — different files, different sessions, no interference. C6 consumes no typing authority since its lines are already typed.
 - 2026-08-06 — **both packets aborted on first attempt: the module's reference files were renamed mid-session.** `references/grounding-agent.md` → `references/index-retrofit.md` and `references/grounding-worker.md` → `references/index-retrofit-worker.md`; the subsystem is now `Index.Retrofit.*` (`Grounding.Supervisor.Agent` → `Index.Retrofit.Supervisor`, `Grounding.Work.Packet` → `Index.Retrofit.Packet`, `Grounding.Agent.Workflow.Module` → `Index.Retrofit.Workflow.Module`). The worker refused to improvise a substitute contract, which is the correct behavior.
 - 2026-08-06 — supervisor verified the renamed contracts before re-dispatch: **content is identical apart from concept renames.** Research procedure, the typing/support two-requirement rule, `Legacy.Type.Migration.Exception` handling, result format, `User.Command` triggers (`::start-campaign`, `::start-campaign-with-typing`, `::resurvey`, `::campaign-status`, `::stop-after-current`) and the Discipline list are unchanged. No re-derivation of completed passes is required; passes 1–3 remain valid.
@@ -419,6 +470,7 @@ Revalidate both manifests against current file content before dispatch; a line w
 - 2026-08-06 — `P4` returned **30/30 `ambiguous`**. Every line received a confident type classification, but the session yielded no user support for any of them. Cause: `4f7b47fffe9e` is `/compact`-continued and its earliest indexed turn is the compaction summary itself (2026-07-07T17:23Z); commit `6ba0aa1` (2026-07-05) predates that window entirely. The only occurrences of these terms are inside the auto-generated summary — recap text, not user turns. **Nothing typed, nothing attached.**
   - this is the second time a `/compact` boundary has blocked a packet in this campaign (it also cost 3 lines in pass 2). **Method note for future scoping: a `/compact`-continued session can only ground material authored after its compaction boundary.** Check the session's earliest indexed turn against the target's git introduction window before dispatching — if the commit predates the boundary, the packet is doomed and the fallback should be dispatched first.
   - proven prior authorship in a session does not transfer across its compaction boundary: this same session landed 25/25 in pass 2 for material authored *after* the boundary.
+  - written up as a standalone issue note: `notes/live/615-compaction-boundary-blocks-retrofit-grounding.md`, including the pre-dispatch check, the compaction-summary-is-not-support rule, and open questions on whether Chatlas can recover pre-boundary turns.
 
 ### Scope discovery carried into future passes
 
