@@ -15,7 +15,7 @@
       ]
     },
     "references/capture.md": {
-      "output_sha256": "bf9d5e93fdbc6cf1cdea2e2d61db91f665376f2da611f84c1e5fe1c8e2356724",
+      "output_sha256": "c63d5e90130deb48c94558b8efa14d9e230d7cad930865ae26adc6359b7053b0",
       "recipes": [
         {
           "heading": "^chat-index-capture-boundary",
@@ -23,7 +23,7 @@
           "body_sha256": "8342842a962e43206a4cadc89f5c0effb00a97b0377434196341256c70426751",
           "deps": {
             "Chat.Touched.Index": "1d429172c15c6261592521f11294da30b0084af5aaf691a12f62873cd79b052c",
-            "Chat.Index": "e4c27f41a94d68bb0b948b966cdf47cf96618ad3b916fe1e50c91a57dbde87f2",
+            "Chat.Index": "5665532980010f16c39fa80bf0b844dce50a1d4e7556e15cf46c7c4e1bbb9b5d",
             "Chat.Index.Delta": "07a49d12ca877c898b8952f0fab55565cc93a783acbf3dc15d54e2c5c443bd83",
             "Chat.Index.HEAD": "b00211f8c3581c161bb37731078d6de5312ad07ae165565ab8f317db2a00ebc5"
           }

@@ -73,9 +73,9 @@ agentos chatlas update --verbose-mode=quiet --json
 
 ## Chat.Index Workflow
 
-Chat.Index v2 uses `capture.json`, tape-ordered `deltas/`, and `HEAD.md`. Reads
-never repair, migrate, or recapture a surface. V1 ontology/appendix descriptors
-remain readable as `legacy-v1`, but only v2 is a current capture target.
+Chat.Index v2 is a descriptor-free Markdown surface: tape-ordered `deltas/`
+plus `HEAD.md`. Reads derive structure from those files and the authoritative
+chat; they never repair, migrate, or recapture a surface.
 
 ```sh
 agentos chatlas chat-index source --identity-hash <H> --json
@@ -92,17 +92,17 @@ agentos chatlas chat-index audit --identity-hash <H> --json
 ```
 
 - `source` emits the v2 source hash and `Normal.Turn.Ref` values in event-sequence tape order; it reports non-linear lineage instead of guessing branch semantics.
-- `deltas` returns descriptor order, which is authoritative over filenames and timestamps.
-- `tail` reports whether the stored v2 source is current, append-only, expanded by late evidence, revised at stable turn coordinates, divergent, or blocked. `--detail chat` returns the transcript-visible user and assistant messages of each pending turn — the default semantic evidence, free of reasoning and tool payloads. `--detail turn` is the escape hatch that hands back complete `Normal.Turn` groupings. Neither rewrites the surface.
-- `home` compares canonical line content without trailing support anchors and selects the oldest matching Delta in descriptor order.
-- `audit` replaces the per-line inspection loop: one read-only pass over descriptor closure, source prefix compatibility, Delta and HEAD headings, one trailing anchor per line, anchor resolution and exact subject hashes, anchor/content collisions, Delta support horizons, and `Line.Home` selection. It exits nonzero on blocking findings, accepts `--surface <path>` to audit a staged directory against the same session, and never repairs what it reads.
+- `deltas` resolves each file's horizon against the authoritative tape and returns that derived order; filenames and timestamps do not establish ordering.
+- `tail` compares the evidence horizon declared by HEAD with the live chat. It detects ordinary growth past that horizon; revision of an uncited turn inside the reconstructed prefix is deliberately outside Chat.Index freshness. `--detail chat` returns the transcript-visible user and assistant messages of each pending turn, while `--detail turn` returns complete `Normal.Turn` groupings. Neither rewrites the surface.
+- `home` compares canonical line content without trailing support anchors and selects the oldest matching Delta in authoritative tape order.
+- `audit` replaces the per-line inspection loop: one read-only pass over derived surface structure, identity placement, source-prefix compatibility, Delta and HEAD horizons against the chat, one trailing anchor per line, anchor resolution and exact subject hashes, anchor/content collisions, Delta support horizons and attachments, and `Line.Home` selection. It exits nonzero on blocking findings, accepts `--surface <path>` to audit a staged directory against the same session, and never repairs what it reads.
 - HEAD-only ordinary content is advisory reconciliation work (`head-line-without-delta-home`), not a failed surface; inspection does not write backward automatically.
 
 ### Capture.Plan
 
-Capture is a semantic handoff: the agent authors meaning, Chatlas owns every
-mechanical detail. `capture.json`, Delta headings, timestamps, descriptor order,
-managed files, and support anchors are all rendered, never hand-written.
+Capture is a semantic handoff: the agent authors meaning, while Chatlas owns
+Delta filenames and headings, timestamps, tape order, the resulting Delta/HEAD
+file set, and support anchors.
 
 ```sh
 agentos chatlas chat-index scaffold --identity-hash <H> --stage <dir> --json
@@ -110,12 +110,12 @@ agentos chatlas chat-index validate --plan <dir>/plan.json --json
 agentos chatlas chat-index apply --plan <dir>/plan.json --json
 ```
 
-- `scaffold` writes `plan.json` (a CPU-owned `agentos.chat-index.capture-plan.v1` envelope plus an empty semantic region) and `evidence.json` (chat-only messages for the turns this capture must read) into an empty stage. It detects `create` or `maintain-v2`; `replace-legacy-v1` must be requested with `--mode` and is never inferred.
-- The agent fills only `delta_edits`, `head`, `status`, and `findings`. Line content must be typed and must never carry a trailing anchor. Each Delta line names support once — ordered `members` plus a `hint`, or `{"anchor": "<key>"}` for an existing line-bound record. A HEAD line that occurs in the resulting Delta set inherits that occurrence's anchor; a HEAD-first `POI.Line` must supply its own.
+- `scaffold` writes `plan.json` (a CPU-owned `agentos.chat-index.capture-plan.v1` envelope plus an empty semantic region) and `evidence.json` (chat-only messages for the turns this capture must read) into an empty stage. It detects `create` or `maintain-v2`.
+- The agent fills only `delta_edits`, `head`, and `status`; `status` is `draft` until the semantic plan is ready to apply. Line content must be typed and must never carry a trailing anchor. Each Delta line names support once — ordered `members` plus a `hint`, or `{"anchor": "<key>"}` for an existing line-bound record. A HEAD line that occurs in the resulting Delta set inherits that occurrence's anchor; a HEAD-first `POI.Line` must supply its own.
 - `validate` is read-only. It reloads the authoritative source, requires the inspected prefix to be `current` or `append-only`, verifies the base-surface fingerprint, previews the whole support batch, builds the complete resulting model, and returns planned anchor actions plus the rendered-file inventory. It mints nothing and touches no surface.
-- `apply` takes a visible lock at `<chatlas-root>/locks/chat-index/<H>.lock`, revalidates under it, batch-ensures the anchors, renders the managed files, audits the stage, and installs through a recoverable rename. Unrelated files and unedited Deltas survive byte-for-byte; only formerly managed paths absent from the new descriptor are removed.
+- `apply` takes a visible lock at `<chatlas-root>/locks/chat-index/<H>.lock`, revalidates under it, batch-ensures the anchors, renders the complete Delta/HEAD surface, audits the stage, and installs through a recoverable rename. Unedited Deltas survive byte-for-byte; files outside the resulting surface set are reported in `removed_paths` and dropped.
 - Anchors are written before the directory swap. They are append-only and idempotent, so a retry after a failed install reuses them rather than duplicating them — this is not cross-depot atomicity.
-- Append-only growth after scaffold is not a failure: `apply` installs exactly the inspected prefix, leaves HEAD and source metadata where the plan put them, and returns the remaining tail. A `revised`, `expanded`, `diverged`, or `blocked` prefix fails closed and requires a fresh scaffold.
+- Append-only growth after scaffold is not a failure: `apply` installs exactly the inspected prefix, leaves HEAD at that evidence horizon, and returns the remaining tail. A `revised`, `expanded`, `diverged`, or `blocked` prefix fails closed and requires a fresh scaffold.
 
 ## Event.Pattern Workflow
 

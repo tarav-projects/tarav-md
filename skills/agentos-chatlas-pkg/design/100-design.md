@@ -547,9 +547,10 @@
 
 - [DF] `Chat.Index` is the materialized per-session surface of one `Chat.Touched.Index` ^c20260803-71u
 - [DC] it lives at `<chatlas-root>/session-index/<identity-hash>/` ^c20260804-27u
-- [DC] its primary layout is `capture.json`, `deltas/`, and `HEAD.md` ^c20260804-28u
+- [DC] its primary materialized layout is `deltas/` and `HEAD.md`; the surface directory is the complete `Chat.Index` and carries no descriptor file ^c20260806-0u
 - [DC] each `deltas/<turn-id>.md` file materializes exactly one `Chat.Index.Delta` identified by its `Delta.Horizon.Turn` ^c20260804-29u
-- [DC] `capture.json` records Delta files in the order resolved from their Chatlas tape positions; filenames and timestamps do not establish ordering ^c20260803-72u
+- [DC] Delta order is derived by resolving each file’s `Delta.Horizon.Turn` against the authoritative Chatlas tape; filenames and timestamps do not establish ordering ^c20260806-1u
+- [RJ] `Chat.Index` does not persist managed-file inventory, capture status, or findings; structure and state are derived from the Markdown surface, authoritative chat, and read-only audit ^c20260806-2u
 - [DC] `HEAD.md` materializes the session's `Chat.Index.HEAD` ^c20260804-30u
 - [CT] materialization on `Chat.Index` does not itself establish `Reviewed.Content`; grounding and review standing remain line-local ^c20260803-75u
 - [RJ] the legacy `Chat.Ontology` and `Chat.Appendix` split does not define the redesigned `Chat.Index` layout ^c20260804-31u
@@ -590,23 +591,8 @@
 - [DF] `Line.Home` is the canonical `Chat.Index.Delta` materialization selected as the home of one exact `Index.Line` content ^c20260804-40u
 - [DC] it identifies the owning chat session and Delta coordinate ^c20260804-25u
 - [DC] when exact line content has several known Delta materializations, its default `Line.Home` is the oldest evidenced materialization ^c20260804-41u
-- [RJ] an independent home registry does not duplicate the home derivable from Delta containment and `Line.Provenance` ^c20260804-42u
+- [RJ] an independent home registry does not duplicate the home derived from exact Delta containment and authoritative tape order ^c20260806-3u
 - [CT] identical line content may be materialized on several touched-index surfaces while retaining one canonical home ^c20260803-58u
-- [CT] home is independent from `Known.Origin`, `Support.Set`, review standing, and membership in any HEAD ^c20260803-61u
+- [CT] home is independent from `Support.Set`, review standing, and membership in any HEAD ^c20260806-4u
 - [CT] a line may advance on a HEAD before receiving its home; missing Delta coverage raises a reconciliation `POI.Instance` rather than an authoring error ^c20260804-26u
 - [RJ] assigning a home does not assert that the home contains the first known observation of the line content ^c20260803-64u
-
-****
-
-## Line.Provenance
-
-- [DF] `Line.Provenance` is the independently maintained dossier of observed occurrences and tracked materializations of one exact `Index.Line` content ^c20260803-62u
-- [DC] `Line.Provenance` is maintained in the exact line content’s line-bound anchor record ^c20260804-43u
-- [RJ] `capture.json` records `Chat.Index` structure and Delta ordering without duplicating the line-anchor provenance dossier ^c20260804-44u
-- [DF] `Known.Origin` is the earliest currently evidenced observation of that line content within the searched scope ^c20260803-63u
-- [CT] a known-origin observation may be a user or assistant turn and does not confer `Touched.Authority` ^c20260803-65u
-- [CT] discovering earlier evidence revises `Known.Origin` without changing the line's semantic content ^c20260803-66u
-- [CT] provenance is independent from `Line.Home`, `Support.Set`, review standing, and HEAD membership ^c20260803-68u
-- [PR] `Known.Origin` helps agents distinguish previously materialized context from a newly touched delta without deciding support or home ^c20260803-67u
-- [FR] exact chat observations and available Git materialization or write-commit evidence may extend the dossier ^c20260803-69u
-- [RJ] `Line.Provenance` does not create a line-to-line dependency network ^c20260803-70u

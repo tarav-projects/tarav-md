@@ -3,7 +3,7 @@
 > --loading-dep SKILL.skw.md^chatlas-pkg-batchy-runtime-contract
 > --loading-dep SKILL.skw.md^chat-index-capture-call-contract
 
-> $kw: --from Batchy.Skill.Banner --from Chat.Index --from Chat.Index.Delta --from Chat.Index.HEAD --from Chat.Support.Set --from Chat.Touched.Index --from Chatlas.Anchory --from Index.Line --from Line.Home --from Line.Type --from Line.Provenance --from Normal.Turn.Ref --from POI.Line --from Turn.Type --from Unassigned
+> $kw: --from Batchy.Skill.Banner --from Chat.Index --from Chat.Index.Delta --from Chat.Index.HEAD --from Chat.Support.Set --from Chat.Touched.Index --from Chatlas.Anchory --from Index.Line --from Line.Home --from Line.Type --from Normal.Turn.Ref --from POI.Line --from Turn.Type --from Unassigned
 
 # Chat.Index Capture Operation Module
 
@@ -82,8 +82,7 @@ The stage must be empty. Scaffold writes two files and nothing else:
 `scaffold.json.mode` routes the work:
 
 - `create` — no managed surface exists; author the complete prefix.
-- `maintain-v2` — a valid v2 base exists; `scaffold.json.tail.state` says what changed.
-- `replace-legacy-v1` — only produced when `--mode replace-legacy-v1` is passed explicitly. Chatlas never infers it, and a legacy surface is never edited in place.
+- `maintain-v2` — a valid descriptor-free Delta/HEAD base exists; `scaffold.json.tail.state` says what changed.
 
 Route `maintain-v2` by `scaffold.json.tail.state`:
 
@@ -115,7 +114,7 @@ Inspect qualifying user turns in tape order. A qualifying user turn materially t
 - Later maintenance may extend, correct, or reorganize the extraction using that same prefix, but must never use later chat evidence.
 - Assistant and tool context inside the prefix may inform interpretation but cannot independently provide user touch.
 
-Name each horizon once, as `delta_edits[].horizon_turn_id`. Chatlas derives the Delta filename, heading, timestamp, descriptor order, and `tape_position` from the authoritative turn; do not write headings by hand.
+Name each horizon once, as `delta_edits[].horizon_turn_id`. Chatlas derives the Delta filename, heading, timestamp, and `tape_position` from the authoritative turn; do not write headings by hand.
 
 An edited Delta is a complete replacement bounded by its original horizon. An omitted existing Delta is carried forward byte-for-byte.
 
@@ -126,7 +125,7 @@ Capture only the semantic change touched within each Delta's bounded prefix. Pre
 - Preserve exact observable `Line.Type + body` when recovering a line already present in chat content.
 - Type synthesized extractions using the normal `Index.Line` vocabulary.
 - Keep a chat-local `Unassigned` block only while no honest attachment is visible inside the prefix.
-- Do not mark imported versus new lines syntactically; known origin is provenance, not authority.
+- Do not mark imported versus new lines syntactically; materialization does not assert origin.
 
 Author each line as an object under an ordered concept block:
 
@@ -151,20 +150,20 @@ Author each line as an object under an ordered concept block:
 }
 ```
 
-Line content must be typed and must never carry a trailing anchor; the renderer owns `Support.Reference`s. The same exact canonical line may appear in several Deltas, and its `Line.Home` is the oldest descriptor-ordered occurrence. Do not write a second home registry.
+Line content must be typed and must never carry a trailing anchor; the renderer owns `Support.Reference`s. The same exact canonical line may appear in several Deltas, and its `Line.Home` is the oldest exact occurrence in authoritative tape order. Do not write a second home registry.
 
 ## 6. Ground Every Line
 
 Each Delta line names its support once, as either a proposed record or an existing anchor:
 
 - proposed — ordered `members` of `<identity-hash>:<turn-id>`, a one-sentence `hint`, and `member_types` whenever a member carries non-default `Turn.Type` cargo.
-- existing — `{"anchor": "<anchor-key>"}`, accepted only when that anchor is a line-bound v4 record whose subject hash is exactly this line's canonical content.
+- existing — `{"anchor": "<anchor-key>"}`, accepted only when that anchor is a line-bound v4, v5, or v6 record whose subject hash is exactly this line's canonical content.
 
 Support members must be qualifying human user turns at or before that Delta's horizon. A changed line body or `Line.Type` is a different line and requires support reevaluation; never carry an old anchor across a reworded line.
 
 Chatlas ensures the whole `Chat.Support.Set` of each line in one ordered batch during `apply`: equal canonical line content with equal support reuses one anchor, and different canonical contents never share one. Preview a single relationship with `agentos chatlas anchory preview --line-content ... --member ... --hint ... --detail context` only while investigating; the workflow itself does not register anchors by hand.
 
-`Line.Provenance` belongs to this line anchor. Do not serialize known-origin observations, materialization history, or Git evidence into `capture.json` or a parallel Chat.Index registry. Until the line-anchor provenance dossier has a maintained cargo schema, preserve only representable anchor state and leave richer provenance unasserted.
+The Markdown occurrence records Delta materialization. A new line-bound anchor uses v6 and stores the immutable line subject, grounding members, predecessors, and optional issue context without accumulating provenance observations. When a grounding member is also the containing Delta's horizon, Chatlas marks that member with `delta.horizon`; otherwise Delta containment remains sufficient attachment evidence.
 
 ## 7. Resolve `Chat.Index.HEAD`
 
@@ -175,7 +174,7 @@ Author `head.blocks` as the present-facing model of the complete inspected prefi
 - A `POI.Line` may remain HEAD-first as maintenance state only when its own line object supplies user-grounded `support`. Its subject lines' anchors are inputs to the agent's investigation, not inherited authority.
 - Do not create general line-to-line provenance or supersession links.
 
-Chatlas derives the HEAD heading and `Evidence.Horizon` from the last source turn of the inspected prefix. Set `status` to `complete` or `partial` and record concrete `findings`; `capture.json` is never agent-authored.
+Chatlas derives the HEAD heading and `Evidence.Horizon` from the last source turn of the inspected prefix. Set the plan `status` to `ready` only when the semantic plan is complete; audit findings are computed after rendering and are never persisted on `Chat.Index`.
 
 ## 8. Validate The Plan
 
@@ -199,11 +198,11 @@ agentos chatlas chat-index apply \
   > <temporary-directory>/apply.json
 ```
 
-`apply` takes a visible lock keyed by identity hash, revalidates under it, batch-ensures the line anchors, renders the complete managed file set, audits the staged directory, and installs it through a recoverable rename. Unrelated files and unedited Deltas survive byte-for-byte; only formerly managed paths absent from the new descriptor are removed.
+`apply` takes a visible lock keyed by identity hash, revalidates under it, batch-ensures the line anchors, renders the complete Delta/HEAD surface, audits the staged directory, and installs it through a recoverable rename. Unedited Deltas survive byte-for-byte. Files outside the resulting `deltas/` plus `HEAD.md` surface are reported in `removed_paths` and dropped.
 
 Anchors are written before the directory swap. They are append-only and idempotent, so a retry after a failed installation reuses them instead of duplicating them — never claim cross-depot atomicity.
 
-Append-only growth after scaffold is not a failure. `apply` installs exactly the inspected prefix, leaves HEAD and source metadata where the plan put them, and returns the remaining tail for the next maintenance pass.
+Append-only growth after scaffold is not a failure. `apply` installs exactly the inspected prefix, leaves HEAD at that evidence horizon, and returns the remaining tail for the next maintenance pass.
 
 ## 10. Audit And Report
 
@@ -211,8 +210,8 @@ Append-only growth after scaffold is not a failure. `apply` installs exactly the
 agentos chatlas chat-index audit --identity-hash <identity-hash> --json
 ```
 
-One read-only pass replaces the former per-anchor and per-line inspection loop. It checks descriptor schema and managed-file closure, source linearity and prefix compatibility, Delta and HEAD headings against their descriptor horizons, one trailing anchor per line, anchor resolution and exact subject hashes, anchor/content collisions, Delta support horizons, `Line.Home` selection, and HEAD-only support. It exits nonzero when blocking findings exist and never repairs what it inspects.
+One read-only pass replaces the former per-anchor and per-line inspection loop. It derives the surface from its directory and Markdown, checks identity placement, source linearity and prefix compatibility, Delta and HEAD horizons against the authoritative chat, one trailing anchor per line, anchor resolution and exact subject hashes, anchor/content collisions, Delta support horizons and attachment markers, `Line.Home` selection, and HEAD-only support. It exits nonzero when blocking findings exist and never repairs what it inspects.
 
 A `head-line-without-delta-home` finding is advisory reconciliation work, not a failed capture: keep the HEAD-first edition, record the finding, and reconcile it on a later pass.
 
-Report the materialized path, mode, capture status, counts for Deltas, Delta lines, HEAD lines, resolved homes, anchors minted and reused, the remaining tail, and every audit finding. Do not paste captured session content into the caller chat unless explicitly requested.
+Report the materialized path, mode, plan status, counts for Deltas, Delta lines, HEAD lines, resolved homes, anchors minted and reused, removed paths, the remaining tail, and every audit finding. Do not paste captured session content into the caller chat unless explicitly requested.
