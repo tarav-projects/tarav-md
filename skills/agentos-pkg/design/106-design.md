@@ -304,66 +304,66 @@
 - `Line.Type.Vocabulary` is the controlled set of `Line.Type`s an index uses — small, curated, soft (`Concept.Hardness`); extensible, not a hard enum
 - each type is a verb on the `Design.Space` — types sort by how a line acts on the space: collapsing it, describing it, or declaring it open
 - a type earns its place when a recurring line-act has no home; a type that attracts filler is a smell
-- each type creates a validation point: a typed line must perform its act — a constraint line must constrain something; a typed line that performs nothing is mistyped filler
-- the vocabulary is the fence of the index: index content is what the vocabulary can express — a line that can take no type belongs elsewhere; developing the vocabulary is deciding what the index is for
-- scope widens only by widening the vocabulary — a visible, gated act, instead of line-by-line scope creep
-- calibration: type the live index against a candidate vocabulary and inspect what remains untyped — each residue is a discussion: out of the index, or a vocabulary extension
+- [PR] each type creates a validation point: a typed line must perform its act — a constraint line must constrain something; a typed line that performs nothing is mistyped filler ^c20260707-9u
+- [PR] the vocabulary is the fence of the index: index content is what the vocabulary can express — a line that can take no type belongs elsewhere; developing the vocabulary is deciding what the index is for ^c20260707-10u
+- [CT] scope widens only by widening the vocabulary — a visible, gated act, instead of line-by-line scope creep ^c20260707-11u
+- [DC] calibration: type the live index against a candidate vocabulary and inspect what remains untyped — each residue is a discussion: out of the index, or a vocabulary extension ^c20260707-12u
 
 ****
 
 ## Line.Type::DF
 
-- `Line.Type::DF` marks a definition — the line fixes what a name means
-- validation point: the line must bind a name to a meaning; a `DF` that introduces no name is mistyped
-- lint: two `DF` lines binding the same name to different meanings, and a block whose first line is not a `DF`
+- [DF] `Line.Type::DF` marks a definition — the line fixes what a name means ^c20260708-21u
+- [CT] validation point: the line must bind a name to a meaning; a `DF` that introduces no name is mistyped ^c20260708-22u
+- [DC] lint: two `DF` lines binding the same name to different meanings, and a block whose first line is not a `DF` ^c20260708-23u
 
 ****
 
 ## Line.Type::DC
 
-- `Line.Type::DC` marks a decision — the line pins a `Design.Variable` to a value
-- validation point: the line must name what was decided and the value it took; a `DC` that pins nothing is mistyped
-- lint: two `DC` lines pinning the same variable to different values is a contradiction to surface
+- [DF] `Line.Type::DC` marks a decision — the line pins a `Design.Variable` to a value ^c20260707-13u
+- [CT] validation point: the line must name what was decided and the value it took; a `DC` that pins nothing is mistyped ^c20260707-14u
+- [DC] lint: two `DC` lines pinning the same variable to different values is a contradiction to surface ^c20260707-15u
 
 ****
 
 ## Line.Type::CT
 
-- `Line.Type::CT` marks a constraint — the line bounds a `Design.Variable` to a subset without picking a value
-- validation point: the line must exclude something; a `CT` that rules nothing out is filler
-- lint: constraints whose intersection is empty, and a `CT` silently violated by a later `DC`
+- [DF] `Line.Type::CT` marks a constraint — the line bounds a `Design.Variable` to a subset without picking a value ^c20260707-16u
+- [CT] validation point: the line must exclude something; a `CT` that rules nothing out is filler ^c20260707-17u
+- [DC] lint: constraints whose intersection is empty, and a `CT` silently violated by a later `DC` ^c20260707-18u
 
 ****
 
 ## Line.Type::RJ
 
-- `Line.Type::RJ` marks a rejection — the line excludes a considered alternative
-- validation point: the line must name the rejected alternative, preferably with the reason
-- lint: a rejected alternative later reintroduced without a new touch
+- [DF] `Line.Type::RJ` marks a rejection — the line excludes a considered alternative ^c20260707-19u
+- [CT] validation point: the line must name the rejected alternative, preferably with the reason ^c20260707-20u
+- [DC] lint: a rejected alternative later reintroduced without a new touch ^c20260707-21u
 
 ****
 
 ## Line.Type::PR
 
-- `Line.Type::PR` marks a principle — a generative orientation that spawns constraints across many variables
-- validation point: the line must orient decisions beyond one variable; a `PR` scoped to a single variable is a `CT`
-- lint: decisions or constraints that run against a standing principle
+- [DF] `Line.Type::PR` marks a principle — a generative orientation that spawns constraints across many variables ^c20260707-22u
+- [CT] validation point: the line must orient decisions beyond one variable; a `PR` scoped to a single variable is a `CT` ^c20260707-23u
+- [DC] lint: decisions or constraints that run against a standing principle ^c20260707-24u
 
 ****
 
 ## Line.Type::FR
 
-- `Line.Type::FR` marks a free declaration — the user explicitly leaves a `Design.Variable` agent-owned
-- validation point: the line must name what is left open; freedom is a touched act, not an omission
-- lint: a `FR` variable later constrained without retiring the declaration
+- [DF] `Line.Type::FR` marks a free declaration — the user explicitly leaves a `Design.Variable` agent-owned ^c20260707-25u
+- [CT] validation point: the line must name what is left open; freedom is a touched act, not an omission ^c20260707-26u
+- [DC] lint: a `FR` variable later constrained without retiring the declaration ^c20260707-27u
 
 ****
 
 ## Line.Type::EX
 
-- `Line.Type::EX` marks an example — the line illustrates another line's claim with a concrete case
-- validation point: the line must exemplify something specific; an example that illustrates no claim is filler
-- lint: an example inconsistent with the constraints and decisions it illustrates
+- [DF] `Line.Type::EX` marks an example — the line illustrates another line's claim with a concrete case ^c20260707-28u
+- [CT] validation point: the line must exemplify something specific; an example that illustrates no claim is filler ^c20260707-29u
+- [DC] lint: an example inconsistent with the constraints and decisions it illustrates ^c20260707-30u
 
 ****
 

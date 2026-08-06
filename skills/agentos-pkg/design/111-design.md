@@ -4,7 +4,7 @@
 
 ## Agentos.Tournament
 
-- [DF] `Agentos.Tournament` is the Agentos subsystem that accumulates comparative evaluations of arbitrary items by running pairwise matches and recording every outcome ^c20260805-20u
+- [DF] `Agentos.Tournament` is the Agentos subsystem that accumulates comparative evaluations of arbitrary items by running matches over sets of them and recording every outcome ^c20260806-47u
 - [DC] one tournament is one `Tournament.Definition` and its accumulated `Tournament.Match` records over one player pool ^c20260805-21u
 - [CT] the system is domain-blind: it records and serves verdicts and never interprets what a `Tournament.Player` represents ^c20260805-22u
 - [CT] the durable object is the append-only verdict record; any ranking over a pool is a read-side fold, never a stored value ^c20260805-23u
@@ -49,7 +49,7 @@
 - [CT] hooks return values and never perform effects; spawning, presentation-order randomization, and storing stay engine-side ^c20260806-19u
 - [FR] a definition may choose which players meet however it likes, including randomly; only presentation order is engine business ^c20260806-20u
 - [DC] the match-players and match-identity hooks are required and have no default; every other hook defaults, so a definition supplies only what its domain forces ^c20260806-21u
-- [DC] each call to the match-players hook yields the two competitors of one match, and nothing wider ^c20260806-13u
+- [DC] each call to the match-players hook yields the players of one match, and the definition chooses how many ^c20260806-48u
 - [DC] the hook may decline to supply another match, ending a run before the caller's requested match count ^c20260806-14u
 - [DC] pairing strategies live in an importable library a definition may call, never in the engine ^c20260806-15u
 - [PR] keeping pair choice consumer-side is what lets a pool be unbounded, computed, or streamed rather than enumerated up front ^c20260806-16u
@@ -67,7 +67,9 @@
 
 ## Tournament.Match
 
-- [DF] a `Tournament.Match` is one evaluation of a player pair against its tournament's question, run by one `Tournament.Judge` in one fresh context ^c20260805-53u
+- [DF] a `Tournament.Match` is one evaluation of a set of players against its tournament's question, run by one `Tournament.Judge` in one fresh context ^c20260806-49u
+- [DC] match arity is chosen per match by the `Tournament.Definition`; the engine imposes no size and never picks one ^c20260806-50u
+- [PR] arity is the resolution knob — a larger match buys more comparisons per judge run, and where that stops paying against a judge's discrimination is empirical rather than designable ^c20260806-51u
 - [DC] a match carries no state from any other match ^c20260805-54u
 - [DC] match identity is an opaque string supplied by the consumer; the engine requires it and never computes one ^c20260805-55u
 - [FR] the consumer decides which content changes make a new match and which do not ^c20260805-56u
@@ -92,7 +94,7 @@
 - [DC] a refusal requires a stated reason, so declining is an answer rather than an abstention ^c20260805-67u
 - [PR] refusal rate reads as a judge metric as much as a pool metric — a rate drifting across unrelated tournaments indicts the judge prompt ^c20260805-68u
 - [FR] the model, provider, and prompt behind a judge are consumer choices ^c20260805-69u
-- [RJ] a judge does not rank a pool or compare beyond the pair it was given ^c20260805-70u
+- [RJ] a judge does not rank a pool or compare beyond the players it was given ^c20260806-52u
 
 ****
 
@@ -100,10 +102,13 @@
 
 - [DF] a `Tournament.Verdict` is the recorded outcome of one completed `Tournament.Match` ^c20260805-71u
 - [DC] a verdict has two zones: an engine-written envelope and an opaque consumer slot, following `Bloberia.Record` ^c20260805-72u
-- [DC] the envelope records the match identity, the judge, the outcome, the presentation order actually run, and the `Match.Verbatim` hash ^c20260805-73u
+- [DC] the envelope records the match identity, the judge, the ordering the judge returned, the presentation order actually run, and the `Match.Verbatim` hash ^c20260806-53u
 - [CT] the engine stores the consumer slot and never reads it ^c20260805-74u
 - [CT] slot content never shadows an envelope field; the slot carries analysis material, not a restatement of what the envelope owns ^c20260805-75u
-- [CT] an outcome is either a preferred player or `Tournament.Verdict::No.Contest` ^c20260805-76u
+- [CT] an outcome is either a strict total ordering of the match's players or `Tournament.Verdict::No.Contest` ^c20260806-54u
+- [CT] the ordering is strict: a judge places no two players at equal rank, and equivalence emerges from orderings that disagree across repeated matches ^c20260806-55u
+- [CT] pairwise comparisons are extracted from a stored ordering at read time and are never themselves stored ^c20260806-56u
+- [PR] keeping the match whole is what leaves a later fold free to see which comparisons shared one judgment ^c20260806-57u
 - [RJ] there is no draw outcome; equally good players converge through split records across repeated matches ^c20260805-77u
 - [CT] verdicts are append-only, and a later verdict never replaces an earlier one ^c20260805-78u
 - [PR] one verdict is noise; signal lives only in accumulation ^c20260805-79u
