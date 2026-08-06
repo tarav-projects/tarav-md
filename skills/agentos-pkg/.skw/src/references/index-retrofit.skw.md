@@ -8,7 +8,7 @@
 
 # Index.Retrofit.Workflow.Module
 
-> $kw: --from Batchy.Skill.Banner --from Index.Presumption --from Line.Type --from Line.Type.Vocabulary --from Normal.Turn.Ref --from Support.Set --from Verbatim.User.Gated
+> $kw: --from Batchy.Skill.Banner --from Index.Presumption --from Line.Type --from Normal.Turn.Ref --from POI.Instance --from Reviewed.Content --from Support.Set --from Verbatim.User.Gated
 
 Survey an Index depot, propose a bounded retrofit campaign, and supervise transcript-reading research agents that type and ground eligible lines without loading transcript content into the supervisor context.
 
@@ -29,13 +29,13 @@ $agentos-pkg --index-retrofit --depot <target-depot>
 
 ### Index.Retrofit.Research.Agent
 - a read-only subagent that receives one session-centered work packet
-- loads the assigned transcript deeply enough to judge support and returns one proposed `Support.Set` or an honest ambiguous result for each distinct line content
-- when the packet carries explicit type-migration authority, also classifies legacy untyped bodies against the applicable `Line.Type.Vocabulary`
+- loads the assigned transcript deeply enough to judge typing, current support, or candidate support as selected by the packet action
+- returns explicit per-line type and support dispositions without treating a small `Support.Set` as defective by cardinality alone
 - never mutates the Index, registers anchors, or broadens its assigned depot/session boundary
 
 ### Index.Retrofit.Packet
 - one candidate session plus a group of exact Index lines likely grounded there
-- carries stable typed content or exact legacy untyped bodies, content hashes, current locations and blocks, typing disposition, nomination evidence, and the allowed session boundary
+- carries one action (`retrofit-type`, `retrofit-grounding`, or `full-retrofit`), stable content, content hashes, current locations and blocks, review state, type and support dispositions, current support reference and members when present, nomination evidence, and the allowed session boundary
 - is session-centered so one transcript load can research several lines
 - its materialized manifest is persisted in the report at dispatch, not held only in the worker prompt
 
@@ -63,11 +63,19 @@ $agentos-pkg --index-retrofit --depot <target-depot>
 - a type prefix permanently changes line content, so the supervisor holds the line rather than picking a winner
 - record both candidates with their rationales and route the choice to the user as an Index content decision
 
-### Legacy.Type.Migration.Exception
-- a narrow campaign authority for adding one `Line.Type` prefix to an existing untyped body and grounding the resulting typed content atomically
-- exists only after `User.Command::StartCampaignWithTyping`; ordinary grounding campaigns never infer this authority
-- preserves the legacy body byte-for-byte and cannot retype, rewrite, split, move, or delete a line
+### Index.Retrofit.Type.Exception
+- a narrow workflow authority for adding or replacing one `Line.Type` prefix on an unreviewed line
+- exists only after `User.Command::RetrofitType` or `User.Command::FullRetrofit`; grounding-only work never infers this authority
+- preserves the body byte-for-byte and cannot type or retype `Reviewed.Content`, rewrite, split, move, or delete a line
+- a type change creates new line content; an existing support reference belongs to the old content and cannot remain attached unchanged
 - is a workflow-specific exception to the normal verbatim gate, not a general relaxation of `Verbatim.User.Gated`
+
+### Index.Retrofit.Support.Action
+- `ground` creates support for typed content with no current `Support.Reference`
+- `keep` records that a nominated small set remains sufficient; one decisive user turn may be ideal support
+- `expand` mints a successor support reference with additional honest members and the current anchor as predecessor
+- `replace` mints a successor when honest review changes the member set without changing line content
+- `concern` records a `POI.Instance` when current support appears weak or mismatched but no honest successor is ready; it never silently strips authority
 
 ### Index.Retrofit.Campaign.Report
 - the single durable live note for survey, dispatch, results, attachment, coverage, and resumability
@@ -91,12 +99,13 @@ The first invocation is always a cheap supervisor pass. Do not spawn agents, loa
 
 1. Read the target's applicable `AGENTS.md`, router, and current Index surfaces.
 2. Measure the whole permitted boundary with `agentos index linter --depot <depot> --coverage all --json` and rank blocks with `agentos index blocks --depot <depot> --sort gr-density --json`.
-3. Compute the readiness partition over every ungrounded line — `groundable` when already typed, `typing-required` when legacy untyped. Report both counts. The ratio governs everything: where most of the deficit is untyped, ordinary `::start-campaign` can reach only a small fraction of it, and the campaign must say so rather than implying the whole deficit is addressable.
-4. Nominate candidate sessions per cluster using `Session.Nomination.Ladder` below. Record which signals fired and which did not.
-5. Run the cheap exhaustion sweep before scoping — see `Cluster Exhaustion Sweep`. Retire zero-signal clusters as `Unreachable.Cluster` instead of scoping them into a pass.
-6. Cluster by candidate session first and line group second. A line may appear in several candidate clusters until research resolves it.
-7. Compute the recommended bounded scope by preferring high deficit, coherent blocks, surviving nomination evidence, and enough related lines to amortize one transcript load.
-8. Create or refresh one `notes/live/NNN-<depot>-index-retrofit-campaign.md` in the project that owns the target depot, using `agentos stdlib prefix next` and the live-surface conventions.
+3. Compute two independent readiness axes. Type is `missing`, `revisitable`, `reviewed-frozen`, `adequate`, or worker-returned `residue`; support is `missing`, `thin`, `established`, or `concern`. Determine `Reviewed.Content` through the existing review checks, not by guessing from prose.
+4. Scope existing support cheaply with `agentos chatlas anchory sessions` over the selected Index sources. Member cardinality nominates `thin` support for research but never proves weakness.
+5. Nominate candidate sessions per cluster using `Session.Nomination.Ladder` below. Record which signals fired and which did not.
+6. Run the cheap exhaustion sweep before scoping — see `Cluster Exhaustion Sweep`. Retire zero-signal clusters as `Unreachable.Cluster` instead of scoping them into a pass.
+7. Cluster by candidate session first and line group second. A line may appear in several candidate clusters until research resolves it.
+8. Compute separate recommended scopes for type work, grounding work, and their full composition; prefer coherent blocks, surviving nomination evidence, and enough related lines to amortize one transcript load.
+9. Create or refresh one `notes/live/NNN-<depot>-index-retrofit-campaign.md` in the project that owns the target depot, using `agentos stdlib prefix next` and the live-surface conventions.
 
 ## Session.Nomination.Ladder
 
@@ -136,8 +145,8 @@ Retire such clusters as `Unreachable.Cluster` with the queries that proved it. T
 
 Keep the report compact and operational, and sufficient to resume cold:
 
-- `Index.Retrofit.Abstract` — depot, coverage before and after each pass, explicit boundary, computed scope, readiness partition, state, and the survey commands actually run
-- `Index.Retrofit.Clusters` — stable cluster ids, candidate session identities with their nomination evidence, exact target lines or legacy bodies with content hashes, typing disposition, and selection rank
+- `Index.Retrofit.Abstract` — depot, coverage before and after each pass, explicit boundary, per-action computed scopes, both readiness axes, state, and the survey commands actually run
+- `Index.Retrofit.Clusters` — stable cluster ids, candidate session identities with their nomination evidence, exact target lines or bodies with content hashes, review state, type disposition, support disposition and member count, and selection rank
 - `Index.Retrofit.Work` — one row per packet plus, for every dispatched packet, its **materialized manifest**: packet-local line ids, block, file line, content hash, typed marker, and exact content. Packet state is `surveyed`, `queued`, `researching`, `supported`, `held`, `ambiguous`, `residue`, `unreachable`, `attached`, or `stale`, plus the worker model class used
 - `Index.Retrofit.Log` — nomination outcomes, structural failures, retries, model escalations, type migrations, held divergences, scope changes, infrastructure interruptions, and coverage after completed passes
 
@@ -149,33 +158,46 @@ Record coverage denominators with their meaning. The linter meter counts all ind
 
 ## Survey Checkpoint
 
-After landing the report, return its path, coverage summary, readiness partition, retired clusters, recommended cluster set, expected packet count, and the commands currently available. Offer `::start-campaign-with-typing` only when the selected boundary contains eligible legacy untyped bodies. Stop until the user supplies a declared command. This checkpoint controls agent work and resource use; only the typing-capable command grants the narrow migration exception below.
+After landing the report, return its path, coverage summary, both readiness axes, retired clusters, per-action recommended cluster sets, expected packet counts, and the commands currently available. Offer only commands that have eligible work in the selected boundary. Stop until the user supplies a declared command; that command selects the retrofit authority and resource boundary.
 
-## Campaign Execution
+## Retrofit Execution
 
-After `User.Command::StartCampaign`:
+Every action command uses the same supervisor loop:
 
-1. Re-read the report and revalidate that its target lines remain current; drop any drifted line as `stale`.
-2. Convert only `groundable` typed lines in the selected cluster set into session-centered work packets; leave `typing-required`, `residue`, and `unreachable` lines unchanged in the report.
+1. Re-read the report and revalidate exact content, current support reference, and review state; drop drifted lines as `stale`.
+2. Select only lines eligible for the commanded action and chosen cluster boundary.
 3. Run the `Compaction Boundary Check` on every candidate session; reorder to the fallback when the primary fails.
-4. Persist each packet's materialized manifest in the report, then spawn read-only `Index.Retrofit.Research.Agent`s using `references/index-retrofit-worker.md` and the worker-economics policy below.
+4. Persist each packet's action and materialized manifest, then spawn read-only `Index.Retrofit.Research.Agent`s using `references/index-retrofit-worker.md` and the worker-economics policy below.
 5. Keep the supervisor transcript-blind. Consume only worker result objects and cheap command results.
-6. Record every returned line result in `Index.Retrofit.Work`; `ambiguous` is a valid result and never becomes a weak anchor.
-7. Structurally validate each `supported` result, register its anchor, append the trailing support reference, and lint the edited scope.
-8. Refresh coverage, close the bounded pass, and survey the remaining boundary cheaply. Offer another campaign only when useful work remains.
+6. Aggregate session-local results per line, hold `Type.Divergence`, and preserve honest `ambiguous`, `residue`, `unreachable`, and `concern` outcomes.
+7. Apply only structurally valid results allowed by the selected action, lint the edited scope, refresh coverage, and survey the remaining boundary cheaply.
 
-Do not pause between valid packets for user approval. `::start-campaign` authorizes the bounded campaign; support-reference maintenance does not change line verbatim.
+### Retrofit Type Action
 
-After `User.Command::StartCampaignWithTyping`, follow the same execution loop with these changes:
+- `User.Command::RetrofitType` grants `Index.Retrofit.Type.Exception` for missing or revisitable types on unreviewed lines
+- skip `Reviewed.Content` as `reviewed-frozen`; a suspected type problem there becomes a POI for the normal gated edit path
+- preserve the body byte-for-byte; allow only adding one prefix or replacing the existing prefix
+- when type changes, detach any support reference bound to the old typed content and mark the resulting line `support: missing`; preserve the old anchor record for later predecessor-aware recovery
+- hold `Type.Divergence` and `residue` without mutation
 
-1. Include `groundable` and `typing-required` lines, mark the packet with explicit `Legacy.Type.Migration.Exception` authority, and supply the applicable `Line.Type.Vocabulary`.
-2. Require the worker to return both an honest type classification and a nonempty `Support.Set` for every legacy untyped body it supports.
-3. Treat type uncertainty as `residue` and support uncertainty as `ambiguous`; neither permits a file change.
-4. When a second independent result exists for the same body, compare type codes and hold any `Type.Divergence` rather than choosing.
-5. For a successful legacy result, construct the exact typed candidate, preview and register support against that typed content, then land the type prefix and trailing support reference together.
-6. Record the original body, resulting typed content, worker rationale, support members, and delegated command authority in `Index.Retrofit.Log` for later quality evaluation.
+### Retrofit Grounding Action
 
-This is an atomic type-and-ground migration. Never leave a newly typed line ungrounded, and never use the exception to modify an existing type or any byte of the legacy body.
+- `User.Command::RetrofitGrounding` never changes `Line.Type` or body and may operate on reviewed or unreviewed lines
+- `missing` support may become `ground`; `thin` or nominated existing support may become `keep`, `expand`, `replace`, or `concern`
+- use current members and assigned-session research to judge support; cardinality is only a nomination signal
+- for `expand` or `replace`, batch-preview and mint a successor anchor with the current anchor in `predecessors`, then replace only the trailing support reference
+- preserve every gate-evidence member and its member types when operating on `Reviewed.Content`
+- a `concern` without an honest successor records a POI and leaves the current reference unchanged pending the later evaluation mechanism
+
+### Full Retrofit Action
+
+- `User.Command::FullRetrofit` composes type work first and grounding work second against the resulting exact content
+- reviewed lines are type-frozen but remain eligible for grounding work
+- when both results succeed, land the type delta and final support reference together
+- when type succeeds but support remains ambiguous, land only the authorized type delta, detach support belonging to the old content, and record the honest partial state as `support: missing`
+- `full` means all currently implemented type and support retrofit work, not future semantic validation or reconciliation
+
+Do not pause between valid packets for user approval. The selected action command authorizes its bounded retrofit work; no action may infer the authority of another.
 
 ## Worker Economics
 
@@ -190,25 +212,82 @@ This is an atomic type-and-ground migration. Never leave a newly typed line ungr
 
 ## Structural Validation And Attachment
 
-For each worker-proposed `Support.Set`:
+For each worker result:
 
-- relocate an existing typed line by `Line.Type + body`, or a legacy line by its exact untyped body, rather than trusting a stale line number
-- reject the result as `stale` if the dispatched typed content or legacy body changed
-- for a legacy migration, require explicit packet authority, an allowed type code, an unchanged body, and no pre-existing type prefix; verify the prefix-only delta by reconstructing the body from the typed candidate
-- run `agentos chatlas anchory preview --line-content <exact-line> --member <session>:<turn-id> ... --hint <hint>` without context detail
+- relocate the current line by exact `Line.Type + body` or exact untyped body rather than trusting a stale line number
+- reject the result as `stale` if content, support reference, or review state changed after dispatch
+- for a type delta, require `Index.Retrofit.Type.Exception`, prove the line is not `Reviewed.Content`, require an allowed type code, and verify body identity after removing the old and proposed prefixes
+- for support work, run Anchory preview or batch preview against the exact final typed content without context detail
 - require resolvable user turns, one exact line-bound relationship per distinct line content, and no conflicting equivalent anchor
 - register only after preview succeeds; the supervisor owns all allocation so workers cannot race or create orphans
 - register every anchor in a packet before writing any line, and abort the whole packet on the first registration failure — a partial write leaves the file inconsistent with the report
-- for ordinary grounding, append only the trailing anchor while preserving `Line.Type + body` verbatim
-- for an authorized legacy migration, replace the untyped line with exactly `Line.Type + unchanged body + trailing anchor` as one operation
+- for grounding-only work, replace only the trailing reference while preserving `Line.Type + body` verbatim
+- for type-only work, change only the prefix and detach any support reference bound to the prior content
+- for full work, materialize exactly the authorized prefix delta, unchanged body, and final trailing support reference
 - verify unlanded lines were left untouched, then run focused provenance and coverage lint after attachment
 
 Two mechanics the gate enforces, worth knowing before scoping:
 
-- `--line-content` accepts only a **typed** Index line. An untyped legacy body cannot receive a line-bound anchor at all, which is why untyped lines are `typing-required` rather than merely unresearched.
+- `--line-content` accepts only a **typed** Index line. An untyped body cannot receive a line-bound anchor at all, which is why its type disposition is `missing` rather than merely unresearched.
 - anchor members must be **resolvable user turns**. Assistant drafts and tool or apply turns are rejected by preview, so a result whose support collapses to "the agent drafted it and the patch applied it" cannot land.
 
-Anchor registration and trailing `Support.Reference` maintenance are agent-owned metadata operations. The legacy type prefix is allowed only through the explicit exception above. If research implies any other material line change, leave the line untouched and route that separate edit through its normal verbatim gate.
+Anchor registration and trailing `Support.Reference` maintenance are agent-owned metadata operations. A type prefix delta is allowed only through `Index.Retrofit.Type.Exception`. If research implies any body change, leave the line untouched and route that separate edit through its normal verbatim gate.
+
+## User.Command.Section
+
+### User.Command::RetrofitType
+- execute type gap-fill or type review over an eligible bounded cluster
+- triggers: `::retrofit-type`
+- available: when the foreground report contains `missing` or `revisitable` type work on unreviewed lines
+- action: grant `Index.Retrofit.Type.Exception`, dispatch type research, and land only structurally valid prefix deltas
+
+#### User.Command.Arg::Cluster
+- the cluster id or set to execute
+- required: false
+- resolution: Defaulted
+- default: the report's recommended type cluster set
+
+### User.Command::RetrofitGrounding
+- execute missing-support recovery, existing-support review, or support expansion over a bounded cluster
+- triggers: `::retrofit-grounding`
+- available: when the foreground report contains `missing`, `thin`, or `concern` support work
+- action: dispatch support research and autonomously keep, ground, expand, replace, or report concern without changing line content
+
+#### User.Command.Arg::Cluster
+- the cluster id or set to execute
+- required: false
+- resolution: Defaulted
+- default: the report's recommended grounding cluster set
+
+### User.Command::FullRetrofit
+- compose all eligible type and support work over one bounded cluster
+- triggers: `::full-retrofit`
+- available: when the foreground report contains any current retrofit work
+- action: grant the union of type and grounding authority, execute in content-dependency order, and preserve honest partial states
+
+#### User.Command.Arg::Cluster
+- the cluster id or set to execute
+- required: false
+- resolution: Defaulted
+- default: the report's recommended full-retrofit cluster set
+
+### User.Command::Resurvey
+- refresh the cheap depot report without spawning agents or changing Index content or support
+- triggers: `::resurvey`
+- available: whenever a foreground campaign report resolves uniquely and no packet is attaching
+- action: recompute readiness, support cardinality, nomination, clusters, and per-action recommendations
+
+### User.Command::CampaignStatus
+- report current packet counts, action states, attachments, concerns, and coverage without changing state
+- triggers: `::campaign-status`
+- available: whenever one foreground campaign report resolves uniquely
+- action: read and summarize the campaign report
+
+### User.Command::StopAfterCurrent
+- stop dispatching new packets after already-running research agents return
+- triggers: `::stop-after-current`
+- available: while a retrofit action is active
+- action: preserve returned results, finish safe structural checks already underway, and leave undispatched packets queued
 
 ## Known Failure Modes
 
@@ -226,7 +305,7 @@ Each of these has cost a real packet. Recognize them by shape rather than redisc
 
 - never let the supervisor inspect transcript content to double-check a worker; requeue uncertain work instead
 - never let a worker register or attach an anchor
-- never infer type-migration authority from a normal campaign command or from the presence of untyped lines
+- never infer type authority from grounding work, review state from typography, or full-retrofit authority from either narrower command
 - never force a legacy body into the vocabulary; preserve honest `residue`
 - never resolve a `Type.Divergence` by supervisor preference; hold it for the user
 - never share one line-bound anchor across different line content, even when several lines use the same support members
