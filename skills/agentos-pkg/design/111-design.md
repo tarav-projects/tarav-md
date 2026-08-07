@@ -12,6 +12,8 @@
 - [PR] enumerating from verdicts is what keeps a player's accumulated history readable after it leaves the definition's pool ^c20260806-44u
 - [CT] every completed match is recorded, including outcomes that score no player ^c20260805-24u
 - [PR] the weak tail is the product — consistent low outcomes locate items worth attention, and no single item's score is the point ^c20260805-25u
+- [PR] flat accumulation is a finding rather than the absence of one: it says the measurement did not discriminate ^c20260806-136u
+- [RJ] the engine does not diagnose why a pool failed to separate; whether the question, the judge, or the pool itself is at fault is a read over the records ^c20260806-137u
 - [PR] statelessness at the match boundary is what makes runs parallel, reproducible, and cacheable ^c20260805-26u
 - [CT] its output is `Accountable.Assertion` evaluation-record material: confidence, never authority ^c20260805-27u
 - [RJ] it does not own domain `POI.Class`es or emit domain findings; consumers read the accumulated records and mint their own POIs ^c20260805-28u
@@ -42,12 +44,26 @@
 
 ****
 
+## Tournament.Control
+
+- [DF] a `Tournament.Control` is a consumer-supplied player carrying a declared expected standing, present to calibrate the instrument rather than to measure the pool ^c20260806-129u
+- [DC] the declared bands are high and low: a control is expected to converge toward the top or toward the bottom across many matches ^c20260806-130u
+- [RJ] there is no middle band; mid-pack is where noise lives, so a middle expectation is not falsifiable at any affordable volume ^c20260807-0u
+- [DC] the control hook returns the pool the engine draws from, so which control appears in a match stays engine work ^c20260807-1u
+- [DC] the engine substitutes one control for one pool player at a consumer-set rate, and never more than one per match ^c20260806-131u
+- [CT] substitution precedes match identity, so a match carrying a control is a different match from the one without ^c20260806-132u
+- [DC] the verdict records which of its players were controls and the band each declared ^c20260806-133u
+- [CT] controls are held apart in the read: folded into the pool, a low control sits in the weak tail looking exactly like a finding ^c20260806-134u
+- [PR] a control converging to neither band is the instrument reporting on itself ^c20260806-135u
+
+****
+
 ## Tournament.Hook
 
 - [DF] a `Tournament.Hook` is a named function a `Tournament.Definition` supplies and the engine calls at a fixed point to obtain a consumer-owned part of the match ^c20260805-43u
 - [DC] the declared hooks supply the match players, the player presentation, the match identity, and the consumer verdict slot ^c20260806-11u
-- [CT] hooks return values and never perform effects; spawning, presentation-order randomization, and storing stay engine-side ^c20260806-19u
-- [FR] a definition may choose which players meet however it likes, including randomly; only presentation order is engine business ^c20260806-20u
+- [CT] hooks return values and never perform effects; spawning, storing, and the engine's own randomizations stay engine-side ^c20260806-127u
+- [FR] a definition may choose which players meet however it likes, including randomly; the engine randomizes only presentation order and control substitution ^c20260806-128u
 - [DC] the match-players and match-identity hooks are required and have no default; every other hook defaults, so a definition supplies only what its domain forces ^c20260806-21u
 - [DC] each call to the match-players hook yields the players of one match, and the definition chooses how many ^c20260806-48u
 - [DC] the hook may decline to supply another match, ending a run before the caller's requested match count ^c20260806-14u

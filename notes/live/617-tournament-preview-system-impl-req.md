@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **Goal:** finish the tournament preview affordance — a way to render one real, answerable match without spawning a judge — and mark preview tickets so they stay distinguishable from the ones a judge failed to answer.
-- **Status:** ready for execution; not started.
+- **Status:** executed. All three slices are implemented and the full `agentos-py` suite passes at 810 tests. Changes are uncommitted for review.
 - **Starting state, stated plainly:** `agentos tournament preview` and `runner.preview_match` already exist and are green, but they were built ad hoc in conversation rather than through this workflow, and they are uncommitted. This request formalizes that work and closes the one defect it introduced.
 - **Source design:** `agentos-pkg/design/111-design.md` — `Tournament.Ticket` (`^c20260806-64u`…`-68u`), `Tournament.Depot` (`^c20260806-69u`…`-71u`).
 - **The defect:** a preview mints a ticket that will never be redeemed, which is indistinguishable on disk from a ticket a judge was given and failed to answer. Tune a question for an afternoon and the orphan pile is entirely previews, so the one place that records judge failure stops meaning anything.
@@ -42,6 +42,7 @@
 - GREEN: implement.
 - Check: `uv run pytest tests/test_tournament_tickets.py -q`.
 - Observable: a ticket file carries its kind.
+- **Done** — `KIND_MATCH`/`KIND_PREVIEW`/`TICKET_KINDS`, an `is_preview` property, validation at mint, and a defaulted reader. 6 new tests.
 
 ### Slice 2 - Minting sites and gc reporting
 
@@ -50,6 +51,7 @@
 - GREEN: implement.
 - Check: `uv run pytest tests/test_tournament_submit.py tests/test_tournament_runner.py -q`.
 - Observable: `agentos tournament gc` distinguishes development noise from judge failure.
+- **Done** — `preview_match` mints `preview`; `sweep()` returns counts by kind; `gc` prints `removed` and `removed_by_kind`. 4 new tests, including that a previewed match answered by hand records an ordinary verdict.
 - Depends on Slice 1.
 
 ### Slice 3 - Docs and full-suite green
@@ -57,6 +59,7 @@
 - Refresh the `Tournament System` section of `agentos-py/AGENTS.md`.
 - Check: `uv run pytest -q`.
 - Observable: the preview loop is documented as the way to tune a question without spending spawns.
+- **Done** — `AGENTS.md` `Tournament System` covers `preview` and the kind field.
 - Depends on Slices 1-2.
 
 ## Impl.Log
@@ -71,6 +74,13 @@
 - **Kind changes no behaviour.** Making a preview ticket unanswerable would remove the exact property that makes preview useful — that you can hand-run the whole loop.
 - **One horizon for both.** A preview ticket is answerable by hand, so sweeping it faster would defeat its purpose; the field makes the pile readable without making it shorter-lived.
 
+### Execution
+
+- **Gate `^c20260806-126u`.** Git checkpoints taken in `agentos-py` and `agentos-md` before the first edit — the `agentos-py` one captured the previously ad-hoc preview command and the example-ranking rotation, so the checkpoint records the repository exactly as found rather than pretending this run started clean.
+- **Result.** 810 tests pass, up from 800.
+- **Uncommitted.** Implementation changes are left uncommitted for user review.
+
 ### Deviations
 
-- Recorded during execution.
+- **D1 — `sweep()` changed return type, which three existing tests asserted on.** It returned an `int` and now returns `dict[str, int]`. The alternative was a second method, which would have let a caller sweep without ever seeing the split — exactly the blindness this request exists to fix. The three assertions were updated rather than the signature preserved.
+- **D2 — no live verification, deliberately.** Nothing in this slice reaches a judge: `kind` is provenance metadata and `gc` is a filesystem sweep. Spending spawns to confirm a field round-trips would have proved nothing the unit suite does not.

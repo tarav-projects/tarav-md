@@ -27,7 +27,7 @@
 - `design/108-design.md` — Skw.Address.Schema[+1], Addressing.Sigil.Vocabulary[+1], Skw.Kernel.Index[+1]
 - `design/109-design.md` — Agentos.Bloberia, Bloberia.Record.Namespace
 - `design/110-design.md` — Agentos.Wayfinder, Wayfinder.Reference, Wayfinder.Registry, Wayfinder.Resolver, Wayfinder.Resolution, Wayfinder.Reference.Type, Wayfinder.Reference.Root, Wayfinder.Reference.Sugar, Wayfinder.Resolution.Result, Wayfinder.Reference.Type::Index.Block
-- `design/111-design.md` — Agentos.Tournament, Tournament.Definition, Tournament.Player, Tournament.Hook, Tournament.Match, Tournament.Judge, Tournament.Ticket, Tournament.Verdict, Tournament.Verdict::No.Contest, Tournament.Depot
+- `design/111-design.md` — Agentos.Tournament, Tournament.Definition, Tournament.Player, Tournament.Control, Tournament.Hook, Tournament.Match, Tournament.Judge, Tournament.Ticket, Tournament.Verdict, Tournament.Verdict::No.Contest, Tournament.Depot
 - `issues/100-issues.md` — Issue.I0001.Tournament.Definition.Import.Closure
 
 ## File System
