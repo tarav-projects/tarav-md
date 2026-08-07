@@ -12,6 +12,16 @@
 
 ****
 
+## Chatlas.Time.Interface
+
+- [DF] `Chatlas.Time.Interface` is the boundary between canonical timestamp data and human- or command-facing time semantics ^c20260807-3u
+- [DC] human-facing timestamps render in the operator's local timezone by default; UTC presentation requires an explicit request ^c20260807-4u
+- [DC] unzoned timestamps supplied to command and query interfaces are interpreted in the operator's local timezone by default ^c20260807-5u
+- [CT] `Z` or an explicit numeric offset selects that timezone for command input, making UTC an explicit rather than implicit choice ^c20260807-6u
+- [FR] internal storage and canonical machine-readable data may retain UTC timestamps ^c20260807-7u
+
+****
+
 ## Chatlas.Query.Envelope
 
 - `Chatlas.Query.Envelope` is the normalized top-level JSON response shape shared by Chatlas query surfaces.
@@ -400,10 +410,47 @@
 
 ## Session.Lineage
 
-- `Session.Lineage` is how a `Chatlas.Session.Model` represents branching and forking — event-level references on the linear tape, not a tree spine
-- the canonical tape is linear-chronological — the order events were recorded, not a branching tree
-- an event may reference a prior event as its origin; the tree is a projection derived from those references, never the spine
-- the active/visible path is the default read; abandoned branches stay on the tape as preserved evidence
+- [DF] `Session.Lineage` is the relation model connecting event origins, branches, and continuations within or across `Session.Identity` instances ^c20260806-111u
+- [DC] each session retains its own linear-chronological `Session.Event.Tape`; lineage edges form the graph projected over those tapes ^c20260806-112u
+- [CT] an event may reference a prior event as its origin within the same session or across a session boundary ^c20260806-113u
+- [DF] a compaction-continuation edge connects the session containing the covered history to its continuation through shared `Compaction.Event` evidence ^c20260806-114u
+- [CT] cross-session lineage is derived only from shared provider evidence such as boundary identifiers, logical parents, or preserved-segment references ^c20260806-115u
+- [RJ] traversable lineage does not merge or duplicate predecessor events into the continuation tape ^c20260806-116u
+- [DC] the active or visible path is the default read; abandoned branches remain preserved on their original tapes ^c20260806-117u
+- [FR] lineage-aware views may traverse predecessors when complete historical coverage is requested ^c20260806-118u
+
+****
+
+## Compaction.Event
+
+- [DF] `Compaction.Event` is the `Session.Event.Tape` event that records a provider compacting a conversation-history region into continuation context ^c20260806-100u
+- [DC] it identifies the source-history boundary and the resulting continuation session when the raw evidence makes either addressable ^c20260806-101u
+- [CT] it carries available operation facts such as trigger, time, token counts, preserved-segment coordinates, and preserved-message references ^c20260806-102u
+- [DC] it references its produced `Compaction.Summary`; the operation and generated content remain separate events ^c20260806-103u
+- [RJ] compaction is not flattened into an opaque session update or inferred from summary text alone ^c20260806-104u
+
+****
+
+## Compaction.Summary
+
+- [DF] `Compaction.Summary` is synthetic message content produced during a `Compaction.Event` to stand in for covered conversation history ^c20260806-105u
+- [DC] it is normalized as a message with semantic role `system` ^c20260806-106u
+- [CT] its producer is `provider` or `assistant`, never `human` ^c20260806-107u
+- [RJ] a provider-native `user` transport role does not become canonical user authorship; the raw role remains recoverable through provenance ^c20260806-108u
+- [CT] it receives no `Normal.Turn::User.Turn` membership and therefore cannot serve as user authority ^c20260806-109u
+- [FR] views may expose it for replay, context inspection, and discovery while preserving its synthetic origin ^c20260806-110u
+
+****
+
+## Session.History.Coverage
+
+- [DF] `Session.History.Coverage` is the projection describing how a declared session or lineage scope represents a requested conversation-history region ^c20260806-119u
+- [DC] `exact` coverage means the original normalized events are addressable within the declared scope ^c20260806-120u
+- [DC] `summarized` coverage means a `Compaction.Summary`, rather than the original events, represents the region within the declared scope ^c20260806-121u
+- [DC] `unavailable` coverage means neither original events nor a compaction summary representing the region is addressable within the declared scope ^c20260806-122u
+- [CT] coverage describes evidence availability, not touch authority; only a qualifying `Normal.Turn::User.Turn` can supply current chat-based user authority ^c20260806-123u
+- [DC] query surfaces preserve the distinction between exact and synthetic content; a match inside `Compaction.Summary` is never returned as a user-turn match ^c20260806-124u
+- [FR] consumers may request session-local coverage or lineage-expanded coverage according to their task ^c20260806-125u
 
 ****
 
