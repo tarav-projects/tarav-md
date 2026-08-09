@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **Goal:** implement `Tournament.Control` — consumer-supplied players carrying a declared expected standing, substituted into matches by the engine at a consumer-set rate, recorded on the verdict, and held apart in the read.
-- **Status:** designed, ready for execution.
+- **Status:** executed. All five slices are implemented and the full `agentos-py` suite passes at 835 tests, up from 810. Changes are uncommitted for review.
 - **Source design:** `agentos-pkg/design/111-design.md` — `Tournament.Control` (`^c20260806-129u`, `-130u`, `^c20260807-0u`, `^c20260807-1u`, `^c20260806-131u`…`-135u`), plus the amended `Tournament.Hook` lines `^c20260806-127u` and `^c20260806-128u`.
 - **Starting state:** the engine has no control hook, no substitution, no rate, no band on the record, and `report.py` folds every player into one list. The design landed complete; the implementation is behind on all of it.
 - **Why it exists:** a null result today has three indistinguishable causes — the pool genuinely has no signal, the question is ineffective, or the judge cannot discriminate. Controls separate them. If a control declared `low` does not sink and one declared `high` does not rise, the instrument is reporting on itself, and the pool's flatness says nothing about the pool.
@@ -54,6 +54,7 @@
 - GREEN: implement.
 - Check: `uv run pytest tests/test_tournament_hooks.py -q`.
 - Observable: a definition can declare controls and a rate, and a malformed declaration fails at the hook boundary rather than mid-match.
+- **Done** — `BAND_HIGH`/`BAND_LOW`/`CONTROL_BANDS` in `contract.py`; `CONTROLS` joins `DEFAULTED_HOOKS`; `TournamentDefinition.controls()` and `.control_rate`. 6 new tests.
 
 ### Slice 2 - Substitution before identity
 
@@ -62,6 +63,7 @@
 - GREEN: implement.
 - Check: `uv run pytest tests/test_tournament_runner.py -q`.
 - Observable: a seeded run produces a match carrying one control, and its match id differs from the uncontrolled one.
+- **Done** — `_substituted` runs first in both `run_match` and `preview_match`; one `random.Random` per match drives substitution then the shuffle; `MatchResult.controls`. 6 new tests.
 - Depends on Slice 1.
 
 ### Slice 3 - Controls on the ticket and the verdict
@@ -75,6 +77,7 @@
 - GREEN: implement.
 - Check: `uv run pytest tests/test_tournament_tickets.py tests/test_tournament_submit.py tests/test_tournament_store.py -q`.
 - Observable: `tournament submit` records which players were controls and what each was expected to do.
+- **Done** — `Ticket.controls`, `controls` in `ENVELOPE_FIELDS` and the envelope, `_append_submitted` on both paths, `controls` on run rows and the preview payload. 8 new tests.
 - Depends on Slice 2.
 
 ### Slice 4 - Controls held apart in the read
@@ -84,6 +87,7 @@
 - GREEN: implement.
 - Check: `uv run pytest tests/test_tournament_report.py -q`.
 - Observable: `tournament show` reports the pool and the instrument separately.
+- **Done** — `report["controls"]` carries the band beside the counts and those players leave `players`. 5 new tests.
 - Depends on Slice 3.
 
 ### Slice 5 - Docs and full-suite green
@@ -91,6 +95,7 @@
 - Refresh the `Tournament System` section of `agentos-py/AGENTS.md`.
 - Check: `uv run pytest -q`.
 - Observable: the control mechanism is documented where an implementer will find it.
+- **Done** — `AGENTS.md` `Tournament System` gains four control lines and its randomization line is corrected; the `hooks.py` and `runner.py` module docstrings follow.
 - Depends on Slices 1-4.
 
 ## Impl.Log
@@ -108,8 +113,13 @@
 
 ### Execution
 
-- Recorded during execution.
+- **Gate** — the `--impl --dev --AUTO Implement controls` turn. Git checkpoints taken in both repos before the first edit (`agentos-py` `1a79556`, `agentos-md` `f1108c3`), the `agentos-py` one capturing the still-uncommitted Impl.Req 617 work so the checkpoint records the repository exactly as found.
+- **Live verification.** A throwaway depot with two pool players and two controls at `control_rate = 1.0`: `tournament preview --seed 3` substituted `c-high` for `p2`, rendered it under label `B` indistinguishably from a pool line, and the match id became `c-high VS p1`. Answering that ticket by hand put `c-high` in `report["controls"]` with `band: high, wins: 1` and left `p1` alone in `players`. No spawns were needed — the whole mechanism is reachable through preview and submit.
+- **Result.** 835 tests pass, up from 810. `ruff` reports the same three pre-existing unused imports as the baseline and no new ones.
+- **Uncommitted.** Implementation changes are left uncommitted for user review.
 
 ### Deviations
 
-- Recorded during execution.
+- **D1 — Slice 3's implementation landed inside Slice 2, ahead of its tests.** `preview_match` mints its ticket in the same breath as substituting, so `Ticket.controls` had to exist for Slice 2 to be writable at all. Slice 3's tests were then written against working code rather than red. The boundary they cover — an old ticket file loading as uncontrolled, the slot not shadowing the map — is still tested; only the ordering slipped.
+- **D2 — the control pool is read per match rather than once per run.** `_substituted` calls the hook inside each match. A definition whose pool is expensive to compute pays for it every match, but the hook already sees `verdicts`, and caching it at run start would silently deny a definition the right to vary its pool as evidence accumulates. Revisit only if a real definition makes it hurt.
+- **D3 — the report classifies a player as a control from any verdict that declared it.** The alternative, per-verdict classification, would put the same player in both sections of one report. The declaration is definition-level, so one verdict is enough to prove it, and a definition that reclassifies a player mid-tournament has already broken comparability in worse ways.

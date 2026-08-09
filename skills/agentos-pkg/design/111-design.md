@@ -29,6 +29,9 @@
 - [DC] the rendered match prompt is self-contained, carrying everything a judge needs to decide without external lookup ^c20260805-33u
 - [CT] the definition presents one player at a time and never the match; `Agentos.Tournament` composes those presentations without interpreting them ^c20260806-6u
 - [PR] refusals scattered across a pool indict the definition rather than its players ^c20260805-35u
+- [CT] a verdict is interpretable only against the definition that produced it; the records alone do not carry what an ordering licenses ^c20260808-48u
+- [RJ] the engine does not validate that a match was well designed — a poorly framed question produces clean records and an empty reading ^c20260808-49u
+- [PR] the recorded definition digest is what keeps that reading recoverable: the exact snapshot behind any verdict can be reopened ^c20260808-50u
 - [RJ] a definition does not name winners, thresholds, or what is done with the accumulated result ^c20260805-36u
 
 ****
@@ -89,15 +92,55 @@
 - [DC] a match carries no state from any other match ^c20260805-54u
 - [DC] match identity is an opaque string supplied by the consumer; the engine requires it and never computes one ^c20260805-55u
 - [FR] the consumer decides which content changes make a new match and which do not ^c20260805-56u
-- [DC] the `Match.Verbatim` is the exact rendered text handed to the judge, recorded by hash as cheap evidence of what ran ^c20260805-57u
-- [DC] the engine composes the `Match.Verbatim` from the consumer's player presentations and its own frame: the question, the position labels, and the answer contract ^c20260806-7u
-- [PR] engine-owned framing is what keeps position decoding sound — a consumer free to label the candidates could silently invert every verdict it recorded ^c20260806-8u
-- [CT] the verbatim hash is run evidence and not identity; it varies per run because presentation order is randomized ^c20260805-58u
 - [DC] presentation order is randomized per run and the order actually run is recorded ^c20260805-59u
 - [DC] order randomization is default engine normalization rather than `Tournament.Definition` work ^c20260805-60u
 - [PR] randomized order neutralizes position bias across repeated runs, so the defense is statistical and needs run volume to hold ^c20260805-61u
 - [FR] the same match may be run repeatedly to gather independent verdicts; whether to reuse a prior run is the consumer's choice ^c20260805-62u
 - [CT] a match either completes with a `Tournament.Verdict` or fails to run, and a failed run produces no match record ^c20260805-63u
+
+****
+
+## Match.Verbatim
+
+- [DF] a `Match.Verbatim` is the exact rendered text handed to the judge for one run of a `Tournament.Match`, recorded by hash as cheap evidence of what ran ^c20260805-87u
+- [DC] the engine composes the `Match.Verbatim` from the consumer's player presentations and its own frame: the question, the position labels, and the answer contract ^c20260806-7u
+- [DC] it is rendered from one `Match.Template`: the complete parameterized description of what that run showed its judge ^c20260809-10u
+- [DC] the template's parameters are the verbatim's components — the `Match.Brief`, one `Player.Presentation` per player, the `Match.Footnote.Template`, and the order they were presented in ^c20260809-11u
+- [DC] the `Match.Brief` is the definition's judge-facing prose: the question and the criteria under it ^c20260809-12u
+- [DC] a `Player.Presentation` is one player as its definition rendered it, and is the only part of the verbatim a consumer authors per player ^c20260809-13u
+- [DC] the `Match.Footnote.Template` is the engine's trailing frame before its per-run values are bound: the ranking instruction and the submission command ^c20260809-14u
+- [CT] position labels are engine-owned frame interleaved between the presentations rather than trailing them, so they belong to neither the brief nor the footnote ^c20260809-15u
+- [PR] parameterizing is what makes the parts separately storable — each component is written once and referenced, while the template holds the binding that made one run ^c20260809-16u
+- [PR] a template detaches the verbatim from the code that produced it: reassembly needs a renderer that reads templates, not the engine version that ran the match ^c20260809-17u
+- [PR] engine-owned framing is what keeps position decoding sound — a consumer free to label the candidates could silently invert every verdict it recorded ^c20260806-8u
+- [CT] the verbatim hash is run evidence and not identity; it varies per run because presentation order is randomized ^c20260805-58u
+- [CT] the verbatim is derived rather than stored: it is reassembled from its template and checked against the recorded hash ^c20260809-18u
+
+****
+
+## Match.Template
+
+- [DF] a `Match.Template` is the complete parameterized description of one `Match.Verbatim`, structured so a renderer can rebuild that verbatim without the code that first produced it ^c20260809-19u
+- [DC] it is data rather than code: no engine version needs to survive for an old verdict to rebuild ^c20260809-20u
+- [DC] it names its components by content address rather than inlining them, so the template stays small and its components dedup across matches ^c20260809-21u
+- [DC] its sections stay structurally distinct and each records which side supplied it, the definition or the engine ^c20260809-22u
+- [PR] origin-marked sections are what make drift attribution mechanical — a reworded question and a changed submission instruction are otherwise the same event ^c20260809-23u
+- [DC] the template declares its own shape version, so a renderer knows what it is reading before it reads it ^c20260809-24u
+- [CT] per-run values the verdict already carries — the ticket, the depot, the arity — are bound at render time and not restated in the template ^c20260809-25u
+
+****
+
+## Match.Component.Registry
+
+- [DF] a `Match.Component.Registry` is the content-addressed store holding each distinct part a `Match.Template` names, once for a whole `Tournament.Depot` ^c20260809-26u
+- [DC] a component is written under the hash of its own content, and writing one already present is a no-op ^c20260809-27u
+- [DC] registration happens as a verdict is written, so no separate pass maintains the registry ^c20260809-28u
+- [DC] the template is registered the same way as its components, so a verdict carries one address and that address resolves the whole run ^c20260809-29u
+- [PR] dedup is what makes the store affordable at volume: one player meets many opponents, and its presentation is written once rather than per verdict ^c20260809-30u
+- [CT] the registry stores only what cannot be recomputed; the `Match.Verbatim` is rebuilt on demand and never kept ^c20260809-31u
+- [DC] the verdict's recorded verbatim hash is the reassembly check: rebuilding from the registered template must reproduce it ^c20260809-32u
+- [PR] a component address that changes mid-tournament is the only visible sign that a player's rendering moved under an accumulating pool ^c20260809-33u
+- [CT] the registry lives inside its own `Tournament.Depot`; a verdict read without it resolves to addresses rather than text ^c20260809-34u
 
 ****
 
@@ -113,6 +156,18 @@
 - [PR] refusal rate reads as a judge metric as much as a pool metric — a rate drifting across unrelated tournaments indicts the judge prompt ^c20260805-68u
 - [FR] the model, provider, and prompt behind a judge are consumer choices ^c20260805-69u
 - [RJ] a judge does not rank a pool or compare beyond the players it was given ^c20260806-52u
+
+****
+
+## Judge.Blinding
+
+- [DF] `Judge.Blinding` is the separation between what a `Match.Verbatim` may tell its judge and what only a reader of the accumulated verdicts may know ^c20260809-35u
+- [CT] the judge-facing surface is enumerable by construction: only the `Match.Brief` and the `Player.Presentation`s carry consumer content into the prompt ^c20260809-36u
+- [RJ] a judge is not told which of its players are controls, or what band each declared ^c20260809-37u
+- [RJ] a judge is not told the hypothesis under test, since stating the expected direction is most of the way to producing it ^c20260809-38u
+- [RJ] a judge is not told how verdicts are folded, since a stated aggregation rule invites playing one match against the fold ^c20260809-39u
+- [RJ] a judge is not told that its match has run before, or what any earlier run decided ^c20260809-40u
+- [PR] the boundary has a falsifiable test: content belongs on the reader side when its presence in the prompt would invalidate the verdict ^c20260809-41u
 
 ****
 
