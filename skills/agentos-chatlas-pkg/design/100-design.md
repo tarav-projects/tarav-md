@@ -191,6 +191,7 @@
 - organized by `Provider.Instance` — each provider/instance pair has its own archive partition
 - raw artifacts are overwritten in place when the provider updates them — git captures version history
 - retention scope is governed by `Chatlas.Retention.Policy`
+- [CT] provider-native artifacts are not assumed to be append-only; they may append, amend, rewrite, truncate, or otherwise evolve according to provider-specific semantics ^c20260807-59u
 
 ****
 
@@ -298,21 +299,35 @@
 
 ## Session.Event.Tape
 
-- `Session.Event.Tape` is the canonical structure of a `Chatlas.Session.Model` — an append-only, ordered ledger of typed events
+- [DF] `Session.Event.Tape` is the canonical ordered ledger of typed event places identified by `Event.Address` ^c20260807-37u
+- [CT] an event place is established when the event is first detected and does not depend on the event reaching a final state ^c20260807-39u
+- [DC] `Event.Amendment` evolves events at existing places while `Event.Append` extends the ordered address sequence ^c20260807-40u
 - the tape is the single source of truth; every higher-level view of the session is a projection derived from it
 - one event captures one thing that happened in the session
 - an event carries its identity, its order, its kind, who produced it, its content, and a link back to raw evidence
 - projections are derived and disposable — rebuildable from the tape, never authoritative on their own
-- [DC] the tape is a jsonl file: one frozen event per line, appended in order ^c20260712-54u
-- [DC] each tape line carries provenance beside its payload: `source_refs` to the raw records it derives from, a `source_hash` over those records, a finality flag, and a chain hash over the line and its predecessor ^c20260712-40u
-- [DF] a final line's validity depends only on its source records — its `source_hash` re-verifies it; a non-final line consumed end-of-file context (open tool groups, run status, last-prompt residue) and is recomputed on every delta pass ^c20260712-77u
-- [DC] tail revision is truncate-and-reappend: cut the tape at the last final line, re-derive the volatile tail plus new events, append ^c20260712-49u
+- [DC] the tape materialization is a JSONL file containing one currently observed event state for each `Event.Address`, ordered by `sequence` ^c20260807-47u
+- [DC] each tape line carries derivation and integrity metadata beside its payload: `source_refs`, a `source_hash`, and an artifact chain hash; none determines `Event.Address` ^c20260807-48u
+- [RJ] guaranteed event finality is not part of `Chatlas.Session.Model`; lifecycle information is expressed through best-effort `Event.Closed.Estimate` ^c20260807-49u
+- [FR] incremental normalization may choose its recomputation scope heuristically while preserving the address invariants of `Event.Amendment` and `Event.Append` ^c20260807-54u
 - [RJ] serving reads through a checkpoint overlay of shadow events — the tape on disk is always the complete served tape ^c20260712-104u
 - [PR] per-line provenance turns staleness detection mechanical: divergence is located at a line, recomputation starts there, never from zero ^c20260712-96u
 - [DC] `sequence` carries tape position and is the only positional field — order is a real tape property, identity is not derived from it ^c20260728-30u
 - [RJ] `event_id` as a distinct field: it was `"event-" + sequence`, a stringified duplicate whose name invited durable references onto an ordinal — retired to a contract tombstone ^c20260728-55u
 - [EX] anchors keyed on `event_id` mis-pointed after re-segmentation: a stored user turn slid three ordinals while its timestamp held, and the position it vacated resolved to a later assistant turn ^c20260728-48u
 - [DC] durable references key on an `Event.Grouping` carrying a stability contract — `Normal.Turn` for chat evidence ^c20260728-32u
+
+****
+
+## Event.Address
+
+- [DF] `Event.Address` is the stable opaque locator of one event place in a `Session.Event.Tape` ^c20260807-9u
+- [DC] its canonical representation is a hash assigned when a `Raw.Normalizer` first detects the event ^c20260807-12u
+- [CT] the address remains fixed while the detected event’s normalized content evolves through amendments ^c20260807-15u
+- [CT] an address is deterministic and unique within its `Chatlas.Session.Model` ^c20260807-14u
+- [DC] each `Raw.Normalizer` chooses an address derivation appropriate to its provider-native raw model ^c20260807-11u
+- [RJ] `Chatlas.Session.Model` does not prescribe a universal set of raw coordinates or native identifiers for address derivation ^c20260807-10u
+- [CT] mutable event content cannot determine the address because an amendment may change that content without creating another event ^c20260807-13u
 
 ****
 
@@ -323,6 +338,54 @@
 - [CT] `Event.Hash` excludes `Event.Annotation`, tape position, grouping identity, native identifiers, and derivation bookkeeping ^c20260731-40u
 - [PR] the hash projection is a semantic model judgment about what constitutes event content, even when its concrete digest algorithm is an implementation detail ^c20260731-239u
 - [CT] moving or re-annotating an unchanged event does not change its `Event.Hash` ^c20260731-94u
+
+****
+
+## Event.Ref
+
+- [DF] `Event.Ref` is a durable reference to one event place carrying an assertion about an observed state of that event ^c20260807-16u
+- [DC] its canonical object carries `event_address` and `event_hash` ^c20260807-17u
+- [CT] `event_address` locates the event place while `event_hash` asserts the event content observed there ^c20260807-20u
+- [EX] a consumer comparing the assertion with current content may describe an equal hash as `MATCHED` ^c20260807-18u
+- [EX] a consumer may describe an existing address with different current content as `AMENDED` ^c20260807-19u
+- [EX] a consumer may describe an address absent from the inspected model as `MISSING` ^c20260807-21u
+- [CT] `sequence` may aid presentation or diagnostics but is not part of durable event identity ^c20260807-22u
+
+****
+
+## Event.Closed.Estimate
+
+- [DF] `Event.Closed.Estimate` is the normalized event field expressing Chatlas’s best-effort estimate that an event is closed at the observed raw-data horizon ^c20260807-38u
+- [CT] the estimate does not guarantee that the provider completed the event or that later raw evidence cannot amend it ^c20260807-41u
+- [DC] each `Raw.Normalizer` decides how to derive the estimate from its provider-native observations ^c20260807-42u
+- [FR] consumers may use the estimate when choosing recomputation or verification scope ^c20260807-43u
+- [EX] a delta consumer may combine closed estimates with a bounded suffix check, such as re-evaluating the last portion of the tape ^c20260807-44u
+- [CT] the estimate does not determine `Event.Address`, event count, or event identity ^c20260807-45u
+- [CT] `Event.Hash` excludes `Event.Closed.Estimate` because the estimate describes normalization confidence rather than event content ^c20260807-46u
+
+****
+
+## Event.Amendment
+
+- [DF] `Event.Amendment` is a provider-normalizer classification for a raw-model change treated as further evolution of already-detected event places ^c20260807-23u
+- [DC] each `Raw.Normalizer` owns both amendment classification and the semantics of the resulting field changes ^c20260807-25u
+- [CT] if a raw-model change is classified only as an `Event.Amendment`, the ordered sequence of `Event.Address` values remains identical across normalization ^c20260807-24u
+- [CT] an `Event.Amendment` cannot change normalized event count or order ^c20260807-26u
+- [FR] an amendment may add, remove, or change normalized event fields while preserving each event’s address ^c20260807-27u
+- [CT] an amendment changes `Event.Hash` whenever it changes fields covered by that hash ^c20260807-28u
+- [RJ] inserting, removing, or reordering normalized event places cannot be classified as an `Event.Amendment` ^c20260807-29u
+- [PR] provider conformance tests should compare materializations before and after representative native amendments ^c20260807-34u
+
+****
+
+## Event.Append
+
+- [DF] `Event.Append` is a provider-normalizer classification for a raw-model change that introduces newly detected event places after the existing normalized tape ^c20260807-35u
+- [DC] each `Raw.Normalizer` determines append equivalence from the semantics of its provider-native raw model ^c20260807-32u
+- [CT] after an `Event.Append`, the complete prior sequence of `Event.Address` values remains an unchanged prefix of the new sequence ^c20260807-33u
+- [CT] an append cannot change the address of any previously detected event place ^c20260807-30u
+- [RJ] a change that inserts, removes, or reorders an existing event place cannot be classified solely as an `Event.Append` ^c20260807-31u
+- [PR] provider conformance tests should compare materializations before and after representative native appends ^c20260807-36u
 
 ****
 
@@ -377,6 +440,19 @@
 
 ****
 
+## User.Turn.Purity
+
+- [DF] `User.Turn.Purity` is the integrity requirement that `Normal.Turn::User.Turn` contain only data submitted through the session’s user-input boundary in one interaction ^c20260809-2u
+- [CT] user attribution identifies the user-input boundary; it does not claim that a human authored or typed the data ^c20260809-1u
+- [DC] `Raw.Normalizer` assigns user-turn membership from normalized input semantics and provenance rather than provider transport roles ^c20260809-3u
+- [RJ] provider-generated, assistant-generated, developer-injected, preset, and synthetic recap content cannot enter a `User.Turn` merely because its raw record carries role `user` ^c20260809-4u
+- [CT] content excluded from `User.Turn` remains first-class on `Session.Event.Tape` under an event semantic matching its actual source role ^c20260809-6u
+- [CT] a query match outside a qualifying `User.Turn` cannot be reported as a user-turn match ^c20260809-5u
+- [PR] when evidence cannot support user-input attribution, Chatlas preserves the event and raw provenance without promoting it into a `User.Turn` ^c20260809-7u
+- [DC] contaminating user-turn data with non-user-input material is normal-model data corruption ^c20260809-8u
+
+****
+
 ## Normal.Turn.Id
 
 - [DF] `Normal.Turn.Id` is an opaque session-local label assigned to one `Normal.Turn` ^c20260731-207u
@@ -401,10 +477,12 @@
 ## Session.Model.Artifact
 
 - [DF] `Session.Model.Artifact` is the on-disk form of one `Chatlas.Session.Model` — a per-session folder of purpose-split files rather than one monolithic document ^c20260712-74u
-- [DC] the folder holds a small mutable head (`session.json` — identity, session payload, sources, normalization meta), the append-only `Session.Event.Tape` (`events.jsonl`), and the projections as sibling derived files ^c20260712-52u
-- [DC] the head is freely rewritten on update; only the tape carries append discipline ^c20260712-53u
-- [RJ] a single-file model with a head line inside the tape — rewriting the head would break the tape's append-only economics ^c20260712-101u
-- [PR] mutable aggregates live in cheap-to-rewrite surfaces (head, index row); append-only surfaces hold only frozen content ^c20260712-95u
+- [DC] the folder holds a mutable head (`session.json`), the current `Session.Event.Tape` materialization (`events.jsonl`), and sibling derived projections ^c20260807-50u
+- [CT] an artifact update may rewrite event states while preserving the address invariants of `Event.Amendment` and `Event.Append` ^c20260807-53u
+- [CT] artifact layout and rewrite strategy do not determine event identity ^c20260807-52u
+- [PR] purpose-split files keep mutable aggregates and disposable projections independent from the canonical event tape ^c20260807-55u
+- [CT] `Session.Model.Artifact` freshness depends on both its raw-source observation and the applicable normalizer and model-contract revision ^c20260807-61u
+- [RJ] unchanged raw artifacts do not make a cached session model fresh after a semantic normalization change that can affect its materialization ^c20260807-62u
 
 ****
 
@@ -416,8 +494,33 @@
 - [DF] a compaction-continuation edge connects the session containing the covered history to its continuation through shared `Compaction.Event` evidence ^c20260806-114u
 - [CT] cross-session lineage is derived only from shared provider evidence such as boundary identifiers, logical parents, or preserved-segment references ^c20260806-115u
 - [RJ] traversable lineage does not merge or duplicate predecessor events into the continuation tape ^c20260806-116u
-- [DC] the active or visible path is the default read; abandoned branches remain preserved on their original tapes ^c20260806-117u
-- [FR] lineage-aware views may traverse predecessors when complete historical coverage is requested ^c20260806-118u
+- [CT] every event and `Normal.Turn` on every lineage path remains first-class data in its original `Session.Event.Tape` ^c20260808-37u
+- [RJ] `Session.Lineage` does not classify any event or path as active, current, abandoned, inactive, or default ^c20260808-38u
+- [DC] lineage relations describe provider-evidenced origins and continuations without assigning status to the resulting paths ^c20260808-39u
+- [PR] preserving every `Normal.Turn::User.Turn` across branching is a primary requirement of `Session.Lineage` ^c20260808-40u
+- [FR] consumers may select, rank, or project lineage paths and heads according to their own tasks ^c20260808-42u
+
+****
+
+## Lineage.Branch
+
+- [DF] `Lineage.Branch` is the `Session.Lineage` structure formed when multiple event continuations share an earlier event origin ^c20260808-41u
+- [DC] each continuation relation connects its event to the evidenced origin through an `Event.Ref` ^c20260808-43u
+- [CT] branch relations are derived only from provider-native lineage evidence ^c20260808-44u
+- [CT] `Session.Event.Tape` preserves recording chronology while lineage relations project the branching graph over its event places ^c20260808-46u
+- [RJ] creating a branch relation does not invalidate, demote, or change the authority of events on another branch ^c20260808-47u
+- [EX] continuations `A → B → C` and `A → D` form a branch at `A`; `B`, `C`, and `D` remain equally first-class events ^c20260808-45u
+
+****
+
+## Lineage.Rollback
+
+- [DF] `Lineage.Rollback` is a provider-evidenced event recording that a continuation resumed from an earlier event origin after later events had already been recorded ^c20260807-63u
+- [DC] the rollback event occupies its own chronological place on `Session.Event.Tape` and references the evidenced origin ^c20260807-64u
+- [CT] rollback does not undo, delete, demote, or change the authority of previously recorded events or turns ^c20260807-66u
+- [CT] rollback does not identify any resulting lineage path as active, current, or preferred ^c20260807-65u
+- [CT] implicit branching without provider evidence of a rollback operation is represented through `Lineage.Branch`, not through a synthetic rollback event ^c20260807-68u
+- [EX] a provider-native `thread_rolled_back` record may normalize as `Lineage.Rollback` while all affected turns remain first-class history ^c20260807-67u
 
 ****
 
@@ -442,18 +545,6 @@
 
 ****
 
-## Session.History.Coverage
-
-- [DF] `Session.History.Coverage` is the projection describing how a declared session or lineage scope represents a requested conversation-history region ^c20260806-119u
-- [DC] `exact` coverage means the original normalized events are addressable within the declared scope ^c20260806-120u
-- [DC] `summarized` coverage means a `Compaction.Summary`, rather than the original events, represents the region within the declared scope ^c20260806-121u
-- [DC] `unavailable` coverage means neither original events nor a compaction summary representing the region is addressable within the declared scope ^c20260806-122u
-- [CT] coverage describes evidence availability, not touch authority; only a qualifying `Normal.Turn::User.Turn` can supply current chat-based user authority ^c20260806-123u
-- [DC] query surfaces preserve the distinction between exact and synthetic content; a match inside `Compaction.Summary` is never returned as a user-turn match ^c20260806-124u
-- [FR] consumers may request session-local coverage or lineage-expanded coverage according to their task ^c20260806-125u
-
-****
-
 ## Normalization.Pipeline::Chatlas.Session.Model
 
 - `Normalization.Pipeline::Chatlas.Session.Model` is the Chatlas instantiation of `Normalization.Pipeline` — provider sessions normalized into `Chatlas.Session.Model`
@@ -469,7 +560,7 @@
 
 ## Delta.Normalization::Chatlas
 
-- [DF] `Delta.Normalization::Chatlas` is the application of `Delta.Normalization` to `Normalization.Pipeline::Chatlas.Session.Model`, enabled by the append-friendly `Session.Event.Tape` ^c20260712-68u
+- [DF] `Delta.Normalization::Chatlas` is the application of `Delta.Normalization` to `Normalization.Pipeline::Chatlas.Session.Model`, enabled by stable event addresses and source-aware rematerialization ^c20260807-51u
 - [PR] cost scales with what changed, not with session size — the active session pays for its new turns, not its history ^c20260712-92u
 - [CT] full re-derivation reads `Raw.Archive`, honoring the depot boundary: delta passes never read `Provider.Home` ^c20260712-32u
 
@@ -477,7 +568,10 @@
 
 ## Normalization.Delta.Checkpoint::Chatlas
 
-- [DF] `Normalization.Delta.Checkpoint::Chatlas` is the per-session checkpoint of `Delta.Normalization::Chatlas` — the frozen/volatile boundary in the raw record stream plus the state to resume derivation past it ^c20260712-70u
+- [DF] `Normalization.Delta.Checkpoint::Chatlas` is the per-session cache of an observed raw-data horizon and the state needed to resume a selected delta strategy ^c20260807-56u
+- [CT] the checkpoint lives outside `Chatlas.Session.Model` and cannot assert event finality or determine event identity ^c20260807-58u
+- [FR] a delta strategy may combine source verification, `Event.Closed.Estimate`, and bounded tape revisitation when selecting its recomputation scope ^c20260807-57u
+- [CT] `Normalization.Trust.Tier::Chatlas` states whether a caller accepts heuristic reuse or requires stronger source verification ^c20260807-60u
 - [DC] it lives with the scanner's derivation caches under the Chatlas depot, beside — never inside — the `Session.Model.Artifact` ^c20260712-42u
 
 ****
