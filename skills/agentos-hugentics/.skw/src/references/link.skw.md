@@ -71,10 +71,10 @@ For gated newly drafted content, this pipeline is landing work. Do not resolve p
 
 Anchors ground on turns, but some evidence is finer than a turn — a specific tool call, one event a pattern matched. That address is an `Event.Ref`, not an `event_id`.
 
-- an `Event.Ref` is the object `{event_hash, sequence}`: a minimal assertion that an event with this digest occupied this tape position; `schema`, `session`, and `at` are optional context fields
-- neither half stands alone — the sequence moves when the tape re-segments ahead of it, and event content genuinely repeats — so the sequence disambiguates the hash and the hash validates the sequence
-- `<event_hash>:<sequence>` is CLI and log sugar only; stored references remain objects, with an 8-byte digest-prefix floor
-- resolving one reports what it found: the assertion holds; the event drifted to a new index (repairable, and a repair is offered); the content is gone entirely (desync, never auto-repaired); or the hash occurs several times and the index decided
+- an `Event.Ref` is the object `{event_address, event_hash}`: the address locates a stable provider-normalized event place and the hash asserts its current content; `schema`, `session`, and `at` are optional context fields
+- the address is opaque to the normal model — each provider normalizer owns the raw coordinate recipe, with the rule that a content-only amendment cannot change the address or event count
+- `<event_address>:<event_hash>` is CLI and log sugar only; stored references remain objects, with an 8-byte digest-prefix floor for the asserted hash
+- resolution semantics are simple: the address and assertion match; the address exists with amended content; or the addressed place is absent from the declared tape scope. Consumers choose their own policy from those facts; Chatlas does not relocate or repair references by searching for matching content
 - a failed assertion is a POI to research, never an error to swallow and never an automatic rewrite — repair is an explicit act, like `agentos anchory amend`
 
 ## Resolution (reading an anchor)

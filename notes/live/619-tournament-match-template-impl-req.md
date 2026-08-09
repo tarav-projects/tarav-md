@@ -19,7 +19,8 @@ identical. No change to hooks, identity, controls, tickets-as-staging, the answe
 contract, or the read side (`report.py`, `poi.py`). No migration of verdicts already on
 disk: they carry no template address and stay readable as they are.
 
-**Status.** Designed. Not executed.
+**Status.** Executed. All seven slices are implemented and the full `agentos-py` suite
+passes at 869 tests, up from 835. Changes are uncommitted for review.
 
 **Source context.** Design landed this session in
 `agentos-md/skills/agentos-pkg/design/111-design.md`: the new `Match.Verbatim`,
@@ -114,7 +115,7 @@ was minted.
 
 ## Execution.Plan
 
-### Slice 1 — The renderer produces today's bytes (RED first)
+### Slice 1 — The renderer produces today's bytes (RED first) — **Done**
 
 Add `src/agentos/tournament/template.py` with pure functions and no I/O:
 `build_template(...) -> dict`, `render_template(template, components, bindings) -> str`,
@@ -126,7 +127,7 @@ output exactly.
 - **Result:** a template round-trip that reproduces the current frame byte-for-byte.
 - **Check:** the new equality test passes; the existing suite is untouched and still green.
 
-### Slice 2 — The component registry
+### Slice 2 — The component registry — **Done**
 
 Add `src/agentos/tournament/components.py`: `ComponentRegistry(root)` over
 `<depot>/components/`, with `put(data: bytes) -> str`, `get(address) -> bytes`,
@@ -139,7 +140,7 @@ characters. Writes go through a temp file and `os.replace`.
   error, and concurrent `put` of the same content from several threads producing exactly
   one file.
 
-### Slice 3 — `compose_verbatim` goes through the template
+### Slice 3 — `compose_verbatim` goes through the template — **Done**
 
 Rewrite `compose_verbatim` to build the template, register its components, render, and
 return both the text and the template address. Add `DEFAULT_COMPONENTS_DIRNAME` to
@@ -150,7 +151,7 @@ return both the text and the template address. Add `DEFAULT_COMPONENTS_DIRNAME` 
   need editing, which is the point. Plus a test that composing the same match twice
   registers each component once.
 
-### Slice 4 — The template address reaches the verdict
+### Slice 4 — The template address reaches the verdict — **Done**
 
 Thread `template` and `template_bindings` through: `MatchResult`, `Ticket`
 (defaulted so pre-field ticket files still load), `TicketStore.mint`,
@@ -162,7 +163,7 @@ Thread `template` and `template_bindings` through: `MatchResult`, `Ticket`
   address on the verdict; a ticket file written without the fields loads with them empty;
   a consumer slot may not shadow either field.
 
-### Slice 5 — Reassembly
+### Slice 5 — Reassembly — **Done**
 
 Add `reassemble(store, verdict) -> str` to `template.py`. Resolve, render, return.
 Raise `TemplateMissingError` for a verdict with no template address and
@@ -173,7 +174,7 @@ Raise `TemplateMissingError` for a verdict with no template address and
   sha256 equals the recorded `verbatim_hash`; a pre-change verdict raises the named
   error; a registry with one component deleted raises the other, naming it.
 
-### Slice 6 — Documentation
+### Slice 6 — Documentation — **Done**
 
 Update `agentos-py/AGENTS.md`'s Tournament System section: the prompt-composition bullet
 becomes template-mediated, the depot bullet gains `components/`, and reassembly plus its
@@ -183,7 +184,7 @@ becomes template-mediated, the depot bullet gains `components/`, and reassembly 
   rule.
 - **Check:** read back; every claim traceable to a slice above.
 
-### Slice 7 — `agentos tournament verbatim`
+### Slice 7 — `agentos tournament verbatim` — **Done**
 
 Add `verbatim --tournament <id> --verdict <record-id> [--json]` to `commands.py` and
 register it in `agentos-cli`. It reassembles and prints the exact prompt that verdict's
@@ -228,7 +229,19 @@ The user waived it for this artifact — Chatlas is under active work — and th
 blocks this plan realizes are themselves fully anchored, so the authority path stays
 intact one level up.
 
+**D2 — slice 2's module landed inside slice 1.** `template.py` exposes
+`register_template` and `reassemble`, both of which import `ComponentRegistry`, so
+`components.py` had to exist before slice 1's tests could import the module at all.
+The registry's own tests still followed as slice 2. Same shape as 618's D1.
+
+**D3 — the concurrency test found a real bug.** The first `put` built its temp filename
+from `id(data)`, which CPython interns to the same value for an identical literal across
+threads; every racing writer therefore picked the same temp name and one consumed
+another's file. Fixed with a per-writer `uuid4` suffix. The test was written before the
+implementation, which is why it surfaced at all.
+
 **D1 — `template_bindings` is ahead of the index.** The envelope field is required for
 total reassembly and is not stated in `Match.Template` or `Tournament.Verdict`. Recorded
 here deliberately; capture it after execution rather than inventing an index line from
-inside an implementation.
+inside an implementation. Still open after execution — `Match.Template` and
+`Tournament.Verdict` both want a line about it.
