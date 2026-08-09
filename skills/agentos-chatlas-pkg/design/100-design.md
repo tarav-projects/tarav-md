@@ -599,17 +599,14 @@
 
 - `Chatlas.Anchory` is the Chatlas application of `Anchory.System` — anchors standing for turn neighborhoods on the `Chat.Surface`
 - its `Anchory.Depot` lives at `<chatlas-root>/anchory/`; every action uses the active Chatlas depot
-- the anchor key convention is the composed grammar `c<YYYYMMDD>-<N>u`: the `chatlas` namespace prefix, the primary support turn's date, a daily counter, and the user-evidence tag ^c20260718-33u
-- [DC] every newly minted Chatlas anchor carries `u` because every `Chat.Support.Set` member is a user turn; surrounding assistant content is recovered through neighborhood reading ^c20260718-43u
-- [CT] Index grounding-provenance lint rejects a resolved Chatlas citation whose key does not carry the `u` user-evidence tag ^c20260725-47u
+- [DF] a Chatlas `Anchor.Id` is an opaque stable identity within its `Anchory.Namespace` ^c20260809-144u
+- [CT] syntactic segments used during allocation are navigation hints and carry no support, gate, provenance, or attachment semantics ^c20260809-145u
+- [DC] relationship validity is determined from the anchor dossier and its referenced surfaces, never from key spelling ^c20260809-146u
 - Chatlas owns the `Anchory.Record` payload and the traversal from record to session and turn neighborhood
-- [CT] the record format is `chatlas.support-set.v2`: an ordered `members` list whose entries identify exact turns by full session identity plus `Normal.Turn` identity, retaining `at` only for readability and integrity checking ^c20260728-28u
-- registration validates every member resolves to a visible user turn and copies its event timestamp; it never selects a turn by timestamp proximity
-- [DC] registration echoes every member neighborhood — the minting agent double-checks the complete support set before tagging lines
-- [CT] a chat anchor resolves to its `Chat.Support.Set`; you land on the set and read the neighborhoods ^c20260715-8u
+- [DC] Chatlas validates and traverses each typed relationship through its owning namespace contract ^c20260809-162u
+- [DC] resolving a Chatlas anchor reaches its line dossier; relationship consumers then follow the relevant typed coordinates to their authoritative surfaces ^c20260809-163u
 - record format: `appendix/Chatlas.Anchory-appendix.md`
 - [PR] chatlas anchory and the chatlas query language are one system, co-designed — anchors are native selectors of the query language ^c20260708-18u
-- [DC] the anchor key's date is the evidence turn's date, not the minting date — a wrong date means a new anchor, never an amendment ^c20260706-3u
 ****
 
 ## Chatlas.View
@@ -643,11 +640,10 @@
 
 ## Chat.Support.Set
 
-- [DF] `Chat.Support.Set` is the nonempty set of exact `User.Turn`s an agent judges to support one grounded statement ^c20260802-184u
-- [DC] its current record preserves members as a duplicate-free, relevance-ordered list so readers can consume the strongest support first ^c20260802-156u
-- [DC] membership alone gives a turn its base-support role; a member with no `Turn.Type` annotation is plain support ^c20260802-159u
-- [DC] a member may carry one or more `Turn.Type` annotations for additional roles without losing its base-support standing ^c20260802-141u
-- [CT] annotations do not select support, change membership, or impose an ordering key ^c20260802-111u
+- [DF] `Chat.Support.Set` is the ordered, duplicate-free set of exact `User.Turn`s judged to semantically support one grounded statement ^c20260809-126u
+- [DC] it is recorded in the `support` namespace of the line’s `Chatlas.Line.Anchor.Dossier` ^c20260809-127u
+- [CT] membership asserts semantic grounding only; gates and provenance establish their own relationships independently ^c20260809-128u
+- [DC] `relationships.support` declares its members as semantic-support turns and preserves them in relevance order ^c20260809-160u
 - [DC] one set may contain a single turn or several turns when the statement spans them ^c20260802-161u
 - [CT] the current Index-grounding realization accepts visible user turns only; assistant content is recovered through their neighborhoods ^c20260802-134u
 - [PR] anchor the authority turns and read their neighborhoods — the user turn carries touch while surrounding content supplies context ^c20260802-204u
@@ -662,13 +658,29 @@
 
 ## Turn.Type
 
-- [DF] `Turn.Type` is an optional semantic annotation on a `Chat.Support.Set` member naming an additional role the turn plays ^c20260802-190u
-- [DC] absence of annotations means base support only ^c20260802-146u
-- [DC] one member may carry multiple `Turn.Type` annotations ^c20260802-160u
-- [CT] annotations are orthogonal to support membership and relevance order ^c20260802-110u
-- [DC] the vocabulary is soft and extensible; each type consumer owns validation of its cargo ^c20260802-178u
-- [EX] `semantic.approval.turn` marks an agent-judged approval member ^c20260802-195u
-- [EX] `tokenized.approval.turn` marks a CPU-verifiable verbatim approval member and carries its token, proposal turn, and approval turn ^c20260802-196u
+- [DF] `Turn.Type` is the semantic role a referenced `Normal.Turn` plays at one typed relationship position within a `Chatlas.Line.Anchor.Dossier` ^c20260809-154u
+- [DC] the relationship namespace supplies the primary type: `support`, `gates`, or `provenance` ^c20260809-155u
+- [DC] named positions within a namespace supply finer mechanism-specific types such as semantic-support anchor, proposal turn, approval-command turn, or token-carrier turn ^c20260809-156u
+- [CT] the type belongs to the reference occurrence within the relationship, not intrinsically to the underlying `Normal.Turn` ^c20260809-157u
+- [DC] one `Normal.Turn.Ref` may occupy several typed positions and therefore play several independent roles ^c20260809-158u
+- [CT] the dossier structure is the typing declaration; a duplicate generic `types` array is unnecessary ^c20260809-159u
+
+****
+
+## Chat.Gate.Relationship
+
+- [DF] `Chat.Gate.Relationship` is a mechanism-specific relationship between an anchored line and the chat coordinates needed to evaluate one gate ^c20260809-129u
+- [DC] each gate kind owns its referenced coordinates, assertions, payload shape, and validation semantics ^c20260809-130u
+- [EX] semantic approval and tokenized verbatim approval are distinct gate kinds, not annotations on support members ^c20260809-131u
+- [DC] each gate mechanism declares the `Turn.Type` of every referenced position in its relationship shape ^c20260809-161u
+
+****
+
+## Chat.Provenance.Relationship
+
+- [DF] `Chat.Provenance.Relationship` records an evidenced origin or history relationship between an anchored line and a Chat surface ^c20260809-132u
+- [CT] provenance does not itself establish semantic support or gate satisfaction ^c20260809-133u
+- [CT] one `Normal.Turn.Ref` may participate independently in support, gate, and provenance relationships ^c20260809-134u
 
 ****
 
@@ -680,7 +692,6 @@
 - [DC] qualifying user turns delimit captured touched changes while preceding assistant and tool context may inform their interpretation without independently supplying touch ^c20260803-77u
 - [CT] material merely loaded into a chat does not create a Delta without a qualifying user touch event ^c20260803-76u
 - [CT] each Delta's extraction may be maintained using evidence within its fixed horizon but not later evidence ^c20260803-78u
-- [DC] repeated exact line content may retain its `Support.Reference`; changed `Line.Type` or body requires support reevaluation and a new reference ^c20260803-79u
 
 ****
 

@@ -140,7 +140,7 @@ agentos chatlas events query \
   }'
 ```
 
-- Predicates: `role`, `kind`, `event_id`, `text_exact`, `text_contains`.
+- Predicates include `role`, `kind`, `turn_kind`, `producer_type`, `event_ref`, and the text/time predicates.
 - V1 relation: `next_turn`, where tool events do not interrupt adjacent visible message turns.
 - Selection: `all`, `first`, `latest`.
 - Projection: `match`, `first`, `last`.
@@ -151,8 +151,8 @@ agentos chatlas events query \
 For one-step turn discovery, `turns query` is the compact ergonomic projection:
 
 ```sh
-agentos chatlas turns query --identity-hash <H> --contains "<text>" --producer-type human
-agentos chatlas turns query --identity-hash <H> --contains "<text>" --producer-type human --detail turn
+agentos chatlas turns query --identity-hash <H> --contains "<text>" --turn-kind user
+agentos chatlas turns query --identity-hash <H> --contains "<text>" --turn-kind user --detail turn
 ```
 
 - default `summary` detail returns `Normal.Turn.Ref`, Anchory-ready `member_ref`, and compact matched-event entries with exact `Event.Ref` values
@@ -196,7 +196,7 @@ agentos chatlas views get --identity-hash <H> --contains "<text>" --filter turns
 
 - `--contains` — case-insensitive text match over event payloads
 - `--role` — message events with this role (`user`, `assistant`)
-- `--producer-type` (on `turns query`) — who produced the turn. `--role user` is **not** the same as a turn you typed: tool output, system reminders, and injected command stdout all arrive on the user channel, so `--producer-type human` is the filter that isolates real typed turns
+- `--turn-kind user` (on `turns query`) — select normalized `User.Turn` semantics. Raw/user payload role and producer attribution are independent axes and cannot substitute for `User.Turn.Purity`
 - `--around` + `--radius` — nearest events to a time; radius keeps the closest `2r+1`, output stays chronological
 - `--filter` — named `Chatlas.Filter`, repeatable and ordered: `slim` (strip provenance plumbing), `messages` (message events only, synced), `turns` (`messages` then `slim` — the grounding reader's preset)
 - composition: with `--contains`/`--role`/`--around` selection, named filters apply **before** the window, so radius counts filter-surviving events — `--around <t> --radius 3 --filter turns` means 3 turns each side, tool events don't eat the window

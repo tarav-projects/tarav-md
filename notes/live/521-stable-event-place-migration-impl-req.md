@@ -3,15 +3,15 @@
 ## Impl.Abstract
 
 - **scope:** perform the hard-cut migration of the maintained Chatlas runtime and its direct Agentos consumers to the schema-5 stable-event-place model already implemented by Impl.Req 520
-- **status:** designed; ready for execution
+- **status:** completed
 - **source:** explicit request to perform the migration and the subsequent `NO.LEGACY.ALLOWED` constraint ^c20260809-48u ^c20260809-49u
-- **repositories:** `agentos-chatlas-py` for current-model fixtures, query documentation, and migration gates; `agentos-cli` for the direct composition fixture; `agentos-chatlas-md` for the execution record; `/Users/pereiro/Documents/chatlas` for the active derived and durable dataset
+- **repositories:** `agentos-chatlas-py` for current-model fixtures, query semantics, and migration gates; `agentos-cli` for the direct composition fixture; `agentos-chatlas-md` for package documentation and the execution record; `agentos-md` for maintained Agentos skill consumers; `/Users/pereiro/Documents/chatlas` for the active derived and durable dataset
 - **mode:** hard cut — no positional `Event.Ref` reader, session-model-v4 reader, dual writes, translator, compatibility fallback, or automatic reference relocation
 
 ### In scope
 
 - replace every active schema-4 `Chatlas.Session.Model` materialization with schema 5 or remove it when its retained raw source cannot currently normalize
-- rebuild the disposable Event.Pattern SQLite index under schema 5 and accept only current delta checkpoints
+- rebuild the disposable Event.Pattern SQLite index under schema 6, which adds normalized `turn_kind` as an indexed semantic axis, and accept only current delta checkpoints
 - find and eliminate current tests, examples, and maintained docs that still construct or teach the displaced normal-model fields
 - live-resolve every current Chatlas Anchory support member against schema-5 models; unresolved evidence is a migration failure requiring explicit repair, never relocation
 - audit every retained Chat.Index and the retained `zip-transcript-summary` product set against current model-derived input
@@ -74,7 +74,7 @@
 - update stale Event.Pattern and turn-query documentation plus the direct `agentos-cli` composition fixture
 - **observable:** maintained executable examples and fixtures express only the schema-5 model
 - **check:** focused Chatlas and CLI tests plus a repository legacy scan pass
-- **status:** not started
+- **status:** completed
 
 ### Vertical.Slice 2 - Rebuild the complete active derived corpus
 
@@ -82,9 +82,9 @@
 - capture build failures without weakening model validation
 - remove only remaining incompatible session-model directories after verifying each is derived and failed to rebuild; leave raw/session-index authority untouched
 - audit checkpoint schema and discard only malformed, non-current, or orphaned checkpoints proven unusable after cache replacement
-- **observable:** active session-model storage contains zero schema-4 artifacts and Event.Pattern SQLite reports schema 5
+- **observable:** active session-model storage contains zero schema-4 artifacts and Event.Pattern SQLite reports schema 6
 - **check:** filesystem/schema census and `agentos chatlas events index` report
-- **status:** not started
+- **status:** completed
 
 ### Vertical.Slice 3 - Validate durable Anchory authority
 
@@ -93,7 +93,7 @@
 - repair only defects whose intended support is independently evident and whose edit is explicitly justified; otherwise retain a blocking finding
 - **observable:** every retained member is an exact current `User.Turn`, or an explicit unresolved finding remains
 - **check:** 2,973 records / 4,525 members are accounted for with zero silent skips
-- **status:** not started
+- **status:** completed
 
 ### Vertical.Slice 4 - Audit retained Chat.Index and product surfaces
 
@@ -102,7 +102,7 @@
 - do not edit retained narrative merely because event sequence or internal grouping changed
 - **observable:** every retained surface is current or has an explicit owner-native stale/failure result
 - **check:** complete identity/accounting reports for Chat.Index and product registries
-- **status:** not started
+- **status:** completed
 
 ### Vertical.Slice 5 - Cross-system completion audit
 
@@ -111,7 +111,7 @@
 - prove raw archive/session-index counts were not reduced by derived-state migration
 - **observable:** no active legacy model artifact or maintained legacy consumer remains
 - **check:** all named gates green; before/after authority counts match; all retained-surface populations are accounted for
-- **status:** not started
+- **status:** completed
 
 ## Risks And Deviation Triggers
 
@@ -125,7 +125,7 @@
 ## Acceptance Signals
 
 - zero active session models have schema other than 5; every surviving manifest is schema 2 with `stable-event-place-v1`
-- Event.Pattern SQLite metadata is schema 5 and complete for the post-migration corpus
+- Event.Pattern SQLite metadata is schema 6 and complete for the post-migration corpus
 - no current source, executable fixture, or maintained package documentation accepts or teaches positional Event.Ref, `lineage.on_active_path`, `extras.final`, or producer-only `User.Turn`
 - every Chatlas Anchory record and support member is accounted for by exact current-model resolution
 - every retained Chat.Index and zip-transcript product is accounted for by its owning currentness/audit workflow
@@ -134,6 +134,13 @@
 
 ## Impl.Log
 
+- Execution authorized and grounded at the current-session gate ^c20260809-50u
 - Design resolved the migration as a hard cut. No translation or compatibility implementation is authorized.
 - Current automatic invalidation is necessary but insufficient: 12,573 stale schema-4 directories still physically occupy the active Chatlas root, so migration must drive a corpus-wide rebuild and then remove unrebuildable derived remnants.
 - Durable migration is primarily verification: active non-derived storage contains no persisted Event.Ref, while Anchory carries turn-level assertions whose exact resolution must be proven under `User.Turn.Purity`.
+- Slice 1 closed with public `turn_kind` predicates on Event.Pattern and `turns query`, exact SQLite candidate indexing for that semantic axis, schema-5 fixtures, current Chatlas and Hugentics package documentation, and the direct `agentos-cli` fixture. Maintained Agentos Skillware was rebuilt from source and checks with zero findings.
+- Slice 2 rematerialized the complete active corpus: 12,712 session models now report schema 5 and all 12,712 manifests report schema 2 / `stable-event-place-v1`. The schema-6 Event.Pattern database covers 203,646 events across the same 12,712 sessions. The owning materializer discarded 337 provider-private checkpoints that no longer had delta state; the 3,063 surviving checkpoints are all `chatlas.delta-checkpoint.v2`. These caches are derived and the raw authority remains available.
+- Slice 3 live-resolved all 2,974 Chatlas Anchory records and all 4,526 support members across 54 referenced sessions with zero failures and no relocation.
+- Slice 4 audited all 11 retained Chat.Index surfaces: all owner-native audits succeeded with zero blocking findings; eight tails are current and three are ordinary append-only tails. Per explicit user direction, all 412 retained `zip-transcript-summary` products were status-audited and intentionally left stale; none is missing or invalid, and none was reproduced or rewritten.
+- Slice 5 passed 474 Chatlas tests, Ruff, 21 invariant corpus sessions plus the random sweep, both projection gates, comparative projection, 70 direct CLI tests, Skillware checks, JSON validation, and diff hygiene. A forced SQLite `--turn-kind user` query returned the exact expected compaction-corpus user turn.
+- Authority accounting is unchanged: 35,174 raw files and 768 session-index files before and after. No raw, index, annotation, Anchory, Chat.Index, or retained product artifact was deleted or rewritten by the migration.

@@ -1,44 +1,33 @@
 ****
 
-## Chatlas.Anchory/Record.Format
+## Chatlas.Anchory/Line.Anchor.Dossier
 
-- the record is the JSON payload stored under a chat anchor
-- `app` — record discriminator, fixed `"chatlas"`; lets records of different applications coexist in one namespace
-- `schema` — `"chatlas.support-set.v3"` for generic support, `"chatlas.support-set.v4"` and `"chatlas.support-set.v5"` for historical line-bound records, or `"chatlas.support-set.v6"` for current line materialization records
-- `hint` — one sentence describing what the support set evidences
-- `members` — a non-empty ordered list of support turns, stored in relevance order
-- each member's `session` is the full Chatlas `identity_hash`
-- each member carries exact `turn_id`, `turn_hash`, and `at` coordinates from its `Normal.Turn.Ref`; optional `types` annotate roles such as approval without changing base support
-- every member resolves to a visible user message; duplicate members and unknown fields are invalid
-- line-bound records add immutable `subject` identity for the versioned hash of `Line.Type + body` without trailing anchors
-- `predecessors` records the duplicate-free former anchors whose support contributed to the relationship; it may be empty for newly authored lines
-- v6 retains monotonic `issue_context` and removes accumulated provenance observations; materialization and `Line.Home` are derived from exact Delta containment and authoritative tape order
-- v3/v4/v5 remain readable, but new Index grounding supplies explicit line content and writes v6
-- the project is not a field — it is derivable from the session inside Chatlas; duplicating it invites desync
-
-****
-
-## Chatlas.Anchory/Resolution
-
-example record:
-
-```json
-{
-  "app": "chatlas",
-  "schema": "chatlas.support-set.v6",
-  "hint": "Evidence supporting the descriptor-free Chat.Index layout",
-  "subject": {"kind": "index.line", "canonical_schema": "agentos.index-line-content.v1", "content_hash": "sha256:<hex>"},
-  "predecessors": ["c20260707-0u"],
-  "issue_context": ["Issue.I0001"],
-  "members": [{"session": "<full identity_hash>", "turn_id": "turn-r6894", "turn_hash": "<sha256>", "at": "2026-07-07T18:38:08.127Z"}]
-}
-```
+- [DF] `Chatlas.Line.Anchor.Dossier` is the Chatlas-owned record resolved from an `Index.Line.Anchor`, relating its attached line to evidence and assertions on Chat surfaces ^c20260809-116u
+- [DC] its schema organizes one attachment guard and independently modeled relationship namespaces ^c20260809-117u
+- [DC] `attachment` stores a canonicalization schema and hash of the current `Line.Type + body + Anchor.Id` triplet ^c20260809-118u
+- [CT] the attachment guard detects unmaintained drift without duplicating the line’s type or body in the dossier ^c20260809-119u
+- [DC] `support`, `gates`, and `provenance` are independent relationship namespaces ^c20260809-120u
+- [DC] each namespace owns its relationship shape, referenced coordinates, and validation semantics ^c20260809-121u
+- [CT] the same `Normal.Turn.Ref` may occur in several namespaces when each occurrence asserts a different relationship ^c20260809-122u
+- [CT] the dossier stores the references and assertions needed to evaluate relationships, not conclusions derived from them ^c20260809-123u
+- [RJ] human hints, copied Index content, Line.Type fields, and derived standing do not belong in the dossier ^c20260809-124u
+- [FR] Chatlas may add independently modeled relationship namespaces without changing the identity of the attached anchor ^c20260809-125u
+- [DF] `app` identifies Chatlas as the application owning the dossier semantics ^c20260809-147u
+- [DF] `schema` identifies the versioned `Chatlas.Line.Anchor.Dossier` contract ^c20260809-148u
+- [DF] `attachment` carries the canonical triplet-hash assertion ^c20260809-149u
+- [DF] `relationships` contains independently modeled relationship namespaces ^c20260809-150u
+- [DF] `relationships.support` carries the line’s `Chat.Support.Set` ^c20260809-151u
+- [DF] `relationships.gates` carries mechanism-owned `Chat.Gate.Relationship`s ^c20260809-152u
+- [DF] `relationships.provenance` carries `Chat.Provenance.Relationship`s ^c20260809-153u
 
 ****
 
-## Chatlas.Anchory/Resolution.Semantics
+## Chatlas.Anchory/Line.Anchor.Resolution
 
-- `session + turn_id` locates the grouping while `turn_hash` verifies it; absent or changed turns fail stale instead of selecting nearby evidence
-- one anchor may contain members from several sessions; resolution returns one independent `Chatlas.Session.Model` neighborhood per member and never merges sessions
-- a line-dossier subject mismatch is `Index.Linter/Anchor.LineDrift`; different line contents sharing one anchor are `Index.Linter/Anchor.Collision`
-- line-record enrichment may append issue context, but cannot rewrite canonical subject, support meaning, or predecessors; Delta attachment and materialization history are derived from the surface rather than recorded
+- [DF] `Chatlas.Line.Anchor.Resolution` evaluates a `Chatlas.Line.Anchor.Dossier` against its attached Index line and referenced Chat surfaces ^c20260809-137u
+- [DC] resolution verifies the attachment assertion against the current line triplet and resolves each relationship namespace according to its own contract ^c20260809-138u
+- [CT] the Index surface remains authoritative for the line triplet and the Chat surfaces remain authoritative for referenced events and turns ^c20260809-139u
+- [DC] line drift, grounding standing, gate satisfaction, provenance standing, `Line.Home`, and materialization placement are derived from the dossier and their authoritative surfaces ^c20260809-140u
+- [CT] derived conclusions are not persisted as dossier fields ^c20260809-141u
+- [CT] a resolution finding does not itself mutate the anchor, its dossier, or any referenced surface ^c20260809-142u
+- [PR] the dossier preserves cross-surface coordinates and assertions while stable surfaces preserve the facts they address ^c20260809-143u
