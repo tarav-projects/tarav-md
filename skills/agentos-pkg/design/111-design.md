@@ -186,6 +186,7 @@
 - [DF] a `Tournament.Verdict` is the recorded outcome of one completed `Tournament.Match` ^c20260805-71u
 - [DC] a verdict has two zones: an engine-written envelope and an opaque consumer slot, following `Bloberia.Record` ^c20260805-72u
 - [DC] the envelope records the match identity, the judge, the ordering the judge returned, the presentation order actually run, and the `Match.Verbatim` hash ^c20260806-53u
+- [DC] it also records the address of the `Match.Template` that produced the run, so the exact text its judge saw is reassemblable without the engine that composed it ^c20260809-43u
 - [CT] the engine stores the consumer slot and never reads it ^c20260805-74u
 - [CT] slot content never shadows an envelope field; the slot carries analysis material, not a restatement of what the envelope owns ^c20260805-75u
 - [CT] an outcome is either a strict total ordering of the match's players or `Tournament.Verdict::No.Contest` ^c20260806-54u
@@ -214,7 +215,7 @@
 
 - [DF] a `Tournament.Depot` is one rooted directory holding every tournament's frozen definition and its accumulated records ^c20260806-25u
 - [DC] the depot resolves to a canonical global location by default and accepts an explicit root ^c20260806-26u
-- [DC] a depot separates `definitions/`, `records/`, and `tickets/`: each tournament's frozen definition, its `Agentos.Bloberia` record store, and the mutable submission staging ^c20260806-69u
+- [DC] a depot separates `definitions/`, `records/`, `tickets/`, and `components/`: each tournament's frozen definition, its `Agentos.Bloberia` record store, the mutable submission staging, and the `Match.Component.Registry` every run was rendered from ^c20260809-44u
 - [DC] tickets are swept by age rather than on completion, and a run sweeps before it mints, so no run depends on cleanup having happened ^c20260806-70u
 - [CT] the sweep horizon is far longer than any match can run, which is what keeps collection from racing a live submission ^c20260806-71u
 - [DC] records are namespaced by tournament, so one tournament's records are reachable without reading another's ^c20260806-28u
