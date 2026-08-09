@@ -16,6 +16,7 @@
 - [RJ] the engine does not diagnose why a pool failed to separate; whether the question, the judge, or the pool itself is at fault is a read over the records ^c20260806-137u
 - [PR] statelessness at the match boundary is what makes runs parallel, reproducible, and cacheable ^c20260805-26u
 - [CT] its output is `Accountable.Assertion` evaluation-record material: confidence, never authority ^c20260805-27u
+- [FR] a fold over accumulated verdicts may serve as an `Improvement.Loop` score; nothing in the engine makes that a default ^c20260809-105u
 - [RJ] it does not own domain `POI.Class`es or emit domain findings; consumers read the accumulated records and mint their own POIs ^c20260805-28u
 - [RJ] it does not decide comparability, pool membership, or judging criteria; `Tournament.Definition` does ^c20260805-29u
 
@@ -52,12 +53,22 @@
 - [DF] a `Tournament.Control` is a consumer-supplied player carrying a declared expected standing, present to calibrate the instrument rather than to measure the pool ^c20260806-129u
 - [DC] the declared bands are high and low: a control is expected to converge toward the top or toward the bottom across many matches ^c20260806-130u
 - [RJ] there is no middle band; mid-pack is where noise lives, so a middle expectation is not falsifiable at any affordable volume ^c20260807-0u
+- [FR] a definition may place a control among the players it supplies rather than rely on the engine's mechanism ^c20260809-164u
+- [CT] controls are held apart in the read: folded into the pool, a low control sits in the weak tail looking exactly like a finding ^c20260806-134u
+- [PR] a control converging to neither band is the instrument reporting on itself ^c20260806-135u
+- [RJ] declining the engine's mechanism is not declining calibration; a read over the records remains evidence about the instrument ^c20260809-165u
+
+****
+
+## Tournament.Control::Injected
+
+- [DF] a `Tournament.Control::Injected` is a control the engine draws from a pool and substitutes into a match the definition did not place it in ^c20260809-166u
 - [DC] the control hook returns the pool the engine draws from, so which control appears in a match stays engine work ^c20260807-1u
 - [DC] the engine substitutes one control for one pool player at a consumer-set rate, and never more than one per match ^c20260806-131u
 - [CT] substitution precedes match identity, so a match carrying a control is a different match from the one without ^c20260806-132u
-- [DC] the verdict records which of its players were controls and the band each declared ^c20260806-133u
-- [CT] controls are held apart in the read: folded into the pool, a low control sits in the weak tail looking exactly like a finding ^c20260806-134u
-- [PR] a control converging to neither band is the instrument reporting on itself ^c20260806-135u
+- [DC] the verdict records which of its players were injected controls and the band each declared ^c20260809-167u
+- [CT] injection assumes interchangeable players: where a definition builds each match as readings of one subject, replacing one reading with an unrelated one voids the match rather than calibrating it ^c20260809-168u
+- [PR] a definition whose players are not interchangeable calibrates from inside its own match construction instead ^c20260809-169u
 
 ****
 
@@ -187,6 +198,7 @@
 - [DC] a verdict has two zones: an engine-written envelope and an opaque consumer slot, following `Bloberia.Record` ^c20260805-72u
 - [DC] the envelope records the match identity, the judge, the ordering the judge returned, the presentation order actually run, and the `Match.Verbatim` hash ^c20260806-53u
 - [DC] it also records the address of the `Match.Template` that produced the run, so the exact text its judge saw is reassemblable without the engine that composed it ^c20260809-43u
+- [DC] it records the per-run values bound into that template which the envelope does not otherwise carry, so reassembly never depends on the environment it runs in ^c20260809-106u
 - [CT] the engine stores the consumer slot and never reads it ^c20260805-74u
 - [CT] slot content never shadows an envelope field; the slot carries analysis material, not a restatement of what the envelope owns ^c20260805-75u
 - [CT] an outcome is either a strict total ordering of the match's players or `Tournament.Verdict::No.Contest` ^c20260806-54u

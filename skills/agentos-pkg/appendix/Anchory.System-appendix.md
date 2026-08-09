@@ -15,10 +15,7 @@
 - `Anchory.Anchor` is a stable token standing for a context on another surface
 - an anchor identifies an evidence neighborhood, not necessarily one exact record or turn
 - the token remains small because resolution data lives in `Anchory.Register`
-- an anchor's meaning is immutable
-- an anchor is never reused for a different context
-- an incorrect identity hint requires a new anchor
-- a register entry may be amended only to correct an error or improve resolution
+- [CT] Anchory does not decide whether an application-level amendment preserves anchor identity; the integrating application owns that semantic decision ^c20260809-115u
 - anchor keys may carry application-specific hints without making those hints the generic identity contract
 
 ****

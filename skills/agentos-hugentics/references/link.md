@@ -20,7 +20,7 @@ For gated newly drafted content, this pipeline is landing work. Do not resolve p
    - repeat with more snippets until exactly one candidate remains: that is you (the conversation is a fingerprint; chatlas has indexed it)
    - shortcuts: a native session id already in hand → `agentos chatlas query --session-id <native-id> --field identity_hash --update`; a past session → normal `query` filters
 2. **Locate and qualify the evidence turns.** Chatlas locates observable editions; the agent chooses semantic support and applies the current chat authority-surface protocol:
-   - use compact `agentos chatlas turns query --identity-hash <hash> --contains '<text>' --human` for one-turn discovery; escalate with `--detail turn` only when the complete grouping is needed
+   - use compact `agentos chatlas turns query --identity-hash <hash> --contains '<text>' --turn-kind user` for normalized User.Turn discovery; escalate with `--detail turn` only when the complete grouping is needed
    - use `agentos chatlas events query --identity-hash <hash> --pattern-json '<Event.Pattern JSON>' --backend auto` for adjacent or relational turn patterns
    - read `matched_events[].event_ref` for the exact matching events and `turn_ref` for the verified `Normal.Turn`
    - for a proposal followed by token approval, query a two-step `next_turn` pattern with an assistant `text_contains` token predicate and a user `text_exact` approval predicate; select `latest` or require cardinality `one` when that matches the situation

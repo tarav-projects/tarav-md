@@ -4,35 +4,35 @@
 
 ## Index.Chapter
 
-- `Index.Chapter` is a folder of the Index that groups concepts into a unit of selective loading
-- concepts across chapters are peers, reached by one `Dotted.Name` lookup — a chapter sets only what loads together
-- the chapter loading policy is open — if any default holds, only the default chapter is loaded/searched
-- the default chapter is `design`; `impl` is reserved; a package may add any number beyond these
-- a chapter's files are named `NNN-<chapter>.md`, e.g. `design/100-design.md` — the suffix names the chapter
+- [DF] `Index.Chapter` is a folder of the Index that groups concepts into a unit of selective loading
+- [CT] concepts across chapters are peers, reached by one `Dotted.Name` lookup — a chapter sets only what loads together
+- [FR] the chapter loading policy is open — if any default holds, only the default chapter is loaded/searched
+- [DC] the default chapter is `design`; `impl` is reserved; a package may add any number beyond these
+- [DF] a chapter's files are named `NNN-<chapter>.md`, e.g. `design/100-design.md` — the suffix names the chapter
 
 ****
 
 ## Index.Appendix
 
-- `Index.Appendix` is the appendix layer of the Index and the root concept for it — the on-demand depth, complement of `Index.Ontology`
-- it is the index-level echo of `Kernel.Block.Appendix`: depth deferred out of the compressed front, loaded by choice
-- it is not routed — reached by naming through `Appendix.Discovery`, never loaded by default
-- loading an appendix is an intentional action — the agent displays intention by choosing to go deeper
-- it lives in one `appendix/` shared across chapters; files are concept-named and addressed as `Index.Pages`
-- it holds every concept's tail (`Block.Line.Gradient`): `Concept.X/Appendix` catch-alls and scoped `Concept.X/Concept.Y` blocks (`Appendix.Block`)
+- [DF] `Index.Appendix` is the appendix layer of the Index and the root concept for it — the on-demand depth, complement of `Index.Ontology`
+- [DC] it is the index-level echo of `Kernel.Block.Appendix`: depth deferred out of the compressed front, loaded by choice
+- [CT] it is not routed — reached by naming through `Appendix.Discovery`, never loaded by default
+- [DC] loading an appendix is an intentional action — the agent displays intention by choosing to go deeper
+- [DC] it lives in one `appendix/` shared across chapters; files are concept-named and addressed as `Index.Pages`
+- [DF] it holds every concept's tail (`Block.Line.Gradient`): `Concept.X/Appendix` catch-alls and scoped `Concept.X/Concept.Y` blocks (`Appendix.Block`)
 - with `Index.Ontology`, `Index.Agendix`, and `Index.Router` it composes the `Index.Surface` ^c20260716-36u
 
 ****
 
 ## Surface.Concept
 
-- `Surface.Concept` is the base idea behind all surfaces in the system — an interface over a subset of a project
-- naming something a surface is an implicit contract: it declares what the consumer can expect from that layer
-- `Stable.Surface` — the elements that aim to be durable and authoritative
-- `Public.Surface` — the elements visible and portable beyond the project
-- `Md.Surface` — the markdown layer
-- different surfaces can overlap — the same file can participate in multiple surfaces
-- a surface is not a folder or a file type — it's a declared interface over project elements
+- [DF] `Surface.Concept` is the base idea behind all surfaces in the system — an interface over a subset of a project
+- [PR] naming something a surface is an implicit contract: it declares what the consumer can expect from that layer
+- [DF] `Stable.Surface` — the elements that aim to be durable and authoritative
+- [DF] `Public.Surface` — the elements visible and portable beyond the project
+- [DF] `Md.Surface` — the markdown layer
+- [DC] different surfaces can overlap — the same file can participate in multiple surfaces
+- [RJ] a surface is not a folder or a file type — it's a declared interface over project elements
 
 ****
 
@@ -59,24 +59,24 @@
 
 ## Block.Path
 
-- `Block.Path` is a block name written as a `/`-separated path — the full path is the name
+- [DF] `Block.Path` is a block name written as a `/`-separated path — the full path is the name
 - [DF] it is the ontology-topology form of `Skw.Address.Schema`; `/` states descent (`Addressing.Sigil.Vocabulary`) ^c20260712-80u
 - [CT] a segment may be a `Dotted.Name` concept, a free label, or a single-word atom — the `/` supplies the minimum sigil ^c20260712-27u
-- a concept segment carries `Concept.Scoping` semantics; a label segment just groups, claiming no ontology entry
+- [CT] a concept segment carries `Concept.Scoping` semantics; a label segment just groups, claiming no ontology entry
 - [DC] an anchored path — its root names a routed index concept — attaches the block to that node and lives in the root's appendix by default; it is not itself a top-level index block ^c20260712-38u
 - [FR] an unanchored path is legal, mirroring pre-registration `Dotted.Name`s — placement is the author's call until the root matures ^c20260712-86u
-- section paths (`Concept.X/Appendix`, `Concept.X/Grounding`) are restricted to the appendix; a scoped concept-child defaults there but may be promoted
+- [CT] section paths (`Concept.X/Appendix`, `Concept.X/Grounding`) are restricted to the appendix; a scoped concept-child defaults there but may be promoted
 
 ****
 
 ## Explicit.Namespace
 
-- `Explicit.Namespace` is a concept whose purpose is to group a cluster of blocks — a declared view over the concepts it gathers
-- its members are listed in `### meta` under `namespace-members` — the inventory of the cluster
-- a member is either a grouped peer (a routed `Index.Block` standing on its own) or an owned child in the namespace's appendix
-- the member list is where appendix-depth members surface — path-children the `Index.Router` never routes, otherwise reachable only by `Appendix.Discovery`, are named here
-- the appendix is required — it is the namespace's home, holding the owned children and the guided view over the cluster
-- example: `Agentos.Index.System`
+- [DF] `Explicit.Namespace` is a concept whose purpose is to group a cluster of blocks — a declared view over the concepts it gathers
+- [DC] its members are listed in `### meta` under `namespace-members` — the inventory of the cluster
+- [DC] a member is either a grouped peer (a routed `Index.Block` standing on its own) or an owned child in the namespace's appendix
+- [DC] the member list is where appendix-depth members surface — path-children the `Index.Router` never routes, otherwise reachable only by `Appendix.Discovery`, are named here
+- [DC] the appendix is required — it is the namespace's home, holding the owned children and the guided view over the cluster
+- [EX] example: `Agentos.Index.System`
 
 ****
 

@@ -4,83 +4,83 @@
 
 ## Context.Hook
 
-- `Context.Hook` is a harness-defined mechanism that inserts content into an agent context
-- hooks may operate at different `Context.Loading.Path` tiers
-- a surface may be loaded through a `Context.Hook`
-- `Cold.Loading.Hook` is the cold-start specialization of `Context.Hook`
-- `AGENTS.md` and skill surfaces can be loaded through `Context.Hook`s
+- [DF] `Context.Hook` is a harness-defined mechanism that inserts content into an agent context
+- [DC] hooks may operate at different `Context.Loading.Path` tiers
+- [DC] a surface may be loaded through a `Context.Hook`
+- [DF] `Cold.Loading.Hook` is the cold-start specialization of `Context.Hook`
+- [DC] `AGENTS.md` and skill surfaces can be loaded through `Context.Hook`s
 
 ****
 
 ## Index.AGENTS.MD
 
-- `Index.AGENTS.MD` is a `Context.Hook` for the index surface
-- its canonical artifact path is `design/AGENTS.md` relative to the `Index.Depot` root
-- it injects index-usage context through the harness `AGENTS.md` loading mechanism
-- `agentos-md/skills/agentos-pkg/design/AGENTS.md` is the `Reference.Implementation` for `Index.AGENTS.MD`
+- [DF] `Index.AGENTS.MD` is a `Context.Hook` for the index surface
+- [DC] its canonical artifact path is `design/AGENTS.md` relative to the `Index.Depot` root
+- [DC] it injects index-usage context through the harness `AGENTS.md` loading mechanism
+- [DC] `agentos-md/skills/agentos-pkg/design/AGENTS.md` is the `Reference.Implementation` for `Index.AGENTS.MD`
 
 ****
 
 ## Appendix.AGENTS.MD
 
-- `Appendix.AGENTS.MD` is a `Context.Hook` for the appendix surface
-- its canonical artifact path is `appendix/AGENTS.md` relative to the appendix root
-- it injects appendix-usage context through the harness `AGENTS.md` loading mechanism
-- `agentos-md/skills/agentos-pkg/appendix/AGENTS.md` is the `Reference.Implementation` for `Appendix.AGENTS.MD`
+- [DF] `Appendix.AGENTS.MD` is a `Context.Hook` for the appendix surface
+- [DC] its canonical artifact path is `appendix/AGENTS.md` relative to the appendix root
+- [DC] it injects appendix-usage context through the harness `AGENTS.md` loading mechanism
+- [DC] `agentos-md/skills/agentos-pkg/appendix/AGENTS.md` is the `Reference.Implementation` for `Appendix.AGENTS.MD`
 
 ****
 
 ## Grounding.Retrieval.Boundary
 
-- `Grounding.Retrieval.Boundary` separates finding candidate evidence from linking it
-- retrieval quality affects linking quality, but retrieval mechanics are not the definition of grounding
-- search engines, vector databases, keyword indexes, and chatlas queries are candidate-discovery mechanisms
+- [DF] `Grounding.Retrieval.Boundary` separates finding candidate evidence from linking it
+- [CT] retrieval quality affects linking quality, but retrieval mechanics are not the definition of grounding
+- [DF] search engines, vector databases, keyword indexes, and chatlas queries are candidate-discovery mechanisms
 
 ****
 
 ## Chat.Grounding.Target.Block
 
-- `Chat.Grounding.Target.Block` is the rule that chat grounding attaches to a kernel block, not to a loose topic
-- the index is the entity inventory that answers what is being grounded
-- every chat grounding target is a `Index.Block` or `Appendix.Block`
-- if an issue or topic needs grounding, it must first resolve to an existing block or become a new block
-- if a subtopic inside a block needs independent grounding, it should become its own kernel block
-- a block's grounding is scoped to that one target block: its lines' anchors support its content only
-- other surfaces cite grounded blocks instead of inventing separate grounding targets
+- [DC] `Chat.Grounding.Target.Block` is the rule that chat grounding attaches to a kernel block, not to a loose topic
+- [DF] the index is the entity inventory that answers what is being grounded
+- [CT] every chat grounding target is a `Index.Block` or `Appendix.Block`
+- [CT] if an issue or topic needs grounding, it must first resolve to an existing block or become a new block
+- [DC] if a subtopic inside a block needs independent grounding, it should become its own kernel block
+- [DC] a block's grounding is scoped to that one target block: its lines' anchors support its content only
+- [DC] other surfaces cite grounded blocks instead of inventing separate grounding targets
 
 ****
 
 ## Grounding.Hugentic.Authority
 
-- `Grounding.Hugentic.Authority` is the rule that grounding lines primarily anchor user turns
-- assistant turns provide context, reasoning trace, proposed wording, and forensic evidence
-- assistant-authored material becomes normal grounding only when the user explicitly accepts, corrects toward, or acts on it
+- [DF] `Grounding.Hugentic.Authority` is the rule that grounding lines primarily anchor user turns
+- [CT] assistant turns provide context, reasoning trace, proposed wording, and forensic evidence
+- [CT] assistant-authored material becomes normal grounding only when the user explicitly accepts, corrects toward, or acts on it
 - [CT] index grounding anchors target user turns only — gating guarantees an approval turn exists; there is no assistant-only index evidence ^c20260708-9u
-- grounding is a `Hugentic.Alignment` workflow: human/agent collaboration, not agent-only retrieval
+- [DC] grounding is a `Hugentic.Alignment` workflow: human/agent collaboration, not agent-only retrieval
 
 ****
 
 ## Designer.Turn.Kernel.Form
 
-- `Designer.Turn.Kernel.Form` is how a `What.Design.Session` turn is shaped when working a defined subject
-- the designer communicates in `Kernel.Writing` — orthogonal bullet lines, each an independent fundamental point, direct language
-- a turn working a defined subject proposes a `Design.Block`: an H2 `Dotted.Notation` heading, orthogonal fundamentals, and an optional `### meta` for open items
-- a question turn pairs the block with the question — the `Design.Block` as actionable intro, then `Question / Why-now / Recommended-answer / Evidence`
-- every new question on a defined subject is accompanied by its block; pure openers are exempt because they create the first subject
-- discussion rounds re-render the same block with the change; open points live under `### meta` as `open:` lines
-- the in-chat block and the artifact's `Design.Index` block are one object — capture only adds gating
+- [DF] `Designer.Turn.Kernel.Form` is how a `What.Design.Session` turn is shaped when working a defined subject ^c20260609-0u
+- [DF] the designer communicates in `Kernel.Writing` — orthogonal bullet lines, each an independent fundamental point, direct language ^c20260609-1u
+- [DC] a turn working a defined subject proposes a `Design.Block`: an H2 `Dotted.Notation` heading, orthogonal fundamentals, and an optional `### meta` for open items ^c20260609-2u
+- [DC] a question turn pairs the block with the question — the `Design.Block` as actionable intro, then `Question / Why-now / Recommended-answer / Evidence` ^c20260609-3u
+- [CT] every new question on a defined subject is accompanied by its block; pure openers are exempt because they create the first subject ^c20260609-4u
+- [DC] discussion rounds re-render the same block with the change; open points live under `### meta` as `open:` lines ^c20260609-5u
+- [DC] the in-chat block and the artifact's `Design.Index` block are one object — capture only adds gating ^c20260609-6u
 
 ****
 
 ## RED.GREEN.Test.Suite
 
-- `RED.GREEN.Test.Suite` is the set of RED/GREEN-style tests an `Impl.Req` calls for, written test-first to drive the implementation
-- an `Impl.Exec` `Development.Principle`: the `Impl.Req` specifies the suite; the executer builds it test-first — each test goes RED (fails) then GREEN (minimal code passes), one at a time
-- never write all tests up front: bulk tests assert imagined shape and pass when behavior breaks
-- it is not the only tests — it is the implementation-driving core; more tests may be added later, including at the end
-- `No.Regression.Tests.Allowed` governs all tests including this suite — keep it core-feature, e2e, and durable-contract focused, not regression slop
-- `Test.At.Boundaries` governs what each test asserts — public behavior that survives a refactor
-- rationale: writing the test before the code prevents retrofit tests that merely rubber-stamp the implementation
+- [DF] `RED.GREEN.Test.Suite` is the set of RED/GREEN-style tests an `Impl.Req` calls for, written test-first to drive the implementation ^c20260609-7u
+- [DC] an `Impl.Exec` `Development.Principle`: the `Impl.Req` specifies the suite; the executer builds it test-first — each test goes RED (fails) then GREEN (minimal code passes), one at a time ^c20260609-8u
+- [RJ] never write all tests up front: bulk tests assert imagined shape and pass when behavior breaks ^c20260609-9u
+- [CT] it is not the only tests — it is the implementation-driving core; more tests may be added later, including at the end ^c20260609-10u
+- [CT] `No.Regression.Tests.Allowed` governs all tests including this suite — keep it core-feature, e2e, and durable-contract focused, not regression slop ^c20260609-11u
+- [CT] `Test.At.Boundaries` governs what each test asserts — public behavior that survives a refactor ^c20260609-12u
+- [PR] rationale: writing the test before the code prevents retrofit tests that merely rubber-stamp the implementation ^c20260609-13u
 
 ****
 

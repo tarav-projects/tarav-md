@@ -859,8 +859,7 @@
 - [DF] `Reviewed.Content` is the protocol state established when materially equivalent content is presented and later explicitly approved by the user ^c20260729-265u
 - [CT] the state records protocol completion, not whether the user read, understood, remembered, or evaluated the content ^c20260729-154u
 - [CT] review is distinct from `Touched.Authority`, which derives from the content's `Support.Set` rather than approval of its wording ^c20260729-134u
-- [DC] review implies touch when the approval is a qualifying authority-surface edition that enters the content's support set ^c20260729-231u
-- [DC] a qualifying approval `User.Turn` in `Chat.Support.Set` is the current realization of that review evidence ^c20260729-188u
+- [DC] `Reviewed.Content` is derived from the satisfied gate while `Touched.Authority` is derived independently through the line’s `Support.Set` ^c20260809-136u
 - [CT] review does not certify factual truth or support strength ^c20260729-133u
 - [DC] review partitions grounded touched-index content into touched-unreviewed and touched-reviewed strata; an ungrounded live line remains index content under `Index.Presumption` rather than acquiring touched authority ^c20260729-232u
 - [DC] `Verbatim.User.Gated` is presently the sole mechanism that produces `Reviewed.Content` ^c20260729-178u
@@ -872,8 +871,6 @@
 - [DF] `Reviewed.Cite.Closure` is the citation invariant over `Reviewed.Content`: a reviewed line may cite only reviewed lines, so a reviewed line's transitive cite-closure is entirely reviewed ^c20260723-42u
 - [CT] one forbidden edge: reviewed→unreviewed; reviewed→reviewed and any unreviewed→anything are legal ^c20260723-23u
 - [DC] the boundary is verbatim review specifically: a cite depends on wording, so `Edition.Trigger.User.Gated` (edit-event approval, wording unseen) does not count as reviewed for this rule ^c20260723-38u
-- [DC] CPU-lintable per `User.Gate`: resolve each cite's target and check its support set for the review turn; a reviewed line citing an unreviewed target is a linter finding ^c20260723-26u
-- [DC] the check is local: a line cite quotes the target verbatim including its anchor, so resolving that embedded anchor reaches the support set directly — no container walk ^c20260723-39u
 
 ****
 
@@ -894,7 +891,7 @@
 ## Line.Verbatim.Gate
 
 - [DF] `Line.Verbatim.Gate` is the per-`Index.Line` certificate that explicit user approval followed presentation of materially equivalent line content ^c20260729-260u
-- [DC] its dossier connects the landed line, proposal turn, and approval turn through `Edition.Approval.Token` evidence in `Support.Reference.Metadata` ^c20260729-218u
+- [DC] a `Line.Verbatim.Gate` stores its proposal turn, approval turn, and `Edition.Approval.Token` in the dossier’s `gates` namespace ^c20260809-135u
 - [DC] the proposal turn must contain the token and the proposed line before a user turn explicitly approves that token ^c20260729-245u
 - [CT] the checker searches the proposal turn without requiring any `Index.Edition.Turn` presentation format ^c20260729-144u
 - [DC] the checker requires sufficient evidence that the proposed and landed lines preserve materially equivalent wording rather than byte-for-byte identity ^c20260729-238u
@@ -904,7 +901,6 @@
 - [DC] a satisfied gate gives the line the `Reviewed.Content` protocol state ^c20260729-189u
 - [CT] materially significant wording changes break the gate until equivalent content is presented and explicitly approved again ^c20260729-118u
 - [DC] one token may approve several lines while each line retains its own independently checkable gate ^c20260729-222u
-- [DC] the gate remains line-local and re-checkable from the line's own support reference ^c20260729-241u
 - [PR] format-insensitive comparison protects `User.Attention` from reapproval caused only by presentation noise ^c20260729-333u
 
 ****
@@ -915,11 +911,7 @@
 - [DC] materially equivalent proposed lines appear in an assistant turn — that explicitness is the contract; the token binds them, it does not carry them ^c20260726-25u
 - [DC] the token is an opaque nonce: its identity, not its content, does the linking work ^c20260726-32u
 - [RJ] the token is not a content hash — deriving it from the edition burdens the producer for no gain, since integrity comes from locate-then-compare, not from the token itself ^c20260726-49u
-- [DC] the approving user turn is the review turn entering the line's `Chat.Support.Set`, so the token is how `Reviewed.Content` is evidenced rather than merely asserted ^c20260726-27u
-- [DC] the token lives in the line's `Support.Reference.Metadata` — the current external Anchory dossier realization of the audit trail, recoverable from the landed line alone ^c20260726-34u
-- [DC] it binds a proposal turn holding materially equivalent line content, the later approval turn carrying the explicit approval command, and the file line whose support reference carries the token; resolving that reference reaches all three ^c20260726-23u
 - [DC] the check is flexible over the conversation: materially equivalent landed content may appear in any assistant turn that carries the token and precedes the explicit approval turn, so discussing or re-showing across turns does not break the audit ^c20260726-29u
-- [CT] material comparison excludes trailing support references; the proposal may show a placeholder while the landed line carries the minted reference ^c20260726-19u
 - [DC] the agent mints a fresh token when the edition's wording changes and reuses it while the wording holds, so every turn bearing a token carries the same edition — the discipline that keeps the flexible check unambiguous without encoding content in the token ^c20260726-26u
 - [DC] the token rides `User.Command::Approve` as its Explicit arg: `::approve <token>` is the canonical form, making one user turn both the workflow transition and the review evidence, with the agent pre-filling the token under the resolved copy-pasteable rendering ^c20260726-35u
 - [DC] the token is optional and its presence is the upgrade — a bare `::approve` (contextual foreground target) stays edit-event approval (`Edition.Trigger.User.Gated`), while `::approve <token>` binds the reviewed wording and yields `Reviewed.Content` ^c20260726-33u
@@ -930,20 +922,27 @@
 
 - [DF] `Touched.Support.Network` is the network relating `Index.Line`s across touched index surfaces to supporting data on `Touch.Authority.Surface` instances ^c20260729-273u
 - [DC] its edges have the form `Support.Set` ↔ `Support.Reference` ↔ `Index.Line` ^c20260729-219u
-- [DF] `Support.Reference` is the abstract link connecting one line content to its `Support.Set` ^c20260802-189u
-- [CT] different line contents never share a `Support.Reference`, even when their support sets are equivalent ^c20260802-115u
-- [DC] repeated materializations of the same line content may retain the same `Support.Reference` across touched index surfaces ^c20260802-167u
-- [CT] `Support.Reference.Metadata` may describe that link but is not the link itself ^c20260729-51u
+- [DF] `Support.Reference` is the semantic grounding relationship between an `Index.Line` and its `Support.Set`; it is not the line’s anchor identity ^c20260809-113u
+- [DC] an `Index.Line.Anchor` dossier records the line’s `Support.Reference` in its support namespace ^c20260809-114u
 - [DC] an authority surface holds the first-order touched data while an index surface holds its grounded line ^c20260729-195u
 - [DC] the network is dynamic: nodes and edges change as authority surfaces and their grounded projections evolve ^c20260729-244u
 - [DC] touched surfaces hold the live cut, source surfaces preserve their evidence, and surface history preserves prior network states ^c20260729-247u
-- [DC] extending support for unchanged line content evolves its existing evidence relationship; changing the content requires support reevaluation and a new `Support.Reference` ^c20260802-151u
 - [PR] `Support.Set` is one line content’s local evidence view; `Touched.Support.Network` is the global object those views compose ^c20260802-203u
-- [DC] `Anchory.Anchor` currently realizes `Support.Reference`: it is the link, while its application record carries the support set and reference metadata ^c20260802-137u
 
 ### meta
 
 - aliases: `Index.Support.Network`
+
+****
+
+## Index.Line.Anchor
+
+- [DF] `Index.Line.Anchor` is the stable `Anchory.Anchor` joining an `Index.Line` materialization to its application-owned relationship dossier ^c20260809-107u
+- [DC] the Index surface owns the current `Line.Type + body + Anchor.Id` triplet; the anchor id links that triplet to its dossier without becoming line content ^c20260809-108u
+- [DC] the dossier carries an attachment assertion over the canonical triplet so unmaintained drift is detectable ^c20260809-109u
+- [CT] neither the attachment hash nor the line content defines anchor identity ^c20260809-110u
+- [FR] after a line amendment, the maintainer may preserve the anchor and update its attachment assertion or assign a new anchor according to the application semantics ^c20260809-111u
+- [CT] an anchor is never repurposed for an unrelated line relationship ^c20260809-112u
 
 ****
 
@@ -972,9 +971,7 @@
 ## Index.Line
 
 - [DF] `Index.Line` is the atom of `Touched.Surface.Index`: one typed content statement whose support standing is evaluated through its `Support.Reference` ^c20260802-186u
-- [DF] an `Index.Line`’s content is its `Line.Type` and body; trailing support references are links and do not belong to that content ^c20260802-192u
 - [CT] when an `Index.Line` is attached to an `Index.Block`, block membership supplies context the line need not repeat ^c20260802-136u
-- [DC] repeated materializations of identical typed content are the same line for deterministic identity ^c20260802-166u
 - [CT] identical line content may carry different meaning through different attachments; this uncommon contextual distinction requires semantic judgment rather than deterministic identity linting ^c20260802-123u
 - [PR] lines within a block aim for semantic orthogonality: each contributes a distinct dimension with minimal overlap among sibling lines ^c20260729-340u
 - [CT] a line may be fully intelligible by itself, but standalone completeness is not required ^c20260729-60u
@@ -984,8 +981,6 @@
 - [DC] an ungrounded line remains index content and carries `Index.Presumption`; missing grounding is debt, not a deletion trigger ^c20260729-196u
 - [DC] each line carries a `Line.Type` classifying its act ^c20260729-209u
 - [CT] approval is a member-surface invariant rather than a requirement for `Index.Line` membership itself ^c20260729-73u
-- [EX] on a `Verbatim.User.Gated` surface, the support set includes a qualifying approval `User.Turn` through the current `Chat.Support.Set` specialization ^c20260729-299u
-- [DC] the current Markdown implementation materializes the line's `Support.Reference` as a trailing `Anchory.Anchor` ^c20260729-239u
 - [PR] support references, support sets, and authority data ground the line without replacing the semantic context supplied by its block ^c20260729-349u
 
 ****
@@ -1018,7 +1013,6 @@
 ## Skw.Touched.Index
 
 - [DF] `Skw.Touched.Index` is the `Touched.Surface.Index` member attached to `Skw.Annotation`s: `Index.Line`s riding annotations on generated surfaces — file, module, region, construct ^c20260717-27u
-- [DC] one mixed surface: gated and ungated lines share the place — a line is gated iff its support set holds the gate-typed turn (`Turn.Type::<Surface>.Gate`); the split is computed, not geographic ^c20260717-18u
 - [DF] `Skw.Appendix` and `Skw.Agendix` are its computed strata — the gated and the ungated lines: the appendix and agendix of a block, where the block is the annotation — same mechanics, no file split ^c20260717-26u
 - [DC] promotion is a state change, not a relocation: a line passes the gate where it stands — the gate turn joins its set; nothing moves ^c20260717-20u
 - [DC] two worlds meet at the annotation: the skw development stack reads it to generate, judge, and evolve the surface; the touched lines ground to the `Chat.Surface` — the user-grounded part of that context ^c20260717-23u

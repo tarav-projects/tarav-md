@@ -4,70 +4,70 @@
 
 ## Project.File.Index
 
-- `Project.File.Index` is the file-level routing section of the `Index.Router`
-- describes the project's file system at folder level, with individual files listed only when fundamental
-- one sentence description per entry — token budget is tight, it travels with the router whenever the index is loaded
-- gives agents a structural map of where to look — not a complete listing, but the important entry points
+- [DF] `Project.File.Index` is the file-level routing section of the `Index.Router` ^c20260517-0u
+- [CT] describes the project's file system at folder level, with individual files listed only when fundamental ^c20260517-1u
+- [DC] one sentence description per entry — token budget is tight, it travels with the router whenever the index is loaded ^c20260517-2u
+- [CT] gives agents a structural map of where to look — not a complete listing, but the important entry points ^c20260517-3u
 
 ****
 
 ## Unresolved.Index.Name
 
-- `Unresolved.Index.Name` is an unknown `Dotted.Name` that the agent cannot resolve against the index
-- parked in the session — available for later resolution if more context emerges
-- if the same name recurs 3+ times, suggest capture to the user
-- gap detection is passive — don't interrupt conversation flow
+- [DF] `Unresolved.Index.Name` is an unknown `Dotted.Name` that the agent cannot resolve against the index ^c20260517-4u
+- [DC] parked in the session — available for later resolution if more context emerges ^c20260517-5u
+- [DC] if the same name recurs 3+ times, suggest capture to the user ^c20260518-0u
+- [DC] gap detection is passive — don't interrupt conversation flow ^c20260518-1u
 
 ****
 
 ## BuiltIn.Namespace
 
-- `BuiltIn.Namespace` is an `Explicit.Namespace` that every Agentos project is expected to have
-- it's an interface — can be empty, populated as the project evolves
-- examples: `Project.Surfaces`
+- [DF] `BuiltIn.Namespace` is an `Explicit.Namespace` that every Agentos project is expected to have ^c20260516-3u
+- [DC] it's an interface — can be empty, populated as the project evolves ^c20260516-4u
+- [EX] examples: `Project.Surfaces` ^c20260516-5u
 
 ****
 
 ## Project.Index.Skill
 
-- `Project.Index.Skill` is the `<project>-index` auxiliary skill for a package index surface
-- the canonical public index content lives in the package skill's `Index.Depot`: `000-INDEX.md`, `design/`, and `appendix/`
-- it is a `Package.Aux.Skill` for the package's `Package.Skill.Index`
-- the auxiliary skill may provide direct index access, research, writing, diagnosis, testing, maintenance, or index workflow framing without becoming a separate package root
+- [DF] `Project.Index.Skill` is the `<project>-index` auxiliary skill for a package index surface ^c20260517-6u
+- [DC] the canonical public index content lives in the package skill's `Index.Depot`: `000-INDEX.md`, `design/`, and `appendix/`
+- [DC] it is a `Package.Aux.Skill` for the package's `Package.Skill.Index`
+- [CT] the auxiliary skill may provide direct index access, research, writing, diagnosis, testing, maintenance, or index workflow framing without becoming a separate package root ^c20260521-0u
 
 ****
 
 ## Concept.Cite
 
-- `Concept.Cite` is the bracket notation for citing concept origins or materially important related concepts when inline mention is not natural
-- format: `[Concept.X, Concept.Y]`; page or source qualifiers may be added when needed, e.g. `[Concept.X, Concept.Y[1]]`
-- used when the citation changes how an agent should interpret, verify, maintain, or navigate the line
-- not used merely because another concept is loosely related
-- complements `Inline.Relatedness`: prefer natural inline `Dotted.Name` mentions, cite only when the relation matters but does not read naturally
+- [DF] `Concept.Cite` is the bracket notation for citing concept origins or materially important related concepts when inline mention is not natural ^c20260516-6u
+- [DC] format: `[Concept.X, Concept.Y]`; page or source qualifiers may be added when needed, e.g. `[Concept.X, Concept.Y[1]]` ^c20260516-7u
+- [CT] used when the citation changes how an agent should interpret, verify, maintain, or navigate the line
+- [CT] not used merely because another concept is loosely related
+- [DC] complements `Inline.Relatedness`: prefer natural inline `Dotted.Name` mentions, cite only when the relation matters but does not read naturally ^c20260516-8u
 
 ****
 
 ## Appendix.Discovery
 
-- `Appendix.Discovery` is the protocol for reaching a concept's depth on demand — the appendix is not routed, it is found by naming
-- loading appendix depth is an intentional act — the agent goes deeper by choice, never by default
-- if a concept's block is not enough, check `appendix/Concept.X-appendix.md`; the naming convention is the discovery mechanism, no outlink needed
-- that file holds the concept's path-children — its `Concept.X/Appendix` dump and any scoped `Concept.X/Concept.Y` blocks
-- discovery cascades: a block → its appendix → the blocks there → their own appendixes
-- the more blocks loaded, the more paths available — agents discover by following related blocks
-- hidden blocks are not deleted — just outside the default scope, reached by following the cascade
+- [DF] `Appendix.Discovery` is the protocol for reaching a concept's depth on demand — the appendix is not routed, it is found by naming ^c20260518-2u
+- [DC] loading appendix depth is an intentional act — the agent goes deeper by choice, never by default ^c20260518-3u
+- [DC] if a concept's block is not enough, check `appendix/Concept.X-appendix.md`; the naming convention is the discovery mechanism, no outlink needed ^c20260518-4u
+- [DC] that file holds the concept's path-children — its `Concept.X/Appendix` dump and any scoped `Concept.X/Concept.Y` blocks
+- [DC] discovery cascades: a block → its appendix → the blocks there → their own appendixes ^c20260518-5u
+- [PR] the more blocks loaded, the more paths available — agents discover by following related blocks ^c20260518-6u
+- [DC] hidden blocks are not deleted — just outside the default scope, reached by following the cascade ^c20260518-7u
 
 ****
 
 ## Index.Pages
 
-- `Index.Pages` is the file dimension of a concept — the pages its content spans, written `Concept.X[N]`
-- `Concept.X[0]` is the index block's file; `Concept.X[1]` is the first appendix file (`Concept.X-appendix.md`); `[2]+` are further files
-- `Concept.X[:]` means all of a concept's content across its files (slice semantics)
-- the notation is usable as inline reference in blocks, chat, and prompts
-- it is orthogonal to `Block.Path` — pages address files, paths address the ontology; one page holds many path-blocks
-- by default a path block lands in the matching page, but the two axes need not coincide
-- the router annotates page presence inline (`Concept.X[+N]`) — lintable, only when appendix files exist; no annotation means no appendix
+- [DF] `Index.Pages` is the file dimension of a concept — the pages its content spans, written `Concept.X[N]` ^c20260519-0u
+- [DC] `Concept.X[0]` is the index block's file; `Concept.X[1]` is the first appendix file (`Concept.X-appendix.md`); `[2]+` are further files ^c20260519-1u
+- [DC] `Concept.X[:]` means all of a concept's content across its files (slice semantics) ^c20260519-2u
+- [DC] the notation is usable as inline reference in blocks, chat, and prompts ^c20260519-3u
+- [DC] it is orthogonal to `Block.Path` — pages address files, paths address the ontology; one page holds many path-blocks
+- [DC] by default a path block lands in the matching page, but the two axes need not coincide
+- [DC] the router annotates page presence inline (`Concept.X[+N]`) — lintable, only when appendix files exist; no annotation means no appendix ^c20260519-4u
 
 ### meta
 
@@ -77,10 +77,10 @@
 
 ## Placement.Heuristic
 
-- `Placement.Heuristic` is the decision framework for where content lives in the system
-- design knowledge (what, why, how it connects) → index block + appendix
-- executable instructions (do this, run that, follow this loop) → skill references
-- if content drift is detected, report it — don't migrate without user approval
+- [DF] `Placement.Heuristic` is the decision framework for where content lives in the system ^c20260518-8u
+- [DC] design knowledge (what, why, how it connects) → index block + appendix ^c20260518-9u
+- [DC] executable instructions (do this, run that, follow this loop) → skill references ^c20260518-10u
+- [CT] if content drift is detected, report it — don't migrate without user approval ^c20260518-11u
 
 ****
 

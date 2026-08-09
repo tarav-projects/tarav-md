@@ -19,6 +19,31 @@
 
 ****
 
+## Volatile.Surface
+
+- [DF] a `Volatile.Surface` is a working surface no `Stable.Surface` may depend on, and which may therefore be deleted whole at any time ^c20260809-79u
+- [CT] the dependency arrow is one-way: a volatile surface may reference a `Stable.Surface`, and no stable surface may reference into a volatile one ^c20260809-80u
+- [CT] content leaves only by copy — a stable surface takes the content and owns it, never a path into the volatile surface it came from ^c20260809-81u
+- [DC] the defining property is having no dependents, not having a short life: a volatile surface may be long-lived and stay deletable ^c20260809-82u
+- [PR] the one-way arrow is what makes deletion routine rather than a decision requiring an audit ^c20260809-83u
+- [EX] `Agentos.Live.Note` and `Agentos.Live.Script` are volatile surfaces inside a project; a `Run.Workspace` is one outside every project ^c20260809-84u
+- [RJ] volatility is not a claim about value — durable signal found on a volatile surface is promoted, not discounted ^c20260809-85u
+
+****
+
+## Run.Workspace
+
+- [DF] a `Run.Workspace` is a `Volatile.Surface` holding one run of one agentic workflow, rooted outside every project ^c20260809-86u
+- [DC] workspaces live at `~/.agentos/workspaces/<date>-<slug>/`, one directory per run ^c20260809-87u
+- [DC] exactly one surface is required — an `AGENTS.md` declaring kind, purpose, provenance, how to run it, `status`, and what was `extracted` ^c20260809-88u
+- [PR] `status` and `extracted` are what make sweeping possible: nothing is ever deleted while nobody can tell whether anything left ^c20260809-89u
+- [CT] git is initialized inside a workspace and never around one — no submodule, subtree, or sibling of a tracked repository ^c20260809-90u
+- [FR] nothing below `AGENTS.md` is mandated; each workflow imposes whatever shape its own kind needs ^c20260809-91u
+- [DC] creating a workspace is gated on a `Poi.Unlock.Token` receipt for the workspace documentation surface, so one is never initialized blind ^c20260809-92u
+- [RJ] a workspace is not the session scratchpad — work that dies with the chat does not get one ^c20260809-93u
+
+****
+
 ## Natural.Placement
 
 - `Natural.Placement` is the principle that each surface holds the facet of a concept that is natural to its function ^c20260511-1u

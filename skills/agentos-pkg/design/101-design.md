@@ -17,55 +17,55 @@
 
 ## Agentos.Skills
 
-- `Agentos.Skills` defines skill selection, routing, and import behavior for Agentos projects
-- a source contributes discoverable skills: direct path (`{ "path": "..." }`), project-backed (`{ "project": "..." }`), or package
-- a profile is an ordered selection of sources plus one or more local depots
-- profile resolution: project-local `.agentos/config.json` override → global default profile → hardcoded default
-- importing materializes selected skills into depots as managed symlinks
-- imported skills may include `Package.Skill` roots and `Package.Aux.Skill` aliases into package subsystems or workflows
-- `agentos skills ...` is a project command — uses `Agentos.Project` targeting
+- [DF] `Agentos.Skills` defines skill selection, routing, and import behavior for Agentos projects
+- [DF] a source contributes discoverable skills: direct path (`{ "path": "..." }`), project-backed (`{ "project": "..." }`), or package
+- [DF] a profile is an ordered selection of sources plus one or more local depots
+- [DC] profile resolution: project-local `.agentos/config.json` override → global default profile → hardcoded default
+- [DC] importing materializes selected skills into depots as managed symlinks
+- [CT] imported skills may include `Package.Skill` roots and `Package.Aux.Skill` aliases into package subsystems or workflows
+- [DC] `agentos skills ...` is a project command — uses `Agentos.Project` targeting
 
 ****
 
 ## Usage.Surface
 
-- `Usage.Surface` is the usage-useful subset of `Public.Surface`
-- the surfaces that help external agents and humans understand how to use a project
-- includes skills, CLI help, index notes, and other documentation surfaces
-- not every surface in `Public.Surface` is equally usage-centric by design
+- [DF] `Usage.Surface` is the usage-useful subset of `Public.Surface`
+- [PR] the surfaces that help external agents and humans understand how to use a project
+- [EX] includes skills, CLI help, index notes, and other documentation surfaces
+- [CT] not every surface in `Public.Surface` is equally usage-centric by design
 
 ****
 
 ## Package.Skill
 
-- `Package.Skill` is a self-contained agentic public surface for a package, project, or subsystem
-- like a software package rather than a script: an integrated collection of subsystems for a coherent task area
-- collects public markdown knowledge, routing, setup guidance, workflows, references, and agent-facing operating material
-- acts as the package-level orientation and routing surface for public agentic knowledge
-- supports compact single-skill and split multi-skill layouts under the same semantic concept
-- may expose `Package.Aux.Skill` surfaces that add caller intention while pointing back to the package root or subsystem
+- [DF] `Package.Skill` is a self-contained agentic public surface for a package, project, or subsystem
+- [RJ] like a software package rather than a script: an integrated collection of subsystems for a coherent task area
+- [DC] collects public markdown knowledge, routing, setup guidance, workflows, references, and agent-facing operating material
+- [DC] acts as the package-level orientation and routing surface for public agentic knowledge
+- [DC] supports compact single-skill and split multi-skill layouts under the same semantic concept
+- [CT] may expose `Package.Aux.Skill` surfaces that add caller intention while pointing back to the package root or subsystem
 
 ****
 
 ## Package.Driver
 
-- `Package.Driver` is the minimal context an agent must receive across the `Context.Loading.Path` to be able to work with a `Package.Skill`
-- it is distributed across loading tiers: a cold slice may live in a `Cold.Loading.Surface`, the package `SKILL.md` arrives through `SKILL.Loading`, and deeper routes are selected through `Dynamic.Loading`
-- the package `SKILL.md` is the canonical runnable driver surface; cold-loading surfaces may project enough driver context to make the package reachable from cold
-- functionally it has two parts: `Package.Driver.Base` (always-on orientation) plus `Package.Driver.Router` (routes onward)
-- `Package.Driver:<Package>` names the driver of a specific package, e.g. `Package.Driver::Agentos.Pkg`
-- the standard route any agent uses to enter a package — including any package-agnostic agent that takes the package as an argument
-- when base and router are not enough, the agent descends into the narrower surfaces the router declares
+- [DF] `Package.Driver` is the minimal context an agent must receive across the `Context.Loading.Path` to be able to work with a `Package.Skill`
+- [DC] it is distributed across loading tiers: a cold slice may live in a `Cold.Loading.Surface`, the package `SKILL.md` arrives through `SKILL.Loading`, and deeper routes are selected through `Dynamic.Loading`
+- [DC] the package `SKILL.md` is the canonical runnable driver surface; cold-loading surfaces may project enough driver context to make the package reachable from cold
+- [DC] functionally it has two parts: `Package.Driver.Base` (always-on orientation) plus `Package.Driver.Router` (routes onward)
+- [DF] `Package.Driver:<Package>` names the driver of a specific package, e.g. `Package.Driver::Agentos.Pkg`
+- [DC] the standard route any agent uses to enter a package — including any package-agnostic agent that takes the package as an argument
+- [DC] when base and router are not enough, the agent descends into the narrower surfaces the router declares
 
 ****
 
 ## Package.Driver.Base
 
-- `Package.Driver.Base` is the explicit operating explanation carried in the driver itself
-- always loaded whenever the `Package.Driver` is loaded — the package's always-on core
-- carries the package protocol plus the fundamental vocabulary downstream surfaces assume
-- must hold enough vocabulary that its own `Package.Driver.Router` keys are matchable
-- minimal by discipline: only what the common paths need, not everything useful
+- [DF] `Package.Driver.Base` is the explicit operating explanation carried in the driver itself
+- [DC] always loaded whenever the `Package.Driver` is loaded — the package's always-on core
+- [DC] carries the package protocol plus the fundamental vocabulary downstream surfaces assume
+- [CT] must hold enough vocabulary that its own `Package.Driver.Router` keys are matchable
+- [CT] minimal by discipline: only what the common paths need, not everything useful
 
 ****
 

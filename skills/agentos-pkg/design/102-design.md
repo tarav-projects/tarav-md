@@ -4,71 +4,71 @@
 
 ## Alignment.Loop
 
-- `Alignment.Loop` is the general workflow machinery for human-agent convergence
-- sequence: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`
-- parameterized by phase: `Alignment.Loop::What` (design), `Alignment.Loop::How` (impl design), `Alignment.Loop::Exec` (impl execution, light)
+- [DF] `Alignment.Loop` is the general workflow machinery for human-agent convergence ^c20260514-0u
+- [DC] sequence: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation` ^c20260514-1u
+- [DF] parameterized by phase: `Alignment.Loop::What` (design), `Alignment.Loop::How` (impl design), `Alignment.Loop::Exec` (impl execution, light) ^c20260514-2u
 
 ****
 
 ## Alignment.User.Turn
 
-- `Alignment.User.Turn` is the turn mode where the user drives and the agent follows
-- the agent follows the user's current thread, discusses one topic until convergence, parking, or rejection
+- [DF] `Alignment.User.Turn` is the turn mode where the user drives and the agent follows ^c20260514-3u
+- [DC] the agent follows the user's current thread, discusses one topic until convergence, parking, or rejection
 
 ****
 
 ## Alignment.Maintenance.Turn
 
-- `Alignment.Maintenance.Turn` is the turn mode where the agent drives one session move
-- ask next question, consolidate, report status, surface stale state, upgrade, close, split, or hand off
-- mode switching is user-gated — the agent may suggest, never silently switch
+- [DF] `Alignment.Maintenance.Turn` is the turn mode where the agent drives one session move ^c20260514-4u
+- [DC] ask next question, consolidate, report status, surface stale state, upgrade, close, split, or hand off
+- [DC] mode switching is user-gated — the agent may suggest, never silently switch
 
 ****
 
 ## Alignment.Backend
 
-- `Alignment.Backend` is where session state lives
-- `Alignment.Backend::InChat` — state lives in chat, no file overhead
-- `Alignment.Backend::Artifact` — state lives in a file-backed artifact, durable and handoff-ready
-- parameterized by phase: `Alignment.Backend::InChat::What`, `Alignment.Backend::Artifact::What`, etc.
-- `Alignment.Backend::InChat` and `Chat.Surface` are distinct concerns: `Alignment.Backend::InChat` is the active session state — the live chat as it unfolds, "what's in RAM"; `Chat.Surface` is the durable record of past chats — the archived interaction trail
+- [DF] `Alignment.Backend` is where session state lives ^c20260512-0u
+- [DF] `Alignment.Backend::InChat` — state lives in chat, no file overhead ^c20260512-1u
+- [DF] `Alignment.Backend::Artifact` — state lives in a file-backed artifact, durable and handoff-ready ^c20260512-2u
+- [DF] parameterized by phase: `Alignment.Backend::InChat::What`, `Alignment.Backend::Artifact::What`, etc.
+- [DF] `Alignment.Backend::InChat` and `Chat.Surface` are distinct concerns: `Alignment.Backend::InChat` is the active session state — the live chat as it unfolds, "what's in RAM"; `Chat.Surface` is the durable record of past chats — the archived interaction trail
 
 ****
 
 ## Hard.Evidence
 
-- `Hard.Evidence` is the principle that evidence-based arguments have priority over agent assumptions
-- concrete evidence: user instructions, inspected codebase state, active session artifacts, stable project surfaces, `Chat.Surface` content (especially user turns)
-- a summary is not `Hard.Evidence` — without a link to the evidence it stands on, it is low-confidence (`We.Distrust.Summaries`)
-- when evidence and assumption conflict, evidence wins
+- [DF] `Hard.Evidence` is the principle that evidence-based arguments have priority over agent assumptions ^c20260512-3u
+- [DC] concrete evidence: user instructions, inspected codebase state, active session artifacts, stable project surfaces, `Chat.Surface` content (especially user turns)
+- [RJ] a summary is not `Hard.Evidence` — without a link to the evidence it stands on, it is low-confidence (`We.Distrust.Summaries`)
+- [DC] when evidence and assumption conflict, evidence wins ^c20260512-4u
 - [DC] references make evidence descent mechanical: an `Index.Line` resolves through its `Support.Set` to touched data on the referenced `Touch.Authority.Surface` ^c20260729-227u
 
 ****
 
 ## We.Distrust.Summaries
 
-- `We.Distrust.Summaries` is the stance that a summary carries low confidence until it links to its source evidence
-- a summary is a compressed, derived claim — agent assumption, not `Hard.Evidence`, until grounded
-- the link to the source restores confidence — it lets a reader recompute the summary against the evidence
-- this is why `Stable.Surface`s prefer pointers and recomputation over cached summaries (`Computed.Status`)
+- [DF] `We.Distrust.Summaries` is the stance that a summary carries low confidence until it links to its source evidence
+- [DC] a summary is a compressed, derived claim — agent assumption, not `Hard.Evidence`, until grounded
+- [PR] the link to the source restores confidence — it lets a reader recompute the summary against the evidence
+- [PR] this is why `Stable.Surface`s prefer pointers and recomputation over cached summaries (`Computed.Status`)
 
 ****
 
 ## Alignment.Session
 
-- `Alignment.Session` is a shallow container — when these concepts run together in a session, that's an Alignment.Session
-- no behavioral protocol of its own — each workflow specialization defines its own `Alignment.Hugentic.Axes` and behavioral detail
-- lists and relates the general concepts that compose an alignment session
+- [DF] `Alignment.Session` is a shallow container — when these concepts run together in a session, that's an Alignment.Session ^c20260514-5u
+- [CT] no behavioral protocol of its own — each workflow specialization defines its own `Alignment.Hugentic.Axes` and behavioral detail ^c20260514-9u
+- [DC] lists and relates the general concepts that compose an alignment session
 
 ### concepts
 
-- `Design.Space`, `Hugentic.Variable`, `Agentic.Variable`, `Alignment.Loop`, `Alignment.User.Turn`, `Alignment.Maintenance.Turn`, `Alignment.Backend`, `Chat.Surface`
+- [DC] `Design.Space`, `Hugentic.Variable`, `Agentic.Variable`, `Alignment.Loop`, `Alignment.User.Turn`, `Alignment.Maintenance.Turn`, `Alignment.Backend`, `Chat.Surface`
 
 ### phase semantic roots
 
-- `What.Design` — phase 1, working on the conceptual model
-- `How.Design` — phase 2, planning the path
-- `Impl.Exec` — phase 3, walking the path
+- [DF] `What.Design` — phase 1, working on the conceptual model ^c20260514-6u
+- [DF] `How.Design` — phase 2, planning the path ^c20260514-7u
+- [DF] `Impl.Exec` — phase 3, walking the path ^c20260514-8u
 
 ****
 

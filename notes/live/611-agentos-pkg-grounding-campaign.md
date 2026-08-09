@@ -509,3 +509,307 @@ Clusters `C2` (34 lines), `C3` (28) and `C4` (30) are entirely `typing-required`
 `C2`, `C3`, `C4` and C1's 16-line remainder are the ranked candidates, all with an identified candidate session and git introduction window. `C3` is the strongest first migration: the `Line.Type::*` family is small, semantically explicit about its own acts, and its blocks describe the very vocabulary the migration would apply — a good calibration target where a wrong classification is easy to spot.
 
 Applicable `Line.Type.Vocabulary` for any migration packet: `DF`, `DC`, `CT`, `RJ`, `PR`, `FR`, `EX`, `GR` (`design/106-design.md:302`). Workers must return honest `residue` rather than force a body into the vocabulary.
+
+****
+
+## Campaign — `full-retrofit-01` (SUDO granted)
+
+### Grant record
+
+- campaign id: `Index.Retrofit/agentos-pkg/full-retrofit-01`
+- depot: `agentos-md/skills/agentos-pkg`
+- action class: `full-retrofit` — type and ground in one pass
+- token: `SUDO-RETROFIT-K7M2QX`
+- proposal turn: assistant turn proposing the grant, this session
+- approval turn: user turn returning the token verbatim, this session
+- session: `6a463285-736b-40eb-baff-ee77be5bd7eb` (claude-code)
+
+Gates granted:
+
+- `SUDO.Gate::Verbatim.Gate` — scoped to the `Line.Type` prefix only, across untyped
+  lines. Bodies unchanged; proven by diff per batch.
+- `SUDO.Gate::Rehash` — scoped to untyped+grounded lines, rebinding the existing
+  anchor to newly-typed content instead of detaching and minting a successor.
+
+Still refused under this grant: body edits, retyping already-typed lines, retyping
+`Reviewed.Content`, and any support a worker cannot evidence. Workers that find no
+evidence report ungrounded; that outcome is landed as-is.
+
+### Standing decision — provisional marking declined
+
+The user elected raw type writes over a provisional marker, accepting that a share
+of initial types will need later correction, on the stated grounds that other means
+of improving the index exist. Recorded so a later pass does not read the unmarked
+types as reviewed.
+
+### Measured prior — blind typing accuracy
+
+Held-out benchmark, 60 reviewed lines, types stripped, two independent blind runs
+against the vocabulary reference alone (no transcript):
+
+| measure | result |
+| --- | --- |
+| run B1 vs prior approved type | 26/60 — 43.3% |
+| run B2 vs prior approved type | 34/60 — 56.7% |
+| B1 vs B2 reproducibility | 39/60 — 65.0% |
+| both runs match prior | 23/60 — 38.3% |
+
+Per-class recall (B1/B2): DF 100/100, DC 47/79, CT 43/43, FR 50/50, EX 50/50,
+**PR 0/22**.
+
+Adjudication of the nine missed `PR` lines: ~3 agent error, ~1 corpus error, ~1
+corpus self-inconsistency (identical "never blocks agent action" phrasing typed
+`FR` twice and `PR` once in approved content), ~4 undecidable from the line alone.
+
+Consequences carried into this campaign:
+
+- agent-vs-agent divergence is not a correctness signal; it scored a knowingly wrong
+  vocabulary at 93.3% and the corrected one at 70.0%
+- `PR` is the weakest class and its recognition rule is the largest known gap
+- this campaign's workers read transcripts, so the 43–57% session-less figure is a
+  floor rather than a prediction
+
+****
+
+## Wave 1 — dispatched manifests
+
+### `Q1` manifest — wave 1, action `full-retrofit`
+
+- file: `agentos-md/skills/agentos-pkg/design/102-design.md`
+- nominated session: `acd5f1c1931e`
+- nomination evidence: Alignment.Loop + Alignment.Session + Hard.Evidence all nominate it (3-concept corroboration); opens "hello, lets continue 523-index-reindex-design-session.md" — no compaction boundary
+- lines: 28  (0 carrying an existing anchor)
+- grant: `SUDO-RETROFIT-K7M2QX`
+
+| id | block | file line | untyped content hash | body |
+| --- | --- | --- | --- | --- |
+| Q1-001 | Alignment.Loop | 7 | `sha256:76f7c8e44` | `Alignment.Loop` is the general workflow machinery for human-agent convergence |
+| Q1-002 | Alignment.Loop | 8 | `sha256:9249bea52` | sequence: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation` |
+| Q1-003 | Alignment.Loop | 9 | `sha256:e1067ff04` | parameterized by phase: `Alignment.Loop::What` (design), `Alignment.Loop::How` (impl design), `Alignment.Loop::Exec` (impl execution, light) |
+| Q1-004 | Alignment.User.Turn | 15 | `sha256:cd6e25fe6` | `Alignment.User.Turn` is the turn mode where the user drives and the agent follows |
+| Q1-005 | Alignment.User.Turn | 16 | `sha256:2767c6a97` | the agent follows the user's current thread, discusses one topic until convergence, parking, or rejection |
+| Q1-006 | Alignment.Maintenance.Turn | 22 | `sha256:dba2f6b32` | `Alignment.Maintenance.Turn` is the turn mode where the agent drives one session move |
+| Q1-007 | Alignment.Maintenance.Turn | 23 | `sha256:0bec055c6` | ask next question, consolidate, report status, surface stale state, upgrade, close, split, or hand off |
+| Q1-008 | Alignment.Maintenance.Turn | 24 | `sha256:526916c6a` | mode switching is user-gated — the agent may suggest, never silently switch |
+| Q1-009 | Alignment.Backend | 30 | `sha256:0a21346f3` | `Alignment.Backend` is where session state lives |
+| Q1-010 | Alignment.Backend | 31 | `sha256:c894a43c2` | `Alignment.Backend::InChat` — state lives in chat, no file overhead |
+| Q1-011 | Alignment.Backend | 32 | `sha256:779acb6c3` | `Alignment.Backend::Artifact` — state lives in a file-backed artifact, durable and handoff-ready |
+| Q1-012 | Alignment.Backend | 33 | `sha256:9c9df9121` | parameterized by phase: `Alignment.Backend::InChat::What`, `Alignment.Backend::Artifact::What`, etc. |
+| Q1-013 | Alignment.Backend | 34 | `sha256:70b30aee4` | `Alignment.Backend::InChat` and `Chat.Surface` are distinct concerns: `Alignment.Backend::InChat` is the active session state — the live chat as it unfolds, "what's in RAM"; `Chat.Surface` is the durable record of past chats — the archived interaction trail |
+| Q1-014 | Hard.Evidence | 40 | `sha256:5b9170d41` | `Hard.Evidence` is the principle that evidence-based arguments have priority over agent assumptions |
+| Q1-015 | Hard.Evidence | 41 | `sha256:c4bf83ca8` | concrete evidence: user instructions, inspected codebase state, active session artifacts, stable project surfaces, `Chat.Surface` content (especially user turns) |
+| Q1-016 | Hard.Evidence | 42 | `sha256:f369efd6e` | a summary is not `Hard.Evidence` — without a link to the evidence it stands on, it is low-confidence (`We.Distrust.Summaries`) |
+| Q1-017 | Hard.Evidence | 43 | `sha256:1e56f42b5` | when evidence and assumption conflict, evidence wins |
+| Q1-018 | We.Distrust.Summaries | 50 | `sha256:874090057` | `We.Distrust.Summaries` is the stance that a summary carries low confidence until it links to its source evidence |
+| Q1-019 | We.Distrust.Summaries | 51 | `sha256:34d8e179d` | a summary is a compressed, derived claim — agent assumption, not `Hard.Evidence`, until grounded |
+| Q1-020 | We.Distrust.Summaries | 52 | `sha256:cef7572a7` | the link to the source restores confidence — it lets a reader recompute the summary against the evidence |
+| Q1-021 | We.Distrust.Summaries | 53 | `sha256:ecd5720fe` | this is why `Stable.Surface`s prefer pointers and recomputation over cached summaries (`Computed.Status`) |
+| Q1-022 | Alignment.Session | 59 | `sha256:1f7357909` | `Alignment.Session` is a shallow container — when these concepts run together in a session, that's an Alignment.Session |
+| Q1-023 | Alignment.Session | 60 | `sha256:eb82185ed` | no behavioral protocol of its own — each workflow specialization defines its own `Alignment.Hugentic.Axes` and behavioral detail |
+| Q1-024 | Alignment.Session | 61 | `sha256:923b1a865` | lists and relates the general concepts that compose an alignment session |
+| Q1-025 | Alignment.Session | 65 | `sha256:a76d90a83` | `Design.Space`, `Hugentic.Variable`, `Agentic.Variable`, `Alignment.Loop`, `Alignment.User.Turn`, `Alignment.Maintenance.Turn`, `Alignment.Backend`, `Chat.Surface` |
+| Q1-026 | Alignment.Session | 69 | `sha256:ef32a2e30` | `What.Design` — phase 1, working on the conceptual model |
+| Q1-027 | Alignment.Session | 70 | `sha256:8bf42d433` | `How.Design` — phase 2, planning the path |
+| Q1-028 | Alignment.Session | 71 | `sha256:412919d0f` | `Impl.Exec` — phase 3, walking the path |
+
+### `Q2` manifest — wave 1, action `full-retrofit`
+
+- file: `agentos-md/skills/agentos-pkg/design/101-design.md`
+- nominated session: `d80f029f6b1c`
+- nomination evidence: Package.Skill user-text query rank 1 of 21; opens "Hi, I want to discuss about the format, style and phylosophy of Agentos.Index" — no compaction boundary
+- lines: 29  (0 carrying an existing anchor)
+- grant: `SUDO-RETROFIT-K7M2QX`
+
+| id | block | file line | untyped content hash | body |
+| --- | --- | --- | --- | --- |
+| Q2-001 | Agentos.Skills | 20 | `sha256:8c1a1793a` | `Agentos.Skills` defines skill selection, routing, and import behavior for Agentos projects |
+| Q2-002 | Agentos.Skills | 21 | `sha256:203d4bcd1` | a source contributes discoverable skills: direct path (`{ "path": "..." }`), project-backed (`{ "project": "..." }`), or package |
+| Q2-003 | Agentos.Skills | 22 | `sha256:6479dbac7` | a profile is an ordered selection of sources plus one or more local depots |
+| Q2-004 | Agentos.Skills | 23 | `sha256:c8b318b4b` | profile resolution: project-local `.agentos/config.json` override → global default profile → hardcoded default |
+| Q2-005 | Agentos.Skills | 24 | `sha256:d3e9accd4` | importing materializes selected skills into depots as managed symlinks |
+| Q2-006 | Agentos.Skills | 25 | `sha256:f27fdbfe5` | imported skills may include `Package.Skill` roots and `Package.Aux.Skill` aliases into package subsystems or workflows |
+| Q2-007 | Agentos.Skills | 26 | `sha256:18b30be1d` | `agentos skills ...` is a project command — uses `Agentos.Project` targeting |
+| Q2-008 | Usage.Surface | 32 | `sha256:f98fbf8b9` | `Usage.Surface` is the usage-useful subset of `Public.Surface` |
+| Q2-009 | Usage.Surface | 33 | `sha256:8cc11702c` | the surfaces that help external agents and humans understand how to use a project |
+| Q2-010 | Usage.Surface | 34 | `sha256:9b74531f2` | includes skills, CLI help, index notes, and other documentation surfaces |
+| Q2-011 | Usage.Surface | 35 | `sha256:cb1e17962` | not every surface in `Public.Surface` is equally usage-centric by design |
+| Q2-012 | Package.Skill | 41 | `sha256:430dc2dd6` | `Package.Skill` is a self-contained agentic public surface for a package, project, or subsystem |
+| Q2-013 | Package.Skill | 42 | `sha256:a9ae2392f` | like a software package rather than a script: an integrated collection of subsystems for a coherent task area |
+| Q2-014 | Package.Skill | 43 | `sha256:275d61333` | collects public markdown knowledge, routing, setup guidance, workflows, references, and agent-facing operating material |
+| Q2-015 | Package.Skill | 44 | `sha256:1e33a4bcd` | acts as the package-level orientation and routing surface for public agentic knowledge |
+| Q2-016 | Package.Skill | 45 | `sha256:6727d42d9` | supports compact single-skill and split multi-skill layouts under the same semantic concept |
+| Q2-017 | Package.Skill | 46 | `sha256:6002da76b` | may expose `Package.Aux.Skill` surfaces that add caller intention while pointing back to the package root or subsystem |
+| Q2-018 | Package.Driver | 52 | `sha256:1dda53ded` | `Package.Driver` is the minimal context an agent must receive across the `Context.Loading.Path` to be able to work with a `Package.Skill` |
+| Q2-019 | Package.Driver | 53 | `sha256:1f045ac14` | it is distributed across loading tiers: a cold slice may live in a `Cold.Loading.Surface`, the package `SKILL.md` arrives through `SKILL.Loading`, and deeper routes are selected through `Dynamic.Loading` |
+| Q2-020 | Package.Driver | 54 | `sha256:8d2a22976` | the package `SKILL.md` is the canonical runnable driver surface; cold-loading surfaces may project enough driver context to make the package reachable from cold |
+| Q2-021 | Package.Driver | 55 | `sha256:d1f6f2c90` | functionally it has two parts: `Package.Driver.Base` (always-on orientation) plus `Package.Driver.Router` (routes onward) |
+| Q2-022 | Package.Driver | 56 | `sha256:826946923` | `Package.Driver:<Package>` names the driver of a specific package, e.g. `Package.Driver::Agentos.Pkg` |
+| Q2-023 | Package.Driver | 57 | `sha256:6feb67d19` | the standard route any agent uses to enter a package — including any package-agnostic agent that takes the package as an argument |
+| Q2-024 | Package.Driver | 58 | `sha256:6cd64bdca` | when base and router are not enough, the agent descends into the narrower surfaces the router declares |
+| Q2-025 | Package.Driver.Base | 64 | `sha256:d08c26c76` | `Package.Driver.Base` is the explicit operating explanation carried in the driver itself |
+| Q2-026 | Package.Driver.Base | 65 | `sha256:9c002ebd8` | always loaded whenever the `Package.Driver` is loaded — the package's always-on core |
+| Q2-027 | Package.Driver.Base | 66 | `sha256:26d0ed338` | carries the package protocol plus the fundamental vocabulary downstream surfaces assume |
+| Q2-028 | Package.Driver.Base | 67 | `sha256:5a576f35a` | must hold enough vocabulary that its own `Package.Driver.Router` keys are matchable |
+| Q2-029 | Package.Driver.Base | 68 | `sha256:00d6bac45` | minimal by discipline: only what the common paths need, not everything useful |
+
+### `Q3` manifest — wave 1, action `full-retrofit`
+
+- file: `agentos-md/skills/agentos-pkg/design/103-design.md`
+- nominated session: `1e7eeae62adf`
+- nomination evidence: Index.Appendix + Project.Discovery both nominate it; opens "hello - check agentos-md/notes/live/517-index-migration-protocol.md" — no compaction boundary
+- lines: 28  (1 carrying an existing anchor)
+- grant: `SUDO-RETROFIT-K7M2QX`
+
+| id | block | file line | untyped content hash | body |
+| --- | --- | --- | --- | --- |
+| Q3-001 | Index.Chapter | 7 | `sha256:d4aa8dfda` | `Index.Chapter` is a folder of the Index that groups concepts into a unit of selective loading |
+| Q3-002 | Index.Chapter | 8 | `sha256:42a4099ca` | concepts across chapters are peers, reached by one `Dotted.Name` lookup — a chapter sets only what loads together |
+| Q3-003 | Index.Chapter | 9 | `sha256:95627accb` | the chapter loading policy is open — if any default holds, only the default chapter is loaded/searched |
+| Q3-004 | Index.Chapter | 10 | `sha256:acfd79be0` | the default chapter is `design`; `impl` is reserved; a package may add any number beyond these |
+| Q3-005 | Index.Chapter | 11 | `sha256:816bc91b5` | a chapter's files are named `NNN-<chapter>.md`, e.g. `design/100-design.md` — the suffix names the chapter |
+| Q3-006 | Index.Appendix | 17 | `sha256:d5af2bee4` | `Index.Appendix` is the appendix layer of the Index and the root concept for it — the on-demand depth, complement of `Index.Ontology` |
+| Q3-007 | Index.Appendix | 18 | `sha256:9b056b459` | it is the index-level echo of `Kernel.Block.Appendix`: depth deferred out of the compressed front, loaded by choice |
+| Q3-008 | Index.Appendix | 19 | `sha256:c88b2a952` | it is not routed — reached by naming through `Appendix.Discovery`, never loaded by default |
+| Q3-009 | Index.Appendix | 20 | `sha256:254e981f9` | loading an appendix is an intentional action — the agent displays intention by choosing to go deeper |
+| Q3-010 | Index.Appendix | 21 | `sha256:116a50e97` | it lives in one `appendix/` shared across chapters; files are concept-named and addressed as `Index.Pages` |
+| Q3-011 | Index.Appendix | 22 | `sha256:140e5561f` | it holds every concept's tail (`Block.Line.Gradient`): `Concept.X/Appendix` catch-alls and scoped `Concept.X/Concept.Y` blocks (`Appendix.Block`) |
+| Q3-012 | Index.Appendix | 23 | `sha256:c5b929092` | with `Index.Ontology`, `Index.Agendix`, and `Index.Router` it composes the `Index.Surface` |
+| Q3-013 | Surface.Concept | 29 | `sha256:39c10553d` | `Surface.Concept` is the base idea behind all surfaces in the system — an interface over a subset of a project |
+| Q3-014 | Surface.Concept | 30 | `sha256:ed5477a26` | naming something a surface is an implicit contract: it declares what the consumer can expect from that layer |
+| Q3-015 | Surface.Concept | 31 | `sha256:9f5319c1d` | `Stable.Surface` — the elements that aim to be durable and authoritative |
+| Q3-016 | Surface.Concept | 32 | `sha256:2b53b7c0d` | `Public.Surface` — the elements visible and portable beyond the project |
+| Q3-017 | Surface.Concept | 33 | `sha256:8121d3bab` | `Md.Surface` — the markdown layer |
+| Q3-018 | Surface.Concept | 34 | `sha256:acd264f9e` | different surfaces can overlap — the same file can participate in multiple surfaces |
+| Q3-019 | Surface.Concept | 35 | `sha256:1ea8c36fe` | a surface is not a folder or a file type — it's a declared interface over project elements |
+| Q3-020 | Block.Path | 62 | `sha256:4fdd59b94` | `Block.Path` is a block name written as a `/`-separated path — the full path is the name |
+| Q3-021 | Block.Path | 65 | `sha256:9c46cce90` | a concept segment carries `Concept.Scoping` semantics; a label segment just groups, claiming no ontology entry |
+| Q3-022 | Block.Path | 68 | `sha256:4f50f1450` | section paths (`Concept.X/Appendix`, `Concept.X/Grounding`) are restricted to the appendix; a scoped concept-child defaults there but may be promoted |
+| Q3-023 | Explicit.Namespace | 74 | `sha256:e71254eb0` | `Explicit.Namespace` is a concept whose purpose is to group a cluster of blocks — a declared view over the concepts it gathers |
+| Q3-024 | Explicit.Namespace | 75 | `sha256:6d3201e82` | its members are listed in `### meta` under `namespace-members` — the inventory of the cluster |
+| Q3-025 | Explicit.Namespace | 76 | `sha256:35b047573` | a member is either a grouped peer (a routed `Index.Block` standing on its own) or an owned child in the namespace's appendix |
+| Q3-026 | Explicit.Namespace | 77 | `sha256:971556654` | the member list is where appendix-depth members surface — path-children the `Index.Router` never routes, otherwise reachable only by `Appendix.Discovery`, are named here |
+| Q3-027 | Explicit.Namespace | 78 | `sha256:bfb33e12b` | the appendix is required — it is the namespace's home, holding the owned children and the guided view over the cluster |
+| Q3-028 | Explicit.Namespace | 79 | `sha256:d7471da34` | example: `Agentos.Index.System` |
+
+
+### Wave 2 — dispatched manifests
+
+#### `Q4` manifest — wave 2, action `full-retrofit`
+
+- file: `agentos-md/skills/agentos-pkg/design/104-design.md`
+- nominated session: `88ff80fabe75`
+- nomination evidence: 7-concept corroboration (Index.Appendix, Surface.Concept, Explicit.Namespace, Concept.Cite, Appendix.Discovery, Placement.Heuristic, Index.Surface); opens "Hello, lets for on agentos-md index runtime system - lets start a design-session" — no compaction boundary
+- lines: 38 (0 carrying an existing anchor)
+- grant: `SUDO-RETROFIT-K7M2QX`
+
+| id | block | file line | untyped content hash | body |
+| --- | --- | --- | --- | --- |
+| Q4-001 | Project.File.Index | 7 | `sha256:834915e72` | `Project.File.Index` is the file-level routing section of the `Index.Router` |
+| Q4-002 | Project.File.Index | 8 | `sha256:7e2731fe7` | describes the project's file system at folder level, with individual files listed only when fundamental |
+| Q4-003 | Project.File.Index | 9 | `sha256:3fde737a4` | one sentence description per entry — token budget is tight, it travels with the router whenever the index is loaded |
+| Q4-004 | Project.File.Index | 10 | `sha256:4a9525b38` | gives agents a structural map of where to look — not a complete listing, but the important entry points |
+| Q4-005 | Unresolved.Index.Name | 16 | `sha256:17cfe9edc` | `Unresolved.Index.Name` is an unknown `Dotted.Name` that the agent cannot resolve against the index |
+| Q4-006 | Unresolved.Index.Name | 17 | `sha256:258bcfa30` | parked in the session — available for later resolution if more context emerges |
+| Q4-007 | Unresolved.Index.Name | 18 | `sha256:a6ed1ec76` | if the same name recurs 3+ times, suggest capture to the user |
+| Q4-008 | Unresolved.Index.Name | 19 | `sha256:838cf35be` | gap detection is passive — don't interrupt conversation flow |
+| Q4-009 | BuiltIn.Namespace | 25 | `sha256:e7233032b` | `BuiltIn.Namespace` is an `Explicit.Namespace` that every Agentos project is expected to have |
+| Q4-010 | BuiltIn.Namespace | 26 | `sha256:30cfd1ce4` | it's an interface — can be empty, populated as the project evolves |
+| Q4-011 | BuiltIn.Namespace | 27 | `sha256:4d39d0777` | examples: `Project.Surfaces` |
+| Q4-012 | Project.Index.Skill | 33 | `sha256:073299665` | `Project.Index.Skill` is the `<project>-index` auxiliary skill for a package index surface |
+| Q4-013 | Project.Index.Skill | 34 | `sha256:9c196c5e7` | the canonical public index content lives in the package skill's `Index.Depot`: `000-INDEX.md`, `design/`, and `appendix/` |
+| Q4-014 | Project.Index.Skill | 35 | `sha256:e725e8000` | it is a `Package.Aux.Skill` for the package's `Package.Skill.Index` |
+| Q4-015 | Project.Index.Skill | 36 | `sha256:317044b3f` | the auxiliary skill may provide direct index access, research, writing, diagnosis, testing, maintenance, or index workflow framing without becoming a separate package root |
+| Q4-016 | Concept.Cite | 42 | `sha256:1fc02d2fa` | `Concept.Cite` is the bracket notation for citing concept origins or materially important related concepts when inline mention is not natural |
+| Q4-017 | Concept.Cite | 43 | `sha256:fa4ee4097` | format: `[Concept.X, Concept.Y]`; page or source qualifiers may be added when needed, e.g. `[Concept.X, Concept.Y[1]]` |
+| Q4-018 | Concept.Cite | 44 | `sha256:836b94405` | used when the citation changes how an agent should interpret, verify, maintain, or navigate the line |
+| Q4-019 | Concept.Cite | 45 | `sha256:277e7c091` | not used merely because another concept is loosely related |
+| Q4-020 | Concept.Cite | 46 | `sha256:ace7f9f7b` | complements `Inline.Relatedness`: prefer natural inline `Dotted.Name` mentions, cite only when the relation matters but does not read naturally |
+| Q4-021 | Appendix.Discovery | 52 | `sha256:d8bfb3f83` | `Appendix.Discovery` is the protocol for reaching a concept's depth on demand — the appendix is not routed, it is found by naming |
+| Q4-022 | Appendix.Discovery | 53 | `sha256:14781c99b` | loading appendix depth is an intentional act — the agent goes deeper by choice, never by default |
+| Q4-023 | Appendix.Discovery | 54 | `sha256:e5de2b1ee` | if a concept's block is not enough, check `appendix/Concept.X-appendix.md`; the naming convention is the discovery mechanism, no outlink needed |
+| Q4-024 | Appendix.Discovery | 55 | `sha256:3b9666e95` | that file holds the concept's path-children — its `Concept.X/Appendix` dump and any scoped `Concept.X/Concept.Y` blocks |
+| Q4-025 | Appendix.Discovery | 56 | `sha256:eecdd8fac` | discovery cascades: a block → its appendix → the blocks there → their own appendixes |
+| Q4-026 | Appendix.Discovery | 57 | `sha256:b263929e3` | the more blocks loaded, the more paths available — agents discover by following related blocks |
+| Q4-027 | Appendix.Discovery | 58 | `sha256:e94e77f1f` | hidden blocks are not deleted — just outside the default scope, reached by following the cascade |
+| Q4-028 | Index.Pages | 64 | `sha256:ad05eb8f1` | `Index.Pages` is the file dimension of a concept — the pages its content spans, written `Concept.X[N]` |
+| Q4-029 | Index.Pages | 65 | `sha256:3501df9ea` | `Concept.X[0]` is the index block's file; `Concept.X[1]` is the first appendix file (`Concept.X-appendix.md`); `[2]+` are further files |
+| Q4-030 | Index.Pages | 66 | `sha256:992935f0f` | `Concept.X[:]` means all of a concept's content across its files (slice semantics) |
+| Q4-031 | Index.Pages | 67 | `sha256:5ee1a6684` | the notation is usable as inline reference in blocks, chat, and prompts |
+| Q4-032 | Index.Pages | 68 | `sha256:582f02c46` | it is orthogonal to `Block.Path` — pages address files, paths address the ontology; one page holds many path-blocks |
+| Q4-033 | Index.Pages | 69 | `sha256:fa856532f` | by default a path block lands in the matching page, but the two axes need not coincide |
+| Q4-034 | Index.Pages | 70 | `sha256:c7d134d80` | the router annotates page presence inline (`Concept.X[+N]`) — lintable, only when appendix files exist; no annotation means no appendix |
+| Q4-035 | Placement.Heuristic | 80 | `sha256:b8b654ef8` | `Placement.Heuristic` is the decision framework for where content lives in the system |
+| Q4-036 | Placement.Heuristic | 81 | `sha256:84b946b9f` | design knowledge (what, why, how it connects) → index block + appendix |
+| Q4-037 | Placement.Heuristic | 82 | `sha256:b3639756f` | executable instructions (do this, run that, follow this loop) → skill references |
+| Q4-038 | Placement.Heuristic | 83 | `sha256:63801b282` | if content drift is detected, report it — don't migrate without user approval |
+
+#### `Q5` manifest — wave 2, action `full-retrofit`
+
+- file: `agentos-md/skills/agentos-pkg/design/105-design.md`
+- nominated session: `9c99ac4367de`
+- nomination evidence: 3-concept corroboration (Designer.Turn, RED.GREEN, Alignment.Loop); opens "Hello, check agentos-md for a recient design-session about improving the hugentics skill" — no compaction boundary
+- lines: 41 (0 carrying an existing anchor)
+- grant: `SUDO-RETROFIT-K7M2QX`
+
+| id | block | file line | untyped content hash | body |
+| --- | --- | --- | --- | --- |
+| Q5-001 | Context.Hook | 7 | `sha256:d8a4bfa4f` | `Context.Hook` is a harness-defined mechanism that inserts content into an agent context |
+| Q5-002 | Context.Hook | 8 | `sha256:630718cd6` | hooks may operate at different `Context.Loading.Path` tiers |
+| Q5-003 | Context.Hook | 9 | `sha256:9b70704fe` | a surface may be loaded through a `Context.Hook` |
+| Q5-004 | Context.Hook | 10 | `sha256:93799100c` | `Cold.Loading.Hook` is the cold-start specialization of `Context.Hook` |
+| Q5-005 | Context.Hook | 11 | `sha256:29b578b2d` | `AGENTS.md` and skill surfaces can be loaded through `Context.Hook`s |
+| Q5-006 | Index.AGENTS.MD | 17 | `sha256:6760747f2` | `Index.AGENTS.MD` is a `Context.Hook` for the index surface |
+| Q5-007 | Index.AGENTS.MD | 18 | `sha256:f1cce91b5` | its canonical artifact path is `design/AGENTS.md` relative to the `Index.Depot` root |
+| Q5-008 | Index.AGENTS.MD | 19 | `sha256:340e7f5ac` | it injects index-usage context through the harness `AGENTS.md` loading mechanism |
+| Q5-009 | Index.AGENTS.MD | 20 | `sha256:1abebbf43` | `agentos-md/skills/agentos-pkg/design/AGENTS.md` is the `Reference.Implementation` for `Index.AGENTS.MD` |
+| Q5-010 | Appendix.AGENTS.MD | 26 | `sha256:a9a465b45` | `Appendix.AGENTS.MD` is a `Context.Hook` for the appendix surface |
+| Q5-011 | Appendix.AGENTS.MD | 27 | `sha256:a7424393a` | its canonical artifact path is `appendix/AGENTS.md` relative to the appendix root |
+| Q5-012 | Appendix.AGENTS.MD | 28 | `sha256:4c108d554` | it injects appendix-usage context through the harness `AGENTS.md` loading mechanism |
+| Q5-013 | Appendix.AGENTS.MD | 29 | `sha256:5c3057cc9` | `agentos-md/skills/agentos-pkg/appendix/AGENTS.md` is the `Reference.Implementation` for `Appendix.AGENTS.MD` |
+| Q5-014 | Grounding.Retrieval.Boundary | 35 | `sha256:25e6fb16a` | `Grounding.Retrieval.Boundary` separates finding candidate evidence from linking it |
+| Q5-015 | Grounding.Retrieval.Boundary | 36 | `sha256:5b00f74ba` | retrieval quality affects linking quality, but retrieval mechanics are not the definition of grounding |
+| Q5-016 | Grounding.Retrieval.Boundary | 37 | `sha256:38239bd5a` | search engines, vector databases, keyword indexes, and chatlas queries are candidate-discovery mechanisms |
+| Q5-017 | Chat.Grounding.Target.Block | 43 | `sha256:5c7753af0` | `Chat.Grounding.Target.Block` is the rule that chat grounding attaches to a kernel block, not to a loose topic |
+| Q5-018 | Chat.Grounding.Target.Block | 44 | `sha256:6ea3292df` | the index is the entity inventory that answers what is being grounded |
+| Q5-019 | Chat.Grounding.Target.Block | 45 | `sha256:7a73f0d0f` | every chat grounding target is a `Index.Block` or `Appendix.Block` |
+| Q5-020 | Chat.Grounding.Target.Block | 46 | `sha256:e106ce80e` | if an issue or topic needs grounding, it must first resolve to an existing block or become a new block |
+| Q5-021 | Chat.Grounding.Target.Block | 47 | `sha256:c669556a1` | if a subtopic inside a block needs independent grounding, it should become its own kernel block |
+| Q5-022 | Chat.Grounding.Target.Block | 48 | `sha256:8d6f09346` | a block's grounding is scoped to that one target block: its lines' anchors support its content only |
+| Q5-023 | Chat.Grounding.Target.Block | 49 | `sha256:892485bcb` | other surfaces cite grounded blocks instead of inventing separate grounding targets |
+| Q5-024 | Grounding.Hugentic.Authority | 55 | `sha256:43c9d7707` | `Grounding.Hugentic.Authority` is the rule that grounding lines primarily anchor user turns |
+| Q5-025 | Grounding.Hugentic.Authority | 56 | `sha256:b4dc2f79e` | assistant turns provide context, reasoning trace, proposed wording, and forensic evidence |
+| Q5-026 | Grounding.Hugentic.Authority | 57 | `sha256:9787603ec` | assistant-authored material becomes normal grounding only when the user explicitly accepts, corrects toward, or acts on it |
+| Q5-027 | Grounding.Hugentic.Authority | 59 | `sha256:67f3faf7f` | grounding is a `Hugentic.Alignment` workflow: human/agent collaboration, not agent-only retrieval |
+| Q5-028 | Designer.Turn.Kernel.Form | 65 | `sha256:61b4d15ea` | `Designer.Turn.Kernel.Form` is how a `What.Design.Session` turn is shaped when working a defined subject |
+| Q5-029 | Designer.Turn.Kernel.Form | 66 | `sha256:895a5bdac` | the designer communicates in `Kernel.Writing` — orthogonal bullet lines, each an independent fundamental point, direct language |
+| Q5-030 | Designer.Turn.Kernel.Form | 67 | `sha256:cbd973960` | a turn working a defined subject proposes a `Design.Block`: an H2 `Dotted.Notation` heading, orthogonal fundamentals, and an optional `### meta` for open items |
+| Q5-031 | Designer.Turn.Kernel.Form | 68 | `sha256:558a7fdb2` | a question turn pairs the block with the question — the `Design.Block` as actionable intro, then `Question / Why-now / Recommended-answer / Evidence` |
+| Q5-032 | Designer.Turn.Kernel.Form | 69 | `sha256:fbb15603f` | every new question on a defined subject is accompanied by its block; pure openers are exempt because they create the first subject |
+| Q5-033 | Designer.Turn.Kernel.Form | 70 | `sha256:d45d4a5e1` | discussion rounds re-render the same block with the change; open points live under `### meta` as `open:` lines |
+| Q5-034 | Designer.Turn.Kernel.Form | 71 | `sha256:b79415eaa` | the in-chat block and the artifact's `Design.Index` block are one object — capture only adds gating |
+| Q5-035 | RED.GREEN.Test.Suite | 77 | `sha256:7bfe20b3f` | `RED.GREEN.Test.Suite` is the set of RED/GREEN-style tests an `Impl.Req` calls for, written test-first to drive the implementation |
+| Q5-036 | RED.GREEN.Test.Suite | 78 | `sha256:f10842953` | an `Impl.Exec` `Development.Principle`: the `Impl.Req` specifies the suite; the executer builds it test-first — each test goes RED (fails) then GREEN (minimal code passes), one at a time |
+| Q5-037 | RED.GREEN.Test.Suite | 79 | `sha256:7c44ab5a3` | never write all tests up front: bulk tests assert imagined shape and pass when behavior breaks |
+| Q5-038 | RED.GREEN.Test.Suite | 80 | `sha256:ea4b434ce` | it is not the only tests — it is the implementation-driving core; more tests may be added later, including at the end |
+| Q5-039 | RED.GREEN.Test.Suite | 81 | `sha256:9472eb70b` | `No.Regression.Tests.Allowed` governs all tests including this suite — keep it core-feature, e2e, and durable-contract focused, not regression slop |
+| Q5-040 | RED.GREEN.Test.Suite | 82 | `sha256:79323beb6` | `Test.At.Boundaries` governs what each test asserts — public behavior that survives a refactor |
+| Q5-041 | RED.GREEN.Test.Suite | 83 | `sha256:7c1a6a0fa` | rationale: writing the test before the code prevents retrofit tests that merely rubber-stamp the implementation |
+
+### Cluster exhaustion sweep — full-retrofit-01
+
+Thirty distinctive concept names queried against user text corpus-wide.
+**Zero returned zero sessions.** No cluster in this campaign retires as
+`Unreachable.Cluster` on the vocabulary-absence test. This does not contradict
+note 616 — that finding concerned a specific earlier cluster (`C5`), not the
+depot at large.
+
+Strongest nominations by corroboration count:
+
+| session | concepts nominated | family |
+| --- | ---: | --- |
+| `9d194db7f404` | 9 | `107-design.md` index-edit / appendix spine |
+| `88ff80fabe75` | 7 | `103`/`104` namespace and placement |
+| `f054277bd4c7` | 5 | loading, driver, index-edit |
+| `9c99ac4367de` | 3 | `105` designer-turn and test-suite |
+| `acd5f1c1931e` | 3 | `102` alignment |
+
