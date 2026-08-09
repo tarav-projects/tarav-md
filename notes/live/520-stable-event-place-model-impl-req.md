@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **scope:** align `agentos-chatlas-py` with the landed stable-event-place, neutral-lineage, best-effort-closure, and `User.Turn.Purity` design; migrate the durable `Event.Ref` shape and its consumers; update the Skillware-owned Hugentics event-addressing documentation
-- **status:** ready for implementation
+- **status:** implemented
 - **source:** landed Chatlas design in `skills/agentos-chatlas-pkg/design/100-design.md`, current Python mechanics and contract inspection, and the explicit implementation-design request ^c20260809-9u
 - **repositories:** `agentos-chatlas-py` for mechanics and contract; `agentos-md` for the Skillware source and rebuilt Hugentics reference; this note remains in `agentos-chatlas-md`
 - **compatibility:** hard schema/cache generation change for disposable session-model artifacts and event-query indexes; preserve existing `Normal.Turn.Ref` assertions by not changing hashed event content merely to identify `User.Turn`
@@ -104,7 +104,7 @@
 - advance the session-model schema generation and add contract tests that fail on the current implementation
 - **observable:** fixtures express the new object shapes and the old positional/finality/active-path fields are rejected
 - **check:** targeted contract, envelope, Event.Ref, Normal.Turn, lineage, compaction, artifact, and cache tests are RED for the intended reasons
-- **status:** not started
+- **status:** completed
 
 ### Vertical.Slice 2 - Assign stable provider-owned event addresses
 
@@ -115,7 +115,7 @@
 - **observable:** content amendment changes the affected hash without changing address count/order; raw append preserves the previous address sequence as an exact prefix
 - **check:** provider conformance tests plus full-tape uniqueness and deterministic re-derivation tests pass
 - **deviation trigger:** any provider can only distinguish two event places using mutable content or final sequence; stop and record the raw-model gap instead of weakening the address invariant
-- **status:** not started
+- **status:** completed
 
 ### Vertical.Slice 3 - Migrate Event.Ref and every address consumer
 
@@ -126,7 +126,7 @@
 - invalidate old session artifacts/query indexes and reject legacy positional refs at the contract boundary
 - **observable:** all stored refs resolve against their own authoritative tape, and amending event content produces an address hit with a failed hash assertion rather than drift
 - **check:** Event.Ref unit tests cover matched/amended/missing, non-mutation, malformed legacy refs, stored-reference closure, and scan/SQLite parity
-- **status:** not started
+- **status:** completed
 
 ### Vertical.Slice 4 - Replace active-path lineage with neutral origin relations
 
@@ -137,7 +137,7 @@
 - add a two-session compaction-continuation fixture because the current invariant corpus explicitly leaves this case uncovered
 - **observable:** `A → B → C` and `A → D` are both traversable; no event is active/default/abandoned; Claude branching alone creates no rollback event; native Codex rollback remains on tape
 - **check:** rollback/fork invariant sessions, compaction sessions `019fd977-c106-7830-a17b-62d074a4bfa3` and `add4201e-3543-47d8-9914-aa1fc4fec86e`, and focused lineage/compaction tests pass
-- **status:** not started
+- **status:** completed with evidence-gap deviation
 
 ### Vertical.Slice 5 - Make User.Turn purity explicit and consumer-safe
 
@@ -148,7 +148,7 @@
 - **observable:** exact user input is queryable as `User.Turn`; compaction summaries, skill bodies, reminders, presets, and control-only invocations never match as user turns
 - **check:** `test_user_turn_purity.py`, compaction tests, turn-query tests, Anchory resolution tests, Chat.Index tests, and existing support refs remain GREEN without hash amendment
 - **deviation trigger:** if a proposed purity change alters an existing event’s hashed content rather than grouping metadata, stop and justify the compatibility cost before proceeding
-- **status:** not started
+- **status:** completed
 
 ### Vertical.Slice 6 - Remove finality from the model and rebase delta/cache policy
 
@@ -160,7 +160,7 @@
 - update artifact documentation to describe a rewriteable complete current tape, not append-only JSONL or frozen lines
 - **observable:** no served event claims finality; unchanged raw data rematerializes after revision change; delta and full output are identical
 - **check:** provenance, delta, artifact, session-cache, amendment/append, source-mutation, and revision-invalidation tests pass
-- **status:** not started
+- **status:** completed
 
 ### Vertical.Slice 7 - Rebuild documentation and run the complete gates
 
@@ -170,7 +170,7 @@
 - run targeted suites first, then the complete `agentos-chatlas-py` suite and the user-script invariant corpus
 - **observable:** generated Hugentics docs, Python behavior, contract, fixtures, and query surfaces describe the same address semantics
 - **check:** `uv run pytest`; `uv run python dev/user-script-invariant-test/validate.py --skip-sweep`; `agentos skw check --skill skills/agentos-hugentics`; repository diffs contain no unintended generated/manual drift
-- **status:** not started
+- **status:** completed
 
 ## Risks And Deviation Triggers
 
@@ -199,6 +199,16 @@
 
 ## Impl.Log
 
+- **Execution gate:** autonomous execution authorized by `--impl --exec --AUTO` ^c20260809-42u
 - Design inspection found the current implementation still addresses events by `{event_hash, sequence}`, relocates by hash after positional drift, persists `extras.final`, derives Claude active/abandoned status plus synthetic rollback, and identifies user turns through `producer.type == "human"`.
 - Compatibility decision: add explicit normalized turn kind rather than rename producer values in this request. Because producer participates in `Event.Hash`, a vocabulary rename would invalidate every affected `Normal.Turn.Ref` and support record; that is a separate migration, not a hidden purity implementation step.
 - Documentation decision: the maintained stale surface is the Hugentics Skillware `link` source. Impl.Req 514 remains unchanged because it records the historical design and execution that this request supersedes.
+- Contract and envelope: advanced the normal session model to schema generation 5, made `event_address` required, replaced positional refs with `{event_address, event_hash}`, added semantic normal-turn kind and optional `closed.estimate`, and tombstoned active-path/finality fields.
+- Provider placement: Claude, Codex, and Copilot now derive opaque addresses from provider-owned stable raw coordinates plus structural fragment discriminators before constructing stored refs. Conformance tests cover address preservation under content amendment and append-prefix preservation for all three providers.
+- Reference migration: model/tool/compaction refs, inline and view projections, traceability, file-edition POIs, query/pattern handling, and the disposable SQLite index now join by address. Resolution reports matched/amended/missing from address existence and hash assertion without positional relocation.
+- Lineage: Claude branch topology is represented through neutral origin refs and no fabricated rollback or active-path label; Codex retains provider-recorded rollback events and attaches an origin when raw facts resolve it.
+- Cross-session deviation: the available compaction fixtures preserve native boundary and summary evidence but do not resolve a predecessor `Session.Identity` for a distinct continuation session. Per the evidence-gap trigger, no session-qualified edge or synthetic two-session fixture was invented; provider-resolvable cross-session linkage remains a focused follow-up when such raw evidence is available.
+- Purity: `annotations.normal_turn.kind` now distinguishes normalized user input from transport-role user records. User-turn query, Anchory, Chat.Index, recents, tagging, and indexing consumers use this semantic boundary; compaction summaries and control/context records remain on tape without entering `User.Turn`.
+- Closure and materialization: removed model finality, added optional best-effort `closed.estimate`, moved reuse state into a new delta checkpoint, required delta/full equivalence, and added a materialization revision to cache freshness. Session cache, checkpoint, and SQLite generations invalidate incompatible derived data.
+- Documentation: updated the Hugentics Skillware source and rebuilt its generated `references/link.md`; current code documentation and `normal-model.contract.json` now agree on stable address plus asserted hash.
+- Verification: `uv run pytest -q` passed 472 tests; the 21-session user-script invariant corpus and projection passed with zero failures; comparative projection reported zero unremembered hard failures; `agentos skw check --skill skills/agentos-hugentics` passed all 30 generated surfaces.
