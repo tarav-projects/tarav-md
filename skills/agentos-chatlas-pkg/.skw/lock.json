@@ -15,7 +15,7 @@
       ]
     },
     "references/capture.md": {
-      "output_sha256": "c63d5e90130deb48c94558b8efa14d9e230d7cad930865ae26adc6359b7053b0",
+      "output_sha256": "7f92b36ecadf5ee004dd89c340ee0f1e6845f110ee29968c3edbd531e988889a",
       "recipes": [
         {
           "heading": "^chat-index-capture-boundary",

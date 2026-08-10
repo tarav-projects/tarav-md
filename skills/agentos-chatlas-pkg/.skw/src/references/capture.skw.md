@@ -3,7 +3,7 @@
 > --loading-dep SKILL.skw.md^chatlas-pkg-batchy-runtime-contract
 > --loading-dep SKILL.skw.md^chat-index-capture-call-contract
 
-> $kw: --from Batchy.Skill.Banner --from Chat.Index --from Chat.Index.Delta --from Chat.Index.HEAD --from Chat.Support.Set --from Chat.Touched.Index --from Chatlas.Anchory --from Index.Line --from Line.Home --from Line.Type --from Normal.Turn.Ref --from POI.Line --from Turn.Type --from Unassigned
+> $kw: --from Batchy.Skill.Banner --from Chat.Index --from Chat.Index.Delta --from Chat.Index.HEAD --from Chat.Support.Set --from Chat.Touched.Index --from Chatlas.Anchory --from Index.Line --from Line.Home --from Line.Type --from Normal.Turn.Ref --from POI.Line --from Unassigned
 
 # Chat.Index Capture Operation Module
 
@@ -140,8 +140,10 @@ Author each line as an object under an ordered concept block:
           "content": "- [CT] exact canonical line",
           "support": {
             "members": ["<identity-hash>:turn-r123"],
-            "member_types": {},
-            "hint": "what these turns support"
+            "gates": {
+              "semantic_approval": [],
+              "tokenized_verbatim_approval": []
+            }
           }
         }
       ]
@@ -156,14 +158,14 @@ Line content must be typed and must never carry a trailing anchor; the renderer 
 
 Each Delta line names its support once, as either a proposed record or an existing anchor:
 
-- proposed — ordered `members` of `<identity-hash>:<turn-id>`, a one-sentence `hint`, and `member_types` whenever a member carries non-default `Turn.Type` cargo.
-- existing — `{"anchor": "<anchor-key>"}`, accepted only when that anchor is a line-bound v4, v5, or v6 record whose subject hash is exactly this line's canonical content.
+- proposed — ordered support `members` of `<identity-hash>:<turn-id>` and optional explicit `gates` with `semantic_approval` and `tokenized_verbatim_approval` lists.
+- existing — `{"anchor": "<anchor-key>"}`, accepted only when that anchor resolves to `chatlas.line-anchor-dossier.v1` and its attachment hash matches this exact `Line.Type + body + Anchor.Id` triplet.
 
-Support members must be qualifying human user turns at or before that Delta's horizon. A changed line body or `Line.Type` is a different line and requires support reevaluation; never carry an old anchor across a reworded line.
+Support members form the line's ordered `Chat.Support.Set` and must be qualifying user turns at or before that Delta's horizon. A changed line body or `Line.Type` requires relationship reevaluation; the maintainer may retain the anchor only by updating its attachment assertion and every affected relationship coherently.
 
-Chatlas ensures the whole `Chat.Support.Set` of each line in one ordered batch during `apply`: equal canonical line content with equal support reuses one anchor, and different canonical contents never share one. Preview a single relationship with `agentos chatlas anchory preview --line-content ... --member ... --hint ... --detail context` only while investigating; the workflow itself does not register anchors by hand.
+Chatlas ensures each line's complete relationship dossier in one ordered batch during `apply`. Exact triplet-and-relationship equivalence may reuse an anchor; content equality alone does not establish relationship identity. Preview with `agentos chatlas anchory preview --line-content ... --member ... --detail context` only while investigating; the workflow itself does not register anchors by hand.
 
-The Markdown occurrence records Delta materialization. A new line-bound anchor uses v6 and stores the immutable line subject, grounding members, predecessors, and optional issue context without accumulating provenance observations. Where a line is attached is not recorded: Delta containment is the attachment, and `Line.Home` is derived from it.
+The Markdown occurrence records Delta materialization and is the SSOT for the current line triplet. Its dossier stores only the attachment assertion and independent support, gate, and provenance relationships. Delta containment remains the materialization evidence, and `Line.Home` is derived from it.
 
 ## 7. Resolve `Chat.Index.HEAD`
 
@@ -210,7 +212,7 @@ Append-only growth after scaffold is not a failure. `apply` installs exactly the
 agentos chatlas chat-index audit --identity-hash <identity-hash> --json
 ```
 
-One read-only pass replaces the former per-anchor and per-line inspection loop. It derives the surface from its directory and Markdown, checks identity placement, source linearity and prefix compatibility, Delta and HEAD horizons against the authoritative chat, one trailing anchor per line, anchor resolution and exact subject hashes, anchor/content collisions, Delta support horizons, `Line.Home` selection, and HEAD-only support. It exits nonzero when blocking findings exist and never repairs what it inspects.
+One read-only pass replaces the former per-anchor and per-line inspection loop. It derives the surface from its directory and Markdown, checks identity placement, source linearity and prefix compatibility, Delta and HEAD horizons against the authoritative chat, one trailing anchor per line, anchor resolution and exact attachment-triplet hashes, anchor/triplet collisions, Delta support horizons, `Line.Home` selection, and HEAD-only support. It exits nonzero when blocking findings exist and never repairs what it inspects.
 
 A `head-line-without-delta-home` finding is advisory reconciliation work, not a failed capture: keep the HEAD-first edition, record the finding, and reconcile it on a later pass.
 

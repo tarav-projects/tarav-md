@@ -117,7 +117,8 @@ hand-maintained file list. The pre-implementation inventory is:
 - 791 tokenized-approval relationships;
 - zero populated issue-context lists in this corpus.
 
-Migration amends records in place and preserves all 1,592 anchor ids. It derives
+Migration amends records in place and preserves every parser-discovered anchor id
+(1,597 at apply time). It derives
 the attachment assertion from the authoritative current Index triplet, copies every
 old support member into `relationships.support.members`, projects typed approval
 cargo into the matching gate mechanism, moves predecessors and issue coordinates
@@ -144,7 +145,7 @@ application.
    read-only plan accounts for every source anchor before apply.
 5. Update Skillware sources and other maintained Chatlas package guidance, build the
    runnable skill surfaces, and check generated-surface drift.
-6. Apply the migration to all 1,592 `agentos-pkg` anchors, then rerun corpus
+6. Apply the migration to every parser-discovered `agentos-pkg` anchor, then rerun corpus
    inventory to prove every cited record uses the dossier schema and every current
    triplet hash matches.
 7. Run focused unit/e2e tests, full affected-package tests, Anchory structural check,
@@ -156,6 +157,39 @@ application.
 - Execution authorized by the explicit autonomous implementation turn
   ^c20260809-170u. Design is cold-read and ready for the mandatory pre-edit
   checkpoint.
+- Mandatory checkpoints were created in every affected repository before the
+  first implementation edit. No implementation commit was created afterward.
+- Runtime implementation now has one line-bound schema,
+  `chatlas.line-anchor-dossier.v1`; allocation-dependent attachment records use
+  `AnchoryDepot.register_derived` so the allocated anchor participates in its
+  record atomically.
+- Migration apply discovered 95 documents, 1,598 anchored occurrences, and
+  1,597 unique anchors. The five-anchor increase over the initial inventory came
+  from approved design lines landed before apply. All 1,597 records were amended
+  in place; verification reports 1,597 current dossiers and zero remaining
+  changes.
+- The migrated path inventory is uniform: one schema and only `app`, `schema`,
+  `attachment.{canonical_schema,triplet_hash}`, and the explicit
+  `relationships.{support,gates,provenance}` subpaths. It contains 2,199 support
+  members and 796 tokenized-verbatim gate relationships.
+- A separate text-citation audit found no parser-discovered kernel anchor outside
+  the dossier corpus. The three other unique `^` citations are deliberately not
+  `Index.Line.Anchor` records: one nested-list support record, one backticked
+  example literal, and one Skillware annotation support record.
+- Chatlas tests pass (472) and the full Agentos foundation suite passes (870);
+  affected Ruff checks, compilation, diff checks, and the generic Anchory
+  depot structural check pass.
+- The complete `agentos-pkg` linter resolves the migrated support and attachment
+  model: `Grounding.Provenance`, `Anchor.Collision`, and `Anchor.LineDrift` all
+  pass with zero findings. Its six errors are genuine older verbatim-gate wording
+  drift on six `design/107-design.md` lines, not schema, attachment, or
+  support-resolution failures. Existing warning debt remains outside this migration.
+- The shared Chatlas depot still contains 384 v4, 199 v5, and 266 v6 records not
+  cited by `agentos-pkg`; they remain explicit migration debt outside this
+  bounded corpus and are intentionally rejected by the new runtime.
+- Hugentics and Chatlas Skillware sources were updated and rebuilt. Their checks
+  have no diagnostics or newly unhonored dependencies; seven Hugentics and one
+  Chatlas derived-stale advisories remain intentionally untouched.
 
 ## Impl.Agendix
 
@@ -167,5 +201,7 @@ application.
 - Every dossier attachment hash matches its current authoritative Index triplet.
 - Every old support member, gate relationship, predecessor, and issue coordinate is
   accounted for in the migrated dossier; hints are intentionally discarded.
-- Runnable skill files are generated from `.skw/src` and pass Skillware checks.
+- Runnable skill files are generated from `.skw/src`; Skillware reports no
+  diagnostics or new dependency POIs, while the explicitly retained stale-derived
+  advisories remain visible.
 - Implementation changes remain uncommitted after the mandatory pre-edit checkpoint.

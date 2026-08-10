@@ -95,7 +95,7 @@ agentos chatlas chat-index audit --identity-hash <H> --json
 - `deltas` resolves each file's horizon against the authoritative tape and returns that derived order; filenames and timestamps do not establish ordering.
 - `tail` compares the evidence horizon declared by HEAD with the live chat. It detects ordinary growth past that horizon; revision of an uncited turn inside the reconstructed prefix is deliberately outside Chat.Index freshness. `--detail chat` returns the transcript-visible user and assistant messages of each pending turn, while `--detail turn` returns complete `Normal.Turn` groupings. Neither rewrites the surface.
 - `home` compares canonical line content without trailing support anchors and selects the oldest matching Delta in authoritative tape order.
-- `audit` replaces the per-line inspection loop: one read-only pass over derived surface structure, identity placement, source-prefix compatibility, Delta and HEAD horizons against the chat, one trailing anchor per line, anchor resolution and exact subject hashes, anchor/content collisions, Delta support horizons, and `Line.Home` selection. It exits nonzero on blocking findings, accepts `--surface <path>` to audit a staged directory against the same session, and never repairs what it reads.
+- `audit` replaces the per-line inspection loop: one read-only pass over derived surface structure, identity placement, source-prefix compatibility, Delta and HEAD horizons against the chat, one trailing anchor per line, anchor resolution and exact attachment-triplet hashes, anchor/triplet collisions, Delta support horizons, and `Line.Home` selection. It exits nonzero on blocking findings, accepts `--surface <path>` to audit a staged directory against the same session, and never repairs what it reads.
 - HEAD-only ordinary content is advisory reconciliation work (`head-line-without-delta-home`), not a failed surface; inspection does not write backward automatically.
 
 ### Capture.Plan
@@ -264,12 +264,10 @@ Chat anchors (`^c<YYYYMMDD>-<N>u` — `c` namespace prefix, primary-member date,
 agentos chatlas anchory register \
   --line-content '- [CT] <Index line body>' \
   --member <identity-hash>:<turn-id> \
-  --member <identity-hash>:<turn-id> \
-  --hint "<one sentence>"
+  --member <identity-hash>:<turn-id>
 agentos chatlas anchory preview \
   --line-content '- [CT] <Index line body>' \
-  --member <identity-hash>:<turn-id> \
-  --hint "<one sentence>"
+  --member <identity-hash>:<turn-id>
 agentos chatlas anchory preview \
   --member <identity-hash>:<turn-id> \
   --hint "<one sentence>" \
@@ -278,7 +276,10 @@ agentos chatlas anchory resolve <key> --detail context --radius 4
 ```
 
 - repeat `--member` in relevance order; each session identity may be a unique prefix on input and is stored as the full identity
-- `--line-content` binds Index grounding to canonical `Line.Type + body` and previews/registers a v4 record; omit it only for generic non-line support, which remains v3
+- `--line-content` previews/registers `chatlas.line-anchor-dossier.v1`; its attachment asserts the allocated `Line.Type + body + Anchor.Id` triplet without storing line content
+- the dossier types independent relationships by namespace: exact user-turn grounding under `relationships.support`, approval gates under `relationships.gates`, and predecessor/issue links under `relationships.provenance`
+- `--gates` accepts those explicit semantic/tokenized gate relationships as JSON; gate turns do not become support members automatically
+- omit `--line-content` only for generic non-line `chatlas.support-set.v3`, where `--hint` remains required
 - preview validates and assembles the exact record without allocating an anchor; it also reports equivalent existing anchors
 - preview, registration, and resolution default to compact member summaries; `--detail turn` adds exact turns and `--detail context` adds neighborhoods
 - registration allocates from the first member's date only after the support set has been reviewed
