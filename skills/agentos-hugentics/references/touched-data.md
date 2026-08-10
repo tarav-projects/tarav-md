@@ -28,8 +28,8 @@ qualifying Touch.Authority.Surface edition
 - `Support.Reference` is the abstract edge connecting the line to that set
 - `Support.Reference.Metadata` describes the edge but is not the edge
 - `Touched.Support.Network` is the global network composed by those line-local sets and references
-- `Anchory.System` anchors and records currently realize support references and metadata
-- Chatlas support-set records currently realize `Chat.Support.Set`, the only implemented support specialization
+- `Anchory.System` supplies the stable `Index.Line.Anchor` joining the Index triplet to its Chatlas relationship dossier
+- the dossier's `relationships.support` namespace records the line's `Support.Reference` and exact `Chat.Support.Set` members; gates and provenance remain independent relationships
 - a changed support interpretation creates a new reference because it creates a new network edge
 
 ## Line Standing
@@ -57,14 +57,15 @@ The current implementation maps the general model as follows:
 |---|---|
 | `Touched.Index` | `Agentos.Index.System` plus its reachable touched-index members |
 | `Touch.Authority.Surface` | qualifying `User.Turn` on `Chat.Surface` |
-| `Support.Set` | Chatlas `Chat.Support.Set` record |
-| `Support.Reference` | trailing `Anchory.Anchor` |
-| `Support.Reference.Metadata` | Anchory record metadata and typed member cargo |
+| `Support.Set` | exact members in `relationships.support` |
+| `Support.Reference` | the support relationship recorded by the line dossier |
+| `Index.Line.Anchor` | trailing `Anchory.Anchor` joined to `chatlas.line-anchor-dossier.v1` |
+| independent line relationships | `relationships.gates` and `relationships.provenance` |
 | `Index.Line` | typed or legacy Markdown kernel line |
 | chronological touched record | exact lines in `Chat.Index.Delta` files |
 | current chat projection | `Chat.Index.HEAD` |
 | current Project projection | chapters, appendix, agendix, and `Issue.Block`s |
-| line dossier | line-bound anchor record with immutable subject, grounding members, predecessors, and optional issue context |
+| line dossier | attachment assertion plus independent support, gate, and provenance namespaces |
 | home | oldest evidenced exact Delta containment, derived rather than declared |
 | live cut / history | current Project/Chat HEAD files / Chat Deltas and Git history |
 

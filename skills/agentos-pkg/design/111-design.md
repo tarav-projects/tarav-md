@@ -44,6 +44,7 @@
 - [DC] player identity is stable across every match of its tournament, so records accumulate against one competitor ^c20260805-39u
 - [CT] the same underlying object entered under two definitions is two players; records do not aggregate across tournaments ^c20260805-40u
 - [PR] refusals clustered on one player are a sharper finding than a low score — no judge could evaluate it at all ^c20260805-41u
+- [CT] identity is what accumulates while a `Tournament.Label` is how players group; the two are independent ^c20260809-178u
 - [RJ] a player carries no domain meaning into the system; consumers own the mapping between players and their objects ^c20260805-42u
 
 ****
@@ -78,6 +79,9 @@
 - [DC] the declared hooks supply the match players, the player presentation, the match identity, and the consumer verdict slot ^c20260806-11u
 - [CT] hooks return values and never perform effects; spawning, storing, and the engine's own randomizations stay engine-side ^c20260806-127u
 - [FR] a definition may choose which players meet however it likes, including randomly; the engine randomizes only presentation order and control substitution ^c20260806-128u
+- [DC] a run may supply consumer parameters, and they reach every hook through the context the engine passes it ^c20260809-180u
+- [CT] parameters are opaque to the engine: it carries them to the hooks and never branches on them itself ^c20260809-181u
+- [PR] an untyped bag has no declared domain, so a misspelled key reads as a silent default where a named engine parameter rejects it at the boundary ^c20260809-182u
 - [DC] the match-players and match-identity hooks are required and have no default; every other hook defaults, so a definition supplies only what its domain forces ^c20260806-21u
 - [DC] each call to the match-players hook yields the players of one match, and the definition chooses how many ^c20260806-48u
 - [DC] the hook may decline to supply another match, ending a run before the caller's requested match count ^c20260806-14u
@@ -107,7 +111,20 @@
 - [DC] order randomization is default engine normalization rather than `Tournament.Definition` work ^c20260805-60u
 - [PR] randomized order neutralizes position bias across repeated runs, so the defense is statistical and needs run volume to hold ^c20260805-61u
 - [FR] the same match may be run repeatedly to gather independent verdicts; whether to reuse a prior run is the consumer's choice ^c20260805-62u
+- [FR] a definition may emit matches of more than one shape and label each, so a read separates them without re-deriving shape from the players ^c20260809-179u
 - [CT] a match either completes with a `Tournament.Verdict` or fails to run, and a failed run produces no match record ^c20260805-63u
+
+****
+
+## Tournament.Label
+
+- [DF] a `Tournament.Label` is an optional opaque string a `Tournament.Definition` attaches to a `Tournament.Player` or a `Tournament.Match` as a grouping tag ^c20260809-171u
+- [CT] the engine records a label and never interprets it; what a label means stays consumer knowledge ^c20260809-172u
+- [RJ] a label never reaches the judge — it is reader-side, like a control's declared band ^c20260809-173u
+- [CT] a label describes what something was, while match identity decides what counts as the same match ^c20260809-174u
+- [PR] labeling a difference that identity did not distinguish yields a clean-looking split in the read over a silently pooled average underneath it ^c20260809-175u
+- [FR] a label may vary across the matches a player appears in; a fold groups over label occurrences rather than assuming one label per player ^c20260809-176u
+- [PR] a named field is what makes a generic read possible — grouping by label needs no knowledge of the tournament, while the same tag in the consumer slot would need its key ^c20260809-177u
 
 ****
 

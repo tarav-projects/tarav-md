@@ -71,7 +71,7 @@ Resolve minor drift yourself. In `Interactive`, raise unresolved mismatches befo
 
 ## Execution Gate Anchor
 
-The `--exec` invocation turn is the execution authorization gate: mint an `Anchory.Anchor` on it and cite it in the first `Impl.Log` entry. It joins the artifact's `Chat.Support.Set` alongside the design-phase gate anchors.
+The `--exec` invocation turn is the execution authorization gate: mint an `Anchory.Anchor` on it and cite it in the first `Impl.Log` entry. It joins the artifact's support evidence alongside the design-phase gate anchors; it is not line support or a line-dossier review gate merely because it authorizes execution.
 
 ## Git Checkpoint
 

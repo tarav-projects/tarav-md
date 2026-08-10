@@ -7,14 +7,14 @@
 
 # Anchory.Link.Operation.Module
 
-> $kw: --from Anchory.System --from Edition.Approval.Token --from Index.Chat.Capture --from Index.Line --from Line.Verbatim.Gate --from Support.Set --from Touch.Authority.Surface --from Touched.Data --from Touched.Support.Network --from Workflow.Neutral
+> $kw: --from Anchory.System --from Edition.Approval.Token --from Index.Chat.Capture --from Index.Line --from Index.Line.Anchor --from Line.Verbatim.Gate --from Support.Set --from Touch.Authority.Surface --from Touched.Data --from Touched.Support.Network --from Workflow.Neutral
 > --dev-from references/index-context-assembly.skw.md
 
 Use this module when a caller needs the current chat-backed `Support.Reference` minted for an index line: the linking primitive behind ontology, appendix, and agendix provenance.
 
 This module is `Workflow.Neutral`: it produces an anchor and returns it without writing an index surface. Minting mutates only the Anchory depot; authority remains with the qualifying data on its source surface.
 
-Anchory is the current realization of `Support.Reference`; its Chatlas record realizes `Support.Set`, and typed record cargo realizes `Support.Reference.Metadata`.
+Anchory is the current realization of `Index.Line.Anchor`. Its Chatlas line dossier records the line's `Support.Reference` and exact `Support.Set` members under `relationships.support`, review gates under `relationships.gates`, and provenance links under `relationships.provenance`.
 
 This implementation composes `Anchory.System` and `Index.Chat.Capture` to connect an `Index.Line` to qualifying `Touched.Data` on `Touch.Authority.Surface`. The resulting edges participate in `Touched.Support.Network`; tokenized review metadata serves `Edition.Approval.Token` and `Line.Verbatim.Gate`.
 
@@ -34,18 +34,18 @@ For gated newly drafted content, this pipeline is landing work. Do not resolve p
    - use `agentos chatlas events query --identity-hash <hash> --pattern-json '<Event.Pattern JSON>' --backend auto` for adjacent or relational turn patterns
    - read `matched_events[].event_ref` for the exact matching events and `turn_ref` for the verified `Normal.Turn`
    - for a proposal followed by token approval, query a two-step `next_turn` pattern with an assistant `text_contains` token predicate and a user `text_exact` approval predicate; select `latest` or require cardinality `one` when that matches the situation
-   - assistant events may aid retrieval and their turns may be referenced by approval cargo, but only selected qualifying user turns become `Chat.Support.Set` members
+   - assistant events may aid retrieval and may be addressed by gate relationships, but only selected qualifying user turns become support members
    - for reviewed new content, select qualifying substantive user turns for the claim plus the approval turn; approval supplies review evidence and never replaces substantive grounding
    - exclude preset prompts, administrative invocations, and other user turns that do not materially touch the supported subject
    - disagreement, correction, rejection, delegation, and approval can all qualify; qualification does not certify factual truth
    - reload enough normal-model context to judge the result; a derived query backend discovers candidates but never establishes support
-3. **Preview, then register the support reference.** Validate exact qualifying user-turn members before allocation — never timestamps, never tape ordinals:
-   - preview: `agentos chatlas anchory preview --line-content '- [<Line.Type>] <body>' --member <identity-hash>:<user-turn-id> --hint "<one sentence>"`; inspect equivalent anchors and use `--detail context --radius N` only when more context is required
-   - plain support: `agentos chatlas anchory register --line-content '- [<Line.Type>] <body>' --member <identity-hash>:<user-turn-id> --hint "<one sentence: what this support set means>"`
-   - tokenized approval: `agentos chatlas anchory register --line-content '- [<Line.Type>] <body>' --member <identity-hash>:<substantive-turn-id> --member <identity-hash>:<approval-turn-id> --hint "<one sentence>" --member-types '{"<identity-hash>:<approval-turn-id>":{"tokenized.approval.turn":{"token":"<token>","verbatim_turn":"<identity-hash>:<proposal-turn-id>","approval_turn":"<identity-hash>:<approval-turn-id>"}}}'`
-   - a proposal and the approval that answers it are independent turns: `verbatim_turn` references the assistant turn and `approval_turn` references the user turn
-   - semantic approval is representable with `semantic.approval.turn` cargo containing `verbatim_turn` and `approval_turn`, but Hugentics Index workflows require tokenized approval
-   - chatlas validates member coordinates, preserves member order, derives the `chatlas` namespace and user tag, registers through anchory, and returns the composed anchor (`c<YYYYMMDD>-<N>u`)
+3. **Preview, then register the line dossier.** Validate exact qualifying user-turn members before allocation — never timestamps, never tape ordinals:
+   - preview: `agentos chatlas anchory preview --line-content '- [<Line.Type>] <body>' --member <identity-hash>:<user-turn-id>`; inspect equivalent anchors and use `--detail context --radius N` only when more context is required
+   - plain support: `agentos chatlas anchory register --line-content '- [<Line.Type>] <body>' --member <identity-hash>:<user-turn-id>`
+   - tokenized approval adds `--gates '{"semantic_approval":[],"tokenized_verbatim_approval":[{"token":"<token>","proposal_turn":<Normal.Turn.Ref JSON>,"approval_turn":<Normal.Turn.Ref JSON>}]}'`
+   - a proposal and the approval that answers it are independent gate references; they do not become support members merely by participating in a gate
+   - semantic approval is represented under `semantic_approval` with an `approval_turn` and optional `proposal_turn`, but Hugentics reviewed Index workflows require tokenized approval
+   - Chatlas validates every reference, preserves support order, allocates the anchor, derives the attachment assertion over `Line.Type + body + Anchor.Id`, and returns the composed anchor (`c<YYYYMMDD>-<N>u`)
    - the raw plumbing remains available: `agentos anchory register --depot <chatlas-root>/anchory --namespace chatlas --alloc-prefix <YYYYMMDD> [--tag u|a] --record-json '…'`
 4. **Verify.** Registration returns the compact minted record. Escalate with `agentos chatlas anchory resolve <anchor> --detail context [--radius N]` only when the neighborhood must be revisited.
 5. **Return the current support reference** to the caller, which materializes it as a trailing anchor: `… ^c20260707-0u`.
@@ -59,13 +59,12 @@ For gated newly drafted content, this pipeline is landing work. Do not resolve p
 - a chat-backed index anchor targets a qualifying user turn — the observable touch materialization; when wording originated agent-side, anchor the user turn that accepted, corrected, rejected, delegated, or acted on it
 - `<session-identity>:<turn-id>` is registration CLI sugar; the stored member is a `Normal.Turn.Ref` carrying `session`, `turn_id`, `turn_hash`, and `at`
 - the model separates local IDs from durable assertions: `message_id`, `model_run_id`, and their siblings are **section-local join keys**; a bare `turn_id` only locates a grouping, while `Normal.Turn.Ref` and `Event.Ref` verify the content they address
-- a tokenized reviewed-content anchor has qualifying substantive user support members plus the approval member whose `tokenized.approval.turn` cargo points to the proposal and approval turns
-- an anchor's meaning is immutable: no reuse; a wrong hint or wrong date means minting a new anchor, never repurposing
-- `agentos anchory amend` exists only to correct an error or improve resolution of the same context
-- the hint is the desync tripwire: write it so a reader can tell whether the resolved neighborhood matches
+- a tokenized reviewed-content anchor has qualifying substantive support members and an independent `tokenized_verbatim_approval` gate pointing to the proposal and approval turns
+- the Index surface owns the current `Line.Type + body + Anchor.Id` triplet; the dossier's attachment hash detects unmaintained drift without copying line content
+- `agentos anchory amend` may preserve an anchor while the application normalizer updates its valid relationships or attachment assertion; never repurpose it for an unrelated line relationship
 - the register is plumbing, not truth or authority — the information lives on the authority surfaces; agents detect desync by reading them
-- one anchor per distinct line content: equal `Line.Type + body` may reuse one relationship across materializations, but different content must never share its mutable anchor record
-- changing line content requires revisiting support and minting a new line-bound anchor; never amend an old anchor onto a different line
+- exact dossier equivalence may reuse an existing anchor; content equality alone does not make two line relationships identical
+- after a line amendment, the maintainer decides whether to retain and re-hash the anchor or assign a new one, then revisits every affected relationship
 
 ## Addressing One Event
 

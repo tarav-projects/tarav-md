@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "d23235fd4780aa1d3bd50e664959fd5f2334b48ba44c46b7d77ecb11de627de6",
+      "output_sha256": "189c5529031fed03caf36bff82ae0ee785f0118591fb774486cc288111381926",
       "recipes": [
         {
           "heading": "^hugentics-batchy-runtime-contract",
@@ -15,13 +15,13 @@
         {
           "heading": "^driver-index-literacy",
           "verb": "derived",
-          "body_sha256": "2a736173566001f9337e0c634710ca672af9d254afab80015e3427bbc939bcb6",
+          "body_sha256": "e993f1d69f88b02212a44b00432452996c10132517826bc248b6cb058d6c75fa",
           "deps": {
             "references/touched-data.skw.md#Authority Flow": "e6333bc6e88195e2c7140e937d46eaef874b3cd0a1fd80d7209bcb5d6ca19757",
-            "references/touched-data.skw.md#Support Network": "f6838c58fd81dfea48904543a66cdfe4bce4d74febf1f2bfb1c7f721163ba47f",
+            "references/touched-data.skw.md#Support Network": "d3bc9fd5f5cae8fcf8a8da2501f32f697263ca129ff25ace9698b630c3479f3a",
             "references/touched-data.skw.md#Line Standing": "2bc1780bf6384c537cff3089d3aa547092f81dba496c26bc8976d4f455c6b174",
             "references/touched-data.skw.md#Coherence And Decision Weight": "6a23c0cfcf0865ea3b5e36274da927ab577287916aae91f3a091ce27f4bd2505",
-            "references/touched-data.skw.md#Current Realization": "0575727f7360eb48b2223d07868011ed4136369e9a63aed85e13ba61077bac7b"
+            "references/touched-data.skw.md#Current Realization": "6bf3cf742c81bf2ae29c038f3d22d829f7c8902f9118781b273d3d01ddd24bc4"
           }
         },
         {
@@ -89,7 +89,7 @@
       ]
     },
     "references/capture.md": {
-      "output_sha256": "b60ea268e40e0ba5c7ea572097d5dda42f72934a58f8b27e3ec7f80466c1bf7a",
+      "output_sha256": "5e28f788385980904af483e0df4280ed3887857d3ce050fe25bd112f905381f4",
       "recipes": [
         {
           "heading": "Landing",
@@ -132,7 +132,7 @@
       "recipes": []
     },
     "references/edit.md": {
-      "output_sha256": "c90910466ac3a25b0a893bfaef36e0171d1d14c64b55911e7ed82827597262bf",
+      "output_sha256": "c3c0fe7a8e7d915c1182b01de6f117cfba732c4f31bd26f909e7e31133c93ee1",
       "recipes": [
         {
           "heading": "Block Independence",
@@ -221,7 +221,7 @@
       ]
     },
     "references/impl/execute.md": {
-      "output_sha256": "fac74b2be736a8c1def5f75e330ad5de550a6212a7df045527f41aa707336580",
+      "output_sha256": "d8f53bde88ba2cb648d04a595599a938ed09844154b04dfb7d8411f1be4e21b7",
       "recipes": [
         {
           "heading": "^exec-loop",
@@ -312,7 +312,7 @@
       "recipes": []
     },
     "references/index-context-assembly.md": {
-      "output_sha256": "15a28bb9286e024fa1bf7a337084a908f22872401845bf40127f1d9f0c49a145",
+      "output_sha256": "f8074a0ce762ec2bfc01a4e1aa56b245e789dece5e72c50c5ee77278890a0287",
       "recipes": []
     },
     "references/issues.md": {
@@ -320,7 +320,7 @@
       "recipes": []
     },
     "references/link.md": {
-      "output_sha256": "2ceba851722563d8e8789fb4b5a44393f7e4182213cd3b7e8bec609e57621359",
+      "output_sha256": "156d90225ef2c0462fb324f023395bdc7a5cc47594d83f928f93d64021647402",
       "recipes": []
     },
     "references/parking-note.md": {
@@ -349,7 +349,7 @@
       ]
     },
     "references/touched-data.md": {
-      "output_sha256": "8873fe822c7eba0ab8087ebdfcbf9e4f0bc30a364afb279918b2e11cfb67ab56",
+      "output_sha256": "cd35acd5ef570f708c22c69c1510d78557139649232b3e2db114c1b63ec8aa8f",
       "recipes": []
     },
     "references/type.md": {

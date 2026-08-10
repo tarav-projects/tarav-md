@@ -258,7 +258,7 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 - its current support references are trailing `Anchory.Anchor`s resolving through Chatlas to qualifying user-turn evidence
 - chronological chat capture lives in `Chat.Index.Delta` files; `Chat.Index.HEAD` is the chat's current projection
 - an ordinary Project line eventually needs an exact Delta home and, when current for that chat, a matching Chat HEAD line
-- each line's anchor dossier carries its immutable line subject, grounding members, predecessors, and optional issue context; Delta materialization and `Line.Home` are derived
+- each `Index.Line.Anchor` dossier asserts the current `Line.Type + body + Anchor.Id` triplet and records independent support, gate, and provenance relationships; Delta materialization and `Line.Home` are derived
 - `issues/` holds grounded temporary Project topics; review is proven by the anchor record rather than folder placement
 - agents operate it by loading routers, concept blocks, appendix material, and references relevant to the current task
 

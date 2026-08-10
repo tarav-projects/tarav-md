@@ -8,7 +8,7 @@
 
 # Index.Landing.Knowledge.Module
 
-> $kw: --from Capture.Offer --from Cited.Duplication --from Demoted.Index.Line --from Dotted.Notation --from Edition.Approval.Token --from Edition.Trigger.User.Gated --from Explicit.Namespace --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Edit.Action --from Index.Edit.Modify.Line --from Index.Edition.Turn --from Index.Line --from Index.Ontology --from Index.Presumption --from Kernel.Line --from Line.Type --from Line.Verbatim.Gate --from Live.Index.Line --from Name.As.Index --from POI.Instance --from Reviewed.Content --from Support.Set --from Touch.Authority.Surface --from Touched.Decision.Cycle --from User.Command --from Verbatim.User.Gated
+> $kw: --from Capture.Offer --from Cited.Duplication --from Demoted.Index.Line --from Dotted.Notation --from Edition.Approval.Token --from Edition.Trigger.User.Gated --from Explicit.Namespace --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Edit.Action --from Index.Edit.Modify.Line --from Index.Edition.Turn --from Index.Line --from Index.Line.Anchor --from Index.Ontology --from Index.Presumption --from Kernel.Line --from Line.Type --from Line.Verbatim.Gate --from Live.Index.Line --from Name.As.Index --from POI.Instance --from Reviewed.Content --from Support.Set --from Touch.Authority.Surface --from Touched.Decision.Cycle --from User.Command --from Verbatim.User.Gated
 > --dev-from references/index-context-assembly.skw.md
 
 The knowledge of writing Agentos index and appendix surfaces: gates, structure, naming, block quality, edit actions, and the landing procedure.
@@ -135,8 +135,8 @@ Support resolution begins only after both gates have been crossed: the final pro
 1. Resolve the final proposal and approval turns from the authoritative `Chatlas.Session.Model`.
 2. Locate and qualify the substantive user turns that support each approved line's claim.
 3. Confirm that the approval turn qualifies under the current chat `Touch.Authority.Surface` protocol.
-4. Mint the current support reference through `references/link.md`. Its `Support.Set` includes the qualifying substantive turns plus the approval turn; the approval member carries `tokenized.approval.turn` cargo containing `token`, `verbatim_turn`, and `approval_turn`.
-5. Apply the approved edit and replace `^<anchor-on-landing>` with the minted anchor on every approved line with no more specific support. The substantive members ground the claim; the typed approval cargo independently makes the line eligible for `Reviewed.Content`.
+4. Mint the current `Index.Line.Anchor` through `references/link.md`. Put the qualifying substantive user turns forming the line's `Support.Set` in `relationships.support`; record the token, proposal turn, and approval turn independently under `relationships.gates.tokenized_verbatim_approval`.
+5. Apply the approved edit and replace `^<anchor-on-landing>` with the minted anchor on every approved line with no more specific support. The support relationship grounds the claim; the gate relationship independently makes the line eligible for `Reviewed.Content`.
 6. Update the router when concepts are added, renamed, moved, or gain appendix depth.
 7. Run the default linter plus the opt-in `line-approval` and `line-verbatim-gate` checks over the edited scope.
 8. Re-run `Touched.Decision.Cycle` contextualization over the changed live cut and report any remaining POIs separately from the completed edit.

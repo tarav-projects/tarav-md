@@ -9,7 +9,7 @@ The assembly is a development context boundary, not an import mediator. Consumer
 Close every category below before developing a Hugentics Index consumer:
 
 1. **Touched-data authority.** Load `User.Touched`, `Touch.Authority.Surface`, `Touched.Data`, `Touched.Authority`, and their available appendix depth. Preserve the distinction between observable qualifying editions and the underlying touch event.
-2. **Support network and line standing.** Load `Touched.Index`, `Support.Set`, `Touched.Support.Network` including its inline `Support.Reference` model, `Index.Line`, `Live.Index.Line`, `Demoted.Index.Line`, `Index.Presumption`, `Reviewed.Content`, and `Reviewed.Cite.Closure`.
+2. **Support network and line standing.** Load `Touched.Index`, `Support.Set`, `Touched.Support.Network` including its inline `Support.Reference` model, `Index.Line`, `Index.Line.Anchor`, `Live.Index.Line`, `Demoted.Index.Line`, `Index.Presumption`, `Reviewed.Content`, and `Reviewed.Cite.Closure`.
 3. **Decision discipline.** Load `Context.Grounding`, `Index.Grounding`, `Touched.Decision.Cycle`, `Open.Inference`, `POI.Instance`, `Target.Product`, and `Product.Design.Session`.
 4. **Current realization.** Load `Agentos.Index.System`, `Index.Skillware`, `Index.Surface`, `Index.Ontology`, `Index.Depot`, `Index.Chapter`, `Index.Appendix`, `Index.Agendix`, `Issue.Block`, `Touched.Surface.Index`, `Index.Discovery`, `Anchory.System`, `Grounding.Hugentic.Authority`, `Index.Chat.Capture`, and `InContext.Index.Chat.Capture`.
 5. **Writing model.** Load `Kernel.Writing`, `Kernel.Block`, `Kernel.Line`, `Line.Type`, `Line.Type.Vocabulary`, `Dotted.Notation`, `Name.As.Index`, `Independent.Reader.Block`, `Cited.Duplication`, and `Not.A.Wall.Of.Text`.
