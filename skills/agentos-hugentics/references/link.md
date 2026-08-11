@@ -70,8 +70,9 @@ Anchors ground on turns, but some evidence is finer than a turn — a specific t
 
 - `agentos chatlas anchory resolve <anchor>` — compact record and member summary
 - `agentos chatlas anchory resolve <anchor> --detail turn|context [--radius N]` — explicitly escalates to exact turns or bounded message-turn neighborhoods
-- `agentos index line manifest show --depot <depot> --anchor <anchor> ...` — assembles selected lines, their parsed block-bounded Index context, and independently typed relationships in one process; `materialize` writes the same derived payload beneath ignored `<chatlas-root>/workspace/`
+- `agentos index line manifest show --depot <depot> --anchor <anchor> ...` — assembles selected lines, their parsed block-bounded Index context, occurrence agreement, and independently typed relationships in one process; it uses a verified normal-lint locator when available and `materialize` writes the same derived payload beneath ignored `<chatlas-root>/workspace/`
 - a line manifest is a `Volatile.Surface`: use it for line understanding and bounded relationship inspection, never as support authority or as a new relationship
+- an `ambiguous` anchor occurrence standing makes the anchor unsuitable for line lookup until normal Index lint identifies and the maintainer resolves the disagreement
 - `--verification stored` reads dossier assertions without loading chats; `sampled` validates a deterministic bounded subset and `complete` validates every selected turn reference. `--detail reference|turn|context` controls evidence rendering independently of verification breadth
 - the landing turn is the member turn's own user message; assistant context is recovered by reading the neighborhood around it
 - `agentos anchory resolve --anchor <anchor> [--depot …]` remains the record-level (plumbing) view

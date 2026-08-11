@@ -45,7 +45,7 @@ Check the session's earliest indexed turn early. If it is `/compact`-continued, 
 4. Judge every line on its **own claim**. Lines in one block share a frame but assert different things; a broad user turn about the concept does not support each specific claim under it. Identical member sets across lines making materially different claims is the signature of a stretched result.
 5. For type or full work, classify the current line act against the supplied vocabulary. Return `reviewed-frozen` without a type delta for `Reviewed.Content`; otherwise propose one added or replacement prefix while preserving the body byte-for-byte. Return `residue` when no type honestly fits.
 6. For grounding or full work, judge the current members from the assigned session and any additional candidate turns. A one-member set may be ideal; cardinality alone never justifies expansion or concern.
-7. Return `keep` when current support is sufficient, `ground` when previously missing support gains an honest set, `expand` when honest members are added, `replace` when the final honest set changes, or `concern` when current support appears deficient but no successor is ready.
+7. Return `keep` when current support is sufficient, `ground` when previously missing support gains an honest set, `expand` when honest members are added, `replace` when the final honest set changes, or `concern` when current support appears deficient but no honest repair is ready.
 8. For `ground`, `expand`, or `replace`, select the smallest honest final ordered member set for the exact body claim, independent of its current or proposed `Line.Type`. Preserve gate-evidence members and their types on `Reviewed.Content`.
 9. Return `ambiguous` when the assigned session cannot honestly resolve the requested support work; state what was searched and whether another candidate session is suggested.
 
@@ -66,13 +66,12 @@ action: retrofit-type | retrofit-grounding | full-retrofit
 status: complete | partial | ambiguous | residue | concern
 
 line: <content-hash>
-input: <exact current line without trailing support references>
+input: <exact current line without its trailing Index.Line.Anchor token>
 review: reviewed | unreviewed
 typing: unchanged | add <TYPE> | replace <OLD> with <NEW> | reviewed-frozen | residue
 content: <exact final typed content; empty only for residue>
 support: not-requested | keep | ground | expand | replace | concern | ambiguous
 current-anchor: <anchor or none>
-predecessor: <current anchor when expand or replace; otherwise none>
 members: <final ordered member set; empty when not-requested, concern, ambiguous, or residue>
 hint: <one sentence suitable for the Anchory record>
 why-type: <compact act classification; required for add or replace>
@@ -81,7 +80,7 @@ searched: <queries or neighborhoods checked>
 next-session: <optional identity or query hint>
 ```
 
-Repeat the `line` section for every packet line. An added or replaced type may change only the leading prefix; `reviewed-frozen` may not propose a type delta. For `expand` or `replace`, members are the complete proposed successor set rather than only additions. `residue` has no members. Member order is relevance order, not tape order.
+Repeat the `line` section for every packet line. An added or replaced type may change only the leading prefix; `reviewed-frozen` may not propose a type delta. For `expand` or `replace`, members are the complete proposed final set rather than only additions. The supervisor—not the research worker—decides whether that set amends the current relationship or constitutes a successor semantic edge. `residue` has no members. Member order is relevance order, not tape order.
 
 State reservations in `why-support` rather than silently absorbing them — if support rests on a general claim while the line names specifics not separately evidenced, say so. The supervisor weighs that; hiding it removes the choice.
 

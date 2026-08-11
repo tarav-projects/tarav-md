@@ -69,9 +69,10 @@ $agentos-pkg --index-retrofit --depot <target-depot>
 ### Index.Retrofit.Support.Action
 - `ground` creates support for a line body with no current `Support.Reference`; `Line.Type` is not part of the grounded claim
 - `keep` records that a nominated small set remains sufficient; one decisive user turn may be ideal support
-- `expand` mints a successor support reference with additional honest members and the current anchor as predecessor
-- `replace` mints a successor when honest review changes the member set without changing line content
-- `concern` records a `POI.Instance` when current support appears weak or mismatched but no honest successor is ready; it never silently strips authority
+- `expand` adds honest members to the current semantic support edge by amending the existing dossier and preserving its anchor
+- `replace` proposes a complete alternative member set without mechanically deciding anchor identity
+- the supervisor distinguishes an amendment of the current semantic edge from a successor edge; only a successor receives a new anchor with the prior anchor in application-owned provenance
+- `concern` records a `POI.Instance` when current support appears weak or mismatched but no honest repair is ready; it never silently strips authority
 
 ### Index.Retrofit.Campaign.Report
 - the single durable live note for survey, dispatch, results, attachment, coverage, and resumability
@@ -148,7 +149,7 @@ Keep the report compact and operational, and sufficient to resume cold:
 
 Persist the packet snapshot at dispatch, not after. Once a packet is dispatched, its exact identity otherwise exists only inside the worker prompt, and the campaign stops being resumable.
 
-`Index.Line.Manifest` is a `Volatile.Surface`, not part of the campaign ledger. The supervisor may use `show --verification stored --detail reference` to assemble parsed line context and current dossier assertions without loading transcript content. Never use `--detail turn` or `context` in the supervisor. `materialize` is allowed only as a disposable inspection cache for oversized output: copy the required references and findings into the durable packet snapshot, and never make resumption depend on the workspace path. Scope-selected unanchored lines may appear with their Index context, but have no dossier relationships and still require their exact report-embedded snapshot.
+`Index.Line.Manifest` is a `Volatile.Surface`, not part of the campaign ledger. The supervisor may use `show --verification stored --detail reference` to assemble parsed line context, anchor-occurrence standing, and current dossier assertions without loading transcript content. It may reuse a fingerprint-verified locator from normal lint and falls back to depot parsing when that locator is missing or stale. An `ambiguous` standing holds the packet and routes the anchor to normal lint; never select one occurrence heuristically. Never use `--detail turn` or `context` in the supervisor. `materialize` is allowed only as a disposable inspection cache for oversized output: copy the required references and findings into the durable packet snapshot, and never make resumption depend on the workspace path. Scope-selected unanchored lines may appear with their Index context, but have no dossier relationships and still require their exact report-embedded snapshot.
 
 Never store transcript fragments in the report. Exact `Normal.Turn.Ref` coordinates, hints, and worker rationales are sufficient.
 
@@ -184,15 +185,17 @@ Every action command uses the same supervisor loop:
 - `User.Command::RetrofitGrounding` never changes `Line.Type` or body and may operate on reviewed or unreviewed lines
 - `missing` support may become `ground`; `thin` or nominated existing support may become `keep`, `expand`, `replace`, or `concern`
 - use current members and assigned-session research to judge support; cardinality is only a nomination signal
-- for `expand` or `replace`, batch-preview and mint a successor anchor with the current anchor in `predecessors`, then replace only the trailing support reference
+- for `expand`, preserve the current anchor and apply the complete member set through an application-validated dossier amendment
+- for `replace`, determine whether the final set amends the existing semantic edge or creates a successor; never infer a successor merely because member coordinates changed
+- if the required validated amendment surface is unavailable, hold the packet as a tooling POI rather than minting a successor for convenience
 - preserve every gate-evidence member and its member types when operating on `Reviewed.Content`
-- a `concern` without an honest successor records a POI and leaves the current reference unchanged pending the later evaluation mechanism
+- a `concern` without an honest repair records a POI and leaves the current relationship unchanged pending the later evaluation mechanism
 
 ### Full Retrofit Action
 
 - `User.Command::FullRetrofit` composes independent type and grounding judgments over the same unchanged body
 - reviewed lines are type-frozen but remain eligible for grounding work
-- when both results succeed, land the type delta and final support relationship together; reattach a preserved anchor, or mint the grounding successor that the support result independently requires
+- when both results succeed, land the type delta and final support relationship together; reattach a preserved anchor, amend its dossier when the semantic edge remains the same, or mint a successor only when the support interpretation creates a distinct semantic edge
 - when type succeeds but support research remains ambiguous, land only the authorized type delta while preserving any existing support relationship; a line that began without support remains `support: missing`
 - `full` means all currently implemented type and support retrofit work, not future semantic validation or reconciliation
 
@@ -216,15 +219,15 @@ For each worker result:
 - relocate the current line by exact `Line.Type + body` or exact untyped body rather than trusting a stale line number
 - reject the result as `stale` if content, support reference, or review state changed after dispatch
 - for a type delta, require `Index.Retrofit.Type.Exception`, prove the line is not `Reviewed.Content`, require an allowed type code, and verify body identity after removing the old and proposed prefixes
-- for support work, judge members against the exact body claim, then run Anchory preview or batch preview against the exact final line triplet without context detail
-- require resolvable user turns, one exact line-bound relationship per distinct semantic edge, and no conflicting equivalent anchor
-- register only after preview succeeds; the supervisor owns all allocation so workers cannot race or create orphans
-- register every anchor in a packet before writing any line, and abort the whole packet on the first registration failure — a partial write leaves the file inconsistent with the report
-- for grounding-only work, replace only the trailing reference while preserving `Line.Type + body` verbatim
+- for support work, judge members against the exact body claim, then validate the complete proposed dossier amendment or preview any genuinely new or successor relationship against the exact final line triplet without context detail
+- require resolvable user turns and one exact line-bound relationship per distinct semantic edge; a new registration must also have no conflicting equivalent anchor
+- amend or register only after application-owned validation succeeds; the supervisor owns all mutation and allocation so workers cannot race or create orphans
+- complete every dossier amendment or anchor registration in a packet before writing any line, and abort the whole packet on the first failure — a partial write leaves the file inconsistent with the report
+- for grounding-only work, preserve `Line.Type + body` verbatim; retain the trailing `Index.Line.Anchor` for an in-place dossier amendment and replace it only when grounding creates a new or successor relationship
 - for type-only work without an anchor, change only the prefix
 - for type-only work with an anchor, change only the prefix and run `agentos chatlas anchory reattach --depot <depot> --anchor <anchor>`; the Index parser supplies the resulting triplet, and reattachment does not change support, gates, provenance, or anchor identity
-- for full work, materialize exactly the authorized prefix delta, unchanged body, and final trailing support reference
-- verify unlanded lines were left untouched, then run packet-focused validation over every newly attached anchor:
+- for full work, materialize exactly the authorized prefix delta, unchanged body, and final trailing `Index.Line.Anchor` token
+- verify unlanded lines were left untouched, then run packet-focused validation over every affected anchor:
 
 ```text
 agentos index linter --depot <depot> --anchor <anchor> ... --check line-approval --check line-verbatim-gate --json
@@ -239,7 +242,7 @@ Two mechanics the gate enforces, worth knowing before scoping:
 - `--line-content` binds either a typed or legacy untyped Index line to its anchor triplet. Adding or replacing `Line.Type` later requires reattachment because the triplet assertion changes, not because the semantic support edge changed.
 - anchor members must be **resolvable user turns**. Assistant drafts and tool or apply turns are rejected by preview, so a result whose support collapses to "the agent drafted it and the patch applied it" cannot land.
 
-Anchor registration and trailing `Support.Reference` maintenance are agent-owned metadata operations. A type prefix delta is allowed only through `Index.Retrofit.Type.Exception`. If research implies any body change, leave the line untouched and route that separate edit through its normal verbatim gate.
+`Index.Line.Anchor` registration and dossier-relationship maintenance are agent-owned metadata operations. A type prefix delta is allowed only through `Index.Retrofit.Type.Exception`. If research implies any body change, leave the line untouched and route that separate edit through its normal verbatim gate.
 
 ## User.Command.Section
 

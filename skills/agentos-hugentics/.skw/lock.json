@@ -132,7 +132,7 @@
       "recipes": []
     },
     "references/edit.md": {
-      "output_sha256": "cb717ae4b72bf5580b0a14e1a0d243f5adb429e550e5a8666f5a63f537e5171e",
+      "output_sha256": "067753f87cee3c656902bfc08467c087d4186c018175f0e7bee4f9e2e7d6e575",
       "recipes": [
         {
           "heading": "Block Independence",
@@ -308,7 +308,7 @@
       "recipes": []
     },
     "references/index-capture-context.md": {
-      "output_sha256": "f2ce9c74f09b3c2e1817376e5ba2a28fcf79320ce3c0887432201c6a4142da3f",
+      "output_sha256": "6ba29e466c473b0b9b0e730d709a7c6407fd41c3f0db628d738f0e8241d1e666",
       "recipes": []
     },
     "references/index-context-assembly.md": {
@@ -320,7 +320,7 @@
       "recipes": []
     },
     "references/link.md": {
-      "output_sha256": "ea958e38ef1ee4fb965abe6b58b563eaa200f22ae7368906b9a4afb97530c36b",
+      "output_sha256": "5a31d16e1ea1335fda946bed924df6b4b198a43860ba19787fb76e199e4bef38",
       "recipes": []
     },
     "references/parking-note.md": {

@@ -139,7 +139,7 @@ Support resolution begins only after both gates have been crossed: the final pro
 5. Apply the approved edit in one patch and replace each `^<anchor-on-landing>` with the anchor returned for that line's stable batch `client_id`. The support relationship grounds the claim; the gate relationship independently makes the line eligible for `Reviewed.Content`.
 6. Update the router when concepts are added, renamed, moved, or gain appendix depth.
 7. Run the default linter plus the opt-in `line-approval` and `line-verbatim-gate` checks with repeated `--anchor` selectors for the landed lines. Anchor scope runs parser-bound line checks and reports depot-wide checks it omitted; name a depot check explicitly only when that broader audit is intended.
-8. For multi-line inspection, use `agentos index line manifest show --depot <depot> --anchor <anchor> ... --verification stored`; materialize only when a reusable volatile inspection cache is useful.
+8. For multi-line inspection, use `agentos index line manifest show --depot <depot> --anchor <anchor> ... --verification stored`; refuse the edit workflow when it reports ambiguous anchor occurrences, and materialize only when a reusable volatile inspection cache is useful.
 9. Re-run `Touched.Decision.Cycle` contextualization over the changed live cut and report any remaining POIs separately from the completed edit.
 
 The opt-in material-equivalence check implements `Line.Verbatim.Gate`.
@@ -159,7 +159,8 @@ A cluster of edits approved together lands under one gate — the landing trigge
 - update namespace membership in `### meta` when the concept belongs to an `Explicit.Namespace`
 - check cited duplicates and related stable mentions when editing an existing concept
 - run `agentos index linter --depot <depot>` after depot edits, or explicit `--index` / `--appendix` checks when the edit is scoped to individual surfaces
-- use repeated `--anchor` selectors for a line-focused verification; use `agentos index line manifest show` to read the same lines, block-bounded sibling context, and deduplicated support, gate, and provenance turns in one batch
+- use repeated `--anchor` selectors for a line-focused verification; use `agentos index line manifest show` to read the same lines, block-bounded sibling context, occurrence agreement, and deduplicated support, gate, and provenance turns in one batch
+- normal depot lint owns comprehensive cross-surface anchor agreement and refreshes the volatile lookup locator; manifest lookup is bounded inspection, not a substitute for that lint
 
 ## Quality References
 
