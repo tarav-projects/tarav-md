@@ -63,7 +63,7 @@ Selection cardinality: `many`.
 |---|---|
 | `000-INDEX.md` → `design/`, `poi/` | Chatlas concepts and package-owned POI classes, with depth in `appendix/` |
 | `--capture --session <selector>` | Build or refresh `<chatlas-root>/session-index/<identity-hash>/` from that chat alone |
-| `references/chatlas-commands.md` | Chatlas CLI query, export, event, turn, and anchor workflows |
+| `references/chatlas-commands.md` | Chatlas CLI query, export, event, turn, anchor, and volatile Index-line manifest workflows |
 | `chatlas-session-continue` | Continue work from a prior session |
 | `chatlas-session-zip-transcript` | Recover a compact transcript artifact |
 | `agentos-chatlas-my-session-id` | Discover the running agent's own native session id |

@@ -13,7 +13,11 @@ Operational Chatlas command and workflow reference.
 - Print a named standard-model view: `agentos chatlas views get`
 - Preview a support set without minting: `agentos chatlas anchory preview`
 - Mint a validated support-set anchor: `agentos chatlas anchory register`
+- Preview or register many line anchors: `agentos chatlas anchory batch preview|register`
 - Resolve an anchor to its ordered support set: `agentos chatlas anchory resolve`
+- Refresh an amended line's attachment assertion: `agentos chatlas anchory reattach`
+- Inspect one or many Index lines with all selected Chat relationships: `agentos index line manifest show`
+- Materialize that inspection cache: `agentos index line manifest materialize`
 - Export raw artifacts: `agentos chatlas raw path` / `agentos chatlas raw export`
 - Inspect chronological Chat.Index surfaces: `agentos chatlas chat-index`
 - Consume or produce retained agent products: `agentos chatlas products`
@@ -273,6 +277,8 @@ agentos chatlas anchory preview \
   --hint "<one sentence>" \
   --detail context --radius 2
 agentos chatlas anchory resolve <key> --detail context --radius 4
+agentos chatlas anchory reattach \
+  --depot <index-depot> --anchor <key>
 ```
 
 - repeat `--member` in relevance order; each session identity may be a unique prefix on input and is stored as the full identity
@@ -283,7 +289,64 @@ agentos chatlas anchory resolve <key> --detail context --radius 4
 - preview validates and assembles the exact record without allocating an anchor; it also reports equivalent existing anchors
 - preview, registration, and resolution default to compact member summaries; `--detail turn` adds exact turns and `--detail context` adds neighborhoods
 - registration allocates from the first member's date only after the support set has been reviewed
+- `reattach` parses the complete selected Index depot, resolves every occurrence of the anchor, and requires one distinct canonical triplet before refreshing the dossier assertion; agents never supply the hashed line text
+- reattachment preserves the anchor and every support, gate, and provenance relationship and fails on an absent anchor or a parser-observed collision
 - radius counts visible turns around each exact member turn only under `--detail context`
+
+### Anchor Batch Workflow
+
+Use one batch whenever several final line bodies are grounded together. The input is an ordered `chatlas.anchor-batch.v2` JSON object whose items carry a caller-stable `client_id`, exact `line_content`, ordered `members`, and optional independent `gates`, `predecessors`, and `issue_context`.
+
+```json
+{
+  "schema": "chatlas.anchor-batch.v2",
+  "items": [
+    {
+      "client_id": "line-1",
+      "line_content": "- [CT] first final body",
+      "members": ["<identity-hash>:<turn-id>"]
+    },
+    {
+      "client_id": "line-2",
+      "line_content": "- [DC] second final body",
+      "members": ["<identity-hash>:<turn-id>"]
+    }
+  ]
+}
+```
+
+```sh
+agentos chatlas anchory batch preview --input <batch.json> --json
+agentos chatlas anchory batch register --input <batch.json> --json
+```
+
+- preview validates every item before allocating anything and reports mint/reuse standing plus exact/support equivalence
+- register is idempotent and returns the stable `client_id → anchor` mapping needed to attach all anchors in one Index patch
+- the batch mutates only Anchory; the caller still owns the gated Index/Agendix write and must apply the returned mapping to the exact final bodies
+- use the single-line preview/register commands only when there is genuinely one line
+
+## Index Line Manifest
+
+`Index.Line.Manifest` is a line-centered, derived inspection surface. It batches
+Anchory/session resolution and stores each resolved turn once while keeping
+support, gate, and provenance relationships independently typed.
+
+```sh
+agentos index line manifest show \
+  --depot <index-depot> \
+  --anchor <anchor> --anchor <anchor> \
+  --verification sampled --verification-sample 2 \
+  --detail turn --neighbors 2 --json
+agentos index line manifest materialize \
+  --depot <index-depot> --scope design/ --limit 50
+```
+
+- selectors are repeatable `--anchor` values and depot-relative `--scope` paths; at least one is required
+- `--relationship support|gates|provenance` narrows namespaces; repeat it, or omit it for all
+- verification breadth is `stored`, `sampled`, or `complete`; evidence detail is independently `reference`, `turn`, or bounded `context`
+- `--neighbors` bounds sibling Index context within the enclosing block; `--limit` records omitted lines rather than hiding truncation
+- materialization writes beneath ignored `<chatlas-root>/workspace/index-line-manifests/` and prints the path
+- the manifest is a `Volatile.Surface`, never authority and never a new relationship; Index Markdown and Chat surfaces remain the sources
 
 ## File Touch Workflow
 

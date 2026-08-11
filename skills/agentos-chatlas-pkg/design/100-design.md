@@ -607,6 +607,16 @@
 - [DC] resolving a Chatlas anchor reaches its line dossier; relationship consumers then follow the relevant typed coordinates to their authoritative surfaces ^c20260809-163u
 - record format: `appendix/Chatlas.Anchory-appendix.md`
 - [PR] chatlas anchory and the chatlas query language are one system, co-designed — anchors are native selectors of the query language ^c20260708-18u
+
+****
+
+## Chatlas.Index.Line.Manifest
+
+- [DF] `Chatlas.Index.Line.Manifest` is the Chatlas realization of `Index.Line.Manifest` over parser-backed Index lines and their `Chatlas.Line.Anchor.Dossier`s ^c20260809-189u
+- [DC] it resolves selected lines and their referenced turns in one operation, deduplicating shared turns into one registry ^c20260809-190u
+- [CT] support, gate, and provenance relationships retain their independent dossier structure in the projection ^c20260809-191u
+- [DC] materialized manifests live beneath the ignored Chatlas workspace and remain disposable ^c20260809-192u
+
 ****
 
 ## Chatlas.View
@@ -681,6 +691,7 @@
 - [DF] `Chat.Provenance.Relationship` records an evidenced origin or history relationship between an anchored line and a Chat surface ^c20260809-132u
 - [CT] provenance does not itself establish semantic support or gate satisfaction ^c20260809-133u
 - [CT] one `Normal.Turn.Ref` may participate independently in support, gate, and provenance relationships ^c20260809-134u
+- [DC] `relationships.provenance.predecessor_anchors` records the prior `Index.Line.Anchor`s whose relationships the current anchor succeeds ^c20260810-24u
 
 ****
 

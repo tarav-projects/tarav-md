@@ -1,8 +1,10 @@
 # Index.Line.Manifest And Anchor Scope — Impl.Req
 
+> Historical implementation record. The current line-manifest implementation is Index-owned and exposed through the canonical `agentos index` namespace; use the maintained Chatlas command reference for current syntax.
+
 ## Impl.Abstract
 
-- Status: ready for autonomous execution.
+- Status: implemented and independently verified.
 - Scope: add a volatile, derived `Index.Line.Manifest`; make Chatlas resolve many
   line dossiers and their relationship turns in one process; add general
   anchor-scoped Index linter selection and stable line-subject metadata; update
@@ -153,6 +155,28 @@
 - Autonomous develop invocation authorized design and execution.
 - Baseline Luna audit: 27 Agentos invocations, approximately 48.6 seconds; all twelve
   benchmark anchors were correct, and the measured friction matched the design above.
+- Implemented repeated `--anchor` linter selection with fail-closed matching,
+  parser-feed projection, stable `Index.Line` subjects, and explicit reporting of
+  depot-wide checks omitted from line scope. The same focused audit dropped from
+  26.9 seconds before the depot-check projection to 0.95 seconds after it.
+- Implemented the then-current Chatlas-owned line-manifest surface. The real twelve-line
+  manifest completed in 0.47 seconds at reference detail and 0.59 seconds at turn
+  detail/materialization, resolving one session once, 23 support relationship uses,
+  12 token gates, and 12 unique turns.
+- Materialized verification artifact:
+  `/Users/pereiro/Documents/chatlas/workspace/index-line-manifests/20260810T002225331459Z-cf95dba38a3c.json`.
+  `git check-ignore` confirms `/workspace/`; the artifact is not a stable surface.
+- Verification: 931 `agentos-py` tests and 476 `agentos-chatlas-py` tests passed;
+  changed Chatlas files and changed Index-linter files pass Ruff; Chatlas Anchory
+  structural check passes. Whole-package `agentos-py` Ruff retains four unrelated
+  findings in concurrent tournament/workspace work. Existing Skillware stale-derived
+  advisories were deliberately retained.
+- Independent Luna post-run: two CLI invocations completed in 1.242 seconds
+  (0.893-second linter plus 0.349-second manifest), a 92.6% command reduction and
+  approximately 39.1x speedup / 97.4% elapsed-time reduction from the 27-command,
+  48.6-second baseline. It independently confirmed 12 exact subjects, 12 matched
+  attachments, 23 pure `User.Turn` support memberships, 12 token gates, 12 unique
+  deduplicated turns in one session, and no unrelated depot warnings.
 
 ## Impl.Agendix
 
