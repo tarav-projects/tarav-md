@@ -7,7 +7,7 @@
 - cause of the retirement: `GR` typed lines inside `Grounding.Head` evidence boards, a block-grounding axis retired in July 2026 (`notes/live/594-grounding-retirement-tooling-impl-req.md`, executed 2026-07-18). Grounding became a line property; the type was left behind as an orphan of that retirement and never acquired a second use — zero `GR` lines exist across 1950 typed lines project-wide
 - two halves, and they are gated differently: (1) `agentos-py` linter code still accepts `GR` as an act code and ships a `GR`-specific check; (2) live md surfaces still cite the retired type, and two of those citations are themselves gated Index lines
 - out of scope: historical `Impl.Req` notes under `notes/live/` (571, 574, 577, 579, 594, 611) — they are the record of what happened and are not linted
-- status: designed 2026-08-11, awaiting readiness approval
+- status: executed 2026-08-11 — all four slices Done
 
 ## Impl.Index
 
@@ -95,3 +95,11 @@ Not self-written. Propose through `Index.Edition.Turn`, take `::approve <token>`
 ## Impl.Log
 
 - 2026-08-11: designed. Scope confirmed by direct inspection of all six named files.
+- 2026-08-11: readiness approved ("go"), with `NO.LEGACY.ALLOWED` reaffirmed on the deprecation-branch decision.
+- 2026-08-11: **Slice 1 Done.** RED confirmed against current code before the change. `GR` dropped from `_LINE_TYPE_ACT_CODES`; constant, check branch, import, and `__all__` export deleted. `tests/test_index_linter_lines.py` now asserts a `[GR]` line reports `UnknownCode` and that `Line.Type.GR.MissingAnchor` appears nowhere.
+- 2026-08-11: **Slice 2 Done.** `agentos-py` suite 950 passed. Depot linter deterministic and unchanged at 9376 warnings / 1 error before and after the code change; the single error is the pre-existing `Index.Linter/Block.TooLong` at `design/113-design.md:5`, another session's work.
+- 2026-08-11: **Slice 3 Done.** Three `.skw` sources edited; `agentos skw build --skill .` rebuilt `type.md`, `check.md`, `search.md`. Skillware check reports all three `[ok]`; the 6 remaining advisory POIs are derived-stale notices on untouched files. Vocabulary header now reads "Seven types".
+- 2026-08-11: **Slice 4 Done.** Approved as `idx-edition:d571e0b4` and landed: POI class block removed from `poi/101-poi.md`, its router row dropped from `000-INDEX.md`, and the `External.Checks` appendix line revised. All three targets were unanchored legacy lines, so no anchors were minted and no successor-reference question arose. Linter after landing: 9373 warnings / 1 error — the −3 is exactly the removed POI block.
+- 2026-08-11: **Deviation — scope extension.** The acceptance sweep found `[GR]` used in five `agentos-py` test fixtures as an incidental stand-in for "an anchored typed line" (`test_index_model_parser.py`, `test_index_blocks.py`, `test_index_linter_lines.py`). None asserted on the code itself, so they passed while quietly emitting `UnknownCode`. Retyped to `[DC]` under `No.Legacy.Allowed`; the only deliberate `[GR]` left is the retirement test's own fixture.
+- 2026-08-11: **Blocker, unrelated.** `tests/test_agent_monitor_limits_tracking.py` fails (2–4 tests, count varying between runs) from another session's concurrent account-hook work. All 99 `index` tests pass. Not addressed here — outside this scope and actively being edited.
+- 2026-08-11: **Incident.** A `git stash` in `agentos-py`, used to baseline the linter, raced that session's `git add -A` checkpoint: commit `ef2aa61` swept this work's in-progress edits, and the `stash pop` found nothing. Content verified intact in place and tests re-run. Do not use `git stash` in these shared repos.

@@ -52,7 +52,7 @@ This is the read-only `Touched.Decision.Cycle` entry: it classifies `Live.Index.
 
 ## Reading What You Find
 
-- lines may carry a leading `Line.Type` code (`- [CT] ...`): the type is the line's act — `[CT]`/`[DC]`/`[RJ]` bind, `[PR]` orients, `[FR]` frees, `[DF]`/`[EX]` inform, `[GR]` cites evidence; see `references/type.md` to read them as constraints
+- lines may carry a leading `Line.Type` code (`- [CT] ...`): the type is the line's act — `[CT]`/`[DC]`/`[RJ]` bind, `[PR]` orients, `[FR]` frees, `[DF]`/`[EX]` inform; see `references/type.md` to read them as constraints
 - parser-backed tools read index surfaces as typed nodes: `RouterEntry` rows, `BlockHeading`s, `KernelLine`s, `MetaLine`s, code fences, and inline spans such as anchors, concept cites, type brackets, and file mentions
 - untyped lines are pre-fence legacy — same authority, just not yet classified
 - a trailing `^c<YYYYMMDD>-<N><tag>` token is the current `Support.Reference` realization: an `Anchory.Anchor` resolving to a Chatlas support set; see `references/link.md`

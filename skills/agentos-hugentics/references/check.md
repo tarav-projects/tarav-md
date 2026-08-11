@@ -43,7 +43,7 @@ This policy certifies presentation followed by explicit token approval. It does 
 
 ## Built-In Grounding Checks
 
-- the installed `agentos index linter` runs parser-backed `Line.Type` syntax checks (bracket form, known act codes, `[GR]` trailing anchor; `AS:` outside `agendix/` is an ERROR), default `Index.Linter/Line.Unlinked` POIs for every live line missing a reference, and the chatlas grounding-provenance check
+- the installed `agentos index linter` runs parser-backed `Line.Type` syntax checks (bracket form, known act codes; `AS:` outside `agendix/` is an ERROR), default `Index.Linter/Line.Unlinked` POIs for every live line missing a reference, and the chatlas grounding-provenance check
 - `--coverage line` measures syntactic support-reference presence; it never claims that a present reference resolves
 - `--coverage block` enables `Index.Linter/Block.Ungrounded`: a block is grounded iff every kernel line has a support reference resolving to a nonempty `Support.Set` (empty blocks count grounded)
 - a missing chatlas backend renders `Index.Linter/Grounding.Provenance` as a blocked check, never a silent skip

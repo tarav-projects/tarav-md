@@ -964,6 +964,7 @@
 - [DC] `Index.Line.Anchor` lets workflows refer to an anchored `Index.Line` across its surface occurrences; all occurrences carrying one anchor must agree on `Line.Type + Index.Line.Body` ^c20260811-44u
 - [CT] using an anchor as a line reference is an operational selector, not a claim that the anchor is the `Index.Line` identity or a `Stable.Reference` ^c20260811-45u
 - [DC] anchor-based line selection is best effort: a workflow refuses the selection when inspected occurrences disagree, while a linter may check agreement across a broader Index floor ^c20260811-46u
+- [DC] comprehensive agreement checking across anchor occurrences belongs to normal Index linting rather than each anchor resolution ^c20260811-48u
 
 ****
 

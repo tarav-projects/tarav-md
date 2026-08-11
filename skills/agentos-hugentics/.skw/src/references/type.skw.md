@@ -25,7 +25,7 @@ The index definitions of `Line.Type`, `Line.Type.Vocabulary`, and the `Line.Type
 
 ## The Vocabulary
 
-Eight starting types, sorted by their verb on the `Design.Space`. One-line reminders — the `Line.Type::XX` blocks are the authority:
+Seven types, sorted by their verb on the `Design.Space`. One-line reminders — the `Line.Type::XX` blocks are the authority:
 
 | verb | type | act |
 |---|---|---|
@@ -36,7 +36,6 @@ Eight starting types, sorted by their verb on the `Design.Space`. One-line remin
 | orient | `PR` | generative orientation across variables |
 | open | `FR` | explicitly declares a variable agent-owned |
 | witness | `EX` | illustrates another line's claim with a concrete case |
-| cite | `GR` | accounts what an anchored evidence neighborhood grounds, anchor trailing |
 
 The act axis is the type. Every typed line is user-turn-grounded, on every surface — the assistant-grounded source marker (`[AS:XX]`) is retired; a line encountered carrying it is legacy, re-grounded on a user turn or dropped when next touched.
 
