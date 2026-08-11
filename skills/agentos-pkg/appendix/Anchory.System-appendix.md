@@ -13,7 +13,6 @@
 ## Anchory.System/Anchory.Anchor
 
 - `Anchory.Anchor` is a stable token standing for a context on another surface
-- an anchor identifies an evidence neighborhood, not necessarily one exact record or turn
 - the token remains small because resolution data lives in `Anchory.Register`
 - [CT] Anchory does not decide whether an application-level amendment preserves anchor identity; the integrating application owns that semantic decision ^c20260809-115u
 - anchor keys may carry application-specific hints without making those hints the generic identity contract
@@ -86,7 +85,7 @@
 - the first Anchory integration is the Chatlas anchory at `<chatlas-depot>/anchory/`
 - every Chatlas Anchory action uses the active Chatlas depot
 - Chatlas owns traversal from an `Anchory.Record` to the session and evidence neighborhood
-- the reading rule after resolution: the anchor lands in an evidence neighborhood — read the landing turn and around it
+- Chatlas resolves a support member to its session and `Evidence.Neighborhood`
 - full `Context.Grounding` follows those anchors through Anchory and then through Chatlas
 - `Index.Agendix` can use anchors for its hard provenance rule
 

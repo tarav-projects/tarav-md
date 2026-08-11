@@ -840,6 +840,17 @@
 
 ****
 
+## Evidence.Neighborhood
+
+- [DF] `Evidence.Neighborhood` is the readable region a `Support.Set` member identifies on its `Touch.Authority.Surface`: the member's own datum together with the surrounding context needed to read it ^c20260811-37u
+- [DC] the support members identify the neighborhood; an `Anchory.Anchor` resolves to a dossier and carries no neighborhood of its own ^c20260811-38u
+- [DC] the reading rule is to read the landing datum and around it, bounded by an implementation-chosen radius ^c20260811-39u
+- [PR] a touched datum is often not self-contained — its meaning can depend on what it answers, so reading a member alone can misread the touch it carries ^c20260811-40u
+- [EX] an approval touch reads this way: the user's datum records the intervention while the material approved sits beside it ^c20260811-41u
+- [CT] the neighborhood is a reading unit rather than a second `Support.Set` — nothing inside it gains support standing or `Touched.Authority` by proximity ^c20260811-42u
+
+****
+
 ## Touched.Surface.Index
 
 - [DF] `Touched.Surface.Index` is the category of surfaces that materialize `Touched.Index` through `Index.Line`s ^c20260729-274u
@@ -950,6 +961,9 @@
 - [CT] resolving or satisfying a relationship in one namespace establishes nothing about relationships in another namespace ^c20260809-195u
 - [CT] an anchor attached to a prior `Support.Reference` is not reused for its successor edge ^c20260810-22u
 - [DC] the successor anchor’s dossier preserves relationship history through an application-owned predecessor relation ^c20260810-23u
+- [DC] `Index.Line.Anchor` lets workflows refer to an anchored `Index.Line` across its surface occurrences; all occurrences carrying one anchor must agree on `Line.Type + Index.Line.Body` ^c20260811-44u
+- [CT] using an anchor as a line reference is an operational selector, not a claim that the anchor is the `Index.Line` identity or a `Stable.Reference` ^c20260811-45u
+- [DC] anchor-based line selection is best effort: a workflow refuses the selection when inspected occurrences disagree, while a linter may check agreement across a broader Index floor ^c20260811-46u
 
 ****
 

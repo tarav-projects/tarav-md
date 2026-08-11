@@ -367,15 +367,6 @@
 
 ****
 
-## Line.Type::GR
-
-- [DF] `Line.Type::GR` marks a grounding line — a one-sentence account of what an anchored evidence neighborhood grounds
-- [CT] validation point: the line must carry a trailing anchor and state what the evidence grounds; a `GR` without an anchor is mistyped
-- [DC] lint: an anchor that does not resolve, and a `GR` account contradicted by its anchored neighborhood
-- [DC] grounding is factual evidence, not authority: the gate turn (`Turn.Type::<Surface>.Gate`) lives in a line's own support set; a `GR` line accounts for what separate evidence grounds ^c20260716-54u
-
-****
-
 ## Design.Variable
 
 - `Design.Variable` is one axis of the `Design.Space` — a question a design must resolve on its way to implementation
