@@ -813,3 +813,10 @@ Strongest nominations by corroboration count:
 | `9c99ac4367de` | 3 | `105` designer-turn and test-suite |
 | `acd5f1c1931e` | 3 | `102` alignment |
 
+### `Q3-012` type-only canary — attached 2026-08-10
+
+- action: `retrofit-type`, authorized by `::retrofit-type Q3-012`
+- result: `attached`; added `[DC]` to `design/103-design.md:23` while preserving the body and `^c20260716-36u`
+- attachment: parser-owned reattachment changed only the triplet assertion from `sha256:07f48380b9aab1738d37a2d06f185d75f637b03e581ace9e61fc9c36965658e7` to `sha256:36ade1e8b18cea5c175c123baa5f8a4db10ef7d8aa6fb8e52ab1447799a08875`
+- relationships: support, gates, provenance, predecessor history, and anchor identity preserved
+- validation: anchor-scoped linter `15/15` passed with zero findings; reference-detail `Index.Line.Manifest` reports `type: DC`, `standing: matched`, and `purity: User.Turn`

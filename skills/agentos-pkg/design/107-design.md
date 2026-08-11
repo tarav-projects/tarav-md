@@ -924,6 +924,8 @@
 - [DC] its edges have the form `Support.Set` ↔ `Support.Reference` ↔ `Index.Line` ^c20260729-219u
 - [DF] `Support.Reference` is the semantic grounding relationship between an `Index.Line` and its `Support.Set`; it is not the line’s anchor identity ^c20260809-113u
 - [DC] an `Index.Line.Anchor` dossier records the line’s `Support.Reference` in its support namespace ^c20260809-114u
+- [DC] a changed semantic support interpretation creates a successor `Support.Reference` because it creates a new network edge, even when the `Index.Line` content is unchanged ^c20260810-20u
+- [CT] amendments to assertions or metadata that preserve the semantic edge do not by themselves create a successor reference ^c20260810-21u
 - [DC] an authority surface holds the first-order touched data while an index surface holds its grounded line ^c20260729-195u
 - [DC] the network is dynamic: nodes and edges change as authority surfaces and their grounded projections evolve ^c20260729-244u
 - [DC] touched surfaces hold the live cut, source surfaces preserve their evidence, and surface history preserves prior network states ^c20260729-247u
@@ -943,6 +945,21 @@
 - [CT] neither the attachment hash nor the line content defines anchor identity ^c20260809-110u
 - [FR] after a line amendment, the maintainer may preserve the anchor and update its attachment assertion or assign a new anchor according to the application semantics ^c20260809-111u
 - [CT] an anchor is never repurposed for an unrelated line relationship ^c20260809-112u
+- [DC] a dossier’s relationship namespaces independently type its relationships; each namespace owns its relationship shapes, referenced coordinates, and validation semantics ^c20260809-193u
+- [CT] the same coordinate may occur in several namespaces when each occurrence asserts a different relationship ^c20260809-194u
+- [CT] resolving or satisfying a relationship in one namespace establishes nothing about relationships in another namespace ^c20260809-195u
+- [CT] an anchor attached to a prior `Support.Reference` is not reused for its successor edge ^c20260810-22u
+- [DC] the successor anchor’s dossier preserves relationship history through an application-owned predecessor relation ^c20260810-23u
+
+****
+
+## Index.Line.Manifest
+
+- [DF] `Index.Line.Manifest` is a line-centered `Volatile.Surface` projecting selected `Index.Line`s with their resolved anchors and relationships ^c20260809-184u
+- [CT] a manifest is derived inspection material, never authority, a durable ledger, or a new relationship ^c20260809-185u
+- [CT] stable Index and authority surfaces remain the sources of every fact projected through a manifest ^c20260809-186u
+- [DC] one manifest may batch multiple lines while preserving each relationship’s independent type and attachment ^c20260809-187u
+- [FR] implementations choose their selectors, detail levels, and inspection bounds ^c20260809-188u
 
 ****
 

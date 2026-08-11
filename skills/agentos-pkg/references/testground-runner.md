@@ -32,11 +32,11 @@ Model selection:
 After the session completes, use chatlas to find and read the session transcript:
 
 ```bash
-agentos chatlas query <selector>
-agentos chatlas views inline <session-id>
+agentos chatlas query <selector-options>
+agentos chatlas views get --session-id <session-id> --view replay
 ```
 
-The inline transcript contains the full tool call sequence — which files were read, in what order, and what the agent produced. This is the mechanical navigation trace.
+The replay view contains the chronological messages and tool-call sequence — which files were read, in what order, and what the agent produced. This is the mechanical navigation trace. Use `--view events --json` when evaluation needs the complete normalized event records rather than the readable replay.
 
 ### 3. Evaluate
 

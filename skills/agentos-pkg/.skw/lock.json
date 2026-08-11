@@ -31,11 +31,11 @@
       ]
     },
     "references/index-retrofit-worker.md": {
-      "output_sha256": "730a8d61e583d152fd581b06d3ff36ea122b0c305a288ca77251cfcdf264ae18",
+      "output_sha256": "47d1df2f5c727eeabcd398bd3cdf42e8aca7f0fc4bf5b01a0f59994ce82d2f6f",
       "recipes": []
     },
     "references/index-retrofit.md": {
-      "output_sha256": "7ee3e7c5a48aecdd636fcbd29002aa862902adbc7a8be1c83ce7de3dbe9c0cc9",
+      "output_sha256": "e239cd3798f56fac4e620c6a9f3a1921872859776ad9c766ce96df9b46c19bf8",
       "recipes": []
     }
   },

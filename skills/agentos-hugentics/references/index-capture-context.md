@@ -16,8 +16,9 @@ Close every category below before building the candidate map:
 4. **Operational model.** Load `references/search.md`, `references/edit.md`, `references/agendix.md`, `references/type.md`, `references/link.md`, and `agentos-pkg/references/index-block-catalog.md`.
 5. **Depot model.** Run `Index.Discovery` and resolve the task-relevant engaged `Index.Depot`s through their routers. Respect explicit `--depot` and `--chapter` scope; otherwise include every depot materially engaged by the conversation.
 6. **Touched concept closure.** For every concept materially touched by the chat, load its routed ontology block, appendix page, live agendix file, and relevant line standing. Follow related concepts until overlap, contradiction, or missing grounding is explicit.
-7. **Authority-surface closure.** Follow support references to original qualifying user turns when the index digest is insufficient, disputed, or consequential. Do not treat every chat or every user turn as touched merely because it exists.
-8. **External evidence closure.** Inspect code, files, adjacent project surfaces, Git history, and runtime state when they change whether a candidate is new, coherent, naturally placed, or already captured.
+7. **Relationship projection.** Collect the anchors of the materially relevant existing lines and resolve them together with `agentos chatlas line manifest show --depot <depot> --anchor <anchor> ... --detail reference`. Use the resulting attachment standing and independently typed support, gate, and provenance relationships to build the candidate map without N+1 anchor resolution. The manifest is a derived `Volatile.Surface`; it neither establishes authority nor creates relationships. Proposed lines remain outside it until landing allocates their anchors.
+8. **Authority-surface closure.** Use the relationship projection to select the references that require original evidence, then escalate only those references with manifest `--detail turn` or bounded `--detail context --radius N` when the index digest is insufficient, disputed, or consequential. Do not treat every chat or every user turn as touched merely because it exists.
+9. **External evidence closure.** Inspect code, files, adjacent project surfaces, Git history, and runtime state when they change whether a candidate is new, coherent, naturally placed, or already captured.
 
 Exhaustive means closing these categories for the engaged task, not reading every byte of every discovered depot. The agent must know which categories were checked and which surfaces do not exist.
 
@@ -26,6 +27,7 @@ Exhaustive means closing these categories for the engaged task, not reading ever
 - Keep the module load and evidence inventory internal unless a missing or conflicting source materially affects the user's decision.
 - Treat the visible conversation as already shared context: do not restate what the user just established merely to prove it was grounded.
 - Separate grounded authority, ungrounded index presumption, review state, and demoted history; these are independent distinctions.
+- Prefer terminal manifest inspection. Materialize beneath the ignored Chatlas workspace only when the same derived projection will be reused, and never make its path a durable dependency.
 - Use adjacent evidence to improve candidates, not to widen the visible session without need.
 - Surface contradictions and support gaps as POIs; their existence does not prescribe a capture or deletion.
 - `Hugentic.Capture.Context.Assembly.Module` carries index-capture preparation; `--capture` does not require a separate design-workflow skill at runtime.

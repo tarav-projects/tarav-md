@@ -89,7 +89,7 @@
       ]
     },
     "references/capture.md": {
-      "output_sha256": "5e28f788385980904af483e0df4280ed3887857d3ce050fe25bd112f905381f4",
+      "output_sha256": "b48a32dc56efbd0ec13b2d9d82da75d5ba4249b8607d937e69e70a6c139340bd",
       "recipes": [
         {
           "heading": "Landing",
@@ -132,7 +132,7 @@
       "recipes": []
     },
     "references/edit.md": {
-      "output_sha256": "c3c0fe7a8e7d915c1182b01de6f117cfba732c4f31bd26f909e7e31133c93ee1",
+      "output_sha256": "795ff73a5a542e72310f8db059839fda0edef89997ae3f6bbb3885025462bce3",
       "recipes": [
         {
           "heading": "Block Independence",
@@ -308,7 +308,7 @@
       "recipes": []
     },
     "references/index-capture-context.md": {
-      "output_sha256": "fb56ff153864177793142d1f3186396ec17b6ae33dac4f538670dd3e515a2f91",
+      "output_sha256": "af4e3ed13913889a56fa039caefc4923371200271a2b65400d56375471d87075",
       "recipes": []
     },
     "references/index-context-assembly.md": {
@@ -320,7 +320,7 @@
       "recipes": []
     },
     "references/link.md": {
-      "output_sha256": "156d90225ef2c0462fb324f023395bdc7a5cc47594d83f928f93d64021647402",
+      "output_sha256": "2bf40999f2767bf0a083aa54fa769dfc45611345f79e830ae9471d98453d44ff",
       "recipes": []
     },
     "references/parking-note.md": {

@@ -53,8 +53,8 @@ Operationally, capture applies `Touched.Decision.Cycle` to `Touch.Authority.Surf
 A pass over the chat's uncaptured content, repeated until the content is exhausted or the user stops:
 
 1. **Contextualize / Assemble.** Load `Hugentic.Capture.Context.Assembly.Module`, including the touched-data and decision-cycle knowledge modules.
-2. **Contextualize / Discover.** Resolve engaged depots, live line standing, authority-surface evidence, and adjacent non-touch evidence.
-3. **Contextualize / Ground.** Treat only qualifying user-turn editions as direct touched data. Follow existing support references when the digest is insufficient; preserve ungrounded live lines as `Index.Presumption`.
+2. **Contextualize / Discover.** Resolve engaged depots and live line standing, then batch the materially relevant existing anchors into a reference-detail line manifest before inspecting authority-surface or adjacent non-touch evidence.
+3. **Contextualize / Ground.** Treat the manifest as a volatile relationship projection, not authority. Use it to select support references, escalate only the references whose original turns or bounded context are needed, and preserve ungrounded live lines as `Index.Presumption`.
 4. **Contextualize / POIs.** Make gaps, contradictions, ambiguity, stale projections, and missing grounding explicit before choosing a capture move.
 5. **Act / Map.** Build an internal candidate map covering overlap, dependencies, natural edit actions, possible destinations, and POIs that may legitimately remain unresolved.
 6. **Act / Roadmap.** In `Interactive` mode, present the small public `Capture.Roadmap`: likely block or edit clusters and one sentence explaining each.

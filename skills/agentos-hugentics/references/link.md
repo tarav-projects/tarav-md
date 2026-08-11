@@ -42,7 +42,7 @@ For gated newly drafted content, this pipeline is landing work. Do not resolve p
 
 ## Code-Side Evidence
 
-- file-touches are the code-side analogue of chat anchors: `agentos chatlas query --file-touched "<path>"` finds the sessions that actually read/wrote a file (mentions never match), and `views inline --file-write "<path>"` lands on the touching moments — the "find the evidence turn" step for code changes
+- file-touches are the code-side analogue of chat anchors: `agentos chatlas query --file-touched "<path>"` finds the sessions that actually read/wrote a file (mentions never match), and `agentos chatlas views get --file-write "<path>" --view events` lands on the touching moments — the "find the evidence turn" step for code changes
 
 ## Anchor Discipline
 
@@ -70,5 +70,7 @@ Anchors ground on turns, but some evidence is finer than a turn — a specific t
 
 - `agentos chatlas anchory resolve <anchor>` — compact record and member summary
 - `agentos chatlas anchory resolve <anchor> --detail turn|context [--radius N]` — explicitly escalates to exact turns or bounded message-turn neighborhoods
+- `agentos chatlas line manifest show --depot <depot> --anchor <anchor> ...` — resolves several attached lines and their independently typed relationships in one process; `materialize` writes the same derived payload beneath ignored `<chatlas-root>/workspace/`
+- a line manifest is a `Volatile.Surface`: use it for inspection and batch resolution, never as support authority or as a new relationship
 - the landing turn is the member turn's own user message; assistant context is recovered by reading the neighborhood around it
 - `agentos anchory resolve --anchor <anchor> [--depot …]` remains the record-level (plumbing) view

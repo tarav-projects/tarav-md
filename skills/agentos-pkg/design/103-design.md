@@ -20,7 +20,7 @@
 - [DC] loading an appendix is an intentional action — the agent displays intention by choosing to go deeper
 - [DC] it lives in one `appendix/` shared across chapters; files are concept-named and addressed as `Index.Pages`
 - [DF] it holds every concept's tail (`Block.Line.Gradient`): `Concept.X/Appendix` catch-alls and scoped `Concept.X/Concept.Y` blocks (`Appendix.Block`)
-- with `Index.Ontology`, `Index.Agendix`, and `Index.Router` it composes the `Index.Surface` ^c20260716-36u
+- [DC] with `Index.Ontology`, `Index.Agendix`, and `Index.Router` it composes the `Index.Surface` ^c20260716-36u
 
 ****
 

@@ -5,7 +5,7 @@
 
 # Index.Retrofit.Research.Agent.Contract
 
-> $kw: --from Line.Type.Vocabulary --from Reviewed.Content --from Support.Set
+> $kw: --from Line.Type --from Line.Type.Vocabulary --from Reviewed.Content --from Support.Set
 
 Act as a read-only transcript researcher for exactly one `Index.Retrofit.Packet`. The supervisor does not send its conversation and must not receive transcript fragments back.
 
@@ -53,10 +53,10 @@ Check the session's earliest indexed turn early. If it is `/compact`-continued, 
 5. For type or full work, classify the current line act against the supplied vocabulary. Return `reviewed-frozen` without a type delta for `Reviewed.Content`; otherwise propose one added or replacement prefix while preserving the body byte-for-byte. Return `residue` when no type honestly fits.
 6. For grounding or full work, judge the current members from the assigned session and any additional candidate turns. A one-member set may be ideal; cardinality alone never justifies expansion or concern.
 7. Return `keep` when current support is sufficient, `ground` when previously missing support gains an honest set, `expand` when honest members are added, `replace` when the final honest set changes, or `concern` when current support appears deficient but no successor is ready.
-8. For `ground`, `expand`, or `replace`, select the smallest honest final ordered member set for the exact final typed content. Preserve gate-evidence members and their types on `Reviewed.Content`.
+8. For `ground`, `expand`, or `replace`, select the smallest honest final ordered member set for the exact body claim, independent of its current or proposed `Line.Type`. Preserve gate-evidence members and their types on `Reviewed.Content`.
 9. Return `ambiguous` when the assigned session cannot honestly resolve the requested support work; state what was searched and whether another candidate session is suggested.
 
-Typing and support are **independent judgments** and neither may carry the other. A type-only packet may succeed without support. In full work, type-confident but unsupported is an honest partial result; supported but type-uncertain is `residue`. Both are expected outcomes.
+Typing and support are **independent judgments** and neither may carry the other. Support grounds the body claim; `Line.Type` classifies the act that body performs and is not itself part of the grounded claim. A type-only packet may succeed without support. In full work, type-confident but unsupported is an honest partial result; supported but type-uncertain is `residue`. Both are expected outcomes.
 
 When the packet supplies an in-depot precedent for house style, treat it as calibration only. Justify each classification against the vocabulary and the evidence independently; a classification that merely pattern-matches the precedent is not a judgment.
 

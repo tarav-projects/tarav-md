@@ -49,16 +49,19 @@ After selection, `--random` and `--target` run the same recovery workflow.
      --sort newest --scan-limit 5000 --field identity_hash
    agentos chatlas query --raw-contains <basename> \
      --sort newest --scan-limit 5000 --field identity_hash
-   agentos chatlas views inline --contains <path-or-basename> --format json
+   agentos chatlas query --message-contains <path-or-basename> \
+     --sort newest --scan-limit 5000 --field identity_hash
    ```
 
-4. Inspect a focused transcript fragment for every candidate. Broad matching only discovers candidates; it never establishes an association.
+4. Inspect a focused event fragment for every candidate. `file-edition-pois` ranks normalized file-mutation evidence but remains a heuristic; broad matching and POIs only discover candidates and never establish an association. Resolve the candidate's native session id for the POI pass and retain its neutral Chatlas identity for persistence.
 
    ```bash
-   agentos chatlas views inline --identity-hash <chatlas-identity> \
-     --tool-contains <path-or-basename> --format json
-   agentos chatlas views inline --identity-hash <chatlas-identity> \
-     --around <ISO-time> --radius 6 --format json
+   agentos chatlas file-edition-pois \
+     --session <native-session-id> --file <project-relative-path> --json
+   agentos chatlas views get --identity-hash <chatlas-identity> \
+     --tool-contains <path-or-basename> --view events --json
+   agentos chatlas views get --identity-hash <chatlas-identity> \
+     --around <ISO-time> --radius 6 --view events --json
    ```
 
 5. Establish a content bridge from the transcript mutation to the Git edition. Inspect the target file's commit diff and verify that the supported mutation produced content represented in that edition:

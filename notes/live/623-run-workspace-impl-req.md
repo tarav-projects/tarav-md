@@ -15,7 +15,9 @@ created by an agent that has not read what a workspace is.
 workspace onto a stable surface stays a manual, gated act. No cross-repo Wayfinder addressing of
 the guide (see the decision below). No integration with the tournament engine.
 
-**Status.** Designed, not executed.
+**Status.** Executed. All six slices are implemented; the 32 workspace tests and the whole
+tournament suite pass. See `Impl.Log` D2 for 46 unrelated failures owned by another session.
+Changes are uncommitted for review.
 
 **Source context.** `agentos-md/skills/agentos-pkg/design/100-design.md`: the new
 `Volatile.Surface` and `Run.Workspace` blocks. `design/107-design.md`: `Skw.Surface.Token`,
@@ -104,7 +106,7 @@ Execution is authorized by `^c20260809-183u`, the `--impl --dev --exec` invocati
 
 ## Execution.Plan
 
-### Slice 1 — The guide and its token (RED first)
+### Slice 1 — The guide and its token (RED first) — **Done**
 
 Add `src/agentos/workspaces/GUIDE.md` — what a workspace is, the one-way arrow, the required
 `AGENTS.md` and its manifest keys, git inside never around, and how to dispose of one. Header line
@@ -114,7 +116,7 @@ carries `surface-token: aws-unlock:<hex>`. Add `guide_text()` and `guide_token()
 - **Check:** `guide_token()` returns the header's token; a guide whose header is missing or
   malformed raises a named error rather than returning an empty token that would gate nothing.
 
-### Slice 2 — Workspace root and the manifest reader
+### Slice 2 — Workspace root and the manifest reader — **Done**
 
 Add `root.py`: resolve `~/.agentos/workspaces` with `AGENTOS_WORKSPACES_ROOT` then an explicit
 `--root`, mirroring `Tournament.Depot`. Add `manifest.py`: parse `### manifest` `- key: value`
@@ -125,7 +127,7 @@ lines out of an `AGENTS.md`, returning a typed record with defaults for absent k
   as `status: open, extracted: none` rather than failing, because a hand-written workspace is
   still a workspace; an unknown `status` value is an error naming the file.
 
-### Slice 3 — `guide` and the gated `init`
+### Slice 3 — `guide` and the gated `init` — **Done**
 
 Add `commands.py` with `workspace guide` (prints the guide, token last) and `workspace init
 --slug <name> --kind <kind> --unlock <token> [--purpose ...] [--seed ...]`. `init` creates
@@ -137,7 +139,7 @@ Add `commands.py` with `workspace guide` (prints the guide, token last) and `wor
   has `AGENTS.md` and `.git`; `init` inside a git worktree refuses; a duplicate slug on the same
   date errors rather than overwriting.
 
-### Slice 4 — `list` and `show`
+### Slice 4 — `list` and `show` — **Done**
 
 `workspace list [--json]` reads every manifest and prints slug, kind, status, extracted, and age.
 `workspace show --slug <name> [--json]` prints one manifest plus its top-level file listing.
@@ -147,7 +149,7 @@ Add `commands.py` with `workspace guide` (prints the guide, token last) and `wor
   an unreadable `AGENTS.md` appears in the listing marked unreadable rather than vanishing —
   silence is the one thing a disposal read must not do.
 
-### Slice 5 — `sweep`
+### Slice 5 — `sweep` — **Done**
 
 `workspace sweep [--harvested-days N] [--open-days N] [--json]` lists deletion candidates with the
 reason each qualified. `sweep --apply` deletes them.
@@ -157,7 +159,7 @@ reason each qualified. `sweep --apply` deletes them.
   still existing after the call; `--apply` removes exactly the listed set; a workspace whose
   status is `open` and recently modified is never a candidate.
 
-### Slice 6 — CLI registration and documentation
+### Slice 6 — CLI registration and documentation — **Done**
 
 Register `register_workspace_commands` in `agentos-cli/src/agentos_cli/cli.py`. Reinstall the
 executable per `AGENTS.md`. Add a Workspaces section to `agentos-py/AGENTS.md`. Add `$kw` headers
@@ -198,6 +200,18 @@ swap order; 5 last because it is the destructive one.
 Skillware-managed. Shipping it as a package resource satisfies the line and avoids cross-repo
 addressing that has exactly one consumer today. Recorded because the alternative is the more
 "correct-looking" one and a later reader deserves to know it was considered and declined.
+
+**D2 — 46 index-linter tests fail, and none of them are this work.** `test_index_linter.py`,
+`test_index_linter_lines.py`, `test_index_linter_agendix.py`, and `test_index_linter_selectors.py`
+break against uncommitted edits in `src/agentos/index/` made by the concurrently running anchor
+migration. Verified by scope: every workspace and tournament test passes (268 selected). Not
+repaired here — repairing another session's mid-edit state would collide with it.
+
+**D3 — another session committed this work mid-slice.** Checkpoint `d2ff130`
+("checkpoint before line manifest implementation") ran `git add -A` and swept `GUIDE.md`,
+`guide.py`, and `workspaces/__init__.py` into its own commit while slice 3 was in progress. No
+content was lost and nothing needed redoing; recorded because the history now attributes part of
+this change to an unrelated commit message.
 
 **Concurrency note.** `agentos-py` carries in-flight work from another session in
 `src/agentos/index/` and `src/agentos/anchory/`. This implementation adds `src/agentos/workspaces/`
