@@ -58,8 +58,8 @@ For candidate blocks, name the attachment path: `Target: create ## Concept.X/Age
 
 1. **Route** each entry under a routed concept — a line appends to `Concept.X/Agendix`, a candidate block attaches intact as `Concept.X/Agendix/Candidate.Name`. No routed concept → `agendix/Unassigned-agendix.md`, the homeless pool: accumulated evidence that a concept may be missing — promotion evidence, never a dump; an intact candidate block there is the strongest form of that evidence.
 2. **Fence**: type each line; drop what cannot take a type.
-3. **Support**: build one `Support.Set` per line through `references/link.md`; the current implementation mints a trailing Anchory anchor over qualifying Chatlas user-turn members.
-4. **Write** `agendix/Concept.X-agendix.md` in the engaged depot, next to `appendix/` — appendix writing rules, block heading `Concept.X/Agendix`, lines appended:
+3. **Support**: build one `Support.Set` per line through `references/link.md`; the current implementation mints a trailing Anchory anchor over qualifying Chatlas user-turn members. For a multi-line landing, use one `chatlas.anchor-batch.v2` preview and registration pass over every exact final typed body; keep a stable `client_id` per drafted line and consume the returned `client_id → anchor` mapping. Do not shell-loop the single-line preview/register commands.
+4. **Write** `agendix/Concept.X-agendix.md` in the engaged depot, next to `appendix/` — apply the complete returned anchor mapping in one patch using appendix writing rules, block heading `Concept.X/Agendix`, and lines appended:
 
    ```md
    - [CT] `Reviewed.Cite.Closure`: reviewed surfaces may not cite the agendix, unreviewed surfaces may — promotion copies content out before an index cite ^c<YYYYMMDD>-<N>u

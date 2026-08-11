@@ -14,10 +14,8 @@ All steps run through `agentos chatlas` and `agentos anchory` commands — never
 
 For gated newly drafted content, this pipeline is landing work. Do not resolve proposal support or allocate an anchor before final token approval and the landing trigger. A draft may carry `^<anchor-on-landing>` only as an inert placeholder that the landing procedure replaces.
 
-1. **Resolve the session.** Most linking happens on the edge — anchoring content produced in the *current* session, whose id the agent usually does not know. Discover yourself by content matching:
-   - refresh and pull the recent candidates: `agentos chatlas recents` or `agentos chatlas query --active-after <recent> --update`
-   - filter with verbatim user turns from your own context — the more distinctive the phrasing, the better: `agentos chatlas query --user-contains "<exact snippet>" --field identity_hash`
-   - repeat with more snippets until exactly one candidate remains: that is you (the conversation is a fingerprint; chatlas has indexed it)
+1. **Resolve the session.** Most linking happens on the edge — anchoring content produced in the *current* session, whose id the agent usually does not know. Invoke `agentos-chatlas-my-session-id` inline as the default path; it uses a provider-native id when trustworthy and otherwise refreshes Chatlas and matches the caller's own verbatim user turns without loading the candidate payload into context. It returns the native session id plus neutral Chatlas identity.
+   - if the dedicated resolver cannot self-locate yet, refresh and pull recent candidates with `agentos chatlas recents` or `agentos chatlas query --active-after <recent> --update`, then filter with distinctive verbatim user fragments until exactly one identity remains
    - shortcuts: a native session id already in hand → `agentos chatlas query --session-id <native-id> --field identity_hash --update`; a past session → normal `query` filters
 2. **Locate and qualify the evidence turns.** Chatlas locates observable editions; the agent chooses semantic support and applies the current chat authority-surface protocol:
    - use compact `agentos chatlas turns query --identity-hash <hash> --contains '<text>' --turn-kind user` for normalized User.Turn discovery; escalate with `--detail turn` only when the complete grouping is needed
@@ -37,6 +35,8 @@ For gated newly drafted content, this pipeline is landing work. Do not resolve p
    - semantic approval is represented under `semantic_approval` with an `approval_turn` and optional `proposal_turn`, but Hugentics reviewed Index workflows require tokenized approval
    - Chatlas validates every reference, preserves support order, allocates the anchor, derives the attachment assertion over `Line.Type + body + Anchor.Id`, and returns the composed anchor (`c<YYYYMMDD>-<N>u`)
    - the raw plumbing remains available: `agentos anchory register --depot <chatlas-root>/anchory --namespace chatlas --alloc-prefix <YYYYMMDD> [--tag u|a] --record-json '…'`
+   - when two or more final lines are being linked, do not repeat these commands: write one ordered `chatlas.anchor-batch.v2` input with a stable `client_id`, exact `line_content`, ordered `members`, and optional `gates`, `predecessors`, and `issue_context` per item; run `agentos chatlas anchory batch preview --input <batch.json> --json`, then `agentos chatlas anchory batch register --input <batch.json> --json`
+   - batch preview validates every item before allocation; batch registration is idempotent, reuses exact equivalents, and returns a `client_id → anchor` mapping so the caller can attach the whole cluster in one Index patch
 4. **Verify.** Registration returns the compact minted record. Escalate with `agentos chatlas anchory resolve <anchor> --detail context [--radius N]` only when the neighborhood must be revisited.
 5. **Return the current support reference** to the caller, which materializes it as a trailing anchor: `… ^c20260707-0u`.
 
@@ -70,7 +70,8 @@ Anchors ground on turns, but some evidence is finer than a turn — a specific t
 
 - `agentos chatlas anchory resolve <anchor>` — compact record and member summary
 - `agentos chatlas anchory resolve <anchor> --detail turn|context [--radius N]` — explicitly escalates to exact turns or bounded message-turn neighborhoods
-- `agentos chatlas line manifest show --depot <depot> --anchor <anchor> ...` — resolves several attached lines and their independently typed relationships in one process; `materialize` writes the same derived payload beneath ignored `<chatlas-root>/workspace/`
-- a line manifest is a `Volatile.Surface`: use it for inspection and batch resolution, never as support authority or as a new relationship
+- `agentos index line manifest show --depot <depot> --anchor <anchor> ...` — assembles selected lines, their parsed block-bounded Index context, and independently typed relationships in one process; `materialize` writes the same derived payload beneath ignored `<chatlas-root>/workspace/`
+- a line manifest is a `Volatile.Surface`: use it for line understanding and bounded relationship inspection, never as support authority or as a new relationship
+- `--verification stored` reads dossier assertions without loading chats; `sampled` validates a deterministic bounded subset and `complete` validates every selected turn reference. `--detail reference|turn|context` controls evidence rendering independently of verification breadth
 - the landing turn is the member turn's own user message; assistant context is recovered by reading the neighborhood around it
 - `agentos anchory resolve --anchor <anchor> [--depot …]` remains the record-level (plumbing) view

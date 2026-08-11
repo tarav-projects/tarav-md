@@ -29,6 +29,7 @@
 - `design/110-design.md` — Agentos.Wayfinder, Wayfinder.Reference, Wayfinder.Registry, Wayfinder.Resolver, Wayfinder.Resolution, Wayfinder.Reference.Type, Wayfinder.Reference.Root, Wayfinder.Reference.Sugar, Wayfinder.Resolution.Result, Wayfinder.Reference.Type::Index.Block
 - `design/111-design.md` — Agentos.Tournament[+1], Tournament.Definition, Tournament.Player, Tournament.Control, Tournament.Control::Injected, Tournament.Hook, Tournament.Match, Tournament.Label, Match.Verbatim, Match.Template, Match.Component.Registry, Tournament.Judge, Judge.Blinding, Tournament.Ticket, Tournament.Verdict, Tournament.Verdict::No.Contest, Tournament.Depot
 - `design/112-design.md` — Improvement.Loop[+1]
+- `design/113-design.md` — Agentos.Hook and Agentos.Hook.Invocation
 - `issues/100-issues.md` — Issue.I0001.Tournament.Definition.Import.Closure
 
 ## File System

@@ -160,6 +160,7 @@ Landing form-fits material to the named surface under that surface's own gate. A
 - **ontology / appendix** — token approval establishes reviewed content, while a separate landing command executes the gated edit; landing resolves qualifying substantive support plus the approval turn into the line's support set
 - **agendix** — one user trigger covers the pass without per-line review; each line still lands typed and grounded through a resolvable support set under a routed concept or provisional path
 - support resolution and anchor allocation are landing work; they occur against the final approved proposal, its qualifying substantive support, and its approval turn, never while the proposal remains open to revision
+- a multi-line landing previews and registers its exact final bodies as one anchor batch, then applies the returned line-to-anchor mapping in one surface patch; the single-line path remains for one line
 - every landing updates the live cut; capture re-contextualizes afterward and reports remaining POIs without treating them as automatic edits
 
 > $kw. end

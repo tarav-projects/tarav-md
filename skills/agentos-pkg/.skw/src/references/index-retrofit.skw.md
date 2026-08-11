@@ -106,7 +106,7 @@ The first invocation is always a cheap supervisor pass. Do not spawn agents, loa
 1. Read the target's applicable `AGENTS.md`, router, and current Index surfaces.
 2. Measure the whole permitted boundary with `agentos index linter --depot <depot> --coverage all --json` and rank blocks with `agentos index blocks --depot <depot> --sort gr-density --json`.
 3. Compute two independent readiness axes. Type is `missing`, `revisitable`, `reviewed-frozen`, `adequate`, or worker-returned `residue`; support is `missing`, `thin`, `established`, or `concern`. Determine `Reviewed.Content` through the existing review checks, not by guessing from prose.
-4. Scope existing support cheaply with `agentos chatlas anchory sessions` over the selected Index sources. For selected lines that already carry line-dossier anchors, batch-validate attachment standing and collect current support, gate, and predecessor references with `agentos chatlas line manifest show --depot <depot> --anchor <anchor> ... --detail reference --json`. Member cardinality nominates `thin` support for research but never proves weakness.
+4. Scope existing support cheaply with `agentos chatlas anchory sessions` over the selected Index sources. For selected lines that already carry line-dossier anchors, collect parsed line and block context, attachment standing, and current support, gate, and provenance references with `agentos index line manifest show --depot <depot> --anchor <anchor> ... --verification stored --detail reference --json`. Member cardinality nominates `thin` support for research but never proves weakness.
 5. Nominate candidate sessions per cluster using `Session.Nomination.Ladder` below. Record which signals fired and which did not.
 6. Run the cheap exhaustion sweep before scoping — see `Cluster Exhaustion Sweep`. Retire zero-signal clusters as `Unreachable.Cluster` instead of scoping them into a pass.
 7. Cluster by candidate session first and line group second. A line may appear in several candidate clusters until research resolves it.
@@ -158,7 +158,7 @@ Keep the report compact and operational, and sufficient to resume cold:
 
 Persist the packet snapshot at dispatch, not after. Once a packet is dispatched, its exact identity otherwise exists only inside the worker prompt, and the campaign stops being resumable.
 
-`Index.Line.Manifest` is a `Volatile.Surface`, not part of the campaign ledger. The supervisor may use `show --detail reference` to batch-validate current dossier assertions and assemble snapshot fields without loading transcript content. Never use `--detail turn` or `context` in the supervisor. `materialize` is allowed only as a disposable inspection cache for oversized output: copy the required references and findings into the durable packet snapshot, and never make resumption depend on the workspace path. Unanchored lines have no line manifest yet and still require their exact report-embedded snapshot.
+`Index.Line.Manifest` is a `Volatile.Surface`, not part of the campaign ledger. The supervisor may use `show --verification stored --detail reference` to assemble parsed line context and current dossier assertions without loading transcript content. Never use `--detail turn` or `context` in the supervisor. `materialize` is allowed only as a disposable inspection cache for oversized output: copy the required references and findings into the durable packet snapshot, and never make resumption depend on the workspace path. Scope-selected unanchored lines may appear with their Index context, but have no dossier relationships and still require their exact report-embedded snapshot.
 
 Never store transcript fragments in the report. Exact `Normal.Turn.Ref` coordinates, hints, and worker rationales are sufficient.
 
@@ -172,7 +172,7 @@ After landing the report, return its path, coverage summary, both readiness axes
 
 Every action command uses the same supervisor loop:
 
-1. Re-read the report and revalidate exact content, current support reference, and review state; for already-anchored packet lines, use one reference-detail `Index.Line.Manifest` batch to validate attachment standing and relationship assertions; drop drifted lines as `stale`.
+1. Re-read the report and revalidate exact content, current support reference, and review state; for already-anchored packet lines, use one stored, reference-detail `Index.Line.Manifest` batch to inspect attachment standing and relationship assertions; drop drifted lines as `stale`.
 2. Select only lines eligible for the commanded action and chosen cluster boundary.
 3. Run the `Compaction Boundary Check` on every candidate session; reorder to the fallback when the primary fails.
 4. Persist each packet's action and durable `Index.Retrofit.Packet.Snapshot`, then spawn read-only `Index.Retrofit.Research.Agent`s using `references/index-retrofit-worker.md` and the worker-economics policy below.
@@ -238,7 +238,7 @@ For each worker result:
 
 ```text
 agentos index linter --depot <depot> --anchor <anchor> ... --check line-approval --check line-verbatim-gate --json
-agentos chatlas line manifest show --depot <depot> --anchor <anchor> ... --detail reference --json
+agentos index line manifest show --depot <depot> --anchor <anchor> ... --verification complete --detail reference --json
 ```
 
 - require the focused linter to identify exactly the packet's line subjects, every new attachment to report `matched`, all support members to retain `User.Turn` purity, and the expected support, gate, and provenance namespaces to remain independent
