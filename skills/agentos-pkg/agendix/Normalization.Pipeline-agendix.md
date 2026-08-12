@@ -2,6 +2,10 @@
 
 ## Normalization.Pipeline/Agendix
 
+- [DF] a `Native.Surface.Normal.Model` is the deliberately small host-language representation produced from raw source before subsystem-specific normalization ^c20260812-1u
+- [CT] each host language owns its own native normal model; the shared native layer stops at tiny primitives such as source spans and diagnostics ^c20260812-2u
+- [PR] a native normal model grows only when a current subsystem needs the new fact ^c20260812-3u
+- [DC] `agentos surfaces normalize --file <path>` exposes a file's native model; `--language` overrides extension inference, unresolved inference errors, and `--json` emits the complete model ^c20260812-4u
 - [DF] a `Raw.Normalizer` is a contract between a `Raw.Model.Version` and a `Normal.Model.Version` — the pair it was written against, not an open mapping from whatever raw arrives ^c20260728-46u
 - [PR] old normalizers do not become useless when the `Normal.Model` moves: bumping the normal side still requires reparsing old raw, so the capability to read every archived `Raw.Model.Version` is permanent ^c20260728-50u
 - [DC] each model carries a version — the raw side and the normal side both — and assigning one is itself a normalization act ^c20260728-34u
