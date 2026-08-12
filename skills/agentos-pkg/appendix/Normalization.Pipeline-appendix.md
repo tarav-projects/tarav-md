@@ -14,14 +14,28 @@
 
 ****
 
+## Inline.Annotation
+
+- [DF] `Inline.Annotation` is a `Normal.Model` path declared attachable to other paths ^c20260812-28u
+- [DC] it is an ordinary contract entry — own semantics, own optional schema, own requiredness, resolved like any other path ^c20260812-29u
+- [DC] its declaration names an attachment domain: the path or subtree it may ride on ^c20260812-30u
+- [CT] optional by default; a contract may require it at a path or subtree, and that requirement is ordinary schema ^c20260812-31u
+- [CT] absence carries meaning only where the contract required it — where optional, absence claims nothing ^c20260812-32u
+- [DC] `Normal.Model.Contract/Closure` resolves attachment rather than enumerating it: `$.X.<annotation>` is in-region iff the annotation is attachable and `$.X` falls in its domain ^c20260812-33u
+- [CT] the `$.X.<key-suffix>` spelling is sugar — annotations resolve from the declaration, never by splitting the path string ^c20260812-34u
+- [EX] `Inline.Raw.Source` is one instance of the mechanism, not the mechanism itself ^c20260812-35u
+
+****
+
 ## Inline.Raw.Source
 
-- `Inline.Raw.Source` is originating raw/native data attached inline to a `Model.Fragment` or `Normal.Model` field, beside its normalized value
+- [DF] `Inline.Raw.Source` is an `Inline.Annotation` carrying the originating raw/native data of the value it attaches to ^c20260812-44u
 - packages the neutral value and its evidence together — provenance, audit, and richness the model does not (yet) capture, recoverable in place
 - arbitrarily granular — attach at any field or fragment, as fine or coarse as needed
 - a normalizer can carry it through: since `Raw.Source → Raw.Normalizer → Model.Fragment`, the normalizer attaches the `Raw.Source` it read into the fragment it emits
 - supplementary, never canonical — consumers read the normalized value; the inline raw is for recovery and provenance, not the primary read
 - it rides at a defined path in the model namespace, so it does not break `Model.Fragment` compatibility
+- [CT] the base contract leaves it optional; requiring it on transformed paths is a `Normal.Model.Contract/Specialization`'s business, never the model's ^c20260812-45u
 
 ****
 
@@ -227,6 +241,19 @@
 - [DC] every canonical interior path has an entry in the path table ^c20260731-150u
 - [CT] a populated path outside every declared region is namespace leakage ^c20260731-57u
 - [CT] a populated retired path is a contract violation even when its value would otherwise validate ^c20260731-58u
+
+****
+
+## Normal.Model.Contract/Specialization
+
+- [DF] a `Normal.Model.Contract/Specialization` is a contract declaring another contract as its base ^c20260812-36u
+- [DC] it may narrow, override, and extend its base — every change declared explicitly ^c20260812-37u
+- [DC] extension is what keeps producer-specific vocabulary out of the base: a path only one producer needs is declared by its specialization, never pushed into the shared model ^c20260812-38u
+- [DC] `Normal.Model.Contract/Closure` is evaluated against the effective contract — base plus specialization — so extension does not break it as long as the specialization declares what it adds ^c20260812-39u
+- [CT] substitutability follows from the declared changes: a purely narrowing specialization yields instances valid under the base, while override or extension does not ^c20260812-40u
+- [DC] whether a change narrows is verifiable per path — decidable by asking whether the new constraint is a subset of the base's ^c20260812-41u
+- [PR] purely narrowing specializations compose by union; anything else needs explicit resolution ^c20260812-42u
+- [CT] a specialization never mutates its base — the base stays valid and readable on its own ^c20260812-43u
 
 ****
 
