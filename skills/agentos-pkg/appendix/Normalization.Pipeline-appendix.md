@@ -14,9 +14,20 @@
 
 ****
 
+## Normal.Model.Annotation
+
+- [DF] `Normal.Model.Annotation` is data attached to a `Normal.Model` path that is not the value at that path ^c20260813-4u
+- [DC] it is a primitive rather than a fixed semantic: what an annotation means is declared by the contract that defines it ^c20260813-5u
+- [CT] where it is stored is an implementation choice — in the model beside its value, or on a separate surface addressing the same path ^c20260813-6u
+- [CT] it stays within `Normal.Model.Closure` either way: an annotation rides at a declared path, never outside the namespace ^c20260813-7u
+- [EX] `Inline.Raw.Source` is the normalizer's own annotation, carrying the raw it mapped from ^c20260813-8u
+
+****
+
 ## Inline.Annotation
 
 - [DF] `Inline.Annotation` is a `Normal.Model` path declared attachable to other paths ^c20260812-28u
+- [DC] it is the in-model realization of `Normal.Model.Annotation` ^c20260813-9u
 - [DC] it is an ordinary contract entry — own semantics, own optional schema, own requiredness, resolved like any other path ^c20260812-29u
 - [DC] its declaration names an attachment domain: the path or subtree it may ride on ^c20260812-30u
 - [CT] optional by default; a contract may require it at a path or subtree, and that requirement is ordinary schema ^c20260812-31u
