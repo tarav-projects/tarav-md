@@ -2,7 +2,7 @@
 
 ## Impl.Abstract
 
-- status: executable
+- status: completed
 - scope: preserve Claude Code human mid-turn prompts as ordinary visible Chatlas user messages and independent `Normal.Turn::User.Turn` groupings
 - source issue: `notes/live/524-mid-turn-user-messages-lost-in-normalization.md`
 - implementation target: `agentos-py/src/agentos/chatlas/`
@@ -37,23 +37,23 @@
 
 ## Execution.Plan
 
-1. **Vertical.Slice::Regression boundary**
+1. **Vertical.Slice::Regression boundary — completed**
    - Add a Claude normalization test containing ordinary assistant activity, a human prompt-mode queued attachment, later assistant activity, and non-human queued attachments.
    - RED: the human prompt is absent from visible user events and no independent user turn exists.
    - GREEN signal: exactly the qualifying attachment becomes a human user message at its raw position; task notification and non-human variants remain excluded.
    - Check: focused Claude normalization tests.
 
-2. **Vertical.Slice::Normalizer**
+2. **Vertical.Slice::Normalizer — completed**
    - Implement the qualifying predicate, interaction boundary, event mapping, and branch-analysis exclusion.
    - Check event payload, producer, surfaces, source refs, timestamp, turn identity, order, and following assistant grouping.
    - Check full Claude normalization suite.
 
-3. **Vertical.Slice::Freshness and delta safety**
+3. **Vertical.Slice::Freshness and delta safety — completed**
    - Invalidate existing session-model artifacts and Claude delta checkpoints through revision changes.
    - Update assertions that expose those revision identifiers.
    - Check cache and delta-normalization suites.
 
-4. **Vertical.Slice::Issue resolution and backfill proof**
+4. **Vertical.Slice::Issue resolution and backfill proof — completed**
    - Update note 524 with provider evidence, accepted semantics, and completed status.
    - Rebuild the reported session from retained raw data.
    - Verify the original typo fingerprints resolve as `User.Turn`s and confirm no task-notification promotion.
@@ -84,4 +84,6 @@
 ## Impl.Log
 
 - 2026-08-13 — execution authorized for autonomous development. ^c20260813-3u
-
+- 2026-08-13 — no design-reality deviations. Full and delta normalization share the queued-user mapping; legacy artifacts and checkpoints are invalidated by revision.
+- 2026-08-13 — reported session rebuilt successfully: every issue fingerprint resolves through user turns, two distinct Sonnet submissions remain distinct, and the task notification remains excluded.
+- 2026-08-13 — complete Chatlas suite: 494 passed; Ruff semantic checks passed. Whole-file format drift predates this change and was left untouched.

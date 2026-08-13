@@ -1,13 +1,14 @@
-# 524 — Mid-turn user messages are lost in Chatlas normalization
+# 524 — Mid-turn user messages were lost in Chatlas normalization
 
-> Live note · issue report · discovered 2026-08-13
+> Live note · resolved issue report · discovered and fixed 2026-08-13
 
 ## Summary
 
-User messages sent **while an assistant turn is still executing** never reach the
-Chatlas session model. They are not misclassified — they are absent under every
-role. Because `Touch.Authority.Surface` is defined as a qualifying `User.Turn`,
-this content can never ground an `Index.Line`, no matter how consequential it was.
+Before the fix, user messages sent **while an assistant turn was still executing**
+never reached the Chatlas session model as messages. They were not misclassified
+under another role: their Claude attachment records fell through to hidden
+`session.update` events. Because `Touch.Authority.Surface` is defined as a
+qualifying `User.Turn`, the content could not ground an `Index.Line`.
 
 Five design-critical instructions from one working session were lost this way.
 
@@ -17,16 +18,20 @@ A turn is one request→response cycle: the user sends input, the assistant work
 (possibly for minutes, across many tool calls), then produces a final reply. That
 whole span is one assistant turn.
 
-If the user types while that span is running, Claude Code does not queue the text
-until the turn ends. It injects it into the **already-running** turn, piggybacked
-onto the next tool result. The harness labels this explicitly:
+If the user types while that span is running, Claude Code first records a
+`queue-operation` enqueue. When it delivers the prompt into the active run, it
+records a separate `attachment` whose payload identifies a `queued_command`, its
+prompt, command mode, origin, and original timestamp. The harness labels the
+delivery explicitly:
 
 > The user sent a new message while you were working. This is how Claude Code
 > surfaces messages the user sends mid-turn — within the running turn, often
 > alongside the next tool result, rather than as a separate conversation turn.
 
-So the text physically arrives inside an assistant turn's tool-result stream,
-never opening a user-turn boundary of its own.
+The attachment occupies its own provider record at the delivery/drain point. It
+is not physically embedded in a tool-result record, although delivery commonly
+happens beside tool activity. Chatlas originally failed to refine this native
+attachment boundary into its own semantic user interaction.
 
 **The trigger is timing, not content.** Identical text becomes a normal user turn
 or a mid-turn message depending only on whether the assistant happened to be
@@ -46,8 +51,9 @@ Session under test:
 The test uses **the user's own typos as fingerprints**. Typos cannot appear in
 assistant paraphrase, so a zero result cannot be explained by wording drift.
 
-Measured with `agentos chatlas turns query --identity-hash <h> --contains <s>`,
-after a full `agentos chatlas update` re-index:
+Measured before the fix with
+`agentos chatlas turns query --identity-hash <h> --contains <s>`, after a full
+`agentos chatlas update` re-index:
 
 | fingerprint | source message | `--turn-kind user` | any role |
 |---|---|---|---|
@@ -109,26 +115,46 @@ the assistant adopting major design positions with no user turn preceding them.
 The record implies unprompted invention where there was explicit direction.
 
 `agentos-support-chats` already registered this session as mandatory Index support
-for `g70203-pkg`. That registry now points at a transcript missing the turns that
-motivated several of the lines it supports.
+for `g70203-pkg`. Before backfill, that registry pointed at a normalized transcript
+missing the turns that motivated several supported lines. The rebuilt session now
+exposes those turns for ordinary grounding and reconciliation.
 
-## Open questions for the fix
+## Resolution
 
-- Does the provider transcript retain the text at all, or is it dropped before
-  Chatlas sees it? Determines whether this is recoverable for past sessions or
-  only fixable going forward.
-- If retained: should a mid-turn message be promoted to its own `User.Turn`, or
-  recorded as a distinct event kind within the assistant turn?
-- If promoted, where does it sit in tape order — at injection point, or at the
-  end of the turn it interrupted?
-- Should `Touch.Authority.Surface` qualification extend to mid-turn user content
-  once it is representable? It is genuine user touch by every criterion except
-  its container.
-- Is there a backfill path for sessions already captured?
+- Canonical evidence is the delivered `attachment.type=queued_command` record,
+  not `queue-operation` bookkeeping. The queue also carries task notifications,
+  so queue operations alone cannot establish user-input provenance.
+- A prompt-mode, non-meta queued command with human or absent origin normalizes
+  as an ordinary visible `message`, `role=user`, `producer=human`.
+- The message opens an independent `Normal.Turn::User.Turn` at the attachment's
+  raw tape position. Subsequent assistant activity receives the corresponding
+  independent assistant grouping.
+- Non-human prompt origins, task notifications, and ambiguous queue records stay
+  outside `User.Turn`.
+- `Touch.Authority.Surface` needs no special case. The repaired event qualifies
+  through the ordinary user-turn boundary.
+- Existing sessions are backfillable because Claude retained the raw attachment.
+  Session-model and delta-checkpoint revisions force semantic rematerialization.
+
+### Backfill verification
+
+The reported session was rebuilt from retained raw data after the fix:
+
+| fingerprint | recovered `User.Turn`s |
+|---|---:|
+| `becasuse` / `ammended` / `analisys` | 1 shared turn |
+| `nermal` | 1 |
+| `do not do the reports now` | 1 |
+| `use sonnet subagents` | 2 |
+
+The two Sonnet turns are not duplicate normalization: the raw transcript contains
+two distinct human queued-command attachments, at 14:47 and 16:02. The session's
+task-notification queued attachment produced zero user-turn matches.
 
 ## Status
 
-- [ ] confirm whether the provider transcript retains mid-turn text
-- [ ] decide the normalization target shape
-- [ ] fix the capture path
-- [ ] decide backfill for existing sessions
+- [x] confirm that the provider transcript retains mid-turn text
+- [x] normalize qualifying queued-command attachments as independent user turns
+- [x] preserve non-human queue records outside the user-authority boundary
+- [x] invalidate old session-model and delta-checkpoint materializations
+- [x] rebuild and verify the reported session
