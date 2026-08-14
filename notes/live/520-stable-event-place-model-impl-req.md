@@ -4,7 +4,7 @@
 
 - **scope:** align `agentos-chatlas-py` with the landed stable-event-place, neutral-lineage, best-effort-closure, and `User.Turn.Purity` design; migrate the durable `Event.Ref` shape and its consumers; update the Skillware-owned Hugentics event-addressing documentation
 - **status:** implemented
-- **source:** landed Chatlas design in `skills/agentos-chatlas-pkg/design/100-design.md`, current Python mechanics and contract inspection, and the explicit implementation-design request ^c20260809-9u
+- **source:** landed Chatlas design in `skills/tarav-chatlas-pkg/design/100-design.md`, current Python mechanics and contract inspection, and the explicit implementation-design request ^c20260809-9u
 - **repositories:** `agentos-chatlas-py` for mechanics and contract; `agentos-md` for the Skillware source and rebuilt Hugentics reference; this note remains in `agentos-chatlas-md`
 - **compatibility:** hard schema/cache generation change for disposable session-model artifacts and event-query indexes; preserve existing `Normal.Turn.Ref` assertions by not changing hashed event content merely to identify `User.Turn`
 
@@ -18,7 +18,7 @@
 - optional `closed.estimate` as normalizer-owned best effort; removal of `extras.final` and finality-dependent model semantics
 - cache freshness over raw observation plus model/normalizer revision
 - explicit `User.Turn` kind/membership derived from the user-input boundary, not transport role or `producer.type == "human"`
-- generated documentation rebuilt from `agentos-md/skills/agentos-hugentics/.skw/src/references/link.skw.md`
+- generated documentation rebuilt from `agentos-md/skills/tarav-hugentics/.skw/src/references/link.skw.md`
 
 ### Out of scope
 
@@ -164,12 +164,12 @@
 
 ### Vertical.Slice 7 - Rebuild documentation and run the complete gates
 
-- update `agentos-md/skills/agentos-hugentics/.skw/src/references/link.skw.md` so `Event.Ref` documentation teaches stable address plus asserted hash and no positional relocation
-- run `agentos skw build --skill skills/agentos-hugentics`, then `agentos skw check --skill skills/agentos-hugentics`; never hand-edit the generated `references/link.md`
+- update `agentos-md/skills/tarav-hugentics/.skw/src/references/link.skw.md` so `Event.Ref` documentation teaches stable address plus asserted hash and no positional relocation
+- run `agentos skw build --skill skills/tarav-hugentics`, then `agentos skw check --skill skills/tarav-hugentics`; never hand-edit the generated `references/link.md`
 - update current code docstrings and the normal-model contract; leave Impl.Req 514 untouched as historical evidence
 - run targeted suites first, then the complete `agentos-chatlas-py` suite and the user-script invariant corpus
 - **observable:** generated Hugentics docs, Python behavior, contract, fixtures, and query surfaces describe the same address semantics
-- **check:** `uv run pytest`; `uv run python dev/user-script-invariant-test/validate.py --skip-sweep`; `agentos skw check --skill skills/agentos-hugentics`; repository diffs contain no unintended generated/manual drift
+- **check:** `uv run pytest`; `uv run python dev/user-script-invariant-test/validate.py --skip-sweep`; `agentos skw check --skill skills/tarav-hugentics`; repository diffs contain no unintended generated/manual drift
 - **status:** completed
 
 ## Risks And Deviation Triggers
@@ -211,4 +211,4 @@
 - Purity: `annotations.normal_turn.kind` now distinguishes normalized user input from transport-role user records. User-turn query, Anchory, Chat.Index, recents, tagging, and indexing consumers use this semantic boundary; compaction summaries and control/context records remain on tape without entering `User.Turn`.
 - Closure and materialization: removed model finality, added optional best-effort `closed.estimate`, moved reuse state into a new delta checkpoint, required delta/full equivalence, and added a materialization revision to cache freshness. Session cache, checkpoint, and SQLite generations invalidate incompatible derived data.
 - Documentation: updated the Hugentics Skillware source and rebuilt its generated `references/link.md`; current code documentation and `normal-model.contract.json` now agree on stable address plus asserted hash.
-- Verification: `uv run pytest -q` passed 472 tests; the 21-session user-script invariant corpus and projection passed with zero failures; comparative projection reported zero unremembered hard failures; `agentos skw check --skill skills/agentos-hugentics` passed all 30 generated surfaces.
+- Verification: `uv run pytest -q` passed 472 tests; the 21-session user-script invariant corpus and projection passed with zero failures; comparative projection reported zero unremembered hard failures; `agentos skw check --skill skills/tarav-hugentics` passed all 30 generated surfaces.

@@ -9,7 +9,7 @@
           "verb": "copy",
           "body_sha256": "6f0b76e1fad7d99c095a707ef53e460f84a1a8ff22feb4c00d91469a9f2c5234",
           "deps": {
-            "@<agentos-batchy-skills>/references/batchy-skill-run.skw.md^batchy-skill-runtime-contract": "6f0b76e1fad7d99c095a707ef53e460f84a1a8ff22feb4c00d91469a9f2c5234"
+            "@<tarav-batchy-skills>/references/batchy-skill-run.skw.md^batchy-skill-runtime-contract": "6f0b76e1fad7d99c095a707ef53e460f84a1a8ff22feb4c00d91469a9f2c5234"
           }
         }
       ]

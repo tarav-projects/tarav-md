@@ -110,11 +110,11 @@ could be anchored.
 ## Why it matters beyond grounding
 
 Anything reconstructed later from Chatlas alone — a session recap, a
-`--reconcile` pass, a support-chat audit, `agentos-support-chats --extract` — sees
+`--reconcile` pass, a support-chat audit, `tarav-support-chats --extract` — sees
 the assistant adopting major design positions with no user turn preceding them.
 The record implies unprompted invention where there was explicit direction.
 
-`agentos-support-chats` already registered this session as mandatory Index support
+`tarav-support-chats` already registered this session as mandatory Index support
 for `g70203-pkg`. Before backfill, that registry pointed at a normalized transcript
 missing the turns that motivated several supported lines. The rebuilt session now
 exposes those turns for ordinary grounding and reconciliation.

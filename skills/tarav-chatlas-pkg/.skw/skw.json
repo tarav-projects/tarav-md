@@ -1,0 +1,8 @@
+{
+  "id": "tarav-chatlas-pkg",
+  "depots": [".", "../../../tarav-md/skills/tarav-pkg"],
+  "deps": {
+    "tarav-batchy-skills": "../../../tarav-md/skills/tarav-batchy-skills",
+    "tarav-pkg": "../../../tarav-md/skills/tarav-pkg"
+  }
+}

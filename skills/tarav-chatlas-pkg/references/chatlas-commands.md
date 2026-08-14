@@ -387,4 +387,4 @@ agentos chatlas products path --product <product-name> <selector-options>
 
 Views are disposable projections of the Normal Model; products are retained
 agent productions over one named input view. Producer references live in
-`agentos-chatlas-pkg/references/`.
+`tarav-chatlas-pkg/references/`.

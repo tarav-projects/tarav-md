@@ -91,7 +91,7 @@ lost the turn on a batch boundary.
 Produce the Chatlas `zip-transcript-summary` product for exactly one session.
 
 Read and follow this producer reference in full:
-<repo>/agentos-chatlas-md/skills/agentos-chatlas-pkg/references/producer-zip-transcript-summary.md
+<repo>/agentos-chatlas-md/skills/tarav-chatlas-pkg/references/producer-zip-transcript-summary.md
 
 Session selector: --identity-hash <hash>
 
@@ -192,8 +192,8 @@ session crushed to nothing still passes. Spot-check small products by hand.
 ## Related
 
 - producer reference:
-  `skills/agentos-chatlas-pkg/references/producer-zip-transcript-summary.md`
+  `skills/tarav-chatlas-pkg/references/producer-zip-transcript-summary.md`
 - command surface:
-  `skills/agentos-chatlas-pkg/references/chatlas-commands.md`
-- refusal classes: `skills/agentos-chatlas-pkg/poi/102-poi.md`
+  `skills/tarav-chatlas-pkg/references/chatlas-commands.md`
+- refusal classes: `skills/tarav-chatlas-pkg/poi/102-poi.md`
 - tooling design and decisions: `agentos-chatlas-py/notes/live/552-chatlas-product-tooling-impl-req.md`

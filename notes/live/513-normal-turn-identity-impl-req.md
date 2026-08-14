@@ -6,9 +6,9 @@
 
 **Why.** Anchory members identify turns by `event_id`, which is a tape ordinal (`"event-" + sequence`). Re-materializing an open session re-segments the tape and reassigns ordinals, so landed anchors silently come to point at other turns. Observed: 31 `Anchor.Turn.Missing` linter errors across 4 anchors; root cause traced to positional reassignment with timestamps stable.
 
-**Status.** Executed. Slices 1–4, 6, 7 done; Slice 5 partially done and blocked on a gated skill-surface decision (see `Impl.Log`). Suites green: `agentos-chatlas-py` 216, `agentos-py` 551, `agentos-cli` 62. Default linter byte-clean on `agentos-pkg` and `agentos-chatlas-pkg`. Anchor corpus: 395 anchors / 401 members resolving under `chatlas.support-set.v2`.
+**Status.** Executed. Slices 1–4, 6, 7 done; Slice 5 partially done and blocked on a gated skill-surface decision (see `Impl.Log`). Suites green: `agentos-chatlas-py` 216, `agentos-py` 551, `agentos-cli` 62. Default linter byte-clean on `tarav-pkg` and `tarav-chatlas-pkg`. Anchor corpus: 395 anchors / 401 members resolving under `chatlas.support-set.v2`.
 
-**Source context.** Design session captured into `agentos-chatlas-pkg/design/100-design.md`: new blocks `Event.Grouping` and `Normal.Turn`; amended `Session.Event.Tape`, `Chatlas.Anchory`, `Chatlas.Session.Model`.
+**Source context.** Design session captured into `tarav-chatlas-pkg/design/100-design.md`: new blocks `Event.Grouping` and `Normal.Turn`; amended `Session.Event.Tape`, `Chatlas.Anchory`, `Chatlas.Session.Model`.
 
 **Out of scope.**
 - copilot-cli normalizer parity (open extension per `Chatlas.Session.Model.Tests`); design must not block on it.
@@ -50,7 +50,7 @@
 
 ### Impl.Agendix
 
-**index → touched** (blocks this implementation must honor, `agentos-chatlas-pkg/design/100-design.md`):
+**index → touched** (blocks this implementation must honor, `tarav-chatlas-pkg/design/100-design.md`):
 
 - `Event.Grouping` — tape is SSOT; a grouping is a tag, never a container; groupings are open and orthogonal; partial by nature; a stability contract binds only a grounded grouping.
 - `Normal.Turn` — chat-semantic grouping; boundary per turn kind; user-turn purity; identity carries the stability contract; normalizers map native handles; identity not interpretation.
@@ -58,7 +58,7 @@
 - `Chatlas.Anchory` — record format `chatlas.support-set.v2`, members keyed on `Normal.Turn` identity.
 - `Chatlas.Session.Model` — the model carries chat data, never a consumer's interpretation.
 - `Chatlas.Session.Model.Tests`, `Normalization.Pipeline::Chatlas.Session.Model` — the corpus engines and their three-way triage.
-- `agentos-pkg` `Normalization.Pipeline-appendix`: `Under.Normalization`, `Model.Fragment` (topological, not positional), `Normal.Model.Contract`, `Projection.Test`.
+- `tarav-pkg` `Normalization.Pipeline-appendix`: `Under.Normalization`, `Model.Fragment` (topological, not positional), `Normal.Model.Contract`, `Projection.Test`.
 
 **chat → touched**: deliberately empty. Minting anchors now would register v1 records keyed on `event_id` against a still-open session — manufacturing exactly the drift this artifact retires. Chat grounding for this work is deferred to after Slice 3 and recorded in `Impl.Log`.
 
@@ -127,10 +127,10 @@ Make `producer` classification faithful, so "which event is the user" has a trus
 
 ### Slice 6 — linter turn resolution — **DONE**
 
-**Result.** `index_checks.py` resolves cargo refs by turn: `_turn_text` splits on the turn id and the new `_turn_message_text` joins every message the turn carries, so a proposal split across several assistant messages still verifies — the gate now checks the turn, not one event. Default linter over `agentos-pkg` and `agentos-chatlas-pkg`: **0 errors, 0 warnings, 23 checks passed** on both. The 31 `Anchor.Turn.Missing` errors are gone, and they are no longer reachable by re-materialization alone.
+**Result.** `index_checks.py` resolves cargo refs by turn: `_turn_text` splits on the turn id and the new `_turn_message_text` joins every message the turn carries, so a proposal split across several assistant messages still verifies — the gate now checks the turn, not one event. Default linter over `tarav-pkg` and `tarav-chatlas-pkg`: **0 errors, 0 warnings, 23 checks passed** on both. The 31 `Anchor.Turn.Missing` errors are gone, and they are no longer reachable by re-materialization alone.
 
 - repoint `index_checks.py` (grounding provenance, `Line.Approval`, `Line.Verbatim.Gate`) at v2 turn identity.
-- **Check**: default linter run over `agentos-pkg` and `agentos-chatlas-pkg` is byte-clean; the `Anchor.Turn.Missing` class cannot be produced by re-materialization alone.
+- **Check**: default linter run over `tarav-pkg` and `tarav-chatlas-pkg` is byte-clean; the `Anchor.Turn.Missing` class cannot be produced by re-materialization alone.
 
 ### Slice 7 — end test: the system grounds its own design — **DONE**
 

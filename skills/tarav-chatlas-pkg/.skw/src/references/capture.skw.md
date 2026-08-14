@@ -1,3 +1,10 @@
+> $kw: ^chat-index-capture-loading-path --context-loading-path
+> --step SKILL.md
+> --loading-dep SKILL.skw.md^chatlas-pkg-batchy-runtime-contract
+> --loading-dep SKILL.skw.md^chat-index-capture-call-contract
+
+> $kw: --from Batchy.Skill.Banner --from Chat.Index --from Chat.Index.Delta --from Chat.Index.HEAD --from Chat.Support.Set --from Chat.Touched.Index --from Chatlas.Anchory --from Index.Line --from Line.Home --from Line.Type --from Normal.Turn.Ref --from POI.Line --from Unassigned
+
 # Chat.Index Capture Operation Module
 
 Construct or refresh the unreviewed chronological `Chat.Index` for exactly one Chatlas session.
@@ -8,18 +15,28 @@ This first implementation supports linear chats only.
 
 ## Capture Boundary
 
+> $kw: ^chat-index-capture-boundary --derived
+> --from Chat.Touched.Index
+> --from Chat.Index
+> --from Chat.Index.Delta
+> --from Chat.Index.HEAD
+> --intent restate the chronological Chat.Index model as the operational capture boundary;
+> --cont preserve closed-over-chat evidence, qualifying user touch, fixed Delta horizons, and present-facing HEAD reconciliation
+
 - Construct one `Chat.Touched.Index` from the target chat and materialize it as `<chatlas-root>/session-index/<identity-hash>/`.
 - Capture touched semantic changes into tape-ordered `Chat.Index.Delta`s whose evidence ends at a fixed qualifying user turn.
 - Resolve `Chat.Index.HEAD` from the complete chat context and the Deltas; do not treat it as a mechanical union.
 - Consult no external Project Index or Package Skill Index during construction.
 - Never let material merely loaded into the chat create a Delta without a qualifying user touch event.
 
+> $kw. end
+
 ## Run Configuration
 
 Print the `Batchy.Skill.Banner` before reading Chatlas:
 
 ```text
-$agentos-chatlas-pkg — banner
+$tarav-chatlas-pkg — banner
   --capture  → Chat.Index.Capture.Operation.Module
   --session  → Skill.Arg::Session = <supplied selector>
 ```
@@ -43,6 +60,7 @@ agentos chatlas query <exact-selector-flag> <value> --update
 ```
 
 Require exactly one returned row. Do not guess between candidates. Take `chatlas_root`, `identity_hash`, `session_id`, `provider`, and `uri` from that authoritative row.
+
 
 ## 2. Scaffold The Capture Plan
 

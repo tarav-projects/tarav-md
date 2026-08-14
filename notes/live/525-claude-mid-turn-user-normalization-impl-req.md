@@ -75,11 +75,11 @@
 ## Impl.Agendix
 
 - execution gate: ^c20260813-3u
-- `Session.Event.Tape`: `skills/agentos-chatlas-pkg/design/100-design.md`
-- `Normal.Turn`: `skills/agentos-chatlas-pkg/design/100-design.md`
-- `User.Turn.Purity`: `skills/agentos-chatlas-pkg/design/100-design.md`
-- `Session.Model.Artifact`: `skills/agentos-chatlas-pkg/design/100-design.md`
-- `Normalization.Pipeline::Chatlas.Session.Model`: `skills/agentos-chatlas-pkg/design/100-design.md`
+- `Session.Event.Tape`: `skills/tarav-chatlas-pkg/design/100-design.md`
+- `Normal.Turn`: `skills/tarav-chatlas-pkg/design/100-design.md`
+- `User.Turn.Purity`: `skills/tarav-chatlas-pkg/design/100-design.md`
+- `Session.Model.Artifact`: `skills/tarav-chatlas-pkg/design/100-design.md`
+- `Normalization.Pipeline::Chatlas.Session.Model`: `skills/tarav-chatlas-pkg/design/100-design.md`
 
 ## Impl.Log
 

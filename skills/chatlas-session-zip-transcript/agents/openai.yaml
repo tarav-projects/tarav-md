@@ -1,4 +1,4 @@
 interface:
   display_name: "chatlas-session-zip-transcript"
   short_description: "Resolve a prior chat session and return the Chatlas zip-transcript-summary product artifact path"
-  default_prompt: "Run this skill as a separate agent by default. Use a small model by default; for Codex prefer `gpt-5.6-luna`. Load `agentos-chatlas-pkg/references/producer-zip-transcript-summary.md` and follow it. Given an option-based Chatlas selector for one session, check the `zip-transcript-summary` product, produce and commit it when it is not fresh, and return only the path to the fresh artifact unless diagnostics were explicitly requested."
+  default_prompt: "Run this skill as a separate agent by default. Use a small model by default; for Codex prefer `gpt-5.6-luna`. Load `tarav-chatlas-pkg/references/producer-zip-transcript-summary.md` and follow it. Given an option-based Chatlas selector for one session, check the `zip-transcript-summary` product, produce and commit it when it is not fresh, and return only the path to the fresh artifact unless diagnostics were explicitly requested."

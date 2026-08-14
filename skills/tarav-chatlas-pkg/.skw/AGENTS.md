@@ -5,4 +5,4 @@
 - to change managed content: edit the src file, then run `agentos skw build --skill <package-root>`
 - to inspect drift (read-only): `agentos skw check --skill <package-root>`
 - `lock.json` and this `AGENTS.md` are engine-owned and overwritten on every build
-- for the full skw discipline, load the `agentos-skillware` skill
+- for the full skw discipline, load the `tarav-skillware` skill

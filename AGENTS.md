@@ -8,7 +8,7 @@ Chatlas Python mechanics (indexing, raw archive, query, export, views) live in `
 
 ## Orientation
 
-- Load `agentos-chatlas-pkg` for the Chatlas package index and concept blocks.
+- Load `tarav-chatlas-pkg` for the Chatlas package index and concept blocks.
 - Design sessions live in `notes/live/*-design-session.md`.
 
 ## Harness Reference

@@ -4,7 +4,7 @@
 
 - **Intent:** Revisit and extend the Chatlas index model — define the foundational conceptual layer, review existing blocks, create new blocks.
 - **State:** Closed — all dataset-infrastructure blocks promoted to the Chatlas pkg index (2026-06-15).
-- **Outcome:** 8 blocks promoted to `agentos-chatlas-pkg/index/100-index.md`; `Provider.Instance`/`Agentos.Agent.Adapter` corrected in `agentos-pkg/index/104-index.md`.
+- **Outcome:** 8 blocks promoted to `tarav-chatlas-pkg/index/100-index.md`; `Provider.Instance`/`Agentos.Agent.Adapter` corrected in `tarav-pkg/index/104-index.md`.
 - **Scope:** The full Chatlas mental model: dataset identity, raw archive, session indexing, query, views.
 - **Successor:** `Session.Model` content-representation design opens as a fresh thread (not covered by this session).
 
@@ -92,7 +92,7 @@
 - one report per provider captures current retention decisions for that provider's artifact families
 - reports are delta-aware — compare against previous audit to surface new, superseded, or unresolved findings
 - each artifact family gets: sample paths, count/size estimates, tier classification, raw decision, rationale
-- report template: `agentos-chatlas-pkg/references/retention-audit-report-template.md`
+- report template: `tarav-chatlas-pkg/references/retention-audit-report-template.md`
 
 ##### Evidence Sources
 
@@ -121,7 +121,7 @@
 
 ## Session.Notes
 
-- Move `agentos-chatlas-retention-audit/assets/report-template.md` to `agentos-chatlas-pkg/references/retention-audit-report-template.md`. The skill should cite the package reference.
+- Move `tarav-chatlas-retention-audit/assets/report-template.md` to `tarav-chatlas-pkg/references/retention-audit-report-template.md`. The skill should cite the package reference.
 - Rejected framing: a `Provider.Instance` does not have one primary `Provider.Home` with possible additional homes. That was wrong because provider home participates in instance identity. A different home means a different provider instance.
 
 ## Session.Log
@@ -129,11 +129,11 @@
 - 2026-05-22: Session opened. Scope: full Chatlas mental model revisit. Chatlas.Dataset block captured from in-chat alignment.
 - 2026-05-22: Raw.Archive block captured.
 - 2026-05-22: Chatlas.Retention.Policy block captured with appendix (tiers, decisions, audit shape, evidence).
-- 2026-05-22: Provider.Instance block written directly to agentos-pkg/index/104-index.md (general Agentos concept, not Chatlas-specific).
+- 2026-05-22: Provider.Instance block written directly to tarav-pkg/index/104-index.md (general Agentos concept, not Chatlas-specific).
 - 2026-05-22: Chatlas.Session.Index block captured.
 - 2026-05-22: Session.Identity block captured.
 - 2026-05-24: Captured corrected Provider.Instance/Provider.Home alignment, Provider.Home.Query, and Chatlas.Update.Pipeline as atomized update mechanics.
-- 2026-06-15: Promotion pass. Promoted to `agentos-chatlas-pkg/index/100-index.md`: Session.Identity, Chatlas.Session.Index, Chatlas.Dataset, Raw.Archive, Chatlas.Retention.Policy, Chatlas.Update.Pipeline, Provider.Home, Provider.Home.Query.
-- 2026-06-15: Corrected `Provider.Instance` (un-superseded; conceptual layer) and `Agentos.Agent.Adapter` (code-level implementer) in `agentos-pkg/index/104-index.md`.
+- 2026-06-15: Promotion pass. Promoted to `tarav-chatlas-pkg/index/100-index.md`: Session.Identity, Chatlas.Session.Index, Chatlas.Dataset, Raw.Archive, Chatlas.Retention.Policy, Chatlas.Update.Pipeline, Provider.Home, Provider.Home.Query.
+- 2026-06-15: Corrected `Provider.Instance` (un-superseded; conceptual layer) and `Agentos.Agent.Adapter` (code-level implementer) in `tarav-pkg/index/104-index.md`.
 - 2026-06-15: Archived old `agentos-py/notes/index/` to `agentos-md/_DEPRECATED/agentos-py-notes-index/`.
 - 2026-06-15: Session closed.

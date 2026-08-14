@@ -16,7 +16,7 @@ Replace the line-bound `chatlas.support-set.v4`–`v6` model with the landed
 
 The implementation updates the shared Index identity primitive, Chatlas record
 model and linter, capture/registration consumers, runnable skill surfaces, and all
-line-anchor records cited by `agentos-pkg`.
+line-anchor records cited by `tarav-pkg`.
 
 ## Impl.Index
 
@@ -105,7 +105,7 @@ An old line-bound schema cited by an Index line is invalid, not silently adapted
 
 ### Corpus boundary and migration
 
-The migration source is the complete parser-discovered `agentos-pkg` depot, not a
+The migration source is the complete parser-discovered `tarav-pkg` depot, not a
 hand-maintained file list. The pre-implementation inventory is:
 
 - 95 Index documents;
@@ -141,15 +141,15 @@ application.
    audit, render, reconciliation, CLI, and tests as required by those semantics.
 3. Update Chatlas-powered Index checks to validate attachment triplets and typed
    relationship namespaces, including body-only review equivalence.
-4. Add and test the bounded `agentos-pkg` dossier migration utility; verify its
+4. Add and test the bounded `tarav-pkg` dossier migration utility; verify its
    read-only plan accounts for every source anchor before apply.
 5. Update Skillware sources and other maintained Chatlas package guidance, build the
    runnable skill surfaces, and check generated-surface drift.
-6. Apply the migration to every parser-discovered `agentos-pkg` anchor, then rerun corpus
+6. Apply the migration to every parser-discovered `tarav-pkg` anchor, then rerun corpus
    inventory to prove every cited record uses the dossier schema and every current
    triplet hash matches.
 7. Run focused unit/e2e tests, full affected-package tests, Anchory structural check,
-   Skillware check, and the complete `agentos-pkg` Index linter including approval
+   Skillware check, and the complete `tarav-pkg` Index linter including approval
    and verbatim gates.
 
 ## Impl.Log
@@ -179,13 +179,13 @@ application.
 - Chatlas tests pass (472) and the full Agentos foundation suite passes (870);
   affected Ruff checks, compilation, diff checks, and the generic Anchory
   depot structural check pass.
-- The complete `agentos-pkg` linter resolves the migrated support and attachment
+- The complete `tarav-pkg` linter resolves the migrated support and attachment
   model: `Grounding.Provenance`, `Anchor.Collision`, and `Anchor.LineDrift` all
   pass with zero findings. Its six errors are genuine older verbatim-gate wording
   drift on six `design/107-design.md` lines, not schema, attachment, or
   support-resolution failures. Existing warning debt remains outside this migration.
 - The shared Chatlas depot still contains 384 v4, 199 v5, and 266 v6 records not
-  cited by `agentos-pkg`; they remain explicit migration debt outside this
+  cited by `tarav-pkg`; they remain explicit migration debt outside this
   bounded corpus and are intentionally rejected by the new runtime.
 - Hugentics and Chatlas Skillware sources were updated and rebuilt. Their checks
   have no diagnostics or newly unhonored dependencies; seven Hugentics and one
@@ -196,7 +196,7 @@ application.
 ### Completion assertions
 
 - No retired v4–v6 line-bound schema is emitted or accepted by runtime code.
-- No `agentos-pkg` anchored kernel line resolves to v3–v6 after migration.
+- No `tarav-pkg` anchored kernel line resolves to v3–v6 after migration.
 - Anchor count and anchor ids are unchanged by migration.
 - Every dossier attachment hash matches its current authoritative Index triplet.
 - Every old support member, gate relationship, predecessor, and issue coordinate is

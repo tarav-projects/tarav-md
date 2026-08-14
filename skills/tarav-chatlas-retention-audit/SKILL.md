@@ -1,5 +1,5 @@
 ---
-name: agentos-chatlas-retention-audit
+name: tarav-chatlas-retention-audit
 description: Audit Chatlas raw retention for a provider by comparing previous audit reports, current provider-home artifacts, and current Chatlas archive policy. USE WHEN deciding what raw provider data Chatlas should retain, keep for future analysis, track as telemetry, or exclude. Called like a terminal command — `--provider <name>`.
 ---
 
@@ -7,9 +7,9 @@ description: Audit Chatlas raw retention for a provider by comparing previous au
 
 Evaluate whether Chatlas is retaining the right provider-native artifacts for long-term transcript fidelity, behavioral analysis, and future study.
 
-Operational `Package.Aux.Skill` under `agentos-chatlas-pkg`.
+Operational `Package.Aux.Skill` under `tarav-chatlas-pkg`.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `tarav-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
 - a bare provider name resolves to `--provider`.
@@ -95,7 +95,7 @@ Do not use this skill for:
 
 Use a focused evidence set:
 
-- previous reports under `notes/reports/agentos-chatlas-retention-audit/`
+- previous reports under `notes/reports/tarav-chatlas-retention-audit/`
 - current raw archive code in:
   - `src/agentos/chat/providers.py`
   - `src/agentos/chatlas/raw.py`
@@ -122,7 +122,7 @@ Prefer a small, explicit evidence set. The goal is not exhaustive crawling. The 
 
 ### 2. Load previous reports first
 
-- Look in `notes/reports/agentos-chatlas-retention-audit/`.
+- Look in `notes/reports/tarav-chatlas-retention-audit/`.
 - Select the most recent prior report with matching `provider` and matching `provider_home`.
 - When `instance` is present, prefer a report with the same `instance`.
 - If there is no match, treat the audit as a first baseline.
@@ -181,7 +181,7 @@ Be conservative with exclusions when transcript fidelity or future raw re-analys
 
 - Never overwrite old audit reports.
 - Write a new file at:
-  - `notes/reports/agentos-chatlas-retention-audit/report-<YYYYMMDDTHHMMSSZ>.md`
+  - `notes/reports/tarav-chatlas-retention-audit/report-<YYYYMMDDTHHMMSSZ>.md`
 - Use the stable report contract from `assets/report-template.md`.
 - Keep the full `Current recommendation` section fully restated on every audit.
 - Keep the delta sections focused on what changed since the baseline report.
@@ -201,7 +201,7 @@ If the user wants action, treat the report as the decision basis for a follow-up
 
 Store reports at:
 
-- `notes/reports/agentos-chatlas-retention-audit/report-<YYYYMMDDTHHMMSSZ>.md`
+- `notes/reports/tarav-chatlas-retention-audit/report-<YYYYMMDDTHHMMSSZ>.md`
 
 Keep target identity in frontmatter, not in the directory structure.
 
@@ -209,7 +209,7 @@ Required frontmatter:
 
 ```yaml
 ---
-skill: agentos-chatlas-retention-audit
+skill: tarav-chatlas-retention-audit
 audited_at: 2026-04-20T15:04:05Z
 provider: copilot
 instance:

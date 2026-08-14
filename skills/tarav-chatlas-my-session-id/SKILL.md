@@ -1,17 +1,17 @@
 ---
-name: agentos-chatlas-my-session-id
+name: tarav-chatlas-my-session-id
 description: Discover the current agent's OWN native session id ("which session am I in?") through a provider-specific direct reader when available, otherwise by refreshing Chatlas and locally matching the agent's own verbatim user turns. Returns the native session id plus the neutral Chatlas identity when resolvable. USE WHEN an agent needs to know which provider session it is running inside. Called like a terminal command — runs with no required args; optional `--provider` selects the provider path and narrows fallback search.
 ---
 
 # Chatlas My Session Id
 
-Operational `Package.Aux.Skill` under `agentos-chatlas-pkg`.
+Operational `Package.Aux.Skill` under `tarav-chatlas-pkg`.
 
 Answer the question "which session am I in?" for the running agent. Resolve through the current provider's cheapest trustworthy path first. Some harnesses expose the native session id directly to tool processes; when they do, use it. Otherwise refresh Chatlas, pull the recently-active sessions, and match distinctive fragments of the caller's **own** verbatim user turns until exactly one session remains.
 
 The provider-specific paths resolve provider-native identity. Chatlas remains the general fallback and the authority for the neutral `identity_hash`.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `tarav-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
 - runs with no required arguments; a bare provider name resolves to `--provider`.

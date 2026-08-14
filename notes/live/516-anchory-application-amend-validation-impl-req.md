@@ -10,8 +10,8 @@
 
 ## Impl.Agendix
 
-- **Touched (index):** `Anchory.System` - integrating applications own payload meaning; Anchory owns amendment and atomic persistence (`agentos-pkg/design/107-design.md`, `agentos-pkg/appendix/Anchory.System-appendix.md`).
-- **Touched (index):** `Chatlas.Anchory` - Chatlas owns `chatlas.support-set.v2`, exact visible-user-turn resolution, and timestamp integrity (`agentos-chatlas-pkg/design/100-design.md`).
+- **Touched (index):** `Anchory.System` - integrating applications own payload meaning; Anchory owns amendment and atomic persistence (`tarav-pkg/design/107-design.md`, `tarav-pkg/appendix/Anchory.System-appendix.md`).
+- **Touched (index):** `Chatlas.Anchory` - Chatlas owns `chatlas.support-set.v2`, exact visible-user-turn resolution, and timestamp integrity (`tarav-chatlas-pkg/design/100-design.md`).
 - **Touched (chat):** the user authorized autonomous end-to-end development of application-owned amendment validation ^c20260730-33u
 - **Structural:** `agentos-cli` is the composition root joining the generic Anchory registrar to Chatlas-owned validation, following the existing Index external-check injection pattern.
 - **Touched (implementation):** `agentos-py` now exposes `^anchory-amend-validator` and extends `^anchory-poi-command`, grounded to `Anchory.System`.

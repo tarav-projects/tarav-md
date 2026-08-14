@@ -55,13 +55,13 @@ Slices 5–7 were executed across two concurrent sessions and then re-checked fr
 
 **chat → touched**: `^c20260728-4u` — the ordered support set for this design: the `--design` ordering turn, the `<hash>:<idx>` locator decision, the event-versus-reference split, `event_hash` as a model field, and the `extras` namespace plus the robustness-to-change principle.
 
-**index → touched** (`agentos-chatlas-pkg/design/100-design.md` unless noted):
+**index → touched** (`tarav-chatlas-pkg/design/100-design.md` unless noted):
 
 - `Session.Event.Tape` — `sequence` is the only positional field; durable references key on a grouping carrying a stability contract.
 - `Event.Grouping`, `Normal.Turn` — the turn layer this builds under; `turn_id` bounds nothing here but defines what a turn member is.
 - `Chatlas.Session.Model` — the model carries chat data, never a consumer's interpretation; `extras` extends that boundary upstream.
 - `Chatlas.Session.Model.Contract`, `Chatlas.Session.Model.Tests`, `Delta.Normalization::Chatlas`, `Normalization.Pipeline::Chatlas.Session.Model`.
-- `agentos-pkg` `Normalization.Pipeline-appendix`: `Normal.Model.Contract` (regions, retired keys, null policy), `Model.Fragment` (topological, not positional; partial by definition), `Under.Normalization`, `Inline.Raw.Source`, `Projection.Test`, `Path.Source.Split.Test`, `Normalization.Coverage`.
+- `tarav-pkg` `Normalization.Pipeline-appendix`: `Normal.Model.Contract` (regions, retired keys, null policy), `Model.Fragment` (topological, not positional; partial by definition), `Under.Normalization`, `Inline.Raw.Source`, `Projection.Test`, `Path.Source.Split.Test`, `Normalization.Coverage`.
 
 ## Execution.Plan
 

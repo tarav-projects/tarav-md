@@ -7,7 +7,7 @@
 - **State:** Open — grounded, not yet designed.
 - **Scope:** `Chatlas.Session.Model` content layer — a new event kind + its `Session.Lineage` linkage. NOT identity/index/views.
 - **Related:** `509-session-model-design-session.md` already lists compaction as an open neutral concept ("compaction, sub-agent lineage, attachments, fork lineage, labels…"); this issue supplies concrete grounding evidence for it.
-- **Affects blocks:** `Session.Event.Tape`, `Session.Lineage`, `Chatlas.Session.Model` (`agentos-chatlas-pkg/design/100-design.md`).
+- **Affects blocks:** `Session.Event.Tape`, `Session.Lineage`, `Chatlas.Session.Model` (`tarav-chatlas-pkg/design/100-design.md`).
 
 ## Motivation
 

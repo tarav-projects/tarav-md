@@ -13,7 +13,7 @@
 - **Start-tier rule:** enter at the cheapest applicable tier, not always Tier 1 — exact identity selector → Tier 1; only a time window → Tier 2; nothing → Tier 3. Freshness-sensitive time-window reads (`recents`, `my-session-id`) commonly settle at Tier 3.
 - **Stop rule:** run a tier, re-run the read, stop as soon as the read is non-empty (or the ladder is exhausted). `--update=direct|index|recent|full` jumps straight to a tier.
 - **Status:** implemented (Slices 1–4). Tests green; one pre-existing unrelated suite failure noted in `Impl.Log`. Changes uncommitted.
-- **Source context:** design discussion in this session (no prior design-session artifact). Motivating consumer: the `agentos-chatlas-my-session-id` skill, whose `update → recents → match` pipeline this collapses into `recents --update`.
+- **Source context:** design discussion in this session (no prior design-session artifact). Motivating consumer: the `tarav-chatlas-my-session-id` skill, whose `update → recents → match` pipeline this collapses into `recents --update`.
 
 ### Scope
 
@@ -74,7 +74,7 @@ Ordered vertical slices. Each reaches an observable CLI result and is checked by
 - **Check:** per-command behavior test that `--update` triggers a scoped update with the command's structural selectors and the read runs against the freshened index. `stats` (no row predicate) runs a single targeted update without escalation.
 
 ### Slice 4 — (Optional, doc-only) Adopt in `my-session-id` skill
-- **Changes:** update `agentos-chatlas-md/skills/agentos-chatlas-my-session-id/SKILL.md` to use `recents --provider <p> --days <d> --update` in place of the manual `update` + `recents` two-step.
+- **Changes:** update `agentos-chatlas-md/skills/tarav-chatlas-my-session-id/SKILL.md` to use `recents --provider <p> --days <d> --update` in place of the manual `update` + `recents` two-step.
 - **Observable:** the skill workflow drops a step; the token-discipline / file-pipe guidance is unchanged.
 - **Check:** skill reads correctly end-to-end (manual run); no code test.
 

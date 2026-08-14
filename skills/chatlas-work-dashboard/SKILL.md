@@ -5,11 +5,11 @@ description: In-chat dashboard of recent work across Chatlas sessions — what y
 
 # Chatlas Work Dashboard
 
-Operational `Package.Aux.Skill` under `agentos-chatlas-pkg`.
+Operational `Package.Aux.Skill` under `tarav-chatlas-pkg`.
 
 A chat tool, not a report generator. It renders a working view of recent sessions so the user can explore what they were doing, find the session they half-remember, and decide what to resume. Nothing is written to disk.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `tarav-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
 - a bare duration (`3d`, `10m`, `2w`) resolves to `--since`.
@@ -59,7 +59,7 @@ This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batch
 
 - read-only; never produces, commits, or stages a Chatlas product
 - never writes a note, digest, or artifact — the dashboard lives in the chat
-- does not own task state; it reads history and navigates it. Pending-work tracking belongs to `agentos-hugentics --status` and parking notes
+- does not own task state; it reads history and navigates it. Pending-work tracking belongs to `tarav-hugentics --status` and parking notes
 - routing is limited to printing jump commands; it does not decide what the user should work on
 
 ## Cost Model
@@ -124,7 +124,7 @@ If `state` is `fresh`, read the artifact at `products path` instead of the head 
 ▸ 019fb5c1 · 2m ago · 103 turns
   recap  We're implementing cross-skill Context.Loading reachability in the skw
          graph; `--reachable-from` and the typed `--load` edges landed, all 13
-         managed skills resolve from agentos-pkg, 632 tests pass, and the changes
+         managed skills resolve from tarav-pkg, 632 tests pass, and the changes
          are still uncommitted.
   jump   /chatlas-session-continue --session 019fb5c1-7d23-7332-8654-2e863e4e7ef0
 

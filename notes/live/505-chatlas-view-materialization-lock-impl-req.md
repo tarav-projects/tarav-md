@@ -6,7 +6,7 @@
 - **status:** implemented
 - **target project:** `agentos-chatlas-py`
 - **source context:** confirmed concurrent depot-replacement race in `agentos_chatlas/views/framework.py`; user alignment on `filelock`, one central lock-file folder, and `Chatlas.Lock.Visibility`
-- **durable design:** `agentos-chatlas-pkg/index/100-index.md` — `Chatlas.Lock.Visibility`, `Chatlas.View.Model`, `View.Identity`
+- **durable design:** `tarav-chatlas-pkg/index/100-index.md` — `Chatlas.Lock.Visibility`, `Chatlas.View.Model`, `View.Identity`
 - **out of scope:** global scheduling, locking fresh reads, automatic stale-lock recovery, silent lock deletion, lock-breaking behavior, lock sidecar metadata, and a lock-inspection CLI
 
 ## Impl.Index

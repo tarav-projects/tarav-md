@@ -5,13 +5,13 @@ description: Resolve a prior chat session and return the Chatlas `zip-transcript
 
 # Chatlas Session Zip Transcript
 
-Operational `Package.Aux.Skill` under `agentos-chatlas-pkg`.
+Operational `Package.Aux.Skill` under `tarav-chatlas-pkg`.
 
 Delegate prior-session transcript summary recovery to a subagent.
 
 The default output is the path to a fresh Chatlas `zip-transcript-summary` product artifact. The artifact body should not be pasted into the parent chat unless the user explicitly asks for inline output.
 
-This is a `Batchy.Skill` — called like a terminal command. Load `agentos-batchy-skills` for the full convention.
+This is a `Batchy.Skill` — called like a terminal command. Load `tarav-batchy-skills` for the full convention.
 
 - `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
 - a bare session id, URI, or query resolves to `--session`.
@@ -40,7 +40,7 @@ Escalate only when the transcript is unusually long or complex, the user explici
 The caller should provide the subagent:
 
 - the session id, `agentos://chat-session/...` URI, identity hash, or other selector that resolves exactly one Chatlas session
-- an instruction to load `agentos-chatlas-pkg/references/producer-zip-transcript-summary.md`
+- an instruction to load `tarav-chatlas-pkg/references/producer-zip-transcript-summary.md`
 - an instruction to return only the artifact path unless diagnostics were explicitly requested
 
 If no session identifier or query is provided, stop with:
@@ -60,7 +60,7 @@ Use this shape when spawning the subagent:
 
 ```text
 Use the chatlas-session-zip-transcript skill.
-Load `agentos-chatlas-pkg/references/producer-zip-transcript-summary.md` and follow it.
+Load `tarav-chatlas-pkg/references/producer-zip-transcript-summary.md` and follow it.
 
 Session selector: <option-based-chatlas-selector>
 
@@ -80,4 +80,4 @@ The subagent should return:
 
 - This skill is for continuation and context recovery, not quote-accurate archival use.
 - The Chatlas product artifact is sensitive prior-session content.
-- Producer details, artifact format, compression rules, freshness, and failure handling live in `agentos-chatlas-pkg/references/producer-zip-transcript-summary.md`.
+- Producer details, artifact format, compression rules, freshness, and failure handling live in `tarav-chatlas-pkg/references/producer-zip-transcript-summary.md`.

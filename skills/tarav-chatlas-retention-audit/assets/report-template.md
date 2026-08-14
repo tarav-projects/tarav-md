@@ -1,5 +1,5 @@
 ---
-skill: agentos-chatlas-retention-audit
+skill: tarav-chatlas-retention-audit
 audited_at: <ISO8601 UTC timestamp>
 provider: <provider>
 instance:

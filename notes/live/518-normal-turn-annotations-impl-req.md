@@ -10,7 +10,7 @@
 
 ## Impl.Agendix
 
-- **touched (index):** `Event.Hash`, `Event.Annotation`, `Event.Grouping`, `Event.Group.Hash`, `Normal.Turn`, `Normal.Turn.Id`, and `Normal.Turn.Ref` in `agentos-chatlas-pkg/design/100-design.md`
+- **touched (index):** `Event.Hash`, `Event.Annotation`, `Event.Grouping`, `Event.Group.Hash`, `Normal.Turn`, `Normal.Turn.Id`, and `Normal.Turn.Ref` in `tarav-chatlas-pkg/design/100-design.md`
 - **historical implementation:** `notes/live/513-normal-turn-identity-impl-req.md` established stable interaction IDs and `chatlas.support-set.v2`, but intentionally grouped a user submission and the following assistant response under one identity; this implementation supersedes that grouping
 - **active dependency:** uncommitted `Chatlas.Event.Pattern` and `chatlas turns query` work already projects legacy turns; preserve and migrate it
 - **dependent repositories:** `agentos-chatlas-py` owns the model and Chatlas support-set runtime; `agentos-py` validates Skillware edition support records; `agentos-cli` supplies end-to-end command tests; `agentos-chatlas-md` owns this artifact; `agentos-md` owns the generated Hugentics linking guidance consumed by grounding workflows
@@ -128,5 +128,5 @@
 - rebuilt retained Claude archive indexes so all 36 migration snapshot identities remained mechanically reachable after index reset
 - rebuilt the disposable Event.Pattern SQLite surface: 12,065 materialized sessions and 200,792 indexed query events; scan and SQLite returned the same canonical reference for the execution-gate turn
 - full materialized-corpus audit: 12,065 schema-4 models, 2,009,358 events, and 87,158 annotated groups; zero legacy top-level `turn_id`, mixed human/non-human grouping, or invalid user-turn findings
-- verification: `agentos-chatlas-py` 292 passed, `agentos-py` 592 passed, `agentos-cli` 71 passed; Ruff passed in all three repositories; `agentos skw check --skill skills/agentos-hugentics` reported zero POIs and diagnostics
+- verification: `agentos-chatlas-py` 292 passed, `agentos-py` 592 passed, `agentos-cli` 71 passed; Ruff passed in all three repositories; `agentos skw check --skill skills/tarav-hugentics` reported zero POIs and diagnostics
 - deferred reviewed Index amendment: `Chatlas.Anchory` still names `chatlas.support-set.v2`; changing that gated ontology line requires a later tokenized Index edition rather than an implementation-side bypass

@@ -8,7 +8,7 @@
 - **Settled:** Chatlas-local, one-way normalization. Providers know nothing about the model; Chatlas normalizes their formats inward. Provider formats are inspiration, not an input contract.
 - **Inspiration:** PI session model (typed JSONL tree: messages, compaction, branching, forks, labels, extension slots).
 - **Source material:** archived `006-Session.Model`, `007-Chatlas.Standard.Model.Contract`, `102-Agentos.Agent.Model`.
-- **Target surface:** `agentos-chatlas-pkg` index (promotion is follow-on, not this session).
+- **Target surface:** `tarav-chatlas-pkg` index (promotion is follow-on, not this session).
 - **Next:** Decide which provider-native concepts survive normalization into the model.
 
 ## Design.Index
@@ -67,7 +67,7 @@
 ### Session.Model.Map
 
 - `Session.Model.Map` is a per-provider document mapping a provider's native session concepts/fields to `Chatlas.Session.Model` neutral concepts
-- one file per provider: `agentos-chatlas-pkg/references/session-model-map-<provider>.md`
+- one file per provider: `tarav-chatlas-pkg/references/session-model-map-<provider>.md`
 - the neutral side is a controlled vocabulary — only `Chatlas.Session.Model` concept names defined in the index
 - one-directional: the index defines the neutral concept (SSOT); the map records the native→neutral path and never redefines it
 - records only non-obvious mappings — an obvious native↔neutral correspondence needs no line
@@ -107,4 +107,4 @@ Candidate neutral concepts surfaced by cross-provider clustering of the Codex/Cl
 - 2026-06-16: Settled `Session.Lineage` — linear-chronological tape; branching/forking as event-level lineage metadata; tree is a derived projection. Captured block.
 - 2026-06-16: Captured neutral-but-expressive rule into `Chatlas.Session.Model` (no provider-named canonical fields; provider content maps to neutral concepts or goes to native). Resolved the "which concepts survive" open into a survival rule. Surfaced from the Codex/Claude normalization audits (notes 517/518 in chatlas-py).
 - 2026-06-16: Added neutral-concept question queue to `Session.Notes` — 8 cross-provider candidates (compaction, sub-agent lineage, fork lineage, attachments, tool taxonomy, reasoning visibility, usage, session metadata) derived from the audit GAPs. To be worked one at a time.
-- 2026-06-16: Designed `Session.Model.Map` (per-provider native→neutral mapping surface, one-directional, controlled vocabulary, current-truth). Promoted the spine (`Chatlas.Session.Model`, `Session.Event.Tape`, `Session.Lineage`, `Session.Model.Map`) to `agentos-chatlas-pkg/index/100-index.md` + routing.
+- 2026-06-16: Designed `Session.Model.Map` (per-provider native→neutral mapping surface, one-directional, controlled vocabulary, current-truth). Promoted the spine (`Chatlas.Session.Model`, `Session.Event.Tape`, `Session.Lineage`, `Session.Model.Map`) to `tarav-chatlas-pkg/index/100-index.md` + routing.

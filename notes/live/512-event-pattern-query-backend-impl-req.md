@@ -7,7 +7,7 @@
 - **Target:** `agentos-chatlas-py`.
 - **Observable workflow:** find an assistant turn containing candidate text immediately followed by a user turn with exact approval text, then return the selected events from the current `Chatlas.Session.Model`.
 - **Authority rule:** backends return coordinates only. Every candidate is reloaded and fully re-evaluated against the current normal model, and public event payloads are projected only from that model.
-- **Source context:** `agentos-chatlas-pkg/design/100-design.md` blocks `Chatlas.Query.Surface`, `Chatlas.Session.Model`, and `Session.Event.Tape`; candidate blocks in `skills/agentos-chatlas-pkg/agendix/Chatlas.Query.Surface-agendix.md`; develop authorization and design support at `^c20260725-38u`.
+- **Source context:** `tarav-chatlas-pkg/design/100-design.md` blocks `Chatlas.Query.Surface`, `Chatlas.Session.Model`, and `Session.Event.Tape`; candidate blocks in `skills/tarav-chatlas-pkg/agendix/Chatlas.Query.Surface-agendix.md`; develop authorization and design support at `^c20260725-38u`.
 
 ### Scope
 
@@ -61,11 +61,11 @@
 
 ## Impl.Agendix
 
-- [touched] `agentos-chatlas-pkg/design/100-design.md#Chatlas.Query.Surface`
-- [touched] `agentos-chatlas-pkg/design/100-design.md#Chatlas.Session.Model`
-- [touched] `agentos-chatlas-pkg/design/100-design.md#Session.Event.Tape`
-- [touched] `skills/agentos-chatlas-pkg/agendix/Chatlas.Query.Surface-agendix.md#Candidate.Event.Pattern` ^c20260725-35u
-- [touched] `skills/agentos-chatlas-pkg/agendix/Chatlas.Query.Surface-agendix.md#Candidate.Chatlas.Query.Backend` ^c20260725-35u
+- [touched] `tarav-chatlas-pkg/design/100-design.md#Chatlas.Query.Surface`
+- [touched] `tarav-chatlas-pkg/design/100-design.md#Chatlas.Session.Model`
+- [touched] `tarav-chatlas-pkg/design/100-design.md#Session.Event.Tape`
+- [touched] `skills/tarav-chatlas-pkg/agendix/Chatlas.Query.Surface-agendix.md#Candidate.Event.Pattern` ^c20260725-35u
+- [touched] `skills/tarav-chatlas-pkg/agendix/Chatlas.Query.Surface-agendix.md#Candidate.Chatlas.Query.Backend` ^c20260725-35u
 - [touched] develop authorization and supporting design turns ^c20260725-38u
 
 ## Execution.Plan
