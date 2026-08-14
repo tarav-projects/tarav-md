@@ -99,7 +99,7 @@ An approval-ready turn optimizes the user's ability to distinguish the proposed 
 - When an approval-ready draft becomes foreground, mint a fresh opaque `Edition.Approval.Token`, show it in the same assistant turn as the proposed landing content, and pause with the resolved `::approve <token>` command (`::approved` equivalent). The command approves that presented edition and never writes it.
 - The token identifies one proposal and may cover several lines. Reuse it while materially significant wording and the landing target hold; presentation-only changes do not require a new attention checkpoint.
 - Do not offer or use bare `::approve` in this workflow. If the user gives it anyway, explain that it records at most semantic edit-event approval, leave the draft approval-ready, and reprint the exact `::approve <token>` command required to satisfy `Line.Verbatim.Gate`.
-- Approval adds the resolved draft to the approved, unlanded cluster and returns the loop to **Focus**. When roadmap candidates remain, the default next move is to codesign and present the next approval-ready draft, not to pause for landing.
+- Approval adds the resolved draft to the approved, unlanded cluster and returns the loop to **Focus**. In `Capture.Stance::Review`, when roadmap candidates remain, the default next move is to codesign and present the next approval-ready draft, not to pause for landing.
 - An explicit `::land [target]` (`::write` equivalent) remains valid whenever its approved target resolves clearly, including before the workflow suggests it.
 - `::land-all-approved` takes no target argument and lands the complete approved, unlanded cluster of the single foreground index workflow.
 - Suggest landing at a deliberate landing pause: when the roadmap is exhausted, when the approved cluster is significant and coherent enough to land together, or when the user asks to land or requests status.
@@ -127,6 +127,13 @@ Available User.Commands:
   ::land-all-approved    write the whole approved cluster
 ```
 
+Example `Capture.Stance::Discuss` footer:
+
+```text
+Available User.Commands:
+  ::review  resume presenting blocks for approval
+```
+
 ## Mode
 
 - capture accepts `Alignment.Mode` — `Interactive` (default) or `Autonomous`
@@ -134,6 +141,20 @@ Available User.Commands:
 - `Autonomous` runs without user prompting: the loop collapses to ground → propose → land → report, and it can land only on the agendix — a user gate (`Edition.Trigger.User.Gated`) cannot be resolved autonomously
 - `--AUTO` is the extreme case as a flag: the full workflow automatic, chat to agendix, the invocation is the one trigger that covers the pass
 - `--agendix` presets the agendix destination and defaults to `Autonomous`; the user engaging mid-pass simply is `Interactive`
+
+## Capture.Stance
+
+`Capture.Stance` is the user's steering of the `Interactive` loop: whether the agent answers with a draft or with conversation. The workflow, its target, and its gates are identical either way.
+
+- `Capture.Stance::Review` is the default and is the loop as written above: after each user turn the next move is the next approval-ready draft
+- `Capture.Stance::Discuss` holds ordinary conversation: present no `Index.Edition.Turn` and make no `Capture.Offer`, and answer the user's point instead
+- `::discuss` is sticky — it holds until `::review`, and no other move restores drafting: not a status request, not a landing, not an interruption and return
+- `::review` resumes drafting from the current foreground with no preamble, delta, or re-orientation
+- entering `Capture.Stance::Discuss` never discards a foreground approval-ready draft; the draft stands with its token intact and stays approvable
+- a stance changes what the agent presents, never what it tracks: candidates continue to accumulate and `--capture --audit` still reports them
+- neither stance changes a command's `available:` condition; `::approve` simply has nothing to resolve once no draft is foreground
+- in `Capture.Stance::Discuss` the only advertised command is `::discuss`'s exit, `::review`
+- `Alignment.Mode::Autonomous` has no stance: it lands only on a non-reviewed target like the agendix, so no draft is ever presented for approval
 
 ## Landing
 
@@ -147,7 +168,7 @@ Landing form-fits material to the named surface under that surface's own gate. A
 
 ## Behavior
 
-- the discussion is free: capture is pulled by the user, never a standing obligation on the conversation — not every discussion involves blocks
+- the discussion is free: capture is pulled by the user, never a standing obligation on the conversation — not every discussion involves blocks; `::discuss` is how the user says so for a stretch rather than one draft at a time
 - `Not.A.Wall.Of.Text` governs the loop: the opening turn may show the broader `Capture.Roadmap`, but not the context-assembly load or evidence inventory; after orientation stay on one block or small coherent cluster, never re-dump the full harvest
 - after approval, continue directly to the next roadmap cluster while the approved material accumulates; landing is a batch checkpoint rather than the default response to each approval
 - after a write, refresh the internal map; show only a compact roadmap delta unless the session's big picture materially changed

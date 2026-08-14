@@ -51,6 +51,7 @@ This is a `Batchy.Skill`, called like a CLI and resolved by one `Batchy.Router`.
 - approval marks the resolved verbatim proposal approved without writing it
 - landing writes only approved material and never implies approval
 - `::land-all-approved` fails closed unless one foreground workflow supplies the approved cluster
+- a stance trigger steers the loop's next move without crossing a gate, so it never substitutes for approval or landing
 
 ### Hugentics.Authority.Contract
 
@@ -231,6 +232,23 @@ This `User.Command.Section` declares the canonical commands below. Each accepted
 - args: none
 - action: land every approved, unlanded target in that foreground workflow; never approve material implicitly
 - resolution: fail closed unless exactly one foreground index workflow supplies the approved cluster
+
+## Capture.Stance.Section
+
+A `Capture.Stance` steers what the capture loop does after each user turn. It is a loop disposition, not a `User.Command`: it crosses no gate, changes nothing about which commands are accepted, and governs only the agent's next move and the advertised command line.
+
+### Capture.Stance::Review
+- present approval-ready drafts as the loop's default next move
+- triggers: `::review`
+- default: yes
+- advertises: `::approve <token>`, `::land`, `::discuss`
+
+### Capture.Stance::Discuss
+- hold ordinary conversation: present no draft and make no `Capture.Offer`
+- triggers: `::discuss`
+- sticky: holds until `::review` and no other move restores drafting
+- advertises: `::review`
+- a foreground approval-ready draft keeps standing with its token intact
 
 ## Boundary
 
@@ -601,9 +619,10 @@ An agent operating the index should:
 - return context with source block citations so the caller can verify and maintain the summary
 - distinguish discovered context from inference
 - treat the prompt as a focus argument and compare the current visible discussion against the index whenever there is discussion state to ground
-- make a `Capture.Offer` when work surfaces new aligned content: propose typed line content and its landing operation at the moment, with destination options (index main, appendix, agendix, decline) — never self-write on a gated surface
+- make a `Capture.Offer` when work surfaces new aligned content: propose typed line content and its landing operation at the moment, with destination options (index main, appendix, agendix, decline) — never self-write on a gated surface; `Capture.Stance::Discuss` suspends the offer without suspending the tracking
 - use `--capture` when the user wants the chat's content worked through the shared loop; its durable target remains unresolved until conversation or a compatible route supplies it, while `--index` and `--main` select the reviewed main Index target, `--design` selects `Design.Req`, and `--agendix` selects `Index.Agendix`
 - resolve `::approve` / `::approved` to `User.Command::Approve`, but in index workflows mint, render, and require the proposal's explicit token; if the user gives a bare approval, leave the verbatim gate unresolved and reprint the exact tokenized command; resolve `::land` / `::write` to targeted `User.Command::Land`, and `::land-all-approved` to zero-argument `User.Command::LandAllApproved`; `--write` remains a skill argument while `::write` is an in-workflow transition
+- resolve `::discuss` and `::review` to their `Capture.Stance`, which changes only the loop's next move and the advertised commands; every command stays as available as its own condition makes it
 - during interactive capture, add approved drafts to the approved cluster and continue reviewing the roadmap; do not make immediate landing the default next move
 - when a landing contains several lines, batch their anchor preview and registration and apply the returned line-to-anchor mapping in one surface patch; do not shell-loop the single-line path
 - keep command targets foregrounded; targeted commands fail closed on ambiguous targets, and `::land-all-approved` fails closed unless one foreground index workflow owns the cluster
