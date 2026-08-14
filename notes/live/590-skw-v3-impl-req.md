@@ -32,7 +32,7 @@
 
 - every POI gets a stable identity hash: `sha256(target|kind|key|current-relevant-state)` truncated to 10 hex chars — stable across runs while the situation is unchanged; changes when the situation changes.
 - human output: a once-per-kind legend (kind, one-sentence meaning, prescribed response) printed only for kinds present in the run, then bare rows: `- [kind] target :: key (hash)`. JSON output carries the same fields.
-- per-kind fix protocols stay in `agentos-skillware/references/check.md` (re-derived in slice 6), not in format strings.
+- per-kind fix protocols stay in `tarav-skillware/references/check.md` (re-derived in slice 6), not in format strings.
 
 ### Poi.Bless (bless verb)
 
@@ -42,7 +42,7 @@
 
 ### Migration
 
-- 10 machinery-bearing srcs: `agentos-index2` (SKILL, edit, ground, back-link, check) and `agentos-skillware` (SKILL, check, doctrine, lang, author). Mapping: `> [!skw]- <decl>` → `> $kw: <decl>`; `> from: X` → `> $kw. --from X`; `> intent: …` (+ bare `>` continuations) → `> $kw. --intent …` (+ `> $kw. …` continuations); `> [!skw]- end-…` → `> $kw. end-…`.
+- 10 machinery-bearing srcs: `agentos-index2` (SKILL, edit, ground, back-link, check) and `tarav-skillware` (SKILL, check, doctrine, lang, author). Mapping: `> [!skw]- <decl>` → `> $kw: <decl>`; `> from: X` → `> $kw. --from X`; `> intent: …` (+ bare `>` continuations) → `> $kw. --intent …` (+ `> $kw. …` continuations); `> [!skw]- end-…` → `> $kw. end-…`.
 - fenced `[!skw]` examples inside lang/author/doctrine are content, not machinery — they are rewritten to v3 as part of the doc re-derive (slice 6), not the mechanical migration.
 - verification: byte-identical compiled targets (git diff clean on runnable files after rebuild) and lock continuity (recipe keys and body/dep hashes unchanged → no new derived-stale).
 

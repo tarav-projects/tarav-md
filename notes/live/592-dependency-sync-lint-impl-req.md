@@ -59,7 +59,7 @@ Each slice is independently observable; run `python -m pytest agentos-py/tests/t
 - check: CLI help shows the new flags; exit codes unchanged
 
 ### Slice 5 — acceptance on a real surface
-- run `agentos skillware check --skill agentos-md/skills/agentos-index` (its `skillware.json` must configure the `agentos-pkg` depot — add if missing, that is config, not content)
+- run `agentos skillware check --skill agentos-md/skills/agentos-index` (its `skillware.json` must configure the `tarav-pkg` depot — add if missing, that is config, not content)
 - expected observable: `undeclared-dependency` POIs for the index-block names its references mention (e.g. `Verbatim.User.Gated`, `Index.Ontology`) — the exact class of drift that motivated this feature
 - do NOT bless or edit those surfaces; report the POI list as the acceptance evidence
 

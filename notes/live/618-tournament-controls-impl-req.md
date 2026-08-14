@@ -4,7 +4,7 @@
 
 - **Goal:** implement `Tournament.Control` — consumer-supplied players carrying a declared expected standing, substituted into matches by the engine at a consumer-set rate, recorded on the verdict, and held apart in the read.
 - **Status:** executed. All five slices are implemented and the full `agentos-py` suite passes at 835 tests, up from 810. Changes are uncommitted for review.
-- **Source design:** `agentos-pkg/design/111-design.md` — `Tournament.Control` (`^c20260806-129u`, `-130u`, `^c20260807-0u`, `^c20260807-1u`, `^c20260806-131u`…`-135u`), plus the amended `Tournament.Hook` lines `^c20260806-127u` and `^c20260806-128u`.
+- **Source design:** `tarav-pkg/design/111-design.md` — `Tournament.Control` (`^c20260806-129u`, `-130u`, `^c20260807-0u`, `^c20260807-1u`, `^c20260806-131u`…`-135u`), plus the amended `Tournament.Hook` lines `^c20260806-127u` and `^c20260806-128u`.
 - **Starting state:** the engine has no control hook, no substitution, no rate, no band on the record, and `report.py` folds every player into one list. The design landed complete; the implementation is behind on all of it.
 - **Why it exists:** a null result today has three indistinguishable causes — the pool genuinely has no signal, the question is ineffective, or the judge cannot discriminate. Controls separate them. If a control declared `low` does not sink and one declared `high` does not rise, the instrument is reporting on itself, and the pool's flatness says nothing about the pool.
 - **In scope:** a defaulted `controls` hook returning the control pool; a `control_rate` definition attribute; engine-side substitution before identity; `controls` on the ticket and on the verdict envelope; a separate `controls` section in the report; docs.
@@ -40,7 +40,7 @@
 ## Impl.Agendix
 
 - **Gate** — the `--impl --dev --AUTO Implement controls` invocation turn.
-- **Touched — `agentos-pkg/design/111-design.md`**: `Tournament.Control` (`^c20260806-129u`, `-130u`, `^c20260807-0u`, `^c20260807-1u`, `^c20260806-131u`…`-135u`); `Tournament.Hook` (`^c20260806-127u`, `-128u`); `Agentos.Tournament` (`^c20260806-136u`, `-137u`).
+- **Touched — `tarav-pkg/design/111-design.md`**: `Tournament.Control` (`^c20260806-129u`, `-130u`, `^c20260807-0u`, `^c20260807-1u`, `^c20260806-131u`…`-135u`); `Tournament.Hook` (`^c20260806-127u`, `-128u`); `Agentos.Tournament` (`^c20260806-136u`, `-137u`).
 - **Structural** — `notes/live/613-tournament-n-way-matches-impl-req.md` (arity and ordering), `614-tournament-ticket-submit-impl-req.md` (the ticket lifecycle this extends), `617-tournament-preview-system-impl-req.md` (preview).
 - **Open.Space** — how a reader decides a control converged has no index home and stays out of the code.
 

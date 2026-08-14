@@ -4,7 +4,7 @@
 
 - **Goal:** bring `agentos.tournament` and `agentos.bloberia` back into agreement with the index after the capture pass of `^c20260806-5u`…`^c20260806-45u`. The engine must stop holding a pool, stop authoring match prompts, and stop computing identity; Bloberia must gain record namespaces; the tournament must gain a real depot.
 - **Status:** executed. All seven slices are implemented, the full `agentos-py` suite passes at 750 tests, and the engine was verified end to end against live `claude-code` judges on a namespaced global depot. Changes are uncommitted for review.
-- **Source design:** `agentos-pkg/design/111-design.md` (`Agentos.Tournament`, `Tournament.Definition`, `Tournament.Hook`, `Tournament.Match`, `Tournament.Judge`, `Tournament.Depot`) and `agentos-pkg/design/109-design.md` (`Agentos.Bloberia`, `Bloberia.Record.Namespace`).
+- **Source design:** `tarav-pkg/design/111-design.md` (`Agentos.Tournament`, `Tournament.Definition`, `Tournament.Hook`, `Tournament.Match`, `Tournament.Judge`, `Tournament.Depot`) and `tarav-pkg/design/109-design.md` (`Agentos.Bloberia`, `Bloberia.Record.Namespace`).
 - **Prior implementation:** `notes/live/610-agentos-tournament-v0-impl-req.md` built the v0 this request corrects. Nothing in 610 was wrong when written; the design moved.
 - **In scope:** Bloberia record namespaces; a `Tournament.Depot` with a global default and `definitions/` + `records/<tournament-id>/`; the rewritten hook surface (`match_players`, `present_player`, `match_identity`, `verdict_slot`); engine-composed `Match.Verbatim` with position labels the consumer cannot touch; a `tournament.pairing` library replacing the engine sampler; a report that folds players from verdicts; the CLI surface that follows from all of it.
 - **Out of scope:** covering a definition's import closure (`Issue.I0001`, deliberately open); per-namespace locking (`^c20260806-36u` keeps locking depot-wide); adaptive sampling; cross-tournament aggregation; a match cache; the index-line tournament that will consume this.
@@ -83,10 +83,10 @@ One live defect follows from the third: `_default_identity` hashes the rendering
 
 ## Impl.Agendix
 
-- **Gate `^c20260806-46u`** — the `/agentos-hugentics --impl --dev --AUTO` turn authorizes both the design and the execution of this artifact. In `Alignment.Mode::Autonomous` this one anchor is the coarse gate covering the whole run.
-- **Touched — `agentos-pkg/design/111-design.md`**: `Tournament.Hook` (`^c20260806-10u`, `-11u`, `-13u`, `-14u`, `-15u`, `-16u`, `-17u`, `-19u`, `-20u`, `-21u`, `-22u`, `-23u`), `Tournament.Match` (`^c20260806-7u`, `-8u`), `Tournament.Judge` (`^c20260806-9u`), `Tournament.Definition` (`^c20260806-5u`, `-6u`), `Tournament.Depot` (`^c20260806-25u`…`-30u`), `Agentos.Tournament` (`^c20260806-43u`, `-44u`).
-- **Touched — `agentos-pkg/design/109-design.md`**: `Bloberia.Record.Namespace` (`^c20260806-31u`…`-37u`).
-- **Touched — `agentos-pkg/issues/100-issues.md`**: `Issue.I0001.Tournament.Definition.Import.Closure` stays open and out of scope.
+- **Gate `^c20260806-46u`** — the `/tarav-hugentics --impl --dev --AUTO` turn authorizes both the design and the execution of this artifact. In `Alignment.Mode::Autonomous` this one anchor is the coarse gate covering the whole run.
+- **Touched — `tarav-pkg/design/111-design.md`**: `Tournament.Hook` (`^c20260806-10u`, `-11u`, `-13u`, `-14u`, `-15u`, `-16u`, `-17u`, `-19u`, `-20u`, `-21u`, `-22u`, `-23u`), `Tournament.Match` (`^c20260806-7u`, `-8u`), `Tournament.Judge` (`^c20260806-9u`), `Tournament.Definition` (`^c20260806-5u`, `-6u`), `Tournament.Depot` (`^c20260806-25u`…`-30u`), `Agentos.Tournament` (`^c20260806-43u`, `-44u`).
+- **Touched — `tarav-pkg/design/109-design.md`**: `Bloberia.Record.Namespace` (`^c20260806-31u`…`-37u`).
+- **Touched — `tarav-pkg/issues/100-issues.md`**: `Issue.I0001.Tournament.Definition.Import.Closure` stays open and out of scope.
 - **Structural** — `notes/live/610-agentos-tournament-v0-impl-req.md` is the prior implementation this request corrects; the derivation is the evidence.
 - **Open.Space** — the pairing library's own strategy vocabulary has no index home. It stays provisional and unanchored.
 

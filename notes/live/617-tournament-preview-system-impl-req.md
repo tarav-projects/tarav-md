@@ -5,7 +5,7 @@
 - **Goal:** finish the tournament preview affordance — a way to render one real, answerable match without spawning a judge — and mark preview tickets so they stay distinguishable from the ones a judge failed to answer.
 - **Status:** executed. All three slices are implemented and the full `agentos-py` suite passes at 810 tests. Changes are uncommitted for review.
 - **Starting state, stated plainly:** `agentos tournament preview` and `runner.preview_match` already exist and are green, but they were built ad hoc in conversation rather than through this workflow, and they are uncommitted. This request formalizes that work and closes the one defect it introduced.
-- **Source design:** `agentos-pkg/design/111-design.md` — `Tournament.Ticket` (`^c20260806-64u`…`-68u`), `Tournament.Depot` (`^c20260806-69u`…`-71u`).
+- **Source design:** `tarav-pkg/design/111-design.md` — `Tournament.Ticket` (`^c20260806-64u`…`-68u`), `Tournament.Depot` (`^c20260806-69u`…`-71u`).
 - **The defect:** a preview mints a ticket that will never be redeemed, which is indistinguishable on disk from a ticket a judge was given and failed to answer. Tune a question for an afternoon and the orphan pile is entirely previews, so the one place that records judge failure stops meaning anything.
 - **In scope:** a `kind` field on the ticket separating `match` from `preview`; `gc` reporting the split; the preview command already built.
 - **Out of scope:** any index capture — preview is a development affordance over the existing ticket lifecycle, not a design concept, and `^c20260806-64u` already covers what a ticket authorizes without requiring that a judge was spawned. Also out: a shorter horizon for preview tickets, since a preview ticket is deliberately answerable by hand and sweeping it early would defeat that.
@@ -29,7 +29,7 @@
 ## Impl.Agendix
 
 - **Gate `^c20260806-126u`** — the `--impl --dev --AUTO` turn asking for the marker field and the formalization.
-- **Touched — `agentos-pkg/design/111-design.md`**: `Tournament.Ticket` (`^c20260806-64u`, `-65u`, `-68u`), `Tournament.Depot` (`^c20260806-70u`, `-71u`).
+- **Touched — `tarav-pkg/design/111-design.md`**: `Tournament.Ticket` (`^c20260806-64u`, `-65u`, `-68u`), `Tournament.Depot` (`^c20260806-70u`, `-71u`).
 - **Structural** — `notes/live/614-tournament-ticket-submit-impl-req.md` built the ticket lifecycle this extends.
 - **Open.Space** — whether preview tickets deserve their own horizon has no index home and stays unanchored.
 

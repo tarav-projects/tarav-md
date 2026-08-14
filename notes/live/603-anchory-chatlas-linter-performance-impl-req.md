@@ -4,7 +4,7 @@
 
 - **scope:** remove repeated Anchory registry writes and provenance work, prune dead registry entries, isolate test registries, and make Chatlas identity lookup shard-aware with reusable command-lifetime RAM caches
 - **status:** implemented and verified
-- **source:** direct user request plus profiling of `agentos index linter --depot agentos-md/skills/agentos-pkg --skip line-unlinked --show-passed`
+- **source:** direct user request plus profiling of `agentos index linter --depot agentos-md/skills/tarav-pkg --skip line-unlinked --show-passed`
 - **out of scope:** changing Index checks, POI semantics, Anchory record authority, Chatlas normal-model authority, or adding persistent derived caches
 
 ## Impl.Agendix

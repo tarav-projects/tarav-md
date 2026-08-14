@@ -5,7 +5,7 @@
 - **Goal**: implement Skillware v2 per the landed `Skillware.Construct` index block (107, `^c20260710-4u`): one universal declaration+body+owned-end construct, fully explicit closure, position-free primitives (`text`, `copy`, `derived`), first structural commands (`router`, `when`, `then`), and migration of ALL existing srcs to the strict form — no v1 dialect survives (`No.Legacy.Allowed`).
 - **Design source**: this session's design discussion (2026-07-10 evening) + the `Skillware.Construct` and recast `Skillware.Recipe` blocks; anchors `^c20260710-4u`.
 - **Out of scope**: structured outlink annotations on `then` and the findability lint family (deferred — "just text at the moment", user); `libs`/stdlib cross-skill resolution; shapes; `pointer` binding.
-- **Repos**: `agentos-py` (parser + build/check + tests), `agentos-md` (migration of 19 srcs, agentos-skillware content update).
+- **Repos**: `agentos-py` (parser + build/check + tests), `agentos-md` (migration of 19 srcs, tarav-skillware content update).
 - **Status**: executed 2026-07-10 — all slices done; verification green; changes uncommitted for review
 
 ## Impl.Index
@@ -21,8 +21,8 @@
 - **position-free primitives**: the v1 "recipe must be first in its section" convention and its finding are dropped; any number of constructs per section, anywhere. Section heading remains the human-facing association only.
 - **parser shape** (agentos-py `model.py`): stack-based construct parser replacing the v1 open-recipe scan. Public API preserved: `parse_skw_source` still returns `SkwSource` with `recipes` (copy/derived constructs, now with `command`-agnostic construct data), `findings`; spans now cover declaration/args and owned-end lines. New: constructs tree (or flat list with depth/parent) exposing `router`/`when`/`then`/`text` for structural checks. Machinery lines = every declaration, arg, and end line of every construct — `_emit` strips them all.
 - **build/check** (`build.py`): emit strips all construct machinery at any nesting; copy refresh and derived tracking operate on primitive (leaf) bodies exactly as v1; lock recipe key extended from `(heading, verb)` to `(heading, verb, ordinal)` — ordinal = occurrence order within the heading — so multiple primitives per section key stably. Existing locks (one recipe per heading) migrate transparently: match `(heading, verb, 0)` falling back to `(heading, verb)`. Router/when/then are *structural only*: no lock state, no compile output beyond their stripped machinery; their checks are parse findings.
-- **migration (ALL srcs, 19 files)**: index2 (12) + agentos-skillware (7); every `> [!skw]- derived` body gains `> [!skw]- end-derived` (replacing bare `> [!skw] end` where present, inserted before the closing heading/EOF where heading-closed); compiled targets must be byte-identical before/after migration (machinery strips either way) — verified by diff.
-- **agentos-skillware content update** (the skill must teach its own v2): `lang.skw.md` spec rewritten — construct form, owned ends + multi-close, primitives incl. `text`, no-indentation principle, router/when/then, fenced-inert; the fenced grammar example moves to strict syntax. `doctrine.skw.md`: `Recipe In Brief` re-derive (its `lang#Recipe Grammar` dep changes). `author.md`/`check.md`/`build.md`: light touch — end-form mentions updated. Whatever `check` flags derived-stale after the lang rewrite gets a proper re-derive pass.
+- **migration (ALL srcs, 19 files)**: index2 (12) + tarav-skillware (7); every `> [!skw]- derived` body gains `> [!skw]- end-derived` (replacing bare `> [!skw] end` where present, inserted before the closing heading/EOF where heading-closed); compiled targets must be byte-identical before/after migration (machinery strips either way) — verified by diff.
+- **tarav-skillware content update** (the skill must teach its own v2): `lang.skw.md` spec rewritten — construct form, owned ends + multi-close, primitives incl. `text`, no-indentation principle, router/when/then, fenced-inert; the fenced grammar example moves to strict syntax. `doctrine.skw.md`: `Recipe In Brief` re-derive (its `lang#Recipe Grammar` dep changes). `author.md`/`check.md`/`build.md`: light touch — end-form mentions updated. Whatever `check` flags derived-stale after the lang rewrite gets a proper re-derive pass.
 
 ### Current.State *(inspected)*
 
@@ -49,7 +49,7 @@
 - check: empty target diffs; both checks exit 0
 - status: done
 
-### S4 — agentos-skillware teaches v2 (agentos-md)
+### S4 — tarav-skillware teaches v2 (agentos-md)
 - what: rewrite `lang.skw.md` (construct spec, strict example in fence); re-derive whatever `check` flags (`doctrine#Recipe In Brief` expected); touch author/check/build end-form mentions; rebuild; final pass — pytest, both skill checks, index linter
 - check: all green; lang.md teaches only the strict form
 - status: done

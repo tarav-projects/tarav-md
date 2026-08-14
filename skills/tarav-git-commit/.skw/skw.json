@@ -1,0 +1,4 @@
+{
+  "id": "tarav-git-commit",
+  "depots": ["../tarav-pkg"]
+}

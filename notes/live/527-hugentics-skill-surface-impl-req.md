@@ -11,16 +11,16 @@
 ### Skill.Surface.Model
 
 - the new skill surface has three layers: presentation, triggers, workflow masters
-- `agentos-hugentics` is the single entry point to the hugentic harness — a presentation skill that maps the landscape
+- `tarav-hugentics` is the single entry point to the hugentic harness — a presentation skill that maps the landscape
 - trigger skills are lightweight, user-invoked — they steer the agent and ensure the right master loads
 - workflow master skills are documentation portals — full instructions for running a workflow, including artifact formats
 - artifact pointer skills follow the same shape as triggers — point to the master that defines the format
-- `agentos-pkg` stays as the general agentos orientation, lists `agentos-hugentics` as a subsystem reference
-- `agentos-index` stays as a separate subsystem peer to `agentos-hugentics`
+- `tarav-pkg` stays as the general agentos orientation, lists `tarav-hugentics` as a subsystem reference
+- `agentos-index` stays as a separate subsystem peer to `tarav-hugentics`
 
 ### New.Skill.Surface
 
-- presentation: `agentos-hugentics`
+- presentation: `tarav-hugentics`
 - workflow masters: `hugentics-designer`, `hugentics-impl-designer`, `hugentics-impl-executer`
 - triggers: `trigger-design-session`, `trigger-impl-req`, `trigger-impl-execution`
 - artifact pointers: `artifact-design-session`, `artifact-impl-req`, `artifact-design-summary`, `artifact-issue-report`
@@ -38,7 +38,7 @@
 - `agentos-artifact-impl-req` → content migrates to `hugentics-impl-designer`
 - `agentos-artifact-design-summary` → artifact pointer to owner TBD
 - `agentos-artifact-issue-report` → artifact pointer to owner TBD
-- `agentos-pkg` → updated in place (add `agentos-hugentics` reference)
+- `tarav-pkg` → updated in place (add `tarav-hugentics` reference)
 
 ### Unchanged.Skills
 
@@ -59,9 +59,9 @@
   - `agentos-artifact-issue-report`
 - validation: all originals exist in `_DEPRECATED/`, originals still in place
 
-### Slice 2 — Create `agentos-hugentics`
+### Slice 2 — Create `tarav-hugentics`
 
-- create `skills/agentos-hugentics/SKILL.md`
+- create `skills/tarav-hugentics/SKILL.md`
 - content: presentation skill — map of the harness, list of workflows, agents, triggers, pointers to masters
 - source: canvas big picture + design session 523 convergence
 - validation: skill file exists, describes the full landscape
@@ -96,10 +96,10 @@
 - migrate any format definitions from `_DEPRECATED/` equivalents
 - validation: pointer stubs exist, content preserved
 
-### Slice 7 — Update `agentos-pkg`
+### Slice 7 — Update `tarav-pkg`
 
-- update `skills/agentos-pkg/SKILL.md` to reference `agentos-hugentics` as a subsystem
-- validation: `agentos-pkg` lists `agentos-hugentics` alongside `agentos-index`
+- update `skills/tarav-pkg/SKILL.md` to reference `tarav-hugentics` as a subsystem
+- validation: `tarav-pkg` lists `tarav-hugentics` alongside `agentos-index`
 
 ### Slice 8 — Remove originals
 

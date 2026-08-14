@@ -1,7 +1,7 @@
 # 616 — Structurally Unreachable Index Content
 
 Status: open question, **no policy decided**. Parked for a later decision.
-Discovered during the `agentos-pkg` Index.Retrofit campaign (`notes/live/611-agentos-pkg-grounding-campaign.md`), passes 3–5.
+Discovered during the `tarav-pkg` Index.Retrofit campaign (`notes/live/611-agentos-pkg-grounding-campaign.md`), passes 3–5.
 
 ## The Observation
 
@@ -70,4 +70,4 @@ These are not mutually exclusive; (5) is a prerequisite for knowing how big the 
 
 - `notes/live/611-agentos-pkg-grounding-campaign.md` — campaign report; passes 3 and 5 carry the evidence
 - `notes/live/615-compaction-boundary-blocks-retrofit-grounding.md` — the compaction-boundary mechanism
-- `Index.Line` / `Index.Presumption` in `agentos-pkg` `design/107-design.md` — why an ungrounded line is still index content
+- `Index.Line` / `Index.Presumption` in `tarav-pkg` `design/107-design.md` — why an ungrounded line is still index content

@@ -1,0 +1,45 @@
+{
+ "schema": "delta-home-backfill/scope-partition/2",
+ "generated_by": "supervisor:57663916",
+ "baseline": {
+  "project_lines": 2846,
+  "home_missing": 2846,
+  "head_missing": 2846,
+  "support_chats": 31
+ },
+ "reachable_ceiling": {
+  "lines": 520,
+  "chats": 9,
+  "note": "grounded + typed + anchor resolves to a REGISTERED chat whose source tape is LINEAR. This is the entire landable universe for this campaign."
+ },
+ "remainders": [
+  {
+   "class": "Project.Line.Ungrounded",
+   "lines": 1543,
+   "typed": 123,
+   "untyped": 1420,
+   "reason": "line carries no anchor at all; no supporting chat exists to return to. Outside the campaign goal (grounded lines only). Needs grounding work, not Delta backfill."
+  },
+  {
+   "class": "Chat.Source.NonLinear",
+   "lines": 743,
+   "typed": 636,
+   "untyped": 107,
+   "chats": 21,
+   "reason": "anchors resolve to a registered support chat, but chat-index v2 render hard-requires source.linear==true. Sessions with rollback/branch (inactive-lineage-event) tape entries cannot be captured in ANY mode. Independently confirmed by two workers on two different chats and by a supervisor survey of all 30 chats. TOOLING GAP, not support drift \u2014 evidence often verified present."
+  },
+  {
+   "class": "Support.Chat.Unregistered",
+   "lines": 40,
+   "chat": "4b13380ab339132a8eb560046e4b35f0df94443e8a950523bea52d70793500e0",
+   "reason": "anchors resolve to a real Chatlas session absent from the 31 mandatory chats in 009-SUPPORT-CHATS.md. Registry-closure gap."
+  },
+  {
+   "class": "Line.Type.Missing",
+   "lines": 1527,
+   "overlaps": "counted inside the classes above",
+   "reason": "capture-plan parser (chat_index_plan.py:482) rejects content not starting with \"- [\"; untyped Project lines are inexpressible in delta_edits/head. Discovered by w1. NOTE: zero untyped lines fall in the reachable set, so this does not reduce the 520 ceiling."
+  }
+ ],
+ "arithmetic": "520 reachable + 743 non-linear + 40 unregistered + 1543 ungrounded = 2846"
+}

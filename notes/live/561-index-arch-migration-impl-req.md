@@ -5,7 +5,7 @@
 - **Goal**: migrate the Agentos index **structure** to the generalized layout converged in `notes/live/540-index-architecture-redesign-design-session.md` — chapters + `000-INDEX.md` router + appendix.
 - **Split**: this is the **arch migration only**. It moves and renames files/folders and fixes path references. It does **not** change block content, concept names, or wording. The content upgrade (redesigned blocks, `write`→`edit`, `Conceptual.Space`→`Design.Space`, new concepts) is a **separate later `Impl.Req`**, governed by `Natural.Placement`.
 - **Operating contract** (`540` Session.Notes): *structure-free / content-gated*. Every step here is structural — no `Content.Verbatim.Gated` block edits. If a step would change wording, it is out of scope.
-- **Order**: chatlas is the **pilot** (small, already half-reshaped), then `agentos-pkg`.
+- **Order**: chatlas is the **pilot** (small, already half-reshaped), then `tarav-pkg`.
 - **Source**: `540` (grounding session `99144906-781e-43cc-9d27-b40f166e2acf`).
 - **Status**: **DONE — S1/S2/S3 executed** (2026-07-04). Both depots migrated to the target layout; all structural refs updated; agent-convention compliance checks pass. Old-model mentions remaining *inside* gated concept content (`design/` blocks, `appendix/` depth) are deferred to the content-upgrade Impl.Req, as scoped. Linter/tooling update remains a separate later effort.
 
@@ -16,7 +16,7 @@
   - `<pkg>/000-INDEX.md` — concept→file lookup, sectioned by chapter
   - `<pkg>/design/NNN-design.md` — default chapter (flat, numbered)
   - `<pkg>/appendix/Concept.Name-appendix.md` — shared depth
-- reference implementation to copy: `agentos-chatlas-md/skills/agentos-chatlas-pkg/` (has `design/`, `appendix/`, currently `ROUTER.md`).
+- reference implementation to copy: `agentos-chatlas-md/skills/tarav-chatlas-pkg/` (has `design/`, `appendix/`, currently `ROUTER.md`).
 
 ### Router.Rename
 - the router filename is **`000-INDEX.md`** (locked in `540`; not `ROUTER.md`). `INDEX` is the name; `000-` is the grep marker for `Index.Discovery`.
@@ -27,8 +27,8 @@
 - the `NNN` file-numbering system is **kept as-is** — out of scope, revisit later. `100-index.md` → `design/100-design.md` keeps `100`. Do not renumber, do not collapse ranges.
 
 ### Blast.Radius
-- current state (inspected): `agentos-pkg/index/` holds `000-index.md`..`107-index.md` + `AGENTS.md`; `agentos-pkg/appendix/` has 26 files.
-- ~30 files across skills reference `index/` or `000-index.md` and must be updated: `agentos-project-doctor` (7 refs), `agentos-index` (SKILL, `references/search.md`, `references/write.md`), `hugentics-designer` (`artifact.md`, `index-view.md`, `concept-discovery.md`, `writing-craft.md`), `agentos-pkg` (`SKILL.md`, `appendix/*`, `references/testground-format.md`, `testing/*`), `agentos-batchy-skills`, `agentos-live-surfaces`, `agentos-hugentics`.
+- current state (inspected): `tarav-pkg/index/` holds `000-index.md`..`107-index.md` + `AGENTS.md`; `tarav-pkg/appendix/` has 26 files.
+- ~30 files across skills reference `index/` or `000-index.md` and must be updated: `agentos-project-doctor` (7 refs), `agentos-index` (SKILL, `references/search.md`, `references/write.md`), `hugentics-designer` (`artifact.md`, `index-view.md`, `concept-discovery.md`, `writing-craft.md`), `tarav-pkg` (`SKILL.md`, `appendix/*`, `references/testground-format.md`, `testing/*`), `tarav-batchy-skills`, `tarav-live-surfaces`, `tarav-hugentics`.
 - these are **path** references (structural). Updating them is in scope; changing any concept text around them is not.
 
 ### Driver.Dependency *(S0 resolved)*
@@ -37,7 +37,7 @@
 - **decision**: the linter is **not used for validation during this migration**; its update to the new model (chapters, `000-INDEX.md`, `NNN-<chapter>.md`) is a separate later effort. Validation here is agent-convention.
 
 ### Scope.Boundary
-- **in**: the two package-skill depots — `agentos-chatlas-pkg` (pilot) and `agentos-pkg`.
+- **in**: the two package-skill depots — `tarav-chatlas-pkg` (pilot) and `tarav-pkg`.
 - **out (this Impl.Req)**: the `agentos index linter` / index tooling update to the new model (separate later effort — the linter still encodes the old model and is not used here); the project-local `notes/index/` depot (its unified-router shape — `notes/000-INDEX.md` vs `notes/design/` — needs a separate confirm); all content/wording changes; numbering rework; the `Alignment.*.Axis` reconcile.
 
 ## Execution.Plan
@@ -50,21 +50,21 @@
 - **RESULT (resolved)**: no runtime driver (agent-convention loading). `agentos index linter` hardcodes the old model but is **not used for validation this migration** (decision). S0 clears; proceed.
 
 ### S1 — Pilot: chatlas router rename
-- what changes: `agentos-chatlas-pkg/ROUTER.md` → `000-INDEX.md`; update refs in `SKILL.md` (lines describing `ROUTER.md`→`design/`), `design/AGENTS.md`, and the 3 `chatlas-grounding-agent` refs.
-- path it exercises: a fresh load of `agentos-chatlas-pkg` resolves its index via `000-INDEX.md`.
+- what changes: `tarav-chatlas-pkg/ROUTER.md` → `000-INDEX.md`; update refs in `SKILL.md` (lines describing `ROUTER.md`→`design/`), `design/AGENTS.md`, and the 3 `chatlas-grounding-agent` refs.
+- path it exercises: a fresh load of `tarav-chatlas-pkg` resolves its index via `000-INDEX.md`.
 - observable result: chatlas index loads and routes with no `ROUTER.md` remaining.
 - check: `grep -rn "ROUTER.md" agentos-chatlas-md/` returns nothing; load the skill, resolve one concept end-to-end; `000-INDEX.md` exists and lists every `design/` concept.
 
-### S2 — agentos-pkg structural reshape
+### S2 — tarav-pkg structural reshape
 - what changes:
-  - `agentos-pkg/index/` → `agentos-pkg/design/`
+  - `tarav-pkg/index/` → `tarav-pkg/design/`
   - `design/100-index.md`..`107-index.md` → `design/100-design.md`..`107-design.md` (numbers kept)
-  - `index/000-index.md` → `agentos-pkg/000-INDEX.md` (case-sensitive move — use `git mv`, two-step if needed on case-insensitive FS)
+  - `index/000-index.md` → `tarav-pkg/000-INDEX.md` (case-sensitive move — use `git mv`, two-step if needed on case-insensitive FS)
   - `index/AGENTS.md` → `design/AGENTS.md`
   - `appendix/` unchanged in place
   - update all ~30 path references from the Blast.Radius (structural only)
-- path it exercises: a fresh load of `agentos-pkg` resolves its index via `000-INDEX.md` over `design/`.
-- observable result: `agentos-pkg` matches the target layout; index loads and routes; no reference points at `index/` or `000-index.md`.
+- path it exercises: a fresh load of `tarav-pkg` resolves its index via `000-INDEX.md` over `design/`.
+- observable result: `tarav-pkg` matches the target layout; index loads and routes; no reference points at `index/` or `000-index.md`.
 - check: `grep -rn "index/\|000-index.md" agentos-md/skills` returns only intentional/historical mentions (e.g. `index-migration/` archives); load the skill and resolve a concept; the router lists every `design/` concept and every appendix route still resolves (`Appendix.Discovery`).
 
 ### S3 — Compliance pass
@@ -73,7 +73,7 @@
 - check (agent-convention, **not** the linter): every `Dotted.Name` in `000-INDEX.md` points to an existing `design/NNN-design.md`; every appendix file still resolves by `Appendix.Discovery`; `grep` for old paths (`index/`, `000-index.md`) is clean. The `agentos index linter` is intentionally not run — it encodes the old model (deferred tooling update).
 
 ### Acceptance signals
-- chatlas and `agentos-pkg` both load via `000-INDEX.md` over `design/` + `appendix/`.
+- chatlas and `tarav-pkg` both load via `000-INDEX.md` over `design/` + `appendix/`.
 - no reference in the md repos points at the old `index/` folder or `000-index.md` router (excluding archives).
 - concept routing and appendix discovery work unchanged — content and numbering untouched.
 
@@ -87,5 +87,5 @@
 
 - **S0 DEVIATION → BLOCK (autonomous run, before any edit).** No runtime driver hardcodes index paths (index is agent-read by convention; the linter takes explicit `--index`/`--appendix` paths). BUT `agentos index linter` encodes the *old* index model: it only recognizes a router named `000-index.md`/`001-index.md` *inside* the index dir (`Index.Linter/Router.Missing`), and hardcodes `NNN-index.md` filenames (`Index.Linter/Index.InvalidFilename`). The target layout (`000-INDEX.md` at pkg root, `design/NNN-design.md`) fails the linter, so S3 compliance is unreachable as specified. chatlas's prior markdown migration already throws these 2 findings — it passes agent-convention reading, not tooling. Fix is `agentos` CLI code, outside `agentos-md`/`agentos-chatlas-md`. Conclusion: the 540 index *model* is not implemented in the tooling; file migration is premature. Halted before the git checkpoint (also: checkpoint wants a commit, colliding with the standing no-auto-commit rule). Awaiting direction (tooling-first vs expand-scope vs redefine-compliant vs re-open-naming).
 - **S0 RESOLVED (user decision)**: update the linter too, but **later** — the linter is not used for validation during this migration. Target layout (`000-INDEX.md`, `design/NNN-design.md`) stays; tooling catches up separately. S3 validation switched to agent-convention checks. Proceeding (pending the git-checkpoint / commit-policy call before edits).
-- **EXECUTION COMPLETE (2026-07-04).** Git checkpoints created in both repos (user authorized commits: "commit freely"). S1: chatlas `ROUTER.md` → `000-INDEX.md`, SKILL.md refs updated, concept resolves end-to-end. S2: `agentos-pkg/index/` → `design/`, `10N-index.md` → `10N-design.md`, router → `agentos-pkg/000-INDEX.md`, `AGENTS.md` moved with the chapter; 19 structural files re-pathed across skills. S3 (agent-convention): all routed concepts (8 chapters) resolve — 0 unresolved; all 25 appendix files match routed concepts; stale-path grep clean outside gated content and archives.
-- **Open-space decisions**: (1) `notes/index/001-index.md` public-pointer line updated to `skills/agentos-pkg/000-INDEX.md` — pure path pointer, would dangle otherwise; the notes-depot shape itself untouched (still out of scope). (2) `design/AGENTS.md` heading `# index/ —` → `# design/ —` (structural label, not concept text). (3) Router File System tree updated to show `000-INDEX.md` + `design/`; `agentos-pkg/SKILL.md` layout trees likewise. (4) Old-model wording inside `design/103-design.md`, `100/104/105-design.md`, and 4 appendix files left verbatim — content-gated, listed for the content upgrade.
+- **EXECUTION COMPLETE (2026-07-04).** Git checkpoints created in both repos (user authorized commits: "commit freely"). S1: chatlas `ROUTER.md` → `000-INDEX.md`, SKILL.md refs updated, concept resolves end-to-end. S2: `tarav-pkg/index/` → `design/`, `10N-index.md` → `10N-design.md`, router → `tarav-pkg/000-INDEX.md`, `AGENTS.md` moved with the chapter; 19 structural files re-pathed across skills. S3 (agent-convention): all routed concepts (8 chapters) resolve — 0 unresolved; all 25 appendix files match routed concepts; stale-path grep clean outside gated content and archives.
+- **Open-space decisions**: (1) `notes/index/001-index.md` public-pointer line updated to `skills/tarav-pkg/000-INDEX.md` — pure path pointer, would dangle otherwise; the notes-depot shape itself untouched (still out of scope). (2) `design/AGENTS.md` heading `# index/ —` → `# design/ —` (structural label, not concept text). (3) Router File System tree updated to show `000-INDEX.md` + `design/`; `tarav-pkg/SKILL.md` layout trees likewise. (4) Old-model wording inside `design/103-design.md`, `100/104/105-design.md`, and 4 appendix files left verbatim — content-gated, listed for the content upgrade.

@@ -4,7 +4,7 @@
 
 - **Goal:** move the judge's answer off stdout and onto a validating CLI, authorized by a per-run ticket, and remove the refusal-attribution enum. Follows the capture of `^c20260806-60u`…`^c20260806-71u`.
 - **Status:** executed. All six slices are implemented, the full `agentos-py` suite passes at 795 tests, and live `claude-code` judges answered by command on the first attempt. Changes are uncommitted for review.
-- **Source design:** `agentos-pkg/design/111-design.md` — `Tournament.Judge`, `Tournament.Ticket` (new), `Tournament.Depot`, `Tournament.Verdict::No.Contest`.
+- **Source design:** `tarav-pkg/design/111-design.md` — `Tournament.Judge`, `Tournament.Ticket` (new), `Tournament.Depot`, `Tournament.Verdict::No.Contest`.
 - **Prior implementation:** `notes/live/613-*.md` shipped N-way matches with ordering outcomes; `notes/live/612-*.md` shipped the depot and hook surface. This request reverses one decision recorded in 610's `Impl.Log` — "judge output parsed from captured stdout" — which that note already flagged as provisional with a written-artifact fallback as the known escape hatch.
 - **Motivation:** a malformed answer currently burns the whole spawn and surfaces to an orchestrator. 610 declared the goal that "a contract violation is agent-facing and actionable in the iterante style"; stdout parsing cannot deliver that, because nothing reaches the judge. A submit command puts the error in front of the agent that made it, in the context that can still fix it.
 - **In scope:** the `tickets/` staging area and its lifecycle; `agentos tournament submit`; the runner minting a ticket and resolving by it instead of parsing stdout; the engine frame carrying the submit instruction; removal of `attribution` from the contract, the envelope, and the report; age-based GC at run start and `agentos tournament gc`.
@@ -64,7 +64,7 @@ Verified against source before this plan was written:
 
 - **Ordering gate `^c20260806-72u`** — the `--impl --dev` turn ordering this artifact.
 - **Readiness approval `^c20260806-73u`** — the turn delegating both open checkpoint decisions to the implementer and switching the run to `Alignment.Mode::Autonomous`. It authorizes execution.
-- **Touched — `agentos-pkg/design/111-design.md`**: `Tournament.Judge` (`^c20260806-62u`, `-63u`), `Tournament.Ticket` (`^c20260806-64u`…`-68u`), `Tournament.Depot` (`^c20260806-69u`…`-71u`), `Tournament.Verdict::No.Contest` (`^c20260806-60u`, `-61u`, and `^c20260805-83u` for the distribution read).
+- **Touched — `tarav-pkg/design/111-design.md`**: `Tournament.Judge` (`^c20260806-62u`, `-63u`), `Tournament.Ticket` (`^c20260806-64u`…`-68u`), `Tournament.Depot` (`^c20260806-69u`…`-71u`), `Tournament.Verdict::No.Contest` (`^c20260806-60u`, `-61u`, and `^c20260805-83u` for the distribution read).
 - **Structural** — `notes/live/613-*.md` and `notes/live/612-*.md` are the implementations this extends.
 - **Open.Space** — cross-run judge-failure analytics has no index home and stays unanchored.
 

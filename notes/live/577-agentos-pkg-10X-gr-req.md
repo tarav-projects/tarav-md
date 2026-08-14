@@ -1,11 +1,11 @@
-# agentos-pkg 10X gr-req
+# tarav-pkg 10X gr-req
 
 Date: 2026-07-08
 
 ## Gr.Abstract
 
-- scope: `skills/agentos-pkg/design/10X-design.md` (`100`-`107`)
-- baseline: `agentos index linter --depot skills/agentos-pkg --warn-unlinked --json`
+- scope: `skills/tarav-pkg/design/10X-design.md` (`100`-`107`)
+- baseline: `agentos index linter --depot skills/tarav-pkg --warn-unlinked --json`
 - coverage before: `1202` `Index.Linter/Line.Unlinked` findings inside the chapter set (`1208` by the review's recount method)
 - coverage after review sitting 2026-07-09: `1200` (same-method baseline `1208` — the 8 landed inline anchors account for the full delta)
 - status: `landed` — all 6 entries landed; nothing `proposed` or `ambiguous` remains
@@ -16,7 +16,7 @@ Date: 2026-07-08
 
 ### 1. `Grounding.Hugentic.Authority`
 
-- target: [105-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/105-design.md:81)
+- target: [105-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/tarav-pkg/design/105-design.md:81)
 - proposed anchor: `^c20260708-8u`
 - hint: user says chat/index anchors should always target user turns; approval-turn authority rule
 - why: exact user-side authority for the user-turn-only grounding rule; stronger than assistant-side explanation and matches the approval-turn authority judgment
@@ -27,7 +27,7 @@ Date: 2026-07-08
 
 ### 2. `Anchory.System`
 
-- target: [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/107-design.md:324)
+- target: [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/tarav-pkg/design/107-design.md:324)
 - proposed anchor: `^c20260706-1u`
 - hint: user says Anchory is an Agentos subsystem, not per-project, and connects with Chatlas
 - why: exact user correction for subsystem scope and Chatlas coupling
@@ -38,7 +38,7 @@ Date: 2026-07-08
 
 ### 3. `Writing.Friction.Reduction`
 
-- target: [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/107-design.md:173)
+- target: [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/tarav-pkg/design/107-design.md:173)
 - proposed anchor: `^c20260705-3u`
 - hint: user lays out the friction gradient: chat, agendix, appendix, index main
 - why: exact user-side statement of the friction gradient and the "do not flush the index" floor
@@ -49,7 +49,7 @@ Date: 2026-07-08
 
 ### 4. `Index.Agendix`
 
-- target: [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/107-design.md:183)
+- target: [107-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/tarav-pkg/design/107-design.md:183)
 - proposed anchor: `^c20260705-2u`
 - hint: user authority for agendix as the untouched-member / grounded-summary layer
 - why: already-supported authority turn remains the strongest fit for the block's current core claim set
@@ -60,7 +60,7 @@ Date: 2026-07-08
 
 ### 5. `Grounding.Retrieval.Boundary`
 
-- target: [105-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/105-design.md:59)
+- target: [105-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/tarav-pkg/design/105-design.md:59)
 - proposed anchor: `^c20260707-4u`
 - hint: approval turn: user accepts the paired `Grounding.Retrieval.Boundary` and `Grounding.Hugentic.Authority` survivor rewrites
 - why: approval-turn authority route; the assistant showed the verbatim replacement block, the user then accepted, and the landed commit follows immediately. The current `Grounding.Retrieval.Boundary` lines match that approved rewrite.
@@ -71,7 +71,7 @@ Date: 2026-07-08
 
 ### 6. `Chat.Grounding.Target.Block`
 
-- target: [105-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/agentos-pkg/design/105-design.md:69)
+- target: [105-design.md](/Users/pereiro/projects/agentos-project/agentos-md/skills/tarav-pkg/design/105-design.md:69)
 - proposed anchor: `^c20260707-3u`
 - hint: approval turn: user applies the one-line `Chat.Grounding.Target.Block` rewrite replacing `Active.Grounding` with `Kernel.Block.Grounding`
 - why: approval-turn authority route; the assistant proposed the exact one-line survivor fix, the user replied `apply`, and the landed block preserves that approved replacement verbatim.
@@ -94,7 +94,7 @@ Date: 2026-07-08
 - commands used:
   - `agentos --help`
   - `agentos index linter --help`
-  - `agentos index linter --depot skills/agentos-pkg --warn-unlinked --json`
+  - `agentos index linter --depot skills/tarav-pkg --warn-unlinked --json`
   - `git log -L ...`
   - `agentos chatlas query --project-base agentos-project --file-write ...`
   - `agentos chatlas query --project-base agentos-project --tool-contains ... --tool-name Bash`
@@ -112,8 +112,8 @@ Date: 2026-07-08
   - `Chat.Grounding.Target.Block` dated through `aaa9726` / survivor-revisit neighborhood; minted `^c20260707-3u` on the user's `apply` turn after the one-line verbatim proposal replacing `Active.Grounding` with `Kernel.Block.Grounding`
   - `Grounding.Retrieval.Boundary` dated through `e90c949`; `--tool-contains '105-design.md' --tool-name Bash` again recovered the right session; minted `^c20260707-4u` on the user's approval turn after the paired verbatim survivor proposal covering `Grounding.Retrieval.Boundary` and `Grounding.Hugentic.Authority`
   - commands used in this pass:
-    - `git log -L 59,67:skills/agentos-pkg/design/105-design.md --format='%h %aI %s'`
-    - `git log -L 69,79:skills/agentos-pkg/design/105-design.md --format='%h %aI %s'`
+    - `git log -L 59,67:skills/tarav-pkg/design/105-design.md --format='%h %aI %s'`
+    - `git log -L 69,79:skills/tarav-pkg/design/105-design.md --format='%h %aI %s'`
     - `agentos chatlas query --project-base agentos-project --active-after 2026-07-07T00:00:00-04:00 --tool-contains '105-design.md' --tool-name Bash --sort oldest --limit 20`
     - `agentos chatlas query --project-base agentos-project --active-after 2026-07-07T00:00:00-04:00 --message-contains 'Grounding.Retrieval.Boundary' --sort oldest --limit 20`
     - `agentos chatlas query --project-base agentos-project --active-after 2026-07-07T00:00:00-04:00 --message-contains 'Chat.Grounding.Target.Block' --sort oldest --limit 20`

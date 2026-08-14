@@ -2,7 +2,7 @@
 
 ```md
 ---
-name: agentos-pkg
+name: tarav-pkg
 description: Use when working in or with an Agentos project and you need a minimal orientation to the Agentos universe.
 ---
 

@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - retire the last tooling and citation remnants of `Line.Type::GR` after the design-side retirement landed: the vocabulary is now seven act codes (`DF`, `DC`, `CT`, `RJ`, `PR`, `FR`, `EX`)
-- design source: this session's `--index --edit` landing under `idx-edition:6b3f0a27` — `## Line.Type::GR` removed from `agentos-md/skills/agentos-pkg/design/106-design.md`, router row updated in `000-INDEX.md`
+- design source: this session's `--index --edit` landing under `idx-edition:6b3f0a27` — `## Line.Type::GR` removed from `agentos-md/skills/tarav-pkg/design/106-design.md`, router row updated in `000-INDEX.md`
 - cause of the retirement: `GR` typed lines inside `Grounding.Head` evidence boards, a block-grounding axis retired in July 2026 (`notes/live/594-grounding-retirement-tooling-impl-req.md`, executed 2026-07-18). Grounding became a line property; the type was left behind as an orphan of that retirement and never acquired a second use — zero `GR` lines exist across 1950 typed lines project-wide
 - two halves, and they are gated differently: (1) `agentos-py` linter code still accepts `GR` as an act code and ships a `GR`-specific check; (2) live md surfaces still cite the retired type, and two of those citations are themselves gated Index lines
 - out of scope: historical `Impl.Req` notes under `notes/live/` (571, 574, 577, 579, 594, 611) — they are the record of what happened and are not linted
@@ -24,16 +24,16 @@
 
 **agentos-md — gated Index surfaces**
 
-- `skills/agentos-pkg/poi/101-poi.md:45` — the `## Index.Linter/Line.Type.GR.MissingAnchor` POI class block (3 kernel lines)
-- `skills/agentos-pkg/000-INDEX.md:14` — the `poi/101-poi.md` router row names that class
-- `skills/agentos-pkg/appendix/Index.Linter-appendix.md:121` — a typed `[DC]` kernel line: *"core `Line.Type` checks run without chatlas: bracket syntax, known act codes, `[GR]` trailing anchor (warnings); …"*
+- `skills/tarav-pkg/poi/101-poi.md:45` — the `## Index.Linter/Line.Type.GR.MissingAnchor` POI class block (3 kernel lines)
+- `skills/tarav-pkg/000-INDEX.md:14` — the `poi/101-poi.md` router row names that class
+- `skills/tarav-pkg/appendix/Index.Linter-appendix.md:121` — a typed `[DC]` kernel line: *"core `Line.Type` checks run without chatlas: bracket syntax, known act codes, `[GR]` trailing anchor (warnings); …"*
 
 **agentos-md — skillware sources (built surfaces, never edit the built file)**
 
-- `skills/agentos-hugentics/.skw/src/references/type.skw.md:39` — vocabulary table row `| cite | \`GR\` | accounts what an anchored evidence neighborhood grounds, anchor trailing |`
-- `skills/agentos-hugentics/.skw/src/references/check.skw.md:56` — prose naming the `[GR]` trailing-anchor check
-- `skills/agentos-hugentics/.skw/src/references/search.skw.md:55` — prose listing `[GR]` among the type acts
-- built counterparts: `skills/agentos-hugentics/references/{type,check,search}.md`
+- `skills/tarav-hugentics/.skw/src/references/type.skw.md:39` — vocabulary table row `| cite | \`GR\` | accounts what an anchored evidence neighborhood grounds, anchor trailing |`
+- `skills/tarav-hugentics/.skw/src/references/check.skw.md:56` — prose naming the `[GR]` trailing-anchor check
+- `skills/tarav-hugentics/.skw/src/references/search.skw.md:55` — prose listing `[GR]` among the type acts
+- built counterparts: `skills/tarav-hugentics/references/{type,check,search}.md`
 
 ### Design.Decisions
 
@@ -62,8 +62,8 @@
 ### Slice 2 — full suite and depot regression
 
 - **check**: `uv run pytest` green in `agentos-py`
-- **check**: `agentos index linter --depot agentos-md/skills/agentos-pkg` — finding counts unchanged except the retired class, and the pre-existing `Index.Linter/Block.TooLong` error at `design/113-design.md:5` (another session's, not this work) still the only error
-- **check**: same for `agentos-md/skills/agentos-hugentics` and the chatlas depot
+- **check**: `agentos index linter --depot agentos-md/skills/tarav-pkg` — finding counts unchanged except the retired class, and the pre-existing `Index.Linter/Block.TooLong` error at `design/113-design.md:5` (another session's, not this work) still the only error
+- **check**: same for `agentos-md/skills/tarav-hugentics` and the chatlas depot
 - **deviation trigger**: any new error, or a warning-count change not attributable to the retired check → stop and record in `Impl.Log`
 
 ### Slice 3 — skillware sources and rebuild
@@ -72,7 +72,7 @@
 - edit `.skw/src/references/check.skw.md:56` — drop `` `[GR]` trailing anchor `` from the listed parser-backed checks
 - edit `.skw/src/references/search.skw.md:55` — drop `` `[GR]` cites evidence `` from the act summary
 - rebuild the skill package through the Skillware build surface
-- **check**: skillware drift check clean; `grep -rn "\[GR\]\|Line.Type::GR" skills/agentos-hugentics/` returns nothing in either source or built surfaces
+- **check**: skillware drift check clean; `grep -rn "\[GR\]\|Line.Type::GR" skills/tarav-hugentics/` returns nothing in either source or built surfaces
 - **observable result**: an agent loading `--type` sees a seven-type vocabulary
 
 ### Slice 4 — gated Index surface edits (PAUSES for approval)
@@ -82,7 +82,7 @@ Not self-written. Propose through `Index.Edition.Turn`, take `::approve <token>`
 - `poi/101-poi.md` — remove the `## Index.Linter/Line.Type.GR.MissingAnchor` block
 - `000-INDEX.md` — drop that class from the `poi/101-poi.md` router row
 - `appendix/Index.Linter-appendix.md:121` — revise the `[DC]` line to drop the `[GR]` trailing-anchor clause; the line keeps its anchor and its meaning is otherwise unchanged, so judge whether the amendment preserves the semantic support edge (`^c20260810-21u`) or creates a successor reference (`^c20260810-20u`)
-- **check**: `agentos index linter --depot agentos-md/skills/agentos-pkg` clean of new findings; `--anchor` scoped `line-approval` and `line-verbatim-gate` on any re-anchored line, run with `--show-passed` so a silent zero-finding result is distinguishable from a check that never ran
+- **check**: `agentos index linter --depot agentos-md/skills/tarav-pkg` clean of new findings; `--anchor` scoped `line-approval` and `line-verbatim-gate` on any re-anchored line, run with `--show-passed` so a silent zero-finding result is distinguishable from a check that never ran
 - **observable result**: no live surface in either depot names `Line.Type::GR`
 
 ### Acceptance

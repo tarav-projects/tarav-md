@@ -1,8 +1,8 @@
-# 611 — agentos-pkg Grounding Campaign
+# 611 — tarav-pkg Grounding Campaign
 
 ## Grounding.Abstract
 
-- depot: `skills/agentos-pkg` (project `agentos-md`)
+- depot: `skills/tarav-pkg` (project `agentos-md`)
 - caller boundary: none supplied — scope computed by supervisor
 - state: `pass 5 BLOCKED — P4b research complete and validated, attachment blocked by a broken \`agentos\` CLI (unrelated in-progress refactor); resume by re-running the gate once the CLI imports`
 - coverage after pass 1: `line 1419/3235 linked` (+12), `block 130/328 grounded` (+2), `gr-density 0.5109` (+0.0058)
@@ -21,11 +21,11 @@
   - by file — `groundable`: 106 (41), 102 (11), 107 (8), 101 (7), 104 (1), poi/103 (1); `typing-required` concentrates in 106 (153), 104 (142), 101 (133), 100 (128), 102 (126), 107 (106), 105 (93), 103 (88)
 - computed scope: clusters `C1`–`C4` below — 24 blocks / ~121 kernel lines across 4 single-session packets
 - survey commands used:
-  - `agentos index linter --depot agentos-md/skills/agentos-pkg --coverage all --json`
-  - `agentos index blocks --depot agentos-md/skills/agentos-pkg --sort gr-density --json`
+  - `agentos index linter --depot agentos-md/skills/tarav-pkg --coverage all --json`
+  - `agentos index blocks --depot agentos-md/skills/tarav-pkg --sort gr-density --json`
   - `git log -S'## <Block.Path>' --format='%h %ad %s' --date=short` (introduction commit per block family)
   - `agentos chatlas query --project-base agentos-project --user-contains '<Concept>' --text`
-  - `agentos chatlas query --project-base agentos-project --file-write skills/agentos-pkg/design/106-design.md --text`
+  - `agentos chatlas query --project-base agentos-project --file-write skills/tarav-pkg/design/106-design.md --text`
 
 ### Ungrounded deficit by file
 
@@ -103,7 +103,7 @@ Dispatched packets persist their materialized manifest below, so packet identity
 ### `P1` manifest — dispatched pass 1
 
 - session: `918b793b73f8f94764311d7771b25da5ed60a8e1f7db869bbe28f9a05b6634a8`
-- source: `agentos-md/skills/agentos-pkg/design/101-design.md`, materialized at dispatch, all 28 lines verified anchor-free
+- source: `agentos-md/skills/tarav-pkg/design/101-design.md`, materialized at dispatch, all 28 lines verified anchor-free
 - `hash` is the packet-local line id used in the worker result contract; `sha` is the first 12 hex of the SHA-256 of the exact line text
 
 | hash | block | file line | sha | typed | exact content |
@@ -177,7 +177,7 @@ All members are in session `918b793b73f8…6634a8`. Block outcome in `design/101
 
 - authority: `Legacy.Type.Migration.Exception`, granted by `::start-campaign-with-typing C3`
 - session: `27821fc601044870d33e059c2617cc83a0632c46c7c1f94e7ec3a4bebc418726` (claude-code, last activity 2026-07-13)
-- source: `agentos-md/skills/agentos-pkg/design/106-design.md`, materialized at dispatch
+- source: `agentos-md/skills/tarav-pkg/design/106-design.md`, materialized at dispatch
 - all 28 bodies verified: untyped, anchor-free, `typing-required`
 - vocabulary supplied to worker: `DF`, `DC`, `CT`, `RJ`, `PR`, `FR`, `EX`, `GR`
 - out of scope: `Line.Type::GR` (:370) is already typed and already grounded
@@ -219,7 +219,7 @@ In-depot precedent supplied as calibration (not as an answer): the already-typed
 
 - authority: ordinary `::start-campaign C5` — no typing authority; all 34 lines already `groundable`
 - session: `02161ec9eb991d3811af60919194f86b715059aff583e42979dbf4e627738cf7` (codex, last activity 2026-07-30)
-- source: `agentos-md/skills/agentos-pkg/design/106-design.md`, all 34 lines verified typed and anchor-free
+- source: `agentos-md/skills/tarav-pkg/design/106-design.md`, all 34 lines verified typed and anchor-free
 - nomination — two independent signals, neither of them a git date (per the pass-2 methodology correction):
   1. **anchor neighbourhood**: the already-grounded blocks interleaved with this family (`User.Model.Space`, `Touch.Authority.Surface`, `Open.Inference`) carry `c20260729-*` anchors that resolve to this exact session
   2. **phrase query**: `--user-contains "Open.Space"` returns 10 sessions corpus-wide, and this session is among them
@@ -516,8 +516,8 @@ Applicable `Line.Type.Vocabulary` for any migration packet: `DF`, `DC`, `CT`, `R
 
 ### Grant record
 
-- campaign id: `Index.Retrofit/agentos-pkg/full-retrofit-01`
-- depot: `agentos-md/skills/agentos-pkg`
+- campaign id: `Index.Retrofit/tarav-pkg/full-retrofit-01`
+- depot: `agentos-md/skills/tarav-pkg`
 - action class: `full-retrofit` — type and ground in one pass
 - token: `SUDO-RETROFIT-K7M2QX`
 - proposal turn: assistant turn proposing the grant, this session
@@ -575,7 +575,7 @@ Consequences carried into this campaign:
 
 ### `Q1` manifest — wave 1, action `full-retrofit`
 
-- file: `agentos-md/skills/agentos-pkg/design/102-design.md`
+- file: `agentos-md/skills/tarav-pkg/design/102-design.md`
 - nominated session: `acd5f1c1931e`
 - nomination evidence: Alignment.Loop + Alignment.Session + Hard.Evidence all nominate it (3-concept corroboration); opens "hello, lets continue 523-index-reindex-design-session.md" — no compaction boundary
 - lines: 28  (0 carrying an existing anchor)
@@ -614,7 +614,7 @@ Consequences carried into this campaign:
 
 ### `Q2` manifest — wave 1, action `full-retrofit`
 
-- file: `agentos-md/skills/agentos-pkg/design/101-design.md`
+- file: `agentos-md/skills/tarav-pkg/design/101-design.md`
 - nominated session: `d80f029f6b1c`
 - nomination evidence: Package.Skill user-text query rank 1 of 21; opens "Hi, I want to discuss about the format, style and phylosophy of Agentos.Index" — no compaction boundary
 - lines: 29  (0 carrying an existing anchor)
@@ -654,7 +654,7 @@ Consequences carried into this campaign:
 
 ### `Q3` manifest — wave 1, action `full-retrofit`
 
-- file: `agentos-md/skills/agentos-pkg/design/103-design.md`
+- file: `agentos-md/skills/tarav-pkg/design/103-design.md`
 - nominated session: `1e7eeae62adf`
 - nomination evidence: Index.Appendix + Project.Discovery both nominate it; opens "hello - check agentos-md/notes/live/517-index-migration-protocol.md" — no compaction boundary
 - lines: 28  (1 carrying an existing anchor)
@@ -696,7 +696,7 @@ Consequences carried into this campaign:
 
 #### `Q4` manifest — wave 2, action `full-retrofit`
 
-- file: `agentos-md/skills/agentos-pkg/design/104-design.md`
+- file: `agentos-md/skills/tarav-pkg/design/104-design.md`
 - nominated session: `88ff80fabe75`
 - nomination evidence: 7-concept corroboration (Index.Appendix, Surface.Concept, Explicit.Namespace, Concept.Cite, Appendix.Discovery, Placement.Heuristic, Index.Surface); opens "Hello, lets for on agentos-md index runtime system - lets start a design-session" — no compaction boundary
 - lines: 38 (0 carrying an existing anchor)
@@ -745,7 +745,7 @@ Consequences carried into this campaign:
 
 #### `Q5` manifest — wave 2, action `full-retrofit`
 
-- file: `agentos-md/skills/agentos-pkg/design/105-design.md`
+- file: `agentos-md/skills/tarav-pkg/design/105-design.md`
 - nominated session: `9c99ac4367de`
 - nomination evidence: 3-concept corroboration (Designer.Turn, RED.GREEN, Alignment.Loop); opens "Hello, check agentos-md for a recient design-session about improving the hugentics skill" — no compaction boundary
 - lines: 41 (0 carrying an existing anchor)
@@ -761,11 +761,11 @@ Consequences carried into this campaign:
 | Q5-006 | Index.AGENTS.MD | 17 | `sha256:6760747f2` | `Index.AGENTS.MD` is a `Context.Hook` for the index surface |
 | Q5-007 | Index.AGENTS.MD | 18 | `sha256:f1cce91b5` | its canonical artifact path is `design/AGENTS.md` relative to the `Index.Depot` root |
 | Q5-008 | Index.AGENTS.MD | 19 | `sha256:340e7f5ac` | it injects index-usage context through the harness `AGENTS.md` loading mechanism |
-| Q5-009 | Index.AGENTS.MD | 20 | `sha256:1abebbf43` | `agentos-md/skills/agentos-pkg/design/AGENTS.md` is the `Reference.Implementation` for `Index.AGENTS.MD` |
+| Q5-009 | Index.AGENTS.MD | 20 | `sha256:1abebbf43` | `agentos-md/skills/tarav-pkg/design/AGENTS.md` is the `Reference.Implementation` for `Index.AGENTS.MD` |
 | Q5-010 | Appendix.AGENTS.MD | 26 | `sha256:a9a465b45` | `Appendix.AGENTS.MD` is a `Context.Hook` for the appendix surface |
 | Q5-011 | Appendix.AGENTS.MD | 27 | `sha256:a7424393a` | its canonical artifact path is `appendix/AGENTS.md` relative to the appendix root |
 | Q5-012 | Appendix.AGENTS.MD | 28 | `sha256:4c108d554` | it injects appendix-usage context through the harness `AGENTS.md` loading mechanism |
-| Q5-013 | Appendix.AGENTS.MD | 29 | `sha256:5c3057cc9` | `agentos-md/skills/agentos-pkg/appendix/AGENTS.md` is the `Reference.Implementation` for `Appendix.AGENTS.MD` |
+| Q5-013 | Appendix.AGENTS.MD | 29 | `sha256:5c3057cc9` | `agentos-md/skills/tarav-pkg/appendix/AGENTS.md` is the `Reference.Implementation` for `Appendix.AGENTS.MD` |
 | Q5-014 | Grounding.Retrieval.Boundary | 35 | `sha256:25e6fb16a` | `Grounding.Retrieval.Boundary` separates finding candidate evidence from linking it |
 | Q5-015 | Grounding.Retrieval.Boundary | 36 | `sha256:5b00f74ba` | retrieval quality affects linking quality, but retrieval mechanics are not the definition of grounding |
 | Q5-016 | Grounding.Retrieval.Boundary | 37 | `sha256:38239bd5a` | search engines, vector databases, keyword indexes, and chatlas queries are candidate-discovery mechanisms |

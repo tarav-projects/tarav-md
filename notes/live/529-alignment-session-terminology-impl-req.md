@@ -49,14 +49,14 @@
 
 - skills are Public.Surfaces, index notes are Local.Surfaces
 - skills reference other skills, not index notes
-- general pattern in skills: point to `agentos-hugentics`, not `127-Alignment.Session.md`
+- general pattern in skills: point to `tarav-hugentics`, not `127-Alignment.Session.md`
 
 ## Execution.Plan
 
 ### Slice 1: New files
 
 1. `notes/index/127-Alignment.Session.md` — shallow container index note
-2. `skills/agentos-hugentics/references/alignment-session.md` — public surface mirror
+2. `skills/tarav-hugentics/references/alignment-session.md` — public surface mirror
 
 ### Slice 2: Index notes
 
@@ -67,7 +67,7 @@
 
 ### Slice 3: Skill SKILL.md files
 
-7. `skills/hugentics-designer/SKILL.md` — full terminology update + point to `agentos-hugentics` for general pattern
+7. `skills/hugentics-designer/SKILL.md` — full terminology update + point to `tarav-hugentics` for general pattern
 8. `skills/hugentics-impl-designer/SKILL.md` — terminology update per Terminology.Map
 9. `skills/hugentics-impl-executer/SKILL.md` — terminology update per Terminology.Map
 
@@ -85,14 +85,14 @@
 
 ### Slice 5: Harness presentation skill
 
-19. `skills/agentos-hugentics/SKILL.md` — update workflow map table phases + add `Alignment.Session` to related concepts
+19. `skills/tarav-hugentics/SKILL.md` — update workflow map table phases + add `Alignment.Session` to related concepts
 
 ## Impl.Log
 
 - status: complete
 - deviation: `126-Alignment.Session.md` → `127-Alignment.Session.md` (126 was taken by `Chatlas.Query.md`)
-- Slice 1: created `127-Alignment.Session.md` (index note) + `agentos-hugentics/references/alignment-session.md` (public surface)
+- Slice 1: created `127-Alignment.Session.md` (index note) + `tarav-hugentics/references/alignment-session.md` (public surface)
 - Slice 2: updated `121-Design.Session.md` (4 blocks renamed), `123-Impl.Req.md` (loop terminology), `001-ontology.md` (5 entries rewritten + Alignment.Session added), `000-index.md` (121 entry updated + 127 added)
 - Slice 3: updated `hugentics-designer/SKILL.md` (full rewrite), `hugentics-impl-designer/SKILL.md` (Impl.Alignment.Loop → Alignment.Loop::How), `hugentics-impl-executer/SKILL.md` (Realignment → Alignment.Loop::Exec)
 - Slice 4: renamed `session-runtime.md` → `alignment-loop.md`, `inchat-session.md` → `backend-inchat.md`, `artifact-session.md` → `backend-artifact.md`; updated `interview.md`, `discussion.md`, `artifact.md`, `design-index.md`, `session-interruptions.md`, `consolidation-plan-example.md`
-- Slice 5: updated `agentos-hugentics/SKILL.md` (phase names, artifact table, added Alignment.Session to related concepts)
+- Slice 5: updated `tarav-hugentics/SKILL.md` (phase names, artifact table, added Alignment.Session to related concepts)

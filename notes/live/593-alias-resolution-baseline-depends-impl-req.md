@@ -4,7 +4,7 @@
 
 - close the two follow-ups from the 592 dependency-sync acceptance (`agentos-md/notes/live/592-dependency-sync-lint-impl-req.md`, Impl.Log 2026-07-16): the motivating drift — `Index.Main`, `Edit.Trigger.Gated`, `Content.Verbatim.Gated` still cited in `agentos-index` references — is invisible to the check because retired names do not resolve (the depot resolver ignores block-meta aliases) and no `depends` declarations exist yet
 - deliverables: (a) alias-aware `Dotted.Name` resolution in the skillware depot resolver, (b) baseline `depends` declarations on the `agentos-index` skill, (c) resolution of the exposed drift POIs by updating the stale citations to current names, ending with a clean check
-- scope: `agentos-py/src/agentos/skillware/build.py` + tests; `agentos-md/skills/agentos-pkg/design/107-design.md` (one meta data fix); `agentos-md/skills/agentos-index/.skillware/src/**` (declarations + drift fixes, then rebuild)
+- scope: `agentos-py/src/agentos/skillware/build.py` + tests; `agentos-md/skills/tarav-pkg/design/107-design.md` (one meta data fix); `agentos-md/skills/agentos-index/.skillware/src/**` (declarations + drift fixes, then rebuild)
 - out of scope: index-linter changes; alias support anywhere outside the skillware resolver; declaring or fixing skills other than `agentos-index`; the project-root `.claude/skills` copies (they regenerate from the same src)
 - support set (retro-minted 2026-07-18): ordering gate ^c20260716-34u (`--design --AUTO` — the order is the design gate); execution ran in an external session, its gate turn unrecorded
 - status: executed
@@ -48,7 +48,7 @@ Run `python -m pytest agentos-py/tests/test_skillware.py` per slice (RED→GREEN
 
 ### Slice 3 — meta data fix (`agentos-md`)
 - `107-design.md` `Index.Ontology` meta: first alias `\`Index.Ontology\`` → `\`Index.Main\``
-- check: `agentos index linter` clean on agentos-pkg; `Index.Main` now resolves via the skillware resolver
+- check: `agentos index linter` clean on tarav-pkg; `Index.Main` now resolves via the skillware resolver
 
 ### Slice 4 — baseline `depends` on `agentos-index` (`agentos-md`)
 - for each of the 13 src files: run check, take its resolving mentions, canonicalize alias hits, write one `$kw: depends --from <name> ...` stanza near the top of the src file; rebuild the skill
@@ -75,7 +75,7 @@ Run `python -m pytest agentos-py/tests/test_skillware.py` per slice (RED→GREEN
 - 2026-07-16 — pre-edit checkpoints created per execution workflow: `agentos-py` commit `3c8eb20`, `agentos-md` commit `db5bda3`.
 - 2026-07-16 — implemented alias-aware Skillware depot resolution in `agentos-py`: canonical block names and `### meta` aliases now resolve through a cached per-depot name index; canonical names win on collisions.
 - 2026-07-16 — added alias regression tests for canonical resolution, alias resolution, canonical collision priority, literal alias dependency-sync POIs, blessing suppression, and re-minting after target block edits.
-- 2026-07-16 — fixed `Index.Ontology` metadata in `agentos-pkg/design/107-design.md`: alias `Index.Ontology` corrected to retired `Index.Main`; `agentos index linter --depot skills/agentos-pkg` passed with 0 errors/warnings.
+- 2026-07-16 — fixed `Index.Ontology` metadata in `tarav-pkg/design/107-design.md`: alias `Index.Ontology` corrected to retired `Index.Main`; `agentos index linter --depot skills/tarav-pkg` passed with 0 errors/warnings.
 - 2026-07-16 — added canonical `$kw: depends --from ...` baseline declarations to all 13 `agentos-index` Skillware source files and rebuilt the managed skill outputs.
 - 2026-07-16 — deviation: current sources contained retired gate-name citations in 7 files, not only the 5 stale citations listed in `Current.State`; resolved all observed retired aliases (`Index.Main`, `Edit.Trigger.Gated`, `Content.Verbatim.Gated`) to current names instead of blessing drift POIs.
 - 2026-07-16 — deviation: baseline exposed an existing `derived-stale` POI for `references/edit.md :: Block Independence`; refreshed that derived body from current `Independent.Reader.Block` source so final acceptance could be clean without blessing.

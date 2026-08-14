@@ -2,7 +2,7 @@
 
 ## Session.Abstract
 
-- intent: design an MVP for `Package.Skill.Testing`, starting from `agentos-pkg` index entry-path behavior
+- intent: design an MVP for `Package.Skill.Testing`, starting from `tarav-pkg` index entry-path behavior
 - current goal: establish the concept namespace and general structure before designing runner details
 - active focus: define the top-level subsystem concepts and keep the MVP grounded in realistic agent usage patterns
 - state: in progress
@@ -24,7 +24,7 @@
 - it gives `Package.Skill.Testing` a realistic project environment where agents must discover, load, and use the package skill as they would outside the package's own implementation repository
 - it can control visible skills, `AGENTS.md`, local index state, package imports, fixture files, and task prompts
 - it exists when prompt-only tests are not enough because the environment itself is part of the behavior being tested
-- example: `agentos-pkg-test-ground` is the first concrete `Package.Skill.TestGround` for testing `agentos-pkg`
+- example: `agentos-pkg-test-ground` is the first concrete `Package.Skill.TestGround` for testing `tarav-pkg`
 
 ### Package.Skill.EntryPath.Test
 
@@ -74,7 +74,7 @@
 
 - `Agentos.Pkg` is the short name for `Package.Skill::Agentos`
 - it is the core package skill for the Agentos system
-- in the current implementation, `Agentos.Pkg` lives at `agentos-md/skills/agentos-pkg/`
+- in the current implementation, `Agentos.Pkg` lives at `agentos-md/skills/tarav-pkg/`
 - the implementation location is not the package identity: `Agentos.Pkg` is not the same thing as `agentos-md`
 - `Agentos.Pkg` is the package context that should orient agents to Agentos concepts, public skills, index, Hugentics workflows, project model, and shared operating surfaces
 
@@ -84,7 +84,7 @@
 - it should orient the agent to Agentos package identity, major subsystems, public and auxiliary skills, Agentos Index entry path, Hugentics workflow map, live-note/live-script surfaces, project model, and package-skill conventions
 - it should be workflow-neutral
 - it should not force index loading, design-session loading, implementation workflow loading, or any other operation
-- in the current implementation, this driver should be complete in `agentos-pkg/SKILL.md`
+- in the current implementation, this driver should be complete in `tarav-pkg/SKILL.md`
 - some driver content can be duplicated into `AGENTS.md` or skill descriptions for `InContext.Installation`, but those surfaces are auxiliary to `Package.SKILL::Agentos.Pkg`
 
 ### InContext.Installation
@@ -101,10 +101,10 @@
 
 - `InContext.Installation::Agentos.Pkg` means `Package.Driver::Agentos.Pkg` is present in the active agent context
 - for `agentos-project`, this is the desired fresh-session state
-- primary path: `AGENTS.md -> load agentos-pkg -> Package.SKILL::Agentos.Pkg`
-- direct user path: `User.Load:agentos-pkg -> Package.SKILL::Agentos.Pkg`
-- discovery path: `Skill.Description:agentos-pkg -> Package.SKILL::Agentos.Pkg`
-- intent path: `User.Intent -> recognition -> agentos-pkg -> Package.SKILL::Agentos.Pkg`
+- primary path: `AGENTS.md -> load tarav-pkg -> Package.SKILL::Agentos.Pkg`
+- direct user path: `User.Load:tarav-pkg -> Package.SKILL::Agentos.Pkg`
+- discovery path: `Skill.Description:tarav-pkg -> Package.SKILL::Agentos.Pkg`
+- intent path: `User.Intent -> recognition -> tarav-pkg -> Package.SKILL::Agentos.Pkg`
 - all paths converge on `Package.SKILL::Agentos.Pkg`
 - root `AGENTS.md` helps install the driver, but is not part of the driver's completeness contract
 - `agentos-index` should stay conditional: load it when the task needs index-grounded context, writing, diagnosis, testing, maintenance, or the `Index.Agent` role
@@ -136,7 +136,7 @@
 - the section should route to the package skill and any primary auxiliary skill needed for common project work
 - it should not duplicate the package manual; it should identify the package entry point and when to use it
 - in multi-project repositories, root `AGENTS.md` should route broadly, while nested project `AGENTS.md` files can give stronger package-specific guidance
-- for `agentos-project`, this means root `AGENTS.md` should route to `agentos-pkg` instead of the deprecated usage skill, and `agentos-md/AGENTS.md` should keep its stronger `agentos-pkg` / `agentos-index` guidance
+- for `agentos-project`, this means root `AGENTS.md` should route to `tarav-pkg` instead of the deprecated usage skill, and `agentos-md/AGENTS.md` should keep its stronger `tarav-pkg` / `agentos-index` guidance
 
 ### InContext.Surface::Package.SKILL
 
@@ -197,7 +197,7 @@
 ### Entry.Surface::User.Load
 
 - `Entry.Surface::User.Load` is explicit user activation of a package or skill surface
-- it means the user directly names the load target, such as `load agentos-pkg skill`, `$agentos-pkg`, or `load /agentos-pkg`
+- it means the user directly names the load target, such as `load tarav-pkg skill`, `$tarav-pkg`, or `load /tarav-pkg`
 - it is stronger than ordinary task intent because the agent does not need to infer which package surface should be loaded
 - it should enter through the same `Package.Skill` orientation path as automatic or skill-description-based loading
 
@@ -218,9 +218,9 @@
 ### agentos-pkg-test-ground
 
 - `agentos-pkg-test-ground` is the proposed first `Package.Skill.TestGround`
-- purpose: test how agents discover and use `agentos-pkg` and its Agentos Index entry path
-- initial concern: a new session may not know how to interact with `agentos-pkg` or the index unless the entry path is clear
-- first useful benchmark should compare startup paths, such as `agentos-pkg` only, index-specific auxiliary skill, project `AGENTS.md`, and natural context only
+- purpose: test how agents discover and use `tarav-pkg` and its Agentos Index entry path
+- initial concern: a new session may not know how to interact with `tarav-pkg` or the index unless the entry path is clear
+- first useful benchmark should compare startup paths, such as `tarav-pkg` only, index-specific auxiliary skill, project `AGENTS.md`, and natural context only
 
 ### Usage.Pattern::Kernel.Block.Authoring
 
@@ -254,15 +254,15 @@
 - current design preference: start by establishing the `Package.Skill.Testing` namespace instead of immediately designing a runner
 - avoid over-specifying the implementation while the general structure is still forming
 - existing surfaces found:
-    - `skills/agentos-pkg/references/test-system.md`
-    - `skills/agentos-pkg/testing/activation-recall-01.md`
+    - `skills/tarav-pkg/references/test-system.md`
+    - `skills/tarav-pkg/testing/activation-recall-01.md`
     - `skills/agentos-index-test/SKILL.md`
 - existing tests are activation/recall oriented; the new design should move toward usage-pattern behavior tests
 - future direction: package chat transcripts can become a source of reality-weighted usage-pattern tests and index layout optimization signals
 
 ## Session.Log
 
-- started from discussion about testing whether `agentos-pkg` gives agents sufficient index-entry guidance
+- started from discussion about testing whether `tarav-pkg` gives agents sufficient index-entry guidance
 - subagent probe found the new package entry path effective, with one path-relative ambiguity that was fixed
 - session shifted from index-entry probing to designing an MVP for package-skill testing infrastructure
 - accepted namespace direction: `Package.Skill.Testing`

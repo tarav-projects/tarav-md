@@ -2,7 +2,7 @@
 
 ## Impl.Abstract
 
-- retire the last tooling and citation remnants of the block-grounding axis (`Grounding.Head` evidence boards, `Inline.Grounding`, `Kernel.Block.Grounding`, `Grounding.Drift`) after the design-side retirement landed: grounding is now a line property defined positively on `Index.Line` (`Grounded.Line`/`Ungrounded.Line`), mechanics in `agentos-md/skills/agentos-pkg/appendix/Index.Line-appendix.md`
+- retire the last tooling and citation remnants of the block-grounding axis (`Grounding.Head` evidence boards, `Inline.Grounding`, `Kernel.Block.Grounding`, `Grounding.Drift`) after the design-side retirement landed: grounding is now a line property defined positively on `Index.Line` (`Grounded.Line`/`Ungrounded.Line`), mechanics in `agentos-md/skills/tarav-pkg/appendix/Index.Line-appendix.md`
 - design source: design session `agentos-md/notes/live/591-touched-surface-index-design-session.md` (grounding-retirement follow-ups row); user order anchored `^c20260718-1u` (chatlas anchory depot); retirement decision turns `^c20260716-33u` `^c20260717-0u` neighborhood
 - support set: ordering gate ^c20260718-1u (AUTO — the order is the design gate) · execution gate ^c20260718-11u (retro-minted 2026-07-18)
 - two halves: (1) `agentos-py` index tooling still measures block grounding by `Grounding.Head` presence — an axis that no longer exists; (2) live md surfaces still cite the retired concept names
@@ -18,10 +18,10 @@
 - `agentos-py/src/agentos/index/commands.py` — `agentos index blocks` prints a `board` column (~lines 116–136) and its help text cites "evidence-board flag" (~line 162)
 - tests: `agentos-py/tests/test_index_linter.py`, `test_index_blocks.py` cover the current board semantics
 - md citation drift (live surfaces only; `grep -rln "Grounding.Head\|Inline.Grounding\|Kernel.Block.Grounding\|Grounding.Drift"`):
-  - `agentos-md/skills/agentos-pkg/`: `SKILL.md`, `references/index-block-catalog.md`, design chapters `100/102/103` (105 already cleaned), appendix files (mixed: some are prose citations, some are the inert `Grounding.Head` sections themselves — only prose citations are in scope)
+  - `agentos-md/skills/tarav-pkg/`: `SKILL.md`, `references/index-block-catalog.md`, design chapters `100/102/103` (105 already cleaned), appendix files (mixed: some are prose citations, some are the inert `Grounding.Head` sections themselves — only prose citations are in scope)
   - `agentos-md/skills/agentos-index/`: `SKILL.md` + most `references/*.md`, with skillware sources under `.skillware/src/` (edit the `.skw.md` sources, regenerate the views; several declare `depends --from Inline.Grounding` / `--from Kernel.Block.Grounding`)
-  - `agentos-md/skills/hugentics-designer/references/index-view.md`, `writing-craft.md`; `agentos-md/skills/agentos-session-supervisor/references/role-chat-grounding.md`
-  - `agentos-chatlas-md/skills/agentos-chatlas-pkg/appendix/Chatlas.Anchory-appendix.md`
+  - `agentos-md/skills/hugentics-designer/references/index-view.md`, `writing-craft.md`; `agentos-md/skills/tarav-session-supervisor/references/role-chat-grounding.md`
+  - `agentos-chatlas-md/skills/tarav-chatlas-pkg/appendix/Chatlas.Anchory-appendix.md`
 - the 593-landed dependency-sync lint checks skw `depends` declarations against addressable names — retired names must clear from `depends` lists or that lint regresses
 - read root `AGENTS.md` and `agentos-py/AGENTS.md` before editing
 
@@ -58,8 +58,8 @@ Run `python -m pytest agentos-py/tests/test_index_linter.py agentos-py/tests/tes
 - check: dependency-sync lint green; `grep` for the four retired names under `skills/agentos-index/` returns nothing
 
 ### Slice 4 — remaining md surfaces
-- rewrite prose citations in: agentos-pkg `SKILL.md`, `references/index-block-catalog.md`, design `100/102/103`, appendix prose citations (NOT the inert `Grounding.Head`/`Grounding.Drift` sections themselves); hugentics-designer + session-supervisor references; chatlas `Chatlas.Anchory-appendix.md`
-- check: `agentos index linter --depot skills/agentos-pkg` clean from `agentos-md/`; same for the chatlas depot; remaining hits for the four names are only inert appendix section headings/bodies or `_DEPRECATED`
+- rewrite prose citations in: tarav-pkg `SKILL.md`, `references/index-block-catalog.md`, design `100/102/103`, appendix prose citations (NOT the inert `Grounding.Head`/`Grounding.Drift` sections themselves); hugentics-designer + session-supervisor references; chatlas `Chatlas.Anchory-appendix.md`
+- check: `agentos index linter --depot skills/tarav-pkg` clean from `agentos-md/`; same for the chatlas depot; remaining hits for the four names are only inert appendix section headings/bodies or `_DEPRECATED`
 
 ### Risks / deviation triggers
 - distinguishing prose citation vs inert section inside appendix files requires judgment — when unsure, leave the line and log it in `Impl.Log`
@@ -79,6 +79,6 @@ Run `python -m pytest agentos-py/tests/test_index_linter.py agentos-py/tests/tes
 - slice 2 · RED→GREEN as planned; also updated `agentos-py/AGENTS.md` lines documenting the old `--coverage block` and `blocks` board semantics (doc-update-required policy)
 - slice 3 · one intentional retired-name mention kept: `search.skw.md` line orienting readers that `Grounding.Head`/`Grounding.Drift` appendix sections are inert legacy; skillware check surfaced 9 POIs — 3 undeclared-dependency fixed by adding `--from Index.Line`/`--from Demoted.Anchored.Line`, 1 derived-stale blessed (digest content unaffected by dep edits), 5 unhonored-dependency `Capture.Offer` blessed — DEVIATION NOTE: `Capture.Offer` was demoted this session from a 107 block to an appendix section of `Touched.Surface.Index`, and appendix-section names are not resolvable by the Dotted.Name depot resolver; blessing records the situation, but appendix-section addressability is an open follow-up for the resolver
 - slice 4 · one extra live citation found and fixed beyond the plan inventory: `105-design.md` `Chat.Grounding.Target.Block` line citing `Kernel.Block.Grounding` (rewritten to line-property wording); `Chatlas.Anchory-appendix.md` hit left as-is (a frozen anchor-hint quote — historical data, not a citation); `100-design.md` `Grounding.Audit` block: the "demoted inline grounding also lands in Grounding.Drift" line was folded into the rewritten demotion line rather than rewritten standalone (pure-demotion doctrine has no drift destination)
-- verification · agentos-py suite 372 passed; `agentos index linter --depot` clean on agentos-pkg and agentos-chatlas-pkg; `agentos skillware check --skill skills/agentos-index` 0 POIs; `agentos index blocks` smoke shows the `grounded g/n` column (installed CLI is editable, no reinstall needed)
+- verification · agentos-py suite 372 passed; `agentos index linter --depot` clean on tarav-pkg and tarav-chatlas-pkg; `agentos skillware check --skill skills/agentos-index` 0 POIs; `agentos index blocks` smoke shows the `grounded g/n` column (installed CLI is editable, no reinstall needed)
 - post-execution 2026-07-18 · the `Capture.Offer` deviation resolved by design change: the user promoted `Capture.Offer` back to a 107 block ("needing to be referenceable is a reason to create a block", `^c20260718-2u`); the five blessed unhonored-dependency POIs were then removed from `lock.json` (no unbless CLI exists; surgical edit + rebuild, check clean) — left in place they would have masked any future recurrence of the same situation-stable POI hashes; the general resolver follow-up (appendix-section addressability) stays open but is no longer blocking anything
 - remaining retired-name hits are by design: inert `*/Grounding.Head` section headings + historical hint/[GR] quotes in appendix files (opportunistic cleanup), `_DEPRECATED` skills, and the intentional search.md orientation line

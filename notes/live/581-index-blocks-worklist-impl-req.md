@@ -50,7 +50,7 @@
 - status: done
 
 ### S3 — live + docs
-- what: reinstall; live run `agentos index blocks --depot skills/agentos-pkg --sort gr-density --limit 15` in agentos-md (expect the 577-stamped/enriched blocks at the tail, legacy blocks at 0 leading); update `agentos-md` `skills/agentos-index/references/enrich.md` (replace the linter-meters fallback with the real command — the user's explicit follow-up), `references/gr-survey.md` selector mention if stale, `agentos-py/AGENTS.md` CLI listing
+- what: reinstall; live run `agentos index blocks --depot skills/tarav-pkg --sort gr-density --limit 15` in agentos-md (expect the 577-stamped/enriched blocks at the tail, legacy blocks at 0 leading); update `agentos-md` `skills/agentos-index/references/enrich.md` (replace the linter-meters fallback with the real command — the user's explicit follow-up), `references/gr-survey.md` selector mention if stale, `agentos-py/AGENTS.md` CLI listing
 - check: live output sane; both depots lint clean; full suite green
 - status: done
 
@@ -68,5 +68,5 @@
 - 2026-07-09: designed and executed in-session (--dev --AUTO); review round skipped (same-agent develop, user-triggered)
 - 2026-07-09: open-space decision: `BlockGroundingStats` retains the per-block anchor SET (frozenset) so the scoped aggregate counts unique-within-scope exactly — summing per-block uniques would double-count shared stamps (^c20260709-5u semantics)
 - 2026-07-09: fixture arithmetic error in the RED (8 kernel lines, not 9) — test corrected, not the implementation
-- 2026-07-09: live: `agentos index blocks --depot skills/agentos-pkg --sort gr-density` → 227 blocks, aggregate 0.0161; tail is exactly this week's worked blocks (Inline.Grounding 0.75, Kernel.Block.Grounding 0.67, Index.Enrichment 0.6) — metric validates against known history
+- 2026-07-09: live: `agentos index blocks --depot skills/tarav-pkg --sort gr-density` → 227 blocks, aggregate 0.0161; tail is exactly this week's worked blocks (Inline.Grounding 0.75, Kernel.Block.Grounding 0.67, Index.Enrichment 0.6) — metric validates against known history
 - 2026-07-09: verification: agentos-py suite 290 passed, ruff clean; CLI reinstalled; docs updated (enrich.md fallback replaced with the real command, gr-survey.md selector, agentos-py/AGENTS.md)

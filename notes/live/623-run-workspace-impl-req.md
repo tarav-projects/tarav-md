@@ -19,7 +19,7 @@ the guide (see the decision below). No integration with the tournament engine.
 tournament suite pass. See `Impl.Log` D2 for 46 unrelated failures owned by another session.
 Changes are uncommitted for review.
 
-**Source context.** `agentos-md/skills/agentos-pkg/design/100-design.md`: the new
+**Source context.** `agentos-md/skills/tarav-pkg/design/100-design.md`: the new
 `Volatile.Surface` and `Run.Workspace` blocks. `design/107-design.md`: `Skw.Surface.Token`,
 `Poi.Unlock.Token`, `Poi.Unlock.Registry`. This `Impl.Req` realizes the `Run.Workspace` block and
 nothing beyond it.
@@ -95,11 +95,11 @@ git worktree — that is the failure the index line names, and it is cheap to de
 
 **Index citations** — the lines this implementation must honor:
 
-- `index://agentos-pkg/Run.Workspace` — the whole block, `^c20260809-86u` … `-93u`
-- `index://agentos-pkg/Volatile.Surface` — `^c20260809-79u` … `-85u`, especially the one-way arrow
-- `index://agentos-pkg/Skw.Surface.Token` — `^c20260730-100u`, `^c20260730-37u`, `^c20260730-38u`
-- `index://agentos-pkg/Poi.Unlock.Token` — `^c20260730-99u`, `^c20260730-52u`, `^c20260730-118u`
-- `index://agentos-pkg/Poi.Bless` — `^c20260730-55u`, refusal never discloses the token
+- `index://tarav-pkg/Run.Workspace` — the whole block, `^c20260809-86u` … `-93u`
+- `index://tarav-pkg/Volatile.Surface` — `^c20260809-79u` … `-85u`, especially the one-way arrow
+- `index://tarav-pkg/Skw.Surface.Token` — `^c20260730-100u`, `^c20260730-37u`, `^c20260730-38u`
+- `index://tarav-pkg/Poi.Unlock.Token` — `^c20260730-99u`, `^c20260730-52u`, `^c20260730-118u`
+- `index://tarav-pkg/Poi.Bless` — `^c20260730-55u`, refusal never discloses the token
 
 **Chat grounding** — the design turns behind `^c20260809-79u` … `-93u`, minted this session.
 Execution is authorized by `^c20260809-183u`, the `--impl --dev --exec` invocation.

@@ -7,7 +7,7 @@ Definition: `dev/live/620-index-line-type-tournament.py`. Fold:
 ## What Was Run
 
 30 index lines sampled stratified across the `Line.Type.Vocabulary` from
-`agentos-pkg/design/*.md` (5 each DF/DC/CT/RJ/PR, 3 FR, 2 EX; no GR line in the
+`tarav-pkg/design/*.md` (5 each DF/DC/CT/RJ/PR, 3 FR, 2 EX; no GR line in the
 depot matched the length filter). Each match shows **one line under five type
 codes** — its registered one plus four drawn from the rest of the vocabulary,
 seeded on the line id so repeat runs accumulate against one match identity. Each

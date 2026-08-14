@@ -13,7 +13,7 @@ The user should not need to decide whether relevant material already exists in t
 Its canonical public entry is:
 
 ```text
-/agentos-hugentics --index [optional focus]
+/tarav-hugentics --index [optional focus]
 ```
 
 On entry, the agent becomes an expert on Index writing, grounds the current conversation against relevant Index state, and uses a semantic router to choose the appropriate direction. When several coherent targets or directions exist, it may begin with a compact routing report; when the next move is evident, it should proceed without adding routing ceremony.
@@ -34,9 +34,9 @@ The session can cross these axes continuously without switching workflows.
 `--capture`, `--enrich`, and `--edit` are optional focus directives under `--index`, not aliases and not independent workflows:
 
 ```text
-/agentos-hugentics --index --capture [optional focus]
-/agentos-hugentics --index --enrich [optional block]
-/agentos-hugentics --index --edit [optional target]
+/tarav-hugentics --index --capture [optional focus]
+/tarav-hugentics --index --enrich [optional block]
+/tarav-hugentics --index --edit [optional target]
 ```
 
 - `--capture` emphasizes material already produced in the conversation.

@@ -14,7 +14,7 @@
 - **touched (appendix):** `Skill.Module/Context.Assembly.Module` defines the complete coherent subject universe, builder/runtime split, non-ownership, overlapping coverage, and materialization freedom
 - **touched (appendix):** `Skw.Ann.Dependency/Context.Assembly.Coverage` defines assembly-covered sources, companion `--dev-from` edges, and the semantic bypass POI
 - **touched (index):** `Skill.Module`, `Skw.Ann.Dependency`, `Context.Loading.Path`, `Dynamic.Loading`, `POI.Linter`, `Index.Skillware`
-- **structural:** `.skw/src/**/*.skw.md` compiles into the runnable `agentos-index` and `agentos-skillware` surfaces
+- **structural:** `.skw/src/**/*.skw.md` compiles into the runnable `agentos-index` and `tarav-skillware` surfaces
 - **open space:** completeness remains a curated builder responsibility; v1 mechanically supervises the declared direct coverage boundary only
 
 ## Impl.Index
@@ -47,7 +47,7 @@
 
 ### Candidate Reconciliation
 
-- delete `agentos-pkg/agendix/Skill.Module-agendix.md` after confirming its candidate content is represented by the landed `Skill.Module` and `Skw.Ann.Dependency` appendix sections plus maintained Skillware documentation
+- delete `tarav-pkg/agendix/Skill.Module-agendix.md` after confirming its candidate content is represented by the landed `Skill.Module` and `Skw.Ann.Dependency` appendix sections plus maintained Skillware documentation
 - do not change the reviewed ontology blocks
 
 ## Execution.Plan
@@ -75,9 +75,9 @@
 - add or update focused `agentos-py` tests for coverage-oriented bypass diagnostics and legends
 - rename private context-assembly claim helpers/locals and update diagnostic text
 - update `agentos-py/AGENTS.md`
-- update maintained `agentos-skillware/.skw/src` language, authoring, doctrine, and check wording, then rebuild
+- update maintained `tarav-skillware/.skw/src` language, authoring, doctrine, and check wording, then rebuild
 - preserve generic ownership terminology unrelated to context assemblies
-- checks: focused Skillware Python tests, focused Ruff, `agentos skw check --skill skills/agentos-skillware`
+- checks: focused Skillware Python tests, focused Ruff, `agentos skw check --skill skills/tarav-skillware`
 - status: completed
 
 ### Slice 4 - Reconcile the promoted candidate and close validation
@@ -85,7 +85,7 @@
 - verify the old `Skill.Module` agendix candidate against the two landed appendix sections and maintained docs, then remove the superseded agendix file
 - run the package index linter and no-legacy terminology searches
 - run the complete `agentos-py` test suite
-- checks: `agentos index linter --depot skills/agentos-pkg`, both managed-skill checks, `uv run pytest -q`, scoped Ruff, and `git diff --check`
+- checks: `agentos index linter --depot skills/tarav-pkg`, both managed-skill checks, `uv run pytest -q`, scoped Ruff, and `git diff --check`
 - status: completed
 
 ## Risks And Deviation Triggers
@@ -119,5 +119,5 @@
 - GREEN observation: one `Index.Context.Assembly` covers the package, all 13 other managed sources declare it through `--dev-from`, and `agentos skw check --skill skills/agentos-index` reports 0 POIs
 - coverage terminology now reaches maintained Skillware sources, generated docs, private Python identifiers, diagnostics, tests, and `agentos-py/AGENTS.md`; the public POI kind remains `context-assembly-bypass`
 - the superseded `Skill.Module` agendix candidate was removed after its assembly decisions were confirmed in the landed `Skill.Module` and `Skw.Ann.Dependency` appendices and its dependency-role syntax in maintained Skillware documentation
-- validation: `agentos skw check` reports 0 POIs for both `agentos-index` and `agentos-skillware`; the package index linter reports 0 findings; focused Skillware tests pass 97/97; full `agentos-py` tests pass 551/551; focused Ruff and both repositories' `git diff --check` pass
+- validation: `agentos skw check` reports 0 POIs for both `agentos-index` and `tarav-skillware`; the package index linter reports 0 findings; focused Skillware tests pass 97/97; full `agentos-py` tests pass 551/551; focused Ruff and both repositories' `git diff --check` pass
 - unrelated concurrent `User.Command` rendering and `Agentos.Daemon` index edits were preserved and were not treated as part of this implementation

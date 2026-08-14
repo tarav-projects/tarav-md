@@ -4,7 +4,7 @@
 
 - **Goal:** implement the first shared `POI.System` runtime cut by adapting Index linter findings into deterministic `POI.Instance`s, resolving their registered `POI.Class` references through Wayfinder, grouping output by class, and exposing `agentos poi explain`.
 - **Status:** implemented and verified.
-- **Source design:** the POI blocks in `skills/agentos-pkg/design/107-design.md`, Wayfinder in `skills/agentos-pkg/design/110-design.md`, and the execution authorization at `^c20260729-47u`.
+- **Source design:** the POI blocks in `skills/tarav-pkg/design/107-design.md`, Wayfinder in `skills/tarav-pkg/design/110-design.md`, and the execution authorization at `^c20260729-47u`.
 - **In scope:** common POI models/catalog/rendering, Index finding adaptation, complete core and injected-Chatlas class registration, grouped text/JSON output, package-owned documentation resolution, explain CLI, tests, and architecture guidance.
 - **Out of scope:** blessing, dispositions, context gates, authoring missing POI documentation blocks, changing check execution/state dependencies, and converting Skillware or other linters.
 
@@ -20,8 +20,8 @@
 
 ### Class Ownership And Resolution
 
-- Core Index finding codes resolve to class references rooted at `agentos-pkg`.
-- Chatlas-powered Index finding codes resolve to class references rooted at `agentos-chatlas-pkg` and are injected by `agentos-cli`.
+- Core Index finding codes resolve to class references rooted at `tarav-pkg`.
+- Chatlas-powered Index finding codes resolve to class references rooted at `tarav-chatlas-pkg` and are injected by `agentos-cli`.
 - The class block path matches the emitted finding code.
 - Existing class blocks are resolved and rendered from their authoritative Index content.
 - Missing or ambiguous class blocks remain registered identities and produce visible Wayfinder resolution POIs without suppressing their original instances.
@@ -100,7 +100,7 @@
 ## Risks And Deviation Triggers
 
 - Stop if a class reference cannot remain the canonical identity without introducing a second class namespace.
-- Do not place Chatlas semantics in `agentos-pkg` merely because the Index linter emits the finding.
+- Do not place Chatlas semantics in `tarav-pkg` merely because the Index linter emits the finding.
 - Do not duplicate documentation text into the runtime catalog to conceal unresolved package documentation.
 - Do not redesign `LinterState` or check dependency execution in this cut; that mutable-state cleanup is explicitly deferred.
 - Preserve unrelated worktree changes and checkpoint every execution target before implementation edits.
@@ -114,15 +114,15 @@
 - Index linter JSON exposes POI groups and instances rather than legacy finding records.
 - Missing class documentation produces a Wayfinder resolution POI while original instances remain visible.
 - `agentos poi explain Index.Linter/Block.TooLong` resolves the authoritative class block.
-- `agentos poi explain index://agentos-pkg/Index.Linter/Block.TooLong` resolves the same class.
+- `agentos poi explain index://tarav-pkg/Index.Linter/Block.TooLong` resolves the same class.
 - Focused and relevant full suites, Ruff, and diff checks pass.
 
 ## Impl.Agendix
 
 - [touched] autonomous design and execution authorization ^c20260729-47u
-- [touched] `POI.System`, `POI.Check`, `POI.Class`, `POI.Instance`, `POI.Catalog`, `POI.Documentation`, `POI.Renderer`, and `POI.Explain` from `skills/agentos-pkg/design/107-design.md`
-- [touched] `Agentos.Wayfinder` and `Wayfinder.Reference.Type::Index.Block` from `skills/agentos-pkg/design/110-design.md`
-- [touched] existing class roots in `skills/agentos-pkg/appendix/Index.Linter-appendix.md`
+- [touched] `POI.System`, `POI.Check`, `POI.Class`, `POI.Instance`, `POI.Catalog`, `POI.Documentation`, `POI.Renderer`, and `POI.Explain` from `skills/tarav-pkg/design/107-design.md`
+- [touched] `Agentos.Wayfinder` and `Wayfinder.Reference.Type::Index.Block` from `skills/tarav-pkg/design/110-design.md`
+- [touched] existing class roots in `skills/tarav-pkg/appendix/Index.Linter-appendix.md`
 
 ## Impl.Log
 

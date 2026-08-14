@@ -19,7 +19,7 @@ identity. Run parameters are not written to the verdict envelope (see `Impl.Inde
 **Status.** Executed. All six slices are implemented and the full `agentos-py` suite passes at
 897 tests. Changes are uncommitted for review.
 
-**Source context.** `agentos-md/skills/agentos-pkg/design/111-design.md`: the new
+**Source context.** `agentos-md/skills/tarav-pkg/design/111-design.md`: the new
 `Tournament.Label` block, the `Tournament.Player` and `Tournament.Match` label lines, and the
 three run-parameter lines on `Tournament.Hook`. This `Impl.Req` realizes those lines and nothing
 beyond them.
@@ -89,12 +89,12 @@ This was argued and settled in the source discussion; do not add an envelope fie
 
 **Index citations** — the lines this implementation must honor:
 
-- `index://agentos-pkg/Tournament.Label` — the whole block
-- `index://agentos-pkg/Tournament.Player` — `^c20260809-178u`
-- `index://agentos-pkg/Tournament.Match` — `^c20260809-179u`
-- `index://agentos-pkg/Tournament.Hook` — `^c20260809-180u`, `^c20260809-181u`, `^c20260809-182u`
-- `index://agentos-pkg/Tournament.Verdict` — envelope ownership and slot shadowing
-- `index://agentos-pkg/Judge.Blinding` — `^c20260809-41u`, the test that decides reader-side content
+- `index://tarav-pkg/Tournament.Label` — the whole block
+- `index://tarav-pkg/Tournament.Player` — `^c20260809-178u`
+- `index://tarav-pkg/Tournament.Match` — `^c20260809-179u`
+- `index://tarav-pkg/Tournament.Hook` — `^c20260809-180u`, `^c20260809-181u`, `^c20260809-182u`
+- `index://tarav-pkg/Tournament.Verdict` — envelope ownership and slot shadowing
+- `index://tarav-pkg/Judge.Blinding` — `^c20260809-41u`, the test that decides reader-side content
 
 **Chat grounding** — the design turns are the support sets behind
 `^c20260809-171u` … `-182u`, minted this session. The ordering turn for this implementation is

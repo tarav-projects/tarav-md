@@ -5,8 +5,8 @@
 - **goal:** complete the new `Touched.Index` line lifecycle across Chat Indexes, Project Indexes, anchor dossiers, Issue.Blocks, documentation, Hugentics workflows, POI linting, migration, and end-to-end validation
 - **status:** implemented; the real bootstrap Issue.Block intentionally remains open for later user review
 - **source:** the maintained redesign in `notes/live/607-chat-project-index-redesign-design-req.md`, completed Chat.Index mechanics in `agentos-chatlas-py/notes/live/555-chat-index-capture-plan-audit-impl-req.md`, completed support-chat routing in `notes/live/606-project-support-chats-impl-req.md`, current repository inspection, and the implementation/pilot authorization in this session
-- **authority:** the user requested the full implementation, required indexes/documentation/linting to close together, selected a deliberately minimal first Issue.Block format, defined issues as any temporary topic rather than only problems, and selected `agentos-hugentics` as the first migrated Index with a real bootstrap review issue ^c20260805-0u
-- **first pilot:** initialize and migrate an independent `agentos-hugentics` Index depot, then leave `Issue.I0001.Bootstrap.Review` open for a later real user review
+- **authority:** the user requested the full implementation, required indexes/documentation/linting to close together, selected a deliberately minimal first Issue.Block format, defined issues as any temporary topic rather than only problems, and selected `tarav-hugentics` as the first migrated Index with a real bootstrap review issue ^c20260805-0u
+- **first pilot:** initialize and migrate an independent `tarav-hugentics` Index depot, then leave `Issue.I0001.Bootstrap.Review` open for a later real user review
 - **owning projects:** `agentos-py` owns generic Index parsing, surface policy, issue modeling, linter orchestration, POI adaptation, and CLI-neutral library seams; `agentos-chatlas-py` owns Chat.Index, Chatlas support/provenance records, cross-surface reconciliation, and Chatlas-backed checks; `agentos-cli` owns dependency injection and command composition; `agentos-md` owns the Hugentics Index, authored Skillware workflows, Agentos POI catalog, design documentation, and the pilot; `agentos-chatlas-md` owns Chatlas package documentation and capture workflow documentation
 - **dirty baseline:** Impl.Req 555 is implemented and green but its owning Chatlas repositories contain uncommitted work; preserve and build on that state without resetting or rewriting unrelated product work
 - **execution boundary:** this is one master request with ordered vertical slices; an executor may use focused subordinate implementation notes only when repository ownership genuinely requires a handoff, while this artifact remains the completion ledger
@@ -27,7 +27,7 @@
 - complete the line-bound provenance dossier with first-known observations, issue context, optional Git observations, and derived Chat.Index home information
 - add Project-to-support-Chat reconciliation, per-chat cursors, POI findings, and an agent-facing maintenance workflow
 - update every owning Index, generated/hand-authored documentation surface, Package.Skill route, linter catalog, CLI help surface, and project guidance affected by the new model
-- migrate `agentos-hugentics` into its own Index depot and exercise the implementation with one intentionally unresolved bootstrap issue
+- migrate `tarav-hugentics` into its own Index depot and exercise the implementation with one intentionally unresolved bootstrap issue
 - prove both Chat-first and Project-first line propagation, reviewed issue resolution, and historical recoverability through automated fixtures
 
 ### Explicitly Out Of Scope
@@ -37,7 +37,7 @@
 - no `open/` and `resolved/` issue directories and no Project-local history/archive folder
 - no requirement that Issue.Blocks represent only failures or POIs
 - no settled tag vocabulary; v1 may preserve tags as uninterpreted text or metadata but must not make completion depend on a tag taxonomy
-- no migration of every Agentos Index in this request; the tooling is general, while `agentos-hugentics` is the only required real migration pilot
+- no migration of every Agentos Index in this request; the tooling is general, while `tarav-hugentics` is the only required real migration pilot
 - no transactional prohibition on Project-first or Chat-first development; incomplete propagation remains a POI
 - no autonomous crossing of the bootstrap issue's user-review gate
 
@@ -46,16 +46,16 @@
 - **touched (chat):** every Project model evolution may be organized as an issue, `design` is only the default implemented ontology chapter, and chapters conceptually define their gates ^c20260805-0u
 - **touched (chat):** issues represent any temporary topic, including useful opportunities and problems; all Issue.Block lines remain grounded Touched.Index material ^c20260805-0u
 - **touched (chat):** implementation must close indexes, documentation, linting, and the complete line lifecycle rather than delivering only a folder/parser change ^c20260805-0u
-- **touched (chat):** `agentos-hugentics` is the first migration target and must contain a bootstrap issue that remains available for later real user review ^c20260805-0u
-- **touched (index):** `Touched.Index` is the global system and `Index.Line` is its atomic presentation unit — `agentos-pkg/design/107-design.md` (`Touched.Index`, `Index.Line`)
-- **touched (index):** `POI.Line` is grounded maintenance interpretation with its own support, while `Index.HEAD.Reconciliation` makes cross-surface coverage eventual and POI-driven — `agentos-pkg/design/107-design.md`
-- **touched (index):** `Reviewed.Content`, `Line.Verbatim.Gate`, and `Edition.Approval.Token` place review evidence in line-local support-reference metadata — `agentos-pkg/design/107-design.md`
+- **touched (chat):** `tarav-hugentics` is the first migration target and must contain a bootstrap issue that remains available for later real user review ^c20260805-0u
+- **touched (index):** `Touched.Index` is the global system and `Index.Line` is its atomic presentation unit — `tarav-pkg/design/107-design.md` (`Touched.Index`, `Index.Line`)
+- **touched (index):** `POI.Line` is grounded maintenance interpretation with its own support, while `Index.HEAD.Reconciliation` makes cross-surface coverage eventual and POI-driven — `tarav-pkg/design/107-design.md`
+- **touched (index):** `Reviewed.Content`, `Line.Verbatim.Gate`, and `Edition.Approval.Token` place review evidence in line-local support-reference metadata — `tarav-pkg/design/107-design.md`
 - **structural:** `agentos-py/src/agentos/index/model/nodes.py` currently has no issues surface kind
 - **structural:** `agentos-py/src/agentos/index/model/parser.py` currently classifies any `NNN-<folder>.md` directory as a generic chapter except appendix/agendix
 - **structural:** `agentos-py/src/agentos/index/linter.py` derives chapter, appendix, and agendix surfaces; `issues/` must become explicit rather than accidentally inheriting chapter policy
 - **structural:** `agentos-chatlas-py/src/agentos_chatlas/index_checks.py` already resolves grounding, approval, and tokenized verbatim evidence through external linter checks
 - **structural:** `agentos-chatlas-py/src/agentos_chatlas/chat_index_audit.py` already computes exact line occurrences and oldest Delta homes in one pass
-- **structural:** `agentos-md/skills/agentos-hugentics/.skw/skw.json` currently depends on `../agentos-pkg` but the package owns no `000-INDEX.md`, chapter, appendix, agendix, issues, POI catalog, or support-chat registry
+- **structural:** `agentos-md/skills/tarav-hugentics/.skw/skw.json` currently depends on `../tarav-pkg` but the package owns no `000-INDEX.md`, chapter, appendix, agendix, issues, POI catalog, or support-chat registry
 - **structural:** Hugentics runnable documentation is generated from `.skw/src`; implementation edits authored sources and rebuilds, never hand-edits managed targets
 - **open space:** the richer tag vocabulary and ergonomics of mature Issue.Blocks remain deliberately open for discussion after the bootstrap issue is used
 
@@ -189,9 +189,9 @@ Use a deliberately small first format:
 
 ### Hugentics.Index.Pilot
 
-- initialize `agentos-md/skills/agentos-hugentics/` as an independent Index depot with `000-INDEX.md`, a default `design/` chapter, `appendix/`, `agendix/`, `issues/`, optional `poi/`, and `009-SUPPORT-CHATS.md`
-- keep its declared dependency on `agentos-pkg`; shared Agentos primitives remain there
-- inventory blocks presently owned by `agentos-pkg` and migrate only those whose operational/design owner is Hugentics
+- initialize `agentos-md/skills/tarav-hugentics/` as an independent Index depot with `000-INDEX.md`, a default `design/` chapter, `appendix/`, `agendix/`, `issues/`, optional `poi/`, and `009-SUPPORT-CHATS.md`
+- keep its declared dependency on `tarav-pkg`; shared Agentos primitives remain there
+- inventory blocks presently owned by `tarav-pkg` and migrate only those whose operational/design owner is Hugentics
 - preserve exact line content and anchors when moving accepted blocks so line identity, support, and review standing do not churn
 - move matching appendix/agendix depth and update both routers, depot dependencies, Wayfinder visibility, Skillware context paths, citations, and support-chat registries
 - create `issues/100-issues.md` and route `Issue.I0001.Bootstrap.Review`
@@ -201,8 +201,8 @@ Use a deliberately small first format:
 ### Documentation.And.Cutover
 
 - update the owning Agentos and Chatlas Index blocks before claiming runtime completion
-- update `agentos-hugentics` authored `.skw/src` modules for search, capture, edit, reconcile, check, touched-data, context assembly, and public routing as required; rebuild generated surfaces and run Skillware checks
-- update `agentos-support-chats` to scan issues
+- update `tarav-hugentics` authored `.skw/src` modules for search, capture, edit, reconcile, check, touched-data, context assembly, and public routing as required; rebuild generated surfaces and run Skillware checks
+- update `tarav-support-chats` to scan issues
 - update CLI help, Package.Skill operational references, AGENTS guidance, POI catalog blocks, linter explanations, and examples
 - remove stale four-HEAD or history-bearing Project Index descriptions from active documentation
 - do not edit generated Skillware targets directly
@@ -215,7 +215,7 @@ Use a deliberately small first format:
 
 - checkpoint every owning repository without resetting dirty worktrees
 - verify Impl.Req 555 focused/full Chatlas tests and inspect its generated Skillware drift
-- verify Impl.Req 606 extraction over the existing agentos-pkg depot
+- verify Impl.Req 606 extraction over the existing tarav-pkg depot
 - record any baseline deviation before touching shared seams
 
 **observable:** the executor can distinguish pre-existing work from this request and the completed capture/support machinery is demonstrably usable.
@@ -297,13 +297,13 @@ Use a deliberately small first format:
 
 **status:** completed
 
-- inventory and migrate Hugentics-owned blocks/depth from `agentos-pkg`
-- initialize the independent Hugentics depot and preserve dependency direction to `agentos-pkg`
+- inventory and migrate Hugentics-owned blocks/depth from `tarav-pkg`
+- initialize the independent Hugentics depot and preserve dependency direction to `tarav-pkg`
 - preserve exact accepted line content/anchors during movement
 - update routers, Wayfinder/depot configuration, citations, Skillware context loading, support-chat registries, and linter scope
-- leave shared Agentos primitives in `agentos-pkg`
+- leave shared Agentos primitives in `tarav-pkg`
 
-**observable:** a cold agent loading `agentos-hugentics` discovers its own routed design before following shared dependencies, with no duplicate concept ownership.
+**observable:** a cold agent loading `tarav-hugentics` discovers its own routed design before following shared dependencies, with no duplicate concept ownership.
 
 **check:** both depots lint clean; Wayfinder resolves moved and retained blocks uniquely; Skillware context witnesses and build/check pass.
 
@@ -366,7 +366,7 @@ Use a deliberately small first format:
 - if Issue.Block resolution cannot be derived reliably from line-local approval evidence, keep the block open and surface a POI; do not add a mutable status cache
 - if issue association cannot fit in the versioned line dossier without changing support meaning, introduce a separate versioned metadata field/record linked by exact line subject; do not overload support members or create a general dependency graph
 - if v4-to-next-record migration would rewrite historical anchors, preserve old records and adopt the new writer only for new/changed lines
-- if a candidate Hugentics block has ambiguous ownership with `agentos-pkg`, leave it in the shared depot and record the decision; do not duplicate the concept
+- if a candidate Hugentics block has ambiguous ownership with `tarav-pkg`, leave it in the shared depot and record the decision; do not duplicate the concept
 - if current dirty Chatlas work diverges from Impl.Req 555's recorded green state, stop at Slice 0 and reconcile that baseline before extending shared files
 - if the real bootstrap issue requires user review during execution, stop at the checkpoint and report it; never synthesize or infer the gate
 
@@ -381,7 +381,7 @@ Use a deliberately small first format:
 - [x] Project Support Chats include issues and Project↔Chat coverage is bulk-auditable
 - [x] reconciliation cursors are external machine state and incremental scans are idempotent
 - [x] Chat-first and Project-first propagation both work
-- [x] `agentos-hugentics` owns an independent clean Index depot without duplicate concept ownership
+- [x] `tarav-hugentics` owns an independent clean Index depot without duplicate concept ownership
 - [x] the real grounded bootstrap issue is open and awaiting later user review
 - [x] synthetic review/resolution/model-edit/retirement E2E passes
 - [x] Agentos/Chatlas indexes, docs, skills, AGENTS guidance, CLI help, POI catalogs, and linters agree
@@ -389,7 +389,7 @@ Use a deliberately small first format:
 
 ## Impl.Log
 
-- 2026-08-05 - Slices 6-7 completed: `agentos-hugentics` now owns an independent low-migration Index depot and four unambiguous Hugentics blocks moved from `agentos-pkg` without content or anchor churn; Wayfinder resolves the new owner uniquely, and `Issue.I0001.Bootstrap.Review` reports as the single healthy grounded open issue
+- 2026-08-05 - Slices 6-7 completed: `tarav-hugentics` now owns an independent low-migration Index depot and four unambiguous Hugentics blocks moved from `tarav-pkg` without content or anchor churn; Wayfinder resolves the new owner uniquely, and `Issue.I0001.Bootstrap.Review` reports as the single healthy grounded open issue
 - 2026-08-05 - Slice 8 completed: Hugentics authored Skillware gained issue and Project/Chat reconciliation routes plus chronological capture/check guidance; generated surfaces rebuild with 0 POIs/diagnostics, support-chat extraction includes `issues/`, AGENTS guidance and Chatlas v5/POI documentation are current
 - 2026-08-05 - Slice 9 completed: automated fixtures cover Chat-first promotion, Project-first missing-home/HEAD findings and backfill, reviewed Issue resolution, cursor idempotency, and Project retirement with the chronological Delta retained; the existing medium-chat Capture.Plan E2E also proves Delta-only maintenance preserves the complete HEAD
 - 2026-08-05 - Slice 10 completed: the real current-chat Capture.Plan added the bootstrap and implementation lines to chronological Deltas while preserving Chat HEAD; its bulk audit reports 20 Deltas, 102 Delta lines, 79 HEAD lines, and zero findings. The Hugentics Project audit reports no finding for `Issue.I0001`; 60 advisory findings remain explicit migration debt for older unavailable/unmaterialized support-chat homes
@@ -398,10 +398,10 @@ Use a deliberately small first format:
 - 2026-08-05 - Slice 3 completed: new line writers emit readable v5 dossiers with independent support, issue context, monotonic observations, and derived Known.Origin while v3/v4 records remain readable; focused Chatlas suites pass
 - 2026-08-05 - Slices 4-5 completed: one read-only Project-to-support-Chat audit computes exact HEAD/Delta coverage and advisory POIs, while project-scoped cursors make unchanged passes no-ops and append-only passes inspect only new Deltas; focused audit/reconciliation tests pass
 - 2026-08-05 - execution authorized in autonomous mode; checkpointed all five owning repositories before implementation edits ^c20260805-7u
-- 2026-08-05 - Slice 0 baseline passed: Chatlas full suite reports 432 tests passing, Chatlas Skillware reports no drift, and agentos-pkg support extraction resolves 1,353 anchors with status `ok`; direct `anchory sessions` requires its documented regex explicitly, so execution records that CLI/default mismatch and proceeds
+- 2026-08-05 - Slice 0 baseline passed: Chatlas full suite reports 432 tests passing, Chatlas Skillware reports no drift, and tarav-pkg support extraction resolves 1,353 anchors with status `ok`; direct `anchory sessions` requires its documented regex explicitly, so execution records that CLI/default mismatch and proceeds
 - 2026-08-05 - implementation design authorized; user selected complete cross-surface closure rather than a partial parser or folder change ^c20260805-0u
 - 2026-08-05 - user selected a minimal first Issue.Block, defined issues as any temporary topic, and deferred richer tags/ergonomics until real use ^c20260805-0u
-- 2026-08-05 - user selected `agentos-hugentics` as the first migrated Index and requested one real bootstrap issue to remain for later review ^c20260805-0u
-- 2026-08-05 - inspected the live baseline: Impl.Reqs 555 and 606 are implemented; Hugentics is Skillware-managed and currently depends on `agentos-pkg` without owning an Index depot; generic Index parsing currently lacks an issues surface kind
+- 2026-08-05 - user selected `tarav-hugentics` as the first migrated Index and requested one real bootstrap issue to remain for later review ^c20260805-0u
+- 2026-08-05 - inspected the live baseline: Impl.Reqs 555 and 606 are implemented; Hugentics is Skillware-managed and currently depends on `tarav-pkg` without owning an Index depot; generic Index parsing currently lacks an issues surface kind
 - 2026-08-05 - chose a versioned dossier extension, computed issue state, external cursor state, and an open real pilot plus resolved synthetic fixture so implementation can be complete without impersonating the user's future review
 - 2026-08-05 - readiness check passed: scope/exclusions, current seams, dependency order, ownership, observable slices, RED/GREEN checks, deviation triggers, and the user-only bootstrap review checkpoint are explicit

@@ -2,7 +2,7 @@
 
 ## Impl.Abstract
 
-- **scope:** declare the **48 `undeclared-dependency`** mentions across three skw skills — `agentos-skillware` (22), `agentos-hugentics-impl` (18), `agentos-hugentics` (8) — so every resolving `Dotted.Name` a skill surface mentions carries a `--from`, gaining `dangling`-drift protection (a rename/removal now surfaces instead of silently breaking).
+- **scope:** declare the **48 `undeclared-dependency`** mentions across three skw skills — `tarav-skillware` (22), `agentos-hugentics-impl` (18), `tarav-hugentics` (8) — so every resolving `Dotted.Name` a skill surface mentions carries a `--from`, gaining `dangling`-drift protection (a rename/removal now surfaces instead of silently breaking).
 - **out of scope:** any content/doctrine change; `bless`/remove (all 48 are legitimate concept dependencies → declare); the design-gated backlog (index-drift resolver, code backend, agendix promotion).
 - **status:** ✅ executed — undeclared 48 → 0; whole project skw-clean.
 - **source:** the session's `agentos skw check` drift signal; touched decision to bank the ready declaration debt.
@@ -19,7 +19,7 @@
 
 Behaviour-preserving: each rebuilt `.md` stays byte-identical to its committed version; each skill's `undeclared-dependency` count goes to 0. `agentos skw check` per skill is the inner guard.
 
-### Slice 1 — agentos-skillware (22)
+### Slice 1 — tarav-skillware (22)
 - clusters: `SKILL` (Batchy.Skill, Package.Aux.Skill, Semantic.Router, Skill.Module, Touched.Surface.Index) · `author` (Inline.Relatedness, Skw.Address.Schema) · `check` (Skw.Address.Schema) · `doctrine` (Annotation.Point, Cited.Duplication, Closure.Parser, Skw.Address.Schema, Skw.Backend, Skw.Language, Skw.Network, Skw.Quote.Binding) · `lang` (Closure.Parser, Index.Line, Semantic.Router, Skw.Address.Schema, Skw.Annotation, Skw.Dependency)
 - **check:** build clean; `skw check` undeclared 22 → 0; `.md` byte-identical.
 - **status:** ✅ done.
@@ -29,7 +29,7 @@ Behaviour-preserving: each rebuilt `.md` stays byte-identical to its committed v
 - **check:** undeclared 18 → 0; `.md` byte-identical.
 - **status:** ✅ done.
 
-### Slice 3 — agentos-hugentics (8)
+### Slice 3 — tarav-hugentics (8)
 - clusters: `SKILL` (Alignment.Checkpoint, Batchy.Skill, Impl.Req, Name.As.Index, Package.Driver) · `alignment-session` (Cited.Duplication, Open.Variable, Touched.Variable)
 - **check:** undeclared 8 → 0; `.md` byte-identical.
 - **status:** ✅ done.

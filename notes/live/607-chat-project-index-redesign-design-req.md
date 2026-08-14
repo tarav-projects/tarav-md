@@ -164,7 +164,7 @@ Resolution ceases to matter          → leaves Project.Index; remains in Chat.I
 - maintain per-chat reconciliation cursors and scan only new Chat Index units by default
 - produce agent-maintained live reconciliation reports and capture selected candidates or contradiction routers into the existing agendix
 - exercise both directions: Chat-first promotion and Project-first home reconciliation
-- pilot the complete loop on `agentos-pkg` before generalizing the workflow
+- pilot the complete loop on `tarav-pkg` before generalizing the workflow
 
 ### Phase 2A - Learning Gate
 
@@ -202,7 +202,7 @@ States: `planned`, `in-progress`, `blocked`, `done`.
 | 2.2 | Project-line Chat-home POI checks | agentos md/py + chatlas py | 1.2, 2.1 | done | one bulk advisory HEAD/Delta/home/dossier coverage audit |
 | 2.3 | Per-chat reconciliation cursors and incremental scan | agentos/chatlas | 1.5, 2.1 | done | project-local current/append-only/revised/reset cursor model |
 | 2.4 | Live reconciliation report and agendix capture workflow | agentos md | 2.2, 2.3 | done | structured candidates plus grounded Issue.Block routing |
-| 2.5 | Hugentics compatibility pilot | agentos-hugentics | 2.1-2.4 | done | real open bootstrap issue and current-chat Delta backfill |
+| 2.5 | Hugentics compatibility pilot | tarav-hugentics | 2.1-2.4 | done | real open bootstrap issue and current-chat Delta backfill |
 | 2A.1 | Compatibility-system observation report | agentos md | 2.5 | done | Impl.Req 608 records pilot debt/noise and the low-migration cutover decision |
 | 3.1 | Final Project Index product and file-format contract | agentos md | 2A.1 | done | existing layout retained with one first-class `issues/` surface |
 | 3.2 | Project Index migration workflow | agentos md/py | 3.1 | done | Hugentics pilot preserves exact moved line content and anchors |
@@ -257,4 +257,4 @@ States: `planned`, `in-progress`, `blocked`, `done`.
 - 2026-08-04: implemented and verified the chronological Delta/HEAD v2 surface, oldest-Delta Line.Home, v1 read compatibility, and medium-session E2E coverage
 - 2026-08-04: implemented read-only incremental tail maintenance with current, append-only, expanded, revised, diverged, and blocked states; active-session smoke found 11 pending turns and left the retained surface unchanged
 - 2026-08-05: Impl.Req 608 completed v5 line dossiers, bulk Project/Chat coverage, incremental reconciliation, first-class Issue.Blocks, and the low-migration Project Index cutover
-- 2026-08-05: migrated the first independent `agentos-hugentics` Index, left one healthy grounded bootstrap issue open, and backfilled the real supporting chat through a Delta-only Capture.Plan that preserved Chat HEAD
+- 2026-08-05: migrated the first independent `tarav-hugentics` Index, left one healthy grounded bootstrap issue open, and backfilled the real supporting chat through a Delta-only Capture.Plan that preserved Chat HEAD

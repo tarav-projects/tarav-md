@@ -30,12 +30,12 @@
 - **CLI surface**: `agentos skillware <build|check|status> --skill <path> [--json]`; `check` exits non-zero on findings; `status` is the inventory (managed files, verbs, lock presence). Registered in `agentos-cli/src/agentos_cli/cli.py` beside the other `register_*_commands`.
 - **POC `agentos-index2`** (`agentos-md/skills/agentos-index2/`): a do-over of `agentos-index` on a representative subset, marked POC in its SKILL.md.
   - `references/search.skw.md` — recipe-free src (pure passthrough proves the noop case)
-  - `references/ground.skw.md` — the full demo: `copy` of `references/search.skw.md#Citation Behavior`; `derived` with two deps (`references/search.skw.md#Search Model` + bare `Context.Grounding` from the agentos-pkg depot) and an intent; one `[!skw] end` mixed section with a hand tail
+  - `references/ground.skw.md` — the full demo: `copy` of `references/search.skw.md#Citation Behavior`; `derived` with two deps (`references/search.skw.md#Search Model` + bare `Context.Grounding` from the tarav-pkg depot) and an intent; one `[!skw] end` mixed section with a hand tail
   - `references/gr-survey.md` — hand-owned, no src (absence = hand-owned)
   - `SKILL.md` — hand-owned POC banner + module table
-  - `.skillware/skillware.json` — depots: `["../agentos-pkg"]`
+  - `.skillware/skillware.json` — depots: `["../tarav-pkg"]`
   - content adapted from the real `agentos-index` modules so the dependencies are meaningful, not lorem
-- **583 supersession**: delete `src/agentos/skills/imports.py`, `tests/test_skills_imports.py`, the `imports` subparser + handler in `agentos/skills/commands.py`; delete `skills/agentos-pkg/build/references-index-block-catalog-imports.md` and `skills/agentos-index/build/references-ground-imports.md` (empty `build/` dirs go too); rewrite `agentos-skill-pkg-builder` `references/imports.md` → `references/skillware.md` (src/recipe format, points at the CLI) and `references/import-checks.md` → `references/skillware-checks.md` (step 0 = `agentos skillware check`; agentic pass = re-derive stale `derived` bodies in src); update `check.md`, `build.md`, `SKILL.md` rows/args accordingly; update `agentos-py/AGENTS.md` (drop the `skills imports` entry, add `skillware`).
+- **583 supersession**: delete `src/agentos/skills/imports.py`, `tests/test_skills_imports.py`, the `imports` subparser + handler in `agentos/skills/commands.py`; delete `skills/tarav-pkg/build/references-index-block-catalog-imports.md` and `skills/agentos-index/build/references-ground-imports.md` (empty `build/` dirs go too); rewrite `agentos-skill-pkg-builder` `references/imports.md` → `references/skillware.md` (src/recipe format, points at the CLI) and `references/import-checks.md` → `references/skillware-checks.md` (step 0 = `agentos skillware check`; agentic pass = re-derive stale `derived` bodies in src); update `check.md`, `build.md`, `SKILL.md` rows/args accordingly; update `agentos-py/AGENTS.md` (drop the `skills imports` entry, add `skillware`).
 - **index follow-up (not executed here)**: 107's `Module.Import`/`Import.Manifest`/`Import.Management` realization lines describe the removed mechanics; a design session should recast them over Skillware. Recorded as follow-up, index untouched. *(Resolved 2026-07-10: recast landed — `Import.Manifest` replaced by `Skillware.Recipe`, realization lines updated, `^c20260710-2u`.)*
 
 ### Current.State *(inspected)*
@@ -44,7 +44,7 @@
 - CLI aggregation: `agentos-cli/src/agentos_cli/cli.py` imports `register_*_commands` and calls them over one `subparsers` (skills at line 75).
 - depot parsing: `agentos.index.model.parse_depot` + `BlockHeading`/`KernelLine` — the yesterday pattern for block-body extraction is in `agentos/skills/imports.py` (`_resolve_target`) and can be lifted before that module is deleted.
 - `agentos-index` real content: `references/search.md` (`## Search Model`, `## Citation Behavior` sections), `references/ground.md` (`## Grounding Model` explicitly derives from `--search`), `references/gr-survey.md` — the POC adapts these.
-- `Context.Grounding` block exists: `agentos-md/skills/agentos-pkg/design/107-design.md:315`.
+- `Context.Grounding` block exists: `agentos-md/skills/tarav-pkg/design/107-design.md:315`.
 - live-note numbering: 583 is the latest; this artifact is 584.
 - tests style: fixture-tree tests as in `tests/test_skills_imports.py` / `test_index_blocks.py`.
 

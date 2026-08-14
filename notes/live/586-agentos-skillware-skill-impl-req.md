@@ -1,8 +1,8 @@
-# agentos-skillware Skill — Impl.Req
+# tarav-skillware Skill — Impl.Req
 
 ## Impl.Abstract
 
-- **Goal**: create `agentos-md/skills/agentos-skillware` — the center of all Skillware content: doctrine, language spec, authoring discipline, adoption playbook, and toolchain operation — absorbing and retiring `agentos-skill-pkg-builder`. The skill is itself Skillware-built. Plus one engine addition: `agentos skillware build` constitutively stamps `.skillware/AGENTS.md`.
+- **Goal**: create `agentos-md/skills/tarav-skillware` — the center of all Skillware content: doctrine, language spec, authoring discipline, adoption playbook, and toolchain operation — absorbing and retiring `agentos-skill-pkg-builder`. The skill is itself Skillware-built. Plus one engine addition: `agentos skillware build` constitutively stamps `.skillware/AGENTS.md`.
 - **Design source**: this session's aligned design (2026-07-10): module set, 3-arg public surface, five derived recipes, constitutive AGENTS.md (grounded `^c20260710-3u`, appendix `Skill.Build.Surface/Appendix`), index recast already landed (`Skillware.Recipe`, `^c20260710-2u`).
 - **Self-containment contract**: an agent loading only this skill has everything needed to be a competent Skillware user.
 - **Out of scope**: `inline-drift` (dropped — future test-engine redesign owns it); `pointer` binding tooling; any further index edits beyond mention sweeps.
@@ -21,7 +21,7 @@
   - `adopt.md` — converting an existing skill: inventory, parity contract, graph extraction, verify (the 585 playbook, generalized)
   - `build.md` — `build`/`status` mechanics, lock model, src copy-refresh
   - `check.md` — verdict vocabulary + what each demands (copy refresh / agentic re-derive in src / hand-edit reconciliation), no-silent-blessing, read-only boundary
-- **Skillware-built**: `.skillware/skillware.json` depots `["../agentos-pkg"]`; five `derived` recipes, zero copies:
+- **Skillware-built**: `.skillware/skillware.json` depots `["../tarav-pkg"]`; five `derived` recipes, zero copies:
   1. `doctrine#The Model` ← `Agentos.Skillware` + `Skill.Runnable.Surface` + `Skill.Build.Surface` + `Module.Import` + `Skillware.Recipe` + `Derivation.Rule` + `Derived.Content`
   2. `doctrine#Recipe In Brief` ← `references/lang.skw.md#Recipe Grammar` (one-paragraph digest)
   3. `author#Division Of Labor` ← `Import.Management` (the `[PR]` + realization lines)
@@ -30,7 +30,7 @@
   - everything else root; router table hand-written (rows are one-liners, not spans)
 - **absorption**: fold the still-current content of `agentos-skill-pkg-builder/references/{skillware,skillware-checks,build,check}.md` into `lang`/`check`/`build`; `inline-drift.md` content is dropped, not migrated; then **delete `skills/agentos-skill-pkg-builder/` entirely** (`No.Legacy.Allowed`).
 - **skill links**: skills are symlinked via `agentos skills import` (state in `.agentos/state/skills-routing-links.json`, links in `.claude/skills/`); after create+delete, re-run the import for affected projects (agentos-md, agentos-py) and verify the old link is gone, the new one resolves.
-- **engine — constitutive `.skillware/AGENTS.md`**: `build_skill` (agentos-py `src/agentos/skillware/build.py:342`) writes a canonical constant text to `<skill>/.skillware/AGENTS.md`, overwrite-always, engine-owned like `lock.json`. Content (~6 lines): build surface identification; targets are compiled from `src/` — never hand-edit; edit src then `agentos skillware build`; drift via `agentos skillware check`; this file + lock are engine-owned; load `agentos-skillware` for the discipline. `check`/`status` do not require it (old builds tolerated), build always (re)stamps it.
+- **engine — constitutive `.skillware/AGENTS.md`**: `build_skill` (agentos-py `src/agentos/skillware/build.py:342`) writes a canonical constant text to `<skill>/.skillware/AGENTS.md`, overwrite-always, engine-owned like `lock.json`. Content (~6 lines): build surface identification; targets are compiled from `src/` — never hand-edit; edit src then `agentos skillware build`; drift via `agentos skillware check`; this file + lock are engine-owned; load `tarav-skillware` for the discipline. `check`/`status` do not require it (old builds tolerated), build always (re)stamps it.
 - **index2 provenance cleanup**: remove the two provenance additions from `agentos-index2/.skillware/src/SKILL.skw.md` (description prefix + provenance line), rebuild → index2 reaches zero-delta parity ("keep the execution surface clean", user 2026-07-10).
 - **grounding**: the design decisions of this artifact are grounded on this session; key anchors `^c20260710-2u` (recast + skill decision), `^c20260710-3u` (constitutive AGENTS.md).
 
@@ -50,23 +50,23 @@
 - check: new tests pass; suite green
 - status: done
 
-### S2 — author agentos-skillware (agentos-md)
+### S2 — author tarav-skillware (agentos-md)
 - what: src tree — `.skillware/skillware.json`, `src/SKILL.skw.md`, `src/references/{doctrine,lang,author,adopt,build,check}.skw.md` with the five recipes; build; check
-- check: `agentos skillware build --skill skills/agentos-skillware` emits 7 files + AGENTS.md; `check` exit 0 all-ok; derived bodies faithful to their index sources
+- check: `agentos skillware build --skill skills/tarav-skillware` emits 7 files + AGENTS.md; `check` exit 0 all-ok; derived bodies faithful to their index sources
 - status: done
 
 ### S3 — retire agentos-skill-pkg-builder + link sweep
 - what: delete `skills/agentos-skill-pkg-builder/`; re-run `agentos skills import` for agentos-md and agentos-py; sweep remaining live mentions (excluding notes/chatlas history)
-- check: old symlink+state gone, `agentos-skillware` linked and resolvable via `agentos skills path`; no live-surface mentions remain
+- check: old symlink+state gone, `tarav-skillware` linked and resolvable via `agentos skills path`; no live-surface mentions remain
 - status: done
 
 ### S4 — index2 zero-delta + final verification
-- what: drop provenance additions from index2 `SKILL.skw.md`, rebuild index2; final pass — pytest (agentos-py), skillware build/check/status over index2 + agentos-skillware, index linter over agentos-pkg, parity diff for index2 SKILL.md now empty
+- what: drop provenance additions from index2 `SKILL.skw.md`, rebuild index2; final pass — pytest (agentos-py), skillware build/check/status over index2 + tarav-skillware, index linter over tarav-pkg, parity diff for index2 SKILL.md now empty
 - check: all green; index2 SKILL.md parity diff byte-empty modulo name
 - status: done
 
 ### Acceptance signals
-- an agent can load `agentos-skillware` and operate the whole system: understand (doctrine/lang), write (author/adopt/build), maintain (check)
+- an agent can load `tarav-skillware` and operate the whole system: understand (doctrine/lang), write (author/adopt/build), maintain (check)
 - the skill's own `check` is all-ok and its doctrine derives from the live 107 blocks
 - every fresh `agentos skillware build` leaves a canonical `.skillware/AGENTS.md`
 - `agentos-skill-pkg-builder` is gone from skills, links, and state
@@ -82,5 +82,5 @@
 - **S1**: RED (2 tests failed on missing `AGENTS_MD_TEXT`), GREEN — constant + stamp beside the lock write in `build_skill`; suite green.
 - **deviation (fence-awareness)**: the parser was not code-fence aware — the `lang.skw.md` grammar example (a real recipe callout inside a ```md fence) would have parsed as a live recipe and been destroyed at compile. Most faithful fix under AUTO: engine change, RED-GREEN — `parse_skw_source` now treats fenced lines as inert content (```/~~~ toggling). 16 skillware tests, 306 suite-wide, ruff clean. The lang spec documents the rule ("fenced code blocks are inert").
 - **S2**: 7 srcs authored; build emitted 7 targets + stamped `.skillware/AGENTS.md`; check exit 0 all-ok; recipes as designed — 5 derived (`SKILL#What Skillware Is`, `doctrine#The Model`, `doctrine#Recipe In Brief`, `author#Division Of Labor`, `check#Verdicts`), 0 copies.
-- **S3**: builder deleted; `agentos skills import --force --project <p>` re-run for agentos-md and agentos-py (plain `import` needed explicit `--project`; `--force` required to drop the dangling link). `agentos-skillware` linked in both depots (`.claude/skills`, `.agents/skills`), old link and state entries gone, `agentos skills path agentos-skillware` resolves. Live-mention sweep clean (notes + chatlas history retained as provenance).
+- **S3**: builder deleted; `agentos skills import --force --project <p>` re-run for agentos-md and agentos-py (plain `import` needed explicit `--project`; `--force` required to drop the dangling link). `tarav-skillware` linked in both depots (`.claude/skills`, `.agents/skills`), old link and state entries gone, `agentos skills path tarav-skillware` resolves. Live-mention sweep clean (notes + chatlas history retained as provenance).
 - **S4**: provenance additions removed from index2 `SKILL.skw.md`, rebuilt (1 built, 11 unchanged); SKILL.md parity diff now byte-empty modulo name; all 11 reference diffs clean. Final: pytest 306 passed, ruff clean, both skills all-ok (12 + 7 files), index2 `.skillware/AGENTS.md` stamped by rebuild, index linter 0/0/0.

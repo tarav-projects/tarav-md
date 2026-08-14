@@ -4,13 +4,13 @@
 
 - grounding session for this design: `99144906-781e-43cc-9d27-b40f166e2acf`
 - revisit/redesign all Agentos Index concepts to converge the generalized-index model
-- this artifact is the temporary home for the updated blocks; migrate into `agentos-pkg/index/` later, safely, once converged
+- this artifact is the temporary home for the updated blocks; migrate into `tarav-pkg/index/` later, safely, once converged
 - convergence so far: the Index is a system of **chapters** + appendix + router
     - **chapters** = load-partition folders (default `design`, reserved `design`/`impl`, extensible, files `NNN-<chapter>.md`)
     - **`000-INDEX.md`** = chapter-sectioned lookup table (renamed from `000-index.md`; the `000-` prefix is the grep marker, `INDEX` the name)
     - **appendix** = part of the Index but not a chapter — depth, discovered not routed
     - default search scopes to `design`; other chapters load only on an explicit miss
-- proof-of-shape already applied additively to `agentos-chatlas-pkg` (`design/` + `000-INDEX.md`)
+- proof-of-shape already applied additively to `tarav-chatlas-pkg` (`design/` + `000-INDEX.md`)
 
 ## Design.Index
 
@@ -417,7 +417,7 @@ skills/<package>-pkg/
 
 - DECISION (migration review): `Soft.Programming.Language` renamed to `Index.Skillware` — no alias; the generic name collided with the program family (`Soft.Program`, `Agentic.Program`, `Program.Hardness`); the `Soft.Program` disambiguation line dropped as no longer needed; all 8 live citations swapped; mapping refreshed (`000-INDEX.md` router, chapter file, `Kernel.Block` structure; dead names `Index.Note`, `Index.Block.Syntax` removed)
 
-- migration deletions (remove from real `agentos-pkg/index/` on migrate): `Index.Architecture` (merged into `Agentos.Index.System`); `Flat.Index.Architecture` (folded into `…/Index.Surface.Layout` appendix); `Extended.Index.Scope` (folded into `Appendix.Discovery`); `Distributed.Index` (replaced by `Index.Depot` + `Index.Discovery`)
+- migration deletions (remove from real `tarav-pkg/index/` on migrate): `Index.Architecture` (merged into `Agentos.Index.System`); `Flat.Index.Architecture` (folded into `…/Index.Surface.Layout` appendix); `Extended.Index.Scope` (folded into `Appendix.Discovery`); `Distributed.Index` (replaced by `Index.Depot` + `Index.Discovery`)
 - new concepts: `Index.Discovery`, `Project.Manifest` (project peer of `Package.Manifest`, in `AGENTS.md`); depot collisions are surfaced, not prevented
 - resolved: namespace-prefixing → the `Index.Edit.*` family uses a shared `Index.Edit.` name prefix for legibility; `Partial.Cite`/`Partial.Name` fixes the verbosity cost (short form when unambiguous or already cited)
 - REDESIGN DECISION: the index atom is the `Kernel.Line`, not only the block — the assistant was block-creation-centric; the balanced model is `Index.Edit.Action` (create/append/modify/revise) with `Append.Line` as the default hot beat and consolidation as the cold tempo
@@ -443,13 +443,13 @@ skills/<package>-pkg/
 - `Line.Type`: 2-letter typed-line vocabulary (`CT`/`DC`/`RJ`/`DF`/`PR`/`FR`) = the line-level significance gate that replaces the block naming-filter; each type is a verb on the `Design.Space`; index holds only `Touched.Space` (no agent-fill/`OPEN` type); touch-necessary-but-not-sufficient (index = touched ∩ significant, not user filler); lintable + type-analytics; soft/curated vocabulary
 - reframe: the index is a rolling digestion of `Touched.Space` — bypassable (just work), but always hugentic, never fully agentic
 - RECONCILE (do over the already-migrated index, partially — not now): the alignment framework overlaps existing `Alignment.*.Axis` — `Open.Space` delegated ↔ `Alignment.Agentic.Axis`; touch grows on `Alignment.Hugentic.Axis`. link/merge the two vocabularies at migration; keep this as the standing reconcile note
-- MIGRATION PLAN (detail later): operating contract = structure-free / content-gated — rename/move/split folders freely; any block wording or new line stays `Content.Verbatim.Gated`. `540` migrates to THREE homes, not one: index-architecture → `agentos-pkg` index (chapters/`ROUTER`/appendix); chat cluster (`Chat.Surface`/`Projects.Chats`/`Chat.Retrieval`) → home TBD (chatlas vs agentos-pkg); foundational cluster (`Design.Space`, `User.Touched`, `Touched.Space`/`Untouched.Space`/`Open.Space`, `Line.Type`) → a foundational/alignment surface, not the index cluster. approach: incremental till compliant, chatlas as pilot. open decisions: `INDEX.md` vs `000-INDEX.md`; cluster homes; plan artifact (Impl.Req vs live note)
+- MIGRATION PLAN (detail later): operating contract = structure-free / content-gated — rename/move/split folders freely; any block wording or new line stays `Content.Verbatim.Gated`. `540` migrates to THREE homes, not one: index-architecture → `tarav-pkg` index (chapters/`ROUTER`/appendix); chat cluster (`Chat.Surface`/`Projects.Chats`/`Chat.Retrieval`) → home TBD (chatlas vs tarav-pkg); foundational cluster (`Design.Space`, `User.Touched`, `Touched.Space`/`Untouched.Space`/`Open.Space`, `Line.Type`) → a foundational/alignment surface, not the index cluster. approach: incremental till compliant, chatlas as pilot. open decisions: `INDEX.md` vs `000-INDEX.md`; cluster homes; plan artifact (Impl.Req vs live note)
 - TOOLING DEBT (found during arch migration): `agentos index linter` encodes the OLD index model — it only accepts a router named `000-index.md`/`001-index.md` *inside* the index dir and hardcodes `NNN-index.md` filenames; it rejects the new layout (`000-INDEX.md`, chapter folders, `NNN-<chapter>.md`). the linter (and any other index tooling) must be updated to the new model — a separate later effort. during the arch migration the linter is NOT used for validation (agent-convention only). there is no runtime driver — index loading is agent-convention (the linter is the only structural-aware tool)
 - parked candidate: `Digestion.Gradient` — promote the "index block → appendix line (`Append.Line`) → chat-in-place (`Chat.Retrieval`)" spine to a named concept if it earns cites; revisit later
 
 ## Session.Log
 
-- arch-migration handoff: wrote `561-index-arch-migration-impl-req.md` (structural only — chapters/`000-INDEX.md`/appendix layout, chatlas pilot → agentos-pkg; numbering kept; content upgrade is a separate later Impl.Req); router locked to `000-INDEX.md` and applied across `540`
+- arch-migration handoff: wrote `561-index-arch-migration-impl-req.md` (structural only — chapters/`000-INDEX.md`/appendix layout, chatlas pilot → tarav-pkg; numbering kept; content upgrade is a separate later Impl.Req); router locked to `000-INDEX.md` and applied across `540`
 
 - session opened; backend = artifact; scope = all Index-architecture concepts
 - appendix-philosophy thread written: `Writing.Friction.Reduction`, `Concept.Explosion`, `Block.Line.Gradient`, `Appendix.Default.Block`

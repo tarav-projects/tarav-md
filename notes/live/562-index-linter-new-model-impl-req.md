@@ -6,7 +6,7 @@
 - **Scope**: basics first — structural port of the existing 14 checks to the new layout, plus a `--depot` invocation mode and the chapter-suffix filename rule. New-model semantic checks (`namespace-members` resolution, `./Child` legality, meta alias parsing) are a later iteration.
 - **Repos**: code in `agentos-py` (`src/agentos/index/linter.py`, `src/agentos/index/commands.py`, `tests/test_index_linter.py`). The `agentos` executable is owned by `agentos-cli`; CLI-flag additions require `uv tool install --reinstall --editable .` from `agentos-cli/` (per `agentos-py/AGENTS.md`).
 - **Compat**: no legacy recognition — old router names `000-index.md`/`001-index.md` are a plain **ERROR** (user decision; matches the repo Compatibility Policy).
-- **Source**: `notes/live/540-index-architecture-redesign-design-session.md` (the model), `561-index-arch-migration-impl-req.md` (the deployed layout), live reference depots: `agentos-md/skills/agentos-pkg/`, `agentos-chatlas-md/skills/agentos-chatlas-pkg/`.
+- **Source**: `notes/live/540-index-architecture-redesign-design-session.md` (the model), `561-index-arch-migration-impl-req.md` (the deployed layout), live reference depots: `agentos-md/skills/tarav-pkg/`, `agentos-chatlas-md/skills/tarav-chatlas-pkg/`.
 - **Status**: implemented (2026-07-05)
 
 ## Impl.Index
@@ -40,7 +40,7 @@
 
 ### Test.Model
 - `tests/test_index_linter.py` (454 lines) builds fixture trees — port fixtures to the new layout; `RED.GREEN.Test.Suite` drives each slice
-- live acceptance target: `agentos index linter --depot skills/agentos-pkg` run from `agentos-md` must come out clean (the depot was hand-validated in 561 S3); same for `--depot skills/agentos-chatlas-pkg` from `agentos-chatlas-md`
+- live acceptance target: `agentos index linter --depot skills/tarav-pkg` run from `agentos-md` must come out clean (the depot was hand-validated in 561 S3); same for `--depot skills/tarav-chatlas-pkg` from `agentos-chatlas-md`
 
 ### Scope.Boundary
 - **in**: the 14 existing checks on the new layout; `--depot`; legacy-router ERROR; `Block.Path` heading pattern; chapter-suffix rule; CLI help/epilog text; test-suite port; `agentos-py/AGENTS.md` refresh (required by that repo's policy)
@@ -67,7 +67,7 @@
 
 ### S4 — Live acceptance + docs
 - what changes: nothing in code (fix stragglers only)
-- check: `--depot skills/agentos-pkg` (agentos-md) and `--depot skills/agentos-chatlas-pkg` (chatlas-md) — expect clean or only justified findings; update `agentos-py/AGENTS.md` CLI-surface notes; update `Index.Linter` concept/appendix in the agentos-md index (**content-gated — propose to user, do not self-write**)
+- check: `--depot skills/tarav-pkg` (agentos-md) and `--depot skills/tarav-chatlas-pkg` (chatlas-md) — expect clean or only justified findings; update `agentos-py/AGENTS.md` CLI-surface notes; update `Index.Linter` concept/appendix in the agentos-md index (**content-gated — propose to user, do not self-write**)
 - closes: the TOOLING DEBT note in 540 Session.Notes and the deferred item in 561 Scope.Boundary
 
 ### Acceptance signals

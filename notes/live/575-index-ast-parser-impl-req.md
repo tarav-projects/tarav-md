@@ -38,13 +38,13 @@
 - `BlockHeading` — `## <Block.Path>`: root `Dotted.Name`, optional `:Param` segments, optional `/Segment` children (dotted or single-word free label); parsed payload carries root/params/segments (mirror `BLOCK_PATH_RE`, `linter.py`)
 - `KernelLine` — `- ` bullet inside a block; parsed payload: act code + `AS:` source marker from a leading `[XX]`/`[AS:XX]` bracket (absent = untyped legacy), plus spans
 - `MetaHeading`/`MetaLine` — `### meta` section and its lines (`namespace-members`, `aliases`) — parsed but never treated as `KernelLine`s
-- `RouterEntry` — router table rows; TWO live dialects, both must parse: `## Routing`-style flat list (agentos-pkg `000-INDEX.md`) and `## Chapters`/`### <chapter>`-style (chatlas-pkg); an entry parses to (file path, [(concept, plus_n | None), …])
+- `RouterEntry` — router table rows; TWO live dialects, both must parse: `## Routing`-style flat list (tarav-pkg `000-INDEX.md`) and `## Chapters`/`### <chapter>`-style (chatlas-pkg); an entry parses to (file path, [(concept, plus_n | None), …])
 - `BlankLine`, `Text` (prose lines outside blocks — router prologue, `>` callouts), `CodeFence` (fenced blocks inside appendix pages — e.g. the JSON example in `Chatlas.Anchory-appendix.md` — their interior lines must NOT parse as kernel lines), `Diagnostic`
 - `InlineSpan` kinds: `anchor` (`@\d{8}-\d+`), `concept_cite` (backticked `Dotted.Name`, including parameterized and partial forms), `type_bracket`, `file_mention` (backticked path-like)
 - surface classification (in `parse_depot`): router (`000-INDEX.md` at root), chapter (`<dir>/NNN-<dir>.md`), appendix (`appendix/Concept.Name-appendix.md`, `-appendix-N.md` pages), agendix (`agendix/Concept.Name-agendix.md` + `Unassigned-agendix.md`); `AGENTS.md` files inside surface dirs are excluded (existing linter behavior — see `test_index_linter_ignores_agents_md_in_index_directory`)
 
 ### Parity.Contract
-- a parity harness (dev-side, in tests) runs the OLD raw engine and the NEW AST engine over: the full fixture corpus in `tests/test_index_linter.py` AND both live depots (`agentos-md/skills/agentos-pkg`, `agentos-chatlas-md/skills/agentos-chatlas-pkg`)
+- a parity harness (dev-side, in tests) runs the OLD raw engine and the NEW AST engine over: the full fixture corpus in `tests/test_index_linter.py` AND both live depots (`agentos-md/skills/tarav-pkg`, `agentos-chatlas-md/skills/tarav-chatlas-pkg`)
 - parity = identical check results (code, status, blocked_by) and findings (code, path, line, severity) modulo a documented allowlist of deliberate improvements; every divergence is either fixed or allowlisted with a reason in the Impl.Log
 - the old engine is retired ONLY after parity holds; retirement is deletion (`No.Legacy.Allowed`), not a parked copy — git history is the archive
 
@@ -59,7 +59,7 @@
 
 ## Execution.Plan
 
-*(RED.GREEN.Test.Suite throughout: each slice writes failing behavior tests first. Fixtures should be excerpts of REAL live-depot content — copy blocks from `agentos-pkg` 105/106/107 and the chatlas depot into fixtures, they exercise every grammar feature: typed lines, `AS:`, anchors, meta sections, code fences, both router dialects.)*
+*(RED.GREEN.Test.Suite throughout: each slice writes failing behavior tests first. Fixtures should be excerpts of REAL live-depot content — copy blocks from `tarav-pkg` 105/106/107 and the chatlas depot into fixtures, they exercise every grammar feature: typed lines, `AS:`, anchors, meta sections, code fences, both router dialects.)*
 
 ### S1 — Nodes + structural parser
 - what: `model/nodes.py` (node dataclasses, `InlineSpan`, `Diagnostic`, `IndexDocument`), `model/parser.py` classifying separators, block headings, blank, text, code fences; blocks assembled between separators; heading outside a separator-anchored block → `Diagnostic`
@@ -95,11 +95,11 @@
 ### S7 — `Line.Unlinked` + `--warn-unlinked`
 - what: the new check per New.Check spec; `--warn-unlinked` flag on `agentos index linter`
 - RED: unlinked agendix kernel line warns by default; unlinked chapter line silent by default, warns under the flag; separators/headings/meta/fence interiors never warn; linked lines never warn
-- check: live — both depots' agendix files pass (baseline measured at review time: 0 unlinked in both agendixes); `--warn-unlinked` baselines ≈ agentos-pkg design 1237 + appendix 642, chatlas design 167 + appendix 62 — expect that order of magnitude, warnings only, exit code unaffected by warnings
+- check: live — both depots' agendix files pass (baseline measured at review time: 0 unlinked in both agendixes); `--warn-unlinked` baselines ≈ tarav-pkg design 1237 + appendix 642, chatlas design 167 + appendix 62 — expect that order of magnitude, warnings only, exit code unaffected by warnings
 - observable: linking coverage is measurable per depot
 
 ### S8 — Docs + gated proposals
-- what: `agentos-py/AGENTS.md` (parser package, check architecture, flag); `agentos-index` `references/check.md` (+`--warn-unlinked`, parser-backed engine note); update `references/search.md` reading guide if node vocabulary surfaces there; PROPOSE (gated, never self-write) index blocks to the user: an `Index.Model`/parser concept for the agentos-pkg index and an `Index.Linter` appendix update
+- what: `agentos-py/AGENTS.md` (parser package, check architecture, flag); `agentos-index` `references/check.md` (+`--warn-unlinked`, parser-backed engine note); update `references/search.md` reading guide if node vocabulary surfaces there; PROPOSE (gated, never self-write) index blocks to the user: an `Index.Model`/parser concept for the tarav-pkg index and an `Index.Linter` appendix update
 - check: docs match real CLI; gated proposals delivered as verbatim drafts in the completion report
 
 ### Acceptance signals
@@ -120,7 +120,7 @@
 - S1 deviation resolved autonomously: live index separators are delimiters, not open/close toggles; the same `****` closes the previous block and prepares the next. Parser separator handling was adjusted after live depot smoke initially produced false `heading_without_separator` diagnostics.
 - S4-S6 implemented parser-backed linter state for concept inventory, router entries, unanchored-section detection, line-type checks, source-axis placement, and the Chatlas grounding bridge. The old private `_line_type_surface_files` helper and raw router/section parsing helpers were removed.
 - S7 implemented `Index.Linter/Line.Unlinked` and `agentos index linter --warn-unlinked`; default scope checks agendix only, while the flag extends warnings to chapter and appendix kernel lines.
-- S7 live baseline changed from the pre-review rough estimate: installed CLI reports 1847 `Line.Unlinked` warnings for `agentos-pkg` under `--warn-unlinked`; the lower count is expected because parser-backed logic excludes meta lines and non-kernel material.
+- S7 live baseline changed from the pre-review rough estimate: installed CLI reports 1847 `Line.Unlinked` warnings for `tarav-pkg` under `--warn-unlinked`; the lower count is expected because parser-backed logic excludes meta lines and non-kernel material.
 - S8 updated `agentos-py/AGENTS.md`, `agentos-index/references/check.md`, and `agentos-index/references/search.md`.
 - Verification: `agentos-py` full suite 281 passed; `agentos-chatlas-py` full suite 139 passed; `agentos-cli` full suite 56 passed; scoped ruff passed for touched `agentos-py` and `agentos-chatlas-py` files.
 - Verification caveat: whole-repo ruff is not clean due unrelated pre-existing deprecated/dev files (`agentos-py/_DEPRECATED/...`, `agentos-py/dev/account-usage.py`, `agentos-chatlas-py/dev/user-script-invariant-test/validate.py`); touched-file ruff is clean.

@@ -1,0 +1,4 @@
+{
+  "id": "tarav-agent-account-management",
+  "depots": ["../tarav-pkg"]
+}

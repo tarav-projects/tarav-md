@@ -3,7 +3,7 @@
 ## Session.Abstract
 
 - **scope:** redesign block naming into one unified `Block.Naming.Schema` — legal name forms, sigil semantics, the two naming spaces, and the locator form
-- **convergence target:** approved edits to the `agentos-pkg` index — one new schema block cluster, revisions to `Dotted.Notation`, `Block.Path`, `Index.Block`, retirement of `Dotted.Parameterized.Notation`
+- **convergence target:** approved edits to the `tarav-pkg` index — one new schema block cluster, revisions to `Dotted.Notation`, `Block.Path`, `Index.Block`, retirement of `Dotted.Parameterized.Notation`
 - **status:** landed — all seven blocks approved and written to the index (2026-07-12); remaining follow-up is the `:`→`::` surface migration impl-req
 - **prior work landed:** `@` freed for locators — Anchory anchors migrated to `^` (impl-req 580, executed and reviewed)
 - **source:** this session plus the codex session `019f475c-0b78-7580-b13f-cc474d0e8786` where the two-form idea originated
@@ -95,9 +95,9 @@
 
 - sigil table and `:`/`/` semantics consolidated into `Naming.Sigil.Vocabulary` (Design.Index)
 - `@` maintenance rule consolidated into `Locator.Name` (Design.Index)
-- surfaces that restate naming and will need alignment at landing: `agentos-pkg/SKILL.md` (Dotted Notation section), `agentos-index` references, `Index.Block` heading line
+- surfaces that restate naming and will need alignment at landing: `tarav-pkg/SKILL.md` (Dotted Notation section), `agentos-index` references, `Index.Block` heading line
 - landing-phase impl-req of its own: the `:`→`::` migration — single-`:` parameterized names are pervasive (`Line.Type:DF`, `Alignment.Backend:Artifact:What`, `Natural.Placement:Skills`, the Batchy `Skill.Arg:X` convention in every skill); same shape as the `@`→`^` migration (regex rewrite, linter legacy check, doc updates) but wider, reaching skill files beyond the index
-- pre-existing loose end (out of scope): `^20260630-0` example in `agentos-pkg/SKILL.md` does not resolve in the anchory depot
+- pre-existing loose end (out of scope): `^20260630-0` example in `tarav-pkg/SKILL.md` does not resolve in the anchory depot
 
 ## Session.Log
 

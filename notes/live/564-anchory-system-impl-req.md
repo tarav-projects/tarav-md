@@ -4,7 +4,7 @@
 
 - **scope:** implement the first Anchory core library in `agentos-py`, expose `agentos anchory ...` through `agentos-cli`, and prove the application boundary with a Chatlas depot adapter
 - **status:** implementation complete; awaiting review
-- **source:** `skills/agentos-pkg/design/107-design.md` (`Anchory.System`) and `skills/agentos-pkg/appendix/Anchory.System-appendix.md`
+- **source:** `skills/tarav-pkg/design/107-design.md` (`Anchory.System`) and `skills/tarav-pkg/appendix/Anchory.System-appendix.md`
 - **current state:** no Anchory code or CLI exists; `agentos-py` owns foundation libraries, `agentos-cli` aggregates command registration, and `agentos-chatlas-py` already resolves a Chatlas root
 - **out of scope:** automatic anchor allocation, Chatlas record semantics, Chatlas command integration, `Chat.Ref` migration, namespace selection, delete operations, and application Git workflows
 - **verification:** 268 `agentos-py`, 52 `agentos-cli`, and 140 `agentos-chatlas-py` tests pass; Ruff passes on every touched Python file

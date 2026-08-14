@@ -52,7 +52,7 @@
 ### S1 — Socket + core Line.Type checks (agentos-py, test-first)
 - what changes: `run_linter` gains `extra_checks`; new core checks per Core.Checks; depot resolver includes `agendix/`
 - RED (`tests/test_index_linter.py` fixtures): malformed bracket, unknown code, `[GR]` without anchor, `AS:` in a chapter file (error) vs in `agendix/` (legal), untyped lines untouched; an injected dummy `extra_check` runs and reports; a self-gating extra check renders blocked
-- check: suite green; live `--depot skills/agentos-pkg` stays clean (current surfaces are well-formed)
+- check: suite green; live `--depot skills/tarav-pkg` stays clean (current surfaces are well-formed)
 - observable: the linter enforces the fence syntax
 
 ### S2 — Provenance bridge (agentos-chatlas-py, test-first)
@@ -63,7 +63,7 @@
 
 ### S3 — Composition + live acceptance (agentos-cli)
 - what changes: linter command wiring passes the bridge check; e2e test
-- check: reinstall; live `agentos index linter --depot skills/agentos-pkg` (agentos-md) and `--depot skills/agentos-chatlas-pkg` (chatlas-md) — all ~17 live anchors verified; expect clean or genuinely-found issues (report, do not silently fix)
+- check: reinstall; live `agentos index linter --depot skills/tarav-pkg` (agentos-md) and `--depot skills/tarav-chatlas-pkg` (chatlas-md) — all ~17 live anchors verified; expect clean or genuinely-found issues (report, do not silently fix)
 - observable: `agentos index linter` validates the full grounding chain end to end
 
 ### S4 — Docs + closure

@@ -1,0 +1,24 @@
+{
+ "block_path": "Agentos.Bloberia",
+ "state": "done",
+ "owner": "supervisor:57663916-0731-494a-bfec-070b4a9c69d2",
+ "claimed_at": "20260805T061458Z",
+ "pending_chats": [
+  "7a5f398c43a3109ceddadc95e6d0b22c8d1b06abe334cf27b8447f37dac89ccf"
+ ],
+ "done_chats": [],
+ "workers": [
+  "w8"
+ ],
+ "history": [
+  {
+   "at": "20260805T062256Z",
+   "change": {
+    "state": "done",
+    "result": "14 homes; 6 lines withheld from HEAD as inspected currency drift"
+   }
+  }
+ ],
+ "result": "14 homes; 6 lines withheld from HEAD as inspected currency drift",
+ "updated_at": "20260805T062256Z"
+}

@@ -2,7 +2,7 @@
 
 ## Goal
 
-Give every grounded `agentos-pkg` Project `Index.Line` an exact `Chat.Index.Delta` home by returning to its supporting chat and extracting only the semantic region needed for the assigned Project block.
+Give every grounded `tarav-pkg` Project `Index.Line` an exact `Chat.Index.Delta` home by returning to its supporting chat and extracting only the semantic region needed for the assigned Project block.
 
 This is a targeted Project-to-Chat reconciliation campaign, not a requirement to complete every source chat's semantic index in one pass.
 
@@ -24,11 +24,11 @@ The regular Index linter already runs the external check `Project lines are repr
 Reproduce the baseline:
 
 ```sh
-agentos index linter --depot agentos-md/skills/agentos-pkg --json
-agentos chatlas project-index audit --depot agentos-md/skills/agentos-pkg --json
+agentos index linter --depot agentos-md/skills/tarav-pkg --json
+agentos chatlas project-index audit --depot agentos-md/skills/tarav-pkg --json
 ```
 
-The work queue begins in `agentos-md/skills/agentos-pkg/009-SUPPORT-CHATS.md`.
+The work queue begins in `agentos-md/skills/tarav-pkg/009-SUPPORT-CHATS.md`.
 
 ## Campaign Invariants
 
@@ -133,7 +133,7 @@ Use only the supervisor-assigned block/chat slice. Confirm its `Project.Line.Hom
 
 ```sh
 agentos chatlas project-index audit \
-  --depot agentos-md/skills/agentos-pkg \
+  --depot agentos-md/skills/tarav-pkg \
   --json
 
 agentos chatlas anchory resolve <anchor> --detail context --json
@@ -177,7 +177,7 @@ For `maintain-v2`, omitted Deltas are preserved. Preserve the old HEAD only when
 agentos chatlas chat-index validate --plan <stage>/plan.json --json
 agentos chatlas chat-index apply --plan <stage>/plan.json --json
 agentos chatlas chat-index audit --identity-hash <identity-hash> --json
-agentos chatlas project-index audit --depot agentos-md/skills/agentos-pkg --json
+agentos chatlas project-index audit --depot agentos-md/skills/tarav-pkg --json
 ```
 
 Do not apply until validation succeeds. If another writer changed the same Chat.Index, discard the stale scaffold, scaffold again, and reapply the semantic edit to the fresh plan.

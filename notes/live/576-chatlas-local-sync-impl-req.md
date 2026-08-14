@@ -75,12 +75,12 @@
 - 2026-07-08: added `agentos chatlas local sync/status`; explicit `--project` is accepted and omitted `--project` resolves through `require_agentos_project_root`.
 - 2026-07-08: deviation resolved: S1 fixture wording suggested descendant cwd matching, but `Projects.Chats` authority says exact selected project plus ancestors. Implementation uses exact query-layer matching and a bounded ancestor walk.
 - 2026-07-08: deviation resolved: naive filesystem ancestor walking initially included `/Users` and `/`, over-attributing thousands of broad sessions. Corrected to the selected Agentos project plus contiguous Agentos-project ancestors only; for live `agentos-md`, attribution paths are `agentos-md` and `agentos-project`.
-- 2026-07-08: deviation resolved: Abstract said `agentos-chatlas-py` only, but S3 explicitly required docs and audit-log edits. Updated `agentos-chatlas-md/skills/agentos-chatlas-pkg/references/chatlas-commands.md` and this `agentos-md` Impl.Req.
+- 2026-07-08: deviation resolved: Abstract said `agentos-chatlas-py` only, but S3 explicitly required docs and audit-log edits. Updated `agentos-chatlas-md/skills/tarav-chatlas-pkg/references/chatlas-commands.md` and this `agentos-md` Impl.Req.
 - 2026-07-08: live smoke: `agentos chatlas local sync --project /Users/pereiro/projects/agentos-project/agentos-md` wrote `3114` session files plus manifest under `agentos-md/chatlas/`; `3538` attributed sessions, `424` skipped. Skips were best-effort load failures, mainly existing cached `chatlas-session` schema-version mismatches.
 - 2026-07-08: live status: `3114` attributed-and-present, `424` attributed-and-missing, `0` present-but-not-attributed.
 - 2026-07-08: verification:
   - `uv run pytest` in `agentos-chatlas-py`: `141 passed`
   - `uv run ruff check src tests` in `agentos-chatlas-py`: passed
   - `uv run ruff check` in `agentos-chatlas-py`: blocked by unrelated pre-existing `dev/user-script-invariant-test/validate.py` unused `sys` import
-  - `agentos index linter --depot skills/agentos-pkg`: `0 error(s), 0 warning(s)`
-  - `agentos index linter --depot skills/agentos-chatlas-pkg`: `0 error(s), 0 warning(s)`
+  - `agentos index linter --depot skills/tarav-pkg`: `0 error(s), 0 warning(s)`
+  - `agentos index linter --depot skills/tarav-chatlas-pkg`: `0 error(s), 0 warning(s)`

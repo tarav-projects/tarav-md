@@ -60,7 +60,7 @@
 - status: done
 
 ### S3 — live acceptance + docs
-- what: reinstall; rerun the live failing case: `agentos chatlas views inline --anchor 20260707-3 --radius 3 --filter turns` must show the assistant proposal turn preceding the "apply" landing turn, chronologically; update `agentos-chatlas-md/skills/agentos-chatlas-pkg/references/chatlas-commands.md` anchor-resolution section and `commands.py` help text (state the composed semantics: radius counts filter-surviving events for event-window selection, output chronological)
+- what: reinstall; rerun the live failing case: `agentos chatlas views inline --anchor 20260707-3 --radius 3 --filter turns` must show the assistant proposal turn preceding the "apply" landing turn, chronologically; update `agentos-chatlas-md/skills/tarav-chatlas-pkg/references/chatlas-commands.md` anchor-resolution section and `commands.py` help text (state the composed semantics: radius counts filter-surviving events for event-window selection, output chronological)
 - check: live output correct; both index depots still lint clean; `uv run pytest` + `ruff check src tests` green
 - status: done
 

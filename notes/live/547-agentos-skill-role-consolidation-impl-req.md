@@ -7,16 +7,16 @@
 - source artifacts:
     - `notes/live/542-agentos-skill-roles-design-session.md`
     - `notes/live/545-agentos-pkg-skill-surface-alignment-impl-req.md`
-    - `skills/agentos-pkg/package.md`
-    - `skills/agentos-pkg/index/000-index.md`
-    - `skills/agentos-pkg/index/100-index.md`
-    - `skills/agentos-pkg/index/101-index.md`
-    - `skills/agentos-pkg/index/104-index.md`
+    - `skills/tarav-pkg/package.md`
+    - `skills/tarav-pkg/index/000-index.md`
+    - `skills/tarav-pkg/index/100-index.md`
+    - `skills/tarav-pkg/index/101-index.md`
+    - `skills/tarav-pkg/index/104-index.md`
 - implementation intent: move from role design to usable skill/package surfaces without doing every future redesign at once
 - out of scope:
     - fully redesigning `agentos-project-doctor`
     - fully redesigning `agentos-codebase-cleanup`
-    - fully redesigning `agentos-git-commit`
+    - fully redesigning `tarav-git-commit`
     - fully designing `hugentics-issue-tracker`
     - implementing all future package splits beyond the surfaces named here
     - deleting old compatibility skill directories before dependent references are updated
@@ -39,7 +39,7 @@
 
 ### Durable.Agentos.Index.Work
 
-- promote `Agentos.Live.Note` and `Agentos.Live.Script` into the durable `agentos-pkg` index
+- promote `Agentos.Live.Note` and `Agentos.Live.Script` into the durable `tarav-pkg` index
 - ensure `Multi.Index.Operation` remains routed and aligned with `Index.Agent`
 - update or deprecate `Usage.Skill` in the durable index so package roots are the general usage/orientation surfaces
 - absorb file-numbering content into `File.Numbering.Protocol`:
@@ -49,9 +49,9 @@
 
 ### Agentos.Package.Skill.Surface.Work
 
-- `agentos-pkg` remains the root `Package.Skill`
+- `tarav-pkg` remains the root `Package.Skill`
 - `agentos-index` remains the single public index aux skill; old index activate/writer/doctor/test roles are functions inside it
-- `agentos-hugentics` remains the workflow-neutral Hugentic subsystem map
+- `tarav-hugentics` remains the workflow-neutral Hugentic subsystem map
 - Hugentic operational skills remain separate when they provide workflow mode, tuned prompting, gates, or status/capture behavior
 - package routers and root skills should route current names and mark old names only as compatibility/deprecated when needed
 
@@ -69,21 +69,21 @@
     - `agentos-live-scripts-base` -> `agentos-live-script`
     - `agentos-live-note-base` remains temporarily named until `Agentos.Live.Note` / `Agentos.Live.Script` promotion settles the public name
 - Agentos utilities:
-    - `agentos-skills-miner-ingenier` -> `agentos-skills-ingenier`
+    - `agentos-skills-miner-ingenier` -> `tarav-skills-ingenier`
     - `codebase-general-cleanup` -> `agentos-codebase-cleanup`
-    - `git-commit-trigger` -> `agentos-git-commit`
+    - `git-commit-trigger` -> `tarav-git-commit`
 - Chatlas services:
     - `agentos-session-continue` -> `chatlas-session-continue`
     - `agentos-session-zip-transcript` -> `chatlas-session-zip-transcript`
 
 ### Absorb.Move.And.Park.Targets
 
-- absorb the legacy Agentos usage skill into `agentos-pkg`
-- absorb `chatlas-usage` into `agentos-chatlas-pkg`
-- absorb `agentos-file-numbering-base` into `agentos-pkg`
-- classify `agentos-chatlas-retention-audit` under `agentos-chatlas-pkg`
+- absorb the legacy Agentos usage skill into `tarav-pkg`
+- absorb `chatlas-usage` into `tarav-chatlas-pkg`
+- absorb `agentos-file-numbering-base` into `tarav-pkg`
+- classify `tarav-chatlas-retention-audit` under `tarav-chatlas-pkg`
 - move `flutter-adb-usage` to `/Users/pereiro/projects/csc-reactor-project/csc-reactor/csc-reactor-specs/skills`
-- park `agentos-project-doctor` as a cited surface of `agentos-pkg` for a separate doctor/diagnosis design session
+- park `agentos-project-doctor` as a cited surface of `tarav-pkg` for a separate doctor/diagnosis design session
 
 ### Execution.Risk
 
@@ -103,43 +103,43 @@
     - update/deprecate `Usage.Skill` so package roots replace usage skills as general orientation surfaces
     - create or update file-numbering appendix/reference surfaces for design depth and operational procedure
 - paths:
-    - `skills/agentos-pkg/index/000-index.md`
-    - `skills/agentos-pkg/index/100-index.md`
-    - `skills/agentos-pkg/index/101-index.md`
-    - `skills/agentos-pkg/index/104-index.md`
-    - `skills/agentos-pkg/appendix/`
-    - `skills/agentos-pkg/references/`
+    - `skills/tarav-pkg/index/000-index.md`
+    - `skills/tarav-pkg/index/100-index.md`
+    - `skills/tarav-pkg/index/101-index.md`
+    - `skills/tarav-pkg/index/104-index.md`
+    - `skills/tarav-pkg/appendix/`
+    - `skills/tarav-pkg/references/`
 - validation:
     - inspect concept blocks and routing
-    - `rg "Agentos.Live.Note|Agentos.Live.Script|Natural.Placement::Skills|Multi.Index.Operation|Usage.Skill|File.Numbering.Protocol" skills/agentos-pkg`
+    - `rg "Agentos.Live.Note|Agentos.Live.Script|Natural.Placement::Skills|Multi.Index.Operation|Usage.Skill|File.Numbering.Protocol" skills/tarav-pkg`
 
-### Slice 2 - Align agentos-pkg Root, Router, And Index Aux Surfaces
+### Slice 2 - Align tarav-pkg Root, Router, And Index Aux Surfaces
 
 - status: completed
 - changes:
-    - update `agentos-pkg` router to reflect current skill names, deprecated names, absorbed surfaces, and dependent package operations
+    - update `tarav-pkg` router to reflect current skill names, deprecated names, absorbed surfaces, and dependent package operations
     - ensure `agentos-index` presents research, writing, diagnosis, testing, and maintenance as functions
     - remove old usage-skill routing as a current path
 - paths:
-    - `skills/agentos-pkg/SKILL.md`
-    - `skills/agentos-pkg/package.md`
+    - `skills/tarav-pkg/SKILL.md`
+    - `skills/tarav-pkg/package.md`
     - `skills/agentos-index/SKILL.md`
     - `AGENTS.md`
 - validation:
     - inspect package router and startup guidance
-    - search for stale current-routing references to `agentos-pkg`, split index aux skills, and usage-skill language
+    - search for stale current-routing references to `tarav-pkg`, split index aux skills, and usage-skill language
 
 ### Slice 3 - Align Hugentic Skills And Artifact Surfaces
 
 - status: completed
 - changes:
-    - keep `agentos-hugentics` as workflow-neutral subsystem map
+    - keep `tarav-hugentics` as workflow-neutral subsystem map
     - ensure `hugentics-designer`, `hugentics-impl-designer`, and `hugentics-impl-executer` own their activation language
     - create or rename status/capture skills as `hugentics-workflow-status`, `hugentics-chat-status`, and `hugentics-capture-audit`
     - keep artifact skills workflow-neutral and cited-duplicated from package/workflow concepts
     - keep `hugentics-issue-tracker` as planned role only unless implementation explicitly needs a stub
 - paths:
-    - `skills/agentos-hugentics/`
+    - `skills/tarav-hugentics/`
     - `skills/hugentics-designer/`
     - `skills/hugentics-impl-designer/`
     - `skills/hugentics-impl-executer/`
@@ -156,9 +156,9 @@
     - update `agentos-live-note-base` as a live-note protocol aux skill for `Agentos.Live.Note`
     - rename/reframe `agentos-live-scripts-base` to `agentos-live-script`
     - absorb `agentos-file-numbering-base` into package index/appendix/reference surfaces
-    - rename/reframe `agentos-skills-miner-ingenier` to `agentos-skills-ingenier`
+    - rename/reframe `agentos-skills-miner-ingenier` to `tarav-skills-ingenier`
     - rename/reframe `codebase-general-cleanup` to `agentos-codebase-cleanup`
-    - rename/reframe `git-commit-trigger` to `agentos-git-commit`
+    - rename/reframe `git-commit-trigger` to `tarav-git-commit`
     - make operational skills cited-duplication surfaces where they repeat package concepts
 - paths:
     - `skills/agentos-live-note-base/`
@@ -175,14 +175,14 @@
 
 - status: completed
 - changes:
-    - absorb `chatlas-usage` into `agentos-chatlas-pkg` index, appendix, or references
-    - classify/update `agentos-chatlas-retention-audit` as Chatlas package aux skill
+    - absorb `chatlas-usage` into `tarav-chatlas-pkg` index, appendix, or references
+    - classify/update `tarav-chatlas-retention-audit` as Chatlas package aux skill
     - rename/reframe `agentos-session-continue` to `chatlas-session-continue`
     - rename/reframe `agentos-session-zip-transcript` to `chatlas-session-zip-transcript`
     - move `flutter-adb-usage` to `/Users/pereiro/projects/csc-reactor-project/csc-reactor/csc-reactor-specs/skills`
 - paths:
     - `skills/chatlas-usage/`
-    - `skills/agentos-chatlas-retention-audit/`
+    - `skills/tarav-chatlas-retention-audit/`
     - `skills/agentos-session-continue/`
     - `skills/agentos-session-zip-transcript/`
     - `skills/flutter-adb-usage/`
@@ -202,7 +202,7 @@
     - report any deferred old-name references and why they remain
     - update this Impl.Req `Impl.Log`
 - validation:
-    - `rg "agentos-pkg|chatlas-usage|Usage.Skill|trigger-design-session|trigger-impl-req|trigger-impl-execution|trigger-hugentic-status|trigger-capture-audit|trigger-chat-status|agentos-live-scripts-base|agentos-file-numbering-base|agentos-skills-miner-ingenier|codebase-general-cleanup|git-commit-trigger|agentos-session-continue|agentos-session-zip-transcript|flutter-adb-usage" AGENTS.md skills notes/index notes/live`
+    - `rg "tarav-pkg|chatlas-usage|Usage.Skill|trigger-design-session|trigger-impl-req|trigger-impl-execution|trigger-hugentic-status|trigger-capture-audit|trigger-chat-status|agentos-live-scripts-base|agentos-file-numbering-base|agentos-skills-miner-ingenier|codebase-general-cleanup|git-commit-trigger|agentos-session-continue|agentos-session-zip-transcript|flutter-adb-usage" AGENTS.md skills notes/index notes/live`
     - `git -C agentos-md diff --check`
 
 ## Impl.Log
@@ -211,11 +211,11 @@
 - source design session reports all inventory rings reviewed and no unchecked traversal items
 - implementation should proceed as a consolidation pass, not a redesign pass
 - high-risk areas are skill renames, cross-package moves, and stale references in package routers or skill descriptions
-- implemented durable `Agentos.Live.Note`, `Agentos.Live.Script`, `Natural.Placement::Skills`, `Usage.Skill` deprecation, and file-numbering appendix/reference promotion in `agentos-pkg`
-- aligned `agentos-pkg`, `agentos-index`, and `AGENTS.md` around current package-root and index-aux routing
+- implemented durable `Agentos.Live.Note`, `Agentos.Live.Script`, `Natural.Placement::Skills`, `Usage.Skill` deprecation, and file-numbering appendix/reference promotion in `tarav-pkg`
+- aligned `tarav-pkg`, `agentos-index`, and `AGENTS.md` around current package-root and index-aux routing
 - renamed/reframed Hugentic status/capture skills as `hugentics-workflow-status`, `hugentics-chat-status`, and `hugentics-capture-audit`; trigger-only design/impl shims were absorbed into the workflow master skills
-- renamed/reframed live-script and utility skills as `agentos-live-script`, `agentos-skills-ingenier`, `agentos-codebase-cleanup`, and `agentos-git-commit`
-- moved Chatlas-owned skills under `agentos-chatlas-md/skills/`, absorbed `chatlas-usage` into `agentos-chatlas-pkg/references/chatlas-commands.md`, and renamed session services to `chatlas-session-continue` and `chatlas-session-zip-transcript`
+- renamed/reframed live-script and utility skills as `agentos-live-script`, `tarav-skills-ingenier`, `agentos-codebase-cleanup`, and `tarav-git-commit`
+- moved Chatlas-owned skills under `agentos-chatlas-md/skills/`, absorbed `chatlas-usage` into `tarav-chatlas-pkg/references/chatlas-commands.md`, and renamed session services to `chatlas-session-continue` and `chatlas-session-zip-transcript`
 - moved `flutter-adb-usage` to `/Users/pereiro/projects/csc-reactor-project/csc-reactor/csc-reactor-specs/skills/flutter-adb-usage`
 - parked `agentos-project-doctor` as a future redesign target while updating stale package-orientation and surface-alignment wording that directly conflicted with the consolidation
 - remaining old-name mentions in package routers are compatibility/deprecation notes, not current routes; historical live notes and the read-only design-session artifact were not rewritten

@@ -8,25 +8,25 @@
     - `notes/live/540-package-skill-design-session.md`
     - `notes/live/542-agentos-skill-roles-design-session.md`
 - target surfaces:
-    - `skills/agentos-pkg/index/101-index.md`
-    - `skills/agentos-pkg/index/104-index.md`
-    - `skills/agentos-pkg/index/000-index.md`
+    - `skills/tarav-pkg/index/101-index.md`
+    - `skills/tarav-pkg/index/104-index.md`
+    - `skills/tarav-pkg/index/000-index.md`
     - `notes/index/001-index.md`
-- implementation intent: make the package-skill model durable enough that another agent can start `agentos-chatlas-pkg` without relying on live-session-only context
-- out of scope: creating `agentos-chatlas-pkg`, migrating Chatlas skills, or completing the full Agentos skill-role review
+- implementation intent: make the package-skill model durable enough that another agent can start `tarav-chatlas-pkg` without relying on live-session-only context
+- out of scope: creating `tarav-chatlas-pkg`, migrating Chatlas skills, or completing the full Agentos skill-role review
 
 ## Impl.Index
 
 ### Package.Skill.Promotion.Scope
 
 - package-skill concepts currently live mainly in `notes/live/540-package-skill-design-session.md`
-- `Workflow.Neutral.Skill` and the `agentos-pkg` role live in `notes/live/542-agentos-skill-roles-design-session.md`
+- `Workflow.Neutral.Skill` and the `tarav-pkg` role live in `notes/live/542-agentos-skill-roles-design-session.md`
 - this implementation promotes only the minimal durable index surface needed for package-skill work
 - the update should keep blocks compact and index-native; extended examples can stay in live notes until appendix work is needed
 
 ### Target.New.Blocks
 
-- add to `skills/agentos-pkg/index/101-index.md`:
+- add to `skills/tarav-pkg/index/101-index.md`:
     - `Package.Skill`
     - `Package.Aux.Skill`
     - `Workflow.Neutral.Skill`
@@ -46,7 +46,7 @@
 - update `Project.Index.Skill` in `104-index.md` to align with `Package.Aux.Skill` and `Package.Skill.Index`
 - update `Index.Surface.Layout` in `104-index.md` if needed so package index paths are explicit and current
 - update `000-index.md` routing so all new concepts resolve to `101-index.md`
-- update `notes/index/001-index.md` so the local index points to `skills/agentos-pkg/index/000-index.md`
+- update `notes/index/001-index.md` so the local index points to `skills/tarav-pkg/index/000-index.md`
 
 ### Promotion.Constraints
 
@@ -69,7 +69,7 @@
     - add `Package.Skill.Router`
     - add `Package.Skill.Dependency`
 - path:
-    - `skills/agentos-pkg/index/101-index.md`
+    - `skills/tarav-pkg/index/101-index.md`
 - observable result:
     - package-skill model can be discovered from the public index without opening live notes
 - validation:
@@ -83,7 +83,7 @@
     - add `Package.Skill.Install`
     - add `Package.Agent`
 - path:
-    - `skills/agentos-pkg/index/101-index.md`
+    - `skills/tarav-pkg/index/101-index.md`
 - observable result:
     - install and package-agent concepts are available in the durable index
 - validation:
@@ -100,9 +100,9 @@
     - update `Index.Surface.Layout` if needed
     - update `000-index.md` routing
 - paths:
-    - `skills/agentos-pkg/index/101-index.md`
-    - `skills/agentos-pkg/index/104-index.md`
-    - `skills/agentos-pkg/index/000-index.md`
+    - `skills/tarav-pkg/index/101-index.md`
+    - `skills/tarav-pkg/index/104-index.md`
+    - `skills/tarav-pkg/index/000-index.md`
 - observable result:
     - existing skill/index blocks agree with the package-skill model
 - validation:
@@ -113,7 +113,7 @@
 
 - status: complete
 - changes:
-    - update `notes/index/001-index.md` public-index pointer from `skills/agentos-index/index/000-index.md` to `skills/agentos-pkg/index/000-index.md`
+    - update `notes/index/001-index.md` public-index pointer from `skills/agentos-index/index/000-index.md` to `skills/tarav-pkg/index/000-index.md`
 - path:
     - `notes/index/001-index.md`
 - observable result:
@@ -138,11 +138,11 @@
     - `notes/live/540-package-skill-design-session.md`
     - `notes/live/542-agentos-skill-roles-design-session.md`
 - implemented package-skill promotion:
-    - added `Package.Skill`, `Package.Aux.Skill`, `Workflow.Neutral.Skill`, `Package.Skill.Index`, `Package.Skill.Router`, `Package.Skill.Dependency`, `Package.Skill.Install`, and `Package.Agent` to `skills/agentos-pkg/index/101-index.md`
+    - added `Package.Skill`, `Package.Aux.Skill`, `Workflow.Neutral.Skill`, `Package.Skill.Index`, `Package.Skill.Router`, `Package.Skill.Dependency`, `Package.Skill.Install`, and `Package.Agent` to `skills/tarav-pkg/index/101-index.md`
     - updated `Agentos.Skills`, `Usage.Skill`, and `Workflow.Skill` in `101-index.md`
-    - updated `Project.Index.Skill` and `Index.Surface.Layout` in `skills/agentos-pkg/index/104-index.md`
-    - routed the new concepts in `skills/agentos-pkg/index/000-index.md`
-    - updated `notes/index/001-index.md` to point at `skills/agentos-pkg/index/000-index.md`
+    - updated `Project.Index.Skill` and `Index.Surface.Layout` in `skills/tarav-pkg/index/104-index.md`
+    - routed the new concepts in `skills/tarav-pkg/index/000-index.md`
+    - updated `notes/index/001-index.md` to point at `skills/tarav-pkg/index/000-index.md`
 - maintenance pass updated direct stale `skills/agentos-index/index` and `skills/agentos-index/appendix` references in stable skill surfaces where they referred to the migrated public index
 - validation:
     - concept headings and routing were checked with `rg`

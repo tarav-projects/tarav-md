@@ -192,4 +192,4 @@
 - workflow and `Index.Agent` implications captured — workflow skills can become contextualized execution surfaces; `Index.Agent` returned context must cite source blocks
 - critical-path draft blocks captured: `Cited.Duplication`, `Inline.Relatedness`, `Concept.Cite`, `Natural.Placement`, `Placement.Balance`, `Index.Writer.Maintenance.Pass`, `Workflow.Skill`, `Index.Agent`
 - index update written — promoted critical-path changes into public index files and updated `agentos-index-writer` operational guidance
-- Agentos Index package content migrated into `agentos-pkg`; `agentos-index` and companion skills remain auxiliary skills pointing to `agentos-pkg` surfaces
+- Agentos Index package content migrated into `tarav-pkg`; `agentos-index` and companion skills remain auxiliary skills pointing to `tarav-pkg` surfaces

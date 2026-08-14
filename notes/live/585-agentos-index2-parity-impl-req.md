@@ -24,15 +24,15 @@
     - `edit.skw.md` — `#Block Independence` ← `Independent.Reader.Block` (105; the section self-declares `Cited.Duplication` of that block — the flagship derived recipe)
     - `SKILL.skw.md` — `#Index Operating Behavior` ← `references/search.skw.md#Search Model` + `references/search.skw.md#Citation Behavior` (the operating list restates both, plus edit-gate lines)
   - no `copy` recipes: no verbatim span duplication exists between the real modules — the graph is honest, not decorative
-- **name adaptation rule**: title lines and self-references `agentos-index` → `agentos-index2`; sibling references (`references/type.md` etc.) stay — they resolve inside index2; `agentos-pkg` and CLI references unchanged.
-- **settings**: `.skillware/skillware.json` unchanged (`depots: ["../agentos-pkg"]`) — needed for the `Context.Grounding` and `Independent.Reader.Block` deps.
+- **name adaptation rule**: title lines and self-references `agentos-index` → `agentos-index2`; sibling references (`references/type.md` etc.) stay — they resolve inside index2; `tarav-pkg` and CLI references unchanged.
+- **settings**: `.skillware/skillware.json` unchanged (`depots: ["../tarav-pkg"]`) — needed for the `Context.Grounding` and `Independent.Reader.Block` deps.
 - **SKILL.md POC banner**: shrinks to a two-line provenance note (Skillware-built, agentos-index canonical); the rest reaches full parity including Skill.Arg.Section, Router Table, Boundary, module list.
 
 ### Current.State *(inspected)*
 
 - `agentos-index` inventory: SKILL.md (191 lines) + 11 references (724 total) — all read this session; section map and overlaps identified above.
 - `agentos-index2` current: SKILL.md (POC banner), src for `search` (trimmed) + `ground` (non-parity structure with an extra `#Citation Behavior` section the original lacks), hand `references/gr-survey.md` stub, lock present, all-ok check.
-- `Independent.Reader.Block` block: `agentos-pkg/design/105-design.md:185`; `Context.Grounding`: `107-design.md:315`.
+- `Independent.Reader.Block` block: `tarav-pkg/design/105-design.md:185`; `Context.Grounding`: `107-design.md:315`.
 - Skillware engine: 584, all green; `agentos skillware build/check/status` installed.
 
 ## Execution.Plan

@@ -2,12 +2,12 @@
 
 ## Goal
 
-Mine real chatlas sessions for `Package.Skill.UsagePattern` candidates for `agentos-pkg`. Identify recurring usage situations, extract situation/response pairs, validate against existing patterns, and propose new ones.
+Mine real chatlas sessions for `Package.Skill.UsagePattern` candidates for `tarav-pkg`. Identify recurring usage situations, extract situation/response pairs, validate against existing patterns, and propose new ones.
 
 ## Source Query
 
 ```bash
-agentos chatlas query --updated-after 2026-05-17 --min-user-turns 3 --user-contains "agentos-pkg" --sort newest --limit 20
+agentos chatlas query --updated-after 2026-05-17 --min-user-turns 3 --user-contains "tarav-pkg" --sort newest --limit 20
 ```
 
 11 sessions matched. Each gets a section below for evaluation.
@@ -19,12 +19,12 @@ agentos chatlas query --updated-after 2026-05-17 --min-user-turns 3 --user-conta
 - **Turns**: 22u / 20a
 - **Project**: Obsidian/notebook
 - **First user**: "find `notes/index/daily-routine-design.md` - check `notebook/notes/daily` for the current notes - lets work on this"
-- **Topic signal**: Daily routine design, external project using agentos-pkg
+- **Topic signal**: Daily routine design, external project using tarav-pkg
 
 ### Pattern: External.Project.Index.Work
 
 - User is in a non-agentos project but uses agentos index concepts (kernel blocks, design sessions) to organize design knowledge there.
-- Agent needed to apply index conventions without treating the external project as `agentos-pkg` itself.
+- Agent needed to apply index conventions without treating the external project as `tarav-pkg` itself.
 - Session shows the "general tool" framing in action — agentos concepts used in a foreign project.
 
 ### Pattern: Design.Session.Launch
@@ -52,13 +52,13 @@ agentos chatlas query --updated-after 2026-05-17 --min-user-turns 3 --user-conta
 
 - **Turns**: 52u / 59a
 - **Project**: agentos-project
-- **First user**: "Goal: start the Package.Skill for Chatlas in `agentos-chatlas-md`, analogous to the new `agentos-pkg` work in `agentos-md`."
+- **First user**: "Goal: start the Package.Skill for Chatlas in `agentos-chatlas-md`, analogous to the new `tarav-pkg` work in `agentos-md`."
 - **Topic signal**: Package.Skill bootstrap for a new subsystem (Chatlas)
 
 ### Pattern: Package.Skill.Bootstrap
 
-- Explicit goal statement referencing agentos-pkg as the template.
-- Included index migration (moving blocks from agentos-pkg to the new chatlas package).
+- Explicit goal statement referencing tarav-pkg as the template.
+- Included index migration (moving blocks from tarav-pkg to the new chatlas package).
 - Transitioned mid-session into a design-session for the chatlas model.
 - Shows bootstrap → design-session pipeline.
 
@@ -73,7 +73,7 @@ agentos chatlas query --updated-after 2026-05-17 --min-user-turns 3 --user-conta
 
 - **Turns**: 64u / 69a
 - **Project**: agentos-project
-- **First user**: "check `548-package-skill-testing-design-session.md` - check `agentos-md/skills/agentos-pkg/SKILL.md` - we are working on `agentos-pkg/SKILL.md`"
+- **First user**: "check `548-package-skill-testing-design-session.md` - check `agentos-md/skills/tarav-pkg/SKILL.md` - we are working on `tarav-pkg/SKILL.md`"
 - **Topic signal**: SKILL.md improvement, testground design, usage pattern miner design (this session)
 
 ### Pattern: Package.Skill.Driver.Refinement
@@ -148,7 +148,7 @@ agentos chatlas query --updated-after 2026-05-17 --min-user-turns 3 --user-conta
 
 - **Turns**: 79u / 137a
 - **Project**: md-library
-- **First user**: "Goal: start the Package.Skill for Chatlas in `agentos-chatlas-md`, analogous to the new `agentos-pkg` work"
+- **First user**: "Goal: start the Package.Skill for Chatlas in `agentos-chatlas-md`, analogous to the new `tarav-pkg` work"
 - **Topic signal**: Chatlas Package.Skill design, index writing
 
 ### Pattern: Package.Skill.Bootstrap
@@ -174,8 +174,8 @@ agentos chatlas query --updated-after 2026-05-17 --min-user-turns 3 --user-conta
 
 ### Pattern: Package.Skill.Bootstrap
 
-- Mid-session, set up `agentos-canvas-pkg` as a new package skill.
-- User said "setup the Package.Skill for the canvas system - check `agentos-pkg`."
+- Mid-session, set up `tarav-canvas-pkg` as a new package skill.
+- User said "setup the Package.Skill for the canvas system - check `tarav-pkg`."
 - Bootstrap embedded within a larger impl execution session.
 
 ---
@@ -225,17 +225,17 @@ agentos chatlas query --updated-after 2026-05-17 --min-user-turns 3 --user-conta
 
 **Sessions**: `f870a478`, `52362a37`, `a83b7666`, `019e5277`, `258b002c`, `f6688049`
 
-**Situation**: User wants to create a Package.Skill for a new project or subsystem. They reference `agentos-pkg` as the template and expect the agent to set up the canonical structure.
+**Situation**: User wants to create a Package.Skill for a new project or subsystem. They reference `tarav-pkg` as the template and expect the agent to set up the canonical structure.
 
 **Expected behavior path**:
-1. Load `agentos-pkg` for Package.Skill concepts
+1. Load `tarav-pkg` for Package.Skill concepts
 2. Check index: `Package.Skill`, `Package.Aux.Skill`, `Package.Skill.Router`, `Package.Skill.Install`
 3. Inspect the target project's existing content
 4. Propose folder structure (SKILL.md, package.md, index/, references/, etc.)
 5. Ask about naming, ownership boundary, what gets absorbed
 6. Do not write until user approves structure
 
-**Key signals**: "setup Package.Skill for X", "start the Package.Skill", "migrate into Package.Skill framework", "analogous to agentos-pkg"
+**Key signals**: "setup Package.Skill for X", "start the Package.Skill", "migrate into Package.Skill framework", "analogous to tarav-pkg"
 
 **Observed friction**:
 - Agent sometimes doesn't understand "implement HERE" (019e5277)
@@ -348,18 +348,18 @@ agentos chatlas query --updated-after 2026-05-17 --min-user-turns 3 --user-conta
 
 **Sessions**: `ac16fc98`
 
-**Situation**: User is in a non-agentos-pkg project but uses agentos index concepts to organize knowledge there.
+**Situation**: User is in a non-tarav-pkg project but uses agentos index concepts to organize knowledge there.
 
 **Expected behavior path**:
-1. Load `agentos-pkg` for index concepts and conventions
+1. Load `tarav-pkg` for index concepts and conventions
 2. Apply conventions to the external project's local index
-3. Do NOT assume the target index is `agentos-pkg`
+3. Do NOT assume the target index is `tarav-pkg`
 4. Adapt block style to the project's existing conventions
 
-**Key signals**: External project path + index/block work requests. AGENTS.md routes to agentos-pkg but the project is not agentos-md.
+**Key signals**: External project path + index/block work requests. AGENTS.md routes to tarav-pkg but the project is not agentos-md.
 
 **Observed friction**:
-- Agent might assume all index work targets `agentos-pkg`
+- Agent might assume all index work targets `tarav-pkg`
 - The "general tool" framing in SKILL.md should prevent this
 
 **Frequency**: 1/11 sessions. Architecturally important — validates the general-tool claim.
@@ -373,7 +373,7 @@ agentos chatlas query --updated-after 2026-05-17 --min-user-turns 3 --user-conta
 **Situation**: User wants to design or run testground tests for a package skill.
 
 **Expected behavior path**:
-1. Load `agentos-testground`
+1. Load `tarav-testground`
 2. If designing: create test file with behavior tiers format
 3. If running: launch fresh CLI session from testground, capture via chatlas, evaluate
 4. Report against behavior tiers
@@ -393,4 +393,4 @@ agentos chatlas query --updated-after 2026-05-17 --min-user-turns 3 --user-conta
 - [ ] Draft `usage-patterns/Package.Skill.Bootstrap.md` as first full usage pattern file
 - [ ] Generate testground test from Package.Skill.Bootstrap
 - [ ] Decide if Design.Session.Launch and Design.To.Implementation are distinct patterns or just "hugentics skill already covers this"
-- [ ] Create `agentos-pkg/usage-patterns/` folder
+- [ ] Create `tarav-pkg/usage-patterns/` folder

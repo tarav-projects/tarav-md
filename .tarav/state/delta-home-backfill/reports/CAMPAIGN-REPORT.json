@@ -1,0 +1,97 @@
+{
+ "schema": "delta-home-backfill/campaign-report/1",
+ "completed_at": "20260805T075813Z",
+ "baseline": {
+  "project_lines": 2846,
+  "home_missing": 2846,
+  "head_missing": 2846,
+  "support_chats": 31,
+  "chat_indexes_available_v2": 0,
+  "legacy_v1": 1,
+  "total_findings": 5723
+ },
+ "final": {
+  "home_missing": 2333,
+  "head_missing": 2339,
+  "lines_homed": 513,
+  "semantic_review": 513,
+  "chat_index_unavailable": 22,
+  "chat_index_invalid": 0,
+  "total_findings": 5207
+ },
+ "reachable_ceiling": 520,
+ "reachable_outcome": {
+  "homed": 513,
+  "inspected_drift": 7,
+  "remaining_unclaimable": 0
+ },
+ "chats": {
+  "registered": 31,
+  "linear_capturable": 9,
+  "materialized_v2": 9,
+  "non_linear_blocked": 21
+ },
+ "unreachable_partition": {
+  "Project.Line.Ungrounded": {
+   "lines": 1543,
+   "reason": "no anchor at all; nothing to return to"
+  },
+  "Chat.Source.NonLinear": {
+   "lines": 743,
+   "chats": 21,
+   "reason": "chat-index v2 render requires source.linear==true"
+  },
+  "Support.Chat.Unregistered": {
+   "lines": 40,
+   "reason": "anchors resolve to 4b13380a..., absent from the 31 mandatory chats"
+  }
+ },
+ "inspected_drift_detail": [
+  {
+   "lines": 2,
+   "chat": "fb3b6631",
+   "anchors": [
+    "c20260801-23u",
+    "c20260801-16u"
+   ],
+   "class": "no-approval-token",
+   "confirmed_by": [
+    "w13",
+    "w15"
+   ]
+  },
+  {
+   "lines": 5,
+   "chat": "02161ec9",
+   "anchors": [
+    "c20260729-211u",
+    "c20260729-274u",
+    "c20260729-140u",
+    "c20260729-208u",
+    "c20260729-232u"
+   ],
+   "class": "stale-anchor-after-out-of-gate-edit",
+   "confirmed_by": [
+    "w9",
+    "w14",
+    "w16"
+   ],
+   "note": "Project surface edited outside the Verbatim.User.Gated flow after a vocabulary change; anchors point to pre-edit content"
+  }
+ ],
+ "head_home_divergence": {
+  "lines": 6,
+  "chat": "7a5f398c",
+  "reason": "Delta home proven but chat later parks the scope; present agreement not established"
+ },
+ "supervisor_errors_corrected": [
+  "block-granularity claiming: blocks span multiple chats; rebuilt at (block,chat) granularity after w1 surfaced it",
+  "accepted w2 drift findings without resolving anchors myself; tokenized ::approve idx-edition turns ARE grounding; 46 of 48 written-off lines recovered"
+ ],
+ "tooling_findings": [
+  "chat-index v2 render hard-requires source.linear==true; 21 of 30 support chats structurally uncapturable",
+  "capture-plan parser rejects content not starting with \"- [\"; untyped Project lines inexpressible (0 in reachable set)",
+  "maintain-v2 FULLY RE-RENDERS any horizon named in delta_edits; extending a Delta requires carrying its complete prior content or it is silently dropped"
+ ],
+ "coordination_note_staleness": "the note lists fb3b...ab38 as the legacy-v1 exception requiring replace-legacy-v1; it is now valid v2 with 111 homes and that mode would destroy them"
+}

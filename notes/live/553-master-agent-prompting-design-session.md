@@ -2,9 +2,9 @@
 
 ## Session.Abstract
 
-- Goal: design `agentos-master-pkg-agent`, the caller skill that teaches an agent how to prompt and invoke `Packages.Master.Agent`
+- Goal: design `tarav-master-pkg-agent`, the caller skill that teaches an agent how to prompt and invoke `Packages.Master.Agent`
 - Public framing: ask a separate read-only agent almost anything while keeping research out of the caller's context
-- Actual grounding contract: answers come from accessible `Package.Skill` surfaces, including the general capabilities routed through `agentos-pkg`
+- Actual grounding contract: answers come from accessible `Package.Skill` surfaces, including the general capabilities routed through `tarav-pkg`
 - Current focus: design the arguments and prompt structure supplied by the caller
 - Implementation is intentionally incremental; only the skill description has been written
 
@@ -14,17 +14,17 @@
 
 ## Agentos.Master.Package.Agent.Skill
 
-- `agentos-master-pkg-agent` is an operational `Package.Aux.Skill` that teaches callers how to invoke `Packages.Master.Agent`
+- `tarav-master-pkg-agent` is an operational `Package.Aux.Skill` that teaches callers how to invoke `Packages.Master.Agent`
 - its public discovery language may oversell the agent as an ask-anything agent so callers can enter the Agentos framework before knowing which package or subsystem they need
 - explicit user triggers include `master-agent` and `agentos-agent`
 - the delegated agent remains read-only and package-grounded
 - the skill primarily teaches the caller how to construct strong `Master.Agent.Arguments`
-- detailed master-agent mechanics should live in `agentos-pkg/references/master-agent.md`
+- detailed master-agent mechanics should live in `tarav-pkg/references/master-agent.md`
 
 ### meta
 
 - status: partially converged
-- implementation surface: `skills/agentos-master-pkg-agent/SKILL.md`
+- implementation surface: `skills/tarav-master-pkg-agent/SKILL.md`
 
 ****
 
@@ -151,7 +151,7 @@
 ## Session.Log
 
 - Started from the design and index writing of `Packages.Master.Agent`, `Multi.Package.Operation`, and the revised `Package.Agent`.
-- Created `skills/agentos-master-pkg-agent/SKILL.md` with the approved discovery description.
+- Created `skills/tarav-master-pkg-agent/SKILL.md` with the approved discovery description.
 - Upgraded the ongoing design discussion to an artifact-backed `What.Design.Session`.
 - Added `Master.Agent.Scope` as an optional argument and converged the initial prompt bundle vocabulary around `Main.Request.Prompt` and `Enrichment.Request.Prompt`.
 - Converged `Master.Agent.Spawn.Preferences` around direct, efficient defaults: Anthropic Haiku or OpenAI `gpt-5.4-mini`, with low or medium reasoning effort.

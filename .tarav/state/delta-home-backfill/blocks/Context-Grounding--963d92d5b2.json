@@ -1,0 +1,32 @@
+{
+ "block_path": "Context.Grounding",
+ "state": "done",
+ "owner": "supervisor:57663916-0731-494a-bfec-070b4a9c69d2",
+ "claimed_at": "20260805T062353Z",
+ "pending_chats": [],
+ "done_chats": [],
+ "workers": [
+  "w9",
+  "w16"
+ ],
+ "history": [
+  {
+   "at": "20260805T071518Z",
+   "change": {
+    "state": "done",
+    "pending_chats": [],
+    "result": "landed; any remainder recorded as stale-anchor support drift"
+   }
+  },
+  {
+   "at": "20260805T075701Z",
+   "change": {
+    "state": "done",
+    "pending_chats": [],
+    "result": "landed; remainder is verified stale-anchor drift"
+   }
+  }
+ ],
+ "result": "landed; remainder is verified stale-anchor drift",
+ "updated_at": "20260805T075701Z"
+}

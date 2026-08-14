@@ -1,0 +1,20 @@
+{
+  "id": "tarav-pkg",
+  "depots": ["."],
+  "deps": {
+    "tarav-agent-account-management": "../tarav-agent-account-management",
+    "tarav-anchory-pkg": "../tarav-anchory-pkg",
+    "tarav-batchy-skills": "../tarav-batchy-skills",
+    "tarav-chatlas-pkg": "../../../tarav-chatlas-md/skills/tarav-chatlas-pkg",
+    "tarav-forum": "../tarav-forum",
+    "tarav-git-commit": "../tarav-git-commit",
+    "tarav-hugentics": "../tarav-hugentics",
+    "tarav-live-surfaces": "../tarav-live-surfaces",
+    "tarav-master-pkg-agent": "../tarav-master-pkg-agent",
+    "tarav-session-supervisor": "../tarav-session-supervisor",
+    "tarav-skills-ingenier": "../tarav-skills-ingenier",
+    "tarav-skillware": "../tarav-skillware",
+    "tarav-support-chats": "../tarav-support-chats",
+    "tarav-testground": "../tarav-testground"
+  }
+}

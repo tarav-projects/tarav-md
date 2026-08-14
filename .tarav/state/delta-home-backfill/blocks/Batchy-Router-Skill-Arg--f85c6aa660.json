@@ -1,0 +1,23 @@
+{
+ "block_path": "Batchy.Router/Skill.Arg",
+ "state": "done",
+ "owner": "supervisor:57663916-0731-494a-bfec-070b4a9c69d2",
+ "claimed_at": "20260805T072141Z",
+ "pending_chats": [],
+ "done_chats": [],
+ "workers": [
+  "w15"
+ ],
+ "history": [
+  {
+   "at": "20260805T073853Z",
+   "change": {
+    "state": "done",
+    "pending_chats": [],
+    "result": "landed; remainder is inspected drift"
+   }
+  }
+ ],
+ "result": "landed; remainder is inspected drift",
+ "updated_at": "20260805T073853Z"
+}

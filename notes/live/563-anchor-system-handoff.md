@@ -44,6 +44,6 @@
 ## Where things live
 
 - agentos CLI/runtime code: `agentos-py` (subsystems under `src/agentos/`), CLI wiring pattern: `src/agentos/index/commands.py` is a good reference; executable owned by `agentos-cli` (see `agentos-py/AGENTS.md` for reinstall notes)
-- chatlas: `agentos-chatlas-py` (code), `agentos-chatlas-md/skills/agentos-chatlas-pkg/` (index/skill surfaces)
-- index concepts to read for context: `Context.Grounding`, `Index.Linking`, `Index.Grounding`, `Chat.Grounding`, `Chat.Surface`, `Kernel.Block.Grounding`, `Grounding.Entry`, `Agendix` (all in `agentos-md/skills/agentos-pkg/`, routed via `000-INDEX.md`)
-- deprecated prior art (do not build on, reference only): `agentos-chatlas-md/skills/_DEPRECATED/chatlas-grounding-agent/` and `skills/agentos-chatlas-pkg/_DEPRECATED/grounding-workflow.md` (the L1/L2 miner + `Chat.Grounding.Request` queue)
+- chatlas: `agentos-chatlas-py` (code), `agentos-chatlas-md/skills/tarav-chatlas-pkg/` (index/skill surfaces)
+- index concepts to read for context: `Context.Grounding`, `Index.Linking`, `Index.Grounding`, `Chat.Grounding`, `Chat.Surface`, `Kernel.Block.Grounding`, `Grounding.Entry`, `Agendix` (all in `agentos-md/skills/tarav-pkg/`, routed via `000-INDEX.md`)
+- deprecated prior art (do not build on, reference only): `agentos-chatlas-md/skills/_DEPRECATED/chatlas-grounding-agent/` and `skills/tarav-chatlas-pkg/_DEPRECATED/grounding-workflow.md` (the L1/L2 miner + `Chat.Grounding.Request` queue)

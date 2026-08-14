@@ -23,7 +23,7 @@ disk: they carry no template address and stay readable as they are.
 passes at 869 tests, up from 835. Changes are uncommitted for review.
 
 **Source context.** Design landed this session in
-`agentos-md/skills/agentos-pkg/design/111-design.md`: the new `Match.Verbatim`,
+`agentos-md/skills/tarav-pkg/design/111-design.md`: the new `Match.Verbatim`,
 `Match.Template`, and `Match.Component.Registry` blocks, plus the `Tournament.Verdict`
 and `Tournament.Depot` lines that place the template address and the `components/`
 directory. This `Impl.Req` realizes those blocks and nothing beyond them.
@@ -101,12 +101,12 @@ address and raise a distinct, named error rather than a generic lookup failure.
 
 **Index citations** — the blocks this implementation must honor:
 
-- `index://agentos-pkg/Match.Verbatim`
-- `index://agentos-pkg/Match.Template`
-- `index://agentos-pkg/Match.Component.Registry`
-- `index://agentos-pkg/Tournament.Verdict`
-- `index://agentos-pkg/Tournament.Depot`
-- `index://agentos-pkg/Tournament.Match`
+- `index://tarav-pkg/Match.Verbatim`
+- `index://tarav-pkg/Match.Template`
+- `index://tarav-pkg/Match.Component.Registry`
+- `index://tarav-pkg/Tournament.Verdict`
+- `index://tarav-pkg/Tournament.Depot`
+- `index://tarav-pkg/Tournament.Match`
 
 **Chat grounding** — blocked, see `Impl.Log` B1. The design turns that authorize this plan
 are anchored on the index lines those five blocks already carry

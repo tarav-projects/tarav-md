@@ -1,0 +1,378 @@
+> `Appendix.Discovery`: for depth on any concept, check `appendix/Concept.Name-appendix.md`
+
+****
+
+## Project.File.Index
+
+- [DF] `Project.File.Index` is the file-level routing section of the `Index.Router` ^c20260517-0u
+- [CT] describes the project's file system at folder level, with individual files listed only when fundamental ^c20260517-1u
+- [DC] one sentence description per entry — token budget is tight, it travels with the router whenever the index is loaded ^c20260517-2u
+- [CT] gives agents a structural map of where to look — not a complete listing, but the important entry points ^c20260517-3u
+
+****
+
+## Unresolved.Index.Name
+
+- [DF] `Unresolved.Index.Name` is an unknown `Dotted.Name` that the agent cannot resolve against the index ^c20260517-4u
+- [DC] parked in the session — available for later resolution if more context emerges ^c20260517-5u
+- [DC] if the same name recurs 3+ times, suggest capture to the user ^c20260518-0u
+- [DC] gap detection is passive — don't interrupt conversation flow ^c20260518-1u
+
+****
+
+## BuiltIn.Namespace
+
+- [DF] `BuiltIn.Namespace` is an `Explicit.Namespace` that every Agentos project is expected to have ^c20260516-3u
+- [DC] it's an interface — can be empty, populated as the project evolves ^c20260516-4u
+- [EX] examples: `Project.Surfaces` ^c20260516-5u
+
+****
+
+## Project.Index.Skill
+
+- [DF] `Project.Index.Skill` is the `<project>-index` auxiliary skill for a package index surface ^c20260517-6u
+- [DC] the canonical public index content lives in the package skill's `Index.Depot`: `000-INDEX.md`, `design/`, and `appendix/`
+- [DC] it is a `Package.Aux.Skill` for the package's `Package.Skill.Index`
+- [CT] the auxiliary skill may provide direct index access, research, writing, diagnosis, testing, maintenance, or index workflow framing without becoming a separate package root ^c20260521-0u
+
+****
+
+## Concept.Cite
+
+- [DF] `Concept.Cite` is the bracket notation for citing concept origins or materially important related concepts when inline mention is not natural ^c20260516-6u
+- [DC] format: `[Concept.X, Concept.Y]`; page or source qualifiers may be added when needed, e.g. `[Concept.X, Concept.Y[1]]` ^c20260516-7u
+- [CT] used when the citation changes how an agent should interpret, verify, maintain, or navigate the line
+- [CT] not used merely because another concept is loosely related
+- [DC] complements `Inline.Relatedness`: prefer natural inline `Dotted.Name` mentions, cite only when the relation matters but does not read naturally ^c20260516-8u
+
+****
+
+## Appendix.Discovery
+
+- [DF] `Appendix.Discovery` is the protocol for reaching a concept's depth on demand — the appendix is not routed, it is found by naming ^c20260518-2u
+- [DC] loading appendix depth is an intentional act — the agent goes deeper by choice, never by default ^c20260518-3u
+- [DC] if a concept's block is not enough, check `appendix/Concept.X-appendix.md`; the naming convention is the discovery mechanism, no outlink needed ^c20260518-4u
+- [DC] that file holds the concept's path-children — its `Concept.X/Appendix` dump and any scoped `Concept.X/Concept.Y` blocks
+- [DC] discovery cascades: a block → its appendix → the blocks there → their own appendixes ^c20260518-5u
+- [PR] the more blocks loaded, the more paths available — agents discover by following related blocks ^c20260518-6u
+- [DC] hidden blocks are not deleted — just outside the default scope, reached by following the cascade ^c20260518-7u
+
+****
+
+## Index.Pages
+
+- [DF] `Index.Pages` is the file dimension of a concept — the pages its content spans, written `Concept.X[N]` ^c20260519-0u
+- [DC] `Concept.X[0]` is the index block's file; `Concept.X[1]` is the first appendix file (`Concept.X-appendix.md`); `[2]+` are further files ^c20260519-1u
+- [DC] `Concept.X[:]` means all of a concept's content across its files (slice semantics) ^c20260519-2u
+- [DC] the notation is usable as inline reference in blocks, chat, and prompts ^c20260519-3u
+- [DC] it is orthogonal to `Block.Path` — pages address files, paths address the ontology; one page holds many path-blocks
+- [DC] by default a path block lands in the matching page, but the two axes need not coincide
+- [DC] the router annotates page presence inline (`Concept.X[+N]`) — lintable, only when appendix files exist; no annotation means no appendix ^c20260519-4u
+
+### meta
+
+- aliases: `Appendix.Pages`
+
+****
+
+## Placement.Heuristic
+
+- [DF] `Placement.Heuristic` is the decision framework for where content lives in the system ^c20260518-8u
+- [DC] design knowledge (what, why, how it connects) → index block + appendix ^c20260518-9u
+- [DC] executable instructions (do this, run that, follow this loop) → skill references ^c20260518-10u
+- [CT] if content drift is detected, report it — don't migrate without user approval ^c20260518-11u
+
+****
+
+## Install.Skill
+
+- `Install.Skill` is a convention where a skill package ships guidance for adopting its support into a project
+- lives in the package's `references/` as installation instructions
+- can be executed agentically (agent follows the steps) or hugentically (human-agent design loop)
+- example: installing the index system creates a local `Index.Depot` at `notes/index/` — `000-INDEX.md` router and chapter files
+- example: installing the agentos stack sets up `AGENTS.md`, `notes/`, `skills/`
+
+****
+
+## Index.Empirical.Placement
+
+- `Index.Empirical.Placement` is evidence-driven placement of content across index layers
+- complement to `Placement.Heuristic` — design judgment places initially, empirical data optimizes over time
+- evidence source: chat sessions across projects, accessed through `Chatlas.Query.Surface`
+- the core signal is comparative — content at the same depth level should have similar usage profiles
+- the working unit is flexible — a block, a line within a block, or a group of related blocks
+- output is a migration plan — proposed moves with evidence, user approves before execution
+
+****
+
+## Alignment.Surface
+
+- `Alignment.Surface` is a surface where humans and agents build shared understanding
+- readable by humans (natural language), operable by agents (structured, loadable)
+- neither side owns it alone — both contribute, both consume
+- the index is the primary `Alignment.Surface` of an Agentos project
+
+****
+
+## Index.Depot
+
+- `Index.Depot` is a self-contained Index instance — its own `000-INDEX.md`, chapters, and appendix
+- it follows `Agentos.Index.System` conventions
+- [CT] every `Index.Depot` lives under a `Skw.Package` — it is that package's concept-store data structure, addressed by `Dotted.Name` ^c20260724-50u
+- [DC] the owning `Skw.Package` may be dedicated to the index or double as a `Package.Skill` — the same enclosing `.skw/`, one package ^c20260724-79u
+- [CT] a depot is engaged like any other — no depot privileged ^c20260724-42u
+- the same concept name may exist in two engaged depots; the system surfaces the collision, it does not prevent or resolve it
+- it loads with its owner through the `Package.Driver` (`Context.Loading.Path`)
+
+### meta
+
+- aliases: `Agentos.Index.Depot`
+
+****
+
+## Index.Depot.Dependency
+
+- [DF] `Index.Depot.Dependency` is the index-addressing case of `Skw.Pkg.Dependency`: a depot resolves a `Dotted.Name` against another package's depot only through a declared dependency — package-visibility in the software sense ^c20260722-35u
+- [PR] visibility is non-transitive: a depot's resolution set is its own concepts plus those of its directly declared dependency depots only — a dependency's own dependencies are not visible through it ^c20260722-40u
+- [PR] the depot's `Index.Router` also names its dependency depots, so an agent orienting through `000-INDEX.md` sees the depot's upstreams ^c20260722-38u
+- [CT] `Index.Depot.Dependency` directs `Index.Discovery`: engaged-depot composition follows the declared edges (own ∪ direct dependencies), not an undeclared flat union ^c20260722-27u
+- [CT] a mention resolving against a name defined in more than one visible depot is a collision `Drift.POI`: the linter reports it and never repairs it — consistent with `Index.Depot` surfacing collisions rather than preventing them; the human resolves by namespacing ^c20260722-28u
+- [CT] reachability and privilege are orthogonal — an `Index.Depot.Dependency` grants sight of another depot without ranking them, so it does not overturn "no depot privileged" ^c20260722-30u
+
+### meta
+
+- aliases: `Index.Depot.Visibility`
+
+****
+
+## Agent.Profile
+
+- `Agent.Profile` is the meta-configuration for working with a `runnable` agent — it defines the span of configuration that agent is allowed to run under
+- it binds a `Provider.Family` to a permitted set of run parameters: which accounts, which homes, plus model, command, and environment
+- it is referenced explicitly by name — never inferred
+- every running primitive consumes it as the source of permitted *who* and *how*; a primitive selects within the profile's span, it never authors or widens it
+
+### meta
+
+- aliases: `Profile`, `Run.Profile`
+
+****
+
+## Provider.Instance
+
+- `Provider.Instance` is a fully-specified, runnable agent configuration — a `Provider.Family` bound to all the parameters a run needs
+- the OOP analogy holds: `Provider.Family` is the class, `Provider.Instance` is its parameters bound
+- the bound parameters are the account, the home, the bound `Agent.Profile`, credentials, and any family-specific configuration
+- identity is the full binding — the same provider and account on two different homes are two different instances (claude on home A vs home B)
+
+### meta
+
+- aliases: `Agent.Instance`
+
+****
+
+## Linked.Home
+
+- `Linked.Home` is a home that shares selected subcomponents with another home by linking to them instead of owning independent copies
+- it combines shared subcomponents with home-local state
+- the shared subcomponents remain owned by one home and reused from the others
+- it is a partial-home pattern — only some subcomponents are linked, not the whole home
+
+****
+
+## Agentos.Agent.Adapter
+
+- `Agentos.Agent.Adapter` is the agent-domain `Raw.Adapter` — a provider's realization of `Agent.Normal.Model`'s capabilities on a common surface
+- concrete adapters are named `<Something>.Agent` — `<Something>` names the capability surface served, not the full instance
+- one `Provider.Instance` may carry multiple adapters covering different capability slices
+
+### appendix
+
+- `<Something>` may be provider-shaped, subsystem-shaped, capability-shaped, workflow-shaped, or composed
+- examples: `Claude.Runner.Agent`, `Codex.Chatlas.Agent`, `Account.Monitor.Agent`, `Credential.Reconcile.Agent`
+- supporting primitives may include `Agent.Profile`, `Provider.Account`, `Provider.Home`, `Provider.Family`, credential artifacts, session references, run requests, and run results
+
+### meta
+
+- aliases: `Something.Agent`, `Agent.Surface`, `Agent.Capability.Object`
+
+****
+
+## Agent.Normal.Model
+
+- `Agent.Normal.Model` is an instantiation of `Normalization.Pipeline` whose `Normal.Model` is a runnable agent — normalized state bundled with the capabilities defined over it
+- its `Raw.Adapter` is the `Agentos.Agent.Adapter` — each provider realizes the capabilities from its native operations
+- the canonical capabilities are run, ping, profile-check, and account-status — the operations every agent exposes irrespective of provider
+- it is scoped to run-time capabilities; account-lifecycle operations are their own `Normal.Model`
+- state is shared, not owned — its fields may coincide with `Agent.Profile` and `Provider.Instance` where reuse fits
+- the typed signatures — state fields, capability arguments, and result sub-models — are specified in this concept's appendix
+
+****
+
+## Normalization.Pipeline::Account.Usage.Model
+
+- `Normalization.Pipeline::Account.Usage.Model` is the account-usage instantiation of `Normalization.Pipeline` — native provider usage artifacts normalized into `Account.Usage.Status`
+- `Normal.Model` = `Account.Usage.Status`, modeled as a list of `Usage.Limit`s
+- `Raw.Source`s are native provider usage artifacts (codex `rateLimits`, claude statusline JSON, copilot usage); `Raw.Normalizer`s are per-provider and per-native-variant
+- the many-normalizers freedom covers native drift — claude statusline `rate_limits` and the legacy `seven_day` shape are separate `Raw.Normalizer`s, not one branching function
+- a `Model.Fragment` is a partial `Account.Usage.Status` — a subset of `Usage.Limit`s; an absent limit is "not carried", never fabricated as empty or zero
+- `Normalizer.Context` is provider-scoped — a provider's raw usage artifact loaded once per assembly
+- the `Normal.Assembler` merges fragments by `Usage.Limit` identity into a full or partial `Account.Usage.Status`, and owns precedence when fragments carry the same limit
+
+****
+
+## Harness.Injected.ENV
+
+- `Harness.Injected.ENV` is environment state injected by Agentos to enable provider functionality
+- it exists because the provider exposes required functionality through environment variables
+- it translates explicit Agentos runtime state into the provider's execution mechanism
+- it is mechanical provider enablement, not launch policy
+- the injected value must be necessary for the requested provider functionality
+- provider adapters may know which env variable enables the provider mechanism
+- provider adapters must not use harness injection to add behavioral preferences
+- command-build tests should allow only named harness env keys when config env is empty
+
+****
+
+## Config.Injected.ENV
+
+- `Config.Injected.ENV` is environment state declared by configuration and injected into provider execution
+- it exists because a configuration surface declares environment state for execution
+- it carries launch policy
+- it is passed through to the provider process as configured
+- `Agentos.Agent.Adapter` may transport config env
+- `Agentos.Agent.Adapter` must not author config env
+- it is distinct from `Harness.Injected.ENV`
+
+****
+
+## Index.Linter
+
+- `Index.Linter` is the deterministic CLI checker for index and appendix surfaces
+- [DC] `Index.Linter` is a `POI.Linter` over the index AST ^c20260724-59u
+- normal use is depot-first: lint an `Index.Depot` through its `000-INDEX.md`, chapter folders, and appendix
+- finding and check codes are scoped concept names under `Index.Linter/...`
+- each code names an appendix block that explains meaning, gating, or expected remediation
+- agents resolve linter code meaning through normal `tarav-pkg` index and `Appendix.Discovery`
+- router entries use `[+N]` to expose discovered appendix page depth for routed concepts
+- the linter reports errors, warnings, blocked checks, and summary counts
+
+****
+
+## User.Gate
+
+- [DF] a `User.Gate` is an `Accountable.Assertion` whose claim is about the `Chat.Surface`: evidence of a declared kind can be found in the gated object's dossier ^c20260719-46u
+- [DC] one declaration, two systems read it — **flow** (pre-evidence): the declaration shapes agent behavior before any evidence exists — stop, surface the thing, spend `User.Attention`, wait; runtime conversation control, honored in-session; **audit** (post-evidence): the recomputable assert over the dossier — checker territory, run any time, by anyone ^c20260719-30u
+- [DC] the predicate family — existence: a turn of the declared `Turn.Type` is in the support set; correspondence: the turn's content matches the surface content; order: the evidence sequence is right — an approval that predates the current wording gates nothing ^c20260719-39u
+- [DC] gate strength is predicate composition: `Verbatim.User.Gated` = existence + correspondence + order; `Edition.Trigger.User.Gated` = existence only ^c20260719-24u
+- [DC] gate state is computed from evidence, never stored — invalidation is not an operation, it is recomputation returning failed ^c20260719-23u
+- [PR] the robustness: enforcing the flow is hard; auditing it is cheap — the system does not prevent flow violations, it detects them and the gate invalidates retroactively; design for audit, not for enforcement ^c20260719-51u
+- [DC] graded checkability: turn-exists, turn-typed, timestamp-order are CPU; "this turn really approves this content" is the agent floor ^c20260719-27u
+- [DC] gates attach to any assertable object — index lines, blocks, skw annotations: gates-as-skw-primitive is this concept applied there, not a separate design ^c20260719-25u
+
+****
+
+## Edition.Trigger.User.Gated
+
+- [DF] `Edition.Trigger.User.Gated` is the convenience gate: the user explicitly initiates the edit workflow — the agent never starts writing mid-conversation on its own ^c20260716-67u
+- [PR] its value is workflow control: the user owns the conversation tempo; capture does not interrupt discussion ^c20260716-70u
+- [DC] auditable but low value: the triggering turn is on the chat like any other, but nothing rides on checking it — a skip's worst case is a premature draft ^c20260716-48u
+- [DC] distinct from `Verbatim.User.Gated`, which gates what is written rather than when
+- [DC] an instance of `User.Gate` — its assert composes existence only, the weak gate ^c20260719-19u
+- asking "should I write this?" is allowed; opening an editor without approval is not
+- a surface can apply one or both gates independently
+
+### meta
+
+- aliases: `Edit.Trigger.Gated`
+
+****
+
+## Verbatim.User.Gated
+
+- [DF] `Verbatim.User.Gated` is a wording gate requiring presentation of materially equivalent content and later explicit user approval before that content is committed ^c20260729-280u
+- [PR] the gate creates a deliberate `User.Attention` opportunity at the landing boundary ^c20260729-353u
+- [DC] `Line.Verbatim.Gate` is its independently checkable per-`Index.Line` realization ^c20260729-171u
+- [DC] one approval may cover several presented lines while each line retains its own gate evidence ^c20260729-221u
+- [DC] the auditable predicate composes presentation, sufficient content correspondence, approval, and event order ^c20260729-236u
+- [CT] sufficient correspondence does not require byte identity ^c20260729-138u
+- [CT] the gate certifies protocol events rather than actual user cognition ^c20260729-145u
+- [DC] it implies `Edition.Trigger.User.Gated` because explicit wording approval also approves the landing trigger ^c20260729-216u
+- [PR] the system exposes proposed content while the user explicitly controls whether it may enter the gated surface ^c20260729-356u
+- [CT] approval settles permission to land the presented wording; it does not certify factual truth ^c20260729-74u
+
+### meta
+
+- aliases: `Content.Verbatim.Gated`
+
+****
+
+## Kernel.Note
+
+- `Kernel.Note` is a portable markdown file made to contain `Kernel.Block` sections
+- it is a collection surface for blocks, not a block type
+- it captures or develops the fundamental structure of a subject by grouping named blocks in one file
+- source material can be any inspectable thing: chat, skill, codebase, document, argument, or observed system behavior
+- it can be produced from an existing corpus or maintained during an active conversation
+- unlike `Index.Block`, a `Kernel.Note` is not necessarily part of an index or routing table
+- its purpose is portable block collection, conceptual extraction, and argument substrate
+- a `Kernel.Note` can later be promoted into index blocks, appendix material, design artifacts, or implementation guidance
+
+****
+
+## Account.Management
+
+- `Account.Management` is the agentos subsystem that models provider login across all providers and account types under one shared lifecycle
+- one lifecycle, never per-provider: provider differences are absorbed by the `Account.Model::Auth.Method` class — it owns how `Auth.Data` is read, stored, identity-extracted, and materialized per provider
+- the three `Auth.Data` primitive operations — `Auth.Data.Capture`, `Auth.Data.Activation`, `Auth.Data.Materialization` — are the atomic, composable units; each is the sole writer of one state layer (archival / synchronization / home), and workflows like rotation compose them
+- a `Materializable.Account` can be reconstituted into a logged-in agent from stored `Auth.Data`; non-materializable accounts are reference-only
+- the `Account.Registry` stores `Auth.Data` as append-only immutable history with one active pointer per account
+- `Keep.Up.With.Rotation` — capturing refreshed credentials before they are lost is the registry's core duty, so re-login is minimized
+- `Auth.Data.Capture` is the robust core — additive and content-addressed; by `Capture.Over.Materialization` it has strict priority over the home-writing direction
+- capture never rejects — `Auth.Data` that binds to no known account is preserved in a fallback `Unknown.Account` for later adoption; errors over unknown credentials happen downstream, not at capture
+- `Active.Auth.Data` is a registry pointer (not an auth property); `Auth.Data.Aligned` is the desired home↔active match and `Auth.Data.Drift` its read-only negation, with `Auth.Data.Rotation` (capture+activate) the response to refresh-drift
+- `Account.Identity` is provider-specific data in `Auth.Data` that binds a captured credential to the right account — the authoritative anchor, not the alias or the home
+- home-write invariant: a live home is mutated only by explicit, user-invoked `Auth.Data.Materialization` — never automatically, because a home write is destructive
+- active-pointer invariant: the `Active.Auth.Data` pointer may move automatically (e.g. `Auth.Data.Rotation` tracking provider refreshes), because the `Account.Registry` is append-only immutable history and the pointer is reversible selection — moving it destroys nothing; observation → archive (capture) is likewise always non-destructive
+- relates to `Provider.Instance` (a bound home+profile+credentials), `Agentos.Agent.Adapter` (which lists `Provider.Account`/`Provider.Home`/credential artifacts as supporting primitives), and `Normalization.Pipeline::Account.Usage.Model` (usage, downstream of login)
+
+### appendix
+
+- full sub-concept blocks in `appendix/Account.Management-appendix.md`: `Auth.Data.Capture`, `Auth.Data.Activation`, `Auth.Data.Materialization`, `Account.Model`, `Account.Model::Auth.Method`, `Account.Identity`, `Materializable.Account`, `Home.State`, `Auth.Data`, `Auth.Ref`, `Auth.Data.Artifact`, `Valid.Credentials`, `Auth.Registry`, `Account.Registry`, `Keep.Up.With.Rotation`, `Capture.Over.Materialization`, `Unknown.Account`, `Active.Auth.Data`, `Auth.Data.Aligned`, `Auth.Data.Drift`, `Auth.Data.Rotation`
+
+****
+
+## Agentos.Daemon
+
+- [DF] `Agentos.Daemon` is a single long-lived background process that runs registered `Background.Job`s, extending Agentos beyond one-shot CLI invocation ^c20260725-123u
+- [DC] its process lifecycle is owned by the OS service manager (`launchd` on macOS) — start-at-login, keep-alive, and restart-on-crash come from the platform, not from hand-written daemonization ^c20260725-108u
+- [DC] exactly one global instance runs per machine, making it the sole owner of background work and the sole writer of the shared state its jobs maintain ^c20260725-106u
+- [DC] work reaches the daemon from two feeds — the internal scheduler firing jobs on their natural frequency, and external run-now triggers from the CLI (`Daemon.Trigger`) ^c20260725-121u
+- [DC] both feeds converge on one serialized work lane: a single worker running one job to completion at a time ^c20260725-101u
+- [DC] the single lane is what makes single-writer serialization and trigger coalescing fall out for free — without locks, a job queue, or async state ^c20260725-117u
+- [DC] the daemon and the CLI are peer consumers of one core library; the daemon holds only scheduling and the trigger interface, never the work logic itself ^c20260725-115u
+- [DC] each command is either daemon-path or CLI-local — exactly one path per command, chosen once ^c20260725-104u
+- [RJ] v1 adds no inline fallback when a daemon-path command finds the daemon down — dual-path redundancy is deferred, so daemon-path availability rests entirely on the service manager ^c20260725-175u
+- [EX] concrete hosted jobs: continuous Chatlas index refresh over active sessions, and `Account.Management` rotation and usage monitoring — work that today runs only while a foreground command stays open ^c20260725-147u
+
+****
+
+## Background.Job
+
+- [DF] `Background.Job` is a named unit of recurring work an `Agentos.Daemon` hosts — a name, a natural frequency, and a `run()` body ^c20260725-124u
+- [DC] the `run()` body lives in the core library — the same function the CLI would invoke directly — so the daemon carries scheduling, never a second copy of the work logic ^c20260725-113u
+- [DC] the job registry is the shared interface between daemon and CLI: the daemon schedules jobs by it, the CLI names a job through it to trigger a run ^c20260725-116u
+- [CT] a job must be safe to run more often than its natural frequency, because an external trigger can fire it between scheduled runs ^c20260725-56u
+- [PR] a job stays incremental and cheap when nothing changed, so both frequent ticks and burst triggers stay affordable ^c20260725-153u
+- [EX] Chatlas refresh is a job — each run re-ingests only sessions touched since the last run (`chatlas update --since`), keyed off recently active sessions detected at minute granularity ^c20260725-144u
+
+****
+
+## Daemon.Trigger
+
+- [DF] `Daemon.Trigger` is the interface by which a CLI force-runs a registered `Background.Job` now and receives its completion ^c20260725-125u
+- [DC] its transport is a local unix domain socket — local-only, with filesystem permissions as the sole authorization; no TCP port or network surface ^c20260725-109u
+- [DC] the submitting connection stays open for the request's lifetime and is at once the request, the wait, and the completion signal — one JSON line in, one JSON line out, then close ^c20260725-118u
+- [DC] a trigger is satisfied by a job run that completes at or after the request moment; concurrent triggers arriving during one in-flight run all resolve off that single run (the coalescing rule) ^c20260725-100u
+- [CT] the interface can fire only pre-registered jobs, never arbitrary operations — the trigger surface is the job registry, not remote code execution ^c20260725-90u
+- [EX] failure detection falls out of the open connection: a daemon crash surfaces as EOF on the waiting read, and a CLI exit surfaces as a peer close to the daemon ^c20260725-148u

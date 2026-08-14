@@ -35,7 +35,7 @@ Current status: core design promoted to the Agentos package index. Retrieval and
 #### meta
 
 - status: promoted to package index
-- promotion: core blocks promoted to `skills/agentos-pkg/index/100-index.md`, `102-index.md`, `103-index.md`, `105-index.md`, and `appendix/Index.Architecture-appendix.md`
+- promotion: core blocks promoted to `skills/tarav-pkg/index/100-index.md`, `102-index.md`, `103-index.md`, `105-index.md`, and `appendix/Index.Architecture-appendix.md`
 
 ### Chat.Surface
 
@@ -349,7 +349,7 @@ Open / unresolved:
 - 2026-06-08: user settled grounding entry grouping. `### grounding` uses emphasized groups such as `*HEAD*`; multiple `*HEAD*` rows are allowed.
 - 2026-06-08: user moved historical grounding to appendix depth so history can accumulate without overloading compressed index blocks.
 - 2026-06-08: user rejected grounding state taxonomy. Lack of grounding is implicit by absence of `### grounding`; only `DRIFT` is explicit.
-- 2026-06-09: core design promoted into the Agentos package index. Linter passed for `skills/agentos-pkg/index` and `skills/agentos-pkg/appendix`.
+- 2026-06-09: core design promoted into the Agentos package index. Linter passed for `skills/tarav-pkg/index` and `skills/tarav-pkg/appendix`.
 - 2026-06-09: user introduced `Grounding.Request` as the miner output artifact and broadened mining directions to block-to-chat and chat-to-block.
 - 2026-06-08: user settled `DRIFT:` as a row prefix, not a role group.
 - 2026-06-08: user constrained `DRIFT:` to `*HEAD*` rows only. Reason lives in the evidence note; marker only signals that alignment must be performed.

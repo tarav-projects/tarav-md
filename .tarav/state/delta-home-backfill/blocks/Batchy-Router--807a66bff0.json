@@ -1,0 +1,55 @@
+{
+ "block_path": "Batchy.Router",
+ "state": "done",
+ "owner": "supervisor:57663916-0731-494a-bfec-070b4a9c69d2",
+ "claimed_at": "20260805T053339Z",
+ "pending_chats": [],
+ "done_chats": [
+  "fb3b663159176ce44af1456ea6ea309a1caec77407d136754a571c29cdc8ab38"
+ ],
+ "workers": [
+  "w2",
+  "w13"
+ ],
+ "history": [
+  {
+   "at": "20260805T054729Z",
+   "change": {
+    "state": "done",
+    "done_chats": [
+     "fb3b663159176ce44af1456ea6ea309a1caec77407d136754a571c29cdc8ab38"
+    ],
+    "pending_chats": [],
+    "result": "partial: 5 lines recorded as inspected support drift"
+   }
+  },
+  {
+   "at": "20260805T055229Z",
+   "change": {
+    "state": "wip",
+    "pending_chats": [
+     "fb3b663159176ce44af1456ea6ea309a1caec77407d136754a571c29cdc8ab38"
+    ],
+    "result": "partial: 5 lines recorded as inspected support drift | REOPENED: 5 lines remain via chat fb3b6631"
+   }
+  },
+  {
+   "at": "20260805T055248Z",
+   "change": {
+    "state": "done-with-drift",
+    "pending_chats": [],
+    "result": "5 lines INSPECTED and recorded as support drift on fb3b...ab38 (assistant-authored proposal + bare user affirmation, or compound line with untouched clauses). Not reclaimable work."
+   }
+  },
+  {
+   "at": "20260805T072140Z",
+   "change": {
+    "state": "done",
+    "pending_chats": [],
+    "result": "re-inspected under corrected standard; landed"
+   }
+  }
+ ],
+ "result": "re-inspected under corrected standard; landed",
+ "updated_at": "20260805T072140Z"
+}

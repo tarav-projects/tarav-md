@@ -30,8 +30,8 @@
 - the rewrite scope is defined by rule, not by list: every `*.md` file under `agentos-md/` and `agentos-chatlas-md/` whose content matches a rewrite pattern is in scope — the rule is the authority; the inventory below is informative
 - the single exception is this artifact itself (`notes/live/580-anchory-caret-sigil-impl-req.md`), which must describe the old form to specify the migration; the acceptance greps exclude it
 - live notes are in scope (563, 569, 571, 573, 574, 575, 577, ...) — they are grep-consistency surfaces (`Name.As.Index` reverse-findability), not protected history
-- known literal-anchor surfaces: `agentos-md/skills/agentos-pkg/` (design 102, 105, 106, 107; appendix and agendix files; SKILL.md), `agentos-chatlas-md/skills/agentos-chatlas-pkg/design/100-design.md`, `agentos-md/skills/agentos-index/references/link.md`, live notes above
-- known syntax-teaching surfaces (mint path is agent-mediated, so docs are the formatter): `agentos-md/skills/agentos-index/` SKILL.md and references (link.md, search.md, agendix.md, and any of back-link.md / gr-survey.md / gr-review.md / type.md showing the `@` form), `agentos-md/skills/agentos-pkg/SKILL.md`, `agentos-chatlas-md/skills/agentos-chatlas-pkg/references/chatlas-commands.md:96`, and the prose/regex mentions in `agentos-md/notes/live/571-line-type-linter-checks-parking.md`
+- known literal-anchor surfaces: `agentos-md/skills/tarav-pkg/` (design 102, 105, 106, 107; appendix and agendix files; SKILL.md), `agentos-chatlas-md/skills/tarav-chatlas-pkg/design/100-design.md`, `agentos-md/skills/agentos-index/references/link.md`, live notes above
+- known syntax-teaching surfaces (mint path is agent-mediated, so docs are the formatter): `agentos-md/skills/agentos-index/` SKILL.md and references (link.md, search.md, agendix.md, and any of back-link.md / gr-survey.md / gr-review.md / type.md showing the `@` form), `agentos-md/skills/tarav-pkg/SKILL.md`, `agentos-chatlas-md/skills/tarav-chatlas-pkg/references/chatlas-commands.md:96`, and the prose/regex mentions in `agentos-md/notes/live/571-line-type-linter-checks-parking.md`
 - `.claude/skills/` entries are symlinks into `agentos-md/skills/` — editing the source tree updates the runnable surface; no second copy exists in this project
 - index blocks are normally `Content.Verbatim.Gated`; the user's approval of this Impl.Req is the gate for this mechanical sigil rewrite — no wording may change beyond the rewrite patterns
 
@@ -67,12 +67,12 @@
 - apply the `Gated.Rewrite.Rule` patterns across every file selected by `Migration.Scope.Rule` (script the rewrite; do not hand-edit)
 - verify with the migration greps, excluding this artifact: `grep -rn '@[0-9]\{8\}-[0-9]\|@YYYYMMDD' agentos-md agentos-chatlas-md --include='*.md' | grep -v 580-anchory-caret-sigil` returns nothing; the `\^[0-9]\{8\}-` grep returns the pre-migration literal-anchor count (record the baseline count before rewriting)
 - observable: `agentos chatlas views inline --anchor <key>` and `agentos index linter` grounding checks resolve anchors from the migrated surfaces
-- check: `agentos index linter` run over the agentos-pkg depot reports zero legacy-sigil findings and no new grounding regressions relative to a pre-migration baseline run
+- check: `agentos index linter` run over the tarav-pkg depot reports zero legacy-sigil findings and no new grounding regressions relative to a pre-migration baseline run
 - status: done
 
 ### Slice 4 - Syntax-teaching doc updates
 
-- rewrite the `@YYYYMMDD-N` syntax descriptions to `^YYYYMMDD-N` across the known syntax-teaching surfaces in `Migration.Scope.Rule` — including `agentos-chatlas-md/skills/agentos-chatlas-pkg/references/chatlas-commands.md` and the 571 parking note — plus anything else the scope-rule grep finds
+- rewrite the `@YYYYMMDD-N` syntax descriptions to `^YYYYMMDD-N` across the known syntax-teaching surfaces in `Migration.Scope.Rule` — including `agentos-chatlas-md/skills/tarav-chatlas-pkg/references/chatlas-commands.md` and the 571 parking note — plus anything else the scope-rule grep finds
 - observable: `grep -rn '@YYYYMMDD' agentos-md agentos-chatlas-md --include='*.md' | grep -v 580-anchory-caret-sigil` returns nothing
 - check: grep clean; spot-read link.md mint instructions to confirm they now teach `^`
 - status: done
@@ -88,9 +88,9 @@
 - Slice 3/4 implemented: markdown rewrite baseline found `110` literal legacy anchors outside this artifact; the scripted rewrite converted all selected literal, placeholder, and syntax-teaching forms; post-rewrite caret literal count is `110`
 - Migration acceptance grep is clean outside this artifact: `grep -RIn '@[0-9]\{8\}-[0-9]\|@YYYYMMDD\|@(?P<anchor\|@\[0-9\]' agentos-md agentos-chatlas-md --include='*.md' | grep -v 580-anchory-caret-sigil` returns no rows
 - Verification: `uv run ruff check src tests` passes in `agentos-py` and `agentos-chatlas-py`; full `uv run pytest` passes in `agentos-py` (`286 passed`) and `agentos-chatlas-py` (`143 passed`)
-- Live verification after `uv tool install --reinstall --editable .`: `agentos index linter --depot skills/agentos-pkg --json` and `agentos index linter --depot skills/agentos-chatlas-pkg --json` both pass `19` checks with zero findings
-- Coverage-mode smoke: `agentos index linter --depot skills/agentos-pkg --coverage all --scope skills/agentos-pkg/design --json` reports the existing coverage backlog (`1203` unlinked-line warnings, `219` ungrounded-block warnings) and zero legacy-sigil/provenance findings
+- Live verification after `uv tool install --reinstall --editable .`: `agentos index linter --depot skills/tarav-pkg --json` and `agentos index linter --depot skills/tarav-chatlas-pkg --json` both pass `19` checks with zero findings
+- Coverage-mode smoke: `agentos index linter --depot skills/tarav-pkg --coverage all --scope skills/tarav-pkg/design --json` reports the existing coverage backlog (`1203` unlinked-line warnings, `219` ungrounded-block warnings) and zero legacy-sigil/provenance findings
 - Chatlas smoke: `agentos chatlas views inline --anchor 20260707-0 --radius 1 --filter turns --format json` resolves the migrated anchor and returns the landing-turn window
 - deviation: an initial broad test rewrite command corrupted three test files; they were restored from the checkpoint immediately, then the intended narrow rewrite was reapplied and verified by RED/GREEN tests
 - design follow-up (not this artifact): land the `Block.Name.Schema` sigil table in the index via `agentos-index --edit`
-- follow-up for other projects: re-sync imported skills where `agentos-index`/`agentos-pkg` are copied rather than symlinked (`references/skills-routing.md`)
+- follow-up for other projects: re-sync imported skills where `agentos-index`/`tarav-pkg` are copied rather than symlinked (`references/skills-routing.md`)

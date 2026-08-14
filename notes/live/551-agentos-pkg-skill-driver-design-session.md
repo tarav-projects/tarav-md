@@ -1,8 +1,8 @@
-# agentos-pkg SKILL.md Driver — Design Session
+# tarav-pkg SKILL.md Driver — Design Session
 
 ## Session.Abstract
 
-- Goal: redesign `agentos-pkg/SKILL.md` as the Driver of the agentos system
+- Goal: redesign `tarav-pkg/SKILL.md` as the Driver of the agentos system
 - The current SKILL.md is a routing table for insiders; the new one teaches agents from zero
 - Format: one `Kernel.Block::Design` per section, six sections total
 - State: all six blocks converged — design complete
@@ -18,7 +18,7 @@
 - should explain that agents working in an agentos project find maintained tools and persistent context instead of starting from scratch each session
 - should name the main tools: concept indexes, live surfaces, package skills, and human-agent workflows
 - should mention that any project can adopt agentos incrementally — an AGENTS.md and one package skill is enough to start
-- should establish that this skill (`agentos-pkg`) is the entry point — it teaches agents how to discover and use agentos tools in whatever project they're working on
+- should establish that this skill (`tarav-pkg`) is the entry point — it teaches agents how to discover and use agentos tools in whatever project they're working on
 
 ### meta
 
@@ -34,7 +34,7 @@
 - should mention that a `.agentos` folder is a hint that a folder might be an agentos project
 - should list project-level surfaces: `AGENTS.md`, `notes/` (live notes, index, appendix), and `dev/` (scripts and tooling)
 - should define `Package.Skill` as a reachable skill that serves as the agentic interface to a package — containing data, documentation, and operational instructions for using a package's functionalities
-- should use `agentos-pkg` as a concrete example of a `Package.Skill`
+- should use `tarav-pkg` as a concrete example of a `Package.Skill`
 - should list package-level surfaces: `index/`, `appendix/`, `references/`, and `SKILL.md`
 - should warn that the agent may encounter several workspaces and must keep clear which workspace an action or prompt refers to
 - should teach that when a surface mentions another skill or reference, the agent should load it only if the relevant guidance is not already in context — this applies across all agentos surfaces
@@ -105,7 +105,7 @@
 - the section should work as a router table — pointing the agent to narrower surfaces when the Driver is not enough
 - should list available subsystems and skills of the package with a one-line "when to load"
 - should not only point to loadable skills and references, but also suggest index search prompts for learning more about a topic
-- for example: "search `agentos-pkg` index for `Kernel.Writing` to understand the writing philosophy" — providing the search hint so the agent knows what to query
+- for example: "search `tarav-pkg` index for `Kernel.Writing` to understand the writing philosophy" — providing the search hint so the agent knows what to query
 - this combines skill routing with index discovery — the agent learns both where to go and what to ask
 
 ### meta

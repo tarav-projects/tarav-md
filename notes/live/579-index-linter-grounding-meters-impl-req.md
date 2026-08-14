@@ -64,7 +64,7 @@
 - status: done
 
 ### S4 — live acceptance + docs
-- what: reinstall; live: `agentos index linter --depot skills/agentos-pkg --coverage all --scope skills/agentos-pkg/design --json` in agentos-md — expect the block meter to show the four 577-grounded blocks as grounded and the line meter to reproduce the 10X count without post-filtering; update `agentos-md` `skills/agentos-index/references/check.md` (built-in checks + flags), `references/gr-survey.md` step 1 (baseline = the scoped linter command, recorded verbatim in `Gr.Abstract`), and `agentos-py/AGENTS.md` (it documents the linter CLI flags and requires updating on CLI changes)
+- what: reinstall; live: `agentos index linter --depot skills/tarav-pkg --coverage all --scope skills/tarav-pkg/design --json` in agentos-md — expect the block meter to show the four 577-grounded blocks as grounded and the line meter to reproduce the 10X count without post-filtering; update `agentos-md` `skills/agentos-index/references/check.md` (built-in checks + flags), `references/gr-survey.md` step 1 (baseline = the scoped linter command, recorded verbatim in `Gr.Abstract`), and `agentos-py/AGENTS.md` (it documents the linter CLI flags and requires updating on CLI changes)
 - check: live numbers sane; both depots lint clean unflagged (no default-behavior change); `uv run pytest` + `ruff` green in agentos-py
 - status: done
 
@@ -87,6 +87,6 @@
 - 2026-07-09: implementation decision: `Block.Ungrounded` is registered in `CHECKS`, so flagless clean depots now report 18 passed checks instead of 17; flagless findings remain unchanged.
 - 2026-07-09: updated `agentos-py/AGENTS.md`, `agentos-index` `references/check.md`, and `references/gr-survey.md` for the new linter flags and campaign baseline.
 - 2026-07-09: installed CLI refreshed from `agentos-cli` with `uv tool install --reinstall --editable .`.
-- 2026-07-09: live acceptance: `agentos index linter --depot skills/agentos-pkg --coverage all --scope skills/agentos-pkg/design --json` reports line `23/1231` linked (1208 unlinked) and block `7/224` grounded; scoped summary has 1425 warnings, 0 errors.
-- 2026-07-09: default live depots clean unflagged: `agentos-md/skills/agentos-pkg` and `agentos-chatlas-md/skills/agentos-chatlas-pkg` both report 18 checks, 0 findings.
+- 2026-07-09: live acceptance: `agentos index linter --depot skills/tarav-pkg --coverage all --scope skills/tarav-pkg/design --json` reports line `23/1231` linked (1208 unlinked) and block `7/224` grounded; scoped summary has 1425 warnings, 0 errors.
+- 2026-07-09: default live depots clean unflagged: `agentos-md/skills/tarav-pkg` and `agentos-chatlas-md/skills/tarav-chatlas-pkg` both report 18 checks, 0 findings.
 - 2026-07-09: verification: `uv run pytest tests/test_index_linter.py` 30 passed; `uv run pytest` 285 passed; `uv run ruff check src tests` clean.

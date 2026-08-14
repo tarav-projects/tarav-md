@@ -1,0 +1,24 @@
+{
+ "block_path": "Index.Line/Grounding.Mechanics",
+ "state": "done",
+ "owner": "supervisor:57663916-0731-494a-bfec-070b4a9c69d2",
+ "claimed_at": "20260805T054145Z",
+ "pending_chats": [
+  "2933093622370cfdd5ef597dc4285277eadff4d320c1b9a40f698ce53dfcafdb"
+ ],
+ "done_chats": [],
+ "workers": [
+  "w1"
+ ],
+ "history": [
+  {
+   "at": "20260805T055313Z",
+   "change": {
+    "state": "done",
+    "result": "assigned lines homed (line-level verified)"
+   }
+  }
+ ],
+ "result": "assigned lines homed (line-level verified)",
+ "updated_at": "20260805T055313Z"
+}

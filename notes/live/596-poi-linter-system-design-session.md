@@ -4,7 +4,7 @@
 
 - intent: establish a common conceptual model for parser-backed POI systems used by Skw, md-library, and future Agentos linters
 - active focus: define the system boundary and integrate POIs with their authoritative documentation surfaces
-- references: `skills/agentos-pkg/design/107-design.md`, `notes/live/590-skw-v3-impl-req.md`, and the md-library `Transcript.Linter` design and implementation
+- references: `skills/tarav-pkg/design/107-design.md`, `notes/live/590-skw-v3-impl-req.md`, and the md-library `Transcript.Linter` design and implementation
 - state: active
 - next: model the complete journey from source parsing through POI evaluation and instance resolution
 
@@ -25,7 +25,7 @@
 #### meta
 
 - status: approved
-- durable-source: `skills/agentos-pkg/design/108-design.md#Skw.Kernel.Index`
+- durable-source: `skills/tarav-pkg/design/108-design.md#Skw.Kernel.Index`
 
 ### Skw.Gate
 
@@ -182,7 +182,7 @@
 #### meta
 
 - status: approved
-- durable-source: `skills/agentos-pkg/design/107-design.md#Floor.Model`
+- durable-source: `skills/tarav-pkg/design/107-design.md#Floor.Model`
 
 ### Closure.Parser
 
@@ -199,7 +199,7 @@
 #### meta
 
 - status: approved
-- durable-source: `skills/agentos-pkg/design/107-design.md#Closure.Parser`
+- durable-source: `skills/tarav-pkg/design/107-design.md#Closure.Parser`
 
 ### POI.Linter
 
@@ -214,7 +214,7 @@
 #### meta
 
 - status: approved
-- durable-source: `skills/agentos-pkg/design/107-design.md#POI.Linter`
+- durable-source: `skills/tarav-pkg/design/107-design.md#POI.Linter`
 
 ### Chat.POI.Linter
 
@@ -227,7 +227,7 @@
 #### meta
 
 - status: approved
-- durable-source: `skills/agentos-pkg/design/107-design.md#Chat.POI.Linter`
+- durable-source: `skills/tarav-pkg/design/107-design.md#Chat.POI.Linter`
 
 ### POI.Class
 
@@ -282,7 +282,7 @@
 
 ### References
 
-- `skills/agentos-pkg/design/107-design.md` - current `Floor.Model`, `Closure.Parser`, `POI.Linter`, `Poi.Bless`, and unlock-token concepts
+- `skills/tarav-pkg/design/107-design.md` - current `Floor.Model`, `Closure.Parser`, `POI.Linter`, `Poi.Bless`, and unlock-token concepts
 - `notes/live/590-skw-v3-impl-req.md` - current Skw realization and md-library-derived output model
 - `/Users/pereiro/Documents/workspaces/main-workspace/md-library-project/md-library/skills/md-library-pkg/design/101-design.md` - `Transcript.Linter`, check taxonomy, parser diagnostics, and resolution semantics
 - `/Users/pereiro/Documents/workspaces/main-workspace/md-library-project/md-library/skills/md-library-pkg/appendix/Transcript.Linter-appendix.md` - repair protocols and enrichment surfaces

@@ -8,11 +8,11 @@ It owns `Md.Surface::Agentos.Stack`, including the durable index notes, live not
 
 ## Orientation
 
-Load the `agentos-pkg` skill at the start of a session for workflow-neutral Agentos package orientation.
+Load the `tarav-pkg` skill at the start of a session for workflow-neutral Agentos package orientation.
 
-Load the `agentos-hugentics` skill when you need index-grounded context, index research, index editing, diagnosis, testing, maintenance, or Hugentic session control.
+Load the `tarav-hugentics` skill when you need index-grounded context, index research, index editing, diagnosis, testing, maintenance, or Hugentic session control.
 
-Use the Index arguments and modules of `agentos-hugentics` for cited context collection and direct index work.
+Use the Index arguments and modules of `tarav-hugentics` for cited context collection and direct index work.
 
 ## Surface Rules
 

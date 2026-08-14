@@ -6,9 +6,9 @@
 - **status:** implemented
 - **source:** current linter design discussion on adding the next useful check after first-class `Index.Linter/Block.*` codes
 - **target codebase:** `agentos-py`
-- **target docs/index surface:** `agentos-md/skills/agentos-pkg`
+- **target docs/index surface:** `agentos-md/skills/tarav-pkg`
 - **primary command:** `agentos index linter --index <index-path> --appendix <appendix-path>`
-- **current baseline:** the agentos-pkg index/appendix surface lints cleanly with 14 passed checks and no findings
+- **current baseline:** the tarav-pkg index/appendix surface lints cleanly with 14 passed checks and no findings
 
 ## Impl.Index
 
@@ -39,7 +39,7 @@
 ### Finding.Code.Surface
 
 - new finding codes should use the established single-code system under `Index.Linter/...`
-- add appendix documentation blocks in `skills/agentos-pkg/appendix/Index.Linter-appendix.md`
+- add appendix documentation blocks in `skills/tarav-pkg/appendix/Index.Linter-appendix.md`
 - proposed codes:
     - `Index.Linter/Appendix.RouteAnnotationMissing`
     - `Index.Linter/Appendix.RouteAnnotationStale`
@@ -90,30 +90,30 @@
 - check: add tests for missing annotation, stale annotation, and page gap
 - status: completed
 
-### Slice 4 - Update agentos-pkg code documentation
+### Slice 4 - Update tarav-pkg code documentation
 
 - document new check and finding codes in `Index.Linter-appendix.md`
 - add any needed route annotation wording to the `Index.Linter` block if the command surface needs discoverable help
 - keep docs concise and agent-actionable
-- observable: each new code resolves through `agentos-pkg` appendix discovery
-- check: run the linter against `agentos-pkg` and ensure documentation changes do not introduce new findings
+- observable: each new code resolves through `tarav-pkg` appendix discovery
+- check: run the linter against `tarav-pkg` and ensure documentation changes do not introduce new findings
 - status: completed
 
 ### Slice 5 - Verify installed command surface
 
 - run focused tests and full `agentos-py` tests
 - run `ruff` on touched linter/test files
-- run the linter against `agentos-pkg`
+- run the linter against `tarav-pkg`
 - reinstall the editable `agentos` CLI wrapper if command code changed
 - observable: installed `agentos index linter` reports the expected clean or intentionally updated baseline
 - check:
     - `uv run pytest tests/test_index_linter.py`
     - `uv run pytest`
     - `uv run ruff check src/agentos/index/linter.py tests/test_index_linter.py`
-    - `agentos index linter --index agentos-md/skills/agentos-pkg/index --appendix agentos-md/skills/agentos-pkg/appendix`
+    - `agentos index linter --index agentos-md/skills/tarav-pkg/index --appendix agentos-md/skills/tarav-pkg/appendix`
 - status: completed
 
 ## Impl.Log
 
 - 2026-05-23: Impl.Req created from the linter design discussion. The agreed next slice is appendix route annotation linting, because it is deterministic, index-specific, and improves agent discovery from the router.
-- 2026-05-23: Implemented router appendix annotation parsing, appendix page inventory, and the gated `Index.Linter/Check.AppendixRouteAnnotations` check. Added warning findings for missing annotations, stale annotations, and non-contiguous appendix pages. Updated `agentos-pkg` route annotations and linter appendix code documentation. Verified with focused linter tests, full `agentos-py` tests, ruff, editable CLI reinstall, and installed `agentos index linter` against `agentos-pkg`.
+- 2026-05-23: Implemented router appendix annotation parsing, appendix page inventory, and the gated `Index.Linter/Check.AppendixRouteAnnotations` check. Added warning findings for missing annotations, stale annotations, and non-contiguous appendix pages. Updated `tarav-pkg` route annotations and linter appendix code documentation. Verified with focused linter tests, full `agentos-py` tests, ruff, editable CLI reinstall, and installed `agentos index linter` against `tarav-pkg`.

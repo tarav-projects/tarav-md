@@ -2,9 +2,9 @@
 
 ## Session.Abstract
 
-- intent: revisit the role and design of each current Agentos skill to build a clear mental model of `agentos-pkg`
+- intent: revisit the role and design of each current Agentos skill to build a clear mental model of `tarav-pkg`
 - active focus: skill-role inventory complete; prepare consolidation and implementation handoff
-- source context: `agentos-pkg` skeleton and first index-content migration are in place
+- source context: `tarav-pkg` skeleton and first index-content migration are in place
 - state: active
 - next: consolidate implementation targets for skill renames, package moves, content extraction, and durable index/reference updates
 
@@ -16,15 +16,15 @@
 - goal is package mental modeling, not immediate implementation
 - each skill should be classified by package relationship and future action
 - each reviewed skill gets a dedicated `Design.Index` block
-- likely outcomes: keep as package root, keep as `Package.Aux.Skill`, absorb content into `agentos-pkg`, move to dependent package, park as local concern, or leave external/general
+- likely outcomes: keep as package root, keep as `Package.Aux.Skill`, absorb content into `tarav-pkg`, move to dependent package, park as local concern, or leave external/general
 - content migration is separate from role classification
 - reviewed auxiliary skills use block names like `Package.Aux.Skill:<skill-name>`
 
 ### Agentos.Package.Skill.Rings
 
-- `agentos-pkg` core: package-owned content and package root surfaces
-- `Package.Aux.Skill`: package-associated top-level skill that adds specialized intention, operation, workflow, or subsystem focus while pointing into `agentos-pkg`
-- dependent package skill: skill that should belong to a future package such as `agentos-chatlas-pkg` or `agentos-iterante-pkg`
+- `tarav-pkg` core: package-owned content and package root surfaces
+- `Package.Aux.Skill`: package-associated top-level skill that adds specialized intention, operation, workflow, or subsystem focus while pointing into `tarav-pkg`
+- dependent package skill: skill that should belong to a future package such as `tarav-chatlas-pkg` or `tarav-iterante-pkg`
 - moved skill: skill that should leave `agentos-md` because ownership is project/domain-specific
 - local/project concern: material specific to `agentos-md` and better suited for `notes/index/` or a future `agentos-md-pkg`
 
@@ -68,11 +68,11 @@
 
 #### meta
 
-- emerged from `agentos-pkg` root design
+- emerged from `tarav-pkg` root design
 
-### Skill.Role:agentos-pkg
+### Skill.Role:tarav-pkg
 
-- `agentos-pkg` is the root `Package.Skill` for Agentos core
+- `tarav-pkg` is the root `Package.Skill` for Agentos core
 - its root `SKILL.md` is a `Workflow.Neutral.Skill`
 - owns package-level public Agentos knowledge and routing
 - currently contains the Agentos Index subsystem directly: `index/`, `appendix/`, `references/`, `testing/`
@@ -83,18 +83,18 @@
 
 - current action: keep as package root
 - future action: enrich `package.md` as the package router while keeping `SKILL.md` workflow-neutral
-- boundary note: local `agentos-md` implementation concerns belong in `notes/index/` or future `agentos-md-pkg`, not in `agentos-pkg`
+- boundary note: local `agentos-md` implementation concerns belong in `notes/index/` or future `agentos-md-pkg`, not in `tarav-pkg`
 
 ### Package.Aux.Skill:agentos-index
 
-- `agentos-index` is the public `Package.Aux.Skill` for the Agentos Index subsystem of `agentos-pkg`
+- `agentos-index` is the public `Package.Aux.Skill` for the Agentos Index subsystem of `tarav-pkg`
 - functions as a workflow-neutral index subpackage skill: loading it orients the caller to index purpose, structure, and available functions without forcing an operation
 - supports `Index.Agent` behavior: the caller may navigate the index itself or spawn a subagent to avoid context pollution
 - primary function is index research: extract, cite, and return index knowledge relevant to the current chat/task context
 - also routes optional operations such as writing, diagnosis, testing, and maintenance through a functionality table
 - the key distinction is not separate skills; it is separate index functions
 - may absorb narrower index auxiliary skills when their behavior can be represented as function rows instead of separate public skills
-- keeps authoritative concept content in `agentos-pkg/index/`, appendix depth in `agentos-pkg/appendix/`, and operational detail in `agentos-pkg/references/`
+- keeps authoritative concept content in `tarav-pkg/index/`, appendix depth in `tarav-pkg/appendix/`, and operational detail in `tarav-pkg/references/`
 
 #### meta
 
@@ -115,17 +115,17 @@
 
 #### meta
 
-- current action: promoted to durable `agentos-pkg` index
-- implementation note: durable block lives in `skills/agentos-pkg/index/104-index.md`
+- current action: promoted to durable `tarav-pkg` index
+- implementation note: durable block lives in `skills/tarav-pkg/index/104-index.md`
 
 ### Package.Aux.Skill:agentos-index-activate
 
-- `agentos-index-activate` is a deprecated `Package.Aux.Skill` for the Agentos Index subsystem of `agentos-pkg`
+- `agentos-index-activate` is a deprecated `Package.Aux.Skill` for the Agentos Index subsystem of `tarav-pkg`
 - its former role was explicit `Index.Runtime` bootstrap
 - this role is now absorbed by `agentos-index` orientation and `Index.Agent` context-collection behavior
 - should not remain a primary public entry point
 - existing references should migrate toward `agentos-index` for index orientation or direct `Index.Agent` collection for task-specific context
-- operational launch details may remain in `agentos-pkg/references/launch-runtime.md` as internal/reference material
+- operational launch details may remain in `tarav-pkg/references/launch-runtime.md` as internal/reference material
 
 #### meta
 
@@ -135,7 +135,7 @@
 
 ### Package.Aux.Skill:agentos-index-writer
 
-- `agentos-index-writer` is a deprecated standalone `Package.Aux.Skill` for the Agentos Index subsystem of `agentos-pkg`
+- `agentos-index-writer` is a deprecated standalone `Package.Aux.Skill` for the Agentos Index subsystem of `tarav-pkg`
 - its role is still important: gated mutation of the Agentos Index
 - the role should be represented as a writing function inside `agentos-index`, not as a separate public skill by default
 - writing still needs explicit workflow control: placement checks, overlap checks, wording approval, routing updates, and `Index.Writer.Maintenance.Pass`
@@ -148,7 +148,7 @@
 
 ### Package.Aux.Skill:agentos-index-doctor
 
-- `agentos-index-doctor` is a deprecated standalone `Package.Aux.Skill` for the Agentos Index subsystem of `agentos-pkg`
+- `agentos-index-doctor` is a deprecated standalone `Package.Aux.Skill` for the Agentos Index subsystem of `tarav-pkg`
 - its role is index diagnosis: structural checks, routing checks, staleness review, coherence review, coverage gaps, and placement drift
 - the role should be represented as a diagnosis function inside `agentos-index`, not as a separate public skill by default
 - diagnosis remains report-only unless the user explicitly invokes a write function
@@ -160,7 +160,7 @@
 
 ### Package.Aux.Skill:agentos-index-test
 
-- `agentos-index-test` is a deprecated standalone `Package.Aux.Skill` for the Agentos Index subsystem of `agentos-pkg`
+- `agentos-index-test` is a deprecated standalone `Package.Aux.Skill` for the Agentos Index subsystem of `tarav-pkg`
 - its role is runtime verification for a package index surface
 - the role should be represented as a testing function inside `agentos-index`, not as a separate public skill by default
 - testing may still use package `testing/` files, subagents, and reports; only the public skill split is collapsed
@@ -174,39 +174,39 @@
 
 - the legacy Agentos usage skill is deprecated and should not be treated as a `Package.Aux.Skill`
 - its former role was general Agentos usage orientation
-- that role belongs to `agentos-pkg`: the package root and package router should guide agents to documentation, index surfaces, references, workflows, and package functions
+- that role belongs to `tarav-pkg`: the package root and package router should guide agents to documentation, index surfaces, references, workflows, and package functions
 - should not remain a second package router or competing documentation surface
 
 #### meta
 
 - current action: deprecate
-- future action: remove or replace with direct `agentos-pkg` guidance in project startup surfaces
+- future action: remove or replace with direct `tarav-pkg` guidance in project startup surfaces
 
-### Package.Aux.Skill:agentos-hugentics
+### Package.Aux.Skill:tarav-hugentics
 
-- `agentos-hugentics` is a `Package.Aux.Skill` for `agentos-pkg`
+- `tarav-hugentics` is a `Package.Aux.Skill` for `tarav-pkg`
 - its role is the public auxiliary skill for the Hugentic Harness subsystem
 - is a workflow-neutral subsystem surface: loading it gives the Hugentic map without entering a specific Hugentic workflow mode
 - adds caller intention: the caller wants the Hugentic workflow map, not general Agentos package orientation
 - should remain public because Hugentics is an important Agentos subsystem with its own workflow family
-- points back to `agentos-pkg` for shared Agentos concept placement
+- points back to `tarav-pkg` for shared Agentos concept placement
 - may later move into `agentos-hugentics-pkg` if the Hugentic subsystem needs its own package root
 
 #### meta
 
-- current action: keep as auxiliary skill inside `agentos-pkg`
-- future action: revisit package split only if Hugentics grows beyond `agentos-pkg`
+- current action: keep as auxiliary skill inside `tarav-pkg`
+- future action: revisit package split only if Hugentics grows beyond `tarav-pkg`
 
 ### Hugentic.Aux.Skill.Modularity
 
-- `agentos-hugentics` is the workflow-neutral subsystem aux skill for the Hugentic Harness
+- `tarav-hugentics` is the workflow-neutral subsystem aux skill for the Hugentic Harness
 - Hugentic workflow skills can remain physically separate when they improve `Package.Aux.Skill.Visibility`
-- they are nested auxiliary surfaces under `agentos-hugentics`, which is itself rooted in `agentos-pkg`
+- they are nested auxiliary surfaces under `tarav-hugentics`, which is itself rooted in `tarav-pkg`
 - `hugentics-designer`, `hugentics-impl-designer`, and `hugentics-impl-executer` are operational nested aux skills
 - loading an operational nested aux skill means the agent is entering that workflow mode
 - their main value is tuned execution prompting, triggerability, context economy, and operation-specific gates
 - they should not become independent authorities for Hugentic concepts
-- durable concepts remain rooted in `agentos-pkg`; duplicated local workflow context should use `Cited.Duplication`
+- durable concepts remain rooted in `tarav-pkg`; duplicated local workflow context should use `Cited.Duplication`
 - trigger-only skills that merely point to these operational aux skills are redundant once activation language is moved into the operational skills
 
 #### meta
@@ -215,42 +215,42 @@
 
 ### Package.Aux.Skill:hugentics-designer
 
-- `hugentics-designer` is a nested `Package.Aux.Skill` under `agentos-hugentics`
+- `hugentics-designer` is a nested `Package.Aux.Skill` under `tarav-hugentics`
 - its role is the tuned prompt and workflow master for `What.Design.Session` / `Main.Designer.Agent`
 - is not workflow-neutral; loading it means the agent is entering Hugentic design-session mode
 - not a separate package root; it exists because its description and `SKILL.md` prompt strongly shape agent behavior
 - should carry phase-specific activation language, routing, references, gates, and cited duplicated context
-- durable Hugentic concepts remain rooted in `agentos-pkg`
+- durable Hugentic concepts remain rooted in `tarav-pkg`
 
 #### meta
 
 - current action: keep as nested auxiliary skill
-- implementation note: keep linked to `agentos-hugentics` as subsystem map
+- implementation note: keep linked to `tarav-hugentics` as subsystem map
 - implementation note: absorb useful trigger phrases from `trigger-design-session`
 
 ### Package.Aux.Skill:hugentics-impl-designer
 
-- `hugentics-impl-designer` is a nested `Package.Aux.Skill` under `agentos-hugentics`
+- `hugentics-impl-designer` is a nested `Package.Aux.Skill` under `tarav-hugentics`
 - its role is the tuned prompt and workflow master for Impl.Req design / `impl.designer.agent`
 - is not workflow-neutral; loading it means the agent is entering implementation-design mode
 - not a separate package root; it exists because its description and `SKILL.md` prompt strongly shape agent behavior
 - should carry phase-specific activation language, routing, references, artifact rules, gates, and cited duplicated context
-- durable Hugentic and implementation-design concepts remain rooted in `agentos-pkg`
+- durable Hugentic and implementation-design concepts remain rooted in `tarav-pkg`
 
 #### meta
 
 - current action: keep as nested auxiliary skill
-- implementation note: keep linked to `agentos-hugentics` as subsystem map
+- implementation note: keep linked to `tarav-hugentics` as subsystem map
 - implementation note: absorb useful trigger phrases from `trigger-impl-req`
 
 ### Package.Aux.Skill:hugentics-impl-executer
 
-- `hugentics-impl-executer` is a nested `Package.Aux.Skill` under `agentos-hugentics`
+- `hugentics-impl-executer` is a nested `Package.Aux.Skill` under `tarav-hugentics`
 - its role is the tuned prompt and workflow master for Impl.Req execution / `impl.executer.agent`
 - is not workflow-neutral; loading it means the agent is entering implementation-execution mode
 - not a separate package root; it exists because its description and `SKILL.md` prompt strongly shape agent behavior
 - should carry phase-specific activation language, routing, execution gates, references, and cited duplicated context
-- durable Hugentic and implementation-execution concepts remain rooted in `agentos-pkg`
+- durable Hugentic and implementation-execution concepts remain rooted in `tarav-pkg`
 
 #### meta
 
@@ -264,7 +264,7 @@
 - its former role was activation shim for `hugentics-designer`
 - the useful activation language belongs in `hugentics-designer`, because that operational nested auxiliary skill owns the `What.Design` workflow mode
 - keeping both creates duplicate routing surfaces without adding a distinct package function
-- the public model should route through `agentos-hugentics` for the workflow-neutral subsystem map, then directly to `hugentics-designer` for design-session execution
+- the public model should route through `tarav-hugentics` for the workflow-neutral subsystem map, then directly to `hugentics-designer` for design-session execution
 
 #### meta
 
@@ -299,7 +299,7 @@
 
 ### Package.Aux.Skill:hugentics-workflow-status
 
-- `hugentics-workflow-status` is an operational nested `Package.Aux.Skill` under `agentos-hugentics`
+- `hugentics-workflow-status` is an operational nested `Package.Aux.Skill` under `tarav-hugentics`
 - its role is structured status for active Hugentic workflows
 - assumes there is workflow or artifact state worth inspecting
 - reports active phase, active artifact/backend, accepted state, uncommitted deltas, open questions, pending writes, blockers, and next workflow moves
@@ -315,7 +315,7 @@
 
 ### Package.Aux.Skill:hugentics-chat-status
 
-- `hugentics-chat-status` is an operational nested `Package.Aux.Skill` under `agentos-hugentics`
+- `hugentics-chat-status` is an operational nested `Package.Aux.Skill` under `tarav-hugentics`
 - its role is lightweight chat realignment when the user needs to reconnect with the current conversation
 - answers "what is going on in this chat?"
 - focuses on main topic(s), current thread, recent decisions, active or likely user intent, and useful next moves
@@ -333,7 +333,7 @@
 
 ### Package.Aux.Skill:hugentics-capture-audit
 
-- `hugentics-capture-audit` is an operational nested `Package.Aux.Skill` under `agentos-hugentics`
+- `hugentics-capture-audit` is an operational nested `Package.Aux.Skill` under `tarav-hugentics`
 - its role is to review recent work and identify significant material that is not yet captured outside chat
 - captured means placed in a more permanent surface than the chat, such as a design-session artifact, Impl.Req, design summary, issue report, local note, package reference, or index candidate
 - audits for uncaptured decisions, approved wording, design convergence, implementation constraints, risks, open questions, follow-up items, and index-worthy concepts
@@ -343,8 +343,8 @@
 
 #### appendix
 
-- capture audit belongs under `agentos-hugentics` because it maintains human-agent alignment across chat and more durable artifacts
-- as an operational nested `Package.Aux.Skill`, its local workflow framing should use cited duplicated context from authoritative `agentos-pkg` concepts when needed
+- capture audit belongs under `tarav-hugentics` because it maintains human-agent alignment across chat and more durable artifacts
+- as an operational nested `Package.Aux.Skill`, its local workflow framing should use cited duplicated context from authoritative `tarav-pkg` concepts when needed
 
 #### meta
 
@@ -353,12 +353,12 @@
 
 ### Package.Aux.Skill:artifact-design-session
 
-- `artifact-design-session` is a workflow-neutral artifact-format `Package.Aux.Skill` under `agentos-hugentics`
+- `artifact-design-session` is a workflow-neutral artifact-format `Package.Aux.Skill` under `tarav-hugentics`
 - its role is discoverability and orientation for `Alignment.Backend::Artifact::What`
 - points to `hugentics-designer` as the workflow master that owns the full artifact format and write gates
 - does not start a design session by itself
 - useful when the caller needs to inspect, create, validate, or route a design-session artifact without entering the whole design workflow
-- should carry only cited duplicated artifact context; authoritative artifact definitions remain in `agentos-pkg` and the owning workflow master
+- should carry only cited duplicated artifact context; authoritative artifact definitions remain in `tarav-pkg` and the owning workflow master
 
 #### meta
 
@@ -367,12 +367,12 @@
 
 ### Package.Aux.Skill:artifact-impl-req
 
-- `artifact-impl-req` is a workflow-neutral artifact-format `Package.Aux.Skill` under `agentos-hugentics`
+- `artifact-impl-req` is a workflow-neutral artifact-format `Package.Aux.Skill` under `tarav-hugentics`
 - its role is discoverability and orientation for `Impl.Req`
 - points to `hugentics-impl-designer` as the workflow master that owns the full artifact format and write gates
 - does not start implementation design by itself
 - useful when the caller needs to inspect, create, validate, or route an Impl.Req artifact without entering the whole implementation-design workflow
-- should carry only cited duplicated artifact context; authoritative artifact definitions remain in `agentos-pkg` and the owning workflow master
+- should carry only cited duplicated artifact context; authoritative artifact definitions remain in `tarav-pkg` and the owning workflow master
 
 #### meta
 
@@ -384,8 +384,8 @@
 - `artifact-design-summary` is a workflow-neutral artifact-format `Package.Aux.Skill`
 - its role is discoverability and orientation for design-summary artifacts
 - useful when the caller needs to inspect, create, validate, or route a durable summary of a design state
-- should carry only cited duplicated artifact context; authoritative definitions should live in `agentos-pkg` or the future owning workflow/package surface
-- ownership is not fully settled: it may belong under `agentos-hugentics`, `agentos-pkg`, or a future documentation/artifact subsystem
+- should carry only cited duplicated artifact context; authoritative definitions should live in `tarav-pkg` or the future owning workflow/package surface
+- ownership is not fully settled: it may belong under `tarav-hugentics`, `tarav-pkg`, or a future documentation/artifact subsystem
 
 #### meta
 
@@ -397,7 +397,7 @@
 - `artifact-issue-report` is a workflow-neutral artifact-format `Package.Aux.Skill`
 - its role is discoverability and orientation for durable issue-report artifacts
 - issue reports store discovered issues and track their status
-- should carry only cited duplicated artifact context; authoritative definitions should live in `agentos-pkg` and the owning workflow/package surface
+- should carry only cited duplicated artifact context; authoritative definitions should live in `tarav-pkg` and the owning workflow/package surface
 - operational issue discovery, discussion, triage, tracking, and routing belong to `hugentics-issue-tracker`
 
 #### meta
@@ -407,7 +407,7 @@
 
 ### Package.Aux.Skill:hugentics-issue-tracker
 
-- `hugentics-issue-tracker` is a planned operational nested `Package.Aux.Skill` under `agentos-hugentics`
+- `hugentics-issue-tracker` is a planned operational nested `Package.Aux.Skill` under `tarav-hugentics`
 - its role is discovering, discussing, capturing, triaging, tracking, and routing issues
 - uses `artifact-issue-report` as the durable artifact surface for issue state
 - may route to design sessions, Impl.Req design, implementation execution, or index capture depending on issue type
@@ -431,7 +431,7 @@
 
 ### Package.Aux.Skill:agentos-live-note-base
 
-- `agentos-live-note-base` is a workflow-neutral live-surface protocol `Package.Aux.Skill` under `agentos-pkg`
+- `agentos-live-note-base` is a workflow-neutral live-surface protocol `Package.Aux.Skill` under `tarav-pkg`
 - its role is discoverability and orientation for `Agentos.Live.Note`
 - covers live-note location, naming, numbering, allocation, and placement rules
 - should carry cited duplicated protocol context from `Agentos.Live.Note`, `File.Numbering.Protocol`, and relevant package references
@@ -456,12 +456,12 @@
 
 ### Package.Aux.Skill:agentos-live-script
 
-- `agentos-live-script` is a workflow-neutral live-surface protocol `Package.Aux.Skill` under `agentos-pkg`
+- `agentos-live-script` is a workflow-neutral live-surface protocol `Package.Aux.Skill` under `tarav-pkg`
 - its role is discoverability and orientation for `Agentos.Live.Script`
 - covers live-script location, naming, numbering, allocation, extension choice, optional runtime behavior, and placement rules
 - supports small runnable or inspectable code snippets that agents maintain for user feedback and alignment
 - useful for prototypes, product/interface drafts, runnable design sketches, experiments, and workflow support scripts
-- should carry cited duplicated protocol context; authoritative concepts belong in `agentos-pkg`
+- should carry cited duplicated protocol context; authoritative concepts belong in `tarav-pkg`
 - does not start a workflow by itself
 - replaces `agentos-live-scripts-base` as the public conceptual role
 
@@ -472,7 +472,7 @@
 
 ### Absorbed.Skill:agentos-file-numbering-base
 
-- `agentos-file-numbering-base` is absorbed into `agentos-pkg`
+- `agentos-file-numbering-base` is absorbed into `tarav-pkg`
 - its former role was orientation for `File.Numbering.Protocol`
 - `File.Numbering.Protocol` remains an important core Agentos concept, but it is package content rather than a separate public auxiliary skill
 - compact numbering semantics belong in the `File.Numbering.Protocol` index block
@@ -483,14 +483,14 @@
 
 #### meta
 
-- current action: absorb into `agentos-pkg`
+- current action: absorb into `tarav-pkg`
 - future action: move useful operational detail from the current skill into package concept, appendix, and reference surfaces
 
 ### Parked.Skill:agentos-project-doctor
 
-- `agentos-project-doctor` is a cited surface of `agentos-pkg`
+- `agentos-project-doctor` is a cited surface of `tarav-pkg`
 - its role and redesign should be handled in a separate design session
-- likely contains diagnostic content that should cite authoritative `agentos-pkg` concepts and references
+- likely contains diagnostic content that should cite authoritative `tarav-pkg` concepts and references
 - do not resolve its final auxiliary-skill shape in this session
 
 #### meta
@@ -515,38 +515,38 @@
 - `chatlas-usage` is deprecated as a standalone `Usage.Skill`
 - `Usage.Skill` is being eliminated as a public skill concept
 - package roots are the agent-facing usage and orientation surface for packages and systems
-- Chatlas-specific durable content should move into `agentos-chatlas-pkg` index, appendix, or references
-- operational guidance should become package references or auxiliary skills under `agentos-chatlas-pkg` only when it represents a real package operation
-- `agentos-pkg` may route to `agentos-chatlas-pkg` as a dependent package, but should not absorb Chatlas-specific usage content
+- Chatlas-specific durable content should move into `tarav-chatlas-pkg` index, appendix, or references
+- operational guidance should become package references or auxiliary skills under `tarav-chatlas-pkg` only when it represents a real package operation
+- `tarav-pkg` may route to `tarav-chatlas-pkg` as a dependent package, but should not absorb Chatlas-specific usage content
 
 #### meta
 
-- current action: absorb into `agentos-chatlas-pkg`
+- current action: absorb into `tarav-chatlas-pkg`
 - implementation note: move relevant content to Chatlas package index, appendix, or references
 
-### Dependent.Package.Aux.Skill:agentos-chatlas-retention-audit
+### Dependent.Package.Aux.Skill:tarav-chatlas-retention-audit
 
-- `agentos-chatlas-retention-audit` belongs to `agentos-chatlas-pkg`
+- `tarav-chatlas-retention-audit` belongs to `tarav-chatlas-pkg`
 - its role is operational Chatlas raw-retention audit
 - audits provider raw data against Chatlas archive policy, provider-home artifacts, and previous audit reports
 - loading it means entering a retention-audit workflow, not package-neutral orientation
-- may cite `agentos-pkg` concepts for package skills, live notes, artifacts, index behavior, and audit/report discipline
-- should not be absorbed into `agentos-pkg`
-- `agentos-pkg` may route to it only as a dependent package operation
+- may cite `tarav-pkg` concepts for package skills, live notes, artifacts, index behavior, and audit/report discipline
+- should not be absorbed into `tarav-pkg`
+- `tarav-pkg` may route to it only as a dependent package operation
 
 #### meta
 
-- current action: move/classify under `agentos-chatlas-pkg`
+- current action: move/classify under `tarav-chatlas-pkg`
 - implementation note: keep as operational auxiliary skill for Chatlas retention audit
 
 ### Dependent.Package.Aux.Skill:chatlas-session-continue
 
-- `chatlas-session-continue` belongs to `agentos-chatlas-pkg`
+- `chatlas-session-continue` belongs to `tarav-chatlas-pkg`
 - its role is operational session continuation using Chatlas-maintained session data
 - resolves a prior session, extracts conversation context, and returns a continuation handoff for resuming work
 - loading it means entering a Chatlas session-recovery service, not package-neutral orientation
-- conceptual center belongs in `agentos-chatlas-pkg`; local skill framing should use cited duplicated Chatlas package content
-- may cite `agentos-pkg` only for shared package, artifact, and handoff conventions
+- conceptual center belongs in `tarav-chatlas-pkg`; local skill framing should use cited duplicated Chatlas package content
+- may cite `tarav-pkg` only for shared package, artifact, and handoff conventions
 - replaces `agentos-session-continue` as the public conceptual role
 
 #### meta
@@ -556,12 +556,12 @@
 
 ### Dependent.Package.Aux.Skill:chatlas-session-zip-transcript
 
-- `chatlas-session-zip-transcript` belongs to `agentos-chatlas-pkg`
+- `chatlas-session-zip-transcript` belongs to `tarav-chatlas-pkg`
 - its role is operational compact transcript recovery using Chatlas-maintained session data
 - resolves a prior session and returns or creates a zip-transcript summary artifact/path
 - loading it means entering a Chatlas transcript-recovery service, not package-neutral orientation
-- conceptual center belongs in `agentos-chatlas-pkg`; local skill framing should use cited duplicated Chatlas package content
-- may cite `agentos-pkg` only for shared package, artifact, and handoff conventions
+- conceptual center belongs in `tarav-chatlas-pkg`; local skill framing should use cited duplicated Chatlas package content
+- may cite `tarav-pkg` only for shared package, artifact, and handoff conventions
 - replaces `agentos-session-zip-transcript` as the public conceptual role
 
 #### meta
@@ -569,29 +569,29 @@
 - current action: rename/reframe `agentos-session-zip-transcript` to `chatlas-session-zip-transcript`
 - implementation note: keep as dependent Chatlas package auxiliary skill
 
-### Package.Aux.Skill:agentos-skills-ingenier
+### Package.Aux.Skill:tarav-skills-ingenier
 
-- `agentos-skills-ingenier` is an operational `Package.Aux.Skill` under `agentos-pkg`
+- `tarav-skills-ingenier` is an operational `Package.Aux.Skill` under `tarav-pkg`
 - its role is researching, designing, creating, and improving agent skills
 - searches available sources for reusable patterns, examples, workflows, supporting artifacts, and design evidence
 - loading it means entering a skill-engineering workflow, not package-neutral orientation
-- should cite authoritative `agentos-pkg` concepts for skill/package design, package boundaries, and duplication discipline when those concepts shape the work
+- should cite authoritative `tarav-pkg` concepts for skill/package design, package boundaries, and duplication discipline when those concepts shape the work
 - source content used by the skill should be cited so local guidance remains maintainable
 - replaces `agentos-skills-miner-ingenier` as the public conceptual role
 
 #### meta
 
-- current action: rename/reframe `agentos-skills-miner-ingenier` to `agentos-skills-ingenier`
-- implementation note: keep broad skill-engineering scope and root shared Agentos concepts in `agentos-pkg`
+- current action: rename/reframe `agentos-skills-miner-ingenier` to `tarav-skills-ingenier`
+- implementation note: keep broad skill-engineering scope and root shared Agentos concepts in `tarav-pkg`
 
 ### Package.Aux.Skill:agentos-codebase-cleanup
 
-- `agentos-codebase-cleanup` is an operational `Package.Aux.Skill` under `agentos-pkg`
+- `agentos-codebase-cleanup` is an operational `Package.Aux.Skill` under `tarav-pkg`
 - its role is codebase cleanup after implementation or during maintenance
 - checks code for integration quality, bad practices, stale structure, unnecessary duplication, poor boundaries, and cleanup opportunities
 - loading it means entering a codebase-cleanup workflow, not package-neutral orientation
-- should extract durable conceptual knowledge into `agentos-pkg` index, appendix, or references
-- local workflow guidance should be a `Cited.Duplication` surface of authoritative `agentos-pkg` concepts and references
+- should extract durable conceptual knowledge into `tarav-pkg` index, appendix, or references
+- local workflow guidance should be a `Cited.Duplication` surface of authoritative `tarav-pkg` concepts and references
 - important workflow; needs deeper design later
 - replaces `codebase-general-cleanup` as the public conceptual role
 
@@ -600,25 +600,25 @@
 - current action: rename/reframe `codebase-general-cleanup` to `agentos-codebase-cleanup`
 - future action: open a focused design session for codebase cleanup workflow quality and package citations
 
-### Package.Aux.Skill:agentos-git-commit
+### Package.Aux.Skill:tarav-git-commit
 
-- `agentos-git-commit` is an operational utility `Package.Aux.Skill` under `agentos-pkg`
+- `tarav-git-commit` is an operational utility `Package.Aux.Skill` under `tarav-pkg`
 - its role is performing deterministic git commit workflows
 - supports grouping changes, writing semantic commit messages, and committing without mixing unrelated work
 - loading it means entering a commit workflow, not package-neutral orientation
-- should extract durable conceptual knowledge into `agentos-pkg` index, appendix, or references
-- local workflow guidance should be a `Cited.Duplication` surface of authoritative `agentos-pkg` concepts and references
+- should extract durable conceptual knowledge into `tarav-pkg` index, appendix, or references
+- local workflow guidance should be a `Cited.Duplication` surface of authoritative `tarav-pkg` concepts and references
 - utility workflow; needs deeper improvement later
 - replaces `git-commit-trigger` as the public conceptual role
 
 #### meta
 
-- current action: rename/reframe `git-commit-trigger` to `agentos-git-commit`
+- current action: rename/reframe `git-commit-trigger` to `tarav-git-commit`
 - future action: open a focused design session for git commit workflow quality and package citations
 
 ### Moved.Skill:flutter-adb-usage
 
-- `flutter-adb-usage` does not belong to `agentos-pkg`
+- `flutter-adb-usage` does not belong to `tarav-pkg`
 - its role is Flutter app development and device testing through ADB/accessibility tooling
 - should move to `/Users/pereiro/projects/csc-reactor-project/csc-reactor/csc-reactor-specs/skills`
 - may still use Agentos conventions if that project adopts Agentos package/index surfaces, but ownership is project/domain-specific
@@ -626,15 +626,15 @@
 #### meta
 
 - current action: move out of `agentos-md`
-- implementation note: preserve the skill content during move; do not fold it into `agentos-pkg`
+- implementation note: preserve the skill content during move; do not fold it into `tarav-pkg`
 
 ## Session.Notes
 
 ### Traversal Tracker
 
-#### Ring 1 - agentos-pkg Core / Existing Auxiliary Skills
+#### Ring 1 - tarav-pkg Core / Existing Auxiliary Skills
 
-- [x] `agentos-pkg`
+- [x] `tarav-pkg`
 - [x] `agentos-index`
 - [x] `agentos-index-activate`
 - [x] `agentos-index-writer`
@@ -643,8 +643,8 @@
 
 #### Ring 2 - Likely agentos-pkg-Owned, Not Yet Absorbed
 
-- [x] `agentos-pkg`
-- [x] `agentos-hugentics`
+- [x] `tarav-pkg`
+- [x] `tarav-hugentics`
 - [x] `hugentics-designer`
 - [x] `hugentics-impl-designer`
 - [x] `hugentics-impl-executer`
@@ -666,7 +666,7 @@
 #### Ring 3 - Likely Dependent Package Skills
 
 - [x] `chatlas-usage`
-- [x] `agentos-chatlas-retention-audit`
+- [x] `tarav-chatlas-retention-audit`
 - [x] `agentos-session-continue`
 - [x] `agentos-session-zip-transcript`
 - [x] `agentos-skills-miner-ingenier`
@@ -689,40 +689,40 @@ For each skill or skill group:
 
 ## Session.Log
 
-- session opened to revisit Agentos skill roles after creating `agentos-pkg` and migrating Agentos Index content into it
+- session opened to revisit Agentos skill roles after creating `tarav-pkg` and migrating Agentos Index content into it
 - initial skill inventory captured as traversal tracker
 - review protocol updated — every reviewed skill gets a dedicated `Design.Index` block
-- `agentos-pkg` reviewed — package root retained; `Workflow.Neutral.Skill` concept introduced
+- `tarav-pkg` reviewed — package root retained; `Workflow.Neutral.Skill` concept introduced
 - `Package.Aux.Skill` accepted as the general concept name; entry is one possible auxiliary-skill function, not the general role
 - `agentos-index` reviewed — retained as a workflow-neutral `Package.Aux.Skill` and specific entry point to the Agentos Index subsystem
 - `agentos-index-activate` reviewed — deprecated as a standalone aux skill because its bootstrap role is absorbed by `agentos-index` and `Index.Agent` context collection
 - `agentos-index` reframed as the single public index auxiliary skill; index research, writing, diagnosis, testing, and maintenance are index functions rather than separate public skills by default
 - `agentos-index-writer`, `agentos-index-doctor`, and `agentos-index-test` reviewed — collapse into `agentos-index`, while preserving their roles as function rows and allowing future re-splitting only for concrete operational needs
-- legacy Agentos usage skill reviewed — deprecated entirely, not retained as a `Package.Aux.Skill`; `agentos-pkg` should guide agents to documentation and package surfaces
-- `agentos-hugentics` reviewed — retained as an important subsystem `Package.Aux.Skill` inside `agentos-pkg`
+- legacy Agentos usage skill reviewed — deprecated entirely, not retained as a `Package.Aux.Skill`; `tarav-pkg` should guide agents to documentation and package surfaces
+- `tarav-hugentics` reviewed — retained as an important subsystem `Package.Aux.Skill` inside `tarav-pkg`
 - `Package.Aux.Skill.Visibility` captured — aux skills are visibility, attention, and tuned-prompt surfaces; package root `SKILL.md` should act like an `AGENTS.md` for the package/system
 - `Package.Aux.Skill.Mode` captured — aux skills can be workflow-neutral subsystem surfaces or operational workflow surfaces
 - `Natural.Placement::Skills` captured — skills are natural code-like operational surfaces that can carry cited local context while remaining aligned with index, appendix, and reference surfaces
-- Hugentic nested-skill direction captured — keep operational workflow skills separate when tuned execution prompting, triggerability, and gates are valuable, while rooting shared concept placement in `agentos-pkg`
-- `hugentics-designer`, `hugentics-impl-designer`, and `hugentics-impl-executer` reviewed — retained as operational nested auxiliary skills under workflow-neutral `agentos-hugentics`
+- Hugentic nested-skill direction captured — keep operational workflow skills separate when tuned execution prompting, triggerability, and gates are valuable, while rooting shared concept placement in `tarav-pkg`
+- `hugentics-designer`, `hugentics-impl-designer`, and `hugentics-impl-executer` reviewed — retained as operational nested auxiliary skills under workflow-neutral `tarav-hugentics`
 - `trigger-design-session`, `trigger-impl-req`, and `trigger-impl-execution` reviewed — deprecated as standalone trigger-only public skills; useful activation language belongs in the corresponding Hugentic workflow-master skills
 - `trigger-hugentic-status` reviewed — rename/reframe as `hugentics-workflow-status`, a structured status workflow for active Hugentic workflows and artifacts
 - `trigger-chat-status` reviewed — rename/reframe as `hugentics-chat-status`, a short/medium chat realignment surface for reconnecting to the current conversation
 - `trigger-capture-audit` reviewed — rename/reframe as `hugentics-capture-audit`, an operational audit for significant chat material not yet captured in durable surfaces
-- `artifact-design-session` and `artifact-impl-req` reviewed — retained as workflow-neutral artifact-format auxiliary skills under `agentos-hugentics`; their local artifact context should be cited duplication of `agentos-pkg` and owning workflow-master content
-- `artifact-design-summary` reviewed — retained as workflow-neutral artifact-format auxiliary skill with ownership still pending between `agentos-hugentics`, `agentos-pkg`, or a future artifact/documentation subsystem
+- `artifact-design-session` and `artifact-impl-req` reviewed — retained as workflow-neutral artifact-format auxiliary skills under `tarav-hugentics`; their local artifact context should be cited duplication of `tarav-pkg` and owning workflow-master content
+- `artifact-design-summary` reviewed — retained as workflow-neutral artifact-format auxiliary skill with ownership still pending between `tarav-hugentics`, `tarav-pkg`, or a future artifact/documentation subsystem
 - `artifact-issue-report` reviewed — retained as workflow-neutral artifact-format auxiliary skill; companion operational workflow role named `hugentics-issue-tracker`
 - `Agentos.Live.Note` and `Agentos.Live.Script` drafted as live-surface concepts: non-stable working surfaces that can back artifacts or alignment work without being artifacts themselves
 - `agentos-live-note-base` reviewed — keep as workflow-neutral live-surface protocol auxiliary skill for `Agentos.Live.Note` for now; public rename remains open
 - `agentos-live-scripts-base` reviewed — rename/reframe as `agentos-live-script`, a workflow-neutral live-surface protocol auxiliary skill for `Agentos.Live.Script`
-- `agentos-file-numbering-base` reviewed — absorb into `agentos-pkg`; keep `File.Numbering.Protocol` as durable concept content with design depth in appendix and operational procedures in references
-- `agentos-project-doctor` parked — treat as a cited surface of `agentos-pkg` and handle doctor/diagnosis role design in a separate design session
+- `agentos-file-numbering-base` reviewed — absorb into `tarav-pkg`; keep `File.Numbering.Protocol` as durable concept content with design depth in appendix and operational procedures in references
+- `agentos-project-doctor` parked — treat as a cited surface of `tarav-pkg` and handle doctor/diagnosis role design in a separate design session
 - `Usage.Skill` deprecated as a standalone skill concept — package roots become the general agent-facing orientation surfaces
-- `chatlas-usage` reviewed — deprecated as a usage skill and absorbed into `agentos-chatlas-pkg` index, appendix, and references
-- `agentos-chatlas-retention-audit` reviewed — classify as operational `Package.Aux.Skill` under `agentos-chatlas-pkg`, not `agentos-pkg`
-- `agentos-session-continue` reviewed — rename/reframe as `chatlas-session-continue`, a Chatlas session-recovery service under `agentos-chatlas-pkg`
-- `agentos-session-zip-transcript` reviewed — rename/reframe as `chatlas-session-zip-transcript`, a Chatlas transcript-recovery service under `agentos-chatlas-pkg`
-- `agentos-skills-miner-ingenier` reviewed — rename/reframe as `agentos-skills-ingenier`, an operational skill-engineering auxiliary skill under `agentos-pkg`
-- `codebase-general-cleanup` reviewed — rename/reframe as `agentos-codebase-cleanup`, an operational codebase cleanup auxiliary skill under `agentos-pkg`
-- `git-commit-trigger` reviewed — rename/reframe as `agentos-git-commit`, an operational commit utility auxiliary skill under `agentos-pkg`
-- `flutter-adb-usage` reviewed — move out of `agentos-pkg` scope to `/Users/pereiro/projects/csc-reactor-project/csc-reactor/csc-reactor-specs/skills`
+- `chatlas-usage` reviewed — deprecated as a usage skill and absorbed into `tarav-chatlas-pkg` index, appendix, and references
+- `tarav-chatlas-retention-audit` reviewed — classify as operational `Package.Aux.Skill` under `tarav-chatlas-pkg`, not `tarav-pkg`
+- `agentos-session-continue` reviewed — rename/reframe as `chatlas-session-continue`, a Chatlas session-recovery service under `tarav-chatlas-pkg`
+- `agentos-session-zip-transcript` reviewed — rename/reframe as `chatlas-session-zip-transcript`, a Chatlas transcript-recovery service under `tarav-chatlas-pkg`
+- `agentos-skills-miner-ingenier` reviewed — rename/reframe as `tarav-skills-ingenier`, an operational skill-engineering auxiliary skill under `tarav-pkg`
+- `codebase-general-cleanup` reviewed — rename/reframe as `agentos-codebase-cleanup`, an operational codebase cleanup auxiliary skill under `tarav-pkg`
+- `git-commit-trigger` reviewed — rename/reframe as `tarav-git-commit`, an operational commit utility auxiliary skill under `tarav-pkg`
+- `flutter-adb-usage` reviewed — move out of `tarav-pkg` scope to `/Users/pereiro/projects/csc-reactor-project/csc-reactor/csc-reactor-specs/skills`

@@ -1,0 +1,28 @@
+{
+ "block_path": "Demoted.Index.Line/Rejoining",
+ "state": "done",
+ "owner": "supervisor:57663916-0731-494a-bfec-070b4a9c69d2",
+ "claimed_at": "20260805T051635Z",
+ "pending_chats": [],
+ "done_chats": [
+  "02161ec9eb991d3811af60919194f86b715059aff583e42979dbf4e627738cf7"
+ ],
+ "workers": [
+  "w3"
+ ],
+ "history": [
+  {
+   "at": "20260805T052605Z",
+   "change": {
+    "state": "done",
+    "done_chats": [
+     "02161ec9eb991d3811af60919194f86b715059aff583e42979dbf4e627738cf7"
+    ],
+    "pending_chats": [],
+    "result": "2/2 homes + HEAD"
+   }
+  }
+ ],
+ "result": "2/2 homes + HEAD",
+ "updated_at": "20260805T052605Z"
+}

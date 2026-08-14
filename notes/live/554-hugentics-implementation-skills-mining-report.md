@@ -352,13 +352,13 @@ It should validate structure, not judge design quality.
 - `skills/hugentics-impl-designer/`
 - `skills/hugentics-impl-executer/`
 - `skills/hugentics-codebase-cleaner/`
-- `skills/agentos-hugentics/references/alignment-session.md`
-- `skills/agentos-pkg/index/102-index.md`
-- `skills/agentos-pkg/appendix/Impl.Req-appendix.md`
-- `skills/agentos-pkg/appendix/Development.Principles-appendix.md`
-- `skills/agentos-skills-ingenier/references/source-registry.md`
-- `skills/agentos-skills-ingenier/references/mining-rubric.md`
-- `skills/agentos-skills-ingenier/references/custom-recommendations/`
+- `skills/tarav-hugentics/references/alignment-session.md`
+- `skills/tarav-pkg/index/102-index.md`
+- `skills/tarav-pkg/appendix/Impl.Req-appendix.md`
+- `skills/tarav-pkg/appendix/Development.Principles-appendix.md`
+- `skills/tarav-skills-ingenier/references/source-registry.md`
+- `skills/tarav-skills-ingenier/references/mining-rubric.md`
+- `skills/tarav-skills-ingenier/references/custom-recommendations/`
 
 ### External Mirrors
 

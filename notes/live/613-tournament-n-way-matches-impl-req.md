@@ -4,7 +4,7 @@
 
 - **Goal:** generalize `Agentos.Tournament` from pairwise matches with a single winner to matches over N players with a strict total ordering, following the capture of `^c20260806-47u`…`^c20260806-57u`.
 - **Status:** executed. All six slices are implemented, the full `agentos-py` suite passes at 772 tests, and a 4-way tournament was verified end to end against live `claude-code` judges. Changes are uncommitted for review.
-- **Source design:** `agentos-pkg/design/111-design.md` — `Agentos.Tournament`, `Tournament.Hook`, `Tournament.Match`, `Tournament.Judge`, `Tournament.Verdict`.
+- **Source design:** `tarav-pkg/design/111-design.md` — `Agentos.Tournament`, `Tournament.Hook`, `Tournament.Match`, `Tournament.Judge`, `Tournament.Verdict`.
 - **Prior implementation:** `notes/live/612-tournament-index-drift-impl-req.md` shipped the current pairwise engine. Nothing there was wrong; the design moved again.
 - **Motivation:** cost. Grading 1,033 index lines at ten comparisons each is 5,165 pairwise spawns; a 4-way match fills twelve comparison-slots per spawn, cutting it to ~861, and a 10-way match to ~115. Arity becomes the knob that trades inference budget against judge discrimination.
 - **In scope:** N-ary `match_players`; N-position engine framing; an ordering-valued judge contract validated against the actual arity; an envelope that records the ordering; pairwise extraction as a read-side fold in the report.
@@ -56,8 +56,8 @@ No durable records exist to migrate — `~/.agentos/tournament` is absent and ev
 
 ## Impl.Agendix
 
-- **Ordering gate `^c20260806-58u`** — the `/agentos-hugentics --impl --dev on the N-way change` turn orders this artifact. `Alignment.Mode::Interactive`, so the readiness checkpoint paused for the user.
-- **Touched — `agentos-pkg/design/111-design.md`**: `Agentos.Tournament` (`^c20260806-47u`), `Tournament.Hook` (`^c20260806-48u`), `Tournament.Match` (`^c20260806-49u`, `-50u`, `-51u`), `Tournament.Judge` (`^c20260806-52u`, and `^c20260806-9u` for the position decode), `Tournament.Verdict` (`^c20260806-53u`, `-54u`, `-55u`, `-56u`, `-57u`, plus `^c20260805-77u` on the absence of draws).
+- **Ordering gate `^c20260806-58u`** — the `/tarav-hugentics --impl --dev on the N-way change` turn orders this artifact. `Alignment.Mode::Interactive`, so the readiness checkpoint paused for the user.
+- **Touched — `tarav-pkg/design/111-design.md`**: `Agentos.Tournament` (`^c20260806-47u`), `Tournament.Hook` (`^c20260806-48u`), `Tournament.Match` (`^c20260806-49u`, `-50u`, `-51u`), `Tournament.Judge` (`^c20260806-52u`, and `^c20260806-9u` for the position decode), `Tournament.Verdict` (`^c20260806-53u`, `-54u`, `-55u`, `-56u`, `-57u`, plus `^c20260805-77u` on the absence of draws).
 - **Readiness approval `^c20260806-59u`** — the turn that ruled POI thresholds a reader concern and left the answer shape to implementer judgment. It authorizes execution.
 - **Structural** — `notes/live/612-tournament-index-drift-impl-req.md` shipped the pairwise engine this generalizes; the derivation is the evidence.
 - **Open.Space** — how a fold should weight extracted comparisons has no index home and stays unanchored by explicit user decision.

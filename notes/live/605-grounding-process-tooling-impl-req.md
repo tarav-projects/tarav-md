@@ -93,7 +93,7 @@
 
 ### Tested.Baseline
 
-- target: `Natural.Placement` in `agentos-pkg/design/100-design.md`
+- target: `Natural.Placement` in `tarav-pkg/design/100-design.md`
 - Git isolated the May 2026 content-bearing history
 - Chatlas session queries found historical sessions, while `views inline` plus local `jq` recovered exact human user turns
 - five user turns across three sessions were manually assembled into `^c20260511-0u`
@@ -103,7 +103,7 @@
 
 ### Tested.Placement.Balance
 
-- target: zero-grounding `Placement.Balance` in `agentos-pkg/design/100-design.md`
+- target: zero-grounding `Placement.Balance` in `tarav-pkg/design/100-design.md`
 - Git isolated an original six-line draft and a later three-line vocabulary rewrite from authority language to neutral origin-surface language
 - exact alphanumeric lookup found the three unchanged current lines immediately; the three rewritten lines correctly returned no exact current-wording match
 - a broader concept-name query recovered the original user conception, the finalized draft/write sequence, and the later user correction across three sessions
@@ -113,7 +113,7 @@
 
 ### Tested.Cited.Duplication
 
-- target: zero-grounding `Cited.Duplication` in `agentos-pkg/design/100-design.md`
+- target: zero-grounding `Cited.Duplication` in `tarav-pkg/design/100-design.md`
 - Git placed the current block in the May 22 consolidation history, while literal block-name lookup found only assistant-side inspection of already-produced wording
 - a session-first `--user-contains duplication` search located the relevant historical sessions; identity-scoped authoritative turn scans then returned candidate user turns quickly
 - the selected two-member support set was registered as `^c20260516-0u`; its members establish limited duplication for surface self-sufficiency and explicit in-context concept citation
@@ -126,7 +126,7 @@
 
 ### Tested.Stable.Surface
 
-- target: zero-grounding `Stable.Surface` in `agentos-pkg/design/100-design.md`
+- target: zero-grounding `Stable.Surface` in `tarav-pkg/design/100-design.md`
 - Git isolated the original five-line block in the May 22 package-index promotion and one same-day wording refinement
 - compact identity-scoped turn queries returned exact matching `Event.Ref`, `Normal.Turn.Ref`, and Anchory-ready member references without local JSON projection
 - explicit neighborhood escalation separated the useful May 11 authority feedback and May 17 alignment statement from an unrelated apparent approval turn

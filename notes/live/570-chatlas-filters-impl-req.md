@@ -6,7 +6,7 @@
 - **Scope**: filter registry + repeatable `--filter` flag on `views inline`; starter presets `slim`, `messages`, `turns`; selection flags (`--contains`/`--role`/`--around`/`--radius`) re-expressed on the same filter pipeline internally; mint echo switched to the `turns` preset.
 - **Out of scope**: the legacy named-view (`Chatlas.View.Model`) rework to model-object products (future design session, declared in `Chatlas.View`); a `--filter` mini-grammar for parameterized filters (the ergonomic flags stay the parametric surface); filters on other commands than `views inline` (extend when workflows demand).
 - **Repos**: `agentos-chatlas-py` only (`normalization/session_model/_views.py`, new `normalization/session_model/filters.py`, `inline.py`, `anchory.py`, `commands.py`, `tests/test_e2e_chatlas.py`).
-- **Source**: this design session — `Chatlas.View`/`Chatlas.Filter` index blocks (agentos-chatlas-pkg `design/100-design.md`, committed `f6f0e58`); builds on 569 (executed, uncommitted in the worktree — this work stacks on it).
+- **Source**: this design session — `Chatlas.View`/`Chatlas.Filter` index blocks (tarav-chatlas-pkg `design/100-design.md`, committed `f6f0e58`); builds on 569 (executed, uncommitted in the worktree — this work stacks on it).
 - **Status**: implemented (2026-07-08); all three slices, suite 125 green, live-verified (`--anchor 20260708-0 --filter turns`)
 
 ## Impl.Index

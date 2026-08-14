@@ -1,0 +1,11 @@
+{
+ "event": "SUPERVISOR ADJUDICATION: tokenized-approval grounding standard",
+ "trigger": "w10 returned 31/41 as drift, rejecting ::approve idx-edition:<token> turns as grounding. This contradicted w1/w3/w4/w5/w11 who accepted tokenized approvals as qualifying user turns and landed ~300 lines on that basis.",
+ "evidence": "Supervisor resolved anchors c20260731-194u/116u/193u (w10 drift) and c20260731-79u/60u (w2 drift) via anchory resolve --detail context. In EVERY case the registered v4 line-bound anchor lists the tokenized approval user turns (::approve idx-edition:<token>, ::land-all-approved) as its support members.",
+ "ruling": "A ::approve idx-edition:<token> user turn IS a qualifying grounding turn for the lines contained in the edition it names. It is the Hugentic capture gate by design - a deliberate, specific accept of a named edition - and Anchory registers it as the line-bound support member. It is categorically different from a bare conversational affirmation of flowing prose.",
+ "limit": "The token grounds ONLY the lines actually contained in the named edition. A worker must still verify the line was in that edition content. Proximity to a token turn is not grounding.",
+ "inconsistency_noted": "w10 accepted conversational affirmations (YEEEES, VERY GOOD) while rejecting structured tokenized approvals - backwards relative to the systems own grounding model.",
+ "impact": "48 lines on fb3b...ab38 were rejected under the wrong standard: 17 by w2 (rounds 1-2) + 31 by w10. Being requeued for re-inspection under the corrected standard.",
+ "supervisor_error": "I accepted w2 rounds 1-2 drift findings without resolving the anchors myself. Correcting now.",
+ "recorded_at": "20260805T064955Z"
+}

@@ -4,7 +4,7 @@
 
 - **Goal:** implement `Agentos.Wayfinder` as a standalone `agentos-py` library, expose it through `agentos wayfinder`, and deliver the first end-to-end `index.block` reference path required by the POI system.
 - **Status:** implemented and verified.
-- **Source design:** `skills/agentos-pkg/design/110-design.md`, the Wayfinder-backed POI blocks in `skills/agentos-pkg/design/107-design.md`, and the execution authorization at `^c20260729-46u`.
+- **Source design:** `skills/tarav-pkg/design/110-design.md`, the Wayfinder-backed POI blocks in `skills/tarav-pkg/design/107-design.md`, and the execution authorization at `^c20260729-46u`.
 - **In scope:** canonical typed references, global registry and relocation hints, deterministic resolver composition, structured resolution results and POIs, Index block resolution, POI-class reference helpers, migration of Index depot lookup to the shared registry, thin CLI registration, tests, and project guidance.
 - **Out of scope:** project-local registry providers, non-Index reference types, semantic agent relocation, automatic filesystem search, `Poi.Bless`, and a complete generic POI runtime.
 
@@ -89,7 +89,7 @@
 
 - Refresh the editable `agentos-cli` tool.
 - Register current package roots through the new command so the live global registry can resolve the Agentos package indexes.
-- Run relevant full suites, Ruff, diff checks, and real `agentos wayfinder resolve index://agentos-pkg/POI.Catalog`.
+- Run relevant full suites, Ruff, diff checks, and real `agentos wayfinder resolve index://tarav-pkg/POI.Catalog`.
 - Audit every objective requirement against source, tests, and installed runtime output.
 
 ## Risks And Deviation Triggers
@@ -113,16 +113,16 @@
 ## Impl.Agendix
 
 - [touched] autonomous design and execution authorization ^c20260729-46u
-- [touched] `Agentos.Wayfinder` and its resolution boundary from `skills/agentos-pkg/design/110-design.md`
-- [touched] `Wayfinder.Reference`, `Wayfinder.Registry`, `Wayfinder.Resolver`, and `Wayfinder.Resolution` from `skills/agentos-pkg/design/110-design.md`
-- [touched] `Wayfinder.Reference.Type::Index.Block` from `skills/agentos-pkg/design/110-design.md`
-- [touched] Wayfinder-backed `POI.Class`, `POI.Catalog`, `POI.Documentation`, and `POI.Explain` from `skills/agentos-pkg/design/107-design.md`
+- [touched] `Agentos.Wayfinder` and its resolution boundary from `skills/tarav-pkg/design/110-design.md`
+- [touched] `Wayfinder.Reference`, `Wayfinder.Registry`, `Wayfinder.Resolver`, and `Wayfinder.Resolution` from `skills/tarav-pkg/design/110-design.md`
+- [touched] `Wayfinder.Reference.Type::Index.Block` from `skills/tarav-pkg/design/110-design.md`
+- [touched] Wayfinder-backed `POI.Class`, `POI.Catalog`, `POI.Documentation`, and `POI.Explain` from `skills/tarav-pkg/design/107-design.md`
 
 ## Impl.Log
 
 - 2026-07-29: design phase completed in `Alignment.Mode::Autonomous`; baseline focused tests passed in `agentos-py` (13) and `agentos-cli` (7).
 - 2026-07-29: implemented strict canonical references, the locked global registry, Index-backed resolution, deterministic resolution POIs, POI-class helpers, shared Index depot lookup, and the thin umbrella CLI.
 - 2026-07-29: focused Wayfinder and depot tests passed (20); the complete `agentos-cli` suite passed (64); Ruff and `git diff --check` passed in both repositories.
-- 2026-07-29: refreshed the installed editable CLI, registered `agentos-pkg`, `agentos-chatlas-pkg`, and `md-library-pkg`, confirmed `agentos wayfinder check`, and resolved `index://agentos-pkg/POI.Catalog` to the canonical `design/107-design.md` block.
+- 2026-07-29: refreshed the installed editable CLI, registered `tarav-pkg`, `tarav-chatlas-pkg`, and `md-library-pkg`, confirmed `agentos wayfinder check`, and resolved `index://tarav-pkg/POI.Catalog` to the canonical `design/107-design.md` block.
 - 2026-07-29: an initial full regression briefly intersected concurrent support-set grounding edits; after that work aligned its tests, the final complete `agentos-py` suite passed (563).
 - 2026-07-29: project-scope `agentos skw check` found no package POIs and stopped on 11 pre-existing edition-history POIs (nine v1 support records and two missing associations), outside this implementation boundary.

@@ -5,7 +5,7 @@
 - **Goal:** migrate the active Python Agentos linters identified in `agentos-py`, `agentos-chatlas-py`, and `agentos-canvas-py` onto the common `POI.System` representation and reporting path.
 - **Status:** complete.
 - **Nature:** a marathon, behavior-preserving normalization. Checks keep deciding exactly what they decide today; this effort changes how their results are identified, registered, documented, rendered, explained, and, where already supported, blessed.
-- **Source design:** `POI.System`, `POI.Check`, `POI.Class`, `POI.Instance`, `POI.Catalog`, `POI.Documentation`, `POI.Renderer`, `POI.Explain`, and `Poi.Bless` in `skills/agentos-pkg/design/107-design.md`; Wayfinder resolution in `skills/agentos-pkg/design/110-design.md`.
+- **Source design:** `POI.System`, `POI.Check`, `POI.Class`, `POI.Instance`, `POI.Catalog`, `POI.Documentation`, `POI.Renderer`, `POI.Explain`, and `Poi.Bless` in `skills/tarav-pkg/design/107-design.md`; Wayfinder resolution in `skills/tarav-pkg/design/110-design.md`.
 - **Predecessors:** `notes/live/601-poi-catalog-renderer-impl-req.md`, `agentos-py/notes/live/700-linter-core-unification-impl-req.md`, and `agentos-py/notes/live/706-skw-poi-unlock-token-mvp-impl-req.md`.
 - **In scope:** shared POI/reporting foundations; catalog registration; package-owned POI chapters; adapters for all included validators; common text/JSON representation; explanation; preservation of existing instance and blessing identities; explicit documentation placeholders.
 - **Out of scope:** changing check predicates, execution order, defaults, severity, exit policy, repair behavior, mutation behavior, blessing policy, unlock requirements, or domain interpretation; completing undocumented POI semantics; adding checks; converting ordinary status, health, query, runtime exception, or readiness-gate surfaces merely because they contain the word "check" or "POI"; inventorying or migrating Canvas JS, Iterante, or unrelated maintained projects.
@@ -51,16 +51,16 @@
 
 | Producer | Current result surface | Natural class owner | Documentation state |
 | --- | --- | --- | --- |
-| Index linter | common `POI.System` adapter over `LinterFinding` | `agentos-pkg`; injected Chatlas checks in `agentos-chatlas-pkg` | partially complete; preserve unresolved classes |
-| Skillware check/project check | `agentos.skwlint.Poi`, `CheckReport`, bespoke renderer and blessing | `agentos-pkg` | strong existing `references/check.md`; some classes still need placeholders |
-| Skillware edition-history check | `EditionHistoryFinding` | `agentos-pkg` | implementation and developer reference are usable |
-| Markdown blocks lint | issue dictionaries | `agentos-pkg` | partial; Index mappings document many classes |
-| Anchory depot check | `AnchoryCheckFinding` | `agentos-pkg` | system semantics documented; class-level guidance incomplete |
-| Bloberia check | `BloberiaCheckFinding` | `agentos-pkg` | system semantics documented; class-level guidance incomplete |
-| Wayfinder registry and resolution checks | `WayfinderRegistryFinding` and `WayfinderResolutionPOI` | `agentos-pkg` | model is documented; bootstrap handling required |
-| Tara tape check | `list[str]` issue messages | `agentos-pkg` | insufficiently structured; mostly placeholder migration |
-| Chatlas zip-transcript summary commit linter | immediate `CliError` refusal branches | `agentos-chatlas-pkg` | invariant is clear in code; class guidance is absent |
-| Canvas render lint | `RenderError` embedded in render flow | `agentos-canvas-pkg` | protocol documentation exists; class guidance is partial |
+| Index linter | common `POI.System` adapter over `LinterFinding` | `tarav-pkg`; injected Chatlas checks in `tarav-chatlas-pkg` | partially complete; preserve unresolved classes |
+| Skillware check/project check | `agentos.skwlint.Poi`, `CheckReport`, bespoke renderer and blessing | `tarav-pkg` | strong existing `references/check.md`; some classes still need placeholders |
+| Skillware edition-history check | `EditionHistoryFinding` | `tarav-pkg` | implementation and developer reference are usable |
+| Markdown blocks lint | issue dictionaries | `tarav-pkg` | partial; Index mappings document many classes |
+| Anchory depot check | `AnchoryCheckFinding` | `tarav-pkg` | system semantics documented; class-level guidance incomplete |
+| Bloberia check | `BloberiaCheckFinding` | `tarav-pkg` | system semantics documented; class-level guidance incomplete |
+| Wayfinder registry and resolution checks | `WayfinderRegistryFinding` and `WayfinderResolutionPOI` | `tarav-pkg` | model is documented; bootstrap handling required |
+| Tara tape check | `list[str]` issue messages | `tarav-pkg` | insufficiently structured; mostly placeholder migration |
+| Chatlas zip-transcript summary commit linter | immediate `CliError` refusal branches | `tarav-chatlas-pkg` | invariant is clear in code; class guidance is absent |
+| Canvas render lint | `RenderError` embedded in render flow | `tarav-canvas-pkg` | protocol documentation exists; class guidance is partial |
 
 ### Explicitly Adjacent, Not Automatically Included
 
@@ -131,7 +131,7 @@
 ### Slice 2 - Index Completion And Package Catalog Skeletons
 
 - Keep all Index checks unchanged and migrate currently unresolved registrations to explicit owner-package placeholder blocks.
-- Create or complete `poi` chapter roots for `agentos-pkg`, `agentos-chatlas-pkg`, and `agentos-canvas-pkg`.
+- Create or complete `poi` chapter roots for `tarav-pkg`, `tarav-chatlas-pkg`, and `tarav-canvas-pkg`.
 - Preserve the existing Chatlas injection boundary.
 - **Observable:** every Index-emittable class explains to either authoritative documentation or an explicit placeholder; no class disappears behind a resolution failure.
 - **Check:** catalog completeness plus before/after Index linter parity for situations, severity, ordering, blocked checks, and exit code.
@@ -156,7 +156,7 @@
 
 - Adapt Skillware check and project-check reports to the common report envelope.
 - Preserve parser-floor diagnostics as diagnostics while retaining intentional command compatibility.
-- Move Skillware POI classes into the `agentos-pkg` catalog using the existing check reference as authoritative input.
+- Move Skillware POI classes into the `tarav-pkg` catalog using the existing check reference as authoritative input.
 - Route text/JSON through the common renderer while retaining status entries and project summaries.
 - Rewire `bless` and suppression to common instances without changing accepted kinds, unlock requirements, lock format, or existing `poi_hash` values.
 - Retire `agentos.skwlint.Poi`; retain `Skw.Network` algorithms in an appropriately domain-owned module.
@@ -209,7 +209,7 @@
 - One importable common POI model and report boundary serves every included linter.
 - Every emitted POI instance names exactly one package-owned class reference.
 - Every registered class resolves to authoritative documentation or an explicit placeholder block.
-- `agentos poi explain` works across engaged `agentos-pkg`, `agentos-chatlas-pkg`, and `agentos-canvas-pkg` catalogs.
+- `agentos poi explain` works across engaged `tarav-pkg`, `tarav-chatlas-pkg`, and `tarav-canvas-pkg` catalogs.
 - Parser/floor diagnostics remain distinguishable from POIs.
 - Existing Skillware POI hashes, blessings, suppression records, unlock gates, and re-drift behavior remain valid.
 - Wayfinder resolution failures render without catalog recursion.
@@ -234,7 +234,7 @@
 - 2026-07-29: retired `agentos.skwlint.Poi`; moved backend-neutral dependency drift into `agentos.skw.network`.
 - 2026-07-29: retained Skillware's legacy hash formula, lock and blessing behavior, unlock gates, parser compatibility POIs, and distinct `Closure.Parser` diagnostics.
 - 2026-07-29: normalized raw producer codes into valid canonical Skw class addresses while preserving the raw codes as selectors and evidence.
-- 2026-07-29: added package-owned catalog blocks and composition-root completeness and `poi explain` tests for `agentos-pkg`, `agentos-chatlas-pkg`, and `agentos-canvas-pkg`.
+- 2026-07-29: added package-owned catalog blocks and composition-root completeness and `poi explain` tests for `tarav-pkg`, `tarav-chatlas-pkg`, and `tarav-canvas-pkg`.
 - 2026-07-29: moved the duplicate `Wayfinder.Resolution.POI` definition into its canonical POI chapter and completed six missing Index class blocks discovered by runtime-resolution audit.
 - 2026-07-29: strengthened catalog completeness to cover foundation and Chatlas-injected Index classes plus the bootstrap Wayfinder class.
 - 2026-07-29: completed installed-CLI smoke tests, package checks, full suites, static checks, obsolete-model search, and the acceptance audit.
@@ -258,8 +258,8 @@
 - Boundary tests: edition-history project policy and every Chatlas commit-refusal branch exercise their real command-domain boundaries.
 - Skillware invariants: tests preserve the exact 10-character hash formula, blessing and suppression behavior, repeatable unlock receipts, lock nonmutation on gate failure, and new identity after re-drift.
 - Consolidation: `agentos.skwlint.Poi` and its module are retired; repository-wide search found no included Python consumer or parallel `Poi` model.
-- Package checks: `agentos-pkg` and `agentos-chatlas-pkg` pass structural Index checks when optional line-grounding coverage is excluded; `agentos-pkg` also passes `agentos skw check --skill`.
-- Baseline note: `agentos-canvas-pkg` catalog discovery and all Canvas class explanations pass, while its package-wide Index check still rejects the pre-existing committed `index/000-index.md` and `index/100-index.md` legacy layout. Normalizing that package structure is outside this linter-result migration.
+- Package checks: `tarav-pkg` and `tarav-chatlas-pkg` pass structural Index checks when optional line-grounding coverage is excluded; `tarav-pkg` also passes `agentos skw check --skill`.
+- Baseline note: `tarav-canvas-pkg` catalog discovery and all Canvas class explanations pass, while its package-wide Index check still rejects the pre-existing committed `index/000-index.md` and `index/100-index.md` legacy layout. Normalizing that package structure is outside this linter-result migration.
 - Baseline note: whole-repository Ruff remains noisy in unrelated deprecated and pre-existing files; changed-file Ruff coverage is clean.
 
 ### Migration Matrix
@@ -267,12 +267,12 @@
 | Producer | Internal result retained | Public POI owner | Identity | Exit policy |
 | --- | --- | --- | --- | --- |
 | Index | `LinterFinding` | producer-declared package | common deterministic ID | unchanged |
-| Markdown blocks | issue dictionaries | `agentos-pkg` | common deterministic ID | unchanged |
-| Anchory | `AnchoryCheckFinding` | `agentos-pkg` | common deterministic ID | unchanged |
-| Bloberia | `BloberiaCheckFinding` | `agentos-pkg` | common deterministic ID | unchanged |
-| Wayfinder | registry finding plus bootstrap resolution POI | `agentos-pkg` | common or bootstrap-safe deterministic ID | unchanged |
-| Skillware | `SkillwarePOIInstance` adapter over existing situations | `agentos-pkg` | legacy 10-character hash | unchanged |
-| Edition history | `EditionHistoryFinding` | `agentos-pkg` | legacy-formula deterministic hash | unchanged |
-| Tara tape | existing issue strings | `agentos-pkg` | target, code, message, and ordinal | unchanged success exit |
-| Chatlas summary commit | existing invariant branches | `agentos-chatlas-pkg` | common deterministic ID carried by `CliError` | unchanged refusal |
-| Canvas render | `RenderError` and separate `RenderAction` | `agentos-canvas-pkg` | target, rule, message, and ordinal | unchanged |
+| Markdown blocks | issue dictionaries | `tarav-pkg` | common deterministic ID | unchanged |
+| Anchory | `AnchoryCheckFinding` | `tarav-pkg` | common deterministic ID | unchanged |
+| Bloberia | `BloberiaCheckFinding` | `tarav-pkg` | common deterministic ID | unchanged |
+| Wayfinder | registry finding plus bootstrap resolution POI | `tarav-pkg` | common or bootstrap-safe deterministic ID | unchanged |
+| Skillware | `SkillwarePOIInstance` adapter over existing situations | `tarav-pkg` | legacy 10-character hash | unchanged |
+| Edition history | `EditionHistoryFinding` | `tarav-pkg` | legacy-formula deterministic hash | unchanged |
+| Tara tape | existing issue strings | `tarav-pkg` | target, code, message, and ordinal | unchanged success exit |
+| Chatlas summary commit | existing invariant branches | `tarav-chatlas-pkg` | common deterministic ID carried by `CliError` | unchanged refusal |
+| Canvas render | `RenderError` and separate `RenderAction` | `tarav-canvas-pkg` | target, rule, message, and ordinal | unchanged |

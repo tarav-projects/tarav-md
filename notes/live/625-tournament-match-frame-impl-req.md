@@ -213,7 +213,7 @@ Consequences that motivate this work:
 - `uv run pytest tests/` — 1876 passed.
 - `uv run ruff check src tests` — clean.
 - End-to-end preview against the real index surfaces
-  (`agentos-pkg/design/111-design.md` typed against `106-design.md`): a five-line
+  (`tarav-pkg/design/111-design.md` typed against `106-design.md`): a five-line
   match rendered the seven type definitions **once**, shuffled, with each card
   citing its code. The material a card used to duplicate five times per match now
   appears once.

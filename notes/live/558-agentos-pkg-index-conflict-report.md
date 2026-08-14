@@ -1,7 +1,7 @@
-# agentos-pkg Index — Conflict Report
+# tarav-pkg Index — Conflict Report
 
 > Diagnosis-only (`Maintenance.System`: report-first, evidence-based). No fixes applied.
-> Scope: all `skills/agentos-pkg/index/` flat files `000`–`106`. Date: 2026-06-12.
+> Scope: all `skills/tarav-pkg/index/` flat files `000`–`106`. Date: 2026-06-12.
 > Each issue: involved blocks (with file) + short problem statement.
 
 Counts: 3 contradictions/wrong-refs · 4 naming-drift · 2 dangling-refs · 3 coverage-gaps · 3 overlaps · 3 minor.

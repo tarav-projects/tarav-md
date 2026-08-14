@@ -1,7 +1,7 @@
 # 615 — Compaction Boundary Blocks Retrofit Grounding
 
 Status: open issue, mitigation available, no fix attempted.
-Discovered during the `agentos-pkg` Index.Retrofit campaign (`notes/live/611-agentos-pkg-grounding-campaign.md`), passes 2 and 4.
+Discovered during the `tarav-pkg` Index.Retrofit campaign (`notes/live/611-agentos-pkg-grounding-campaign.md`), passes 2 and 4.
 
 ## The Issue
 
@@ -63,6 +63,6 @@ Not investigated — parked here rather than guessed at:
 ## Related
 
 - `notes/live/611-agentos-pkg-grounding-campaign.md` — campaign report; the `Grounding.Log` entries for passes 2 and 4 carry the primary evidence
-- `agentos-pkg` `references/index-retrofit.md` — supervisor contract (survey pass, session nomination)
-- `agentos-pkg` `references/index-retrofit-worker.md` — worker contract (support requirements)
+- `tarav-pkg` `references/index-retrofit.md` — supervisor contract (survey pass, session nomination)
+- `tarav-pkg` `references/index-retrofit-worker.md` — worker contract (support requirements)
 - separate but adjacent finding from the same campaign: some index vocabulary appears in **zero** user turns corpus-wide and may be agent-authored, which is a different reason for unreachable grounding than this one

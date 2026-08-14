@@ -8,7 +8,7 @@
 - **out of scope:** integrating later modules such as `--ground`, `--diagnose`, or `--test`
 - **out of scope:** broad cleanup of every index-adjacent appendix or reference file beyond the search/write merge and directly affected stable callers
 - **status:** completed
-- **source:** 2026-06-27 chat design on `agentos-index` as a `Batchy.Skill` router with `--search` and `--write`; current stable surfaces inspected in `agentos-md/skills/agentos-index/SKILL.md`, `agentos-md/skills/agentos-index-writer/SKILL.md`, `agentos-md/skills/agentos-batchy-skills/SKILL.md`, `agentos-md/skills/agentos-pkg/index/101-index.md`, `agentos-md/skills/agentos-pkg/index/107-index.md`, `agentos-md/skills/agentos-pkg/references/launch-runtime.md`
+- **source:** 2026-06-27 chat design on `agentos-index` as a `Batchy.Skill` router with `--search` and `--write`; current stable surfaces inspected in `agentos-md/skills/agentos-index/SKILL.md`, `agentos-md/skills/agentos-index-writer/SKILL.md`, `agentos-md/skills/tarav-batchy-skills/SKILL.md`, `agentos-md/skills/tarav-pkg/index/101-index.md`, `agentos-md/skills/tarav-pkg/index/107-index.md`, `agentos-md/skills/tarav-pkg/references/launch-runtime.md`
 
 ## Impl.Index
 
@@ -37,7 +37,7 @@
 ### Agentos.Index.Search.Model
 
 - the canonical search/load model is routing-first selective loading
-- the older full-index preload model in `agentos-pkg/references/launch-runtime.md` is stale
+- the older full-index preload model in `tarav-pkg/references/launch-runtime.md` is stale
 - the `search` module should define router-first lookup, selective block loading, appendix discovery/loading rules, citation behavior, and unresolved-name handling
 - after the refactor, stable surfaces should treat `agentos-index` as the canonical entry place for working with the index system
 
@@ -45,7 +45,7 @@
 
 - the write guidance currently in `agentos-index-writer` should move into the `write` module of `agentos-index`
 - the `write` module should carry the durable operating guidance needed for approved index and appendix edits: write gates, naming, placement, write loop, and post-write maintenance
-- quality-calibration depth such as `agentos-pkg/references/index-block-catalog.md` should stay as reference depth rather than being copied into the root skill
+- quality-calibration depth such as `tarav-pkg/references/index-block-catalog.md` should stay as reference depth rather than being copied into the root skill
 - stable surfaces that currently name `agentos-index-writer` should be updated to name `agentos-index`
 
 ## Execution.Plan
@@ -75,8 +75,8 @@
 ### Slice 3 — Remove `agentos-index-writer` and patch stable callers
 
 - delete `agentos-md/skills/agentos-index-writer/SKILL.md` after its content is integrated
-- patch stable surfaces that still present `agentos-index-writer` as current, especially `agentos-md/skills/agentos-index/SKILL.md` and `agentos-md/skills/agentos-batchy-skills/SKILL.md`
-- patch the stable index blocks in `agentos-md/skills/agentos-pkg/index/104-index.md` that still name `agentos-index-writer` as operational detail for `Write.Trigger.Gated` and `Content.Verbatim.Gated`
+- patch stable surfaces that still present `agentos-index-writer` as current, especially `agentos-md/skills/agentos-index/SKILL.md` and `agentos-md/skills/tarav-batchy-skills/SKILL.md`
+- patch the stable index blocks in `agentos-md/skills/tarav-pkg/index/104-index.md` that still name `agentos-index-writer` as operational detail for `Write.Trigger.Gated` and `Content.Verbatim.Gated`
 - path: index skill surfaces, directly affected stable callers, and directly affected stable index blocks
 - observable: stable package docs present `agentos-index` as the single public route for index writing
 - check: `rg "agentos-index-writer" agentos-md/skills` returns no hits outside deprecated or historical surfaces
@@ -84,9 +84,9 @@
 
 ### Slice 4 — Align the canonical load model
 
-- update or replace `agentos-md/skills/agentos-pkg/references/launch-runtime.md` so it matches the new `agentos-index --search` model
+- update or replace `agentos-md/skills/tarav-pkg/references/launch-runtime.md` so it matches the new `agentos-index --search` model
 - remove the old “load the full index first” runtime as stable guidance
-- path: `agentos-pkg` stable references that define index runtime/loading behavior
+- path: `tarav-pkg` stable references that define index runtime/loading behavior
 - observable: no stable reference contradicts routing-first selective loading
 - check: read `agentos-index/SKILL.md` and `launch-runtime.md` together and confirm they describe one coherent search/load model
 - status: completed
@@ -95,4 +95,4 @@
 
 - 2026-06-27: Created from accepted chat design to make `agentos-index` the single public Batchy router skill for the index subsystem and absorb `agentos-index-writer` into explicit modules.
 - 2026-06-27: Executed inside the `agentos-md` git repo because the umbrella `agentos-project` root is not itself a git repository; all touched implementation surfaces for this request lived under `agentos-md`.
-- 2026-06-27: Replaced `agentos-index` root skill with a Batchy router shape, added `search` and `write` reference-backed modules, deleted `agentos-index-writer`, patched stable callers, and rewrote `agentos-pkg/references/launch-runtime.md` to the routing-first selective load model.
+- 2026-06-27: Replaced `agentos-index` root skill with a Batchy router shape, added `search` and `write` reference-backed modules, deleted `agentos-index-writer`, patched stable callers, and rewrote `tarav-pkg/references/launch-runtime.md` to the routing-first selective load model.

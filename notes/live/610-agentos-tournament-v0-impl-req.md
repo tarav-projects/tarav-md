@@ -4,7 +4,7 @@
 
 - **Goal:** implement the first runnable cut of `Agentos.Tournament` — a domain-blind comparative-evaluation engine that renders player pairs through consumer hooks, spawns one judge agent per match, and accumulates verdict records.
 - **Status:** executed. All seven slices are implemented, `agentos tournament` is registered in `agentos-cli`, 66 tournament tests and the full `agentos-py` suite (705 tests) pass, and the engine was verified end to end against live `claude-code` judges. Changes are uncommitted for review.
-- **Source design:** the `Agentos.Tournament` block family in `agentos-pkg/design/111-design.md` (landed; eight blocks, 66 grounded lines), grounded on `Accountable.Assertion` (`agentos-pkg/design/107-design.md` is the POI family; `design/106-design.md` owns `Accountable.Assertion`, `Producer.Aids.Checker`, `Program.Hardness`), `Agentos.Bloberia` (`design/109-design.md`), and `POI.System` (`design/107-design.md`).
+- **Source design:** the `Agentos.Tournament` block family in `tarav-pkg/design/111-design.md` (landed; eight blocks, 66 grounded lines), grounded on `Accountable.Assertion` (`tarav-pkg/design/107-design.md` is the POI family; `design/106-design.md` owns `Accountable.Assertion`, `Producer.Aids.Checker`, `Program.Hardness`), `Agentos.Bloberia` (`design/109-design.md`), and `POI.System` (`design/107-design.md`).
 - **Borrowed implementations:** `agentos-iterante-py` (`src/iterante/ctx.py`, `contract.py`, `locking.py`, `state.py`) for hook plumbing; `agentos-chatlas-py/src/agentos_chatlas/products.py:418` (`chatlas_products_run_produce`) for the agent fan-out shape; `agentos.agent.run_runtime` for the spawn.
 - **In scope:** the record model and its Bloberia-backed store, consumer hook loading with per-tournament code snapshot, hook-purity enforcement, judge-output contract validation, single-match execution through `agentos.agent`, a `agentos tournament` CLI with concurrent fan-out, a default pair sampler with hook override, and raw accumulation reporting.
 - **Out of scope:** any ranking or scoring model (`Standing` is parked by explicit user decision — see Deviation D1), cross-tournament aggregation, adaptive/uncertainty-driven sampling beyond a declared seam, POI classes for domain findings, a judge-consistency analysis surface, and any consumer of the engine (the index-line use case is a later `Impl.Req`).
@@ -167,13 +167,13 @@ Every slice below is **done**. Execution order deviated from written order once 
 
 ### Execution
 
-- **Authorization gate ^c20260805-86u.** Execution was authorized by the `/agentos-hugentics --exec --ATO 610` turn, anchored as `^c20260805-86u`. Everything below this line was produced under that gate.
+- **Authorization gate ^c20260805-86u.** Execution was authorized by the `/tarav-hugentics --exec --ATO 610` turn, anchored as `^c20260805-86u`. Everything below this line was produced under that gate.
 - **Result.** All seven slices landed. 66 tournament tests pass; the full `agentos-py` suite passes at 705 tests. `agentos tournament create|list|run|show` is registered and was exercised live against `claude-code` / `claude-sonnet-4-5-20250929`: 3 concurrent matches, 0 failures, and the deliberately weak player (`- [CT] stuff should probably be handled well`) lost both its matches (w0 l2 m2) — the tail behavior the system exists to surface.
 - **Uncommitted.** Implementation changes are left uncommitted for user review, per the execute workflow.
 
 ### Blockers
 
-- **B1 — cleared.** The `Agentos.Tournament` block family landed to `agentos-pkg/design/111-design.md` with a `000-INDEX.md` router entry: eight blocks (`Agentos.Tournament`, `Tournament.Definition`, `Tournament.Player`, `Tournament.Hook`, `Tournament.Match`, `Tournament.Judge`, `Tournament.Verdict`, `Tournament.Verdict::No.Contest`), 66 typed lines, all line-linked and block-grounded, linter clean at 0 errors with the opt-in `line-approval` and `line-verbatim-gate` checks passing. `Tournament.Hook` was added after this artifact was first written; the hook design in `Impl.Index` is now index-backed rather than chat-only.
+- **B1 — cleared.** The `Agentos.Tournament` block family landed to `tarav-pkg/design/111-design.md` with a `000-INDEX.md` router entry: eight blocks (`Agentos.Tournament`, `Tournament.Definition`, `Tournament.Player`, `Tournament.Hook`, `Tournament.Match`, `Tournament.Judge`, `Tournament.Verdict`, `Tournament.Verdict::No.Contest`), 66 typed lines, all line-linked and block-grounded, linter clean at 0 errors with the opt-in `line-approval` and `line-verbatim-gate` checks passing. `Tournament.Hook` was added after this artifact was first written; the hook design in `Impl.Index` is now index-backed rather than chat-only.
 
 ### Decisions in open space
 
