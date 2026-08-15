@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **Scope:** add `tarav chatlas touch-heuristics quotes --session <selector> --min-length 40 --threshold 0.75 --lookback 5` as a read-only tool over one authoritative `Chatlas.Session.Model`.
-- **Status:** ready for autonomous execution.
+- **Status:** complete and verified.
 - **Source:** the user identified a significant user quotation of preceding visible assistant text as `Touch.Evidence`, accepted bounded predecessor search plus configurable length/alignment gates, and authorized autonomous development. ^c20260814-11u
 - **Out of scope:** changing normalization, annotating or persisting findings, interpreting agreement/approval/truth, indexing the corpus, or adding touch heuristics other than quotations.
 
@@ -47,21 +47,21 @@
 
 ### Vertical.Slice 1 — Alignment engine and evidence projection
 
-- **Status:** pending.
+- **Status:** complete.
 - **RED:** focused tests establish exact normalized substring detection, fuzzy local alignment, original spans, turn refs, threshold/minimum-length exclusion, and bounded predecessor distance.
 - **GREEN:** add one focused Chatlas module that projects visible normal turns, aligns each user turn against its bounded assistant predecessors, and returns the evidence contract.
 - **Check:** `uv run pytest tests/chatlas/test_touch_heuristics.py`.
 
 ### Vertical.Slice 2 — Single-session CLI
 
-- **Status:** pending.
+- **Status:** complete.
 - **RED:** command tests require the accepted parser shape, selector resolution, shared `--json` output, validation failures, and an end-to-end quotation finding from a normalized Codex session.
 - **GREEN:** register `touch-heuristics quotes`, add the command handler, and resolve `--session` against session id, URI, or identity hash before loading the authoritative model.
 - **Check:** focused CLI/output tests plus `tarav chatlas touch-heuristics quotes --help` after editable reinstall.
 
 ### Vertical.Slice 3 — Documentation and regression verification
 
-- **Status:** pending.
+- **Status:** complete.
 - Update `tarav-py/AGENTS.md` because the public Chatlas CLI surface changes.
 - Run focused Chatlas tests, the complete Chatlas test directory, Ruff on touched Python files, strict project Skw checks where applicable, and `git diff --check` in both repositories.
 - Inspect a real session result without treating its FPAO findings as persisted truth.
@@ -84,4 +84,7 @@
 
 - 2026-08-14 — design and autonomous execution authorized by ^c20260814-11u.
 - 2026-08-14 — tooling-name drift: the live-surface and workflow references still say `agentos`; the installed and repository-owned CLI is `tarav`, whose equivalent prefix/query/Anchory commands were used.
-
+- 2026-08-14 — checkpointed this ImplReq in `tarav-chatlas-md` at `2f1573a` and the pre-development Python tree in `tarav-py` at `6fb3c56`, then re-read the request cold before implementation.
+- 2026-08-14 — completed the pure quote-evidence projection, exact and fuzzy local alignment, bounded visible-assistant lookback, session selector resolution, CLI parser/handler, text and JSON output, tests, and command documentation.
+- 2026-08-14 — verification: 7 focused tests and all 501 Chatlas tests passed; Ruff check/format and both repository diff checks passed. Strict Skw reported no diagnostics and no POI against touched files; its nonzero status came from 30 pre-existing advisory POIs elsewhere in the project.
+- 2026-08-14 — refreshed the installed editable CLI with `uv tool install --force --reinstall --editable .`; live-session smoke at defaults returned four findings (three exact, one fuzzy) with valid `Normal.Turn.Ref`s, including the execution-request quote.

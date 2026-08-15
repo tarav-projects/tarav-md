@@ -8,6 +8,7 @@ Operational Chatlas command and workflow reference.
 - Inventory/query sessions: `agentos chatlas query`
 - Query relational turn patterns: `agentos chatlas events query`
 - Find matching authoritative turns: `agentos chatlas turns query`
+- Find quotation-based touch evidence: `tarav chatlas touch-heuristics quotes`
 - Aggregate dataset stats: `agentos chatlas stats`
 - Export attributed sessions into a project tree: `agentos chatlas local sync`
 - Print a named standard-model view: `agentos chatlas views get`
@@ -162,6 +163,27 @@ agentos chatlas turns query --identity-hash <H> --contains "<text>" --turn-kind 
 - default `summary` detail returns `Normal.Turn.Ref`, Anchory-ready `member_ref`, and compact matched-event entries with exact `Event.Ref` values
 - `--detail turn` adds the complete authoritative `Normal.Turn`
 - `auto` scans directly when deterministic selectors already reduce the selection to at most 16 sessions; explicit `--backend sqlite` still forces candidate-index use
+
+## Touch Heuristics
+
+`touch-heuristics` contains read-only, false-positive-tolerant detectors over one
+authoritative Normal Model. The first detector finds user quotations of preceding
+visible assistant turns:
+
+```sh
+tarav chatlas touch-heuristics quotes \
+  --session <session-id|uri|identity-hash-prefix> \
+  --min-length 40 \
+  --threshold 0.75 \
+  --lookback 5 \
+  --json
+```
+
+- `--min-length` gates normalized character length on both aligned sides.
+- `--threshold` gates aligned-token similarity on the closed range `[0,1]`.
+- `--lookback` counts preceding visible assistant turns, not raw events.
+- Every finding is `Touch.Evidence` carrying both `Normal.Turn.Ref`s, original spans, normalized aligned text, score, predecessor distance, and `exact|fuzzy` match kind.
+- Results are returned only; the detector does not annotate the Normal Model or persist findings.
 
 ## View Workflow
 
