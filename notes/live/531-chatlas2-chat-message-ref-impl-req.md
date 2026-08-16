@@ -1,13 +1,13 @@
-# Chatlas2 Chat.Message identity and anchor migration - impl-req
+# Chatlas2 Chat.Message identity - impl-req
 
 ## Impl.Abstract
 
-- **scope:** finalize `Chat.Message.Address`, `Chat.Message.Hash`, and `Chat.Message.Ref`; strengthen the Codex user-message completeness contract; verify chronological retention across the included Codex corpus; and implement a pure, fail-closed migration from current turn-backed Chatlas anchor records to message-backed record drafts
-- **status:** ready for execution
+- **scope:** finalize `Chat.Message.Address`, `Chat.Message.Hash`, and `Chat.Message.Ref`; strengthen the Codex user-message completeness contract; and verify chronological retention across the included Codex corpus
+- **status:** implemented and verified
 - **source:** Chatlas2 design session 527 plus the explicit autonomous develop request ^c20260815-46u
 - **target:** `tarav-py`, with the settled one-way dependency: Chatlas2 may read current Chatlas models and anchor records, while current Chatlas must never import Chatlas2
-- **out of scope:** mutating the live Anchory depot; reconnecting current Views, Query, Chat.Index, manifests, or recents; promoting Chatlas2 into current Chatlas; another provider normalizer; compatibility aliases for superseded experimental `message_id` fields
-- **acceptance:** every presented `Chat.Message` has a stable address and current-state hash; stored message refs resolve as `MATCHED`, `AMENDED`, or `MISSING`; every recognized Codex corpus capture preserves its exact scripted user messages and chronological event union; current generic support-set and line-dossier records can be transformed into validated message-backed drafts only when each old turn resolves to one exact new user message
+- **out of scope:** anchor-record migration mechanics or schemas; mutating the live Anchory depot; reconnecting current Views, Query, Chat.Index, manifests, or recents; promoting Chatlas2 into current Chatlas; another provider normalizer; compatibility aliases for superseded experimental `message_id` fields
+- **acceptance:** every presented `Chat.Message` has a stable address and current-state hash; stored message refs resolve as `MATCHED`, `AMENDED`, or `MISSING`; every recognized Codex corpus capture preserves its exact scripted user messages and chronological event union
 
 ## Impl.Agendix
 
@@ -17,7 +17,7 @@
 - **touched (reference pattern):** stable logical place and current normalized state remain separate, and stored refs carry drift validation ^c20260815-37u ^c20260815-38u ^c20260815-39u
 - **touched (retention):** normalization reviews every relevant artifact, preserves uncertainty, and presents the chronological union ^c20260814-17u ^c20260814-18u ^c20260814-19u
 - **structural:** design session 527 owns the product design; this request realizes its open `Chat.Message.Address`, `Chat.Message.Hash`, and `Chat.Message.Ref` direction without expanding the canonical semantic floor
-- **open space:** the first migration bridge compares the old resolved visible-user message with new user `Chat.Message` candidates by exact session, timetag, and text; it is a pre-cutover proof primitive, not a live depot mutation command
+- **open space:** existing anchor data will be transformed operationally against the actual cutover shapes, with Git providing recovery and explicit completeness checks validating the result
 
 ## Impl.Index
 
@@ -48,19 +48,11 @@
 - the Codex normalizer emits exactly one user message for every recognized primary user message after filtering known harness injections and duplicate provider renderings
 - conformance validation compares the complete ordered user-message projection with the immutable script specification and rejects side/origin disagreement, unresolved refs, duplicate message addresses, or nonchronological tape output
 
-### Anchor record migration
-
-- current anchor records remain the source input and are not amended by this implementation
-- migrated generic support records use `chatlas.support-set.v4`; migrated line dossiers use `chatlas.line-anchor-dossier.v2`; `app: chatlas`, hints, attachment assertions, relationship topology, member types, gates, and provenance are preserved
-- every migrated turn-ref position becomes `{session, message_address, message_hash, at}`; `session` and `at` are redundant diagnostic context around the canonical `Chat.Message.Ref`
-- migration first resolves and validates the old `Normal.Turn.Ref` against the supplied current Chatlas model, extracts its visible user text, then requires exactly one new user `Chat.Message` with the same timetag and exact text
-- missing, amended, non-user, or ambiguous source/target evidence fails closed; no fuzzy text matching, position guessing, live depot writing, or compatibility fallback is included
-
 ### Chatlas2 Normal Model v3
 
 - replacing experimental `message_id` with message address/hash advances the experimental Normal Model to `schema_version: 3`
 - corpus validation requires exact self-resolution for every `Chat.Message.Ref` and `Event.Ref`
-- the public Python surface exports message identity/ref/resolution and pure anchor-record migration primitives; no new CLI is required for this pre-merge slice
+- the public Python surface exports message identity/ref/resolution; no new CLI is required for this pre-merge slice
 
 ## Execution.Plan
 
@@ -71,7 +63,7 @@
 - migrate assembly from `message_id` joins to `message_address`, finalize message hashes from current event refs, and advance the experimental model schema
 - observable: every normalized message self-resolves and no `message_id` field remains
 - check: focused message-ref and Codex pipeline tests plus Ruff
-- status: pending
+- status: complete
 
 ### Slice 2 - Enforce user-message and corpus completeness
 
@@ -80,27 +72,26 @@
 - run the complete included corpus and report recognized, unsupported, and failed counts
 - observable: all included Codex captures reproduce exact scripted user messages and all retained event tapes remain chronological; unsupported providers remain explicit
 - check: Chatlas2 corpus tests and `tarav chatlas2 corpus verify|check`
-- status: pending
+- status: complete
 
-### Slice 3 - Define and test fail-closed anchor migration
+### Slice 3 - Reconcile maintained surfaces and verify the slice
 
-- add RED tests for generic support-set and line-dossier migration, including support members, gate turn refs, member types, attachment, and provenance preservation
-- add negative tests for old-ref drift, absent target, side mismatch, timestamp mismatch, and ambiguous exact target evidence
-- implement pure current-record to message-record draft migration using explicit old/new session models and no persistence
-- observable: a real-shape current anchor record can be transformed deterministically into the new record shape, while uncertain mappings fail without output
-- check: focused migration tests and reverse-dependency architecture check
-- status: pending
-
-### Slice 4 - Reconcile maintained surfaces and verify the slice
-
-- update Chatlas2 exports, `AGENTS.md`, `ARCHITECTURE.md`, and design session 527 to describe Normal Model v3, message references, and migration boundary
+- update Chatlas2 exports, `AGENTS.md`, `ARCHITECTURE.md`, and design session 527 to describe Normal Model v3 and message references
 - review the diff for accidental current-Chatlas imports of Chatlas2 or live-anchor mutations
 - observable: maintained guidance matches code and the experimental boundary remains directional
 - check: all Chatlas2 tests, architecture tests, full relevant repository suite, Ruff, `git diff --check`, Skillware, and CLI normalize/corpus smoke
-- status: pending
+- status: complete
 
 ## Impl.Log
 
 - **2026-08-15 — design gate:** autonomous design and execution authorized by the exact user invocation ^c20260815-46u
-- **2026-08-15 — inspected baseline:** Chatlas2 Normal Model v2 already presents Event.Ref-backed messages and exact scripted user-message corpus checks, but messages still use contentless internal `message_id` values and no current anchor-record migration primitive exists
-- **2026-08-15 — migration boundary:** this slice produces validated record drafts only; live Anchory depot mutation belongs to the later Chatlas consumer cutover
+- **2026-08-15 — inspected baseline:** Chatlas2 Normal Model v2 already presents Event.Ref-backed messages and exact scripted user-message corpus checks, but messages still use contentless internal `message_id` values
+- **2026-08-15 — durable handoff:** Impl.Req 531 was re-read cold before execution; the implementation gate and source-design anchors resolve
+- **2026-08-15 — checkpoints:** mandatory pre-edit checkpoints captured the complete `tarav-py` worktree at `faf646b` and the Chatlas design surfaces at `dc1f10f`
+- **2026-08-15 — slice 1:** added provider-neutral Chat.Message address/hash/ref/resolution, replaced experimental `message_id` joins with message addresses, finalized hashes from ordered member Event.Hash values, and advanced the Normal Model to v3
+- **2026-08-15 — slice 2:** conformance validation now rejects duplicate message places, invalid state hashes, unresolved membership, nonchronological message projection, and side/origin disagreement; all 21 artifacts verify, with 10 Codex captures passing, 11 Claude captures explicitly unsupported, and zero failures
+- **2026-08-15 — correction:** removed the experimental anchor-migration module, tests, exports, and predeclared record schemas; migration is an operational cutover task protected by Git and checked directly for data completeness
+- **2026-08-15 — live-session differential:** current Chatlas and Chatlas2 each present 72 user messages for the active session, with no message missing or additional in either projection
+- **2026-08-15 — verification:** 29 focused Chatlas2/architecture tests and the complete 1,930-test repository suite pass after removing migration mechanics; focused Ruff, `git diff --check`, corpus verify/check, public imports, and the live normalize CLI smoke pass
+- **2026-08-15 — known baselines:** repository-wide Ruff still reports the pre-existing unused `local_storage_paths` import in `src/tarav/skills/routing.py`; project Skillware still reports 30 unrelated POIs and no Chatlas2 POIs
+- **2026-08-15 — outcome:** all acceptance signals are satisfied; implementation and design updates remain uncommitted after the mandatory checkpoints for user review

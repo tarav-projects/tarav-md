@@ -3,11 +3,11 @@
 ## Session.Abstract
 
 - **Intent:** Redesign Chatlas normalization from first principles around complete retained data, a simple chronological event tape, and a small reliable semantic promise.
-- **State:** Active design — the semantic floor, raw-version recognition boundary, first implementation slice, and conformance corpus are in place; durable reference design is active.
-- **Scope:** Chatlas2 system boundary, Normal Model floor, raw-model recognition and dispatch, event origin, `Chat.Message`, `Agent.Loaded.Context`, stateless durable references, and progressive resolution.
+- **State:** Active design — the semantic floor, raw-version recognition boundary, Codex and Claude vertical slices, conformance corpus, Event.Ref, and Chat.Message.Ref are in place.
+- **Scope:** Chatlas2 system boundary, Normal Model floor, raw-model structural versioning and dispatch, event origin, `Chat.Message`, `Agent.Loaded.Context`, stateless durable references, and progressive resolution.
 - **Predecessor:** `509-session-model-design-session.md` records the older, more ambitious model. It is prior design evidence, not inherited Chatlas2 truth.
 - **Landing:** This is a live Design.Session. Nothing here is promoted to the stable Chatlas Index by this capture.
-- **Next:** Define provider-specific `Event.Address` and `Event.Hash` recipes, then extend the same location-plus-state pattern to `Chat.Message.Ref`.
+- **Next:** Plan the Chatlas model promotion and reconnect downstream consumers.
 
 ## Design.Index
 
@@ -34,10 +34,20 @@
 ### Raw.Model.Recognition
 
 - [DF] `Raw.Model.Versioner` inspects raw structure and content, returns one stable Chatlas-assigned `Raw.Model.Version` or null, and performs no semantic normalization. ^c20260814-21u
+- [DF] `Raw.Model.Version` partitions raw fragments by compatible mapping structure so each supported `Raw.Normalizer` can keep its raw-to-normal mapping direct and simple. ^c20260815-59u
 - [CT] Provider or CLI versions may inform recognition but never define `Raw.Model.Version` by themselves. ^c20260814-22u
 - [DC] A `Raw.Normalizer` declares exactly which `Raw.Model.Version` values it supports and runs only after successful version recognition. ^c20260814-23u
 - [DC] Recognition and normalization operate on the smallest independently parseable raw fragment, allowing one session to contain several raw model versions. ^c20260814-24u
-- [PR] Versioners evolve with the Normal Model: they recognize only the distinctions required by the model's current reliable promises. ^c20260814-25u
+- [CT] Within one coherent Normal Model design lineage, evolution may preserve, extend, or refine existing `Raw.Model.Version` partitions when new mappings expose previously irrelevant raw differences. ^c20260815-60u
+- [RJ] Incremental Normal Model evolution does not introduce a raw-version axis unrelated to the existing compatible-mapping partition. ^c20260815-61u
+- [CT] A full Normal Model redesign may establish a new `Raw.Model.Version` partition because the applicable notion of compatible mapping has changed. ^c20260815-62u
+- [PR] A prior raw-version partition remains valid for the Normal Model design lineage that assigned it rather than becoming retroactively wrong. ^c20260815-63u
+- [CT] One `Raw.Model.Version` may include declared optional fields when important data remains at the same raw paths with the same meaning. ^c20260815-54u
+- [PR] Normalizer simplicity is versioning pressure: alternative raw path maps, schema-era checks, or substantial fallback branching usually indicate distinct `Raw.Model.Version` values. ^c20260815-55u
+- [CT] Normalizers for different `Raw.Model.Version` values may share readers, validators, and event-building machinery while keeping each version's raw-path mapping direct. ^c20260815-56u
+- [EX] Moving an important datum from raw path A to raw path B is evidence for a new `Raw.Model.Version` even when both adapters map it to the same Normal Model path A'. ^c20260815-57u
+- [PR] `Raw.Model.Versioner` implementations may expand recognition coverage without changing the structural meaning of an existing `Raw.Model.Version`. ^c20260815-58u
+- [DC] `Raw.Model.Version` is dispatch and provenance metadata; it does not participate in stable `Event.Address` or `Chat.Message.Address` identity. ^c20260815-64u
 - [DC] Normal Model metadata records the producing repository's last Git commit under the future-proof field name `commit`; no stronger reproducibility model is required initially. ^c20260814-26u
 
 ****
@@ -58,6 +68,14 @@
 - [DC] Every `Agent.Message` is represented over one or more `Agent.Event` members. ^c20260815-6u
 - [DC] Chatlas2 always provides the complete `User.Message` and `Agent.Message` projection because these are the messages the user sees and reacts to. ^c20260815-7u
 - [DC] `Chat.Message` membership is modeled as an annotation or grouping over the event tape rather than as another canonical spine. ^c20260815-8u
+
+****
+
+### Chat.Message.Ref
+
+- [DF] `Chat.Message.Address` is a stable provider-derived logical message place, independent from message content and chronological presentation order. ^c20260815-46u
+- [DF] `Chat.Message.Hash` asserts the message side plus its ordered member `Event.Hash` values. ^c20260815-46u
+- [DF] `Chat.Message.Ref` is `{message_address, message_hash}` and resolves against the current message projection as `MATCHED`, `AMENDED`, or `MISSING`. ^c20260815-46u
 
 ****
 
@@ -101,9 +119,10 @@
 - Current Chatlas remains the raw-archive and session-recovery substrate while Chatlas2 matures.
 - Provider-native raw artifacts remain the inspection escape hatch when the Normal Model does not yet expose needed resolution.
 - The event tape is the completeness spine. Classes, messages, loaded contexts, turns, forks, compactions, and other interpretations are overlays.
-- Open: define provider-specific logical-place recipes for `Event.Address`, current-state inputs for `Event.Hash`, and proof rules for folding same-address observations within one normalization run.
-- Open: define `Chat.Message.Address`, `Chat.Message.Hash`, and `Chat.Message.Ref` from the same location-plus-state pattern without importing turn-level ambitions.
-- Open: define provider-specific reconstruction rules and fixtures for `Agent.Loaded.Context` membership and completeness.
+- Anchor records will be transformed operationally when Chatlas2 cuts over. Migration mechanics are written for the actual data at that moment, checked for completeness, and protected by the depot's Git history rather than maintained as a Chatlas2 subsystem.
+- Settled for the first two vertical slices: Codex uses record position and Claude uses native record UUID as the provider-derived logical place; same-address observations fold within one stateless normalization run.
+- Settled: `Chat.Message.Address`, `Chat.Message.Hash`, and `Chat.Message.Ref` use the same place-plus-state pattern without importing turn-level ambitions.
+- Settled provisionally for Claude: each assistant request receives only the nearest evidenced user/tool input from its parent chain; incomplete context is preferred to false membership.
 - Open: extend the conformance corpus with each supported provider and `Raw.Model.Version` as compatible versioners and normalizers are added.
 
 ## Session.Log
@@ -114,3 +133,6 @@
 - **2026-08-15:** Captured 29 typed design lines through the autonomous Hugentics design-session route, grounded in Chatlas session `01a001c2-8fb1-72e0-8aa1-0bbc52c4b5e8`.
 - **2026-08-15:** Added the conservative `Agent.Loaded.Context` promise and retired the canonical context-blob and `Agent.Execution` directions.
 - **2026-08-15:** Settled stateless `Event.Ref` drift resolution against the current Normal Model and rejected cross-run normalized observation history.
+- **2026-08-15:** Finalized `Chat.Message` address/hash/ref identity; rejected a maintained anchor-migration subsystem in favor of a Git-backed operational transformation at cutover.
+- **2026-08-15:** Added the Claude `claude.transcript.v1` Versioner/Normalizer without expanding the Normal Model; all 11 Claude specimens and all 21 corpus captures pass the chronological tape, origin, message, reference, and conservative-context checks.
+- **2026-08-15:** Refined raw-version independence into a mapping-relative partition: incremental Normal Model evolution may preserve, extend, or split it, while a full redesign may establish a new partition; raw version is excluded from stable address identity.
