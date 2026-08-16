@@ -152,6 +152,7 @@
 - Settled: `Chat.Message.Address`, `Chat.Message.Hash`, and `Chat.Message.Ref` use the same place-plus-state pattern without importing turn-level ambitions.
 - Settled provisionally for Claude: each assistant request receives only the nearest evidenced user/tool input from its parent chain; incomplete context is preferred to false membership.
 - Settled for Claude queued input: a human-origin `queued_command` attachment is a `User.Event` and user `Chat.Message` whose start time is the recorded queue timestamp; the mapping is shared by both recognized Claude raw families.
+- Settled for Claude prompt variants: accepted human suggestions, typed text-plus-image records, and non-meta legacy-shaped direct messages inside prompt-source-capable artifacts are user events/messages; ambiguous timed attachments and queue operations remain unresolved.
 - Open: extend the conformance corpus with each supported provider and `Raw.Model.Version` as compatible versioners and normalizers are added.
 
 ## Session.Log
@@ -171,3 +172,4 @@
 - **2026-08-16:** Implemented and stressed the disposable four-file Normal Model cache, streaming bounded message reads, explicit cache inspection/build, and capacity-one Anchory model retention.
 - **2026-08-16:** Made the cache-backed Normal Model provider the transparent default, added explicit refresh and uncached diagnostic modes, and removed Anchory's cache loader and model slot.
 - **2026-08-16:** Closed the Claude queued-input gap by mapping human `queued_command` attachments into user events/messages and following loaded context at the original queue time.
+- **2026-08-16:** Audited the active Claude/Codex raw archive, recovered three missing Claude human-input shapes, and replaced Claude's default-agent fallback with explicit user, explicit agent, and unresolved origin resolution.
