@@ -25,8 +25,8 @@ qualifying Touch.Authority.Surface edition
 
 - the system observes qualifying editions of registered authority surfaces, never `User.Touch` directly
 - qualification is surface-specific and defeasible; not every change to a containing surface carries touch
-- a qualifying `User.Turn` is presently the only registered authority-surface realization
-- `Chat.Surface` is the containing context, while the attributable qualifying user turn is the current authority unit
+- a qualifying user `Chat.Message` is presently the only registered authority-surface realization
+- `Chat.Surface` is the containing context, while the attributable qualifying user message is the current authority unit
 - factual error, staleness, or contradiction does not by itself erase touch provenance
 
 ## Support Network
@@ -63,10 +63,10 @@ The current implementation maps the general model as follows:
 | General model | Current realization |
 |---|---|
 | `Touched.Index` | `Agentos.Index.System` plus its reachable touched-index members |
-| `Touch.Authority.Surface` | qualifying `User.Turn` on `Chat.Surface` |
+| `Touch.Authority.Surface` | qualifying user `Chat.Message` on `Chat.Surface` |
 | `Support.Set` | exact members in `relationships.support` |
 | `Support.Reference` | the support relationship recorded by the line dossier |
-| `Index.Line.Anchor` | trailing `Anchory.Anchor` joined to `chatlas.line-anchor-dossier.v1` |
+| `Index.Line.Anchor` | trailing `Anchory.Anchor` joined to a Chatlas2 line dossier |
 | independent line relationships | `relationships.gates` and `relationships.provenance` |
 | `Index.Line` | typed or legacy Markdown kernel line |
 | chronological touched record | exact lines in `Chat.Index.Delta` files |

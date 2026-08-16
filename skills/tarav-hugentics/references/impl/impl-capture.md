@@ -25,7 +25,7 @@ An item where an open design question still sits is **not ready** — it is park
 Assemble candidates from the intersection of two sources:
 
 - **the conversation** — the touched decisions, corrections, and requests the user made this session.
-- **the current implementation** — the code, skills, index, and drift signals (e.g. `agentos skw check`, a drift audit) that show where those decisions are not yet reflected.
+- **the current implementation** — the code, skills, index, and drift signals (e.g. `tarav skw check`, a drift audit) that show where those decisions are not yet reflected.
 
 Each candidate is a coherent unit of implementation work with one observable result — the shape a single `Impl.Req` covers.
 
@@ -50,7 +50,7 @@ Once a candidate is selected, hand it to `references/impl/develop.md` as the res
 
 Only the *selection* is new; the design and execution are the existing harness workflow.
 
-The candidate carries its **provenance**, not just its description. The touched decisions the ranking rested on become develop's grounding: its design phase seeds the `Impl.Agendix` from those surfaces through `Chat.Grounding` — anchors on the deciding turns — and execution carries that grounding onto the code. The chat → grounding → implementation chain starts at this scan; impl-capture hands develop the touched surfaces, not a re-summary of them.
+The candidate carries its **provenance**, not just its description. The touched decisions become `Chat.Grounding`: develop's design phase seeds the `Impl.Agendix` with generic Chatlas2 message-support anchors on the deciding user messages, and execution carries that grounding onto the code. The chain starts at this scan; impl-capture hands develop the touched surfaces, not a re-summary.
 
 ## Boundary Contract
 

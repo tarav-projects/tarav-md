@@ -71,7 +71,7 @@ Resolve minor drift yourself. In `Interactive`, raise unresolved mismatches befo
 
 ## Execution Gate Anchor
 
-The `--exec` invocation turn is the execution authorization gate: mint an `Anchory.Anchor` on it and cite it in the first `Impl.Log` entry. It joins the artifact's support evidence alongside the design-phase gate anchors; it is not line support or a line-dossier review gate merely because it authorizes execution.
+The `--exec` invocation user message is the execution authorization gate: mint a generic Chatlas2 message-support anchor with `tarav chatlas2 anchory support` and cite it in the first `Impl.Log` entry. It has no Index-line attachment and is not a line-dossier review gate merely because it authorizes execution.
 
 ## Git Checkpoint
 
@@ -112,7 +112,7 @@ Do not write all tests up front. Keep each slice independently reviewable and ob
 > --intent the executer's grounding discipline: the index-first cost model, the
 > --cont two destinations, where annotations attach, and Open.Space for ungrounded territory
 
-The executer grounds mostly against the **index** — durable and cheap to read. It does **not** reconstruct previous chats; that archaeology is too costly. It mints `Anchory.Anchor`s only on its own live exec-session turns (the deviation-resolution anchors below) and reads the `Impl.Agendix` the designer seeded for the chat-level grounding already captured.
+The executer grounds mostly against the **index** — durable and cheap to read. It does **not** reconstruct previous chats. It mints generic Chatlas2 message-support anchors only on its own live exec-session user messages and reads the `Impl.Agendix` the designer seeded for prior chat grounding.
 
 Grounding a slice has **two destinations**:
 
@@ -135,7 +135,7 @@ Design-reality mismatch activates the declared deviation checkpoint:
 - `Interactive` - stop, describe the mismatch concretely, offer the viable adjustments, and wait.
 - `Autonomous` - record the deviation and take the most faithful corrective action; abort only when external input is required.
 
-Never silently adapt. When a user turn resolves a deviation or changes scope, mint an anchor on that turn and trail it on the `Impl.Log` entry recording the resolution.
+Never silently adapt. When a user message resolves a deviation or changes scope, mint a generic Chatlas2 message-support anchor on it and trail it on the `Impl.Log` entry recording the resolution.
 
 ## Completion
 

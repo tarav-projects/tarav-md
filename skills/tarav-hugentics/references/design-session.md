@@ -51,11 +51,23 @@ The embedded `Design.Index` is a topic-scoped `Touched.Surface.Index`:
 
 - every captured design line has a `Line.Type`
 - every line resolves through its own `Support.Set` to qualifying `Touched.Data`
-- the current Chatlas/Anchory realization uses exact user turns and a trailing `Index.Line.Anchor`
+- the Design.Session realization uses exact Chatlas2 user `Chat.Message.Ref` assertions and a trailing `Index.Line.Anchor`
 - assistant material enters only through a qualifying user acceptance, correction, rejection, action, or delegation
 - unresolved support is retained in `Session.Notes`; autonomous capture must not mint an unsupported design line
 
 Grounding gives a line touched authority through its support; it does not make the live note stable, reviewed, or a `Touch.Authority.Surface`.
+
+## Chatlas2 Capture Route
+
+This route uses the same Chatlas2 grounding primitives as the other capture destinations; its distinct behavior is the Design.Session landing surface and ungated bounded pass.
+
+1. **Resolve the session.** Use `tarav-chatlas-my-session-id` for the current session, or an exact native session id or Chatlas identity already in hand. Session discovery may reuse current Chatlas mechanics; all following transcript and support operations use Chatlas2.
+2. **Read the capture source.** Start with `tarav chatlas2 views get --session-id <id> --view user --json`. Read `--view transcript` only when the primary user-agent exchange is required to interpret a candidate. The View is a disposable projection over canonical Normal Model content, not another authority surface.
+3. **Locate exact support.** Run `tarav chatlas2 messages find --session-id <id> --side user --text '<distinctive text>' [--exact] --json`. Refine until each selected message is semantically qualifying and unambiguous, then retain the returned `member_ref`; it asserts session, stable message address, and current message hash.
+4. **Preview and register final lines.** For one line, run `tarav chatlas2 anchory preview --member <member-ref> --line-content '- [<Line.Type>] <body>'`, inspect the result, then run the corresponding register command. For two or more lines, write one `tarav.chatlas2.anchor-batch.v2` document whose items contain stable `client_id`, exact final `line_content`, and ordered `members`; run the Chatlas2 batch preview, then register.
+5. **Attach and verify.** Apply each returned `d…` anchor to its exact Design.Index line, then run `tarav chatlas2 anchory resolve <anchor> [--radius N]`. Every member must resolve `MATCHED`, remain user-side, and retain an agreeing diagnostic `at` value.
+
+When Chatlas2 cannot recognize the session or resolve qualifying support, preserve the material in `Session.Notes`; inspect the retained raw archive when useful, and leave the design line unminted until Chatlas2 can support it.
 
 ## Landing
 
@@ -64,7 +76,7 @@ One explicit `--capture --design-session` invocation satisfies `Edition.Trigger.
 1. Resolve or allocate the topic-scoped design-session artifact.
 2. Compare the conversation against its existing `Design.Index`, notes, and stable Index context; do not duplicate already captured material.
 3. Form-fit settled design deltas as typed, grounded lines under compact `Design.Block`s; keep unresolved material in `Session.Notes`.
-4. Preview and register exact final line bodies as one anchor batch, then apply the returned line-to-anchor mapping in one patch.
+4. Preview and register exact final line bodies through the Chatlas2 route as one anchor batch, then apply the returned line-to-anchor mapping in one patch.
 5. Refresh `Session.Abstract` and append only meaningful lifecycle information to `Session.Log`.
 6. Report the captured blocks, unresolved support, and any promotion candidates compactly.
 

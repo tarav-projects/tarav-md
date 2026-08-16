@@ -53,7 +53,11 @@ The index specialization loads `Hugentic.Capture.Context.Assembly.Module` from `
 
 `Capture.Offer` is the same act at single-candidate scale: agent-initiated, one draft, same destination semantics. This module is the user-initiated, whole-conversation form.
 
-Load `references/touched-data.md` for authority and line standing, and `references/decision-cycle.md` for contextualize-act-reconcile. The current chat protocol supplies qualifying user turns and Chatlas support records; it does not make chat the conceptual boundary of `Touched.Index`.
+Load `references/touched-data.md` for authority and line standing, and `references/decision-cycle.md` for contextualize-act-reconcile. The current chat protocol supplies qualifying user `Chat.Message.Ref` assertions and Chatlas2 grounding records; it does not make chat the conceptual boundary of `Touched.Index`.
+
+> $kw: ^capture-design-session-chatlas2-boundary --note [CT] the Design.Session landing specialization owns its Chatlas2 transcript and grounding route while other capture targets retain their current Chatlas realization ^c20260816-24u
+
+For a `Design.Session` target, `Design.Session.Knowledge.Module` replaces the general turn-based support path with its declared Chatlas2 route. That specialization reads the completed Chatlas2 Normal Model and grounds lines in user `Chat.Message.Ref` assertions; it does not invoke the current Chatlas `Capture.Plan` or the shared reviewed-Index linking pipeline. Other capture targets retain their existing realization.
 
 For chronological capture, work from the authoritative Chatlas transcript and delimit each semantic Delta by its `Delta.Horizon.Turn`. A Delta may summarize one user turn or a meaningful group ending at that turn. Ordinary model lines must acquire an exact Delta materialization before they are considered fully propagated; `Chat.Index.HEAD` and Project Index projections may be authored first, but the resulting missing-home condition remains a reconciliation POI until backfilled.
 
@@ -67,7 +71,7 @@ A pass over the chat's uncaptured content, repeated until the content is exhaust
 
 1. **Contextualize / Assemble.** Load `Hugentic.Capture.Context.Assembly.Module`, including the touched-data and decision-cycle knowledge modules.
 2. **Contextualize / Discover.** Resolve engaged depots and live line standing, then batch the materially relevant existing anchors into a reference-detail line manifest before inspecting authority-surface or adjacent non-touch evidence.
-3. **Contextualize / Ground.** Treat the manifest as a volatile relationship projection, not authority. Use it to select support references, escalate only the references whose original turns or bounded context are needed, and preserve ungrounded live lines as `Index.Presumption`.
+3. **Contextualize / Ground.** Treat the manifest as a volatile relationship projection, not authority. Use it to select support references, escalate only the messages or bounded context needed, and preserve ungrounded live lines as `Index.Presumption`.
 4. **Contextualize / POIs.** Make gaps, contradictions, ambiguity, stale projections, and missing grounding explicit before choosing a capture move.
 5. **Act / Map.** Build an internal candidate map covering overlap, dependencies, natural edit actions, possible destinations, and POIs that may legitimately remain unresolved.
 6. **Act / Roadmap.** In `Interactive` mode, present the small public `Capture.Roadmap`: likely block or edit clusters and one sentence explaining each.
@@ -182,10 +186,10 @@ Available User.Commands:
 
 Landing form-fits material to the named surface under that surface's own gate. Approval-ready candidates show the concrete `Landing`, `Target`, operation, and proposed content; the destination may remain loose only while discussion is exploratory.
 
-- **ontology / appendix** — token approval establishes reviewed content, while a separate landing command executes the gated edit; landing resolves qualifying substantive support plus the approval turn into the line's support set
+- **ontology / appendix** — token approval establishes reviewed content, while a separate landing command executes the gated edit; landing records substantive user-message support plus independent proposal/approval message gates
 - **agendix** — one user trigger covers the pass without per-line review; each line still lands typed and grounded through a resolvable support set under a routed concept or provisional path
-- **design session** — one user trigger covers the bounded pass without per-line review; typed, grounded lines land in the resolved topic-scoped `Design.Index`, while unresolved material stays in `Session.Notes`
-- support resolution and anchor allocation are landing work; they occur against the final approved proposal, its qualifying substantive support, and its approval turn, never while the proposal remains open to revision
+- **design session** — one user trigger covers the bounded pass without per-line review; typed lines grounded in Chatlas2 user `Chat.Message.Ref` assertions land in the resolved topic-scoped `Design.Index`, while unresolved material stays in `Session.Notes`
+- support resolution and anchor allocation are landing work through the resolved target specialization; they occur against the final approved proposal and its qualifying substantive support, never while the proposal remains open to revision
 - a multi-line landing previews and registers its exact final bodies as one anchor batch, then applies the returned line-to-anchor mapping in one surface patch; the single-line path remains for one line
 - every landing updates the live cut; capture re-contextualizes afterward and reports remaining POIs without treating them as automatic edits
 

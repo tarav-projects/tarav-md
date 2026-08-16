@@ -6,7 +6,7 @@ This module is a `Workflow.Neutral.Module`: it runs no workflow — its rules bi
 
 The agendix is the agentic path of the same alignment writing the index runs hugentically: same kernel primitives, but no per-line review gate. On the `Capture.Gradient` it sits **touched, captured, unreviewed**: each `Index.Line` projects `Touched.Data`, while its authority derives independently from its resolvable `Support.Set`.
 
-The current realization accepts only qualifying user-turn evidence through Chatlas and Anchory. This is an implementation specialization of `Touch.Authority.Surface`, not a general restriction of the agendix model.
+The current realization accepts only qualifying user `Chat.Message.Ref` evidence through Chatlas2 and Anchory. This is an implementation specialization of `Touch.Authority.Surface`, not a general restriction of the agendix model.
 
 ## The Two Surfaces, Same Primitives
 
@@ -22,8 +22,8 @@ The current realization accepts only qualifying user-turn evidence through Chatl
 ## Surface Rules
 
 - the agendix holds touched but unreviewed material: summaries of qualifying authority-surface data that the reviewed index does not yet carry
-- in the current chat specialization, every line resolves to one or more qualifying user turns; assistant material enters only through user acceptance, correction, rejection, action, or delegation that qualifies as touch
-- preset or administrative user turns with no relevant touch do not become support merely because they are user-authored
+- in the current chat specialization, every line resolves to qualifying user `Chat.Message.Ref` assertions; agent material enters only through user acceptance, correction, rejection, action, or delegation that qualifies as touch
+- preset or administrative user messages with no relevant touch do not become support merely because they are user-authored
 - every line is typed: pick the `Line.Type` first (`references/type.md`); a line that takes no type does not enter
 - every line ends with its anchor: hard provenance, no unanchored agendix lines
 - entries may group into blocks — the appendix's block forms apply; a candidate block attaches as a path-child of a routed concept (`Concept.X/Agendix/Candidate.Name`)
@@ -47,11 +47,11 @@ For candidate blocks, name the attachment path: `Target: create ## Concept.X/Age
 
 1. **Route** each entry under a routed concept — a line appends to `Concept.X/Agendix`, a candidate block attaches intact as `Concept.X/Agendix/Candidate.Name`. No routed concept → `agendix/Unassigned-agendix.md`, the homeless pool: accumulated evidence that a concept may be missing — promotion evidence, never a dump; an intact candidate block there is the strongest form of that evidence.
 2. **Fence**: type each line; drop what cannot take a type.
-3. **Support**: build one `Support.Set` per line through `references/link.md`; the current implementation mints a trailing Anchory anchor over qualifying Chatlas user-turn members. For a multi-line landing, use one `chatlas.anchor-batch.v2` preview and registration pass over every exact final typed body; keep a stable `client_id` per drafted line and consume the returned `client_id → anchor` mapping. Do not shell-loop the single-line preview/register commands.
+3. **Support**: build one `Support.Set` per line through `references/link.md`; Chatlas2 stores qualifying user `Chat.Message.Ref` members. For a multi-line landing, use one `tarav.chatlas2.anchor-batch.v2` preview and registration pass over every exact final typed body; keep a stable `client_id` per drafted line and consume the returned `client_id → anchor` mapping. Do not shell-loop the single-line commands.
 4. **Write** `agendix/Concept.X-agendix.md` in the engaged depot, next to `appendix/` — apply the complete returned anchor mapping in one patch using appendix writing rules, block heading `Concept.X/Agendix`, and lines appended:
 
    ```md
-   - [CT] `Reviewed.Cite.Closure`: reviewed surfaces may not cite the agendix, unreviewed surfaces may — promotion copies content out before an index cite ^c<YYYYMMDD>-<N>u
+   - [CT] `Reviewed.Cite.Closure`: reviewed surfaces may not cite the agendix, unreviewed surfaces may — promotion copies content out before an index cite ^d<YYYYMMDD>-<N>u
    ```
 
 5. **Report** compactly: lines captured per concept, fallback entries, candidates dropped at the fence and why.

@@ -259,7 +259,7 @@ A `Capture.Stance` steers what the capture loop does after each user turn. It is
 - it remains a `Workflow.Neutral.Skill` when no explicit arg is selected
 - it routes into named modules instead of splitting session control across public skills
 - Index modules own Index mechanics; the root owns public workflow selection
-- the lower-level `agentos index ...` CLI remains the mechanical implementation surface
+- the lower-level `tarav index ...` CLI remains the mechanical implementation surface
 - no separate public compatibility entry exists for the Index subsystem
 
 ## What The Index Is
@@ -275,10 +275,10 @@ A `Capture.Stance` steers what the capture loop does after each user turn. It is
 - the active chapter defaults to `design`; chapter files are named `NNN-<chapter>.md`
 - index work happens over engaged `Index.Depot`s; `--depot` scopes which depots are engaged and `--chapter` scopes within them
 - its lines carry `Line.Type` codes (`- [CT] ...`) classifying each line's act; untyped lines are pre-fence legacy
-- its current support references are trailing `Anchory.Anchor`s resolving through Chatlas to qualifying user-turn evidence
+- its current support references are trailing `Anchory.Anchor`s resolving through Chatlas2 to qualifying user `Chat.Message.Ref` evidence; readers continue to resolve existing current-Chatlas anchors during migration
 - chronological chat capture lives in `Chat.Index.Delta` files; `Chat.Index.HEAD` is the chat's current projection
 - an ordinary Project line eventually needs an exact Delta home and, when current for that chat, a matching Chat HEAD line
-- each `Index.Line.Anchor` dossier asserts the current `Line.Type + body + Anchor.Id` triplet and records independent support, gate, and provenance relationships; Delta materialization and `Line.Home` are derived
+- each Chatlas2 `Index.Line.Anchor` dossier asserts the current `Line.Type + body + Anchor.Id` triplet and records independent message support, review gate, and provenance relationships; these consumer semantics do not extend the Chatlas2 Normal Model
 - `issues/` holds grounded temporary Project topics; review is proven by the anchor record rather than folder placement
 - agents operate it by loading routers, concept blocks, appendix material, and references relevant to the current task
 
@@ -635,7 +635,8 @@ An agent operating the index should:
 - resolve `::approve` / `::approved` to `User.Command::Approve`, but in index workflows mint, render, and require the proposal's explicit token; if the user gives a bare approval, leave the verbatim gate unresolved and reprint the exact tokenized command; resolve `::land` / `::write` to targeted `User.Command::Land`, and `::land-all-approved` to zero-argument `User.Command::LandAllApproved`; `--write` remains a skill argument while `::write` is an in-workflow transition
 - resolve `::discuss` and `::review` to their `Capture.Stance`, which changes only the loop's next move and the advertised commands; every command stays as available as its own condition makes it
 - during interactive capture, add approved drafts to the approved cluster and continue reviewing the roadmap; do not make immediate landing the default next move
-- when a landing contains several lines, batch their anchor preview and registration and apply the returned line-to-anchor mapping in one surface patch; do not shell-loop the single-line path
+- ground every chat-backed landing through Chatlas2 `Chat.Message.Ref`: use line dossiers for Index and live-surface lines, generic message-support records for non-line implementation provenance, and mixed readers for existing current-Chatlas anchors
+- when a landing contains several lines, batch its Chatlas2 anchor preview and registration and apply the returned line-to-anchor mapping in one surface patch; do not shell-loop the single-line path
 - keep command targets foregrounded; targeted commands fail closed on ambiguous targets, and `::land-all-approved` fails closed unless one foreground index workflow owns the cluster
 - use file mutation only when the applicable surface gate is satisfied
 - keep action separate from index reconciliation: open inference may advance other work without silently rewriting touched positions

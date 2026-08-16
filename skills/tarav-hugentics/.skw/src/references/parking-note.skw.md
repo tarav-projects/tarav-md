@@ -9,7 +9,7 @@
 
 Short-lived interruption workflow for capturing a sidequest thought into a project `Parking.Note`.
 
-The user presents an idea while another task is underway. The agent preserves the main-thread return context, discusses the idea lightly, drafts a `Kernel.Block`-style entry, gets explicit user approval of the exact text, mints an `Anchory.Anchor` back to the approval turn, writes the note, and reports how to resume the interrupted work.
+The user presents an idea while another task is underway. The agent preserves the main-thread return context, discusses the idea lightly, drafts a `Kernel.Block`-style entry, gets explicit user approval of the exact text, grounds it in qualifying Chatlas2 user messages, writes the note, and reports how to resume the interrupted work.
 
 The unified driver supplies the `Batchy.Skill` calling convention. Its `--park` route selects this module and binds any trailing idea to `Skill.Arg::Idea`.
 
@@ -62,7 +62,7 @@ DEPRECATED: `012.NOTEBOOK.md` was the former parking-note filename. Prefer `012.
 4. The agent drafts a block, picks a target file, and shows the exact proposed text with inert placeholder anchors such as `^<anchor-on-landing>`.
 5. The user refines, redirects the target, rejects the note, or explicitly approves the exact block text for writing.
 6. If the user rejects the note, the agent writes nothing, mints no anchor, and returns a rejection report with the compact resume point.
-7. After approval, the agent mints an `Anchory.Anchor` through `references/link.md` whose support set contains the qualifying substantive turns plus the approval turn.
+7. After approval, the agent mints one Chatlas2 line dossier through `references/link.md` whose support contains the qualifying substantive user messages plus the approval message; one exact dossier may trail every line approved as a unit.
 8. The agent replaces placeholder anchors with the minted anchor and writes the block to the target file.
 9. The agent returns a close-out report: what was parked, where it was written, the anchor, and the compact resume point for the interrupted task.
 
@@ -75,7 +75,7 @@ Entries follow `Kernel.Writing` style with relaxed constraints:
 - Heading uses `Dotted.Notation` based on the note content (e.g. `## Idea.About.Fish.Based.APIs`)
 - Each line describes an independent facet — direct, orthogonal
 - Lines carry `Line.Type` codes when the entry is concept-shaped enough to support them
-- Each landed kernel line carries trailing `Anchory.Anchor` provenance; a single approval-turn anchor may support the whole block when the final text was approved as a unit
+- Each landed kernel line carries trailing `Anchory.Anchor` provenance; one exact support set may support the whole block when its final text was approved as a unit
 - No space budget — write as much as the idea needs
 - Free to include tags, links, context, or any useful material after the grounded kernel lines
 - No required metadata fields beyond the anchors needed for chat provenance
@@ -85,21 +85,20 @@ Example:
 ```md
 ## Fish.Based.APIs
 
-- [DF] `Fish.Based.APIs` is a sidequest idea for modeling service clients around domain species instead of raw endpoint groups ^c20260717-0u
-- [PR] species-aware routing could make the gateway easier to reason about than scattered marine-data endpoints ^c20260717-0u
-- [CT] simplifying the client SDK is the main motivation ^c20260717-0u
-- [FR] the idea is parked for later and should not interrupt the current marine-data task ^c20260717-0u
+- [DF] `Fish.Based.APIs` is a sidequest idea for modeling service clients around domain species instead of raw endpoint groups ^d20260816-0u
+- [PR] species-aware routing could make the gateway easier to reason about than scattered marine-data endpoints ^d20260816-0u
+- [CT] simplifying the client SDK is the main motivation ^d20260816-0u
+- [FR] the idea is parked for later and should not interrupt the current marine-data task ^d20260816-0u
 ```
 
 ## Anchory Requirement
 
 Parking notes preserve the compact idea in the file and the full idea in the chat.
 
-- Use `references/link.md` to mint the anchor: resolve the current session, locate the user approval turn, register the anchor, and verify the returned neighborhood.
-- The anchor target is a user turn. When the agent drafted the block, anchor the user's explicit approval turn.
-- The anchor hint should name the parking-note sidequest and the approved idea in one sentence.
+- Use `references/link.md`: resolve the current session, locate the explicit user approval as a `Chat.Message.Ref`, register the exact line dossier, and verify the returned neighborhood.
+- When the agent drafted the block, the user's explicit approval message joins the substantive support members; it is not modeled as a reviewed-Index gate.
 - Do not write the block until the approval anchor is minted and verified. If anchoring is unavailable, stop before the file write and report the blocker.
-- Do not reuse anchors. A wrong target or wrong hint requires a new anchor.
+- Exact dossier registration is idempotent. Wrong support or line content requires a corrected dossier rather than repurposing an unrelated anchor.
 
 ## Draft Presentation
 
@@ -107,7 +106,7 @@ When showing the draft to the user, include:
 
 - The target file as a full path from `~` (e.g. `~/projects/agentos-project/agentos-py/notes/live/012.PARKING.md`) — removes ambiguity in multi-project workspaces
 - The proposed block (heading + body) with placeholder anchors
-- The anchor plan: usually "on approval, anchor the approval turn and stamp each line with that anchor"
+- The anchor plan: usually "on approval, ground the block in its substantive and approval messages and stamp each line with that anchor"
 - One follow-up question about something missing or unclear
 
 The user may approve, edit the block, reject the note, redirect to a different target file, or keep discussing. The agent writes only after explicit approval of the exact text.

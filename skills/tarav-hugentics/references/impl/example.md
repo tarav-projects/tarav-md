@@ -10,12 +10,12 @@ Adapt the wording and section weight to the current request.
 - **scope:** add project-scoped configuration loading without changing global defaults
 - **status:** ready for implementation
 - **source:** direct user request plus current repository inspection
-- **support set:** ordering turn ^c<YYYYMMDD>-<N>u, readiness approval ^c<YYYYMMDD>-<M>u (chatlas anchory)
+- **support set:** ordering message ^d<YYYYMMDD>-<N>u, readiness approval ^d<YYYYMMDD>-<M>u (Chatlas2 message-support)
 
 ## Impl.Agendix
 
-- **touched (index):** `Project.Boundary` — the resolution seam the loader must honor ^c<YYYYMMDD>-<N>u
-- **touched (chat):** override-scope decision — project values win only for the active command ^c<YYYYMMDD>-<P>u
+- **touched (index):** `Project.Boundary` — the resolution seam the loader must honor ^<existing-index-anchor>
+- **touched (chat):** override-scope decision — project values win only for the active command ^d<YYYYMMDD>-<P>u
 - **structural:** none — no surface is derived from another in this change
 - **open space:** cache/reload behavior has no index home yet — left provisional, unanchored
 
@@ -45,6 +45,6 @@ Adapt the wording and section weight to the current request.
 
 ## Impl.Log
 
-- execution gate: `--exec` invocation anchored ^c<YYYYMMDD>-<K>u
+- execution gate: `--exec` invocation grounded through Chatlas2 message-support ^d<YYYYMMDD>-<K>u
 - no deviations or blockers
 ```

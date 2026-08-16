@@ -120,13 +120,13 @@ The `Impl.Req` carries a living **`Impl.Agendix`**: the touched-authority reserv
 
 The designer captures into it **twice, bracketing the write** — before, from the design chat that shaped the plan; after, grounding the produced artifact. Because it holds the design chat live, the designer grounds at **both levels**:
 
-- **chat → touched**: mint `Anchory.Anchor`s on the user turns that authorize and shape the plan — the ordering turn (the `--design` request), the readiness approval, and each turn that settles a `Design.Decisions` line.
+- **chat → touched**: use `tarav chatlas2 anchory support` to mint generic message-support anchors on the user messages that authorize and shape the plan — the ordering request, readiness approval, and each message that settles a `Design.Decisions` line. These records have no Index-line attachment or review gate.
 - **index → touched**: cite the index blocks the implementation must honor, each addressed by its `Skw.Address.Schema`.
 
 Record every dependency by its `Skw.Network` kind:
 
 - **structural** — the surface is derived or copied from another surface; self-authorizing, no grounding needed (the derivation is the evidence).
-- **touched** — a link to a touched index block or user turn carrying a decision; it carries `Annotation.Authority`, and each `--from` addresses another annotation by its `Skw.Address.Schema` — to link any point, fence it with a `Skw.Annotation` and reference its address.
+- **touched** — a link to a touched index block or user `Chat.Message.Ref` carrying a decision; it carries `Annotation.Authority`, and each `--from` addresses another annotation by its `Skw.Address.Schema` — to link any point, fence it with a `Skw.Annotation` and reference its address.
 
 Discipline:
 
