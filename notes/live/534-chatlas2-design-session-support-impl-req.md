@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **scope:** add a provider-neutral primary-text projection to `Chat.Message`; expose pure message discovery, reference resolution, derived-time, and bounded-neighborhood operations; define Chatlas2 support members; and implement only the Anchory preview/register/batch-register/resolve route required by Hugentic design-session capture
-- **status:** ready for autonomous execution
+- **status:** implemented and verified; implementation remains uncommitted after the mandatory checkpoints
 - **source:** explicit autonomous implementation request ^c20260816-0u, grounded in Chatlas2 design session 527
 - **target:** `tarav-py`, with maintained Chatlas2 guidance in `AGENTS.md`, `ARCHITECTURE.md`, conformance tests, and this implementation request
 - **out of scope:** replacing Hugentic capture logic; reconnecting Views, Query, Chat.Index, or other current-Chatlas consumers; migrating old anchor records; gates/provenance authoring; persistent normalized state; global full-text indexes; new Normal Model concepts
@@ -66,7 +66,7 @@
 - implement the smallest normalizer and operations changes that satisfy them
 - observable: no consumer needs provider-shape branching to locate a primary message
 - check: focused model/provider/message tests and Ruff
-- status: pending
+- status: complete
 
 ### Slice 2 - Support member and Anchory operations
 
@@ -74,7 +74,7 @@
 - implement a Chatlas2-isolated namespace and minimal dossier operations using shared Anchory and attachment primitives
 - observable: one design line can be grounded, registered, reread, and contextualized through current Chatlas2 data
 - check: focused Anchory tests, architecture dependency test, Ruff
-- status: pending
+- status: complete
 
 ### Slice 3 - CLI, workflow trial, and reconciliation
 
@@ -83,10 +83,17 @@
 - run focused and full Chatlas2 tests, the complete repository suite proportionate to the change, corpus verification, Ruff, Skillware, architecture dependency checks, and `git diff --check`
 - update maintained package guidance and this execution log/status
 - observable: the complete first-consumer slice works for Codex and both Claude versions while current Chatlas remains untouched
-- status: pending
+- status: complete
 
 ## Impl.Log
 
 - **2026-08-16 — execution gate:** autonomous design and execution of the bounded Chatlas2 support slice were authorized by the exact implementation invocation ^c20260816-0u
 - **2026-08-16 — inspected baseline:** normalizers already identify `Chat.Message` and stable refs, but primary text/time remain available only through provider-native event records; current Anchory dossiers store current-Chatlas turn refs and cannot safely accept Chatlas2 records in the same namespace
 - **2026-08-16 — isolation decision:** reuse the common depot and Anchory mechanics through a distinct `chatlas2` namespace; namespace separation prevents current Chatlas scans from interpreting the new dossier schema
+- **2026-08-16 — checkpoints:** mandatory pre-edit checkpoints captured the complete `tarav-py` worktree at `1a52611` and the Chatlas design surfaces plus this durable handoff at `21ed6c7`; all subsequent implementation remains uncommitted
+- **2026-08-16 — slice 1:** Normal Model v4 adds normalizer-owned `Chat.Message.text`; pure operations now list/find chronologically by side/text, derive first-member time, build the exact support-member record, and return a bounded message neighborhood while reusing stateless `Chat.Message.Ref` resolution
+- **2026-08-16 — slice 2:** added the minimal `tarav.chatlas2.line-anchor-dossier.v1` route with exact `{session, message_address, message_hash, at}` members, diagnostic-only time comparison, preview/register/resolve, batch preview/register, and exact-registration reuse inside the isolated `chatlas2` namespace with `d` keys
+- **2026-08-16 — workflow trial:** provider-neutral text lookup found the exact opaque-version user message at address `fe670c…`; preview proposed a mint, registration created `d20260815-0u`, the repeated registration reused that anchor, and read-back resolved the member as `MATCHED` with matching diagnostic time
+- **2026-08-16 — provider acceptance:** focused tests cover Codex `5f98`, Claude prompt-source `1ecc`, and Claude legacy `b17b` primary text plus shared operations; all 21 registered corpus captures verify and normalize successfully
+- **2026-08-16 — verification:** focused Chatlas2 plus architecture tests passed (46); the complete repository suite passed (1,947); Ruff passes for all changed Chatlas2/test surfaces; repository-wide Ruff is stopped by the pre-existing unrelated unused import in `src/tarav/skills/routing.py`; Skillware reports its existing 30 project POIs and none target Chatlas2; the installed editable `tarav` entrypoint exposes the new message and Anchory commands
+- **2026-08-16 — printed E2E:** added one focused CLI scenario that archives a Codex session, finds an exact user message, registers and resolves one line dossier, verifies the hypothetical trailing-anchor triplet against the stored attachment hash, and prints `- [DF] One design statement is grounded on user evidence. ^d20260815-0u`
