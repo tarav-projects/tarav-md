@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **scope:** replace Chatlas2's ordinal-looking raw-version identifiers with opaque arbitrary identifiers; split Claude transcripts into `promptSource` and pre-`promptSource` mapping families; dispatch each recognized family to a compatible simple normalizer; and keep stable event/message addresses independent of raw-version labels
-- **status:** ready for autonomous execution
+- **status:** implemented and verified; changes remain uncommitted after the mandatory checkpoints
 - **source:** Chatlas2 design session 527 plus the explicit autonomous develop request ^c20260815-66u
 - **target:** `tarav-py`, with maintained Chatlas2 guidance in `AGENTS.md`, `ARCHITECTURE.md`, the conformance corpus metadata, and this implementation request
 - **out of scope:** current-Chatlas consumer migration; compatibility aliases for the superseded experimental numeric identifiers; provider/CLI-version dispatch; automatic registration of a private historical artifact without the corpus workflow's human safety review
@@ -61,7 +61,7 @@
 - update callers, exports, corpus metadata, and maintained guidance; add no compatibility constants
 - observable: no `codex.rollout.v1` or `claude.transcript.v1` remains in maintained Chatlas2 code/corpus guidance, and stable addresses do not change when dispatch metadata changes
 - check: event-ref, message-ref, Codex pipeline, corpus tests, Ruff
-- status: pending
+- status: complete
 
 ### Slice 2 - Split Claude recognition and direct normalizers
 
@@ -69,7 +69,7 @@
 - implement the two Claude identifiers, artifact recognition, shared mechanics, two direct normalizers, and version-based pipeline dispatch
 - observable: both Claude families normalize chronologically; ordinary legacy user text becomes `User.Event` and `Chat.Message`, while known nonhuman user-role transports remain agent-side and outside `Chat.Message`
 - check: Claude pipeline tests, pipeline/corpus tests, Ruff
-- status: pending
+- status: complete
 
 ### Slice 3 - Reconcile corpus, archive behavior, and maintained surfaces
 
@@ -78,7 +78,7 @@
 - run both Versioners against the full current raw archive and normalize representative Claude artifacts from each recognized partition
 - observable: corpus is hermetic and green; archive recognition is reported by opaque identifier; current Chatlas has no reverse dependency on Chatlas2
 - check: documented CLI corpus commands, focused/full pytest, architecture dependency check, archive audit, diff review
-- status: pending
+- status: complete
 
 ## Impl.Log
 
@@ -86,3 +86,10 @@
 - **2026-08-15 — execution gate:** autonomous design and execution were authorized by the exact develop invocation ^c20260815-66u
 - **2026-08-15 — inspected baseline:** one provider-wide Claude normalizer recognizes all structurally valid transcripts as `claude.transcript.v1` but maps user messages only through `promptSource`; event and message addresses still include raw-version identity despite the later stable-address decision
 - **2026-08-15 — identifiers:** allocated `5f98`, `1ecc`, and `b17b` as arbitrary collision-checked experimental suffixes; their spelling carries no semantic order
+- **2026-08-15 — durable handoff:** Impl.Req 533 was re-read cold; the source-design and execution-gate anchors resolve, and the plan remains executable without chat context
+- **2026-08-15 — checkpoints:** mandatory pre-edit checkpoints captured the complete `tarav-py` worktree at `73ee575` and the Chatlas design surfaces at `b72faac`
+- **2026-08-15 — slice 1:** replaced the experimental numeric-looking identifiers with `codex.rollout.5f98` and `claude.transcript.1ecc`; removed raw-version identity from Event and Chat.Message address inputs; and updated exports, callers, tests, conformance metadata, and maintained guidance without compatibility aliases
+- **2026-08-15 — slice 2:** added `claude.transcript.b17b`, artifact recognition by mapping structure, separate prompt-source and legacy direct normalizers, and version-selected dispatch; shared mechanics remain version-agnostic, while legacy fixtures prove ordinary and command-argument user input is retained and known harness/tool traffic is excluded
+- **2026-08-15 — corpus:** all 21 immutable artifacts verify and normalize under their opaque identifiers (21 passed, 0 failed, 0 unsupported); registering a real `b17b` artifact remains the documented operator-reviewed ingress step
+- **2026-08-15 — archive acceptance:** the live archive scan recognized 6,353 Codex artifacts as `5f98`, 2,950 Claude artifacts as `1ecc`, and 3,038 Claude artifacts as `b17b`; 14 Codex and 40 Claude files remained null; representative real artifacts from both Claude partitions normalized successfully
+- **2026-08-15 — verification:** Ruff and diff checks passed; focused Chatlas2 plus architecture tests passed (40); the full repository suite passed (1,941); Skillware reported its existing 30 project findings and none target Chatlas2; no current-Chatlas reverse dependency on Chatlas2 was introduced

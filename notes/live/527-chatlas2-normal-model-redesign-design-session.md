@@ -35,6 +35,7 @@
 
 - [DF] `Raw.Model.Versioner` inspects raw structure and content, returns one stable Chatlas-assigned `Raw.Model.Version` or null, and performs no semantic normalization. ^c20260814-21u
 - [DF] `Raw.Model.Version` partitions raw fragments by compatible mapping structure so each supported `Raw.Normalizer` can keep its raw-to-normal mapping direct and simple. ^c20260815-59u
+- [DC] `Raw.Model.Version` identifiers are opaque arbitrary names; their spelling carries no ordering, compatibility, or succession semantics. ^c20260815-67u
 - [CT] Provider or CLI versions may inform recognition but never define `Raw.Model.Version` by themselves. ^c20260814-22u
 - [DC] A `Raw.Normalizer` declares exactly which `Raw.Model.Version` values it supports and runs only after successful version recognition. ^c20260814-23u
 - [DC] Recognition and normalization operate on the smallest independently parseable raw fragment, allowing one session to contain several raw model versions. ^c20260814-24u
@@ -136,3 +137,4 @@
 - **2026-08-15:** Finalized `Chat.Message` address/hash/ref identity; rejected a maintained anchor-migration subsystem in favor of a Git-backed operational transformation at cutover.
 - **2026-08-15:** Added the Claude `claude.transcript.v1` Versioner/Normalizer without expanding the Normal Model; all 11 Claude specimens and all 21 corpus captures pass the chronological tape, origin, message, reference, and conservative-context checks.
 - **2026-08-15:** Refined raw-version independence into a mapping-relative partition: incremental Normal Model evolution may preserve, extend, or split it, while a full redesign may establish a new partition; raw version is excluded from stable address identity.
+- **2026-08-15:** Rejected ordinal raw-version naming and captured opaque arbitrary identifiers whose spelling carries no succession semantics.
