@@ -57,24 +57,24 @@ Live surface implications:
 
 ## Prefix CLI
 
-- Tool: `agentos stdlib prefix next`
+- Tool: `tarav stdlib prefix next`
 - Agents can call this directly from the terminal.
 - Purpose: print the next ordinary prefix as 3 digits.
 - Empty/no-match behavior: print `500`.
 - Allocation route: `500-999`.
 - Default project scan scope: `notes` and `dev/live`.
-- If `agentos stdlib prefix` fails, stop and ask the user how to resolve the project target. Do not assign a prefix by manual inspection.
+- If `tarav stdlib prefix` fails, stop and ask the user how to resolve the project target. Do not assign a prefix by manual inspection.
 
 ### Live Note Allocation
 
 ```sh
-agentos stdlib prefix next --project-base <project-root-basename> --target notes/live
+tarav stdlib prefix next --project-base <project-root-basename> --target notes/live
 ```
 
 ### Live Script Allocation
 
 ```sh
-agentos stdlib prefix next --project-base <project-root-basename> --target dev/live
+tarav stdlib prefix next --project-base <project-root-basename> --target dev/live
 ```
 
 ### Outside the Project Tree
@@ -82,7 +82,7 @@ agentos stdlib prefix next --project-base <project-root-basename> --target dev/l
 Use explicit project path when the caller is outside the intended project tree:
 
 ```sh
-agentos stdlib prefix next --project /path/to/project --project-base <project-root-basename> --target <path>
+tarav stdlib prefix next --project /path/to/project --project-base <project-root-basename> --target <path>
 ```
 
 In nested workspaces or sibling repositories, do not use `--project .` unless `.` is the actual initialized project root. Use `--project-base` so allocation fails if the wrong project was resolved.
