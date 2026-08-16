@@ -2,7 +2,7 @@
 
 Use this module when the user wants active conversation and adjacent evidence worked into maintained durable state: "let's capture".
 
-`Hugentic.Capture.Workflow` is the primary user-facing alignment workflow. Its target may be the reviewed main Index surfaces, `Design.Req`, or `Index.Agendix`; changing target changes the applicable landing gate, not the conversational loop. `--capture` selects the loop without selecting a durable target. Compatible flags, conversation, and declared defaults may complete the route where their rows permit it.
+`Hugentic.Capture.Workflow` is the primary user-facing alignment workflow. Its target may be the reviewed main Index surfaces, `Design.Req`, `Design.Session`, or `Index.Agendix`; changing target changes the applicable landing gate, not the conversational loop. `--capture` selects the loop without selecting a durable target. Compatible flags, conversation, and declared defaults may complete the route where their rows permit it.
 
 `Design.Req.Promotion` is the interruption that temporarily retargets this loop from an active design request to the index, an `Impl.Req`, or both.
 
@@ -14,9 +14,10 @@ Use this module when the user wants active conversation and adjacent evidence wo
 | `--capture --audit` | read-only capture mapping; target flags may narrow the surfaces inspected but cannot enable writing |
 | `--capture --index`, `--capture --main`, `--index --capture --main` | reviewed main Index surfaces: `Index.Ontology` or `Index.Appendix` |
 | `--capture --agendix`, `--agendix`, `--index --capture --agendix` | `Index.Agendix` |
+| `--capture --design-session` | topic-scoped `Design.Session` live artifact |
 | `--design` outside the Implementation namespace | `Design.Req` |
 
-`--agendix` is the shorthand row that supplies the capture workflow and agendix target together. `--index` contributes the Index namespace and, in a capture call without a narrower target, resolves the reviewed main target; `--main` names that target directly. A `Design.Req` target loads `references/design-req.md` as `Design.Req.Knowledge.Module`.
+`--agendix` is the shorthand row that supplies the capture workflow and agendix target together. `--index` contributes the Index namespace and, in a capture call without a narrower target, resolves the reviewed main target; `--main` names that target directly. A `Design.Req` target loads `references/design-req.md` as `Design.Req.Knowledge.Module`; `--capture --design-session` loads `references/design-session.md` as `Design.Session.Knowledge.Module`.
 
 Inside the Implementation namespace, `--impl --design` and `--impl --capture` belong to `Implementation.Workflow.Router.Module`; they do not select this module through the root meanings of `--design` or `--capture`.
 
@@ -64,7 +65,7 @@ A pass over the chat's uncaptured content, repeated until the content is exhaust
 10. **Reconcile / Land + Re-ground.** A separate user command lands selected approved material, then re-contextualizes against the changed live cut and support network.
 11. **Reconcile / Propagate.** Audit Project lines against registered support Chat.Indexes. Missing Delta homes or current Chat HEAD projections remain advisory POIs and may be repaired in either direction without blocking the originating edit.
 
-`Autonomous` mode performs the same preparation and internal mapping but does not present a roadmap or run the review loop; it proceeds through its agendix-only landing path.
+`Autonomous` mode performs the same preparation and internal mapping but does not present a roadmap or run the review loop; it proceeds only through a target contract that admits one-trigger agentic landing.
 
 Destinations occupy different positions on `Capture.Gradient`; ontology and appendix wording remains `Verbatim.User.Gated`, while the agendix is grounded but unreviewed.
 
@@ -138,9 +139,10 @@ Available User.Commands:
 
 - capture accepts `Alignment.Mode` — `Interactive` (default) or `Autonomous`
 - `Interactive` presents the roadmap, then runs the focused codesign loop: checkpoints are alignment opportunities, discussion and approval happen per small cluster
-- `Autonomous` runs without user prompting: the loop collapses to ground → propose → land → report, and it can land only on the agendix — a user gate (`Edition.Trigger.User.Gated`) cannot be resolved autonomously
-- `--AUTO` is the extreme case as a flag: the full workflow automatic, chat to agendix, the invocation is the one trigger that covers the pass
+- `Autonomous` runs without user prompting: the loop collapses to ground → propose → land → report, and it may land only on a target whose contract admits one-trigger agentic capture — currently `Index.Agendix` and `Design.Session`
+- `--AUTO` explicitly selects autonomous mode without changing a separately resolved target; the target contract still decides whether agentic landing is permitted
 - `--agendix` presets the agendix destination and defaults to `Autonomous`; the user engaging mid-pass simply is `Interactive`
+- `--capture --design-session` presets the design-session destination and defaults to `Autonomous`; the invocation covers the bounded pass
 
 ## Capture.Stance
 
@@ -154,7 +156,7 @@ Available User.Commands:
 - a stance changes what the agent presents, never what it tracks: candidates continue to accumulate and `--capture --audit` still reports them
 - neither stance changes a command's `available:` condition; `::approve` simply has nothing to resolve once no draft is foreground
 - in `Capture.Stance::Discuss` the only advertised command is `::discuss`'s exit, `::review`
-- `Alignment.Mode::Autonomous` has no stance: it lands only on a non-reviewed target like the agendix, so no draft is ever presented for approval
+- `Alignment.Mode::Autonomous` has no stance: it lands only on a one-trigger, non-reviewed target such as the agendix or a design session, so no draft is ever presented for approval
 
 ## Landing
 
@@ -162,6 +164,7 @@ Landing form-fits material to the named surface under that surface's own gate. A
 
 - **ontology / appendix** — token approval establishes reviewed content, while a separate landing command executes the gated edit; landing resolves qualifying substantive support plus the approval turn into the line's support set
 - **agendix** — one user trigger covers the pass without per-line review; each line still lands typed and grounded through a resolvable support set under a routed concept or provisional path
+- **design session** — one user trigger covers the bounded pass without per-line review; typed, grounded lines land in the resolved topic-scoped `Design.Index`, while unresolved material stays in `Session.Notes`
 - support resolution and anchor allocation are landing work; they occur against the final approved proposal, its qualifying substantive support, and its approval turn, never while the proposal remains open to revision
 - a multi-line landing previews and registers its exact final bodies as one anchor batch, then applies the returned line-to-anchor mapping in one surface patch; the single-line path remains for one line
 - every landing updates the live cut; capture re-contextualizes afterward and reports remaining POIs without treating them as automatic edits

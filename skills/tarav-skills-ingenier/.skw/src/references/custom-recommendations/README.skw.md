@@ -1,6 +1,6 @@
 # Custom Recommendations
 
-User-maintained recommendations for `skills-miner-ingenier`.
+User-maintained recommendations for `tarav-skills-ingenier`.
 
 These are local mining sources, not just implementation notes.
 

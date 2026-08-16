@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "b6704690d7ee2d0ca53096e4b688da187f93bba0b38995034237774927c363bb",
+      "output_sha256": "d983bc35e9eccfb69a95de4c85570f96ddef8010183a96dcb34b71230f4dca67",
       "recipes": [
         {
           "heading": "^hugentics-batchy-runtime-contract",
@@ -27,7 +27,7 @@
         {
           "heading": "Index Operating Behavior",
           "verb": "derived",
-          "body_sha256": "ca06582435f65d2f53fe66401966bcdc6d6b42d9941adf77462dfa942d1ddc40",
+          "body_sha256": "8cc6101c51e6c1621498f2d92e6f8948a8477ecbdf59c9f404e33dfc110a3875",
           "deps": {
             "references/touched-data.skw.md#Line Standing": "2bc1780bf6384c537cff3089d3aa547092f81dba496c26bc8976d4f455c6b174",
             "references/touched-data.skw.md#Coherence And Decision Weight": "6a23c0cfcf0865ea3b5e36274da927ab577287916aae91f3a091ce27f4bd2505",
@@ -37,7 +37,7 @@
             "references/search.skw.md#Search Model": "35a6d9e8ba7764c7d6f717cc25e780cbae80f8e5f0102c70d1a4b880849393c6",
             "references/search.skw.md#Citation Behavior": "e57e94bf2adedb5f4bde5e498c1feb6342c70412564a0e8d8a1a8734a673a8a9",
             "references/capture.skw.md#User.Command Checkpoints": "e18ebda2fcf007164a57c1e4957bd98343d1c539656a139d5534b236a43b04de",
-            "references/capture.skw.md#Landing": "5afa1de284c5a9f6f91512d426a3c35cfe85a12e16735c82e258b926b3fcc820",
+            "references/capture.skw.md#Landing": "82fcfa235a3b6fc3b00af2dbbd044a36a98a59c7095c260804016851df177b6b",
             "references/edit.skw.md#Edit Gates": "34b988e36fa60f35bfbca549056fdb439fc41a3ff107f44c58ed7bbed07ad926",
             "references/edit.skw.md#User.Command Transitions": "c92bec72a5749b0a9a7eafae35b8c3686d53bb17ddf5f5007b94eab2c17fcf81"
           }
@@ -89,15 +89,16 @@
       ]
     },
     "references/capture.md": {
-      "output_sha256": "16d59a7576e8726e110f9d3d10ed0c23b93186f9a7c8b209853fb8c98e343dcf",
+      "output_sha256": "6a26aa59d676a81aa976bd7dad0d4580424241d33087bde08f1a1422ae09bb55",
       "recipes": [
         {
           "heading": "Landing",
           "verb": "derived",
-          "body_sha256": "5afa1de284c5a9f6f91512d426a3c35cfe85a12e16735c82e258b926b3fcc820",
+          "body_sha256": "82fcfa235a3b6fc3b00af2dbbd044a36a98a59c7095c260804016851df177b6b",
           "deps": {
-            "references/edit.skw.md#Landing Procedure": "309f0028c55efa9d6a3a1f8a86918618a722e7e97b2c43d7a16f62e70307b228",
-            "references/agendix.skw.md#Landing Form": "5dcd1adcd55f6c4172c9a80740f9fa506783fd75e81843e882c9a5c2827dfa2a"
+            "references/edit.skw.md#Landing Procedure": "825a02046b631eee8f1b1a18485978a2edfebcdff74c3dde42aaa3196c37b14c",
+            "references/agendix.skw.md#Landing Form": "5dcd1adcd55f6c4172c9a80740f9fa506783fd75e81843e882c9a5c2827dfa2a",
+            "references/design-session.skw.md#Landing": "9e5fc227f49e1a3cb1dd14e9783df5084c4971ea6ea4eeb056908ebcbe40f33b"
           }
         }
       ]
@@ -129,6 +130,10 @@
     },
     "references/design-req.md": {
       "output_sha256": "99b59461d3b499ca8279ae3c9f59192fe6462875d878389da7c573b4e1762adf",
+      "recipes": []
+    },
+    "references/design-session.md": {
+      "output_sha256": "81045a9cecf3a067163046641fe1ebd1aee06e243ebd77fb6e298ba9f845a923",
       "recipes": []
     },
     "references/edit.md": {
@@ -357,7 +362,7 @@
       "recipes": []
     },
     "references/workflow-status.md": {
-      "output_sha256": "d5f2ec4d4da62f36c8ab0603053d94e6b49e6b2c9c0707b1e85208374cb20207",
+      "output_sha256": "103f0b8a922e5209f2459cdff9f4b57038d9febde74d1a0b625388c898bead9d",
       "recipes": []
     }
   },

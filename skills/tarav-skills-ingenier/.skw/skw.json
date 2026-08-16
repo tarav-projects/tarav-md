@@ -1,4 +1,5 @@
 {
   "id": "tarav-skills-ingenier",
-  "depots": ["../tarav-pkg"]
+  "depots": [".", "../tarav-pkg"],
+  "deps": {"tarav-batchy-skills": "../tarav-batchy-skills"}
 }

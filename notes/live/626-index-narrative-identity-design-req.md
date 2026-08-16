@@ -6,10 +6,39 @@ status: Open
 
 - **target** — decompose the overloaded `Index.Line` concept into the wording it materializes and the semantic object it indexes, and define the identity, support, and gating model for the latter.
 - **origin concern** — `The.Renaming.Problem`: a mechanical `Agentos.*` → `Tarav.*` rename breaks every gated line's `Line.Verbatim.Gate`, with no repair path, because gate verification is live containment against an immutable chat transcript.
-- **settled frame** — the friction is not in the gate. `Index.Line` has been doing two jobs at once; every symptom is that fusion showing through. Naming the second job (`Index.Narrative`) dissolves the renaming problem as a special case.
-- **next useful move** — settle the naming layer questions (`Touched.` vs `Index.` prefix; the general token primitive's namespace), then reconcile the contradicting live `[CT]`s before landing any block.
+- **settled frame** — the system indexes a subjective object using a material one, and has always done so; the friction is not in the gate. `Index.Line` has been doing both jobs at once, and every symptom is that fusion showing through. Naming the semantic job (`Index.Narrative`) dissolves the renaming problem as a special case.
+- **next useful move** — settle the naming layer questions (`Touched.` vs `Index.` prefix; the general token primitive's namespace; `Turn.Neighborhood`), then reconcile the contradicting live `[CT]`s before landing any block.
 
 ## Design.Index
+
+### Lexical.And.Semantic
+
+- [DF] the design decouples the `Lexical.Object` — material, bytes on a surface — from the `Semantic.Object` — subjective, the idea being indexed
+- [CT] both are needed: one is what tooling can touch, the other is what the system is actually for
+- [DC] all machinery operates on the material object; the subjective one is reached only indirectly, maintained and captured rather than computed
+- [CT] the direction is one-way: semantic → lexical is always possible (write it down), lexical → semantic is never reliable (read it back out)
+- [DC] that asymmetry is why capture is gated and audit is deferred — crossing into the material takes a user act, and recovering the semantic takes judgment no linter has
+- [DF] a `Semantically.Capable.Player` — the agent or the user — is what performs semantic → lexical
+- [PR] the system's leverage is that it controls *when* that capture happens, so it can compel players to inject lexical evidence supporting the semantics
+- [DC] a gate is, among its other aspects, the point where that evidence is extracted from a semantically capable player, which is what explains gate placement
+- [CT] control covers the timing and form of the record, never the content of the judgment behind it
+- [DC] both players are semantically capable but their evidence differs in standing: only user-borne evidence produces `Reviewed.Content` ^c20260729-178u
+- [CT] a material proxy is never its subjective target; mistaking the two is the standing failure mode
+- [PR] the index already applies this unnamed in ^c20260729-146u, ^c20260729-154u, ^c20260729-133u, and ^c20260724-47u — four restatements of one principle, which is why naming it is articulation rather than redirection
+- [CT] the extraction rate matters: taxing attention too often makes compliance reflexive and degrades the evidence being collected
+
+### The.Renaming.Problem
+
+- [DF] `The.Renaming.Problem` is the canonical stress case for the model: a mechanical `Agentos.*` → `Tarav.*` rename across the index
+- [DC] it is the **floor** case — the mutation is total and semantically null, so a model that fails it fails everything harder
+- [DC] it stresses the model at exactly one point: coherence must be semantic, not lexical
+- [PR] the narrative's support is chat written in vocabulary the line no longer uses, so any mechanical coherence check fails by construction — this case is the proof that the coherence assertion can never be lintable
+- [CT] the model's other properties are not stressed by it: identity is semantic by definition, grounding survives because the system simply is an index over the `Chat.Surface`, and turn cardinality was never restricted
+- [DC] what it exposes beyond that one stress are implementation gaps rather than design questions — today grounding is lost, review breaks per line, and identity sits in content
+- [DC] pass condition: every affected narrative keeps its grounding, every line stays coherent, no narrative splits, nothing is demoted, and the user spends one attention checkpoint
+- [DC] the ceiling case is a **rewording** — the same axis at higher intensity, where meaning is live and no mechanical signal exists at all; split and merge sit beside it
+- [EX] measured scale at the time of writing: 39 errors and 10,682 warnings for `line-verbatim-gate` + `line-approval` on `skills/tarav-pkg`
+- [PR] the friction is not only cost — under-motivated re-approval degrades the evidence it collects, so the renaming problem is a symptom of over-gating rather than the disease
 
 ### The.Decomposition
 
@@ -30,6 +59,8 @@ status: Open
 - [PR] indexing the object in parts is what buys the freedom to rename, reword, and relocate while the semantics hold
 - [DC] the narrative is the semantic subject of the index; an `Index.Line` is always read in the context of one
 - [CT] support is undifferentiated: operational turns (a rename request) and semantic turns (an assertion) are both support, distinguished by reading rather than by structure
+- [FR] lines are grounded to `User.Turn`s with no cardinality restriction — one turn may ground any number of lines across any number of narratives
+- [CT] the only conditions are that the support is a `User.Turn` and that its neighborhood actually says something about the line
 
 ### Line.Identity
 
@@ -111,6 +142,7 @@ status: Open
 - The general token primitive's namespace — `Skw.Token` inverts the taxonomy, since two of its three species (`Edition.Approval.Token`, `Poi.Unlock.Token`) are not Skillware. A namespace-neutral name (`Assertion.Token`, `Auditable.Token`) keeps the parent wider than its children.
 - Is `Reading.Proxy.Gate` a distinct gate with its own checker, or the name for what any gate does when its token is agent-borne?
 - Narrative ordering direction — versions are ordered by edition but that order carries no grounding semantics. Unsettled whether index `[0]` is oldest or newest; append-only argues oldest-first.
+- `Turn.Neighborhood` — used in session for the region that must "actually say something about the line". Unresolved whether it is the `Chat.Surface` specialization of `Evidence.Neighborhood` ^c20260811-37u or a rename of it. Read as the specialization pending an answer; not folded into the existing concept.
 - Does `Semantic.Equivalent.Edition` want the `.Edition` or `.Mutation` suffix — settled on `Edition` for neighborhood consistency with `Index.Edition.Turn` and `Edition.Approval.Token`.
 
 **Deferred.**
@@ -130,3 +162,6 @@ status: Open
 - Grounded against `tarav-pkg` `design/107-design.md` via `--ground`; scale measured at 39 errors / 10,682 warnings for `line-verbatim-gate` + `line-approval` on `skills/tarav-pkg`.
 - Frame moved three times: gate algebra → token extension homogeneity → identity decomposition. The third reframe subsumed the first two.
 - No index landing proposed. A prior `Index.Line.Identity` block draft was withdrawn at user instruction pending `::capture`; it is superseded by the `Line.Identity` and `Index.Narrative` blocks above.
+- **2026-08-14, second pass** — added `Lexical.And.Semantic` as the framing block above `The.Decomposition`: the material/subjective split is the *why*, the decomposition is the *how*. Its strongest support is that the index already applies the principle in four live `[CT]`s that had no shared name, so this articulates existing practice rather than redirecting it.
+- Formalized `The.Renaming.Problem` as the canonical floor stress case. The session's own list of five stresses collapsed to one — semantic-vs-lexical coherence — once identity-is-semantic, grounding-survival, and turn cardinality were recognized as definitional rather than at risk. What remains is a conformance checklist against the current implementation, not open design.
+- Sidequest landed meanwhile: `Capture.Stance` (`::discuss` / `::review`) in `tarav-hugentics`, so a session can hold conversation without a block after every reply — motivated by this session's own shape.

@@ -273,6 +273,16 @@ This addressed `Routing.Table` is the package driver's single declarative dispat
 > --when the caller wants chat material aligned into a durable target
 > --then select the shared capture loop and leave its durable target unresolved until another route or conversation supplies it
 
+> $kw: ^route-design-session-capture --router-row --table ^package-driver-router
+> --flag --capture --design-session
+> --match explicit
+> --default Alignment.Mode::Autonomous
+> --to Hugentic.Capture.Workflow.Module
+> --to Design.Session.Knowledge.Module
+> --load references/capture.md
+> --load references/design-session.md
+> --then select the shared capture loop with the Design.Session landing specialization and use the autonomous alignment default
+
 > $kw: ^route-agendix --router-row --table ^package-driver-router
 > --flag --agendix
 > --match explicit
@@ -573,7 +583,7 @@ An agent operating the index should:
 - distinguish discovered context from inference
 - treat the prompt as a focus argument and compare the current visible discussion against the index whenever there is discussion state to ground
 - make a `Capture.Offer` when work surfaces new aligned content: propose typed line content and its landing operation at the moment, with destination options (index main, appendix, agendix, decline) — never self-write on a gated surface; `Capture.Stance::Discuss` suspends the offer without suspending the tracking
-- use `--capture` when the user wants the chat's content worked through the shared loop; its durable target remains unresolved until conversation or a compatible route supplies it, while `--index` and `--main` select the reviewed main Index target, `--design` selects `Design.Req`, and `--agendix` selects `Index.Agendix`
+- use `--capture` when the user wants the chat's content worked through the shared loop; its durable target remains unresolved until conversation or a compatible route supplies it, while `--index` and `--main` select the reviewed main Index target, `--design` selects `Design.Req`, `--agendix` selects `Index.Agendix`, and `--capture --design-session` selects a topic-scoped `Design.Session`
 - resolve `::approve` / `::approved` to `User.Command::Approve`, but in index workflows mint, render, and require the proposal's explicit token; if the user gives a bare approval, leave the verbatim gate unresolved and reprint the exact tokenized command; resolve `::land` / `::write` to targeted `User.Command::Land`, and `::land-all-approved` to zero-argument `User.Command::LandAllApproved`; `--write` remains a skill argument while `::write` is an in-workflow transition
 - resolve `::discuss` and `::review` to their `Capture.Stance`, which changes only the loop's next move and the advertised commands; every command stays as available as its own condition makes it
 - during interactive capture, add approved drafts to the approved cluster and continue reviewing the roadmap; do not make immediate landing the default next move
@@ -589,7 +599,7 @@ For delegated read-only research that protects the caller's context, use `Packag
 
 ## Hugentic System Model
 
-`Hugentic.Capture.Workflow.Module` owns the shared public alignment loop. `Design.Req.Knowledge.Module`, `Index.Landing.Knowledge.Module`, and `Index.Agendix.Knowledge.Module` configure durable targets without becoming parallel workflow identities.
+`Hugentic.Capture.Workflow.Module` owns the shared public alignment loop. `Design.Req.Knowledge.Module`, `Design.Session.Knowledge.Module`, `Index.Landing.Knowledge.Module`, and `Index.Agendix.Knowledge.Module` configure durable targets without becoming parallel workflow identities.
 
 The Implementation namespace contains explicit design, review, execute, develop, and capture workflow modules. The namespace, its aliases, and its input-sensitive defaults are routing behavior; they do not create duplicate modules.
 

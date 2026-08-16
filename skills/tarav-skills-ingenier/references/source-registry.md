@@ -1,6 +1,6 @@
 # Source Registry
 
-Curated default sources for `skills-miner-ingenier`.
+Curated default sources for `tarav-skills-ingenier`.
 
 Use this registry as a starting point, not an exhaustive crawl. For each task:
 
@@ -27,7 +27,7 @@ Each source entry should capture:
 
 - `id`: `custom-recommendations`
 - `kind`: local user-maintained recommendation set
-- `location`: `/Users/pereiro/.agents/skills/skills-miner-ingenier/references/custom-recommendations`
+- `location`: `references/custom-recommendations/`
 - `priority`: `high`
 - `why-it-matters`: captures repeated local preferences and design rules that should influence mining and authoring even when external sources suggest something more generic
 - `best-for`: trigger wording, local style conventions, packaging preferences, source-specific overrides, and repeated design guidance the user wants preserved across skill work
@@ -155,22 +155,33 @@ Each source entry should capture:
 - `caveats`: quality varies widely; many entries are specialized, noisy, or style-heavy rather than structurally strong
 - `search-hints`: `skills/*/SKILL.md`, `agents/*.agent.md`, `.github/copilot-instructions.md`, `AGENTS.md`
 
-## home-skills
+## tarav-skill-depots
 
-- `id`: `home-skills`
-- `kind`: local skill directory
-- `location`: `/Users/pereiro/.agents/skills`
-- `why-it-matters`: main working skill collection with real trigger descriptions, workflow structure, and packaging choices
+- `id`: `tarav-skill-depots`
+- `kind`: local installed skill depots
+- `location`: `/Users/pereiro/.tarav/skills/depots`
+- `why-it-matters`: current installed Tarav skill collection with real trigger descriptions, workflow structure, routing, Skillware sources, and packaging choices
 - `best-for`: `SKILL.md` structure, `agents/openai.yaml` patterns, progressive disclosure, validation conventions, full skill-stack design
-- `caveats`: contains a mix of mature, experimental, and copied skills; compare before imitating
-- `search-hints`: `skill-creator`, `design-session`, `tarav-hugentics`, `codebase-quality-review`, `index-*`
+- `caveats`: depot folders may be hashed and their skill entries may be symlinks; follow links and prefer the owning project source when editing
+- `search-hints`: `tarav-hugentics`, `tarav-batchy-skills`, `tarav-skillware`, `SKILL.md`, `.skw/src/`
 
-## agentos-project-skills
+## tarav-project-skills
 
-- `id`: `agentos-project-skills`
+- `id`: `tarav-project-skills`
 - `kind`: local project skill directory
+- `location`: `/Users/pereiro/projects/taravangian-project/tarav-md/skills`
+- `priority`: `high`
+- `why-it-matters`: canonical maintained Agentos Markdown skill sources, including current Batchy routers and Skillware build surfaces
+- `best-for`: Tarav skill taxonomy, routed module design, Skillware adoption, development workflows, and current local precedent
+- `caveats`: read the owning project and package `AGENTS.md`; never edit compiled Skillware targets directly
+- `search-hints`: `tarav-pkg`, `tarav-batchy-skills`, `tarav-skillware`, `tarav-hugentics`, `.skw/src/`, `references/`
+
+## agentos-project-skills-history
+
+- `id`: `agentos-project-skills-history`
+- `kind`: local historical project skill directory
 - `location`: `/Users/pereiro/projects/agentos-project/agentos-md/skills`
-- `why-it-matters`: Agentos md-surface skill patterns that may not yet be reflected in the home skill set
-- `best-for`: discussion-driven designs, task miners, in-progress conventions, and side-by-side comparison against home skills
-- `caveats`: may diverge from home copies; some entries are partial or project-specific
+- `why-it-matters`: preserves older Agentos skill experiments and workflow precedents that may explain a current design or reveal discarded alternatives
+- `best-for`: provenance research and deliberate comparison with pre-Tarav conventions
+- `caveats`: historical and potentially stale; never treat it as current convention when maintained Tarav sources disagree
 - `search-hints`: `design-session`, `todo-miner`, `tasks001-*`, `index-*`
