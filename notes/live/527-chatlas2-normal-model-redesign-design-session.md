@@ -105,6 +105,12 @@
 
 ****
 
+### Chatlas2.Views
+
+- [DF] `Chatlas2.Views` is the public disposable read-projection route introduced under `tarav chatlas2 views`; it reads canonical Normal Model content rather than defining another model. ^c20260816-23u
+
+****
+
 ### Agent.Loaded.Context
 
 - [DF] `Agent.Loaded.Context` is the grouping of events that normalization determines were available to contextualize a specific generated `Agent.Event`. ^c20260815-17u
@@ -154,6 +160,7 @@
 - Settled for Claude queued input: a human-origin `queued_command` attachment is a `User.Event` and user `Chat.Message` whose start time is the recorded queue timestamp; the mapping is shared by both recognized Claude raw families.
 - Settled for Claude prompt variants: accepted human suggestions, typed text-plus-image records, and non-meta legacy-shaped direct messages inside prompt-source-capable artifacts are user events/messages; ambiguous timed attachments and queue operations remain unresolved.
 - Open: extend the conformance corpus with each supported provider and `Raw.Model.Version` as compatible versioners and normalizers are added.
+- Settled for the first Views slice: `full` returns the unchanged complete model; `transcript`, `user`, and `events` stream their chronological cached collections and may be bounded during iteration. `replay` and `zip-transcript` remain deferred until a consumer supplies their actual requirements.
 
 ## Session.Log
 
@@ -173,3 +180,4 @@
 - **2026-08-16:** Made the cache-backed Normal Model provider the transparent default, added explicit refresh and uncached diagnostic modes, and removed Anchory's cache loader and model slot.
 - **2026-08-16:** Closed the Claude queued-input gap by mapping human `queued_command` attachments into user events/messages and following loaded context at the original queue time.
 - **2026-08-16:** Audited the active Claude/Codex raw archive, recovered three missing Claude human-input shapes, and replaced Claude's default-agent fallback with explicit user, explicit agent, and unresolved origin resolution.
+- **2026-08-16:** Introduced `tarav chatlas2 views list|get` with the first `full`, `transcript`, `user`, and `events` projections; live Codex and Claude reads use the transparent Normal Model provider, while replay and zip-transcript remain deliberately deferred.

@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **scope:** introduce the first provider-neutral `tarav chatlas2 views` surface with `list` and `get`, initially exposing `full`, `transcript`, `user`, and `events`
-- **status:** authorized for autonomous development
+- **status:** implemented and verified; implementation remains uncommitted after checkpoints `163dfc1` and `2da6509`
 - **source:** explicit autonomous implementation invocation in Codex session `01a001c2-8fb1-72e0-8aa1-0bbc52c4b5e8`
 - **target:** pure Chatlas2 view projections, cache-backed CLI reads, focused tests, and maintained Chatlas2 guidance
 - **out of scope:** porting current Chatlas view internals; `replay`; `zip-transcript`; cross-session selection; message search; consumer cutover beyond this new public route
@@ -60,4 +60,7 @@
 
 - **2026-08-16 — execution gate:** autonomous development is authorized and grounded as `^c20260816-23u`
 - **2026-08-16 — scope decision:** initial migration is deliberately limited to `full`, `transcript`, `user`, and `events`; `replay` and `zip-transcript` wait for an evidenced consumer need
-
+- **2026-08-16 — RED/GREEN:** the focused CLI regression first failed because `views` was absent at the parser boundary; the registry and four projections now pass with complete-model and bounded-collection behavior
+- **2026-08-16 — live Codex trial:** the current session returns 123 user messages and the latest is the authorizing Views invocation; bounded transcript/events reads stop at three records, while `full` returns the canonical model with 11,627 events and 509 Chat.Message annotations
+- **2026-08-16 — live Claude trial:** user view reads the archived Claude session `890050c4-9473-4b4f-ab2f-a67c54d57894` through the same provider-neutral route with user-only origin intact
+- **2026-08-16 — verification:** all 1,967 repository tests pass; focused Chatlas2 plus architecture coverage passes 66 tests; all 21 conformance captures verify and normalize; focused Ruff, format, and diff checks pass; Skillware retains 30 pre-existing POIs with none targeting Chatlas2. Repository-wide Ruff remains blocked only by the pre-existing unused `local_storage_paths` import in `src/tarav/skills/routing.py`
