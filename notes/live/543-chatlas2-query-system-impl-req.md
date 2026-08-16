@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **scope:** add the first small Chatlas2 query system: `Session.Query` selects chats through the existing Session.Index, and `Chat.Query` finds authoritative `Chat.Message` records first within one session and then across a bounded Session.Query result set
-- **status:** ready for autonomous implementation
+- **status:** implemented and verified
 - **source:** accepted query design and autonomous develop request in the current Chatlas2 design session
 - **support set:** query scope, simplicity boundary, and autonomous authorization ^d20260816-42u
 - **final validation MVP:** migrate `tarav-chatlas-my-session-id` from Chatlas1 discovery to the new Chatlas2 query path and use it to resolve this running session
@@ -57,7 +57,7 @@
 - **GREEN:** implement a thin Chatlas2 Session.Query over existing Session.Index mechanics and expose it beneath `tarav chatlas2 sessions query`.
 - **observable:** callers can obtain a bounded set of Chatlas2-capable sessions without constructing Normal Models.
 - **check:** focused query and CLI tests; existing Chatlas2 cache selection remains unchanged.
-- **status:** not started
+- **status:** complete
 
 ### Vertical.Slice.2 - Single-session Chat.Query
 
@@ -65,7 +65,7 @@
 - **GREEN:** extend the cached message reader only where safe candidate selection is possible; add an authoritative query service and `tarav chatlas2 chat query` exact-session path.
 - **observable:** one query returns stable message evidence without loading unrelated opaque turn payloads.
 - **check:** focused cache/query/CLI tests against both Codex and Claude conformance sessions.
-- **status:** not started
+- **status:** complete
 
 ### Vertical.Slice.3 - Session-set Chat.Query
 
@@ -73,7 +73,7 @@
 - **GREEN:** compose Session.Query rows with cache-transparent per-session readers without retaining complete Normal Models.
 - **observable:** a distinctive user fragment locates messages across recent selected chats while preserving exact session and message refs.
 - **check:** multi-session fixtures covering Codex and both Claude raw versions.
-- **status:** not started
+- **status:** complete
 
 ### Vertical.Slice.4 - Self-session discovery MVP
 
@@ -81,16 +81,20 @@
 - **GREEN:** rewrite direct enrichment and fallback discovery around Chatlas2 Session.Query and Chat.Query, retaining inline execution, bounded payload handling, and ambiguity safety.
 - **observable:** the updated skill resolves this running Codex session and its neutral identity using only the harness plus Chatlas2 query commands.
 - **check:** run the documented direct path and a forced fallback fragment intersection; confirm both identify `01a001c2-8fb1-72e0-8aa1-0bbc52c4b5e8` / `bc3e97379260c6592f1ac7cc4cad0c8fc0f355719898e6a6464d5f6583ec7577` without invoking `tarav chatlas`.
-- **status:** not started
+- **status:** complete
 
 ### Vertical.Slice.5 - Reconciliation
 
 - update maintained Chatlas2 architecture guidance, package exports, and the Impl.Req status/log.
 - run focused tests, all `tests/chatlas2`, architecture checks, Ruff, CLI help, live Codex/Claude queries, and the self-session MVP.
 - inspect the complete diff without altering unrelated uncommitted Chat.Index work.
-- **status:** not started
+- **status:** complete
 
 ## Impl.Log
 
-- **2026-08-16:** Implementation request produced through the autonomous develop workflow and grounded by Chatlas2 message support ^d20260816-42u.
+- **2026-08-16:** Execution gate: the autonomous develop invocation is grounded through Chatlas2 message support ^d20260816-42u.
+- **2026-08-16:** Before implementation edits, checkpointed the complete existing state in `tarav-py` (`4c1e1f3`) and `tarav-chatlas-md` (`ae76a2a`) as required by the execution workflow.
 - **2026-08-16:** The user added `tarav-chatlas-my-session-id` as the final validation MVP after identifying its stale Chatlas1 enrichment path; incorporated as the last functional slice rather than a separate implementation request.
+- **2026-08-16:** Implemented bounded Session.Query and authoritative single-/multi-session Chat.Message query without adding Event.Pattern, provider tool semantics, raw search, or another persistent index.
+- **2026-08-16:** Migrated `tarav-chatlas-my-session-id` to Chatlas2-only discovery. Both its direct harness-ID path and forced two-fragment fallback resolved the running session to `01a001c2-8fb1-72e0-8aa1-0bbc52c4b5e8` / `bc3e97379260c6592f1ac7cc4cad0c8fc0f355719898e6a6464d5f6583ec7577`.
+- **2026-08-16:** Reconciliation passed: 12 focused query tests, 99 Chatlas2/architecture tests, Ruff, CLI help, no executable Chatlas1 command in the self-session skill, and live message queries over Codex plus Claude `1ecc` and legacy `b17b` sessions.
