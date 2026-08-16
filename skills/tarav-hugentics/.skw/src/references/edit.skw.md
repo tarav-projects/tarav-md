@@ -52,7 +52,7 @@ This module is a `Workflow.Neutral.Module`: it does not run a workflow — its r
 - place conceptual fundamentals in the index
 - place extended depth, grounded history, scoped views, specs, and parked depth in the appendix
 - place operational procedure in skills or references, not in the index
-- place each line's `Support.Set` as a trailing anchor inline on the line it supports (grounding is a line property, `Index.Line`) — anchors come from `references/link.md`
+- place each line's `Support.Set` as a trailing anchor inline on the line it supports (grounding is a line property, `Index.Line`) — anchors come from the internal `Real.Time.Grounding.Knowledge.Module` in `references/link.md`
 
 ## Block Independence
 
@@ -135,12 +135,13 @@ Support resolution begins only after both gates have been crossed: the final pro
 1. Resolve the final agent proposal and user approval as exact Chatlas2 `Chat.Message.Ref` assertions.
 2. Locate and qualify the substantive user messages that support each approved line's claim.
 3. Confirm that the approval message qualifies under the current chat `Touch.Authority.Surface` protocol.
-4. Mint the `Index.Line.Anchor` through `references/link.md`. Put qualifying user messages in `relationships.support`; record token, agent proposal, and user approval independently under `relationships.gates.tokenized_verbatim_approval`. When landing two or more lines, preview and register one ordered `tarav.chatlas2.anchor-batch.v2` over all final bodies.
+4. Mint the `Index.Line.Anchor` through the internal `Real.Time.Grounding.Knowledge.Module` in `references/link.md`. Put qualifying user messages in `relationships.support`; record token, agent proposal, and user approval independently under `relationships.gates.tokenized_verbatim_approval`. When landing two or more lines, preview and register one ordered `tarav.chatlas2.anchor-batch.v2` over all final bodies.
 5. Apply the approved edit in one patch and replace each `^<anchor-on-landing>` with the anchor returned for that line's stable batch `client_id`. The support relationship grounds the claim; the gate relationship independently makes the line eligible for `Reviewed.Content`.
-6. Update the router when concepts are added, renamed, moved, or gain appendix depth.
-7. Run the default linter plus the opt-in `line-approval` and `line-verbatim-gate` checks with repeated `--anchor` selectors for the landed lines. Anchor scope runs parser-bound line checks and reports depot-wide checks it omitted; name a depot check explicitly only when that broader audit is intended.
-8. For multi-line inspection, use `tarav index line manifest show --depot <depot> --anchor <anchor> ... --verification stored`; refuse the edit workflow when it reports ambiguous anchor occurrences, and materialize only when a reusable volatile inspection cache is useful.
-9. Re-run `Touched.Decision.Cycle` contextualization over the changed live cut and report any remaining POIs separately from the completed edit.
+6. Return the exact `client_id -> anchor` mapping to `Hugentic.Capture.Workflow.Module` and run its `Index.HEAD.Backpropagation` postcondition for this successful current-chat landing. Direct maintenance outside Real.Time.Capture does not fabricate a chat projection.
+7. Update the router when concepts are added, renamed, moved, or gain appendix depth.
+8. Run `Real.Time.Validation.Knowledge.Module` from `references/check.md` over only the newly landed anchors.
+9. Re-read each newly landed source line directly and resolve each returned anchor through `tarav chatlas2 anchory resolve`; refuse completion when an anchor occurrence or attachment is ambiguous.
+10. Re-run `Touched.Decision.Cycle` contextualization over the changed live cut and report any remaining POIs separately from the completed edit.
 
 The opt-in material-equivalence check implements `Line.Verbatim.Gate`.
 
@@ -158,9 +159,8 @@ A cluster of edits approved together lands under one gate — the landing trigge
 - add or update appendix route annotations when appendix depth changed
 - update namespace membership in `### meta` when the concept belongs to an `Explicit.Namespace`
 - check cited duplicates and related stable mentions when editing an existing concept
-- run `tarav index linter --depot <depot>` after depot edits, or explicit `--index` / `--appendix` checks when the edit is scoped to individual surfaces
-- use repeated `--anchor` selectors for line-focused verification; use `tarav index line manifest show` to read the same lines, block-bounded context, occurrence agreement, and deduplicated support, gate, and provenance messages in one batch
-- normal depot lint owns comprehensive cross-surface anchor agreement and refreshes the volatile lookup locator; manifest lookup is bounded inspection, not a substitute for that lint
+- run `Real.Time.Validation.Knowledge.Module` after the primary landing and before Chat.Index backpropagation
+- use repeated `--anchor` selectors so validation remains bounded to the exact newly landed editions
 
 ## Quality References
 

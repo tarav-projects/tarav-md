@@ -48,7 +48,7 @@ Reconciliation may keep, ground, modify, add, replace, remove, reorganize, demot
 - `--design` repeats the cycle inside whichever What/How/Exec concerns remain open
 - `--capture` contextualizes candidate touch, acts by drafting a curated projection, and reconciles only after a landing command
 - `--edit` performs a gated reconciliation already selected by prior reasoning
-- `--reconcile` runs the complete cycle explicitly against a changed product
+- background reconciliation is parked in the workflow-retirement issue at `issues/100-issues.md` while Real.Time.Capture is rebuilt incrementally
 - implementation workflows apply the same cycle inside their own How/Exec products
 
 `What.Design`, `How.Design`, and `Impl.Exec` remain an abstraction gradient. They are concerns exposed when unresolved, not mandatory sequential stages.

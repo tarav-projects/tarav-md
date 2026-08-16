@@ -4,6 +4,8 @@ Use this module when the user wants active conversation and adjacent evidence wo
 
 `Hugentic.Capture.Workflow` is the primary user-facing alignment workflow. Its target may be the reviewed main Index surfaces, `Design.Req`, `Design.Session`, or `Index.Agendix`; changing target changes the applicable landing gate, not the conversational loop. `--capture` selects the loop without selecting a durable target. Compatible flags, conversation, and declared defaults may complete the route where their rows permit it.
 
+These are `Real.Time.Capture` workflows: they operate beside live `User.Attention`, land semantic change from the loaded chat, and backpropagate each exact grounded Index-line edition they successfully land. `Chat.Index` is never a direct Hugentics capture target; it is the chronological co-projection maintained by `Index.HEAD.Backpropagation`.
+
 `Design.Req.Promotion` is the interruption that temporarily retargets this loop from an active design request to the index, an `Impl.Req`, or both.
 
 ## Target Resolution
@@ -29,7 +31,8 @@ Inside the Implementation namespace, `--impl --design` and `--impl --capture` be
 4. **Propose + Discuss.** Form-fit the candidate to its target and expose the wording or material decision that needs attention.
 5. **Approve.** Apply the target's gate. Approval records proposal state; it does not imply landing where the target separates those acts.
 6. **Land.** Write only through the resolved target procedure.
-7. **Reconcile.** Re-read the changed target and maintain any active workflow artifact before continuing or completing.
+7. **Backpropagate.** Project exact grounded lines from the successful landing to `Chat.Index.HEAD`, then best-effort onto the `Chat.Index.Delta` tape through their support-derived `Chat.Turn.Ref` horizon.
+8. **Reconcile.** Re-read the changed target and maintain any active workflow artifact before continuing or completing.
 
 ### Read-Only Audit
 
@@ -45,11 +48,34 @@ Load `references/touched-data.md` for authority and line standing, and `referenc
 
 For current-session capture, use the live conversation already in agent context as the default understanding source. Consult Chatlas2 after selecting qualifying messages, to resolve and validate their exact references. Transcript reconstruction is an escalation for ambiguity, missing compacted context, or explicitly historical work—not a default preparation step.
 
-For a `Design.Session` target, `Design.Session.Knowledge.Module` replaces the general turn-based support path with its declared Chatlas2 route. That specialization resolves selected current-context messages against the completed Chatlas2 Normal Model and grounds lines in user `Chat.Message.Ref` assertions; it does not invoke the current Chatlas `Capture.Plan` or the shared reviewed-Index linking pipeline. Other capture targets retain their existing realization.
+Every target uses the same Chatlas2 grounding and backpropagation boundary. Target modules retain their own gates and surface writes; Chatlas2 retains exact `Chat.Message.Ref`, `Chat.Turn.Ref`, line-dossier validation, and descriptor-free Chat.Index mechanics.
 
-For capture targets that require chronological `Chat.Index` materialization, use the authoritative Chatlas transcript after semantic work from current context and delimit each Delta by its `Delta.Horizon.Turn`; do not treat transcript reconstruction as the understanding source. A Delta may summarize one user turn or a meaningful group ending at that turn. Ordinary model lines must acquire an exact Delta materialization before they are considered fully propagated; `Chat.Index.HEAD` and Project Index projections may be authored first, but the resulting missing-home condition remains a reconciliation POI until backfilled.
+Load `Real.Time.Grounding.Knowledge.Module` from `references/link.md` before minting the landing batch and `Real.Time.Validation.Knowledge.Module` from `references/check.md` after the primary patch. These are internal capture primitives; neither file defines a public route.
 
-Use the Chatlas `Capture.Plan` application boundary for mechanical writes. In maintain mode, `head.preserve: true` permits a Delta-only backfill while retaining the complete existing HEAD. The `Index.Line.Anchor` dossier asserts the current `Line.Type + body + Anchor.Id` triplet and records independent support, gate, and provenance relationships. Delta materialization and `Line.Home` are derived from exact containment and authoritative tape order. Placement on a HEAD does not create touched authority.
+## Real.Time.Capture And Index.HEAD.Backpropagation
+
+`Index.HEAD.Backpropagation` is a required postcondition for each exact grounded Index line successfully landed from the current chat:
+
+```text
+Other.HEADs -> Chat.Index.HEAD -> Chat.Index.Delta tape
+```
+
+- `Chat.Index.HEAD` receives every exact landed edition, even when chronological placement cannot yet be proven.
+- The Delta tape receives a stable receipt when the line dossier's support includes a message on the target chat. The latest local supporting message selects its containing `Chat.Turn.Ref`; one coherent landing batch may share the latest such horizon.
+- A Delta may have any completeness. Its only semantic constraint is that every line it contains is supported within its horizon.
+- Later HEAD changes produce later receipts, often on another `Chat.Surface`; they never rewrite earlier receipts merely to keep the current model tidy.
+- A head-only result is a recoverable reconciliation gap, not a reason to roll back the primary landing or invent an origin.
+
+Use the Chatlas2 real-time `Capture.Plan` after the primary target's final anchor batch is known:
+
+1. Scaffold one plan with `tarav chatlas2 chat-index scaffold --identity-hash <current-chat-identity> --stage <empty-stage> --json`.
+2. Register the final line-dossier batch and patch the primary target through its normal landing procedure.
+3. Fill `plan.json.landed_lines` with stable `client_id`, target `concept`, exact unanchored `line_content`, and the returned `d…` `anchor`; set `status` to `ready`. Do not duplicate support, gates, or predecessors from the dossier.
+4. Run `tarav chatlas2 chat-index validate --plan <plan.json> --json`. It verifies attachment triplets, support standing, containing turns, the base fingerprint, and the planned HEAD/Delta effects without writing Chat.Index.
+5. Run `tarav chatlas2 chat-index apply --plan <plan.json> --json`. Apply revalidates under the session lock, updates the partial Chat HEAD, appends the stable Delta receipt when possible, and audits exact presence.
+6. Report every `head_only_gaps` item for background reconciliation. A failed or interrupted backpropagation remains retryable and must be reported, but it does not undo an already successful primary landing.
+
+The plan is a batching boundary, not a second semantic model. It names editions already landed elsewhere; the Chatlas2 line dossier remains the authority for support, gates, predecessors, and attachment drift.
 
 Operationally, capture applies `Touched.Decision.Cycle` to `Touch.Authority.Surface` editions and adjacent evidence. It distinguishes `Touched.Data`, `Support.Set`, `Live.Index.Line`, `Open.Inference`, and `POI.Instance` while producing `Kernel.Writing` for the current `Agentos.Index.System` realization.
 
@@ -58,16 +84,16 @@ Operationally, capture applies `Touched.Decision.Cycle` to `Touch.Authority.Surf
 A pass over the chat's uncaptured content, repeated until the content is exhausted or the user stops:
 
 1. **Contextualize / Assemble.** Load `Hugentic.Capture.Context.Assembly.Module`, including the touched-data and decision-cycle knowledge modules.
-2. **Contextualize / Discover.** Resolve engaged depots and live line standing, then batch the materially relevant existing anchors into a reference-detail line manifest before inspecting authority-surface or adjacent non-touch evidence.
-3. **Contextualize / Ground.** Treat the manifest as a volatile relationship projection, not authority. Use it to select support references, escalate only the messages or bounded context needed, and preserve ungrounded live lines as `Index.Presumption`.
+2. **Contextualize / Discover.** Resolve engaged depots and live line standing, read the materially relevant Index blocks directly, and select only current Chatlas2 `^d…` references for relationship inspection. Legacy anchors remain visible history but are not resolved by this workflow.
+3. **Contextualize / Ground.** Resolve only those selected references with `tarav chatlas2 anchory resolve`; escalate only the messages or containing turns needed, and preserve ungrounded live lines as `Index.Presumption`.
 4. **Contextualize / POIs.** Make gaps, contradictions, ambiguity, stale projections, and missing grounding explicit before choosing a capture move.
 5. **Act / Map.** Build an internal candidate map covering overlap, dependencies, natural edit actions, possible destinations, and POIs that may legitimately remain unresolved.
 6. **Act / Roadmap.** In `Interactive` mode, present the small public `Capture.Roadmap`: likely block or edit clusters and one sentence explaining each.
 7. **Act / Focus.** Select one block or small coherent cluster. The user may redirect, reorder, remove, or add candidates through natural conversation.
 8. **Act / Propose + Discuss.** Codesign only the foreground cluster, then present a typed, landing-targeted `Index.Edition.Turn`.
 9. **Act / Approve.** User approval records the current proposal as approved but unlanded. Approved material accumulates while review moves to the next cluster.
-10. **Reconcile / Land + Re-ground.** A separate user command lands selected approved material, then re-contextualizes against the changed live cut and support network.
-11. **Reconcile / Propagate.** Audit Project lines against registered support Chat.Indexes. Missing Delta homes or current Chat HEAD projections remain advisory POIs and may be repaired in either direction without blocking the originating edit.
+10. **Reconcile / Land + Backpropagate.** A separate user command lands selected approved material, performs `Index.HEAD.Backpropagation` for its exact anchored lines, then re-contextualizes against the changed live cut and support network.
+11. **Reconcile / Continue.** Report head-only or failed tape placements as advisory POIs for later background reconciliation without blocking the originating edit.
 
 `Autonomous` mode performs the same preparation and internal mapping but does not present a roadmap or run the review loop; it proceeds only through a target contract that admits one-trigger agentic landing.
 
@@ -169,8 +195,10 @@ Landing form-fits material to the named surface under that surface's own gate. A
 - **ontology / appendix** — token approval establishes reviewed content, while a separate landing command executes the gated edit; landing records substantive user-message support plus independent proposal/approval message gates
 - **agendix** — one user trigger covers the pass without per-line review; each line still lands typed and grounded through a resolvable support set under a routed concept or provisional path
 - **design session** — one user trigger covers the bounded pass without per-line review; typed lines grounded in Chatlas2 user `Chat.Message.Ref` assertions land in the resolved topic-scoped `Design.Index`, while unresolved material stays in `Session.Notes`
-- support resolution and anchor allocation are landing work through the resolved target specialization; they occur against the final approved proposal and its qualifying substantive support, never while the proposal remains open to revision
+- support resolution and anchor allocation are landing work through the internal Chatlas2 `Real.Time.Grounding.Knowledge.Module`; they occur against the final approved proposal and its qualifying substantive support, never while the proposal remains open to revision
 - a multi-line landing previews and registers its exact final bodies as one anchor batch, then applies the returned line-to-anchor mapping in one surface patch; the single-line path remains for one line
+- after that primary patch succeeds, the same exact line-to-anchor mapping becomes one Chatlas2 real-time Capture.Plan and is backpropagated to Chat.Index.HEAD and, when support supplies a local horizon, the Delta tape
+- `Real.Time.Validation.Knowledge.Module` re-reads only the newly landed source lines, resolves their Chatlas2 anchors, and checks the exact backpropagation audit; broader diagnosis remains parked
 - every landing updates the live cut; capture re-contextualizes afterward and reports remaining POIs without treating them as automatic edits
 
 ## Behavior

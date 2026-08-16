@@ -2,7 +2,7 @@
 
 ## Impl.Abstract
 
-- **Status:** Ready for execution.
+- **Status:** Implemented and verified.
 - **Scope:** Make `Index.HEAD.Backpropagation` a normal postcondition of Hugentic `Real.Time.Capture`: every successfully landed, current-chat-backed Index line is projected to `Chat.Index.HEAD`, then best-effort materialized on the chronological `Chat.Index.Delta` tape through Chatlas2 `Chat.Message.Ref` and `Chat.Turn.Ref` evidence.
 - **Source alignment:** The accepted flow is `Other.HEADs -> Chat.Index.HEAD -> Chat.Index.Delta tape`. `Chat.Index` is not a direct Hugentics capture target. Real-time capture need not complete the chat index; it backpropagates the exact editions it lands while live `User.Attention` and exact support are available.
 - **Targets:** `tarav-py/src/tarav/chatlas2/` and tests; managed `tarav-md/skills/tarav-hugentics/.skw/src/` plus compiled runtime surfaces.
@@ -51,31 +51,37 @@
 
 ### Vertical.Slice.1 - Chatlas2 backpropagation model and RED tests
 
-- **Status:** Pending.
+- **Status:** Complete.
 - **RED:** Add focused tests proving that no Chatlas2 Capture.Plan/surface path currently projects an anchored landed line to HEAD and its containing-turn Delta.
 - **GREEN:** Implement the narrow plan parser, exact dossier/turn resolution, partial HEAD update, stable Delta receipt, base fingerprint, and head-only gap result.
 - **Checks:** Focused unit tests cover create, multi-line batching, predecessor replacement, missing local origin, stale base refusal, and idempotent repeat.
 
 ### Vertical.Slice.2 - Recoverable application and CLI
 
-- **Status:** Pending.
+- **Status:** Complete.
 - **RED:** Extend the CLI test to call an absent `chatlas2 chat-index scaffold|validate|apply` path.
 - **GREEN:** Expose the three operations, lock and revalidate apply, install through recoverable replacement, and return structured effects/audit.
 - **Checks:** End-to-end synthetic Codex session test verifies materialized Markdown, exact anchors, Chat.Turn.Ref metadata, repeated no-op behavior, and cache-backed reads.
 
 ### Vertical.Slice.3 - Hugentics Real.Time.Capture integration
 
-- **Status:** Pending.
+- **Status:** Complete.
 - **RED:** Confirm the runnable capture module still treats chronological Chat.Index work as later reconciliation and retains a Chatlas1 Capture.Plan dependency.
 - **GREEN:** Update managed Skillware sources so every successful current-chat semantic landing batches `Index.HEAD.Backpropagation` after primary landing: scaffold, fill exact landed lines, validate, apply, and report head-only gaps without blocking the primary landing.
 - **Checks:** Rebuild the package; inspect compiled capture, root literacy, target landing summary, and direct loading context; run Skillware check and context projection.
 
 ### Vertical.Slice.4 - Reconciliation and regression
 
-- **Status:** Pending.
+- **Status:** Complete.
 - **GREEN:** Update `tarav-py/AGENTS.md` for the new Chatlas2 consumer surface and update this artifact with results and deviations.
 - **Checks:** Run focused Chatlas2 tests, the complete `tests/chatlas2` suite, Ruff on touched Python, `tarav skw check`, and `git diff --check` in both repositories.
 
 ## Impl.Log
 
 - **2026-08-16:** Designed from the accepted `Real.Time.Capture`, `Index.HEAD.Backpropagation`, partial Chat.Index, and `Other.HEADs -> Chat.Index.HEAD -> Index.Tape` discussion. Execution authorization is grounded at `d20260816-39u`.
+- **2026-08-16 — checkpoint:** Before implementation, checkpointed the two active repositories at `tarav-py@b4e3e78` and `tarav-md@24f0c4b` as required by the autonomous development workflow.
+- **2026-08-16 — slice 1:** Added the narrow Chatlas2 real-time Capture.Plan and descriptor-free Chat.Index applicator. Validation resolves exact line dossiers, checks current message state, derives containing user turns conservatively, sends every line to HEAD, and batches eligible lines at the latest proven local horizon. Focused RED/GREEN coverage proves stable receipts, predecessor replacement, head-only gaps, stale-base refusal, and idempotence.
+- **2026-08-16 — slice 2:** Added `tarav chatlas2 chat-index scaffold|validate|apply`, per-session locking, revalidation under lock, recoverable directory replacement, and post-write audit. The installed editable CLI exposes the route and the synthetic end-to-end test repeats with no second mutation.
+- **2026-08-16 — slice 3:** Rebuilt the managed Hugentics Skillware so shared capture, ontology/appendix landing, agendix, and design-session paths treat `Index.HEAD.Backpropagation` as a postcondition of successful current-chat landing. The compiled path uses Chatlas2 only; Chat.Index is a co-projection rather than a direct landing target.
+- **2026-08-16 — verification:** `uv run pytest tests/chatlas2 -q` passes 79 tests; Ruff and both repository diff checks pass. Skillware build reports no findings and its context projection reaches the new real-time contract. Skillware check retains only six pre-existing `Derived.Stale` advisories in unrelated alignment and implementation modules.
+- **Deviation:** Existing Chatlas1 Chat.Index files are preserved as opaque unrelated surface material. This implementation neither migrates nor reinterprets historical files; the accepted real-time Chatlas2 path begins producing exact current-chat projections and receipts while background reconciliation remains separate.

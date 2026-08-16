@@ -61,7 +61,7 @@ Grounding gives a line touched authority through its support; it does not make t
 
 This route uses the same Chatlas2 grounding primitives as the other capture destinations; its distinct behavior is the Design.Session landing surface and ungated bounded pass.
 
-1. **Resolve the session.** Use `tarav-chatlas-my-session-id` for the current session, or an exact native session id or Chatlas identity already in hand. Session discovery may reuse current Chatlas mechanics; all following support operations use Chatlas2.
+1. **Resolve the session.** Use the exact provider-native session id supplied by the running harness or already present in the active workflow. If none is available, report `SESSION_SELECTOR_UNAVAILABLE` and leave the line unminted; do not fall back to Chatlas1 discovery.
 2. **Understand and draft from current context.** The live conversation already loaded for the agent is the default capture source. Identify the settled design deltas, draft their final lines, and select the qualifying user messages already visible in that context. Do not reread the transcript merely to reconstruct understanding the agent already has.
 3. **Resolve exact support.** For each selected message, run `tarav chatlas2 messages find --session-id <id> --side user --text '<distinctive text>' [--exact] --json`. Refine until the selected message resolves uniquely, then retain its returned `member_ref`; it asserts session, stable message address, and current message hash.
 4. **Escalate only when needed.** Refine an ambiguous lookup before reading more. Use `tarav chatlas2 turns get --session-id <id> --message-address <address> --hydrate --json` when associated turn material is necessary. Read `tarav chatlas2 views get --session-id <id> --view user --json` or `--view transcript` only when compaction removed necessary context, selected evidence cannot otherwise be resolved, or the caller explicitly requests historical capture. Views and hydrated turns are disposable projections, not authority surfaces.
@@ -78,8 +78,9 @@ One explicit `--capture --design-session` invocation satisfies `Edition.Trigger.
 2. Compare the conversation against its existing `Design.Index`, notes, and stable Index context; do not duplicate already captured material.
 3. Form-fit settled design deltas as typed, grounded lines under compact `Design.Block`s; keep unresolved material in `Session.Notes`.
 4. Preview and register exact final line bodies through the Chatlas2 route as one anchor batch, then apply the returned line-to-anchor mapping in one patch.
-5. Refresh `Session.Abstract` and append only meaningful lifecycle information to `Session.Log`.
-6. Report the captured blocks, unresolved support, and any promotion candidates compactly.
+5. Backpropagate the exact returned line-to-anchor mapping through the shared Real.Time.Capture `Index.HEAD.Backpropagation` postcondition. The Design.Session remains the primary landing surface; Chat.Index receives the current-chat projection and best-effort chronological receipts.
+6. Refresh `Session.Abstract` and append only meaningful lifecycle information to `Session.Log`.
+7. Report the captured blocks, unresolved support, head-only backpropagation gaps, and any promotion candidates compactly.
 
 The capture pass may create or maintain only the resolved design session. It does not mutate the stable Index, an `Impl.Req`, or another live artifact.
 

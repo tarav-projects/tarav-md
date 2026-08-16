@@ -12,4 +12,4 @@
 ## Routing
 
 - `design/100-design.md` — Product.Design.Session, Hugentic.Capture.Workflow, Design.Req, Design.Req.Promotion
-- `issues/100-issues.md` — Issue.I0001.Bootstrap.Review
+- `issues/100-issues.md` — Issue.I0001.Bootstrap.Review, Issue.I0002.Hugentics.Chatlas1.Workflow.Retirement

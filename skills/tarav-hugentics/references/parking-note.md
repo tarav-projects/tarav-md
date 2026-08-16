@@ -30,7 +30,7 @@ This skill is an `Alignment.Loop.Interruptions` workflow: it intentionally branc
 - this skill captures sidequest ideas; it does not execute them
 - this skill enriches lightly; a growing design discussion should move to the relevant design workflow
 - this module writes only `Parking.Note` files; index edits and agendix captures stay with their Index modules
-- this module consumes `references/link.md` behavior for chat anchors, but the note file remains the landing surface
+- this module consumes the internal `Real.Time.Grounding.Knowledge.Module` in `references/link.md`, but the note file remains the landing surface
 - this skill is user-gated: file writes require explicit approval of the exact text
 
 ## Parking.Note Files
@@ -55,7 +55,7 @@ DEPRECATED: `012.NOTEBOOK.md` was the former parking-note filename. Prefer `012.
 4. The agent drafts a block, picks a target file, and shows the exact proposed text with inert placeholder anchors such as `^<anchor-on-landing>`.
 5. The user refines, redirects the target, rejects the note, or explicitly approves the exact block text for writing.
 6. If the user rejects the note, the agent writes nothing, mints no anchor, and returns a rejection report with the compact resume point.
-7. After approval, the agent mints one Chatlas2 line dossier through `references/link.md` whose support contains the qualifying substantive user messages plus the approval message; one exact dossier may trail every line approved as a unit.
+7. After approval, the agent mints one Chatlas2 line dossier through the internal Real.Time grounding primitive whose support contains the qualifying substantive user messages plus the approval message; one exact dossier may trail every line approved as a unit.
 8. The agent replaces placeholder anchors with the minted anchor and writes the block to the target file.
 9. The agent returns a close-out report: what was parked, where it was written, the anchor, and the compact resume point for the interrupted task.
 
@@ -88,7 +88,7 @@ Example:
 
 Parking notes preserve the compact idea in the file and the full idea in the chat.
 
-- Use `references/link.md`: resolve the current session, locate the explicit user approval as a `Chat.Message.Ref`, register the exact line dossier, and verify the returned neighborhood.
+- Use `references/link.md`: obtain the current provider-native session selector, locate the explicit user approval as a `Chat.Message.Ref`, register the exact Chatlas2 line dossier, and verify the returned neighborhood.
 - When the agent drafted the block, the user's explicit approval message joins the substantive support members; it is not modeled as a reviewed-Index gate.
 - Do not write the block until the approval anchor is minted and verified. If anchoring is unavailable, stop before the file write and report the blocker.
 - Exact dossier registration is idempotent. Wrong support or line content requires a corrected dossier rather than repurposing an unrelated anchor.

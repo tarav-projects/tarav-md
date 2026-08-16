@@ -1,6 +1,6 @@
 ---
 name: tarav-hugentics
-description: "Canonical public control surface for Hugentic sessions. USE WHEN you need session routing, touched-data contextualization, product design, implementation design or execution, capture, reconciliation, parking, status, index research, editing, diagnosis, testing, or maintenance."
+description: "Canonical public control surface for Hugentic sessions. USE WHEN you need session routing, touched-data contextualization, product design, implementation design or execution, capture, parking, status, index research, editing, diagnosis, testing, or maintenance."
 ---
 
 # Agentos Hugentics
@@ -107,11 +107,8 @@ The public flags below call the single running `Batchy.Router`. A trailing value
 | `--agendix` | - | explicit; default: Alignment.Mode::Autonomous | apply the --index --capture --agendix shorthand and use the autonomous alignment default |
 | `--design` | - | explicit-or-semantic | select the shared capture loop with Design.Req target knowledge |
 | `--edit` | `--write`<br>`--append` | explicit-or-semantic | route through the gated Index landing contract; trailing input binds Main.Prompt and --depot/--chapter bind scope |
-| `--reconcile` | - | explicit-or-semantic | run the bulk read-only coverage pass and advance cursors only when reconciliation was explicitly requested |
 | `--issues` | `--issue` | explicit-or-semantic | select the grounded Issue.Block lifecycle without inferring review from folder placement |
-| `--check` | `--lint` | explicit-or-semantic | select Index.Check.Operation.Module |
 | `--type` | - | explicit-or-semantic | load Index.Line.Type.Knowledge.Module |
-| `--link` | - | explicit-or-semantic | select Anchory.Link.Operation.Module |
 | `--impl` | `--implementation` | explicit-or-semantic | enter Implementation.Workflow.Router.Module and resolve exactly one implementation workflow from flags, input, conversation, or a declared default |
 | `--impl --design` | `--impl-design` | explicit-or-semantic; default: implementation input without an `Impl.Req` | select Implementation.Design.Workflow.Module |
 | `--impl --review` | `--review` | explicit-or-semantic | select Implementation.Review.Workflow.Module |
@@ -172,10 +169,7 @@ Canonical module identity is explicit and independent from invocation spelling. 
 | Canonical module | Load target | Routing |
 |---|---|---|
 | `Index.Search.Operation.Module` | `references/search.md` | `--search`, `--research`, `--ground`; default: Index namespace when omitted |
-| `Project.Chat.Reconciliation.Operation.Module` | `references/reconcile.md` | `--reconcile` |
 | `Index.Issue.Operation.Module` | `references/issues.md` | `--issues`, `--issue` |
-| `Index.Check.Operation.Module` | `references/check.md` | `--check`, `--lint` |
-| `Anchory.Link.Operation.Module` | `references/link.md` | `--link` |
 | `Chat.Status.Operation.Module` | `references/chat-status.md` | `--status`, `--chat-status` |
 | `Workflow.Status.Operation.Module` | `references/workflow-status.md` | `--workflow-status` |
 | `Hugentic.Session.Router.Operation.Module` | `references/session-router.md` | `--session-router`, `--what-now`, `--what-next` |
@@ -275,9 +269,9 @@ A `Capture.Stance` steers what the capture loop does after each user turn. It is
 - the active chapter defaults to `design`; chapter files are named `NNN-<chapter>.md`
 - index work happens over engaged `Index.Depot`s; `--depot` scopes which depots are engaged and `--chapter` scopes within them
 - its lines carry `Line.Type` codes (`- [CT] ...`) classifying each line's act; untyped lines are pre-fence legacy
-- its current support references are trailing `Anchory.Anchor`s resolving through Chatlas2 to qualifying user `Chat.Message.Ref` evidence; readers continue to resolve existing current-Chatlas anchors during migration
-- chronological chat capture lives in `Chat.Index.Delta` files; `Chat.Index.HEAD` is the chat's current projection
-- an ordinary Project line eventually needs an exact Delta home and, when current for that chat, a matching Chat HEAD line
+- its current support references are trailing `Anchory.Anchor`s resolving through Chatlas2 to qualifying user `Chat.Message.Ref` evidence
+- chronological chat receipts live in `Chat.Index.Delta` files; `Chat.Index.HEAD` is the chat's current projection
+- Hugentic `Real.Time.Capture` lands its primary semantic target first, then backpropagates every exact grounded edition to the current chat HEAD and best-effort to a support-derived Delta horizon; absent local support produces a reported head-only reconciliation gap rather than invented chronology
 - each Chatlas2 `Index.Line.Anchor` dossier asserts the current `Line.Type + body + Anchor.Id` triplet and records independent message support, review gate, and provenance relationships; these consumer semantics do not extend the Chatlas2 Normal Model
 - `issues/` holds grounded temporary Project topics; review is proven by the anchor record rather than folder placement
 - agents operate it by loading routers, concept blocks, appendix material, and references relevant to the current task
@@ -359,15 +353,6 @@ Selection cardinality: `many`.
 - when: an index or appendix surface is being written or an approved edit needs landing
 - then: route through the gated Index landing contract; trailing input binds Main.Prompt and --depot/--chapter bind scope
 
-### `^route-reconcile`
-
-- match: `explicit-or-semantic`
-- flags: `--reconcile`
-- destinations: `Project.Chat.Reconciliation.Operation.Module`
-- loads: `references/reconcile.md`
-- when: Project Index lines, support Chat.Indexes, or their reconciliation cursors must be compared or maintained
-- then: run the bulk read-only coverage pass and advance cursors only when reconciliation was explicitly requested
-
 ### `^route-issues`
 
 - match: `explicit-or-semantic`
@@ -378,16 +363,6 @@ Selection cardinality: `many`.
 - when: the caller wants to inspect, create, review, resolve, or retire Project Issue.Blocks
 - then: select the grounded Issue.Block lifecycle without inferring review from folder placement
 
-### `^route-index-check`
-
-- match: `explicit-or-semantic`
-- flags: `--check`
-- aliases: `--lint`
-- destinations: `Index.Check.Operation.Module`
-- loads: `references/check.md`
-- when: the caller wants deterministic diagnosis, linter findings, or post-edit validation
-- then: select Index.Check.Operation.Module
-
 ### `^route-line-type`
 
 - match: `explicit-or-semantic`
@@ -396,15 +371,6 @@ Selection cardinality: `many`.
 - loads: `references/type.md`
 - when: the caller wants Line.Type classification understood or proposed
 - then: load Index.Line.Type.Knowledge.Module
-
-### `^route-anchor-link`
-
-- match: `explicit-or-semantic`
-- flags: `--link`
-- destinations: `Anchory.Link.Operation.Module`
-- loads: `references/link.md`
-- when: the caller needs an Anchory.Anchor minted for chat context
-- then: select Anchory.Link.Operation.Module
 
 ### `^route-implementation-namespace`
 
@@ -635,12 +601,14 @@ An agent operating the index should:
 - resolve `::approve` / `::approved` to `User.Command::Approve`, but in index workflows mint, render, and require the proposal's explicit token; if the user gives a bare approval, leave the verbatim gate unresolved and reprint the exact tokenized command; resolve `::land` / `::write` to targeted `User.Command::Land`, and `::land-all-approved` to zero-argument `User.Command::LandAllApproved`; `--write` remains a skill argument while `::write` is an in-workflow transition
 - resolve `::discuss` and `::review` to their `Capture.Stance`, which changes only the loop's next move and the advertised commands; every command stays as available as its own condition makes it
 - during interactive capture, add approved drafts to the approved cluster and continue reviewing the roadmap; do not make immediate landing the default next move
-- ground every chat-backed landing through Chatlas2 `Chat.Message.Ref`: use line dossiers for Index and live-surface lines, generic message-support records for non-line implementation provenance, and mixed readers for existing current-Chatlas anchors
+- keep background reconciliation, broad Index diagnosis, and standalone chat linking out of the public router while their valuable design is parked; Real.Time.Capture owns only its internal Chatlas2 grounding and newly-landed-line validation primitives
+- ground every chat-backed landing through the internal Chatlas2 `Real.Time.Grounding.Knowledge.Module`: use line dossiers for Index and live-surface lines, and generic message-support records for non-line implementation provenance
 - when a landing contains several lines, batch its Chatlas2 anchor preview and registration and apply the returned line-to-anchor mapping in one surface patch; do not shell-loop the single-line path
+- after a current-chat primary landing succeeds, run the shared Chatlas2 real-time Capture.Plan over that exact line-to-anchor mapping: validate and apply `Chat.Index.HEAD` plus every provable support-derived `Chat.Index.Delta`, then report any head-only or retryable backpropagation gaps without undoing the primary landing
 - keep command targets foregrounded; targeted commands fail closed on ambiguous targets, and `::land-all-approved` fails closed unless one foreground index workflow owns the cluster
 - use file mutation only when the applicable surface gate is satisfied
 - keep action separate from index reconciliation: open inference may advance other work without silently rewriting touched positions
-- run a linter check after applying an approved index or appendix edit
+- run the internal validation slice after applying an approved index or appendix edit: re-read only the newly landed source lines, resolve their Chatlas2 anchors, and audit the exact backpropagation effects
 
 For delegated read-only research that protects the caller's context, use `Packages.Master.Agent` against the relevant package or packages.
 

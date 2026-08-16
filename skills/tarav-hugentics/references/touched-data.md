@@ -62,13 +62,13 @@ The current implementation maps the general model as follows:
 | `Index.Line.Anchor` | trailing `Anchory.Anchor` joined to a Chatlas2 line dossier |
 | independent line relationships | `relationships.gates` and `relationships.provenance` |
 | `Index.Line` | typed or legacy Markdown kernel line |
-| chronological touched record | exact lines in `Chat.Index.Delta` files |
+| chronological touched receipt | exact landed editions in `Chat.Index.Delta` files at evidenced horizons; no completeness claim |
 | current chat projection | `Chat.Index.HEAD` |
 | current Project projection | chapters, appendix, agendix, and `Issue.Block`s |
 | line dossier | attachment assertion plus independent support, gate, and provenance namespaces |
 | home | oldest evidenced exact Delta containment, derived rather than declared |
 | live cut / history | current Project/Chat HEAD files / Chat Deltas and Git history |
 
-`Project.Support.Chats` links a Project Index to the Chat.Index surfaces that may cover it. Exact Delta containment supplies materialization evidence, while grounding members supply support. Missing grounding, ambiguous home selection, or semantic uncertainty remains a reconciliation POI; passive contextual import cannot prove itself.
+`Project.Support.Chats` links a Project Index to the Chat.Index surfaces that may cover it. Exact Delta containment supplies historical materialization evidence, while grounding members supply support. Real-time capture always projects a successfully landed chat-backed edition to its Chat HEAD and records a Delta only when its support proves a local horizon; a head-only result remains a reconciliation POI. Passive contextual import cannot prove itself.
 
 Do not project current mechanics back into the general model. New authority surfaces or support implementations extend the realization without redefining touch.
