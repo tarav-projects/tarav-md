@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **scope:** reconnect the smallest real Hugentic consumer—`--capture --design-session` transcript reading and line grounding—to Chatlas2 Views, Chat.Message lookup, and Chatlas2 Anchory
-- **status:** authorized for autonomous development
+- **status:** implemented and verified; implementation remains uncommitted after checkpoints `10940b9`, `867e750`, and `009184e`
 - **source:** the explicit autonomous implementation invocation in Codex session `01a001c2-8fb1-72e0-8aa1-0bbc52c4b5e8`
 - **targets:** the Skillware source of `Hugentic.Capture.Workflow.Module` and `Design.Session.Knowledge.Module`, their compiled skill surfaces, one real Chatlas2-backed line in the active Chatlas2 design session, and maintained design records
 - **out of scope:** changing the shared ontology/appendix/agendix linking route; replacing current Chatlas session discovery; porting `Capture.Plan`, Chat.Index, replay, zip-transcript, gates, reconciliation, or every existing anchor; adding a compatibility shim or migration subsystem
@@ -66,4 +66,9 @@
 - **2026-08-16 — execution gate:** autonomous design and execution are authorized and grounded as `^c20260816-24u`
 - **2026-08-16 — inspected boundary:** the shared capture workflow delegates landing to `Design.Session.Knowledge.Module`, but that specialization still describes exact current-Chatlas user turns and an unspecified anchor batch; the common link module remains deeply turn/gate-oriented and must not be switched for unrelated consumers
 - **2026-08-16 — Skillware baseline:** `tarav-hugentics` is fully managed from `.skw/src`; its package check has six pre-existing derived-stale advisories outside the Design.Session and capture targets
-
+- **2026-08-16 — managed route:** the capture module now delegates Design.Session chat semantics explicitly, while the Design.Session module specifies the exact Chatlas2 user/transcript Views, message lookup, one/batch registration, resolution, and no-fallback behavior; the shared link module is unchanged
+- **2026-08-16 — Skillware reconciliation:** the first build exposed malformed note syntax and expected derived drift in dependent digests; the annotations were corrected and the directly affected capture/root derivations were re-derived, returning the package to its exact six-POI baseline
+- **2026-08-16 — real workflow trial:** Chatlas2 `user` view returned 127 current-session user messages; exact lookup selected one qualifying `Chat.Message.Ref`, registration minted `d20260816-18u`, read-back returned `MATCHED`, user-side, and `at_matches=true`, the stored attachment hash agreed with the final line, and repeated registration reused the same anchor
+- **2026-08-16 — design capture:** the implemented consumer boundary itself was grounded through the new route as `d20260816-19u`
+- **2026-08-16 — verification:** all 1,967 repository tests pass; focused Chatlas2 plus architecture coverage passes 66 tests; all 21 conformance captures verify and normalize; Skillware context resolution succeeds and its check retains exactly the six pre-existing advisory IDs with no new POIs; focused Ruff and all repository diff checks pass. Repository-wide Ruff remains blocked only by the pre-existing unused `local_storage_paths` import in `src/tarav/skills/routing.py`
+- **2026-08-16 — blocker standing:** none
