@@ -3,11 +3,11 @@
 ## Session.Abstract
 
 - **Intent:** Redesign Chatlas normalization from first principles around complete retained data, a simple chronological event tape, and a small reliable semantic promise.
-- **State:** Active design — the semantic floor, raw-version recognition boundary, Codex and Claude vertical slices, conformance corpus, Event.Ref, and Chat.Message.Ref are in place.
-- **Scope:** Chatlas2 system boundary, Normal Model floor, raw-model structural versioning and dispatch, event origin, `Chat.Message`, `Agent.Loaded.Context`, stateless durable references, and progressive resolution.
+- **State:** Active design — the semantic floor, raw-version recognition boundary, Codex and Claude vertical slices, conformance corpus, durable references, and transparent cache-first Normal Model provider are in place.
+- **Scope:** Chatlas2 system boundary, Normal Model floor, raw-model structural versioning and dispatch, event origin, `Chat.Message`, `Agent.Loaded.Context`, stateless durable references, disposable Normal Model caching, and progressive resolution.
 - **Predecessor:** `509-session-model-design-session.md` records the older, more ambitious model. It is prior design evidence, not inherited Chatlas2 truth.
 - **Landing:** This is a live Design.Session. Nothing here is promoted to the stable Chatlas Index by this capture.
-- **Next:** Plan the Chatlas model promotion and reconnect downstream consumers.
+- **Next:** Continue the minimal Chatlas model promotion and consumer reconnection through the implemented Normal Model provider.
 
 ## Design.Index
 
@@ -28,6 +28,31 @@
 - [CT] Deduplication fails toward retention: observations are collapsed only when they can be shown to describe the same event; uncertainty preserves both. ^c20260814-18u
 - [DC] An event's tape timetag is when the event starts; later observations may add data to that event without changing its start position. ^c20260814-19u
 - [PR] Data completeness has priority over total consistency; richer semantic resolution can be added later without discarding the retained event data. ^c20260814-20u
+
+### Normal.Model.Cache
+
+- [DF] `Normal.Model.Cache` is a disposable materialization of a completed compact `Chatlas2.Normal.Model` for efficient repeated reading. ^d20260816-4u
+- [DC] A `Raw.Normalizer` may use any internal strategy it needs to produce a complete Normal Model; cache and read-streaming mechanics do not constrain normalization. ^d20260816-5u
+- [DC] Streaming is a read-side property of a completed cached Normal Model, not a production requirement imposed on normalizers. ^d20260816-6u
+- [DC] The cache representation is one metadata record plus independently stream-readable line-delimited collections for events, `Chat.Message`, and `Agent.Loaded.Context`. ^d20260816-7u
+- [CT] Cache identity and freshness are determined from session identity, ordered source fingerprints, Normal Model schema, and producing commit. ^d20260816-8u
+- [PR] A Normal Model cache is disposable and non-authoritative; it can be rebuilt from the retained Raw Archive. ^d20260816-9u
+- [DC] Ordinary caches contain the compact default Normal Model; raw-attached diagnostic builds are not retained as ordinary caches. ^d20260816-10u
+- [DC] A bulk read never silently normalizes missing or stale caches. ^d20260816-11u
+- [CT] Cache creation is explicit, except that a narrowly scoped read of one exact session may build that session's cache. ^d20260816-12u
+- [DC] A multi-session workflow opens, consumes, and releases one Normal Model at a time instead of retaining a collection of loaded models. ^d20260816-13u
+- [DC] Read limits and top-K selection are applied while streaming cached collections so unrelated records need not be materialized. ^d20260816-14u
+- [CT] Read-side caching does not remove the first-build memory peak; the normalizer remains responsible for its own creation strategy. ^d20260816-15u
+- [DC] The canonical Normal Model provider is the default consumer boundary: it transparently validates and reuses a fresh cache or rebuilds a missing/stale one. ^d20260816-17u
+- [DC] Explicit refresh forces compact recomputation and cache replacement; raw-attached diagnostic computation bypasses the ordinary cache. ^d20260816-17u
+- [CT] Consumers request complete or stream-readable Normal Model content and own no cache validation or recomputation policy; Anchory is one ordinary complete-model consumer. ^d20260816-17u
+
+****
+
+### Raw.Evidence
+
+- [DF] Raw is optional normalizer-owned diagnostic material used to produce a Normal Fragment; it is omitted by default and imposes no complete-artifact inspection contract. ^d20260816-1u
+- [CT] Raw evidence is independent from the Normal Model's event identity, ordering, annotations, and reference standing. ^d20260816-3u
 
 ****
 
@@ -97,6 +122,7 @@
 
 - [DF] `Event.Address` is a stable, opaque, provider-derived logical event place; it excludes event content and chronological presentation position. ^c20260815-37u
 - [DF] `Event.Hash` is a digest assertion over an event's currently normalized content; it excludes address, annotations, native identifiers, and provenance. ^c20260815-38u
+- [DC] Event.Hash is deliberately computed from provider-neutral normalized event fields and excludes optional normalizer-collected raw evidence. ^d20260816-0u
 - [DF] `Event.Ref` is `{event_address, event_hash}`: it couples stable logical place with a current-state assertion and carries drift validation. ^c20260815-39u
 - [CT] Chatlas2 normalization is stateless: current raw artifacts produce the current Normal Model without maintaining normalized state across runs. ^c20260815-40u
 - [DF] `Event.Ref.Resolution` is Chatlas's comparison of a stored `Event.Ref` with the currently presented Normal Model. ^c20260815-41u
@@ -120,10 +146,12 @@
 - Current Chatlas remains the raw-archive and session-recovery substrate while Chatlas2 matures.
 - Provider-native raw artifacts remain the inspection escape hatch when the Normal Model does not yet expose needed resolution.
 - The event tape is the completeness spine. Classes, messages, loaded contexts, turns, forks, compactions, and other interpretations are overlays.
+- Normalizers remain simple provider adapters; repeated-use efficiency belongs to a disposable cache hidden behind the canonical Normal Model provider.
 - Anchor records will be transformed operationally when Chatlas2 cuts over. Migration mechanics are written for the actual data at that moment, checked for completeness, and protected by the depot's Git history rather than maintained as a Chatlas2 subsystem.
 - Settled for the first two vertical slices: Codex uses record position and Claude uses native record UUID as the provider-derived logical place; same-address observations fold within one stateless normalization run.
 - Settled: `Chat.Message.Address`, `Chat.Message.Hash`, and `Chat.Message.Ref` use the same place-plus-state pattern without importing turn-level ambitions.
 - Settled provisionally for Claude: each assistant request receives only the nearest evidenced user/tool input from its parent chain; incomplete context is preferred to false membership.
+- Settled for Claude queued input: a human-origin `queued_command` attachment is a `User.Event` and user `Chat.Message` whose start time is the recorded queue timestamp; the mapping is shared by both recognized Claude raw families.
 - Open: extend the conformance corpus with each supported provider and `Raw.Model.Version` as compatible versioners and normalizers are added.
 
 ## Session.Log
@@ -138,3 +166,8 @@
 - **2026-08-15:** Added the Claude `claude.transcript.v1` Versioner/Normalizer without expanding the Normal Model; all 11 Claude specimens and all 21 corpus captures pass the chronological tape, origin, message, reference, and conservative-context checks.
 - **2026-08-15:** Refined raw-version independence into a mapping-relative partition: incremental Normal Model evolution may preserve, extend, or split it, while a full redesign may establish a new partition; raw version is excluded from stable address identity.
 - **2026-08-15:** Rejected ordinal raw-version naming and captured opaque arbitrary identifiers whose spelling carries no succession semantics.
+- **2026-08-16:** Moved provider-native material out of Normal Events, made normalizer-owned raw evidence optional and default-off, and defined Event.Hash strictly over deliberately selected provider-neutral normalized event state.
+- **2026-08-16:** Kept normalization unconstrained, placed streaming on cached reads after model creation, and bounded multi-session memory through one-model-at-a-time consumption and read-time limits.
+- **2026-08-16:** Implemented and stressed the disposable four-file Normal Model cache, streaming bounded message reads, explicit cache inspection/build, and capacity-one Anchory model retention.
+- **2026-08-16:** Made the cache-backed Normal Model provider the transparent default, added explicit refresh and uncached diagnostic modes, and removed Anchory's cache loader and model slot.
+- **2026-08-16:** Closed the Claude queued-input gap by mapping human `queued_command` attachments into user events/messages and following loaded context at the original queue time.

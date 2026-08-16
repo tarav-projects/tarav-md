@@ -3,7 +3,7 @@
 ## Impl.Abstract
 
 - **scope:** make `Event.Hash` an assertion over deliberately selected provider-neutral Normal Event content; remove provider-native records from Normal Events; let each compatible normalizer optionally return opaque diagnostic `raw` evidence; omit that evidence by default; and correct the stale `agentos stdlib prefix` spelling in the Skillware-owned live-surface skill
-- **status:** implementation-ready
+- **status:** implemented and verified; implementation remains uncommitted after the mandatory recovery checkpoints
 - **source:** the current Chatlas2 design discussion and explicit autonomous develop invocation in Codex session `01a001c2-8fb1-72e0-8aa1-0bbc52c4b5e8`
 - **target:** Chatlas2 mechanics in `tarav-py`, design audit in this artifact, and the canonical Skillware source for `tarav-live-surfaces` in `tarav-md`
 - **out of scope:** streaming normalization; durable Normal Model caches; old-anchor migration mechanics; expanding event classes; requiring normalizers to read complete artifacts; standardizing the internal shape of normalizer-owned raw evidence
@@ -13,10 +13,10 @@
 
 - **touched (system boundary):** Chatlas2 keeps the Normal Model deliberately shallow while the retained Raw Archive remains the authority for deeper inspection (`527-chatlas2-normal-model-redesign-design-session.md`)
 - **touched (event identity):** `Event.Hash` asserts current normalized content and excludes address, annotations, native identifiers, and provenance (`527-chatlas2-normal-model-redesign-design-session.md`, `Event.Ref`)
-- **touched (current decision):** the fields participating in `Event.Hash` are chosen deliberately; optional raw evidence is independent from identity and hashing
+- **touched (current decision):** the fields participating in `Event.Hash` are chosen deliberately; optional raw evidence is independent from identity and hashing ^d20260816-0u
 - **touched (normalizer freedom):** a normalizer does whatever its supported `Raw.Model.Version` mapping requires; Chatlas2 imposes no complete-artifact inspection contract
-- **touched (raw evidence):** `raw` is an optional place where a normalizer can collect diagnostic material it used to produce a fragment; it is not a completeness promise and need not have a provider-neutral internal shape
-- **touched (CLI correction):** `tarav` is canonical and the `agentos` binary name is deprecated; `tarav-live-surfaces` must use `tarav stdlib prefix`
+- **touched (raw evidence):** `raw` is an optional place where a normalizer can collect diagnostic material it used to produce a fragment; it is not a completeness promise and need not have a provider-neutral internal shape ^d20260816-1u
+- **touched (CLI correction):** `tarav` is canonical and the `agentos` binary name is deprecated; `tarav-live-surfaces` must use `tarav stdlib prefix` ^d20260816-2u
 - **structural:** current Chatlas remains independent from Chatlas2; the Skillware-managed live-surface target is changed only through `.skw/src/SKILL.skw.md` and rebuilt
 
 ## Impl.Index
@@ -61,7 +61,7 @@
 - introduce normalized event content for `Chat.Message` members and compute Event.Hash only from the selected normal fields
 - remove the obsolete native-identifier filtering hash path and update current-state tests to assert normalized projections
 - check: event-ref plus Codex and Claude pipeline tests
-- status: pending
+- status: complete
 
 ### Vertical.Slice 2 - Optional fragment raw evidence
 
@@ -69,7 +69,7 @@
 - add the optional `NormalFragment.raw` channel, pass the option through assembly and both Claude mapping families plus Codex, and expose `--include-raw` on normalize
 - update corpus consumers to remain entirely on provider-neutral Normal Model fields
 - check: focused pipeline, CLI, corpus, message, and Anchory tests
-- status: pending
+- status: complete
 
 ### Vertical.Slice 3 - Guidance, Skillware correction, and system verification
 
@@ -77,7 +77,7 @@
 - change the live-surface `.skw.md` source, rebuild it, and verify the generated target uses only `tarav stdlib prefix`
 - ground the execution gate after the new hash semantics are active so its stored Chat.Message.Ref is current rather than knowingly amended by this implementation
 - run all Chatlas2 tests, corpus verification/check, architecture checks, focused Ruff, Skillware checks, and `git diff --check`; run broader repository tests proportionate to the result
-- status: pending
+- status: complete
 
 ## Impl.Log
 
@@ -85,3 +85,9 @@
 - **2026-08-16 — hash decision:** Event.Hash covers only class, origin, start time, and deliberately projected provider-neutral event content; optional raw evidence is identity-inert
 - **2026-08-16 — naming correction:** the user corrected an inverted migration assumption: `tarav` is canonical and `agentos` is deprecated; the stale live-surface skill wording is included in scope
 - **2026-08-16 — grounding timing:** the execution-gate Chat.Message address is known, but its current hash uses the superseded Event.Hash recipe; mint the durable support anchor after the new hash implementation rather than manufacturing an immediately amended assertion
+- **2026-08-16 — execution gate:** the invocation was re-read through Normal Model v5 and grounded as `^d20260816-0u`; optional raw semantics are grounded as `^d20260816-1u`, and the canonical Tarav CLI correction as `^d20260816-2u`
+- **2026-08-16 — slices 1-2:** events now expose only deliberately normalized content, Event.Hash excludes raw evidence, normalizers optionally return opaque fragment raw data, and assembly omits the raw channel unless explicitly requested
+- **2026-08-16 — measured result:** on the live 9,052-event Codex session, compact JSON is 6.8 MB versus 67.0 MB with `--include-raw`; raw JSON serialization is now an explicit diagnostic cost
+- **2026-08-16 — checkpoints:** recovery commits captured the complete pre-edit states of `tarav-py` (`687f541`), `tarav-chatlas-md` (`7dd884a`), and `tarav-md` (`dcb7a7b`); implementation changes after those boundaries remain uncommitted
+- **2026-08-16 — slice 3:** documented Normal Model v5, captured the new design lines in session 527, changed the canonical live-surface Skillware source to `tarav stdlib prefix`, rebuilt its runnable target, and confirmed all four new Chatlas2 anchors resolve `MATCHED`
+- **2026-08-16 — verification:** all 1,951 repository tests pass; the focused architecture/Chatlas2 set passes 50 tests and the complete current-Chatlas/Chatlas2 boundary passes 551; all 21 conformance captures verify and check; focused Ruff and diff checks pass; `tarav-live-surfaces` Skillware reports zero POIs; project Skillware retains its 30 pre-existing findings and none target changed Chatlas2 surfaces
