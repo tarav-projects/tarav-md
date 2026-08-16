@@ -2,7 +2,7 @@
 
 ## Impl.Abstract
 
-- **Status:** Ready for autonomous execution.
+- **Status:** Implemented and verified.
 - **Scope:** Make the current agent chat context the default understanding source for Hugentic chat-backed capture, while using Chatlas2 only to resolve and validate the specific messages selected as evidence.
 - **Source alignment:** The current discussion established that transcript reconstruction duplicates context the agent already has; transcript and `Chat.Turn` reads are escalation paths for ambiguity, missing compacted context, explicit historical work, or failed exact lookup.
 - **Target:** The managed `tarav-hugentics` Skillware sources and their compiled runtime surfaces.
@@ -40,14 +40,14 @@
 
 ### Vertical.Slice.1 — Current-chat-first grounding contract
 
-- **Status:** Pending.
+- **Status:** Complete.
 - **RED:** Demonstrate that the existing Design.Session and linking instructions unconditionally direct the agent to read the complete user View before support selection.
 - **GREEN:** Rewrite the managed source so current context supplies understanding and selected visible user messages are resolved directly through `messages find`; name bounded neighborhood, `Chat.Turn`, transcript, and raw reads only as escalating fallbacks.
 - **Check:** Search the compiled workflow for unconditional transcript-read instructions and inspect the complete current-chat-first route.
 
 ### Vertical.Slice.2 — Managed build and reconciliation
 
-- **Status:** Pending.
+- **Status:** Complete.
 - **GREEN:** Build the `tarav-hugentics` Skillware package, inspect generated diffs, and keep source and runtime wording aligned.
 - **Check:** Run `tarav skw check --skill skills/tarav-hugentics`, targeted context projection where applicable, and `git diff --check`.
 - **Acceptance signal:** The runnable skill describes the minimum workflow without requiring transcript reconstruction, while preserving the existing Chatlas2 message-ref, Anchory batch, landing, and verification contracts.
@@ -55,3 +55,7 @@
 ## Impl.Log
 
 - **2026-08-16:** Produced from the current-chat grounding discussion. No new Chatlas2 mechanics are required for this pass.
+- **2026-08-16:** Grounded execution authorization as `d20260816-38u` and checkpointed the complete pre-execution repository state as `e7bc70f`.
+- **2026-08-16:** RED confirmed that both Design.Session capture and the shared linking primitive unconditionally instructed the agent to read the complete user View before resolving evidence.
+- **2026-08-16:** Replaced that path with current-context understanding, selected-message resolution, and explicit escalation to `Chat.Turn`, Views, or raw artifacts only when necessary. Clarified that legacy chronological `Chat.Index` materialization occurs after semantic work and is not an understanding source.
+- **2026-08-16:** Built all managed surfaces successfully. Skillware context projection for `references/design-session.md` passed; touched targets report no drift. Package check retains six pre-existing `Derived.Stale` advisories on unrelated alignment/implementation modules.

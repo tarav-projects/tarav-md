@@ -17,13 +17,16 @@ For gated newly drafted content, this pipeline is landing work. Do not resolve p
 1. **Resolve the session.** Most linking happens on the edge — anchoring content produced in the *current* session, whose id the agent usually does not know. Invoke `tarav-chatlas-my-session-id` inline as the default path; it uses a provider-native id when trustworthy and otherwise refreshes Chatlas and matches the caller's own verbatim user turns without loading the candidate payload into context. It returns the native session id plus neutral Chatlas identity.
    - if the dedicated resolver cannot self-locate yet, refresh and pull recent candidates with `tarav chatlas recents` or `tarav chatlas query --active-after <recent> --update`, then filter with distinctive verbatim user fragments until exactly one identity remains
    - shortcuts: a native session id already in hand → `tarav chatlas query --session-id <native-id> --update --json`; a past session → normal current-Chatlas discovery filters
-2. **Locate and qualify the evidence messages.** Read `tarav chatlas2 views get --session-id <id> --view user --json` for the compact user exchange or `--view transcript` when agent context matters. Use `tarav chatlas2 messages find --session-id <id> --side user|agent --text '<text>' [--exact] --json` to obtain exact `member_ref` values.
+2. **Locate and qualify the evidence messages.** Use the live conversation already loaded in the agent context to select the qualifying messages; do not reread the transcript by default. Resolve each selected message with `tarav chatlas2 messages find --session-id <id> --side user|agent --text '<distinctive text>' [--exact] --json` and retain its exact `member_ref`.
    - only selected qualifying user messages become support members
    - proposal and approval messages belong independently to gate relationships; the proposal is agent-side and the approval user-side
    - for reviewed new content, select substantive user messages for the claim; approval supplies review evidence and never replaces substantive grounding
    - exclude preset prompts, administrative invocations, and other user messages that do not materially touch the supported subject
    - disagreement, correction, rejection, delegation, and approval can all qualify; qualification does not certify factual truth
-   - reload enough transcript neighborhood to judge the result; message lookup discovers candidates but never establishes semantic support
+   - when lookup is ambiguous, refine the text or require an exact match before reading more
+   - when associated material is necessary, hydrate only the containing turn with `tarav chatlas2 turns get --session-id <id> --message-address <address> --hydrate --json`
+   - read the broader `user` or `transcript` View only when compaction removed necessary context, selected evidence cannot otherwise be resolved, or the caller explicitly requested historical capture
+   - lookup, turn hydration, and Views discover evidence; the agent's semantic qualification establishes support
 3. **Preview, then register the line dossier.** Validate exact `Chat.Message.Ref` members before allocation — never timestamps or tape ordinals:
    - preview: `tarav chatlas2 anchory preview --line-content '- [<Line.Type>] <body>' --member '<member-ref>'`
    - plain support: `tarav chatlas2 anchory register --line-content '- [<Line.Type>] <body>' --member '<member-ref>'`

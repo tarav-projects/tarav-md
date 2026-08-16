@@ -89,7 +89,7 @@
       ]
     },
     "references/capture.md": {
-      "output_sha256": "5b843cb4e7ef28a958e230a40600b5a62e8ce2dbb4bff56428992a60ab995d93",
+      "output_sha256": "fa184e72c638be1d2fb008af162d08c524f4a0d86d61a1e1d53cc1f61226bb2c",
       "recipes": [
         {
           "heading": "Landing",
@@ -133,7 +133,7 @@
       "recipes": []
     },
     "references/design-session.md": {
-      "output_sha256": "bea2bdff9c50584df5a5671c249f91058787987c384262e6e4a81c1764a316a8",
+      "output_sha256": "465e2171552d2296b02417206ba8bdc8eff9697f2754652596550b5e956f1faa",
       "recipes": []
     },
     "references/edit.md": {
@@ -325,7 +325,7 @@
       "recipes": []
     },
     "references/link.md": {
-      "output_sha256": "22b3f74e4a3504989a598de4e9ed64da521e711df2a45c1ae66d82b6aa14759d",
+      "output_sha256": "4f3b6da8bbf481ae3ecd9b4210bd85fb7e0d433902064ec7c3ca6e4a7b0ded9b",
       "recipes": []
     },
     "references/parking-note.md": {
