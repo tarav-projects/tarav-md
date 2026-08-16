@@ -18,3 +18,7 @@
 - `poi/101-poi.md` — Index.Linter/Anchor.Unresolvable, Index.Linter/Anchor.Turn.Missing, Index.Linter/Anchor.Provenance.StaleMarker, Index.Linter/Line.Approval.Missing, Index.Linter/Line.Verbatim.Gate.Unreviewed, Index.Linter/Line.Verbatim.Gate.TokenMismatch, Index.Linter/Line.Verbatim.Gate.NoProposal, Index.Linter/Line.Verbatim.Gate.ApprovalMemberMismatch, Index.Linter/Line.Verbatim.Gate.RoleMismatch, Index.Linter/Line.Verbatim.Gate.OrderMismatch
 - `poi/102-poi.md` — Chatlas.Commit.Linter/Session.Mismatch, Chatlas.Commit.Linter/Turn.CountMismatch, Chatlas.Commit.Linter/Turn.InvalidObject, Chatlas.Commit.Linter/Turn.RoleMismatch, Chatlas.Commit.Linter/Turn.TextNotString, Chatlas.Commit.Linter/Turn.UserTextNotVerbatim, Chatlas.Commit.Linter/Turn.AssistantTextBlank, Chatlas.Commit.Linter/Compression.Insufficient, Chatlas.Commit.Linter/Compression.RegionUntouched, Chatlas.Commit.Linter/Compression.TurnCollapsed, Chatlas.Commit.Linter/Compression.RegionCrushed
 - `poi/103-poi.md` — Project.Chat.Registry.Missing, Project.Chat.Registry.Empty, Project.Chat.Index.Unavailable, Project.Chat.Index.Invalid, Project.Line.Home.Missing, Project.Line.Home.Ambiguous, Project.Line.Head.Missing, Project.Line.Content.Drift, Project.Issue.Context.Missing, Project.Line.Issue.Context.Missing
+
+### issues
+
+- `issues/100-issues.md` — Issue.I0001.Chatlas2.Deferred.Session.Products.And.Capture

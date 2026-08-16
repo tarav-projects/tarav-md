@@ -2,7 +2,7 @@
 
 ## Impl.Abstract
 
-- **Status:** ready for autonomous execution
+- **Status:** implemented and verified
 - **Scope:** make `tarav chatlas2 --update <command>` perform one reliable, incremental Provider.Home → Raw.Archive → Session.Index refresh before the selected Chatlas2 command, then let existing cache validation rebuild stale Normal Models transparently.
 - **Source:** the user requested a Chatlas2-targeted redesign that reuses proven Chatlas update mechanics without inheriting the old read-side escalation complexity. ^d20260816-43u
 - **Out of scope:** replacing Provider.Home adapters, changing Raw.Archive layout, redesigning Session.Index schema, porting Chatlas1 trust tiers, updating Chatlas1 read commands, adding an automatic background updater, or making Normal Model construction incremental.
@@ -51,7 +51,7 @@
 
 ### Vertical.Slice.1 — Chatlas2 update request and scope
 
-- **Status:** pending
+- **Status:** completed
 - Add one focused Chatlas2 update module with an immutable request/scope and one-pass execution over `chatlas_update()`.
 - RED: tests prove exact session scope, provider-bounded broad scope, known identity resolution, unknown identity fallback, and single invocation.
 - GREEN: implement only the structural scope derivation and reusable update call.
@@ -60,7 +60,7 @@
 
 ### Vertical.Slice.2 — Top-level CLI preflight
 
-- **Status:** pending
+- **Status:** completed
 - Add `--update` to `tarav chatlas2`, route every leaf through one Chatlas2 dispatcher, and preserve leaf behavior when the option is absent.
 - RED: a CLI boundary test proves update occurs before the selected handler, update failure prevents the handler, and JSON stdout contains only the selected command result.
 - GREEN: replace leaf ownership of the root handler with a leaf-operation slot consumed by the dispatcher.
@@ -69,7 +69,7 @@
 
 ### Vertical.Slice.3 — Freshness acceptance and maintained guidance
 
-- **Status:** pending
+- **Status:** completed
 - Add an isolated provider-home E2E proving a bare Chatlas2 read misses an unarchived session and the same read with top-level `--update` ingests, indexes, normalizes, and returns it.
 - Update `tarav-py/AGENTS.md` and `ARCHITECTURE.md` with the actual Chatlas2 update/cache boundary.
 - Run focused tests, all Chatlas2 tests, architecture tests, and Ruff on changed Python files.
@@ -80,3 +80,4 @@
 ## Impl.Log
 
 - 2026-08-16 — Autonomous design selected a one-pass preflight instead of copying Chatlas1's result-driven escalation ladder. Empty query results remain semantically valid, so update completeness cannot be inferred from read cardinality. ^d20260816-43u
+- 2026-08-16 — Execution completed without design deviations. The isolated freshness acceptance proved bare-read absence followed by one-pass archive, index, cache reconstruction, and Chat.Message return; 106 Chatlas2 and architecture tests passed, focused Ruff passed, and the installed CLI completed a live exact-session update/read.

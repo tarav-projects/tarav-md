@@ -1,4 +1,6 @@
-# Producer: zip-transcript-summary
+# PARKED — Producer: zip-transcript-summary
+
+This retained Chatlas1 Product workflow is not active. Its useful requirements are parked in `Issue.I0001.Chatlas2.Deferred.Session.Products.And.Capture`; Chatlas2 continuation derives a bounded handoff directly from `Chat.Message` pages.
 
 Use this reference when an agent must produce or retrieve the Chatlas product:
 

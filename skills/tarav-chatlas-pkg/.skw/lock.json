@@ -2,33 +2,21 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "7151e3b0a019ff6e749bb81ad16873b8a8fe4fcb4da1108cc5062ac9e4527e56",
+      "output_sha256": "d859285fd7777e2f4967c0c44d501d25daab52f30ed3726de4cc9fcaa24c82ef",
       "recipes": [
         {
           "heading": "^chatlas-pkg-batchy-runtime-contract",
           "verb": "copy",
-          "body_sha256": "6f0b76e1fad7d99c095a707ef53e460f84a1a8ff22feb4c00d91469a9f2c5234",
+          "body_sha256": "854c43c63cd3a25005988b845e5de6ccceebb78b54d7613546016b39e604a9ed",
           "deps": {
-            "@<tarav-batchy-skills>/references/batchy-skill-run.skw.md^batchy-skill-runtime-contract": "6f0b76e1fad7d99c095a707ef53e460f84a1a8ff22feb4c00d91469a9f2c5234"
+            "@<tarav-batchy-skills>/references/batchy-skill-run.skw.md^batchy-skill-runtime-contract": "854c43c63cd3a25005988b845e5de6ccceebb78b54d7613546016b39e604a9ed"
           }
         }
       ]
     },
     "references/capture.md": {
-      "output_sha256": "7f92b36ecadf5ee004dd89c340ee0f1e6845f110ee29968c3edbd531e988889a",
-      "recipes": [
-        {
-          "heading": "^chat-index-capture-boundary",
-          "verb": "derived",
-          "body_sha256": "8342842a962e43206a4cadc89f5c0effb00a97b0377434196341256c70426751",
-          "deps": {
-            "Chat.Touched.Index": "1d429172c15c6261592521f11294da30b0084af5aaf691a12f62873cd79b052c",
-            "Chat.Index": "5665532980010f16c39fa80bf0b844dce50a1d4e7556e15cf46c7c4e1bbb9b5d",
-            "Chat.Index.Delta": "07a49d12ca877c898b8952f0fab55565cc93a783acbf3dc15d54e2c5c443bd83",
-            "Chat.Index.HEAD": "b00211f8c3581c161bb37731078d6de5312ad07ae165565ab8f317db2a00ebc5"
-          }
-        }
-      ]
+      "output_sha256": "292ab52ffc6cad3c8d753291339b7584ca3f6a47860dd1362099461b501ef024",
+      "recipes": []
     }
   },
   "blessings": []

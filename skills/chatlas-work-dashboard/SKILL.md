@@ -1,195 +1,113 @@
 ---
 name: chatlas-work-dashboard
-description: In-chat dashboard of recent work across Chatlas sessions — what you were doing, in which project, and where each thread stopped. Renders a landscape from `agentos chatlas recents`, then recaps sessions from the head and tail of their zip-transcript. USE WHEN the user wants to recap the last days of work, find a prior session, or decide what to resume. Called like a terminal command — `--since 3d`, `--all`, `--session <id>`.
+description: In-chat dashboard of recent supported Chatlas sessions — what you were doing, in which project, and where each thread stopped. Uses Chatlas2 Session.Query plus bounded Chat.Query recaps. USE WHEN the user wants to recap recent work, find a prior session, or decide what to resume. Called like a terminal command — `--since 3d`, `--all`, `--session <id>`.
 ---
 
 # Chatlas Work Dashboard
 
 Operational `Package.Aux.Skill` under `tarav-chatlas-pkg`.
 
-A chat tool, not a report generator. It renders a working view of recent sessions so the user can explore what they were doing, find the session they half-remember, and decide what to resume. Nothing is written to disk.
+A read-only conversation surface for recent Codex and Claude work. It writes no report or retained product. Refresh once, select sessions by metadata, then read only small verified `Chat.Message` windows from each selected chat.
 
 This is a `Batchy.Skill` — called like a terminal command. Load `tarav-batchy-skills` for the full convention.
 
-- `-h` / `--help` prints the help into the chat instead of running (`Batchy.Skill.Help`).
+- `-h` / `--help` prints help instead of running.
 - a bare duration (`3d`, `10m`, `2w`) resolves to `--since`.
 - a bare session id resolves to `--session`.
 
 ## Skill.Arg.Section
 
 ### Skill.Arg::Since
-- look-back window as a duration: `30s`, `10m`, `4h`, `3d`, `2w`
+- look-back duration: `30s`, `10m`, `4h`, `3d`, `2w`
 - required: false
 - default: `3d`
 - flags: --since
-- examples: --since 2w
 
 ### Skill.Arg::SinceDate
 - absolute look-back start; naive values are local time
 - required: false
 - flags: --since-date
-- examples: --since-date 2026-07-28, --since-date 2026-07-28T14:00
 
 ### Skill.Arg::Scope
-- which projects to include
+- include every project instead of the current project
 - required: false
-- default: the current project
+- default: current project
 - flags: --all
-- examples: --all
 
 ### Skill.Arg::Limit
-- maximum sessions to place in the landscape
+- maximum sessions in the landscape
 - required: false
 - default: 10
 - flags: --limit
 
 ### Skill.Arg::Session
-- drill into one session instead of rendering the landscape
+- drill into exactly one session instead of rendering a landscape
 - required: false
 - flags: --session
-- examples: --session 019fb5c1-7d23-7332-8654-2e863e4e7ef0
-
-### Skill.Arg::Files
-- add the touched-file signal to a drill-in
-- required: false
-- default: off
-- flags: --files
 
 ## Boundary
 
-- read-only; never produces, commits, or stages a Chatlas product
-- never writes a note, digest, or artifact — the dashboard lives in the chat
-- does not own task state; it reads history and navigates it. Pending-work tracking belongs to `tarav-hugentics --status` and parking notes
-- routing is limited to printing jump commands; it does not decide what the user should work on
+- supports only providers normalized by Chatlas2; ignore unsupported indexed sessions
+- never invokes `tarav chatlas`, Chatlas1 Views, Products, file-touch queries, or full-session Chat.Index capture
+- does not own task state; use Hugentics status or parking for that
+- prints continuation commands but never decides what the user should resume
 
-## Cost Model
+## Read Plan
 
-Three tiers. Never skip ahead — each tier is roughly an order of magnitude more expensive than the one above it.
+### 1. Select a stable session snapshot
 
-| Tier | Source | Cost |
-|---|---|---|
-| Landscape | `chatlas recents` | one call, all sessions |
-| Recap | `zip-transcript` head + tail | ~3KB per session |
-| Escalation | touched files, wide tail, full transcript | seconds per session |
-
-Recap is capped at **8 sessions** per run. Above the cap, render the landscape alone and say which sessions were left un-recapped, so the user can narrow the window or point at rows.
-
-## Step 1: Landscape
-
-Always start here. One call.
+Convert `--since` to an ISO timestamp with a small local script. Perform exactly one update on the first read:
 
 ```bash
-agentos chatlas recents --since 3d --last-turns 3 --limit 10 --project --json
+tarav chatlas2 --update sessions query \
+  --project <current-project-root> \
+  --active-after <cutoff> --sort newest --limit <limit> --json
 ```
 
-- omit `--project` when `--all` is set
-- use `--since-date <value>` in place of `--since` when the user gave an absolute date
-- pass `--update` only when the user says results look stale
+- omit `--project` for `--all`
+- use the parsed `--since-date` as the cutoff when supplied
+- redirect JSON to a temporary file; bring only the bounded selected rows into context
+- keep this snapshot stable for all recap reads; do not update again during the run
 
-Each entry carries `last_activity_at`, `created_at`, `provider`, `instance`, `project_path`, `session_id`, `uri`, `user_turn_count`, and `last_user_turns` (each `{at, text}`).
+Each row provides `last_activity_at`, provider, instance, project path, native session id, URI, and neutral identity hash. Group by `project_path`; projects and sessions are newest-first.
 
-Group by `project_path`. Sort projects by most recent activity, sessions newest-first within each.
+### 2. Read bounded head and tail windows
 
-## Step 2: Recap
-
-For each session in the landscape, up to the cap, read both ends of the compressed transcript.
-
-Skip sessions whose `user_turn_count` is under 2 — they hold no recoverable recap. Skipping them does not consume the cap, so the budget goes to sessions that can actually be recapped.
+Recap no more than eight sessions per run. For each selected identity:
 
 ```bash
-agentos chatlas views get --view zip-transcript --session-id <id> --range=:3
-agentos chatlas views get --view zip-transcript --session-id <id> --range=-8:
+tarav chatlas2 chat query --identity-hash <hash> \
+  --sort oldest --offset 0 --limit 3 --json
+
+tarav chatlas2 chat query --identity-hash <hash> \
+  --sort newest --offset 0 --limit 8 --json
 ```
 
-**The `=` is required.** Bare `--range -8:` makes the leading `-` parse as a flag and the call fails. `--range` is supported on `zip-transcript` only — not `user`, `full`, `transcript`, `replay`, or `events`.
+The head usually states the original goal. The tail records the latest state. Reverse the returned newest-first tail before reading it as a chronological window. Do not fetch the whole transcript merely to count turns or classify a session as thin.
 
-- the **head** is where the user states the goal, and often names a predecessor session being continued
-- the **tail** carries the assistant's closing report — usually the sentence saying whether the work landed
+### 3. Render the dashboard
 
-A session may already have a `zip-transcript-summary` product. Use it when it is free:
+For each substantive row show:
 
-```bash
-agentos chatlas products status --product zip-transcript-summary --session-id <id> --json
-```
+- short session id, relative age, and project grouping
+- one `recap` sentence with two clauses: what the work is, then where it stands
+- `/chatlas-session-continue --session <full-session-id>`
 
-If `state` is `fresh`, read the artifact at `products path` instead of the head and tail. If it is `missing` or stale, fall back to head and tail. **Never produce or commit the product** — that spawns billed agents and is the user's explicit call, not the dashboard's.
+Write recaps in the user's vocabulary, present tense, usually first-person plural. A topic label is insufficient: the row must answer whether there is useful unfinished or completed state to return to. If head and tail concern different topics, say so briefly.
 
-## Step 3: Render
+Keep provider, instance, URI, and identity hash out of ordinary rows; show them in drill-in output. End with one line naming sessions beyond the eight-recap cap or unsupported providers excluded by Chatlas2.
 
-```md
-## Work Dashboard · last 3d · agentos-project
+## Follow-Up
 
-### agentos-project · 4 sessions · 16h ago → 2m ago
+- **drill-in** — resolve `--session` with `tarav chatlas2 --update sessions query --session-id ...`; then read oldest 5 and newest 30 messages
+- **widen** — rerun with a larger cutoff or `--all`
+- **find** — use `tarav chatlas2 --update chat query --contains '<fragment>' --sort newest --session-limit 50 --limit 20 --json`, then deduplicate candidate sessions
+- **jump** — hand the exact session to `chatlas-session-continue`
 
-▸ 019fb5c1 · 2m ago · 103 turns
-  recap  We're implementing cross-skill Context.Loading reachability in the skw
-         graph; `--reachable-from` and the typed `--load` edges landed, all 13
-         managed skills resolve from tarav-pkg, 632 tests pass, and the changes
-         are still uncommitted.
-  jump   /chatlas-session-continue --session 019fb5c1-7d23-7332-8654-2e863e4e7ef0
-
-▸ 019fb4d0 · 28m ago · 33 turns
-  recap  We're processing TODO orders against a randomly picked PaperSON package;
-         the session stalled — the last three user turns repeat the same request
-         and nothing reports back as finished.
-  jump   /chatlas-session-continue --session 019fb4d0-18ee-7e52-b0bb-c4062b5f9017
-
-thin · 4 sessions under 2 user turns · 019fc858 019fc685 019fc4ac 019fc857
-```
-
-### The recap line
-
-This is the whole point of the dashboard. Get it right and the rest is decoration.
-
-`recap` is a **sentence**, never a label. It carries two clauses:
-
-1. **what the work is** — from the head, where the user states the goal
-2. **where it stands** — from the tail, usually the assistant's closing report
-
-Write it the way the user would describe the session to a colleague: present tense, first person plural, their own vocabulary and named concepts. Two to four lines. A reader who was not in that session should understand both the subject and the state.
-
-```text
-bad    recent  Hugentics capture and Agendix work
-bad    recent  integrate the new Chatlas view/product into this dashboard design
-good   recap   We're building a Chatlas-backed work dashboard skill for recapping
-               recent sessions; the draft SKILL.md is written, symlinked, and its
-               commands verified working.
-```
-
-The bad lines are topic labels. They name a subject and say nothing about state, so they cannot answer "should I go back to this?" — which is the only question the dashboard exists to answer.
-
-Both ends are required. The tail alone gives state with no subject; the head alone gives a goal that may have been abandoned six hours ago.
-
-### Other render rules
-
-- always show the relative age; it is the primary orientation cue
-- every substantive row carries one runnable jump command
-- collapse sessions with under 2 user turns into a single `thin` line at the end of the project block. They have no recoverable recap and must not each consume a row
-- do not pad rows with metadata the user did not ask for. Provider, instance, and URI belong in a drill-in, not the landscape
-- when head and tail disagree about the topic, say so in one clause rather than picking one — that mismatch usually means the session ended on a tangent
-- close with one line naming what was not covered: sessions past the recap cap, or the projects excluded by the default scope
-
-## Step 4: Follow-Up
-
-The dashboard is a conversation surface. After rendering, stay available for:
-
-- **drill-in** — `--session <id>`: widen the tail (`--range=-30:`), and with `--files` add the touched-file signal
-- **widen** — re-run with a larger `--since`, or `--all` for the cross-project view
-- **find** — the user describes a session they half-remember; resolve it with `agentos chatlas query --user-contains "<fragment>"` rather than re-reading transcripts
-- **jump** — hand off to `chatlas-session-continue` for resuming, or `chatlas-session-zip-transcript` for full recall
-
-Keep the working set in the conversation: which sessions are in view, which have been drilled into, what the user concluded about each. Do not re-run Step 1 when the user is still exploring the current landscape.
-
-### Touched files (escalation)
-
-```bash
-agentos chatlas file-edition-pois --session <id> --json
-```
-
-Rank by frequency and show the top few paths. The raw list runs to dozens of files and is noise unranked. Touched files often cross project boundaries — that is signal, not error, and it is a truer indicator of what the work was about than `project_path`.
+Preserve the current landscape in conversation during follow-up; do not repeat the update while the user is exploring the same snapshot.
 
 ## Notes
 
-- Session content is sensitive prior-session material; render only what the current request needs.
-- `project_path` is a lossy spine — one thread often spans sessions and one session often spans threads. Say so when it matters rather than implying the grouping recovers true work threads.
-- Git evidence is deliberately out of scope for this version. When it arrives it answers a different question: git says what landed, chat says what was intended.
+- Session content is sensitive prior-session material; render only what the request needs.
+- `project_path` is a lossy grouping spine, not a true work-thread identity.
+- Git answers what landed; chat answers what participants communicated. This dashboard intentionally reads only chat.

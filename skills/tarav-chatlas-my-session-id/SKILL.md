@@ -9,7 +9,7 @@ Operational `Package.Aux.Skill` under `tarav-chatlas-pkg`.
 
 Answer the question "which session am I in?" for the running agent. Resolve through the current provider's cheapest trustworthy path first. Some harnesses expose the native session id directly to tool processes; when they do, use it. Otherwise use Chatlas2 to select a bounded recent session set and match distinctive fragments of the caller's **own** verbatim user turns until exactly one session remains.
 
-The provider-specific paths resolve provider-native identity. Chatlas2 Session.Query is the authority for the neutral `identity_hash`; Chat.Query supplies message evidence for fallback disambiguation. Never use Chatlas1 query, recents, views, or content filters in this workflow.
+The provider-specific paths resolve provider-native identity. Chatlas2 Session.Query is the authority for the neutral `identity_hash`; Chat.Query supplies message evidence for fallback disambiguation. The first Chatlas2 read uses `--update` once so the archive and Session.Index see the current provider delta. Never use Chatlas1 query, recents, views, or content filters in this workflow.
 
 This is a `Batchy.Skill` — called like a terminal command. Load `tarav-batchy-skills` for the full convention.
 
@@ -75,7 +75,7 @@ Never infer the current session from the newest transcript file, process recency
 
 The fallback works for the provider families Chatlas2 currently normalizes: Codex and Claude Code. For another provider, return `CHATLAS2_PROVIDER_UNSUPPORTED` rather than invoking Chatlas1.
 
-- **Materialization gap.** Chatlas2 reads Chatlas's retained archive and Session.Index, not the live provider transcript directly. The newest turn may not be present yet. This workflow reports that gap; it never invokes Chatlas1 to refresh or compensate.
+- **One freshness boundary.** The first lookup uses `tarav chatlas2 --update ...`. The update refreshes supported provider artifacts and Session.Index once; subsequent fragment queries reuse that stable snapshot.
 - **Bounded search.** The caller just wrote a turn, so its session is among the most recently active. Session.Query (newest-first, small time window) bounds the candidate set before message content is read.
 - **Self-grounding fragments.** The safest fragments are the caller's own verbatim USER turns: the agent holds them exactly, they are already persisted (no flush race), and distinctive tokens (rare words, identifiers, typos) collide with almost nothing.
 - **Authoritative matching.** Chat.Query returns only decoded, verified `Chat.Message` records from the current Chatlas2 Normal Model cache. Candidate scans never establish a match.
@@ -111,13 +111,13 @@ From the caller's **own** recent USER turns, pick distinctive verbatim fragments
 Compute the `--since` cutoff as an ISO timestamp, then ask Session.Query for a newest-first bounded candidate set. Redirect the payload; it must never enter the model.
 
 ```bash
-tarav chatlas2 sessions query --provider <provider> --active-after <cutoff> \
+tarav chatlas2 --update sessions query --provider <provider> --active-after <cutoff> \
   --sort newest --limit 15 --json > /tmp/chatlas2-self-sessions.json
 ```
 
 - Use a short local Python calculation for duration-to-cutoff conversion; do not depend on platform-specific `date` flags.
 - Omit `--provider` only if the caller's provider is unknown.
-- If no sessions are returned, report the archive materialization gap. Do not fall back to Chatlas1.
+- If no sessions are returned, report that Chatlas2 could not discover the current supported session after its update. Do not fall back to Chatlas1.
 
 ### Step 4: Query each fragment and intersect locally
 
@@ -155,10 +155,12 @@ Resolve by the count:
 
 ### Step 5: Enrich and return the identity
 
-When a direct provider reader resolved `session_id`, ask Chatlas2 Session.Query for its neutral identity with one exact, provider-scoped query:
+When the Step 3–4 fallback resolved one row, return that row directly; it already carries the neutral identity from the updated Session.Query snapshot.
+
+When a direct provider reader resolved `session_id`, ask Chatlas2 Session.Query for its neutral identity with one exact, provider-scoped query. This is the direct path's single update:
 
 ```bash
-tarav chatlas2 sessions query --provider <provider> --session-id <session-id> \
+tarav chatlas2 --update sessions query --provider <provider> --session-id <session-id> \
   --limit 2 --json
 ```
 
@@ -181,7 +183,7 @@ last_activity_at: <iso timestamp>
 
 ## Failure Shapes
 
-- **First turn / nothing materialized:** "Cannot self-locate yet — no materialized turns for this session. Retry after at least one user turn is ingested."
+- **First turn / nothing discoverable:** "Cannot self-locate yet — the current supported session was not discoverable after one Chatlas2 update. Retry after at least one user turn exists."
 - **Persistent ambiguity:** return the surviving candidate rows (`session_id`, provider, and `identity_hash`) and ask the caller for a more distinctive fragment, rather than guessing.
 - **Unsupported provider:** return `CHATLAS2_PROVIDER_UNSUPPORTED` with any directly resolved native `session_id`; never cross into Chatlas1.
 - **Direct native id, Chatlas2 archive not ready:** return the native `session_id` and provider, mark `identity_hash` unavailable, and do not downgrade to failure.

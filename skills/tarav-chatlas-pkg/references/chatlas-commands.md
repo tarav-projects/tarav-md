@@ -1,4 +1,6 @@
-# Chatlas Commands
+# PARKED — Chatlas1 Commands
+
+This compendium documents the retired Chatlas1 operational surface and is not package guidance. Use the Chatlas2-first root `SKILL.md`; any still-useful mechanics must be reviewed before being reintroduced.
 
 Operational Chatlas command and workflow reference.
 

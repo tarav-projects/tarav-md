@@ -2,20 +2,18 @@
 
 ---
 name: tarav-chatlas-pkg
-description: "Chatlas Package.Skill for the maintained chat-session dataset and its public agentic workflows. USE WHEN orienting to Chatlas, querying or recovering sessions, working with Chatlas Anchory, or capturing one session as a chronological Chat.Index. Capture is called like a terminal command with `--capture --session SESSION_SELECTOR`."
+description: "Chatlas Package.Skill for the maintained chat-session dataset and its Chatlas2-first read workflows. USE WHEN orienting to Chatlas, selecting or querying sessions, recovering prior work, discovering the current session, or auditing raw retention."
 ---
 
 # tarav-chatlas-pkg
 
-> $kw: --from Batchy.Router --from Batchy.Skill --from Batchy.Skill.Banner --from Batchy.Skill.Help --from Chat.Index --from Chatlas.Anchory --from Package.Driver.Router --from Package.Skill --from Routing.Table --from Skill.Arg --from Skill.Module --from User.Command
+> $kw: --from Batchy.Router --from Batchy.Skill --from Batchy.Skill.Banner --from Package.Skill --from Skill.Arg --from Skill.Module --from User.Command
 
 `tarav-chatlas-pkg` is the `Package.Skill` for Chatlas.
 
-Use it as the package-level public agentic surface for the Chatlas dataset system: session query and export workflows, session continuation and recovery, the chat-anchor system (`Chatlas.Anchory`), raw archive and retention concepts, and per-session `Chat.Index` capture.
+Chatlas retains provider-native artifacts and presents a small provider-neutral Normal Model through Chatlas2. Its central read contract is chronological `Chat.Message` and `Chat.Turn` content over a loss-preserving event tape; deeper provider details remain available in the raw archive.
 
-Keep the root driver workflow-neutral until a route such as `--capture` selects an operation module.
-
-Its `Package.Driver.Router` is one `Routing.Table`; `Batchy.Skill.Help` handles help calls, and declared `User.Command`s remain the only explicit workflow gates.
+Use this root for package orientation. Use the Chatlas2 CLI for deterministic reads and the companion skills for agentic session discovery, dashboards, continuation, and raw-retention audits. Chatlas1 normalization, views, query, and Product routes are not dependencies of these public workflows.
 
 > $kw: ^chatlas-pkg-batchy-runtime-contract --copy
 > --from @<tarav-batchy-skills>/references/batchy-skill-run.skw.md^batchy-skill-runtime-contract
@@ -37,46 +35,41 @@ This is a `Batchy.Skill`, called like a CLI and resolved by one `Batchy.Router`.
 
 The Chatlas index lives in `000-INDEX.md` over its `design/` and `poi/` chapters, with depth in `appendix/`.
 
-## Skill.Arg.Section
+## Core Read Model
 
-### Skill.Arg::Session
-> $kw: ^chat-index-capture-call-contract
+```text
+Session.Query  → which supported chats?
+Chat.Query     → which Chat.Messages inside them?
+Chat.Turn      → what provider material belongs to a selected message's turn?
+Raw.Archive    → what native detail was retained beyond the Normal Model?
+```
 
-- the exact Chatlas session to capture: a provider-native session id, an `agentos://chat-session/...` URI, or a full Chatlas identity hash
-- required: true with `--capture`
-- help: "the exact session to capture (session id, URI, or identity hash)"
-- examples: --session "019fbfbd-6fa3-74c0-a6dc-206aa3b3cb25"
-
-> $kw. end
+- `tarav chatlas2 --update <command>` performs one archive/index delta refresh before a read when freshness matters.
+- `tarav chatlas2 sessions query` selects Codex and Claude sessions from Session.Index metadata.
+- `tarav chatlas2 chat query` reads verified `Chat.Message` content, stable refs, and optional containing-turn refs.
+- `chat query --offset N --limit M` returns bounded chronological pages and a `next_offset`; update once before a multi-page traversal, not once per page.
+- `tarav chatlas2 turns get --message-address ... --hydrate` expands a selected message to its containing opaque turn material.
 
 ## Package.Driver.Router
 
-> $kw: ^chatlas-package-router --routing-table --select many
+The root owns no full-session capture or retained-summary production route. Agentic operations are separate companion skills selected semantically by the caller:
 
-> $kw: ^route-chat-index-capture --router-row --table ^chatlas-package-router
-> --flag --capture
-> --match explicit-or-semantic
-> --to Chat.Index.Capture.Operation.Module
-> --load references/capture.md
-> --when the caller wants to construct, refresh, or resume the chronological Chat.Index projection of one Chatlas session
-> --then load the capture module and materialize the target session under the Chatlas depot
-
-> $kw: ^route-session-arg --router-row --table ^chatlas-package-router
-> --flag --session
-> --match explicit
-> --to Skill.Arg::Session
-> --then bind Skill.Arg::Session to the exact target session selector
-
-> $kw: ^chatlas-package-routing-view --routing-view full --table ^chatlas-package-router
+- `tarav-chatlas-my-session-id` — discover the running agent's own session.
+- `chatlas-work-dashboard` — inspect recent work and bounded session recaps.
+- `chatlas-session-continue` — derive a continuation handoff while preserving every user message verbatim.
+- `tarav-chatlas-retention-audit` — audit provider-native artifact retention.
 
 ## Package Surfaces
 
 | Surface | Use |
 |---|---|
 | `000-INDEX.md` → `design/`, `poi/` | Chatlas concepts and package-owned POI classes, with depth in `appendix/` |
-| `--capture --session <selector>` | Build or refresh `<chatlas-root>/session-index/<identity-hash>/` from that chat alone |
-| `references/chatlas-commands.md` | Chatlas CLI query, export, event, turn, anchor, and volatile Index-line manifest workflows |
-| `chatlas-session-continue` | Continue work from a prior session |
-| `chatlas-session-zip-transcript` | Recover a compact transcript artifact |
-| `tarav-chatlas-my-session-id` | Discover the running agent's own native session id |
-| `tarav-chatlas-retention-audit` | Audit raw retention policy for one provider |
+| `tarav chatlas2 sessions query` | Select supported sessions by provider-neutral metadata |
+| `tarav chatlas2 chat query` | Search or traverse authoritative `Chat.Message` records |
+| `tarav chatlas2 views get` | Read disposable transcript, user-message, event, or full-model projections |
+| `tarav chatlas2 turns get` | Resolve and optionally hydrate a containing `Chat.Turn` |
+| `tarav chatlas2 anchory` | Ground consumer records in stable `Chat.Message.Ref` evidence |
+
+## Parked Work
+
+The former root `--capture --session` workflow, Chatlas1 command compendium, `zip-transcript-summary` Product producer, and public zip-transcript skill are intentionally parked. Their useful requirements are retained in `issues/100-issues.md`; they are not compatibility routes. Hugentic Real.Time.Capture remains the active Chat.Index path for newly landed semantic lines.
