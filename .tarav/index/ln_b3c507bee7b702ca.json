@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_b3c507bee7b702ca",
+ "trace": "tr_cdb4345279a0a2da",
+ "scope": "tarav-pkg/design#State.Estimation",
+ "line": {
+  "type": "CT",
+  "body": "the Touched.Index is a collection of Agent.State.Variables and the system around it exists to validate them",
+  "label": "^d20260819-15u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "550ba8cc97b19d3df06624aecf70e897e5efba62928f8fa7fed6250d5283b021"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_842f3c9de37e86c7",
+ "trace": "tr_494ec1eb153e7f77",
+ "scope": "tarav-pkg/design#Tarav2.MVP",
+ "line": {
+  "type": "DC",
+  "body": "tarav2 ships both tarav2- skills and a tarav2 python library and CLI, integrating the new design with the old implementation",
+  "label": "^d20260818-17u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "07ee1e9263d24b35c01eef70c86de2fec8ebd3e9f12e2f354ce31a25fa3008d4"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

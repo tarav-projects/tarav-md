@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_58d78a14adb9ef8e",
+ "trace": "tr_06017f8e54d48762",
+ "scope": "tarav-pkg/design#Signal.Not.Semantics",
+ "line": {
+  "type": "CT",
+  "body": "the linter communicates no semantic value because agents double-check from first principles and that is their job",
+  "label": "^d20260819-23u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "b43b8cd09aa1f6196c8c0244a42004e637d5eb13fde160f4f7adf30d14573db7"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_7ac67acc133bb8da",
+ "trace": "tr_82cfb7416a8c9c39",
+ "scope": "tarav-pkg/design#Tarav2.MVP",
+ "line": {
+  "type": "CT",
+  "body": "the goal is a bootstrapping system that can be used and evolved instead of the old one",
+  "label": "^d20260818-16u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "11f68781bea647d26a3396f2d20b9ab4ad54940cea9a13e3ae0c6e80c141c1b9"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

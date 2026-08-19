@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_e3ce1fb28bc03dd4",
+ "trace": "tr_690fbc5384bf8236",
+ "scope": "tarav-pkg/design#State.Estimation",
+ "line": {
+  "type": "DF",
+  "body": "a variable is not fundamental when something in the world computes it cheaply, so determinacy was never the test",
+  "label": "^d20260819-14u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "9d2509ed6ff3bdc5fbe1152bb9ee30cde9d430cf262957447bc3ff59d108fae5"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

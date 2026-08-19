@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_d8a1c375de4fe80c",
+ "trace": "tr_eb64e0a78f3d5a9c",
+ "scope": "tarav-pkg/design#Index.Head.Surface",
+ "line": {
+  "type": "DF",
+  "body": "the approval turn is that gate, and approval there also means moving the line to the HEAD",
+  "label": "^d20260819-10u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "ce8baf338e3bd6c05490d035d8459d976d714480417180cbd287e715d5e673b5"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

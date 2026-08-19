@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_e02aa3523f0abbd5",
+ "trace": "tr_2c24de832b4b89f0",
+ "scope": "tarav-pkg/design#Scope.Axis",
+ "line": {
+  "type": "CT",
+  "body": "public data is written on the project folder while private data belongs to the user tier and is not exported by default",
+  "label": "^d20260818-2u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "5a0b98855296d49967678929c7d26cec38a65dae08b1035c49c320c23ad31da8"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_57bc0ff8c7b184c8",
+ "trace": "tr_da755603b1917e1f",
+ "scope": "tarav-pkg/design#Touch.Authority.Manifest",
+ "line": {
+  "type": "DC",
+  "body": "manifest approval is a simple User.Approval.Gate decided once per surface, and its implementation is deferred",
+  "label": "^d20260818-5u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "850331350239928bafcb1231a8148641c261215ca595e84256cc1c2f539ebcff"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

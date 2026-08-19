@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_a3eb7d2cfabad50c",
+ "trace": "tr_cbd3aae52dd0ac2c",
+ "scope": "tarav-pkg/design#Index.WIP.Surface",
+ "line": {
+  "type": "CT",
+  "body": "drift is a signal to work rather than a violation",
+  "label": "^d20260818-20u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "10bd31178665311f1190b17a2cd7731084a809c38fdb82ea2d8cc367ec3c5ed8"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

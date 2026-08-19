@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_584dc82567198df9",
+ "trace": "tr_faa3b2494b54e918",
+ "scope": "tarav-pkg/design#Project.Home",
+ "line": {
+  "type": "DC",
+  "body": "homes/ceo is the default user home and the default user name",
+  "label": "^d20260818-12u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "442a59c53b3eb285c5a728a07d27a63c14ae5656c9d3754148fff65da36ce828"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

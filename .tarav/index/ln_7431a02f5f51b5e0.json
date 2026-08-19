@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_7431a02f5f51b5e0",
+ "trace": "tr_87c5b1019c0e0e15",
+ "scope": "tarav-pkg/design#Dumb.Code",
+ "line": {
+  "type": "DC",
+  "body": "the growth rule is TDD's: a bad index with a clean linter means the check is missing",
+  "label": "^d20260819-22u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "db43cded58511b813b3edbb8a5e953e98982a56b8aae8f6ad4344637fdef4a6f"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

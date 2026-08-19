@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_6a647c21697d515f",
+ "trace": "tr_931885ba87947dc9",
+ "scope": "tarav-pkg/design#Index.Removal",
+ "line": {
+  "type": "CT",
+  "body": "deleted lines are tracked on git and not by the index system",
+  "label": "^d20260819-5u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "792bda39a94c3e92172b6377d5eec1447ce35fcbeda620372dde4b25a7199c2e"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

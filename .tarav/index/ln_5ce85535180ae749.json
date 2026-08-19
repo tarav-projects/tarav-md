@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_5ce85535180ae749",
+ "trace": "tr_5ad7afa9dd4b0228",
+ "scope": "tarav-pkg/design#Dumb.Code",
+ "line": {
+  "type": "CT",
+  "body": "DUMB.CODE.IS.BETTER: the linter saves the agent computable operations and never does the semantic work",
+  "label": "^d20260819-18u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "32064fc9512a92f1568f82c0c5f9b4dd6149c77ad6699ac42f2883d02b086df2"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

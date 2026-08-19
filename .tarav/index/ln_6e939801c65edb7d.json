@@ -1,0 +1,28 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_6e939801c65edb7d",
+ "trace": "tr_6203f08509ddc590",
+ "scope": "tarav-pkg/design#Scope.Axis",
+ "line": {
+  "type": "DF",
+  "body": "the storage axis is project-scope versus user-scope: what is project data and what is user data",
+  "label": "^d20260818-0u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "89b2bcd57f894e43dfdc9eb6798fb47a913b07f85962b378793c49a315facfef"
+   },
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "dec9f3e5a6a661a13b679d0a48a6a64120d56c18cf7dda2d7b72f99baa17dae6"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

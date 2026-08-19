@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_124e38f1a9633af0",
+ "trace": "tr_5853bcbdae837a33",
+ "scope": "tarav-pkg/design#Touched.Index.Record",
+ "line": {
+  "type": "CT",
+  "body": "a canonical JSON schema defines the record while storage stays free, so one record may be spread across several files",
+  "label": "^d20260818-9u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "3a49375606bbfa5f5c5c7fd0b876b9bd7f76d5b407649dd0411161eebec6b8f2"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

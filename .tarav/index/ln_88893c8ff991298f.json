@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_88893c8ff991298f",
+ "trace": "tr_5d872610ebaf14c1",
+ "scope": "tarav-pkg/design#Dumb.Code",
+ "line": {
+  "type": "DF",
+  "body": "the check catalog is a Fishing.Net: cheap tests run over all items, converting expensive semantic attention into cheap mechanical attention",
+  "label": "^d20260819-21u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "db43cded58511b813b3edbb8a5e953e98982a56b8aae8f6ad4344637fdef4a6f"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

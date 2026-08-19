@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_5601fe134275e068",
+ "trace": "tr_8437c53e2c6f36d3",
+ "scope": "tarav-pkg/design#Index.Head.Surface",
+ "line": {
+  "type": "DC",
+  "body": "index standing is linked to presence on a surface, so no supersedes field is needed",
+  "label": "^d20260819-8u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "792bda39a94c3e92172b6377d5eec1447ce35fcbeda620372dde4b25a7199c2e"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

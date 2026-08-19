@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_23b1d4ae8e6c2591",
+ "trace": "tr_355c78fb263f40fd",
+ "scope": "tarav-pkg/design#State.Estimation",
+ "line": {
+  "type": "CT",
+  "body": "an Agent.State is dangerous because it is not easy to verify in general, so the design question is how costly verification is",
+  "label": "^d20260819-11u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "1b38c3c3015d65611d588009a729212133200e1ece5bf423e64a8c68d6a2f4b0"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

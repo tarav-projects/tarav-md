@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_04a3711c905735f5",
+ "trace": "tr_31f53be21f16b554",
+ "scope": "tarav-pkg/design#Typed.Agent.State",
+ "line": {
+  "type": "CT",
+  "body": "the system will not carry a value which is merely agent-based",
+  "label": "^d20260819-0u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "792bda39a94c3e92172b6377d5eec1447ce35fcbeda620372dde4b25a7199c2e"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

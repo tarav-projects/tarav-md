@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_dd0f7e7461cf966f",
+ "trace": "tr_6acc99f94c9de710",
+ "scope": "tarav-pkg/design#Touch.Authority.Manifest",
+ "line": {
+  "type": "DF",
+  "body": "a surface declares its type and its Touch.Authority through a centrally controlled manifest that a project must register to be a source of Touched.Data",
+  "label": "^d20260818-4u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "02250762ee1c4f4b45d803b5793a19c6be9a480c7a7b288e8b37bd5805c12558"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_02b223fe16ebaaa9",
+ "trace": "tr_e88630a73c79a72d",
+ "scope": "tarav-pkg/design#State.Estimation",
+ "line": {
+  "type": "DF",
+  "body": "a state is minimally a value plus an err or unknown estimate, and using it without estimating that pair is an antipattern",
+  "label": "^d20260819-16u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "9d2509ed6ff3bdc5fbe1152bb9ee30cde9d430cf262957447bc3ff59d108fae5"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

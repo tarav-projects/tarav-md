@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_d0aa20b515f724f1",
+ "trace": "tr_4b7b0198011baa69",
+ "scope": "tarav-pkg/design#Signal.Not.Semantics",
+ "line": {
+  "type": "CT",
+  "body": "a check's prose description is itself Untyped.Agent.State, a stored copy of a computable fact",
+  "label": "^d20260819-25u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "281784d84365011ee0e6d7db6fec0d2fdbc7d3ed5ff3c0c45d233e716912b098"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

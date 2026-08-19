@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_45441f9b42486ae2",
+ "trace": "tr_a55d740c5e5d1eae",
+ "scope": "tarav-pkg/design#Scope.Axis",
+ "line": {
+  "type": "DC",
+  "body": "scope and authority are separate axes that both name the user: scope is what the data spans, authority is whose touch governs it",
+  "label": "^d20260818-3u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "dec9f3e5a6a661a13b679d0a48a6a64120d56c18cf7dda2d7b72f99baa17dae6"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

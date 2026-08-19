@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_98f0905e096d85c4",
+ "trace": "tr_d25e9c4756f828e3",
+ "scope": "tarav-pkg/design#State.Estimation",
+ "line": {
+  "type": "DC",
+  "body": "the assertions are the estimator, so a state failing many systematic assertions is probably a Bad.State, or the system drifted",
+  "label": "^d20260819-17u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "9d2509ed6ff3bdc5fbe1152bb9ee30cde9d430cf262957447bc3ff59d108fae5"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

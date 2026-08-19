@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_3c29780609ad7064",
+ "trace": "tr_8d89bb166983e859",
+ "scope": "tarav-pkg/design#Tarav2.MVP",
+ "line": {
+  "type": "DF",
+  "body": "the tarav2 MVP is parity with the tarav1 index and hugentic system only, so tarav2 can handle its own index and workflows",
+  "label": "^d20260818-14u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "11f68781bea647d26a3396f2d20b9ab4ad54940cea9a13e3ae0c6e80c141c1b9"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

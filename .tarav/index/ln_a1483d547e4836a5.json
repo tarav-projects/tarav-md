@@ -1,0 +1,28 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_a1483d547e4836a5",
+ "trace": "tr_ea375be94eb1a648",
+ "scope": "tarav-pkg/design#Project.Home",
+ "line": {
+  "type": "DF",
+  "body": "a Skill.Package and a notes surface each carry homes, one per user plus an agent home, holding chapters and appendix under a local index",
+  "label": "^d20260818-11u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "b8dfa2bab305861626bb7d0a322628e3d008fe76a3c3e2d24f2f170a49c158af"
+   },
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "9a4351b27ddb533c623eb4d42c1dbdd2658041304d8a63b23ca7eabcb7c7f6f8"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}

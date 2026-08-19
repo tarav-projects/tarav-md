@@ -1,0 +1,23 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_e167f61df36c5de1",
+ "trace": "tr_33cfcd2f38b8f9a8",
+ "scope": "tarav-pkg/design#Project.Home",
+ "line": {
+  "type": "RJ",
+  "body": "multi-user mechanics are not designed yet; the ceo home stays a plain default rather than a role with precedence",
+  "label": "^d20260818-13u"
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "9f41aa0e-d2cd-4873-b35d-0a3e1239c9e5",
+    "message_id": "442a59c53b3eb285c5a728a07d27a63c14ae5656c9d3754148fff65da36ce828"
+   }
+  ],
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}
