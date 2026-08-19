@@ -1,0 +1,8 @@
+{
+  "surface_type": "vault",
+  "git_backed": true,
+  "edition_relation": "commit_is_edition",
+  "attribution": "git_author",
+  "predicate": "a commit touching a vault path whose git author is the user; agent-authored commits in the same vault do not qualify",
+  "schema": "tarav.touch-authority-manifest.v1"
+}
