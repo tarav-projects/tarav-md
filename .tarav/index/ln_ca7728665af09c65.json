@@ -19,7 +19,13 @@
   ],
   "placement": null,
   "review": null,
-  "landing": null
+  "landing": {
+   "archive": "chat",
+   "session_id": "cd59981e3b24d49472102da68386f7c3b0c11e489b1fbfee19076f86d52f3dc5",
+   "token": "idx-edition:7e3a1c94",
+   "user_turn_id": "b698d3065f99ffb1033df6dfb3716109a203edec32a7f48b3e2a228e60d3f6ed",
+   "agent_turn_id": "e004d90420bee52b02f33dd8593b7c7599d1eba1e43b2921f03d04db137bde08"
+  }
  },
  "equivalence": null
 }
