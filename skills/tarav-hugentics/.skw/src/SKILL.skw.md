@@ -7,7 +7,7 @@ description: "Canonical public control surface for Hugentic sessions. USE WHEN y
 
 # Agentos Hugentics
 
-> $kw: --from Agentos.Index.System --from Alignment.Mode --from Alignment.Surface --from Batchy.Router --from Batchy.Skill --from Batchy.Skill.Banner --from Batchy.Skill.Help --from Capture.Offer --from Demoted.Index.Line --from Design.Req --from Design.Req.Promotion --from Edition.Approval.Token --from Hugentic.Capture.Workflow --from Impl.Req --from Index.Agendix --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Line --from Index.Line.Anchor --from Index.Ontology --from Index.Presumption --from Index.Skillware --from Line.Type --from Line.Verbatim.Gate --from Live.Index.Line --from Open.Inference --from Package.Driver --from Packages.Master.Agent --from POI.Instance --from Reviewed.Content --from Routing.Table --from Skill.Arg --from Skill.Module --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from Touched.Support.Network --from User.Attention --from User.Command --from User.Command.Arg --from User.Command.Section --from User.Command.Trigger
+> $kw: --from Agentos.Index.System --from Alignment.Mode --from Alignment.Surface --from Batchy.Router --from Batchy.Skill --from Batchy.Skill.Banner --from Batchy.Skill.Help --from Capture.Offer --from Demoted.Index.Line --from Design.Req --from Design.Req.Promotion --from Edition.Approval.Token --from Hugentic.Capture.Workflow --from Impl.Req --from Index.Agendix --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Line --from Index.Line.Anchor --from Index.Ontology --from Index.Presumption --from Index.Skillware --from Line.Type --from Line.Verbatim.Gate --from Live.Index.Line --from Open.Inference --from Package.Driver --from Packages.Master.Agent --from POI.Instance --from Reviewed.Content --from Routing.Table --from Skill.Arg --from Skill.Module --from Skw.Annotation --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from Touched.Support.Network --from User.Attention --from User.Command --from User.Command.Arg --from User.Command.Section --from User.Command.Trigger
 > --dev-from references/index-context-assembly.skw.md
 > $kw: ^driver-critical-context --dev-from Cited.Duplication --dev-from Context.Loading.Path --dev-from Package.Driver.Base --dev-from SKILL.Loading
 > --supp root driver context is selected by the alignment failure its absence could cause, not by minimizing line count; preserve context whose omission could make the agent misunderstand authority, violate a gate, select the wrong workflow, or lose the session model ^c20260729-48u
@@ -227,6 +227,7 @@ A `Capture.Stance` steers what the capture loop does after each user turn. It is
 - index work happens over engaged `Index.Depot`s; `--depot` scopes which depots are engaged and `--chapter` scopes within them
 - its lines carry `Line.Type` codes (`- [CT] ...`) classifying each line's act; untyped lines are pre-fence legacy
 - its current support references are trailing `Anchory.Anchor`s resolving through Chatlas2 to qualifying user `Chat.Message.Ref` evidence
+- `Index.Native.Surface`s host typed `Index.Line`s directly; ordinary `Product.Surface`s host qualifying lines through `Skw.Annotation`
 - chronological chat receipts live in `Chat.Index.Delta` files; `Chat.Index.HEAD` is the chat's current projection
 - Hugentic `Real.Time.Capture` lands its primary semantic target first, then backpropagates every exact grounded edition to the current chat HEAD and best-effort to a support-derived Delta horizon; absent local support produces a reported head-only reconciliation gap rather than invented chronology
 - each Chatlas2 `Index.Line.Anchor` dossier asserts the current `Line.Type + body + Anchor.Id` triplet and records independent message support, review gate, and provenance relationships; these consumer semantics do not extend the Chatlas2 Normal Model
@@ -346,6 +347,9 @@ This addressed `Routing.Table` is the package driver's single declarative dispat
 > --default implementation input without an `Impl.Req`
 > --to Implementation.Design.Workflow.Module
 > --load references/impl/design.md
+> --load references/impl/product-capture.md
+> --load references/impl/general-practices.md
+> --load references/impl/general-preferences.md
 > --when implementation work needs a What/How design or non-`Impl.Req` input must be shaped before execution
 > --then select Implementation.Design.Workflow.Module
 
@@ -366,6 +370,7 @@ This addressed `Routing.Table` is the package driver's single declarative dispat
 > --default `Impl.Req` input
 > --to Implementation.Execute.Workflow.Module
 > --load references/impl/execute.md
+> --load references/impl/product-capture.md
 > --when the caller wants an existing `Impl.Req` executed
 > --then select Implementation.Execute.Workflow.Module
 
@@ -376,17 +381,28 @@ This addressed `Routing.Table` is the package driver's single declarative dispat
 > --match explicit-or-semantic
 > --to Implementation.Develop.Workflow.Module
 > --load references/impl/develop.md
+> --load references/impl/product-capture.md
 > --when the caller wants one end-to-end implementation run that may design and execute an `Impl.Req`
 > --then select Implementation.Develop.Workflow.Module
 
-> $kw: ^route-implementation-capture --router-row --table ^package-driver-router
+> $kw: ^route-implementation-product-capture-explicit --router-row --table ^package-driver-router
 > --flag --impl --capture
 > --alias --impl-capture
+> --match explicit
+> --to Implementation.Product.Capture.Workflow.Module
+> --load references/impl/product-capture.md
+> --when the caller explicitly names implementation capture
+> --then contribute the shared Product.Surface capture behavior while the mutating implementation workflow still resolves from its selector, Input, or declared default
+
+> $kw: ^route-implementation-harvest --router-row --table ^package-driver-router
+> --flag --impl --harvest
+> --alias --impl-harvest
 > --match explicit-or-semantic
-> --to Implementation.Capture.Workflow.Module
-> --load references/impl/impl-capture.md
-> --when the caller wants implementation evidence captured
-> --then select Implementation.Capture.Workflow.Module
+> --to Implementation.Harvest.Workflow.Module
+> --load references/impl/harvest.md
+> --load references/impl/product-capture.md
+> --when the caller wants ready implementation work selected from the current conversation
+> --then select Implementation.Harvest.Workflow.Module
 
 > $kw: ^route-capture-read-only --router-row --table ^package-driver-router
 > --flag --capture --audit
@@ -499,14 +515,21 @@ This addressed `Routing.Table` is the package driver's single declarative dispat
 > --when the caller needs the shared alignment frame or checkpoint vocabulary
 > --then load the applicable workflow and knowledge modules with Alignment.Session.Knowledge.Module
 
-> $kw: ^route-implementation-execution-knowledge --router-row --table ^package-driver-router
+> $kw: ^route-implementation-knowledge --router-row --table ^package-driver-router
 > --match semantic
-> --to Implementation.Execution.Practices.Knowledge.Module
-> --to Implementation.Execution.Preferences.Knowledge.Module
+> --to Implementation.Practices.Knowledge.Module
+> --to Implementation.Preferences.Knowledge.Module
 > --load references/impl/general-practices.md
 > --load references/impl/general-preferences.md
-> --when an implementation execution workflow needs shared practices and preferences
-> --then load the shared implementation execution knowledge modules
+> --when any mutating implementation workflow needs the shared practices and preferences, at design time as much as at execution
+> --then load the shared implementation knowledge modules
+
+> $kw: ^route-implementation-product-capture --router-row --table ^package-driver-router
+> --match semantic
+> --to Implementation.Product.Capture.Workflow.Module
+> --load references/impl/product-capture.md
+> --when a mutating implementation workflow designs an Impl.Req or lands a verified product edition
+> --then compose selective Product.Surface capture and Index.HEAD.Backpropagation with the implementation slice
 
 > $kw: ^route-package-knowledge --router-row --table ^package-driver-router
 > --match semantic
@@ -563,7 +586,7 @@ An agent operating the index should:
 - resolve `::discuss` and `::review` to their `Capture.Stance`, which changes only the loop's next move and the advertised commands; every command stays as available as its own condition makes it
 - during interactive capture, add approved drafts to the approved cluster and continue reviewing the roadmap; do not make immediate landing the default next move
 - keep background reconciliation, broad Index diagnosis, and standalone chat linking out of the public router while their valuable design is parked; Real.Time.Capture owns only its internal Chatlas2 grounding and newly-landed-line validation primitives
-- ground every chat-backed landing through the internal Chatlas2 `Real.Time.Grounding.Knowledge.Module`: use line dossiers for Index and live-surface lines, and generic message-support records for non-line implementation provenance
+- ground every chat-backed landing through the internal Chatlas2 `Real.Time.Grounding.Knowledge.Module`: use line dossiers for Index-native and Skw-hosted product lines; reserve generic message-support records for genuinely non-line provenance
 - when a landing contains several lines, batch its Chatlas2 anchor preview and registration and apply the returned line-to-anchor mapping in one surface patch; do not shell-loop the single-line path
 - after a current-chat primary landing succeeds, run the shared Chatlas2 real-time Capture.Plan over that exact line-to-anchor mapping: validate and apply `Chat.Index.HEAD` plus every provable support-derived `Chat.Index.Delta`, then report any head-only or retryable backpropagation gaps without undoing the primary landing
 - keep command targets foregrounded; targeted commands fail closed on ambiguous targets, and `::land-all-approved` fails closed unless one foreground index workflow owns the cluster
@@ -579,7 +602,7 @@ For delegated read-only research that protects the caller's context, use `Packag
 
 `Hugentic.Capture.Workflow.Module` owns the shared public alignment loop. `Design.Req.Knowledge.Module`, `Design.Session.Knowledge.Module`, `Index.Landing.Knowledge.Module`, and `Index.Agendix.Knowledge.Module` configure durable targets without becoming parallel workflow identities.
 
-The Implementation namespace contains explicit design, review, execute, develop, and capture workflow modules. The namespace, its aliases, and its input-sensitive defaults are routing behavior; they do not create duplicate modules.
+The Implementation namespace contains explicit design, review, execute, develop, and harvest workflows. Mutating workflows compose one internal Product.Surface capture module by default; `--impl --capture` names that companion explicitly without creating another implementation phase. The namespace, its aliases, and its input-sensitive defaults are routing behavior; they do not create duplicate modules.
 
 Any active workflow may be interrupted for capture, optionally configured as a read-only audit, consolidation, `Design.Req.Promotion`, implementation handoff, parking, splitting, or status work. Completion reconciles and maintains changed artifact state before continuation; it never restores a stale prior state.
 

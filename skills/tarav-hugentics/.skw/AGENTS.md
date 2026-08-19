@@ -4,5 +4,7 @@
 - the package's skw-managed files are compiled from `src/**/*.skw.md` — NEVER edit those targets by hand
 - to change managed content: edit the src file, then run `tarav skw build --skill <package-root>`
 - to inspect drift (read-only): `tarav skw check --skill <package-root>`
+- build refuses, per file, to write over a target whose content differs from the lock —
+  preserve that content in src, or `--discard-hand-edits <target>` to destroy it
 - `lock.json` and this `AGENTS.md` are engine-owned and overwritten on every build
 - for the full skw discipline, load the `tarav-skillware` skill

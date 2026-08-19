@@ -11,6 +11,8 @@ Load this canonical workflow module only for `--impl --develop` or one of its ex
 
 Develop takes an idea or design source through implementation design and execution in one skill call.
 
+Load `references/impl/product-capture.md` once and preserve its capture state across the design-to-execution handoff.
+
 ## Workflow
 
 > $kw: --derived --from references/impl/design.skw.md^how-loop --from references/impl/execute.skw.md^exec-loop
@@ -25,7 +27,7 @@ Develop takes an idea or design source through implementation design and executi
 5. Load `references/impl/execute.md`.
 6. Pass that exact `Impl.Req` into `Alignment.Loop::Exec`.
 7. Execute its `Execution.Plan` using the same resolved `Alignment.Mode`.
-8. Complete only after the artifact and implementation state are updated.
+8. Complete only after the artifact, verified implementation state, final Product.Surface capture audit, and required backpropagation attempts are updated.
 
 The phase transition remains inside the same skill invocation. An `Interactive` checkpoint may pause the call, but resumption continues the same develop workflow rather than requiring a new invocation.
 
@@ -38,6 +40,7 @@ The phase transition remains inside the same skill invocation. An `Interactive` 
 - Do not collapse the `impl.designer.agent` and `impl.executer.agent` responsibilities.
 - Re-read the artifact before execution so the executer receives a cold, durable handoff.
 - Preserve the same `Alignment.Mode` across both phases.
+- Preserve exact support and capture state across the phase boundary; do not replace it with a summary.
 
 ## Failure Behavior
 

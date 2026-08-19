@@ -10,6 +10,7 @@ Always load:
 
 - `references/impl/general-practices.md`
 - `references/impl/general-preferences.md`
+- `references/impl/product-capture.md`
 
 Load additional language or pattern references when they are added and the target context matches them.
 
@@ -50,9 +51,9 @@ Read the `Impl.Req` cold and confirm:
 
 Resolve minor drift yourself. In `Interactive`, raise unresolved mismatches before editing. In `Autonomous`, record mismatches in `Impl.Log` and proceed only when the plan remains faithfully executable.
 
-## Execution Gate Anchor
+## Execution Gate Line
 
-The `--exec` invocation user message is the execution authorization gate: mint a generic Chatlas2 message-support anchor with `tarav chatlas2 anchory support` and cite it in the first `Impl.Log` entry. It has no Index-line attachment and is not a line-dossier review gate merely because it authorizes execution.
+The `--exec` invocation user message is the execution authorization gate. Record that fact as one typed, supported `Index.Line` in `Impl.Log`, using the normal Chatlas2 line-dossier path. `Impl.Log` is an `Index.Native.Surface`; do not add a `Skw.Annotation` wrapper.
 
 ## Git Checkpoint
 
@@ -70,34 +71,35 @@ This checkpoint is required in both alignment modes. Higher-priority project ins
 Follow `Execution.Plan` order. For each slice:
 
 1. Read the target files.
-2. **Ground before** — ground the slice against the index, pulling the touched blocks and directives it must honor (see `## Touched.Index Grounding`), so the code follows them.
+2. **Slice.Open.Capture** — capture the typed, supported constraints that actually govern this slice into `Impl.Index`; do not assert product state yet.
 3. For behavior covered by the `RED.GREEN.Test.Suite`, write one failing boundary test and confirm the correct failure.
 4. Implement the minimum change that makes that behavior pass.
 5. Run the slice check and relevant existing tests.
 6. Review the diff for unintended scope.
-7. **Ground after** — embed the touched lines as `Skw.Annotation`s at the code's `Annotation.Point`s and extend the `Impl.Agendix`; gap-check (see `## Touched.Index Grounding`).
-8. Report concise slice status.
-9. Record only deviations, blockers, and open-space decisions in `Impl.Log`.
+7. **Product.Landing.Capture** — land only qualifying typed lines with the product edition: in `Skw.Annotation` on ordinary surfaces, directly on Index-native ones.
+8. **Slice.Close.Capture** — audit the verified edition, finalize line dossiers, and run the shared `Index.HEAD.Backpropagation` batch.
+9. Report concise slice and capture status, including retryable backpropagation gaps.
+10. Record deviations, blockers, and consequential open-space presumptions in `Impl.Log`.
 
-Do not write all tests up front. Keep each slice independently reviewable and observable. The grounding steps bracket the implementation; they do not alter the slice, test-first, or minimal-change discipline between them.
+Do not write all tests up front. Keep each slice independently reviewable and observable. Do not mark a slice complete until its verified product edition has passed the close capture audit and its backpropagation was attempted.
 
-## Touched.Index Grounding
+## Product.Surface Capture
 
-The executer grounds mostly against the **index** — durable and cheap to read. It does **not** reconstruct previous chats. It mints generic Chatlas2 message-support anchors only on its own live exec-session user messages and reads the `Impl.Agendix` the designer seeded for prior chat grounding.
+The executer grounds mostly against `Impl.Index` and the durable touched Index. It does not reconstruct previous chats. Understanding comes from the loaded conversation and artifact; Chatlas2 resolves only the exact user messages selected as support.
 
-Grounding a slice has **two destinations**:
+Capture has two product hosts:
 
-- the **`Impl.Agendix`** — the unstable working reservoir; extend it as execution touches new index material.
-- the **code** — the implementation produces `Skw.Annotation`-annotated surfaces, embedded at the code's `Annotation.Point`s. This is where grounding **survives**; the reservoir is not the final home.
+- **`Index.Native.Surface`** — `Impl.Index` and `Impl.Log` carry typed `Index.Line`s directly.
+- **ordinary `Product.Surface`** — code, tests, configuration, and documentation carry qualifying lines inside `Skw.Annotation`.
 
-Attach at the **coarsest `Annotation.Point` that honestly fits**: the file is the universal floor — give every touched file a file-level `Skw.Annotation` — with finer function or section points only where the annotation's true scope needs them. On each annotation:
+Attach at the coarsest `Annotation.Point` that honestly fits. A file point is available, but touching a file does not itself require an annotation. On each qualifying annotation:
 
-- `--note`/`--supp ^anchor` carry the grounding — *why* the code is as it is.
+- `--note`/`--supp ^anchor` carry typed, supported `Index.Line`s explaining why the product is as it is.
 - `--from` carries the dependency, addressed by `Skw.Address.Schema`, in one of its two `Skw.Network` kinds: **structural** (the code derives from another surface — self-authorizing) or **touched** (an index block or annotation the code honors — carries `Annotation.Authority`). To link any point, fence it with a `Skw.Annotation` and reference its address.
 
-Only touched material with ongoing maintenance value survives onto code; one-time decisions die with the `Impl.Agendix`. Per `Annotation.Authority`, only the file point is open to ungated agentic annotation — finer points are born touched.
+Only direct material with ongoing maintenance value survives onto the product. Zero annotations is valid; never restate self-evident behavior or annotate for coverage.
 
-Where a slice touches territory with no index home, that is **`Open.Space`**: act provisionally and coherently, embed nothing authoritative, and log nothing. It becomes a directive constraint only once touched.
+Where a slice touches `Open.Space`, act provisionally and coherently. If the inference is consequential, surface it in chat and record a typed `Index.Presumption` in `Impl.Log`; otherwise leave it ordinary implementation detail. Never present it as touched authority.
 
 ## Deviation Handling
 
@@ -106,12 +108,13 @@ Design-reality mismatch activates the declared deviation checkpoint:
 - `Interactive` - stop, describe the mismatch concretely, offer the viable adjustments, and wait.
 - `Autonomous` - record the deviation and take the most faithful corrective action; abort only when external input is required.
 
-Never silently adapt. When a user message resolves a deviation or changes scope, mint a generic Chatlas2 message-support anchor on it and trail it on the `Impl.Log` entry recording the resolution.
+Never silently adapt. When a user message resolves a deviation or changes scope, record the resolution as a typed, Chatlas2-supported `Index.Line` in `Impl.Log`.
 
 ## Completion
 
 After all slices:
 
+- run the final `Product.Surface` capture audit from `references/impl/product-capture.md`; an empty result is valid
 - summarize the implemented result
 - list deviations and their resolutions
 - identify deferred or out-of-scope work

@@ -33,7 +33,7 @@ These are `Real.Time.Capture` workflows: they operate beside live `User.Attentio
 
 `--agendix` is the shorthand row that supplies the capture workflow and agendix target together. `--index` contributes the Index namespace and, in a capture call without a narrower target, resolves the reviewed main target; `--main` names that target directly. A `Design.Req` target loads `references/design-req.md` as `Design.Req.Knowledge.Module`; `--capture --design-session` loads `references/design-session.md` as `Design.Session.Knowledge.Module`.
 
-Inside the Implementation namespace, `--impl --design` and `--impl --capture` belong to `Implementation.Workflow.Router.Module`; they do not select this module through the root meanings of `--design` or `--capture`.
+Inside the Implementation namespace, `--impl --design` and `--impl --harvest` belong to `Implementation.Workflow.Router.Module`; `--impl --capture` explicitly names its internal Product.Surface capture companion. None selects this public module through the root meanings of `--design` or `--capture`. Mutating implementation workflows compose that capture behavior by default; the explicit flag is confirmatory, not an extra phase.
 
 ## Shared Capture Loop
 

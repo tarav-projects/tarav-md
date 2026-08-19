@@ -27,6 +27,8 @@ Walk the claims in `Impl.Abstract` and `Impl.Index` (especially any `Current.Sta
 
 Grade each checked claim: **verified** / **stale** (was true, no longer) / **unverifiable** (no way to check from here). Sample proportionally to risk — every load-bearing claim gets checked; incidental color does not.
 
+Also audit the artifact's native capture anatomy: every authoritative `Impl.Index` or `Impl.Log` line is typed, its support resolves, and plan-only statements are not presented as landed product state. If execution is complete, sample surviving `Skw.Annotation` product lines against the final product edition and report missing or stale backpropagation evidence. Review remains read-only.
+
 ### 3. Readiness audit
 
 The designer's `Alignment.Checkpoint::Readiness` list, re-run from outside:

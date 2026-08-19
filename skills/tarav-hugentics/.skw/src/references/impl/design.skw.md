@@ -11,6 +11,12 @@ Load this canonical workflow module for `--impl --design` and as the first phase
 
 Operate as the `impl.designer.agent`: inspect the implementation context, design an implementation path, and produce an `Impl.Req` artifact.
 
+Always load `references/impl/product-capture.md`. Its selective capture bar and `Index.Native.Surface` rules govern the `Impl.Req` produced here.
+
+> $kw: ^design-loads-shared-knowledge --cite No.Legacy.Allowed
+
+Always load `references/impl/general-practices.md` and `references/impl/general-preferences.md`. They carry design stances the plan commits to — `No.Legacy.Allowed`, dependency justification, what a slice's check should test — not only execution mechanics. A plan written without them can specify work its executer is instructed not to do.
+
 ## Alignment.Loop::How
 
 > $kw: ^how-loop --derived --from Alignment.Loop::How --from Alignment.Loop
@@ -59,6 +65,7 @@ Immediately before writing the `Impl.Req`, confirm:
 - feedback loops and `RED.GREEN.Test.Suite` behaviors are named
 - dependencies and ordering are explicit
 - no unresolved decision is hidden inside an execution step
+- every load-bearing element has more than one independent reason, or is named as provisional
 - the plan is understandable without chat context
 
 Close each gap yourself where possible. In `Interactive`, raise unresolved gaps and wait. In `Autonomous`, resolve them and record any conscious waiver.
@@ -110,35 +117,30 @@ See `references/impl/example.md` for a concrete artifact sample.
 
 > $kw. end
 
-### Impl.Agendix
+### Impl.Index Capture
 
-> $kw: --from Annotation.Authority --from Skw.Network --from Skw.Address.Schema --from Skw.Annotation --from Open.Space
-> --intent the living grounding reservoir on the Impl.Req: what it is,
-> --cont the designer's before/after dual-level capture, and the record-by-kind rule
+> $kw: --from Index.Line --from Index.Presumption --from Open.Inference --from Skw.Annotation --from Support.Set --from Touched.Authority
+> --intent define Impl.Index as the native capture surface that grounds the plan without inventing a separate reservoir
 
-The `Impl.Req` carries a living **`Impl.Agendix`**: the touched-authority reservoir the implementation grounds against. It accumulates ungated, the way the index agendix does, and is never the durable home of what it holds — durable grounding survives on the code, not here (see `references/impl/execute.md`). The `Impl.Agendix` is the working reservoir the executer both consumes and extends.
+`Impl.Index` is an `Index.Native.Surface`: it carries the implementation's typed `Index.Line`s directly and needs no `Skw.Annotation` wrapper or parallel `Impl.Agendix` reservoir.
 
-The designer captures into it **twice, bracketing the write** — before, from the design chat that shaped the plan; after, grounding the produced artifact. Because it holds the design chat live, the designer grounds at **both levels**:
+Capture into it twice:
 
-- **chat → touched**: use `tarav chatlas2 anchory support` to mint generic message-support anchors on the user messages that authorize and shape the plan — the ordering request, readiness approval, and each message that settles a `Design.Decisions` line. These records have no Index-line attachment or review gate.
-- **index → touched**: cite the index blocks the implementation must honor, each addressed by its `Skw.Address.Schema`.
+1. **before writing** — resolve the selected user messages and touched Index blocks that actually constrain the plan, then write their direct, typed implementation consequences;
+2. **after writing** — audit the complete artifact, add any important supported line the plan exposed, and remove plan wording that overstates its evidence.
 
-Record every dependency by its `Skw.Network` kind:
+Use the loaded conversation to understand the design. Ask Chatlas2 only to resolve the exact user messages selected as support. Every authoritative line must have a qualifying `Support.Set`; every written anchor and address must resolve.
 
-- **structural** — the surface is derived or copied from another surface; self-authorizing, no grounding needed (the derivation is the evidence).
-- **touched** — a link to a touched index block or user `Chat.Message.Ref` carrying a decision; it carries `Annotation.Authority`, and each `--from` addresses another annotation by its `Skw.Address.Schema` — to link any point, fence it with a `Skw.Annotation` and reference its address.
+Material not supported by `Touched.Authority` may still be useful `Open.Inference`. Record consequential agent reasoning as a typed `Index.Presumption` in `Impl.Log`, and surface it in chat. Do not convert it into authority or annotate merely to fill the artifact.
 
-Discipline:
-
-- every written anchor and address must resolve — wildcard or unresolvable citations are worse than none.
-- in `Autonomous` mode the invocation turn is the coarse gate; one anchor may cover the artifact, with finer touches anchored as they settle.
-- where the plan reaches territory with no index home, that is `Open.Space` — leave it provisional and unanchored, never a logged gap.
+The written `Impl.Index` describes plan constraints and decisions, not landed product state. Product-state capture begins during execution and is backpropagated only after its slice is verified.
 
 ## Updating And Feedback
 
 - prefer focused updates over full rewrites
 - update `Impl.Abstract` when the implementation request changes
 - keep ordinary code changes out of `Impl.Log`; the diff already records them
+- keep consequential open-space inference in `Impl.Log` as typed presumption rather than hiding or falsely grounding it
 - when implementation design exposes a fundamentals-design problem, note it in the artifact and identify the source design surface that may need revision
 - for realignment work, state the observed drift and corrective request explicitly
 

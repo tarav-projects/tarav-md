@@ -2,9 +2,9 @@
 > --step SKILL.md
 > --loading-dep SKILL.skw.md^hugentics-batchy-runtime-contract
 
-# Implementation.Execution.Practices.Knowledge.Module
+# Implementation.Practices.Knowledge.Module
 
-Apply these practices on every execution task.
+Apply these practices on every implementation task.
 
 ## Before Editing
 
@@ -38,3 +38,9 @@ Apply these practices on every execution task.
 - Run the immediate feedback loop.
 - Review the diff for unrelated scope.
 - Check that existing behavior outside the intended change remains intact.
+
+> $kw: ^defect-owes-a-test
+> --note [DC] a defect found by hand owes the suite a test, because a wrong system with a green suite means the test is missing ^d20260819-32u
+
+- **A defect found by hand owes the suite a test.** A wrong system with a green suite does not mean the suite passed; it means the test is missing. Fixing the line and moving on leaves the constraint the defect revealed unguarded.
+- The test asserts the constraint, not the incident: what the defect proved must always hold, stated so the next violation of it also fails.

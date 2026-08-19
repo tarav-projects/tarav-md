@@ -1,12 +1,12 @@
-# Implementation.Capture.Workflow.Module
+# Implementation.Harvest.Workflow.Module
 
-Load this canonical workflow module only for `--impl --capture` or its `--impl-capture` shortcut.
+Load this canonical workflow module only for `--impl --harvest` or its `--impl-harvest` shortcut.
 
-`impl-capture` banks the implementation work that is *ready now* and parks what still needs design. It scans the live conversation and the current implementation for touched, implementation-ready drift, ranks the candidates, proposes its best pick behind the standard `Alignment.Mode` gate, and hands the chosen one to `references/impl/develop.md`.
+`impl-harvest` banks the implementation work that is *ready now* and parks what still needs design. It scans the live conversation and the current implementation for touched, implementation-ready drift, ranks the candidates, proposes its best pick behind the standard `Alignment.Mode` gate, and hands the chosen one to `references/impl/develop.md`.
 
 ## What It Is For
 
-The Hugentic system may hold a mix at the end of a working session: some threads are decided and clear, others still carry open design questions. `--impl --capture` is the "bank the ready work, park the rest" move - the implementation-side counterpart to the map produced by `--capture --audit`. It does not design; it selects what is ready to be developed and routes it through the normal design-and-execution workflow.
+The Hugentic system may hold a mix at the end of a working session: some threads are decided and clear, others still carry open design questions. `--impl --harvest` is the "bank the ready work, park the rest" move - the implementation-side counterpart to the map produced by `--capture --audit`. It does not design; it selects what is ready to be developed and routes it through the normal design-and-execution workflow.
 
 In harness terms it is an `Internal.Alignment` move: it advances the `Progress.Gradient` by syncing the implementation surfaces to the touched decisions the session already produced — the `Design.Implementation.CoEvolution` rhythm, applied one ready unit at a time.
 
@@ -46,15 +46,15 @@ Once a candidate is selected, hand it to `references/impl/develop.md` as the res
 
 1. Load `references/impl/develop.md`.
 2. Run `Implementation.Develop.Workflow.Module` - design the `Impl.Req`, then execute it - under the same resolved `Alignment.Mode`.
-3. The chosen candidate is develop's input; `impl-capture` adds no implementation logic of its own.
+3. The chosen candidate is develop's input; `impl-harvest` adds no implementation logic of its own.
 
 Only the *selection* is new; the design and execution are the existing harness workflow.
 
-The candidate carries its **provenance**, not just its description. The touched decisions become `Chat.Grounding`: develop's design phase seeds the `Impl.Agendix` with generic Chatlas2 message-support anchors on the deciding user messages, and execution carries that grounding onto the code. The chain starts at this scan; impl-capture hands develop the touched surfaces, not a re-summary.
+The candidate carries its **provenance**, not just its description. The touched decisions become `Chat.Grounding`: develop's design phase captures them as typed supported lines in `Impl.Index`, and execution carries qualifying grounding onto the product. The chain starts at this scan; impl-harvest hands develop the touched surfaces, not a re-summary.
 
 ## Boundary Contract
 
-- `impl-capture` selects and routes; it never designs or edits directly.
+- `impl-harvest` selects and routes; it never designs or edits directly.
 - One candidate per run — a heterogeneous ready set is banked one coherent `Impl.Req` at a time; re-invoke for the next.
 - The parked set is an output, not a loss — surface it so the deferred design work is recorded; unresolved candidates stay `Open.Space`, not silent drops.
 - Preserve the resolved `Alignment.Mode` into the delegated develop workflow.

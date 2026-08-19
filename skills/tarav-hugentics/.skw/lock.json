@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "c0f1a2ae233be4195255abccdf696f628a500f2cf534471cb0081af6d429560d",
+      "output_sha256": "84cf7dc1514cb71b73368342eaf1b06491b394449abb272d751ac424e8674ed7",
       "recipes": [
         {
           "heading": "^hugentics-batchy-runtime-contract",
@@ -15,7 +15,7 @@
         {
           "heading": "^driver-index-literacy",
           "verb": "derived",
-          "body_sha256": "45b6554aef9eb916aaf4b22d5704bd04e26f0bb8348b6f9cc22a5cfd9247afd6",
+          "body_sha256": "2fb611854a332d9f84cd5c4bba3ab3585fd848287b10f4cf9488971dc4dd3edd",
           "deps": {
             "references/touched-data.skw.md#Authority Flow": "1ebd12534102f9675420544ded0f211d6368a3855309f63dfedd106adf40d3d0",
             "references/touched-data.skw.md#Support Network": "d3bc9fd5f5cae8fcf8a8da2501f32f697263ca129ff25ace9698b630c3479f3a",
@@ -27,7 +27,7 @@
         {
           "heading": "Index Operating Behavior",
           "verb": "derived",
-          "body_sha256": "34dd86e75db4eba94e2d131d9eb96802bdd9bf1af3945e1f16d1262700b0d8e2",
+          "body_sha256": "5c0adfa9ffd2bcc8d48bac6fbba697aa8232b53360eeae5aaa13c5a3cea4984c",
           "deps": {
             "references/touched-data.skw.md#Line Standing": "2bc1780bf6384c537cff3089d3aa547092f81dba496c26bc8976d4f455c6b174",
             "references/touched-data.skw.md#Coherence And Decision Weight": "6a23c0cfcf0865ea3b5e36274da927ab577287916aae91f3a091ce27f4bd2505",
@@ -89,7 +89,7 @@
       ]
     },
     "references/capture.md": {
-      "output_sha256": "f8d2095f17983c0ae40c938ec60cf6b4ee8620e141b6be0321ed8bfaf48c9a1d",
+      "output_sha256": "e55c9c782fda27a7ad78226264724a9446f7896a393bc765f0ec26fb1fb18a5f",
       "recipes": [
         {
           "heading": "Landing",
@@ -141,7 +141,7 @@
       ]
     },
     "references/impl/design.md": {
-      "output_sha256": "c60be0d995d8ffd52a5a3250591b860d8662548226a78860ddb3e03e31097521",
+      "output_sha256": "4d3c40e123c6cfd10b1cf6e730ff0ef7b97f2ca48fbc687eb6e0252708dc582c",
       "recipes": [
         {
           "heading": "^how-loop",
@@ -163,7 +163,7 @@
         {
           "heading": "Alignment.Checkpoint::Readiness",
           "verb": "derived",
-          "body_sha256": "98b12950bc2e4582c6ced4dec4aa28ef5abbd29bb72df07ac7e00e9213605775",
+          "body_sha256": "6613c0a9fe12fb2527b33108e37b0ce4a6641ecc51a931b97f6d5df8d39ce4ed",
           "deps": {
             "Alignment.Checkpoint::Readiness": "29a0d82b3f264201b4359f76b91658a2280709e43fc626cd7c9cfa9fe575e123"
           }
@@ -189,35 +189,35 @@
       ]
     },
     "references/impl/develop.md": {
-      "output_sha256": "e22ac7062a6b0cbbd4194d74d969cc442d996a6950f1564a0dac294c3539da82",
+      "output_sha256": "9242f3ad4d10d4cd603bbb82e0ce9defbebdecf8041eef21f03efe2062532659",
       "recipes": [
         {
           "heading": "Workflow",
           "verb": "derived",
-          "body_sha256": "ca438466e550fb8399ce8a34d7369ecc5576e4c8a92adf02e6c2f7088a8cbc37",
+          "body_sha256": "9dfb16b8dfc14630a17d955844d289d17d6dabcd6b84bf15dacfa2df4b860efa",
           "deps": {
-            "references/design.skw.md^how-loop": null,
-            "references/execute.skw.md^exec-loop": null
+            "references/impl/design.skw.md^how-loop": "7df7092eefc7b026e486208f44ac89bc66e64664b911cbbe6dfeaa385c429da8",
+            "references/impl/execute.skw.md^exec-loop": "52f8d1b38f2d59eed03cf9634316ba2d44fdb7db765b830a3a4222c2b86f1fbd"
           }
         }
       ]
     },
     "references/impl/example.md": {
-      "output_sha256": "c0091a641ef7e2b9e6d5a0c8ec2271d0eab4633357ef85fa1e94825807ae95b4",
+      "output_sha256": "cb2f9964c3813b08eb82be2fc1bd2195286fd222ee2511a0bb8df5c9eb421f37",
       "recipes": [
         {
           "heading": "Impl.Req Example",
           "verb": "derived",
-          "body_sha256": "782890daf78da62b78940f7a494cb1467ca4962f190c5a91722c8d33448966c9",
+          "body_sha256": "875cd3a9c4bfc85f589b9de9e4cecfe77dfb3a0e6336d59aee04d1eeafb02e92",
           "deps": {
-            "references/impl/design.skw.md#Impl.Req Artifact": "dc6b85681112a35765956c63d1bac48413241837c5423d15883748610024bf34",
-            "references/impl/design.skw.md#Impl.Agendix": "529030da05b6dfb2749f39a53f9fcdb698e92bb7d8ccd354559f92d5f63b03cd"
+            "references/impl/design.skw.md#Impl.Req Artifact": "ee18b29975d07abcad3a72381a75992fb868babf6f47f57119cce18e4f9c8fb7",
+            "references/impl/design.skw.md#Impl.Index Capture": "8bd1c2f72a61f0986b560d95f56699a0ff11e516634e1db5301b6f77df8deba0"
           }
         }
       ]
     },
     "references/impl/execute.md": {
-      "output_sha256": "216e7dc00d2161f21a43509115caa37107779c3e1b0d7a8403f48ff87413f720",
+      "output_sha256": "7e77cbee17e3e02fa2f155a41c9056f86f443336b984de09b2d72e36002bfb66",
       "recipes": [
         {
           "heading": "^exec-loop",
@@ -238,17 +238,17 @@
         {
           "heading": "Per-Slice Execution",
           "verb": "derived",
-          "body_sha256": "acfa8a91dcfc7e050982b4831df1f191b75152628369ef81846dc669b608c1c2",
+          "body_sha256": "958ddfe7d5f94ea6e682857e735e83b25d3061255df04a79c55b1e61516e030d",
           "deps": {
             "Vertical.Slice": "a670e07fadf5c8183dd3de285fc558dcd9aa06bf86ff24e56e5452cf654afbbc",
-            "RED.GREEN.Test.Suite": "d2b1d3f40cf2b16f1c70127a6f03cc2ddfb93b13023b0fb288c5c76c5ad4c8e5",
-            "Annotation.Point": "ffe59284b2230cd7f56a56aea0cd197009f4409d0c63aa943d2f41a94aa34dd1"
+            "RED.GREEN.Test.Suite": "44ff3ddbd8b06c10a5c8d39e09a913673b7df6bc1f07160be444894171aca2d6",
+            "Annotation.Point": "f9e52c586f57491e1e372699ce2c74494bb2e263a02fde05044bfb3ad9841417"
           }
         }
       ]
     },
     "references/impl/general-practices.md": {
-      "output_sha256": "9e0f545a5c559c01286e343b72ae7064c6f09c4267e961531ad4d8c8a8aec95b",
+      "output_sha256": "6c4605e6f024e2af69e817d4cdce352b8c751d699ef76e443b2824d135a54dd6",
       "recipes": [
         {
           "heading": "Moving Forward",
@@ -261,11 +261,28 @@
       ]
     },
     "references/impl/general-preferences.md": {
-      "output_sha256": "58853b4716b977bfb7a073da666b4a08aeee765e9f7f6308ed331e14c9877e99",
-      "recipes": []
+      "output_sha256": "9c0e58c1d7d8b359dcc5d77a2f5f8d77e0d47ca37a8e70777f358bc61cb0de2e",
+      "recipes": [
+        {
+          "heading": "^verification-cost",
+          "verb": "derived",
+          "body_sha256": "65f5d52e96394fe53578269dcbe2e14b17a2055753df7403dabbd507e4fa21c8",
+          "deps": {
+            "Constraint.Steering": "74a0e0f6565db273089c40585c3a8eeb9d2b62e84f7a9db1662cfe06a1e3de71"
+          }
+        },
+        {
+          "heading": "^producer-shapes-output",
+          "verb": "derived",
+          "body_sha256": "086142e6dcc9f15ca140ccfd6bbc24441c2fd84c09d6b3b2f9f7ac1410c643a1",
+          "deps": {
+            "Producer.Aids.Checker": "1a5a59b95a9ccfdc39b9c3d70038c0d5e6586d9a16fa1c0f0891ab4947cfacd5"
+          }
+        }
+      ]
     },
-    "references/impl/impl-capture.md": {
-      "output_sha256": "1e04bf50ea0296d824f1a48fc1baa880c0f4d6688c17c4baadac2a7c2233ff34",
+    "references/impl/harvest.md": {
+      "output_sha256": "9f25b2278db5369503b76aa581c8d698e15070cb5a447e24853473d9e66c16bd",
       "recipes": [
         {
           "heading": "Alignment.Checkpoint::Candidate",
@@ -278,15 +295,19 @@
         }
       ]
     },
+    "references/impl/product-capture.md": {
+      "output_sha256": "98544cce2c501ef77db25fde51233ba8c5295dba80177c107605a7c50df7baf3",
+      "recipes": []
+    },
     "references/impl/review.md": {
-      "output_sha256": "6886bd4e8fa7df3d8e2d9859a3c2d3929c3dfd2e653c8e2a523095556ff13f54",
+      "output_sha256": "187cb039e1e07893490dad55084853176d69009176d2394e78f6a7c2e9692f9f",
       "recipes": [
         {
           "heading": "2. Evidence audit",
           "verb": "derived",
-          "body_sha256": "8d7168f028cfc193330d93a8310d3a3dd8c2e137af3f4c125628677b4f8c3bb4",
+          "body_sha256": "e726557761160e72ac461360a17edf662c34898321db79dc3a1db306d252b5fe",
           "deps": {
-            "Hard.Evidence": "88572e712466cf7e4fa63d5e04a142cc5aca28b79683c5728d73ed258eeae646"
+            "Hard.Evidence": "84909e6784720ca5ac87a22e7030ec864524495b74634f64548ba9a82924dd30"
           }
         },
         {
@@ -300,7 +321,7 @@
       ]
     },
     "references/impl.md": {
-      "output_sha256": "3c51d0ed945123608b484d7ea109bfaa56dbc4c2047dd109dc4f8d764f5e5c7d",
+      "output_sha256": "b42600351de0044967f2b4c00c47b8291e50594aebe8decab7df010dbfe26a9f",
       "recipes": []
     },
     "references/index-capture-context.md": {

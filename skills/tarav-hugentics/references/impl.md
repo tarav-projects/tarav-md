@@ -35,13 +35,14 @@ The implementation flags call the same running `Batchy.Router` as the root skill
 
 Without an explicit workflow flag, the router may use the resolved input, live conversation, and declared defaults. Resolve the workflow in this order:
 
-1. A composed namespaced workflow flag or its exact shortcut always wins.
+1. A composed namespaced workflow selector or its exact shortcut always wins.
 2. Bare `--impl` or `--implementation` contributes only the namespace; it does not mean develop.
-3. Without a workflow selector, resolve `Input` to `Implementation.Execute.Workflow.Module` when it is an `Impl.Req`.
-4. Otherwise resolve to `Implementation.Design.Workflow.Module` when actionable implementation input or conversation exists.
-5. Never infer `Implementation.Develop.Workflow.Module`; end-to-end execution requires `--impl --develop`, `--develop`, or `--dev`.
-6. Never infer `Implementation.Review.Workflow.Module`; the blind-spot check requires `--impl --review` or `--review`.
-7. Never infer `Implementation.Capture.Workflow.Module`; harvesting ready work requires `--impl --capture` or `--impl-capture`.
+3. `--impl --capture` contributes `Implementation.Product.Capture.Workflow.Module`; it does not independently select design, execute, or develop, and mutating implementation workflows already compose it by default.
+4. Without a workflow selector, resolve `Input` to `Implementation.Execute.Workflow.Module` when it is an `Impl.Req`.
+5. Otherwise resolve to `Implementation.Design.Workflow.Module` when actionable implementation input or conversation exists.
+6. Never infer `Implementation.Develop.Workflow.Module`; end-to-end execution requires `--impl --develop`, `--develop`, or `--dev`.
+7. Never infer `Implementation.Review.Workflow.Module`; the blind-spot check requires `--impl --review` or `--review`.
+8. Never infer `Implementation.Harvest.Workflow.Module`; selecting ready work requires `--impl --harvest` or `--impl-harvest`.
 
 Treat input as an `Impl.Req` when it is:
 
@@ -61,3 +62,5 @@ Load only the selected workflow module. The develop module composes design and e
 - Respect the project package orientation already supplied by local routing.
 - Load the relevant Index module in this skill when the task needs index-grounded context or index mutation.
 - Respect project-local `AGENTS.md` and repository instructions before any implementation edit.
+- Every mutating implementation workflow composes `Implementation.Product.Capture.Workflow.Module`; capture is a selective slice companion, not a separately selected implementation workflow.
+- `Impl.Index` and `Impl.Log` are `Index.Native.Surface`s. Ordinary product surfaces carry qualifying typed `Index.Line`s through `Skw.Annotation`.

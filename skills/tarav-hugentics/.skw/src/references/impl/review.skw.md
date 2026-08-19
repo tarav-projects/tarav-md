@@ -36,6 +36,8 @@ Walk the claims in `Impl.Abstract` and `Impl.Index` (especially any `Current.Sta
 
 Grade each checked claim: **verified** / **stale** (was true, no longer) / **unverifiable** (no way to check from here). Sample proportionally to risk — every load-bearing claim gets checked; incidental color does not.
 
+Also audit the artifact's native capture anatomy: every authoritative `Impl.Index` or `Impl.Log` line is typed, its support resolves, and plan-only statements are not presented as landed product state. If execution is complete, sample surviving `Skw.Annotation` product lines against the final product edition and report missing or stale backpropagation evidence. Review remains read-only.
+
 > $kw. end
 
 ### 3. Readiness audit
@@ -77,4 +79,4 @@ Lead with the verdict, then findings ranked by severity:
 - `Interactive` — may ask the caller to resolve genuinely ambiguous claims (e.g. which repo a relative path means) before grading them `unverifiable`
 - `Autonomous` — grade with what can be established; ambiguity becomes an explicit finding, never a guess
 
-> $kw: --from Impl.Req --from RED.GREEN.Test.Suite
+> $kw: --from Impl.Req --from RED.GREEN.Test.Suite --from Skw.Annotation

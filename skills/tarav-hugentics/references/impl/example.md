@@ -10,22 +10,15 @@ Adapt the wording and section weight to the current request.
 - **scope:** add project-scoped configuration loading without changing global defaults
 - **status:** ready for implementation
 - **source:** direct user request plus current repository inspection
-- **support set:** ordering message ^d<YYYYMMDD>-<N>u, readiness approval ^d<YYYYMMDD>-<M>u (Chatlas2 message-support)
-
-## Impl.Agendix
-
-- **touched (index):** `Project.Boundary` — the resolution seam the loader must honor ^<existing-index-anchor>
-- **touched (chat):** override-scope decision — project values win only for the active command ^d<YYYYMMDD>-<P>u
-- **structural:** none — no surface is derived from another in this change
-- **open space:** cache/reload behavior has no index home yet — left provisional, unanchored
+- **support set:** exact typed lines in `Impl.Index`; the artifact does not maintain a second grounding reservoir
 
 ## Impl.Index
 
 ### Project.Configuration.Scope
 
-- project configuration is loaded from the resolved project root
-- project values override global defaults only for the active command
-- unrelated configuration behavior remains out of scope
+- [CT] Project configuration is loaded from the resolved project root. ^d<YYYYMMDD>-<N>u
+- [DR] Project values override global defaults only for the active command. ^d<YYYYMMDD>-<P>u
+- [BL] Unrelated configuration behavior remains out of scope. ^d<YYYYMMDD>-<M>u
 
 ## Execution.Plan
 
@@ -45,6 +38,6 @@ Adapt the wording and section weight to the current request.
 
 ## Impl.Log
 
-- execution gate: `--exec` invocation grounded through Chatlas2 message-support ^d<YYYYMMDD>-<K>u
+- [TS] Execution was authorized by the cited `--exec` invocation. ^d<YYYYMMDD>-<K>u
 - no deviations or blockers
 ```

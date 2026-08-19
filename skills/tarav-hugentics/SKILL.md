@@ -114,7 +114,8 @@ The public flags below call the single running `Batchy.Router`. A trailing value
 | `--impl --review` | `--review` | explicit-or-semantic | select Implementation.Review.Workflow.Module |
 | `--impl --execute` | `--execute`<br>`--exec` | explicit-or-semantic; default: `Impl.Req` input | select Implementation.Execute.Workflow.Module |
 | `--impl --develop` | `--develop`<br>`--dev` | explicit-or-semantic | select Implementation.Develop.Workflow.Module |
-| `--impl --capture` | `--impl-capture` | explicit-or-semantic | select Implementation.Capture.Workflow.Module |
+| `--impl --capture` | `--impl-capture` | explicit | contribute the shared Product.Surface capture behavior while the mutating implementation workflow still resolves from its selector, Input, or declared default |
+| `--impl --harvest` | `--impl-harvest` | explicit-or-semantic | select Implementation.Harvest.Workflow.Module |
 | `--capture --audit` | - | explicit-or-semantic | run Hugentic.Capture.Workflow.Module through its read-only roadmap and stop |
 | `--status` | `--chat-status` | explicit-or-semantic | select Chat.Status.Operation.Module |
 | `--workflow-status` | - | explicit-or-semantic | select Workflow.Status.Operation.Module |
@@ -140,11 +141,12 @@ Canonical module identity is explicit and independent from invocation spelling. 
 | Canonical module | Load target | Routing |
 |---|---|---|
 | `Hugentic.Capture.Workflow.Module` | `references/capture.md` | `--capture`<br>`--capture --design-session`; default: Alignment.Mode::Autonomous<br>`--agendix`; default: Alignment.Mode::Autonomous<br>`--design`<br>`--capture --audit` |
-| `Implementation.Design.Workflow.Module` | `references/impl/design.md` | `--impl --design`, `--impl-design`; default: implementation input without an `Impl.Req` |
+| `Implementation.Design.Workflow.Module` | `references/impl/design.md`<br>`references/impl/product-capture.md`<br>`references/impl/general-practices.md`<br>`references/impl/general-preferences.md` | `--impl --design`, `--impl-design`; default: implementation input without an `Impl.Req` |
 | `Implementation.Review.Workflow.Module` | `references/impl/review.md` | `--impl --review`, `--review` |
-| `Implementation.Execute.Workflow.Module` | `references/impl/execute.md` | `--impl --execute`, `--execute`, `--exec`; default: `Impl.Req` input |
-| `Implementation.Develop.Workflow.Module` | `references/impl/develop.md` | `--impl --develop`, `--develop`, `--dev` |
-| `Implementation.Capture.Workflow.Module` | `references/impl/impl-capture.md` | `--impl --capture`, `--impl-capture` |
+| `Implementation.Execute.Workflow.Module` | `references/impl/execute.md`<br>`references/impl/product-capture.md` | `--impl --execute`, `--execute`, `--exec`; default: `Impl.Req` input |
+| `Implementation.Develop.Workflow.Module` | `references/impl/develop.md`<br>`references/impl/product-capture.md` | `--impl --develop`, `--develop`, `--dev` |
+| `Implementation.Product.Capture.Workflow.Module` | `references/impl/product-capture.md` | `--impl --capture`, `--impl-capture`<br>semantic |
+| `Implementation.Harvest.Workflow.Module` | `references/impl/harvest.md`<br>`references/impl/product-capture.md` | `--impl --harvest`, `--impl-harvest` |
 | `Codebase.Cleanup.Workflow.Module` | `references/codebase-cleaner.md` | `--clean`, `--codebase-cleaner`, `--cleanup` |
 
 ### Knowledge Modules
@@ -159,8 +161,8 @@ Canonical module identity is explicit and independent from invocation spelling. 
 | `Touched.Data.Knowledge.Module` | `references/touched-data.md` | semantic |
 | `Touched.Decision.Knowledge.Module` | `references/decision-cycle.md` | semantic |
 | `Alignment.Session.Knowledge.Module` | `references/alignment-session.md` | semantic |
-| `Implementation.Execution.Practices.Knowledge.Module` | `references/impl/general-practices.md` | semantic |
-| `Implementation.Execution.Preferences.Knowledge.Module` | `references/impl/general-preferences.md` | semantic |
+| `Implementation.Practices.Knowledge.Module` | `references/impl/general-practices.md` | semantic |
+| `Implementation.Preferences.Knowledge.Module` | `references/impl/general-preferences.md` | semantic |
 | `Agentos.Package.Knowledge.Module` | - | semantic |
 | `Index.Block.Example.Knowledge.Module` | - | semantic |
 
@@ -270,6 +272,7 @@ A `Capture.Stance` steers what the capture loop does after each user turn. It is
 - index work happens over engaged `Index.Depot`s; `--depot` scopes which depots are engaged and `--chapter` scopes within them
 - its lines carry `Line.Type` codes (`- [CT] ...`) classifying each line's act; untyped lines are pre-fence legacy
 - its current support references are trailing `Anchory.Anchor`s resolving through Chatlas2 to qualifying user `Chat.Message.Ref` evidence
+- `Index.Native.Surface`s host typed `Index.Line`s directly; ordinary `Product.Surface`s host qualifying lines through `Skw.Annotation`
 - chronological chat receipts live in `Chat.Index.Delta` files; `Chat.Index.HEAD` is the chat's current projection
 - Hugentic `Real.Time.Capture` lands its primary semantic target first, then backpropagates every exact grounded edition to the current chat HEAD and best-effort to a support-derived Delta horizon; absent local support produces a reported head-only reconciliation gap rather than invented chronology
 - each Chatlas2 `Index.Line.Anchor` dossier asserts the current `Line.Type + body + Anchor.Id` triplet and records independent message support, review gate, and provenance relationships; these consumer semantics do not extend the Chatlas2 Normal Model
@@ -389,7 +392,7 @@ Selection cardinality: `many`.
 - aliases: `--impl-design`
 - defaults: implementation input without an `Impl.Req`
 - destinations: `Implementation.Design.Workflow.Module`
-- loads: `references/impl/design.md`
+- loads: `references/impl/design.md`, `references/impl/product-capture.md`, `references/impl/general-practices.md`, `references/impl/general-preferences.md`
 - when: implementation work needs a What/How design or non-`Impl.Req` input must be shaped before execution
 - then: select Implementation.Design.Workflow.Module
 
@@ -410,7 +413,7 @@ Selection cardinality: `many`.
 - aliases: `--execute`, `--exec`
 - defaults: `Impl.Req` input
 - destinations: `Implementation.Execute.Workflow.Module`
-- loads: `references/impl/execute.md`
+- loads: `references/impl/execute.md`, `references/impl/product-capture.md`
 - when: the caller wants an existing `Impl.Req` executed
 - then: select Implementation.Execute.Workflow.Module
 
@@ -420,19 +423,29 @@ Selection cardinality: `many`.
 - flags: `--impl --develop`
 - aliases: `--develop`, `--dev`
 - destinations: `Implementation.Develop.Workflow.Module`
-- loads: `references/impl/develop.md`
+- loads: `references/impl/develop.md`, `references/impl/product-capture.md`
 - when: the caller wants one end-to-end implementation run that may design and execute an `Impl.Req`
 - then: select Implementation.Develop.Workflow.Module
 
-### `^route-implementation-capture`
+### `^route-implementation-product-capture-explicit`
 
-- match: `explicit-or-semantic`
+- match: `explicit`
 - flags: `--impl --capture`
 - aliases: `--impl-capture`
-- destinations: `Implementation.Capture.Workflow.Module`
-- loads: `references/impl/impl-capture.md`
-- when: the caller wants implementation evidence captured
-- then: select Implementation.Capture.Workflow.Module
+- destinations: `Implementation.Product.Capture.Workflow.Module`
+- loads: `references/impl/product-capture.md`
+- when: the caller explicitly names implementation capture
+- then: contribute the shared Product.Surface capture behavior while the mutating implementation workflow still resolves from its selector, Input, or declared default
+
+### `^route-implementation-harvest`
+
+- match: `explicit-or-semantic`
+- flags: `--impl --harvest`
+- aliases: `--impl-harvest`
+- destinations: `Implementation.Harvest.Workflow.Module`
+- loads: `references/impl/harvest.md`, `references/impl/product-capture.md`
+- when: the caller wants ready implementation work selected from the current conversation
+- then: select Implementation.Harvest.Workflow.Module
 
 ### `^route-capture-read-only`
 
@@ -554,13 +567,21 @@ Selection cardinality: `many`.
 - when: the caller needs the shared alignment frame or checkpoint vocabulary
 - then: load the applicable workflow and knowledge modules with Alignment.Session.Knowledge.Module
 
-### `^route-implementation-execution-knowledge`
+### `^route-implementation-knowledge`
 
 - match: `semantic`
-- destinations: `Implementation.Execution.Practices.Knowledge.Module`, `Implementation.Execution.Preferences.Knowledge.Module`
+- destinations: `Implementation.Practices.Knowledge.Module`, `Implementation.Preferences.Knowledge.Module`
 - loads: `references/impl/general-practices.md`, `references/impl/general-preferences.md`
-- when: an implementation execution workflow needs shared practices and preferences
-- then: load the shared implementation execution knowledge modules
+- when: any mutating implementation workflow needs the shared practices and preferences, at design time as much as at execution
+- then: load the shared implementation knowledge modules
+
+### `^route-implementation-product-capture`
+
+- match: `semantic`
+- destinations: `Implementation.Product.Capture.Workflow.Module`
+- loads: `references/impl/product-capture.md`
+- when: a mutating implementation workflow designs an Impl.Req or lands a verified product edition
+- then: compose selective Product.Surface capture and Index.HEAD.Backpropagation with the implementation slice
 
 ### `^route-package-knowledge`
 
@@ -602,7 +623,7 @@ An agent operating the index should:
 - resolve `::discuss` and `::review` to their `Capture.Stance`, which changes only the loop's next move and the advertised commands; every command stays as available as its own condition makes it
 - during interactive capture, add approved drafts to the approved cluster and continue reviewing the roadmap; do not make immediate landing the default next move
 - keep background reconciliation, broad Index diagnosis, and standalone chat linking out of the public router while their valuable design is parked; Real.Time.Capture owns only its internal Chatlas2 grounding and newly-landed-line validation primitives
-- ground every chat-backed landing through the internal Chatlas2 `Real.Time.Grounding.Knowledge.Module`: use line dossiers for Index and live-surface lines, and generic message-support records for non-line implementation provenance
+- ground every chat-backed landing through the internal Chatlas2 `Real.Time.Grounding.Knowledge.Module`: use line dossiers for Index-native and Skw-hosted product lines; reserve generic message-support records for genuinely non-line provenance
 - when a landing contains several lines, batch its Chatlas2 anchor preview and registration and apply the returned line-to-anchor mapping in one surface patch; do not shell-loop the single-line path
 - after a current-chat primary landing succeeds, run the shared Chatlas2 real-time Capture.Plan over that exact line-to-anchor mapping: validate and apply `Chat.Index.HEAD` plus every provable support-derived `Chat.Index.Delta`, then report any head-only or retryable backpropagation gaps without undoing the primary landing
 - keep command targets foregrounded; targeted commands fail closed on ambiguous targets, and `::land-all-approved` fails closed unless one foreground index workflow owns the cluster
@@ -616,7 +637,7 @@ For delegated read-only research that protects the caller's context, use `Packag
 
 `Hugentic.Capture.Workflow.Module` owns the shared public alignment loop. `Design.Req.Knowledge.Module`, `Design.Session.Knowledge.Module`, `Index.Landing.Knowledge.Module`, and `Index.Agendix.Knowledge.Module` configure durable targets without becoming parallel workflow identities.
 
-The Implementation namespace contains explicit design, review, execute, develop, and capture workflow modules. The namespace, its aliases, and its input-sensitive defaults are routing behavior; they do not create duplicate modules.
+The Implementation namespace contains explicit design, review, execute, develop, and harvest workflows. Mutating workflows compose one internal Product.Surface capture module by default; `--impl --capture` names that companion explicitly without creating another implementation phase. The namespace, its aliases, and its input-sensitive defaults are routing behavior; they do not create duplicate modules.
 
 Any active workflow may be interrupted for capture, optionally configured as a read-only audit, consolidation, `Design.Req.Promotion`, implementation handoff, parking, splitting, or status work. Completion reconciles and maintains changed artifact state before continuation; it never restores a stale prior state.
 
