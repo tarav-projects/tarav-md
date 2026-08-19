@@ -12,8 +12,8 @@
 ## Impl.Agendix
 
 - **touched (authorization):** introduce the initial Views under `tarav chatlas2 views` and execute autonomously. ^c20260816-23u
-- **touched (design):** the canonical provider transparently validates or rebuilds disposable Normal Model caches. `527-chatlas2-normal-model-redesign-design-session.md` → `Normal.Model.Cache` ^d20260816-17u
-- **touched (design):** read limits apply while streaming independently readable cached collections. `527-chatlas2-normal-model-redesign-design-session.md` → `Normal.Model.Cache` ^d20260816-14u
+- **touched (design):** the canonical provider transparently validates or rebuilds disposable Normal Model caches. `527-chatlas2-normal-model-redesign-design-session.md` → `Normal.Model.Cache` ^c20260816-36u
+- **touched (design):** read limits apply while streaming independently readable cached collections. `527-chatlas2-normal-model-redesign-design-session.md` → `Normal.Model.Cache` ^c20260816-33u
 - **touched (design):** `Chat.Message` is the complete primary user-agent exchange projected over the event tape. `527-chatlas2-normal-model-redesign-design-session.md` → `Chat.Message` ^c20260815-7u
 
 ## Impl.Index

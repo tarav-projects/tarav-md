@@ -31,40 +31,40 @@
 
 ### Normal.Model.Cache
 
-- [DF] `Normal.Model.Cache` is a disposable materialization of a completed compact `Chatlas2.Normal.Model` for efficient repeated reading. ^d20260816-4u
-- [DC] A `Raw.Normalizer` may use any internal strategy it needs to produce a complete Normal Model; cache and read-streaming mechanics do not constrain normalization. ^d20260816-5u
-- [DC] Streaming is a read-side property of a completed cached Normal Model, not a production requirement imposed on normalizers. ^d20260816-6u
-- [DC] The cache representation is one metadata record plus independently stream-readable line-delimited collections for events, `Chat.Message`, `Chat.Turn`, and `Agent.Loaded.Context`. ^d20260816-29u
-- [DC] The message collection retains parsed transcript content, while the turn collection stays compact by retaining the refs of its mostly opaque member events. ^d20260816-30u
-- [DC] A full turn read hydrates associated opaque information on demand through the turn's event refs instead of duplicating that information in the compact turn collection. ^d20260816-31u
-- [CT] Cache identity and freshness are determined from session identity, ordered source fingerprints, Normal Model schema, and producing commit. ^d20260816-8u
-- [PR] A Normal Model cache is disposable and non-authoritative; it can be rebuilt from the retained Raw Archive. ^d20260816-9u
-- [DC] Ordinary caches contain the compact default Normal Model; raw-attached diagnostic builds are not retained as ordinary caches. ^d20260816-10u
-- [DC] A bulk read never silently normalizes missing or stale caches. ^d20260816-11u
-- [CT] Cache creation is explicit, except that a narrowly scoped read of one exact session may build that session's cache. ^d20260816-12u
-- [DC] A multi-session workflow opens, consumes, and releases one Normal Model at a time instead of retaining a collection of loaded models. ^d20260816-13u
-- [DC] Read limits and top-K selection are applied while streaming cached collections so unrelated records need not be materialized. ^d20260816-14u
-- [CT] Read-side caching does not remove the first-build memory peak; the normalizer remains responsible for its own creation strategy. ^d20260816-15u
-- [DC] The canonical Normal Model provider is the default consumer boundary: it transparently validates and reuses a fresh cache or rebuilds a missing/stale one. ^d20260816-17u
-- [DC] Explicit refresh forces compact recomputation and cache replacement; raw-attached diagnostic computation bypasses the ordinary cache. ^d20260816-17u
-- [CT] Consumers request complete or stream-readable Normal Model content and own no cache validation or recomputation policy; Anchory is one ordinary complete-model consumer. ^d20260816-17u
+- [DF] `Normal.Model.Cache` is a disposable materialization of a completed compact `Chatlas2.Normal.Model` for efficient repeated reading. ^c20260816-72u
+- [DC] A `Raw.Normalizer` may use any internal strategy it needs to produce a complete Normal Model; cache and read-streaming mechanics do not constrain normalization. ^c20260816-74u
+- [DC] Streaming is a read-side property of a completed cached Normal Model, not a production requirement imposed on normalizers. ^c20260816-75u
+- [DC] The cache representation is one metadata record plus independently stream-readable line-delimited collections for events, `Chat.Message`, `Chat.Turn`, and `Agent.Loaded.Context`. ^c20260816-49u
+- [DC] The message collection retains parsed transcript content, while the turn collection stays compact by retaining the refs of its mostly opaque member events. ^c20260816-51u
+- [DC] A full turn read hydrates associated opaque information on demand through the turn's event refs instead of duplicating that information in the compact turn collection. ^c20260816-52u
+- [CT] Cache identity and freshness are determined from session identity, ordered source fingerprints, Normal Model schema, and producing commit. ^c20260816-77u
+- [PR] A Normal Model cache is disposable and non-authoritative; it can be rebuilt from the retained Raw Archive. ^c20260816-78u
+- [DC] Ordinary caches contain the compact default Normal Model; raw-attached diagnostic builds are not retained as ordinary caches. ^c20260816-29u
+- [DC] A bulk read never silently normalizes missing or stale caches. ^c20260816-30u
+- [CT] Cache creation is explicit, except that a narrowly scoped read of one exact session may build that session's cache. ^c20260816-31u
+- [DC] A multi-session workflow opens, consumes, and releases one Normal Model at a time instead of retaining a collection of loaded models. ^c20260816-32u
+- [DC] Read limits and top-K selection are applied while streaming cached collections so unrelated records need not be materialized. ^c20260816-33u
+- [CT] Read-side caching does not remove the first-build memory peak; the normalizer remains responsible for its own creation strategy. ^c20260816-34u
+- [DC] The canonical Normal Model provider is the default consumer boundary: it transparently validates and reuses a fresh cache or rebuilds a missing/stale one. ^c20260816-36u
+- [DC] Explicit refresh forces compact recomputation and cache replacement; raw-attached diagnostic computation bypasses the ordinary cache. ^c20260816-36u
+- [CT] Consumers request complete or stream-readable Normal Model content and own no cache validation or recomputation policy; Anchory is one ordinary complete-model consumer. ^c20260816-36u
 
 ****
 
 ### Scan.Decode.Verify
 
-- [DF] `Scan.Decode.Verify` is the JSONL read escalation that scans raw line text for candidates, decodes only candidate records, and verifies matches against the parsed object. ^d20260816-32u
-- [CT] A textual scan may admit false-positive candidates but must not exclude a record that could satisfy the promised query. ^d20260816-33u
-- [PR] Candidate selection escalates from literal byte or string search when sufficient, to compiled regular expressions for broader structural selection, to decoded object checks for semantic truth. ^d20260816-34u
-- [DC] The parsed record is authoritative for a match, and query limits apply only after parsed verification succeeds. ^d20260816-35u
-- [CT] When a complete textual candidate predicate cannot be constructed safely, the reader decodes every line rather than risking a false negative. ^d20260816-36u
+- [DF] `Scan.Decode.Verify` is the JSONL read escalation that scans raw line text for candidates, decodes only candidate records, and verifies matches against the parsed object. ^c20260816-53u
+- [CT] A textual scan may admit false-positive candidates but must not exclude a record that could satisfy the promised query. ^c20260816-54u
+- [PR] Candidate selection escalates from literal byte or string search when sufficient, to compiled regular expressions for broader structural selection, to decoded object checks for semantic truth. ^c20260816-55u
+- [DC] The parsed record is authoritative for a match, and query limits apply only after parsed verification succeeds. ^c20260816-56u
+- [CT] When a complete textual candidate predicate cannot be constructed safely, the reader decodes every line rather than risking a false negative. ^c20260816-57u
 
 ****
 
 ### Raw.Evidence
 
-- [DF] Raw is optional normalizer-owned diagnostic material used to produce a Normal Fragment; it is omitted by default and imposes no complete-artifact inspection contract. ^d20260816-1u
-- [CT] Raw evidence is independent from the Normal Model's event identity, ordering, annotations, and reference standing. ^d20260816-3u
+- [DF] Raw is optional normalizer-owned diagnostic material used to produce a Normal Fragment; it is omitted by default and imposes no complete-artifact inspection contract. ^c20260816-39u
+- [CT] Raw evidence is independent from the Normal Model's event identity, ordering, annotations, and reference standing. ^c20260816-61u
 
 ****
 
@@ -111,13 +111,13 @@
 
 ### Chat.Turn
 
-- [DF] `Chat.Turn` is the side-resolved grouping of events associated with one user or agent conversational turn and is the semantic blob boundary for that turn's provider data. ^d20260816-22u
-- [DC] Every `Chat.Message` belongs to one containing `Chat.Turn`, and the message's member events are a subset of the turn's member events. ^d20260816-23u
-- [CT] A `Chat.Turn` may contain zero, one, or several `Chat.Message` groupings. ^d20260816-24u
-- [DC] Chatlas interprets the primary `Chat.Message` text while retaining the turn's other associated events and provider data opaquely rather than independently modeling their semantics. ^d20260816-25u
-- [CT] An event whose conversational-turn association cannot be established remains chronologically on the event tape without being guessed into a `Chat.Turn`. ^d20260816-26u
-- [DC] `Chat.Message.Hash` changes with the communicated message text, while `Chat.Turn.Hash` changes when any associated event or opaque payload changes. ^d20260816-27u
-- [DC] Grounding identifies communicated evidence through `Chat.Message.Ref`; a consumer may expand that message to its containing `Chat.Turn` when it needs the associated opaque information. ^d20260816-28u
+- [DF] `Chat.Turn` is the side-resolved grouping of events associated with one user or agent conversational turn and is the semantic blob boundary for that turn's provider data. ^c20260816-42u
+- [DC] Every `Chat.Message` belongs to one containing `Chat.Turn`, and the message's member events are a subset of the turn's member events. ^c20260816-43u
+- [CT] A `Chat.Turn` may contain zero, one, or several `Chat.Message` groupings. ^c20260816-44u
+- [DC] Chatlas interprets the primary `Chat.Message` text while retaining the turn's other associated events and provider data opaquely rather than independently modeling their semantics. ^c20260816-45u
+- [CT] An event whose conversational-turn association cannot be established remains chronologically on the event tape without being guessed into a `Chat.Turn`. ^c20260816-46u
+- [DC] `Chat.Message.Hash` changes with the communicated message text, while `Chat.Turn.Hash` changes when any associated event or opaque payload changes. ^c20260816-47u
+- [DC] Grounding identifies communicated evidence through `Chat.Message.Ref`; a consumer may expand that message to its containing `Chat.Turn` when it needs the associated opaque information. ^c20260816-48u
 
 ****
 
@@ -131,8 +131,8 @@
 
 ### Chatlas2.Views
 
-- [DF] `Chatlas2.Views` is the public disposable read-projection route introduced under `tarav chatlas2 views`; it reads canonical Normal Model content rather than defining another model. ^d20260816-18u
-- [DC] Hugentic chat-grounding routes use Chatlas2 message-support or line-dossier records, while mixed readers continue to resolve existing current-Chatlas anchors during the experimental cutover. ^d20260816-21u
+- [DF] `Chatlas2.Views` is the public disposable read-projection route introduced under `tarav chatlas2 views`; it reads canonical Normal Model content rather than defining another model. ^c20260816-37u
+- [DC] Hugentic chat-grounding routes use Chatlas2 message-support or line-dossier records, while mixed readers continue to resolve existing current-Chatlas anchors during the experimental cutover. ^c20260816-41u
 
 ****
 
@@ -153,7 +153,7 @@
 
 - [DF] `Event.Address` is a stable, opaque, provider-derived logical event place; it excludes event content and chronological presentation position. ^c20260815-37u
 - [DF] `Event.Hash` is a digest assertion over an event's currently normalized content; it excludes address, annotations, native identifiers, and provenance. ^c20260815-38u
-- [DC] Event.Hash is deliberately computed from provider-neutral normalized event fields and excludes optional normalizer-collected raw evidence. ^d20260816-0u
+- [DC] Event.Hash is deliberately computed from provider-neutral normalized event fields and excludes optional normalizer-collected raw evidence. ^c20260816-28u
 - [DF] `Event.Ref` is `{event_address, event_hash}`: it couples stable logical place with a current-state assertion and carries drift validation. ^c20260815-39u
 - [CT] Chatlas2 normalization is stateless: current raw artifacts produce the current Normal Model without maintaining normalized state across runs. ^c20260815-40u
 - [DF] `Event.Ref.Resolution` is Chatlas's comparison of a stored `Event.Ref` with the currently presented Normal Model. ^c20260815-41u

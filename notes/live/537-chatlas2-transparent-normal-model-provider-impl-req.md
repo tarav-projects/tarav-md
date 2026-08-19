@@ -11,7 +11,7 @@
 
 ## Impl.Agendix
 
-- **touched (authorization):** make the cache-backed provider the transparent default for all Chatlas2 Normal Model consumers and remove Anchory-specific cache handling. ^d20260816-17u
+- **touched (authorization):** make the cache-backed provider the transparent default for all Chatlas2 Normal Model consumers and remove Anchory-specific cache handling. ^c20260816-36u
 - **structural:** normalizers remain unconstrained complete-model producers; the provider owns cache policy after production
 - **structural:** Chatlas2 may reuse current Chatlas mechanics, while current Chatlas must not import Chatlas2
 
@@ -54,7 +54,7 @@
 
 ## Impl.Log
 
-- **2026-08-16 — execution gate:** autonomous development is authorized and grounded as `^d20260816-17u`
+- **2026-08-16 — execution gate:** autonomous development is authorized and grounded as `^c20260816-36u`
 - **2026-08-16 — baseline:** cache mechanics are complete, but normalize bypasses them, messages import them directly, and Anchory owns a cache loader plus capacity-one model slot
 - **2026-08-16 — checkpoint:** recovery commit `c2dd14f` captured the complete preceding cache implementation before provider edits began
 - **2026-08-16 — provider:** added one facade returning either a complete model or stream reader; default access opens/rebuilds transparently, refresh forces materialization, and direct diagnostic computation bypasses cache

@@ -5,7 +5,7 @@
 - **scope:** add the first small Chatlas2 query system: `Session.Query` selects chats through the existing Session.Index, and `Chat.Query` finds authoritative `Chat.Message` records first within one session and then across a bounded Session.Query result set
 - **status:** implemented and verified
 - **source:** accepted query design and autonomous develop request in the current Chatlas2 design session
-- **support set:** query scope, simplicity boundary, and autonomous authorization ^d20260816-42u
+- **support set:** query scope, simplicity boundary, and autonomous authorization ^c20260816-64u
 - **final validation MVP:** migrate `tarav-chatlas-my-session-id` from Chatlas1 discovery to the new Chatlas2 query path and use it to resolve this running session
 - **out of scope:** Event.Pattern, tool/file-touch semantics, raw-artifact text search, SQLite or another global content index, a generic query DSL, Copilot normalization, compatibility aliases, or expanding the Chatlas2 Normal Model
 
@@ -14,7 +14,7 @@
 - **touched (index):** `Chatlas.Query.Surface` — preserve the separation between cheap session selection and authoritative content matching
 - **touched (index):** `Normalization.Pipeline::Chatlas.Session.Model` — query results come from the current cached Normal Model, never candidate rows
 - **touched (index):** `Event.Ref` — returned message and turn references carry place plus current-state drift validation
-- **touched (chat):** retain only useful Chatlas1 behavior inside Chatlas2's narrow message/turn promises; begin with one-session message query, then apply it to a Session.Query result set ^d20260816-42u
+- **touched (chat):** retain only useful Chatlas1 behavior inside Chatlas2's narrow message/turn promises; begin with one-session message query, then apply it to a Session.Query result set ^c20260816-64u
 - **structural:** Session.Query reuses current Chatlas Session.Index mechanics; Chat.Query composes the transparent Chatlas2 Normal Model cache and `Scan.Decode.Verify`
 - **open space:** no persistent cross-session full-text index is introduced; later performance evidence may justify one
 
@@ -92,7 +92,7 @@
 
 ## Impl.Log
 
-- **2026-08-16:** Execution gate: the autonomous develop invocation is grounded through Chatlas2 message support ^d20260816-42u.
+- **2026-08-16:** Execution gate: the autonomous develop invocation is grounded through Chatlas2 message support ^c20260816-64u.
 - **2026-08-16:** Before implementation edits, checkpointed the complete existing state in `tarav-py` (`4c1e1f3`) and `tarav-chatlas-md` (`ae76a2a`) as required by the execution workflow.
 - **2026-08-16:** The user added `tarav-chatlas-my-session-id` as the final validation MVP after identifying its stale Chatlas1 enrichment path; incorporated as the last functional slice rather than a separate implementation request.
 - **2026-08-16:** Implemented bounded Session.Query and authoritative single-/multi-session Chat.Message query without adding Event.Pattern, provider tool semantics, raw search, or another persistent index.

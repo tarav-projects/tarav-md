@@ -5,7 +5,7 @@
 - **status:** Complete
 - **scope:** provide the smallest Chatlas2 grounding records required by the existing Hugentic capture and implementation workflows, then reconnect those workflows without changing the Chatlas2 Normal Model
 - **source:** the active Chatlas2 redesign discussion and the current Chatlas/Hugentics implementation
-- **authorization:** implement the agreed `Chat.Message.Ref`-first grounding boundary. ^d20260816-20u
+- **authorization:** implement the agreed `Chat.Message.Ref`-first grounding boundary. ^c20260816-40u
 - **targets:** `tarav-py/src/tarav/chatlas2/`, runtime Index-reader composition, focused tests, and the canonical Skillware sources for Hugentic grounding routes
 - **out of scope:** Normal Model changes, raw normalizer changes, bulk anchor-data migration, Chat.Index redesign, and removal of current Chatlas
 - **acceptance:** Hugentic grounding writers can use Chatlas2 for support-only lines, reviewed lines, Issue context, parking notes, and implementation provenance; mixed old/new anchors remain readable during the experiment; all records resolve from current `Chat.Message.Ref` assertions
@@ -63,13 +63,13 @@
 
 ## Impl.Agendix
 
-- **touched:** the smallest grounding record is determined per Hugentic workflow from existing `Chat.Message.Ref`, not by expanding the Chatlas2 core. ^d20260816-20u
+- **touched:** the smallest grounding record is determined per Hugentic workflow from existing `Chat.Message.Ref`, not by expanding the Chatlas2 core. ^c20260816-40u
 - **design:** `Chat.Message.Ref` is stable place plus current state. `527-chatlas2-normal-model-redesign-design-session.md` → `Chat.Message.Ref`.
 - **design:** the canonical Normal Model provider remains the transparent source for all resolution. `527-chatlas2-normal-model-redesign-design-session.md` → `Normal.Model.Cache`.
 
 ## Impl.Log
 
-- **2026-08-16 — execution gate:** autonomous development authorized by the current invocation. ^d20260816-20u
+- **2026-08-16 — execution gate:** autonomous development authorized by the current invocation. ^c20260816-40u
 - **2026-08-16 — checkpoint deviation:** the generic workflow requests a Git checkpoint, but project policy forbids commits without explicit user instruction; execution proceeds without a commit and preserves all existing dirty changes.
 - **2026-08-16 — slice 1:** added generic message-support records plus v2 line dossiers with independent support, gates, and provenance; kept v1 line dossiers readable. A live v1/v2 coexistence trial exposed and fixed a double-normalization bug in equivalence scanning.
 - **2026-08-16 — slice 2:** composed mixed `c…`/`d…` support, review, line-manifest, approval, drift, and grounding readers at the runtime boundary without a current-Chatlas reverse dependency.

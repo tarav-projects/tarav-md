@@ -11,14 +11,14 @@
 
 ## Impl.Agendix
 
-- **touched (authorization):** implement the captured `Normal.Model.Cache` design through the autonomous Hugentics develop route. ^d20260816-16u
-- **touched (normalizer boundary):** normalizers may use any internal strategy needed to produce a complete model; cache mechanics do not constrain normalization ^d20260816-5u ^d20260816-6u
-- **touched (cache identity):** cache identity and freshness use session identity, ordered source fingerprints, Normal Model schema, and producer commit ^d20260816-8u
-- **touched (authority):** cached models are disposable, non-authoritative, and rebuildable from the retained Raw Archive ^d20260816-9u
-- **touched (compactness):** ordinary caches contain only the default compact model; raw-attached diagnostic builds remain uncached ^d20260816-10u
-- **touched (read policy):** exact-session reads may narrowly build their cache, but a future bulk read must not silently normalize missing or stale caches ^d20260816-11u ^d20260816-12u
-- **touched (memory):** multi-session workflows consume and release one model at a time; read limits are applied during cached iteration ^d20260816-13u ^d20260816-14u
-- **touched (accepted limit):** this layer does not remove a normalizer's first-build memory peak ^d20260816-15u
+- **touched (authorization):** implement the captured `Normal.Model.Cache` design through the autonomous Hugentics develop route. ^c20260816-35u
+- **touched (normalizer boundary):** normalizers may use any internal strategy needed to produce a complete model; cache mechanics do not constrain normalization ^c20260816-74u ^c20260816-75u
+- **touched (cache identity):** cache identity and freshness use session identity, ordered source fingerprints, Normal Model schema, and producer commit ^c20260816-77u
+- **touched (authority):** cached models are disposable, non-authoritative, and rebuildable from the retained Raw Archive ^c20260816-78u
+- **touched (compactness):** ordinary caches contain only the default compact model; raw-attached diagnostic builds remain uncached ^c20260816-29u
+- **touched (read policy):** exact-session reads may narrowly build their cache, but a future bulk read must not silently normalize missing or stale caches ^c20260816-30u ^c20260816-31u
+- **touched (memory):** multi-session workflows consume and release one model at a time; read limits are applied during cached iteration ^c20260816-32u ^c20260816-33u
+- **touched (accepted limit):** this layer does not remove a normalizer's first-build memory peak ^c20260816-34u
 - **structural:** Chatlas2 may reuse current Chatlas archive/index/persistence mechanics, while current Chatlas must not import Chatlas2
 
 ## Impl.Index
@@ -87,7 +87,7 @@
 
 ## Impl.Log
 
-- **2026-08-16 — execution gate:** the autonomous develop invocation authorizes implementation of the cache/read design and is grounded as `^d20260816-16u`
+- **2026-08-16 — execution gate:** the autonomous develop invocation authorizes implementation of the cache/read design and is grounded as `^c20260816-35u`
 - **2026-08-16 — inspected baseline:** every message and Anchory command currently rebuilds a complete Normal Model; Anchory additionally retains every loaded session model in an operation-wide dictionary
 - **2026-08-16 — design boundary:** normalization stays a complete-model black box; optimization begins only after that model exists, and the direct raw-diagnostic normalization path remains uncached
 - **2026-08-16 — representation decision:** use one metadata file plus three JSONL collections; cache message records duplicate only derived diagnostic time so support reads do not need an event index

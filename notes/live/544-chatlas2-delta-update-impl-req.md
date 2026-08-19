@@ -4,7 +4,7 @@
 
 - **Status:** implemented and verified
 - **Scope:** make `tarav chatlas2 --update <command>` perform one reliable, incremental Provider.Home → Raw.Archive → Session.Index refresh before the selected Chatlas2 command, then let existing cache validation rebuild stale Normal Models transparently.
-- **Source:** the user requested a Chatlas2-targeted redesign that reuses proven Chatlas update mechanics without inheriting the old read-side escalation complexity. ^d20260816-43u
+- **Source:** the user requested a Chatlas2-targeted redesign that reuses proven Chatlas update mechanics without inheriting the old read-side escalation complexity. ^c20260816-65u
 - **Out of scope:** replacing Provider.Home adapters, changing Raw.Archive layout, redesigning Session.Index schema, porting Chatlas1 trust tiers, updating Chatlas1 read commands, adding an automatic background updater, or making Normal Model construction incremental.
 - **Acceptance:** an unarchived supported session becomes queryable through one Chatlas2 command carrying `--update`; exact-session reads use exact-session scan scope; broad reads use only Chatlas2-supported providers; update failure prevents the requested command; ordinary commands remain read-only and cache-transparent.
 
@@ -37,7 +37,7 @@
 
 ### Touched.Support
 
-- User execution and product-shape authority: ^d20260816-43u
+- User execution and product-shape authority: ^c20260816-65u
 - `Raw.Archive`, `Chatlas.Session.Index`, `Chatlas.Update.Pipeline`, `Scan.Scope`, and `Provider.Home.Adapter` in `skills/tarav-chatlas-pkg/design/100-design.md`.
 
 ### Structural.Dependencies
@@ -79,5 +79,5 @@
 
 ## Impl.Log
 
-- 2026-08-16 — Autonomous design selected a one-pass preflight instead of copying Chatlas1's result-driven escalation ladder. Empty query results remain semantically valid, so update completeness cannot be inferred from read cardinality. ^d20260816-43u
+- 2026-08-16 — Autonomous design selected a one-pass preflight instead of copying Chatlas1's result-driven escalation ladder. Empty query results remain semantically valid, so update completeness cannot be inferred from read cardinality. ^c20260816-65u
 - 2026-08-16 — Execution completed without design deviations. The isolated freshness acceptance proved bare-read absence followed by one-pass archive, index, cache reconstruction, and Chat.Message return; 106 Chatlas2 and architecture tests passed, focused Ruff passed, and the installed CLI completed a live exact-session update/read.

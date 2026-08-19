@@ -13,10 +13,10 @@
 
 - **touched (system boundary):** Chatlas2 keeps the Normal Model deliberately shallow while the retained Raw Archive remains the authority for deeper inspection (`527-chatlas2-normal-model-redesign-design-session.md`)
 - **touched (event identity):** `Event.Hash` asserts current normalized content and excludes address, annotations, native identifiers, and provenance (`527-chatlas2-normal-model-redesign-design-session.md`, `Event.Ref`)
-- **touched (current decision):** the fields participating in `Event.Hash` are chosen deliberately; optional raw evidence is independent from identity and hashing ^d20260816-0u
+- **touched (current decision):** the fields participating in `Event.Hash` are chosen deliberately; optional raw evidence is independent from identity and hashing ^c20260816-28u
 - **touched (normalizer freedom):** a normalizer does whatever its supported `Raw.Model.Version` mapping requires; Chatlas2 imposes no complete-artifact inspection contract
-- **touched (raw evidence):** `raw` is an optional place where a normalizer can collect diagnostic material it used to produce a fragment; it is not a completeness promise and need not have a provider-neutral internal shape ^d20260816-1u
-- **touched (CLI correction):** `tarav` is canonical and the `agentos` binary name is deprecated; `tarav-live-surfaces` must use `tarav stdlib prefix` ^d20260816-2u
+- **touched (raw evidence):** `raw` is an optional place where a normalizer can collect diagnostic material it used to produce a fragment; it is not a completeness promise and need not have a provider-neutral internal shape ^c20260816-39u
+- **touched (CLI correction):** `tarav` is canonical and the `agentos` binary name is deprecated; `tarav-live-surfaces` must use `tarav stdlib prefix` ^c20260816-50u
 - **structural:** current Chatlas remains independent from Chatlas2; the Skillware-managed live-surface target is changed only through `.skw/src/SKILL.skw.md` and rebuilt
 
 ## Impl.Index
@@ -85,7 +85,7 @@
 - **2026-08-16 — hash decision:** Event.Hash covers only class, origin, start time, and deliberately projected provider-neutral event content; optional raw evidence is identity-inert
 - **2026-08-16 — naming correction:** the user corrected an inverted migration assumption: `tarav` is canonical and `agentos` is deprecated; the stale live-surface skill wording is included in scope
 - **2026-08-16 — grounding timing:** the execution-gate Chat.Message address is known, but its current hash uses the superseded Event.Hash recipe; mint the durable support anchor after the new hash implementation rather than manufacturing an immediately amended assertion
-- **2026-08-16 — execution gate:** the invocation was re-read through Normal Model v5 and grounded as `^d20260816-0u`; optional raw semantics are grounded as `^d20260816-1u`, and the canonical Tarav CLI correction as `^d20260816-2u`
+- **2026-08-16 — execution gate:** the invocation was re-read through Normal Model v5 and grounded as `^c20260816-28u`; optional raw semantics are grounded as `^c20260816-39u`, and the canonical Tarav CLI correction as `^c20260816-50u`
 - **2026-08-16 — slices 1-2:** events now expose only deliberately normalized content, Event.Hash excludes raw evidence, normalizers optionally return opaque fragment raw data, and assembly omits the raw channel unless explicitly requested
 - **2026-08-16 — measured result:** on the live 9,052-event Codex session, compact JSON is 6.8 MB versus 67.0 MB with `--include-raw`; raw JSON serialization is now an explicit diagnostic cost
 - **2026-08-16 — checkpoints:** recovery commits captured the complete pre-edit states of `tarav-py` (`687f541`), `tarav-chatlas-md` (`7dd884a`), and `tarav-md` (`dcb7a7b`); implementation changes after those boundaries remain uncommitted
