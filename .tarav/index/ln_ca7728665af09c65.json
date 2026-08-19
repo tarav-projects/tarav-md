@@ -1,0 +1,25 @@
+{
+ "schema": "tarav.index-line-record.v3",
+ "id": "ln_ca7728665af09c65",
+ "trace": "tr_ec4a31b74a08a475",
+ "scope": "tarav-pkg/design#Test.Block.20260819-cd59",
+ "line": {
+  "type": "DF",
+  "body": "this is a test line",
+  "label": "^d20260819-0u",
+  "at": null
+ },
+ "links": {
+  "grounding": [
+   {
+    "archive": "chat",
+    "session_id": "cd59981e3b24d49472102da68386f7c3b0c11e489b1fbfee19076f86d52f3dc5",
+    "message_id": "277af71ac9d4eb5cf22d30ceb8385c67f9751b5fbe86d0d314eae79c93f5f085"
+   }
+  ],
+  "placement": null,
+  "review": null,
+  "landing": null
+ },
+ "equivalence": null
+}
