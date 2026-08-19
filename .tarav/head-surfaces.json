@@ -1,6 +1,7 @@
 {
   "schema": "tarav.head-surfaces.v1",
   "patterns": [
-    "skills/*/homes/*/chapters/*.md"
+    "skills/*/homes/*/chapters/*.md",
+    "skills/*/homes/*/appendix/*.md"
   ]
 }
