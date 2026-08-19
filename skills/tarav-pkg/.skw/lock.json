@@ -2,40 +2,40 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "052ddb39fd3003fafe7274ae46eb9da91304b9799ad639e12f6f713ea14c390e",
+      "output_sha256": "748208f792ac7810d1e576a47a45fae4db548992e9128be5169e3e4ca85682b3",
       "recipes": [
         {
           "heading": "^agentos-pkg-batchy-runtime-contract",
           "verb": "copy",
-          "body_sha256": "6f0b76e1fad7d99c095a707ef53e460f84a1a8ff22feb4c00d91469a9f2c5234",
+          "body_sha256": "854c43c63cd3a25005988b845e5de6ccceebb78b54d7613546016b39e604a9ed",
           "deps": {
-            "@<tarav-batchy-skills>/references/batchy-skill-run.skw.md^batchy-skill-runtime-contract": "6f0b76e1fad7d99c095a707ef53e460f84a1a8ff22feb4c00d91469a9f2c5234"
+            "@<tarav-batchy-skills>/references/batchy-skill-run.skw.md^batchy-skill-runtime-contract": "854c43c63cd3a25005988b845e5de6ccceebb78b54d7613546016b39e604a9ed"
           }
         },
         {
           "heading": "^driver-index-literacy",
           "verb": "derived",
-          "body_sha256": "16d17c8ae0b56d95b7a828e7c43924b7ca926c06c480f46bc8fab0565838d616",
+          "body_sha256": "fe447546bf5543ed7c6a4bcf4df5245b92180bd922b7ffd71f63755132c3fc7e",
           "deps": {
             "Agentos.Index.System": "99b9ab3f6540edc11d00968e287fd2fca4d60264541c5f6ae0cc6e82a7210f16",
             "Dotted.Notation": "40c5783b6c26c012fa8ea643797fd093578559d6157fc41c061da46502c30731",
-            "Index.Appendix": "1239f75db67a4e2339ab51b192ebbd7dd225d927be9c83fe37a8dd5bb17d14fe",
-            "Index.Chapter": "d305dafdd1dc6d751bfd4ff827322d6db986c491c7e6f28419bb0a544b636c95",
-            "Index.Line": "9a658e9263aeb9935f0ac1c2887bb8d12bb26c7162f9000a5ebd74abd88d751f",
+            "Index.Appendix": "427a82d3c2f3d76cd8a85ea43a07c5f05cf759895bc817d988b1fe424123379e",
+            "Index.Chapter": "c6d1b839578b11e2e76c254476b8baaf90dfcb878af53520e103f171bf5aa450",
+            "Index.Line": "a2583a0045c07ff8168156cfdeec9ed0d1a525f5e9105b85dcf0e183fcc476f0",
             "Kernel.Block": "27e35d3040cf8bad276705b460a9529a41c387aa4bf134149e7ffcfd953dc2c9",
             "Line.Type": "8531fe3de0381bb221bb14ce952b476242950a7c4a046d3aa5501e396b3125a8",
-            "Package.Skill": "6d5459bf56a19e85e0311b2f1905bf96cd9a5ab5085de65b128ba32329ef2f06",
+            "Package.Skill": "6c4ece537d01cfc36767577b9785a6c906247f170c14db951b22cbde4c82d2b1",
             "Touched.Index": "f1a6330438834d7a5c82ba81206ddaa7df79436b3596dcb42bc9c2e0c647db11"
           }
         }
       ]
     },
     "references/index-retrofit-worker.md": {
-      "output_sha256": "47d1df2f5c727eeabcd398bd3cdf42e8aca7f0fc4bf5b01a0f59994ce82d2f6f",
+      "output_sha256": "fa12145e17d51615d46730757fbae3b91077146a51b62368360c4e60b2664e56",
       "recipes": []
     },
     "references/index-retrofit.md": {
-      "output_sha256": "727e837fce5a42f32c28a1412f875d6a8c80c0115c9548c66f5d7c5ba68e3b25",
+      "output_sha256": "f1003cb716566eabf83fb756dcce1613e8c5d76e23a8e34303a0393769a2b2e0",
       "recipes": []
     }
   },

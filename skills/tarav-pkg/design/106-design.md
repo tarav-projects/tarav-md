@@ -284,6 +284,29 @@
 
 ****
 
+## Convergent.Justification
+
+- [DF] `Convergent.Justification` is the property that a design element has several independent reasons to exist ^d20260819-0u
+- [DF] a reason is independent when it still stands with every other reason removed ^d20260819-1u
+- [CT] an element resting on one reason is fragile — weaken that reason and it becomes ceremony ^d20260819-2u
+- [PR] prefer the candidate carrying more independent reasons; convergence is evidence the design is carved at a joint ^d20260819-3u
+- [DC] read in reverse it names a bad-design signal rather than a verdict, so finding one reason prescribes no remedy ^d20260819-4u
+- [CT] it is a design-time selection test first; applied to existing work it reports, and the report is not an instruction to remove ^d20260819-12u
+
+****
+
+## Dumb.Code.Is.Better
+
+- [DF] `Dumb.Code.Is.Better` is the principle that a checker converts expensive semantic attention into cheap mechanical attention and never performs the semantic work itself ^d20260819-5u
+- [CT] a rule may overdetect: false positives are correct behaviour, because a capable agent reads the output and dismisses them ^d20260819-6u
+- [DC] the tiers form an escalation ladder — cheap code overdetects into the agent's attention, the agent escalates into the user's ^d20260819-7u
+- [PR] semantic search costs the same to clear an item as to condemn it, so a cheap test over every item pays most when the system is healthy ^d20260819-8u
+- [DC] a check computes relations across items that no per-item reading reproduces ^d20260819-9u
+- [CT] overdetection is affordable only while the computation is legible; an opaque false positive costs the reader more than the rule saved ^d20260819-10u
+- [RJ] a semantically smart checker is rejected — a check that must be clever to be useful signals an under-structured product ^d20260819-11u
+
+****
+
 ## Line.Type
 
 - `Line.Type` is the classification a `Kernel.Line` carries, written as a typed prefix from the `Line.Type.Vocabulary`
