@@ -2,7 +2,7 @@
 
 ## Impl.Abstract
 
-- **Status:** Open. Design surface for the whole migration; no step executed from here yet. The index is **frozen** — see `Migration.Freeze`.
+- **Status:** MVP reached; the **freeze is lifted**. Steps 1–7 done. The `Test.Block` ran end to end through the normal CLI on the new design: grounded, gated, promoted, revised, with the negative checks shown to fire. Steps 8–9 remain and are the deferrable half.
 - **Kind:** A **master `Impl.Req`** — the same artifact structure at a lower resolution. Its `Execution.Plan` steps are not executable work; each step is *designed here at the general level and emitted as a detailed executer `Impl.Req` child*. Both levels carry a design job: this one over the general picture, the child over its specific topic.
 - **Scope:** The convergence of tarav1 onto the tarav2 semantic model across four surfaces — the `tarav` CLI/lib (skw, chatlas, index), the `tarav-pkg` index, the `tarav-hugentics` skill, and the chatlas depot.
 - **Out of scope:** canvas, iterante, projects-center, testground, and the remaining package skills. They are not part of this migration and no step here touches them.
@@ -218,16 +218,51 @@ Status lives in the child. This table points; it does not copy.
 | # | Step | Child |
 |---|---|---|
 | 1 | converge the package surface | `639-tarav2-index-into-main-path-impl-req.md` |
-| 2 | reconcile md surfaces with the CLI | *not designed* |
-| 3 | capture loop on the tarav2 model | *not designed* |
-| 4 | convert `tarav-hugentics` | *not designed* |
-| 5 | convert `tarav-pkg`, dissolve `tarav2-pkg` | *not designed* |
-| 6 | MVP `Test.Block` e2e — **lifts the freeze** | *not designed* |
-| 7 | full battery | *not designed* |
+| 2 | reconcile md surfaces with the CLI | **done** — `index lines` fixed, naming converged |
+| 3 | capture loop on the tarav2 model | **done** — the loop ran; see Verification |
+| 4 | convert `tarav-hugentics` | *deferred* — `tarav-pkg` was converted directly |
+| 5 | convert `tarav-pkg`, dissolve `tarav2-pkg` | **done** — one depot, 51 records |
+| 6 | MVP `Test.Block` e2e — **lifts the freeze** | **done** — gate verified, freeze lifted |
+| 7 | full battery | **done** — acts 1–5, both negative checks fire |
 | 8 | ground what was never grounded | *not designed* |
 | 9 | confirm the chatlas degradation rule | *not designed* |
 
 Prior work feeding this plan: `631`, `632`, `633`, `634`, `635`, `637`.
+
+## Verification
+
+The `Test.Block` ran end to end on `tarav-md` through `tarav index`, on the new
+design, with a real user turn opening the gate.
+
+```text
+act 1  capture   tarav index write --scope tarav-pkg/design#Test.Block.20260819-cd59
+                 ln_ca7728665af09c65  ^d20260819-28u   grounded, support resolves
+       gate      tarav index gate --kind landing --token idx-edition:7e3a1c94
+                 verified: token round-trip holds
+       promote   moved onto homes/ceo/chapters/900-design.md  ->  standing: head
+act 2  revise    ln_99a87d7000d73717  ^d20260819-29u   trace of two, rephrase
+                 trace tr_ec4a31b74a08a475  landed=True  head=HEAD  predecessor=tail
+act 3  demote    moved off the surface  ->  Landing.Unhonored FIRES
+act 4  forge     token replaced         ->  Gate.Contradicted  FIRES
+act 5  delete    the block is an ordinary block; removal is ordinary
+
+final  29 check(s): 29 passed, 0 failed, 0 blocked   0 error(s), 0 unverifiable
+       over 51 record(s), 50 surface line(s)
+```
+
+**Acts 3 and 4 are the half that mattered.** `landing-honored` and `gate-verifies`
+had never fired against anything but fixtures; both fire.
+
+**The battery found two defects that reading did not.** `resolve_scope_surface`
+globbed by chapter and returned the first match, so `index revise` pointed at the
+wrong file once two chapters shared a name. And `record-placed` reported a
+superseded trace member as `Unplaced` forever — every revision was leaving a
+permanent finding behind. Both are fixed with paired tests.
+
+**A dev lane was added and then not needed.** `gate-verifies-dev` is the full gate
+check with `require_touch=False` and nothing else relaxed, for exercising the chain
+before a real gate exists. The user approved in the loop, so the MVP ran strict.
+The lane stays: it is what makes the battery runnable in a test.
 
 ## Impl.Log
 
@@ -241,9 +276,9 @@ None outstanding. The accumulator is empty — every decision the step list rest
 - **`tarav2-pkg` dissolves into `tarav-pkg`, converted in place.** The destination is a single tarav system, aligned far enough to run `Test.Block` e2e work. Rejected alternative: staging `tarav2-pkg` until a fold at the end — it keeps two live definitions of one concept alive for the whole migration, which is exactly what the depot boundary rule was written to prevent, and a single converged store makes that unavoidable rather than merely untidy.
 - **The chatlas depot needs no tier migration.** `~/Documents/chatlas` is the archive: already user-tier, already git-backed, which is what the chat `Touch.Authority.Manifest` requires. `tarav-md/chatlas/` was a derived export written by `tarav chatlas local sync` — 3115 files, git-tracked, deleted as stale. The earlier reading of it as a scope-axis contradiction was wrong: a regenerable projection sitting project-side is not grounding data held at the wrong tier.
 
-### Deferred by the freeze
+### Released by the lift
 
-Capture candidates accumulated and waiting for the freeze to lift. Named here so this is deferral rather than loss:
+The freeze lifted at Step 6. These were held through it and are now landable:
 
 ```text
 new concepts   Signal.Not.Semantics · Documentation.Is.The.Code · Proof.Of.Touch
