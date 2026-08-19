@@ -6,7 +6,7 @@
  "line": {
   "type": "CT",
   "body": "a canonical JSON schema defines the record while storage stays free, so one record may be spread across several files",
-  "label": "^d20260818-9u"
+  "label": "^c20260818-9u"
  },
  "links": {
   "grounding": [

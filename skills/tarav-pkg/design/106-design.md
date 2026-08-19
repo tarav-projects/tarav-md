@@ -286,24 +286,24 @@
 
 ## Convergent.Justification
 
-- [DF] `Convergent.Justification` is the property that a design element has several independent reasons to exist ^d20260819-0u
-- [DF] a reason is independent when it still stands with every other reason removed ^d20260819-1u
-- [CT] an element resting on one reason is fragile — weaken that reason and it becomes ceremony ^d20260819-2u
-- [PR] prefer the candidate carrying more independent reasons; convergence is evidence the design is carved at a joint ^d20260819-3u
-- [DC] read in reverse it names a bad-design signal rather than a verdict, so finding one reason prescribes no remedy ^d20260819-4u
-- [CT] it is a design-time selection test first; applied to existing work it reports, and the report is not an instruction to remove ^d20260819-12u
+- [DF] `Convergent.Justification` is the property that a design element has several independent reasons to exist ^c20260819-15u
+- [DF] a reason is independent when it still stands with every other reason removed ^c20260819-19u
+- [CT] an element resting on one reason is fragile — weaken that reason and it becomes ceremony ^c20260819-20u
+- [PR] prefer the candidate carrying more independent reasons; convergence is evidence the design is carved at a joint ^c20260819-21u
+- [DC] read in reverse it names a bad-design signal rather than a verdict, so finding one reason prescribes no remedy ^c20260819-22u
+- [CT] it is a design-time selection test first; applied to existing work it reports, and the report is not an instruction to remove ^c20260819-18u
 
 ****
 
 ## Dumb.Code.Is.Better
 
-- [DF] `Dumb.Code.Is.Better` is the principle that a checker converts expensive semantic attention into cheap mechanical attention and never performs the semantic work itself ^d20260819-5u
-- [CT] a rule may overdetect: false positives are correct behaviour, because a capable agent reads the output and dismisses them ^d20260819-6u
-- [DC] the tiers form an escalation ladder — cheap code overdetects into the agent's attention, the agent escalates into the user's ^d20260819-7u
-- [PR] semantic search costs the same to clear an item as to condemn it, so a cheap test over every item pays most when the system is healthy ^d20260819-8u
-- [DC] a check computes relations across items that no per-item reading reproduces ^d20260819-9u
-- [CT] overdetection is affordable only while the computation is legible; an opaque false positive costs the reader more than the rule saved ^d20260819-10u
-- [RJ] a semantically smart checker is rejected — a check that must be clever to be useful signals an under-structured product ^d20260819-11u
+- [DF] `Dumb.Code.Is.Better` is the principle that a checker converts expensive semantic attention into cheap mechanical attention and never performs the semantic work itself ^c20260819-23u
+- [CT] a rule may overdetect: false positives are correct behaviour, because a capable agent reads the output and dismisses them ^c20260819-24u
+- [DC] the tiers form an escalation ladder — cheap code overdetects into the agent's attention, the agent escalates into the user's ^c20260819-25u
+- [PR] semantic search costs the same to clear an item as to condemn it, so a cheap test over every item pays most when the system is healthy ^c20260819-26u
+- [DC] a check computes relations across items that no per-item reading reproduces ^c20260819-27u
+- [CT] overdetection is affordable only while the computation is legible; an opaque false positive costs the reader more than the rule saved ^c20260819-16u
+- [RJ] a semantically smart checker is rejected — a check that must be clever to be useful signals an under-structured product ^c20260819-17u
 
 ****
 

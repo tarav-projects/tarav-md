@@ -132,7 +132,7 @@ The review economy, end to end on the live index:
 review recorded on ln_0b4a15…                     evidence, not a flag
 tarav2 index revise <id> --kind rename            new line, same trace
 tarav2 index trace tr_9f71…
-  ln_0b4a15…  ^d20260818-6u    direct
+  ln_0b4a15…  ^c20260818-6u    direct
   ln_61d659…  ^d20260818-21u   via_trace  HEAD
 ```
 

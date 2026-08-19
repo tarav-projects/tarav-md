@@ -6,7 +6,7 @@
  "line": {
   "type": "DC",
   "body": "manifest approval is a simple User.Approval.Gate decided once per surface, and its implementation is deferred",
-  "label": "^d20260818-5u"
+  "label": "^c20260818-5u"
  },
  "links": {
   "grounding": [

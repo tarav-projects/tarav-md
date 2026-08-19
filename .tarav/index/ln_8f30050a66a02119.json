@@ -6,7 +6,7 @@
  "line": {
   "type": "DF",
   "body": "the record is the serialized representation of an Index line, described first as a model rather than as a file or a format",
-  "label": "^d20260818-8u"
+  "label": "^c20260818-8u"
  },
  "links": {
   "grounding": [

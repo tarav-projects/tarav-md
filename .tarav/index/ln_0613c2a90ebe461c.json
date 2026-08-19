@@ -6,7 +6,7 @@
  "line": {
   "type": "DC",
   "body": "a field may state design status when it is a turn containing a gate with a proper token mechanism",
-  "label": "^d20260819-9u"
+  "label": "^c20260819-27u"
  },
  "links": {
   "grounding": [

@@ -6,7 +6,7 @@
  "line": {
   "type": "DC",
   "body": "tarav2 ships both tarav2- skills and a tarav2 python library and CLI, integrating the new design with the old implementation",
-  "label": "^d20260818-17u"
+  "label": "^c20260818-17u"
  },
  "links": {
   "grounding": [

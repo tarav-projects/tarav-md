@@ -6,7 +6,7 @@
  "line": {
   "type": "CT",
   "body": "deleted lines are tracked on git and not by the index system",
-  "label": "^d20260819-5u"
+  "label": "^c20260819-23u"
  },
  "links": {
   "grounding": [

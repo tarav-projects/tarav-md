@@ -6,7 +6,7 @@
  "line": {
   "type": "DC",
   "body": "a project holds a project-level .tarav2 folder and the user holds a global ~/.tarav2",
-  "label": "^d20260818-1u"
+  "label": "^c20260818-1u"
  },
  "links": {
   "grounding": [

@@ -144,9 +144,9 @@ Run the `Bootstrap.Closure.Test` end to end and record the result.
 
 ```text
 tarav2 ingest 9f41aa0e-…      claude: 85 messages, 26 touched, commit 5183c1fe
-tarav2 capture --depot tarav2-pkg   19 lines landed, ^d20260818-0u … -18u
+tarav2 capture --depot tarav2-pkg   19 lines landed, ^c20260818-0u … -18u
 tarav2 search "scope" -v      4 lines, all grounded, each resolved to its user turn
-tarav2 resolve ^d20260818-6u  triplet MATCHED, support resolved
+tarav2 resolve ^c20260818-6u  triplet MATCHED, support resolved
 tarav2 reconcile              clean — 19 record(s) checked
 pytest                        85 passed
 ruff check src/ tests/        All checks passed

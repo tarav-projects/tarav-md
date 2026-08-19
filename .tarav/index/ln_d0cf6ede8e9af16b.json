@@ -6,7 +6,7 @@
  "line": {
   "type": "DC",
   "body": "Tarav provides the storage primitives beneath the record rather than fixing one on-disk form",
-  "label": "^d20260818-10u"
+  "label": "^c20260818-10u"
  },
  "links": {
   "grounding": [

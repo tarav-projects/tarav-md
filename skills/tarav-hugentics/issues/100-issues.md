@@ -8,5 +8,5 @@
 
 ## Issue.I0002.Hugentics.Chatlas1.Workflow.Retirement
 
-- [PR] retire the public `--reconcile`, `--check`, and `--link` routes while `Real.Time.Capture` is rebuilt incrementally around Chatlas2, retaining only the primitives it currently requires ^d20260816-40u
-- [PR] revisit the parked workflows later to extract valuable design for background reconciliation, deterministic validation, session and file-touch discovery, and legacy-anchor inspection without inheriting Chatlas1 assumptions ^d20260816-41u
+- [PR] retire the public `--reconcile`, `--check`, and `--link` routes while `Real.Time.Capture` is rebuilt incrementally around Chatlas2, retaining only the primitives it currently requires ^c20260816-62u
+- [PR] revisit the parked workflows later to extract valuable design for background reconciliation, deterministic validation, session and file-touch discovery, and legacy-anchor inspection without inheriting Chatlas1 assumptions ^c20260816-63u

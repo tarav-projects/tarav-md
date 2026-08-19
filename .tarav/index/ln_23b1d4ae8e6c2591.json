@@ -6,7 +6,7 @@
  "line": {
   "type": "CT",
   "body": "an Agent.State is dangerous because it is not easy to verify in general, so the design question is how costly verification is",
-  "label": "^d20260819-11u"
+  "label": "^c20260819-17u"
  },
  "links": {
   "grounding": [

@@ -6,7 +6,7 @@
  "line": {
   "type": "DF",
   "body": "a Gate is a token round-trip: the user turn carries the token and qualifies as touch, and an agent turn carries the same token with the line verbatim",
-  "label": "^d20260819-3u"
+  "label": "^c20260819-21u"
  },
  "links": {
   "grounding": [

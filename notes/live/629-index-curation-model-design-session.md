@@ -12,51 +12,51 @@
 
 ### Index.Curated.Model
 
-- [DF] The `Index` is the actively maintained, increasingly complete interpretation of all qualifying touched data in `Chat.Support`. ^d20260817-21u
-- [DC] `Chat.Support` supplies immutable user authority while the `Index` remains a mutable `WIP.Surface` that agents actively curate. ^d20260817-22u
-- [CT] `Line.Type` defines which touched data qualifies for indexing; completeness does not mean indexing every sentence or paraphrase. ^d20260817-23u
+- [DF] The `Index` is the actively maintained, increasingly complete interpretation of all qualifying touched data in `Chat.Support`. ^c20260817-21u
+- [DC] `Chat.Support` supplies immutable user authority while the `Index` remains a mutable `WIP.Surface` that agents actively curate. ^c20260817-22u
+- [CT] `Line.Type` defines which touched data qualifies for indexing; completeness does not mean indexing every sentence or paraphrase. ^c20260817-23u
 
 ### Index.Quality
 
-- [DF] `Index.Quality` is the joint pursuit of completeness, fidelity, and contextual usefulness over qualifying touched data. ^d20260817-24u
-- [DC] Completeness aims to index all qualifying touched data expressed through `User.Turn`s. ^d20260817-25u
-- [CT] Fidelity requires every retained line to be correctly typed, supported by `User.Turn`s, and representative of its underlying touched data. ^d20260817-26u
-- [PR] Contextual usefulness gives agents a fast `HEAD` view of the current `Design.Model` and a deeper path through `Tail`, support, and semantic evolution. ^d20260817-27u
+- [DF] `Index.Quality` is the joint pursuit of completeness, fidelity, and contextual usefulness over qualifying touched data. ^c20260817-24u
+- [DC] Completeness aims to index all qualifying touched data expressed through `User.Turn`s. ^c20260817-25u
+- [CT] Fidelity requires every retained line to be correctly typed, supported by `User.Turn`s, and representative of its underlying touched data. ^c20260817-26u
+- [PR] Contextual usefulness gives agents a fast `HEAD` view of the current `Design.Model` and a deeper path through `Tail`, support, and semantic evolution. ^c20260817-27u
 
 ### Line.History
 
-- [DF] `Line.History` groups the semantically correct `Index.Line` expressions that index one atomic assertion across genuine user evolution. ^d20260817-28u
-- [DC] `HEAD.Line` is the history's semantically correct and currently applicable expression. ^d20260817-29u
-- [DC] `Tail.Lines` are semantically correct expressions for earlier chat horizons where the user held a different state. ^d20260817-30u
-- [CT] The `HEAD`/`Tail` distinction expresses current versus earlier validity, never correct versus incorrect indexing. ^d20260817-31u
+- [DF] `Line.History` groups the semantically correct `Index.Line` expressions that index one atomic assertion across genuine user evolution. ^c20260817-28u
+- [DC] `HEAD.Line` is the history's semantically correct and currently applicable expression. ^c20260817-29u
+- [DC] `Tail.Lines` are semantically correct expressions for earlier chat horizons where the user held a different state. ^c20260817-30u
+- [CT] The `HEAD`/`Tail` distinction expresses current versus earlier validity, never correct versus incorrect indexing. ^c20260817-31u
 
 ### Bad.Indexing
 
-- [DF] `Bad.Indexing` is a maintenance finding that an indexed line is incorrectly extracted, attached, typed, duplicated, or grouped. ^d20260817-32u
-- [DC] Correcting `Bad.Indexing` repairs, regroups, or removes the affected line instead of preserving it inside the semantic Index. ^d20260817-33u
-- [CT] Git remains outside the semantic model: it records construction history and mistakes that no longer deserve Index membership. ^d20260817-34u
+- [DF] `Bad.Indexing` is a maintenance finding that an indexed line is incorrectly extracted, attached, typed, duplicated, or grouped. ^c20260817-32u
+- [DC] Correcting `Bad.Indexing` repairs, regroups, or removes the affected line instead of preserving it inside the semantic Index. ^c20260817-33u
+- [CT] Git remains outside the semantic model: it records construction history and mistakes that no longer deserve Index membership. ^c20260817-34u
 
 ### Index.Surface.Family
 
-- [DF] The `Index` is a family of `WIP.Surface`s that maintain each other rather than one surface owning semantic truth. ^d20260817-35u
-- [DC] `Native.Index.Surface`s and `Skw.Annotated.Surface`s carry the selected `HEAD` lines inside their useful product scope. ^d20260817-36u
-- [DC] `Chat.Index` carries the complete curated materialization: both `HEAD` and `Tail` line content, and no `Bad.Indexing`. ^d20260817-37u
-- [DC] `Touched.Index.Record` carries the relationship network: stable identity, hashes and drift, history membership, `HEAD` selection, support sets, and surface occurrences. ^d20260817-38u
-- [CT] `Touched.Index.Record`s are central to the Index mechanics without imposing a strict production flow on the agents that write them. ^d20260817-39u
+- [DF] The `Index` is a family of `WIP.Surface`s that maintain each other rather than one surface owning semantic truth. ^c20260817-35u
+- [DC] `Native.Index.Surface`s and `Skw.Annotated.Surface`s carry the selected `HEAD` lines inside their useful product scope. ^c20260817-36u
+- [DC] `Chat.Index` carries the complete curated materialization: both `HEAD` and `Tail` line content, and no `Bad.Indexing`. ^c20260817-37u
+- [DC] `Touched.Index.Record` carries the relationship network: stable identity, hashes and drift, history membership, `HEAD` selection, support sets, and surface occurrences. ^c20260817-38u
+- [CT] `Touched.Index.Record`s are central to the Index mechanics without imposing a strict production flow on the agents that write them. ^c20260817-39u
 
 ### Index.Block.Scope
 
-- [DF] `Index.Block` is the scope that makes an `Index.Line` mean something; the line is the atom of touched-data indexing and always needs a scope. ^d20260817-40u
-- [DC] `Project.Index` defines the scopes agents index into, which keeps that registry on a self-documenting surface. ^d20260817-41u
+- [DF] `Index.Block` is the scope that makes an `Index.Line` mean something; the line is the atom of touched-data indexing and always needs a scope. ^c20260817-40u
+- [DC] `Project.Index` defines the scopes agents index into, which keeps that registry on a self-documenting surface. ^c20260817-41u
 
 ### Index.Surface.Coherence
 
-- [DF] Index maintenance is the work of moving material across Index surfaces: removing `Bad.Indexing` lines, grounding ungrounded lines, and making ordinary evolution edits such as renames and better wording. ^d20260817-42u
-- [DC] Index surfaces may be temporarily unsynchronized because the Index is a `WIP.Surface`; that state is normal rather than a defect. ^d20260817-43u
-- [CT] Synchronization between Index surfaces does not mean identical content everywhere; each surface carries what its own role requires. ^d20260817-44u
-- [DC] Incoherence between surfaces and records is discovered and repaired as `POI`s rather than prevented by a stricter production flow. ^d20260817-45u
-- [FR] Material may enter the Index through several valid paths; the order of production is agent-owned rather than fixed by the model. ^d20260817-46u
-- [CT] Every retained semantic line is correctly typed, scoped by an `Index.Block`, supported by qualifying `User.Turn`s, represented in its `Touched.Index.Record`, and materialized in `Chat.Index`. ^d20260817-47u
+- [DF] Index maintenance is the work of moving material across Index surfaces: removing `Bad.Indexing` lines, grounding ungrounded lines, and making ordinary evolution edits such as renames and better wording. ^c20260817-42u
+- [DC] Index surfaces may be temporarily unsynchronized because the Index is a `WIP.Surface`; that state is normal rather than a defect. ^c20260817-43u
+- [CT] Synchronization between Index surfaces does not mean identical content everywhere; each surface carries what its own role requires. ^c20260817-44u
+- [DC] Incoherence between surfaces and records is discovered and repaired as `POI`s rather than prevented by a stricter production flow. ^c20260817-45u
+- [FR] Material may enter the Index through several valid paths; the order of production is agent-owned rather than fixed by the model. ^c20260817-46u
+- [CT] Every retained semantic line is correctly typed, scoped by an `Index.Block`, supported by qualifying `User.Turn`s, represented in its `Touched.Index.Record`, and materialized in `Chat.Index`. ^c20260817-47u
 
 ## Session.Notes
 

@@ -6,7 +6,7 @@
  "line": {
   "type": "DF",
   "body": "a surface declares its type and its Touch.Authority through a centrally controlled manifest that a project must register to be a source of Touched.Data",
-  "label": "^d20260818-4u"
+  "label": "^c20260818-4u"
  },
  "links": {
   "grounding": [

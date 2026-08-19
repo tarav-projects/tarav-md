@@ -6,7 +6,7 @@
  "line": {
   "type": "DF",
   "body": "an Untyped.Agent.State is expensive to validate and is avoided; a Typed.Agent.State carries assertions that are cheap to validate",
-  "label": "^d20260819-12u"
+  "label": "^c20260819-18u"
  },
  "links": {
   "grounding": [

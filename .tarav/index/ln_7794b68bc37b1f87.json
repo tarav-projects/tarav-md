@@ -6,7 +6,7 @@
  "line": {
   "type": "PR",
   "body": "the manifest is presently a declaration surface rather than an enforcement system",
-  "label": "^d20260818-7u"
+  "label": "^c20260818-7u"
  },
  "links": {
   "grounding": [

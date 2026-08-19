@@ -104,7 +104,7 @@ Migrate the 21 seeded records; delete `.tarav2/anchors/`, `.tarav2/chat-index/`,
 
 ```text
 tarav2 index write --scope "@src/tarav2/scope.py/parse_scope" --type DF --body "…"
-   → ln_0181…  ^d20260818-0u  @src/tarav2/scope.py/parse_scope  [agent]
+   → ln_0181…  ^c20260818-0u  @src/tarav2/scope.py/parse_scope  [agent]
 tarav2 index write --scope "tarav2-pkg/design#Index.Geography" --review user --tier user
    → landed in ~/.tarav2/index/user/, absent from the project folder
 tarav2 index record            both tiers visible as one logical index
