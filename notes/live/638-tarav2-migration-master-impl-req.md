@@ -40,8 +40,6 @@
 
 ### Migration.Freeze
 
-Ungrounded — landed after the freeze, so these lines carry `Index.Presumption` until the freeze lifts.
-
 - [DC] grounding and index writing stop across the whole system until the core engine runs end to end, replacing the earlier "tarav1 keeps working and is not modified" invariant
 - [CT] a frozen index is a fixed migration target: the bar-check meter only reads as progress if its denominator holds still
 - [DF] the freeze covers minting anchors and grounding index lines, and nothing else
@@ -65,14 +63,24 @@ Ungrounded — landed after the freeze, so these lines carry `Index.Presumption`
 
 ### Depot.Convergence
 
-Ungrounded — landed after the freeze, so these lines carry `Index.Presumption` until the freeze lifts.
-
 - [DC] tarav-pkg converts to the new model in place and tarav2-pkg dissolves into it, rather than tarav2-pkg staging until a fold at the end
 - [RJ] staging tarav2-pkg through the migration is rejected: it keeps two live definitions of one concept alive for the whole migration, which is what the depot boundary rule exists to prevent
 - [DF] the destination is a single tarav system — one CLI, one index model, one depot
 - [CT] the alignment target is sufficiency for `Test.Block` e2e work, not full content alignment
 - [DC] surface conversion and content alignment are separate steps: structure converges early because the engine needs it, content converges lazily against the bar-check meter
 - [CT] tarav-pkg must carry a `HEAD.Surface`-capable layout before the e2e run, because act 1 of the battery lands a gated line on one
+
+****
+
+### Shape.Transformation
+
+- [DF] converting a surface transforms the shape of its content without changing the content, so lines and their grounding both survive the move
+- [DC] a `^c` anchored line already carries grounding, so re-expressing it as a record whose support resolves to that dossier grounds nothing new
+- [CT] the legacy anchor question is therefore a shape decision rather than a grounding decision, and the freeze does not block it
+- [DC] what remains after shape transformation is the set of lines that were never grounded, which is the only content that needs the capture loop
+- [DC] the linter is part of the convergence rather than a fixed ruler applied to it: checks are modified to match the new design as the surfaces move
+- [CT] a surface that converges clean under a missing check reveals the check is missing, which is the chisel applied to migration rather than to code
+- [DC] a bar-check count is read together with the check set that produced it, because a freeze that holds the content still does not hold a moving check set still
 
 ****
 
@@ -142,13 +150,12 @@ Everything before the e2e run is there because the e2e run cannot happen without
 - **Surface conversion precedes the e2e run, content alignment follows it.** Act 1 lands a gated line on a `HEAD.Surface`, and `tarav-pkg` has no layout that can be one today — no `homes/`, against a sole pattern of `skills/*/homes/*/chapters/*.md`. So the *structural* half of the tarav-pkg migration is a precondition; the ~1600 anchored lines are not, and stay lazy against the bar-check meter.
 - **Doc reconciliation follows convergence**, because convergence changes the command names the docs must describe. Reconciling first means writing `tarav2 index …` and immediately rewriting it to `tarav index …`.
 - **The capture loop precedes the e2e run**, because tarav2 has no capture loop at all today. It can record, revise, gate, lint and import; it cannot run the conversation that produces a gated line.
-- **Surface conversion does not violate the freeze.** Converting layout and minting records is not minting anchors or grounding lines — `637`'s importer lands records ungrounded by design. Steps 4–5 are compatible with a frozen index.
+- **Surface conversion does not violate the freeze.** Converting layout and minting records is not minting anchors or grounding lines. Neither is re-expressing a `^c` anchored line as a record whose support resolves to its existing dossier — that grounding already exists and only changes shape. Steps 4–5 are compatible with a frozen index.
+- **The linter converges with the surfaces.** Its checks are modified to match the new design as the migration proceeds, so a wall of findings mid-migration is the instrument working, not a regression. The corollary is the chisel: a surface that converges clean under a missing check means the check is missing.
 - **`tarav-hugentics` precedes `tarav-pkg`** — a fortieth of the exposure for the same shape of work, and `637` already rehearsed its import.
 - **Everything after the lift is deferrable.** Content alignment and the chatlas confirmation have no downstream dependents; they are ordered last because nothing waits on them.
 
 ## Execution.Plan
-
-Coarse steps. Each is designed here, then emitted as a child `Impl.Req`.
 
 Coarse steps. Each is designed here, then emitted as a child `Impl.Req`. Steps 1–5 are the convergence the lift condition presupposes; Step 6 lifts the freeze; 7–9 follow it.
 
@@ -165,12 +172,12 @@ tarav2 has no capture loop. The hugentics loop — roadmap, focus, propose, toke
 **Result:** the loop produces a tarav2 `LineRecord` from a real conversation.
 
 ### Step 4 — Convert `tarav-hugentics` to the new surface model
-The rehearsal. 6 blocks, 32 kernel lines — a fortieth of the exposure, same shape of work, and `637` already ran the import into a scratch project.
-**Result:** the skill's surfaces are `HEAD.Surface`-capable and its kernel lines have records; expected debt classes are the only findings.
+The rehearsal. 6 blocks, 32 kernel lines — a fortieth of the exposure, same shape of work, and `637` already ran the import into a scratch project. Shape transformation only: lines keep their content and their existing grounding, including `^c` anchors re-expressed as record support.
+**Result:** the skill's surfaces are `HEAD.Surface`-capable, its kernel lines have records, and no line lost grounding in the move.
 
 ### Step 5 — Convert `tarav-pkg` and dissolve `tarav2-pkg`
-The structural half only: a `HEAD.Surface`-capable layout, surfaces parsing under the tarav2 model, and `tarav2-pkg`'s 49 records folded in. **Content is not aligned here** — that is Step 8. This is the step that makes the e2e run possible at all.
-**Result:** a block can be landed on a declared `HEAD.Surface` of `tarav-pkg`; `tarav2-pkg` no longer exists.
+Shape transformation across the whole depot: a `HEAD.Surface`-capable layout, surfaces parsing under the tarav2 model, `tarav2-pkg`'s 49 records folded in, and the ~1317 already-grounded kernel lines carried across with their grounding intact — the `chat-legacy` adapter is built here, since it re-expresses grounding rather than creating it. **No line is newly grounded** — that is Step 8. This is the step that makes the e2e run possible at all.
+**Result:** a block can be landed on a declared `HEAD.Surface` of `tarav-pkg`; `tarav2-pkg` no longer exists; content and grounding both survived the move.
 
 ### Step 6 — MVP: the `Test.Block` e2e run
 Acts 1–2 of the battery, green, through the normal CLI. **This step lifts the freeze.**
@@ -180,9 +187,9 @@ Acts 1–2 of the battery, green, through the normal CLI. **This step lifts the 
 Acts 3–5. Turns "it worked once" into "it stays working."
 **Result:** the negative checks are shown to fire against live data, not only fixtures.
 
-### Step 8 — Content alignment on `tarav-pkg`
-Lazy, unbounded, and running after the freeze lifts. Record and ground lines as they are touched rather than in bulk; the bar-check count is the progress meter.
-**Result:** content debt is a falling number, taken from the linter rather than from a checklist.
+### Step 8 — Ground what was never grounded
+Everything grounded survived Step 5 by shape transformation, so what is left is only the lines that never had support: roughly 915 of `tarav-pkg`'s 2232 kernel lines, at today's gr-density of 0.5901. These genuinely need the capture loop and genuinely wait for the freeze to lift. Lazy and unbounded: ground lines as they are touched, never in bulk.
+**Result:** the ungrounded count falls, read from the linter together with the check set that produced it.
 
 ### Step 9 — Confirm the chatlas degradation rule
 The archive is already user-tier and git-backed and the project-local export is deleted, so nothing migrates. What remains is checking that a fresh clone with no user tier reads the project and its index with only grounding degraded.
@@ -210,14 +217,14 @@ Status lives in the child. This table points; it does not copy.
 
 | # | Step | Child |
 |---|---|---|
-| 1 | converge the package surface | *not designed* |
+| 1 | converge the package surface | `639-tarav2-index-into-main-path-impl-req.md` |
 | 2 | reconcile md surfaces with the CLI | *not designed* |
 | 3 | capture loop on the tarav2 model | *not designed* |
 | 4 | convert `tarav-hugentics` | *not designed* |
 | 5 | convert `tarav-pkg`, dissolve `tarav2-pkg` | *not designed* |
 | 6 | MVP `Test.Block` e2e — **lifts the freeze** | *not designed* |
 | 7 | full battery | *not designed* |
-| 8 | content alignment on `tarav-pkg` | *not designed* |
+| 8 | ground what was never grounded | *not designed* |
 | 9 | confirm the chatlas degradation rule | *not designed* |
 
 Prior work feeding this plan: `631`, `632`, `633`, `634`, `635`, `637`.
@@ -241,8 +248,9 @@ Capture candidates accumulated and waiting for the freeze to lift. Named here so
 ```text
 new concepts   Signal.Not.Semantics · Documentation.Is.The.Code · Proof.Of.Touch
 revisions      Accountable.Assertion · Constraint.Steering
-grounding      the ^c legacy question — a chat-legacy Touch.Authority.Manifest is the designed answer
 ```
+
+The `^c` legacy question is **not** in this queue. It was read as a grounding decision and it is not one — a `^c` line already carries grounding, so the `chat-legacy` adapter re-expresses it rather than creating it. That is shape work, it belongs to Step 5, and the freeze does not block it.
 
 ### Index.Presumption
 
@@ -251,8 +259,9 @@ grounding      the ^c legacy question — a chat-legacy Touch.Authority.Manifest
 
 ### Notes
 
-- The `Migration.Freeze`, `Migration.Manual.Discipline`, and `Test.Block` blocks above are **ungrounded by design**, not by omission. They were written after the freeze, and the freeze grounds nothing except the `Test.Block` run — grounding is being spent on testing the system, not on recording knowledge. They stay under `Index.Presumption` until the backlog is landed.
-- This artifact's own `^c` anchors are chatlas1-namespace and ungated — the `Anchor.LegacySigil` class Steps 4–5 exist to retire. Not a defect in the plan, but the plan should not add more of them.
+- Every block added to this artifact after the freeze is **ungrounded by design**, not by omission. The freeze grounds nothing except the `Test.Block` run — grounding is being spent on testing the system, not on recording knowledge. Those blocks stay under `Index.Presumption` until the backlog is landed.
+- This artifact's own `^c` anchors are chatlas1-namespace and ungated — the `Anchor.LegacySigil` class Step 5's shape transformation carries across. Not a defect in the plan, but the plan should not add more of them.
+- **Read a bar-check count with its check set.** The freeze holds the content still so the meter reads as progress, but the check set is itself converging (`Shape.Transformation`). A count reported alone drifts on both sides; `29 checks / 915 ungrounded` distinguishes a rise caused by new coverage from a rise caused by regression. No tooling — it is how the number is read.
 - The agent-home `HEAD.Surface` exclusion is hardcoded in `HeadSurfaces.contains()` rather than declared in `head-surfaces.json`. This looks like a design/implementation gap but is not: `637` records it as a deliberate rule replacing `634`'s hand-narrowed config, asserted by `test_the_agent_home_is_never_a_head_surface`. Noted here so the next reader does not re-open it.
 - **Corrected measurements.** The earlier figures in this artifact were wrong; take baselines from the commands, not from here.
 
