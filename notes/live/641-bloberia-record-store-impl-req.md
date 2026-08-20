@@ -2,7 +2,7 @@
 
 ## Impl.Abstract
 
-- **Status:** Open. Slices 1–2, 4–6, 7a and 9 executed; 3, 7b and 8 open.
+- **Status:** Open. Slices 1–2, 4–7 and 9 executed; 3 open, 8 written but `IndexStore` not yet rewired.
 - **Intent:** Rebuild `bloberia` as the general keyed-record store, able to host anchory dossiers and index records without knowing what either means.
 - **Source:** the design session in this chat. `bloberia` already existed — *"depot-scoped query:value storage for agent-associated data"* — with namespaces, locking and subset queries. This is a reshaping of it, not a new subsystem.
 - **Scope:** `tarav/bloberia/` core and CLI, its existing consumers, and the index as its first real consumer — including retiring anchory into it.
@@ -128,9 +128,9 @@ Mapping settled by measurement:
 - support members become `SupportRef`s carrying the space they were written in, so a turn-addressed member never claims to be a message.
 - gates become `GateRef`s, whose `{archive, session_id, token, user_turn_id, agent_turn_id}` shape already fits the legacy turn-addressed form: `approval_turn` → `user_turn_id`, `verbatim_turn`/`proposal_turn` → `agent_turn_id`.
 
-**Open decision — `LineRecord.review` holds one `GateRef`.** 8 anchors carry two genuinely distinct tokens and cannot be converted without either dropping one gate each or widening the field. The other 841 multi-gate anchors are one token in two representations, not two gates.
+**Resolved — `LineRecord.review` widened to a tuple, schema `v4`.** 8 anchors carry two genuinely distinct tokens; a single slot made that evidence *unstorable* rather than merely unstored. `v3` records still read: one object or null becomes a one- or zero-tuple, because reading an older record is not a migration.
 
-**Check:** record count equals anchor count; support and gate cardinality conserved per anchor; a zero-result scan for the dossier shape.
+**Check:** record count equals anchor count; support and gate cardinality conserved per anchor; every drop named and counted.
 
 ### Slice 8 — The index on bloberia, user-side
 One depot for every index record; two-tier logic removed.
@@ -151,8 +151,8 @@ Derive `commit + file + path` for a record in hand, and resolve one back to its 
 | 5 | git handler | **done** |
 | 6 | `shards` depot type | **done** |
 | 7a | the restoration set | **done** |
-| 7b | anchory → `LineRecord` | not started |
-| 8 | index on bloberia, user-side | not started |
+| 7b | anchory → `LineRecord` | **done** |
+| 8 | index on bloberia, user-side | **written; rewiring open** |
 | 9 | `Record.Coordinate` | **done** |
 
 ## Impl.Log
@@ -190,4 +190,11 @@ Derive `commit + file + path` for a record in hand, and resolve one back to its 
 - **The first conservation check was near-vacuous and was replaced.** Asserting that the union contains what the extractors returned is true by construction. The check that survives compares every identity string in the raw records — sessions, addresses, hashes, turn ids, tokens — against the set, so an unread shape family fails it. Confirmed by blinding the turn-space extractor and watching it go red on 664 identities.
 - **The `review` cardinality scare was mostly an artifact, and measuring said so.** 849 anchors carry more than one gate, which looked like ~850 gates about to be dropped by a single-valued `LineRecord.review` — the exact loss 7a had just restored. Comparing tokens showed 841 of them are *one* token in two representations, the pre-migration turn-addressed form and the post-migration message-addressed one, both conserved by the union. The real exposure is **8 anchors with genuinely distinct tokens**, which is a decision rather than an emergency.
 - **Defect in 7a's landed code, found by that comparison.** `_gates` labelled a gate's coordinate space by *where it was stored*, but the `v1` dossier kept turn-addressed gates in the same `relationships.gates` slot that `v2` uses for message-addressed ones. The mislabel made two representations of one token look like two gates. Space is now read off the entry, which also exposed 133 gates classified as `unknown`: 131 are `support-set.v4`'s older spelling, a turn ref serialized as the string `<session>:<turn>`, and 2 are genuinely empty. Corrected split is 1,638 turn, 871 message, 2 empty — the earlier 1,847/664 counted storage location, not addressing.
+- **Slice 7b executed 2026-08-20** — `dev/live/643-anchory-to-line-records.py`. **3,956 anchors converted to 3,956 `LineRecord`s. All 9,683 support members conserved. 2,507 of 2,511 gates**, the four drops named and counted: 2 empty `{}` entries and 2 carrying neither a session nor a token. 2,331 records attach to a citing surface line; 1,625 quarantine at `tarav-pkg/design#Unattached` with an empty body, because a dossier stores a triplet *hash* and never the text.
+- **`GateRef` already fitted the legacy shape**, which is why the gate mapping is a rename rather than a reinterpretation: `{archive, session_id, token, user_turn_id, agent_turn_id}` is turn-shaped, so `approval_turn` → user side and `verbatim_turn`/`proposal_turn` → agent side follows the settled model where approval is user-side and proposal agent-side.
+- **Coordinates are mapped, never invented.** A turn-addressed member becomes a `SupportRef` whose `archive` reads `chat-turn`, never `chat` — 5,755 of them against 3,928 message-addressed. A turn id silently resolved as a message address is not a failed lookup but a wrong one that looks like evidence.
+- **38 lines have a scope the grammar cannot spell.** Index headings of the form `Concept::Sub` are not legal `Skw.Address.Schema` addresses. The record is never dropped for it: the line falls back to the file it is written on, which is a true address, and the count is reported so it is fixed rather than discovered later as a missing record.
+- **33 label collisions merged rather than duplicated** — `dev/live/644-write-index-depot.py`. An existing index record and a converted anchor sharing a label are one line seen from two sides: the index record holds body, scope and trace, the dossier holds the grounding. Identity and wording come from the index, support and gates union. Duplicating would have been the worse outcome for both.
+- **The index now lives at `~/Documents/bloberia/tarav-index`:** a `shards` depot keyed by `line.label`, **3,974 records across 256 shards**, git-tracked and committed. 3,974 grounded, 1,656 gated, 1,625 quarantined. The git handler's own interval checkpoint fired during the load, which is its first use outside a test.
+- **Verified end to end on real data.** `first({"line.label": {"equals": "^c20260510-1u"}})` returns the `Stable.Surface` line with 6 support members, and its `Record.Coordinate` — `bloberia:06b9023…/records/bb.json#^c20260510-1u.line.body` — resolves out of the commit to the same text.
 - **Waiver:** no anchors minted and no backpropagation attempted, per the index freeze.
