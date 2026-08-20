@@ -2,7 +2,7 @@
 
 ## Impl.Abstract
 
-- **Status:** Open. Designed, not executed.
+- **Status:** Open. Slices 1–2 executed; slice 4 partially staged; 3 and 5 open.
 - **Intent:** Rebuild `bloberia` as the general keyed-record store, able to host anchory dossiers and index records without knowing what either means.
 - **Source:** the design session in this chat. `bloberia` already existed — *"depot-scoped query:value storage for agent-associated data"* — with namespaces, locking and subset queries. This is a reshaping of it, not a new subsystem.
 - **Scope:** `tarav/bloberia/` core and CLI, its existing consumers, and in-flight tests proving both record shapes fit.
@@ -81,10 +81,10 @@ Write-triggered, interval-based checkpoint commit, one repo per depot, configura
 
 | # | Slice | Status |
 |---|---|---|
-| 1 | contract over the `files` type | not started |
-| 2 | host anchory + index shapes | not started |
+| 1 | contract over the `files` type | **done** |
+| 2 | host anchory + index shapes | **done** |
 | 3 | declared indexes | not started |
-| 4 | move existing consumers | not started |
+| 4 | move existing consumers | staged — parked on `depot_v1` |
 | 5 | git handler | deferred |
 
 ## Impl.Log
@@ -93,4 +93,7 @@ Write-triggered, interval-based checkpoint commit, one repo per depot, configura
 - **Measured:** bloberia is 623 lines with five consumers and 9 live records under `tarav-py/.tarav/state/bloberia`. Small enough to reshape in place.
 - **`Index.Presumption`:** existing stored records are assumed to survive the envelope removal because the old envelope parses as ordinary cargo and consumer queries address `value.*`, which stays a valid path. Verified by reading the query code, not by running it.
 - **Design correction during the run:** the global depot was going to be `~/.tarav/records/`; the user moved it to `~/Documents/bloberia` so an important system carries its own public depot like chatlas. Recorded because it changes placement, not mechanism.
+- **Executed 2026-08-19.** New `bloberia/core.py`: opaque cargo, `insert`/`first`/`all`/`count`/`replace`/`delete`/`iterate`, path queries with `equals`/`contains`/`exists`, namespace placement. 20 new tests, full suite 2074 green, ruff clean.
+- **Deviation — slice 4 staged rather than done.** Rewriting the core broke 22 test modules across `tournament`, `skillware.edition_history` and the POI adapter, which all read the old envelope. Rather than leave the tree red or rush three consumer refactors, the previous depot is retained verbatim as `bloberia/depot_v1.py` and those consumers point at it. This is deliberate transitional debt, not a compatibility layer: nothing new may import it, and slice 4 deletes it. Named here so it is a reviewable change of its own rather than a rider on the rewrite.
+- **The opacity claim is asserted, not trusted.** A test parses `core.py`, strips every docstring, and fails if executable code names `dossier`, `anchor`, `grounding`, `trace`, `triplet`, `session` or `label`. The first version of that test read raw source and failed on prose in my own docstrings — a comment citing a motivating example couples nothing, so the check was made precise rather than relaxed.
 - **Waiver:** no anchors minted and no backpropagation attempted, per the index freeze.
