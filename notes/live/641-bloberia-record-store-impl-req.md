@@ -2,7 +2,7 @@
 
 ## Impl.Abstract
 
-- **Status:** Open. Slices 1–2, 4–7 and 9 executed; 3 open, 8 written but `IndexStore` not yet rewired.
+- **Status:** Open. Slices 1–2 and 4–9 executed; only slice 3 open, and it may no longer be needed.
 - **Intent:** Rebuild `bloberia` as the general keyed-record store, able to host anchory dossiers and index records without knowing what either means.
 - **Source:** the design session in this chat. `bloberia` already existed — *"depot-scoped query:value storage for agent-associated data"* — with namespaces, locking and subset queries. This is a reshaping of it, not a new subsystem.
 - **Scope:** `tarav/bloberia/` core and CLI, its existing consumers, and the index as its first real consumer — including retiring anchory into it.
@@ -157,7 +157,7 @@ Derive `commit + file + path` for a record in hand, and resolve one back to its 
 | 7a | the restoration set | **done** |
 | 7b | anchory → `LineRecord` | **done** |
 | 7c | recover quarantined bodies | **done** |
-| 8 | index on bloberia, user-side | **written; rewiring open** |
+| 8 | index on bloberia, user-side | **done** |
 | 9 | `Record.Coordinate` | **done** |
 
 ## Impl.Log
@@ -208,4 +208,8 @@ Derive `commit + file + path` for a record in hand, and resolve one back to its 
 - **Recency is the wrong tiebreak for a stronger reason than staleness: anchors were reused.** `^c20260712-1u` has 13 distinct historical bodies and `^c20260725-17u` swings between a `DC` about builder context and a `DF` defining `Context.Assembly.Module`. Picking the newest would produce a wrong attribution, not an old wording, so multi-candidate anchors stay POIs with their candidates recorded.
 - **Both hosting syntaxes count as editions; a citation does not.** An index line appears as `- [DF] body ^anchor` on a native surface and as `--note [DF] body ^anchor` inside an `Skw.Annotation` on a product surface — the second form recovered 6 further anchors. The 992 prose lines that merely *mention* an anchor are excluded: referring to a line is not an edition of it.
 - **Wording is recovered; placement is not.** Scope stays `#Unattached` even for a restored line, because no current surface carries it and writing the historical path into `scope` would assert a grouping that no longer exists. Commit and path live in `dev/live/645-recovery-report.json`, and the record's own history is in the depot's git. A `provenance` key on the record was written and then removed: it would have been a second schema.
+- **Slice 8 executed 2026-08-20.** `IndexStore` reads and writes one user-side depot. `IndexRoot`, `Tier`, `roots()`, every `tier=` argument and the `--tier` CLI flag are gone. `coverage-converges` now reads the depot's own git history and is indifferent to whether a file holds one record or a shard of many — the topology stayed private through a check that had been reading files directly. Suite 2103 green.
+- **Defect in `644`: the depot was keyed by `line.label`.** The model states plainly that a label is the line's *public* id and may change while the id does not, so keying by it moves a record between shards on a rename — and worse, `put()` happens before `mint_label()`, which makes an unlabelled record unstorable in the normal write path. Re-keyed to `id`; label lookup is a scan, which `store.py` already defended as the right trade.
+- **Incident: a test run wrote into the live corpus.** `Geography.index_depot` falls back to the real public depot, so a test whose fixture did not configure a home reached it — 20 records added and shards modified before the run was killed. Recovered completely by `git reset --hard`, which is the second time in this run that git-tracking a depot turned a loss into an inconvenience. Two fixes: the depot is now derived from `user_root` rather than read from the environment at call time, and `conftest` isolates every test the way it already did for anchory — with a test that fails if that isolation is ever removed.
+- **The store is fast; the CLI is not.** `by_label` over 3,974 records measures 0.01s and `count` 0.06s, so the scan-based design holds at this scale. `tarav index resolve` still takes minutes, in chatlas session resolution rather than in the depot — pre-existing, and orthogonal to this slice.
 - **Waiver:** no anchors minted and no backpropagation attempted, per the index freeze.
