@@ -2,7 +2,7 @@
 
 ## Impl.Abstract
 
-- **Status:** Open. Slices 1–2, 4–6 and 9 executed; 3, 7 and 8 open.
+- **Status:** Open. Slices 1–2, 4–6, 7a and 9 executed; 3, 7b and 8 open.
 - **Intent:** Rebuild `bloberia` as the general keyed-record store, able to host anchory dossiers and index records without knowing what either means.
 - **Source:** the design session in this chat. `bloberia` already existed — *"depot-scoped query:value storage for agent-associated data"* — with namespaces, locking and subset queries. This is a reshaping of it, not a new subsystem.
 - **Scope:** `tarav/bloberia/` core and CLI, its existing consumers, and the index as its first real consumer — including retiring anchory into it.
@@ -115,9 +115,9 @@ Write-triggered, interval-based checkpoint commit. The depot's git configuration
 Many records per file under a declared cargo path, carrying anchory's 2-hex design forward.
 **Check:** the same query returns identical results under `files` and `shards`; a cargo missing the declared key fails loudly on insert.
 
-### Slice 7a — Restore what `546` dropped, before anything converts
-Recover from `ce67f3fc1` the support members and gates that `e251cd336` lost, then re-verify by diff. Conversion must not begin on a corpus that is already short of its own history.
-**Check:** the `ce67f3fc1`-vs-HEAD diff reports zero lost support members and zero lost gates.
+### Slice 7a — The restoration set, read from immutable history
+`dev/live/642-anchory-restoration-set.py` unions HEAD with `ce67f3fc1` per anchor and proves the union loses nothing either tree holds. Nothing is written back into the dossier store: the material is already conserved permanently in that commit, and the current validator's exact key-set checks would force a schema version on a format slice 7b deletes.
+**Check:** every identity string in either tree appears in the set — a check that fails when an extractor is blinded, unlike containment, which the union guarantees by construction.
 
 ### Slice 7b — Anchory → `LineRecord`
 Convert all 3,956 dossiers across three shape families, retiring the anchory subsystem and its 22 importers. Conservation is the governing rule: nothing is dropped for being unresolvable, and an orphan converts with an empty body and a quarantine scope rather than being skipped.
@@ -141,7 +141,7 @@ Derive `commit + file + path` for a record in hand, and resolve one back to its 
 | 4 | move existing consumers | **done** |
 | 5 | git handler | **done** |
 | 6 | `shards` depot type | **done** |
-| 7a | restore `546`'s losses | not started |
+| 7a | the restoration set | **done** |
 | 7b | anchory → `LineRecord` | not started |
 | 8 | index on bloberia, user-side | not started |
 | 9 | `Record.Coordinate` | **done** |
@@ -175,4 +175,8 @@ Derive `commit + file + path` for a record in hand, and resolve one back to its 
 - **Citations measured at 1,769 in `tarav-pkg` against the audit's 1,752**, and 2,497 distinct across all repos. Of 3,956 dossiers, 2,470 are cited on a live surface, **1,486 are orphans**, and 27 citations have no dossier.
 - **The orphans decide slice 7's shape.** A dossier carries a triplet *hash*, never the body, so an uncited anchor's line text is unrecoverable from the depot — and `LineRecord.line.body` is required. Under the standing rule to conserve first and clean later, they convert with an empty body and a quarantine scope, which makes each one a loud POI instead of a silent omission. Roughly 1,486 POIs is the correct outcome, not a failure.
 - **Slice 7 split.** Restoration comes first: converting a corpus that is already missing 17 support members and 354 gates would carry the loss forward under a new schema and make it permanent.
+- **Slice 7a executed 2026-08-20.** The restoration set holds 3,956 anchors, 9,683 support members (6,866 message-addressed, 2,817 turn-addressed) and 2,511 gates (1,847 message, 664 turn) — including the 17 members across 12 anchors and 354 gates across 349 anchors that `546` dropped.
+- **Restoration reads history rather than rewriting the store.** The material was never lost, only lost *from HEAD*; `ce67f3fc1` holds it permanently. Writing it back would need a `v3` dossier schema — the current parser does exact key-set checks at every level — on a format slice 7b removes. Reading from the commit versions nothing and keeps the authority immutable instead of a copy this script authored.
+- **Coordinates are not translated in 7a.** Legacy gates are turn-addressed and current ones message-addressed; each member is conserved in the space it was written in, carrying an explicit `space` field. Proving turn-to-message equivalence resolves through Chatlas2 and is its own checkable step — coercing them here would state more than is known, which is the `Durable.Evidence.Audit` stop-trigger.
+- **The first conservation check was near-vacuous and was replaced.** Asserting that the union contains what the extractors returned is true by construction. The check that survives compares every identity string in the raw records — sessions, addresses, hashes, turn ids, tokens — against the set, so an unread shape family fails it. Confirmed by blinding the turn-space extractor and watching it go red on 664 identities.
 - **Waiver:** no anchors minted and no backpropagation attempted, per the index freeze.
