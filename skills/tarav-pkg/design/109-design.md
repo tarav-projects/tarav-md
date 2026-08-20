@@ -4,13 +4,13 @@
 
 ## Agentos.Bloberia
 
-- [DF] `Agentos.Bloberia` is the Agentos subsystem providing query:value storage for JSON-serializable data and metadata associated with agent work. ^c20260724-80u
-- [PR] Agentos applications use it as a common machine-readable data substrate instead of independently implementing persistence and query mechanics. ^c20260724-107u
-- [DC] Bloberia is an importable library; `agentos bloberia ...` is its first consumer and a thin CLI over the same library contract. ^c20260724-58u
-- [DF] a `Bloberia.Record` consists of a reserved read-only Bloberia envelope and an application-owned JSON value. ^c20260724-85u
-- [DC] structural queries select records; opaque immutable record identity addresses one record for reading or mutation. ^c20260724-74u
-- [CT] Bloberia owns mechanical storage concerns; integrating applications own payload meaning, schema, mutability, and dataflow. ^c20260724-39u
-- [DC] storage is depot-scoped and every initial operation receives one explicit `Bloberia.Depot`. ^c20260724-73u
+- [DF] `Agentos.Bloberia` is a type-directed storage system in which every depot declares one `Bloberia.Depot.Type`. ^c20260820-10u
+- [DC] each depot type owns its physical format, storage topology, validation rules, and type-specific storage requirements. ^c20260820-11u
+- [CT] applications own cargo meaning and lifecycle, while the selected depot type may constrain the representation required for storage. ^c20260820-12u
+- [DC] common query operations expose the depot type’s logical cargo projection without exposing its private physical layout. ^c20260820-13u
+- [EX] the `files` type stores one JSON cargo value per private file. ^c20260820-14u
+- [EX] the `shards` type stores keyed JSON cargo values across digest-selected shard files and requires a declared depot-unique key. ^c20260820-15u
+- [CT] a new depot type may introduce a different format and storage solution without redefining the application’s domain model. ^c20260820-16u
 
 ****
 

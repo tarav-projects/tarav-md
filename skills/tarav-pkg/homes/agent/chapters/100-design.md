@@ -4,10 +4,7 @@
 
 ## Scope.Axis
 
-- [DF] the storage axis is project-scope versus user-scope: what is project data and what is user data ^c20260818-0u
-- [DC] a project holds a project-level .tarav2 folder and the user holds a global ~/.tarav2 ^c20260818-1u
-- [CT] public data is written on the project folder while private data belongs to the user tier and is not exported by default ^c20260818-2u
-- [DC] scope and authority are separate axes that both name the user: scope is what the data spans, authority is whose touch governs it ^c20260818-3u
+- [DC] `Scope.Axis` becomes semantic attachment rather than storage geography ^c20260820-17u
 
 ****
 
@@ -22,9 +19,7 @@
 
 ## Touched.Index.Record
 
-- [DF] the record is the serialized representation of an Index line, described first as a model rather than as a file or a format ^c20260818-8u
-- [CT] a canonical JSON schema defines the record while storage stays free, so one record may be spread across several files ^c20260818-9u
-- [DC] Tarav provides the storage primitives beneath the record rather than fixing one on-disk form ^c20260818-10u
+- [DF] `Index.Line.Record.Model` is the one complete serialized model of an `Index.Line`: its line projection, identities, scope, evidence links, and explicit equivalence claim. ^c20260820-18u
 
 ****
 
@@ -38,11 +33,7 @@
 
 ## Tarav2.MVP
 
-- [DF] the tarav2 MVP is parity with the tarav1 index and hugentic system only, so tarav2 can handle its own index and workflows ^c20260818-14u
-- [DC] the MVP includes chatlas2 integration because the whole hugentic system turns on the index and the chats together ^c20260818-15u
-- [CT] the goal is a bootstrapping system that can be used and evolved instead of the old one ^c20260818-16u
-- [DC] tarav2 ships both tarav2- skills and a tarav2 python library and CLI, integrating the new design with the old implementation ^c20260818-17u
-- [DC] all tarav2 subsystems are implemented under a single tarav2 root folder ^c20260818-18u
+- [DC] `Tarav2.MVP` is marked retired scaffolding preserved only in Git and record history. ^c20260820-19u
 
 ****
 

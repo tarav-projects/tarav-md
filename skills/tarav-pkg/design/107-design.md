@@ -850,7 +850,6 @@
 ## Evidence.Neighborhood
 
 - [DF] `Evidence.Neighborhood` is the readable region a `Support.Set` member identifies on its `Touch.Authority.Surface`: the member's own datum together with the surrounding context needed to read it ^c20260811-37u
-- [DC] the support members identify the neighborhood; an `Anchory.Anchor` resolves to a dossier and carries no neighborhood of its own ^c20260811-38u
 - [DC] the reading rule is to read the landing datum and around it, bounded by an implementation-chosen radius ^c20260811-39u
 - [PR] a touched datum is often not self-contained — its meaning can depend on what it answers, so reading a member alone can misread the touch it carries ^c20260811-40u
 - [EX] an approval touch reads this way: the user's datum records the intervention while the material approved sits beside it ^c20260811-41u
@@ -909,7 +908,6 @@
 ## Line.Verbatim.Gate
 
 - [DF] `Line.Verbatim.Gate` is the per-`Index.Line` certificate that explicit user approval followed presentation of materially equivalent line content ^c20260729-260u
-- [DC] a `Line.Verbatim.Gate` stores its proposal turn, approval turn, and `Edition.Approval.Token` in the dossier’s `gates` namespace ^c20260809-135u
 - [DC] the proposal turn must contain the token and the proposed line before a user turn explicitly approves that token ^c20260729-245u
 - [CT] the checker searches the proposal turn without requiring any `Index.Edition.Turn` presentation format ^c20260729-144u
 - [DC] the checker requires sufficient evidence that the proposed and landed lines preserve materially equivalent wording rather than byte-for-byte identity ^c20260729-238u
@@ -941,7 +939,6 @@
 - [DF] `Touched.Support.Network` is the network relating `Index.Line`s across touched index surfaces to supporting data on `Touch.Authority.Surface` instances ^c20260729-273u
 - [DC] its edges have the form `Support.Set` ↔ `Support.Reference` ↔ `Index.Line` ^c20260729-219u
 - [DF] `Support.Reference` is the semantic grounding relationship between an `Index.Line` and its `Support.Set`; it is not the line’s anchor identity ^c20260809-113u
-- [DC] an `Index.Line.Anchor` dossier records the line’s `Support.Reference` in its support namespace ^c20260809-114u
 - [DC] a changed semantic support interpretation creates a successor `Support.Reference` because it creates a new network edge, even when the `Index.Line` content is unchanged ^c20260810-20u
 - [CT] amendments to assertions or metadata that preserve the semantic edge do not by themselves create a successor reference ^c20260810-21u
 - [DC] an authority surface holds the first-order touched data while an index surface holds its grounded line ^c20260729-195u
@@ -955,23 +952,22 @@
 
 ****
 
-## Index.Line.Anchor
+## Index.Line.Record.Model
 
-- [DF] `Index.Line.Anchor` is the stable `Anchory.Anchor` joining an `Index.Line` materialization to its application-owned relationship dossier ^c20260809-107u
-- [DC] the Index surface owns the current `Line.Type + body + Anchor.Id` triplet; the anchor id links that triplet to its dossier without becoming line content ^c20260809-108u
-- [DC] the dossier carries an attachment assertion over the canonical triplet so unmaintained drift is detectable ^c20260809-109u
-- [CT] neither the attachment hash nor the line content defines anchor identity ^c20260809-110u
-- [FR] after a line amendment, the maintainer may preserve the anchor and update its attachment assertion or assign a new anchor according to the application semantics ^c20260809-111u
-- [CT] an anchor is never repurposed for an unrelated line relationship ^c20260809-112u
-- [DC] a dossier’s relationship namespaces independently type its relationships; each namespace owns its relationship shapes, referenced coordinates, and validation semantics ^c20260809-193u
-- [CT] the same coordinate may occur in several namespaces when each occurrence asserts a different relationship ^c20260809-194u
-- [CT] resolving or satisfying a relationship in one namespace establishes nothing about relationships in another namespace ^c20260809-195u
-- [CT] an anchor attached to a prior `Support.Reference` is not reused for its successor edge ^c20260810-22u
-- [DC] the successor anchor’s dossier preserves relationship history through an application-owned predecessor relation ^c20260810-23u
-- [DC] `Index.Line.Anchor` lets workflows refer to an anchored `Index.Line` across its surface occurrences; all occurrences carrying one anchor must agree on `Line.Type + Index.Line.Body` ^c20260811-44u
-- [CT] using an anchor as a line reference is an operational selector, not a claim that the anchor is the `Index.Line` identity or a `Stable.Reference` ^c20260811-45u
-- [DC] anchor-based line selection is best effort: a workflow refuses the selection when inspected occurrences disagree, while a linter may check agreement across a broader Index floor ^c20260811-46u
-- [DC] comprehensive agreement checking across anchor occurrences belongs to normal Index linting rather than each anchor resolution ^c20260811-48u
+- [DF] `Index.Line.Record.Model` is the one complete serialized model of an `Index.Line`: its line projection, identities, scope, evidence links, and explicit equivalence claim. ^c20260820-0u
+- [DC] `LineRecord.id` immutably identifies one record edition and is its Bloberia shard key. ^c20260820-1u
+- [DC] `trace` groups record editions asserted to preserve one semantic lineage; each edition retains its own id. ^c20260820-2u
+- [DF] `line.label` is the mutable, store-unique public citation and selector appearing on a materialized line. ^c20260820-3u
+- [CT] a label is neither record identity nor storage placement; changing it cannot move or replace the record id. ^c20260820-4u
+- [DC] `scope` attaches the line to its concept block or annotation point and distinguishes projects inside the shared depot. ^c20260820-5u
+- [DC] grounding, placement, review, landing, and equivalence remain independent typed links inside the record. ^c20260820-6u
+- [CT] records retain coordinates into immutable authority surfaces rather than copies of chat wording. ^c20260820-7u
+- [DC] every record lives in one user-side Bloberia depot; source surfaces materialize selected record editions rather than forming another record tier. ^c20260820-8u
+- [CT] label lookup is a scan and refuses ambiguity; unlabeled records remain writable before label minting. ^c20260820-9u
+
+### meta
+
+- aliases: `Index.Line.Anchor`, `Touched.Index.Record`
 
 ****
 
