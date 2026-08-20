@@ -954,7 +954,7 @@
 
 ## Index.Line.Record.Model
 
-- [DF] `Index.Line.Record.Model` is the one complete serialized model of an `Index.Line`: its line projection, identities, scope, evidence links, and explicit equivalence claim. ^c20260820-0u
+- [DF] `Index.Line.Record.Model` is the one complete serialized model of an `Index.Line`: its line projection, identities, scope, evidence links, and explicit equivalence claim. ^c20260820-18u
 - [DC] `LineRecord.id` immutably identifies one record edition and is its Bloberia shard key. ^c20260820-1u
 - [DC] `trace` groups record editions asserted to preserve one semantic lineage; each edition retains its own id. ^c20260820-2u
 - [DF] `line.label` is the mutable, store-unique public citation and selector appearing on a materialized line. ^c20260820-3u

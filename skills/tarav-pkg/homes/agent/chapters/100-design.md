@@ -17,12 +17,6 @@
 
 ****
 
-## Touched.Index.Record
-
-- [DF] `Index.Line.Record.Model` is the one complete serialized model of an `Index.Line`: its line projection, identities, scope, evidence links, and explicit equivalence claim. ^c20260820-18u
-
-****
-
 ## Project.Home
 
 - [DF] a Skill.Package and a notes surface each carry homes, one per user plus an agent home, holding chapters and appendix under a local index ^c20260818-11u

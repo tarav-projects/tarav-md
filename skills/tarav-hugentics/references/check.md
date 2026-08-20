@@ -4,7 +4,7 @@ This is an internal `Real.Time.Capture` primitive, not a public workflow. It val
 
 ## Validation Slice
 
-1. Run `tarav index linter --depot <depot> --anchor <new-anchor> ...` with one repeated `--anchor` selector per newly landed line.
+1. Run `tarav index linter --label <new-label> ...` with one repeated `--label` selector per newly landed line; the run examines only those records.
 2. For reviewed lines, add `--check line-approval --check line-verbatim-gate`; a passing line is `Reviewed.Content` for this deterministic gate only.
 3. Resolve every new support dossier with `tarav chatlas2 anchory resolve <anchor>` and require its selected message assertions to remain `MATCHED`.
 4. Validate and apply the real-time Chatlas2 Capture.Plan, then require its returned audit to contain every exact HEAD line and every planned Delta receipt.
