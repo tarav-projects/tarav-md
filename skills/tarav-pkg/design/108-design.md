@@ -54,4 +54,4 @@
 - [CT] each chapter may declare the gate policy governing its content ^c20260724-45u
 - [CT] authority and review are properties of content provenance, not consequences of index membership ^c20260724-44u
 - [EX] the `Agentos.Index.System` is a `Skw.Kernel.Index` application whose curated chapters require user gates ^c20260724-101u
-- [EX] a `POI.Catalog` is a `Skw.Kernel.Index` application whose `poi` chapter registers `POI.Class` blocks ^c20260724-97u
+- [EX] a `POI.Catalog` is an optional `Skw.Kernel.Index` application whose `poi` chapter owns `POI.Class` blocks naturally placed there; executable classes may instead live directly on their annotated checks ^c20260724-97u ^c20260820-2u

@@ -145,6 +145,8 @@
 - a building backend generates its runnable form from annotated src and strips the machinery; an annotated-only backend keeps declarations in place on the surface itself, trading surface cleanliness for constraint co-location ^c20260711-17u
 - **skw-skills** is the first backend, a building one: annotated src compiles to the skill's runnable files ^c20260711-12u
 - [DC] skw-code is annotated-only — the comment is its carrier (`# $kw:` opens, `# --flag` belongs, `# $kw. end` closes) and the annotated code is the body itself ^c20260722-32u
+- [CT] a native surface parser exposes only thin host facts; it does not know Skillware attachment vocabulary, legality, or policy ^c20260820-0u
+- [DC] the Skillware backend consumes those neutral facts and alone derives candidate `Annotation.Point`s and applies the configured allow-set ^c20260820-1u
 - [DC] a backend is a `Carrier` over one shared `$kw` frame core: the core consumes carrier-stripped tokens, the carrier strips its host syntax (markdown `>`, code comment `#`) — the split keeps `Skw.Language` surface-blind ^c20260722-31u
 - [DC] a failed check is a drift finding with no predefined winner — resolution is case-by-case; a workflow may set auto-regeneration as its own rule ^c20260709-25u
 - [PR] division of labor: the CPU materializes copy bindings and detects drift; the agent performs derivations — in src, where the declaration and its current solution live side by side ^c20260710-12u
@@ -180,7 +182,7 @@
 - the agent attaches at the coarsest point that honestly fits ^c20260711-43u
 - [DC] the sanctioned points are a configurable policy the linter enforces, not a fixed set: a per-surface allow-set, each point carrying placement, cardinality, and presence rules — strict defaults that `skw.json` relaxes as finer points earn their place ^c20260723-40u
 - [DF] `illegal-attachment` is a well-parsed annotation at a point outside the allow-set — attached nowhere sanctioned; opening a finer point in config moves its attachments illegal→legal ^c20260723-43u
-- [DC] skw-code starts strict: its one point is the file, its block at line 1, exactly one, required — a block off line 1 or a second block is an `illegal-attachment`, a managed file with no line-1 block a `missing-header` ^c20260723-36u
+- [DC] skw-code defaults to the required line-one file point; an owning project may explicitly enable the backend's class and function points without changing the native Python model ^c20260723-36u ^c20260820-1u
 - [PR] opening a finer point grants the full annotation vocabulary there, so the decision weighs every annotation kind the point could then carry rather than the occasion that motivated it ^c20260813-41u
 
 ****
@@ -192,8 +194,8 @@
 - authority follows `Touched.Authority`: untouched annotation lines are hypotheses bound by the grounded span; grounded ones hold second-order authority; gated ones are first-order touched ^c20260711-22u
 - what stays restricted below the gate is linkability, not worth — the `Touched.Authority` fence ^c20260711-60u
 - no status is stored: drift is discovered and surfaced by the checker; authority is read from the lines' provenance ^c20260711-36u
-- [CT] agent-free insertion is regulated: only the file `Annotation.Point` is open to ungated agentic annotation — every finer point lands user-gated ^c20260711-62u
-- finer annotations are therefore born touched: the gating turn is their grounding evidence ^c20260711-26u
+- [CT] point legality and line authority are independent: the backend allow-set decides whether an attachment is structurally legal, while grounding decides the authority of the lines it carries ^c20260711-62u ^c20260820-1u
+- finer annotations may carry touched or presumptive lines under the same grounding model as every other Index block ^c20260711-26u
 
 ****
 
@@ -290,10 +292,11 @@
 - [DF] a `POI.Class` is the durable domain-owned semantic definition shared by occurrences of one reviewable situation ^c20260730-97u
 - [DC] each class is a `Kernel.Block`, residing on any surface `Kernel.Block` surface-neutrality admits ^c20260814-1u
 - [DC] a class belongs to the surface its block is attached to, resolved from the class's address ^c20260814-3u
-- [DC] the stable identity of a class is its canonical `Wayfinder.Reference.Type::Index.Block` reference ^c20260730-87u
+- [DC] the stable identity of a class is its canonical managed-block `Wayfinder.Reference`; its current file, annotation point, and Python symbol are physical resolution evidence rather than class identity ^c20260730-87u ^c20260820-5u
 - [CT] the class block is its canonical `POI.Documentation` root and declares its short runtime description, evaluation protocol, allowed resolution acts, and required context surfaces ^c20260730-58u
 - [CT] many `POI.Instance`s may carry the same class reference; class data is resolved when needed rather than duplicated into each instance ^c20260730-54u
-- [EX] a class block lands as an entry in an index `POI.Catalog` chapter, or as a `Skw.Annotation` attached at an `Annotation.Point` on the check that emits it ^c20260814-2u
+- [PR] executable linters normally place one class block as a `Skw.Annotation` on its emitting check, so implementation, definition, and fix guidance evolve on one surface without duplication ^c20260814-2u ^c20260820-2u ^c20260820-3u
+- [FR] a non-executable domain may instead place a class block in any naturally managed surface, including a `POI.Catalog` when that index application is useful ^c20260820-5u
 - [PR] package ownership keeps class meaning and evaluation guidance with the domain that owns them, independently of which subsystem emits an instance ^c20260730-110u
 - [RJ] a `POI.Class` is not a concrete occurrence, evaluation verdict, or resolution ^c20260730-113u
 
@@ -313,10 +316,10 @@
 
 ## POI.Catalog
 
-- [DF] a `POI.Catalog` is the dedicated `poi` chapter of a `Package.Skill.Index`, containing the package-owned `POI.Class` blocks available for machine discovery ^c20260729-283u
-- [DC] a `Package.Skill` registers in its catalog the classes it chooses to expose there; a catalog holds the subset of a package's classes whose blocks reside on its index ^c20260813-39u
+- [DF] a `POI.Catalog` is an optional `Skw.Kernel.Index` application that groups `POI.Class` blocks when a dedicated indexed chapter is their `Natural.Placement` ^c20260729-283u
+- [DC] a catalog is neither required for POI discovery nor a second registry of classes whose canonical blocks live elsewhere ^c20260813-39u ^c20260820-2u
 - [CT] each `POI.Class` block is the canonical indexed documentation root for that class ^c20260729-88u
-- [CT] a class is addressed by a `Wayfinder.Reference.Type::Index.Block` reference rooted at its owning `Package.Skill` ^c20260729-57u
+- [CT] each class is addressed by the canonical `Wayfinder.Reference` of its actual managed block, whether Markdown-native or annotation-hosted ^c20260729-57u ^c20260820-5u
 - [CT] common POI machinery resolves the class reference through `Agentos.Wayfinder`, independently of which subsystem emitted its instances ^c20260729-80u
 - [CT] missing or ambiguous class resolution emits a resolution POI without hiding the original `POI.Instance` ^c20260729-120u
 - [RJ] a catalog contains class definitions and documentation roots, not `POI.Instance` occurrences ^c20260729-361u
@@ -1062,6 +1065,18 @@
 - [DC] the network is computed from consumer-side declarations — a target never registers its dependents; followers are derived, so an imported surface stays ignorant of its importers ^c20260715-20u
 - [PR] the network's job is notification, not judgment: when a surface changes, the `CPU.Program` notifies every surface the network links to it — a purely mechanical fan-out along the edges ^c20260715-31u
 - [DC] an `Agentic.Program` interprets each notification: whether the change is benign or a real change to propagate is a semantic verdict only the agent carries ^c20260715-16u
+
+****
+
+## Related.Surface.Resolution
+
+- [DF] `Related.Surface.Resolution` starts from any addressed managed block, resolves its canonical content, and optionally follows its explicit relationships to other managed surfaces ^c20260820-5u
+- [CT] root, direct, and transitively reachable projections are lazy, deterministic, cycle-safe, and bounded by explicit depth and size limits ^c20260820-5u
+- [CT] unresolved or ambiguous relationships remain structured diagnostics beside every successfully resolved node ^c20260820-5u
+- [CT] discovery is static through native normal models and Skillware adapters; it never imports addressed application modules ^c20260820-6u
+- [RJ] the workflow does not infer semantic edges from prose, shared words, or programming-language imports ^c20260820-5u
+- [FR] explicit relationships may reach Index, appendix, example, skill, code, or any other surface supported by the engaged resolvers ^c20260820-7u
+- [PR] `POI.Explain` is the first consumer, not the boundary; the resolver's node, edge, and traversal model remains domain-general ^c20260820-5u
 
 ****
 
