@@ -115,9 +115,13 @@ Write-triggered, interval-based checkpoint commit. The depot's git configuration
 Many records per file under a declared cargo path, carrying anchory's 2-hex design forward.
 **Check:** the same query returns identical results under `files` and `shards`; a cargo missing the declared key fails loudly on insert.
 
-### Slice 7 — Anchory → `LineRecord`
-Merge the two shapes and convert 3,956 dossiers, retiring the anchory subsystem and its 22 importers.
-**Check:** every `^c…` cited on a live surface resolves to a record; a zero-result scan for the dossier shape.
+### Slice 7a — Restore what `546` dropped, before anything converts
+Recover from `ce67f3fc1` the support members and gates that `e251cd336` lost, then re-verify by diff. Conversion must not begin on a corpus that is already short of its own history.
+**Check:** the `ce67f3fc1`-vs-HEAD diff reports zero lost support members and zero lost gates.
+
+### Slice 7b — Anchory → `LineRecord`
+Convert all 3,956 dossiers across three shape families, retiring the anchory subsystem and its 22 importers. Conservation is the governing rule: nothing is dropped for being unresolvable, and an orphan converts with an empty body and a quarantine scope rather than being skipped.
+**Check:** record count equals dossier count; support and gate cardinality conserved per anchor; a zero-result scan for the dossier shape.
 
 ### Slice 8 — The index on bloberia, user-side
 One depot for every index record; two-tier logic removed.
@@ -137,7 +141,8 @@ Derive `commit + file + path` for a record in hand, and resolve one back to its 
 | 4 | move existing consumers | **done** |
 | 5 | git handler | **done** |
 | 6 | `shards` depot type | **done** |
-| 7 | anchory → `LineRecord` | not started |
+| 7a | restore `546`'s losses | not started |
+| 7b | anchory → `LineRecord` | not started |
 | 8 | index on bloberia, user-side | not started |
 | 9 | `Record.Coordinate` | **done** |
 
@@ -165,4 +170,9 @@ Derive `commit + file + path` for a record in hand, and resolve one back to its 
 - **`shards` proves the type model.** Every query returns identical results under both types — asserted directly, parametrized over six queries — while a key-pinned lookup opens one file and a scan opens more, counted rather than trusted. Uniqueness of the key is declared as a term of the type, because a dict keyed by value enforces it whether or not anyone says so: the only choice was between saying it and losing a record silently.
 - **Defect found while probing: `TYPE_FILES` doubled as the default sentinel.** Explicitly asking for `files` on a `shards` depot was silently accepted, which is reading a depot through a layout it was not written in. Found by writing a test that asserted the wrong error and looking at why. Fixed with a real `None` default that distinguishes "whatever the depot is" from a claim about it.
 - **`Record.Coordinate` needed one decision the design had not reached:** a record whose file is *modified since HEAD* also has no coordinate. The committed bytes are a different record than the one in hand, so reporting a coordinate for it would hand out a stable link to something else. Same rule as uncommitted, same reason.
+- **Audit verified 2026-08-20, by diffing `ce67f3fc1` against HEAD rather than reading `546`'s log.** Confirmed exactly: 1,982 typed lines in `tarav-pkg`; 3,811 anchors in `chatlas/` plus 145 in `chatlas2/`; 51 converted records; anchor identity fully preserved (0 lost, 145 added); **17 support members lost across 12 anchors**; `^c20260630-0u` cited with no dossier; `546` permits partial conversion by its own counters.
+- **One audit figure is understated, and materially.** It reports 73 dropped gates across 73 anchors — which is `546`'s own `gate:INCOMPLETE 73` counter, i.e. the impl-req's self-report. Diffing the data gives **354 gates lost across 349 anchors**, roughly five times as many. A migration's own log is not evidence about the migration; the two trees are.
+- **Citations measured at 1,769 in `tarav-pkg` against the audit's 1,752**, and 2,497 distinct across all repos. Of 3,956 dossiers, 2,470 are cited on a live surface, **1,486 are orphans**, and 27 citations have no dossier.
+- **The orphans decide slice 7's shape.** A dossier carries a triplet *hash*, never the body, so an uncited anchor's line text is unrecoverable from the depot — and `LineRecord.line.body` is required. Under the standing rule to conserve first and clean later, they convert with an empty body and a quarantine scope, which makes each one a loud POI instead of a silent omission. Roughly 1,486 POIs is the correct outcome, not a failure.
+- **Slice 7 split.** Restoration comes first: converting a corpus that is already missing 17 support members and 354 gates would carry the loss forward under a new schema and make it permanent.
 - **Waiver:** no anchors minted and no backpropagation attempted, per the index freeze.
