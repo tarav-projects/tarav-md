@@ -2,7 +2,7 @@
 
 ## Impl.Abstract
 
-- **Status:** Open. Slices 1–2 and 4 executed; 3 and 5–9 open.
+- **Status:** Open. Slices 1–2, 4–6 and 9 executed; 3, 7 and 8 open.
 - **Intent:** Rebuild `bloberia` as the general keyed-record store, able to host anchory dossiers and index records without knowing what either means.
 - **Source:** the design session in this chat. `bloberia` already existed — *"depot-scoped query:value storage for agent-associated data"* — with namespaces, locking and subset queries. This is a reshaping of it, not a new subsystem.
 - **Scope:** `tarav/bloberia/` core and CLI, its existing consumers, and the index as its first real consumer — including retiring anchory into it.
@@ -135,11 +135,11 @@ Derive `commit + file + path` for a record in hand, and resolve one back to its 
 | 2 | host anchory + index shapes | **done** |
 | 3 | declared indexes | not started |
 | 4 | move existing consumers | **done** |
-| 5 | git handler | not started |
-| 6 | `shards` depot type | not started |
+| 5 | git handler | **done** |
+| 6 | `shards` depot type | **done** |
 | 7 | anchory → `LineRecord` | not started |
 | 8 | index on bloberia, user-side | not started |
-| 9 | `Record.Coordinate` | not started |
+| 9 | `Record.Coordinate` | **done** |
 
 ## Impl.Log
 
@@ -160,4 +160,9 @@ Derive `commit + file + path` for a record in hand, and resolve one back to its 
 - **`check()` lost three of its four findings, by the deletion test.** `invalid-record-filename`, `invalid-record` and `identity-mismatch` each inspected a structure the contract removed — a meaningful filename, an envelope, a store-owned id. Only `invalid-json` describes an invariant bloberia still owns. The POI classes `Bloberia.Linter/Record.Filename.Invalid`, `/Record.Invalid` and `/Identity.Mismatch` retire with them, in `102-poi.md` and the `000-INDEX.md` route.
 - **`get --id` and `edit --id` left the CLI rather than being reimplemented.** An id flag could only address a record through the private filename, which is the one handle the contract withholds. Both return as queries; a query matching nothing is now an ordinary result rather than a distinct not-found error.
 - **Defect found by the port: nested namespaces were lost in slice 1.** The rewritten `_validate_namespace` rejected any `/`, silently narrowing a contract the retired suite had guarded (`a/b/c` addressable as `a`). Caught only because the surviving constraints were ported rather than dropped. Fixed by validating each segment — `..` and a leading dot are the two ways a prefix becomes a re-rooting — and `namespaces()` restored to listing every prefix, since `a/b/c` is readable as `a` too.
+- **Slices 5, 6 and 9 executed 2026-08-20.** Depot meta was declared in slice 1 but never implemented; slice 5 had to land it, so `type`, `key` and `git` are now read from `meta.json` and a depot's own meta outranks any constructor argument.
+- **The git handler asks git for the last checkpoint rather than storing one.** Git already knows when it last committed these paths; a second copy of that fact is a cache with no reader but us, and the only thing it can do is disagree. The handler also never runs `git init` — declining is the whole mechanism, so there is no init path to get wrong and a misconfigured depot stays untracked instead of nesting a `.git/` that detaches its own history.
+- **`shards` proves the type model.** Every query returns identical results under both types — asserted directly, parametrized over six queries — while a key-pinned lookup opens one file and a scan opens more, counted rather than trusted. Uniqueness of the key is declared as a term of the type, because a dict keyed by value enforces it whether or not anyone says so: the only choice was between saying it and losing a record silently.
+- **Defect found while probing: `TYPE_FILES` doubled as the default sentinel.** Explicitly asking for `files` on a `shards` depot was silently accepted, which is reading a depot through a layout it was not written in. Found by writing a test that asserted the wrong error and looking at why. Fixed with a real `None` default that distinguishes "whatever the depot is" from a claim about it.
+- **`Record.Coordinate` needed one decision the design had not reached:** a record whose file is *modified since HEAD* also has no coordinate. The committed bytes are a different record than the one in hand, so reporting a coordinate for it would hand out a stable link to something else. Same rule as uncommitted, same reason.
 - **Waiver:** no anchors minted and no backpropagation attempted, per the index freeze.
