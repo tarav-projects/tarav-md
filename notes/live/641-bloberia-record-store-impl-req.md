@@ -132,6 +132,10 @@ Mapping settled by measurement:
 
 **Check:** record count equals anchor count; support and gate cardinality conserved per anchor; every drop named and counted.
 
+### Slice 7c — Recover the quarantined bodies from git history
+`dev/live/645-recover-quarantined-bodies.py`. History retains the surface editions a dossier does not, so wording is recoverable even where the triplet hash is not.
+**Check:** all 1,625 classified; record, support and gate cardinality identical before and after; a body written only where proven or unambiguous.
+
 ### Slice 8 — The index on bloberia, user-side
 One depot for every index record; two-tier logic removed.
 **Check:** the linter passes against the depot; no record is written project-tier.
@@ -152,6 +156,7 @@ Derive `commit + file + path` for a record in hand, and resolve one back to its 
 | 6 | `shards` depot type | **done** |
 | 7a | the restoration set | **done** |
 | 7b | anchory → `LineRecord` | **done** |
+| 7c | recover quarantined bodies | **done** |
 | 8 | index on bloberia, user-side | **written; rewiring open** |
 | 9 | `Record.Coordinate` | **done** |
 
@@ -197,4 +202,10 @@ Derive `commit + file + path` for a record in hand, and resolve one back to its 
 - **33 label collisions merged rather than duplicated** — `dev/live/644-write-index-depot.py`. An existing index record and a converted anchor sharing a label are one line seen from two sides: the index record holds body, scope and trace, the dossier holds the grounding. Identity and wording come from the index, support and gates union. Duplicating would have been the worse outcome for both.
 - **The index now lives at `~/Documents/bloberia/tarav-index`:** a `shards` depot keyed by `line.label`, **3,974 records across 256 shards**, git-tracked and committed. 3,974 grounded, 1,656 gated, 1,625 quarantined. The git handler's own interval checkpoint fired during the load, which is its first use outside a test.
 - **Verified end to end on real data.** `first({"line.label": {"equals": "^c20260510-1u"}})` returns the `Stable.Surface` line with 6 support members, and its `Record.Coordinate` — `bloberia:06b9023…/records/bb.json#^c20260510-1u.line.body` — resolves out of the commit to the same text.
+- **`643`'s core assumption was wrong, and an audit caught it.** It treated an uncited anchor's wording as unrecoverable because a dossier stores a triplet *hash* and never the text. True of the dossier, false of the system: repository git history retains the surface editions that carried those lines. 671 of the 1,625 quarantined anchors have at least one historical wording.
+- **Slice 7c executed 2026-08-20.** All 1,625 classified by evidence strength: **110 verified** by recomputed triplet hash, **266 single-candidate**, 266 ambiguous, 29 hash-mismatch, 954 absent from every repository's history. **376 bodies restored**; record, support and gate cardinality identical before and after.
+- **Hash verification reaches 27% of the set, not all of it.** Only 446 of 1,625 quarantined anchors carry a triplet hash at all — the flat `chatlas.support-set.v3`–`v6` families have no `attachment`. So "validate by recomputing the hash" cannot be the gate for the other 1,179; for those a single surviving wording is written and the report says it is unproven.
+- **Recency is the wrong tiebreak for a stronger reason than staleness: anchors were reused.** `^c20260712-1u` has 13 distinct historical bodies and `^c20260725-17u` swings between a `DC` about builder context and a `DF` defining `Context.Assembly.Module`. Picking the newest would produce a wrong attribution, not an old wording, so multi-candidate anchors stay POIs with their candidates recorded.
+- **Both hosting syntaxes count as editions; a citation does not.** An index line appears as `- [DF] body ^anchor` on a native surface and as `--note [DF] body ^anchor` inside an `Skw.Annotation` on a product surface — the second form recovered 6 further anchors. The 992 prose lines that merely *mention* an anchor are excluded: referring to a line is not an edition of it.
+- **Wording is recovered; placement is not.** Scope stays `#Unattached` even for a restored line, because no current surface carries it and writing the historical path into `scope` would assert a grouping that no longer exists. Commit and path live in `dev/live/645-recovery-report.json`, and the record's own history is in the depot's git. A `provenance` key on the record was written and then removed: it would have been a second schema.
 - **Waiver:** no anchors minted and no backpropagation attempted, per the index freeze.
