@@ -120,8 +120,17 @@ Many records per file under a declared cargo path, carrying anchory's 2-hex desi
 **Check:** every identity string in either tree appears in the set — a check that fails when an extractor is blinded, unlike containment, which the union guarantees by construction.
 
 ### Slice 7b — Anchory → `LineRecord`
-Convert all 3,956 dossiers across three shape families, retiring the anchory subsystem and its 22 importers. Conservation is the governing rule: nothing is dropped for being unresolvable, and an orphan converts with an empty body and a quarantine scope rather than being skipped.
-**Check:** record count equals dossier count; support and gate cardinality conserved per anchor; a zero-result scan for the dossier shape.
+Convert all 3,956 anchors from the restoration set, retiring the anchory subsystem and its 22 importers. Conservation governs: nothing is dropped for being unresolvable, and an uncited anchor converts with an empty body and a quarantine scope rather than being skipped.
+
+Mapping settled by measurement:
+
+- `line.body` / `line.type` / `scope` come from the citing surface line and its enclosing `## Concept` heading — **2,331 of 3,956 anchors** have one. The remaining 1,625 convert empty-bodied into quarantine, because a dossier carries a triplet *hash* and never the text.
+- support members become `SupportRef`s carrying the space they were written in, so a turn-addressed member never claims to be a message.
+- gates become `GateRef`s, whose `{archive, session_id, token, user_turn_id, agent_turn_id}` shape already fits the legacy turn-addressed form: `approval_turn` → `user_turn_id`, `verbatim_turn`/`proposal_turn` → `agent_turn_id`.
+
+**Open decision — `LineRecord.review` holds one `GateRef`.** 8 anchors carry two genuinely distinct tokens and cannot be converted without either dropping one gate each or widening the field. The other 841 multi-gate anchors are one token in two representations, not two gates.
+
+**Check:** record count equals anchor count; support and gate cardinality conserved per anchor; a zero-result scan for the dossier shape.
 
 ### Slice 8 — The index on bloberia, user-side
 One depot for every index record; two-tier logic removed.
@@ -179,4 +188,6 @@ Derive `commit + file + path` for a record in hand, and resolve one back to its 
 - **Restoration reads history rather than rewriting the store.** The material was never lost, only lost *from HEAD*; `ce67f3fc1` holds it permanently. Writing it back would need a `v3` dossier schema — the current parser does exact key-set checks at every level — on a format slice 7b removes. Reading from the commit versions nothing and keeps the authority immutable instead of a copy this script authored.
 - **Coordinates are not translated in 7a.** Legacy gates are turn-addressed and current ones message-addressed; each member is conserved in the space it was written in, carrying an explicit `space` field. Proving turn-to-message equivalence resolves through Chatlas2 and is its own checkable step — coercing them here would state more than is known, which is the `Durable.Evidence.Audit` stop-trigger.
 - **The first conservation check was near-vacuous and was replaced.** Asserting that the union contains what the extractors returned is true by construction. The check that survives compares every identity string in the raw records — sessions, addresses, hashes, turn ids, tokens — against the set, so an unread shape family fails it. Confirmed by blinding the turn-space extractor and watching it go red on 664 identities.
+- **The `review` cardinality scare was mostly an artifact, and measuring said so.** 849 anchors carry more than one gate, which looked like ~850 gates about to be dropped by a single-valued `LineRecord.review` — the exact loss 7a had just restored. Comparing tokens showed 841 of them are *one* token in two representations, the pre-migration turn-addressed form and the post-migration message-addressed one, both conserved by the union. The real exposure is **8 anchors with genuinely distinct tokens**, which is a decision rather than an emergency.
+- **Defect in 7a's landed code, found by that comparison.** `_gates` labelled a gate's coordinate space by *where it was stored*, but the `v1` dossier kept turn-addressed gates in the same `relationships.gates` slot that `v2` uses for message-addressed ones. The mislabel made two representations of one token look like two gates. Space is now read off the entry, which also exposed 133 gates classified as `unknown`: 131 are `support-set.v4`'s older spelling, a turn ref serialized as the string `<session>:<turn>`, and 2 are genuinely empty. Corrected split is 1,638 turn, 871 message, 2 empty — the earlier 1,847/664 counted storage location, not addressing.
 - **Waiver:** no anchors minted and no backpropagation attempted, per the index freeze.
