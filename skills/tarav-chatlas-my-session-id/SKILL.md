@@ -75,7 +75,7 @@ Never infer the current session from the newest transcript file, process recency
 
 The fallback works for the provider families Chatlas2 currently normalizes: Codex and Claude Code. For another provider, return `CHATLAS2_PROVIDER_UNSUPPORTED` rather than invoking Chatlas1.
 
-- **One freshness boundary.** The first lookup uses `tarav chatlas2 --update ...`. The update refreshes supported provider artifacts and Session.Index once; subsequent fragment queries reuse that stable snapshot.
+- **One freshness boundary.** The first lookup uses `tarav chatlas --update ...`. The update refreshes supported provider artifacts and Session.Index once; subsequent fragment queries reuse that stable snapshot.
 - **Bounded search.** The caller just wrote a turn, so its session is among the most recently active. Session.Query (newest-first, small time window) bounds the candidate set before message content is read.
 - **Self-grounding fragments.** The safest fragments are the caller's own verbatim USER turns: the agent holds them exactly, they are already persisted (no flush race), and distinctive tokens (rare words, identifiers, typos) collide with almost nothing.
 - **Authoritative matching.** Chat.Query returns only decoded, verified `Chat.Message` records from the current Chatlas2 Normal Model cache. Candidate scans never establish a match.
@@ -111,7 +111,7 @@ From the caller's **own** recent USER turns, pick distinctive verbatim fragments
 Compute the `--since` cutoff as an ISO timestamp, then ask Session.Query for a newest-first bounded candidate set. Redirect the payload; it must never enter the model.
 
 ```bash
-tarav chatlas2 --update sessions query --provider <provider> --active-after <cutoff> \
+tarav chatlas --update sessions query --provider <provider> --active-after <cutoff> \
   --sort newest --limit 15 --json > /tmp/chatlas2-self-sessions.json
 ```
 
@@ -124,7 +124,7 @@ tarav chatlas2 --update sessions query --provider <provider> --active-after <cut
 For each fragment, run the same bounded Chat.Query and redirect its JSON. Then intersect the message results by neutral session identity in a subprocess. Surface only the outcome:
 
 ```bash
-tarav chatlas2 chat query --provider <provider> --active-after <cutoff> \
+tarav chatlas chat query --provider <provider> --active-after <cutoff> \
   --side user --contains '<fragment>' --session-limit 15 --limit 1000 --json \
   > /tmp/chatlas2-self-fragment-1.json
 
@@ -160,7 +160,7 @@ When the Step 3–4 fallback resolved one row, return that row directly; it alre
 When a direct provider reader resolved `session_id`, ask Chatlas2 Session.Query for its neutral identity with one exact, provider-scoped query. This is the direct path's single update:
 
 ```bash
-tarav chatlas2 --update sessions query --provider <provider> --session-id <session-id> \
+tarav chatlas --update sessions query --provider <provider> --session-id <session-id> \
   --limit 2 --json
 ```
 

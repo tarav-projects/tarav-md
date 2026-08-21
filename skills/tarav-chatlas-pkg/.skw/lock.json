@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "d859285fd7777e2f4967c0c44d501d25daab52f30ed3726de4cc9fcaa24c82ef",
+      "output_sha256": "a1f93f5d2c09e74803e942549bc5204eb604419f8f5eb40a046060d892c9caf6",
       "recipes": [
         {
           "heading": "^chatlas-pkg-batchy-runtime-contract",

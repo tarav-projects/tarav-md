@@ -47,15 +47,15 @@ Run transcript traversal and synthesis in a separate agent by default so prior-s
 Classify the selector, then make the first read the workflow's only update:
 
 ```bash
-tarav chatlas2 --update sessions query --session-id <id> --limit 10 --json
-tarav chatlas2 --update sessions query --uri <uri> --limit 10 --json
-tarav chatlas2 --update sessions query --identity-hash <hash> --limit 10 --json
+tarav chatlas --update sessions query --session-id <id> --limit 10 --json
+tarav chatlas --update sessions query --uri <uri> --limit 10 --json
+tarav chatlas --update sessions query --identity-hash <hash> --limit 10 --json
 ```
 
 For free text, search verified user and agent messages, then deduplicate by neutral identity:
 
 ```bash
-tarav chatlas2 --update chat query --contains '<text>' \
+tarav chatlas --update chat query --contains '<text>' \
   --sort newest --session-limit 50 --limit 100 --json
 ```
 
@@ -69,7 +69,7 @@ tarav chatlas2 --update chat query --contains '<text>' \
 Read all `Chat.Message` records oldest-first. Redirect each page to a temporary file and process it before requesting the next:
 
 ```bash
-tarav chatlas2 chat query --identity-hash <hash> \
+tarav chatlas chat query --identity-hash <hash> \
   --sort oldest --offset <offset> --limit 100 --json
 ```
 
@@ -108,7 +108,7 @@ Do not treat this artifact as the original transcript.
 source-session-id: <id>
 source-session-uri: <uri>
 source-identity-hash: <hash>
-resolved-via: tarav chatlas2 ...
+resolved-via: tarav chatlas ...
 sourced-via: bounded Chat.Query pages
 
 [continuation-state]

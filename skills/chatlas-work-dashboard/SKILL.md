@@ -59,7 +59,7 @@ This is a `Batchy.Skill` — called like a terminal command. Load `tarav-batchy-
 Convert `--since` to an ISO timestamp with a small local script. Perform exactly one update on the first read:
 
 ```bash
-tarav chatlas2 --update sessions query \
+tarav chatlas --update sessions query \
   --project <current-project-root> \
   --active-after <cutoff> --sort newest --limit <limit> --json
 ```
@@ -76,10 +76,10 @@ Each row provides `last_activity_at`, provider, instance, project path, native s
 Recap no more than eight sessions per run. For each selected identity:
 
 ```bash
-tarav chatlas2 chat query --identity-hash <hash> \
+tarav chatlas chat query --identity-hash <hash> \
   --sort oldest --offset 0 --limit 3 --json
 
-tarav chatlas2 chat query --identity-hash <hash> \
+tarav chatlas chat query --identity-hash <hash> \
   --sort newest --offset 0 --limit 8 --json
 ```
 
@@ -99,9 +99,9 @@ Keep provider, instance, URI, and identity hash out of ordinary rows; show them 
 
 ## Follow-Up
 
-- **drill-in** — resolve `--session` with `tarav chatlas2 --update sessions query --session-id ...`; then read oldest 5 and newest 30 messages
+- **drill-in** — resolve `--session` with `tarav chatlas --update sessions query --session-id ...`; then read oldest 5 and newest 30 messages
 - **widen** — rerun with a larger cutoff or `--all`
-- **find** — use `tarav chatlas2 --update chat query --contains '<fragment>' --sort newest --session-limit 50 --limit 20 --json`, then deduplicate candidate sessions
+- **find** — use `tarav chatlas --update chat query --contains '<fragment>' --sort newest --session-limit 50 --limit 20 --json`, then deduplicate candidate sessions
 - **jump** — hand the exact session to `chatlas-session-continue`
 
 Preserve the current landscape in conversation during follow-up; do not repeat the update while the user is exploring the same snapshot.

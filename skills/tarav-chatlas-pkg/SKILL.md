@@ -35,11 +35,11 @@ Chat.Turn      → what provider material belongs to a selected message's turn?
 Raw.Archive    → what native detail was retained beyond the Normal Model?
 ```
 
-- `tarav chatlas2 --update <command>` performs one archive/index delta refresh before a read when freshness matters.
-- `tarav chatlas2 sessions query` selects Codex and Claude sessions from Session.Index metadata.
-- `tarav chatlas2 chat query` reads verified `Chat.Message` content, stable refs, and optional containing-turn refs.
+- `tarav chatlas --update <command>` performs one archive/index delta refresh before a read when freshness matters.
+- `tarav chatlas sessions query` selects Codex and Claude sessions from Session.Index metadata.
+- `tarav chatlas chat query` reads verified `Chat.Message` content, stable refs, and optional containing-turn refs.
 - `chat query --offset N --limit M` returns bounded chronological pages and a `next_offset`; update once before a multi-page traversal, not once per page.
-- `tarav chatlas2 turns get --message-address ... --hydrate` expands a selected message to its containing opaque turn material.
+- `tarav chatlas turns get --message-address ... --hydrate` expands a selected message to its containing opaque turn material.
 
 ## Package.Driver.Router
 
@@ -55,11 +55,11 @@ The root owns no full-session capture or retained-summary production route. Agen
 | Surface | Use |
 |---|---|
 | `000-INDEX.md` → `design/`, `poi/` | Chatlas concepts and package-owned POI classes, with depth in `appendix/` |
-| `tarav chatlas2 sessions query` | Select supported sessions by provider-neutral metadata |
-| `tarav chatlas2 chat query` | Search or traverse authoritative `Chat.Message` records |
-| `tarav chatlas2 views get` | Read disposable transcript, user-message, event, or full-model projections |
-| `tarav chatlas2 turns get` | Resolve and optionally hydrate a containing `Chat.Turn` |
-| `tarav chatlas2 anchory` | Ground consumer records in stable `Chat.Message.Ref` evidence |
+| `tarav chatlas sessions query` | Select supported sessions by provider-neutral metadata |
+| `tarav chatlas chat query` | Search or traverse authoritative `Chat.Message` records |
+| `tarav chatlas views get` | Read disposable transcript, user-message, event, or full-model projections |
+| `tarav chatlas turns get` | Resolve and optionally hydrate a containing `Chat.Turn` |
+| `tarav chatlas anchory` | Ground consumer records in stable `Chat.Message.Ref` evidence |
 
 ## Parked Work
 
