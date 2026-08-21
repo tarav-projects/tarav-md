@@ -230,6 +230,18 @@
 
 ****
 
+## Block.Type
+
+- [DF] `Block.Type` is the intrinsic domain classification assigned to a parsed `Kernel.Block` ^c20260821-21u
+- [CT] the domain parser assigns the type using the project-surface context supplied with the element being parsed ^c20260821-22u
+- [RJ] a file or domain parser does not rediscover project placement or surface membership from ambient filesystem context ^c20260821-23u
+- [DC] the initial realization assigns block types by placement on declared surfaces ^c20260821-24u
+- [CT] block-oriented consumers declare the `Block.Type`s they accept and operate over matching parsed blocks ^c20260821-25u
+- [RJ] policy-applied roles such as `Review.Required.Block` are not intrinsic block types ^c20260821-26u
+- [FR] additional authoritative typing mechanisms may be introduced when an actual consumer requires them ^c20260821-27u
+
+****
+
 ## Kernel.Block.Section
 
 - `Kernel.Block.Section` is a named part of a `Kernel.Block`

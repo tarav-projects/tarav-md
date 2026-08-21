@@ -57,6 +57,18 @@
 
 ****
 
+## Project.Surface.Model
+
+- [DF] `Project.Surface.Model` is the project-aware AST that represents a project’s elements and their participation in declared surfaces ^c20260821-14u
+- [CT] it is a composed read model assembled from structural facts contributed by project and subsystem parsers ^c20260821-15u
+- [CT] each element may carry independent facts such as element kind, language, and zero or more surface memberships ^c20260821-16u
+- [CT] overlapping surface memberships are represented independently, preserving the overlap admitted by `Surface.Concept` ^c20260821-17u
+- [RJ] it owns no discovery, classification, or subsystem behavior; the producers constructing it own those decisions ^c20260821-18u
+- [PR] its schema grows demand-first: model only the structural detail required by an actual consumer ^c20260821-19u
+- [CT] one model is constructed for an explicitly selected project; the caller’s working directory is not semantic input ^c20260821-20u
+
+****
+
 ## Block.Path
 
 - [DF] `Block.Path` is a block name written as a `/`-separated path — the full path is the name

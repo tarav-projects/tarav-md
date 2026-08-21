@@ -262,6 +262,18 @@
 
 ****
 
+## Index.Review.Policy
+
+- [DF] `Index.Review.Policy` is project configuration selecting parsed blocks whose current `Index.Line`s require user review ^c20260821-28u
+- [DC] selection starts from intrinsic `Block.Type` and may be refined by structural facts exposed through `Project.Surface.Model` ^c20260821-29u
+- [DC] a match projects the `Review.Required.Block` role onto the block without changing its intrinsic type ^c20260821-30u
+- [CT] every current line of a `Review.Required.Block` must carry `Reviewed.Content` ^c20260821-31u
+- [DC] the default policy selects blocks on the project’s native Markdown Index surface ^c20260821-32u
+- [FR] project configuration may add block types from any parsed surface without introducing domain-specific review machinery ^c20260821-33u
+- [EX] selecting `POI.Class.Block` covers class definitions attached to SKW-managed code without creating a POI-specific review system ^c20260821-34u
+
+****
+
 ## User.Gate
 
 - [DF] a `User.Gate` is an `Accountable.Assertion` whose claim is about the `Chat.Surface`: evidence of a declared kind can be found in the gated object's dossier ^c20260719-46u
