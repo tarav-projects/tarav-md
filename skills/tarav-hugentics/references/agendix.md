@@ -47,15 +47,14 @@ For candidate blocks, name the attachment path: `Target: create ## Concept.X/Age
 
 1. **Route** each entry under a routed concept — a line appends to `Concept.X/Agendix`, a candidate block attaches intact as `Concept.X/Agendix/Candidate.Name`. No routed concept → `agendix/Unassigned-agendix.md`, the homeless pool: accumulated evidence that a concept may be missing — promotion evidence, never a dump; an intact candidate block there is the strongest form of that evidence.
 2. **Fence**: type each line; drop what cannot take a type.
-3. **Support**: use the internal `Real.Time.Grounding.Knowledge.Module` in `references/link.md` to build one `Support.Set` per line; Chatlas2 stores qualifying user `Chat.Message.Ref` members. For a multi-line landing, use one `tarav.chatlas2.anchor-batch.v2` preview and registration pass over every exact final typed body; keep a stable `client_id` per drafted line and consume the returned `client_id → anchor` mapping. Do not shell-loop the single-line commands.
-4. **Write** `agendix/Concept.X-agendix.md` in the engaged depot, next to `appendix/` — apply the complete returned anchor mapping in one patch using appendix writing rules, block heading `Concept.X/Agendix`, and lines appended:
+3. **Manifest**: use the internal `Real.Time.Grounding.Knowledge.Module` in `references/link.md` to put every final typed line, target block, and qualifying user `Chat.Message.Ref` support in one `Capture.Manifest`; preserve a stable `client_id` per drafted line.
+4. **Preview and write**: preview the manifest, then let `tarav index capture land` write `agendix/Concept.X-agendix.md`, attach the returned anchors, create its `LineRecord`s, and project Chat.Index through one audited transaction. Use appendix writing rules, block heading `Concept.X/Agendix`, and lines shaped as:
 
    ```md
    - [CT] `Reviewed.Cite.Closure`: reviewed surfaces may not cite the agendix, unreviewed surfaces may — promotion copies content out before an index cite ^d<YYYYMMDD>-<N>u
    ```
 
-5. **Backpropagate** the exact returned line-to-anchor mapping through the shared Real.Time.Capture `Index.HEAD.Backpropagation` postcondition. The agendix remains the primary landing surface; Chat.Index receives the current-chat projection and best-effort chronological receipts.
-6. **Report** compactly: lines captured per concept, fallback entries, candidates dropped at the fence, head-only backpropagation gaps, and why.
+5. **Report** compactly: lines captured per concept, fallback entries, candidates dropped at the fence, head-only backpropagation gaps, and why.
 
 ## Boundaries
 

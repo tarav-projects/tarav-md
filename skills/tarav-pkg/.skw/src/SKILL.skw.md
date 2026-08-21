@@ -43,7 +43,7 @@ Two important locations for agentos surfaces: project folders and package skills
 
 A **Project Folder** is where the project that users and agents are developing lives — in practice, a folder that stores notes, code, data, and other project material. A `.agentos` folder is a hint that a folder might be an agentos project. At the project level, look for `AGENTS.md`, `notes/` (live notes, index, appendix), and `dev/` (scripts and tooling).
 
-A **Package Skill** is a reachable skill that serves as the agentic interface to a package — it contains data, documentation, and operational instructions for using a package's functionalities. For instance, `tarav-pkg` is the Package Skill of the agentos framework. At the package level, a package skill contains its own `000-INDEX.md`, `design/`, optional specialized chapters such as `poi/`, `appendix/`, `references/`, and `SKILL.md`.
+A **Package Skill** is a reachable skill that serves as the agentic interface to a package — it contains data, documentation, and operational instructions for using a package's functionalities. For instance, `tarav-pkg` is the Package Skill of the agentos framework. At the package level, a package skill contains its own `000-INDEX.md`, `design/`, optional specialized chapters such as `appendix/` and `references/`, and `SKILL.md`.
 
 When working in a project, the agent may encounter several workspaces — multiple project folders, multiple package skills, or both. Keep clear which workspace an action or prompt is referring to — surfaces from different workspaces should not be confused.
 
@@ -74,7 +74,7 @@ Concepts are named using **Dotted Notation** — compound names like `Vertical.S
 Indexes are distributed across routed chapters plus appendix depth:
 
 - `design/` — the default `Index.Chapter`: conceptual fundamentals in flat numbered files (`100-design.md`, `101-design.md`, ...) whose suffix names the chapter. The loading policy is open — when in doubt, search the default chapter only.
-- specialized chapters such as `poi/` — indexed data with a narrower role; `poi/` is the machine-discoverable `POI.Catalog` of package-owned class blocks.
+- specialized chapters — indexed data with a narrower role. A package may choose an optional `poi/` `POI.Catalog`; executable POI classes are normally discovered from their canonical annotations on the checks that emit them.
 - `appendix/` — on-demand depth. Contains concept-named files (`Concept.Name-appendix.md`) — check if one exists when you need depth beyond the index block.
 
 The **router** maps every concept name to the file that holds it — always read this first. Package indexes use `000-INDEX.md`; project-local indexes use `001-index.md`.
@@ -108,8 +108,6 @@ skills/some-pkg/
 ├── design/
 │   ├── 100-design.md           ← package concept blocks
 │   └── 101-design.md
-├── poi/
-│   └── 100-poi.md              ← optional package-owned POI classes
 └── appendix/
     └── Some.Concept-appendix.md
 ```
@@ -168,11 +166,11 @@ Separate packages exist for other systems:
 
 > $kw. end
 
-## Agentos CLI
+## Tarav CLI
 
 > $kw: ^driver-cli-literacy
 
-The `agentos` CLI is available for discovery and operations. Run `agentos --help` to see what it can do.
+The `tarav` CLI is available for discovery and operations. Run `tarav --help` to see what it can do.
 
 For configuring and syncing project-local imported skills, read `references/skills-routing.md`.
 
@@ -236,6 +234,13 @@ This `Package.Driver.Router` is a specialized `Routing.Table` that sends a packa
 > --load @<tarav-hugentics>/SKILL.md
 > --when the caller wants a structured checkpoint for an active workflow
 > --then load tarav-hugentics --workflow-status
+
+> $kw: ^route-index-test-block --router-row --table ^package-driver-router
+> --match semantic
+> --to Index.Test.Block.Workflow.Module
+> --load references/index-test-block.md
+> --when the caller is developing the Index implementation and needs a disposable ordinary block to exercise its real parser, capture, linter, gate, or cleanup path end to end
+> --then load the Test.Block workflow and keep authoring plus landing on the normal production path
 
 > $kw: ^route-index-retrofit --router-row --table ^package-driver-router
 > --flag --index-retrofit

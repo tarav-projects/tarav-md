@@ -58,9 +58,9 @@ After the slice checks pass and its diff is reviewed:
 1. compare the verified product edition, `Impl.Index`, and landed annotations;
 2. add any missed maintenance-relevant line and remove or correct any unsupported one;
 3. record consequential unresolved inference in `Impl.Log` as presumption;
-4. mint the final line-dossier batch for the exact landed lines;
-5. backpropagate that batch to `Chat.Index.HEAD` and, when support supplies a local horizon, the Delta tape;
-6. report retryable head-only or failed backpropagation gaps.
+4. assemble one `Capture.Manifest` for the exact verified editions and selected grounding;
+5. preview it, then land it through the complete Anchory, source, `LineRecord`, and Chat.Index pipeline;
+6. require its final audit and report retryable head-only or failed placement gaps.
 
 Backpropagation is batched only after the slice's actual product edition is verified. Intended but unimplemented plan material must not masquerade as landed product state. A failed slice may update `Impl.Index` or `Impl.Log`, but it must not backpropagate a product claim that never landed.
 
@@ -80,6 +80,6 @@ An empty audit is valid. The audit exists to catch important omissions and drift
 
 ## Operational Boundary
 
-Use the current conversation already loaded in agent context for understanding. Ask Chatlas2 only to resolve selected support messages, mint final line dossiers, and run the shared `Capture.Plan` validation/application path. Do not reconstruct the whole transcript by default.
+Use the current conversation already loaded in agent context for understanding. Ask Chatlas2 only to resolve selected message references for the one capture manifest. Let `tarav index capture` derive and apply the line dossiers, source patches, records, and Chat.Index plan; do not reconstruct the whole transcript or hand-author those intermediate artifacts.
 
 The primary product landing remains successful if chronological Delta placement is unavailable. `Chat.Index.HEAD` still receives the exact landed line when possible, and any gap is reported for later reconciliation rather than repaired by invented chronology.

@@ -43,10 +43,10 @@ Inside the Implementation namespace, `--impl --design` and `--impl --harvest` be
 3. **Focus.** Foreground one cluster; let natural conversation redirect or reshape it.
 4. **Propose + Discuss.** Form-fit the candidate to its target and expose the wording or material decision that needs attention.
 5. **Approve.** Apply the target's gate. Approval records proposal state; it does not imply landing where the target separates those acts.
-6. **Land.** Write only through the resolved target procedure.
-7. **Record.** Run the bounded `tarav index capture preview|land --project <root> --label <anchor>...` reconciliation for the exact landed batch. A grounded Markdown or SKW line is incomplete until its `LineRecord` resolves.
-8. **Backpropagate.** Project exact grounded lines from the successful landing to `Chat.Index.HEAD`, then best-effort onto the `Chat.Index.Delta` tape through their support-derived `Chat.Turn.Ref` horizon.
-9. **Reconcile.** Re-read the changed target and maintain any active workflow artifact before continuing or completing.
+6. **Prepare.** Author one structured `Capture.Manifest` for the approved target editions and their exact support or gate references.
+7. **Preview.** Run the manifest preflight and review its compact, bounded plan; stop without stable writes on any invalid item.
+8. **Land.** Revalidate and execute the complete Anchory, source, `LineRecord`, and Chat.Index pipeline through the manifest command.
+9. **Reconcile.** Require the final audit, re-read the changed target, and maintain any active workflow artifact before continuing or completing.
 
 ### Read-Only Audit
 
@@ -80,17 +80,14 @@ Other.HEADs -> Chat.Index.HEAD -> Chat.Index.Delta tape
 - Later HEAD changes produce later receipts, often on another `Chat.Surface`; they never rewrite earlier receipts merely to keep the current model tidy.
 - A head-only result is a recoverable reconciliation gap, not a reason to roll back the primary landing or invent an origin.
 
-Use the Chatlas2 real-time `Capture.Plan` after the primary target's final anchor batch is known:
+Use one `Capture.Manifest` as the authored batching boundary. The agent supplies intent: final typed lines, parser-resolvable destinations, stable client identities, and structured message references with content checks. The command derives all mechanical intermediates, including the Anchory batch and Chat.Index plan; the agent does not copy hashes between separate plans.
 
-1. Scaffold one plan with `tarav chatlas chat-index scaffold --identity-hash <current-chat-identity> --stage <empty-stage> --json`.
-2. Register the final line-dossier batch and patch the primary target through its normal landing procedure.
-3. Run `tarav index capture preview --project <root> --label <anchor>...`, then the identical `land` selection. Continue only when every selected surface line resolves to its `LineRecord`; unrelated corpus POIs are outside this bounded batch.
-4. Fill `plan.json.landed_lines` with stable `client_id`, target `concept`, exact unanchored `line_content`, and the returned `d…` `anchor`; set `status` to `ready`. Do not duplicate support, gates, or predecessors from the dossier.
-5. Run `tarav chatlas chat-index validate --plan <plan.json> --json`. It verifies attachment triplets, support standing, containing turns, the base fingerprint, and the planned HEAD/Delta effects without writing Chat.Index.
-6. Run `tarav chatlas chat-index apply --plan <plan.json> --json`. Apply revalidates under the session lock, updates the partial Chat HEAD, appends the stable Delta receipt when possible, and audits exact presence.
-7. Report every `head_only_gaps` item for background reconciliation. A failed or interrupted backpropagation remains retryable and must be reported, but it does not undo an already successful primary landing.
+1. Resolve selected messages and add their structured identity fields, optional diagnostic hints, and `expect.contains_all` checks to the manifest. Relationship roles determine the allowed message side.
+2. Run `tarav index capture preview --project <root> --manifest <capture.json> [--limit N]` and inspect the complete effect totals plus the bounded item list.
+3. Run `tarav index capture land --project <root> --manifest <capture.json> [--limit N]`. Land revalidates, performs the whole pipeline, and audits exact source, record, HEAD, and planned Delta presence.
+4. Report every `head_only_gaps` item. A failed or interrupted placement remains retryable and visible; rerunning an already satisfied manifest is idempotent.
 
-The plan is a batching boundary, not a second semantic model. It names editions already landed elsewhere; the Chatlas2 line dossier remains the authority for support, gates, predecessors, and attachment drift.
+The manifest is not a second semantic model. It is one executable intent document from which the existing dossier, record, and Chat.Index runtime objects are derived.
 
 Operationally, capture applies `Touched.Decision.Cycle` to `Touch.Authority.Surface` editions and adjacent evidence. It distinguishes `Touched.Data`, `Support.Set`, `Live.Index.Line`, `Open.Inference`, and `POI.Instance` while producing `Kernel.Writing` for the current `Agentos.Index.System` realization.
 
@@ -219,10 +216,9 @@ Landing form-fits material to the named surface under that surface's own gate. A
 - **agendix** — one user trigger covers the pass without per-line review; each line still lands typed and grounded through a resolvable support set under a routed concept or provisional path
 - **design session** — one user trigger covers the bounded pass without per-line review; typed lines grounded in Chatlas2 user `Chat.Message.Ref` assertions land in the resolved topic-scoped `Design.Index`, while unresolved material stays in `Session.Notes`
 - support resolution and anchor allocation are landing work through the internal Chatlas2 `Real.Time.Grounding.Knowledge.Module`; they occur against the final approved proposal and its qualifying substantive support, never while the proposal remains open to revision
-- a multi-line landing previews and registers its exact final bodies as one anchor batch, then applies the returned line-to-anchor mapping in one surface patch; the single-line path remains for one line
-- after the surface patch, reconcile that exact anchor selection through `tarav index capture preview|land --project <root> --label ...`; both Markdown blocks and SKW annotations become `LineRecord`s through this one path
-- after that primary patch succeeds, the same exact line-to-anchor mapping becomes one Chatlas2 real-time Capture.Plan and is backpropagated to Chat.Index.HEAD and, when support supplies a local horizon, the Delta tape
-- `Real.Time.Validation.Knowledge.Module` re-reads only the newly landed source lines, resolves their Chatlas2 anchors, and checks the exact backpropagation audit; broader diagnosis remains parked
+- one manifest covers a single or multi-line landing; do not maintain separate anchor-batch, source-patch, record, or Chat.Index plan documents
+- preview must succeed before `land`; `land` owns the primary patch, returned anchor mapping, `LineRecord`s, and Chat.Index backpropagation as one revalidated workflow
+- `Real.Time.Validation.Knowledge.Module` consumes the landing report and escalates only failed exact items; broader diagnosis remains parked
 - every landing updates the live cut; capture re-contextualizes afterward and reports remaining POIs without treating them as automatic edits
 
 > $kw. end

@@ -8,7 +8,7 @@
 
 # Index.Landing.Knowledge.Module
 
-> $kw: --from Capture.Offer --from Cited.Duplication --from Demoted.Index.Line --from Dotted.Notation --from Edition.Approval.Token --from Edition.Trigger.User.Gated --from Explicit.Namespace --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Edit.Action --from Index.Edit.Modify.Line --from Index.Edition.Turn --from Index.Line --from Index.Line.Anchor --from Index.Ontology --from Index.Presumption --from Kernel.Line --from Line.Type --from Line.Verbatim.Gate --from Live.Index.Line --from Name.As.Index --from POI.Instance --from Reviewed.Content --from Support.Set --from Touch.Authority.Surface --from Touched.Decision.Cycle --from User.Command --from Verbatim.User.Gated
+> $kw: --from Capture.Offer --from Cited.Duplication --from Demoted.Index.Line --from Dotted.Notation --from Edition.Approval.Token --from Edition.Trigger.User.Gated --from Explicit.Namespace --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Edit.Action --from Index.Edit.Modify.Line --from Index.Edition.Turn --from Index.Line --from Index.Ontology --from Index.Presumption --from Kernel.Line --from Line.Type --from Line.Verbatim.Gate --from Live.Index.Line --from Name.As.Index --from POI.Instance --from Reviewed.Content --from Support.Set --from Touch.Authority.Surface --from Touched.Decision.Cycle --from User.Command --from Verbatim.User.Gated
 > --dev-from references/index-context-assembly.skw.md
 
 The knowledge of writing Agentos index and appendix surfaces: gates, structure, naming, block quality, edit actions, and the landing procedure.
@@ -135,13 +135,12 @@ Support resolution begins only after both gates have been crossed: the final pro
 1. Resolve the final agent proposal and user approval as exact Chatlas2 `Chat.Message.Ref` assertions.
 2. Locate and qualify the substantive user messages that support each approved line's claim.
 3. Confirm that the approval message qualifies under the current chat `Touch.Authority.Surface` protocol.
-4. Mint the `Index.Line.Anchor` through the internal `Real.Time.Grounding.Knowledge.Module` in `references/link.md`. Put qualifying user messages in `relationships.support`; record token, agent proposal, and user approval independently under `relationships.gates.tokenized_verbatim_approval`. When landing two or more lines, preview and register one ordered `tarav.chatlas2.anchor-batch.v2` over all final bodies.
-5. Apply the approved edit in one patch and replace each `^<anchor-on-landing>` with the anchor returned for that line's stable batch `client_id`. The support relationship grounds the claim; the gate relationship independently makes the line eligible for `Reviewed.Content`.
-6. Return the exact `client_id -> anchor` mapping to `Hugentic.Capture.Workflow.Module` and run its `Index.HEAD.Backpropagation` postcondition for this successful current-chat landing. Direct maintenance outside Real.Time.Capture does not fabricate a chat projection.
+4. Author one `Capture.Manifest`. Put qualifying user messages in `support`; record token, agent proposal, and user approval independently under `gates.tokenized_verbatim_approval`. Use structured message identity fields and `expect.contains_all`; omit `side`, which the relationship role determines.
+5. Run `tarav index capture preview --project <root> --manifest <capture.json>` and inspect the exact planned editions. Any manifest or evidence defect stops before stable writes.
+6. Run the corresponding `land` command. It mints anchors, applies every approved source edit, creates its `LineRecord`, backpropagates Chat.Index, and runs the final exact audit. The support relationship grounds the claim; the gate relationship independently makes the line eligible for `Reviewed.Content`.
 7. Update the router when concepts are added, renamed, moved, or gain appendix depth.
-8. Run `Real.Time.Validation.Knowledge.Module` from `references/check.md` over only the newly landed anchors.
-9. Re-read each newly landed source line directly and resolve each returned anchor through `tarav chatlas anchory resolve`; refuse completion when an anchor occurrence or attachment is ambiguous.
-10. Re-run `Touched.Decision.Cycle` contextualization over the changed live cut and report any remaining POIs separately from the completed edit.
+8. Run `Real.Time.Validation.Knowledge.Module` over the landing report and escalate only failed exact items.
+9. Re-run `Touched.Decision.Cycle` contextualization over the changed live cut and report any remaining POIs separately from the completed edit.
 
 The opt-in material-equivalence check implements `Line.Verbatim.Gate`.
 

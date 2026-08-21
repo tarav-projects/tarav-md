@@ -9,9 +9,10 @@ The Index surface owns the line. The dossier owns its attachment assertion plus 
 1. **Obtain the current session selector.** Use the exact provider-native session id supplied by the running harness or already present in the active workflow. Do not run a Chatlas1 recents, query, view, or file-touch fallback. When the selector is unavailable, stop this landing with `SESSION_SELECTOR_UNAVAILABLE` and leave the primary material unminted.
 2. **Select evidence from loaded context.** Use the live conversation already available to the agent to choose substantive user support and, when applicable, the agent proposal plus user approval gate messages. Do not reread the transcript by default.
 3. **Resolve exact messages.** Run `tarav chatlas messages find --session-id <id> --side user|agent --contains '<distinctive text>' [--exact] --json`. Refine ambiguity before widening. Hydrate only the containing turn with `tarav chatlas turns get --session-id <id> --message-address <address> --hydrate --json` when associated material is necessary.
-4. **Preview and register.** For one line use `tarav chatlas anchory preview|register --line-content '<exact-line>' --member '<member-ref>'`. For several lines use one ordered `tarav.chatlas2.anchor-batch.v2` document and `tarav chatlas anchory batch preview|register --input <batch.json>`.
-5. **Verify.** Run `tarav chatlas anchory resolve <anchor> [--radius N]`; every selected assertion must resolve with the expected side and `MATCHED` standing before the anchor is attached.
-6. **Return the mapping.** Return the stable `client_id -> d… anchor` mapping to the landing target so it can patch the primary surface once and then invoke `Index.HEAD.Backpropagation`.
+4. **Author one manifest.** Put every final line, its target surface and block, and its relationships in one `tarav.index.capture-manifest.v1` document. Each message reference carries structured `session`, `message_address`, and `message_hash` fields; `hints.at` aids review, while `expect.contains_all` gives the agent a conjunctive content check. Do not author a `side` field: support and gate roles determine the allowed side and preflight verifies it.
+5. **Preview once.** Run `tarav index capture preview --project <root> --manifest <capture.json> [--limit N]`. Preview resolves the target through the project surface parsers, validates exact messages, sides, hashes, content checks, gates, existing anchors, records, and Chat.Index effects, then writes no stable surface.
+6. **Land once.** After reviewing the compact plan, run the corresponding `tarav index capture land` command. It revalidates and performs anchor registration, source attachment, `LineRecord` creation, Chat.Index projection, and final audit as one mechanical workflow.
+7. **Inspect the report.** Require a successful final audit. Text and JSON render the same run model; `--limit` bounds only item detail, and the complete effect totals remain visible. Escalate individual items only when the summary exposes a POI.
 
 ## Relationship Discipline
 
@@ -21,6 +22,7 @@ The Index surface owns the line. The dossier owns its attachment assertion plus 
 - `relationships.provenance.predecessor_anchors` names editions replaced on HEAD; `issue_context` records applicable `Issue.Block` identities
 - support order is meaningful and exact dossier equivalence is idempotent
 - timestamps are diagnostic only; `Chat.Message.Ref` place plus hash is identity
+- a `Stable.Surface` is maintained durable state, not undeletable state; capture may revise or remove it through its owning workflow. The referenced `Chat.Surface` is separately immutable.
 
 ## Boundary
 

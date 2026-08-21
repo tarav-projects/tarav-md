@@ -587,8 +587,8 @@ An agent operating the index should:
 - during interactive capture, add approved drafts to the approved cluster and continue reviewing the roadmap; do not make immediate landing the default next move
 - keep background reconciliation, broad Index diagnosis, and standalone chat linking out of the public router while their valuable design is parked; Real.Time.Capture owns only its internal Chatlas2 grounding and newly-landed-line validation primitives
 - ground every chat-backed landing through the internal Chatlas2 `Real.Time.Grounding.Knowledge.Module`: use line dossiers for Index-native and Skw-hosted product lines; reserve generic message-support records for genuinely non-line provenance
-- when a landing contains several lines, batch its Chatlas2 anchor preview and registration and apply the returned line-to-anchor mapping in one surface patch; do not shell-loop the single-line path
-- after a current-chat primary landing succeeds, run the shared Chatlas2 real-time Capture.Plan over that exact line-to-anchor mapping: validate and apply `Chat.Index.HEAD` plus every provable support-derived `Chat.Index.Delta`, then report any head-only or retryable backpropagation gaps without undoing the primary landing
+- author one structured `Capture.Manifest` for every single- or multi-line landing; include final target editions, structured message identities, diagnostic hints, and conjunctive content checks, but never an authored message side
+- preview that manifest once, then let `tarav index capture land` derive and audit Anchory registration, source attachment, `LineRecord`s, `Chat.Index.HEAD`, and every provable support-derived `Chat.Index.Delta`; do not hand-coordinate separate intermediate plans
 - keep command targets foregrounded; targeted commands fail closed on ambiguous targets, and `::land-all-approved` fails closed unless one foreground index workflow owns the cluster
 - use file mutation only when the applicable surface gate is satisfied
 - keep action separate from index reconciliation: open inference may advance other work without silently rewriting touched positions

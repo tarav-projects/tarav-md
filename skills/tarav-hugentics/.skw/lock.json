@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "84cf7dc1514cb71b73368342eaf1b06491b394449abb272d751ac424e8674ed7",
+      "output_sha256": "4389a9d4ce96e77ed894883fc5d2bd528ef3ebf396d244c6e0bf19b8b4fd4e97",
       "recipes": [
         {
           "heading": "^hugentics-batchy-runtime-contract",
@@ -27,7 +27,7 @@
         {
           "heading": "Index Operating Behavior",
           "verb": "derived",
-          "body_sha256": "5c0adfa9ffd2bcc8d48bac6fbba697aa8232b53360eeae5aaa13c5a3cea4984c",
+          "body_sha256": "3bfd11ec3dd19b1aee9c1bd6ac6630047fbc2fa6b28cc7e675a3765d0b456ce3",
           "deps": {
             "references/touched-data.skw.md#Line Standing": "2bc1780bf6384c537cff3089d3aa547092f81dba496c26bc8976d4f455c6b174",
             "references/touched-data.skw.md#Coherence And Decision Weight": "6a23c0cfcf0865ea3b5e36274da927ab577287916aae91f3a091ce27f4bd2505",
@@ -37,7 +37,7 @@
             "references/search.skw.md#Search Model": "35a6d9e8ba7764c7d6f717cc25e780cbae80f8e5f0102c70d1a4b880849393c6",
             "references/search.skw.md#Citation Behavior": "e57e94bf2adedb5f4bde5e498c1feb6342c70412564a0e8d8a1a8734a673a8a9",
             "references/capture.skw.md#User.Command Checkpoints": "e18ebda2fcf007164a57c1e4957bd98343d1c539656a139d5534b236a43b04de",
-            "references/capture.skw.md#Landing": "078d1bf028c470d7616cc955f0515ad32e781941f85fe63f8b1ec37534b11ca5",
+            "references/capture.skw.md#Landing": "3a588bf85ad879f1a073c6c6d770141f016f8ece826fc90fbb74aad3457d9b6d",
             "references/edit.skw.md#Edit Gates": "34b988e36fa60f35bfbca549056fdb439fc41a3ff107f44c58ed7bbed07ad926",
             "references/edit.skw.md#User.Command Transitions": "c92bec72a5749b0a9a7eafae35b8c3686d53bb17ddf5f5007b94eab2c17fcf81"
           }
@@ -45,7 +45,7 @@
       ]
     },
     "references/agendix.md": {
-      "output_sha256": "c5ad25cd8c392fd64c94dbd0a4533920452589659a414faffb68428176393d2a",
+      "output_sha256": "108970a95e4864008e6de8f52e8fd3c469794723128a226f6312d2b8fee6390e",
       "recipes": []
     },
     "references/alignment-session.md": {
@@ -89,16 +89,16 @@
       ]
     },
     "references/capture.md": {
-      "output_sha256": "ee490d2674e29be8974365e197323df867d8ab01c58f4edffb67457a41552a68",
+      "output_sha256": "13a097b47fcd443ea07477c29028eab6efd4eb98ca762d6ab8c2ce33f0fb1822",
       "recipes": [
         {
           "heading": "Landing",
           "verb": "derived",
-          "body_sha256": "f5e3b5609ded7cfe60dd11bce1fac059485acec4e78de2f8eea2738f3f2155b0",
+          "body_sha256": "3a588bf85ad879f1a073c6c6d770141f016f8ece826fc90fbb74aad3457d9b6d",
           "deps": {
-            "references/edit.skw.md#Landing Procedure": "88ced6b283278df424377fa44f0b4161a8985469ff8bca1fd9243f172772f7bd",
-            "references/agendix.skw.md#Landing Form": "0a856dff9f6ff4e6107fd84757b54739ca0545d42fc3799ad9e542d0bf085971",
-            "references/design-session.skw.md#Landing": "9aa859f9780e3f656a91ad9b00ad37603bbeb1cc570a0a81354a81964e61880c"
+            "references/edit.skw.md#Landing Procedure": "e969d2d36681f067b2c3bec85c08127cb7e10a217378309a31abb40f75c67e56",
+            "references/agendix.skw.md#Landing Form": "7881d644bf3bbb30b4154872fe1039005e9c9445b45bce2354453b1d1dd7ce7e",
+            "references/design-session.skw.md#Landing": "8339ab544bcef6bd5c4c292a455ceee1a4e985440ee8c551ecc371718fcff4d8"
           }
         }
       ]
@@ -108,7 +108,7 @@
       "recipes": []
     },
     "references/check.md": {
-      "output_sha256": "0bde0b6317220b92efbad286672b05771bd1fa28f4e248238232db2a9699d6c9",
+      "output_sha256": "6499d4f2a739e6679fd26d21f4f4e3add1e66d5d3244afa3ee2ac70ced9921d1",
       "recipes": []
     },
     "references/codebase-cleaner.md": {
@@ -124,11 +124,11 @@
       "recipes": []
     },
     "references/design-session.md": {
-      "output_sha256": "426079c64a10f27491813ef2740ca38c8e2009de44d453b73ed77bf0d48efdc4",
+      "output_sha256": "1c233b10d2687507a1813d46ca7927275902e61c5849bfffdb3a0e7c31b25615",
       "recipes": []
     },
     "references/edit.md": {
-      "output_sha256": "4ea255209885385a25195dffc217cb1b0311201c15362f4a84601ea5bdfe8df0",
+      "output_sha256": "9dafe027a1d06e8d64a280e7fae050c57a12d844571d994338487fb261d213b1",
       "recipes": [
         {
           "heading": "Block Independence",
@@ -296,7 +296,7 @@
       ]
     },
     "references/impl/product-capture.md": {
-      "output_sha256": "98544cce2c501ef77db25fde51233ba8c5295dba80177c107605a7c50df7baf3",
+      "output_sha256": "b324af23871f8f04284d20ded00804832d6e101738dca167d4a4bd6568608a1b",
       "recipes": []
     },
     "references/impl/review.md": {
@@ -333,11 +333,11 @@
       "recipes": []
     },
     "references/issues.md": {
-      "output_sha256": "241b24f17eafe2b8a2148ad0750627f28c3f89e69c2e78699252496833bb3496",
+      "output_sha256": "b2efa1a3fb08a26646090373a6471ce605dd097a8b8a52b009d2a1510d59abd7",
       "recipes": []
     },
     "references/link.md": {
-      "output_sha256": "c02923de11045034f054c2585222e333b53b06efa1865f1158de1778ec7d7a22",
+      "output_sha256": "ccbd3989c0aad35fb13559b2dfcff39051fa0385c9381a40912a70b55d794392",
       "recipes": []
     },
     "references/parking-note.md": {

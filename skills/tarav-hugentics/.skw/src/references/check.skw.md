@@ -13,8 +13,8 @@ This is an internal `Real.Time.Capture` primitive, not a public workflow. It val
 
 1. Run `tarav index linter --label <new-label> ...` with one repeated `--label` selector per newly landed line; the run examines only those records.
 2. For reviewed lines, add `--check gate-verifies`; it walks the approval token through both turns, and a passing line is `Reviewed.Content` for that deterministic gate only.
-3. Resolve every new support dossier with `tarav chatlas anchory resolve <anchor>` and require its selected message assertions to remain `MATCHED`.
-4. Validate and apply the real-time Chatlas2 Capture.Plan, then require its returned audit to contain every exact HEAD line and every planned Delta receipt.
+3. Require the `tarav index capture land` report's final audit to contain every exact source attachment, `LineRecord`, HEAD line, and planned Delta receipt. On successful placement, tokenized gates must appear on both `LineRecord.review` and `LineRecord.landing`: approval licenses the edition, while the separate land command decides when to exercise that license.
+4. Escalate an individual dossier with `tarav chatlas anchory resolve <anchor>` only when the bounded report exposes a grounding POI.
 5. Report a new failure before declaring the landing complete. Existing unrelated depot findings and legacy anchors are outside this bounded slice.
 
 ## Boundary

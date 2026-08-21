@@ -65,8 +65,8 @@ This route uses the same Chatlas2 grounding primitives as the other capture dest
 2. **Understand and draft from current context.** The live conversation already loaded for the agent is the default capture source. Identify the settled design deltas, draft their final lines, and select the qualifying user messages already visible in that context. Do not reread the transcript merely to reconstruct understanding the agent already has.
 3. **Resolve exact support.** For each selected message, run `tarav chatlas messages find --session-id <id> --side user --contains '<distinctive text>' [--exact] --json`. Refine until the selected message resolves uniquely, then retain its returned `member_ref`; it asserts session, stable message address, and current message hash.
 4. **Escalate only when needed.** Refine an ambiguous lookup before reading more. Use `tarav chatlas turns get --session-id <id> --message-address <address> --hydrate --json` when associated turn material is necessary. Read `tarav chatlas views get --session-id <id> --view user --json` or `--view transcript` only when compaction removed necessary context, selected evidence cannot otherwise be resolved, or the caller explicitly requests historical capture. Views and hydrated turns are disposable projections, not authority surfaces.
-5. **Preview and register final lines.** For one line, run `tarav chatlas anchory preview --member <member-ref> --line-content '- [<Line.Type>] <body>'`, inspect the result, then run the corresponding register command. For two or more lines, write one `tarav.chatlas2.anchor-batch.v2` document whose items contain stable `client_id`, exact final `line_content`, and ordered `members`; run the Chatlas2 batch preview, then register.
-6. **Attach and verify.** Apply each returned `d…` anchor to its exact Design.Index line, then run `tarav chatlas anchory resolve <anchor> [--radius N]`. Every member must resolve `MATCHED`, remain user-side, and retain an agreeing diagnostic `at` value.
+5. **Author one manifest.** Put every final Design.Index line, its target block, and its ordered support references into one `Capture.Manifest`. Include stable message identity, diagnostic timestamp hints, and conjunctive content checks.
+6. **Preview and land.** Preview the manifest, inspect the bounded plan, then run its `land` command. The command attaches each returned anchor, creates the records and Chat.Index projection, and verifies the exact result.
 
 When Chatlas2 cannot recognize the session or resolve qualifying support, preserve the material in `Session.Notes`; inspect the retained raw archive when useful, and leave the design line unminted until Chatlas2 can support it.
 
@@ -77,10 +77,9 @@ One explicit `--capture --design-session` invocation satisfies `Edition.Trigger.
 1. Resolve or allocate the topic-scoped design-session artifact.
 2. Compare the conversation against its existing `Design.Index`, notes, and stable Index context; do not duplicate already captured material.
 3. Form-fit settled design deltas as typed, grounded lines under compact `Design.Block`s; keep unresolved material in `Session.Notes`.
-4. Preview and register exact final line bodies through the Chatlas2 route as one anchor batch, then apply the returned line-to-anchor mapping in one patch.
-5. Backpropagate the exact returned line-to-anchor mapping through the shared Real.Time.Capture `Index.HEAD.Backpropagation` postcondition. The Design.Session remains the primary landing surface; Chat.Index receives the current-chat projection and best-effort chronological receipts.
-6. Refresh `Session.Abstract` and append only meaningful lifecycle information to `Session.Log`.
-7. Report the captured blocks, unresolved support, head-only backpropagation gaps, and any promotion candidates compactly.
+4. Preview and land the exact final lines through one `Capture.Manifest`; the Design.Session remains the primary landing surface while the command derives its Anchory, record, and Chat.Index effects.
+5. Refresh `Session.Abstract` and append only meaningful lifecycle information to `Session.Log`.
+6. Report the captured blocks, unresolved support, head-only backpropagation gaps, and any promotion candidates compactly.
 
 The capture pass may create or maintain only the resolved design session. It does not mutate the stable Index, an `Impl.Req`, or another live artifact.
 

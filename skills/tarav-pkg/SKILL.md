@@ -129,9 +129,9 @@ Separate packages exist for other systems:
 
 `tarav-pkg` is not the same as the `agentos-md` repository — `agentos-md` is one implementation project; `tarav-pkg` is the portable package skill that any project can use.
 
-## Agentos CLI
+## Tarav CLI
 
-The `agentos` CLI is available for discovery and operations. Run `agentos --help` to see what it can do.
+The `tarav` CLI is available for discovery and operations. Run `tarav --help` to see what it can do.
 
 For configuring and syncing project-local imported skills, read `references/skills-routing.md`.
 
@@ -196,6 +196,14 @@ Selection cardinality: `many`.
 - loads: `@<tarav-hugentics>/SKILL.md`
 - when: the caller wants a structured checkpoint for an active workflow
 - then: load tarav-hugentics --workflow-status
+
+### `^route-index-test-block`
+
+- match: `semantic`
+- destinations: `Index.Test.Block.Workflow.Module`
+- loads: `references/index-test-block.md`
+- when: the caller is developing the Index implementation and needs a disposable ordinary block to exercise its real parser, capture, linter, gate, or cleanup path end to end
+- then: load the Test.Block workflow and keep authoring plus landing on the normal production path
 
 ### `^route-index-retrofit`
 
