@@ -28,6 +28,20 @@
 
 ****
 
+## Reference.Hint
+
+- [DF] a `Reference.Hint` is a property of the referenced object carried on a reference for search and recognition, outside that reference's resolution mechanics ^c20260820-21u
+- [CT] resolution consults the reference's address only, so a reference carrying no hints resolves exactly as well as one carrying many ^c20260820-22u
+- [DC] what makes a part a hint is that resolution never reads it — not how little it determines; a hint may be sufficient on its own to select the referenced object ^c20260820-23u
+- [PR] hints are what a broken address is repaired from, which is why `Wayfinder.Resolution` exposes them on its POI; a reference carrying only its address leaves nothing to repair with ^c20260820-24u
+- [CT] hints carry no schema commitment — a consumer may add or drop one without migrating the references that already exist ^c20260820-25u
+- [FR] whether to carry hints, and which, is the consumer's own discipline; the reference model provides the slot and asserts nothing about its contents ^c20260820-26u
+- [PR] prefer hints that can be collected and recorded mechanically — cheaper to produce and more reliable than agent description, which makes the whole repair path cheaper and more robust ^c20260820-27u
+- [CT] an agent-authored hint carries a summary's reliability rather than a measurement's (`We.Distrust.Summaries`) ^c20260820-28u
+- [EX] a Chatlas1 turn reference carried `at` and `turn_hash` beside its superseded `turn_id`; when the address space changed the timestamp still identified the message uniquely, while the address alone was unrecoverable ^c20260820-29u
+
+****
+
 ## Wayfinder.Registry
 
 - [DF] a `Wayfinder.Registry` is a source of remembered resource registrations consulted by `Agentos.Wayfinder` during resolution ^c20260729-287u

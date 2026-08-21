@@ -8,16 +8,16 @@ The Index surface owns the line. The dossier owns its attachment assertion plus 
 
 1. **Obtain the current session selector.** Use the exact provider-native session id supplied by the running harness or already present in the active workflow. Do not run a Chatlas1 recents, query, view, or file-touch fallback. When the selector is unavailable, stop this landing with `SESSION_SELECTOR_UNAVAILABLE` and leave the primary material unminted.
 2. **Select evidence from loaded context.** Use the live conversation already available to the agent to choose substantive user support and, when applicable, the agent proposal plus user approval gate messages. Do not reread the transcript by default.
-3. **Resolve exact messages.** Run `tarav chatlas2 messages find --session-id <id> --side user|agent --text '<distinctive text>' [--exact] --json`. Refine ambiguity before widening. Hydrate only the containing turn with `tarav chatlas2 turns get --session-id <id> --message-address <address> --hydrate --json` when associated material is necessary.
-4. **Preview and register.** For one line use `tarav chatlas2 anchory preview|register --line-content '<exact-line>' --member '<member-ref>'`. For several lines use one ordered `tarav.chatlas2.anchor-batch.v2` document and `tarav chatlas2 anchory batch preview|register --input <batch.json>`.
-5. **Verify.** Run `tarav chatlas2 anchory resolve <anchor> [--radius N]`; every selected assertion must resolve with the expected side and `MATCHED` standing before the anchor is attached.
+3. **Resolve exact messages.** Run `tarav chatlas messages find --session-id <id> --side user|agent --contains '<distinctive text>' [--exact] --json`. Refine ambiguity before widening. Hydrate only the containing turn with `tarav chatlas turns get --session-id <id> --message-address <address> --hydrate --json` when associated material is necessary.
+4. **Preview and register.** For one line use `tarav chatlas anchory preview|register --line-content '<exact-line>' --member '<member-ref>'`. For several lines use one ordered `tarav.chatlas2.anchor-batch.v2` document and `tarav chatlas anchory batch preview|register --input <batch.json>`.
+5. **Verify.** Run `tarav chatlas anchory resolve <anchor> [--radius N]`; every selected assertion must resolve with the expected side and `MATCHED` standing before the anchor is attached.
 6. **Return the mapping.** Return the stable `client_id -> d… anchor` mapping to the landing target so it can patch the primary surface once and then invoke `Index.HEAD.Backpropagation`.
 
 ## Relationship Discipline
 
 - substantive user messages belong in `relationships.support`
 - proposal and approval messages belong independently in `relationships.gates`; participation in a gate does not make them substantive support
-- reviewed Index lines require `tokenized_verbatim_approval`; non-line implementation provenance uses `tarav chatlas2 anchory support preview|register`
+- reviewed Index lines require `tokenized_verbatim_approval`; non-line implementation provenance uses `tarav chatlas anchory support preview|register`
 - `relationships.provenance.predecessor_anchors` names editions replaced on HEAD; `issue_context` records applicable `Issue.Block` identities
 - support order is meaningful and exact dossier equivalence is idempotent
 - timestamps are diagnostic only; `Chat.Message.Ref` place plus hash is identity

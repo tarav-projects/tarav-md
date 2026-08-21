@@ -273,6 +273,26 @@
 
 ****
 
+## Mechanical.Assertion
+
+- [DF] a `Mechanical.Assertion` is a claim whose evaluation is a defined walk — presence, membership, resolution, equality — returning the same verdict for every evaluator ^c20260820-36u
+- [DC] it is one side of the checkability split `Constraint.Steering` names as graded checkability; the other side is `Semantic.Assertion` ^c20260820-37u
+- [CT] it is the whole of what a `POI.Check` may assert, and the whole of what a checker's green result means ^c20260820-38u
+- [PR] design pushes as much of an assertion as it can onto this side — the mechanical part is the part that stays checked forever at no attention cost ^c20260820-39u
+- [EX] a support reference resolving to a message that exists, carries the expected side, and matches its recorded hash ^c20260820-40u
+
+****
+
+## Semantic.Assertion
+
+- [DF] a `Semantic.Assertion` is a claim about meaning, whose evaluation requires an interpreter that understands the content ^c20260820-41u
+- [DC] it is the other side of the split from `Mechanical.Assertion`, and `Constraint.Steering` puts its floor above zero — some part of an assertion is always semantic ^c20260820-42u
+- [CT] only a human or an agent evaluates one; a checker returning a verdict on it reports something it did not check ^c20260820-43u
+- [PR] evaluate it where judgment already is — at review, not inside the checker loop ^c20260820-44u
+- [EX] whether a cited turn actually supports the line it grounds, which resolving that `Support.Reference` can never establish ^c20260820-45u
+
+****
+
 ## Producer.Aids.Checker
 
 - [DF] `Producer.Aids.Checker` is the principle that the capable producer bears the structuring burden so the verifier can stay simple — complexity moves to the producer, not the checker ^c20260726-39u
@@ -304,6 +324,17 @@
 - [DC] a check computes relations across items that no per-item reading reproduces ^c20260819-27u
 - [CT] overdetection is affordable only while the computation is legible; an opaque false positive costs the reader more than the rule saved ^c20260819-16u
 - [RJ] a semantically smart checker is rejected — a check that must be clever to be useful signals an under-structured product ^c20260819-17u
+
+****
+
+## Current.Model.Only
+
+- [DF] `Current.Model.Only` is the constraint that a checker asserts conformance to the current model and recognizes no superseded one ^c20260820-30u
+- [CT] the checker names the mechanical failure, never its historical cause — "does not resolve" is a check result, "is legacy" is migration history ^c20260820-31u
+- [RJ] a legacy branch in a checker is rejected: it is a second model the checker must then carry and keep correct forever ^c20260820-32u
+- [DC] the count of non-conformant items is the migration's progress measure, so the check reports a backlog rather than a defect class ^c20260820-33u
+- [PR] the resolution is to move the data forward, never to teach the checker the old shape ^c20260820-34u
+- [EX] index support references addressing Chatlas1 turns fail the current reference assertion exactly as any unresolvable address does; the 5,755 of them are remaining work, not a category the linter knows ^c20260820-35u
 
 ****
 

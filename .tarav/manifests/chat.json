@@ -1,8 +1,0 @@
-{
-  "surface_type": "chat",
-  "git_backed": true,
-  "edition_relation": "commit_records_edition",
-  "attribution": "message_role",
-  "predicate": "a user-side Chat.Message in the git-backed Chatlas archive; agent turns carry no touch",
-  "schema": "tarav.touch-authority-manifest.v1"
-}

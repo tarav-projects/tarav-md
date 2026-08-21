@@ -294,6 +294,9 @@
 - [DC] a class belongs to the surface its block is attached to, resolved from the class's address ^c20260814-3u
 - [DC] the stable identity of a class is its canonical managed-block `Wayfinder.Reference`; its current file, annotation point, and Python symbol are physical resolution evidence rather than class identity ^c20260730-87u ^c20260820-5u
 - [CT] the class block is its canonical `POI.Documentation` root and declares its short runtime description, evaluation protocol, allowed resolution acts, and required context surfaces ^c20260730-58u
+- [DC] a `POI.Class` definition follows the review gate of the `Touched.Surface.Index` member hosting its block; placement on a code surface grants no gate exception ^c20260820-48u
+- [CT] the gate covers the class’s design knowledge rather than the implementation attached to its `Annotation.Point` ^c20260820-49u
+- [PR] the gated class block contextualizes generation and evaluation of the check implementation ^c20260820-50u
 - [CT] many `POI.Instance`s may carry the same class reference; class data is resolved when needed rather than duplicated into each instance ^c20260730-54u
 - [PR] executable linters normally place one class block as a `Skw.Annotation` on its emitting check, so implementation, definition, and fix guidance evolve on one surface without duplication ^c20260814-2u ^c20260820-2u ^c20260820-3u
 - [FR] a non-executable domain may instead place a class block in any naturally managed surface, including a `POI.Catalog` when that index application is useful ^c20260820-5u
@@ -354,6 +357,10 @@
 ## POI.Renderer
 
 - [DF] a `POI.Renderer` presents `POI.Instance`s using their resolved `POI.Class` definitions ^c20260725-139u
+- [CT] Check execution, POI class aggregates, and POI instances are separate named sections so their identities and counts cannot be confused. ^c20260820-10u
+- [CT] The POI class summary is complete for the selected linter execution even when occurrence presentation is bounded. ^c20260820-11u
+- [DC] `--limit` bounds only the deterministically ordered POI instance window, and every rendering states how many matching and total instances exist. ^c20260820-12u
+- [CT] Text and JSON renderings consume the same run document and obey the same filters and instance limit. ^c20260820-16u
 - [CT] it resolves each instance’s canonical `Wayfinder.Reference` through `Agentos.Wayfinder` before presenting its `POI.Class` definition ^c20260729-111u
 - [CT] it prints each class identity and short description once, followed by its compact instances ^c20260725-77u
 - [CT] each instance presentation identifies its target, current situation, and instance identity ^c20260725-68u
@@ -821,6 +828,8 @@
 ## Touched.Index
 
 - [DF] `Touched.Index` is the global system for curating and densely presenting relevant `Touched.Data` ^c20260729-272u
+- [DC] `Touched.Index` is one semantic index distributed across the physical surfaces of its `Touched.Surface.Index` members ^c20260820-46u
+- [CT] `Natural.Placement` chooses a block’s physical host without changing its identity as an `Index.Block` or the primitives used to derive its authority and standing ^c20260820-47u
 - [DC] it aims to index every relevant region of touched data without reproducing the source data ^c20260729-213u
 - [CT] relevance is the coverage boundary; curation governs how the material is presented, organized, and compressed ^c20260729-130u
 - [PR] `Kernel.Writing` supplies the density filter: indexed material should change future agent judgment ^c20260729-326u

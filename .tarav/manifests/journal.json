@@ -1,8 +1,0 @@
-{
-  "surface_type": "journal",
-  "git_backed": true,
-  "edition_relation": "commit_is_edition",
-  "attribution": "git_author",
-  "predicate": "a commit touching a journal path whose git author is the user",
-  "schema": "tarav.touch-authority-manifest.v1"
-}

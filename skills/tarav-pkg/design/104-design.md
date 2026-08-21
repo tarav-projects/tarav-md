@@ -250,6 +250,9 @@
 
 - `Index.Linter` is the deterministic CLI checker for index and appendix surfaces
 - [DC] `Index.Linter` is a `POI.Linter` over the index AST ^c20260724-59u
+- [DC] `Index.Linter` produces one canonical JSON-serializable run document before any output mode renders it. ^c20260820-9u
+- [CT] Execution metadata reports elapsed time and loaded surface-file, surface-line, record, and check counts. ^c20260820-15u
+- [RJ] The default report does not emit the semantic `Concentration` heuristic. ^c20260820-14u
 - normal use is depot-first: lint an `Index.Depot` through its `000-INDEX.md`, chapter folders, and appendix
 - finding and check codes are scoped concept names under `Index.Linter/...`
 - each code names an appendix block that explains meaning, gating, or expected remediation

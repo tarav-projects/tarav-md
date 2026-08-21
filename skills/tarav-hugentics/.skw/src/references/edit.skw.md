@@ -13,7 +13,7 @@
 
 The knowledge of writing Agentos index and appendix surfaces: gates, structure, naming, block quality, edit actions, and the landing procedure.
 
-This module is a `Workflow.Neutral.Module`: it does not run a workflow — its rules bind whenever an index or appendix surface is written, whichever module has control. Workflow modules such as `references/capture.md` and `references/enrich.md`, plus `tarav-pkg --index-retrofit`, steer sessions and consume this knowledge.
+This module is a `Workflow.Neutral.Module`: it does not run a workflow — its rules bind whenever an index or appendix surface is written, whichever module has control. Workflow modules such as `references/capture.md`, plus `tarav-pkg --index-retrofit`, steer sessions and consume this knowledge.
 
 `--edit`, `--write`, and `--append` all route here for direct edit work — a stale line to fix, a block to revise, an approved change to land. The context defines the edit action.
 
@@ -70,7 +70,7 @@ This module is a `Workflow.Neutral.Module`: it does not run a workflow — its r
 - what breaks independence is deixis: a reference whose meaning depends on the authoring context instead of on a named, resolvable concept
 - the primary hazard is distilling a live conversation; strip the session's frame before committing
 - define positively — say what the concept is, not what it is instead of
-- extended depth belongs in `appendix/Independent.Reader.Block-appendix.md`
+- extended depth belongs in `tarav-pkg/appendix/Independent.Reader.Block-appendix.md`
 
 > $kw. end
 
@@ -140,7 +140,7 @@ Support resolution begins only after both gates have been crossed: the final pro
 6. Return the exact `client_id -> anchor` mapping to `Hugentic.Capture.Workflow.Module` and run its `Index.HEAD.Backpropagation` postcondition for this successful current-chat landing. Direct maintenance outside Real.Time.Capture does not fabricate a chat projection.
 7. Update the router when concepts are added, renamed, moved, or gain appendix depth.
 8. Run `Real.Time.Validation.Knowledge.Module` from `references/check.md` over only the newly landed anchors.
-9. Re-read each newly landed source line directly and resolve each returned anchor through `tarav chatlas2 anchory resolve`; refuse completion when an anchor occurrence or attachment is ambiguous.
+9. Re-read each newly landed source line directly and resolve each returned anchor through `tarav chatlas anchory resolve`; refuse completion when an anchor occurrence or attachment is ambiguous.
 10. Re-run `Touched.Decision.Cycle` contextualization over the changed live cut and report any remaining POIs separately from the completed edit.
 
 The opt-in material-equivalence check implements `Line.Verbatim.Gate`.
