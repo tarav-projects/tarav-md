@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "4389a9d4ce96e77ed894883fc5d2bd528ef3ebf396d244c6e0bf19b8b4fd4e97",
+      "output_sha256": "62b0797b328ff0902df1d9a3484e53fa68947f43539a2aaf7bd1459f5a6ee209",
       "recipes": [
         {
           "heading": "^hugentics-batchy-runtime-contract",
@@ -15,7 +15,7 @@
         {
           "heading": "^driver-index-literacy",
           "verb": "derived",
-          "body_sha256": "2fb611854a332d9f84cd5c4bba3ab3585fd848287b10f4cf9488971dc4dd3edd",
+          "body_sha256": "c7fd8c9906fe243dcaa7693f770a66c597e9ff21190ff0ca03e2d74290c1eec3",
           "deps": {
             "references/touched-data.skw.md#Authority Flow": "1ebd12534102f9675420544ded0f211d6368a3855309f63dfedd106adf40d3d0",
             "references/touched-data.skw.md#Support Network": "d3bc9fd5f5cae8fcf8a8da2501f32f697263ca129ff25ace9698b630c3479f3a",

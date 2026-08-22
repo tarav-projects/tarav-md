@@ -7,7 +7,7 @@ description: "Canonical public control surface for Hugentic sessions. USE WHEN y
 
 # Agentos Hugentics
 
-> $kw: --from Agentos.Index.System --from Alignment.Mode --from Alignment.Surface --from Batchy.Router --from Batchy.Skill --from Batchy.Skill.Banner --from Batchy.Skill.Help --from Capture.Offer --from Demoted.Index.Line --from Design.Req --from Design.Req.Promotion --from Edition.Approval.Token --from Hugentic.Capture.Workflow --from Impl.Req --from Index.Agendix --from Index.Appendix --from Index.Chapter --from Index.Depot --from Index.Line --from Index.Line.Anchor --from Index.Ontology --from Index.Presumption --from Index.Skillware --from Line.Type --from Line.Verbatim.Gate --from Live.Index.Line --from Open.Inference --from Package.Driver --from Packages.Master.Agent --from POI.Instance --from Reviewed.Content --from Routing.Table --from Skill.Arg --from Skill.Module --from Skw.Annotation --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from Touched.Support.Network --from User.Attention --from User.Command --from User.Command.Arg --from User.Command.Section --from User.Command.Trigger
+> $kw: --from Agentos.Index.System --from Alignment.Mode --from Alignment.Surface --from Batchy.Router --from Batchy.Skill --from Batchy.Skill.Banner --from Batchy.Skill.Help --from Capture.Offer --from Design.Req --from Design.Req.Promotion --from Edition.Approval.Token --from Evidence.Neighborhood --from Hugentic.Capture.Workflow --from Impl.Req --from Index.Agendix --from Index.Appendix --from Index.Block --from Index.Chapter --from Index.Depot --from Index.Line --from Index.Ontology --from Index.Presumption --from Index.Skillware --from Line.Type --from Line.Verbatim.Gate --from Live.Index.Line --from Open.Inference --from Package.Driver --from Packages.Master.Agent --from POI.Instance --from Reviewed.Content --from Routing.Table --from Skill.Arg --from Skill.Module --from Skw.Annotation --from Support.Set --from Touch.Authority.Surface --from Touched.Authority --from Touched.Data --from Touched.Decision.Cycle --from Touched.Index --from Touched.Support.Network --from User.Attention --from User.Command --from User.Command.Arg --from User.Command.Section --from User.Command.Trigger
 > --dev-from references/index-context-assembly.skw.md
 > $kw: ^driver-critical-context --dev-from Cited.Duplication --dev-from Context.Loading.Path --dev-from Package.Driver.Base --dev-from SKILL.Loading
 > --supp root driver context is selected by the alignment failure its absence could cause, not by minimizing line count; preserve context whose omission could make the agent misunderstand authority, violate a gate, select the wrong workflow, or lose the session model ^c20260729-48u
@@ -216,21 +216,24 @@ A `Capture.Stance` steers what the capture loop does after each user turn. It is
 > --cont absence could make an agent misread authority or reason from stale data
 
 - `Touched.Index` curates and densely presents relevant touched data so prior alignment can condition later work
-- the authority path is `Touch.Authority.Surface` → `Touched.Data` → `Support.Set` → `Support.Reference` → `Index.Line`
+- the authority path is `Touch.Authority.Surface` → `Touched.Data` → `Support.Set` → `Evidence.Neighborhood` → `Index.Line`
 - the support sets of current and historical projections compose `Touched.Support.Network`
 - grounded `Live.Index.Line` content carries `Touched.Authority`; ungrounded live content carries weaker `Index.Presumption`
-- `Demoted.Index.Line` content is historical rather than current guidance
 - contradictory or ambiguous touched positions become `POI.Instance`s and are resolved through `Open.Inference` plus, when needed, a separate gated reconciliation
-- the current `Agentos.Index.System` realization is `Index.Skillware` and an `Alignment.Surface` between humans and agents
-- it contains `Named.Concepts` written in `Kernel.Block::Index` blocks, organized in `Index.Chapter` files under `Index.Ontology`, routed by `000-INDEX.md`, with `Index.Appendix` depth and `Index.Agendix` leads
+- the current realization is a recording kernel: an ordered sequence of context-attached `Index.Record`s held in an `Index.Workspace`, resolved through an explicit `Index.Library`
+- an `Index.Record` carries an immutable id, an `Index.Record.Operation`, a `Record.Context` bounding what its producer could derive from, a `Support.Set` bounding what authorizes it, and opaque assertions
+- `Record.Context` and `Support.Set` are orthogonal: context bounds derivation, support bounds authority, and neither substitutes for the other
+- the record sequence is the `Index.Primary.Surface`; any readable projection of it is an optional `Index.Secondary.Surface` and never a second source of truth
+- the semantic projection is folded from the records: `Index.Block`s hold `Index.Line`s, and blocks and lines are addressed by their own identities
+- `Index.Isoline` groups semantically equivalent exact lines; `Index.Isoblock` groups block identities across renames; both replace trace and equivalence chaining
+- the recording kernel is the target architecture; the corpus in hand is still written as `Index.Skillware`, an `Alignment.Surface` between humans and agents, so both remain live literacy until capture runs on records
+- as `Index.Skillware` it holds `Named.Concepts` in `Kernel.Block::Index` blocks, organized in `Index.Chapter` files under `Index.Ontology`, routed by `000-INDEX.md`, with `Index.Appendix` depth and `Index.Agendix` leads
 - the active chapter defaults to `design`; chapter files are named `NNN-<chapter>.md`
 - index work happens over engaged `Index.Depot`s; `--depot` scopes which depots are engaged and `--chapter` scopes within them
 - its lines carry `Line.Type` codes (`- [CT] ...`) classifying each line's act; untyped lines are pre-fence legacy
-- its current support references are trailing `Anchory.Anchor`s resolving through Chatlas2 to qualifying user `Chat.Message.Ref` evidence
-- `Index.Native.Surface`s host typed `Index.Line`s directly; ordinary `Product.Surface`s host qualifying lines through `Skw.Annotation`
-- chronological chat receipts live in `Chat.Index.Delta` files; `Chat.Index.HEAD` is the chat's current projection
-- Hugentic `Real.Time.Capture` lands its primary semantic target first, then backpropagates every exact grounded edition to the current chat HEAD and best-effort to a support-derived Delta horizon; absent local support produces a reported head-only reconciliation gap rather than invented chronology
-- each Chatlas2 `Index.Line.Anchor` dossier asserts the current `Line.Type + body + Anchor.Id` triplet and records independent message support, review gate, and provenance relationships; these consumer semantics do not extend the Chatlas2 Normal Model
+- support resolves through Chatlas to qualifying user `Chat.Message.Ref` evidence, grouped per session as `Evidence.Neighborhood`s
+- ordinary `Product.Surface`s do not become Index surfaces; a `Skw.Annotation` on a product line declares `Project.Index.Grounding`, a dependency from the product into the user Index
+- review and landing gates are checkable assertions carried on records, not privileged schema links
 - `issues/` holds grounded temporary Project topics; review is proven by the anchor record rather than folder placement
 - agents operate it by loading routers, concept blocks, appendix material, and references relevant to the current task
 
