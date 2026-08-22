@@ -205,6 +205,14 @@ Selection cardinality: `many`.
 - when: the caller is developing the Index implementation and needs a disposable ordinary block to exercise its real parser, capture, linter, gate, or cleanup path end to end
 - then: load the Test.Block workflow and keep authoring plus landing on the normal production path
 
+### `^route-poi-linter`
+
+- match: `semantic`
+- destinations: `POI.Linter.Knowledge.Module`
+- loads: `references/poi-linter.md`
+- when: the caller needs how a POI.Linter run behaves -- tiers, the three-valued verdict, selection and narrowing, gates, the dev lane, POI class identity, or blessing an instance
+- then: read the operational module; the concepts themselves stay in design/107-design.md and design/104-design.md
+
 ### `^route-index-retrofit`
 
 - match: `explicit-or-semantic`

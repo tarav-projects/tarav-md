@@ -15,10 +15,12 @@
 > --intent the session vocabulary as one-line recalls with aliases;
 > --cont shallow-container framing, no behavioral protocol at this level
 
+- **QA.Space** — the model of questions and possible answers around the work; it need not be enumerated or complete before action
 - **Design.Space** — a `QA.Space` about artifact design: a vector space of `Design.Variable`s, each variable one axis
-- **Hugentic.Variable** — a `Design.Variable` that needs human-agent convergence, collapsed inside the `Touched.Space` (alias `Touched.Variable`)
-- **Agentic.Variable** — a `Design.Variable` the agent resolves autonomously; the variable form of `Open.Space`, provisional until touched (alias `Open.Variable`)
-- **Alignment.Loop** — the machinery: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`; parameterized by workflow phase (`:What`, `:How`, `:Exec`)
+- **Hugentic.Variable** — a `Design.Variable` needing human-agent convergence, intended to be collapsed inside `Touched.Space` (alias `Touched.Variable`)
+- **Agentic.Variable** — a `Design.Variable` resolved autonomously in `Open.Space`; its answer stays provisional until touched (alias `Open.Variable`)
+- **Touched.Space / Open.Space** — independent axes: touch says the user engaged a region; openness says meaningful agent choice remains
+- **Alignment.Loop** — the convergence machinery: `Alignment.Question` → `Alignment.Discussion` → `Alignment.Consolidation`, specialized by workflow phase
 - **Alignment.User.Turn** — user drives, agent follows
 - **Alignment.Maintenance.Turn** — agent drives one session move
 - **Alignment.Checkpoint** — a declared point in a workflow where the agent checks something; an alignment opportunity gated by `Alignment.Mode`
@@ -71,7 +73,7 @@ When unspecified, default to `Interactive`. The mode is one skill axis, not a gl
 > --intent the phase parameterization spelled out for loop components;
 > --cont storage and target selection belong to the owning workflow
 
-The `Alignment.Loop` and its components are parameterized by phase:
+The general `Alignment.Loop` sequence is specialized, together with each component, by workflow phase:
 
 - `Alignment.Loop::What` / `Alignment.Question::What` / `Alignment.Discussion::What` / `Alignment.Consolidation::What`
 - `Alignment.Loop::How` / `Alignment.Question::How` / `Alignment.Discussion::How` / `Alignment.Consolidation::How`

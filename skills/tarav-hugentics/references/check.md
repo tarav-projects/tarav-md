@@ -16,3 +16,4 @@ This is an internal `Real.Time.Capture` primitive, not a public workflow. It val
 - no bulk Project/Chat coverage audit or reconciliation cursor runs here
 - no Chatlas1 anchor, Normal Model, query, or view is resolved
 - the checks establish mechanical correspondence, never semantic truth
+- for how a `POI.Linter` run behaves in general — tiers, the three-valued verdict, selection and narrowing, gates, the dev lane, and what licenses a blessing — read `tarav-pkg/references/poi-linter.md`

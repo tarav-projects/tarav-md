@@ -10,7 +10,7 @@ Always load `references/impl/general-practices.md` and `references/impl/general-
 
 ## Alignment.Loop::How
 
-Run the `How.Design` specialization of `Alignment.Loop`:
+Run `Alignment.Loop::How`, the `How.Design` specialization that converges on an implementation path for runnable product surfaces:
 
 - `Alignment.Question::How` - drive toward implementation design and enrich the `Impl.Index` with `Hard.Evidence`
 - `Alignment.Discussion::How` - resolve implementation concerns
@@ -70,9 +70,9 @@ An `Impl.Req` is the implementation-request artifact passed from design to execu
 - preserve the user's accepted intent
 - prefer references to files, notes, commands, and surfaces over pasted code
 - shape implementation without overspecifying incidental implementation detail
-- use ordered `Vertical.Slice`s
-- make each slice independently observable and checkable
-- include RED-then-GREEN behavior tests where the `RED.GREEN.Test.Suite` applies
+- use ordered `Vertical.Slice`s whose endpoints exercise a meaningful path through the system
+- make each slice independently observable and checkable at a durable boundary
+- where the `RED.GREEN.Test.Suite` applies, drive one boundary behavior RED then GREEN before moving to the next
 
 The caller's explicit `--design` or `--develop` invocation authorizes writing the artifact. Do not write an `Impl.Req` from passive orientation alone.
 

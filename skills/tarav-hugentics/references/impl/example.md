@@ -1,6 +1,6 @@
 # Impl.Req Example
 
-Adapt the wording and section weight to the current request.
+Adapt the wording and section weight to the current request. Placeholder anchors below become exact grounded anchors through the normal one-manifest capture workflow; do not hand-author its intermediate records.
 
 ```md
 # Project Configuration - impl-req

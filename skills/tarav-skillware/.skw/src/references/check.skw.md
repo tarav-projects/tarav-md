@@ -12,6 +12,7 @@ Report whether a skill's Skillware-managed surfaces still hold, and prescribe th
 
 2. The output is a POI report: a once-per-kind legend, then bare rows — `[kind] target :: key (hash)`. A POI marks a place worth attention, nothing more: it may be wrong, and the linter is deliberately cheap — inspect before acting.
 3. Prescribe per kind (below) — proposals, not actions.
+   For how a `POI.Linter` run behaves in general — tiers, the three-valued verdict, selection and narrowing, gates, and what licenses a blessing — read `tarav-pkg/references/poi-linter.md`.
 4. Exit state: the command exits non-zero on any POI; a clean run is the quiet norm.
 
 ## POI Kinds

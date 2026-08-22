@@ -87,7 +87,7 @@ This checkpoint is required in both alignment modes. Higher-priority project ins
 
 ## Per-Slice Execution
 
-> $kw: --derived --from Vertical.Slice --from RED.GREEN.Test.Suite --from Annotation.Point
+> $kw: --derived --from Vertical.Slice --from RED.GREEN.Test.Suite --from Annotation.Point --from references/impl/product-capture.skw.md#Slice Transaction
 > --intent the slice loop as numbered steps, with selective capture opening
 > --cont and closing the verified product transaction
 
@@ -99,9 +99,9 @@ Follow `Execution.Plan` order. For each slice:
 4. Implement the minimum change that makes that behavior pass.
 5. Run the slice check and relevant existing tests.
 6. Review the diff for unintended scope.
-7. **Product.Landing.Capture** — land only qualifying typed lines with the product edition: in `Skw.Annotation` on ordinary surfaces, directly on Index-native ones.
-8. **Slice.Close.Capture** — audit the verified edition, finalize line dossiers, and run the shared `Index.HEAD.Backpropagation` batch.
-9. Report concise slice and capture status, including retryable backpropagation gaps.
+7. **Product.Landing.Capture** — place only qualifying typed lines with the product edition: in `Skw.Annotation` on ordinary surfaces, directly on Index-native ones.
+8. **Slice.Close.Capture** — audit the verified edition, assemble one `Capture.Manifest`, preview it, then land and audit the complete Anchory/source/record/Chat.Index pipeline.
+9. Report concise slice and capture status, including retryable head-only or placement gaps.
 10. Record deviations, blockers, and consequential open-space presumptions in `Impl.Log`.
 
 Do not write all tests up front. Keep each slice independently reviewable and observable. Do not mark a slice complete until its verified product edition has passed the close capture audit and its backpropagation was attempted.

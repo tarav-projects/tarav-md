@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "6fe994c84b2d5439e4d49a43517a781b729b6245ea24c16d7c0e89a36a115e33",
+      "output_sha256": "a881222257508b517a4e0b7e7f433a960011698756ff88cfb9c64e6e19b99a64",
       "recipes": [
         {
           "heading": "What Skillware Is",
@@ -15,11 +15,11 @@
       ]
     },
     "references/adopt.md": {
-      "output_sha256": "0fe5f37b10c48c4d848c0f00cf55ce39503c20a5816b941cf51c8b2100998c4f",
+      "output_sha256": "285bafbfc03eab4613f9e265804d4e87db4921de151a38df210765dfc08563af",
       "recipes": []
     },
     "references/author.md": {
-      "output_sha256": "6c92baa87115af8a603a602419b26373b482b304bb3c1b94c123eca457dc9635",
+      "output_sha256": "0dede3211940a6e0e06b8b7e01d82f63f5e5c74bb39e1c528c5a128ab52f5600",
       "recipes": [
         {
           "heading": "Division Of Labor",
@@ -32,11 +32,11 @@
       ]
     },
     "references/build.md": {
-      "output_sha256": "1d263fc5225f9c42f3aae014b0472603d1841a0aa4719db8cd566d166d2d00ff",
+      "output_sha256": "ce9c449a5bfa8fcbc56c789444f533b9b0301fa803380925fca423bcdca30980",
       "recipes": []
     },
     "references/check.md": {
-      "output_sha256": "0513b81a10a53240e7fdb792bae8bed914c825827678581f51519e50189cd071",
+      "output_sha256": "e8257537c06446d28e1410216a2401437166c8c19ff8ae6a2b87ff0b30635aa1",
       "recipes": [
         {
           "heading": "POI Kinds",
@@ -52,7 +52,7 @@
       ]
     },
     "references/doctrine.md": {
-      "output_sha256": "5933e7f6d97581f65dd1ba9115d6bf9e490654804e57a684901235e456300b48",
+      "output_sha256": "5f5de45e5aa3a3a64693c1f365d3404a57b0643f6c179886e374c8c681ac46e9",
       "recipes": [
         {
           "heading": "The Model",
@@ -78,11 +78,11 @@
       ]
     },
     "references/edition-history-developer.md": {
-      "output_sha256": "964f1919f5bd02fa3818f91658ae9d8d8383ea315b885d8c0e7db1028e8b3ca9",
+      "output_sha256": "be11fe64584ae595d1eacfa971cdb819aeadd0c8f88433f0e764b62b463d504a",
       "recipes": []
     },
     "references/lang.md": {
-      "output_sha256": "b53163a31247c61447803495ca56980295cf768dfe4d6185f19fa20661c9ee0b",
+      "output_sha256": "4cc3cf187aa0c6260d0abdf3c78592e88a49a8b2083a1e7572b1c791f0825656",
       "recipes": []
     }
   },

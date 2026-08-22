@@ -9,13 +9,13 @@ Load `references/impl/product-capture.md` once and preserve its capture state ac
 ## Workflow
 
 1. Load `references/impl/design.md`.
-2. Run `Alignment.Loop::How` with the resolved `Input` and `Alignment.Mode`.
+2. Run `Alignment.Loop::How` with the resolved `Input` and `Alignment.Mode`, converging on an implementation path for the runnable product surfaces.
 3. Produce a complete `Impl.Req`.
 4. Capture the exact artifact path and re-read it from disk.
 5. Load `references/impl/execute.md`.
 6. Pass that exact `Impl.Req` into `Alignment.Loop::Exec`.
 7. Execute its `Execution.Plan` using the same resolved `Alignment.Mode`.
-8. Complete only after the artifact, verified implementation state, final Product.Surface capture audit, and required backpropagation attempts are updated.
+8. Complete only after the artifact and implementation state are verified, the final Product.Surface audit is complete, and the resulting capture manifest was landed or its retryable gaps were reported.
 
 The phase transition remains inside the same skill invocation. An `Interactive` checkpoint may pause the call, but resumption continues the same develop workflow rather than requiring a new invocation.
 

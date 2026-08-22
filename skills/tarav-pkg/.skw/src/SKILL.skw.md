@@ -242,6 +242,13 @@ This `Package.Driver.Router` is a specialized `Routing.Table` that sends a packa
 > --when the caller is developing the Index implementation and needs a disposable ordinary block to exercise its real parser, capture, linter, gate, or cleanup path end to end
 > --then load the Test.Block workflow and keep authoring plus landing on the normal production path
 
+> $kw: ^route-poi-linter --router-row --table ^package-driver-router
+> --match semantic
+> --to POI.Linter.Knowledge.Module
+> --load references/poi-linter.md
+> --when the caller needs how a POI.Linter run behaves -- tiers, the three-valued verdict, selection and narrowing, gates, the dev lane, POI class identity, or blessing an instance
+> --then read the operational module; the concepts themselves stay in design/107-design.md and design/104-design.md
+
 > $kw: ^route-index-retrofit --router-row --table ^package-driver-router
 > --flag --index-retrofit
 > --match explicit-or-semantic

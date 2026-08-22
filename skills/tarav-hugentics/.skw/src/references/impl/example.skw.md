@@ -1,10 +1,10 @@
 # Impl.Req Example
 
-> $kw: --derived --from references/impl/design.skw.md#Impl.Req Artifact --from references/impl/design.skw.md#Impl.Index Capture
+> $kw: --derived --from references/impl/design.skw.md#Impl.Req Artifact --from references/impl/design.skw.md#Impl.Index Capture --from references/impl/product-capture.skw.md#Operational Boundary
 > --intent one minimal concrete artifact instantiating the spec's
 > --cont structure, including typed supported Impl.Index lines; adapt wording and weight to the request
 
-Adapt the wording and section weight to the current request.
+Adapt the wording and section weight to the current request. Placeholder anchors below become exact grounded anchors through the normal one-manifest capture workflow; do not hand-author its intermediate records.
 
 ```md
 # Project Configuration - impl-req
