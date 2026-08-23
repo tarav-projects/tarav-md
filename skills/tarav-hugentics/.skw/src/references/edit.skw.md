@@ -136,8 +136,7 @@ Support resolution begins only after both gates have been crossed: the final pro
 2. Locate and qualify the substantive user messages that support each approved line's claim.
 3. Confirm that the approval message qualifies under the current chat `Touch.Authority.Surface` protocol.
 4. Author one `Capture.Manifest`. Put qualifying user messages in `support`; record token, agent proposal, and user approval independently under `gates.tokenized_verbatim_approval`. Use structured message identity fields and `expect.contains_all`; omit `side`, which the relationship role determines.
-5. Run `tarav index capture preview --project <root> --manifest <capture.json>` and inspect the exact planned editions. Any manifest or evidence defect stops before stable writes.
-6. Run the corresponding `land` command. It mints anchors, applies every approved source edit, creates its `LineRecord`, backpropagates Chat.Index, and runs the final exact audit. The support relationship grounds the claim; the gate relationship independently makes the line eligible for `Reviewed.Content`.
+5. The `capture.manifest` landing pipeline was removed with the markdown realization, so stop at the approved manifest and report the blocked landing.
 7. Update the router when concepts are added, renamed, moved, or gain appendix depth.
 8. Run `Real.Time.Validation.Knowledge.Module` over the landing report and escalate only failed exact items.
 9. Re-run `Touched.Decision.Cycle` contextualization over the changed live cut and report any remaining POIs separately from the completed edit.

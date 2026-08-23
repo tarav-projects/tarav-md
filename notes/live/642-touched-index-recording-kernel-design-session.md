@@ -7,7 +7,7 @@
 - **integration frame** — projects remain ordinary `Product.Surface`s whose prose, skills, documentation, and code may query or depend on the user Index through SKW and POI feedback
 - **prior-design input** — preserve still-useful constraints from the Chat/Project lifecycle, Index curation, Tarav2 record/linter, real-time backpropagation, and Bloberia reimplementations without importing their superseded ownership model
 - **active concern** — implement the generalized record algebra against the current `LineRecord`, Capture.Manifest, linter, Chatlas context, and SKW realizations without importing the superseded multi-surface model
-- **next useful move** — derive the smallest executable schema for context-attached records, operation-aware support projections, and line/block identity, then exercise it against the accumulated usage scenarios
+- **next useful move** — derive the smallest executable schema for context-attached semantic-query records, context-local mutation, iso-object grouping, operation-aware support projections, and line/block identity
 
 ## Design.Index
 
@@ -28,6 +28,15 @@
 - [CT] every semantic record targets at least one `Index.Line` or `Index.Block`; when neither object changes, no record is emitted. ^c20260821-173u
 - [CT] every semantic record carries a nonempty qualifying `Support.Set` grounding the exact operation it performs. ^c20260821-174u
 - [CT] records form a maintained event-like surface rather than an immutable event store; `Bad.Indexing` records may be amended or purged. ^c20260821-175u
+
+### Index.Semantic.Query
+
+- [DF] an `Index.Semantic.Query` is the context-bounded interpretation that an `Index.Record` persistently materializes over addressed `Chat.Surface` material. ^c20260822-10u
+- [DC] `Record.Operation` defines the query form, while its targets and assertions supply the query parameters. ^c20260822-11u
+- [CT] the selected `User.Touch` is bounded by `Support.Set`, while the writer's derivation is bounded by the producer `Record.Context`. ^c20260822-12u
+- [DC] mechanical assertions are linted, while semantic assertions are retained for future scoring machinery. ^c20260822-13u
+- [PR] agents annotate the `Chat.Surface` by materializing particular semantic queries rather than claiming to exhaust the conversation's meaning. ^c20260822-14u
+- [CT] several records may materialize different grounded readings of the same conversational material. ^c20260822-15u
 
 ### Block.Change
 
@@ -164,6 +173,14 @@
 - [CT] an operation unsupported by its own `Record.Context` or `Support.Set` is `Bad.Indexing`, even when a later context could support the same resulting projection. ^c20260821-238u
 - [CT] legitimate semantic evolution preserves the earlier grounded record and emits a later record; correction may prune an earlier record that was never honestly grounded. ^c20260821-239u
 
+### Index.Record.Mutation.Boundary
+
+- [DF] `Index.Record.Mutation.Boundary` separates context-local record maintenance from semantic evolution requiring another record. ^c20260822-16u
+- [DC] an existing record may be amended or purged without another record only when the resulting operation remains fully derivable and grounded within its original `Record.Context`. ^c20260822-17u
+- [CT] correcting `Bad.Indexing` is a context-local mutation when the existing record fails to represent what its own context supports. ^c20260822-18u
+- [DC] a claim requiring later or additional context is represented by another context-attached record. ^c20260822-19u
+- [CT] a durable reinterpretation creates another `Line.Capture`, normally under another Isoline, while optional assertions may relate it to earlier readings. ^c20260822-20u
+
 ### Index.Consumer
 
 - [DF] an `Index.Consumer` reads addressed records, blocks, lines, Isolines, Isoblocks, support, and assertions for one purpose without changing the recording kernel's semantics. ^c20260821-240u
@@ -212,6 +229,14 @@
 
 - [DF] a `Usage.Scenario` is a grounded simulation used to stress the record model through a given state, operation, emitted records, expected projection, and expected POIs. ^c20260822-0u
 - [DC] the Design.Session accumulates self-chat capture, external capture, support addition, block evolution, line reblocking, and Bad.Indexing correction as its initial scenario suite. ^c20260822-1u
+
+### Usage.Scenario::Isoobject.Grouping
+
+- [DF] `Usage.Scenario::Isoobject.Grouping` exercises a later context asserting semantic equivalence between objects previously assigned to separate iso-objects. ^c20260822-21u
+- [EX] two earlier line captures may create separate Isolines before a third context recognizes their semantic equivalence. ^c20260822-22u
+- [DC] the later equivalence is grounded through another record targeting the exact lines and their existing Isolines rather than by mutating their earlier capture records. ^c20260822-23u
+- [CT] grouping objects into one iso-object asserts their semantic equivalence. ^c20260822-24u
+- [FR] the exact grouping verb and whether its current projection creates a new iso-object identity remain implementation-design choices. ^c20260822-25u
 
 ### Usage.Scenario::Self.Chat.Capture
 
@@ -313,3 +338,5 @@
 - **2026-08-21** — generalized the kernel from line-attached records to context-attached `Index.Record`s, made block changes and block semantics explicit, introduced Agent/Visible/Record context, renamed trace to Isoline, added Isoblock and operation-aware record support, and accumulated grounded Usage.Scenarios for model stress testing.
 - Captured 106 grounded revision lines across 29 blocks through one manifest; all source lines and records were present on the idempotent verification preview with no ungrounded Design.Index lines.
 - Bounded validation examined the 106 revision records: 19 of 20 checks passed, while `record-placed` raised the already-modeled `Record.Unplaced` POI for every record because the current linter still requires a separate discovered surface.
+- **2026-08-22** — captured `Index.Semantic.Query`, `Index.Record.Mutation.Boundary`, and `Usage.Scenario::Isoobject.Grouping` as 16 token-approved grounded lines through one manifest; the final audit passed with no head-only gaps.
+- Exact gate verification passed. Bounded validation retained `Record.Unplaced` because the linter does not discover the Design.Session and `Review.SupportUnseen` because the approval proposal exposed the exact wording but not its raw support addresses.

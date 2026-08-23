@@ -18,4 +18,4 @@ Use this module for current temporary Project topics. An issue may be an opportu
 4. A block is open until it has a reviewed Resolution.Line. Openness is healthy and never itself a linter error.
 5. Retain a resolved issue while its rationale conditions the present model. Remove it from Project HEAD when it no longer does; its Chat.Index Delta and Git history remain.
 
-Use `tarav index issues --depot <depot> --json` to inspect computed standing. Never infer review from the `issues/` folder or synthesize a user gate.
+Read computed standing from the records through `tarav indexlab project` and `tarav indexlab lint`; the dedicated issues command went with the Markdown realization. Never infer review from the `issues/` folder or synthesize a user gate.

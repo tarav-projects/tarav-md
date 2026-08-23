@@ -11,11 +11,12 @@ This is an internal `Real.Time.Capture` primitive, not a public workflow. It val
 
 ## Validation Slice
 
-1. Run `tarav index linter --label <new-label> ...` with one repeated `--label` selector per newly landed line; the run examines only those records.
-2. For reviewed lines, add `--check gate-verifies`; it walks the approval token through both turns, and a passing line is `Reviewed.Content` for that deterministic gate only.
-3. Require the `tarav index capture land` report's final audit to contain every exact source attachment, `LineRecord`, HEAD line, and planned Delta receipt. On successful placement, tokenized gates must appear on both `LineRecord.review` and `LineRecord.landing`: approval licenses the edition, while the separate land command decides when to exercise that license.
-4. Escalate an individual dossier with `tarav chatlas anchory resolve <anchor>` only when the bounded report exposes a grounding POI.
-5. Report a new failure before declaring the landing complete. Existing unrelated depot findings and legacy anchors are outside this bounded slice.
+1. Run `tarav indexlab lint --library <root> --workspace <name> --record-id <id> ...` with one repeated selector per newly captured record; the run examines only those records.
+2. A check reports `passed`, `failed`, `blocked`, or `error`. Only `failed` is a finding against the subject; `blocked` means an earlier check could not be evaluated, so a blocked run never earns a clean verdict.
+3. Escalate an individual dossier with `tarav chatlas anchory resolve <anchor>` only when the bounded report exposes a grounding POI.
+4. Report a new failure before declaring the capture complete. Unrelated existing findings are outside this bounded slice.
+
+The gate and landing-audit steps are absent because the kernel carries no gate evidence yet; do not substitute a manual check for them.
 
 ## Boundary
 

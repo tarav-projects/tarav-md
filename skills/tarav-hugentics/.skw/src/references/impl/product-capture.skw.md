@@ -90,6 +90,6 @@ An empty audit is valid. The audit exists to catch important omissions and drift
 
 ## Operational Boundary
 
-Use the current conversation already loaded in agent context for understanding. Ask Chatlas2 only to resolve selected message references for the one capture manifest. Let `tarav index capture` derive and apply the line dossiers, source patches, records, and Chat.Index plan; do not reconstruct the whole transcript or hand-author those intermediate artifacts.
+Use the current conversation already loaded in agent context for understanding. Ask Chatlas2 only to resolve selected message references for the one capture manifest. The landing pipeline that applied those effects was removed with the Markdown realization; stop at the approved manifest.Index plan; do not reconstruct the whole transcript or hand-author those intermediate artifacts.
 
 The primary product landing remains successful if chronological Delta placement is unavailable. `Chat.Index.HEAD` still receives the exact landed line when possible, and any gap is reported for later reconciliation rather than repaired by invented chronology.

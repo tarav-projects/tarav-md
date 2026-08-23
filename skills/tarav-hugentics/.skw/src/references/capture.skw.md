@@ -82,10 +82,7 @@ Other.HEADs -> Chat.Index.HEAD -> Chat.Index.Delta tape
 
 Use one `Capture.Manifest` as the authored batching boundary. The agent supplies intent: final typed lines, parser-resolvable destinations, stable client identities, and structured message references with content checks. The command derives all mechanical intermediates, including the Anchory batch and Chat.Index plan; the agent does not copy hashes between separate plans.
 
-1. Resolve selected messages and add their structured identity fields, optional diagnostic hints, and `expect.contains_all` checks to the manifest. Relationship roles determine the allowed message side.
-2. Run `tarav index capture preview --project <root> --manifest <capture.json> [--limit N]` and inspect the complete effect totals plus the bounded item list.
-3. Run `tarav index capture land --project <root> --manifest <capture.json> [--limit N]`. Land revalidates, performs the whole pipeline, and audits exact source, record, HEAD, and planned Delta presence.
-4. Report every `head_only_gaps` item. A failed or interrupted placement remains retryable and visible; rerunning an already satisfied manifest is idempotent.
+**Landing is blocked.** The `Capture.Manifest` pipeline ran on the Markdown realization and was removed with it. The recording kernel captures records (`tarav indexlab capture --library <root> --workspace <name> --manifest <records.json>`) but has no equivalent for anchor registration, gate evidence, or the landing audit. Until it does, produce the approved content and stop: report the blocked landing rather than inventing a placement.
 
 The manifest is not a second semantic model. It is one executable intent document from which the existing dossier, record, and Chat.Index runtime objects are derived.
 

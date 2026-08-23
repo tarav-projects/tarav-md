@@ -255,7 +255,7 @@ A `Capture.Stance` steers what the capture loop does after each user turn. It is
 - it remains a `Workflow.Neutral.Skill` when no explicit arg is selected
 - it routes into named modules instead of splitting session control across public skills
 - Index modules own Index mechanics; the root owns public workflow selection
-- the lower-level `tarav index ...` CLI remains the mechanical implementation surface
+- the lower-level `tarav indexlab ...` CLI remains the mechanical implementation surface
 - no separate public compatibility entry exists for the Index subsystem
 
 ## What The Index Is
@@ -628,7 +628,7 @@ An agent operating the index should:
 - keep background reconciliation, broad Index diagnosis, and standalone chat linking out of the public router while their valuable design is parked; Real.Time.Capture owns only its internal Chatlas2 grounding and newly-landed-line validation primitives
 - ground every chat-backed landing through the internal Chatlas2 `Real.Time.Grounding.Knowledge.Module`: use line dossiers for Index-native and Skw-hosted product lines; reserve generic message-support records for genuinely non-line provenance
 - author one structured `Capture.Manifest` for every single- or multi-line landing; include final target editions, structured message identities, diagnostic hints, and conjunctive content checks, but never an authored message side
-- preview that manifest once, then let `tarav index capture land` derive and audit Anchory registration, source attachment, `LineRecord`s, `Chat.Index.HEAD`, and every provable support-derived `Chat.Index.Delta`; do not hand-coordinate separate intermediate plans
+- landing is blocked: the `Capture.Manifest` pipeline was removed with the Markdown realization and the recording kernel has no equivalent yet, so an approved manifest is reported rather than placed
 - keep command targets foregrounded; targeted commands fail closed on ambiguous targets, and `::land-all-approved` fails closed unless one foreground index workflow owns the cluster
 - use file mutation only when the applicable surface gate is satisfied
 - keep action separate from index reconciliation: open inference may advance other work without silently rewriting touched positions

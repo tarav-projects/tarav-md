@@ -48,7 +48,7 @@ For candidate blocks, name the attachment path: `Target: create ## Concept.X/Age
 1. **Route** each entry under a routed concept — a line appends to `Concept.X/Agendix`, a candidate block attaches intact as `Concept.X/Agendix/Candidate.Name`. No routed concept → `agendix/Unassigned-agendix.md`, the homeless pool: accumulated evidence that a concept may be missing — promotion evidence, never a dump; an intact candidate block there is the strongest form of that evidence.
 2. **Fence**: type each line; drop what cannot take a type.
 3. **Manifest**: use the internal `Real.Time.Grounding.Knowledge.Module` in `references/link.md` to put every final typed line, target block, and qualifying user `Chat.Message.Ref` support in one `Capture.Manifest`; preserve a stable `client_id` per drafted line.
-4. **Preview and write**: preview the manifest, then let `tarav index capture land` write `agendix/Concept.X-agendix.md`, attach the returned anchors, create its `LineRecord`s, and project Chat.Index through one audited transaction. Use appendix writing rules, block heading `Concept.X/Agendix`, and lines shaped as:
+4. **Preview and write**: the `Capture.Manifest` landing pipeline was removed with the Markdown realization, so stop at the approved manifest and report the blocked landing. The agendix surface, its anchors, and its records are written once the recording kernel grows a landing path.
 
    ```md
    - [CT] `Reviewed.Cite.Closure`: reviewed surfaces may not cite the agendix, unreviewed surfaces may — promotion copies content out before an index cite ^d<YYYYMMDD>-<N>u
