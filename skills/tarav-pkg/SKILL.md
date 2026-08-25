@@ -13,6 +13,10 @@ Any project can adopt agentos incrementally — an AGENTS.md and one package ski
 
 Paths in this skill are package-root-relative unless explicitly absolute. For example, `000-INDEX.md` means `tarav-pkg/000-INDEX.md`.
 
+## Tarav Constitution
+
+Read `CONSTITUTION.md` before using this package guidance. It is Tarav's top-level alignment surface, and any surface claiming to be part of Tarav must comply with it.
+
 This is a `Batchy.Skill`, called like a CLI and resolved by one `Batchy.Router`. This compact contract is materialized from `tarav-batchy-skills`; load that skill when the full convention is needed.
 
 - `-h` / `--help` prints callable help into the chat and stops without running
@@ -164,6 +168,24 @@ Only external data consumed by the selected module is a `Skill.Arg`. Operation f
 This `Package.Driver.Router` is a specialized `Routing.Table` that sends a package-level need to the narrower skill or configured Hugentics route that owns it. Each cross-skill call keeps its routed effect in `--to` and declares its typed whole-file loading edge separately in `--load`.
 
 Selection cardinality: `many`.
+
+### `^route-constitution`
+
+- match: `explicit`
+- flags: `--constitution`
+- destinations: `Tarav.Constitution.Module`
+- loads: `CONSTITUTION.md`
+- when: the caller explicitly requests the Tarav Constitution
+- then: load CONSTITUTION.md into context as Tarav's top-level alignment surface
+
+### `^route-constitutional-theory`
+
+- match: `explicit-or-semantic`
+- flags: `--constitutional-theory`
+- destinations: `Constitutional.Theory.Module`
+- loads: `references/constitutional-theory.md`
+- when: the caller wants to understand, discuss, or apply the general theory of constitutions
+- then: load the constitutional theory module without treating it as substantive Tarav constitutional content
 
 ### `^route-hugentics-session`
 

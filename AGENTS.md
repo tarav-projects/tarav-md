@@ -10,6 +10,8 @@ It owns `Md.Surface::Agentos.Stack`, including the durable index notes, live not
 
 Load the `tarav-pkg` skill at the start of a session for workflow-neutral Agentos package orientation.
 
+Then read its `CONSTITUTION.md`. Any surface claiming to be part of Tarav must comply with it.
+
 Load the `tarav-hugentics` skill when you need index-grounded context, index research, index editing, diagnosis, testing, maintenance, or Hugentic session control.
 
 Use the Index arguments and modules of `tarav-hugentics` for cited context collection and direct index work.

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "files": {
     "SKILL.md": {
-      "output_sha256": "a16a6aefb937fd807c9fe79b0368f8e696a4fe5059afbb44d8e1df49ae0e7a57",
+      "output_sha256": "c2a1d50389abff31fa5a4042075c83875e6299a5dd7ec2896e7bec7ebda2527a",
       "recipes": [
         {
           "heading": "^agentos-pkg-batchy-runtime-contract",
