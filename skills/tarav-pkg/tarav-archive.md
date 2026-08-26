@@ -147,6 +147,42 @@ The canonical encoding must be versioned and unambiguous.
 The Artifact ID is also the physical key for its Record directory.
 There is no separate storage-key mapping.
 
+## Archive References
+
+An `Archive.Reference` is a small, portable JSON object that a consumer
+may retain outside the Archive. It contains an Artifact's Archive-issued
+identity together with a locator, validation evidence, and very cheap
+recognition or recovery hints.
+
+References are flat. Their `kind` identifies the kind of Artifact being
+referenced and selects the documentation and meaning of the remaining
+fields. The Archive does not impose nested validator or hints envelopes.
+
+Consumers may extend or modify Reference objects for their own
+applications, although doing so is not recommended. A supplied Reference
+is therefore a collection of claims and hints; it does not replace or
+rewrite authoritative Archive Records.
+
+The initial core Reference kinds are:
+
+- `git-repository` — contains `archive_id`, the consumer-supplied
+  `locator`, public `name`, and the Repository's first commit hash as
+  deliberately weak and cheap validation evidence.
+- `git-file-version` — contains `archive_id`, `repository_id`, an exact
+  `commit`, a repository-relative `locator`, the Git blob object ID, and
+  size.
+- `file-version` — contains an Archive-issued `archive_id`, the
+  consumer-supplied `locator`, `recorded_at`, a SHA-256 content hash,
+  size, and name.
+
+Each core Artifact uses the same `kind` value in its registration and
+Reference. Kind-specific documentation defines which flat fields are
+required and how consumers may validate them.
+
+Reference evidence assists validation and recovery but does not rebind
+identity. A failed validator or locator must not cause a Reference to
+resolve to different data.
+
 ## References and Resolution
 
 Archive references are stable and non-rebinding. A reference may become
