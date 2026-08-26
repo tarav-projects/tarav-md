@@ -8,6 +8,7 @@ Chatlas Python mechanics (indexing, raw archive, query, export, views) live in `
 
 ## Orientation
 
+- Load `tarav-pkg` and read its `CONSTITUTION.md`. Any surface claiming to be part of Tarav must comply with it.
 - Load `tarav-chatlas-pkg` for the Chatlas package index and concept blocks.
 - Design sessions live in `notes/live/*-design-session.md`.
 
