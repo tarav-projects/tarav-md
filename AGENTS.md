@@ -2,24 +2,29 @@
 
 ## Purpose
 
-`agentos-md` is the markdown implementation of the Agentos project.
+`tarav-md` is the markdown implementation of the Tarav project.
 
-It owns `Md.Surface::Agentos.Stack`, including the durable index notes, live notes, skills, and markdown coordination surfaces used to define and operate the Agentos agentic framework.
+It owns Tarav's active constitutional and candidate design documents together
+with older markdown material retained for possible reuse.
 
 ## Orientation
 
-Load the `tarav-pkg` skill at the start of a session for workflow-neutral Agentos package orientation.
+Load the `tarav-pkg` skill at the start of a session for Tarav orientation.
 
 Then read its `CONSTITUTION.md`. Any surface claiming to be part of Tarav must comply with it.
 
-Load the `tarav-hugentics` skill when you need index-grounded context, index research, index editing, diagnosis, testing, maintenance, or Hugentic session control.
-
-Use the Index arguments and modules of `tarav-hugentics` for cited context collection and direct index work.
+Use `tarav-pkg --attic` only when deliberately mining the disconnected legacy
+skill implementation.
 
 ## Surface Rules
 
-- `notes/index/` is the active `Design.Target.Model::Agentos` surface.
+- `skills/tarav-pkg/` is Tarav's active constitutional and candidate
+  big-picture design root.
+- `notes/index/` and existing `notes/live/` material predate the reboot. Treat
+  them as non-authoritative evidence until material is deliberately promoted
+  into the fresh package.
 - Do not treat closed live design sessions as active design surfaces; use them as provenance only.
 - Do not turn `AGENTS.md` into a progress tracker or design log.
-- Durable design truth belongs in `notes/index/`.
+- New durable Tarav design belongs in the fresh `tarav-pkg` unless ownership is
+  explicitly assigned elsewhere.
 - Development instructions and local workflow reminders can live here when they help agents work safely.

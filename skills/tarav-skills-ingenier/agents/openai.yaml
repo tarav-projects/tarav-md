@@ -1,4 +1,0 @@
-interface:
-  display_name: "Tarav Skills Ingenier"
-  short_description: "Research, design, and develop skills"
-  default_prompt: "Use $tarav-skills-ingenier to inspect a target and select the appropriate research, design, development, or evaluation route."

@@ -1,0 +1,38 @@
+# Legacy Tarav Skill Mine
+
+This module provides deliberate read-only access to Tarav skills displaced by
+the 2026-08-26 reboot.
+
+The deposited skill tree is located at:
+
+```text
+/Users/pereiro/Documents/tarav-attic/deposits/
+  20260826T213706Z-tarav-skills-reboot/
+```
+
+Read `deposit.json` before inspecting its `material/skills/` tree.
+
+The former package root is `material/skills/tarav-pkg/`. The former main
+capture system is under `material/skills/tarav-hugentics/`.
+
+## Status
+
+Attic material is disconnected historical evidence:
+
+- It is not active Tarav design truth.
+- It is not part of the active skill system.
+- Tarav code, skills, projects, and automation must not depend on it.
+- Its commands and workflows must not be executed merely because they appear
+  in the old skill text.
+
+## Mining
+
+Search the deposited tree for the specific idea, workflow, failure, or prior
+implementation being investigated. Load only the relevant files.
+
+Treat findings as candidate material. Compare them with the active
+Constitution and current design before recommending them.
+
+When an old idea remains valuable, re-express it for the current system and
+copy or rewrite it into an appropriate active surface. Nothing becomes active
+by reference to its Attic location.
