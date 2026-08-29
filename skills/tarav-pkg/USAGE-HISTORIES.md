@@ -1,0 +1,34 @@
+# Tarav Usage Histories
+
+Usage Histories describe situations Tarav should make possible. They are
+behavioral design material for simulating candidate systems without
+prematurely prescribing their mechanics. Each history is a WIP block rather
+than an imposed document schema.
+
+## Project.Mental.Model.Construction
+
+- A user and an Agent discuss the design of a product.
+- The discussion explores possibilities, rejects alternatives, and converges on decisions and desired features.
+- The user asks Tarav to digest the discussion into the project's maintained mental model.
+- The mental model captures the useful understanding reached through collaboration without claiming to be complete or infallible.
+- Tarav relates new material to the project understanding already maintained.
+- Agents can use the model to identify internal contradictions, unresolved questions, missing consequences, and tensions between design features.
+- Agents can compare the model with registered product surfaces to assess whether implementation and documentation remain aligned with the design.
+- Exploration and rejected alternatives must not be presented as settled design merely because they appeared in the discussion.
+- Findings from semantic analysis are surfaced for user-agent judgment and may themselves lead to further discussion and capture.
+- Future work receives the portions of the mental model relevant to its current objective while retaining paths to deeper context and supporting evidence.
+- The mental model remains a WIP surface jointly maintained through successive user-agent collaborations.
+
+## Model.Generalization.Refactoring
+
+- A maintained Model contains Block material whose useful meaning extends beyond the Model's local purpose.
+- A user and an Agent recognize that the material could provide a reusable capability to this Model and other Models.
+- Generalization is optional; the workflow does not require every reusable idea to be extracted.
+- The user and Agent develop a more general expression through ordinary grounded collaboration.
+- The consuming Model is reorganized so it can obtain the shared capability from the generalized material while retaining any local specialization it needs.
+- Other Models may adopt the generalized material independently without being rewritten merely because the generalization exists.
+- Original local expressions, their history, and their supporting evidence remain preserved and navigable after the refactoring.
+- Default contextualization may favor the generalized material and local specialization while allowing redundant earlier expressions to recede through progressive disclosure.
+- Generalization does not itself create semantic authority; the meaning and authority of every expression continue to come from its content and explicit grounding in `User.Touched.Data`.
+- Agents can compare the Model before and after refactoring to identify lost constraints, changed meaning, incomplete specialization, or other POIs.
+- The refactored Model should provide equivalent or richer contextual capability without requiring one universal composition or relationship algebra.

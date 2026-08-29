@@ -13,8 +13,9 @@ Load the `tarav-pkg` skill at the start of a session for Tarav orientation.
 
 Then read its `CONSTITUTION.md`. Any surface claiming to be part of Tarav must comply with it.
 
-Use `tarav-pkg --attic` only when deliberately mining the disconnected legacy
-skill implementation.
+Use `tarav-pkg --attic` when conserving, investigating, recovering, or
+promoting disconnected Archive.Attic material. Its linked legacy-skill-mine
+module governs deliberate inspection of the displaced skill implementation.
 
 ## Surface Rules
 

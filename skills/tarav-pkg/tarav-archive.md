@@ -216,7 +216,7 @@ Materialization policy affects cost, not Artifact identity.
 
 ## Physical Shape
 
-`~/Documents/tarav-archive/` has two primary surfaces:
+`~/Documents/tarav/archive/` has two primary surfaces:
 
 - `records/` — the Git repository containing Archive Records.
 - `repositories/` — repositories physically managed by the Archive.
@@ -226,7 +226,7 @@ locations are recorded by the Archive.
 
 A candidate layout is:
 
-    tarav-archive/
+    ~/Documents/tarav/archive/
     ├── records/
     │   ├── .git/
     │   ├── archive.json

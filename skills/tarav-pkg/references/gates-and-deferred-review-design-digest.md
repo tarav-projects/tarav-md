@@ -1,0 +1,242 @@
+# Gates and Deferred Review
+
+## Status
+
+- This is an unapproved WIP design digest.
+- It preserves discussion material for later review, capture, amendment, or
+  rejection.
+- It is not constitutional material, landed Diagram content, or approved Tarav
+  design truth.
+- The discussion recorded here took place in Chatlas session
+  `01a02f8b-8c36-7123-ba70-1a217b776e28`.
+- Future capture should recover the exact supporting User turns from that
+  session rather than treating this digest as their replacement.
+
+## Gate
+
+- A Gate is a reusable set of Assertions over observable collaboration
+  evidence.
+- The first Gate family is designed to be mechanically auditable against a
+  Chatlas chat tape.
+- A Gate declaration is read in two directions:
+  - before evidence exists, it prompts the Agent to perform the required
+    interaction protocol;
+  - after the interaction, it tells validation which Assertions to compute.
+- Prompting guides Agent behavior, but the Gate's standing comes from passing
+  its Assertions rather than from the Agent claiming that it complied.
+- Gate evaluation does not block Diagram mutation. Failed, missing, or
+  unassessable Gate Assertions surface POIs.
+
+```text
+Gate declaration
+    ├── guides Agent behavior during the chat
+    └── defines later Mechanical.Assertions
+
+Annotation + Chatlas evidence
+              ↓
+         Gate checks
+              ↓
+passed / failed / unassessable
+              ↓
+             POIs
+```
+
+## Gate.Definition.And.Instance.Data
+
+- A Gate definition owns its prompting protocol and Assertion set.
+- A gated Annotation retains only the irreducible instance data required by
+  that Gate's checks.
+- Gate instance data may include a token, content digest, or evidence
+  coordinates.
+- Producer, support, and other facts already recoverable through the
+  Annotation's Namespace and type need not be duplicated.
+- A retained record never stores an authoritative `passed` flag.
+- Gate standing is recomputed from the record, Chatlas evidence, and the Gate
+  definition.
+
+## Verbatim.Gate
+
+- `Verbatim.Gate` is the initial Gate specialization under discussion.
+- It is a proxy for explicit User approval of presented Line wording.
+- It does not certify factual truth, support strength, User understanding, or
+  hidden cognition.
+- A candidate protocol has:
+  - an Agent message presenting the governed content and Gate identifier;
+  - a later User message carrying the same identifier and explicit approval;
+  - a Line Annotation carrying the data required to bind its wording to that
+    exchange.
+- Candidate Mechanical.Assertions check message roles, shared identifier,
+  content binding, and event order.
+- A content digest may make exact wording correspondence mechanical. Whether
+  the identifier itself is that digest or a separate opaque token remains open.
+
+```text
+Agent message: Gate identifier + presented Line content
+                              ↓ later
+User message:  Gate identifier + explicit approval
+                              ↓
+Line Annotation: Gate instance data + landed wording
+```
+
+## Same.Chat.Feedback
+
+- Agents should be prompted to run Gate validation after performing a gated
+  action.
+- Chatlas synchronizes the interaction evidence and the linter recomputes Gate
+  Assertions.
+- The Agent can inspect and respond to Gate POIs inside the same collaboration
+  session.
+- Later Agents can rerun the same checks independently.
+- If the required order was violated, rerunning validation cannot rewrite chat
+  history; a new valid protocol sequence and, when necessary, a successor
+  Annotation are required.
+
+```text
+Gate policy
+    ↓ prompts
+Agent performs protocol
+    ↓ records
+Annotation and chat evidence
+    ↓
+Agent runs linter
+    ↓
+passed or POI
+    ↓
+same-chat response
+```
+
+## Gate.Policy
+
+- A Namespace or Model may declare that selected Line Annotation types are
+  expected to carry a particular Gate.
+- In the current discussion, `Verbatim.Gate` applies only at the Line level.
+- Block and Model review standing are intentionally left undefined.
+- A policy requirement means that missing Gate evidence produces a POI; it
+  does not prohibit writing the Annotation.
+- Gate definitions are reusable primitives rather than workflow-specific
+  validation code.
+
+## User.Attention
+
+- `User.Attention` is scarce.
+- Requiring explicit review for every capture may make useful capture too
+  expensive and cause User.Touched understanding to be lost.
+- Tarav must allow the User to authorize Agent capture without reviewing each
+  proposed wording immediately.
+- Review creates an explicit attention opportunity; it cannot prove that the
+  User read, understood, remembered, or evaluated the material.
+- Review nevertheless has several valuable roles:
+  - it adds an auditable explicit User touch to selected wording;
+  - it gives the User an opportunity to inspect, learn, and study the maintained
+    Model;
+  - it exposes indexing mistakes and supports curation;
+  - it improves shared User-Agent understanding for future collaboration.
+
+## Capture.Workflows
+
+- `Reviewed.Capture` presents Line wording, satisfies `Verbatim.Gate`, and
+  lands the gated Line Annotation.
+- `Deferred.Review.Capture` lets the Agent land a Line Annotation without the
+  Gate while retaining Producer, Support.Set, grounding, and the other data
+  required for later audit.
+- Deferred review is ordinary capture, not a separate or weaker Diagram.
+- The User controls whether the current session spends attention on capture,
+  review, both, or neither.
+
+## No.Agendix.Split
+
+- The new Diagram does not physically or semantically split reviewed and
+  unreviewed content into Index and Agendix storage surfaces.
+- Reviewed and unreviewed Line Annotations coexist on the same flat Namespace
+  tape and participate in the same Model projection.
+- Review standing is one independently computed axis beside grounding,
+  Assertion scoring, and visibility.
+- An unreviewed Line remains part of the Model.
+- When it is the only indexed description of part of the Model, it is the best
+  available Diagram context and should remain usable with its standing exposed.
+- Review does not require copying, moving, or promoting content between
+  surfaces.
+
+```text
+one Line-Annotation tape
+        ├── grounding standing
+        ├── Assertion standing
+        ├── review standing
+        └── visibility standing
+```
+
+## Line.Ship.Review.Standing
+
+- `Verbatim.Gate` attaches to one exact Line Annotation and its wording.
+- A Line ship is considered reviewed when at least one member Annotation has a
+  passing `Verbatim.Gate`.
+- The passing Annotation is the exact reviewed content.
+- Calling the Line ship reviewed means that the User has reviewed the lineage
+  at least once; it does not claim that every member Annotation was approved.
+- Adding later ungated Annotations to the same Line ship does not stale or
+  remove its reviewed standing.
+- Line continuity is responsible for the claim that those later Annotations
+  remain editions of the same semantic ship.
+- A future continuity failure is a continuity POI, not a reason for Gate logic
+  to invent review invalidation.
+
+```text
+Line ship is reviewed
+    iff
+at least one member Line Annotation
+    has a passing Verbatim.Gate
+```
+
+## Line.Ship.Review.POI
+
+- The initial review-coverage check is intentionally small.
+- It emits one POI for each Line ship that has no Annotation with a passing
+  `Verbatim.Gate`.
+- A newly created ship from deferred-review capture naturally produces this
+  POI.
+- A later review session may add a gated Annotation to the same ship and clear
+  the POI.
+- Later ungated enrichment of a reviewed ship does not reopen it.
+- The POI exposes an opportunity for User attention; it does not make the ship
+  unusable or the Model broken.
+
+## Model.Review.Session
+
+- A User may dedicate a session to exploring and reviewing the maintained
+  Model.
+- Tarav can guide attention toward unreviewed Line ships, low-scoring
+  Assertions, important dependencies, or other POIs.
+- The Agent presents compact Model material with paths to support and deeper
+  context.
+- The User may approve wording, request amendments, reject interpretations, or
+  investigate the supporting discussion.
+- Passing Gate evidence is recorded through new Line Annotations and becomes
+  independently auditable.
+- The session improves Diagram quality while also helping the User learn the
+  current Model.
+
+## Usage.History.Model.Capture.With.Deferred.Review
+
+- The User and Agent produce discussion worth retaining in the Model.
+- The User wants the Agent to capture it but does not want to spend attention
+  reviewing every Line immediately.
+- The Agent creates grounded and auditable Line Annotations without
+  `Verbatim.Gate` evidence.
+- Those Annotations immediately participate in their Line ships and Model.
+- New Line ships without a reviewed member surface review POIs.
+- Future work may use the unreviewed material while seeing its review and
+  Assertion standing.
+- A later Model review session may review selected ships without requiring a
+  separate capture system or storage migration.
+
+## Open.Design.Questions
+
+- What exact payload does `Verbatim.Gate` bind: retained wording, a canonical
+  serialization, or another Line representation?
+- Should the Gate identifier be the content digest or an independent token?
+- Which approval syntax is mechanically recognized in User messages?
+- How does validation compare chat order with the Annotation's landing event?
+- How are Gate requirements declared by Namespace, Model, and Line Annotation
+  type without creating conflicting policies?
+- How should a later review add Gate evidence when the original Line wording
+  should remain unchanged?

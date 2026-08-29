@@ -103,6 +103,8 @@ Creating a Namespace is analogous to `git init`. It initializes a
 self-describing repository with a Namespace definition and an empty Annotation
 tape. Mounting that repository into a Diagram load path is a separate,
 machine-local operation; creation may perform both operations as a convenience.
+The default physical depot for Namespace repositories is
+`~/Documents/tarav/diagram/`; each Namespace remains its own Git repository.
 
 The Diagram resolves bare Annotation identities by searching mounted
 Namespaces in load-path order. A stable, exact reference includes both the
@@ -270,6 +272,112 @@ registered class raises an ordinary error. Generic access remains available,
 but Tarav does not prescribe whether the caller should retain it, report the
 error, skip the Record, or stop its operation.
 
+## Gates and Review
+
+A Gate is a reusable set of mechanically evaluated Assertions over retained
+collaboration evidence. Gate evaluation never blocks Diagram mutation. Failed,
+missing, and unassessable Gate Assertions surface POIs.
+
+`Verbatim.Gate` is a proxy for explicit User review of one exact Line wording.
+Its retained instance data is:
+
+```json
+{
+  "type": "Verbatim.Gate",
+  "token": "<opaque-token>",
+  "proposal_turn": "<Agent Chatlas.Turn.Reference>",
+  "approval_turn": "<User Chatlas.Turn.Reference>"
+}
+```
+
+The token is an opaque nonce, not a content hash. The Gate passes only when
+the proposal resolves to an Agent turn containing both the token and
+materially equivalent Line wording, and a later User turn in the same chat
+explicitly approves that token.
+
+A newly captured `Diagram.Line.Annotation` may retain its Gates directly.
+Reviewing an immutable existing Line wording creates a separate record:
+
+```json
+{
+  "type": "Diagram.Line.Gate.Annotation",
+  "target_annotation": "<existing Diagram.Line.Annotation UUID>",
+  "gates": [{"type": "Verbatim.Gate", "...": "..."}]
+}
+```
+
+The target supplies the wording, Model, Block, and Line lineage. The gate-only
+Annotation does not rebind or duplicate that target. One review exchange may
+cover several Lines; each exact target receives its own independently
+assessable gate-only Annotation.
+
+Gate records retain no authoritative passed flag. Tarav recomputes Gate
+standing from the target record and Chatlas evidence. A Line ship is
+`Reviewed` when at least one exact Line Annotation in that lineage has a
+passing `Verbatim.Gate`. Later ungated lineage members do not erase that
+standing; their continuity remains a separate Assertion.
+
+Capture has no Gate-specific contract. A `Capture.Manifest` transports typed
+Annotation records without interpreting their semantics. The Namespace
+specializes each record from its `type`; the resulting Tarav class owns its
+schema, model location, Assertions, mechanical checks, and findings. Gate
+Annotations therefore travel through the ordinary Capture path without adding
+Gate commands or Gate branches to Capture.
+
+## Assertion Evaluation
+
+`Assertion.Engine` is the central read service for current Assertion state.
+Annotation types declare Assertions, registered evaluators implement their
+mechanical assessment, and the Engine resolves available evidence and produces
+the Annotation's current `Annotation.Score.Vector`.
+
+Renderers, linters, contextualizers, and other consumers request Assertion
+state from the Engine. They do not evaluate Gates or other Assertion types
+independently.
+
+The Engine combines retained scores with mechanically recomputed scores without
+writing derived truth into the immutable Annotation Record. A mechanically
+derived result may be cached as disposable data, but it is never authoritative
+Annotation content.
+
+Assertion state distinguishes `NotEvaluated`, when no score or applicable
+evaluation result exists; `Unassessable`, when evaluation lacks resolvable
+evidence; `Passed` and `Failed` Boolean scores; and other `Scored` values.
+
+An Annotation remains `UnAsserted` while any required Assertion is
+`NotEvaluated` or `Unassessable`. A falsy score is still an asserted result and
+surfaces a POI without making Diagram mutation invalid.
+
+## Named Renderers
+
+Diagram Renderers are named, read-only code projections over Diagram objects.
+They create no Annotations and hold no Diagram authority. Several Renderers may
+present the same object differently without requiring their surfaces to agree.
+
+Each Renderer declares a stable name, accepted target kind, output media type,
+and implementation. Renderer selection is explicit:
+
+```bash
+tarav tarav2 diagram render \
+  --line-ship <uuid> \
+  --renderer Kernel.Writing.Line.WithSupport
+```
+
+Renderer discovery is mechanical through `diagram renderer list` and
+`diagram renderer show`. Native output is written to stdout; `--json` returns
+an envelope containing the Renderer name, target, media type, content, and
+findings.
+
+A Line Renderer projects the Line ship rather than treating one Annotation as
+the Line. When exactly one wording Annotation exists, it may render that
+wording directly. When several wording Annotations exist without an explicit
+selection, a mechanical Renderer must not silently choose the latest: it must
+render the variants and surface the unresolved selection as a POI.
+
+Support-aware Renderers preserve exact rooted Chatlas verbatims and navigation
+references. Contextualizing Renderers include available Assertion scores and
+surface `UnAsserted` state rather than hiding it.
+
 ## User-Touched Semantic Lineages
 
 `User.Touched.Chatlas.Index` is intended to support a knowledge graph grounded
@@ -298,6 +406,18 @@ Line identities are separate semantic ship UUIDs carried by the Annotation
 types that participate in those lineages. A root Model Annotation establishes
 a Model ship in one Namespace; folding the relevant tape material produces the
 current Model projection.
+
+A `Diagram.Block.Annotation` establishes a Block ship within a Model and may
+retain its human-facing label. The label is a schema-shaped rendering and
+lookup aid, not the Block's identity or semantic definition. Line Annotations
+locate their Line ships within one Model and Block context.
+
+Like the root Model Annotation, a Block declaration is structural bookkeeping:
+it does not require a producer or direct `Support.Set`. The support of the
+projected Block comes from the supported Annotations attached to it. A later
+semantic operation on the Block, such as a supported rename, may be represented
+by its own Annotation rather than retroactively adding support to the original
+declaration.
 
 `Line`, `Block`, and `Model` identities are semantic lineages rather than
 fixed wordings or fixed collections. Their identities persist through
@@ -331,23 +451,30 @@ A Tarav project may name one default Model ship in `.tarav/project.json`:
 }
 ```
 
-The project configuration retains only the Model ship UUID. The root Model
-Annotation determines the Namespace that owns the Model, so Capture does not
-need a second Namespace target. New Project Models default to
-`User.Touched.Chatlas.Index`.
+The project configuration retains only the Model ship UUID. It is an
+association, not an ownership claim: several Projects may point to the same
+main Model. For example, implementation and documentation Projects belonging
+to one system may share one system Model while retaining independent Project
+identities and repositories.
 
-If `main_model` is missing, the Capture bootstrap may allocate a Model ship,
-write a root Model Annotation to the default Namespace, and retain the UUID in
-the project configuration. A Model with no Line material is an existing empty
-Model, not a reason to allocate another identity. A configured Model that
-cannot be resolved must surface an error or POI and must not be silently
-rebound.
+The root Model Annotation determines the Namespace that owns the Model, so
+Capture does not need a second Namespace target. Associating a Project with an
+existing Model does not create, copy, or modify that Model.
 
-A root Model Annotation may initially lack direct `User.Touch` support. Its
-Namespace still supplies assessable base Assertions, and its support may later
-be derived from the User-supported material projected into the Model. This
-exception does not permit ordinary semantic Line Annotations to bypass the
-Namespace's direct-support policy.
+If `main_model` is missing, the Project may be associated with an existing
+Model or a Capture bootstrap may allocate a Model ship, write a root Model
+Annotation to the default `User.Touched.Chatlas.Index` Namespace, and retain
+the UUID in the project configuration. Model creation and Project association
+remain distinct operations even when one command performs both as a
+convenience. A Model with no Line material is an existing empty Model, not a
+reason to allocate another identity. A configured Model that cannot be
+resolved must surface an error or POI and must not be silently rebound.
+
+Root Model and Block declaration Annotations may lack direct `User.Touch`
+support. Their Namespace still supplies assessable base Assertions, and their
+projected support is derived from the User-supported material attached within
+them. This structural exception does not permit ordinary semantic Line
+Annotations to bypass the Namespace's direct-support policy.
 
 ## Bad Indexing and Semantic Evolution
 
@@ -407,20 +534,23 @@ vocabulary into Capture.
 
 ## Capture Manifest
 
-User-Touched Capture is a deliberate batch process developed through a
-`Capture.Manifest`, not a sequence of improvised direct mutations. The
-Manifest is an editable JSON WIP surface in which an Agent accumulates and
-revises one capture intent before materializing it in the Diagram.
-It is a working intent surface, not a Diagram authority surface.
+User-Touched Capture is an approval-gated collaboration performed in chat, not
+a sequence of improvised direct mutations. The chat is the WIP capture surface:
+the User and Agent discuss, revise, and approve each Block and Line there.
+
+A `Capture.Manifest` does not exist during that semantic discussion. After the
+User sends `::land` for one settled proposal, the Agent creates a Manifest as a
+faithful mechanical compilation of the approved material. The Manifest is
+neither a collaboration surface nor a Diagram authority surface.
 
 Conceptually:
 
 ```text
-Empty Capture.Manifest template
-          ↓
-Capturing Agent performs best-effort semantic work
-          ↕ query / group / revise / lint
-Settled capture intent
+User/Agent discussion in chat
+          ↕ propose / group / revise / approve
+Settled capture proposal
+          ↓ explicit ::land
+Agent creates Capture.Manifest
           ↓
 Mechanical check
           ↓
@@ -433,20 +563,27 @@ Semantic Assertion scoring
 Scores + POIs + curation
 ```
 
-Tarav tooling should provide an empty Manifest template and return
-manifest-ready fragments wherever practical: Chatlas references, resolved
-hashes, Diagram identities, freshly minted UUIDs, and existing Model, Block,
-and Line objects. The Agent should not reconstruct mechanical bureaucracy by
-hand.
+Before landing, Tarav tooling should provide read-only Model projections and
+manifest-ready context fragments: Chatlas references, resolved hashes, Diagram
+identities, and existing Model, Block, and Line objects. After `::land`, it
+should provide an empty Manifest template and freshly minted UUIDs. The Agent
+should not reconstruct mechanical bureaucracy by hand.
 
 The Manifest identifies its target Model ship. Resolving that Model identifies
 the Namespace repository that owns it and therefore the sole write destination
 for the batch. The Manifest does not need a redundant Namespace target.
 
-Manifest authoring remains Agentic work. The Capturing Agent reads the
-bounded context, selects meaningful User.Turn support, extracts atomic
-statements, chooses their Model, Block, and Line locations, and tries to
-produce the best semantic interpretation it can.
+Semantic capture remains Agentic work, but it occurs in the approved chat
+discussion. Post-land Manifest construction may choose mechanical identities
+and serialize the result, but it must not introduce new semantic content. If a
+mechanical correction requires semantic reinterpretation, landing stops and
+the work returns to discussion and approval.
+
+The compact Agent landing-pause turn before `::land` serves as the producer
+coordinate for its Annotations. It need not repeat the approved proposal: its
+context must already contain the exact approved proposal turns and supporting
+User turns. `::land` authorizes materialization; it does not retroactively
+supply semantic support or approval.
 
 Manifest checking covers `Mechanical.Semantics`: schema shape, resolvable
 references, hashes, reference sides, producer-context inclusion, target
@@ -463,6 +600,13 @@ is always later work performed through the Semantic Assertion system. Newly
 captured Annotations ordinarily remain `UnAsserted` until their Assertions
 receive an `Annotation.Score.Vector`; that ordinary state may surface POIs
 but does not make capture a semantic-scoring workflow.
+
+Git commit policy is an apply-time option, not Manifest data. Normal Capture
+application writes and commits the batch in its Namespace repository. A
+development caller may explicitly request an uncommitted application; this
+changes only materialization behavior and leaves the Manifest unchanged.
+Uncommitted Annotations are outside a stable Diagram version until the
+developer commits them through Git.
 
 ## Models and HEADs
 
@@ -488,8 +632,8 @@ dependencies.
 
 The following mechanics remain deliberately unresolved:
 
-- the exact Annotation types and projections for Lines, Blocks, Models, and
-  their editions;
+- further Annotation types and projections for Lines, Blocks, Models, and
+  their later editions;
 - how an Annotation identifies the exact Block edition that contextualized
   its wording;
 - whether and how one Annotation or Line may participate in several Blocks;

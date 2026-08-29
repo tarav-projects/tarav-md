@@ -1,6 +1,6 @@
 ---
 name: tarav-pkg
-description: "Tarav's constitutional and candidate big-picture design root. Use when working on Tarav itself or when a surface must align with Tarav.Archive, Tarav.Diagram, Chatlas-backed evidence, contextualization, or the legacy Tarav skill mine."
+description: "Tarav's constitutional and candidate big-picture design root. Use when working on Tarav itself or when a surface must align with Archive.Attic, Tarav.Archive, Tarav.Diagram, Chatlas-backed evidence, contextualization, or the legacy Tarav skill mine."
 ---
 
 # tarav-pkg
@@ -30,21 +30,69 @@ Load only the design relevant to the work:
   read [tarav-archive.md](tarav-archive.md).
 - For the Chatlas-backed data train, grounded annotations, semantic lineages,
   capture manifests, and Models, read [tarav-diagram.md](tarav-diagram.md).
+- For behavioral situations used to develop and test candidate Tarav designs,
+  read [USAGE-HISTORIES.md](USAGE-HISTORIES.md).
 - For the general theory governing the constitutional document, read
   [references/constitutional-theory.md](references/constitutional-theory.md).
 
 These design documents are subordinate to the Constitution and remain WIP.
 They are candidate design truth, not constitutional amendments.
 
+## Data root
+
+Durable Tarav data defaults to the physical depot `~/Documents/tarav/`.
+Its child surfaces retain independent semantics and Git histories:
+
+```text
+~/Documents/tarav/
+├── archive/
+├── attic/
+├── chatlas/
+├── diagram/
+└── hints/
+```
+
+The data root is not itself one repository or authority. Machine-local
+configuration, caches, indexes, and operational logs remain under `~/.tarav/`.
+External repositories registered by the Archive remain free to live elsewhere.
+
+## Unapproved design digests
+
+The following surface preserves ongoing discussion for later review and
+capture. It is not approved or landed design truth:
+
+- [Context, POIs, and Product-Surface Impact](references/context-poi-and-impact-map-design-digest.md)
+  — discussion digest from Chatlas session
+  `01a02f8b-8c36-7123-ba70-1a217b776e28`.
+- [Gates and Deferred Review](references/gates-and-deferred-review-design-digest.md)
+  — discussion digest from Chatlas session
+  `01a02f8b-8c36-7123-ba70-1a217b776e28` covering reusable Gate Assertions,
+  deferred review, and Line-ship review standing.
+
 ## Modules
+
+The public conversational capture workflow is
+`tarav-hugentics --capture`. Its reviewed, automatic/unreviewed, audit, and
+stance behavior uses the Diagram mechanics documented by this package.
 
 - `tarav-pkg --constitution` — load the Constitution.
 - `tarav-pkg --archive` — load the Constitution and Archive design.
 - `tarav-pkg --diagram` — load the Constitution and Diagram design.
+- `tarav-pkg --usage-histories` — read
+  [USAGE-HISTORIES.md](USAGE-HISTORIES.md) and use its behavioral histories
+  to develop or test candidate designs.
+- `tarav-pkg --capture` — read [references/capture.md](references/capture.md)
+  for the lower-level reviewed Tarav2 capture mechanics. Prefer
+  `tarav-hugentics --capture` for the public conversational workflow.
+- `tarav-pkg --review` — read [references/review.md](references/review.md) and
+  review existing Diagram Block Lines through mechanically auditable
+  `Verbatim.Gate`s.
 - `tarav-pkg --constitutional-theory` — load the Constitution and the general
   constitutional-theory module.
-- `tarav-pkg --attic` — read [references/attic.md](references/attic.md), then
-  inspect only the selected legacy material needed for the current question.
+- `tarav-pkg --attic` — read [references/attic.md](references/attic.md) for
+  Archive.Attic semantics, Deposit workflow, and its boundaries with
+  `Tarav.Archive` and `Diagram.Attic`. Load the linked legacy-skill-mine
+  module only when deliberately mining the displaced skill implementation.
 
 Without an explicit module, use this file as orientation, read the
 Constitution, and route to the smallest relevant current design surface.
