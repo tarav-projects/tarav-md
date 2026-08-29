@@ -9,6 +9,10 @@ description: "Chatlas Package.Skill for the maintained chat-session dataset and 
 
 Chatlas retains provider-native artifacts and presents a small provider-neutral Normal Model through Chatlas2. Its central read contract is chronological `Chat.Message` and `Chat.Turn` content over a loss-preserving event tape; deeper provider details remain available in the raw archive.
 
+The maintained dataset defaults to `~/Documents/tarav/chatlas/`, inside the
+shared physical Tarav data depot. Chatlas retains its own repository and data
+authority; `~/Documents/tarav/` is not a shared repository.
+
 Use this root for package orientation. Use the Chatlas2 CLI for deterministic reads and the companion skills for agentic session discovery, dashboards, continuation, and raw-retention audits. Chatlas1 normalization, views, query, and Product routes are not dependencies of these public workflows.
 
 This is a `Batchy.Skill`, called like a CLI and resolved by one `Batchy.Router`. This compact contract is materialized from `tarav-batchy-skills`; load that skill when the full convention is needed.

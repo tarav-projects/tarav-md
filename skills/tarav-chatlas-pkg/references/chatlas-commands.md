@@ -44,7 +44,7 @@ human-readable text by default, and prints the raw payload under `--json`.
 - Use `agentos chat debug ...` only for live provider diagnostics, raw artifact extraction, or connector troubleshooting.
 - If freshness matters, run `agentos chatlas update` before querying.
 - If already-materialized dataset contents are enough, query first and avoid unnecessary updates.
-- Default Chatlas dataset root is `~/Documents/chatlas`.
+- Default Chatlas dataset root is `~/Documents/tarav/chatlas`.
 
 ## Local Chatlas Workflow
 
