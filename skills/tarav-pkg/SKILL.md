@@ -1,6 +1,6 @@
 ---
 name: tarav-pkg
-description: "Tarav's constitutional and candidate big-picture design root. Use when working on Tarav itself or when a surface must align with Archive.Attic, Tarav.Archive, Tarav.Diagram, Chatlas-backed evidence, contextualization, or the legacy Tarav skill mine."
+description: "Tarav's constitutional and candidate big-picture design root. Use when working on Tarav itself or when a surface must align with Archive.Attic, Tarav.Archive, Tarav.Diagram, Tarav.Bloberia, Chatlas-backed evidence, contextualization, or the legacy Tarav skill mine."
 ---
 
 # tarav-pkg
@@ -30,6 +30,8 @@ Load only the design relevant to the work:
   read [tarav-archive.md](tarav-archive.md).
 - For the Chatlas-backed data train, grounded annotations, semantic lineages,
   capture manifests, and Models, read [tarav-diagram.md](tarav-diagram.md).
+- For the global Agent-managed JSON registry and its Agent.Hint workflow, read
+  [tarav-bloberia.md](tarav-bloberia.md).
 - For behavioral situations used to develop and test candidate Tarav designs,
   read [USAGE-HISTORIES.md](USAGE-HISTORIES.md).
 - For the general theory governing the constitutional document, read
@@ -49,7 +51,7 @@ Its child surfaces retain independent semantics and Git histories:
 ├── attic/
 ├── chatlas/
 ├── diagram/
-└── hints/
+└── bloberia/
 ```
 
 The data root is not itself one repository or authority. Machine-local
@@ -71,13 +73,15 @@ capture. It is not approved or landed design truth:
 
 ## Modules
 
-The public conversational capture workflow is
-`tarav-hugentics --capture`. Its reviewed, automatic/unreviewed, audit, and
-stance behavior uses the Diagram mechanics documented by this package.
+The public conversational capture and implementation workflows are
+`tarav-hugentics --capture` and `tarav-hugentics --impl`. Their reviewed,
+automatic, audit, implementation-design, execution, and stance behavior uses
+the Diagram mechanics documented by this package.
 
 - `tarav-pkg --constitution` — load the Constitution.
 - `tarav-pkg --archive` — load the Constitution and Archive design.
 - `tarav-pkg --diagram` — load the Constitution and Diagram design.
+- `tarav-pkg --bloberia` — load the Constitution and Tarav.Bloberia design.
 - `tarav-pkg --usage-histories` — read
   [USAGE-HISTORIES.md](USAGE-HISTORIES.md) and use its behavioral histories
   to develop or test candidate designs.

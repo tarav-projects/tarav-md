@@ -1,0 +1,30 @@
+# Issue Parking Workflow
+
+Use this short-lived interruption workflow to preserve a side thought as a
+minimal, addressable `Issue.Block` without abandoning the foreground task.
+
+## Workflow
+
+1. Record in the chat the interrupted task and its next concrete step.
+2. Discuss the side thought only enough to make the Issue useful. Do not begin
+   executing it or turn Parking into a full design session.
+3. Inspect the Project Model for an existing Issue ship representing the same
+   continuing concern. Continue it when appropriate; otherwise propose a new
+   `Issue.Block` with a concise human-facing label.
+4. Draft the smallest coherent set of supported Lines that preserves the
+   concern. Use the vocabulary allowed by `Issue.Block`; do not add a Resolve
+   Line merely to complete the workflow.
+5. Present the exact capture using the reviewed-capture header and fresh
+   approval token from [`../capture.md`](../capture.md).
+6. After approval and `::land`, compile and apply the ordinary
+   Capture.Manifest. The resulting open-Issue POI is expected.
+7. Report the Issue label, shortened ship UUID, landing result, and the compact
+   foreground resume point. Then end the interruption.
+
+Parking creates durable addressability immediately. Later enrichment,
+implementation, review, and resolution operate on the same Issue ship; there
+is no promotion step.
+
+The runtime commands are the shared `::discuss`, `::review`,
+`::approve <token>`, and `::land` commands. Do not invent Parking-specific
+approval syntax.

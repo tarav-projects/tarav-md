@@ -129,6 +129,80 @@ Models, Blocks, Lines, relationships, and other semantic objects are
 projections obtained by interpreting and folding the flat Annotation tape.
 They are not parallel storage authorities.
 
+The canonical implementation path is a full projection of that tape. A later
+incremental index may accelerate the same computation, but it must remain
+equivalent to the full projector and cannot become a second authority.
+
+### Diagram Object Types
+
+The retained Annotation `type` selects the Python class that owns how the
+record contributes to projection. Parametric Annotation types additionally
+retain full Diagram Object.Type names:
+
+```json
+{"type": "Diagram.Block.Annotation", "block_type": "Design.Block"}
+{"type": "Diagram.Line.Annotation", "line_type": "Design.Line.Principle"}
+```
+
+Full Type names are record data. Compact codes such as `PR` are rendering
+conventions only. Existing records with no Object.Type remain readable through
+the generic `Diagram.Block` and `Diagram.Line` classes while surfacing a
+missing-Type POI. Unknown, conflicting, or Namespace-disallowed Types likewise
+remain writable and recoverable through generic objects while surfacing POIs.
+
+Every Object.Type has two complementary semantic surfaces: an addressable
+Definition.Block for Agents and users, and a Python class for executable
+mechanics. A class exists only when code must parse or operate on the Type; a
+Definition.Block explains intention and meaning. Parametric Record types define
+where their Type parameters occur and which values they accept.
+
+The runtime Object.Type registry retains the Definition.Block ship UUID rather
+than one Block edition, allowing the definition to evolve through its lineage.
+Definition.Blocks resolve through the mounted Diagram, so they need not live in
+the consuming project's Model or Namespace. Missing or ambiguous resolution
+surfaces a POI without blocking capture.
+
+A Block.Type owns the Line.Type vocabulary valid inside that Block. The normal
+design vocabulary belongs to `Design.Block`:
+
+- `Design.Line.Definition` (`DF`)
+- `Design.Line.Decision` (`DC`)
+- `Design.Line.Constraint` (`CT`)
+- `Design.Line.Rejection` (`RJ`)
+- `Design.Line.Principle` (`PR`)
+- `Design.Line.Freedom` (`FR`)
+- `Design.Line.Example` (`EX`)
+
+`Design.Block` does not make its heading a semantic commitment and does not
+require a privileged Definition Line. Content gives a Block its semantics;
+Type contributes explicit mechanics and assessable conformance claims.
+
+`Impl.Req.Block` is the User-Touched Diagram surface for one implementation
+request. It groups supported User-Touched material relevant to that request
+across its design and execution chats. A numerical label such as
+`502.Impl.Req` is a human-facing address; the Block ship UUID remains its
+identity. This work grouping does not claim that the request is a project
+ontology concept.
+
+The Block is not the implementation's main coordination artifact. The Agent
+maintains a separate live-note `Impl.Req` containing `Impl.Abstract`, an
+`Impl.Req.Diagram` reference to the Block, `Execution.Plan`, and `Impl.Log`.
+Agent-only plans, status, logs, summaries, and incidental observations may live
+there without becoming User-Touched Diagram Lines. During design and execution,
+the workflow enriches the Block only with relevant material grounded in the
+corresponding User-Touched chat data.
+
+Initially, `Impl.Req.Block` accepts the same Line.Type vocabulary as
+`Design.Block`. It retains a distinct Block.Type so implementations can select,
+render, validate, and contextualize implementation work independently and add
+specialized mechanics later without changing its identity.
+
+Each Annotation class owns how its record contributes to a projected object.
+Projected Line and Block assertion surfaces recursively expose the Assertions
+of their contributing Annotations and contained objects. Assertion identities
+are preserved so a linter can evaluate by level without evaluating one
+Assertion twice.
+
 ### User-Touched Chatlas Index
 
 `User.Touched.Chatlas.Index` is the first, default, and fundamental Namespace.
@@ -412,6 +486,35 @@ retain its human-facing label. The label is a schema-shaped rendering and
 lookup aid, not the Block's identity or semantic definition. Line Annotations
 locate their Line ships within one Model and Block context.
 
+Object.Types may be assigned after content capture through support-free
+curation Annotations:
+
+```json
+{
+  "type": "Diagram.Block.Type.Annotation",
+  "location": {"model_ship": "<uuid>", "block_ship": "<uuid>"},
+  "block_type": "Design.Block"
+}
+```
+
+```json
+{
+  "type": "Diagram.Line.Type.Annotation",
+  "location": {
+    "model_ship": "<uuid>",
+    "block_ship": "<uuid>",
+    "line_ship": "<uuid>"
+  },
+  "line_type": "Design.Line.Constraint"
+}
+```
+
+These Annotations add no wording and require neither a `Support.Set` nor a
+producer chat. They reference existing projected objects whose content retains
+its own support, contribute only to Object.Type projection, and expose a
+Type-conformance Assertion. Missing or poor conformance scores surface POIs
+without blocking the assignment.
+
 Like the root Model Annotation, a Block declaration is structural bookkeeping:
 it does not require a producer or direct `Support.Set`. The support of the
 projected Block comes from the supported Annotations attached to it. A later
@@ -632,8 +735,7 @@ dependencies.
 
 The following mechanics remain deliberately unresolved:
 
-- further Annotation types and projections for Lines, Blocks, Models, and
-  their later editions;
+- selection semantics for evolving Line, Block, and Model editions;
 - how an Annotation identifies the exact Block edition that contextualized
   its wording;
 - whether and how one Annotation or Line may participate in several Blocks;

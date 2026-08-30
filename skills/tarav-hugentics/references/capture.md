@@ -24,8 +24,10 @@ Contextualize → Map → Focus → Discuss/Propose → Land → Reconcile
    In audit mode, inspect the Project association first and stop with a
    missing-Model finding instead of allowing read-only audit to bootstrap one.
 3. Render the Model with `Kernel.Writing.Model` and inspect narrower Blocks or
-   Lines when needed. Build an internal candidate map covering overlap,
-   suitable existing lineages, new Blocks or Lines, and visible POIs.
+   Lines when needed. Read the Model context's Object.Type registry and use
+   full Type names; compact Type codes are rendering-only. Build an internal
+   candidate map covering overlap, suitable existing lineages, new Blocks or
+   Lines, and visible POIs.
 4. Present a compact `Capture.Roadmap`: small coherent clusters in a useful
    order, with one recommended first focus. It is orientation, not an
    approval-ready proposal.
@@ -33,6 +35,30 @@ Contextualize → Map → Focus → Discuss/Propose → Land → Reconcile
 Keep context assembly internal unless missing or contradictory evidence
 changes a user decision. The conversation should remain a collaboration, not
 an evidence inventory.
+
+### Design-family Block Line.Type vocabulary
+
+Use this compact vocabulary during ordinary design capture. Retain the full
+Type name in records; the short code is only a rendering aid.
+
+`Design.Block` and the initial `Impl.Req.Block` implementation accept this
+same vocabulary. Their distinct Block.Types preserve separate mechanics and
+contextual projections without duplicating the Line.Type definitions.
+
+| Line.Type | Code | Use when the Line... |
+| --- | --- | --- |
+| `Design.Line.Definition` | `DF` | fixes what a name means. |
+| `Design.Line.Decision` | `DC` | pins a `Design.Variable` to a value. |
+| `Design.Line.Constraint` | `CT` | bounds a `Design.Variable` without selecting a value. |
+| `Design.Line.Rejection` | `RJ` | excludes a considered alternative. |
+| `Design.Line.Principle` | `PR` | gives generative orientation across multiple variables. |
+| `Design.Line.Freedom` | `FR` | explicitly leaves a `Design.Variable` Agent-owned. |
+| `Design.Line.Example` | `EX` | illustrates another Line through a concrete case. |
+
+These summaries are low-friction capture guidance. The Object.Type registry
+links every Type to its addressable Definition.Block; inspect that Block when
+the compact wording is insufficient. Definition resolution findings are POIs,
+not capture blockers.
 
 ## Interactive Reviewed Capture
 
@@ -50,6 +76,7 @@ the exact wording, identify:
 - `Model`: the target Model label and ship UUID;
 - `Target`: the existing or proposed Block label and ship UUID when one
   already exists;
+- `Block.Type` and `Line.Type`: their full retained Object.Type names;
 - `Operation`: the concrete structural change, such as introducing a Block and
   its Line ships or adding a new Line edition to an existing ship; and
 - `Edition.Approval.Token`: the proposal's opaque token.
@@ -143,14 +170,18 @@ the initial invocation already authorizes landing.
 The Manifest is a faithful mechanical compilation:
 
 - each semantic Line retains its exact wording, Model/Block/Line ships,
-  producer Chatlas Turn, and rooted User support;
+  full `line_type`, producer Chatlas Turn, and rooted User support;
 - reviewed Lines retain `Verbatim.Gate` data containing the shared opaque
   token and exact proposal and approval Turn references;
 - automatic Lines omit Gates;
 - one approval exchange may cover several exact Lines when the proposal turn
   contains every wording, but each Line retains its own Gate instance;
+- each new Block declaration retains its full `block_type`; its Block.Type
+  determines the allowed Line.Type vocabulary;
 - Block and Model organization uses ordinary typed Annotations; do not invent
-  semantic content during landing.
+  semantic content during landing;
+- missing, unknown, conflicting, or disallowed Object.Types are writable POIs,
+  not permission to silently substitute another Type.
 
 Use a temporary Manifest path and run:
 

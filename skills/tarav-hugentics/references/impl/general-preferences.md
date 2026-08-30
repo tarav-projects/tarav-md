@@ -1,0 +1,15 @@
+# Implementation Preferences
+
+Apply these preferences to both the Impl.Req design and its execution.
+
+- Prefer simple, flat, and explicit data flow.
+- Name things for what they do or hold and follow repository conventions.
+- Keep units focused and dependencies justified.
+- Test durable public behavior rather than incidental implementation details.
+- Prefer design elements supported by more than one independent reason.
+- Prefer claims that are cheap to check; shape producer output so the checker
+  can remain simple.
+- Point to precise source surfaces instead of storing descriptions of facts the
+  code already computes. Explain why a constraint exists; let the code show
+  what it does.
+
