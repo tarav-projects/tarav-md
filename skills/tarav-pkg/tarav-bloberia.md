@@ -54,9 +54,9 @@ history without adding semantics to the stored JSON.
 ## CLI
 
 ```text
-tarav tarav2 bloberia init [--bloberia <root>]
-tarav tarav2 bloberia write (--record-json <json> | --record-file <file>) [--bloberia <root>]
-tarav tarav2 bloberia query [--text <text>] [--bloberia <root>]
+tarav bloberia init [--bloberia <root>]
+tarav bloberia write (--record-json <json> | --record-file <file>) [--bloberia <root>]
+tarav bloberia query [--text <text>] [--bloberia <root>]
 ```
 
 `write` initializes a missing root as a convenience. `query` without `--text`

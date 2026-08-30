@@ -86,7 +86,7 @@ the Diagram mechanics documented by this package.
   [USAGE-HISTORIES.md](USAGE-HISTORIES.md) and use its behavioral histories
   to develop or test candidate designs.
 - `tarav-pkg --capture` — read [references/capture.md](references/capture.md)
-  for the lower-level reviewed Tarav2 capture mechanics. Prefer
+  for the lower-level reviewed Tarav.Diagram capture mechanics. Prefer
   `tarav-hugentics --capture` for the public conversational workflow.
 - `tarav-pkg --review` — read [references/review.md](references/review.md) and
   review existing Diagram Block Lines through mechanically auditable

@@ -27,7 +27,7 @@ material.
 3. Inspect the Project's configured Model and recent chat context:
 
    ```bash
-   tarav tarav2 diagram capture context \
+   tarav diagram capture context \
      --project \
      --session-id <native-session-id> \
      --provider <provider> \
@@ -63,7 +63,7 @@ semantic approvals.
 2. Create the `Capture.Manifest` only now:
 
    ```bash
-   tarav tarav2 diagram capture template \
+   tarav diagram capture template \
      --project \
      --manifest <temporary-json-path> \
      --json
@@ -75,7 +75,7 @@ semantic approvals.
 4. Run mechanical validation:
 
    ```bash
-   tarav tarav2 diagram capture check --manifest <path> --json
+   tarav diagram capture check --manifest <path> --json
    ```
 
 5. Correct mechanical errors. If correction requires a semantic change, stop
@@ -83,14 +83,14 @@ semantic approvals.
 6. Apply the mechanically executable Manifest:
 
    ```bash
-   tarav tarav2 diagram capture apply --manifest <path> --json
+   tarav diagram capture apply --manifest <path> --json
    ```
 
    During development, the Agent may deliberately leave the created
    Annotation files uncommitted without changing the Manifest:
 
    ```bash
-   tarav tarav2 diagram capture apply \
+   tarav diagram capture apply \
      --manifest <path> \
      --no-commit \
      --json

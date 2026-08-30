@@ -7,7 +7,7 @@ description: "Run Tarav's conversational capture, Issue, and implementation work
 
 `tarav-hugentics` is Tarav's public conversational capture and implementation
 surface. It preserves the Hugentics alignment workflows while using Chatlas and
-the Tarav2 Diagram as its User-Touched indexing backend.
+the Tarav.Diagram as its User-Touched indexing backend.
 
 Before operating, read the Tarav Constitution at
 [`../tarav-pkg/CONSTITUTION.md`](../tarav-pkg/CONSTITUTION.md). Capture must

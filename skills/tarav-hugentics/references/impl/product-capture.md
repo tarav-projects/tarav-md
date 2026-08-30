@@ -89,7 +89,7 @@ After checks pass and the diff is reviewed:
 
 1. rescan the slice's chat for newly relevant User-Touched material;
 2. update the live note's coordination state separately;
-3. compile one ordinary Tarav2 Capture.Manifest targeting the existing Model
+3. compile one ordinary Tarav.Diagram Capture.Manifest targeting the existing Model
    and Block for any selected Lines;
 4. check and apply it through the normal capture path;
 5. re-render the affected Block so Assertion state and POIs are current; and

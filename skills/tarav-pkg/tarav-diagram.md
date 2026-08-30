@@ -443,7 +443,7 @@ Each Renderer declares a stable name, accepted target kind, output media type,
 and implementation. Renderer selection is explicit:
 
 ```bash
-tarav tarav2 diagram render \
+tarav diagram render \
   --line-ship <uuid> \
   --renderer Kernel.Writing.Line.WithSupport
 ```

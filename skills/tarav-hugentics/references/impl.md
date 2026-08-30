@@ -2,7 +2,7 @@
 
 This module routes `tarav-hugentics --impl` into one implementation workflow.
 It preserves the former Hugentics implementation workflow while replacing the
-legacy Index, Agendix, Anchory, and Chat.Index backend with the current Tarav2
+legacy Index, Agendix, Anchory, and Chat.Index backend with the current Tarav
 Diagram.
 
 ## Input

@@ -11,7 +11,7 @@ workflow.
 1. Render the target Block and inspect its exact Line wording:
 
    ```bash
-   tarav tarav2 diagram render \
+   tarav diagram render \
      --block-ship <uuid> \
      --renderer Kernel.Writing.Block.WithSupport
    ```
@@ -61,15 +61,15 @@ Lines.
 Check and apply through the ordinary writable Capture pipeline:
 
 ```bash
-tarav tarav2 diagram capture check --manifest <path> --json
-tarav tarav2 diagram capture apply --manifest <path> --json
+tarav diagram capture check --manifest <path> --json
+tarav diagram capture apply --manifest <path> --json
 ```
 
 Finally, render the Block again. The Renderer recomputes Line review standing
 from retained Chatlas evidence:
 
 ```bash
-tarav tarav2 diagram render \
+tarav diagram render \
   --block-ship <uuid> \
   --renderer Kernel.Writing.Block.WithSupport
 ```

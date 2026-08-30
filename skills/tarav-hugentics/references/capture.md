@@ -18,7 +18,7 @@ Contextualize → Map → Focus → Discuss/Propose → Land → Reconcile
 
 1. Resolve the current native session with `tarav-chatlas-my-session-id` when
    available, then refresh it with `tarav chatlas update --session-id <id>`.
-2. In a writing mode, run `tarav tarav2 diagram capture context --project
+2. In a writing mode, run `tarav diagram capture context --project
    --session-id <id> --json`. This resolves or mechanically bootstraps the
    Project's main Model. Report a new Model association when bootstrap occurs.
    In audit mode, inspect the Project association first and stop with a
@@ -160,7 +160,7 @@ Capture.Roadmap and relevant POIs, then stops. It must not present approval
 commands, create a Manifest, mutate Project configuration, or write Diagram
 Annotations.
 
-## Landing Through Tarav2
+## Landing Through Tarav.Diagram
 
 Create no `Capture.Manifest` during ordinary discussion. In reviewed mode,
 compile it only after `::land` or `::land-all-approved`. In automatic mode,
@@ -186,9 +186,9 @@ The Manifest is a faithful mechanical compilation:
 Use a temporary Manifest path and run:
 
 ```bash
-tarav tarav2 diagram capture template --project --manifest <path> --json
-tarav tarav2 diagram capture check --manifest <path> --json
-tarav tarav2 diagram capture apply --manifest <path> --json
+tarav diagram capture template --project --manifest <path> --json
+tarav diagram capture check --manifest <path> --json
+tarav diagram capture apply --manifest <path> --json
 ```
 
 Correct mechanical errors before applying. A semantic correction returns to
