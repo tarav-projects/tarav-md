@@ -42,6 +42,11 @@ Treat input as an `Impl.Req` when a path, note number, or supplied artifact
 resolves to a live note containing `Impl.Abstract`, `Impl.Req.Diagram`,
 `Execution.Plan`, and `Impl.Log`.
 
+An explicit Execute selector may receive direct implementation input. In that
+case Execute first bootstraps the missing live note and `Impl.Req.Block` through
+the shared capture workflow; it must not pretend the direct prompt was an
+already materialized Impl.Req.
+
 ## Shared Contract
 
 - The live-note `Impl.Req` is the durable design-to-execution handoff and main
@@ -58,5 +63,10 @@ resolves to a live note containing `Impl.Abstract`, `Impl.Req.Diagram`,
   at every phase boundary.
 - Every mutating implementation workflow composes implementation capture; it is
   a selective companion, not another phase.
+- Implementation capture uses the complete ordinary Capture path. Its only
+  specialization is that selected material lands in the request's one
+  `Impl.Req.Block`.
+- A live note may record a capture failure for recovery, but it never satisfies
+  or replaces the `Impl.Req.Diagram` contract.
 - Validation and POIs never block Diagram capture. Hard implementation blockers
   may still stop product mutation when faithful execution is impossible.

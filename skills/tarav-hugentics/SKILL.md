@@ -58,11 +58,11 @@ tarav-hugentics --impl --review <IMPL_REQ>
 tarav-hugentics --review <IMPL_REQ>
     Cold, read-only readiness and evidence review.
 
-tarav-hugentics --impl --execute <IMPL_REQ>
-tarav-hugentics --execute <IMPL_REQ>
-tarav-hugentics --exec <IMPL_REQ>
-    Execute an existing Impl.Req. Bare --impl defaults here when its input
-    resolves to an Impl.Req.
+tarav-hugentics --impl --execute <IMPL_REQ|INPUT>
+tarav-hugentics --execute <IMPL_REQ|INPUT>
+tarav-hugentics --exec <IMPL_REQ|INPUT>
+    Execute an existing Impl.Req. Explicit Execute with direct input first
+    bootstraps its Impl.Req surfaces through ordinary capture.
 
 tarav-hugentics --impl --develop [INPUT]
 tarav-hugentics --develop [INPUT]
@@ -119,3 +119,8 @@ Implementation retains two deliberately different surfaces:
 
 Do not copy Agent-only plans, logs, summaries, or incidental implementation
 observations into the Block merely because they appear in the live note.
+
+Implementation capture is the ordinary Capture workflow constrained to one
+`Impl.Req.Block` target. It must resolve the same Namespace, Project.Model,
+current context, Object.Types, support, Manifest checks, and landing mechanics
+as `--capture`. A live note never substitutes for a missing Diagram target.

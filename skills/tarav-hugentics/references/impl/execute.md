@@ -7,11 +7,38 @@ Load this module for `--impl --execute` and as Develop's second phase. Also load
 
 Operate as the implementation executer: cold-load one live-note `Impl.Req`,
 recover its User-Touched context through `Impl.Req.Diagram`, and execute its
-`Execution.Plan` through verified vertical slices.
+`Execution.Plan` through verified vertical slices. When explicit Execute input
+does not resolve to an existing Impl.Req, perform Direct-Input Bootstrap first.
+
+## Direct-Input Bootstrap
+
+An explicit `--execute` or `--exec` may carry direct implementation input. It
+still requires the same two Impl.Req surfaces as any other execution:
+
+1. Run the ordinary capture Contextualize path from
+   [`../capture.md`](../capture.md): resolve the current chat, Project Diagram
+   configuration, Project.Model, current Model context, and Object.Type
+   registry.
+2. Through one ordinary automatic Capture.Manifest, introduce exactly one
+   `Impl.Req.Block` and capture the qualifying User-Touched requirements from
+   the direct request into that Block.
+3. Create the live-note Impl.Req with the resulting Namespace, Model ship,
+   Block ship, and an executable plan.
+4. Cold-reload both surfaces and continue with Execution Realignment.
+
+This is not a reduced implementation-specific bootstrap. It is regular
+capture with `Block.Type: Impl.Req.Block` fixed as the target. Never mint or
+record Diagram identities without a successful landing, and never treat the
+live note as a substitute for that landing.
+
+If shared capture is unavailable, report a capture POI and mark the live note's
+`Impl.Req.Diagram` incomplete. Foreground implementation may continue when the
+request remains executable, but implementation capture remains explicitly
+unreconciled.
 
 ## Execution Realignment
 
-Before editing:
+After any Direct-Input Bootstrap, and before editing:
 
 1. Re-read the Impl.Req from disk; treat any prior read as stale.
 2. Read project and target-area instructions.

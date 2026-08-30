@@ -5,8 +5,10 @@ workflows. It is not an independent implementation phase.
 
 Read [`../capture.md`](../capture.md) for current Chatlas references,
 Capture.Manifest mechanics, Object.Types, Gates, and Assertion.Engine
-behavior. Implementation capture fixes the target to the request's existing
-`Impl.Req.Block`; it does not run the general capture roadmap.
+behavior. Implementation capture runs that ordinary Capture workflow while
+fixing the semantic destination to the request's one `Impl.Req.Block`. The
+Block may be introduced by the same Manifest when bootstrapping a direct
+implementation request.
 
 The explicit mutating implementation invocation authorizes bounded automatic,
 unreviewed capture of qualifying material into that Block. Do not add a
@@ -28,6 +30,22 @@ Implementation has three different surfaces:
 Do not collapse them. In particular, do not copy an Agent-authored plan or log
 into the Block merely because it appears in the live note.
 
+The live note does not own or recreate Diagram resolution. Every mutating
+implementation run must use the shared capture path to resolve:
+
+```text
+Project
+  → Diagram configuration and Namespace
+  → Project.Model
+  → current Model context and Object.Types
+  → existing or new Impl.Req.Block target
+  → ordinary Capture.Manifest check and apply
+```
+
+The implementation specialization begins only at target selection. It must not
+bypass shared contextualization, lineage lookup, evidence construction,
+Manifest linting, or landing.
+
 ## Capture Bar
 
 Capture into the `Impl.Req.Block` only when material:
@@ -47,10 +65,12 @@ capture remains unreviewed rather than manufacturing approval.
 
 ### Slice.Open.Capture
 
-Before product edits, inspect User turns accumulated since the prior capture.
-Land only supported material that currently governs the slice into the same
-Block. This records why the work is being attempted; it does not claim the
-product already implements it.
+Before product edits, run the ordinary capture Contextualize path and inspect
+User turns accumulated since the prior capture. Resolve the target Block from
+the Diagram rather than trusting a live-note UUID alone. Land only supported
+material that currently governs the slice into that same Block. This records
+why the work is being attempted; it does not claim the product already
+implements it.
 
 ### Product.Landing.Capture
 

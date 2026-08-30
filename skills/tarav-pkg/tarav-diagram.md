@@ -197,6 +197,17 @@ Initially, `Impl.Req.Block` accepts the same Line.Type vocabulary as
 render, validate, and contextualize implementation work independently and add
 specialized mechanics later without changing its identity.
 
+`Issue.Block` is the addressable Diagram surface for a temporary concern such
+as an idea, reminder, question, opportunity, defect, migration, or
+contradiction. Parking is a workflow that creates an `Issue.Block`; it does not
+introduce a `Parking.Note` Object.Type or separate storage surface.
+
+Initially, `Issue.Block` accepts the Design-family Line.Type vocabulary and the
+specialized `Issue.Line.Resolve` Type. An Issue projects as open until a Resolve
+Line has a passing reviewed `Verbatim.Gate`. A missing, failed, or unassessable
+review leaves the Issue open and surfaces an `issue-open` POI without blocking
+mutation. A later ordinary Line does not stale a passing resolution.
+
 Each Annotation class owns how its record contributes to a projected object.
 Projected Line and Block assertion surfaces recursively expose the Assertions
 of their contributing Annotations and contained objects. Assertion identities
