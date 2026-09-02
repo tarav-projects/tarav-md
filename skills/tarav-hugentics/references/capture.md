@@ -69,8 +69,10 @@ Model, Block, or Line ship when the proposed material continues that semantic
 lineage; otherwise propose a new ship. Render the exact proposed Line wording
 and mint one fresh opaque token for that proposal.
 
-Render every approval-ready proposal as a targeted Diagram edition. Before
-the exact wording, identify:
+Render every approval-ready proposal as a `Capture.Review.Turn`: an assistant
+turn that presents one targeted Diagram edition for efficient User review.
+Use a compact `Kernel.Writing` Block rendering rather than a separate heading
+for every Line.Type. Before the exact wording, identify:
 
 - `Landing`: the destination Namespace;
 - `Model`: the target Model label and ship UUID;
@@ -84,8 +86,68 @@ the exact wording, identify:
 The destination must not remain implicit merely because the Agent previously
 rendered the Model. For a new Block or Line ship whose UUID is allocated only
 during landing, say that the target is new instead of inventing an identity.
-Place every proposed Line wording undecorated in the turn so the User can
-review the exact retained content.
+Render each Line as `- [<short-code>] <exact wording>`. The short code is a
+presentation aid resolved through the selected Block.Type's vocabulary; it is
+not part of the retained wording. Capture.Manifest retains the full Line.Type
+ID. The exact retained wording must follow the marker verbatim so the Gate can
+assess it without interpreting the overall presentation layout.
+
+### Capture.Review.Turn renderings
+
+The shape is stable while headings, spacing, and other presentation details
+may evolve:
+
+```md
+## Context.Provider
+
+Landing: User.Touched.Chatlas.Index → Tarav / <model-ship>
+Target: new Block
+Block.Type: Design.Block
+Operation: introduce Block and three Line ships
+
+- [DF] The central contextualization problem is bridging `Current.Chat.Context` to relevant `Diagram.Data` through Agent-driven discovery.
+- [PR] Tarav provides `Context.Provider` mechanics that Agents operate to navigate, select, expand, render, and compile Diagram context.
+- [CT] Tarav does not decide which context an Agent wants; direct block-by-block Model navigation remains the fallback instead of requiring a semantic recommendation algorithm.
+
+Edition.Approval.Token: <opaque-token>
+
+`::approve <opaque-token>`
+```
+
+`Impl.Req.Block` uses the same compact design-family vocabulary while making
+its implementation target explicit:
+
+```md
+## 781.Impl.Req
+
+Landing: User.Touched.Chatlas.Index → Tarav / <model-ship>
+Target: new Block
+Block.Type: Impl.Req.Block
+Operation: introduce implementation request and two Line ships
+
+- [DC] Implement the first `Context.Provider` vertical slice over Diagram Blocks.
+- [CT] Keep semantic relevance selection Agent-operated.
+```
+
+`Issue.Block` uses the design-family vocabulary plus its own registered Line
+Types. Include projected state when the target already exists or state is
+mechanically significant:
+
+```md
+## Context.Provider.Missing
+
+Landing: User.Touched.Chatlas.Index → Tarav / <model-ship>
+Target: existing Block / <block-ship>
+Block.Type: Issue.Block
+State: Open
+Operation: add a resolution Line
+
+- [RESOLVE] The Project now provides a working block-by-block Context.Provider path.
+```
+
+For another Block.Type, query its registered vocabulary and apply the same
+shape. Use its short codes only when their mapping is unambiguous; otherwise
+render the full Line.Type ID in brackets.
 
 Pause with:
 

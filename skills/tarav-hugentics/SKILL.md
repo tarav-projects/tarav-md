@@ -1,13 +1,13 @@
 ---
 name: tarav-hugentics
-description: "Run Tarav's conversational capture, Issue, and implementation workflows over a Project Diagram.Model. USE WHEN the user wants reviewed or automatic capture, wants to park or maintain an Issue, requests a capture audit, implementation design, Impl.Req review or execution, end-to-end development, or invokes `tarav-hugentics --capture`, `tarav-hugentics --issues`, or `tarav-hugentics --impl`."
+description: "Run Tarav's grounding, conversational capture, Issue, and implementation workflows over Project Diagram.Models. USE WHEN the user wants Diagram-backed context, reviewed or automatic capture, Issue work, implementation design or execution, or invokes `tarav-hugentics --ground`, `--capture`, `--issues`, or `--impl`."
 ---
 
 # Tarav Hugentics
 
-`tarav-hugentics` is Tarav's public conversational capture and implementation
-surface. It preserves the Hugentics alignment workflows while using Chatlas and
-the Tarav.Diagram as its User-Touched indexing backend.
+`tarav-hugentics` is Tarav's public grounding, conversational capture, and
+implementation surface. It preserves the Hugentics alignment workflows while
+using Chatlas and the Tarav.Diagram as its User-Touched indexing backend.
 
 Before operating, read the Tarav Constitution at
 [`../tarav-pkg/CONSTITUTION.md`](../tarav-pkg/CONSTITUTION.md). Capture must
@@ -18,7 +18,7 @@ remain writable, evidence-linked, and nonblocking in the presence of POIs.
 Treat the skill call like a command line:
 
 - explicit flags win over conversational inference;
-- a trailing value is the capture focus or prompt;
+- a trailing value is the selected workflow's focus or input;
 - `-h` or `--help` prints the command surface and stops;
 - ask rather than guess when the requested route remains materially ambiguous;
 - flags select workflow behavior; they are not forwarded to the Tarav CLI.
@@ -26,6 +26,10 @@ Treat the skill call like a command line:
 ## Command Surface
 
 ```text
+tarav-hugentics --ground [FOCUS]
+    Build or resume the current session's Diagram.View and use it to
+    contextualize the collaboration through Agent-operated navigation.
+
 tarav-hugentics --capture [PROMPT]
     Interactive reviewed capture. Initial stance: Review.
 
@@ -91,13 +95,19 @@ Agent-generated coordination material into User-Touched data.
 
 ## Routing
 
+Grounding routes load and follow [`references/ground.md`](references/ground.md).
 Capture routes load and follow [`references/capture.md`](references/capture.md).
 Issue routes first load [`references/issues.md`](references/issues.md), which
 selects one Issue workflow without creating a separate Parking.Note object.
 Implementation routes first load
 [`references/impl.md`](references/impl.md), which selects exactly one
 implementation workflow module. Without an explicit route, infer capture or
-Issue, or implementation only when the conversational request is clear.
+grounding, Issue, or implementation only when the conversational request is
+clear.
+
+Grounding is ungated and read-only toward the Diagram annotation tape. It may
+create and maintain a `Diagram.View`; that View is a separate contextual WIP
+surface and never supplies approval, capture, or Diagram mutation.
 
 The runtime commands `::discuss`, `::review`, `::approve <token>`, `::land`,
 and `::land-all-approved` belong to the running Capture workflow, not to the
