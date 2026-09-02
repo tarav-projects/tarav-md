@@ -1,7 +1,7 @@
 # Tarav Capture
 
 Use this module to discuss, approve, and land `User.Touched.Chatlas.Index`
-Annotations into a Project's configured main Model.
+Ships, editions, and Annotations into a Project's configured main Model.
 
 Read `../CONSTITUTION.md` and `../tarav-diagram.md` before operating this
 workflow.
@@ -9,7 +9,7 @@ workflow.
 ## Authority Boundary
 
 The chat is the WIP capture surface. Do not create a `Capture.Manifest` or
-write semantic Diagram Annotations before the user sends `::land` for a
+write semantic Diagram records before the user sends `::land` for a
 settled proposal. Mechanical Diagram bootstrap and Project-to-Model
 association may occur earlier when needed to establish the capture target;
 report that setup without treating it as semantic landing.
@@ -59,7 +59,7 @@ semantic approvals.
 
 1. Refresh Chatlas. Resolve the final pre-land Agent turn and all approved User
    support turns through `diagram capture context`. The final pre-land Agent
-   turn is the Annotation producer.
+   turn is the producer for supported records.
 2. Create the `Capture.Manifest` only now:
 
    ```bash
@@ -87,7 +87,7 @@ semantic approvals.
    ```
 
    During development, the Agent may deliberately leave the created
-   Annotation files uncommitted without changing the Manifest:
+   Ship or Annotation files uncommitted without changing the Manifest:
 
    ```bash
    tarav diagram capture apply \
@@ -99,17 +99,17 @@ semantic approvals.
    `--no-commit` transfers Git responsibility to the developer. Reapplying the
    same Manifest does not later commit those existing files automatically.
 
-7. Report created and existing Annotation identities plus every POI. POIs do
+7. Report created or updated Ships, editions, Annotations, and every POI. POIs do
    not block landing and must not be silently hidden.
 
-The temporary Manifest is not Diagram authority. The Namespace Annotation tape
-and its Git history are the materialized result.
+The temporary Manifest is not Diagram authority. The Namespace Ship and
+Annotation collections and their Git history are the materialized result.
 
 ## MVP Boundaries
 
 - Interactive capture only; no autonomous capture.
 - One Project main Model per invocation, although that Model may be shared by
   many Projects.
-- New Block and Line Annotations, and later support-only Annotations.
+- New or extended Block and Line Ships, plus applicable Annotations.
 - No Assertion scoring, Model composition, lineage forks, or automatic POI
   repair in this workflow.

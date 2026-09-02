@@ -160,7 +160,7 @@ The Archive does not provide a general semantic relationship graph. Relationship
 
 `Tarav.Diagram` is a consumer of `Tarav.Archive`. It indexes, parses, links, and annotates archived data to make that data useful for contextualizing collaborative user-agent sessions.
 
-Every `Diagram.Annotation` must link to archived data. An Annotation may also link that archived data to external data or surfaces.
+Every semantic `Diagram.Record` must link to archived data, directly or through the support contract of its containing Ship. A Diagram Annotation may also link that archived data to external data or surfaces.
 
 `Tarav.Diagram` never modifies Archive Records or registered Artifacts; its interpretations do not alter the Archive data they consume.
 
@@ -168,9 +168,9 @@ Every `Diagram.Annotation` must link to archived data. An Annotation may also li
 
 Diagram data, including annotations, may itself become `Touched.Data` and may be recorded by `Tarav.Archive` as new archived data. When recorded, the Archive treats it like any other data.
 
-An annotation claiming to annotate `User.Touched.Data` must be supportable solely by the union of all `User.Touched.Data` linked to it.
+A semantic record claiming to represent `User.Touched.Data` must be supportable solely by the union of all `User.Touched.Data` linked to it.
 
-An annotation claiming to contextualize user intention must link directly to its supporting `User.Touched.Data`.
+A semantic record claiming to contextualize user intention must link directly to its supporting `User.Touched.Data`.
 
 Links between such annotations and their supporting data should remain as close as practical. These constraints make no claim about annotations of other kinds of data.
 
@@ -186,7 +186,7 @@ Consumers of `Tarav.Diagram` are responsible for deciding how to use and interpr
 
 A Diagram Record’s full claim and evidentiary basis may depend on linked external data; `Tarav.Archive` need not contain the entire evidentiary basis.
 
-Tarav systems must be designed under the assumption that data necessary to support Annotations will be archived. When required data is absent, deleted, or unreachable, validation must surface the affected Assertions and Annotations as POIs.
+Tarav systems must be designed under the assumption that data necessary to support Diagram records will be archived. When required data is absent, deleted, or unreachable, validation must surface the affected Assertions and records as POIs.
 
 Assertion links must make the consequences of Archive retention and deletion decisions inspectable.
 
@@ -196,31 +196,31 @@ If an annotation process introduces additional data, that data must ultimately b
 
 `Tarav.Diagram` does not constrain what may be asked or asserted about archived data. It must be extensible so that anything can be asked against that data and annotated.
 
-`Diagram.Annotation` and `Annotation.Assertions` form Tarav’s universal model for expressing and assessing annotations. They must be expressive enough to represent any Annotation and any assessable claim about it.
+`Diagram.Ship` establishes a semantic entity and retains its editions. `Diagram.Annotation` is a separate typed claim about a Ship, edition, transition, relation, external surface, or other subject; an Annotation does not establish the entity it discusses.
 
-Every `Diagram.Annotation` carries `Annotation.Assertions`. These include an implicit assertion that the Annotation correctly represents its linked archived data, and may include additional assertions about its own structure or other assessable properties.
+Typed `Diagram.Records` and `Semantic.Assertions` form Tarav’s general model for expressing and assessing semantic structure. Every semantic Record carries Assertions, including an implicit assertion that it correctly represents its linked archived data, and may carry additional Assertions about structure or other assessable properties.
 
 Every assertion must be subject to evaluation and scoring against the subject of its claim. Tarav must provide `Assertion.Scoring.Systems` and primitives for assessing assertions.
 
-Every `Diagram.Annotation` is associated with an `Annotation.Score.Vector` containing the score of each of its `Annotation.Assertions`.
+Every semantic `Diagram.Record` is associated with a score vector containing the score of each of its Assertions.
 
-Tarav must provide tooling for computing and maintaining `Annotation.Score.Vector`s.
+Tarav must provide tooling for computing and maintaining those score vectors.
 
 `Tarav.Diagram` permits unlimited inquiry. It must not remain silent about unassessable annotations.
 
-Missing, unresolvable, or unassessable Assertion scores must surface POIs. An Annotation without resolvable scores for its Assertions is `UnAsserted`.
+Missing, unresolvable, or unassessable Assertion scores must surface POIs. A semantic Record without resolvable scores for its Assertions is `UnAsserted`.
 
-A low-scoring Assertion must also surface a POI, but its Annotation remains `Asserted`: the score records a falsy or weak assessment.
+A low-scoring Assertion must also surface a POI, but its Record remains `Asserted`: the score records a falsy or weak assessment.
 
-Annotations with missing or low scores are natural targets for Diagram curation, amendment, and enrichment.
+Records with missing or low scores are natural targets for Diagram curation, amendment, and enrichment.
 
-When contextualizing an Annotation, Tarav must include its available `Annotation.Score.Vector`. Consumers decide how to interpret and act on those scores.
+When contextualizing a semantic Record, Tarav must include its available score vector. Consumers decide how to interpret and act on those scores.
 
 ## Contextualization
 
 Tarav must provide extensible tooling and systems for selecting and presenting `Tarav.Diagram` content to collaborative user-agent sessions.
 
-Context may begin with compact annotations, but Tarav must preserve a navigable path from each contextualized Annotation to its linked supporting data.
+Context may begin with compact Ship editions or Annotations, but Tarav must preserve a navigable path from each contextualized Record to its linked supporting data.
 
 Agents and other consumers must be able to expand that path on demand and inspect progressively deeper supporting context.
 

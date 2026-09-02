@@ -7,7 +7,7 @@ the Agent.
 
 Read [`../../tarav-pkg/tarav-diagram.md`](../../tarav-pkg/tarav-diagram.md)
 before operating. Grounding is ungated and read-only toward the Diagram
-annotation tape. It may create and maintain the session's View.
+semantic database. It may create and maintain the session's View.
 
 ## Responsibility Boundary
 

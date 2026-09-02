@@ -105,7 +105,7 @@ implementation workflow module. Without an explicit route, infer capture or
 grounding, Issue, or implementation only when the conversational request is
 clear.
 
-Grounding is ungated and read-only toward the Diagram annotation tape. It may
+Grounding is ungated and read-only toward the Diagram semantic database. It may
 create and maintain a `Diagram.View`; that View is a separate contextual WIP
 surface and never supplies approval, capture, or Diagram mutation.
 
@@ -117,8 +117,9 @@ initial Batchy.Skill call.
 
 This fresh skill does not use the legacy Markdown Index, Anchory, Agendix, or
 Chat.Index backpropagation mechanics. Those are Attic evidence. Current
-User-Touched index output is the flat Annotation tape of the target Diagram
-Namespace; implementation live notes remain separate Product.Surfaces.
+User-Touched index output is the target Diagram Namespace's typed Ship database
+and separate Annotation claims; implementation live notes remain separate
+Product.Surfaces.
 
 Implementation retains two deliberately different surfaces:
 

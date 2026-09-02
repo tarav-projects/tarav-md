@@ -12,7 +12,7 @@ not as the authority behind its content.
 
 ## Mutations
 
-Apply changes through ordinary typed Annotation capture:
+Apply changes through ordinary typed Ship and Annotation capture:
 
 - add a supported Line when the User touches another relevant facet;
 - issue a new Line edition when the semantic lineage continues with changed

@@ -112,35 +112,38 @@ variables later.
 
 ## Theseus.Identity
 
-Every Diagram semantic UUID is a `Semantic.Ship`. The UUID is a nonsemantic
-address for one claimed existence. It says only that one addressable something
-exists; descriptions and contracts supply the meaning of that something.
+Every Diagram UUID that establishes a semantic entity is a `Semantic.Ship`.
+The UUID is a nonsemantic address for one claimed existence. It says only that
+one addressable something exists; descriptions and contracts supply the
+meaning of that something.
 
 Reusing a Ship UUID across changing descriptions makes the continuity claim:
 
 > These descriptions remain editions of the same something.
 
-Allocating a new UUID claims a distinct existence. Rebinding an existing UUID
+Allocating a new Ship UUID claims a distinct existence. Rebinding an existing Ship UUID
 to an unrelated semantic lineage violates `Theseus.Identity`.
 
-Annotation Ships retain one current Record in HEAD while Git preserves their
-preceding editions. Other semantic Ships, including Lines, Blocks, and Models,
-are projected from the Annotations carrying their UUIDs.
+Model, Block, Line, and later semantic Ships retain their ordered editions in
+typed Ship Records. An Annotation has its own address, but that address
+identifies a claim about Ships or editions; it does not establish the subject's
+semantic existence.
 
 ## Ship History
 
-`Ship.History.Resolve` retrieves the raw editions of a Ship without
-interpreting their historical schemas. Its stable responsibility is identity
-and retrieval, not semantic migration:
+`Ship.History.Resolve` retrieves the editions of a Ship from the authoritative
+current-schema Record. Its stable responsibility is identity and retrieval,
+not semantic migration:
 
 ```text
 Ship.History.Resolve(namespace_uuid, ship_uuid)
-    → raw editions with Git revision and available history topology
+    → ordered editions and available history topology
 ```
 
 The common history is a simple ordered lineage, but histories may branch. The
-resolver preserves ordering and topology available from the authoritative
-data while remaining schema-blind.
+resolver preserves ordering and topology available from authoritative data.
+Git supplies prior product-surface revisions when an Agent needs migration or
+schema history; normal Diagram mechanics operate on the current corpus.
 
 Git and Diagram data remain the source of truth. A separate authoritative
 Ship registry is rejected because it duplicates identity and risks

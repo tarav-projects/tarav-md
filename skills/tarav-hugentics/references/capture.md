@@ -1,11 +1,11 @@
 # Hugentics Capture
 
-This module runs the conversational workflow that develops and lands
-`User.Touched.Chatlas.Index` Annotations into a Project's configured main
-`Diagram.Model`.
+This module runs the conversational workflow that develops and lands typed
+Ships, Ship editions, and Annotations into a Project's configured main
+`Diagram.Model` in `User.Touched.Chatlas.Index`.
 
 Read [`../../tarav-pkg/tarav-diagram.md`](../../tarav-pkg/tarav-diagram.md)
-before operating. Use its current Annotation schemas, Capture.Manifest rules,
+before operating. Use its current Ship and Annotation schemas, Capture.Manifest rules,
 named Renderers, Gates, and Assertion.Engine semantics.
 
 ## Shared Loop
@@ -70,7 +70,7 @@ lineage; otherwise propose a new ship. Render the exact proposed Line wording
 and mint one fresh opaque token for that proposal.
 
 Render every approval-ready proposal as a `Capture.Review.Turn`: an assistant
-turn that presents one targeted Diagram edition for efficient User review.
+turn that presents one targeted Ship edition for efficient User review.
 Use a compact `Kernel.Writing` Block rendering rather than a separate heading
 for every Line.Type. Before the exact wording, identify:
 
@@ -171,7 +171,7 @@ foreground approved cluster, for example:
 Use `::land` instead when one clearly targeted approved item is foreground.
 Both commands land only already-approved material and supply no missing
 approval. The compact Agent landing-pause turn becomes the producer coordinate
-for the landed Annotations; its context already contains the approved proposal
+for the landed supported records; its context already contains the approved proposal
 turns and supporting User turns.
 
 ## Capture Stances
@@ -184,7 +184,7 @@ and approved cluster. At a pause, advertise only `::review`.
 foreground without repeating the full roadmap.
 
 These are conversational dispositions. They do not mutate the Diagram or
-change the evidentiary status of already captured Annotations.
+change the evidentiary status of already captured records.
 
 ## Automatic Unreviewed Capture
 
@@ -205,7 +205,7 @@ Before materialization, ensure Chatlas has a stable Agent producer turn for the
 capture. This is an evidence mechanic, not a User checkpoint and does not
 require exposing the settled batch for approval.
 
-Do not manufacture approval evidence. Automatic Line Annotations retain their
+Do not manufacture approval evidence. Automatic Line editions retain their
 producer and rooted User support but contain no `Verbatim.Gate`; they remain
 unreviewed and may surface review POIs. They are still usable Model material.
 
@@ -220,7 +220,7 @@ adds a passing Gate.
 `--capture --audit` performs Contextualize and Map, presents the compact
 Capture.Roadmap and relevant POIs, then stops. It must not present approval
 commands, create a Manifest, mutate Project configuration, or write Diagram
-Annotations.
+records.
 
 ## Landing Through Tarav.Diagram
 
@@ -229,21 +229,67 @@ compile it only after `::land` or `::land-all-approved`. In automatic mode,
 compile and apply it once the internally developed bounded batch is settled;
 the initial invocation already authorizes landing.
 
-The Manifest is a faithful mechanical compilation:
+The Manifest is a faithful mechanical compilation. Entity creation and
+semantic evolution go in `ships`; claims about existing entities or editions
+go in `annotations`:
 
-- each semantic Line retains its exact wording, Model/Block/Line ships,
-  full `line_type`, producer Chatlas Turn, and rooted User support;
+- each semantic Line is a `Diagram.Line.Ship` draft whose edition retains its
+  exact wording, full `line_type`, producer Chatlas Turn, and rooted User
+  support; the Ship record retains its Model and Block references;
 - reviewed Lines retain `Verbatim.Gate` data containing the shared opaque
   token and exact proposal and approval Turn references;
 - automatic Lines omit Gates;
 - one approval exchange may cover several exact Lines when the proposal turn
   contains every wording, but each Line retains its own Gate instance;
-- each new Block declaration retains its full `block_type`; its Block.Type
-  determines the allowed Line.Type vocabulary;
-- Block and Model organization uses ordinary typed Annotations; do not invent
-  semantic content during landing;
+- each new Block is a `Diagram.Block.Ship` whose first edition retains its full
+  `block_type`; its Block.Type determines the allowed Line.Type vocabulary;
+- append a fresh edition UUID to an existing Ship when the approved material
+  continues that entity; allocate a new Ship UUID when it creates a new one;
+- Annotations may add review, type, tag, rename-transition, or other claims,
+  but they never create the Ship they discuss;
 - missing, unknown, conflicting, or disallowed Object.Types are writable POIs,
   not permission to silently substitute another Type.
+
+A new Block and Line compile to this shape; append-only updates may include
+only the new editions of an existing Ship:
+
+```json
+{
+  "class": "Tarav.Diagram.Capture.Manifest",
+  "schema_version": 2,
+  "model_ship": "<model-ship-uuid>",
+  "ships": [
+    {
+      "id": "<block-ship-uuid>",
+      "type": "Diagram.Block.Ship",
+      "model_ship": "<model-ship-uuid>",
+      "editions": [
+        {
+          "id": "<block-edition-uuid>",
+          "block_type": "Design.Block",
+          "data": {"label": "<block-label>"}
+        }
+      ]
+    },
+    {
+      "id": "<line-ship-uuid>",
+      "type": "Diagram.Line.Ship",
+      "model_ship": "<model-ship-uuid>",
+      "block_ship": "<block-ship-uuid>",
+      "editions": [
+        {
+          "id": "<line-edition-uuid>",
+          "line_type": "Design.Line.Principle",
+          "producer": {"session_identity": "...", "turn_address": "...", "turn_hash": "..."},
+          "support": [{"root": {"session_identity": "...", "turn_address": "...", "turn_hash": "..."}, "neighborhood": []}],
+          "data": {"text": "<exact approved wording>"}
+        }
+      ]
+    }
+  ],
+  "annotations": []
+}
+```
 
 Use a temporary Manifest path and run:
 
@@ -256,7 +302,8 @@ tarav diagram capture apply --manifest <path> --json
 Correct mechanical errors before applying. A semantic correction returns to
 discussion or reviewed proposal work. POIs never block capture.
 
-After applying, report created and existing Annotation identities, the Git
-commit, and all POIs. Re-render the affected Model or Lines so the centralized
+After applying, report created or updated Ship identities, edition and
+Annotation identities, the Git commit, and all POIs. Re-render the affected
+Model or Lines so the centralized
 Assertion.Engine recomputes Gate standing from Chatlas evidence. Report the
 result without writing derived `passed` flags into Annotation records.

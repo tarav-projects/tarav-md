@@ -1,7 +1,7 @@
 # Tarav Diagram Review
 
 Use this module to review existing `User.Touched.Chatlas.Index` Block Lines
-without modifying their original Annotation records.
+without modifying their Ship editions.
 
 Read `../CONSTITUTION.md` and `../tarav-diagram.md` before operating this
 workflow.
@@ -35,7 +35,7 @@ The Manifest contains one typed record per reviewed Line wording:
 {
   "id": "<new-annotation-uuid>",
   "type": "Diagram.Line.Gate.Annotation",
-  "target_annotation": "<existing-line-annotation-uuid>",
+  "target_edition": "<existing-line-edition-uuid>",
   "gates": [{
     "type": "Verbatim.Gate",
     "token": "<opaque-token>",

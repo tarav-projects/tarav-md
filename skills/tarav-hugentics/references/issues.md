@@ -36,10 +36,10 @@ Load only the selected module:
   `Issue.Line.Resolve`. Additional Lines do not stale that resolution.
 - An open Issue is valid Diagram state and surfaces an Issue POI; the POI is
   guidance, not a mutation blocker.
-- Issue history remains on the Namespace Annotation tape after resolution.
+- Issue history remains in its Block and Line Ships after resolution.
 - Use the shared capture mechanics, Gates, Assertion.Engine, and landing
   contract from [`capture.md`](capture.md). Do not create Issue-specific Tarav
-  CLI actions when typed Annotation capture already expresses the operation.
+  CLI actions when typed Ship capture already expresses the operation.
 
 ## Presentation
 

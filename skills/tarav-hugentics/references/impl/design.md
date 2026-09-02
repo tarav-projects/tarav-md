@@ -91,7 +91,7 @@ Capture the first bounded set while designing:
 
 1. resolve the current Project Model and relevant existing Diagram context;
 2. select exact User turns that materially constrain this request;
-3. create the Block declaration and supported Line Annotations through the
+3. create the Block Ship and supported Line editions through the
    ordinary Tarav.Diagram Capture.Manifest path;
 4. use reviewed Gates only when the actual conversation provides them; never
    manufacture approval evidence; and
