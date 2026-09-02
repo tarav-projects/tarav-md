@@ -2,9 +2,9 @@
 
 ## Purpose
 
-`agentos-chatlas-md` owns Chatlas design notes and markdown coordination — the design surface for Chatlas concepts, including the `Chatlas.Session.Model` (the standard with which Chatlas represents any session's information, normalized inward from many provider-native formats).
+`tarav-chatlas-md` owns Chatlas design notes and markdown coordination — the design surface for Chatlas concepts and the provider-neutral Normal Model used by current Tarav workflows.
 
-Chatlas Python mechanics (indexing, raw archive, query, export, views) live in `agentos-chatlas-py`.
+Chatlas Python mechanics live at `tarav-py/src/tarav/chatlas/`.
 
 ## Orientation
 
@@ -14,7 +14,7 @@ Chatlas Python mechanics (indexing, raw archive, query, export, views) live in `
 
 ## Harness Reference
 
-Local source copies of agent-coding harnesses are kept for studying how each provider natively represents a session. They are **reference-only**: outside the agentos repos, never committed here, used as `Hard.Evidence` when designing `Chatlas.Session.Model` and when understanding each provider's own raw format that the Chatlas normalizers read.
+Local source copies of agent-coding harnesses are kept for studying how each provider natively represents a session. They are **reference-only**: outside the Tarav repositories, never committed here, used as `Hard.Evidence` when designing the Chatlas Normal Model and when understanding each provider's own raw format that the Chatlas normalizers read.
 
 Location: `~/Documents/workspaces/main-workspace/harnesses/`
 
