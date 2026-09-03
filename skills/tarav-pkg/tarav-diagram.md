@@ -483,6 +483,35 @@ Support-aware Renderers preserve exact rooted Chatlas verbatims and navigation
 references. Contextualizing Renderers include available Assertion scores and
 surface `UnAsserted` state rather than hiding it.
 
+## Context Views
+
+`Diagram.View` is a retained contextual projection over Diagram Ships. It is a
+separate Git-backed WIP surface: it selects and materializes context for an
+Agent without becoming a Ship or Annotation in the semantic database, or an
+authority over that database.
+
+The current View repository schema is v2:
+
+```text
+<views-repository>/
+├── repository.json
+└── <view-ship-uuid>/
+    ├── manifest.json
+    ├── about.json
+    ├── config.json
+    └── view.json
+```
+
+`manifest.json` is a `Diagram.View.Manifest`; its `id` identifies the
+descriptor while `view_ship` identifies the retained View. Materialized Line
+history in `view.json` refers to semantic-database editions with
+`edition_id`, never `annotation_id`. `source_editions` records the exact
+Namespace commits from which the View was materialized.
+
+Schema migrations advance the complete retained View repository. Normal View
+mechanics consume only the current schema; the one-boundary migration code is
+kept separate from runtime loading and projection.
+
 ## User-Touched Semantic Lineages
 
 `User.Touched.Chatlas.Index` is intended to support a knowledge graph grounded

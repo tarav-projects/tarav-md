@@ -3,7 +3,8 @@
 This module runs the active `tarav-hugentics --ground [FOCUS]` workflow. It
 uses a retained `Diagram.View` to bridge the current chat context to relevant
 Diagram data while leaving semantic navigation and sufficiency judgment with
-the Agent.
+the Agent. Grounding reads and maintains the current View repository schema;
+schema migration is a separate maintenance operation.
 
 Read [`../../tarav-pkg/tarav-diagram.md`](../../tarav-pkg/tarav-diagram.md)
 before operating. Grounding is ungated and read-only toward the Diagram
