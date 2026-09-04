@@ -125,9 +125,10 @@ Allocating a new Ship UUID claims a distinct existence. Rebinding an existing Sh
 to an unrelated semantic lineage violates `Theseus.Identity`.
 
 Model, Block, Line, and later semantic Ships retain their ordered editions in
-typed Ship Records. An Annotation has its own address, but that address
-identifies a claim about Ships or editions; it does not establish the subject's
-semantic existence.
+typed Ship Records. An Annotation has its own address for a claim, and an
+Annotation type such as `Line.Annotation` may retain editions of that claim.
+The address still does not establish the semantic existence of the subjects it
+discusses.
 
 ## Ship History
 

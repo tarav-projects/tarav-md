@@ -27,7 +27,7 @@ Build candidates from the intersection of:
 - current implementation evidence and available POIs.
 
 Each candidate is one coherent implementation unit with an observable result:
-the scope suitable for one live-note Impl.Req and one `Impl.Req.Block`.
+the scope suitable for one live-note Impl.Req and one `Impl.Req.Collection`.
 
 ## Candidate Checkpoint
 
@@ -50,5 +50,4 @@ it is not silently discarded.
 ## Completion
 
 Report the selected candidate, why it was ready, the resulting Impl.Req path
-and Block, the implemented result, and the parked candidates.
-
+and Collection, the implemented result, and the parked candidates.

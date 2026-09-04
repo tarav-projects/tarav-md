@@ -19,17 +19,18 @@ still requires the same two Impl.Req surfaces as any other execution:
    [`../capture.md`](../capture.md): resolve the current chat, Project Diagram
    configuration, Project.Model, current Model context, and Object.Type
    registry.
-2. Through one ordinary automatic Capture.Manifest, introduce exactly one
-   `Impl.Req.Block` and capture the qualifying User-Touched requirements from
-   the direct request into that Block.
-3. Create the live-note Impl.Req with the resulting Namespace, Model ship,
-   Block ship, and an executable plan.
-4. Cold-reload both surfaces and continue with Execution Realignment.
+2. Create one open `Impl.Req.Collection`, one durable `Diagram.Draft`, and one
+   `Capture.Authorization.Gate` rooted in the explicit invocation.
+3. Put qualifying User-Touched requirements into the Draft, hosted by the
+   Collection and semantically attached to suitable Model Blocks.
+4. Create the live-note Impl.Req with the resulting Namespace, Model,
+   Collection, Draft, and an executable plan.
+5. Cold-reload both surfaces and continue with Execution Realignment.
 
-This is not a reduced implementation-specific bootstrap. It is regular
-capture with `Block.Type: Impl.Req.Block` fixed as the target. Never mint or
-record Diagram identities without a successful landing, and never treat the
-live note as a substitute for that landing.
+This is not a reduced implementation-specific bootstrap. It is regular capture
+into a persistent writable workspace. Draft identities may be allocated before
+landing; never claim they are landed until `Diagram.Draft apply` produces a
+receipt, and never treat the live note as a substitute for the Draft.
 
 If shared capture is unavailable, report a capture POI and mark the live note's
 `Impl.Req.Diagram` incomplete. Foreground implementation may continue when the
@@ -42,9 +43,9 @@ After any Direct-Input Bootstrap, and before editing:
 
 1. Re-read the Impl.Req from disk; treat any prior read as stale.
 2. Read project and target-area instructions.
-3. Resolve the Project Model and exact `Impl.Req.Block` recorded by
+3. Resolve the Project Model, exact `Impl.Req.Collection`, and Draft recorded by
    `Impl.Req.Diagram`.
-4. Contextualize from that Block and expand support when a Line is ambiguous,
+4. Contextualize from the grounded Model and Collection; expand support when a Line is ambiguous,
    disputed, or consequential.
 5. Inspect the current code, tests, types, consumers, and worktree.
 6. Restate the implementation in design-level prose.
@@ -55,9 +56,10 @@ Resolve minor drift yourself. At a material mismatch, Interactive mode pauses
 for alignment; Autonomous mode records the deviation and proceeds only when a
 faithful corrective path remains.
 
-The Execute invocation is the User's execution authorization. Capture that
-User touch into the same `Impl.Req.Block` as the request's current execution
-standing; do not store an unsupported Agent paraphrase.
+The Execute invocation is the User's execution authorization. Retain it as the
+Draft's `Capture.Authorization.Gate` and reference it from affected editions;
+do not store an unsupported Agent paraphrase or confuse authorization with
+wording review.
 
 ## Git Checkpoint
 
@@ -78,13 +80,13 @@ workflow-owned checkpoint behavior.
 Follow `Execution.Plan` order. For each vertical slice:
 
 1. Read the exact target surfaces.
-2. Run **Slice.Open.Capture** from the shared capture module.
+2. Run **Slice.Open.Capture** against the durable Draft.
 3. Where the plan calls for boundary-first testing, establish the expected
    failing behavior.
 4. Implement the minimum coherent change.
 5. Run the slice check and relevant existing tests.
 6. Review the diff for unintended scope.
-7. Run **Product.Landing.Capture** and **Slice.Close.Capture**.
+7. Run **Product.Landing.Capture** and **Slice.Close.Capture** against the Draft.
 8. Update slice status and consequential coordination facts in the live note.
 9. Report concise product, verification, capture, and POI status.
 
@@ -103,7 +105,7 @@ Never silently adapt to design-reality mismatch.
   available path, and stops only when external input is required.
 
 When the User resolves a deviation or changes scope, update the live note and
-capture the supported consequence into the same `Impl.Req.Block`. Agent-only
+reconcile the supported consequence in the same Draft. Agent-only
 observations remain in `Impl.Log` unless another Diagram Annotation type and
 evidence policy explicitly owns them.
 
@@ -115,5 +117,7 @@ After all slices:
 - confirm the implementation-driving checks and relevant existing tests pass;
 - update `Impl.Abstract`, slice statuses, and `Impl.Log`;
 - summarize the result, deviations, blockers, and deferred work;
-- report the associated Block and outstanding POIs; and
+- close the Impl.Req Collection, check the Draft as an overlay, apply it once,
+  and retain the Capture.Receipt;
+- report the associated Collection, Draft, and outstanding POIs; and
 - leave post-checkpoint implementation changes uncommitted for User review.

@@ -43,19 +43,22 @@ resolves to a live note containing `Impl.Abstract`, `Impl.Req.Diagram`,
 `Execution.Plan`, and `Impl.Log`.
 
 An explicit Execute selector may receive direct implementation input. In that
-case Execute first bootstraps the missing live note and `Impl.Req.Block` through
-the shared capture workflow; it must not pretend the direct prompt was an
-already materialized Impl.Req.
+case Execute first grounds the Project Model and bootstraps the missing live
+note, `Impl.Req.Collection`, and durable `Diagram.Draft`; it must not pretend
+the direct prompt was an already materialized Impl.Req.
 
 ## Shared Contract
 
 - The live-note `Impl.Req` is the durable design-to-execution handoff and main
   Agent coordination surface.
-- `Impl.Req.Diagram` identifies the associated Project Model and
-  `Impl.Req.Block`; it does not duplicate the Block's Lines.
-- The Block contains only supported User-Touched material relevant to the
-  request. Agent-only planning, status, reasoning, and logs remain in the live
-  note or product surfaces.
+- `Impl.Req.Diagram` identifies the Project Model, one
+  `Impl.Req.Collection`, and one durable `Diagram.Draft`.
+- Ground or refresh the `Diagram.View` before deciding whether candidate Lines
+  continue existing Blocks or require a new Block.
+- The Collection hosts implementation-specific editions; their semantic Block
+  attachment remains independent from that organizational host.
+- Agent-only planning, status, reasoning, and logs remain in the live note or
+  product surfaces.
 - Preserve `Alignment.Mode` across composed phases.
 - Keep designer and executer responsibilities distinct even when one Agent
   performs both.
@@ -63,9 +66,13 @@ already materialized Impl.Req.
   at every phase boundary.
 - Every mutating implementation workflow composes implementation capture; it is
   a selective companion, not another phase.
-- Implementation capture uses the complete ordinary Capture path. Its only
-  specialization is that selected material lands in the request's one
-  `Impl.Req.Block`.
+- Implementation capture uses the complete ordinary Capture path but writes
+  into the request's Draft throughout execution. Reconcile that Draft across
+  slices and apply it once when the request closes.
+- The mutating invocation supplies a `Capture.Authorization.Gate`; it does not
+  manufacture wording review.
+- A Closed Impl.Req is a bounded historical edition. Later ordinary writes
+  produce lifecycle POIs unless it is validly reopened inside its window.
 - A live note may record a capture failure for recovery, but it never satisfies
   or replaces the `Impl.Req.Diagram` contract.
 - Validation and POIs never block Diagram capture. Hard implementation blockers

@@ -224,10 +224,15 @@ records.
 
 ## Landing Through Tarav.Diagram
 
-Create no `Capture.Manifest` during ordinary discussion. In reviewed mode,
-compile it only after `::land` or `::land-all-approved`. In automatic mode,
-compile and apply it once the internally developed bounded batch is settled;
-the initial invocation already authorizes landing.
+Create no `Diagram.Draft` or `Capture.Manifest` during ordinary reviewed
+discussion. After `::land` or `::land-all-approved`, materialize a short-lived
+Draft from the settled proposal, check it, and apply it. In automatic mode,
+create and immediately apply a short-lived Draft once the internally developed
+bounded batch is settled; the initial invocation already authorizes landing.
+
+`Capture.Manifest` is the Draft apply operation's internal transport format,
+not a second writable workspace. A workflow such as `--impl` may instead keep
+a durable Draft when reconciliation across several slices is useful.
 
 The Manifest is a faithful mechanical compilation. Entity creation and
 semantic evolution go in `ships`; claims about existing entities or editions
@@ -247,6 +252,10 @@ go in `annotations`:
   continues that entity; allocate a new Ship UUID when it creates a new one;
 - Annotations may add review, type, tag, rename-transition, or other claims,
   but they never create the Ship they discuss;
+- a `Line.Annotation` is a free-standing natural-language Line whose ordered
+  editions use an explicit `arguments` context instead of a containing Block;
+- use only `Line.Annotation` for open relational capture until a more
+  specialized Annotation.Type is independently designed and justified;
 - missing, unknown, conflicting, or disallowed Object.Types are writable POIs,
   not permission to silently substitute another Type.
 
@@ -291,6 +300,29 @@ only the new editions of an existing Ship:
 }
 ```
 
+A free-standing Line connecting existing objects compiles under
+`annotations`. Reusing its Annotation UUID appends another claim edition:
+
+```json
+{
+  "id": "<line-annotation-uuid>",
+  "type": "Line.Annotation",
+  "model_ship": "<model-ship-uuid>",
+  "editions": [
+    {
+      "id": "<annotation-edition-uuid>",
+      "arguments": [
+        {"namespace_id": "<namespace-uuid>", "kind": "ship", "id": "<block-y-uuid>"},
+        {"namespace_id": "<namespace-uuid>", "kind": "ship", "id": "<block-x-uuid>"}
+      ],
+      "producer": {"session_identity": "...", "turn_address": "...", "turn_hash": "..."},
+      "support": [{"root": {"session_identity": "...", "turn_address": "...", "turn_hash": "..."}, "neighborhood": []}],
+      "data": {"text": "Block Y is superseded by Block X."}
+    }
+  ]
+}
+```
+
 Use a temporary Manifest path and run:
 
 ```bash
@@ -301,6 +333,16 @@ tarav diagram capture apply --manifest <path> --json
 
 Correct mechanical errors before applying. A semantic correction returns to
 discussion or reviewed proposal work. POIs never block capture.
+
+The lower-level Manifest commands remain available for compatibility and
+debugging. Workflow code should prefer:
+
+```bash
+tarav diagram draft create --project --json
+tarav diagram draft update --draft <uuid> --input <delta.json> --json
+tarav diagram draft check --draft <uuid> --json
+tarav diagram draft apply --draft <uuid> --json
+```
 
 After applying, report created or updated Ship identities, edition and
 Annotation identities, the Git commit, and all POIs. Re-render the affected

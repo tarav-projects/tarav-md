@@ -12,10 +12,10 @@ does not execute the plan.
 ## Review Loop
 
 1. **Cold read** — read the live note completely before opening cited files,
-   design sources, or the associated Block. Record first-pass confusion; it is
+   design sources, or the associated Collection and Draft. Record first-pass confusion; it is
    evidence of what a fresh executer will experience.
-2. **Diagram audit** — resolve the Namespace, Model, and `Impl.Req.Block` named
-   by `Impl.Req.Diagram`. Check that its Lines are relevant to this request,
+2. **Diagram audit** — resolve the Namespace, Model, `Impl.Req.Collection`, and
+   `Diagram.Draft` named by `Impl.Req.Diagram`. Check that its candidate Lines are relevant to this request,
    typed, supported, and not Agent-only coordination material presented as
    User-Touched authority.
 3. **Product evidence audit** — verify load-bearing claims about files,
@@ -38,4 +38,3 @@ spending attention on incidental prose.
   paths are acceptable when they do not alter the product.
 - Findings cite the concrete evidence checked; the review's authority is
   evidence, not confidence.
-

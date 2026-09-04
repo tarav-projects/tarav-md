@@ -1,8 +1,8 @@
 # Impl.Req Example
 
 Adapt section weight to the implementation. The live note coordinates Agent
-work; the referenced Diagram Block independently retains supported
-User-Touched Lines.
+work; the referenced Diagram Collection and Draft independently retain
+supported User-Touched candidates until landing.
 
 ```md
 # Project Configuration — Impl.Req
@@ -17,11 +17,13 @@ User-Touched Lines.
 
 - **namespace:** User.Touched.Chatlas.Index / <namespace-uuid>
 - **model:** Project.Model / <model-ship-uuid>
-- **block:** 502.Impl.Req / <block-ship-uuid>
-- **block type:** Impl.Req.Block
+- **collection:** 502.Impl.Req / <collection-ship-uuid>
+- **collection type:** Impl.Req.Collection
+- **draft:** <draft-uuid> / <draft-path>
 
-The Block contains the supported User-Touched constraints and decisions for
-this request. Render it from the Diagram; do not duplicate its Lines here.
+The Collection hosts the supported User-Touched constraints and decisions for
+this request. Its Lines remain attached to suitable semantic Blocks. Inspect
+the Draft and Diagram; do not duplicate those Lines here.
 
 ## Execution.Plan
 
@@ -44,7 +46,7 @@ this request. Render it from the Diagram; do not duplicate its Lines here.
 - no deviations or blockers
 ```
 
-The associated `502.Impl.Req` Block may contain supported Lines such as:
+The associated `502.Impl.Req` Collection may host supported Lines such as:
 
 ```text
 [CT] Project configuration is loaded from the resolved project root.
@@ -54,4 +56,3 @@ The associated `502.Impl.Req` Block may contain supported Lines such as:
 
 Those Lines are ordinary Diagram Annotations with producer, rooted Support.Set,
 Line.Type, and Assertion state. They are not Markdown-owned Index records.
-

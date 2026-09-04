@@ -125,13 +125,21 @@ Implementation retains two deliberately different surfaces:
 
 - the live-note `Impl.Req` is the Agent's main coordination artifact and phase
   boundary;
-- its `Impl.Req.Diagram` points to one `Impl.Req.Block` containing only
-  supported User-Touched material relevant to that implementation request.
+- its `Impl.Req.Diagram` points to one `Impl.Req.Collection` and the durable
+  `Diagram.Draft` that accumulates supported User-Touched material relevant to
+  that implementation request.
 
-Do not copy Agent-only plans, logs, summaries, or incidental implementation
-observations into the Block merely because they appear in the live note.
+An implementation Line remains semantically attached to the most suitable
+existing Model Block when possible, while its edition is hosted by the
+`Impl.Req.Collection`. This preserves Model encapsulation without adding
+automatic implementation material to the Model's primary load surface.
 
-Implementation capture is the ordinary Capture workflow constrained to one
-`Impl.Req.Block` target. It must resolve the same Namespace, Project.Model,
-current context, Object.Types, support, Manifest checks, and landing mechanics
-as `--capture`. A live note never substitutes for a missing Diagram target.
+Implementation capture uses ordinary Capture semantics inside one writable
+Draft. It must resolve the same Namespace, Project.Model, current context,
+Object.Types, support, checks, and landing mechanics as `--capture`. The Draft
+is reconciled across slices and applied once at completion. A live note never
+substitutes for a missing Diagram target or Draft.
+
+The workflow's explicit User invocation is retained as one
+`Capture.Authorization.Gate`; affected editions reference that Gate. This
+records permission to write, not review of wording.

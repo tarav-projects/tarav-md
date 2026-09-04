@@ -4,26 +4,28 @@ This internal module composes Tarav capture with mutating implementation
 workflows. It is not an independent implementation phase.
 
 Read [`../capture.md`](../capture.md) for current Chatlas references,
-Capture.Manifest mechanics, Object.Types, Gates, and Assertion.Engine
-behavior. Implementation capture runs that ordinary Capture workflow while
-fixing the semantic destination to the request's one `Impl.Req.Block`. The
-Block may be introduced by the same Manifest when bootstrapping a direct
-implementation request.
+Diagram.Draft mechanics, Object.Types, Gates, and Assertion.Engine behavior.
+Implementation capture runs that ordinary Capture workflow while fixing the
+organizational host to the request's one `Impl.Req.Collection`. Lines remain
+semantically attached to suitable Blocks in the Model.
 
 The explicit mutating implementation invocation authorizes bounded automatic,
-unreviewed capture of qualifying material into that Block. Do not add a
-separate Capture approval or landing checkpoint to each slice. This workflow
-authorization does not weaken producer, support, typing, Assertion, or POI
-requirements and never creates a `Verbatim.Gate` without an actual proposal and
-User approval exchange.
+unreviewed capture of qualifying material into that Collection's durable
+Draft. Represent this permission once as a `Capture.Authorization.Gate` and
+reference it from affected editions. Do not add a separate landing checkpoint
+to each slice. Authorization does not weaken producer, support, typing,
+Assertion, or POI requirements and never creates a `Verbatim.Gate` without an
+actual proposal and User approval exchange.
 
 ## Surface Boundary
 
-Implementation has three different surfaces:
+Implementation has four different surfaces:
 
 - the **live-note Impl.Req** is Agent coordination data;
-- the **Impl.Req.Diagram** is the `Impl.Req.Block` containing only supported
-  User-Touched material relevant to the request;
+- the **Impl.Req.Collection** organizationally hosts its supported
+  User-Touched editions;
+- the **Diagram.Draft** is the mutable, checkable writing workspace reconciled
+  throughout the request;
 - **Product.Surfaces** are the exact code, tests, configuration, and
   documentation editions produced by execution.
 
@@ -38,8 +40,10 @@ Project
   → Diagram configuration and Namespace
   → Project.Model
   → current Model context and Object.Types
-  → existing or new Impl.Req.Block target
-  → ordinary Capture.Manifest check and apply
+  → grounded Diagram.View and existing semantic Blocks
+  → existing or new Impl.Req.Collection + Diagram.Draft
+  → Draft reconcile and overlay checks
+  → one final Draft apply + Capture.Receipt
 ```
 
 The implementation specialization begins only at target selection. It must not
@@ -48,7 +52,7 @@ Manifest linting, or landing.
 
 ## Capture Bar
 
-Capture into the `Impl.Req.Block` only when material:
+Capture into the `Impl.Req.Collection` Draft only when material:
 
 - is meaningfully touched by the User;
 - directly constrains, changes, authorizes, rejects, or contextualizes the
@@ -56,7 +60,8 @@ Capture into the `Impl.Req.Block` only when material:
 - can be stated as one typed Line; and
 - has a resolvable rooted Support.Set from the producing chat context.
 
-Zero new Lines in a slice is valid. Use the existing Line ship when the new
+Zero new Lines in a slice is valid. Prefer attaching a candidate Line to an
+existing suitable Block. Use the existing Line ship when the new
 Annotation continues its semantic history; otherwise introduce a new one.
 Reviewed Gates require actual proposal and approval turns. Automatic workflow
 capture remains unreviewed rather than manufacturing approval.
@@ -65,12 +70,11 @@ capture remains unreviewed rather than manufacturing approval.
 
 ### Slice.Open.Capture
 
-Before product edits, run the ordinary capture Contextualize path and inspect
-User turns accumulated since the prior capture. Resolve the target Block from
-the Diagram rather than trusting a live-note UUID alone. Land only supported
-material that currently governs the slice into that same Block. This records
-why the work is being attempted; it does not claim the product already
-implements it.
+Before product edits, run the ordinary grounding/contextualization path and
+inspect User turns accumulated since the prior capture. Resolve the target
+Collection and semantic Blocks from the Diagram rather than trusting live-note
+UUIDs alone. Reconcile only supported material that currently governs the
+slice into the Draft; do not land it yet.
 
 ### Product.Landing.Capture
 
@@ -89,10 +93,10 @@ After checks pass and the diff is reviewed:
 
 1. rescan the slice's chat for newly relevant User-Touched material;
 2. update the live note's coordination state separately;
-3. compile one ordinary Tarav.Diagram Capture.Manifest targeting the existing Model
-   and Block for any selected Lines;
-4. check and apply it through the normal capture path;
-5. re-render the affected Block so Assertion state and POIs are current; and
+3. reconcile candidate editions in the durable Draft, amending or removing
+   earlier candidates when later slices clarify them;
+4. check the Draft as an overlay on the current Model;
+5. re-render affected Blocks and the Collection so Assertion state and POIs are current; and
 6. report capture omissions or failures without pretending they invalidate
    verified product work.
 
@@ -100,13 +104,15 @@ After checks pass and the diff is reviewed:
 
 Before closing the request, check that:
 
-- the Block contains the important User-Touched constraints and resolutions
+- the Draft contains the important User-Touched constraints and resolutions
   encountered across Design and Execute;
 - every Line remains typed, supported, and relevant to this Impl.Req;
 - no Agent-only coordination material was mislabeled as User-Touched;
 - Product.Surface context was captured where supported, with gaps surfaced as
   POIs; and
-- the live note points to the exact Namespace, Model ship, and Block ship.
+- the live note points to the exact Namespace, Model, Collection, and Draft;
+- the Impl.Req Collection is closed as a bounded historical edition; and
+- one final Draft check and apply produced the retained Capture.Receipt.
 
 The audit exists to prevent meaningful loss and misgrounding, not to maximize
 annotation volume.

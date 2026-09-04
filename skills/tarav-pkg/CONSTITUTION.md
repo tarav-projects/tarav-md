@@ -196,7 +196,7 @@ If an annotation process introduces additional data, that data must ultimately b
 
 `Tarav.Diagram` does not constrain what may be asked or asserted about archived data. It must be extensible so that anything can be asked against that data and annotated.
 
-`Diagram.Ship` establishes a semantic entity and retains its editions. `Diagram.Annotation` is a separate typed claim about a Ship, edition, transition, relation, external surface, or other subject; an Annotation does not establish the entity it discusses.
+`Diagram.Ship` establishes a semantic entity and retains its editions. `Diagram.Annotation` is a separate typed claim about a Ship, edition, transition, relation, external surface, or other subject; an Annotation may retain its own claim lineage, but it does not establish the entity it discusses.
 
 Typed `Diagram.Records` and `Semantic.Assertions` form Tarav’s general model for expressing and assessing semantic structure. Every semantic Record carries Assertions, including an implicit assertion that it correctly represents its linked archived data, and may carry additional Assertions about structure or other assessable properties.
 

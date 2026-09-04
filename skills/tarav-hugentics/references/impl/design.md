@@ -52,7 +52,8 @@ the project's established numbering and naming convention, normally:
 Its required structure is:
 
 - `Impl.Abstract` — scope, status, source context, and important boundaries;
-- `Impl.Req.Diagram` — Namespace, Model, and `Impl.Req.Block` identities;
+- `Impl.Req.Diagram` — Namespace, Model, `Impl.Req.Collection`, and
+  `Diagram.Draft` identities;
 - `Execution.Plan` — ordered vertical slices, checks, risks, deviation
   triggers, acceptance signals, and slice status;
 - `Impl.Log` — consequential assumptions, deviations, blockers, and decisions
@@ -69,33 +70,36 @@ does not authorize unrelated product mutation.
 
 ## Impl.Req.Diagram
 
-Create exactly one `Impl.Req.Block` in the Project's configured main Model, or
-reuse it only when updating the same existing implementation request lineage.
-Its human-facing label normally shares the live-note number:
+First ground or refresh the Project Model's `Diagram.View`. Then create exactly
+one open `Impl.Req.Collection` and one durable `Diagram.Draft`, or reuse them
+only when continuing the same implementation request lineage. The Collection's
+human-facing label normally shares the live-note number:
 
 ```text
 502.Impl.Req
 ```
 
-The Block ship UUID is its identity; the numerical label is only a convenient
-address. Record the Namespace, Model ship, Block ship, and label under the live
-note's `Impl.Req.Diagram` section.
+The Collection ship UUID is its identity; the numerical label is only a
+convenient address. Record the Namespace, Model ship, Collection ship, Draft
+UUID/path, and label under the live note's `Impl.Req.Diagram` section.
 
-The Block is not the live note and does not reproduce its Agent-generated plan.
-It contains only supported User-Touched Lines relevant to the implementation
-request: requirements, decisions, constraints, rejections, principles,
-freedoms, examples, and later User resolutions. Use `Impl.Req.Block` with the
-same full Line.Type vocabulary as `Design.Block`.
+The Collection is not the live note and does not reproduce its Agent-generated
+plan. It organizationally hosts only supported User-Touched editions relevant
+to the implementation request. Attach each Line semantically to the most
+suitable existing Model Block when possible; introduce a new candidate Block
+only when existing encapsulation would be dishonest. Hosting and attachment
+are independent.
 
 Capture the first bounded set while designing:
 
-1. resolve the current Project Model and relevant existing Diagram context;
+1. resolve the current Project Model and ground its relevant Diagram context;
 2. select exact User turns that materially constrain this request;
-3. create the Block Ship and supported Line editions through the
-   ordinary Tarav.Diagram Capture.Manifest path;
+3. materialize the Collection, authorization Gate, and candidate editions in
+   the durable Draft without landing them;
 4. use reviewed Gates only when the actual conversation provides them; never
    manufacture approval evidence; and
-5. retain the resulting identities in `Impl.Req.Diagram`.
+5. retain the resulting identities in `Impl.Req.Diagram` and cold-reload the
+   live note and Draft before execution.
 
 Agent-only analysis may remain valuable in `Execution.Plan` or `Impl.Log`. It
 must not be promoted into the User-Touched Block merely to make the request
@@ -107,11 +111,11 @@ look complete.
 - Reevaluate `Impl.Abstract` when scope changes.
 - Keep ordinary code changes out of `Impl.Log`; Git already records them.
 - When a User message changes or resolves the implementation during design,
-  capture the relevant supported consequence into the same Block.
+  reconcile the supported consequence in the same Draft and Collection.
 - When the design exposes a fundamentals-design problem, point to the owning
   design surface and keep the implementation request honest about the gap.
 
 ## Output
 
-Return the complete live-note path, its `Impl.Req.Block` address, and a concise
-readiness summary. Under Develop, return control to the Develop module.
+Return the complete live-note path, Collection and Draft addresses, and a
+concise readiness summary. Under Develop, return control to the Develop module.

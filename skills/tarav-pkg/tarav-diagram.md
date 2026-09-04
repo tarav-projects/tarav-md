@@ -38,9 +38,10 @@ tape of sessions, events, turns, content, and context horizons.
 
 `Diagram.Ships` retain semantic entities and their ordered editions.
 `Diagram.Annotations` are a separate collection of typed claims about Ships,
-editions, or their relations; an Annotation does not create the entity it
-describes. Ship and Annotation types select the classes that interpret their
-records and declare their Assertions.
+editions, or their relations; an Annotation does not create the subject entity
+it describes. An Annotation type may retain an evolving claim lineage of its
+own. Ship and Annotation types select the classes that interpret their records
+and declare their Assertions.
 
 `Context.Model` selects and organizes relevant Diagram material for a
 particular collaboration. It is a contextual projection, not a new
@@ -136,10 +137,41 @@ parents; parent records need not duplicate child lists. Recursive projection
 forms Models, Blocks, Lines, relationships, and later semantic structures from
 this flat collection.
 
-Annotations refer to existing Ships or editions. They may classify a Ship,
-attach a tag, record review evidence, describe a transition such as a rename,
+Annotations refer to existing Ships, editions, or Annotations. They may
+classify a Ship, attach a tag, record review evidence, describe a transition,
 or assert another relation. They do not establish the referenced entity's
-existence. This keeps entity history and claims about that history distinct.
+existence. Annotation types may nevertheless retain their own ordered editions
+when the claim itself evolves. This keeps entity history and claims about that
+history distinct.
+
+### Line.Annotation
+
+`Line.Annotation` is the first free-standing `Index.Line`. It retains a
+natural-language claim like a Block Line, but its context is an explicit
+`Argument.Set` rather than one containing Block:
+
+```text
+Index.Line
+├── Block.Line      → containing Block context
+└── Line.Annotation → explicit Argument.Set context
+```
+
+Its stable Annotation UUID identifies the claim lineage. Each ordered edition
+has its own UUID and retains:
+
+- one nonempty `arguments` array of typed Diagram references;
+- `data.text`, the natural-language claim;
+- optional producer, `Support.Set`, Gates, Assertions, and score vector.
+
+An Argument reference contains a Namespace UUID, a lowercase `kind` (`ship`,
+`edition`, or `annotation`), and the referenced UUID. The generic mechanics
+claim only that the arguments contextualize the Line; the natural-language
+claim supplies the relationship semantics. More specialized Annotation types
+may emerge later without replacing `Line.Annotation`.
+
+The Annotation collection remains physically separate from entity Ships. A
+`Line.Annotation` Record uses Ship-like edition mechanics because the claim can
+evolve; it still does not create any subject named by its arguments.
 
 The canonical implementation path is a full projection of the authoritative
 collections. A later
@@ -194,25 +226,37 @@ design vocabulary belongs to `Design.Block`:
 require a privileged Definition Line. Content gives a Block its semantics;
 Type contributes explicit mechanics and assessable conformance claims.
 
-`Impl.Req.Block` is the User-Touched Diagram surface for one implementation
-request. It groups supported User-Touched material relevant to that request
-across its design and execution chats. A numerical label such as
-`502.Impl.Req` is a human-facing address; the Block ship UUID remains its
-identity. This work grouping does not claim that the request is a project
-ontology concept.
+`Diagram.Collection` is a recursive organizational Ship. It may host editions,
+reference Diagram objects, and contain other Collections without changing the
+semantic home of those objects. Namespace governs, Model models, and
+Collection groups.
+
+Edition hosting is independent from semantic attachment. A Line edition may
+be hosted by a Collection while its Line Ship remains attached to the Block
+that supplies its interpretation context. Model-hosted editions form the
+primary Model load; Collection-hosted editions are discovered through
+Collection expansion or explicit queries.
+
+`Impl.Req.Collection` is the bounded organizational surface for one
+implementation request. It hosts supported User-Touched editions accumulated
+across design and execution while allowing those Lines to remain attached to
+suitable existing Model Blocks. A numerical label such as `502.Impl.Req` is a
+human-facing address; the Collection ship UUID remains its identity.
 
 The Block is not the implementation's main coordination artifact. The Agent
 maintains a separate live-note `Impl.Req` containing `Impl.Abstract`, an
-`Impl.Req.Diagram` reference to the Block, `Execution.Plan`, and `Impl.Log`.
+`Impl.Req.Diagram` reference to the Collection and Draft, `Execution.Plan`, and `Impl.Log`.
 Agent-only plans, status, logs, summaries, and incidental observations may live
 there without becoming User-Touched Diagram Lines. During design and execution,
-the workflow enriches the Block only with relevant material grounded in the
-corresponding User-Touched chat data.
+the workflow reconciles only relevant material grounded in the corresponding
+User-Touched chat data.
 
-Initially, `Impl.Req.Block` accepts the same Line.Type vocabulary as
-`Design.Block`. It retains a distinct Block.Type so implementations can select,
-render, validate, and contextualize implementation work independently and add
-specialized mechanics later without changing its identity.
+An Impl.Req Collection has `Open` or `Closed` lifecycle state. Open work may be
+reconciled freely in its Draft. Closing makes it a bounded historical edition;
+normal later writes and reopening outside its declared window surface POIs.
+They do not make the Diagram mechanically unwritable. The older
+`Impl.Req.Block` remains readable for compatibility but is not the target for
+new implementation capture.
 
 `Issue.Block` is the addressable Diagram surface for a temporary concern such
 as an idea, reminder, question, opportunity, defect, migration, or
@@ -420,6 +464,16 @@ standing from the target record and Chatlas evidence. A Line ship is
 `Reviewed` when at least one exact Line edition in that lineage has a
 passing `Verbatim.Gate`. Later ungated lineage members do not erase that
 standing; their continuity remains a separate Assertion.
+
+`Capture.Authorization.Gate` records that a User authorized one workflow to
+perform a bounded class of Diagram writes. It retains the permission Turn, the
+literal invocation token, workflow, operations, and target scope. Affected
+editions reference its UUID, and the Capture.Receipt publishes that coverage.
+Its evaluator checks User role, token presence, and scope resolution.
+
+Authorization is orthogonal to wording review, semantic support, and Assertion
+quality. An explicit `--impl --exec` may authorize automatic capture without
+approving any exact Line wording.
 
 Capture has no Gate-specific command path. A `Capture.Manifest` transports
 typed Ship updates and Annotation records without interpreting their
@@ -696,15 +750,28 @@ Tarav must provide stable references and navigation primitives that let
 Agents describe such relationships. It need not hard-code their semantic
 vocabulary into Capture.
 
-## Capture Manifest
+## Diagram Draft and Capture Manifest
 
-User-Touched Capture is an approval-gated collaboration performed in chat, not
-a sequence of improvised direct mutations. The chat is the WIP capture surface:
-the User and Agent discuss, revise, and approve each Block and Line there.
+`Diagram.Draft` is a durable, mutable, and checkable writing workspace over one
+Model. It owns candidate Ship and Annotation changes. Checking projects the
+Draft as an overlay without mutating the Diagram; applying it compiles an
+internal `Capture.Manifest`, writes once, and retains the `Capture.Receipt`.
+
+Materialize a Draft when a persistent writable semantic workspace becomes
+useful, not merely because capture discussion began:
+
+- reviewed capture creates a short-lived Draft after `::land`;
+- automatic capture may create and immediately apply a short-lived Draft;
+- implementation capture maintains one durable Draft across slices and applies
+  it once at completion.
+
+User-Touched reviewed Capture remains an approval-gated collaboration performed
+in chat. The User and Agent discuss, revise, and approve each Block and Line
+there before a Draft is materialized.
 
 A `Capture.Manifest` does not exist during that semantic discussion. After the
-User sends `::land` for one settled proposal, the Agent creates a Manifest as a
-faithful mechanical compilation of the approved material. The Manifest is
+User sends `::land`, the Agent materializes a Draft; its apply operation
+compiles the Manifest as an internal faithful transport format. The Manifest is
 neither a collaboration surface nor a Diagram authority surface.
 
 Conceptually:
@@ -714,9 +781,9 @@ User/Agent discussion in chat
           ↕ propose / group / revise / approve
 Settled capture proposal
           ↓ explicit ::land
-Agent creates Capture.Manifest
+Agent materializes Diagram.Draft
           ↓
-Mechanical check
+Overlay check + internal Capture.Manifest compilation
           ↓
 Capture applies Ship editions and Annotations
           ↓
@@ -733,7 +800,7 @@ identities, and existing Model, Block, and Line objects. After `::land`, it
 should provide an empty Manifest template and freshly minted UUIDs. The Agent
 should not reconstruct mechanical bureaucracy by hand.
 
-The Manifest identifies its target Model ship. Resolving that Model identifies
+The Draft and compiled Manifest identify their target Model ship. Resolving that Model identifies
 the Namespace repository that owns it and therefore the sole write destination
 for the batch. The Manifest does not need a redundant Namespace target.
 

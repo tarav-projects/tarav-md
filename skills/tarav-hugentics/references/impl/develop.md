@@ -9,9 +9,10 @@ execution in the same skill call while preserving the durable phase boundary.
 
 1. Load [`design.md`](design.md).
 2. Converge on the implementation design.
-3. Produce the complete live-note `Impl.Req` and its `Impl.Req.Block`.
-4. Capture the exact live-note path and Block identity.
-5. Re-read the live note from disk and resolve the Block anew.
+3. Ground the Project Model, then produce the complete live-note `Impl.Req`,
+   open `Impl.Req.Collection`, and durable `Diagram.Draft`.
+4. Capture the exact live-note path, Collection identity, and Draft identity.
+5. Re-read the live note and Draft from disk and resolve the Collection anew.
 6. Load [`execute.md`](execute.md).
 7. Execute the `Execution.Plan` under the same `Alignment.Mode`.
 8. Complete only after product verification, the final capture audit, and
@@ -25,14 +26,13 @@ checkpoint may pause it; resumption continues the same Develop workflow.
 - The live-note Impl.Req is the mandatory handoff. Do not execute directly from
   the original idea or an in-chat summary.
 - Do not collapse designer and executer responsibilities.
-- Preserve exact `Impl.Req.Diagram` identities and capture state across the
+- Preserve exact `Impl.Req.Diagram` identities and Draft state across the
   handoff; do not replace them with summarized context.
 - If Design cannot produce an executable request, stop before product edits.
-- If execution fails, preserve the live note and Block, and record the blocker
+- If execution fails, preserve the live note, Collection, and Draft, and record the blocker
   in `Impl.Log`.
 
 ## Completion
 
-Return one concise report covering the Impl.Req path and Block, implemented
+Return one concise report covering the Impl.Req path, Collection, and Draft, implemented
 result, verification, deviations, POIs, and deferred work.
-
