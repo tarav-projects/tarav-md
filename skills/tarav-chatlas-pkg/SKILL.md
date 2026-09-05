@@ -31,9 +31,15 @@ parallel implementations or command surfaces.
 Discover exact options from `tarav chatlas <command> --help`.
 
 - `tarav chatlas update` captures provider deltas and updates Session.Index.
+- `tarav chatlas current-session` resolves the running Codex or Claude Code
+  harness's verified provider-native session without writing.
 - `tarav chatlas normal-model` resolves one exact session by native session ID
   or neutral identity hash. Its default output is metadata plus Events;
   `--messages`, `--turns`, `--loaded-contexts`, and `--all` add projections.
+- `tarav chatlas query` selects Turns from one exact session, assembles their
+  referenced Messages and Event time, and uses the default named Renderer.
+- `tarav chatlas render` accepts the same Query selectors and optionally uses
+  another fully qualified registered Renderer plus Renderer-owned options.
 - `tarav chatlas raw sources` returns retained raw Artifact locations for one
   exact session.
 - `tarav chatlas index redo` rebuilds the derived Session.Index from retained
@@ -41,10 +47,22 @@ Discover exact options from `tarav chatlas <command> --help`.
 - `tarav chatlas index reset` removes disposable index/cache state and is an
   explicit maintenance operation, not an ordinary read step.
 
-There is currently no public `sessions query`, `chat query`, or `turns get`
-command. Agentic workflows may perform bounded discovery over the retained
-Session.Index and then use `normal-model` for authoritative reads; they must
-not document imaginary CLI compatibility surfaces.
+Query owns selection and Turn-to-Message assembly. Renderers consume the
+resulting structured Findings and own only what and how they present. Default
+`query` and default `render` output are equivalent.
+
+`current-session` works only when invoked inside a supported harness process
+tree carrying verified provider context. Query and Render may use that target
+through `--current-session`; their explicit `--update` performs one exact
+provider-session capture before the read, while `--refresh` rebuilds only the
+retained Normal Model cache.
+
+`Chatlas.Turn.Ledger.Renderer` provides compact timestamped Turn discovery.
+Query supports literal text discovery inside one exact session. There is no
+public cross-session inventory or full-text query command; Agentic workflows
+may select bounded candidates from the retained Session Index and then use
+exact-session Query or Normal Model reads. Do not document imaginary CLI
+compatibility surfaces.
 
 ## Package Workflows
 

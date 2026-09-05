@@ -1,6 +1,6 @@
 ---
 name: tarav-chatlas-retention-audit
-description: Audit Chatlas raw retention for a provider by comparing previous audit reports, current provider-home artifacts, and current Chatlas archive policy. USE WHEN deciding what raw provider data Chatlas should retain, keep for future analysis, track as telemetry, or exclude. Called like a terminal command — `--provider <name>`.
+description: Audit Chatlas raw retention for a provider by comparing previous audit reports, current provider-home artifacts, and current Chatlas archive policy. USE WHEN deciding what raw provider data Chatlas should retain, keep for future analysis, track as telemetry, or exclude. Called like a terminal command with `--provider PROVIDER`.
 ---
 
 # Chatlas Retention Audit
@@ -97,18 +97,19 @@ Use a focused evidence set:
 
 - previous reports under `notes/reports/tarav-chatlas-retention-audit/`
 - current raw archive code in:
-  - `src/agentos/chat/providers.py`
-  - `src/agentos/chatlas/raw.py`
-  - relevant tests such as `tests/test_chatlas_commands.py`
-- live provider evidence from:
-  - `agentos chat debug list`
-  - `agentos chat debug find`
-  - `agentos chat debug extract`
-  - direct provider-home inspection with shell tools such as `find`, `du`, and `rg`
+  - `tarav-py/src/tarav/chatlas/providers.py`
+  - `tarav-py/src/tarav/chatlas/provider_home_adapter.py`
+  - `tarav-py/src/tarav/chatlas/raw_archive.py`
+  - `tarav-py/src/tarav/chatlas/delta_scan.py`
+  - relevant tests under `tarav-py/tests/chatlas/`
+- live provider evidence from direct, bounded provider-home inspection with
+  shell tools such as `find`, `du`, and `rg`
 - Chatlas dataset confirmation when useful:
-  - `agentos chatlas update`
-  - `agentos chatlas query`
-  - `agentos chatlas views get`
+  - `tarav chatlas update --provider <provider>`
+  - retained rows under `~/Documents/tarav/chatlas/index/sessions/<provider>/`
+  - `tarav chatlas raw sources` for one exact indexed session
+  - `tarav chatlas normal-model` or `tarav chatlas query` only when normalized
+    content materially informs the raw-retention question
 
 Prefer a small, explicit evidence set. The goal is not exhaustive crawling. The goal is enough evidence to defend the retention recommendation.
 

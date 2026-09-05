@@ -1,13 +1,15 @@
 ---
 name: chatlas-work-dashboard
-description: In-chat dashboard of recent supported Chatlas sessions — what you were doing, in which project, and where each thread stopped. Uses Chatlas2 Session.Query plus bounded Chat.Query recaps. USE WHEN the user wants to recap recent work, find a prior session, or decide what to resume. Called like a terminal command — `--since 3d`, `--all`, `--session <id>`.
+description: In-chat dashboard of recent supported Chatlas sessions — what you were doing, in which project, and where each thread stopped. Uses the retained Session Index plus exact-session Chatlas Query reads. USE WHEN the user wants to recap recent work, find a prior session, or decide what to resume. Called like a terminal command with `--since 3d`, `--all`, or `--session SESSION_ID`.
 ---
 
 # Chatlas Work Dashboard
 
 Operational `Package.Aux.Skill` under `tarav-chatlas-pkg`.
 
-A read-only conversation surface for recent Codex and Claude work. It writes no report or retained product. Refresh once, select sessions by metadata, then read only small verified `Chat.Message` windows from each selected chat.
+A conversation surface for recent Codex and Claude Code work. It writes no
+report or product, but performs one explicit Chatlas update before reading its
+derived Session Index. It then uses bounded exact-session Query reads.
 
 This is a `Batchy.Skill` — called like a terminal command. Load `tarav-batchy-skills` for the full convention.
 
@@ -47,8 +49,10 @@ This is a `Batchy.Skill` — called like a terminal command. Load `tarav-batchy-
 
 ## Boundary
 
-- supports only providers normalized by Chatlas2; ignore unsupported indexed sessions
-- never invokes `tarav chatlas`, Chatlas1 Views, Products, file-touch queries, or full-session Chat.Index capture
+- supports only providers normalized by current Chatlas; ignore unsupported
+  indexed sessions
+- uses only current `tarav chatlas` commands and the retained Session Index;
+  never invokes retired Views, Products, or Chat.Index machinery
 - does not own task state; use Hugentics status or parking for that
 - prints continuation commands but never decides what the user should resume
 
@@ -56,34 +60,50 @@ This is a `Batchy.Skill` — called like a terminal command. Load `tarav-batchy-
 
 ### 1. Select a stable session snapshot
 
-Convert `--since` to an ISO timestamp with a small local script. Perform exactly one update on the first read:
+Convert `--since` to an ISO timestamp with a small local script. Perform exactly
+one update on the first read and retain its JSON outside model context:
 
 ```bash
-tarav chatlas --update sessions query \
-  --project <current-project-root> \
-  --active-after <cutoff> --sort newest --limit <limit> --json
+tarav chatlas update > <tmp>/update.json
 ```
 
-- omit `--project` for `--all`
-- use the parsed `--since-date` as the cutoff when supplied
-- redirect JSON to a temporary file; bring only the bounded selected rows into context
-- keep this snapshot stable for all recap reads; do not update again during the run
+Then read the sharded JSONL rows under
+`~/Documents/tarav/chatlas/index/sessions/`. With a small local `jq` or Python
+projection:
+
+- retain rows whose `last_activity_at` is at or after the cutoff;
+- unless `--all` is present, retain rows whose `project_path` matches the
+  current project root;
+- sort by `last_activity_at` newest-first and keep at most `--limit`; and
+- bring only those bounded fields into context: `last_activity_at`, `provider`,
+  `instance`, `project_path`, `session_id`, `uri`, and `identity_hash`.
+
+Use the parsed `--since-date` as the cutoff when supplied. Keep this selected
+snapshot stable for all recap reads; do not update again during the run. The
+Session Index is a derived selection surface, not transcript authority.
 
 Each row provides `last_activity_at`, provider, instance, project path, native session id, URI, and neutral identity hash. Group by `project_path`; projects and sessions are newest-first.
 
 ### 2. Read bounded head and tail windows
 
-Recap no more than eight sessions per run. For each selected identity:
+Recap no more than eight sessions per run. Use the timestamped ledger to inspect
+small Turn windows for each selected identity:
 
 ```bash
-tarav chatlas chat query --identity-hash <hash> \
-  --sort oldest --offset 0 --limit 3 --json
+tarav chatlas render --identity-hash <hash> \
+  --order oldest --limit 5 \
+  --renderer Chatlas.Turn.Ledger.Renderer
 
-tarav chatlas chat query --identity-hash <hash> \
-  --sort newest --offset 0 --limit 8 --json
+tarav chatlas render --identity-hash <hash> \
+  --order newest --limit 30 \
+  --renderer Chatlas.Turn.Ledger.Renderer
 ```
 
-The head usually states the original goal. The tail records the latest state. Reverse the returned newest-first tail before reading it as a chronological window. Do not fetch the whole transcript merely to count turns or classify a session as thin.
+The head usually identifies the original goal and the tail the latest state.
+Select only the promising Turn hash prefixes, then render those exact Turns in
+full through the default Renderer. Do not add `--update`: the initial update is
+the workflow's sole freshness boundary. Exact Query findings and their resolved
+Messages are the authoritative recap input; the ledger is only navigation.
 
 ### 3. Render the dashboard
 
@@ -99,9 +119,14 @@ Keep provider, instance, URI, and identity hash out of ordinary rows; show them 
 
 ## Follow-Up
 
-- **drill-in** — resolve `--session` with `tarav chatlas --update sessions query --session-id ...`; then read oldest 5 and newest 30 messages
+- **drill-in** — locate the sole Session Index row matching `session_id` (and
+  provider/instance when needed), then inspect its oldest 5 and newest 30 Turns
+  through the ledger before rendering selected Turns in full
 - **widen** — rerun with a larger cutoff or `--all`
-- **find** — use `tarav chatlas --update chat query --contains '<fragment>' --sort newest --session-limit 50 --limit 20 --json`, then deduplicate candidate sessions
+- **find** — select at most 50 recent Session Index candidates, then run
+  exact-session `tarav chatlas query --identity-hash <hash> --text-contains
+  '<fragment>' --order newest --limit 20 --json` over each; deduplicate matching
+  sessions without performing another update
 - **jump** — hand the exact session to `chatlas-session-continue`
 
 Preserve the current landscape in conversation during follow-up; do not repeat the update while the user is exploring the same snapshot.

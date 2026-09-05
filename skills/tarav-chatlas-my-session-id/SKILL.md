@@ -20,15 +20,15 @@ session-query or chat-query subcommands that are absent from
 
 ## Direct Resolution
 
-Prefer the provider's verified direct reader:
+Use Chatlas's verified provider-native reader through its public command:
 
-| Provider | Native session reader |
-|---|---|
-| `codex` | non-empty `CODEX_THREAD_ID` |
-| `claude-code` | non-empty `CLAUDE_CODE_SESSION_ID` |
+```bash
+tarav chatlas current-session --provider <codex|claude-code> --json
+```
 
-Known caller identity takes precedence over ambient environment hints. Never
-print the full environment or probe unrelated variables.
+The command is read-only and supports both Codex and Claude Code. Read its
+`provider` and `session_id`; do not inspect harness environment variables
+directly or substitute recency-based inference when this exact command succeeds.
 
 After resolving a native ID, refresh exactly that session and ask the Normal
 Model for its neutral identity:

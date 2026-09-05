@@ -42,7 +42,10 @@ briefly instead of searching or guessing.
 - supports Codex and Claude Code sessions recognized by Chatlas
 - uses only the current `tarav chatlas update` and `tarav chatlas normal-model`
   surfaces
-- never invokes retired Query, Views, Products, or zip-transcript machinery
+- uses the full Normal Model rather than Chatlas Query because this workflow
+  must preserve every User Message; Query remains the maintained bounded-read
+  surface for selective Turn work
+- never invokes retired Views, Products, or zip-transcript machinery
 - never produces or commits a retained summary artifact
 - preserves every user `Chat.Message.text` in full, verbatim, and chronological
   order; agent messages may be compressed but never used to rewrite user text
