@@ -41,6 +41,10 @@ tarav-hugentics --capture --unreviewed [PROMPT]
 tarav-hugentics --capture --audit [PROMPT]
     Read-only contextualization and Capture.Roadmap.
 
+tarav-hugentics --capture --inline <SURFACE>
+    Leave lightweight, resolvable Chatlas Turn references in one Product.Surface.
+    The first surface specialization is Markdown.
+
 tarav-hugentics --issues [INPUT]
 tarav-hugentics --issue [INPUT]
     Work with Issue.Blocks. New material defaults to the short Parking
@@ -96,7 +100,10 @@ Agent-generated coordination material into User-Touched data.
 ## Routing
 
 Grounding routes load and follow [`references/ground.md`](references/ground.md).
-Capture routes load and follow [`references/capture.md`](references/capture.md).
+Ordinary Capture routes load and follow [`references/capture.md`](references/capture.md).
+`--capture --inline` instead loads and follows
+[`references/inline-capture.md`](references/inline-capture.md); it edits the
+selected Product.Surface and does not enter Diagram capture.
 Issue routes first load [`references/issues.md`](references/issues.md), which
 selects one Issue workflow without creating a separate Parking.Note object.
 Implementation routes first load

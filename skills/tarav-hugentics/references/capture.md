@@ -16,8 +16,9 @@ Every mode uses the same conceptual loop:
 Contextualize → Map → Focus → Discuss/Propose → Land → Reconcile
 ```
 
-1. Resolve the current native session with `tarav-chatlas-my-session-id` when
-   available, then refresh it with `tarav chatlas update --session-id <id>`.
+1. Resolve and refresh the current native session with
+   `tarav-chatlas-my-session-id` when available. Use the returned native
+   session ID and neutral Chatlas identity; do not perform a second update.
 2. In a writing mode, run `tarav diagram capture context --project
    --session-id <id> --json`. This resolves or mechanically bootstraps the
    Project's main Model. Report a new Model association when bootstrap occurs.
