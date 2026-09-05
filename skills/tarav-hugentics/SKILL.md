@@ -45,6 +45,10 @@ tarav-hugentics --capture --inline <SURFACE>
     Leave lightweight, resolvable Chatlas Turn references in one Product.Surface.
     The first surface specialization is Markdown.
 
+tarav-hugentics --capture --inline --audit <SURFACE>
+    Audit the embedded references in one Product.Surface without mutation.
+    Generic audit semantics are applied through surface-native inspection.
+
 tarav-hugentics --issues [INPUT]
 tarav-hugentics --issue [INPUT]
     Work with Issue.Blocks. New material defaults to the short Parking
@@ -93,6 +97,10 @@ covers the bounded pass. They do not weaken support, producer, validation, or
 POI requirements. `--audit` conflicts with either unreviewed-capture flag
 because audit is read-only.
 
+Within `--capture --inline`, `--audit` selects the read-only audit route instead
+of the ordinary reference-writing route. It takes exactly one surface and does
+not compose with `--auto` or `--unreviewed`.
+
 Within `--impl`, `--auto` or `--autonomous` selects autonomous alignment at
 declared checkpoints. It does not change Diagram support requirements or turn
 Agent-generated coordination material into User-Touched data.
@@ -101,9 +109,10 @@ Agent-generated coordination material into User-Touched data.
 
 Grounding routes load and follow [`references/ground.md`](references/ground.md).
 Ordinary Capture routes load and follow [`references/capture.md`](references/capture.md).
-`--capture --inline` instead loads and follows
+`--capture --inline`, including its composed `--audit` route, instead loads and follows
 [`references/inline-capture.md`](references/inline-capture.md); it edits the
-selected Product.Surface and does not enter Diagram capture.
+selected Product.Surface only in the ordinary non-audit route and never enters
+Diagram capture.
 Issue routes first load [`references/issues.md`](references/issues.md), which
 selects one Issue workflow without creating a separate Parking.Note object.
 Implementation routes first load
