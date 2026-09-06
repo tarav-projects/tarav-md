@@ -54,6 +54,7 @@ Its child surfaces retain independent semantics and Git histories:
 ├── attic/
 ├── chatlas/
 ├── diagram/
+├── reading-club/
 └── bloberia/
 ```
 

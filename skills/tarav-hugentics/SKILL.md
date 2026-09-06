@@ -1,13 +1,14 @@
 ---
 name: tarav-hugentics
-description: "Run Tarav's grounding, conversational capture, Issue, and implementation workflows over Project Diagram.Models. USE WHEN the user wants Diagram-backed context, reviewed or automatic capture, Issue work, implementation design or execution, or invokes `tarav-hugentics --ground`, `--capture`, `--issues`, or `--impl`."
+description: "Run Tarav's grounding, conversational capture, Reading Club, Issue, and implementation workflows over Project Diagram.Models. USE WHEN the user wants Diagram-backed context, reviewed or automatic capture, a Reading Project, Issue work, implementation design or execution, or invokes `tarav-hugentics --ground`, `--capture`, `--reading-club`, `--issues`, or `--impl`."
 ---
 
 # Tarav Hugentics
 
-`tarav-hugentics` is Tarav's public grounding, conversational capture, and
-implementation surface. It preserves the Hugentics alignment workflows while
-using Chatlas and the Tarav.Diagram as its User-Touched indexing backend.
+`tarav-hugentics` is Tarav's public grounding, conversational capture, Reading
+Club, and implementation surface. It preserves the Hugentics alignment
+workflows while using Chatlas and the Tarav.Diagram as its User-Touched
+indexing backend.
 
 Before operating, read the Tarav Constitution at
 [`../tarav-pkg/CONSTITUTION.md`](../tarav-pkg/CONSTITUTION.md). Capture must
@@ -48,6 +49,10 @@ tarav-hugentics --capture --inline <SURFACE>
 tarav-hugentics --capture --inline --audit <SURFACE>
     Audit the embedded references in one Product.Surface without mutation.
     Generic audit semantics are applied through surface-native inspection.
+
+tarav-hugentics --reading-club [DOCUMENT]
+    Start or resume an Agent-operated Reading.Project and coordinate its
+    in-chat Present → Read → Discuss → Capture → Advance loop.
 
 tarav-hugentics --issues [INPUT]
 tarav-hugentics --issue [INPUT]
@@ -105,6 +110,11 @@ Within `--impl`, `--auto` or `--autonomous` selects autonomous alignment at
 declared checkpoints. It does not change Diagram support requirements or turn
 Agent-generated coordination material into User-Touched data.
 
+`--reading-club` selects its own workflow and does not compose with Capture,
+Issue, or implementation routes. Its optional trailing value is a document,
+project slug, title fragment, or other practical navigation hint; Agents
+resolve equivalence from context rather than fingerprints.
+
 ## Routing
 
 Grounding routes load and follow [`references/ground.md`](references/ground.md).
@@ -113,6 +123,8 @@ Ordinary Capture routes load and follow [`references/capture.md`](references/cap
 [`references/inline-capture.md`](references/inline-capture.md); it edits the
 selected Product.Surface only in the ordinary non-audit route and never enters
 Diagram capture.
+Reading Club routes load and follow
+[`references/reading-club.md`](references/reading-club.md).
 Issue routes first load [`references/issues.md`](references/issues.md), which
 selects one Issue workflow without creating a separate Parking.Note object.
 Implementation routes first load
@@ -126,8 +138,10 @@ create and maintain a `Diagram.View`; that View is a separate contextual WIP
 surface and never supplies approval, capture, or Diagram mutation.
 
 The runtime commands `::discuss`, `::review`, `::approve <token>`, `::land`,
-and `::land-all-approved` belong to the running Capture workflow, not to the
-initial Batchy.Skill call.
+and `::land-all-approved` belong to the running Capture workflow. Reading
+navigation commands such as `::forward`, `::backward`, `::capture`, and
+`::annotate`, together with reading commands such as `::narrate`, belong to a
+running Reading Club workflow. They are not initial Batchy.Skill calls.
 
 ## Boundary
 
