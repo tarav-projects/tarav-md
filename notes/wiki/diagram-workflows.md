@@ -75,7 +75,7 @@ Diagram semantics.
 
 ```text
 Capture
-├── Note
+├── Wiki
 └── Model
     ├── Agent
     └── User
@@ -85,6 +85,9 @@ Capture
 The User selects the capture workflow explicitly. `Capture.Model.User` keeps a
 closely User-reviewed Model. `Capture.Model.Agent` may use similar primitives
 without requiring User approval, but its effective Model extends the User
-Model and should avoid duplicating it. `Capture.Note` is the fast,
-User-Turn-grounded Note workflow.
+Model and should avoid duplicating it. `Capture.Wiki` is the
+User-Turn-grounded Project.Wiki workflow, combining mandatory daily narration
+with opportunistic topical integration.
 <!-- tarav.context 33afe59c:864b0f87dd82fb92 -->
+<!-- tarav.context 33afe59c:19ffe7f63525f2c0 -->
+<!-- tarav.context 33afe59c:fd30b0cde0134ccf -->
