@@ -59,6 +59,11 @@ them. They do not have to live inside a field named `hints`; the pattern is
 defined by that role, not by a required serialization location.
 <!-- tarav.context 5626cd5f:7af5b61e92c70bc7 -->
 
+Prefer placing hints in an explicit `hints` field even though the pattern does
+not require that location. Naming the field makes the Record self-documenting:
+it identifies the content's hint role while leaving it opaque to mechanics.
+<!-- tarav.context 5626cd5f:1f7316b721a323d9 -->
+
 ## Hint production
 
 Hints are intended for agent consumption, not presumed agent authorship.
