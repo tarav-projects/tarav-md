@@ -76,3 +76,32 @@ The next shared capabilities to consolidate are `assertions()` and
 `TaravObject`. `actions()` and explicit `state()` remain later discoveries,
 introduced only when real workflows establish their useful common shape.
 <!-- tarav.context 33afe59c:1d4b8adac2c8397d -->
+
+## External harness and selective workflow formalization
+
+Tarav is an external harness around agent work. The native agent harness,
+user, tools, permissions, and internal reasoning remain outside Tarav's
+control. Tarav becomes active when an agent executes a Tarav workflow such as
+capture, navigation, archive registration, or Model construction.
+<!-- tarav.context 5626cd5f:8e8652f4b1340d35 -->
+<!-- tarav.context 5626cd5f:34eeb24305a0f1e4 -->
+
+The workflow graph describes typed state and possible actions. Before
+generation, it gives the agent context and available affordances. After
+generation, it evaluates the resulting action and state, producing Records,
+Assertions, findings, and POIs. Tarav formalizes the selected slice of work;
+it does not overconstrain the agent outside that workflow.
+<!-- tarav.context 5626cd5f:8e8652f4b1340d35 -->
+<!-- tarav.context 5626cd5f:34eeb24305a0f1e4 -->
+
+Workflows are selectively composable. A session may use Tarav partially and
+return to ordinary native-agent work between workflow executions. The user
+and native harness remain in control; entering a workflow activates its
+bounded formalization.
+<!-- tarav.context 5626cd5f:34eeb24305a0f1e4 -->
+
+The Tarav Python library is the agent-facing operating environment: it exposes
+context discovery, actions, durable state, and evaluation. Scripts, CLI
+commands, and skills are consumers of the library and should invoke the same
+workflow operations.
+<!-- tarav.context 5626cd5f:14c05322a7c285a2 -->
