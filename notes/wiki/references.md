@@ -51,6 +51,14 @@ content resembles technical resolution information.
 <!-- tarav.context 5626cd5f:921db862da9ed923 -->
 <!-- tarav.context 5626cd5f:e73583493a1ce59c -->
 
+## Hints as a general pattern
+
+The hint pattern can be used across any Tarav object, not only references.
+Hints are opaque to the mechanics handling that object: those mechanics ignore
+them. They do not have to live inside a field named `hints`; the pattern is
+defined by that role, not by a required serialization location.
+<!-- tarav.context 5626cd5f:7af5b61e92c70bc7 -->
+
 ## Hint production
 
 Hints are intended for agent consumption, not presumed agent authorship.
