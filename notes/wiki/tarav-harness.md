@@ -1,6 +1,7 @@
 # Tarav.Harness
 
 <!-- tarav.sessions
+5626cd5f = codex:01a0af61-72e2-7bd2-94a3-26529d6914ec @5626cd5f7db74c4f2e3838250516b5e300cc9387ac254eb65a0816a5f30555a1
 33afe59c = codex:01a07228-313a-7ab3-b6e0-aedcb5216b3c @33afe59c2f13ac5d4b59e56f7a3761d3d91c1206a1b6287b0872036739b370fd
 -->
 
@@ -27,6 +28,38 @@ front. Deterministic checks, linters, Agent audits, and human review form the
 the probability of a bad result remaining unnoticed decreases as work and
 tooling accumulate. No POIs means only that nothing was detected.
 <!-- tarav.context 33afe59c:6eb7ba37e1c4e576 -->
+
+## Pregeneration and postgeneration feedback
+
+Pregeneration harnessing supplies context to improve the chance that generation
+does what the user intends. Postgeneration harnessing audits or lints the work
+so detectable deviations do not pass unnoticed. The postgeneration feedback
+from one step becomes part of the pregeneration context of the next, guiding
+the collaboration toward convergence.
+<!-- tarav.context 5626cd5f:b0a6907bbb9bf4c2 -->
+
+The design assumes a good-faith agent that has loaded skills explaining Tarav
+and its purpose. A short generate → check → revise loop can eliminate a class
+of detectable defects without proving complete semantic correctness. The
+compiler loop is the motivating analogy. The convergence target is no
+deviations detected by the available checks; adding useful checks makes the
+system more robust.
+<!-- tarav.context 5626cd5f:83f91b813b7b96db -->
+<!-- tarav.context 5626cd5f:2b5073cba3e8bb7d -->
+
+Tests are a surface for expressing intention and an interface for guiding the
+agent. Pre/postgeneration is a design concept whose loop can be as small as
+one method call. Checks can be injected into library methods, avoiding reliance
+on the agent remembering to run them at the end. The design can control how
+feedback is surfaced to avoid flooding the agent.
+<!-- tarav.context 5626cd5f:2b5073cba3e8bb7d -->
+
+The library participates in both sides of the loop: its methods express
+supported actions and its code supplies context, while operation boundaries
+provide places to run checks and return feedback. This control is one reason
+running Tarav scripts is a main interface to the system.
+<!-- tarav.context 5626cd5f:b0a6907bbb9bf4c2 -->
+<!-- tarav.context 5626cd5f:40eaa81a92578678 -->
 
 ## Records and semantic authority
 
