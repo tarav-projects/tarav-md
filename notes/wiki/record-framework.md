@@ -32,6 +32,45 @@ preserving the thing itself; storage commitment can be gradual.
 <!-- tarav.context 5626cd5f:22c3ed848cddf2ce -->
 <!-- tarav.context 5626cd5f:05f1cab35e01883a -->
 
+## FileRecord and DirectoryRecord
+
+A Record can be serialized as a single file or as a folder. `FileRecord` and
+`DirectoryRecord` name these serialization classifications within the same
+Record system; they are registered normally and introduce little additional
+semantic distinction. This extends the earlier JSON-file description of a
+Record to include a directory representation.
+<!-- tarav.context 5626cd5f:7b0dd242ba3a787e -->
+<!-- tarav.context 5626cd5f:3842f0da2ff59dac -->
+
+A DirectoryRecord represents a class object serialized as a folder, not merely
+a package of peer Records. It contains at least one FileRecord and may also
+contain ordinary files. For example, an archived object can have typed
+identity, location, and description JSON Records alongside a PDF payload.
+Every contained file considered a Record must still have its own class;
+the enclosing directory's class does not replace file-level class authority.
+<!-- tarav.context 5626cd5f:7779f4e4cc7aa812 -->
+<!-- tarav.context 5626cd5f:5f01839cc1b5133f -->
+
+## Directory entry discovery and Type.Resolution.PATH
+
+A DirectoryRecord needs a defined entry FileRecord through which its type can
+be discovered. The design supports multiple candidate entry filenames through
+an ordered PATH-like mechanism, rather than requiring one reserved filename.
+This extends the existing Type.Resolution.PATH principle to directory entry
+discovery.
+<!-- tarav.context 5626cd5f:82212783f2ac9a06 -->
+<!-- tarav.context 5626cd5f:367595f8e9b486a3 -->
+<!-- tarav.context 5626cd5f:3568973934e561c5 -->
+
+Discovery has two levels: select the directory's entry FileRecord, then find
+the type declaration inside it through Type.Resolution.PATH. The existing
+field search is ordered as `__tarav__.type`, then `type`; the first present
+location wins, and an invalid value reports a problem rather than falling
+through. Directory discovery follows the same ordered, first-present
+principle. `__tarav.json`, `main.json`, and `type.json` were the example
+directory-entry PATH, not an implemented filename list.
+<!-- tarav.context 5626cd5f:3568973934e561c5 -->
+
 ## Semantics built on common primitives
 
 Observation times, changing descriptions, and edition histories are semantics
@@ -49,6 +88,9 @@ efficiency without defining the limits of what workflows can do.
 <!-- tarav.context 5626cd5f:1a749e3480caa30d -->
 
 ## Workflows own their implementation and integration
+
+Some workflows are built into the Tarav monolithic Python library.
+<!-- tarav.context 5626cd5f:2d1203966ace2257 -->
 
 Tarav supplies primitives and a development environment for multiple capture
 workflows. Wiki capture and Model building are distinct examples. Each workflow
