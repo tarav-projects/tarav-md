@@ -13,6 +13,34 @@ Tarav's hosting; the initial scope is local to one computer. The framework
 leaves room for different implementations over these Records.
 <!-- tarav.context 5626cd5f:1a749e3480caa30d -->
 
+## Records and Artifacts
+
+A Record is Tarav's communication package and data unit: Tarav-consumable
+JSON that can contain data, describe something, or point to other data.
+Records form a common vocabulary for describing the world around Tarav.
+An Artifact is the thing being handled or described, such as a file, folder,
+repository, or abstract object. The distinction is contextual rather than a
+rigid partition: a Record can itself be treated as an Artifact by another
+operation. The stronger defining contract is on the Record side.
+<!-- tarav.context 5626cd5f:22c3ed848cddf2ce -->
+<!-- tarav.context 5626cd5f:05f1cab35e01883a -->
+
+All Records should be lightweight. Archived Records have an especially strong
+economy requirement, and Archive-issued Records should be designed for
+long-term retention. Preserving knowledge about something need not require
+preserving the thing itself; storage commitment can be gradual.
+<!-- tarav.context 5626cd5f:22c3ed848cddf2ce -->
+<!-- tarav.context 5626cd5f:05f1cab35e01883a -->
+
+## Semantics built on common primitives
+
+Observation times, changing descriptions, and edition histories are semantics
+built on Records, not requirements imposed on every Record. The common
+primitives must be expressive enough for those different cases. Typed Records
+can provide distinct semantics without forcing one universal descriptive or
+history model.
+<!-- tarav.context 5626cd5f:05f1cab35e01883a -->
+
 ## Python is the primary programmatic interface
 
 Tarav's main interface is the Python library. Agents can interact through

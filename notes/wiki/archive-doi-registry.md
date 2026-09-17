@@ -37,6 +37,45 @@ subsystem's request. Commitment is progressive. Floating selectors do not
 preclude more careful reference tooling or stronger commitments where needed.
 <!-- tarav.context 5626cd5f:cd87ceb69b039d5f -->
 
+## Lightweight descriptions and adjustable preservation
+
+The Archive is the main, but not the only, provider of stable storage and
+references in Tarav. Lightweight Records make it practical to commit to
+retaining descriptions longer without committing comparable resources to
+the Artifacts themselves. Archive-issued Records are designed with long-term
+storage in mind.
+<!-- tarav.context 5626cd5f:22c3ed848cddf2ce -->
+
+A file's descriptive Records can retain content hashes, paths, prefixes or
+tails, timestamps, and other metadata or hints. If the file is lost or deleted,
+those Records still preserve something useful and may support searching for
+and identifying the file or a close version. Preserving knowledge about an
+Artifact is distinct from preserving the Artifact itself.
+<!-- tarav.context 5626cd5f:22c3ed848cddf2ce -->
+<!-- tarav.context 5626cd5f:05f1cab35e01883a -->
+
+This permits adjustable resource commitments: descriptions can become cheaper
+under resource constraints or richer when resources permit. Records provide
+a way to describe the surrounding world while regulating how much retention
+costs, rather than requiring all-or-nothing preservation.
+<!-- tarav.context 5626cd5f:22c3ed848cddf2ce -->
+<!-- tarav.context 5626cd5f:05f1cab35e01883a -->
+
+## Composable preservation capabilities
+
+The Archive can provide primitives and typed Records through which subsystems
+commit Artifacts with different semantics. It need not itself impose one
+universal distinction between an object and its editions. For example, a file
+can be committed under a Git repository, using Git's edition capabilities.
+Observation and edition semantics are built on the Record primitives rather
+than required of every Record.
+<!-- tarav.context 5626cd5f:05f1cab35e01883a -->
+
+The Archive can offer concrete preservation capabilities while leaving
+subsystems free to choose and combine them. This is part of Tarav's role as
+a framework library.
+<!-- tarav.context 5626cd5f:09c2fe393f0888aa -->
+
 ## A DOI must leave a durable record
 
 The Archive must never destroy a DOI without leaving a record in the Archive
