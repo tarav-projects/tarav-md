@@ -4,6 +4,32 @@
 5626cd5f = codex:01a0af61-72e2-7bd2-94a3-26529d6914ec @5626cd5f7db74c4f2e3838250516b5e300cc9387ac254eb65a0816a5f30555a1
 -->
 
+## Shared resolution and reusable mechanics
+
+A proposed reference-resolution workflow provides a common entry point, like
+a DNS in its lookup role. Workflows creating reference types register them so
+others can resolve them. This workflow can provide types imported from other
+workflows as well as its own.
+<!-- tarav.context 5626cd5f:782e255961559101 -->
+
+Tarav should supply common built-in reference types and their mechanics so
+individual workflows do not each implement filesystem or Git resolution.
+The proposed dependency direction is `tarav.references` imported by
+`tarav.archive`, not the reverse. Specialized references such as Archive
+references can coexist with the shared types; a base `ref.resolve()` is a
+candidate common interface. This supports general subjects for
+[external annotations](external-annotations.md).
+<!-- tarav.context 5626cd5f:1df9daea5a6e08d1 -->
+
+## Construction defaults
+
+Reference construction should add default hints. The discussed file-reference
+usage should not require callers to supply all hints themselves. Archive
+reference construction should also offer a version using a default Archive
+location, alongside explicit location selection. These are design requirements;
+the precise APIs and default-selection mechanics remain to be settled.
+<!-- tarav.context 5626cd5f:19d6549fd7a802b0 -->
+
 ## Typed primitives with common principles
 
 References are typed primitives. Built-in Tarav workflows can supply reference
