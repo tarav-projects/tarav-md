@@ -50,3 +50,19 @@ used only as hints; the distinction concerns its role rather than whether its
 content resembles technical resolution information.
 <!-- tarav.context 5626cd5f:921db862da9ed923 -->
 <!-- tarav.context 5626cd5f:e73583493a1ce59c -->
+
+## Hint production
+
+Hints are intended for agent consumption, not presumed agent authorship.
+Prefer code-generated facts, especially information obtained from established
+systems such as the operating system and Git. Generated summaries stored as
+ordinary hint fields are an antipattern.
+<!-- tarav.context 5626cd5f:b3ea6e16f244acf4 -->
+<!-- tarav.context 5626cd5f:02cf30e0bf590b15 -->
+
+This follows the general [agent-generated data minimization](agent-generated-data.md)
+constraint: use mechanically obtained facts or leave information absent;
+introduce agent-generated claims only when necessary and explicitly controlled.
+An opaque hint payload does not relax that constraint.
+<!-- tarav.context 5626cd5f:49b346a342bea570 -->
+<!-- tarav.context 5626cd5f:5b55053ee5e909a7 -->
