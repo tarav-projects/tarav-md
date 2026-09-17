@@ -108,6 +108,25 @@ contract remains to be defined.
 
 ## Navigation through registered Record providers
 
+### Multiple solutions and shared semantics
+
+Tarav is a framework for implementing independent workflows, including ones
+whose functionality overlaps. It need not assign one workflow to each use
+case. The purpose is to accommodate the natural user/agent collaboration with
+as little disruption as possible. Navigation and contextualization workflows
+later integrate the data and surface the semantics associated with its capture.
+<!-- tarav.context 5626cd5f:ddfdef864f5616bc -->
+
+Capture needs include quick prose, ontology or Model maintenance, sidequest
+notes, project design, governing Constitutions, and narrative vaults. A vault
+of brainstormed ideas is not a prompt to action. Capture and contextualization
+workflows must align on the semantics they share and understand about one
+another.
+<!-- tarav.context 5626cd5f:00c33b05bf9648f0 -->
+<!-- tarav.context 5626cd5f:a719f37fffca3700 -->
+
+### Registered collections
+
 Records form a graph that Agents should be able to explore through a general
 navigation system. The intended experience resembles filesystem navigation:
 start at a root listing projects or workflows, enter one, list its contents,
@@ -144,6 +163,40 @@ must not grow into arbitrary conversion code or a web of adapters. A can
 change its schema to fit B.
 <!-- tarav.context 5626cd5f:9c7bdf8a88beac34 -->
 <!-- tarav.context 5626cd5f:b1f11f560186fdb4 -->
+
+## Code organization carries semantic provenance
+
+`Tarav → workflow/container → … → Record` is a useful core organization
+because it carries semantics. The class and its owning workflow are part of
+the same organization, not separate authorities assigning meaning afterward.
+The library's organization should reflect the semantic provenance of the data
+and its interpretation. This is a design direction, not a rigid rule.
+<!-- tarav.context 5626cd5f:52ed13b302622a2f -->
+<!-- tarav.context 5626cd5f:69cda876c9283e57 -->
+
+Another workflow may import the class and produce its Records, but that use
+must remain semantically coherent with the class's defining context. Code,
+documentation, and skills together supply semantics and must align and
+integrate with one another.
+<!-- tarav.context 5626cd5f:69cda876c9283e57 -->
+<!-- tarav.context 5626cd5f:0e16344825f13f70 -->
+
+## Record → registered class → everything
+
+The class is an informative point of identity: it expresses what the object
+can do and how other code uses it. Its central role comes from actionability.
+For example, a `help()` method could locate or load additional information,
+making the class a default documentation entry point analogous to CLI `-h`.
+This is an example, not a settled method signature.
+<!-- tarav.context 5626cd5f:0e16344825f13f70 -->
+<!-- tarav.context 5626cd5f:f8a3b82cc9a2bc44 -->
+
+The intended discovery path is **Record → registered class → everything**
+associated with interpreting and using that Record. The class can delegate;
+the principle is reachability through the class, not putting every operation,
+document, or skill inside its implementation.
+<!-- tarav.context 5626cd5f:d0d46dcff9a8ae26 -->
+<!-- tarav.context 5626cd5f:fb625ce84e07a395 -->
 
 ## Code and data evolve together
 
