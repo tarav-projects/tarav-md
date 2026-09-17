@@ -64,6 +64,28 @@ were proposed as an opt-in registration surface; the exact registration
 contract remains to be defined.
 <!-- tarav.context 5626cd5f:9c7bdf8a88beac34 -->
 
+## Navigation through registered Record providers
+
+Records form a graph that Agents should be able to explore through a general
+navigation system. The intended experience resembles filesystem navigation:
+start at a root listing projects or workflows, enter one, list its contents,
+and continue. This is a navigation capability over the Record universe, not
+a requirement to store every Record in one physical filesystem.
+<!-- tarav.context 5626cd5f:72909b9556531689 -->
+
+Collections become discoverable by registering a subroot rather than
+registering every Record individually. A Tarav project, the Tarav Archive,
+or a Telegram archive could each expose such an entry point. Navigation is
+itself another workflow.
+<!-- tarav.context 5626cd5f:72909b9556531689 -->
+
+The navigation workflow provides an interface. A collection registers as a
+particular type of Record provider, and navigation treats it according to that
+type. Registration makes the entry point discoverable; the provider must
+actually expose routes to its Records. Errors in fulfilling the navigation
+contract surface as POIs.
+<!-- tarav.context 5626cd5f:b1bb54fd54756974 -->
+
 ## Interpretation authority and compatibility
 
 The registered Python class interpreting a Record's meaning is an invariant.
