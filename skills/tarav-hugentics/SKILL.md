@@ -1,12 +1,12 @@
 ---
 name: tarav-hugentics
-description: "Run Tarav's grounding, conversational capture, Reading Club, Issue, and implementation workflows over Project Diagram.Models. USE WHEN the user wants Diagram-backed context, reviewed or automatic capture, a Reading Project, Issue work, implementation design or execution, or invokes `tarav-hugentics --ground`, `--capture`, `--reading-club`, `--issues`, or `--impl`."
+description: "Run Tarav's grounding, Project.Wiki capture, Model capture, Reading Club, Issue, Design Impact, and implementation workflows. USE WHEN the user wants Diagram-backed context, a User-Turn-grounded project wiki, Model capture, a Reading Project, Issue work, assessment of recent in-chat design's implementation impact, implementation design or execution, or invokes `tarav-hugentics --ground`, `--capture`, `--reading-club`, `--issues`, `--design --impact`, or `--impl`."
 ---
 
 # Tarav Hugentics
 
 `tarav-hugentics` is Tarav's public grounding, conversational capture, Reading
-Club, and implementation surface. It preserves the Hugentics alignment
+Club, Design Impact, and implementation surface. It preserves the Hugentics alignment
 workflows while using Chatlas and the Tarav.Diagram as its User-Touched
 indexing backend.
 
@@ -42,13 +42,16 @@ tarav-hugentics --capture --unreviewed [PROMPT]
 tarav-hugentics --capture --audit [PROMPT]
     Read-only contextualization and Capture.Roadmap.
 
-tarav-hugentics --capture --inline <SURFACE>
-    Leave lightweight, resolvable Chatlas Turn references in one Product.Surface.
-    The first surface specialization is Markdown.
+tarav-hugentics --capture --wiki [FOCUS]
+    Capture the current discussion into the Project.Wiki. Always update the
+    daily narrative and integrate topical Notes when useful.
 
-tarav-hugentics --capture --inline --audit <SURFACE>
-    Audit the embedded references in one Product.Surface without mutation.
-    Generic audit semantics are applied through surface-native inspection.
+tarav-hugentics --capture --wiki --target <WIKI_NOTE> [FOCUS]
+    Use one explicit topical Note inside the Project.Wiki while retaining the
+    mandatory daily capture.
+
+tarav-hugentics --capture --wiki --audit <WIKI_NOTE>
+    Audit one Note's embedded references without mutation.
 
 tarav-hugentics --reading-club [DOCUMENT]
     Start or resume an Agent-operated Reading.Project and coordinate its
@@ -64,6 +67,10 @@ tarav-hugentics --issues --park [INPUT]
 
 tarav-hugentics --issues --audit [QUERY]
     Inspect relevant Issue.Blocks and their POIs without mutation.
+
+tarav-hugentics --design --impact [INPUT]
+    Evaluate the implementation impact of recent design work in the current
+    chat. INPUT optionally narrows the focus; this is assessment only.
 
 tarav-hugentics --impl [INPUT]
 tarav-hugentics --impl --design [INPUT]
@@ -82,6 +89,7 @@ tarav-hugentics --exec <IMPL_REQ|INPUT>
     bootstraps its Impl.Req surfaces through ordinary capture.
 
 tarav-hugentics --impl --develop [INPUT]
+tarav-hugentics --impl --dev [INPUT]
 tarav-hugentics --develop [INPUT]
 tarav-hugentics --dev [INPUT]
     Design the durable Impl.Req, cold-reload it, then execute it.
@@ -94,6 +102,15 @@ tarav-hugentics --impl --capture
 tarav-hugentics --impl-capture
     Compose implementation capture behavior with the selected mutating
     implementation workflow; this is not an independent implementation phase.
+
+tarav-hugentics --impl --impact [FOCUS]
+tarav-hugentics --impl --design --impact [FOCUS]
+    Assess recent in-chat design against current code, then use the actionable
+    delta as input to implementation Design. Bare --impl defaults to Design.
+
+tarav-hugentics --impl --dev --impact [FOCUS]
+tarav-hugentics --impl --develop --impact [FOCUS]
+    Use that same delta as input to Develop: design, then implement.
 ```
 
 `--auto` and `--unreviewed` are aliases only within `--capture`. They omit both
@@ -102,9 +119,12 @@ covers the bounded pass. They do not weaken support, producer, validation, or
 POI requirements. `--audit` conflicts with either unreviewed-capture flag
 because audit is read-only.
 
-Within `--capture --inline`, `--audit` selects the read-only audit route instead
-of the ordinary reference-writing route. It takes exactly one surface and does
-not compose with `--auto` or `--unreviewed`.
+Within `--capture --wiki`, `--target` selects an optional topical destination
+inside the Project.Wiki and does not suppress the daily capture. It does not
+define another workflow. `--audit` selects the read-only audit route, requires
+exactly one wiki Note, and does not compose with `--auto` or `--unreviewed`. A
+successful ordinary Wiki capture closes the complete Project.Wiki with a Git
+commit; the invocation authorizes that commit.
 
 Within `--impl`, `--auto` or `--autonomous` selects autonomous alignment at
 declared checkpoints. It does not change Diagram support requirements or turn
@@ -117,12 +137,29 @@ resolve equivalence from context rather than fingerprints.
 
 ## Routing
 
+Do not reread a skill `references/` file that was already read completely and
+remains available in context. Reread it only if it changed, its contents were
+lost or materially reduced through compaction, or a specific uncertainty
+requires it.
+
+`--impact` selects input: the implementation delta implied by recent in-chat
+design, optionally narrowed by FOCUS. It does not select an implementation
+phase. Without an implementation selector, `--design --impact` follows
+[`references/design-impact.md`](references/design-impact.md) and reports only.
+With `--impl` or an explicit implementation selector such as `--dev`, route
+through [`references/impl.md`](references/impl.md), which uses the same
+assessment before running the selected workflow. Thus `--impl --design
+--impact` is implementation Design, not the read-only report route.
+Bare `--design` does not select Design Impact. Standalone Design Impact does
+not compose with Capture; implementation routes retain their ordinary capture
+contract.
+
 Grounding routes load and follow [`references/ground.md`](references/ground.md).
 Ordinary Capture routes load and follow [`references/capture.md`](references/capture.md).
-`--capture --inline`, including its composed `--audit` route, instead loads and follows
-[`references/inline-capture.md`](references/inline-capture.md); it edits the
-selected Product.Surface only in the ordinary non-audit route and never enters
-Diagram capture.
+`--capture --wiki`, including its `--target` and `--audit` routes, instead
+loads and follows [`references/wiki-capture.md`](references/wiki-capture.md).
+It edits Project.Wiki Markdown only in the ordinary non-audit route and never
+enters Diagram Model capture.
 Reading Club routes load and follow
 [`references/reading-club.md`](references/reading-club.md).
 Issue routes first load [`references/issues.md`](references/issues.md), which

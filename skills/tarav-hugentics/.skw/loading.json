@@ -1,0 +1,1357 @@
+{
+  "type": "Tarav.Skillware.SkillLoading",
+  "schema_version": 1,
+  "blocks": [
+    {
+      "id": "skill.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/SKILL.skw.json",
+          "pointer": "/blocks/0"
+        }
+      }
+    },
+    {
+      "id": "skill.introduction-section",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/SKILL.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "skill.batchy-skill-contract",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/SKILL.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "skill.command-surface",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/SKILL.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "skill.routing",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/SKILL.skw.json",
+          "pointer": "/blocks/4"
+        }
+      },
+      "links": [
+        {
+          "target": "design-impact.introduction",
+          "slot": "link-0",
+          "label": "`references/design-impact.md`"
+        },
+        {
+          "target": "impl.introduction",
+          "slot": "link-1",
+          "label": "`references/impl.md`"
+        },
+        {
+          "target": "ground.introduction",
+          "slot": "link-2",
+          "label": "`references/ground.md`"
+        },
+        {
+          "target": "capture.introduction",
+          "slot": "link-3",
+          "label": "`references/capture.md`"
+        },
+        {
+          "target": "wiki-capture.introduction",
+          "slot": "link-4",
+          "label": "`references/wiki-capture.md`"
+        },
+        {
+          "target": "reading-club.introduction",
+          "slot": "link-5",
+          "label": "`references/reading-club.md`"
+        },
+        {
+          "target": "issues.introduction",
+          "slot": "link-6",
+          "label": "`references/issues.md`"
+        },
+        {
+          "target": "impl.introduction",
+          "slot": "link-7",
+          "label": "`references/impl.md`"
+        }
+      ]
+    },
+    {
+      "id": "skill.boundary",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/SKILL.skw.json",
+          "pointer": "/blocks/5"
+        }
+      }
+    },
+    {
+      "id": "capture.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/capture.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.routing"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ]
+    },
+    {
+      "id": "capture.shared-loop",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/capture.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "capture.interactive-reviewed-capture",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/capture.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "capture.capture-stances",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/capture.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "capture.automatic-unreviewed-capture",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/capture.skw.json",
+          "pointer": "/blocks/4"
+        }
+      }
+    },
+    {
+      "id": "capture.read-only-audit",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/capture.skw.json",
+          "pointer": "/blocks/5"
+        }
+      }
+    },
+    {
+      "id": "capture.landing-through-tarav-diagram",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/capture.skw.json",
+          "pointer": "/blocks/6"
+        }
+      }
+    },
+    {
+      "id": "design-impact.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/design-impact.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.routing",
+        "impl.input"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ],
+      "links": [
+        {
+          "target": "impl.introduction",
+          "slot": "link-0",
+          "label": "`impl.md`"
+        }
+      ]
+    },
+    {
+      "id": "design-impact.scope",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/design-impact.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "design-impact.assessment",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/design-impact.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "design-impact.boundary",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/design-impact.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "ground.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/ground.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.routing"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ]
+    },
+    {
+      "id": "ground.responsibility-boundary",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/ground.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "ground.session-view-convention",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/ground.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "ground.workflow",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/ground.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "ground.completion-report",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/ground.skw.json",
+          "pointer": "/blocks/4"
+        }
+      }
+    },
+    {
+      "id": "impl.design.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/design.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "impl.routing",
+        "impl.develop.workflow"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ],
+      "links": [
+        {
+          "target": "impl.product-capture.introduction",
+          "slot": "link-0",
+          "label": "`product-capture.md`"
+        },
+        {
+          "target": "impl.general-practices.introduction",
+          "slot": "link-1",
+          "label": "`general-practices.md`"
+        },
+        {
+          "target": "impl.general-preferences.introduction",
+          "slot": "link-2",
+          "label": "`general-preferences.md`"
+        }
+      ]
+    },
+    {
+      "id": "impl.design.alignment-loop",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/design.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "impl.design.readiness-checkpoint",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/design.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "impl.design.live-note-impl-req",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/design.skw.json",
+          "pointer": "/blocks/3"
+        }
+      },
+      "links": [
+        {
+          "target": "impl.example.introduction",
+          "slot": "link-0",
+          "label": "`example.md`"
+        }
+      ]
+    },
+    {
+      "id": "impl.design.impl-req-diagram",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/design.skw.json",
+          "pointer": "/blocks/4"
+        }
+      }
+    },
+    {
+      "id": "impl.design.updating",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/design.skw.json",
+          "pointer": "/blocks/5"
+        }
+      }
+    },
+    {
+      "id": "impl.design.output",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/design.skw.json",
+          "pointer": "/blocks/6"
+        }
+      }
+    },
+    {
+      "id": "impl.develop.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/develop.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "impl.routing",
+        "impl.harvest.delegation"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ]
+    },
+    {
+      "id": "impl.develop.workflow",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/develop.skw.json",
+          "pointer": "/blocks/1"
+        }
+      },
+      "links": [
+        {
+          "target": "impl.design.introduction",
+          "slot": "link-0",
+          "label": "`design.md`"
+        },
+        {
+          "target": "impl.execute.introduction",
+          "slot": "link-1",
+          "label": "`execute.md`"
+        }
+      ]
+    },
+    {
+      "id": "impl.develop.boundary-contract",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/develop.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "impl.develop.completion",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/develop.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "impl.example.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/example.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "impl.design.live-note-impl-req"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ]
+    },
+    {
+      "id": "impl.execute.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/execute.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "impl.routing",
+        "impl.develop.workflow"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ],
+      "links": [
+        {
+          "target": "impl.product-capture.introduction",
+          "slot": "link-0",
+          "label": "`product-capture.md`"
+        },
+        {
+          "target": "impl.general-practices.introduction",
+          "slot": "link-1",
+          "label": "`general-practices.md`"
+        },
+        {
+          "target": "impl.general-preferences.introduction",
+          "slot": "link-2",
+          "label": "`general-preferences.md`"
+        }
+      ]
+    },
+    {
+      "id": "impl.execute.direct-input-bootstrap",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/execute.skw.json",
+          "pointer": "/blocks/1"
+        }
+      },
+      "links": [
+        {
+          "target": "capture.introduction",
+          "slot": "link-0",
+          "label": "`../capture.md`"
+        }
+      ]
+    },
+    {
+      "id": "impl.execute.execution-realignment",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/execute.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "impl.execute.git-checkpoint",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/execute.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "impl.execute.per-slice-execution",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/execute.skw.json",
+          "pointer": "/blocks/4"
+        }
+      }
+    },
+    {
+      "id": "impl.execute.deviation-handling",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/execute.skw.json",
+          "pointer": "/blocks/5"
+        }
+      }
+    },
+    {
+      "id": "impl.execute.completion",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/execute.skw.json",
+          "pointer": "/blocks/6"
+        }
+      }
+    },
+    {
+      "id": "impl.general-practices.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/general-practices.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "impl.design.introduction",
+        "impl.execute.introduction"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ]
+    },
+    {
+      "id": "impl.general-practices.before-editing",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/general-practices.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "impl.general-practices.writing-code",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/general-practices.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "impl.general-practices.feedback",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/general-practices.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "impl.general-preferences.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/general-preferences.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "impl.design.introduction",
+        "impl.execute.introduction"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ]
+    },
+    {
+      "id": "impl.harvest.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/harvest.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "impl.routing"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ]
+    },
+    {
+      "id": "impl.harvest.readiness-judgment",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/harvest.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "impl.harvest.scan",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/harvest.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "impl.harvest.candidate-checkpoint",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/harvest.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "impl.harvest.delegation",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/harvest.skw.json",
+          "pointer": "/blocks/4"
+        }
+      },
+      "links": [
+        {
+          "target": "impl.develop.introduction",
+          "slot": "link-0",
+          "label": "`develop.md`"
+        }
+      ]
+    },
+    {
+      "id": "impl.harvest.completion",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/harvest.skw.json",
+          "pointer": "/blocks/5"
+        }
+      }
+    },
+    {
+      "id": "impl.product-capture.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/product-capture.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "impl.routing",
+        "impl.design.introduction",
+        "impl.execute.introduction"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ],
+      "links": [
+        {
+          "target": "capture.introduction",
+          "slot": "link-0",
+          "label": "`../capture.md`"
+        }
+      ]
+    },
+    {
+      "id": "impl.product-capture.surface-boundary",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/product-capture.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "impl.product-capture.capture-bar",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/product-capture.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "impl.product-capture.slice-transaction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/product-capture.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "impl.product-capture.final-audit",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/product-capture.skw.json",
+          "pointer": "/blocks/4"
+        }
+      }
+    },
+    {
+      "id": "impl.review.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/review.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "impl.routing"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ]
+    },
+    {
+      "id": "impl.review.review-loop",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/review.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "impl.review.boundaries",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/review.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "impl.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.routing"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ]
+    },
+    {
+      "id": "impl.input",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl.skw.json",
+          "pointer": "/blocks/1"
+        }
+      },
+      "links": [
+        {
+          "target": "design-impact.introduction",
+          "slot": "link-0",
+          "label": "`design-impact.md`"
+        }
+      ]
+    },
+    {
+      "id": "impl.routing",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl.skw.json",
+          "pointer": "/blocks/2"
+        }
+      },
+      "links": [
+        {
+          "target": "impl.design.introduction",
+          "slot": "link-0",
+          "label": "`impl/design.md`"
+        },
+        {
+          "target": "impl.review.introduction",
+          "slot": "link-1",
+          "label": "`impl/review.md`"
+        },
+        {
+          "target": "impl.execute.introduction",
+          "slot": "link-2",
+          "label": "`impl/execute.md`"
+        },
+        {
+          "target": "impl.develop.introduction",
+          "slot": "link-3",
+          "label": "`impl/develop.md`"
+        },
+        {
+          "target": "impl.harvest.introduction",
+          "slot": "link-4",
+          "label": "`impl/harvest.md`"
+        },
+        {
+          "target": "impl.product-capture.introduction",
+          "slot": "link-5",
+          "label": "`impl/product-capture.md`"
+        }
+      ]
+    },
+    {
+      "id": "impl.shared-contract",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "inline-capture.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/inline-capture.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "wiki-capture.user-turn-grounding"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ]
+    },
+    {
+      "id": "inline-capture.routes",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/inline-capture.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "inline-capture.markdown-contract",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/inline-capture.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "inline-capture.capture-workflow",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/inline-capture.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "inline-capture.audit-contract",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/inline-capture.skw.json",
+          "pointer": "/blocks/4"
+        }
+      }
+    },
+    {
+      "id": "inline-capture.audit-workflow",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/inline-capture.skw.json",
+          "pointer": "/blocks/5"
+        }
+      }
+    },
+    {
+      "id": "issues.audit.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/issues/audit.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "issues.routing"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ]
+    },
+    {
+      "id": "issues.maintain.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/issues/maintain.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "issues.routing"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ]
+    },
+    {
+      "id": "issues.maintain.contextualize",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/issues/maintain.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "issues.maintain.mutations",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/issues/maintain.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "issues.park.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/issues/park.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "issues.routing"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ]
+    },
+    {
+      "id": "issues.park.workflow",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/issues/park.skw.json",
+          "pointer": "/blocks/1"
+        }
+      },
+      "links": [
+        {
+          "target": "capture.introduction",
+          "slot": "link-0",
+          "label": "`../capture.md`"
+        }
+      ]
+    },
+    {
+      "id": "issues.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/issues.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.routing"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ]
+    },
+    {
+      "id": "issues.routing",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/issues.skw.json",
+          "pointer": "/blocks/1"
+        }
+      },
+      "links": [
+        {
+          "target": "issues.park.introduction",
+          "slot": "link-0",
+          "label": "`issues/park.md`"
+        },
+        {
+          "target": "issues.maintain.introduction",
+          "slot": "link-1",
+          "label": "`issues/maintain.md`"
+        },
+        {
+          "target": "issues.audit.introduction",
+          "slot": "link-2",
+          "label": "`issues/audit.md`"
+        }
+      ]
+    },
+    {
+      "id": "issues.shared-contract",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/issues.skw.json",
+          "pointer": "/blocks/2"
+        }
+      },
+      "links": [
+        {
+          "target": "capture.introduction",
+          "slot": "link-0",
+          "label": "`capture.md`"
+        }
+      ]
+    },
+    {
+      "id": "issues.presentation",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/issues.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "reading-club.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/reading-club.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.routing"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ]
+    },
+    {
+      "id": "reading-club.boundaries",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/reading-club.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "reading-club.project-resolution",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/reading-club.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "reading-club.reading-loop",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/reading-club.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "reading-club.reading-frames",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/reading-club.skw.json",
+          "pointer": "/blocks/4"
+        }
+      }
+    },
+    {
+      "id": "reading-club.chat-presentation",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/reading-club.skw.json",
+          "pointer": "/blocks/5"
+        }
+      }
+    },
+    {
+      "id": "reading-club.runtime-commands",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/reading-club.skw.json",
+          "pointer": "/blocks/6"
+        }
+      }
+    },
+    {
+      "id": "reading-club.capture",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/reading-club.skw.json",
+          "pointer": "/blocks/7"
+        }
+      }
+    },
+    {
+      "id": "wiki-capture.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/wiki-capture.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.routing"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ]
+    },
+    {
+      "id": "wiki-capture.routes",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/wiki-capture.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "wiki-capture.project-wiki",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/wiki-capture.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "wiki-capture.two-capture-views",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/wiki-capture.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "wiki-capture.git-closure",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/wiki-capture.skw.json",
+          "pointer": "/blocks/4"
+        }
+      }
+    },
+    {
+      "id": "wiki-capture.writing-semantics",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/wiki-capture.skw.json",
+          "pointer": "/blocks/5"
+        }
+      }
+    },
+    {
+      "id": "wiki-capture.user-turn-grounding",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/wiki-capture.skw.json",
+          "pointer": "/blocks/6"
+        }
+      }
+    },
+    {
+      "id": "wiki-capture.capture-workflow",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/wiki-capture.skw.json",
+          "pointer": "/blocks/7"
+        }
+      }
+    },
+    {
+      "id": "wiki-capture.audit",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/wiki-capture.skw.json",
+          "pointer": "/blocks/8"
+        }
+      }
+    }
+  ]
+}

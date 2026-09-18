@@ -1,0 +1,260 @@
+{
+  "type": "Tarav.Skillware.Document",
+  "schema_version": 1,
+  "output": "references/issues.md",
+  "blocks": [
+    {
+      "id": "introduction",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "issues.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "# Issue Workflow Router",
+        "",
+        "This module routes `tarav-hugentics --issues` over addressable",
+        "`Issue.Block`s in the Project's configured Diagram.Model. Parking is a",
+        "workflow for creating an Issue, not another storage system or Object.Type.",
+        ""
+      ]
+    },
+    {
+      "id": "routing",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "issues.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "issues/park.skw.json"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "issues/maintain.skw.json"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "issues/audit.skw.json"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Routing",
+        "",
+        "Resolve exactly one workflow:",
+        "",
+        "1. `--audit` selects the read-only Audit workflow.",
+        "2. `--park` explicitly selects Parking.",
+        "3. Input that resolves to an existing `Issue.Block` selects Maintenance.",
+        "4. Other actionable input defaults to Parking.",
+        "5. With neither input nor actionable conversational context, give a compact",
+        "   orientation and stop.",
+        "",
+        "Load only the selected module:",
+        "",
+        "- Parking: {{skw:link-0}}",
+        "- Maintenance: {{skw:link-1}}",
+        "- Audit: {{skw:link-2}}",
+        ""
+      ]
+    },
+    {
+      "id": "shared-contract",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "issues.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "capture.skw.json"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Shared Contract",
+        "",
+        "- Every retained concern is an `Issue.Block`; there is no `Parking.Note`",
+        "  Diagram object or separate note store.",
+        "- Issues may represent ideas, reminders, questions, opportunities, defects,",
+        "  migrations, contradictions, or other temporary concerns.",
+        "- The workflow preserves the interrupted foreground task and returns to it",
+        "  after a bounded parking operation.",
+        "- Issue content is ordinary supported User-Touched capture. A Block",
+        "  declaration itself does not require a Support.Set.",
+        "- `Issue.Block` owns its allowed Line.Type vocabulary and state projection.",
+        "- An Issue is open until its ship contains a passing reviewed",
+        "  `Issue.Line.Resolve`. Additional Lines do not stale that resolution.",
+        "- An open Issue is valid Diagram state and surfaces an Issue POI; the POI is",
+        "  guidance, not a mutation blocker.",
+        "- Issue history remains in its Block and Line Ships after resolution.",
+        "- Use the shared capture mechanics, Gates, Assertion.Engine, and landing",
+        "  contract from {{skw:link-0}}. Do not create Issue-specific Tarav",
+        "  CLI actions when typed Ship capture already expresses the operation.",
+        ""
+      ]
+    },
+    {
+      "id": "presentation",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "issues.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Presentation",
+        "",
+        "When proposing or rendering an Issue, identify its Model, Block label and ship",
+        "UUID when known, `Block.Type: Issue.Block`, relevant Line.Types, current",
+        "projected state, and visible POIs. Labels aid conversation; UUIDs remain the",
+        "mechanical identity."
+      ]
+    }
+  ],
+  "shared": {
+    "maintenance": {
+      "kind": "prompt",
+      "lines": [
+        "Maintain this section using the linked context. Preserve its workflow scope and authorization boundaries."
+      ]
+    }
+  }
+}

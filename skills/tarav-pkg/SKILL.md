@@ -22,6 +22,11 @@ comply with it.
 The Constitution is amendable. A conflict requires discussion and alignment
 through a change to the design, the Constitution, or both.
 
+Do not reread a skill `references/` file that was already read completely and
+remains available in context. Reread it only if it changed, its contents were
+lost or materially reduced through compaction, or a specific uncertainty
+requires it.
+
 ## Current candidate design
 
 Load only the design relevant to the work:

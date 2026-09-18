@@ -1,0 +1,536 @@
+{
+  "type": "Tarav.Skillware.Document",
+  "schema_version": 1,
+  "output": "SKILL.md",
+  "blocks": [
+    {
+      "id": "introduction",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "SKILL.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "---"
+      ]
+    },
+    {
+      "id": "introduction-section",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "SKILL.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "name: tarav-hugentics",
+        "description: \"Run Tarav's grounding, Project.Wiki capture, Model capture, Reading Club, Issue, Design Impact, and implementation workflows. USE WHEN the user wants Diagram-backed context, a User-Turn-grounded project wiki, Model capture, a Reading Project, Issue work, assessment of recent in-chat design's implementation impact, implementation design or execution, or invokes `tarav-hugentics --ground`, `--capture`, `--reading-club`, `--issues`, `--design --impact`, or `--impl`.\"",
+        "---",
+        "",
+        "# Tarav Hugentics",
+        "",
+        "`tarav-hugentics` is Tarav's public grounding, conversational capture, Reading",
+        "Club, Design Impact, and implementation surface. It preserves the Hugentics alignment",
+        "workflows while using Chatlas and the Tarav.Diagram as its User-Touched",
+        "indexing backend.",
+        "",
+        "Before operating, read the Tarav Constitution at",
+        "[`../tarav-pkg/CONSTITUTION.md`](../tarav-pkg/CONSTITUTION.md). Capture must",
+        "remain writable, evidence-linked, and nonblocking in the presence of POIs.",
+        ""
+      ]
+    },
+    {
+      "id": "batchy-skill-contract",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "SKILL.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Batchy.Skill Contract",
+        "",
+        "Treat the skill call like a command line:",
+        "",
+        "- explicit flags win over conversational inference;",
+        "- a trailing value is the selected workflow's focus or input;",
+        "- `-h` or `--help` prints the command surface and stops;",
+        "- ask rather than guess when the requested route remains materially ambiguous;",
+        "- flags select workflow behavior; they are not forwarded to the Tarav CLI.",
+        ""
+      ]
+    },
+    {
+      "id": "command-surface",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "SKILL.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Command Surface",
+        "",
+        "```text",
+        "tarav-hugentics --ground [FOCUS]",
+        "    Build or resume the current session's Diagram.View and use it to",
+        "    contextualize the collaboration through Agent-operated navigation.",
+        "",
+        "tarav-hugentics --capture [PROMPT]",
+        "    Interactive reviewed capture. Initial stance: Review.",
+        "",
+        "tarav-hugentics --capture --auto [PROMPT]",
+        "tarav-hugentics --capture --unreviewed [PROMPT]",
+        "    Equivalent one-trigger unreviewed routes; the invocation authorizes one",
+        "    bounded capture pass and its landing.",
+        "",
+        "tarav-hugentics --capture --audit [PROMPT]",
+        "    Read-only contextualization and Capture.Roadmap.",
+        "",
+        "tarav-hugentics --capture --wiki [FOCUS]",
+        "    Capture the current discussion into the Project.Wiki. Always update the",
+        "    daily narrative and integrate topical Notes when useful.",
+        "",
+        "tarav-hugentics --capture --wiki --target <WIKI_NOTE> [FOCUS]",
+        "    Use one explicit topical Note inside the Project.Wiki while retaining the",
+        "    mandatory daily capture.",
+        "",
+        "tarav-hugentics --capture --wiki --audit <WIKI_NOTE>",
+        "    Audit one Note's embedded references without mutation.",
+        "",
+        "tarav-hugentics --reading-club [DOCUMENT]",
+        "    Start or resume an Agent-operated Reading.Project and coordinate its",
+        "    in-chat Present → Read → Discuss → Capture → Advance loop.",
+        "",
+        "tarav-hugentics --issues [INPUT]",
+        "tarav-hugentics --issue [INPUT]",
+        "    Work with Issue.Blocks. New material defaults to the short Parking",
+        "    workflow; an existing Issue defaults to maintenance.",
+        "",
+        "tarav-hugentics --issues --park [INPUT]",
+        "    Explicitly select the Parking workflow.",
+        "",
+        "tarav-hugentics --issues --audit [QUERY]",
+        "    Inspect relevant Issue.Blocks and their POIs without mutation.",
+        "",
+        "tarav-hugentics --design --impact [INPUT]",
+        "    Evaluate the implementation impact of recent design work in the current",
+        "    chat. INPUT optionally narrows the focus; this is assessment only.",
+        "",
+        "tarav-hugentics --impl [INPUT]",
+        "tarav-hugentics --impl --design [INPUT]",
+        "tarav-hugentics --impl-design [INPUT]",
+        "    Design an implementation and produce its live-note Impl.Req. Bare --impl",
+        "    defaults here for actionable input that is not already an Impl.Req.",
+        "",
+        "tarav-hugentics --impl --review <IMPL_REQ>",
+        "tarav-hugentics --review <IMPL_REQ>",
+        "    Cold, read-only readiness and evidence review.",
+        "",
+        "tarav-hugentics --impl --execute <IMPL_REQ|INPUT>",
+        "tarav-hugentics --execute <IMPL_REQ|INPUT>",
+        "tarav-hugentics --exec <IMPL_REQ|INPUT>",
+        "    Execute an existing Impl.Req. Explicit Execute with direct input first",
+        "    bootstraps its Impl.Req surfaces through ordinary capture.",
+        "",
+        "tarav-hugentics --impl --develop [INPUT]",
+        "tarav-hugentics --impl --dev [INPUT]",
+        "tarav-hugentics --develop [INPUT]",
+        "tarav-hugentics --dev [INPUT]",
+        "    Design the durable Impl.Req, cold-reload it, then execute it.",
+        "",
+        "tarav-hugentics --impl --harvest [PROMPT]",
+        "tarav-hugentics --impl-harvest [PROMPT]",
+        "    Select one ready implementation unit from mixed discussion and Develop it.",
+        "",
+        "tarav-hugentics --impl --capture",
+        "tarav-hugentics --impl-capture",
+        "    Compose implementation capture behavior with the selected mutating",
+        "    implementation workflow; this is not an independent implementation phase.",
+        "",
+        "tarav-hugentics --impl --impact [FOCUS]",
+        "tarav-hugentics --impl --design --impact [FOCUS]",
+        "    Assess recent in-chat design against current code, then use the actionable",
+        "    delta as input to implementation Design. Bare --impl defaults to Design.",
+        "",
+        "tarav-hugentics --impl --dev --impact [FOCUS]",
+        "tarav-hugentics --impl --develop --impact [FOCUS]",
+        "    Use that same delta as input to Develop: design, then implement.",
+        "```",
+        "",
+        "`--auto` and `--unreviewed` are aliases only within `--capture`. They omit both",
+        "per-Line review and a separate landing checkpoint: the initial User trigger",
+        "covers the bounded pass. They do not weaken support, producer, validation, or",
+        "POI requirements. `--audit` conflicts with either unreviewed-capture flag",
+        "because audit is read-only.",
+        "",
+        "Within `--capture --wiki`, `--target` selects an optional topical destination",
+        "inside the Project.Wiki and does not suppress the daily capture. It does not",
+        "define another workflow. `--audit` selects the read-only audit route, requires",
+        "exactly one wiki Note, and does not compose with `--auto` or `--unreviewed`. A",
+        "successful ordinary Wiki capture closes the complete Project.Wiki with a Git",
+        "commit; the invocation authorizes that commit.",
+        "",
+        "Within `--impl`, `--auto` or `--autonomous` selects autonomous alignment at",
+        "declared checkpoints. It does not change Diagram support requirements or turn",
+        "Agent-generated coordination material into User-Touched data.",
+        "",
+        "`--reading-club` selects its own workflow and does not compose with Capture,",
+        "Issue, or implementation routes. Its optional trailing value is a document,",
+        "project slug, title fragment, or other practical navigation hint; Agents",
+        "resolve equivalence from context rather than fingerprints.",
+        ""
+      ]
+    },
+    {
+      "id": "routing",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "SKILL.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "references/design-impact.skw.json",
+              "pointer": "/blocks/2"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "references/impl.skw.json",
+              "pointer": "/blocks/2"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "references/ground.skw.json"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "references/capture.skw.json"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "references/wiki-capture.skw.json"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "references/reading-club.skw.json"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "references/issues.skw.json"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Routing",
+        "",
+        "Do not reread a skill `references/` file that was already read completely and",
+        "remains available in context. Reread it only if it changed, its contents were",
+        "lost or materially reduced through compaction, or a specific uncertainty",
+        "requires it.",
+        "",
+        "`--impact` selects input: the implementation delta implied by recent in-chat",
+        "design, optionally narrowed by FOCUS. It does not select an implementation",
+        "phase. Without an implementation selector, `--design --impact` follows",
+        "{{skw:link-0}} and reports only.",
+        "With `--impl` or an explicit implementation selector such as `--dev`, route",
+        "through {{skw:link-1}}, which uses the same",
+        "assessment before running the selected workflow. Thus `--impl --design",
+        "--impact` is implementation Design, not the read-only report route.",
+        "Bare `--design` does not select Design Impact. Standalone Design Impact does",
+        "not compose with Capture; implementation routes retain their ordinary capture",
+        "contract.",
+        "",
+        "Grounding routes load and follow {{skw:link-2}}.",
+        "Ordinary Capture routes load and follow {{skw:link-3}}.",
+        "`--capture --wiki`, including its `--target` and `--audit` routes, instead",
+        "loads and follows {{skw:link-4}}.",
+        "It edits Project.Wiki Markdown only in the ordinary non-audit route and never",
+        "enters Diagram Model capture.",
+        "Reading Club routes load and follow",
+        "{{skw:link-5}}.",
+        "Issue routes first load {{skw:link-6}}, which",
+        "selects one Issue workflow without creating a separate Parking.Note object.",
+        "Implementation routes first load",
+        "{{skw:link-7}}, which selects exactly one",
+        "implementation workflow module. Without an explicit route, infer capture or",
+        "grounding, Issue, or implementation only when the conversational request is",
+        "clear.",
+        "",
+        "Grounding is ungated and read-only toward the Diagram semantic database. It may",
+        "create and maintain a `Diagram.View`; that View is a separate contextual WIP",
+        "surface and never supplies approval, capture, or Diagram mutation.",
+        "",
+        "The runtime commands `::discuss`, `::review`, `::approve <token>`, `::land`,",
+        "and `::land-all-approved` belong to the running Capture workflow. Reading",
+        "navigation commands such as `::forward`, `::backward`, `::capture`, and",
+        "`::annotate`, together with reading commands such as `::narrate`, belong to a",
+        "running Reading Club workflow. They are not initial Batchy.Skill calls.",
+        ""
+      ]
+    },
+    {
+      "id": "boundary",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "SKILL.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Boundary",
+        "",
+        "This fresh skill does not use the legacy Markdown Index, Anchory, Agendix, or",
+        "Chat.Index backpropagation mechanics. Those are Attic evidence. Current",
+        "User-Touched index output is the target Diagram Namespace's typed Ship database",
+        "and separate Annotation claims; implementation live notes remain separate",
+        "Product.Surfaces.",
+        "",
+        "Implementation retains two deliberately different surfaces:",
+        "",
+        "- the live-note `Impl.Req` is the Agent's main coordination artifact and phase",
+        "  boundary;",
+        "- its `Impl.Req.Diagram` points to one `Impl.Req.Collection` and the durable",
+        "  `Diagram.Draft` that accumulates supported User-Touched material relevant to",
+        "  that implementation request.",
+        "",
+        "An implementation Line remains semantically attached to the most suitable",
+        "existing Model Block when possible, while its edition is hosted by the",
+        "`Impl.Req.Collection`. This preserves Model encapsulation without adding",
+        "automatic implementation material to the Model's primary load surface.",
+        "",
+        "Implementation capture uses ordinary Capture semantics inside one writable",
+        "Draft. It must resolve the same Namespace, Project.Model, current context,",
+        "Object.Types, support, checks, and landing mechanics as `--capture`. The Draft",
+        "is reconciled across slices and applied once at completion. A live note never",
+        "substitutes for a missing Diagram target or Draft.",
+        "",
+        "The workflow's explicit User invocation is retained as one",
+        "`Capture.Authorization.Gate`; affected editions reference that Gate. This",
+        "records permission to write, not review of wording."
+      ]
+    }
+  ],
+  "shared": {
+    "maintenance": {
+      "kind": "prompt",
+      "lines": [
+        "Maintain this section using the linked context. Preserve its workflow scope and authorization boundaries."
+      ]
+    }
+  }
+}

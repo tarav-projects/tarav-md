@@ -1,0 +1,326 @@
+{
+  "type": "Tarav.Skillware.Document",
+  "schema_version": 1,
+  "output": "references/impl/product-capture.md",
+  "blocks": [
+    {
+      "id": "introduction",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "product-capture.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../capture.skw.json"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "# Implementation Product and Diagram Capture",
+        "",
+        "This internal module composes Tarav capture with mutating implementation",
+        "workflows. It is not an independent implementation phase.",
+        "",
+        "Read {{skw:link-0}} for current Chatlas references,",
+        "Diagram.Draft mechanics, Object.Types, Gates, and Assertion.Engine behavior.",
+        "Implementation capture runs that ordinary Capture workflow while fixing the",
+        "organizational host to the request's one `Impl.Req.Collection`. Lines remain",
+        "semantically attached to suitable Blocks in the Model.",
+        "",
+        "The explicit mutating implementation invocation authorizes bounded automatic,",
+        "unreviewed capture of qualifying material into that Collection's durable",
+        "Draft. Represent this permission once as a `Capture.Authorization.Gate` and",
+        "reference it from affected editions. Do not add a separate landing checkpoint",
+        "to each slice. Authorization does not weaken producer, support, typing,",
+        "Assertion, or POI requirements and never creates a `Verbatim.Gate` without an",
+        "actual proposal and User approval exchange.",
+        ""
+      ]
+    },
+    {
+      "id": "surface-boundary",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "product-capture.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Surface Boundary",
+        "",
+        "Implementation has four different surfaces:",
+        "",
+        "- the **live-note Impl.Req** is Agent coordination data;",
+        "- the **Impl.Req.Collection** organizationally hosts its supported",
+        "  User-Touched editions;",
+        "- the **Diagram.Draft** is the mutable, checkable writing workspace reconciled",
+        "  throughout the request;",
+        "- **Product.Surfaces** are the exact code, tests, configuration, and",
+        "  documentation editions produced by execution.",
+        "",
+        "Do not collapse them. In particular, do not copy an Agent-authored plan or log",
+        "into the Block merely because it appears in the live note.",
+        "",
+        "The live note does not own or recreate Diagram resolution. Every mutating",
+        "implementation run must use the shared capture path to resolve:",
+        "",
+        "```text",
+        "Project",
+        "  → Diagram configuration and Namespace",
+        "  → Project.Model",
+        "  → current Model context and Object.Types",
+        "  → grounded Diagram.View and existing semantic Blocks",
+        "  → existing or new Impl.Req.Collection + Diagram.Draft",
+        "  → Draft reconcile and overlay checks",
+        "  → one final Draft apply + Capture.Receipt",
+        "```",
+        "",
+        "The implementation specialization begins only at target selection. It must not",
+        "bypass shared contextualization, lineage lookup, evidence construction,",
+        "Manifest linting, or landing.",
+        ""
+      ]
+    },
+    {
+      "id": "capture-bar",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "product-capture.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Capture Bar",
+        "",
+        "Capture into the `Impl.Req.Collection` Draft only when material:",
+        "",
+        "- is meaningfully touched by the User;",
+        "- directly constrains, changes, authorizes, rejects, or contextualizes the",
+        "  implementation request;",
+        "- can be stated as one typed Line; and",
+        "- has a resolvable rooted Support.Set from the producing chat context.",
+        "",
+        "Zero new Lines in a slice is valid. Prefer attaching a candidate Line to an",
+        "existing suitable Block. Use the existing Line ship when the new",
+        "Annotation continues its semantic history; otherwise introduce a new one.",
+        "Reviewed Gates require actual proposal and approval turns. Automatic workflow",
+        "capture remains unreviewed rather than manufacturing approval.",
+        ""
+      ]
+    },
+    {
+      "id": "slice-transaction",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "product-capture.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Slice Transaction",
+        "",
+        "### Slice.Open.Capture",
+        "",
+        "Before product edits, run the ordinary grounding/contextualization path and",
+        "inspect User turns accumulated since the prior capture. Resolve the target",
+        "Collection and semantic Blocks from the Diagram rather than trusting live-note",
+        "UUIDs alone. Reconcile only supported material that currently governs the",
+        "slice into the Draft; do not land it yet.",
+        "",
+        "### Product.Landing.Capture",
+        "",
+        "After implementation, annotate exact Product.Surface editions with their",
+        "available Production.Context when current Diagram and Archive primitives can",
+        "represent the claim. Never describe intended work as landed product state.",
+        "",
+        "When those mechanics are unavailable, do not reconstruct legacy SKW, Anchory,",
+        "or Chat.Index pipelines. Preserve the verified product, retain precise",
+        "references in the live note, and surface the missing Product.Surface context as",
+        "a POI for later reconciliation.",
+        "",
+        "### Slice.Close.Capture",
+        "",
+        "After checks pass and the diff is reviewed:",
+        "",
+        "1. rescan the slice's chat for newly relevant User-Touched material;",
+        "2. update the live note's coordination state separately;",
+        "3. reconcile candidate editions in the durable Draft, amending or removing",
+        "   earlier candidates when later slices clarify them;",
+        "4. check the Draft as an overlay on the current Model;",
+        "5. re-render affected Blocks and the Collection so Assertion state and POIs are current; and",
+        "6. report capture omissions or failures without pretending they invalidate",
+        "   verified product work.",
+        ""
+      ]
+    },
+    {
+      "id": "final-audit",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "product-capture.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Final Audit",
+        "",
+        "Before closing the request, check that:",
+        "",
+        "- the Draft contains the important User-Touched constraints and resolutions",
+        "  encountered across Design and Execute;",
+        "- every Line remains typed, supported, and relevant to this Impl.Req;",
+        "- no Agent-only coordination material was mislabeled as User-Touched;",
+        "- Product.Surface context was captured where supported, with gaps surfaced as",
+        "  POIs; and",
+        "- the live note points to the exact Namespace, Model, Collection, and Draft;",
+        "- the Impl.Req Collection is closed as a bounded historical edition; and",
+        "- one final Draft check and apply produced the retained Capture.Receipt.",
+        "",
+        "The audit exists to prevent meaningful loss and misgrounding, not to maximize",
+        "annotation volume."
+      ]
+    }
+  ],
+  "shared": {
+    "maintenance": {
+      "kind": "prompt",
+      "lines": [
+        "Maintain this section using the linked context. Preserve its workflow scope and authorization boundaries."
+      ]
+    }
+  }
+}

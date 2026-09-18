@@ -1,6 +1,6 @@
 # 788 — Inlined Capture derived session alias — Impl.Req
 
-Status: Open
+Status: Completed
 
 ## Impl.Abstract
 
@@ -66,7 +66,7 @@ Session identities in play:
 Replacing `phd` → `4571385e` and `tarav` → `91c6e789`. No 8-character prefix
 collision exists across these three.
 
-### Slice 1 — Renderer derives the alias
+### Slice 1 — Renderer derives the alias — **DONE**
 
 Surface: `tarav-py/src/tarav/chatlas/rendering.py`.
 
@@ -83,18 +83,14 @@ becomes unused.
 - **Deviation trigger:** if `.session` does not reliably carry `identity_hash`
   for every provider, stop and report rather than falling back to an option.
 
-### Slice 2 — Declaration renderer
+### Slice 2 — Declaration renderer — **DROPPED**
 
-Add a named Renderer emitting the `tarav.sessions` declaration block so the
-64-character hash is never hand-typed.
+Dropped on User challenge before completion. It was unrequested scope: a new
+public Renderer, registry entry, and three tests to avoid hand-typing a value
+the workflow already obtains from `tarav chatlas current-session` plus
+`normal-model`. The declaration line is assembled by the workflow instead.
 
-- **Check:** renders the exact three-field line for a resolved session; output
-  is a single declaration comment block.
-- **Deviation trigger:** if this cannot reuse the existing render dispatch
-  cleanly, drop the slice and let the workflow assemble the line from
-  `tarav chatlas current-session` plus `normal-model`; record the drop here.
-
-### Slice 3 — Skill contract rewrite
+### Slice 3 — Skill contract rewrite — **DONE**
 
 Surface: `tarav-md/skills/tarav-hugentics/references/inline-capture.md`.
 
@@ -106,7 +102,7 @@ non-derived alias or a declaration missing its identity hash is a reported POI.
 - **Check:** the file describes exactly one form; `grep` finds no
   `session-alias` option and no semantic-alias example.
 
-### Slice 4 — Corpus migration
+### Slice 4 — Corpus migration — **DONE**
 
 Four repositories, two alias tokens, 370 references:
 
@@ -117,17 +113,22 @@ Four repositories, two alias tokens, 370 references:
 | `taravangian-project/tarav-md` | 1 | 1 |
 | `taravangian-project/tarav-py` | 2 | 11 |
 
+Actual result: 37 files, 369 references. The 370th occurrence was this note's own
+acceptance criterion quoting the old literal; it was reworded rather than
+migrated. `University/Phd/.claude/skills/` is a symlink into `tarav-md`, so no
+duplicated skill copy required migration.
+
 Rewrite declaration lines and alias tokens. `tarav-py` occurrences include test
 fixtures using `phd:`; update them to the derived form so tests assert the
 current contract.
 
-- **Check:** zero occurrences of `tarav.context phd:` or `tarav.context tarav:`
-  remain; every declaration carries its identity hash; reference counts per file
-  are unchanged before and after.
+- **Check:** no reference remains on either previous alias token; every
+  declaration carries its identity hash and an alias equal to that hash's first
+  8 characters; reference counts per file are unchanged before and after.
 - **Risk:** fenced examples inside documentation must migrate too, but examples
   that deliberately show the declaration format are content, not references.
 
-### Slice 5 — Verification
+### Slice 5 — Verification — **DONE**
 
 - `tarav chatlas` focused suite and Ruff in `tarav-py`.
 - Skill validation for `tarav-hugentics`.
@@ -151,3 +152,43 @@ current contract.
   this Draft.
 - The authoritativeness rule between identity hash and native session id is
   Agent-derived and deliberately not captured as a User-Touched Line.
+- **Deviation — Slice 2 dropped.** The designer added a declaration Renderer
+  that the User never requested, contradicting `general-practices.md`
+  ("implement the minimum coherent change", "prefer existing surfaces over
+  unnecessary new abstractions"). The User challenged the diff size mid-slice
+  and it was reverted. Slice 1's final diff is 37 lines across the renderer and
+  its tests. Guard for the remaining slices: this request's value is the
+  contract rewrite and the corpus migration, not new Chatlas surface.
+- Slice 1 dropped `_SESSION_ALIAS`, which had no other consumer, and added
+  `SESSION_ALIAS_LENGTH` plus `_session_identity_hash` / `_session_alias`.
+  `tests/chatlas/test_core_cli.py` needed `provider` and `identity_hash` in its
+  fake reader session, since the renderer now derives the alias from them.
+
+## Result
+
+- Renderer derives the alias from `ChatlasQueryResult.session["identity_hash"]`;
+  `session-alias` is rejected as an unknown option. 79 Chatlas tests pass, Ruff
+  clean.
+- Contract rewritten to the current form only, including a new audit POI for a
+  declaration missing its identity hash or carrying a non-derived alias.
+- 37 files migrated across four repositories; 369 references preserved exactly,
+  count invariant asserted per file.
+- 39 declarations corpus-wide are well-formed and derived; the only alias tokens
+  present are `4571385e` and `91c6e789`.
+- Inline audit clean on one representative surface per corpus repo:
+  `THESIS-CONSTITUTION.md` (1 declaration, 17 references, 11 distinct Turns),
+  the Reading Project notes (42 references, 35 distinct), and note 772
+  (2 declarations, 7 references, 3 distinct). Zero POIs, zero unresolved.
+- `tarav skw check` reports 0 POIs for `tarav-md`.
+
+Migrated references resolve unchanged because only the alias token moved; turn
+hashes were never rewritten.
+
+### Deferred
+
+- No declaration Renderer exists; the workflow assembles the `tarav.sessions`
+  line from `tarav chatlas current-session` plus the session identity hash.
+- The audit's alias-vs-declaration check is now fully offline, but the audit
+  route remains Agent-operated and has no CLI implementation.
+- This Claude Code session (`c3f268cf`) is not declared in any surface; it will
+  be declared by the first capture that actually references one of its Turns.

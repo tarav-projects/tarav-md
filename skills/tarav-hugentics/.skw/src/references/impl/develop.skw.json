@@ -1,0 +1,223 @@
+{
+  "type": "Tarav.Skillware.Document",
+  "schema_version": 1,
+  "output": "references/impl/develop.md",
+  "blocks": [
+    {
+      "id": "introduction",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "develop.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "# Implementation Develop Workflow",
+        "",
+        "Load this module only for `--impl --develop`, `--develop`, or `--dev`.",
+        "",
+        "Develop carries one idea or design source through implementation design and",
+        "execution in the same skill call while preserving the durable phase boundary.",
+        ""
+      ]
+    },
+    {
+      "id": "workflow",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "develop.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "design.skw.json"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "execute.skw.json"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Workflow",
+        "",
+        "1. Load {{skw:link-0}}.",
+        "2. Converge on the implementation design.",
+        "3. Ground the Project Model, then produce the complete live-note `Impl.Req`,",
+        "   open `Impl.Req.Collection`, and durable `Diagram.Draft`.",
+        "4. Capture the exact live-note path, Collection identity, and Draft identity.",
+        "5. Re-read the live note and Draft from disk and resolve the Collection anew.",
+        "6. Load {{skw:link-1}}.",
+        "7. Execute the `Execution.Plan` under the same `Alignment.Mode`.",
+        "8. Complete only after product verification, the final capture audit, and",
+        "   explicit reporting of any retryable Diagram or Product.Surface POIs.",
+        "",
+        "The phase transition remains inside the same invocation. An Interactive",
+        "checkpoint may pause it; resumption continues the same Develop workflow.",
+        ""
+      ]
+    },
+    {
+      "id": "boundary-contract",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "develop.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Boundary Contract",
+        "",
+        "- The live-note Impl.Req is the mandatory handoff. Do not execute directly from",
+        "  the original idea or an in-chat summary.",
+        "- Do not collapse designer and executer responsibilities.",
+        "- Preserve exact `Impl.Req.Diagram` identities and Draft state across the",
+        "  handoff; do not replace them with summarized context.",
+        "- If Design cannot produce an executable request, stop before product edits.",
+        "- If execution fails, preserve the live note, Collection, and Draft, and record the blocker",
+        "  in `Impl.Log`.",
+        ""
+      ]
+    },
+    {
+      "id": "completion",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "develop.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Completion",
+        "",
+        "Return one concise report covering the Impl.Req path, Collection, and Draft, implemented",
+        "result, verification, deviations, POIs, and deferred work."
+      ]
+    }
+  ],
+  "shared": {
+    "maintenance": {
+      "kind": "prompt",
+      "lines": [
+        "Maintain this section using the linked context. Preserve its workflow scope and authorization boundaries."
+      ]
+    }
+  }
+}

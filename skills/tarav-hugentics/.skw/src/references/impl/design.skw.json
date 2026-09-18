@@ -1,0 +1,440 @@
+{
+  "type": "Tarav.Skillware.Document",
+  "schema_version": 1,
+  "output": "references/impl/design.md",
+  "blocks": [
+    {
+      "id": "introduction",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "design.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "product-capture.skw.json"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "general-practices.skw.json"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "general-preferences.skw.json"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "# Implementation Design Workflow",
+        "",
+        "Load this module for `--impl --design` and as Develop's first phase. Also load",
+        "{{skw:link-0}},",
+        "{{skw:link-1}}, and",
+        "{{skw:link-2}}.",
+        "",
+        "Operate as the implementation designer: inspect the current product, converge",
+        "on an implementation path, create the live-note `Impl.Req`, and establish its",
+        "`Impl.Req.Diagram`.",
+        ""
+      ]
+    },
+    {
+      "id": "alignment-loop",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "design.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Alignment Loop",
+        "",
+        "Use the same implementation-design loop as the former workflow:",
+        "",
+        "1. **Question** — inspect implementation reality and identify the decisions",
+        "   needed for an executable path.",
+        "2. **Discuss** — resolve implementation concerns with the User when the chosen",
+        "   Alignment.Mode requires it.",
+        "3. **Consolidate** — write or update the durable `Impl.Req`.",
+        "",
+        "Interactive mode uses readiness and design-reality checkpoints as alignment",
+        "opportunities. Autonomous mode resolves them without prompting, records",
+        "consequential assumptions in `Impl.Log`, and stops only when faithful progress",
+        "requires external input.",
+        ""
+      ]
+    },
+    {
+      "id": "readiness-checkpoint",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "design.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Readiness Checkpoint",
+        "",
+        "Before declaring the request executable, confirm:",
+        "",
+        "- scope and out-of-scope are explicit;",
+        "- current product state was inspected and cited;",
+        "- every vertical slice has an observable result and a check;",
+        "- dependencies and ordering are explicit;",
+        "- risks and deviation triggers are named;",
+        "- no unresolved User decision is hidden inside an execution step; and",
+        "- the artifact is understandable without the design chat.",
+        "",
+        "Close gaps yourself where possible. Do not pad the artifact merely to satisfy",
+        "the checklist.",
+        ""
+      ]
+    },
+    {
+      "id": "live-note-impl-req",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "design.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "example.skw.json"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Live-Note Impl.Req",
+        "",
+        "The live note is the Agent's main coordination artifact and the mandatory",
+        "handoff to execution. Store it under the target project's `notes/live/` using",
+        "the project's established numbering and naming convention, normally:",
+        "",
+        "```text",
+        "<number>-<slug>-impl-req.md",
+        "```",
+        "",
+        "Its required structure is:",
+        "",
+        "- `Impl.Abstract` — scope, status, source context, and important boundaries;",
+        "- `Impl.Req.Diagram` — Namespace, Model, `Impl.Req.Collection`, and",
+        "  `Diagram.Draft` identities;",
+        "- `Execution.Plan` — ordered vertical slices, checks, risks, deviation",
+        "  triggers, acceptance signals, and slice status;",
+        "- `Impl.Log` — consequential assumptions, deviations, blockers, and decisions",
+        "  made while coordinating the implementation.",
+        "",
+        "Write for an executer who did not see the design chat. Prefer precise pointers",
+        "to product and design surfaces over pasted code. Shape the plan without fixing",
+        "incidental implementation details prematurely.",
+        "",
+        "See {{skw:link-0}} for the expected live-note/Diagram split.",
+        "",
+        "The explicit Design or Develop invocation authorizes writing this artifact. It",
+        "does not authorize unrelated product mutation.",
+        ""
+      ]
+    },
+    {
+      "id": "impl-req-diagram",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "design.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Impl.Req.Diagram",
+        "",
+        "First ground or refresh the Project Model's `Diagram.View`. Then create exactly",
+        "one open `Impl.Req.Collection` and one durable `Diagram.Draft`, or reuse them",
+        "only when continuing the same implementation request lineage. The Collection's",
+        "human-facing label normally shares the live-note number:",
+        "",
+        "```text",
+        "502.Impl.Req",
+        "```",
+        "",
+        "The Collection ship UUID is its identity; the numerical label is only a",
+        "convenient address. Record the Namespace, Model ship, Collection ship, Draft",
+        "UUID/path, and label under the live note's `Impl.Req.Diagram` section.",
+        "",
+        "The Collection is not the live note and does not reproduce its Agent-generated",
+        "plan. It organizationally hosts only supported User-Touched editions relevant",
+        "to the implementation request. Attach each Line semantically to the most",
+        "suitable existing Model Block when possible; introduce a new candidate Block",
+        "only when existing encapsulation would be dishonest. Hosting and attachment",
+        "are independent.",
+        "",
+        "Capture the first bounded set while designing:",
+        "",
+        "1. resolve the current Project Model and ground its relevant Diagram context;",
+        "2. select exact User turns that materially constrain this request;",
+        "3. materialize the Collection, authorization Gate, and candidate editions in",
+        "   the durable Draft without landing them;",
+        "4. use reviewed Gates only when the actual conversation provides them; never",
+        "   manufacture approval evidence; and",
+        "5. retain the resulting identities in `Impl.Req.Diagram` and cold-reload the",
+        "   live note and Draft before execution.",
+        "",
+        "Agent-only analysis may remain valuable in `Execution.Plan` or `Impl.Log`. It",
+        "must not be promoted into the User-Touched Block merely to make the request",
+        "look complete.",
+        ""
+      ]
+    },
+    {
+      "id": "updating",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "design.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Updating",
+        "",
+        "- Prefer focused live-note edits over full rewrites.",
+        "- Reevaluate `Impl.Abstract` when scope changes.",
+        "- Keep ordinary code changes out of `Impl.Log`; Git already records them.",
+        "- When a User message changes or resolves the implementation during design,",
+        "  reconcile the supported consequence in the same Draft and Collection.",
+        "- When the design exposes a fundamentals-design problem, point to the owning",
+        "  design surface and keep the implementation request honest about the gap.",
+        ""
+      ]
+    },
+    {
+      "id": "output",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "design.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Output",
+        "",
+        "Return the complete live-note path, Collection and Draft addresses, and a",
+        "concise readiness summary. Under Develop, return control to the Develop module."
+      ]
+    }
+  ],
+  "shared": {
+    "maintenance": {
+      "kind": "prompt",
+      "lines": [
+        "Maintain this section using the linked context. Preserve its workflow scope and authorization boundaries."
+      ]
+    }
+  }
+}

@@ -1,0 +1,63 @@
+# Design Impact
+
+```text
+tarav-hugentics --design --impact [INPUT]
+```
+
+Evaluate the implementation impact of recent design work in the current chat:
+**What does this design imply for the current implementation?**
+
+This module supplies the shared assessment for `--impact`. Standalone
+`--design --impact` ends with a read-only report. Implementation routes use
+the resulting delta as direct input to the workflow selected by
+[`impl.md`](impl.md); for example, `--impl --design --impact` designs the
+implementation and `--impl --dev --impact` designs and executes it.
+
+## Scope
+
+This first meaning is deliberately limited to recent in-chat design. `INPUT`
+narrows which part of that discussion to assess; it does not introduce a
+general artifact-routing system. Identify the selected design briefly before
+investigating. If the chat provides no design, or materially different targets
+remain plausible, ask for the intended focus rather than inventing one.
+
+A recent capture can help locate the design, but capture is not required.
+When using one, inspect the material added or changed by that capture and its
+supporting discussion, not the entire destination Note as new design. Preserve
+User corrections and distinguish agreed principles from tentative proposals.
+
+## Assessment
+
+Read the relevant project instructions, then inspect the current code,
+documentation, and skills affected by the design. Follow actual producers,
+consumers, and retained-data contracts where needed to establish impact.
+Distinguish implemented behavior from documentation, examples, and future intent.
+
+Compare the design with that evidence and report:
+
+- what already aligns and needs no change;
+- concrete changes needed, with affected surfaces and their reason;
+- unresolved design decisions or unavailable evidence that prevent a conclusion.
+
+Include data migration or consumer consequences when a proposed change affects
+them. A development principle may call for guidance or better examples rather
+than runtime enforcement. Do not invent mechanics merely to make every design
+statement executable, and do not treat a lack of evidence as proof of a gap.
+
+Keep the result concise and in chat. Link the inspected surfaces that support
+the conclusions, state the scope of the inspection, and distinguish necessary
+changes from optional improvements. It is valid to conclude that no
+implementation action is needed.
+
+## Boundary
+
+The assessment itself is read-only. In standalone `--design --impact`, do not edit
+code, documentation, skills, or retained data; perform another capture; create
+an Impl.Req, Diagram Draft, or retained report; or commit changes. Do not enter
+the implementation workflow automatically. A later explicit request selects
+any follow-up work.
+
+When invoked as an implementation input selector, return the actionable delta
+to that explicitly selected workflow. Its invocation already authorizes its
+ordinary next steps; no second trigger is required merely because the input
+came from impact assessment. The workflow, not `--impact`, owns those actions.

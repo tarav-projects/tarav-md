@@ -45,21 +45,32 @@ Declare relevant sessions once near the top of the document:
 
 ```md
 <!-- tarav.sessions
-phd = codex:01a06bed-b554-7770-86e3-cce2e5729994
+4571385e = codex:01a06bed-b554-7770-86e3-cce2e5729994 @4571385eb2c5457a615e836d943acad00147fda45a10dbad26848faf81e2bfe1
 -->
 ```
 
-The left side is a document-local alias. The right side is
-`<provider>:<native-session-id>`. Reuse an existing declaration when it names
-the intended session. Do not silently rebind an alias in the current surface;
-choose another clear alias when a conflict is visible. Do not consult Git or a
-separate registry by default.
+Each declaration line retains three fields: the alias, the session's
+`<provider>:<native-session-id>`, and its full 64-character Chatlas identity
+hash after `@`.
+
+The alias is the first 8 lowercase hexadecimal characters of that identity
+hash. It is opaque and carries no semantics: it is derived, never chosen. The
+same session therefore resolves to the same alias in every surface without
+coordination, and the derivation is visible on the declaration line itself.
+
+The identity hash is authoritative. `<provider>:<native-session-id>` is a
+convenience pointer back to the raw provider artifact; a disagreement between
+the two is a POI rather than a silent preference.
+
+Reuse an existing declaration when it names the intended session. An alias
+cannot be rebound, because it is derived from what it points at. Do not consult
+Git or a separate registry by default.
 
 Attach references immediately after the Markdown block they contextualize:
 
 ```md
 The theoretical front is established for the scope of the PhD.
-<!-- tarav.context phd:dd358589d092f9dd -->
+<!-- tarav.context 4571385e:dd358589d092f9dd -->
 ```
 
 Consecutive references attach to that same preceding block. Preserve ordinary
@@ -69,8 +80,10 @@ Markdown as the authoritative surface.
 
 1. Read the selected Markdown surface and its current session declarations.
 2. When the current chat is in scope, resolve and refresh it once through
-   `tarav-chatlas-my-session-id`. Reuse its returned provider and native
-   session ID; do not perform another update.
+   `tarav-chatlas-my-session-id`. Reuse its returned provider, native session
+   ID, and neutral Chatlas identity; do not perform another update. Derive the
+   alias from that identity hash and write the declaration line when the
+   surface does not already declare the session.
 3. Discover candidate User Turns from each exact session with the compact
    timestamped ledger when their hashes are not already known:
 
@@ -95,9 +108,11 @@ Markdown as the authoritative surface.
      --session-id <native-session-id> \
      --turn-hash-prefix <prefix> \
      [--turn-hash-prefix <prefix> ...] \
-     --renderer Inlined.Capture.Markdown.Reference.Renderer \
-     --renderer-option session-alias=<alias>
+     --renderer Inlined.Capture.Markdown.Reference.Renderer
    ```
+
+   The Renderer derives the alias from the resolved session; it takes no
+   Renderer options.
 
 6. Insert the rendered comments after their selected Markdown blocks. Several
    comments may be distributed across the document; a Renderer batch need not
@@ -163,6 +178,8 @@ prefix is a convention POI but may still be resolved when Chatlas accepts it.
 Report at least these conditions when present:
 
 - malformed or conflicting session declarations;
+- a declaration missing its identity hash, or whose alias is not that hash's
+  first 8 characters;
 - malformed references or references to undeclared aliases;
 - unavailable declared sessions;
 - zero or multiple Turn-prefix matches;

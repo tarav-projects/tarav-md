@@ -1,0 +1,62 @@
+{
+  "type": "Tarav.Skillware.SkillPackage",
+  "schema_version": 1,
+  "entrypoint": "SKILL.md",
+  "sources": [
+    ".skw/src/SKILL.skw.json",
+    ".skw/src/references/capture.skw.json",
+    ".skw/src/references/design-impact.skw.json",
+    ".skw/src/references/ground.skw.json",
+    ".skw/src/references/impl/design.skw.json",
+    ".skw/src/references/impl/develop.skw.json",
+    ".skw/src/references/impl/example.skw.json",
+    ".skw/src/references/impl/execute.skw.json",
+    ".skw/src/references/impl/general-practices.skw.json",
+    ".skw/src/references/impl/general-preferences.skw.json",
+    ".skw/src/references/impl/harvest.skw.json",
+    ".skw/src/references/impl/product-capture.skw.json",
+    ".skw/src/references/impl/review.skw.json",
+    ".skw/src/references/impl.skw.json",
+    ".skw/src/references/inline-capture.skw.json",
+    ".skw/src/references/issues/audit.skw.json",
+    ".skw/src/references/issues/maintain.skw.json",
+    ".skw/src/references/issues/park.skw.json",
+    ".skw/src/references/issues.skw.json",
+    ".skw/src/references/reading-club.skw.json",
+    ".skw/src/references/wiki-capture.skw.json"
+  ],
+  "files": [
+    "SKILL.md",
+    "references/capture.md",
+    "references/design-impact.md",
+    "references/ground.md",
+    "references/impl.md",
+    "references/impl/design.md",
+    "references/impl/develop.md",
+    "references/impl/example.md",
+    "references/impl/execute.md",
+    "references/impl/general-practices.md",
+    "references/impl/general-preferences.md",
+    "references/impl/harvest.md",
+    "references/impl/product-capture.md",
+    "references/impl/review.md",
+    "references/inline-capture.md",
+    "references/issues.md",
+    "references/issues/audit.md",
+    "references/issues/maintain.md",
+    "references/issues/park.md",
+    "references/reading-club.md",
+    "references/wiki-capture.md"
+  ],
+  "dependencies": [
+    {
+      "kind": "skill",
+      "path": "../tarav-pkg",
+      "purposes": [
+        "developer",
+        "consumer"
+      ]
+    }
+  ],
+  "loading": ".skw/loading.json"
+}

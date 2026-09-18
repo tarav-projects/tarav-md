@@ -1,0 +1,231 @@
+# Capture.Wiki
+
+Load this module for `tarav-hugentics --capture --wiki`.
+
+`Capture.Wiki` is a chat-centric, session-bounded workflow for capturing what
+a discussion produced into the selected project's Markdown wiki. It always
+maintains a daily narrative and integrates topical Notes when useful. It favors
+supported, additive capture over reconciliation or construction of a canonical
+Model.
+
+The ordinary workflow may create or edit project Notes. The User invocation
+authorizes one bounded capture pass, its Note edits, and the scoped Git commit
+that closes them; do not add a separate landing checkpoint. `--audit` is
+read-only.
+
+## Routes
+
+```text
+tarav-hugentics --capture --wiki [FOCUS]
+tarav-hugentics --capture --wiki --target <WIKI_NOTE> [FOCUS]
+tarav-hugentics --capture --wiki --audit <WIKI_NOTE>
+```
+
+- `FOCUS` narrows which part of the current discussion to capture.
+- `--target` selects one explicit topical Note inside the Project.Wiki. It is
+  an argument to `Capture.Wiki`, not another workflow, and does not suppress
+  the daily capture.
+- `--audit` checks one existing Note and performs no mutation.
+
+Do not infer another capture workflow. `Capture.Wiki` does not update a
+User.Model or Agent.Model, create Diagram Records, reconcile competing ideas,
+or claim complete coverage of the conversation.
+
+## Project.Wiki
+
+Resolve the project from the current work and read its `AGENTS.md` routing
+before choosing a destination. When project guidance assigns documentation to
+another maintained subproject, that documented owner is the selected project
+for Note placement.
+
+The default wiki is:
+
+```text
+<project>/notes/wiki/
+├── daily/
+│   └── YYYY-MM-DD.md
+└── <topical Notes and folders>
+```
+
+Create `notes/wiki/`, `daily/`, and the current daily Note as needed for every
+ordinary capture when project guidance does not prohibit their creation.
+
+An explicit `--target` must resolve inside the selected Project.Wiki. Reject
+directory escape and ambiguous project ownership rather than guessing.
+
+Use meaningful topic filenames. Do not allocate numeric live-note prefixes
+for wiki Notes.
+
+## Two capture views
+
+Every ordinary invocation writes the Project.Wiki views that are useful:
+
+```text
+Capture.Wiki
+├── update today's daily Note — mandatory
+└── update topical wiki Notes — when useful
+```
+
+The daily Note answers, “What relevant things happened today?” It is an
+append-oriented, primarily Agent-maintained narrative and provides the minimal
+successful capture. It does not attempt to record everything.
+
+A topical Note answers, “What do we currently understand about this subject?”
+It integrates the discussion by subject when useful. The same material may
+appear in both views because they serve different discovery needs.
+
+“Daily fallback” means that material without a justified topical home remains
+safely captured in the daily Note. It does not mean that daily capture is
+optional. Capturing is the first priority; topical organization is the second.
+
+Before placing topical material:
+
+1. inspect the wiki's filenames, headings, links, and nearby references;
+2. search for likely topic Notes and read only the useful candidates;
+3. choose an existing Note and section when the discussion clearly belongs
+   there;
+4. create a meaningfully named topic Note when a durable topic is clear; or
+5. omit topical integration when no useful topical home is justified.
+
+This is bounded navigation, not a requirement to read or reconcile the whole
+wiki. Existing organization is evidence for placement, not a fixed ontology.
+
+When `--target` is present, use that Note as the topical destination and skip
+wiki-wide destination discovery. The mandatory daily narrative is unchanged.
+Still inspect enough local context to place the topical material coherently.
+
+## Git closure
+
+A successful ordinary capture ends by committing the complete current working
+state under `notes/wiki/` in the Git repository that owns it, including Note
+changes already present there. `--target` narrows topical placement, not Git
+closure. Never include changes outside the Project.Wiki.
+
+Treat the commit as the recoverable closing checkpoint of the capture, not as
+a second approval gate. Inspect the scoped diff and validate the new capture
+before committing. Preserve unrelated staging outside the scope.
+
+Do not create an empty commit. If the scoped surface cannot be committed or a
+blocking validation failure remains, leave it uncommitted and report the POI.
+
+## Writing semantics
+
+Capture what the discussion produced. Add by default.
+
+- Add compatible material to an existing section when that preserves its
+  meaning.
+- Preserve alternatives, candidate histories, disagreements, and open
+  tensions instead of forcing convergence.
+- Amend existing wording only when the supported discussion itself performs
+  that amendment or the User explicitly requests it.
+- Do not opportunistically deduplicate, reconcile, prune, or rewrite nearby
+  material.
+- When organization is uncertain, preserve the material in the daily Note
+  before spending more work on placement.
+
+The daily Note narrates relevant events, decisions, tensions, and work. A topic
+Note integrates by subject, but it is not a chronological log or a canonical
+Diagram Model.
+
+### Section editions
+
+Any Markdown section may acquire an append-friendly edition history when
+useful:
+
+```md
+## Open tensions - v001
+
+...
+
+## Open tensions - v002
+
+...
+```
+
+At each capture, decide locally whether to:
+
+- edit one section version in place for a compatible addition;
+- append a new `## <section> - vNNN` when preserving semantic evolution is
+  useful; or
+- add a differently named section for an independent branch.
+
+Do not wrap captures in mandatory Session headings. Chatlas references already
+identify the supporting sessions. Do not add generic `Candidates` or
+`Open tensions` subsections unless those headings fit the actual content.
+
+A higher version does not silently supersede an earlier one. State
+supersession, correction, or continuation when the discussion establishes
+that relationship.
+
+## User-Turn grounding
+
+Every substantive addition produced from the discussion must remain
+discoverably grounded in one or more exact Chatlas User Turns. Reuse the
+Markdown convention established by Inlined.Capture.
+
+Declare each relevant session once near the top of the Note:
+
+```md
+<!-- tarav.sessions
+4571385e = codex:01a06bed-b554-7770-86e3-cce2e5729994 @4571385eb2c5457a615e836d943acad00147fda45a10dbad26848faf81e2bfe1
+-->
+```
+
+The alias is the first 8 lowercase hexadecimal characters of the authoritative
+Chatlas identity hash. The provider-native session ID is a convenience
+pointer. Reuse an existing declaration; never rebind an alias.
+
+Attach references immediately after the Markdown block they support:
+
+```md
+Capture.Wiki adds by default and does not force candidate convergence.
+<!-- tarav.context 4571385e:dd358589d092f9dd -->
+```
+
+Consecutive references attach to the same preceding Markdown block. Preserve
+ordinary Markdown as the authoritative Note content. References establish
+addressed conversational grounding; they do not independently claim factual
+truth, approval, completeness, or exclusive support.
+
+## Capture workflow
+
+1. Read the selected project's instructions and resolve its Project.Wiki.
+2. Resolve and refresh the current chat exactly once through
+   `tarav-chatlas-my-session-id`. Reuse its provider, native session ID, and
+   neutral Chatlas identity throughout the pass.
+3. Select the minimum sufficient User Turns from the requested focus and
+   nearby conversation. Use the compact Chatlas Turn ledger when exact Turn
+   hashes are not already known.
+4. Read the current daily Note when present and inspect the wiki to resolve any
+   useful topical placement as described above.
+5. Draft the mandatory daily narrative of what relevantly happened.
+6. Draft topical integration when useful, using the explicit target when one
+   was supplied. Decide section editing or edition splitting from the
+   discussion's actual semantics.
+7. Resolve selected Turn groups through Chatlas Query and render their
+   references with `Inlined.Capture.Markdown.Reference.Renderer`.
+8. Add or reuse session declarations and attach references directly to the
+   blocks they ground.
+9. Re-read every changed Note and resolve its new references exactly.
+10. Inspect the scoped diff and commit the complete Project.Wiki under
+   the Git-closure rules above.
+11. Report the daily and topical destinations, sections added or amended,
+    Turn references, commit identity, and unresolved POIs.
+
+If a topic placement remains genuinely ambiguous, complete the daily capture
+and report that no topical integration was made. Capture must not fail merely
+because the wiki can be organized better later.
+
+## Audit
+
+`--capture --wiki --audit <WIKI_NOTE>` is read-only. It checks:
+
+1. session declarations and their derived aliases;
+2. embedded reference syntax and local attachment;
+3. exact resolution to User Turns within the declared sessions; and
+4. obvious ungrounded substantive blocks introduced by Capture.Wiki.
+
+Audit does not assess complete conversational coverage, reconcile the Note,
+update Chatlas, edit the Product.Surface, create Diagram Records, or write a
+retained report. Missing, ambiguous, wrong-side, malformed, or suspiciously
+attached references are POIs, not permission to guess or repair them.

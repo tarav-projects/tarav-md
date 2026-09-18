@@ -1,0 +1,297 @@
+{
+  "type": "Tarav.Skillware.Document",
+  "schema_version": 1,
+  "output": "references/impl/harvest.md",
+  "blocks": [
+    {
+      "id": "introduction",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "harvest.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "# Implementation Harvest Workflow",
+        "",
+        "Load this module only for `--impl --harvest` or `--impl-harvest`.",
+        "",
+        "Harvest banks the implementation work that is ready now and parks what still",
+        "needs design. It selects one coherent candidate and routes it through Develop;",
+        "it does not design or edit by itself.",
+        ""
+      ]
+    },
+    {
+      "id": "readiness-judgment",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "harvest.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Readiness Judgment",
+        "",
+        "Readiness is a ranking rather than a mechanical classifier:",
+        "",
+        "- **touched** — the candidate rests on actual User decisions, corrections, or",
+        "  requests, not only an Agent summary;",
+        "- **clear** — remaining choices are ordinary implementation details rather",
+        "  than unresolved User-facing design variables; and",
+        "- **grounded drift** — current product evidence shows a concrete mismatch with",
+        "  that touched material.",
+        "",
+        "When uncertain whether a User decision remains open, park the candidate.",
+        ""
+      ]
+    },
+    {
+      "id": "scan",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "harvest.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Scan",
+        "",
+        "Build candidates from the intersection of:",
+        "",
+        "- the current conversation and relevant Project Model material; and",
+        "- current implementation evidence and available POIs.",
+        "",
+        "Each candidate is one coherent implementation unit with an observable result:",
+        "the scope suitable for one live-note Impl.Req and one `Impl.Req.Collection`.",
+        ""
+      ]
+    },
+    {
+      "id": "candidate-checkpoint",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "harvest.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Candidate Checkpoint",
+        "",
+        "In Interactive mode, present the best-ready candidate, why it ranks highest,",
+        "and the parked runners-up with their unresolved questions. Wait for the User to",
+        "approve, redirect, or reshape the selection.",
+        "",
+        "In Autonomous mode, select the top-ranked candidate, retain the ranking and",
+        "parked set in the produced live note, and continue without a checkpoint.",
+        ""
+      ]
+    },
+    {
+      "id": "delegation",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "harvest.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "develop.skw.json"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Delegation",
+        "",
+        "Pass the selected candidate and its exact User-Touched provenance to",
+        "{{skw:link-0}} under the same `Alignment.Mode`. Do not replace the",
+        "supporting conversation and Diagram references with a free-standing summary.",
+        "",
+        "Select one candidate per run. The parked set remains visible design backlog;",
+        "it is not silently discarded.",
+        ""
+      ]
+    },
+    {
+      "id": "completion",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "harvest.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Completion",
+        "",
+        "Report the selected candidate, why it was ready, the resulting Impl.Req path",
+        "and Collection, the implemented result, and the parked candidates."
+      ]
+    }
+  ],
+  "shared": {
+    "maintenance": {
+      "kind": "prompt",
+      "lines": [
+        "Maintain this section using the linked context. Preserve its workflow scope and authorization boundaries."
+      ]
+    }
+  }
+}

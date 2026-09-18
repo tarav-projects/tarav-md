@@ -1,0 +1,511 @@
+{
+  "type": "Tarav.Skillware.Document",
+  "schema_version": 1,
+  "output": "references/reading-club.md",
+  "blocks": [
+    {
+      "id": "introduction",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "reading-club.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "# Hugentics Reading Club",
+        "",
+        "Load this module for `tarav-hugentics --reading-club [DOCUMENT]`.",
+        "",
+        "Reading Club is an Agent-operated workflow for developing the reading of one",
+        "fixed work and edition inside a Git-tracked `Reading.Project`. The durable Club",
+        "defaults to `~/Documents/tarav/reading-club/`; `tarav reading-club` provides",
+        "only simple project navigation. The Agent owns interpretation, project",
+        "matching, chunking, discussion, and capture.",
+        ""
+      ]
+    },
+    {
+      "id": "boundaries",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "reading-club.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Boundaries",
+        "",
+        "- The Club is a reading workspace, not a canonical document library, identity",
+        "  registry, deduplication system, or archive.",
+        "- A Reading Project's `project.json` is lightweight logistical metadata. It is",
+        "  a navigation hint, not proof that two documents are the same work.",
+        "- The `Reading.Subject`—the particular work and edition—is fixed. A different",
+        "  edition begins another project by default unless the User and Agent",
+        "  explicitly supervise migration.",
+        "- The project-owned Markdown transcript is mutable. A better transcript may",
+        "  replace it only while preserving, relocating, or restating annotations and",
+        "  surfacing uncertain relocations.",
+        "- The project transcript is the authoritative reading surface. External",
+        "  provider transcripts and published artifacts remain source references.",
+        "- `Reading.Session` cursor state, chunk IDs, and progress estimates are",
+        "  disposable coordination. Their failure must not silently skip source",
+        "  material or discard uncaptured discussion.",
+        ""
+      ]
+    },
+    {
+      "id": "project-resolution",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "reading-club.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Project resolution",
+        "",
+        "Use the read-only logistical CLI before opening a project:",
+        "",
+        "```bash",
+        "tarav reading-club list",
+        "tarav reading-club find <text>",
+        "tarav reading-club show <exact-project-slug>",
+        "```",
+        "",
+        "With `DOCUMENT`, inspect the hint and the bounded CLI results. Decide from",
+        "ordinary context whether it belongs to an existing Reading Project. Resume a",
+        "clear match. When no match exists and the User's intent to begin a reading is",
+        "clear, create a minimal project workspace under `projects/`, retain optional",
+        "source metadata, and establish a project-owned Markdown transcript. Ask the",
+        "User only when project equivalence, edition, or source treatment is materially",
+        "ambiguous. Do not add fingerprints or a formal equivalence mechanism.",
+        "",
+        "Without `DOCUMENT`, list active projects and let the foreground context select",
+        "one when clear. Otherwise orient briefly and wait for a project or document.",
+        "",
+        "Before reading, follow the Club and project `AGENTS.md` guidance, read",
+        "`project.json`, and load the current transcript and notes. Treat notes as",
+        "developing interpretation rather than article authority.",
+        ""
+      ]
+    },
+    {
+      "id": "reading-loop",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "reading-club.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Reading loop",
+        "",
+        "The natural loop is:",
+        "",
+        "```text",
+        "Present → Read → Discuss → Capture → Advance",
+        "```",
+        "",
+        "1. **Present** — produce one `Reading.Source.Frame` containing a coherent",
+        "   chunk, commonly one to three paragraphs or one figure/equation with its",
+        "   caption and immediate context. Give it a small, loosely stable",
+        "   session-local ID.",
+        "2. **Read** — let the User read before pre-explaining the passage.",
+        "3. **Discuss** — answer questions and develop interpretation without moving",
+        "   the cursor automatically.",
+        "4. **Capture** — at an explicit annotation command or the checkpoint inside",
+        "   `::forward`, review pending discussion and record useful conclusions,",
+        "   uncertainties, corrections, and relevant inline Chatlas references in the",
+        "   transcript or notes.",
+        "5. **Advance** — move only after an explicit User navigation command.",
+        "",
+        "Chunks are temporary chat windows. Never reconstruct a rigid chunk database",
+        "or treat a chat chunk as more authoritative than the Markdown transcript.",
+        ""
+      ]
+    },
+    {
+      "id": "reading-frames",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "reading-club.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Reading Frames",
+        "",
+        "Reading commands have typed chat outputs. These are skill-level behavioral",
+        "contracts, not schemas, persisted objects, or new CLI machinery.",
+        "",
+        "### `Reading.Source.Frame`",
+        "",
+        "A `Reading.Source.Frame` is the bounded in-chat window through which source",
+        "content is presented:",
+        "",
+        "1. Put source prose in Markdown blockquotes (`>`). Within a Source Frame, that",
+        "   marker explicitly signals essentially verbatim source wording, allowing",
+        "   only non-semantic typography or client-presentation adaptations. Never use",
+        "   it for Agent paraphrase.",
+        "2. Preserve source order.",
+        "3. Do not insert paraphrases, summaries, explanations, or connective prose",
+        "   inside the Frame.",
+        "4. Mark omissions explicitly with `[…]`.",
+        "5. Equations may use client-friendly notation, but their mathematical meaning",
+        "   must not change. When adapted substantially from source notation, present",
+        "   them as separate terminal-friendly blocks rather than implying textual",
+        "   verbatim fidelity with `>`.",
+        "6. Preserve source headings and figure captions; mark unavailable figures",
+        "   explicitly.",
+        "7. Keep the chunk ID and location outside the quoted source content.",
+        "8. Keep interpretation outside the Frame, normally in discussion or a",
+        "   `Reading.Narration.Frame`.",
+        "9. Select a coherent, reasonably sized reading unit.",
+        "",
+        "### `Reading.Narration.Frame`",
+        "",
+        "A `Reading.Narration.Frame` is a compact, plain-language,",
+        "conversation-aware interpretation of the current source chunk. It highlights",
+        "what matters, incorporates relevant prior discussion and User concerns,",
+        "exposes assumptions or uncertainties, and distinguishes source claims from",
+        "the developing interpretation. It is non-mutating and non-navigating. Keep it",
+        "shorter than the current Source Frame when practical and never longer than",
+        "that Frame.",
+        ""
+      ]
+    },
+    {
+      "id": "chat-presentation",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "reading-club.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Chat presentation",
+        "",
+        "Treat chat as a flexible reading interface over the project transcript. Keep",
+        "source prose identifiable: reproduce it faithfully when quoting, and label",
+        "paraphrases or summaries. Chat presentation may otherwise adapt formatting for",
+        "the active client and does not need to preserve the transcript's syntax.",
+        "",
+        "When the client does not render LaTeX, a `Reading.Source.Frame` may present",
+        "equations in a terminal-friendly Unicode or plain-text form. For example,",
+        "present `\\beta_G^{\\mathrm{c}}(\\beta_O)` as `βG,critical(βO)`. Do not add a",
+        "verbal explanation inside the Source Frame unless that explanation is itself",
+        "source prose. The chat does not need to repeat the original LaTeX because it",
+        "remains available in the project transcript. If an expression cannot be",
+        "simplified safely, retain its source notation rather than guessing; explain",
+        "its structure or role later in discussion or a `Reading.Narration.Frame`.",
+        "Never silently change the mathematical relation.",
+        "",
+        "### Growing terminal-presentation examples",
+        "",
+        "This list is the skill's explicit place for accumulating useful presentation",
+        "examples discovered during real reading sessions. When a new recurring",
+        "notation is rendered successfully, append a compact source → chat example",
+        "here. Prefer additions that generalize beyond one paper; do not turn isolated",
+        "expressions into mandatory syntax.",
+        "",
+        "Current examples:",
+        "",
+        "- labels and indices: `u_L^{(i)}` → `uL[i]`;",
+        "- critical or descriptive qualifiers: `\\beta_G^{\\mathrm{c}}` →",
+        "  `βG,critical`;",
+        "- averages: `\\langle u_L\\rangle` → `⟨uL⟩` or `mean(uL)`;",
+        "- fractions: `\\frac{x}{y}` → `x / y`;",
+        "- sums: `\\sum_{i=1}^{N}u_i` → `Σ[i=1…N] u[i]`;",
+        "- derivatives: `\\frac{d\\langle u_L\\rangle}{d\\beta_G}` →",
+        "  `d⟨uL⟩ / dβG`;",
+        "- bounds and constraints: `0\\leq u_G\\leq U_G` → `0 ≤ uG ≤ UG`;",
+        "- powers and roots: `x^2` → `x²`, while general powers remain `x^n`, and",
+        "  `\\sqrt{x}` → `sqrt(x)`;",
+        "- piecewise expressions or equation systems: use one aligned plain-text line",
+        "  per case or relation, with short labels where needed.",
+        "",
+        "These are examples, not a mechanical conversion standard. Choose notation",
+        "that is readable and consistent within the current discussion.",
+        ""
+      ]
+    },
+    {
+      "id": "runtime-commands",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "reading-club.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Runtime commands",
+        "",
+        "- `::forward` — run an automatic annotation checkpoint over pending",
+        "  discussion, move the cursor, then produce the next `Reading.Source.Frame`.",
+        "- `::backward` — move to the previously displayed chunk and produce its",
+        "  `Reading.Source.Frame`.",
+        "- `::show <chunk-id>` — produce a known chunk's `Reading.Source.Frame` without",
+        "  redefining progress.",
+        "- `::jump <prompt-or-fragment>` — relocate by Agent judgment and produce a",
+        "  `Reading.Source.Frame`; wait when the destination is ambiguous.",
+        "- `::capture` and `::annotate` — exact aliases: review discussion since the",
+        "  previous checkpoint, preserve valuable User-Touched material in the project",
+        "  transcript or notes, remain on the current chunk, and produce a compact",
+        "  `Reading.Capture.Report`.",
+        "- `::stop` — capture useful pending discussion and preserve the current",
+        "  position for later resumption.",
+        "- `::reprint` — reproduce the current `Reading.Source.Frame` without moving.",
+        "- `::narrate` — produce a `Reading.Narration.Frame` for the current chunk.",
+        "- `::help` — explain this workflow and its commands as `Reading.Help`.",
+        "- `::status` — report the active project, current location, approximate",
+        "  progress, and uncaptured discussion as a compact `Reading.Status.Report`.",
+        "- `::reload` — reread the project transcript and notes, reconcile the",
+        "  disposable session, and do not advance. Produce a compact reconciliation",
+        "  report, followed by the current `Reading.Source.Frame` when useful.",
+        "",
+        "Ordinary User messages keep the current chunk active. If a command cannot be",
+        "fulfilled exactly after transcript changes, explain the recovery and re-anchor",
+        "visibly before continuing.",
+        ""
+      ]
+    },
+    {
+      "id": "capture",
+      "kind": "generation",
+      "prompt": [],
+      "context": [
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "reading-club.skw.json",
+              "pointer": "/shared/maintenance"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        },
+        {
+          "kind": "reference",
+          "reference": {
+            "type": "Tarav.Reference.StructuredFile",
+            "locator": {
+              "path": "../../../../tarav-pkg/CONSTITUTION.md"
+            }
+          },
+          "roles": [
+            "maintenance",
+            "dependency"
+          ]
+        }
+      ],
+      "output": [
+        "## Capture",
+        "",
+        "Capture is selective and Agent-operated. Preserve the User's corrections,",
+        "recollections, questions, and settled interpretations close to the relevant",
+        "text or in project notes. Use ordinary Tarav capture and annotation primitives,",
+        "including `Inlined.Chat.Reference` where useful; do not invent a Reading Club",
+        "specific annotation system. A checkpoint does not require turning every",
+        "message into prose: the Agent may add a settled interpretation, preserve an",
+        "open question, correct the transcript, add only a contextual reference, or",
+        "report that nothing new required durable capture.",
+        "",
+        "After `::capture` or `::annotate`, report compactly what was preserved and do",
+        "not move. Never advance as a side effect of capture unless the User sent",
+        "`::forward`. At `::stop`, report the retained project and approximate position",
+        "compactly.",
+        "",
+        "`::forward` is a compound command: it may briefly report what its annotation",
+        "checkpoint preserved, but its principal visible output is always the new",
+        "`Reading.Source.Frame`."
+      ]
+    }
+  ],
+  "shared": {
+    "maintenance": {
+      "kind": "prompt",
+      "lines": [
+        "Maintain this section using the linked context. Preserve its workflow scope and authorization boundaries."
+      ]
+    }
+  }
+}

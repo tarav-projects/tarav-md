@@ -14,11 +14,40 @@ unless `--auto` or `--autonomous` selects Autonomous operation.
 At the start of every run, render one compact banner naming the resolved
 implementation workflow, input, and Alignment.Mode.
 
+### Impact input
+
+`--impact` selects the actionable implementation delta from recent design in
+the current chat. A trailing value narrows that discussion; it is not an
+Impl.Req path or a general artifact selector. Load
+[`design-impact.md`](design-impact.md) and perform its Scope and Assessment
+steps against current code before starting the selected implementation phase.
+Reuse recent assessment evidence when still current; inspect changed surfaces
+before treating an earlier conclusion as the present delta.
+
+Carry the supported design, affected surfaces, required changes, and unresolved
+decisions into the selected workflow as direct input. Preserve distinctions
+between requirements and suggestions. Already aligned behavior requires no
+implementation work. If no actionable delta remains, report that and stop
+without creating empty implementation artifacts. If the design target itself
+is ambiguous, clarify it; do not invent implementation work.
+
+The selector does not add a phase, execution permission, or an approval gate:
+
+- `--impl --impact` and `--impl --design --impact` select Design.
+- `--impl --dev --impact` and `--impl --develop --impact` select Develop.
+- Explicit Execute with `--impact` receives direct input and follows its
+  ordinary Direct-Input Bootstrap.
+
+Keep the selected workflow's alignment, capture, and mutation boundaries.
+Impact input does not satisfy Review's requirement for an existing Impl.Req;
+ask for that artifact if Review was selected rather than synthesizing one.
+
 ## Routing
 
 Resolve exactly one workflow:
 
 1. An explicit selector or exact shortcut wins.
+   `--dev` is an alias of `--develop`, including after `--impl`.
 2. Bare `--impl` contributes only the implementation namespace.
 3. `--impl --capture` contributes the shared implementation-capture module; it
    does not independently select Design, Execute, or Develop.
