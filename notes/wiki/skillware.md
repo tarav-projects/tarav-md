@@ -175,3 +175,55 @@ capabilities to develop and learn from, rather than a requirement to build
 every mechanism at once.
 <!-- tarav.context 5626cd5f:f94c9f480b948078 -->
 <!-- tarav.context 5626cd5f:f78ed16c912e6afc -->
+
+## Skill packages as a specialization of SKW
+
+The proposed `tarav.skw.skills` workflow specializes SKW for skill surfaces:
+maintained sources, explicit dependencies, reproducible products, deployable
+primitives, and associated tooling and specialized checks. Skills are one
+application of SKW. General SKW should not need to understand skill layouts
+or consumer-context rules. This is a design direction, not a claim that this
+specialization has already been implemented.
+<!-- tarav.context 5626cd5f:0550e60d142ad855 -->
+<!-- tarav.context 5626cd5f:3870d143ee3c2367 -->
+
+### Developer and consumer dependencies
+
+Developer context dependencies and consumer context dependencies are distinct.
+Development can reference Diagram.Model, code, evidence, and other maintenance
+context. A developer-only reference can require the maintaining agent or SKW
+tooling to call Diagram; consumers should not need those calls by default.
+<!-- tarav.context 5626cd5f:2f40044eac0b8d15 -->
+<!-- tarav.context 5626cd5f:09fb7d69184d2961 -->
+
+By default, consumer context is available in skill form: bundled content or,
+preferably, references to other skills. Self-sufficiency does not mean loading
+all content at once. Routers and indexes support selective discovery and
+reading. Explicit code-based dependency tracking makes these development and
+consumption networks maintainable.
+<!-- tarav.context 5626cd5f:1abb691107cee248 -->
+<!-- tarav.context 5626cd5f:09fb7d69184d2961 -->
+
+### Md.Model as compiled model content
+
+The discussion began by revisiting the old Index's named blocks, attached
+content, and Kernel writing as a convenient Markdown documentation surface
+for skill dependencies. It then established the flow
+`Diagram.Model → Md.Model → Other.Surfaces`.
+<!-- tarav.context 5626cd5f:2ab6c03a7cfadb74 -->
+<!-- tarav.context 5626cd5f:1ddba3d5fa3db1d9 -->
+
+Md.Model is not a modeling or additional generation surface. It deploys the
+Diagram.Model data needed by skills. Modeling and changes happen in
+Diagram.Model; deployment reproduces the Markdown. This corrects the earlier
+suggestion of independently authored Markdown models for this workflow.
+<!-- tarav.context 5626cd5f:a1dfe42c3b2625b1 -->
+<!-- tarav.context 5626cd5f:d3e5c74dd2deec92 -->
+
+Compiled Markdown also serves findability, including when Diagram is
+available. The dependency split lets consumer-facing skills expose model
+content without requiring Diagram calls by default, while maintainers retain
+their development dependencies on Diagram.
+<!-- tarav.context 5626cd5f:d3e5c74dd2deec92 -->
+<!-- tarav.context 5626cd5f:2f40044eac0b8d15 -->
+<!-- tarav.context 5626cd5f:1abb691107cee248 -->
