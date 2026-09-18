@@ -55,6 +55,88 @@ that the generated content is wrong. POIs carry the reasons the harness
 raised them.
 <!-- tarav.context 5626cd5f:f78ed16c912e6afc -->
 
+## Independent MVP and overlapping workflows
+
+The MVP should be mostly independent of the old Index/Diagram integration and
+initially omit Tarav contextualization integration. Its starting capabilities
+are dependencies between generation blocks, typed prompt arguments, and basic
+linting.
+<!-- tarav.context 5626cd5f:f4e56e7c96aabb37 -->
+
+A reference-based annotation workflow can independently connect existing
+fragments in a dependency graph, while Skillware owns template and expansion
+semantics. Similar capabilities do not require one universal dependency
+framework. Duplicated mechanics are acceptable initially; common mechanics
+can be extracted and migrated explicitly after practical use demonstrates
+what is shared.
+<!-- tarav.context 5626cd5f:95b365a38206c463 -->
+<!-- tarav.context 5626cd5f:2a8ea7f7f375f1e5 -->
+<!-- tarav.context 5626cd5f:63d3a76df5ff9266 -->
+
+## Document source, derived product, and annotations
+
+The later document-source design makes the recipe a typed Tarav Record and
+the generation event a separate typed annotation owned by Tarav/Skillware.
+The product remains an output artifact. Generation sources and bookkeeping
+belong under the project's `.skw/` by default, leaving the product surface
+uncluttered; colocating them with products remains possible.
+<!-- tarav.context 5626cd5f:7a43c2aba753e9dd -->
+<!-- tarav.context 5626cd5f:61eca9f7618260a1 -->
+<!-- tarav.context 5626cd5f:b9d601861ae47370 -->
+
+Sources are named for their output by default: `explanation.skw.json` contains
+everything that generates `explanation.md`. The MVP manages whole documents,
+not partially adopted fragments. Literal blocks contain constant text copied
+into the product; generation blocks contain the parts supplied by an agent.
+<!-- tarav.context 5626cd5f:7d88260becf826ad -->
+<!-- tarav.context 5626cd5f:27e992ecd3a7deda -->
+
+Generated block content lives inside `explanation.skw.json` too. Generation
+fills or revises the generation blocks' output fields; the compiler produces
+the entire `explanation.md` from that source. The product is fully derived.
+Compilation is deterministic assembly of literals and retained generated
+content, with checks. A linter evaluates the `.skw.json` source.
+<!-- tarav.context 5626cd5f:4382a3a0bdfde82d -->
+<!-- tarav.context 5626cd5f:ae2333b650f32879 -->
+
+A lock tracks recipe and output versions to detect stale editions.
+Generation annotations and the lock track provenance and staleness around
+the source. Exact schemas and lock-update mechanics remain to be specified.
+<!-- tarav.context 5626cd5f:7d88260becf826ad -->
+<!-- tarav.context 5626cd5f:ae2333b650f32879 -->
+
+CLI operations can replace preparation scripts and expose an expanded prompt
+directly to an agent without materializing `prompt.txt`. These transient
+interfaces do not require extra files in the product surface.
+<!-- tarav.context 5626cd5f:e7307d37b67aad58 -->
+<!-- tarav.context 5626cd5f:3b1b1b8c07f271e4 -->
+
+JSON and JSONL were considered for source representation. Text can be stored
+as vectors of lines in either format; escaped multiline strings are not
+required. A first configuration record was acceptable for the JSONL option,
+but append-heavy use was not assumed. The subsequent design discussion uses
+`.skw.json`; detailed serialization and newline conventions are not settled.
+<!-- tarav.context 5626cd5f:f09dda8ca904914e -->
+<!-- tarav.context 5626cd5f:d2dbeeec681a8f56 -->
+<!-- tarav.context 5626cd5f:8300752a7c8ab271 -->
+<!-- tarav.context 5626cd5f:4382a3a0bdfde82d -->
+
+## Edit, lint, compile
+
+Skillware is the source code of generation. Agents see both the instructions
+and the current generated content in the source, so existing output becomes
+context for revision. Work reduces to editing generation source and running
+lint/compile, following a software-like feedback loop.
+<!-- tarav.context 5626cd5f:ae2333b650f32879 -->
+<!-- tarav.context 5626cd5f:1284390f92e1be09 -->
+
+Implementation independence does not isolate Skillware from Tarav: the
+generation source is a Tarav Record and can participate in semantic assertion
+scoring and other Tarav capabilities. This provides a connection without
+requiring contextualization integration in the initial MVP.
+<!-- tarav.context 5626cd5f:9b805c7aa7d9d2bb -->
+<!-- tarav.context 5626cd5f:f4e56e7c96aabb37 -->
+
 ## Computing with agents
 
 Skillware gives a concrete purpose to
