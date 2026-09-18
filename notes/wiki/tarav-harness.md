@@ -138,3 +138,20 @@ context discovery, actions, durable state, and evaluation. Scripts, CLI
 commands, and skills are consumers of the library and should invoke the same
 workflow operations.
 <!-- tarav.context 5626cd5f:14c05322a7c285a2 -->
+
+## Agent-directed context navigation
+
+Where context efficiency matters, Tarav should remain mechanically simple and
+avoid flooding an agent with available material. It supplies navigation tools
+and hints; the agent decides what to expand, taking account of what it already
+has in context and need not reload.
+<!-- tarav.context 5626cd5f:1e6e002c3e5aea1d -->
+<!-- tarav.context 5626cd5f:04b91894a22b75d0 -->
+
+The filesystem is the working analogy: listing, head/tail previews, and full
+reads are basic primitives, with expansion selected by the agent. Expose
+resolved full paths so the agent can also inspect material with its own tools.
+Tarav enables navigation rather than choosing the agent's loading sequence.
+<!-- tarav.context 5626cd5f:04b91894a22b75d0 -->
+<!-- tarav.context 5626cd5f:6be996c821a77156 -->
+

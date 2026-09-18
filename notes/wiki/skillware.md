@@ -4,6 +4,24 @@
 5626cd5f = codex:01a0af61-72e2-7bd2-94a3-26529d6914ec @5626cd5f7db74c4f2e3838250516b5e300cc9387ac254eb65a0816a5f30555a1
 -->
 
+## Selective context expansion
+
+Discussion of the large `skw document context` output established that agents
+should select which declared context to expand. Filesystem-like listing,
+head/tail previews, and full reads let the agent avoid reloading material
+already in its working context. Resolved full paths should be exposed so
+ordinary agent tools can inspect the targets as well.
+<!-- tarav.context 5626cd5f:e780d142e0d5e700 -->
+<!-- tarav.context 5626cd5f:04b91894a22b75d0 -->
+<!-- tarav.context 5626cd5f:6be996c821a77156 -->
+
+This is an instance of the broader
+[agent-directed navigation principle](tarav-harness.md): in contexts where
+efficiency matters, Tarav supplies simple navigation primitives and hints
+instead of flooding the agent. These are design requirements, not a claim that
+the context CLI already implements selective expansion.
+<!-- tarav.context 5626cd5f:1e6e002c3e5aea1d -->
+
 ## Generation as source code
 
 Skillware (`skw`) is a proposed generation programming language: reusable,
