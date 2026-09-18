@@ -227,3 +227,63 @@ their development dependencies on Diagram.
 <!-- tarav.context 5626cd5f:d3e5c74dd2deec92 -->
 <!-- tarav.context 5626cd5f:2f40044eac0b8d15 -->
 <!-- tarav.context 5626cd5f:1abb691107cee248 -->
+
+## Static consumer-context contracts for SKW Skills
+
+The published `[PR]` notation exposed a consumer-context problem: a reader
+needs the relevant context to interpret the surface. This motivates modeling
+declared and reachable consumer context, analogous to checking whether a
+software dependency is in scope.
+<!-- tarav.context 5626cd5f:4c80beadc201cad7 -->
+<!-- tarav.context 5626cd5f:89af931a07d1ccc8 -->
+
+This is static analysis of declared loading paths, not tracking an actual
+agent run. It belongs to `skw.skills`, whose surfaces instruct agents, rather
+than to every general SKW-annotated surface. Each consumer block should belong
+to at least one loading path.
+<!-- tarav.context 5626cd5f:473671f8ebc102e8 -->
+<!-- tarav.context 5626cd5f:118b493148120bd3 -->
+
+Build dependencies ask whether something the skill was developed from has
+changed. Consumer-context analysis asks whether each declared loading path
+supplies what its instructions require. These are complementary checks.
+<!-- tarav.context 5626cd5f:388502eb9f04853d -->
+
+### Blocks, delivery requirements, and loading structure
+
+The identities in this mechanism are SKW blocks, not Index or Diagram.Model
+blocks. Loading a block adds that block to simulated context. Code does not
+model what an agent learns or infer meanings supplied by the block; that is
+the agent's job. The earlier proposed semantic `provides` vocabulary is not
+part of this design.
+<!-- tarav.context 5626cd5f:4d0ec63225c7ff1a -->
+<!-- tarav.context 5626cd5f:cd745282a6894c8a -->
+
+A block declares what its loading paths must supply, independently of who
+uses the block. A requirement can request a reference, inlined content, or
+leave the delivery form unspecified. A reachable reference can therefore
+satisfy a requirement when that delivery form is allowed; not every
+requirement demands previously inlined content.
+<!-- tarav.context 5626cd5f:eb85b0f1aef3b0e6 -->
+
+Blocks explicitly declare outward links and inline inclusions. A skill
+reference is an annotated and generated `skw.skills` primitive. Loading paths
+are built by attaching blocks to parent blocks; the default parent is the
+predecessor in the file. Paths within a skill share an entry root, defaulting
+to `SKILL.md`. These declarations live as Tarav-compatible Records in `.skw/`.
+External systems can integrate with this structure, but SKW owns its mechanics.
+<!-- tarav.context 5626cd5f:cd745282a6894c8a -->
+
+### Declared graph and conformance checks
+
+Dependency and loading mechanics operate on declared annotation data.
+Compilation generates references from those declarations. Primitive-specific
+checks may parse output to check conformance, but output scraping does not
+establish or reconstruct the dependency and loading graph.
+<!-- tarav.context 5626cd5f:8ffda9a413e0538c -->
+
+The intended checks surface unreachable blocks, missing required context on a
+loading path, and path-dependent coverage where only some incoming paths
+satisfy the requirements. These are design requirements, not a claim that the
+current package file-link checker implements this static loading model.
+<!-- tarav.context 5626cd5f:493a067c7b062ce8 -->
