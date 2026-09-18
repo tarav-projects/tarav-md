@@ -4,6 +4,21 @@
 5626cd5f = codex:01a0af61-72e2-7bd2-94a3-26529d6914ec @5626cd5f7db74c4f2e3838250516b5e300cc9387ac254eb65a0816a5f30555a1
 -->
 
+## Type dispatch and class responsibility
+
+Tarav's declared record type maps to a registered Python class and integrates
+with ordinary Python class relationships. Interpretation belongs to that
+class. Changing a record's type to an incompatible class may produce an error,
+for example because required fields do not match. Each class performs its own
+due diligence; the framework need not enforce universal correctness before
+allowing an object to be used.
+<!-- tarav.context 5626cd5f:1d97bbe323b7974f -->
+
+The proposed SKW depot specialization applies this same mechanism rather than
+introducing a second type loader; see [typed SKW depots](skillware.md#typed-skw-depots-and-skill-objects).
+<!-- tarav.context 5626cd5f:15c442160e6aea5b -->
+<!-- tarav.context 5626cd5f:17db8b4a84291879 -->
+
 ## Lightweight records and distributed participation
 
 Tarav is a framework library heavily based on lightweight JSON Records.

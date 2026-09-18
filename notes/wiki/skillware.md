@@ -4,6 +4,31 @@
 5626cd5f = codex:01a0af61-72e2-7bd2-94a3-26529d6914ec @5626cd5f7db74c4f2e3838250516b5e300cc9387ac254eb65a0816a5f30555a1
 -->
 
+## Typed SKW depots and skill objects
+
+A skill should have an actionable Python object. The proposed common entry
+point is `.skw/main.json`: its registered type identifies the concrete object,
+rather than a `skill.json` filename making every SKW depot implicitly a skill.
+This updates the earlier skill-specific entry-point proposal; it records the
+design direction, not a claim that the migration is implemented.
+<!-- tarav.context 5626cd5f:ef95deade55de60a -->
+<!-- tarav.context 5626cd5f:3a2edf09bb70ae81 -->
+
+Loading should unify with ordinary Tarav directory-record loading instead of
+maintaining a separate SKW type-dispatch mechanism. The proposed relationship
+is `DirectoryRecord → SkwDepot → SkwSkill`; `SkwDepot` is a working name.
+The depot represents `.skw/`, while the skill can expose the enclosing
+directory as its product root. Ordinary Python subclassing carries the
+specialization, and the registered class should own the object's behavior.
+<!-- tarav.context 5626cd5f:15c442160e6aea5b -->
+<!-- tarav.context 5626cd5f:17db8b4a84291879 -->
+
+The declared type maps to a Python class. Changing that declaration to an
+incompatible class may fail because the data does not fit its expectations;
+each class owns its due diligence. Loading need not enforce universal semantic
+correctness. See [record dispatch and class responsibility](record-framework.md#type-dispatch-and-class-responsibility).
+<!-- tarav.context 5626cd5f:1d97bbe323b7974f -->
+
 ## Selective context expansion
 
 Discussion of the large `skw document context` output established that agents
