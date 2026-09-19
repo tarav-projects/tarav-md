@@ -4,6 +4,59 @@
 5626cd5f = codex:01a0af61-72e2-7bd2-94a3-26529d6914ec @5626cd5f7db74c4f2e3838250516b5e300cc9387ac254eb65a0816a5f30555a1
 -->
 
+## RecordInterface and representation inheritance
+
+Tarav's Python framework models behavior through classes, while its connected
+data is also first-class. Explicit class identity supplies the semantic context
+for interpreting an object's JSON representation. `RecordInterface` makes the
+representation's structure explicit: required fields, field types, and other
+structural constraints belong to an inspectable contract.
+<!-- tarav.context 5626cd5f:c9b46a4aa12257a1 -->
+<!-- tarav.context 5626cd5f:d58c0b38af14b7ef -->
+
+`RecordInterface` is basic behavior on `TaravObject` itself. Every subclass
+therefore has one through inheritance; it is not an optional workflow feature.
+<!-- tarav.context 5626cd5f:fb21154aaefed172 -->
+
+The discussion selected Pydantic as the machinery for Python field
+declarations, validation, and JSON Schema export. The purpose is to express
+the data contract alongside the behavioral class, using existing tooling.
+Tarav still owns the semantic class identity and its relationship to that
+interface. The User requested implementation of this framework.
+<!-- tarav.context 5626cd5f:c9b46a4aa12257a1 -->
+<!-- tarav.context 5626cd5f:80f64e45646a0926 -->
+
+Class inheritance and representation inheritance are related but distinct.
+A class subtype can preserve or extend its parent's representation, or declare
+an independent representation while remaining responsible for its inherited
+behavior. Tarav representation subtyping requires class inheritance as well
+as interface inheritance; interface ancestry alone does not establish the
+semantic class relationship.
+<!-- tarav.context 5626cd5f:4ed8a1c7102e0cbf -->
+
+The interface can be declared as a nested Python class. An extension uses
+`class RecordInterface(A.RecordInterface)` inside `class B(A)`. An independent
+interface uses different ancestry. No `independent_representation` flag is
+needed: the declared interface ancestry already exposes the choice.
+<!-- tarav.context 5626cd5f:8dd71bf1b82e6fe4 -->
+<!-- tarav.context 5626cd5f:4ed8a1c7102e0cbf -->
+
+`B.is_record_subtype_of(A)` reports the explicit ancestor relationship.
+The discussion's companion method, `B.preserves_parent_record_interface()`,
+checks all direct Tarav parents. These are declared-inheritance queries, not
+proofs that arbitrary field overrides or method implementations are compatible.
+<!-- tarav.context 5626cd5f:192249e29a26a6c5 -->
+<!-- tarav.context 5626cd5f:75df311536bb1a77 -->
+
+The final default retains ordinary Python inheritance: without a new
+declaration, `B.RecordInterface` is the same class as `A.RecordInterface`.
+Automatically creating an empty interface subclass for every Tarav class was
+considered; retaining the inherited interface was preferred for simplicity.
+An explicit interface subclass remains available when a distinct or extended
+contract is wanted.
+<!-- tarav.context 5626cd5f:2febdf8649ce6d43 -->
+<!-- tarav.context 5626cd5f:7e1bb01a91d95544 -->
+
 ## Type dispatch and class responsibility
 
 Tarav's declared record type maps to a registered Python class and integrates
