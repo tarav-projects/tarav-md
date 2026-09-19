@@ -1,0 +1,45 @@
+{
+  "type": "Tarav.Skillware.Document",
+  "schema_version": 1,
+  "output": "references/constitutional-theory.md",
+  "blocks": [
+    {
+      "id": "content",
+      "kind": "literal",
+      "lines": [
+        "# Constitutional Theory",
+        "",
+        "A constitution is a system's central alignment surface. It states fundamental principles and boundaries without attempting to contain all of the system's design truth.",
+        "",
+        "Its authority comes from membership: a surface that claims to belong to the governed system also claims responsibility for complying with its constitution. A constitution does not require special enforcement machinery; it may be an ordinary document whose constitutional role is recognized by the system around it.",
+        "",
+        "## Abstraction and incompleteness",
+        "",
+        "A constitution is general and intentionally incomplete. It constrains the space of valid designs without selecting one complete design.",
+        "",
+        "Different and even mutually incompatible designs or implementations may all be constitutional. Their differences do not matter constitutionally unless they cross a principle or boundary stated by the constitution.",
+        "",
+        "A constitution is amendable. When a design and the constitution conflict, alignment may require changing the design, amending the constitution, or changing both. Amendability does not place the constitution below the designs it governs; it makes alignment bidirectional.",
+        "",
+        "## Embedded language",
+        "",
+        "A constitution belongs to the system it governs. It is not required to be detached, self-contained, or closed over its own vocabulary.",
+        "",
+        "It may speak about subjects it does not define. For example:",
+        "",
+        "```md",
+        "The main responsibilities of `System.Archive` are:",
+        "",
+        "- Stable storage.",
+        "- Stable reference.",
+        "```",
+        "",
+        "The constitution need not define `System.Archive` for this statement to constrain a surface that identifies itself as that constitutional subject.",
+        "",
+        "Applicability follows identity and context, not the mere occurrence of a name. Another surface may use the same name while explicitly disclaiming identity with the subject addressed by the constitution.",
+        "",
+        "Readers are responsible for resolving constitutional references through the constitution, the surrounding system, contextual meaning, and claims of identity. A constitution may depend on interpretation without reproducing the entire system inside itself."
+      ]
+    }
+  ]
+}

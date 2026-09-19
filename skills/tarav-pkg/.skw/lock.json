@@ -1,0 +1,76 @@
+{
+  "type": "Tarav.Skillware.Lock",
+  "schema_version": 1,
+  "documents": {
+    ".skw/src/CONSTITUTION.skw.json": {
+      "blocks": {},
+      "source_hash": "97843bd85c06fe9f34a21df4d306566a54686b299ee6e96269e968f98e81635f",
+      "product_hash": "6b3cdb4de64775176f2c3deba42be3904a1669b7e1e071fc99b26f09d7453e0c"
+    },
+    ".skw/src/SKILL.skw.json": {
+      "blocks": {},
+      "source_hash": "2545f160c4e84a9bf972094ef2ab45df96b3ff4ce4289611deb1a618bffa9968",
+      "product_hash": "33a25268ff47c1aa52771ec53b063c7eede5d5895b0c73f57a99f3cf387ddb43"
+    },
+    ".skw/src/USAGE-HISTORIES.skw.json": {
+      "blocks": {},
+      "source_hash": "6089f05e6da354f13c770d21332a61464772893533b24a2ff27e5f528f04c412",
+      "product_hash": "0444f0c515b4bcd4337317858099bc102669483f34b4f464de6a0bd447e3567d"
+    },
+    ".skw/src/references/attic.skw.json": {
+      "blocks": {},
+      "source_hash": "0f99faf3e95e8bb7e2a86667dab913c857fd3904ff2a595209f34f43272a005c",
+      "product_hash": "316435fe24add11b00159da328d9a64b0985e4a4bef90161faa50e15789f8f15"
+    },
+    ".skw/src/references/capture.skw.json": {
+      "blocks": {},
+      "source_hash": "334b287051e3c643e302cb0ed6d552fe0acf03519d6a4ec2c1d381bb8f034bd7",
+      "product_hash": "5576680e9b0d2120af27460e00aea368f29e530c56baf3844e978168d90578ff"
+    },
+    ".skw/src/references/constitutional-theory.skw.json": {
+      "blocks": {},
+      "source_hash": "6bbdb9a75425090c8d15ee259a717e1bc54bcfd60efcec780f50628e4d72200f",
+      "product_hash": "02acf58adc05703ae716fba4de0c356394399a18a84ef4801ce9e02b8b36eb79"
+    },
+    ".skw/src/references/context-poi-and-impact-map-design-digest.skw.json": {
+      "blocks": {},
+      "source_hash": "99419b82bbdb3ec1ecea7e587cf2225f56fb2e2ddbc65d7349d963cd895c351a",
+      "product_hash": "b3a5160f1e024f9f19b359b52d6b21e41d3b2c6738a84f196d782af1aa00dd00"
+    },
+    ".skw/src/references/gates-and-deferred-review-design-digest.skw.json": {
+      "blocks": {},
+      "source_hash": "6142b12b056825c46c69c2e575076a40386422633d15cf61b8bff517ba2ba747",
+      "product_hash": "42c27dd32280b3e96ba3011fc19e7a975e0f670fb09f94df79cd36310253900f"
+    },
+    ".skw/src/references/legacy-skill-mine.skw.json": {
+      "blocks": {},
+      "source_hash": "d912939feb1a0d2f17a9b82afc04e472e12eaee4a65067602f2b939584c6244f",
+      "product_hash": "c5d9c58a4d1869f6340349a4a35d226bababce06bc811c261c951e3ac03a4f82"
+    },
+    ".skw/src/references/review.skw.json": {
+      "blocks": {},
+      "source_hash": "ae03e1208bf0ce9c565f1acfbebf5be4b9468de5470e895efb6afa059af0db92",
+      "product_hash": "c4968419c5831d0fdd1c5e4f1da5cddb20a61c2d438ce6a7c2cc3b5545679c5f"
+    },
+    ".skw/src/tarav-archive.skw.json": {
+      "blocks": {},
+      "source_hash": "cb733deae4f694d0b3476b0a3cd3eb57b9f88c0a49f3595be301b420ecbe3126",
+      "product_hash": "d1e68aa1ff66ef67f4a138ee328070d728c3038690fc3d9d34b68a02508bd172"
+    },
+    ".skw/src/tarav-bloberia.skw.json": {
+      "blocks": {},
+      "source_hash": "a00074ca6aba88cc7c43952fb9a410d2ac4d8c66d7cea4e19e23bd973bfb0a2a",
+      "product_hash": "019cd742527ff0784d61c93f8dd896786032c11dcee445779b445fa52a140823"
+    },
+    ".skw/src/tarav-diagram.skw.json": {
+      "blocks": {},
+      "source_hash": "8efbc4aaffe14738dc3599175abb309948b902cba7dca33e2f402c7afeea190f",
+      "product_hash": "257e17b56c964859622c2b840866104b16fac1cc6babbdd7a4da56f93d786304"
+    },
+    ".skw/src/tarav-semantic-calculus.skw.json": {
+      "blocks": {},
+      "source_hash": "04d6d031779e1c5a66946860923581507d9d63142a5df84f36a5e39c5915fe09",
+      "product_hash": "2606b226deb66b3bed1b894b683375749e42cc0c8abe3a640ff29d9106a4e3d6"
+    }
+  }
+}

@@ -1,5 +1,23 @@
 # Skillware development
 
+Navigate without expanding context targets:
+
+```sh
+tarav skw skills ls --limit 5
+tarav skw skills ls --source SKILL.skw.json --limit 5
+tarav skw skills read --source SKILL.skw.json --block routing
+```
+
+Listings return `next_offset`; pass it as `--offset` for the next page.
+`read` returns only the selected retained block and its source/product paths.
+Use the existing document context commands below to follow its references.
+
+Package checks emit bounded POI reports with class source paths. Use
+`tarav skw skills poi --id <finding-id>` to inspect evidence, then decide
+whether the current workflow should address it. Blessing is an explicit
+recorded action, permitted only by the finding's class, stored under
+`.skw/blessings/`. It does not remove the finding or change a check into a pass.
+
 `.skw/loading.json` owns the declared consumer loading model. Nodes reference
 source blocks; most within-file parents default to the predecessor. Cross-file
 parents and consumer requirements are explicit. Keep the first metadata block
@@ -18,7 +36,8 @@ existing links to `tarav-pkg` remain unannotated external context and surface
 The existing external package dependency remains declared. Adding cross-skill
 block bindings requires an explicit modeling step, not output-link inference.
 
-`.skw/skill.json` declares the skill package, its source/product files, and
+`.skw/main.json` is the typed directory-record entry declaring the skill,
+its source/product files, and
 developer/consumer dependencies. From this directory, use:
 
 ```sh

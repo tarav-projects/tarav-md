@@ -1,0 +1,38 @@
+{
+  "type": "Tarav.Skillware.SkillPackage",
+  "schema_version": 1,
+  "entrypoint": "SKILL.md",
+  "sources": [
+    ".skw/src/CONSTITUTION.skw.json",
+    ".skw/src/SKILL.skw.json",
+    ".skw/src/USAGE-HISTORIES.skw.json",
+    ".skw/src/references/attic.skw.json",
+    ".skw/src/references/capture.skw.json",
+    ".skw/src/references/constitutional-theory.skw.json",
+    ".skw/src/references/context-poi-and-impact-map-design-digest.skw.json",
+    ".skw/src/references/gates-and-deferred-review-design-digest.skw.json",
+    ".skw/src/references/legacy-skill-mine.skw.json",
+    ".skw/src/references/review.skw.json",
+    ".skw/src/tarav-archive.skw.json",
+    ".skw/src/tarav-bloberia.skw.json",
+    ".skw/src/tarav-diagram.skw.json",
+    ".skw/src/tarav-semantic-calculus.skw.json"
+  ],
+  "files": [
+    "CONSTITUTION.md",
+    "SKILL.md",
+    "USAGE-HISTORIES.md",
+    "references/attic.md",
+    "references/capture.md",
+    "references/constitutional-theory.md",
+    "references/context-poi-and-impact-map-design-digest.md",
+    "references/gates-and-deferred-review-design-digest.md",
+    "references/legacy-skill-mine.md",
+    "references/review.md",
+    "tarav-archive.md",
+    "tarav-bloberia.md",
+    "tarav-diagram.md",
+    "tarav-semantic-calculus.md"
+  ],
+  "dependencies": []
+}
