@@ -2,6 +2,7 @@
 
 <!-- tarav.sessions
 5626cd5f = codex:01a0af61-72e2-7bd2-94a3-26529d6914ec @5626cd5f7db74c4f2e3838250516b5e300cc9387ac254eb65a0816a5f30555a1
+1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
 -->
 
 ## RecordInterface and representation inheritance
@@ -41,12 +42,22 @@ needed: the declared interface ancestry already exposes the choice.
 <!-- tarav.context 5626cd5f:8dd71bf1b82e6fe4 -->
 <!-- tarav.context 5626cd5f:4ed8a1c7102e0cbf -->
 
-`B.is_record_subtype_of(A)` reports the explicit ancestor relationship.
-The discussion's companion method, `B.preserves_parent_record_interface()`,
-checks all direct Tarav parents. These are declared-inheritance queries, not
-proofs that arbitrary field overrides or method implementations are compatible.
+The predicate API distinguishes the two inheritance dimensions and their
+combination. `issubclass(B, A)` checks behavioral inheritance;
+`issubrecord(B, A)` checks only whether `B.RecordInterface` inherits
+`A.RecordInterface`; and `isrecordsubclass(B, A)` requires both relationships.
+`B.preserves_parent_record_interface()` remains the convenience query for all
+direct Tarav parents. These are declared-inheritance queries, not proofs that
+arbitrary field overrides or method implementations are compatible.
 <!-- tarav.context 5626cd5f:192249e29a26a6c5 -->
 <!-- tarav.context 5626cd5f:75df311536bb1a77 -->
+<!-- tarav.context 1f561f5d:1994cc06f52ed4bb -->
+<!-- tarav.context 1f561f5d:c5072166166ba7b1 -->
+
+The earlier `B.is_record_subtype_of(A)` spelling is replaced outright by the
+predicate API. Tarav does not retain a compatibility alias or deprecation
+layer: current and near-future development explicitly disallows legacy code.
+<!-- tarav.context 1f561f5d:c5072166166ba7b1 -->
 
 The final default retains ordinary Python inheritance: without a new
 declaration, `B.RecordInterface` is the same class as `A.RecordInterface`.
