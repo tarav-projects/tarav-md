@@ -357,3 +357,56 @@ parse-and-serialize support on `Ship`: JSON string → `Ship` → identical JSON
 string. Live `Ship` objects remain invalid inside the raw JSON dictionary.
 <!-- tarav.breadcrumb a9c9ccdd14b0be4ca55ecfb4565c8109096ec4de066074f52b19e2fcdee39bbc -->
 <!-- tarav.breadcrumb 8eada3c320a324bcb6cc8db81e90835fcc3d25d8b929c10d3a03220c030e9a12 -->
+
+## The Diagram as an emergent graph
+
+The Diagram is Tarav's semantic glue: the graph emerging from Records, their
+registered Types and classes, Workflows, References, Ships, Entities, and the
+relationships declared by individual workflows. It is not limited to objects
+retained by a dedicated `tarav.diagram` package. A Record occurrence being
+typed by a registered class is already a Diagram relationship.
+<!-- tarav.breadcrumb 2e726d799ee679547b9f88dd0122adbf3629ef22692b29f898b213b0755397dd -->
+
+Tarav Records are lightweight, text-based statements primarily consumed by
+Tarav. Tarav owns their schemas and executable semantics while keeping their
+common requirements small. Native Artifacts remain separate: workflows may
+read or mutate Markdown, code, repositories, chat sessions, and other surfaces
+whose storage and lifecycle Tarav does not control. References bridge these
+surfaces and may also point to Records, Entities, relationships, or any other
+resolvable target inside The Diagram.
+<!-- tarav.breadcrumb 12c3d78dcd80d5753b5e6dcba712c80e59bad2cd171b00c73d04b0141fc4962e -->
+<!-- tarav.breadcrumb 26b610a7b294b25298754cf27693992a2eeb3748f43c034bfe7fbaa75720346c -->
+
+Every meaningful Entity should have a representative Record in The Diagram.
+A native `TaravEntity` supplies that representation directly; an external
+object or Artifact can be represented by an Entity Record that references it.
+Workflows naturally operate on both surfaces, maintaining native material and
+adding the Records that explain, connect, and contextualize it. Breadcrumbs
+are one example of that two-surface operation.
+<!-- tarav.breadcrumb 20ac683ab349eb6a8cb663eafe2c51db16995ebf8135560ad7874011846721a5 -->
+
+## Workflow-centered tarav-py architecture - v001
+
+A Workflow is a named bundle of functionality analogous to an application.
+Workflows may overlap and consume one another's public Types while retaining
+ownership of their own vocabulary and behavior. Exposing Records and defining
+relationships are common capabilities, not the complete definition of a
+Workflow.
+<!-- tarav.breadcrumb 72ed8af50216a16dd83c4bbdbcb623f9e4a9b4d383b3c2913ab55110163fa007 -->
+
+The minimal package split places Tarav's common language and mechanics in
+`tarav.kernel`: Records, identity, References, Types, the Workflow base and
+registry, and the common space-navigation contract. Named applications live
+under `tarav.workflows`; `tarav.runtime` selects and composes them; CLI and
+daemon are consumers of the public Python library. Context belongs among the
+built-in Workflows rather than forming its own architectural layer.
+<!-- tarav.breadcrumb dadb0bb2ca81d85491fd78a4d7a5c89f16d7a639f7b05d6db3faef4b3a192218 -->
+<!-- tarav.breadcrumb eba27ce53dd22756218ee1cf4269db4fbbaacb2f091be2f1bfc007778fe016c1 -->
+
+`TaravSpace` is the conceptual space produced by registered Workflows, not a
+required loaded object. Each Workflow owns how its Records are enumerated and
+loaded and may compose reusable general storage mechanics. The Python library
+is Tarav's primary interface; agent-written code may query and manipulate it
+directly, while CLI and daemon adapt the same library operations.
+<!-- tarav.breadcrumb 3598788c9a3ae8a5f609dd2109ed03cab78f89bb0ac0f32d7bf9d55ed3a4e553 -->
+<!-- tarav.breadcrumb d44022ba29f67ee89b87373c289a953a42f9aa2640f975176a2b5ac41ea6a347 -->

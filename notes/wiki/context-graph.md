@@ -64,3 +64,25 @@ Pydantic round trip.
 <!-- tarav.breadcrumb 3220134b43795b2c7742526c8dad0513219e1f295e1fc50afe5f2295c49949ae -->
 <!-- tarav.breadcrumb 77ceef64c159b08f2cb9c6c97ed0205fea09dbd8c99ca07bc2e6f5773159d967 -->
 <!-- tarav.breadcrumb b9d2cc0f78e13ea01d916be4847b75dcfde7ef059c55fe0e2a10c5643afcbc15 -->
+
+## Context as one graph-building workflow - v001
+
+The broader Tarav graph is not formed by an Entity subsystem or Context alone.
+It emerges from the typed relationships contributed by multiple independent
+Workflows. The kernel supplies identity, Record, Reference, registration, and
+navigation mechanics without owning the vocabulary of those relationships.
+<!-- tarav.breadcrumb d07452c4d6a0313d8d76e04352b0866530e49776817051f21e5007cac34683b5 -->
+
+Context is one built-in Workflow within that ecology. It supplies a
+filesystem-shaped organization around a Record or Entity: literal Records can
+live in the context, References can point elsewhere, and Entity links can lead
+to other stable subjects. Agents choose which paths and links to follow, while
+the contributing Workflows retain ownership of the attached Records' meaning.
+<!-- tarav.breadcrumb e4795a494347a082c53afbd8d4d63803a6a7f77d56630fe56f07968ed4687f77 -->
+
+In the minimal `tarav-py` architecture, Context therefore belongs with the
+named Workflows. Generic Record, Workflow, registry, identity, Reference, and
+space-navigation mechanics belong in the kernel. This preserves Context as a
+central reusable workflow without turning it into Tarav's central semantic
+authority.
+<!-- tarav.breadcrumb c624689f980ba649054c8fb051e44207444b951f7aa30a92d09bd1d8b8d12ba2 -->
