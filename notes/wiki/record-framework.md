@@ -410,3 +410,107 @@ is Tarav's primary interface; agent-written code may query and manipulate it
 directly, while CLI and daemon adapt the same library operations.
 <!-- tarav.breadcrumb 3598788c9a3ae8a5f609dd2109ed03cab78f89bb0ac0f32d7bf9d55ed3a4e553 -->
 <!-- tarav.breadcrumb d44022ba29f67ee89b87373c289a953a42f9aa2640f975176a2b5ac41ea6a347 -->
+
+## TaravObject as the executable ontology unit - v002
+
+Tarav is an executable ontology made from coupled code and data. Its most
+general unit is `TaravObject`, including objects that exist only at runtime.
+Every `TaravObject` has a Record representation and default Record mechanics,
+but persistence is optional. A Record is deliberately partial; the complete
+meaning of the object comes from the Record together with its Python class.
+<!-- tarav.breadcrumb bfc59a6bcfb2a688e01ce4c0d08bd35287b864d1fe35b7268018043b9e6e0e20 -->
+<!-- tarav.breadcrumb ba58ac93d7e70c5e8cfd96c68a21ac8172248886b20e832cc59c953286d23bf5 -->
+
+The Diagram emerges from these objects, their executable Types, and the
+relationships contributed by code and Records. It is more expressive than a
+data-only graph or a code-only object system. The participation rule is:
+
+> A subject belongs to the Diagram when Tarav can represent it as a
+> `TaravObject`.
+
+<!-- tarav.breadcrumb c41b1da88bf7ffdb0ec2167003c26b133f6be6fe48bb317bf37edf0120708c2b -->
+<!-- tarav.breadcrumb 019c05ad9e0ea4931d7b71324a1c0eb81f3a28d268037c690150a3dd3964584f -->
+
+The participation hierarchy separates what exists at class level from what
+may be instantiated as a Tarav object:
+
+```python
+class TaravType:
+    type_name: ClassVar[str]
+    type_ship: ClassVar[TypeShip]
+    workflow: ClassVar[WorkflowShip]
+
+    @classmethod
+    def entity(cls) -> TaravClass: ...
+
+    @classmethod
+    def class_context(cls, builder: ContextBuilder) -> None: ...
+
+
+class TaravObject(TaravType):
+    class RecordInterface: ...
+    record: dict[str, JsonValue]
+
+    @classmethod
+    def from_record(cls, record: Mapping[str, JsonValue]) -> Self: ...
+
+    def to_record(self) -> dict[str, JsonValue]: ...
+    def obj_context(self, builder: ContextBuilder) -> None: ...
+
+
+class TaravEntity(TaravObject):
+    id: Ship
+```
+
+All maintained Tarav classes should normally extend `TaravType`. This lets
+agents discover and accumulate context about Tarav's implementation classes,
+including classes whose instances are not `TaravObject`s.
+<!-- tarav.breadcrumb de98b15861d6a65f962d74325461fdac88845420495776c69eb041be60f73f1c -->
+<!-- tarav.breadcrumb 5a9c95f7ef7a66ef2ebd7164fa85c597d62e6deb1d4ce7acb37b48c4c58cfaaa -->
+
+## Reifying Tarav's own code
+
+`TaravClass(TaravEntity)` is the ordinary Tarav-object representation of a
+Python class. Calling `SomeType.entity()` returns that representative object.
+The Python class and the `TaravClass` Entity are different graph subjects,
+connected by the class's `TypeShip`. This removes the need to give Python
+classes exceptional Diagram behavior.
+<!-- tarav.breadcrumb c8e2d2230defb7106df27f8fdaa259fa9e9538039f6f4fdfcd1723409d9e1f1e -->
+<!-- tarav.breadcrumb 987712e35505971a02965f238050adc56bfe32db50a02b77b2bee4d6a62bb59c -->
+<!-- tarav.breadcrumb e8a2e90f4958b2da89a04c63490e2fbcd4f00bfc81fd9c7b6649cb5dca00d5f7 -->
+
+Workflows and Tarav itself follow the same model:
+
+```python
+class TaravClass(TaravEntity):
+    target: type[TaravType]
+
+
+class TaravWorkflow(TaravEntity):
+    workflow_name: str
+    workflow_ship: WorkflowShip
+
+
+class TaravSystem(TaravEntity): ...
+
+
+TARAV = TaravSystem(...)
+```
+
+A Workflow Entity Ship identifies one Workflow in the Diagram; the Workflow
+class's TypeShip identifies its Python Type. The `TARAV` Entity represents the
+semantic system, while the `tarav` Python package remains an implementation
+Artifact.
+<!-- tarav.breadcrumb d76af9d630f96086996c4bc1198bb987ed8bfcaf66e841d263fe85d024675034 -->
+<!-- tarav.breadcrumb 52c36b896fad0f62cc6f9577194eb1a5db0f846d40bb7decdc709439705fbe46 -->
+
+## Registry boundary - v002
+
+The Workflow registry is a runtime directory from Workflow name or Ship to a
+Workflow instance. It does not own Workflow-to-Type or Type-to-Workflow
+semantic relationships. A concrete `TaravObject` Type declares its parent
+Workflow directly, giving the minimum semantic path
+`Tarav -> Workflow -> Type -> Object`. The Type registry independently maps
+Type identity to its Python class.
+<!-- tarav.breadcrumb 072123f2178871c90e6d27723dec1b9edea0f15525045bebfe4fc5467dd19646 -->
+<!-- tarav.breadcrumb ac85413cfd395b0e13e11e6fb796b62fb7d42c84ad2599c7ca0c4959a921b4b8 -->

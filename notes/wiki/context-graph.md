@@ -86,3 +86,65 @@ space-navigation mechanics belong in the kernel. This preserves Context as a
 central reusable workflow without turning it into Tarav's central semantic
 authority.
 <!-- tarav.breadcrumb c624689f980ba649054c8fb051e44207444b951f7aa30a92d09bd1d8b8d12ba2 -->
+
+## Context as core Diagram navigation - v002
+
+This supersedes the v001 placement of Context as an optional built-in
+Workflow. Tarav needs a small explicit bootstrap layer so agents can discover
+the available Types and Workflows without an infinite dependency on another
+discovery Workflow. Context is therefore a core Diagram operation: it opens a
+subject as a progressively navigable view, comparable to opening a filesystem
+node as a directory.
+<!-- tarav.breadcrumb 7f73ad586de01f9b100638a90c49ea6bd9993e3fa7c7edd9f9a45cb79954d0af -->
+
+The canonical interface is a global function with two specialization hooks:
+
+```python
+def context(subject: TaravType | TaravObject) -> Context: ...
+
+
+class TaravType:
+    @classmethod
+    def class_context(cls, builder: ContextBuilder) -> None: ...
+
+
+class TaravObject(TaravType):
+    def obj_context(self, builder: ContextBuilder) -> None: ...
+```
+
+The function normalizes whether the subject is a class or an instance and
+invokes the appropriate hook. This avoids special descriptor or metaclass
+machinery solely to overload the same `context()` spelling at both levels.
+<!-- tarav.breadcrumb afc71d04e03205c96294c164ed33ab5ca37e9c58130075331a45c8331fbfcd1e -->
+<!-- tarav.breadcrumb b32246240652261c11140471d7d81f5846241de6c371939571d1621875f8c5bd -->
+
+`context(subject)` returns a lazy `Context` navigation view with operations
+such as `ls()` and `open()`. A `Context` instance is not currently a
+`TaravObject` or a Diagram subject; it is a view over the Diagram. Its
+`Context` class still extends `TaravType`, so the class is reified by
+`TaravClass` and agents can navigate documentation and usage context for it.
+This cleanly separates class participation from instance participation.
+<!-- tarav.breadcrumb f55534adb58fd0fa1c0e8803fde89232c1e669517ace6f9a24574502068c1568 -->
+<!-- tarav.breadcrumb 141c2d19566a72b3b98f62059773152e024d626bd42b15874d19c049e7803138 -->
+<!-- tarav.breadcrumb 1141cd37c63f3ed885a1d5bada7f4020354b85b3f0883de01e8eac4c5ecf2f2a -->
+
+The minimal representative navigation Types are:
+
+```python
+class Context(TaravType):
+    subject: TaravType | TaravObject
+
+    def ls(self) -> Sequence[ContextEntry]: ...
+    def open(self, name: str) -> Context | TaravObject | Reference: ...
+
+
+class ContextEntry(TaravType): ...
+class ContextBuilder(TaravType): ...
+```
+
+Their exact schemas and persistence remain intentionally undefined. The first
+use case is bounded, progressive navigation; retained context snapshots can be
+introduced later if a concrete need appears.
+<!-- tarav.breadcrumb 171ca91cb68de6aded76171f8a989d2eb08703ea8f60c0f4a14a349aea3764ae -->
+<!-- tarav.breadcrumb 2e6ccd42a166422051c545cddad7e69c99c1a901297292746e9bf7eb4511bcf2 -->
+<!-- tarav.breadcrumb 50998722e225353821252152255f06e8ce6cb62eb0ff2df4306d73dd86c9f994 -->
