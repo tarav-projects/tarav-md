@@ -514,3 +514,23 @@ Workflow directly, giving the minimum semantic path
 Type identity to its Python class.
 <!-- tarav.breadcrumb 072123f2178871c90e6d27723dec1b9edea0f15525045bebfe4fc5467dd19646 -->
 <!-- tarav.breadcrumb ac85413cfd395b0e13e11e6fb796b62fb7d42c84ad2599c7ca0c4959a921b4b8 -->
+
+## Implemented bootstrap and documentation boundary - v001
+
+The Python implementation now closes the bootstrap path described above.
+`TARAV` is the root `TaravSystem` Entity, `KernelWorkflow` owns foundational
+Types, and every registered Type exposes its owning `workflow_ship` through
+its `TaravClass` representation. Runtime composition verifies that each of
+those Ships resolves through the Workflow registry. Workflow identity
+constants remain in their owning domains rather than forming another central
+ownership catalog.
+<!-- tarav.breadcrumb 9ce1e12d71e9769dd8a6a44c050a281eee5b61fe594a02beefabbb58b02bb85f -->
+
+`tarav-py/ARCHITECTURE.md` is intentionally limited to the executable ontology,
+bootstrap path, package layers, ownership boundaries, and integration
+invariants. Exact schemas and operations belong to code and tests; design
+rationale, alternatives, subsystem narratives, and implementation history
+belong in topical Project.Wiki Notes such as this one. This prevents the
+architecture overview from becoming a second, stale implementation manual.
+<!-- tarav.breadcrumb 71b2069e78ef70d59e14e7a9e119b5234cc09f113fa9470b07f99ff899a555da -->
+<!-- tarav.breadcrumb 54700f3fc1266ed8c4dff8951c72ed457672ed724dc754ee93c9cf0a705969f4 -->
