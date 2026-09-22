@@ -328,6 +328,55 @@ baseline test for the contract.
 <!-- tarav.breadcrumb 287a6730964db738a305daca57b51c5750ae3dfc02aa4ec899f997457c880116 -->
 <!-- tarav.breadcrumb 18707ec335faf77e7a09b70cf449810e4b819af838e24abb992ba1475c04d4a8 -->
 
+## Record projection and runtime state - v002
+
+The Record contract is refined around the Python class as Tarav's primary
+semantic and executable surface. A Record is a projection of a `TaravObject`,
+not the object's data model or a required copy of its complete state. The class
+chooses which facts the projection contains and may retain additional runtime
+state in any form its behavior requires.
+<!-- tarav.breadcrumb d9051fa302dcf24ebbbd370b2d803e2d206d3a28fa324e10cc47973b341038f5 -->
+<!-- tarav.breadcrumb 4b6f6aa1653782f81ea5187e8c7c6e8da569b53cf443b3828578e987e6aedfb4 -->
+
+`RecordInterface` remains required mechanics for `TaravObject`: it declares the
+schema Tarav can validate for the selected representation. This requirement
+does not impose a common domain schema, storage model, constructor, or
+persistence policy. Built-in workflows may define narrower participation
+contracts; for example, a Record intended for generic Type dispatch must expose
+a usable Type reference through `Type.Resolution.PATH`.
+<!-- tarav.breadcrumb 66da9562d54b4118a4f734359aabc3795f6ff9e51624541d64cc60f1310fba02 -->
+<!-- tarav.breadcrumb 0ebee0a3ebc79acc7f673e747833941456388ccbbed3adb718ade8703c5fd14f -->
+
+Tarav may keep a private optional `_record` dictionary because it owns the
+loading mechanics. Its meaning is deliberately narrow: `_record` is the
+representation supplied when Tarav loaded the object. It is not the object's
+source of truth, need not mirror later runtime state, and may remain absent on
+an object instantiated entirely at runtime.
+<!-- tarav.breadcrumb 0489e037b4d0d6df679259643a9c02c9015004006174012cea016d3ce5ab32e3 -->
+
+The public projection operation follows a template-method boundary:
+
+```python
+class TaravObject(TaravType):
+    _record: dict[str, JsonValue] | None
+
+    def to_record(self) -> dict[str, JsonValue]:
+        candidate = self._to_record()
+        # Validate through RecordInterface, detach, and return.
+
+    def _to_record(self) -> dict[str, JsonValue]:
+        # Default to the loaded Record or the minimal Type representation.
+        ...
+```
+
+`to_record()` owns Tarav's validation and detachment workflow. `_to_record()`
+is the protected class override point that chooses the current projection from
+the loaded Record, runtime state, external state, or a combination. The class
+therefore controls representation content while Tarav retains a dependable
+integration boundary.
+<!-- tarav.breadcrumb ef0700710fbbe090339255510fd9755534b4eb447ff73b772e4c818cbc2e4a0f -->
+<!-- tarav.breadcrumb 064d92fcae5e0a75250139ca9ec2d6539c2b78f21df0977b9aa77161c2e7375c -->
+
 ## TaravEntity and durable object identity
 
 `TaravObject` correctly does not require an instance identity. The proposed
