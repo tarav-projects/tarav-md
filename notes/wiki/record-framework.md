@@ -667,3 +667,34 @@ field to `TypeShip`, `WorkflowShip`, or another Ship role. This is a promise
 made by the Entity abstraction, rather than a generic Record-backed data
 interface imposed on every `TaravObject`.
 <!-- tarav.breadcrumb 2d55565838e701685ac70371765ebe4941473c9a25f93a40b13ffc34bf236f5c -->
+
+## Exact Record loading and Python subtyping
+
+The minimum Record loading hook is `Type.from_record()`: Tarav validates the
+incoming representation, then calls the class-owned `_from_record()` hook to
+construct the object. A Type may offer other construction paths independently.
+Dynamic loading is a separate convenience: `load_object(path)` locates a
+Record, resolves its Type through trusted registration, and invokes that
+concrete Type's loading path. The registry serves dispatch rather than
+becoming the required public entry point for callers.
+<!-- tarav.breadcrumb 8aea71e904bbf3a46a5bdbde66c8c65c0fdd77f8dd19641172dcafb4512c86f2 -->
+<!-- tarav.breadcrumb db448fac783164661cf60272531112c708896ea9b36f54083cf2ba56a03c40b6 -->
+<!-- tarav.breadcrumb a1810783107b50e21421e4420d88326cfc73feedf4adeee31fa5ac1691b7f54f -->
+
+`load_object(path, expected_type=SomeType)` combines loading with an assertion:
+the resolved class must be exactly `SomeType`. The argument is keyword-only
+and does not select construction or accept a subclass as a match. A child
+Record therefore fails an expectation of its parent Type. Loading produces
+the concrete class named by the Record; it does not perform an upcast.
+<!-- tarav.breadcrumb 9106315feb9b5bd75eb65c8ce4a737644bf133255b1ecf62efc62065dd6a2810 -->
+<!-- tarav.breadcrumb 733ebc61f02c0124f14e5f2d36fc31b37cf002f64b510766719c4d9f5f9a47a4 -->
+<!-- tarav.breadcrumb c2b61d17514c5425e3feab9d48c3c5447ec5f470fd2c05303dc08674225457aa -->
+
+The loader-supplied `_record` should correspond to that concrete class. Once
+the object has been delivered, Tarav's Type dispatch has no further role in
+subtyping. Classes use ordinary Python inheritance and own the behavior of
+their parent-child relationships; the Record Type system does not mediate
+those relationships.
+<!-- tarav.breadcrumb 006720a52c424af38c7ce76c87196b438d3ad1e3b8e50efec90c9588453e7188 -->
+<!-- tarav.breadcrumb 7c702794a99124c3d5c5cd7b5ac2cd4fcfcb241f7deb2a10a93247ba5a5a5379 -->
+<!-- tarav.breadcrumb bc86e3ede818cd1c613d31425c6c1069deaec9fedba596474239548ec5aef3a6 -->
