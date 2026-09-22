@@ -534,3 +534,55 @@ belong in topical Project.Wiki Notes such as this one. This prevents the
 architecture overview from becoming a second, stale implementation manual.
 <!-- tarav.breadcrumb 71b2069e78ef70d59e14e7a9e119b5234cc09f113fa9470b07f99ff899a555da -->
 <!-- tarav.breadcrumb 54700f3fc1266ed8c4dff8951c72ed457672ed724dc754ee93c9cf0a705969f4 -->
+
+## Code execution and Diagram ontology - v003
+
+The earlier executable-ontology framing is refined by a firm layer boundary:
+Python code supplies functionality and execution, while the Tarav Diagram
+supplies the ontology. The Diagram records identity, meaning, ownership, and
+relationships; it does not replace the Python classes that implement domain
+behavior. Workflows may add their own subjects and relationships to the same
+general Diagram, whose minimal built-in spine begins with
+`TARAV -> Workflow -> Type`.
+<!-- tarav.breadcrumb fc06d497466fa54642dd838eb23ed52774fa4af71017281176cc45af2f168cd6 -->
+<!-- tarav.breadcrumb ed406399d9566bf872af3dc9d11818f437b76aad06cf19899cd81ebe7f632aae -->
+
+A Python class participates in that ontology through a common `TaravClass`
+Entity. The representative object describes the class but does not execute or
+restrict its behavior:
+
+```text
+Python class ── represented-by ──> TaravClass
+ executable                         ontological
+```
+
+The Python class remains free to expose as much functionality as its domain
+requires.
+<!-- tarav.breadcrumb b4ad7aa9eb13dd64ca57296fc8567ccdfb25166f3def8417229774c2788d7927 -->
+
+Class projection uses one explicit code hook and one public normalization
+operation:
+
+```python
+class ChatTurn(ChatlasObject):
+    @classmethod
+    def class_entity(cls) -> TaravClass:
+        return TaravClass(...)
+
+
+entity(ChatTurn)  # delegates to ChatTurn.class_entity()
+```
+
+`class_entity()` directly constructs the `TaravClass`; a separate declaration
+object or nested `from_class()` factory has no established role. Diagram-facing
+consumers use the returned `TaravObject` rather than reading `type_ship`, name,
+Workflow ownership, or related ontology fields directly from the Python class.
+<!-- tarav.breadcrumb 97517b1106723f4217c68f7e63acf1bc402bb502b6b1a45594fa32bf40e1995d -->
+<!-- tarav.breadcrumb a56732aa19ab9986c586ed6ebe36396b095d7308d45d00f829ccbc3cc8768342 -->
+<!-- tarav.breadcrumb 800cb1e285dc9b64d90d7670e804d81f6a0c2e914cf80374076c11c60227a5df -->
+
+This design deliberately leaves execution on the represented class. The
+`class_entity()` method is the projection boundary from code into ontology;
+the resulting `TaravClass` is an ordinary Diagram subject, not a wrapper around
+the class's runtime behavior.
+<!-- tarav.breadcrumb 72cd47f7dfeffc9022ded6d3c7851cc2c39b0259c67563e39868a28e70e6b2c5 -->
