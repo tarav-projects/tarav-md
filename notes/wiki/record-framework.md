@@ -635,3 +635,35 @@ This design deliberately leaves execution on the represented class. The
 the resulting `TaravClass` is an ordinary Diagram subject, not a wrapper around
 the class's runtime behavior.
 <!-- tarav.breadcrumb 72cd47f7dfeffc9022ded6d3c7851cc2c39b0259c67563e39868a28e70e6b2c5 -->
+
+## Record boundaries and class-owned data interfaces - v003
+
+Record conversion has two symmetric boundary flows. Loading validates a raw
+Record before `_from_record()` constructs the object; writing lets
+`_to_record()` project the object and then validates and detaches the returned
+Record. Validation is what makes both directions coherent. A subtype should
+normally extend `super()._to_record()` when its representation extends its
+parent's representation, allowing current runtime fields to override loaded
+values while preserving compatible extension fields. A Type may instead build
+a fresh Record when it deliberately replaces the parent representation.
+<!-- tarav.breadcrumb faa6071f18b612639be2e06cd95ff11bb7cd7b768766be1dc9ffcb13b2f807ab -->
+
+`record_data` is rejected as a common `TaravObject` interface. It would imply
+that Tarav defines how classes expose or synchronize their data and would
+encourage consumers to treat the Record as the object's data model. Tarav owns
+only the boundaries: `Type.validate_record(value)` for explicit validation,
+`Type.from_record(value)` for validated construction, and `obj.to_record()` for
+validated writing. Each class owns its semantic data interface and any
+relationship between runtime state and the optional loader-supplied `_record`.
+This decision supersedes the earlier proposal that a fresh `record_data` view
+should be the general access path.
+<!-- tarav.breadcrumb 53d44cd762867e44ff1b3fd72667d4f62598232673ed62ad590e09c76ee6295a -->
+
+Subclasses still define shared semantic interfaces where their meaning
+requires one. `TaravEntity` therefore defines `id: Ship` as an object field,
+and its implementation wires validated Record input to that field and the
+field back to the Record projection. Entity specializations may narrow the
+field to `TypeShip`, `WorkflowShip`, or another Ship role. This is a promise
+made by the Entity abstraction, rather than a generic Record-backed data
+interface imposed on every `TaravObject`.
+<!-- tarav.breadcrumb 2d55565838e701685ac70371765ebe4941473c9a25f93a40b13ffc34bf236f5c -->
