@@ -148,3 +148,34 @@ introduced later if a concrete need appears.
 <!-- tarav.breadcrumb 171ca91cb68de6aded76171f8a989d2eb08703ea8f60c0f4a14a349aea3764ae -->
 <!-- tarav.breadcrumb 2e6ccd42a166422051c545cddad7e69c99c1a901297292746e9bf7eb4511bcf2 -->
 <!-- tarav.breadcrumb 50998722e225353821252152255f06e8ce6cb62eb0ff2df4306d73dd86c9f994 -->
+
+## Context directory and cursor - v003
+
+This advances v002's runtime-only navigation view with durable context
+attached to Entities. The proposed retained namespace is
+`~/Documents/tarav/contexts/`, with one root directory per Entity identity.
+Workflows can contribute Records there. Nested folders are represented by
+`DirectoryRecord`s; each level keeps a cheap registry of its immediate entries
+so `ls()` does not load the child objects or their full Records. Opening a
+retained Record uses trusted Type dispatch.
+<!-- tarav.breadcrumb db2a880936c9a7027161034fe77d5653370dbd7fbdf86b57b3f8d5eaeb513d28 -->
+<!-- tarav.breadcrumb c97f8df49550ff0285b93a4101a436664826780d764f8c241af2b373473f6d21 -->
+
+`Context` is read-only with respect to the tree but stateful as a navigation
+cursor. `cd()` changes the current directory within the subject's context;
+`ls()` reads only cheap directory information. Runtime contributions and
+retained entries share the same virtual namespace and navigation operations,
+without a separate runtime-versus-disk branch in the public view.
+<!-- tarav.breadcrumb 52dcf7c6538dfe2f081d4d9938d51b5b3347662b3b3c94863fd83589416049be -->
+<!-- tarav.breadcrumb 1d7b6c4151a550b23c96ee1cba74e3a267e368ea18931c09aa2e81302e97a2a2 -->
+
+The directory-like contract is `Context: name -> TaravObject | Context`.
+`open(name)` returns either an object or a nested Context; `cd(name)` enters a
+nested Context. The name is held by the containing Context, so an object can
+appear in a context without knowing its placement. A retained entry resolves
+through the Record registry; a runtime entry is supplied by its context
+provider. This replaces v002's tentative `open()` return union with the
+agreed object-or-context form.
+<!-- tarav.breadcrumb 7beba2e1ed513d768c14d5fcb35c94a1bcf5530f7d7d426b98f9300a1ae788b2 -->
+<!-- tarav.breadcrumb b3f501443dcc3b046345c2b2c8adb5cde07d6caf14722d9d4ac813dd804799f3 -->
+<!-- tarav.breadcrumb 4268e797c21f5ea9efeca69fce7eb5237622ea744cc997bd66154fb3f8d48e4e -->
