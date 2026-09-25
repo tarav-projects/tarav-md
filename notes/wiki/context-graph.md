@@ -215,3 +215,44 @@ Insertion may shift positions; Ships and References remain the stable way to
 address subjects. Listing should read placement metadata without loading
 contained objects, while `open()` resolves only the selected target.
 <!-- tarav.breadcrumb 2adbc657ea53c39f5c33f9cea220a00f58ab8ff0f6c11758bee7111ffc32dac7 -->
+
+## Context entries and exploration - v005
+
+This revises v004's tentative treatment of `ContextEntry` as a wrapper around
+`ArchiveEntry`. The two are independent wrappers. Where context is retained in
+an Archive, its `ArchiveEntry` contains a `ContextEntry` Record as cargo; the
+`ContextEntry` in turn contains another typed Record as its cargo. Archive
+owns storage and placement, while Context owns the meaning of the context
+entry. A direct Record and a Reference Record are both possible cargo types.
+`ContextEntry.open()` returns the cargo object; if it is a Reference, a caller
+may separately call `entry.open().resolve()`.
+<!-- tarav.breadcrumb 343f6bd4a7b5a243bdf605941ff08b5554679bde817895da73b6ae94d99f6a25 -->
+<!-- tarav.breadcrumb d8d776cda81ffbc50598738b8dd41226d05484ed2270f563f489d8f806cca294 -->
+
+The runtime `ContextEntry` exposes its name or vector position even when that
+placement comes from its containing `ArchiveEntry` and is not duplicated in
+the retained Context Record. Context need not subtype Archive: runtime-only
+entries have no Archive backing. An Archive-backed entry can expose its
+`ArchiveEntry` for Archive operations, while its ordinary Context interface
+works for either source. The writer explicitly chooses the cargo Record and
+lets Context wrap it before Archive stores the Context entry.
+<!-- tarav.breadcrumb 321e4c2856ea38bfa8be7cbb1864dc8e424eb22f3925efb5326a74baf31d7333 -->
+<!-- tarav.breadcrumb a690be883fbe55f3e50f640024f34f26dea345e6c9586e3f657a18e9383fd823 -->
+
+Each Entity's context is a separate navigable graph. Opening another Entity
+through an entry and calling `context()` on it can cross from one graph to
+another; their Records need not share an Archive root. `ContextExplorer` is
+the stateful navigation object for moving within a context and remembering
+the route across such jumps. Runtime entries encountered through an explorer
+carry their placement and navigation origin so backward navigation can return
+to the occurrence from which the jump was made.
+<!-- tarav.breadcrumb 9ce43b45f8e22096a86e2613d9a7f7ad0f3165c95f88ca3109cfa7e6eff72006 -->
+<!-- tarav.breadcrumb 1be53811fcb77b3c84c4116f1d1b295e22771cb1ed0d31cdfec7d78a654cd5f9 -->
+
+Calling `context(entry)` follows that entry's cargo context in the *same*
+explorer, retaining its route for backward navigation. Calling
+`context(entity)` directly starts a new, independent explorer because the
+Entity carries no navigation history. Explorer bindings belong to runtime
+entry handles, so separate explorers can visit the same retained placement
+independently. The exact navigation method names remain open to implementation.
+<!-- tarav.breadcrumb ea2147a4b4e1348f4af7b2a94b67d56fbbbf3565f8205056ca3ba65ec8a88a25 -->
