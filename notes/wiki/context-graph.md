@@ -293,3 +293,42 @@ contextualizing workflows can improve navigation over that foundation;
 connectivity and the quality of a particular presentation are separate
 concerns.
 <!-- tarav.breadcrumb b2531bdef685afc2d316708df46526fa0ff6e20e6f29cfcde0646a7b14d6539b -->
+
+## Shared Explorer primitives
+
+Archive and Context have common exploration needs, including navigation
+history. A shared Explorer base should provide reusable behavior while their
+workflow-specific explorers remain distinct types. The interface should be
+inspired by Linux filesystem operations such as `ls`, `cd`, and `open`.
+<!-- tarav.breadcrumb 4024720bca2fa7d2abc876e67f57b2ef162413fcac4899f004b594dfe9ba749c -->
+<!-- tarav.breadcrumb 306b47ab23be4798769814780eeb927fe1591ca9d535682f8194bd39de5f8d99 -->
+
+The selected minimal vocabulary is `ExplorerEntry`, `ExplorerFolder`,
+`ExplorerList`, and `Explorer`. An entry opens a value and carries specialized
+data and operations. A Folder exposes entries by name; a List exposes entries
+by position. Either container can itself be an entry's value. Explorer
+provides the navigation interface and history. `ExplorerList` replaces the
+tentative `ExplorerVector` name, and `ExplorerFolder` replaces the proposed
+generic Dictionary name.
+<!-- tarav.breadcrumb a60a060fbb95a55058cc986400eb34ae0df0a1a51a5b8be4778d21be6e01fbf1 -->
+<!-- tarav.breadcrumb 6463be3aedde149292740b63c2b1dd8aab8a686954de288b50dcd773baae0540 -->
+<!-- tarav.breadcrumb 873c1d56454a25e5966e8210626622d3a0e652dced4e6329f4b40d305ba22fa6 -->
+
+The accepted minimal interface uses `ls()` to list entries, `get(key)` to
+select an entry, and `open(key)` to obtain its value without navigating.
+`cd(key)` enters a navigable value, `pwd()` describes the current location,
+and `back()` / `forward()` traverse exploration history. Back and parent are
+distinct: back retraces the route taken, while parent belongs to the graph's
+relationships and may be absent or non-unique. Concrete graph semantics remain
+with the workflow specializations.
+<!-- tarav.breadcrumb 24a92a55bc2f7300b5c31f823ea36d56dd22998421454dd8e988855ff8239b1a -->
+<!-- tarav.breadcrumb f12bdc59278006924014f43e0996f4fd05ce55572dea0ff2bb82b47e9d4ef82e -->
+<!-- tarav.breadcrumb 90b99d5f735f3febc170b6504a7786931adb447a26150c952910ceaadd2aea8a -->
+
+A shared Location type was removed from the proposal because no shared
+operative semantics justified it. Base types should provide meaningful
+behavior or enforce useful contracts, rather than exist only as attractive
+names. The four-type interface is a design direction; this capture does not
+claim that the common base types or their implementations already exist.
+<!-- tarav.breadcrumb 7af4d6f74ae0e4ec0a6374a08e9802f96f9f0f9faade861682b5c4ccf28318d2 -->
+<!-- tarav.breadcrumb 78c2ac5b7c205135c16c4011029d546d3435b9d8d901967e9fde18f3f99febdb -->
