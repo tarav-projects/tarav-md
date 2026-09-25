@@ -179,3 +179,39 @@ agreed object-or-context form.
 <!-- tarav.breadcrumb 7beba2e1ed513d768c14d5fcb35c94a1bcf5530f7d7d426b98f9300a1ae788b2 -->
 <!-- tarav.breadcrumb b3f501443dcc3b046345c2b2c8adb5cde07d6caf14722d9d4ac813dd804799f3 -->
 <!-- tarav.breadcrumb 4268e797c21f5ea9efeca69fce7eb5237622ea744cc997bd66154fb3f8d48e4e -->
+
+## Archive-backed context organization - v004
+
+This advances v003's retained-directory proposal: the Context workflow uses
+Record Archive for durable placement instead of maintaining a separate Context
+store and entry index. An identified subject's Ship addresses its logical
+context root in the Context workflow's Archive partition. The root's physical
+Archive location can remain opaque. Classes use their `TaravClass` Ships;
+Entities use their own Ships. Unidentified objects can still contribute
+runtime context without a durable root.
+<!-- tarav.breadcrumb 38a58bcfe8d426f3bcb33f757cca68c4d5224315bc55e4a4f768e7760a5567ea -->
+
+The Context root is a read-only navigation view that composes runtime hooks
+with retained Archive entries. Archive owns storage, placement, and Git
+behavior; Context owns the subject-relative view and opening behavior. A
+subject-specific typed Archive can retain the subject Ship in its Record so
+opening by identity verifies the binding independently of the Archive's own
+identity. The existing `ContextDirectoryRecord` and `ContextPlacement` index
+would no longer be needed as a parallel storage format.
+<!-- tarav.breadcrumb 4b694a679ccf66a85c31b3f67fbdec1324ab083a3a30b99e2166baeea122b5ed -->
+
+`ContextEntry` is the lazy wrapper around one placement. It can wrap an
+`ArchiveEntry` for retained material or an opener for a runtime contribution;
+opening yields a `TaravObject` or a nested Context. The target object need not
+know its context placement. Dictionary and Vector Context types present named
+and positional navigation over the corresponding Archive structures. The root
+for `context(obj)` is a dictionary so runtime and retained names can share one
+namespace; nested dictionaries and vectors let contributors organize context
+as needed.
+<!-- tarav.breadcrumb 76b9d3e934c9261424ca7a05c615b9df396ae0ad7912051f3176c199759a8d04 -->
+
+A Vector Context position is a mutable placement, not a subject identity.
+Insertion may shift positions; Ships and References remain the stable way to
+address subjects. Listing should read placement metadata without loading
+contained objects, while `open()` resolves only the selected target.
+<!-- tarav.breadcrumb 2adbc657ea53c39f5c33f9cea220a00f58ab8ff0f6c11758bee7111ffc32dac7 -->
