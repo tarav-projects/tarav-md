@@ -366,3 +366,33 @@ or factory support. The shared interface and the support needed to verify it
 are both part of the intended implementation participation.
 <!-- tarav.breadcrumb 40828ea2c25c88c6ee648d3d6e7d86fc528ec99ef8e2385d18a84a882686d2d1 -->
 <!-- tarav.breadcrumb 821fe44d4eda4e71c8379af9c982b898d537ad32b615143665c5bed33c534be5 -->
+
+## Membership and navigation capabilities
+
+The User brought forward a design discussion separating workflow membership
+from navigation capabilities: an Archive-specific base identifies Archive
+membership, while shared Explorer mechanics check whether the current value
+supports folder or list operations. That discussion places capability checking
+at the Explorer level rather than duplicating it in each workflow explorer.
+<!-- tarav.breadcrumb 6ac3d1f323418c6aad4960740e2f893cf3a3529036b335ee4776bff4816a6523 -->
+
+The subsequent proposal distinguishes `ArchiveType` and `ArchiveObject`,
+mirroring Tarav's own levels. Workflow membership need not collapse the
+distinction between a type with executable behavior and an object with a
+Record representation.
+<!-- tarav.breadcrumb ac8d1acaab95b93c53a7dcc5e5606e7837531bef17fcf56ae17b3e9824d77aab -->
+
+## Inherited class context
+
+Each class has an entity to which contextual material can be attached. The
+User wants that class context to be inherited by child classes. Tarav's own
+Type Graph therefore provides a structure for contextual inheritance as well
+as describing the types of the system itself.
+<!-- tarav.breadcrumb 4d742b647c419ff0dfcaa82a65a47230c49615e424b07da69d1f61e8bb4b1318 -->
+<!-- tarav.breadcrumb b718e2b810f8f423c6dba32732d2a3cbe1e35868312b68ed054b67dc20fa9866 -->
+
+This captures the inheritance objective, not a settled implementation of
+copying, traversal, eager loading, ordering, or conflict resolution. The
+discussion establishes inherited class context without selecting those
+mechanics.
+<!-- tarav.breadcrumb 1d38b4616418c29ecd2f23ba910f7f393a681f70676e05bb7af0ffb7456d8d87 -->

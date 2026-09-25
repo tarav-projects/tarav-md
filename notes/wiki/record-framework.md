@@ -774,3 +774,30 @@ code, data, and evidence for further understanding. This is a fundamental
 boundary of the shared primitives, not a requirement to encode all meaning
 in their generic interfaces.
 <!-- tarav.breadcrumb e8fc9ed0ec065997a6f784745a2a380c04789782dc55cf8f9a7188071d8c84a5 -->
+
+## Workflow type families and the Type Graph
+
+Workflows can specialize Tarav's own type/object distinction. The proposed
+Archive family includes both `ArchiveType` and `ArchiveObject`, rather than
+requiring every Archive-owned type to acquire the object contract. This is a
+design direction for workflow-specific implementations, not a claim that these
+bases have already landed.
+<!-- tarav.breadcrumb c1267635ff8ced126983e12fc36de77466f59b391beea939122f3f2383d4658d -->
+
+`ArchiveObject` denotes Archive-owned objects, not every value retained by
+Archive. Storing a value does not make that value a member of the Archive
+workflow's object family.
+<!-- tarav.breadcrumb 942cfc967e97564204ebef386402c1e1ded899d99e127cb1a853776bfe28f1a5 -->
+
+Tarav is also building an ontology of its own types. The discussion uses
+“Type Graph” for this graph of Tarav types. Each class has an entity, making
+the class itself an attachment point for contextual material rather than only
+an implementation of operations.
+<!-- tarav.breadcrumb 64a9f039edd87162df3ee3aac86d85d96d9de97bb0cf819da84a63d263fded61 -->
+<!-- tarav.breadcrumb ec3caaf95ad044cbb47d1db64d7c8eae4de5eddb4ab975d7865cdb6f248aa010 -->
+
+Context attached to a class should be inherited by its descendants. This adds
+a contextual role to the type relationships themselves; the exact mechanics
+of presentation and inheritance are not fixed by this capture. See
+[inherited class context](context-graph.md#inherited-class-context).
+<!-- tarav.breadcrumb fe90bda0aa299fa5d3f910bd93911e91738db0416e4161c8b70b39d96b55a3d3 -->
