@@ -724,3 +724,53 @@ those relationships.
 <!-- tarav.breadcrumb 006720a52c424af38c7ce76c87196b438d3ad1e3b8e50efec90c9588453e7188 -->
 <!-- tarav.breadcrumb 7c702794a99124c3d5c5cd7b5ac2cd4fcfcb241f7deb2a10a93247ba5a5a5379 -->
 <!-- tarav.breadcrumb bc86e3ede818cd1c613d31425c6c1069deaec9fedba596474239548ec5aef3a6 -->
+
+## Code, represented classes, and custom graph nodes
+
+A Python class is an executable artifact declaring a Type. Its extracted
+class Entity represents that artifact in the Diagram and supplies operations
+on the representation; it is not the Python class that defines instance
+behavior. Instances of the represented class may themselves be TaravObjects
+participating in the Diagram. These are distinct roles to keep visible when
+reasoning about code as Tarav's main interface.
+<!-- tarav.breadcrumb bfdb14d0c9c36645176902d1c8ac2d11b41bb104c46edac3e10198aa0d4c9f88 -->
+
+Archive and Context each define a custom graph. An ArchiveEntry or
+ContextEntry is a typed node through which its workflow attaches data and
+operations to a value. That value need not be native to the workflow: the
+entry lets the workflow establish its own graph around independently
+meaningful values. The shared pattern motivates reusable graph primitives.
+<!-- tarav.breadcrumb 7fec5255e73246e7dbacb2e48bc05378cc2345ce37b8b1fcde70483f0d5ad3d3 -->
+
+## Optional primitives for custom graphs
+
+Tarav should offer useful primitives for workflows building custom graphs,
+including basic dictionaries and vectors, so adopting graphs share familiar
+structure. Adoption is optional, and the general foundation should accommodate
+multiple parents and cycles rather than require trees. `graph-std` was an
+illustrative name for this direction; the User rejected the name, not the
+idea. The precise primitive set and interfaces remain to be designed.
+<!-- tarav.breadcrumb 32f3c97d243d2b05fe17c5822d76999155d952684fd9ee694fffe363fcc17449 -->
+<!-- tarav.breadcrumb 24778c258384ba600e45dfcbe8359d6560be999e26ed79e4cd874c77f13ed9ab -->
+
+Python's type hierarchy is a primary means of expressing semantics. A
+workflow may define a class for each relationship type, or use a class with
+a relationship field whose value is text or another object. These approaches
+may coexist. The desired library supplies sensible initial options without
+requiring one general encoding of meaning.
+<!-- tarav.breadcrumb b6c7bf2bc88116b857ec2d42c0fd3e22f6547bad844832138c9ae9e7bfb8a99d -->
+<!-- tarav.breadcrumb eb171d346f5b8cd119235a1ffbf257a6619c820b21376f762db07060bacd54b8 -->
+
+Semantics can also be implicit in how fields such as `ArchiveEntry.value`
+are used across code and retained data; that association need not become a
+separate relationship object. Code is an expressive, precise semantic
+language. Tarav may be opinionated about the primitives it provides without
+prescribing how semantics must be codified in general.
+<!-- tarav.breadcrumb 9d7e783d88d3ae3f236f68a7a6ae58e0b968123b92d7d148256eff5012c20075 -->
+
+Generic tooling may rely on exposed contracts, but those contracts do not
+exhaust a workflow's meaning. Agents must be able to inspect surrounding
+code, data, and evidence for further understanding. This is a fundamental
+boundary of the shared primitives, not a requirement to encode all meaning
+in their generic interfaces.
+<!-- tarav.breadcrumb e8fc9ed0ec065997a6f784745a2a380c04789782dc55cf8f9a7188071d8c84a5 -->

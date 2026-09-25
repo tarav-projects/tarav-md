@@ -276,3 +276,20 @@ Entity carries no navigation history. Explorer bindings belong to runtime
 entry handles, so separate explorers can visit the same retained placement
 independently. The exact navigation method names remain open to implementation.
 <!-- tarav.breadcrumb ea2147a4b4e1348f4af7b2a94b67d56fbbbf3565f8205056ca3ba65ec8a88a25 -->
+
+## Connectivity and specialized contextualization
+
+The current focus is connecting all of Tarav's components so an agent can
+find material when it chooses to investigate. Shared contracts do not exhaust
+the system's semantics: agents can inspect surrounding code, data, and
+evidence. This states the connectivity objective, not a claim that universal
+reachability is already implemented.
+<!-- tarav.breadcrumb 9d798d43f901c48dd5c3df1500d0ce4c7bd1f651c85ae867e04ec5964eec3d60 -->
+
+Access to the broader connected material is compatible with controlling the
+order in which an agent encounters it. Tarav can shape contextualization by
+ordering what it presents, analogous to search-result ordering. Specialized
+contextualizing workflows can improve navigation over that foundation;
+connectivity and the quality of a particular presentation are separate
+concerns.
+<!-- tarav.breadcrumb b2531bdef685afc2d316708df46526fa0ff6e20e6f29cfcde0646a7b14d6539b -->
