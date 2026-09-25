@@ -332,3 +332,37 @@ names. The four-type interface is a design direction; this capture does not
 claim that the common base types or their implementations already exist.
 <!-- tarav.breadcrumb 7af4d6f74ae0e4ec0a6374a08e9802f96f9f0f9faade861682b5c4ccf28318d2 -->
 <!-- tarav.breadcrumb 78c2ac5b7c205135c16c4011029d546d3435b9d8d901967e9fde18f3f99febdb -->
+
+## Common protocols, independent graphs
+
+The purpose of the Explorer interface is to establish minimal shared mechanics,
+method names, and base typings across workflows. Agents reuse their knowledge
+of the interface while navigating different graphs; implementing the same
+interface does not merge Archive and Context or require cross-workflow traversal.
+<!-- tarav.breadcrumb c7690be3dcb604519d30e6372b32563a47fbede820a042aa7b91f86b2bef2b60 -->
+<!-- tarav.breadcrumb 1a90f3a79e25193d40f23bffe15b19913d940f86b2ae38cdeffdae93bdc652a8 -->
+
+Concrete types express which graph is being navigated. `cd(key)` enters a
+location navigable within that explorer's graph. Opening an Archive value from
+a Context entry does not make the value a Context location: opening the value
+and rejecting Context navigation into it are compatible behaviors. This
+clarifies the graph-specific meaning of “navigable” in the earlier interface.
+<!-- tarav.breadcrumb 04220218921f3432f0dbfcd6c6275907a28d619c1841286806b95a217800579b -->
+<!-- tarav.breadcrumb 3c84863a06ff928bae6d37175422b11f67b17bee22be58acabb7cd40b25555ab -->
+
+Moving between graphs requires explicit jump points. For example, an agent can
+ask for the Workflow owning a Context type, then ask the Archive for that
+Workflow's partition. The Workflow provides the explicit connection between
+the two explorations; sharing an Explorer interface does not itself supply
+that connection.
+<!-- tarav.breadcrumb da7186b82e264b3ef08fc78f2c84c88491630e0e54459ff592705cf7f063e9f6 -->
+
+## Shared conformance support
+
+A general test suite should exercise the common Explorer contracts. New
+implementations can register their classes, and the classes must also provide
+what is required to test them, including their implementation-specific fixture
+or factory support. The shared interface and the support needed to verify it
+are both part of the intended implementation participation.
+<!-- tarav.breadcrumb 40828ea2c25c88c6ee648d3d6e7d86fc528ec99ef8e2385d18a84a882686d2d1 -->
+<!-- tarav.breadcrumb 821fe44d4eda4e71c8379af9c982b898d537ad32b615143665c5bed33c534be5 -->
