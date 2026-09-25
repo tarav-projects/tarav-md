@@ -1,6 +1,7 @@
 # Tarav as a record framework
 
 <!-- tarav.sessions
+6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 5626cd5f = codex:01a0af61-72e2-7bd2-94a3-26529d6914ec @5626cd5f7db74c4f2e3838250516b5e300cc9387ac254eb65a0816a5f30555a1
 1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
 -->
@@ -291,6 +292,31 @@ repair. Developer-directed code/data migrations remain part of development.
 Archived identity commitments are treated separately in
 [Archive as a DOI registry](archive-doi-registry.md).
 <!-- tarav.breadcrumb f712edae76e4bd0568b789ecd64fccd7aed48bb96f32427f98c8e2bbda4ca0d7 -->
+
+## Evolving code, evidence, and deliberate recovery
+
+The system includes its code as the harness, with the executable branch
+supplying much of its semantics. Code is not intended to remain static.
+Forgotten Records are drift; Tarav does not prescribe a general procedure for
+repairing that drift. Maintainers reason from retained evidence, including
+Git histories and references to immutable chat corpora, to recover or migrate
+the affected material.
+<!-- tarav.breadcrumb 74e72bb0104a5e51f256dd1a46de2f518c47edf669a28d8901da2e2082a09c22 -->
+
+Independent workflows deliberately allow capture before integration is
+understood. Workflows, data, and the user's understanding may evolve together;
+a workflow may collect useful data and later be abandoned. Agents can use its
+data and evidence to migrate to another workflow. Stabilization is a useful
+signal from experience, not something Tarav must predict before capture.
+<!-- tarav.breadcrumb 7cb99ce5e0f8e779adf947e7337283d8ac1eedbceed4bf07e40ad1a404d985b1 -->
+
+Recovery can be expensive and some situations irrecoverable. Adjacent support
+can reduce that risk: the human's memory, independently tracked code and data
+repositories, and copies hosted on GitHub or elsewhere. These are recovery
+resources, not guarantees. The accepted tradeoff is that high capture friction
+loses more than occasional loss or difficult reconstruction; capture and
+evolution come first, with efficiency improving through use.
+<!-- tarav.breadcrumb 74476d5c1f379d9c97ca25a99dd4f55b2be5962f77d381cff5028d84bf849045 -->
 
 ## Tarav objects and JSON representation
 

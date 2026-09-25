@@ -1,6 +1,7 @@
 # Context Graph
 
 <!-- tarav.sessions
+6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
 -->
 
@@ -19,6 +20,25 @@ particular object and may include its Type context. Context is reactive:
 systems may contribute material to a class or object, and the owning class may
 discover further context from its current state and typed relationships.
 <!-- tarav.breadcrumb 516a49ca2f6716bab43cee1cb6c9fe794a8fa859e15bff6281b1b816e01f147f -->
+
+## General navigation and later specialization
+
+The base navigation workflow aims at general-purpose semantic coverage, not
+an initial claim of efficiency. More specialized workflows can later provide
+summaries, bundles, vector databases, or other access paths. The bootstrap
+system presents evidence for agents to reason over; prescribing their analysis
+requires care, and further workflows can improve how current understanding
+is presented.
+<!-- tarav.breadcrumb e0689f6022badc543d5cd07c24f0c08daf996ee88b4f72c106847a6d0333fd93 -->
+
+The Diagram is a non-compulsory language intended to express any semantics
+and connect Tarav's components, including Chatlas, archives, and its own code.
+The intended invariant is that anything in the Diagram is connected somehow.
+Disconnected components are defects to fix by connecting them. Agents can
+also escalate to their own tools; Diagram navigation is not their only means
+of investigation. This is a design aim, not a report that every component is
+already connected.
+<!-- tarav.breadcrumb 072672c882e35b14da678abb1bac3236924f6cffc0d73287b944ba1874bac740 -->
 
 ## Virtual directory over a graph
 

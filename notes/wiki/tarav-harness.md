@@ -1,6 +1,7 @@
 # Tarav.Harness
 
 <!-- tarav.sessions
+6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 5626cd5f = codex:01a0af61-72e2-7bd2-94a3-26529d6914ec @5626cd5f7db74c4f2e3838250516b5e300cc9387ac254eb65a0816a5f30555a1
 33afe59c = codex:01a07228-313a-7ab3-b6e0-aedcb5216b3c @33afe59c2f13ac5d4b59e56f7a3761d3d91c1206a1b6287b0872036739b370fd
 -->
@@ -12,7 +13,7 @@ operable, and self-evaluating for Agents. It provides the primitives needed to
 build domain-specific harnesses; Diagram is one consumer, and PaperSON can be
 another. Tarav may remain one project, but Harness must remain independent of
 Diagram, Archive, Chatlas, Skillware, and CLI semantics.
-<!-- tarav.context 33afe59c:3f8b1a8709d76020 -->
+<!-- tarav.breadcrumb 45aa1485543925fe2a24961f6f30312a8f5dff8a4b348fea3f7e960d2e5f4c61 -->
 
 The intended operating loop is:
 
@@ -20,14 +21,14 @@ The intended operating loop is:
 inspect state -> choose an allowed action -> process -> validate -> emit POIs
     -> fix or bless -> reevaluate
 ```
-<!-- tarav.context 33afe59c:6eb7ba37e1c4e576 -->
+<!-- tarav.breadcrumb bd9691f94b3845f0c5a983575f7da2c8d87a1829ce83feb10fb005ab8d0948d4 -->
 
 Prompts, tools, schemas, and transition constraints form the *a priori* quality
 front. Deterministic checks, linters, Agent audits, and human review form the
 *posterior* front. The promise is not that errors become impossible, but that
 the probability of a bad result remaining unnoticed decreases as work and
 tooling accumulate. No POIs means only that nothing was detected.
-<!-- tarav.context 33afe59c:6eb7ba37e1c4e576 -->
+<!-- tarav.breadcrumb eb223eca3f8b813cb1cb4344056a3766baec78ce3c6f72534a28523d2f574028 -->
 
 ## Pregeneration and postgeneration feedback
 
@@ -36,7 +37,7 @@ does what the user intends. Postgeneration harnessing audits or lints the work
 so detectable deviations do not pass unnoticed. The postgeneration feedback
 from one step becomes part of the pregeneration context of the next, guiding
 the collaboration toward convergence.
-<!-- tarav.context 5626cd5f:b0a6907bbb9bf4c2 -->
+<!-- tarav.breadcrumb 198fe08b34e6fb77fc5579451ea0f64e2698a5750a9258b30aa98768cbb9fa27 -->
 
 The design assumes a good-faith agent that has loaded skills explaining Tarav
 and its purpose. A short generate → check → revise loop can eliminate a class
@@ -44,22 +45,22 @@ of detectable defects without proving complete semantic correctness. The
 compiler loop is the motivating analogy. The convergence target is no
 deviations detected by the available checks; adding useful checks makes the
 system more robust.
-<!-- tarav.context 5626cd5f:83f91b813b7b96db -->
-<!-- tarav.context 5626cd5f:2b5073cba3e8bb7d -->
+<!-- tarav.breadcrumb 559ef4ddb7582c0ec464e5ad6b4bf658306642dfda7d5ae085f916e61ed082cd -->
+<!-- tarav.breadcrumb ce59ffb0a4370d54cc91bc2c00416c6e338b52cfb15166f8b6328f51f880a8b5 -->
 
 Tests are a surface for expressing intention and an interface for guiding the
 agent. Pre/postgeneration is a design concept whose loop can be as small as
 one method call. Checks can be injected into library methods, avoiding reliance
 on the agent remembering to run them at the end. The design can control how
 feedback is surfaced to avoid flooding the agent.
-<!-- tarav.context 5626cd5f:2b5073cba3e8bb7d -->
+<!-- tarav.breadcrumb f530bbdef0edb7ddafcd458abc33e52ccd0100ee41fd093aab3b358c654433aa -->
 
 The library participates in both sides of the loop: its methods express
 supported actions and its code supplies context, while operation boundaries
 provide places to run checks and return feedback. This control is one reason
 running Tarav scripts is a main interface to the system.
-<!-- tarav.context 5626cd5f:b0a6907bbb9bf4c2 -->
-<!-- tarav.context 5626cd5f:40eaa81a92578678 -->
+<!-- tarav.breadcrumb 6d89b124ca357e017baf8cb02e3785f2b28b3d646f98c8883762ca535bacbe1f -->
+<!-- tarav.breadcrumb be5bbd610fd0dca5d99f032d6d27a411235083d1cdfe6238fb0b14bd58ffe06b -->
 
 ## Records and semantic authority
 
@@ -68,8 +69,8 @@ The JSON representation remains publicly inspectable, but its semantics belong
 to the registered class hierarchy. Generic machinery may read or search the
 representation; code that assigns meaning to it must use that class or an
 appropriate supertype.
-<!-- tarav.context 33afe59c:0628764bbc1b9f44 -->
-<!-- tarav.context 33afe59c:5daf5047ba070c43 -->
+<!-- tarav.breadcrumb faa2825a9291a6d80f443b8003e8ee82fd5454a460f4efb824c10d7d75f41272 -->
+<!-- tarav.breadcrumb 5579b99b4852388298d2f2ac18087f8370c131de4e410846fa03c137c987e6b3 -->
 
 `Type.Resolution.PATH` is the universal, deliberately simple mechanism for
 selecting a class from an opaque retained Record. Every independently loadable
@@ -77,30 +78,50 @@ JSON object, including each JSONL line, declares its Type at its serialized
 root. Once dispatch has selected the registered class, ordinary code owns the
 representation and may construct nested objects directly; disk layout should
 otherwise be irrelevant to most behavior.
-<!-- tarav.context 33afe59c:003d526f71305a78 -->
-<!-- tarav.context 33afe59c:d8265058f73aa1fd -->
+<!-- tarav.breadcrumb 637afeda5384e682adfcc42d982f4c2a1ab9be76009d75f5720773bfbf0cd2eb -->
+<!-- tarav.breadcrumb 5f48ce1e454a5d569a13988a7379a89399bca3b02499283e96f83d676d47676b -->
 
 Opaque JSON does not need a Tarav wrapper. General callers use the JSON library;
 typed callers use a Registry or a compatible registered class. A Registry load
 returns the authoritative registered class, while a class load is valid only
 when the caller is that registered class or one of its descendants.
-<!-- tarav.context 33afe59c:a16bc9533149329a -->
-<!-- tarav.context 33afe59c:6974e7c808177a3e -->
+<!-- tarav.breadcrumb 83f18b785dc0cf390e34f3e64bea06480e9b1b5c6b6efeebfb826595fcdcd5d7 -->
+<!-- tarav.breadcrumb 3caf2c395bfb1e362701d5e8428fc4a1cb9b1438b030917b67642638cf5d89dc -->
 
 ## Ship identity
 
 A Ship UUID is a semantic landmark with almost no intrinsic meaning. The same
 identity primitive can identify a class Type, a retained Record, or domain
 cargo. Its containing class and relationship supply the semantics.
-<!-- tarav.context 33afe59c:95f9a85775c2cc57 -->
-<!-- tarav.context 33afe59c:1254267dbe77ab6d -->
+<!-- tarav.breadcrumb 89816125156cc53a1dd29f5b2c783a74c62d8d9b727014343d6e0e2b178e6206 -->
+<!-- tarav.breadcrumb c5fd26439cec9ac4e398df2e45b1d5f4bd8bd5789abe9f9e2e29d98be302e699 -->
 
 Therefore a class can both *have a Ship* as a semantic Type and *model Ships*
 inside its Records. Harness should not infer Ship roles from UUID shapes or
 serialized paths. A `TaravRecord` exposes its semantic projection through
 `ships()`, returning Ship instances selected by the authoritative class.
-<!-- tarav.context 33afe59c:95f9a85775c2cc57 -->
-<!-- tarav.context 33afe59c:0628764bbc1b9f44 -->
+<!-- tarav.breadcrumb d6dab5491413ff39825f04a32daab3d8b8ce78b19030f5f77884ad5ff8abca5c -->
+<!-- tarav.breadcrumb 8be1a42ce06631f49866741c5e2f4a7f65fdedec18fa40ab359f13c934422136 -->
+
+## Human-paced evolution
+
+Tarav is a Hugentic system: the human is constitutive of its operation, and
+its core workflows assist that human. The intended pace of system evolution
+is coupled to human capabilities. Human review before continuation may be
+introduced deliberately to slow agents, even when they perform correctly, so
+the human knows what is happening and can absorb the system's evolution.
+These review points serve human awareness and pacing as well as correctness.
+<!-- tarav.breadcrumb 979eec8655b8d329adc75c62cc2a5f4a397363a6d2daf6133fb8dd8763d321ff -->
+<!-- tarav.breadcrumb f884588f77cd62f1cf719a25a9568d0f02e8e3dd31ec31c53caabfc46a789073 -->
+
+## Transparent checking infrastructure
+
+The check-revise loop is one supporting system. As with a shallow test suite,
+a clean run supplies only the signal supported by its checks. The design
+values checks that are cheap to run, scalable, and especially transparent:
+their code can be inspected and revised. Suboptimal use of that infrastructure
+is possible; it does not claim complete assessment of the result.
+<!-- tarav.breadcrumb 46a1d9db6d707dd3f95c1867603cfa3e67c7908b73e78d4788442ffb381c0cad -->
 
 ## Evaluation growth
 
@@ -108,7 +129,7 @@ The next shared capabilities to consolidate are `assertions()` and
 `findings()` on an evaluation-bearing `TaravRecord` subtype such as
 `TaravObject`. `actions()` and explicit `state()` remain later discoveries,
 introduced only when real workflows establish their useful common shape.
-<!-- tarav.context 33afe59c:1d4b8adac2c8397d -->
+<!-- tarav.breadcrumb 15e9dd3cddbf95311a9a2df9aa3cc3aa52868f4bcf214c1c18f92bc39793d142 -->
 
 ## External harness and selective workflow formalization
 
@@ -116,28 +137,28 @@ Tarav is an external harness around agent work. The native agent harness,
 user, tools, permissions, and internal reasoning remain outside Tarav's
 control. Tarav becomes active when an agent executes a Tarav workflow such as
 capture, navigation, archive registration, or Model construction.
-<!-- tarav.context 5626cd5f:8e8652f4b1340d35 -->
-<!-- tarav.context 5626cd5f:34eeb24305a0f1e4 -->
+<!-- tarav.breadcrumb 119e81ecba21226fe690c7b11a387d49578d105055141362be8567bc2be0e91d -->
+<!-- tarav.breadcrumb 29d0644c9b82eb4f5079aa11654fe7a66b69df750c1f552e13d0bcab69f6b344 -->
 
 The workflow graph describes typed state and possible actions. Before
 generation, it gives the agent context and available affordances. After
 generation, it evaluates the resulting action and state, producing Records,
 Assertions, findings, and POIs. Tarav formalizes the selected slice of work;
 it does not overconstrain the agent outside that workflow.
-<!-- tarav.context 5626cd5f:8e8652f4b1340d35 -->
-<!-- tarav.context 5626cd5f:34eeb24305a0f1e4 -->
+<!-- tarav.breadcrumb fc0dbfa31adf2fdce6c343feb178610cd6eb8f3a9227c5e87a092c517a6825c5 -->
+<!-- tarav.breadcrumb b32eb0f4e35f67999febd469f6641a97f908a65032be6b432e3fce150a75c68c -->
 
 Workflows are selectively composable. A session may use Tarav partially and
 return to ordinary native-agent work between workflow executions. The user
 and native harness remain in control; entering a workflow activates its
 bounded formalization.
-<!-- tarav.context 5626cd5f:34eeb24305a0f1e4 -->
+<!-- tarav.breadcrumb 6552112683b1a0f66f8df62ef53b068f3e14a51272d7d43715ed0087a613f1e0 -->
 
 The Tarav Python library is the agent-facing operating environment: it exposes
 context discovery, actions, durable state, and evaluation. Scripts, CLI
 commands, and skills are consumers of the library and should invoke the same
 workflow operations.
-<!-- tarav.context 5626cd5f:14c05322a7c285a2 -->
+<!-- tarav.breadcrumb 59fca4e0a689608465452887b506baa3dcafc6ee73f81bfa3eb7aec258211ed3 -->
 
 ## Agent-directed context navigation
 
@@ -145,13 +166,12 @@ Where context efficiency matters, Tarav should remain mechanically simple and
 avoid flooding an agent with available material. It supplies navigation tools
 and hints; the agent decides what to expand, taking account of what it already
 has in context and need not reload.
-<!-- tarav.context 5626cd5f:1e6e002c3e5aea1d -->
-<!-- tarav.context 5626cd5f:04b91894a22b75d0 -->
+<!-- tarav.breadcrumb bd393792c7cb869490e81c9a37a21a2b0b83c696b205e34d71ee8f1d2f6c12fc -->
+<!-- tarav.breadcrumb eccc4e6a7f418a7ee6103bf742331aae02879bfa958b7b13e161dee91ae32b8a -->
 
 The filesystem is the working analogy: listing, head/tail previews, and full
 reads are basic primitives, with expansion selected by the agent. Expose
 resolved full paths so the agent can also inspect material with its own tools.
 Tarav enables navigation rather than choosing the agent's loading sequence.
-<!-- tarav.context 5626cd5f:04b91894a22b75d0 -->
-<!-- tarav.context 5626cd5f:6be996c821a77156 -->
-
+<!-- tarav.breadcrumb 5f13bdce23ecc12a238a409a7500c1c8887f0183bfc0dbc222e03b3a96718f66 -->
+<!-- tarav.breadcrumb 6fbe16781b02ce61f18923f21754f8bf66056df2a381049289a8271151b8f5c7 -->
