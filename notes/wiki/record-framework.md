@@ -821,3 +821,26 @@ relationships. It does not exhaust all system meaning: the User explicitly
 accepted the distinction between explicit type semantics and all semantics.
 <!-- tarav.breadcrumb 283124bcb33a02fab1c40afb5a15484298967f3f157dd936e69e25c4ad45b6bf -->
 <!-- tarav.breadcrumb 2b7fdfa72a4c8d092b22d2f828decba573e968ffa82ed07e8deaf0425347e761 -->
+
+## Type-bound conformance contracts
+
+Behavioral tests can be embedded in the type hierarchy and shipped with the
+types. A base type defines a suite that its subtypes must satisfy. These
+checks exercise behavior, not merely the existence of interface methods or
+test-support hooks. “Type-bound Conformance Contracts” names this design
+pattern in the discussion; it is not yet a claim of implementation.
+<!-- tarav.breadcrumb 59f8928916981ba5b575da58a5b0c5f5fccb00b945e34da38027debfab0d27a8 -->
+
+Test support belongs to the implementation interface too: subtypes must
+provide what is necessary for the inherited tests to exercise them. The
+hierarchy therefore supplies attachment points for specific tests and the
+support those tests require, rather than leaving all testing knowledge in a
+separate repository-local suite.
+<!-- tarav.breadcrumb 6290a90b71c30e5d512c6add8df86af8d4b56115ca8bcd378da58e8485825834 -->
+<!-- tarav.breadcrumb a3df25528ce5448fc76f2f623023330c81d19628863d5654381149b0d3de8b6b -->
+
+The User explicitly affirmed the combined role of the hierarchy: operational
+capabilities, contextual knowledge, and executable behavioral obligations.
+The Type Graph makes that structure discoverable. This extends its purpose
+beyond representing executable inheritance alone.
+<!-- tarav.breadcrumb ba570865c883642ef8f86d7b120319381894aa49a58395d129f5f6da859d01e7 -->
