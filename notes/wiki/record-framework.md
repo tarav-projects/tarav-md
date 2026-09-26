@@ -801,3 +801,23 @@ a contextual role to the type relationships themselves; the exact mechanics
 of presentation and inheritance are not fixed by this capture. See
 [inherited class context](context-graph.md#inherited-class-context).
 <!-- tarav.breadcrumb fe90bda0aa299fa5d3f910bd93911e91738db0416e4161c8b70b39d96b55a3d3 -->
+
+## Explicit Type Workflow
+
+The Type Graph should have an explicit `TypeWorkflow`. The User accepted
+`entity(TaravClass).workflow` identifying that workflow: it owns the type
+representation, rather than leaving that responsibility under the broad
+Kernel workflow. This records a design decision, not a completed code change.
+<!-- tarav.breadcrumb 03a33e668980b7387eaca3ba20bbb525877cb7279c574de6a91708269cb30578 -->
+
+Foundational implementation may remain in `tarav.kernel` while its types
+belong to more specific workflows. Code location and semantic ownership are
+different boundaries; organizing the implementation in Kernel does not
+require modeling all of its semantics as one graph.
+<!-- tarav.breadcrumb 65d0a876f7db6ccbd9a93f4e68af685269a320e1efc9fb0a2f7f443d44ec2cdd -->
+
+The Type Graph expresses semantics made explicit by types and their declared
+relationships. It does not exhaust all system meaning: the User explicitly
+accepted the distinction between explicit type semantics and all semantics.
+<!-- tarav.breadcrumb 283124bcb33a02fab1c40afb5a15484298967f3f157dd936e69e25c4ad45b6bf -->
+<!-- tarav.breadcrumb 2b7fdfa72a4c8d092b22d2f828decba573e968ffa82ed07e8deaf0425347e761 -->
