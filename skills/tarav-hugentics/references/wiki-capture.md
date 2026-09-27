@@ -2,6 +2,17 @@
 
 Load this module for `tarav-hugentics --capture --wiki`.
 
+This procedure belongs to `WikiWorkflow` in `tarav.wiki`. Use
+`Wiki.from_path(root)` for a folder Wiki or `Wiki.from_project(project)`
+for the project's conventional `notes/wiki/` root. Resolve documentation
+ownership first when project guidance routes to another project.
+`Wiki.get(path)` and `Wiki.daily(date)` address notes without creating
+files; `WikiNote.read()` and `write(text)` access their Markdown.
+All Wiki parsing uses `WikiNote.parse()`, backed by
+`tarav.surfaces.markdown`. Use `Wiki.commit(message)` for scoped Git
+closure after the checks below. Chatlas and Breadcrumbs retain their
+existing roles; selection and writing remain Agent-operated.
+
 `Capture.Wiki` is a chat-centric, session-bounded workflow for capturing what
 a discussion produced into the selected project's Markdown wiki. It always
 maintains a daily narrative and integrates topical Notes when useful. It favors
@@ -160,8 +171,8 @@ that relationship.
 ## User-Turn grounding
 
 Every substantive addition produced from the discussion must remain
-discoverably grounded in one or more exact Chatlas User Turns. Reuse the
-Markdown convention established by Inlined.Capture.
+discoverably grounded in one or more exact Chatlas User Turns through a
+durable Tarav Breadcrumb attachment.
 
 Declare each relevant session once near the top of the Note:
 
@@ -175,17 +186,24 @@ The alias is the first 8 lowercase hexadecimal characters of the authoritative
 Chatlas identity hash. The provider-native session ID is a convenience
 pointer. Reuse an existing declaration; never rebind an alias.
 
-Attach references immediately after the Markdown block they support:
+During drafting, attach provisional references immediately after the Markdown
+block they support:
 
 ```md
 Capture.Wiki adds by default and does not force candidate convergence.
 <!-- tarav.context 4571385e:dd358589d092f9dd -->
 ```
 
-Consecutive references attach to the same preceding Markdown block. Preserve
-ordinary Markdown as the authoritative Note content. References establish
-addressed conversational grounding; they do not independently claim factual
-truth, approval, completeness, or exclusive support.
+Consecutive references attach to the same preceding Markdown block. Before
+Git closure, submit each changed Note through `tarav breadcrumbs submit chatlas-context`.
+Submission creates a stable Breadcrumb directory, appends its file-position
+observation, stores the typed Chatlas Turn attachment, and replaces the
+provisional comment with `<!-- tarav.breadcrumb <id> -->`.
+
+Preserve ordinary Markdown as the authoritative Note content. Breadcrumb
+attachments establish addressed conversational grounding; they do not
+independently claim factual truth, approval, completeness, or exclusive
+support.
 
 ## Capture workflow
 
@@ -202,15 +220,20 @@ truth, approval, completeness, or exclusive support.
 6. Draft topical integration when useful, using the explicit target when one
    was supplied. Decide section editing or edition splitting from the
    discussion's actual semantics.
-7. Resolve selected Turn groups through Chatlas Query and render their
+7. Resolve selected Turn groups through Chatlas Query and render provisional
    references with `Inlined.Capture.Markdown.Reference.Renderer`.
-8. Add or reuse session declarations and attach references directly to the
-   blocks they ground.
-9. Re-read every changed Note and resolve its new references exactly.
-10. Inspect the scoped diff and commit the complete Project.Wiki under
+8. Add or reuse session declarations and attach provisional references
+   directly to the blocks they ground.
+9. For every changed Note containing provisional markers, run
+   `tarav breadcrumbs submit chatlas-context --surface <NOTE> --json` exactly
+   once after the Note content is final.
+10. Re-read every changed Note and run `tarav breadcrumbs audit
+    chatlas-context --surface <NOTE> --json`; inspect semantic placement after
+    its mechanical checks.
+11. Inspect the scoped diff and commit the complete Project.Wiki under
    the Git-closure rules above.
-11. Report the daily and topical destinations, sections added or amended,
-    Turn references, commit identity, and unresolved POIs.
+12. Report the daily and topical destinations, sections added or amended,
+    Breadcrumb IDs, commit identity, and unresolved POIs.
 
 If a topic placement remains genuinely ambiguous, complete the daily capture
 and report that no topical integration was made. Capture must not fail merely
@@ -220,10 +243,11 @@ because the wiki can be organized better later.
 
 `--capture --wiki --audit <WIKI_NOTE>` is read-only. It checks:
 
-1. session declarations and their derived aliases;
-2. embedded reference syntax and local attachment;
-3. exact resolution to User Turns within the declared sessions; and
-4. obvious ungrounded substantive blocks introduced by Capture.Wiki.
+1. run `tarav breadcrumbs audit chatlas-context --surface <WIKI_NOTE> --json`;
+2. inspect its mechanical findings for provisional markers, exact positions,
+   typed attachments, and retained Chatlas User Turns; and
+3. inspect local semantic placement and obvious ungrounded substantive blocks
+   introduced by Capture.Wiki.
 
 Audit does not assess complete conversational coverage, reconcile the Note,
 update Chatlas, edit the Product.Surface, create Diagram Records, or write a

@@ -91,6 +91,11 @@
           "target": "impl.introduction",
           "slot": "link-7",
           "label": "`references/impl.md`"
+        },
+        {
+          "target": "inline-capture.introduction",
+          "slot": "link-8",
+          "label": "`references/inline-capture.md`"
         }
       ]
     },
@@ -939,7 +944,7 @@
         }
       },
       "parents": [
-        "wiki-capture.user-turn-grounding"
+        "skill.routing"
       ],
       "requires": [
         {

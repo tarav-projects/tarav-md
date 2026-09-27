@@ -191,12 +191,17 @@ visibly before continuing.
 
 Capture is selective and Agent-operated. Preserve the User's corrections,
 recollections, questions, and settled interpretations close to the relevant
-text or in project notes. Use ordinary Tarav capture and annotation primitives,
-including `Inlined.Chat.Reference` where useful; do not invent a Reading Club
-specific annotation system. A checkpoint does not require turning every
-message into prose: the Agent may add a settled interpretation, preserve an
+text or in project notes. Use ordinary Tarav capture primitives and the
+Chatlas-context Breadcrumb workflow where a User Turn materially contextualizes
+retained Markdown; do not invent a Reading Club specific annotation system.
+A checkpoint does not require turning every message into prose: the Agent may
+add a settled interpretation, preserve an
 open question, correct the transcript, add only a contextual reference, or
-report that nothing new required durable capture.
+report that nothing new required durable capture. For each changed file with
+provisional `tarav.context` markers, run
+`tarav breadcrumbs submit chatlas-context --surface <FILE> --json` once after
+its content is final, then run `tarav breadcrumbs audit chatlas-context
+--surface <FILE> --json`.
 
 After `::capture` or `::annotate`, report compactly what was preserved and do
 not move. Never advance as a side effect of capture unless the User sent

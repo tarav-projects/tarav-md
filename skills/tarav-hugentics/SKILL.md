@@ -1,6 +1,6 @@
 ---
 name: tarav-hugentics
-description: "Run Tarav's grounding, Project.Wiki capture, Model capture, Reading Club, Issue, Design Impact, and implementation workflows. USE WHEN the user wants Diagram-backed context, a User-Turn-grounded project wiki, Model capture, a Reading Project, Issue work, assessment of recent in-chat design's implementation impact, implementation design or execution, or invokes `tarav-hugentics --ground`, `--capture`, `--reading-club`, `--issues`, `--design --impact`, or `--impl`."
+description: "Run Tarav's grounding, Project.Wiki capture, Product.Surface Breadcrumb capture, Model capture, Reading Club, Issue, Design Impact, and implementation workflows. USE WHEN the user wants Diagram-backed context, a User-Turn-grounded project wiki or product surface, Model capture, a Reading Project, Issue work, assessment of recent in-chat design's implementation impact, implementation design or execution, or invokes `tarav-hugentics --ground`, `--capture`, `--reading-club`, `--issues`, `--design --impact`, or `--impl`."
 ---
 
 # Tarav Hugentics
@@ -51,7 +51,15 @@ tarav-hugentics --capture --wiki --target <WIKI_NOTE> [FOCUS]
     mandatory daily capture.
 
 tarav-hugentics --capture --wiki --audit <WIKI_NOTE>
-    Audit one Note's embedded references without mutation.
+    Audit one Note's embedded Breadcrumbs without mutation.
+
+tarav-hugentics --capture --inline <SURFACE>
+    Attach selected Chatlas User Turns through opaque Breadcrumb labels in one
+    Product.Surface.
+
+tarav-hugentics --capture --inline --audit <SURFACE>
+    Audit one surface's Breadcrumb positions and typed attachments without
+    mutation.
 
 tarav-hugentics --reading-club [DOCUMENT]
     Start or resume an Agent-operated Reading.Project and coordinate its
@@ -126,6 +134,11 @@ exactly one wiki Note, and does not compose with `--auto` or `--unreviewed`. A
 successful ordinary Wiki capture closes the complete Project.Wiki with a Git
 commit; the invocation authorizes that commit.
 
+Within `--capture --inline`, ordinary capture may mutate exactly one selected
+surface and must submit provisional markers through the `chatlas-context`
+Breadcrumb workflow. `--audit` is read-only and checks retained positions and
+typed attachments.
+
 Within `--impl`, `--auto` or `--autonomous` selects autonomous alignment at
 declared checkpoints. It does not change Diagram support requirements or turn
 Agent-generated coordination material into User-Touched data.
@@ -160,6 +173,8 @@ Ordinary Capture routes load and follow [`references/capture.md`](references/cap
 loads and follows [`references/wiki-capture.md`](references/wiki-capture.md).
 It edits Project.Wiki Markdown only in the ordinary non-audit route and never
 enters Diagram Model capture.
+`--capture --inline`, including its `--audit` route, loads and follows
+[`references/inline-capture.md`](references/inline-capture.md).
 Reading Club routes load and follow
 [`references/reading-club.md`](references/reading-club.md).
 Issue routes first load [`references/issues.md`](references/issues.md), which

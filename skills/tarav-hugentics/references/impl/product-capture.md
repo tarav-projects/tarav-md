@@ -78,14 +78,23 @@ slice into the Draft; do not land it yet.
 
 ### Product.Landing.Capture
 
-After implementation, annotate exact Product.Surface editions with their
-available Production.Context when current Diagram and Archive primitives can
-represent the claim. Never describe intended work as landed product state.
+After implementation, annotate exact Product.Surface positions with
+provisional `tarav.context` comments when a Chatlas User Turn materially
+contextualizes the produced code or documentation. Use the host surface's
+native comment syntax and never place markers inside strings or examples.
 
-When those mechanics are unavailable, do not reconstruct legacy SKW, Anchory,
-or Chat.Index pipelines. Preserve the verified product, retain precise
-references in the live note, and surface the missing Product.Surface context as
-a POI for later reconciliation.
+Once a selected file's content is final, run `tarav breadcrumbs submit chatlas-context
+--surface <FILE> --provider <PROVIDER> --session-id <SESSION_ID> --json`.
+Submission must retain the Breadcrumb identity, locator observation, and
+typed Chatlas attachment before it atomically replaces provisional comments
+with opaque `tarav.breadcrumb <id>` labels. Run `tarav breadcrumbs audit
+chatlas-context --surface <FILE> --json`, then inspect semantic placement.
+Never describe intended work as landed product state.
+
+When Breadcrumb mechanics are unavailable or a position has no justified
+User-Turn context, preserve the verified product, retain precise references in
+the live note, and surface the missing Product.Surface context as a POI for
+later reconciliation.
 
 ### Slice.Close.Capture
 
@@ -108,8 +117,9 @@ Before closing the request, check that:
   encountered across Design and Execute;
 - every Line remains typed, supported, and relevant to this Impl.Req;
 - no Agent-only coordination material was mislabeled as User-Touched;
-- Product.Surface context was captured where supported, with gaps surfaced as
-  POIs; and
+- justified Product.Surface context was submitted as opaque Breadcrumb labels,
+  each label resolves to one position and its typed attachment, and gaps are
+  surfaced as POIs;
 - the live note points to the exact Namespace, Model, Collection, and Draft;
 - the Impl.Req Collection is closed as a bounded historical edition; and
 - one final Draft check and apply produced the retained Capture.Receipt.
