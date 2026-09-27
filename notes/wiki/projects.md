@@ -42,3 +42,26 @@ accumulate every subsystem's functionality.
 
 These sections capture design intent; they do not claim the subtype split or
 integration extraction has been implemented.
+
+## First implementation of the split
+
+The user selected Wiki-backed Develop for this design.
+<!-- tarav.breadcrumb ed0aa0197d7f84736fddf5e3497d6b904beaaa51d8c62847f4535f3f08f223c3 -->
+
+The implementation now separates
+[TaravProject](../../../tarav-py/src/tarav/project/base.py) from the featured
+[Project](../../../tarav-py/src/tarav/project/__init__.py).
+`Project.from_path(path).models().main()` resolves the existing main Model;
+`Project.from_path(path).wiki()` returns the conventional Wiki folder.
+Minimal callers can explicitly use `ProjectModels(project)` or
+`ProjectWiki(project).open()`. The integrations declare child workflows under
+Project; generic Model and Wiki no longer expose `from_project()`.
+
+Explicit subtype discovery preserves project identity and leaves the marker
+file untouched. A retained Type tag is reprojected in memory to the selected
+class, while generic Record loading keeps exact Type checks. The
+[Project tests](../../../tarav-py/tests/test_project_entity.py) exercise local
+subtypes and lazy imports; [Model tests](../../../tarav-py/tests/test_models.py)
+exercise default resolution and missing configuration without creation.
+See the [implementation note](../../../tarav-py/notes/live/818-project-capability-tiers.md)
+for verification results and remaining boundaries.
