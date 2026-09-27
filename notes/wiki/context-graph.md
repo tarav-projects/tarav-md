@@ -396,3 +396,15 @@ copying, traversal, eager loading, ordering, or conflict resolution. The
 discussion establishes inherited class context without selecting those
 mechanics.
 <!-- tarav.breadcrumb 1d38b4616418c29ecd2f23ba910f7f393a681f70676e05bb7af0ffb7456d8d87 -->
+
+## Layered Context implementation
+
+The user requested execution of the [822 Context split](../../../tarav-py/notes/live/822-context-layer-split.md).
+Standalone Types, folders, entries, explorers, and `explore()` remain in
+`tarav.l1.context`; the current-runtime `context()` helper and Archive-backed
+Context storage now live in `tarav.l2.context`. Runtime constructs the storage
+service directly, while the same Context Workflow retains its identity in l1.
+The focused and full test suites passed, including fresh-import isolation and
+retained Context behavior. This placement separates the two uses of Context
+without changing its Record labels or stored data.
+<!-- tarav.breadcrumb 735d09239790a7a569d258a99ba7a5c228e8e38c7fe8abf168f4506c337b458a -->
