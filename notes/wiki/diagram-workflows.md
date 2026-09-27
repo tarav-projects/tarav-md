@@ -172,3 +172,14 @@ The [821 implementation note](../../../tarav-py/notes/live/821-dependency-layer-
 records the exact scope and validation. The layer path expresses dependency
 position; it does not change Workflow identity or semantic parentage.
 <!-- tarav.breadcrumb d1b9b41fd726576a7d030e3b5cfd8b6709fcbf90ed1aa4520f0594c6f7050191 -->
+
+## Placing four workflows in l1
+
+The user directed the next placement: Context, Loading, Project, and Archive
+move to `tarav.l1`. Their Python packages now live there, with maintained
+imports and architecture checks updated. The placement creates organization
+without claiming every operation is dependency-clean: Context storage, the
+Loading facade, and Record Archive reads still use runtime composition. The
+[821 implementation note](../../../tarav-py/notes/live/821-dependency-layer-migration.md)
+records the verified scope and remaining split.
+<!-- tarav.breadcrumb 70f947a8bde288a044897b1062753fadc9c10aea0db371316d0adc1002327c5b -->
