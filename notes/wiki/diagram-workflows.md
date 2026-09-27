@@ -140,3 +140,23 @@ progressively as the library grows; mechanics need not rely on the path.
 <!-- tarav.breadcrumb 87c47e276d68aaa55aef9d061d27fc63a41dc119f77abc23deae13fcba96264d -->
 <!-- tarav.breadcrumb 16bd3a29b74b8099642bef65f8376203297916ad33ffa86099166effa4057909 -->
 <!-- tarav.breadcrumb d3e8504deac4f6701f8f419adf29704173026d4ff43462d2ee51bb8011d3c618 -->
+
+## Dependency layers across namespaces
+
+Dependency layers are a proposed additional dimension of code organization.
+A namespace such as Kernel can span several layers rather than placing all
+its definitions and integrations in one dependency unit. Higher layers may
+depend on lower layers; imports within a layer have no additional directional
+restriction from this principle. This provides more room to model concepts
+without making their namespace alone determine their dependency position.
+<!-- tarav.breadcrumb 318b5c3bed0edb5be4b764bc8ee9276c3f7c5c4fa968a2fb7d65cfaadf824e5c -->
+<!-- tarav.breadcrumb 6699b265fa560134e4720d84b8848422ee3358793739df506574433b02309f8c -->
+
+Start with layering as a design principle; enforcement tooling can come later.
+The purpose is to eliminate avoidable import cycles caused by grouping
+foundational definitions and integrations together. It does not eliminate
+genuinely circular definition dependencies or Python's initialization constraints
+within a layer. Those harder cases remain distinct from the packaging cycles
+that layering can remove. No package migration or final layer spelling was
+selected in this discussion.
+<!-- tarav.breadcrumb 55c17ba0daa1c25d619a74090b4f98c956a4d9b4fa905940aaa4ad11ba601691 -->
