@@ -3,6 +3,7 @@
 <!-- tarav.sessions
 6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 33afe59c = codex:01a07228-313a-7ab3-b6e0-aedcb5216b3c @33afe59c2f13ac5d4b59e56f7a3761d3d91c1206a1b6287b0872036739b370fd
+1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
 -->
 
 ## Framework shape
@@ -118,3 +119,24 @@ useful route to the same workflow. The choice of implementation containment
 does not restrict discovery to that route.
 <!-- tarav.breadcrumb 6b080926aa3d0e62275ba13e642a96502a471dbf9df2b524b57df335688d038a -->
 <!-- tarav.breadcrumb 94514db2fc6b3e03acc2c441f193e2c4570cea3af7a074cd2998cf61f07d3069 -->
+
+## Namespaces as semantic qualification
+
+Tarav may qualify Python operations with namespaces such as
+`SomeType.loadings.from_path(...)`, `obj.context.explorer().ls()`, or
+`obj.records.to_record()`. These are proposed API shapes, not claims that the
+paths are implemented. The plural `loadings` names the workflow namespace.
+Such paths make Tarav's organization more visible in code and help readers
+interpret which capability a method belongs to.
+<!-- tarav.breadcrumb 9caaa09976128f906a4eb51f2642e31cf71f41a7e9acde935606e3badb27c688 -->
+<!-- tarav.breadcrumb 76bf0589e1655fba76216d6adcc9a5408c9c5d4f9efdaa27bdfad7a48e3e4449 -->
+<!-- tarav.breadcrumb 0b654d22bae4b827aacc9230eebc7dada937f6a25def86adbdaa4736f69a93d6 -->
+
+This is an optional semantic reinforcement, not a new dispatch rule or a
+requirement for every workflow. A workflow may expose methods directly. When
+many Types inherit a base-class API and bare method names become crowded or
+ambiguous, a qualified namespace can clarify them. Tarav can apply this tool
+progressively as the library grows; mechanics need not rely on the path.
+<!-- tarav.breadcrumb 87c47e276d68aaa55aef9d061d27fc63a41dc119f77abc23deae13fcba96264d -->
+<!-- tarav.breadcrumb 16bd3a29b74b8099642bef65f8376203297916ad33ffa86099166effa4057909 -->
+<!-- tarav.breadcrumb d3e8504deac4f6701f8f419adf29704173026d4ff43462d2ee51bb8011d3c618 -->
