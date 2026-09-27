@@ -65,3 +65,19 @@ subtypes and lazy imports; [Model tests](../../../tarav-py/tests/test_models.py)
 exercise default resolution and missing configuration without creation.
 See the [implementation note](../../../tarav-py/notes/live/818-project-capability-tiers.md)
 for verification results and remaining boundaries.
+
+## Named Model associations
+
+The user requested selection of Models other than main and approved named
+associations with `project.models().ls()` and `get(name)` alongside `main()`.
+<!-- tarav.breadcrumb 9613d530e936ba89236f1a82191f35c82396503231e621254c6989a92082f69e -->
+<!-- tarav.breadcrumb 8ff60071e1c6e4608d0da63e0c4e7cc636f34fc9d149de44ca7e34f218b3e11d -->
+
+The [integration](../../../tarav-py/src/tarav/project/models/__init__.py)
+reads `diagram.models` as a name-to-Model-Ship mapping in project.json.
+`ls()` returns sorted names without resolving storage; `get(name)` resolves
+the selected association and raises KeyError for an absent name.
+`diagram.main_model` remains independent: no migration or implicit alias is
+required. Users can edit the mapping directly; this slice adds no write API.
+[Tests](../../../tarav-py/tests/test_models.py) cover shared aliases, live
+marker edits, invalid mappings, missing names, and unchanged retained data.
