@@ -8,6 +8,10 @@ description: Chatlas Package.Skill for Tarav's maintained chat artifacts, sessio
 Chatlas captures selected provider-native chat artifacts and derives a small
 provider-neutral Normal Model while preserving navigation back to raw data.
 
+This package is maintained directly in its Markdown product files until a new
+`skw.skills` package source is deliberately adopted. Do not recreate or run
+the retired legacy Skillware build surface.
+
 The maintained dataset defaults to `~/Documents/tarav/chatlas/`. It owns its
 own data authority inside the shared physical Tarav depot.
 
