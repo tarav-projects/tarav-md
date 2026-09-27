@@ -160,3 +160,15 @@ within a layer. Those harder cases remain distinct from the packaging cycles
 that layering can remove. No package migration or final layer spelling was
 selected in this discussion.
 <!-- tarav.breadcrumb 55c17ba0daa1c25d619a74090b4f98c956a4d9b4fa905940aaa4ad11ba601691 -->
+
+## First dependency-layer implementation
+
+The user authorized moving Tarav toward the layer design, emphasizing that the
+first organization need not be perfect. The first bounded slice moved private
+utilities and Kernel into `tarav.l0`, made the root `ARCHIVE` convenience lazy,
+and updated maintained Python imports and architecture checks. It creates a
+working foundation while leaving other domain placements for later slices.
+The [821 implementation note](../../../tarav-py/notes/live/821-dependency-layer-migration.md)
+records the exact scope and validation. The layer path expresses dependency
+position; it does not change Workflow identity or semantic parentage.
+<!-- tarav.breadcrumb d1b9b41fd726576a7d030e3b5cfd8b6709fcbf90ed1aa4520f0594c6f7050191 -->
