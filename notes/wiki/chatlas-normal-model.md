@@ -60,3 +60,21 @@ This arrangement keeps the Normal Model at the directory root. Cache state is
 an optional operational attachment rather than a wrapper object or semantic
 subtype.
 <!-- tarav.breadcrumb 07d513308f3e4d5a2c6de4bdfce58227ccdcca58f6d83a50bd36951dd79bc521 -->
+
+## Session and representation navigation
+
+<!-- tarav.sessions
+6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
+-->
+
+ChatSession represents the session separately from its retained representations.
+The selected navigation direction is Chatlas → ChatSession → Model → Turn,
+with Messages and supporting Events available through deeper relationships.
+<!-- tarav.breadcrumb 79ee770daccaa67154ee53f94ad3db92dab6426db90d44715b82aa9be3b80b22 -->
+
+The user accepted the proposed shape `sessions.get(session_id).open()` followed
+by `session.model()`. The first implementation slice introduces ChatSession and
+its connection to the existing Normal Model; Turn/Message/Event navigation can
+follow progressively without redesigning their retained formats. This remains
+a design, coordinated in [823](../../../tarav-py/notes/live/823-chat-session-model-navigation.md).
+<!-- tarav.breadcrumb 124748b606f82ba15e372082a04f9b3ab93f187629267b2d8c98c623707eef29 -->
