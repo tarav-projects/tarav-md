@@ -81,3 +81,18 @@ the selected association and raises KeyError for an absent name.
 required. Users can edit the mapping directly; this slice adds no write API.
 [Tests](../../../tarav-py/tests/test_models.py) cover shared aliases, live
 marker edits, invalid mappings, missing names, and unchanged retained data.
+
+## Project-local Python harness
+
+The user proposed that a Project's `.tarav` folder host a Python virtual
+environment at `<project-root>/.tarav/env` by default. Managed using uv, it
+would contain Tarav and a project-specific Python package. That package would
+define a default `MyProject(TaravProject)` class for the project's node,
+giving the project a place for executable specialization.
+<!-- tarav.breadcrumb 82d59f20c6207a475a83c907cc45648c90bf0e29825e1ea48193d2e4d362a34c -->
+
+The discussion entered implementation Design in
+[824](../../../tarav-py/notes/live/824-project-local-python-harness.md).
+Its package layout and bootstrap mechanics remain implementation proposals;
+this capture does not claim they have been implemented.
+<!-- tarav.breadcrumb 5f9589358437a88df624b5aac9a2e04a444e564ead5c252f6bd4ac55687caf5c -->
