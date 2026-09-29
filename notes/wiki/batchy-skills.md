@@ -82,3 +82,22 @@ during this inspection. The Breadcrumbs here link the current investigation
 and capture request, not blanket user approval of every historical convention.
 <!-- tarav.breadcrumb 12e6d114b6490c986fe963afded152baf1521cc2735bc1c18f60505727aff741 -->
 <!-- tarav.breadcrumb 8f1df811eab9a864a8077c2c019185ec06f7da5c06e1711027fbbfdf1458e18d -->
+
+## Batchy as a Skillware extension
+
+The proposed implementation separates general surface production, built-in
+skill support, and Batchy as an application of that support. Skill primitives
+live under `tarav.l<X>.skw.skills`; Batchy-specific components belong in
+`tarav.l<X>.batchy_skills`, not `skw.skills.batchy_skills`. Routing tables are
+motivating components of this extension; their exact schema remains open.
+This is a proposed organization, not an implemented package tree.
+<!-- tarav.breadcrumb 097b87839c87a6861b1b9ff8d645f9a7468bdba0805dc74a455d0af7a575bb72 -->
+
+The foundation is [typed SKW blocks with retained output](skillware.md#typed-surface-components-and-retained-output).
+`SkillLink` is a skill component directing an agent to a target, rather than a
+generic build dependency. Components may produce their output with deterministic
+templates instead of agents; every block still retains its current `output`
+in `.skw.json`. Batchy can build its own typed components on this foundation.
+<!-- tarav.breadcrumb 78263cadbf97ce3cbbee83a24f97c2559d0be4aac7d26ac154ce19db6ea1c9dd -->
+<!-- tarav.breadcrumb 449b55b20c95867f90d5e196e5da2fc2eff9a838bc31728cc7c27b8fb24111f8 -->
+<!-- tarav.breadcrumb 1a2904c300ffe03e2d5e7343a06aed44bde230ac76accd09bbde725a74f0ac62 -->

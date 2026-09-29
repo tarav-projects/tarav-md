@@ -1,6 +1,6 @@
 # Skillware
-
 <!-- tarav.sessions
+6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 5626cd5f = codex:01a0af61-72e2-7bd2-94a3-26529d6914ec @5626cd5f7db74c4f2e3838250516b5e300cc9387ac254eb65a0816a5f30555a1
 1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
 -->
@@ -331,3 +331,46 @@ the required material. A block may consequently use compact wording that
 assumes an earlier contract, allowing skills to optimize their consumer
 context without duplicating the contract in every child surface.
 <!-- tarav.breadcrumb 9ce7dcf988fedf85bcf650484466bf65f0366953f8e65afcc7806afa33de47d5 -->
+
+## Typed surface components and retained output
+
+The next design direction makes `.skw.json` documents collections of explicitly
+typed blocks. `SkwBlock` should be a minimal base, with every concrete block a
+subtype loaded through registered types rather than one hardcoded block class.
+The suggested common data is `id` and `output`; specialized fields and behavior
+belong to subtypes. This is intended architecture, not a claim that the current
+literal/generation representation already supports arbitrary block types.
+<!-- tarav.breadcrumb 38ac9500381331e503817a884aba3b143ac73f171a9fa4f89444c9be6c54eac5 -->
+
+`output` is the default field retaining the block's current output in the
+`.skw.json` source. It is not merely an output-producing method: the source
+contains the produced content. The discussion considered `return` and retained
+the name `output`. Production may be agentic or code-based, but that distinction
+does not remove the retained output from the source.
+<!-- tarav.breadcrumb c6b2f50e44be6ed0343b1af16da57dd7635039a7f98a8311913d044d8310775c -->
+<!-- tarav.breadcrumb 0b8760962e9a72394e8498dbdd62ecc5f233ba171783b2d88ae4c5ea12b67d9f -->
+
+### Built-in skill surfaces and external styles
+
+General SKW models production of arbitrary surfaces, not only executable or
+agent-consumed instructions. Skill development is a built-in specialization at
+`tarav.l<X>.skw.skills`. Batchy is a style/application of that specialization,
+proposed at `tarav.l<X>.batchy_skills`, not nested under `skw.skills`.
+The conceptual specialization SKW → skills → Batchy does not require matching
+Python package nesting. Exact layers and workflow-parent declarations remain
+implementation decisions. See [Batchy skills](batchy-skills.md).
+<!-- tarav.breadcrumb 5db3458984f8975a09d75c5ddb330c33f57af5d39e4c114a768f0e2942a6713d -->
+
+`SkillLink` is a proposed typed skill block whose purpose is to direct the
+consuming agent toward a target. It belongs in the skill specialization for now,
+not the general SKW engine. Such consumer-facing components are distinct from
+internal generation-context or dependency references. They package useful
+authoring patterns rather than redefine SKW's underlying mechanics.
+<!-- tarav.breadcrumb 7892669286bfa709444c75dcb4d7010f926b536ac1f7fca5b283e8958df3f696 -->
+
+A SkillLink can use code and a shared template to produce homogeneous output;
+it need not be agent-generated prose. Typed components give these production
+mechanics a concrete home while retaining their output in the source. The
+discussion establishes the direction, not a finalized field schema or template.
+<!-- tarav.breadcrumb 81b1d37647d2bec6110294ddcba21e5ed179493a3f5ab75b4b0e2f3003485e2b -->
+<!-- tarav.breadcrumb c793380bcad7edca6231be7220a403e10cbd68ab02a54f397314d315ce6ffeaa -->
