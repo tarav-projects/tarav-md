@@ -148,7 +148,24 @@ Issue, or implementation routes. Its optional trailing value is a document,
 project slug, title fragment, or other practical navigation hint; Agents
 resolve equivalence from context rather than fingerprints.
 
+New implementation requests default to Wiki. `--wiki` is optional;
+`--model` explicitly selects Model-backed implementation. Examples:
+`--impl --wiki [INPUT]`, `--impl --wiki --design [INPUT]`,
+`--impl --wiki --execute <IMPL_REQ|INPUT>`, `--impl --wiki --develop [INPUT]`,
+and `--impl --wiki --review <IMPL_REQ>`.
+Existing requests retain their recorded surface when no selector is given.
+`--wiki` and `--model` are mutually exclusive and do not select a phase.
+
 ## Routing
+
+Before loading implementation phase or impact modules, select its knowledge
+surface. New implementation requests default to Wiki unless `--model` is explicit.
+Resume the surface recorded by an existing Impl.Req; legacy notes with
+Impl.Req.Diagram remain Model-backed. Wiki selection, including the default,
+routes exclusively to [`references/impl/wiki.md`](references/impl/wiki.md). `--wiki` and `--model` conflict.
+That module exclusively owns Wiki-backed phases and impact assessment. Do not load the
+Model-backed implementation modules for that route. Conflicting surface
+selection requires clarification; never silently migrate a request.
 
 Do not reread a skill `references/` file that was already read completely and
 remains available in context. Reread it only if it changed, its contents were
@@ -196,6 +213,10 @@ navigation commands such as `::forward`, `::backward`, `::capture`, and
 running Reading Club workflow. They are not initial Batchy.Skill calls.
 
 ## Boundary
+
+The Model/Collection/Draft implementation requirements below apply only to
+the Model-backed route. Wiki-backed implementation instead follows its own
+live-note and Wiki capture contract; absent Model artifacts are not POIs there.
 
 This fresh skill does not use the legacy Markdown Index, Anchory, Agendix, or
 Chat.Index backpropagation mechanics. Those are Attic evidence. Current

@@ -28,7 +28,7 @@ all TaravObjects. The user agreed to keep the profile model simple rather than
 infer additional constraints merely because a class supplies configuration.
 <!-- tarav.breadcrumb c6a8e7222e7a206d62d9b811beddab0f9bcd3633de71b07541e5f8a6c94d0c36 -->
 
-The [implementation design](../../../tarav-py/notes/live/820-loading-profiles.md)
+The [implementation design](../../../tarav-py/notes/live/820-loading-profiles-impl-req.md)
 first proposed ordered entry paths as the contract, keeping trusted Type
 dispatch and exact expected_type checks separate. Its precedence and directory
 semantics became part of the first implementation. The note also
@@ -45,5 +45,5 @@ the exact registered Type. Unprofiled loading keeps its original candidate
 order and DirectoryRecord guard. TaravProject opts in for
 `.tarav/project.json` and `project.json`, with correct root handling for both.
 The implementation and verification are recorded in the
-[820 note](../../../tarav-py/notes/live/820-loading-profiles.md).
+[820 note](../../../tarav-py/notes/live/820-loading-profiles-impl-req.md).
 <!-- tarav.breadcrumb ceae87674f0af9ca710d96f1d842188b636e89484a768b953d52278bbf65987d -->

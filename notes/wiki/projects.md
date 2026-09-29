@@ -63,7 +63,7 @@ class, while generic Record loading keeps exact Type checks. The
 [Project tests](../../../tarav-py/tests/test_project_entity.py) exercise local
 subtypes and lazy imports; [Model tests](../../../tarav-py/tests/test_models.py)
 exercise default resolution and missing configuration without creation.
-See the [implementation note](../../../tarav-py/notes/live/818-project-capability-tiers.md)
+See the [implementation note](../../../tarav-py/notes/live/818-project-capability-tiers-impl-req.md)
 for verification results and remaining boundaries.
 
 ## Named Model associations
@@ -92,7 +92,7 @@ giving the project a place for executable specialization.
 <!-- tarav.breadcrumb 82d59f20c6207a475a83c907cc45648c90bf0e29825e1ea48193d2e4d362a34c -->
 
 The discussion entered implementation Design in
-[824](../../../tarav-py/notes/live/824-project-local-python-harness.md).
+[824](../../../tarav-py/notes/live/824-project-local-python-harness-impl-req.md).
 Its package layout and bootstrap mechanics remain implementation proposals;
 this capture does not claim they have been implemented.
 <!-- tarav.breadcrumb 5f9589358437a88df624b5aac9a2e04a444e564ead5c252f6bd4ac55687caf5c -->

@@ -96,6 +96,11 @@
           "target": "inline-capture.introduction",
           "slot": "link-8",
           "label": "`references/inline-capture.md`"
+        },
+        {
+          "target": "impl.wiki.introduction",
+          "slot": "link-9",
+          "label": "`references/impl/wiki.md`"
         }
       ]
     },
@@ -921,6 +926,11 @@
           "target": "impl.product-capture.introduction",
           "slot": "link-5",
           "label": "`impl/product-capture.md`"
+        },
+        {
+          "target": "impl.wiki.introduction",
+          "slot": "link-6",
+          "label": "`impl/wiki.md`"
         }
       ]
     },
@@ -1357,6 +1367,43 @@
           "pointer": "/blocks/8"
         }
       }
+    },
+    {
+      "id": "impl.wiki.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/wiki.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.routing",
+        "impl.routing"
+      ],
+      "requires": [
+        {
+          "target": "skill.batchy-skill-contract",
+          "delivery": "inlined"
+        }
+      ],
+      "links": [
+        {
+          "target": "wiki-capture.introduction",
+          "slot": "link-0",
+          "label": "`../wiki-capture.md`"
+        },
+        {
+          "target": "impl.general-practices.introduction",
+          "slot": "link-1",
+          "label": "`general-practices.md`"
+        },
+        {
+          "target": "impl.general-preferences.introduction",
+          "slot": "link-2",
+          "label": "`general-preferences.md`"
+        }
+      ]
     }
   ]
 }

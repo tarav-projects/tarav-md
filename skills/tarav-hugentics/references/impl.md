@@ -44,6 +44,19 @@ ask for that artifact if Review was selected rather than synthesizing one.
 
 ## Routing
 
+Select the knowledge surface before applying the phase rules below.
+New requests default to Wiki; `--model` explicitly selects Model-backed work.
+Resume existing notes on their recorded surface; legacy Impl.Req.Diagram
+means Model-backed. Reject combined `--wiki` and `--model` selectors.
+For Wiki selection (default, explicit `--wiki`, or retained Wiki surface),
+load [`impl/wiki.md`](impl/wiki.md) and stop routing through this module.
+The remaining phase modules and shared contract here are Model-backed.
+For new Model-backed notes, record `Knowledge.Surface: model` alongside
+Impl.Req.Diagram. An ambiguous existing note requires clarification.
+Wiki notes use `Impl.Req.Wiki` instead of `Impl.Req.Diagram`; recognize
+either as a request when accompanied by Impl.Abstract, Execution.Plan, and
+Impl.Log. Reject an explicit surface that conflicts with the retained note.
+
 Resolve exactly one workflow:
 
 1. An explicit selector or exact shortcut wins.
@@ -80,6 +93,9 @@ the direct prompt was an already materialized Impl.Req.
 
 - The live-note `Impl.Req` is the durable design-to-execution handoff and main
   Agent coordination surface.
+- Name new implementation-request live notes
+  `<number>-<descriptive-name>-impl-req.md` under the product's notes/live/.
+  Follow its numbering convention; preserve existing filenames on resume.
 - `Impl.Req.Diagram` identifies the Project Model, one
   `Impl.Req.Collection`, and one durable `Diagram.Draft`.
 - Ground or refresh the `Diagram.View` before deciding whether candidate Lines

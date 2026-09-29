@@ -3,9 +3,11 @@
 Load this module for `tarav-hugentics --capture --wiki`.
 
 This procedure belongs to `WikiWorkflow` in `tarav.wiki`. Use
-`Wiki.from_path(root)` for a folder Wiki or `Wiki.from_project(project)`
+`Wiki.from_path(root)` for a folder Wiki or `Project.from_path(path).wiki()`
 for the project's conventional `notes/wiki/` root. Resolve documentation
 ownership first when project guidance routes to another project.
+Import Project from tarav.project; minimal TaravProject callers can use
+ProjectWiki(project).open() from tarav.project.wiki instead.
 `Wiki.get(path)` and `Wiki.daily(date)` address notes without creating
 files; `WikiNote.read()` and `write(text)` access their Markdown.
 All Wiki parsing uses `WikiNote.parse()`, backed by

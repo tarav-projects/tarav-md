@@ -399,7 +399,7 @@ mechanics.
 
 ## Layered Context implementation
 
-The user requested execution of the [822 Context split](../../../tarav-py/notes/live/822-context-layer-split.md).
+The user requested execution of the [822 Context split](../../../tarav-py/notes/live/822-context-layer-split-impl-req.md).
 Standalone Types, folders, entries, explorers, and `explore()` remain in
 `tarav.l1.context`; the current-runtime `context()` helper and Archive-backed
 Context storage now live in `tarav.l2.context`. Runtime constructs the storage

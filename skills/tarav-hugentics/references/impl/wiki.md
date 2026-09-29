@@ -1,0 +1,149 @@
+# Wiki-backed implementation
+
+Use this module by default for new implementation requests, for explicit
+`--impl --wiki`, and for resuming a Wiki-backed Impl.Req.
+This is an agent-operated implementation route, not a new Python runner.
+
+## Surface and phase selection
+
+`--wiki` selects the knowledge surface, not a phase or permission to execute.
+It is optional for new requests. `--model` selects the other route; both
+selectors together are an error. Defaults never migrate an existing note.
+Keep existing shortcuts: `--design`, `--review`, `--execute`/`--exec`,
+`--develop`/`--dev`, and `--harvest`. Explicit phase wins. Otherwise an
+existing Impl.Req defaults to Execute; new actionable input defaults to Design.
+Develop, Review, and Harvest require explicit selection. With no actionable
+input, orient and stop. `--auto`/`--autonomous` selects autonomous alignment,
+not broader execution authority.
+
+Record `Knowledge.Surface: wiki` in the live note. On resume, use that
+surface even when the flag is omitted. Legacy notes with Impl.Req.Diagram
+remain Model-backed. If an explicit selector conflicts with the retained
+surface, or the note has conflicting surface declarations, ask before any
+mutation. Do not infer a migration or create replacement artifacts.
+
+Print a compact banner with phase, Wiki surface, input, and Alignment.Mode.
+Read [`general-practices.md`](general-practices.md) and [`general-preferences.md`](general-preferences.md) for product work.
+Do not load Model-backed phase modules, product-capture, or grounding routines.
+No Model, Collection, Diagram View, Diagram Draft, authorization Gate, or
+Model capture reconciliation is required or created by this route.
+
+## Context and request
+
+Resolve the product project and its instructions. Resolve documentation
+ownership separately when project guidance assigns the Wiki elsewhere.
+Use Project.from_path(path).wiki() from tarav.project, or an explicitly
+selected folder Wiki. For a minimal TaravProject, use
+ProjectWiki(project).open() from tarav.project.wiki.
+Read relevant Wiki notes and follow evidence links as needed; do not read or
+reconcile the entire Wiki. An absent Wiki is not a reason to bootstrap Models.
+For read-only review, report missing context without creating anything.
+
+Name new implementation-request live notes
+`<number>-<descriptive-name>-impl-req.md` under the product's notes/live/.
+Follow its numbering convention; preserve existing filenames on resume.
+
+The live-note Impl.Req remains coordination outside notes/wiki/ and contains:
+
+- Impl.Abstract: requested result, scope, explicit non-goals and status.
+- Knowledge.Surface: wiki.
+- Impl.Req.Wiki: product project, Wiki owner/root, relevant note paths,
+  available supporting chat references, and capture status.
+- Execution.Plan: bounded implementation steps and verification.
+- Impl.Log: decisions, changes, checks, blockers, and capture outcomes.
+
+Do not invent evidence or turn an agent plan into user-approved design.
+Record user decisions, implementation observations, and proposals distinctly.
+Do not copy the whole plan into the Wiki.
+
+## Phases
+
+**Design:** inspect Wiki context and current code, formulate the live note,
+and resolve material ambiguities interactively. Do not implement product code.
+Capture supported discussion under the capture contract below, then hand off
+the note with ready, needs-alignment, or blocked status.
+
+**Review:** require an existing note. Cold-read it, inspect the referenced Wiki
+and code, verify scope and executable checks, and report readiness. No note
+edits, capture, Chatlas refresh, commits, or product mutation.
+
+**Execute:** cold-read the existing note and current instructions before edits.
+Explicit Execute with direct input first creates the Wiki-backed live note;
+it does not bootstrap Diagram artifacts. Recheck the plan against current code.
+Before the first product edit, use the existing implementation checkpoint
+policy: commit existing product-repository changes (or an empty checkpoint
+when clean), unless project/user instructions override it. Stop for conflicts
+or an impossible checkpoint; do not create later automatic product commits.
+Implement bounded slices, test each, and record outcomes in the live note.
+At a material scope mismatch, ask in Interactive mode; Autonomous mode still
+cannot expand authorization. Finish with verification, Product.Surface Breadcrumb
+capture below, and selective Wiki capture. Develop and Harvest inherit this
+requirement through their Execute phase; no extra capture flag is needed.
+
+**Develop:** Design, then cold-reload the resulting live note and Execute.
+Preserve surface, alignment mode, scope, and evidence across the boundary.
+
+**Harvest:** inspect the discussion and relevant Wiki, select one coherent
+implementation unit, and present the choice in Interactive mode. Then Develop
+that unit. Keep other candidates separate; do not silently implement them.
+
+`--impact` is optional input assessment: compare the current discussion and
+Wiki design against code, separating aligned behavior from actionable deltas.
+Feed that delta to the selected phase. It does not select Execute, authorize
+writes in Review, or require the Model-backed design-impact module.
+`--impl --wiki --capture` selects Wiki capture within the chosen mutating phase;
+it is not another phase. Review remains read-only even when capture is requested.
+
+## Product.Surface Breadcrumb capture
+
+After implementation, inspect the changed code, tests, configuration and
+documentation for positions materially contextualized by exact Chatlas User
+Turns. Attach justified Breadcrumbs in those product files themselves; Wiki
+or Impl.Req references do not substitute for this step. Stay within the
+implemented scope; do not annotate every declaration or manufacture support.
+Design may identify candidate positions but does not edit product files.
+Review remains read-only. This step does not load Model-backed capture.
+
+Reuse the same exact session resolution and single Chatlas refresh for product
+and Wiki capture. Resolve the supporting User Turns before inserting provisional
+tarav.context markers. Use the surface's supported native comment convention,
+never strings or example payloads. For generated files, edit their authoritative
+source and rebuild rather than patching generated output. If no supported
+embedding convention exists, report that limitation instead of inventing syntax.
+
+Once each selected file's content is final, submit its provisional markers:
+`tarav breadcrumbs submit chatlas-context --surface <FILE> --provider <PROVIDER> --session-id <SESSION_ID> --json`.
+Submission must retain typed attachments and positions before replacing markers
+with opaque tarav.breadcrumb labels. Then run
+`tarav breadcrumbs audit chatlas-context --surface <FILE> --json`, inspect
+semantic placement, and rerun affected syntax/build checks after annotation.
+Record files, Breadcrumb IDs, audit results and any capture gaps in Impl.Log.
+If no position has justified support, record that outcome without inventing
+annotations. If mechanics fail, preserve the product and report the pending
+capture separately; do not claim completion. This grants no product commit
+authority beyond the existing implementation policy.
+
+## Wiki capture and closure
+
+For mutating phases, compose [`../wiki-capture.md`](../wiki-capture.md) for one bounded capture pass at
+handoff/completion; intermediate agent coordination stays in the live note.
+The implementation invocation authorizes this scoped pass. Reuse its
+Project.Wiki selection, mandatory daily narrative, useful topical integration,
+Chatlas User-Turn grounding, Breadcrumb submission/audit, and Wiki-only Git closure.
+Do not treat a Wiki commit as permission to commit product files or live notes.
+
+Capture relevant user decisions and discussion selectively. Implementation facts
+must also cite inspected code or test evidence; user authorization is not proof
+that code works. Keep unsupported agent interpretation and raw execution logs
+in the live note. Preserve alternatives rather than force a canonical design.
+Do not regenerate existing Wiki content merely to make it match the plan.
+
+If Chatlas, Breadcrumb, or Wiki closure mechanics are unavailable, preserve
+verified product work and log the precise capture gap for recovery. Do not
+fabricate support or claim capture completed. Missing Model artifacts are not
+a gap for this route. Review never runs this mutating capture procedure.
+
+Completion reports the live note, implemented outcome, checks, Wiki daily and
+topical destinations, Product.Surface Breadcrumb results, scoped capture commit
+if any, and unresolved gaps.
+A verified implementation with pending Wiki capture must report both statuses.

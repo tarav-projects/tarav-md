@@ -76,7 +76,7 @@ The user accepted the proposed shape `sessions.get(session_id).open()` followed
 by `session.model()`. The first implementation slice introduces ChatSession and
 its connection to the existing Normal Model; Turn/Message/Event navigation can
 follow progressively without redesigning their retained formats. This remains
-a design, coordinated in [823](../../../tarav-py/notes/live/823-chat-session-model-navigation.md).
+a design, coordinated in [823](../../../tarav-py/notes/live/823-chat-session-model-navigation-impl-req.md).
 <!-- tarav.breadcrumb 124748b606f82ba15e372082a04f9b3ab93f187629267b2d8c98c623707eef29 -->
 
 ## Session navigation implementation — 823
