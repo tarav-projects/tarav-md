@@ -121,3 +121,28 @@ with editable Project behavior. This completes the earlier design's first slice;
 the maintained [usage guide](../../../tarav-py/README.md#optional-project-local-python-harness)
 shows concrete commands.
 <!-- tarav.breadcrumb 8a2e200a8fed357e223b7f119293f83ac0a399bdb21fcb29253e48ed5fdb32eb -->
+
+## Explicit Tarav process launching
+
+The runtime design remains one Python environment per runtime. Launching code
+in another environment is an explicit external operation, usable from a script
+or through `tarav run`; ordinary imports, type dispatch and runtime construction
+do not automatically switch environments. The user selected small launching
+utilities with a CLI adapter as the direction to implement.
+<!-- tarav.breadcrumb e1c093316bbef82529ae796028d8314fa52e293b6b8fda8b97078d7d860126e5 -->
+<!-- tarav.breadcrumb 2ee841de99ae1f7934bd210ab79c495439a74ba9dbf05838d39ad97a8f2fc8f4 -->
+
+Project-aware launching resolves configuration before executing the supplied
+script. Explicit `--project` searches upward from cwd or a supplied path for
+`.tarav/project.json` and selects its environment. File, inline-code and stdin
+execution should support the convenience of a `uv run python -` heredoc.
+The launcher establishes the working runtime inside the selected process;
+callers that already know their environment can still invoke Python directly.
+<!-- tarav.breadcrumb b19e2c193bc5e743e612193c6c44c487a8b089c70a4db61e7623abd2080d3470 -->
+<!-- tarav.breadcrumb 4c72bca681000f508ba50028bd2c22c49119ac943f609a28d925e4f914c9a955 -->
+
+[826](../../../tarav-py/notes/live/826-tarav-process-launching-impl-req.md)
+specifies this work, including reuse of 824 and a proposed migration of Project
+launch metadata into the marker. Exact API and factory details are implementation
+proposals; this entry does not claim the launcher is implemented.
+<!-- tarav.breadcrumb 50dbe5453d4cf755aa1e749a8abd1ee18a47193b64cf50c04853b520bb01933b -->
