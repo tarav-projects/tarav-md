@@ -78,3 +78,23 @@ its connection to the existing Normal Model; Turn/Message/Event navigation can
 follow progressively without redesigning their retained formats. This remains
 a design, coordinated in [823](../../../tarav-py/notes/live/823-chat-session-model-navigation.md).
 <!-- tarav.breadcrumb 124748b606f82ba15e372082a04f9b3ab93f187629267b2d8c98c623707eef29 -->
+
+## Session navigation implementation — 823
+
+<!-- tarav.sessions
+1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
+-->
+
+The user requested implementation of 823. The implemented
+[Session view](../../../tarav-py/src/tarav/l1/chatlas/sessions.py) supports
+`ChatSessions(...).get(session_id).open()` and `session.model()` through the
+existing reader/cache. Native session IDs are the default folder keys; collisions
+require provider/instance scope or an explicit `key_by="identity_hash"` view.
+`get_by_identity()` also selects an exact identity. Opening an entry does not
+capture or normalize. The portable ChatSession Record retains its selectors and
+existing identity hash, while `bind_root()` selects runtime storage without
+persisting a depot path. The [Session tests](../../../tarav-py/tests/chatlas_normal_model/test_sessions.py)
+verify read-only navigation, Record dispatch, root isolation, real normalization,
+cache reuse, and explicit availability errors. Deeper collection navigation is
+still follow-up work; this implementation advances the earlier design status.
+<!-- tarav.breadcrumb ef7ede98c40e3abe1826256f8ec8da9ab5cd6fec7217950f8a8e0386d5a0699d -->
