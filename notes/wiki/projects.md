@@ -124,25 +124,26 @@ shows concrete commands.
 
 ## Explicit Tarav process launching
 
-The runtime design remains one Python environment per runtime. Launching code
-in another environment is an explicit external operation, usable from a script
-or through `tarav run`; ordinary imports, type dispatch and runtime construction
-do not automatically switch environments. The user selected small launching
-utilities with a CLI adapter as the direction to implement.
-<!-- tarav.breadcrumb e1c093316bbef82529ae796028d8314fa52e293b6b8fda8b97078d7d860126e5 -->
-<!-- tarav.breadcrumb 2ee841de99ae1f7934bd210ab79c495439a74ba9dbf05838d39ad97a8f2fc8f4 -->
-
-Project-aware launching resolves configuration before executing the supplied
-script. Explicit `--project` searches upward from cwd or a supplied path for
-`.tarav/project.json` and selects its environment. File, inline-code and stdin
-execution should support the convenience of a `uv run python -` heredoc.
-The launcher establishes the working runtime inside the selected process;
-callers that already know their environment can still invoke Python directly.
-<!-- tarav.breadcrumb b19e2c193bc5e743e612193c6c44c487a8b089c70a4db61e7623abd2080d3470 -->
-<!-- tarav.breadcrumb 4c72bca681000f508ba50028bd2c22c49119ac943f609a28d925e4f914c9a955 -->
-
 [826](../../../tarav-py/notes/live/826-tarav-process-launching-impl-req.md)
-specifies this work, including reuse of 824 and a proposed migration of Project
-launch metadata into the marker. Exact API and factory details are implementation
-proposals; this entry does not claim the launcher is implemented.
-<!-- tarav.breadcrumb 50dbe5453d4cf755aa1e749a8abd1ee18a47193b64cf50c04853b520bb01933b -->
+is implemented. The [Python runner](../../../tarav-py/src/tarav/l1/python_env/runner.py)
+defines `RunnerConfiguration`, an abstract `RunnerConfigurator`, and the
+current-environment specialization. The [shared execution engine](../../../tarav-py/src/tarav/l1/python_env/core.py)
+runs only the file, source, stdin, and arguments supplied by its caller. The
+general `tarav run` adapter selects current or Project configuration; it does
+not import a runtime factory, inject a Project, or make Record loading switch
+environments.
+<!-- tarav.breadcrumb f3f3f542857f0f4f04e57958c3ee60671a410f95015a66de382430c1a9e21080 -->
+<!-- tarav.breadcrumb ad3faf722f82cbcb0f16c855411052e395d9b457685cb1957648fcfb16cfd842 -->
+
+Project markers can declare relative `harness.manifest` and
+`harness.environment` paths; absence selects the generated `.tarav` defaults.
+The [Project launch projection](../../../tarav-py/src/tarav/l2/project/runner.py)
+reads only those common marker fields before launching and does not resolve the
+marker's concrete Project Type. Paths must remain inside the Project root,
+inspection is read-only, and sync targets exactly the selected manifest and
+environment. Concrete Project loading remains an explicit operation performed
+inside an environment that has the product Type installed. The
+[tests](../../../tarav-py/tests/test_project_harness.py) cover an unknown
+concrete Type in the bootstrap runtime, declared product paths, generated
+harness behavior, and a real isolated uv environment.
+<!-- tarav.breadcrumb acc3077a26189a46980b2820716297f4a47ccab541dc063ae3503a2ebdfb5f62 -->
