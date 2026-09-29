@@ -374,3 +374,22 @@ mechanics a concrete home while retaining their output in the source. The
 discussion establishes the direction, not a finalized field schema or template.
 <!-- tarav.breadcrumb 81b1d37647d2bec6110294ddcba21e5ed179493a3f5ab75b4b0e2f3003485e2b -->
 <!-- tarav.breadcrumb c793380bcad7edca6231be7220a403e10cbd68ab02a54f397314d315ce6ffeaa -->
+
+### Typed block implementation (825)
+
+The user invoked Execute for [825](../../../tarav-py/notes/live/825-typed-skw-components-impl-req.md).
+[SKW Document](../../../tarav-py/src/tarav/l1/skw/document.py) now loads each
+nested block through the trusted Type registry and requires a `SkwBlock` subtype.
+Literal and agent-generation blocks have concrete Types; each retains `id` and
+current `output` in its source Record. Explicit `produce` updates retained
+output, while compile assembles it without running a producer. The skill-owned
+[SkillLink](../../../tarav-py/src/tarav/l1/skw/skills.py) declares one target,
+produces its escaped relative Markdown link, and reports stale output when that
+declaration changes. [Loading](../../../tarav-py/src/tarav/l1/skw/loading.py)
+places the retained link inline and counts its declared target as referenced
+context. One Hugentics link uses this path. The 36 maintained skill documents
+were migrated; builds reproduced all their Markdown without text drift.
+Existing generation and context history was not rebased. The full product suite
+passed 1,381 tests, including trusted external subtype dispatch and the typed
+link behavior.
+<!-- tarav.breadcrumb 97dcd940ff0d11c69605334367cb3df25172c3196951cbabcdc3c8f6c2eda593 -->
