@@ -5,8 +5,8 @@
   "blocks": [
     {
       "id": "content",
-      "kind": "literal",
-      "lines": [
+      "type": "Tarav.Skillware.LiteralBlock",
+      "output": [
         "# Tarav.Diagram",
         "",
         "This document describes the current candidate design of `Tarav.Diagram`.",

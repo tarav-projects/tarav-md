@@ -22,7 +22,11 @@ recorded action, permitted only by the finding's class, stored under
 source blocks; most within-file parents default to the predecessor. Cross-file
 parents and consumer requirements are explicit. Keep the first metadata block
 as the entry root. Link slots such as `{{skw:link-0}}` compile from declared
-primitives; do not replace them with authored Markdown links.
+primitives. Typed `SkillLink` blocks retain produced Markdown in `output` and
+declare their own target; refresh one explicitly with `tarav skw document
+produce --source SKILL.skw.json --block design-impact-link`. Other loading
+links remain declared primitives; do not replace their slots with authored
+Markdown links.
 
 Inspect one block without dumping the whole graph:
 

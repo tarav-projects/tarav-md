@@ -5,7 +5,7 @@
   "blocks": [
     {
       "id": "introduction",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -91,7 +91,7 @@
     },
     {
       "id": "alignment-loop",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -142,7 +142,7 @@
     },
     {
       "id": "readiness-checkpoint",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -193,7 +193,7 @@
     },
     {
       "id": "live-note-impl-req",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -271,7 +271,7 @@
     },
     {
       "id": "impl-req-diagram",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -344,7 +344,7 @@
     },
     {
       "id": "updating",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -390,7 +390,7 @@
     },
     {
       "id": "output",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {

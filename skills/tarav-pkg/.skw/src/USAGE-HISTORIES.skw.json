@@ -5,8 +5,8 @@
   "blocks": [
     {
       "id": "content",
-      "kind": "literal",
-      "lines": [
+      "type": "Tarav.Skillware.LiteralBlock",
+      "output": [
         "# Tarav Usage Histories",
         "",
         "Usage Histories describe situations Tarav should make possible. They are",

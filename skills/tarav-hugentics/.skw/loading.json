@@ -51,12 +51,13 @@
           "pointer": "/blocks/4"
         }
       },
-      "links": [
+      "includes": [
         {
-          "target": "design-impact.introduction",
-          "slot": "link-0",
-          "label": "`references/design-impact.md`"
-        },
+          "target": "skill.design-impact-link",
+          "slot": "link-0"
+        }
+      ],
+      "links": [
         {
           "target": "impl.introduction",
           "slot": "link-1",
@@ -1404,6 +1405,17 @@
           "label": "`general-preferences.md`"
         }
       ]
+    },
+    {
+      "id": "skill.design-impact-link",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/SKILL.skw.json",
+          "pointer": "/blocks/6"
+        }
+      },
+      "parents": []
     }
   ]
 }

@@ -5,7 +5,7 @@
   "blocks": [
     {
       "id": "introduction",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -46,7 +46,7 @@
     },
     {
       "id": "contextualize",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -89,7 +89,7 @@
     },
     {
       "id": "mutations",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {

@@ -5,7 +5,7 @@
   "blocks": [
     {
       "id": "introduction",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -92,7 +92,7 @@
     },
     {
       "id": "direct-input-bootstrap",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -168,7 +168,7 @@
     },
     {
       "id": "execution-realignment",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -228,7 +228,7 @@
     },
     {
       "id": "git-checkpoint",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -278,7 +278,7 @@
     },
     {
       "id": "per-slice-execution",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -334,7 +334,7 @@
     },
     {
       "id": "deviation-handling",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -384,7 +384,7 @@
     },
     {
       "id": "completion",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {

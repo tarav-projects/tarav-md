@@ -5,7 +5,7 @@
   "blocks": [
     {
       "id": "introduction",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -42,7 +42,7 @@
     },
     {
       "id": "introduction-section",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -93,7 +93,7 @@
     },
     {
       "id": "batchy-skill-contract",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -139,7 +139,7 @@
     },
     {
       "id": "command-surface",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -307,7 +307,7 @@
     },
     {
       "id": "routing",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -505,7 +505,7 @@
     },
     {
       "id": "boundary",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -571,6 +571,15 @@
         "The workflow's explicit User invocation is retained as one",
         "`Capture.Authorization.Gate`; affected editions reference that Gate. This",
         "records permission to write, not review of wording."
+      ]
+    },
+    {
+      "id": "design-impact-link",
+      "type": "Tarav.Skillware.SkillLink",
+      "target": "design-impact.introduction",
+      "label": "`references/design-impact.md`",
+      "output": [
+        "[`references/design-impact.md`](references/design-impact.md)"
       ]
     }
   ],

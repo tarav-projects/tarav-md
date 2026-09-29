@@ -5,7 +5,7 @@
   "blocks": [
     {
       "id": "introduction",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -48,7 +48,7 @@
     },
     {
       "id": "workflow",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -126,7 +126,7 @@
     },
     {
       "id": "boundary-contract",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {
@@ -173,7 +173,7 @@
     },
     {
       "id": "completion",
-      "kind": "generation",
+      "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
         {

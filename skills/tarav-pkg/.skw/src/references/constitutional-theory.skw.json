@@ -5,8 +5,8 @@
   "blocks": [
     {
       "id": "content",
-      "kind": "literal",
-      "lines": [
+      "type": "Tarav.Skillware.LiteralBlock",
+      "output": [
         "# Constitutional Theory",
         "",
         "A constitution is a system's central alignment surface. It states fundamental principles and boundaries without attempting to contain all of the system's design truth.",

@@ -47,6 +47,9 @@ The live-note Impl.Req remains coordination outside notes/wiki/ and contains:
 
 - Impl.Abstract: requested result, scope, explicit non-goals and status.
 - Knowledge.Surface: wiki.
+- Design narrative: requested behavior, rationale, relevant current behavior,
+  decisions, constraints, informative alternatives, and open questions, with
+  supporting Breadcrumbs beside the passages they contextualize.
 - Impl.Req.Wiki: product project, Wiki owner/root, relevant note paths,
   available supporting chat references, and capture status.
 - Execution.Plan: bounded implementation steps and verification.
@@ -56,6 +59,20 @@ Do not invent evidence or turn an agent plan into user-approved design.
 Record user decisions, implementation observations, and proposals distinctly.
 Do not copy the whole plan into the Wiki.
 
+The Impl.Req must be sufficiently self-contained for another agent in another
+session to understand and implement the request. Wiki links remain useful for
+broader context and detail, but must not replace the explanation of what is
+requested and why. Carry the necessary bounded narrative and evidence in the
+note itself; neither copy the entire discussion nor require its reconstruction.
+
+During Design, attach exact supporting Chatlas User Turns as Breadcrumbs in
+the live note, even when the same turns also support Wiki passages. Use the
+Markdown marker, submission, and audit mechanics described below for product
+surfaces; the Impl.Req is an authorized Design output, not an implementation
+edit. Log evidence gaps rather than fabricate support. On later execution,
+preserve the original sessions and turns; a new session's invocation does not
+replace design evidence. Add later clarifications and observations distinctly.
+
 ## Phases
 
 **Design:** inspect Wiki context and current code, formulate the live note,
@@ -64,7 +81,8 @@ Capture supported discussion under the capture contract below, then hand off
 the note with ready, needs-alignment, or blocked status.
 
 **Review:** require an existing note. Cold-read it, inspect the referenced Wiki
-and code, verify scope and executable checks, and report readiness. No note
+and code, verify scope, executable checks, and whether the note carries enough
+design context for a cross-session handoff, and report readiness. No note
 edits, capture, Chatlas refresh, commits, or product mutation.
 
 **Execute:** cold-read the existing note and current instructions before edits.
@@ -101,11 +119,14 @@ documentation for positions materially contextualized by exact Chatlas User
 Turns. Attach justified Breadcrumbs in those product files themselves; Wiki
 or Impl.Req references do not substitute for this step. Stay within the
 implemented scope; do not annotate every declaration or manufacture support.
-Design may identify candidate positions but does not edit product files.
+Design captures Breadcrumbs in its Impl.Req; it may identify candidate positions
+in implementation files but does not edit those files.
 Review remains read-only. This step does not load Model-backed capture.
 
-Reuse the same exact session resolution and single Chatlas refresh for product
-and Wiki capture. Resolve the supporting User Turns before inserting provisional
+Reuse session resolution and refresh across Impl.Req, product, and Wiki capture
+within a pass. Evidence may come from earlier sessions: resolve each exact source
+session and keep its identity with its turns; never submit another session's
+turns under the current session. Resolve support before inserting provisional
 tarav.context markers. Use the surface's supported native comment convention,
 never strings or example payloads. For generated files, edit their authoritative
 source and rebuild rather than patching generated output. If no supported

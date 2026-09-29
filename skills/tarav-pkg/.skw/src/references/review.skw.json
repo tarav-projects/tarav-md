@@ -5,8 +5,8 @@
   "blocks": [
     {
       "id": "content",
-      "kind": "literal",
-      "lines": [
+      "type": "Tarav.Skillware.LiteralBlock",
+      "output": [
         "# Tarav Diagram Review",
         "",
         "Use this module to review existing `User.Touched.Chatlas.Index` Block Lines",
