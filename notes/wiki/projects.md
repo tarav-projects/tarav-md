@@ -96,3 +96,28 @@ The discussion entered implementation Design in
 Its package layout and bootstrap mechanics remain implementation proposals;
 this capture does not claim they have been implemented.
 <!-- tarav.breadcrumb 5f9589358437a88df624b5aac9a2e04a444e564ead5c252f6bd4ac55687caf5c -->
+
+## Project-local harness implementation — 824
+
+<!-- tarav.sessions
+1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
+-->
+
+The user invoked Execute for 824. The implemented
+[ProjectHarness](../../../tarav-py/src/tarav/l2/project/harness.py) provides
+read-only inspection, explicit scaffolding and uv sync into `.tarav/env`.
+Its generated editable package defines a concrete Project Type with a stable
+TypeShip separate from the marker's project_id. Launch metadata and the explicit
+local Tarav checkout/wheel dependency live in `.tarav/pyproject.toml`; the lock
+is retained and env is ignored. Adopting an existing base/untyped marker is
+explicit; reruns preserve edited source and identities. The
+[launcher](../../../tarav-py/src/tarav/l3/project/harness.py) starts the local
+interpreter, binds the trusted Project Type, dynamically loads its marker, and
+runs code/files with `project` and `runtime` available. The CLI exposes
+`tarav project harness inspect|scaffold|sync|run`. The
+[tests](../../../tarav-py/tests/test_project_harness.py) cover neutral discovery,
+adoption, failure preservation, literal arguments, and real uv installation
+with editable Project behavior. This completes the earlier design's first slice;
+the maintained [usage guide](../../../tarav-py/README.md#optional-project-local-python-harness)
+shows concrete commands.
+<!-- tarav.breadcrumb 8a2e200a8fed357e223b7f119293f83ac0a399bdb21fcb29253e48ed5fdb32eb -->
