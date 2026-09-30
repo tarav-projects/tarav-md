@@ -4,7 +4,7 @@
   "output": "references/context-poi-and-impact-map-design-digest.md",
   "blocks": [
     {
-      "id": "content",
+      "id": "b96fd123-e15d-5c37-abf6-daae14913ab5",
       "type": "Tarav.Skillware.LiteralBlock",
       "output": [
         "# Context, POIs, and Product-Surface Impact",
@@ -265,7 +265,8 @@
         "  without turning simple code into a semantic reasoning engine?",
         "- How should old indexed support references be resolved and migrated in safe,",
         "  reviewable batches?"
-      ]
+      ],
+      "label": "content"
     }
   ]
 }

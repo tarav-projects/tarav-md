@@ -4,7 +4,7 @@
   "output": "references/impl/general-practices.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "569040dd-43e5-5cd3-8b19-0ccc9c4ba20f",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -41,10 +41,17 @@
         "",
         "Apply these practices while designing and executing implementation work.",
         ""
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     },
     {
-      "id": "before-editing",
+      "id": "c13f4cbf-32e6-5cab-b1aa-d0e8e15d02c3",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -84,10 +91,11 @@
         "  interface.",
         "- Match established codebase patterns unless the accepted design changes them.",
         ""
-      ]
+      ],
+      "label": "before-editing"
     },
     {
-      "id": "writing-code",
+      "id": "947ffe13-e2b8-5794-86a9-9189c4d63d42",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -129,10 +137,11 @@
         "- Do not add compatibility shims, legacy fallbacks, migrations, feature flags,",
         "  or unrelated refactors unless the request requires them.",
         ""
-      ]
+      ],
+      "label": "writing-code"
     },
     {
-      "id": "feedback",
+      "id": "4d611108-82ee-5066-83d4-92845f2461d8",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -173,7 +182,8 @@
         "- A defect found manually owes the suite a test for the durable constraint it",
         "  revealed, not merely for the one incident.",
         ""
-      ]
+      ],
+      "label": "feedback"
     }
   ],
   "shared": {

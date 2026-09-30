@@ -4,7 +4,7 @@
   "output": "references/wiki-capture.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "e5376d6e-e30c-5745-a278-463e37390876",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -65,10 +65,27 @@
         "that closes them; do not add a separate landing checkpoint. `--audit` is",
         "read-only.",
         ""
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "074b31d6-fb71-53a1-b52a-dfca8080b9df",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "commit-evidence.introduction"
+          },
+          "slot": "link-0",
+          "caption": "`commit-evidence.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     },
     {
-      "id": "routes",
+      "id": "7bad1f07-b49d-582d-a740-698fde2672d3",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -119,10 +136,11 @@
         "User.Model or Agent.Model, create Diagram Records, reconcile competing ideas,",
         "or claim complete coverage of the conversation.",
         ""
-      ]
+      ],
+      "label": "routes"
     },
     {
-      "id": "project-wiki",
+      "id": "2c4a3c23-5825-527b-ba47-986811ae8d53",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -180,10 +198,11 @@
         "Use meaningful topic filenames. Do not allocate numeric live-note prefixes",
         "for wiki Notes.",
         ""
-      ]
+      ],
+      "label": "project-wiki"
     },
     {
-      "id": "two-capture-views",
+      "id": "8f9f6c2a-248e-51dd-b005-48b6f752cd95",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -254,10 +273,11 @@
         "wiki-wide destination discovery. The mandatory daily narrative is unchanged.",
         "Still inspect enough local context to place the topical material coherently.",
         ""
-      ]
+      ],
+      "label": "two-capture-views"
     },
     {
-      "id": "git-closure",
+      "id": "859589fd-9b15-5992-b6f0-0a2ac2ac1931",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -305,10 +325,11 @@
         "scoped surface cannot be committed or a",
         "blocking validation failure remains, leave it uncommitted and report the POI.",
         ""
-      ]
+      ],
+      "label": "git-closure"
     },
     {
-      "id": "writing-semantics",
+      "id": "f5dbbf8b-83db-5a84-921a-5ca7e9516cf0",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -390,10 +411,11 @@
         "supersession, correction, or continuation when the discussion establishes",
         "that relationship.",
         ""
-      ]
+      ],
+      "label": "writing-semantics"
     },
     {
-      "id": "user-turn-grounding",
+      "id": "3780cec0-5037-5729-a345-b6cdeb3fd2cb",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -463,10 +485,11 @@
         "independently claim factual truth, approval, completeness, or exclusive",
         "support.",
         ""
-      ]
+      ],
+      "label": "user-turn-grounding"
     },
     {
-      "id": "capture-workflow",
+      "id": "9c6b1fa2-5362-5e86-b1b8-de4a592b291a",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -533,10 +556,11 @@
         "and report that no topical integration was made. Capture must not fail merely",
         "because the wiki can be organized better later.",
         ""
-      ]
+      ],
+      "label": "capture-workflow"
     },
     {
-      "id": "audit",
+      "id": "d7378f24-514b-50e7-bff1-fc2283af9a3a",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -583,7 +607,8 @@
         "update Chatlas, edit the Product.Surface, create Diagram Records, or write a",
         "retained report. Missing, ambiguous, wrong-side, malformed, or suspiciously",
         "attached references are POIs, not permission to guess or repair them."
-      ]
+      ],
+      "label": "audit"
     }
   ],
   "shared": {

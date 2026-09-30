@@ -1,0 +1,84 @@
+{
+  "type": "Tarav.Skillware.BlockIdentityMigration",
+  "schema_version": 1,
+  "documents": {
+    ".skw/src/CONSTITUTION.skw.json": {
+      "content": {
+        "label": "content",
+        "ship": "c551f217-5c89-5683-969c-0448262f9ac0"
+      }
+    },
+    ".skw/src/SKILL.skw.json": {
+      "content": {
+        "label": "content",
+        "ship": "4897dbf2-fcdf-5af7-ae62-a792d691e4fb"
+      }
+    },
+    ".skw/src/USAGE-HISTORIES.skw.json": {
+      "content": {
+        "label": "content",
+        "ship": "621fb317-0945-5cc9-85f5-f639e6b5f5e0"
+      }
+    },
+    ".skw/src/references/attic.skw.json": {
+      "content": {
+        "label": "content",
+        "ship": "f6589a42-b0bf-57f3-9ffc-72a67e29ddd5"
+      }
+    },
+    ".skw/src/references/constitutional-theory.skw.json": {
+      "content": {
+        "label": "content",
+        "ship": "1dde7435-6f33-5883-9bd0-6cff04b2d761"
+      }
+    },
+    ".skw/src/references/context-poi-and-impact-map-design-digest.skw.json": {
+      "content": {
+        "label": "content",
+        "ship": "b96fd123-e15d-5c37-abf6-daae14913ab5"
+      }
+    },
+    ".skw/src/references/gates-and-deferred-review-design-digest.skw.json": {
+      "content": {
+        "label": "content",
+        "ship": "b853c694-3b89-593e-ac8e-da9f2a12f7c4"
+      }
+    },
+    ".skw/src/references/legacy-skill-mine.skw.json": {
+      "content": {
+        "label": "content",
+        "ship": "3ab3f886-0448-5f73-b76b-1a6238de7c65"
+      }
+    },
+    ".skw/src/references/review.skw.json": {
+      "content": {
+        "label": "content",
+        "ship": "15904778-2c1d-588d-8c5f-91af4b07385c"
+      }
+    },
+    ".skw/src/tarav-archive.skw.json": {
+      "content": {
+        "label": "content",
+        "ship": "c3a821df-1778-5f71-ac77-2e341e1965bc"
+      }
+    },
+    ".skw/src/tarav-bloberia.skw.json": {
+      "content": {
+        "label": "content",
+        "ship": "7d0eb2f4-e06f-52f2-94b0-d658b1b2e6e0"
+      }
+    },
+    ".skw/src/tarav-diagram.skw.json": {
+      "content": {
+        "label": "content",
+        "ship": "1e34a842-ac37-57ef-9e15-4ed8bf157007"
+      }
+    },
+    ".skw/src/tarav-semantic-calculus.skw.json": {
+      "content": {
+        "label": "content",
+        "ship": "80e78167-c560-5473-a718-f7feb5896c2e"
+      }
+    }
+  }
+}

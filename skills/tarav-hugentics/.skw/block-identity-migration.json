@@ -1,0 +1,458 @@
+{
+  "type": "Tarav.Skillware.BlockIdentityMigration",
+  "schema_version": 1,
+  "documents": {
+    ".skw/src/SKILL.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "23d0b884-f835-52da-8e38-e24846eb14a7"
+      },
+      "introduction-section": {
+        "label": "introduction-section",
+        "ship": "ac0ffe0e-00fd-5ac3-92ea-9fba42c20e9e"
+      },
+      "batchy-skill-contract": {
+        "label": "batchy-skill-contract",
+        "ship": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+      },
+      "command-surface": {
+        "label": "command-surface",
+        "ship": "68b47b6e-fa0d-5936-9beb-a8cb0c72e495"
+      },
+      "routing": {
+        "label": "routing",
+        "ship": "54ab84cd-edf3-5ccc-8a56-58ed0c66ea2d"
+      },
+      "boundary": {
+        "label": "boundary",
+        "ship": "f33cd98c-033f-5493-b1bf-3eac97666ac2"
+      },
+      "design-impact-link": {
+        "label": "design-impact-link",
+        "ship": "7faeae93-57a9-52b5-8f34-7daaddceef64"
+      }
+    },
+    ".skw/src/references/capture.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "846c448d-3559-50db-83af-e09fa69ecdaa"
+      },
+      "shared-loop": {
+        "label": "shared-loop",
+        "ship": "7c1213e6-24c4-55a6-a648-2bfd0853ffce"
+      },
+      "interactive-reviewed-capture": {
+        "label": "interactive-reviewed-capture",
+        "ship": "0b7398a5-97ea-5730-af57-a4fa10206a50"
+      },
+      "capture-stances": {
+        "label": "capture-stances",
+        "ship": "cf55d0b2-cd64-543f-ae5a-e992053b7ea3"
+      },
+      "automatic-unreviewed-capture": {
+        "label": "automatic-unreviewed-capture",
+        "ship": "7e4bb270-2eb8-5757-b99c-39b0dd564611"
+      },
+      "read-only-audit": {
+        "label": "read-only-audit",
+        "ship": "e4221a64-673c-505b-917d-e0fc3833b17e"
+      },
+      "landing-through-tarav-diagram": {
+        "label": "landing-through-tarav-diagram",
+        "ship": "e8c0e7c8-e29b-5482-9f2c-587fc89ece0a"
+      }
+    },
+    ".skw/src/references/commit-evidence.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "074b31d6-fb71-53a1-b52a-dfca8080b9df"
+      }
+    },
+    ".skw/src/references/design-impact.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "8e02d758-d671-5cfc-bafa-a44097900cb4"
+      },
+      "scope": {
+        "label": "scope",
+        "ship": "33fb25b2-46a4-580f-b612-7dd4e687b5ca"
+      },
+      "assessment": {
+        "label": "assessment",
+        "ship": "a8af950a-d6f9-5843-8eca-cb9d47d0c1c7"
+      },
+      "boundary": {
+        "label": "boundary",
+        "ship": "9b9ab531-0873-52ce-9a92-9a83375b479c"
+      }
+    },
+    ".skw/src/references/design-dialogue.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "64afe1fc-2c46-5458-8b8c-bc436447ccb8"
+      }
+    },
+    ".skw/src/references/ground.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "4dc4c615-dd53-5d63-a60c-fe8f474e5410"
+      },
+      "responsibility-boundary": {
+        "label": "responsibility-boundary",
+        "ship": "880404d6-c44e-511e-ae28-2f3489e83066"
+      },
+      "session-view-convention": {
+        "label": "session-view-convention",
+        "ship": "38eb88c9-73a7-5d2b-8a44-35b1d94c0e0f"
+      },
+      "workflow": {
+        "label": "workflow",
+        "ship": "2cc8dec2-d5c6-5206-8a1f-20cf9afa301b"
+      },
+      "completion-report": {
+        "label": "completion-report",
+        "ship": "fae5b80d-d139-55a3-8383-3f3c47f033d1"
+      }
+    },
+    ".skw/src/references/impl/design.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "788a9ad5-33a6-53c2-b823-bd0f78523811"
+      },
+      "alignment-loop": {
+        "label": "alignment-loop",
+        "ship": "5acd707f-1441-5735-a7f8-49c04c1b5ee1"
+      },
+      "readiness-checkpoint": {
+        "label": "readiness-checkpoint",
+        "ship": "3bf5a2ab-c67e-50aa-bf36-f02bf9834188"
+      },
+      "live-note-impl-req": {
+        "label": "live-note-impl-req",
+        "ship": "83fcc7b9-737e-5c59-ad4c-56cef69e3413"
+      },
+      "impl-req-diagram": {
+        "label": "impl-req-diagram",
+        "ship": "fa8481c4-47f0-5e36-9c64-fde89fb127a7"
+      },
+      "updating": {
+        "label": "updating",
+        "ship": "a6d60d64-f5b5-52de-b31a-c9591f1dab66"
+      },
+      "output": {
+        "label": "output",
+        "ship": "225df606-9a5f-5f5f-82df-e0cd2bcb18f0"
+      }
+    },
+    ".skw/src/references/impl/develop.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "ba708664-4a24-5178-b78b-be11a7cd83c3"
+      },
+      "workflow": {
+        "label": "workflow",
+        "ship": "35df3dd8-992b-5dd5-afaf-bf9d55996c88"
+      },
+      "boundary-contract": {
+        "label": "boundary-contract",
+        "ship": "eb2fe6d4-ee32-5ec1-b2e5-6879a7cdeba0"
+      },
+      "completion": {
+        "label": "completion",
+        "ship": "2305f9d4-6f01-509f-a7bb-a20efa850615"
+      }
+    },
+    ".skw/src/references/impl/example.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "953ceaea-f235-5d28-ab8a-cd277be5fde8"
+      }
+    },
+    ".skw/src/references/impl/execute.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "827b1806-ffda-58f1-b365-77a7467b938e"
+      },
+      "direct-input-bootstrap": {
+        "label": "direct-input-bootstrap",
+        "ship": "c0e2762c-1199-54f8-ab68-4e205d2b5a07"
+      },
+      "execution-realignment": {
+        "label": "execution-realignment",
+        "ship": "dfedac60-ed98-53b7-9620-d25a0c3a1106"
+      },
+      "git-checkpoint": {
+        "label": "git-checkpoint",
+        "ship": "af936663-d5ff-5e18-8f61-b1c0a5cc495f"
+      },
+      "per-slice-execution": {
+        "label": "per-slice-execution",
+        "ship": "cc180ec6-86de-5970-a27d-6b6d00622989"
+      },
+      "deviation-handling": {
+        "label": "deviation-handling",
+        "ship": "9b49c6a2-f77e-5259-b594-083e6179cdfd"
+      },
+      "completion": {
+        "label": "completion",
+        "ship": "9e07c5ab-9d2f-5909-bdfa-707314ffb447"
+      }
+    },
+    ".skw/src/references/impl/general-practices.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "569040dd-43e5-5cd3-8b19-0ccc9c4ba20f"
+      },
+      "before-editing": {
+        "label": "before-editing",
+        "ship": "c13f4cbf-32e6-5cab-b1aa-d0e8e15d02c3"
+      },
+      "writing-code": {
+        "label": "writing-code",
+        "ship": "947ffe13-e2b8-5794-86a9-9189c4d63d42"
+      },
+      "feedback": {
+        "label": "feedback",
+        "ship": "4d611108-82ee-5066-83d4-92845f2461d8"
+      }
+    },
+    ".skw/src/references/impl/general-preferences.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "d45ce76d-6a44-55d1-b880-00922e4ca9d4"
+      }
+    },
+    ".skw/src/references/impl/harvest.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "2e7f1b44-c79f-5b9a-89ab-80f81a9f36cd"
+      },
+      "readiness-judgment": {
+        "label": "readiness-judgment",
+        "ship": "703266a1-9c6e-5e55-a275-7b8f9c2978e6"
+      },
+      "scan": {
+        "label": "scan",
+        "ship": "35ab1941-51ed-5b63-9fba-5f66036034a5"
+      },
+      "candidate-checkpoint": {
+        "label": "candidate-checkpoint",
+        "ship": "83c12868-35c2-5a0b-93d2-2c76a24c54d1"
+      },
+      "delegation": {
+        "label": "delegation",
+        "ship": "503a9ff2-ac6d-59b6-bcf3-8199ad83de96"
+      },
+      "completion": {
+        "label": "completion",
+        "ship": "b1875eb0-9970-5398-a1d2-a962eaca00a3"
+      }
+    },
+    ".skw/src/references/impl/product-capture.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "dfebdb7b-300a-5cdc-9044-4f81c3c1316c"
+      },
+      "surface-boundary": {
+        "label": "surface-boundary",
+        "ship": "47f135a9-9f05-5a06-91d4-aac681f352f8"
+      },
+      "capture-bar": {
+        "label": "capture-bar",
+        "ship": "6006653f-041a-5a94-9b3c-f3e4ed987283"
+      },
+      "slice-transaction": {
+        "label": "slice-transaction",
+        "ship": "c508d08d-2ac8-5d64-aef1-8e55b90c4690"
+      },
+      "final-audit": {
+        "label": "final-audit",
+        "ship": "61c1ef7b-6be5-5eb0-a6e2-5e8dd5ef2a8f"
+      }
+    },
+    ".skw/src/references/impl/review.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "18128be8-871d-5c43-826d-015e024c5d83"
+      },
+      "review-loop": {
+        "label": "review-loop",
+        "ship": "66d8b07c-edc4-50af-b909-59da48880881"
+      },
+      "boundaries": {
+        "label": "boundaries",
+        "ship": "97e9c373-87a0-5b49-8a56-ca8cdc963a0b"
+      }
+    },
+    ".skw/src/references/impl.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "b79f8683-cb46-5d55-913d-80dd423c7a46"
+      },
+      "input": {
+        "label": "input",
+        "ship": "ada97d0f-b951-5a55-9c4e-f4890b7ec06f"
+      },
+      "routing": {
+        "label": "routing",
+        "ship": "c988ccc8-379f-5ca7-9b1f-78f420de3b98"
+      },
+      "shared-contract": {
+        "label": "shared-contract",
+        "ship": "e6b3ca89-7ae0-534e-9507-a69b938e75e4"
+      }
+    },
+    ".skw/src/references/inline-capture.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "5c2c3edf-11bc-548b-8362-b49c6a74aa8b"
+      },
+      "routes": {
+        "label": "routes",
+        "ship": "e120e219-3aa8-51f6-a609-72525622fc27"
+      },
+      "surface-contract": {
+        "label": "surface-contract",
+        "ship": "bf3619da-f0c2-59eb-b81f-a15aa2b2404b"
+      },
+      "capture-workflow": {
+        "label": "capture-workflow",
+        "ship": "cc6d6629-a365-53fc-9d72-67057cd14273"
+      },
+      "audit-contract": {
+        "label": "audit-contract",
+        "ship": "b307bf61-81df-55d1-a15c-a7c7cc8dcfec"
+      },
+      "audit-workflow": {
+        "label": "audit-workflow",
+        "ship": "f84929d1-7458-5f04-acff-98e38c0a37da"
+      }
+    },
+    ".skw/src/references/issues/audit.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "3fab6385-5403-5f68-a70f-b85b668419a0"
+      }
+    },
+    ".skw/src/references/issues/maintain.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "a6de5c84-dde9-58d5-9338-5e185b9964fa"
+      },
+      "contextualize": {
+        "label": "contextualize",
+        "ship": "106cb07e-03e1-5e43-923c-5fe583a47120"
+      },
+      "mutations": {
+        "label": "mutations",
+        "ship": "2f3bd45b-3084-51a7-98bf-525d9dd6fcf9"
+      }
+    },
+    ".skw/src/references/issues/park.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "f3f810d4-7c06-588a-a85f-0f3cf48c4fb3"
+      },
+      "workflow": {
+        "label": "workflow",
+        "ship": "ed9c07fb-3060-58c8-975e-434274d982fd"
+      }
+    },
+    ".skw/src/references/issues.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "7b81d96a-dd99-52c1-a4fc-a0cf15c664cb"
+      },
+      "routing": {
+        "label": "routing",
+        "ship": "a86eb94f-2390-50e0-8917-2425761104de"
+      },
+      "shared-contract": {
+        "label": "shared-contract",
+        "ship": "aac04b4a-af55-53be-94a7-6d4be691258c"
+      },
+      "presentation": {
+        "label": "presentation",
+        "ship": "1ec08790-6d11-5d57-b840-ee41db0afa28"
+      }
+    },
+    ".skw/src/references/reading-club.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "e4af15ad-8b28-5344-b389-0ab1a0ce9942"
+      },
+      "boundaries": {
+        "label": "boundaries",
+        "ship": "4c6e6b34-6ce3-5e93-a77c-b7df49acadbc"
+      },
+      "project-resolution": {
+        "label": "project-resolution",
+        "ship": "3b60237f-c3d4-5ae1-be76-647bab638423"
+      },
+      "reading-loop": {
+        "label": "reading-loop",
+        "ship": "1d94d8b9-8463-531e-9dce-e0e05f1719de"
+      },
+      "reading-frames": {
+        "label": "reading-frames",
+        "ship": "fc0fd58f-5265-557e-9f85-2ea5565a4fc0"
+      },
+      "chat-presentation": {
+        "label": "chat-presentation",
+        "ship": "7535ac13-1db8-5330-9a33-8dc2d09b67dd"
+      },
+      "runtime-commands": {
+        "label": "runtime-commands",
+        "ship": "59a47ae6-001e-588c-9c72-4bd04bc13661"
+      },
+      "capture": {
+        "label": "capture",
+        "ship": "4967d8c0-028a-5c50-b658-8b38f7084a65"
+      }
+    },
+    ".skw/src/references/wiki-capture.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "e5376d6e-e30c-5745-a278-463e37390876"
+      },
+      "routes": {
+        "label": "routes",
+        "ship": "7bad1f07-b49d-582d-a740-698fde2672d3"
+      },
+      "project-wiki": {
+        "label": "project-wiki",
+        "ship": "2c4a3c23-5825-527b-ba47-986811ae8d53"
+      },
+      "two-capture-views": {
+        "label": "two-capture-views",
+        "ship": "8f9f6c2a-248e-51dd-b005-48b6f752cd95"
+      },
+      "git-closure": {
+        "label": "git-closure",
+        "ship": "859589fd-9b15-5992-b6f0-0a2ac2ac1931"
+      },
+      "writing-semantics": {
+        "label": "writing-semantics",
+        "ship": "f5dbbf8b-83db-5a84-921a-5ca7e9516cf0"
+      },
+      "user-turn-grounding": {
+        "label": "user-turn-grounding",
+        "ship": "3780cec0-5037-5729-a345-b6cdeb3fd2cb"
+      },
+      "capture-workflow": {
+        "label": "capture-workflow",
+        "ship": "9c6b1fa2-5362-5e86-b1b8-de4a592b291a"
+      },
+      "audit": {
+        "label": "audit",
+        "ship": "d7378f24-514b-50e7-bff1-fc2283af9a3a"
+      }
+    },
+    ".skw/src/references/impl/wiki.skw.json": {
+      "introduction": {
+        "label": "introduction",
+        "ship": "7b999e4a-55ef-5281-b062-495ea5552371"
+      }
+    }
+  }
+}

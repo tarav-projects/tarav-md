@@ -4,7 +4,7 @@
   "output": "references/attic.md",
   "blocks": [
     {
-      "id": "content",
+      "id": "f6589a42-b0bf-57f3-9ffc-72a67e29ddd5",
       "type": "Tarav.Skillware.LiteralBlock",
       "output": [
         "# Archive.Attic",
@@ -120,7 +120,8 @@
         "When deliberately mining the skills displaced by the 2026-08-26 Tarav",
         "reboot, read [legacy-skill-mine.md](legacy-skill-mine.md). Treat that material",
         "as candidate evidence, never inherited design truth."
-      ]
+      ],
+      "label": "content"
     }
   ]
 }

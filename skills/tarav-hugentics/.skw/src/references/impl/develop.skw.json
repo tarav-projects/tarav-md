@@ -4,7 +4,7 @@
   "output": "references/impl/develop.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "ba708664-4a24-5178-b78b-be11a7cd83c3",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -44,10 +44,17 @@
         "Develop carries one idea or design source through implementation design and",
         "execution in the same skill call while preserving the durable phase boundary.",
         ""
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     },
     {
-      "id": "workflow",
+      "id": "35df3dd8-992b-5dd5-afaf-bf9d55996c88",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -122,10 +129,33 @@
         "The phase transition remains inside the same invocation. An Interactive",
         "checkpoint may pause it; resumption continues the same Develop workflow.",
         ""
+      ],
+      "label": "workflow",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "788a9ad5-33a6-53c2-b823-bd0f78523811",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.design.introduction"
+          },
+          "slot": "link-0",
+          "caption": "`design.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "827b1806-ffda-58f1-b365-77a7467b938e",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.execute.introduction"
+          },
+          "slot": "link-1",
+          "caption": "`execute.md`"
+        }
       ]
     },
     {
-      "id": "boundary-contract",
+      "id": "eb2fe6d4-ee32-5ec1-b2e5-6879a7cdeba0",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -169,10 +199,11 @@
         "- If execution fails, preserve the live note, Collection, and Draft, and record the blocker",
         "  in `Impl.Log`.",
         ""
-      ]
+      ],
+      "label": "boundary-contract"
     },
     {
-      "id": "completion",
+      "id": "2305f9d4-6f01-509f-a7bb-a20efa850615",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -209,7 +240,8 @@
         "",
         "Return one concise report covering the Impl.Req path, Collection, and Draft, implemented",
         "result, verification, deviations, POIs, and deferred work."
-      ]
+      ],
+      "label": "completion"
     }
   ],
   "shared": {

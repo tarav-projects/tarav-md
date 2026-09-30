@@ -50,70 +50,7 @@
           "path": "src/SKILL.skw.json",
           "pointer": "/blocks/4"
         }
-      },
-      "includes": [
-        {
-          "target": "skill.design-impact-link",
-          "slot": "link-0"
-        }
-      ],
-      "links": [
-        {
-          "target": "impl.introduction",
-          "slot": "link-1",
-          "label": "`references/impl.md`"
-        },
-        {
-          "target": "ground.introduction",
-          "slot": "link-2",
-          "label": "`references/ground.md`"
-        },
-        {
-          "target": "capture.introduction",
-          "slot": "link-3",
-          "label": "`references/capture.md`"
-        },
-        {
-          "target": "wiki-capture.introduction",
-          "slot": "link-4",
-          "label": "`references/wiki-capture.md`"
-        },
-        {
-          "target": "reading-club.introduction",
-          "slot": "link-5",
-          "label": "`references/reading-club.md`"
-        },
-        {
-          "target": "issues.introduction",
-          "slot": "link-6",
-          "label": "`references/issues.md`"
-        },
-        {
-          "target": "impl.introduction",
-          "slot": "link-7",
-          "label": "`references/impl.md`"
-        },
-        {
-          "target": "inline-capture.introduction",
-          "slot": "link-8",
-          "label": "`references/inline-capture.md`"
-        },
-        {
-          "target": "impl.wiki.introduction",
-          "slot": "link-9",
-          "label": "`references/impl/wiki.md`"
-        },
-        {
-          "target": "design-dialogue.introduction",
-          "slot": "link-10",
-          "label": "`references/design-dialogue.md`"
-        },
-        {
-          "target": "commit-evidence.introduction",
-          "slot": "link-11",
-          "label": "`references/commit-evidence.md`"
-        }
-      ]
+      }
     },
     {
       "id": "skill.boundary",
@@ -136,19 +73,6 @@
       },
       "parents": [
         "skill.routing"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
-      ],
-      "links": [
-        {
-          "target": "commit-evidence.introduction",
-          "slot": "link-0",
-          "label": "`commit-evidence.md`"
-        }
       ]
     },
     {
@@ -223,19 +147,6 @@
       "parents": [
         "skill.routing",
         "impl.input"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
-      ],
-      "links": [
-        {
-          "target": "impl.introduction",
-          "slot": "link-0",
-          "label": "`impl.md`"
-        }
       ]
     },
     {
@@ -279,12 +190,6 @@
       },
       "parents": [
         "skill.routing"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
       ]
     },
     {
@@ -339,29 +244,6 @@
       "parents": [
         "impl.routing",
         "impl.develop.workflow"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
-      ],
-      "links": [
-        {
-          "target": "impl.product-capture.introduction",
-          "slot": "link-0",
-          "label": "`product-capture.md`"
-        },
-        {
-          "target": "impl.general-practices.introduction",
-          "slot": "link-1",
-          "label": "`general-practices.md`"
-        },
-        {
-          "target": "impl.general-preferences.introduction",
-          "slot": "link-2",
-          "label": "`general-preferences.md`"
-        }
       ]
     },
     {
@@ -392,14 +274,7 @@
           "path": "src/references/impl/design.skw.json",
           "pointer": "/blocks/3"
         }
-      },
-      "links": [
-        {
-          "target": "impl.example.introduction",
-          "slot": "link-0",
-          "label": "`example.md`"
-        }
-      ]
+      }
     },
     {
       "id": "impl.design.impl-req-diagram",
@@ -443,12 +318,6 @@
       "parents": [
         "impl.routing",
         "impl.harvest.delegation"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
       ]
     },
     {
@@ -459,19 +328,7 @@
           "path": "src/references/impl/develop.skw.json",
           "pointer": "/blocks/1"
         }
-      },
-      "links": [
-        {
-          "target": "impl.design.introduction",
-          "slot": "link-0",
-          "label": "`design.md`"
-        },
-        {
-          "target": "impl.execute.introduction",
-          "slot": "link-1",
-          "label": "`execute.md`"
-        }
-      ]
+      }
     },
     {
       "id": "impl.develop.boundary-contract",
@@ -504,12 +361,6 @@
       },
       "parents": [
         "impl.design.live-note-impl-req"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
       ]
     },
     {
@@ -524,34 +375,6 @@
       "parents": [
         "impl.routing",
         "impl.develop.workflow"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
-      ],
-      "links": [
-        {
-          "target": "impl.product-capture.introduction",
-          "slot": "link-0",
-          "label": "`product-capture.md`"
-        },
-        {
-          "target": "impl.general-practices.introduction",
-          "slot": "link-1",
-          "label": "`general-practices.md`"
-        },
-        {
-          "target": "impl.general-preferences.introduction",
-          "slot": "link-2",
-          "label": "`general-preferences.md`"
-        },
-        {
-          "target": "commit-evidence.introduction",
-          "slot": "link-3",
-          "label": "`../commit-evidence.md`"
-        }
       ]
     },
     {
@@ -562,14 +385,7 @@
           "path": "src/references/impl/execute.skw.json",
           "pointer": "/blocks/1"
         }
-      },
-      "links": [
-        {
-          "target": "capture.introduction",
-          "slot": "link-0",
-          "label": "`../capture.md`"
-        }
-      ]
+      }
     },
     {
       "id": "impl.execute.execution-realignment",
@@ -633,12 +449,6 @@
       "parents": [
         "impl.design.introduction",
         "impl.execute.introduction"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
       ]
     },
     {
@@ -683,12 +493,6 @@
       "parents": [
         "impl.design.introduction",
         "impl.execute.introduction"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
       ]
     },
     {
@@ -702,12 +506,6 @@
       },
       "parents": [
         "impl.routing"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
       ]
     },
     {
@@ -748,14 +546,7 @@
           "path": "src/references/impl/harvest.skw.json",
           "pointer": "/blocks/4"
         }
-      },
-      "links": [
-        {
-          "target": "impl.develop.introduction",
-          "slot": "link-0",
-          "label": "`develop.md`"
-        }
-      ]
+      }
     },
     {
       "id": "impl.harvest.completion",
@@ -780,24 +571,6 @@
         "impl.routing",
         "impl.design.introduction",
         "impl.execute.introduction"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
-      ],
-      "links": [
-        {
-          "target": "capture.introduction",
-          "slot": "link-0",
-          "label": "`../capture.md`"
-        },
-        {
-          "target": "inline-capture.introduction",
-          "slot": "link-1",
-          "label": "`../inline-capture.md`"
-        }
       ]
     },
     {
@@ -851,12 +624,6 @@
       },
       "parents": [
         "impl.routing"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
       ]
     },
     {
@@ -890,12 +657,6 @@
       },
       "parents": [
         "skill.routing"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
       ]
     },
     {
@@ -906,14 +667,7 @@
           "path": "src/references/impl.skw.json",
           "pointer": "/blocks/1"
         }
-      },
-      "links": [
-        {
-          "target": "design-impact.introduction",
-          "slot": "link-0",
-          "label": "`design-impact.md`"
-        }
-      ]
+      }
     },
     {
       "id": "impl.routing",
@@ -923,44 +677,7 @@
           "path": "src/references/impl.skw.json",
           "pointer": "/blocks/2"
         }
-      },
-      "links": [
-        {
-          "target": "impl.design.introduction",
-          "slot": "link-0",
-          "label": "`impl/design.md`"
-        },
-        {
-          "target": "impl.review.introduction",
-          "slot": "link-1",
-          "label": "`impl/review.md`"
-        },
-        {
-          "target": "impl.execute.introduction",
-          "slot": "link-2",
-          "label": "`impl/execute.md`"
-        },
-        {
-          "target": "impl.develop.introduction",
-          "slot": "link-3",
-          "label": "`impl/develop.md`"
-        },
-        {
-          "target": "impl.harvest.introduction",
-          "slot": "link-4",
-          "label": "`impl/harvest.md`"
-        },
-        {
-          "target": "impl.product-capture.introduction",
-          "slot": "link-5",
-          "label": "`impl/product-capture.md`"
-        },
-        {
-          "target": "impl.wiki.introduction",
-          "slot": "link-6",
-          "label": "`impl/wiki.md`"
-        }
-      ]
+      }
     },
     {
       "id": "impl.shared-contract",
@@ -983,12 +700,6 @@
       },
       "parents": [
         "skill.routing"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
       ]
     },
     {
@@ -1052,12 +763,6 @@
       },
       "parents": [
         "issues.routing"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
       ]
     },
     {
@@ -1071,12 +776,6 @@
       },
       "parents": [
         "issues.routing"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
       ]
     },
     {
@@ -1110,12 +809,6 @@
       },
       "parents": [
         "issues.routing"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
       ]
     },
     {
@@ -1126,14 +819,7 @@
           "path": "src/references/issues/park.skw.json",
           "pointer": "/blocks/1"
         }
-      },
-      "links": [
-        {
-          "target": "capture.introduction",
-          "slot": "link-0",
-          "label": "`../capture.md`"
-        }
-      ]
+      }
     },
     {
       "id": "issues.introduction",
@@ -1146,12 +832,6 @@
       },
       "parents": [
         "skill.routing"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
       ]
     },
     {
@@ -1162,24 +842,7 @@
           "path": "src/references/issues.skw.json",
           "pointer": "/blocks/1"
         }
-      },
-      "links": [
-        {
-          "target": "issues.park.introduction",
-          "slot": "link-0",
-          "label": "`issues/park.md`"
-        },
-        {
-          "target": "issues.maintain.introduction",
-          "slot": "link-1",
-          "label": "`issues/maintain.md`"
-        },
-        {
-          "target": "issues.audit.introduction",
-          "slot": "link-2",
-          "label": "`issues/audit.md`"
-        }
-      ]
+      }
     },
     {
       "id": "issues.shared-contract",
@@ -1189,14 +852,7 @@
           "path": "src/references/issues.skw.json",
           "pointer": "/blocks/2"
         }
-      },
-      "links": [
-        {
-          "target": "capture.introduction",
-          "slot": "link-0",
-          "label": "`capture.md`"
-        }
-      ]
+      }
     },
     {
       "id": "issues.presentation",
@@ -1219,12 +875,6 @@
       },
       "parents": [
         "skill.routing"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
       ]
     },
     {
@@ -1308,19 +958,6 @@
       },
       "parents": [
         "skill.routing"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
-      ],
-      "links": [
-        {
-          "target": "commit-evidence.introduction",
-          "slot": "link-0",
-          "label": "`commit-evidence.md`"
-        }
       ]
     },
     {
@@ -1415,39 +1052,6 @@
       "parents": [
         "skill.routing",
         "impl.routing"
-      ],
-      "requires": [
-        {
-          "target": "skill.batchy-skill-contract",
-          "delivery": "inlined"
-        }
-      ],
-      "links": [
-        {
-          "target": "wiki-capture.introduction",
-          "slot": "link-0",
-          "label": "`../wiki-capture.md`"
-        },
-        {
-          "target": "impl.general-practices.introduction",
-          "slot": "link-1",
-          "label": "`general-practices.md`"
-        },
-        {
-          "target": "impl.general-preferences.introduction",
-          "slot": "link-2",
-          "label": "`general-preferences.md`"
-        },
-        {
-          "target": "commit-evidence.introduction",
-          "slot": "link-3",
-          "label": "`../commit-evidence.md`"
-        },
-        {
-          "target": "inline-capture.introduction",
-          "slot": "link-4",
-          "label": "`../inline-capture.md`"
-        }
       ]
     },
     {
@@ -1459,18 +1063,8 @@
           "pointer": "/blocks/0"
         }
       },
-      "parents": ["skill.routing"],
-      "links": [
-        {
-          "target": "wiki-capture.introduction",
-          "slot": "link-0",
-          "label": "`wiki-capture.md`"
-        },
-        {
-          "target": "commit-evidence.introduction",
-          "slot": "link-1",
-          "label": "`commit-evidence.md`"
-        }
+      "parents": [
+        "skill.routing"
       ]
     },
     {

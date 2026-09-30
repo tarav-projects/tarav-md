@@ -4,7 +4,7 @@
   "output": "references/impl/wiki.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "7b999e4a-55ef-5281-b062-495ea5552371",
       "type": "Tarav.Skillware.LiteralBlock",
       "output": [
         "# Wiki-backed implementation",
@@ -32,9 +32,9 @@
         "mutation. Do not infer a migration or create replacement artifacts.",
         "",
         "Print a compact banner with phase, Wiki surface, input, and Alignment.Mode.",
-    "Read {{skw:link-1}} and {{skw:link-2}} for product work,",
-    "{{skw:link-3}} for scoped repository bracketing, and {{skw:link-4}} for",
-    "Product.Surface Breadcrumb capture.",
+        "Read {{skw:link-1}} and {{skw:link-2}} for product work,",
+        "{{skw:link-3}} for scoped repository bracketing, and {{skw:link-4}} for",
+        "Product.Surface Breadcrumb capture.",
         "Do not load Model-backed phase modules, product-capture, or grounding routines.",
         "No Model, Collection, Diagram View, Diagram Draft, authorization Gate, or",
         "Model capture reconciliation is required or created by this route.",
@@ -99,9 +99,9 @@
         "**Execute:** cold-read the existing note and current instructions before edits.",
         "Explicit Execute with direct input first creates the Wiki-backed live note;",
         "it does not bootstrap Diagram artifacts. Recheck the plan against current code.",
-    "Before the first product edit, use the shared evidence-commit workflow to",
-    "checkpoint only the declared work scope in each repository; an empty scoped",
-    "checkpoint is valid. Stop for conflicts or an impossible checkpoint.",
+        "Before the first product edit, use the shared evidence-commit workflow to",
+        "checkpoint only the declared work scope in each repository; an empty scoped",
+        "checkpoint is valid. Stop for conflicts or an impossible checkpoint.",
         "Implement bounded slices and test each. At the end of every slice, apply the",
         "shared Inlined Capture workflow to each Product.Surface actually implemented by",
         "that slice, then record outcomes in the live note.",
@@ -149,8 +149,8 @@
         "handoff/completion; intermediate agent coordination stays in the live note.",
         "The implementation invocation authorizes this scoped pass. Reuse its",
         "Project.Wiki selection, mandatory daily narrative, useful topical integration,",
-    "Chatlas User-Turn grounding, Breadcrumb submission/audit, and scoped Wiki Git closure.",
-    "The product and Wiki evidence commits keep separate declared file scopes.",
+        "Chatlas User-Turn grounding, Breadcrumb submission/audit, and scoped Wiki Git closure.",
+        "The product and Wiki evidence commits keep separate declared file scopes.",
         "",
         "Capture relevant user decisions and discussion selectively. Implementation facts",
         "must also cite inspected code or test evidence; user authorization is not proof",
@@ -167,6 +167,63 @@
         "topical destinations, Product.Surface Breadcrumb results, scoped capture commit",
         "if any, and unresolved gaps.",
         "A verified implementation with pending Wiki capture must report both statuses."
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "e5376d6e-e30c-5745-a278-463e37390876",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "wiki-capture.introduction"
+          },
+          "slot": "link-0",
+          "caption": "`../wiki-capture.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "569040dd-43e5-5cd3-8b19-0ccc9c4ba20f",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.general-practices.introduction"
+          },
+          "slot": "link-1",
+          "caption": "`general-practices.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "d45ce76d-6a44-55d1-b880-00922e4ca9d4",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.general-preferences.introduction"
+          },
+          "slot": "link-2",
+          "caption": "`general-preferences.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "074b31d6-fb71-53a1-b52a-dfca8080b9df",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "commit-evidence.introduction"
+          },
+          "slot": "link-3",
+          "caption": "`../commit-evidence.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "5c2c3edf-11bc-548b-8362-b49c6a74aa8b",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "inline-capture.introduction"
+          },
+          "slot": "link-4",
+          "caption": "`../inline-capture.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     }
   ]

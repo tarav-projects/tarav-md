@@ -4,7 +4,7 @@
   "output": "references/reading-club.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "e4af15ad-8b28-5344-b389-0ab1a0ce9942",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -47,10 +47,17 @@
         "only simple project navigation. The Agent owns interpretation, project",
         "matching, chunking, discussion, and capture.",
         ""
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     },
     {
-      "id": "boundaries",
+      "id": "4c6e6b34-6ce3-5e93-a77c-b7df49acadbc",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -101,10 +108,11 @@
         "  disposable coordination. Their failure must not silently skip source",
         "  material or discard uncaptured discussion.",
         ""
-      ]
+      ],
+      "label": "boundaries"
     },
     {
-      "id": "project-resolution",
+      "id": "3b60237f-c3d4-5ae1-be76-647bab638423",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -162,10 +170,11 @@
         "`project.json`, and load the current transcript and notes. Treat notes as",
         "developing interpretation rather than article authority.",
         ""
-      ]
+      ],
+      "label": "project-resolution"
     },
     {
-      "id": "reading-loop",
+      "id": "1d94d8b9-8463-531e-9dce-e0e05f1719de",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -222,10 +231,11 @@
         "Chunks are temporary chat windows. Never reconstruct a rigid chunk database",
         "or treat a chat chunk as more authoritative than the Markdown transcript.",
         ""
-      ]
+      ],
+      "label": "reading-loop"
     },
     {
-      "id": "reading-frames",
+      "id": "fc0fd58f-5265-557e-9f85-2ea5565a4fc0",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -297,10 +307,11 @@
         "shorter than the current Source Frame when practical and never longer than",
         "that Frame.",
         ""
-      ]
+      ],
+      "label": "reading-frames"
     },
     {
-      "id": "chat-presentation",
+      "id": "7535ac13-1db8-5330-9a33-8dc2d09b67dd",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -377,10 +388,11 @@
         "These are examples, not a mechanical conversion standard. Choose notation",
         "that is readable and consistent within the current discussion.",
         ""
-      ]
+      ],
+      "label": "chat-presentation"
     },
     {
-      "id": "runtime-commands",
+      "id": "59a47ae6-001e-588c-9c72-4bd04bc13661",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -442,10 +454,11 @@
         "fulfilled exactly after transcript changes, explain the recovery and re-anchor",
         "visibly before continuing.",
         ""
-      ]
+      ],
+      "label": "runtime-commands"
     },
     {
-      "id": "capture",
+      "id": "4967d8c0-028a-5c50-b658-8b38f7084a65",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -502,7 +515,8 @@
         "`::forward` is a compound command: it may briefly report what its annotation",
         "checkpoint preserved, but its principal visible output is always the new",
         "`Reading.Source.Frame`."
-      ]
+      ],
+      "label": "capture"
     }
   ],
   "shared": {

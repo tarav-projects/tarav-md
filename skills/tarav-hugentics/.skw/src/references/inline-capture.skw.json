@@ -4,7 +4,7 @@
   "output": "references/inline-capture.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "5c2c3edf-11bc-548b-8362-b49c6a74aa8b",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -59,10 +59,17 @@
         "specializations today. When the selected surface has no registered convention,",
         "report that limitation instead of guessing syntax.",
         ""
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     },
     {
-      "id": "routes",
+      "id": "e120e219-3aa8-51f6-a609-72525622fc27",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -116,10 +123,11 @@
         "read-only and stops after reporting its findings. It does not assess whether",
         "the surface has complete conversational coverage.",
         ""
-      ]
+      ],
+      "label": "routes"
     },
     {
-      "id": "surface-contract",
+      "id": "bf3619da-f0c2-59eb-b81f-a15aa2b2404b",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -192,10 +200,11 @@
         "opaque `tarav.breadcrumb <id>` label in the same native comment syntax. The",
         "ordinary Product.Surface remains authoritative.",
         ""
-      ]
+      ],
+      "label": "surface-contract"
     },
     {
-      "id": "capture-workflow",
+      "id": "cc6d6629-a365-53fc-9d72-67057cd14273",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -301,10 +310,11 @@
         "mechanics. Inlined Capture adds no alias registry, automatic",
         "Git-history audit, Diagram record, Assertion score, or generalized impact map.",
         ""
-      ]
+      ],
+      "label": "capture-workflow"
     },
     {
-      "id": "audit-contract",
+      "id": "b307bf61-81df-55d1-a15c-a7c7cc8dcfec",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -354,10 +364,11 @@
         "authorship, approval, completeness, or exclusive support. Attachment judgment",
         "remains Agent work.",
         ""
-      ]
+      ],
+      "label": "audit-contract"
     },
     {
-      "id": "audit-workflow",
+      "id": "f84929d1-7458-5f04-acff-98e38c0a37da",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -431,7 +442,8 @@
         "An unavailable target is a POI, not permission to update provider data or",
         "guess a replacement. A semantically questionable attachment is likewise a POI,",
         "not a verdict that the surface is wrong."
-      ]
+      ],
+      "label": "audit-workflow"
     }
   ],
   "shared": {

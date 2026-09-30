@@ -4,7 +4,7 @@
   "output": "references/impl.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "b79f8683-cb46-5d55-913d-80dd423c7a46",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -44,10 +44,17 @@
         "legacy Index, Agendix, Anchory, and Chat.Index backend with the current Tarav",
         "Diagram.",
         ""
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     },
     {
-      "id": "input",
+      "id": "ada97d0f-b951-5a55-9c4e-f4890b7ec06f",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -130,10 +137,23 @@
         "Impact input does not satisfy Review's requirement for an existing Impl.Req;",
         "ask for that artifact if Review was selected rather than synthesizing one.",
         ""
+      ],
+      "label": "input",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "8e02d758-d671-5cfc-bafa-a44097900cb4",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "design-impact.introduction"
+          },
+          "slot": "link-0",
+          "caption": "`design-impact.md`"
+        }
       ]
     },
     {
-      "id": "routing",
+      "id": "c988ccc8-379f-5ca7-9b1f-78f420de3b98",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -291,10 +311,83 @@
         "note, `Impl.Req.Collection`, and durable `Diagram.Draft`; it must not pretend",
         "the direct prompt was an already materialized Impl.Req.",
         ""
+      ],
+      "label": "routing",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "788a9ad5-33a6-53c2-b823-bd0f78523811",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.design.introduction"
+          },
+          "slot": "link-0",
+          "caption": "`impl/design.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "18128be8-871d-5c43-826d-015e024c5d83",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.review.introduction"
+          },
+          "slot": "link-1",
+          "caption": "`impl/review.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "827b1806-ffda-58f1-b365-77a7467b938e",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.execute.introduction"
+          },
+          "slot": "link-2",
+          "caption": "`impl/execute.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "ba708664-4a24-5178-b78b-be11a7cd83c3",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.develop.introduction"
+          },
+          "slot": "link-3",
+          "caption": "`impl/develop.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "2e7f1b44-c79f-5b9a-89ab-80f81a9f36cd",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.harvest.introduction"
+          },
+          "slot": "link-4",
+          "caption": "`impl/harvest.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "dfebdb7b-300a-5cdc-9044-4f81c3c1316c",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.product-capture.introduction"
+          },
+          "slot": "link-5",
+          "caption": "`impl/product-capture.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "7b999e4a-55ef-5281-b062-495ea5552371",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.wiki.introduction"
+          },
+          "slot": "link-6",
+          "caption": "`impl/wiki.md`"
+        }
       ]
     },
     {
-      "id": "shared-contract",
+      "id": "e6b3ca89-7ae0-534e-9507-a69b938e75e4",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -360,7 +453,8 @@
         "  or replaces the `Impl.Req.Diagram` contract.",
         "- Validation and POIs never block Diagram capture. Hard implementation blockers",
         "  may still stop product mutation when faithful execution is impossible."
-      ]
+      ],
+      "label": "shared-contract"
     }
   ],
   "shared": {

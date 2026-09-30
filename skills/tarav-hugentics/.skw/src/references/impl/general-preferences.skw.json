@@ -4,7 +4,7 @@
   "output": "references/impl/general-preferences.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "d45ce76d-6a44-55d1-b880-00922e4ca9d4",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -52,6 +52,13 @@
         "  code already computes. Explain why a constraint exists; let the code show",
         "  what it does.",
         ""
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     }
   ],

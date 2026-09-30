@@ -4,7 +4,7 @@
   "output": "tarav-archive.md",
   "blocks": [
     {
-      "id": "content",
+      "id": "c3a821df-1778-5f71-ac77-2e341e1965bc",
       "type": "Tarav.Skillware.LiteralBlock",
       "output": [
         "# Tarav.Archive",
@@ -251,7 +251,8 @@
         "",
         "The Record repository is Archive infrastructure and is not recursively",
         "materialized as an ordinary Archive Artifact."
-      ]
+      ],
+      "label": "content"
     }
   ]
 }

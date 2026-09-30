@@ -4,7 +4,7 @@
   "output": "references/commit-evidence.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "074b31d6-fb71-53a1-b52a-dfca8080b9df",
       "type": "Tarav.Skillware.LiteralBlock",
       "output": [
         "# Git Commit Evidence",
@@ -85,7 +85,8 @@
         "Inspect the scoped diff and run the relevant checks before every completion",
         "commit. Report each completion hash, Breadcrumb audit result, and honest evidence",
         "gap. Report a start hash only when a composing workflow created one."
-      ]
+      ],
+      "label": "introduction"
     }
   ]
 }

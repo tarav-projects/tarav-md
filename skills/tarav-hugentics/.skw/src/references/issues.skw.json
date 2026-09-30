@@ -4,7 +4,7 @@
   "output": "references/issues.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "7b81d96a-dd99-52c1-a4fc-a0cf15c664cb",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -43,10 +43,17 @@
         "`Issue.Block`s in the Project's configured Diagram.Model. Parking is a",
         "workflow for creating an Issue, not another storage system or Object.Type.",
         ""
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     },
     {
-      "id": "routing",
+      "id": "a86eb94f-2390-50e0-8917-2425761104de",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -135,10 +142,43 @@
         "- Maintenance: {{skw:link-1}}",
         "- Audit: {{skw:link-2}}",
         ""
+      ],
+      "label": "routing",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "f3f810d4-7c06-588a-a85f-0f3cf48c4fb3",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "issues.park.introduction"
+          },
+          "slot": "link-0",
+          "caption": "`issues/park.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "a6de5c84-dde9-58d5-9338-5e185b9964fa",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "issues.maintain.introduction"
+          },
+          "slot": "link-1",
+          "caption": "`issues/maintain.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "3fab6385-5403-5f68-a70f-b85b668419a0",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "issues.audit.introduction"
+          },
+          "slot": "link-2",
+          "caption": "`issues/audit.md`"
+        }
       ]
     },
     {
-      "id": "shared-contract",
+      "id": "aac04b4a-af55-53be-94a7-6d4be691258c",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -204,10 +244,23 @@
         "  contract from {{skw:link-0}}. Do not create Issue-specific Tarav",
         "  CLI actions when typed Ship capture already expresses the operation.",
         ""
+      ],
+      "label": "shared-contract",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "846c448d-3559-50db-83af-e09fa69ecdaa",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "capture.introduction"
+          },
+          "slot": "link-0",
+          "caption": "`capture.md`"
+        }
       ]
     },
     {
-      "id": "presentation",
+      "id": "1ec08790-6d11-5d57-b840-ee41db0afa28",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -246,7 +299,8 @@
         "UUID when known, `Block.Type: Issue.Block`, relevant Line.Types, current",
         "projected state, and visible POIs. Labels aid conversation; UUIDs remain the",
         "mechanical identity."
-      ]
+      ],
+      "label": "presentation"
     }
   ],
   "shared": {

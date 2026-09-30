@@ -4,7 +4,7 @@
   "output": "references/issues/park.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "f3f810d4-7c06-588a-a85f-0f3cf48c4fb3",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -42,10 +42,17 @@
         "Use this short-lived interruption workflow to preserve a side thought as a",
         "minimal, addressable `Issue.Block` without abandoning the foreground task.",
         ""
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     },
     {
-      "id": "workflow",
+      "id": "ed9c07fb-3060-58c8-975e-434274d982fd",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -116,6 +123,19 @@
         "The runtime commands are the shared `::discuss`, `::review`,",
         "`::approve <token>`, and `::land` commands. Do not invent Parking-specific",
         "approval syntax."
+      ],
+      "label": "workflow",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "846c448d-3559-50db-83af-e09fa69ecdaa",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "capture.introduction"
+          },
+          "slot": "link-0",
+          "caption": "`../capture.md`"
+        }
       ]
     }
   ],

@@ -4,7 +4,7 @@
   "output": "references/impl/design.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "788a9ad5-33a6-53c2-b823-bd0f78523811",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -87,10 +87,47 @@
         "on an implementation path, create the live-note `Impl.Req`, and establish its",
         "`Impl.Req.Diagram`.",
         ""
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "dfebdb7b-300a-5cdc-9044-4f81c3c1316c",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.product-capture.introduction"
+          },
+          "slot": "link-0",
+          "caption": "`product-capture.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "569040dd-43e5-5cd3-8b19-0ccc9c4ba20f",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.general-practices.introduction"
+          },
+          "slot": "link-1",
+          "caption": "`general-practices.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "d45ce76d-6a44-55d1-b880-00922e4ca9d4",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.general-preferences.introduction"
+          },
+          "slot": "link-2",
+          "caption": "`general-preferences.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     },
     {
-      "id": "alignment-loop",
+      "id": "5acd707f-1441-5735-a7f8-49c04c1b5ee1",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -138,10 +175,11 @@
         "consequential assumptions in `Impl.Log`, and stops only when faithful progress",
         "requires external input.",
         ""
-      ]
+      ],
+      "label": "alignment-loop"
     },
     {
-      "id": "readiness-checkpoint",
+      "id": "3bf5a2ab-c67e-50aa-bf36-f02bf9834188",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -189,10 +227,11 @@
         "Close gaps yourself where possible. Do not pad the artifact merely to satisfy",
         "the checklist.",
         ""
-      ]
+      ],
+      "label": "readiness-checkpoint"
     },
     {
-      "id": "live-note-impl-req",
+      "id": "83fcc7b9-737e-5c59-ad4c-56cef69e3413",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -267,10 +306,23 @@
         "The explicit Design or Develop invocation authorizes writing this artifact. It",
         "does not authorize unrelated product mutation.",
         ""
+      ],
+      "label": "live-note-impl-req",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "953ceaea-f235-5d28-ab8a-cd277be5fde8",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.example.introduction"
+          },
+          "slot": "link-0",
+          "caption": "`example.md`"
+        }
       ]
     },
     {
-      "id": "impl-req-diagram",
+      "id": "fa8481c4-47f0-5e36-9c64-fde89fb127a7",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -340,10 +392,11 @@
         "must not be promoted into the User-Touched Block merely to make the request",
         "look complete.",
         ""
-      ]
+      ],
+      "label": "impl-req-diagram"
     },
     {
-      "id": "updating",
+      "id": "a6d60d64-f5b5-52de-b31a-c9591f1dab66",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -386,10 +439,11 @@
         "- When the design exposes a fundamentals-design problem, point to the owning",
         "  design surface and keep the implementation request honest about the gap.",
         ""
-      ]
+      ],
+      "label": "updating"
     },
     {
-      "id": "output",
+      "id": "225df606-9a5f-5f5f-82df-e0cd2bcb18f0",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -426,7 +480,8 @@
         "",
         "Return the complete live-note path, Collection and Draft addresses, and a",
         "concise readiness summary. Under Develop, return control to the Develop module."
-      ]
+      ],
+      "label": "output"
     }
   ],
   "shared": {

@@ -1,5 +1,9 @@
 # Skillware development
 
+<!-- tarav.sessions
+1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
+-->
+
 Navigate without expanding context targets:
 
 ```sh
@@ -20,13 +24,16 @@ recorded action, permitted only by the finding's class, stored under
 
 `.skw/loading.json` owns the declared consumer loading model. Nodes reference
 source blocks; most within-file parents default to the predecessor. Cross-file
-parents and consumer requirements are explicit. Keep the first metadata block
-as the entry root. Link slots such as `{{skw:link-0}}` compile from declared
-primitives. Typed `SkillLink` blocks retain produced Markdown in `output` and
+parents are explicit. Typed links, inlines, and consumer requirements belong to
+the source block's `reading` declarations. Block `id` is a UUID Ship; its
+separate `label` is the readable local selector. Keep the first metadata block
+as the entry root. Link slots such as `{{skw:link-0}}` compile from those
+declarations. Typed `SkillLink` blocks retain produced Markdown in `output` and
 declare their own target; refresh one explicitly with `tarav skw document
 produce --source SKILL.skw.json --block design-impact-link`. Other loading
 links remain declared primitives; do not replace their slots with authored
 Markdown links.
+<!-- tarav.breadcrumb 6e446d50cb88a1f233a3fb83938245072eaabd44d3e9cf18831abb192dcf97cc -->
 
 Inspect one block without dumping the whole graph:
 

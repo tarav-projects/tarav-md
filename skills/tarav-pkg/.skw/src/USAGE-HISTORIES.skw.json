@@ -4,7 +4,7 @@
   "output": "USAGE-HISTORIES.md",
   "blocks": [
     {
-      "id": "content",
+      "id": "621fb317-0945-5cc9-85f5-f639e6b5f5e0",
       "type": "Tarav.Skillware.LiteralBlock",
       "output": [
         "# Tarav Usage Histories",
@@ -41,7 +41,8 @@
         "- Generalization does not itself create semantic authority; the meaning and authority of every expression continue to come from its content and explicit grounding in `User.Touched.Data`.",
         "- Agents can compare the Model before and after refactoring to identify lost constraints, changed meaning, incomplete specialization, or other POIs.",
         "- The refactored Model should provide equivalent or richer contextual capability without requiring one universal composition or relationship algebra."
-      ]
+      ],
+      "label": "content"
     }
   ]
 }

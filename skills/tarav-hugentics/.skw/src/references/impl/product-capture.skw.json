@@ -4,7 +4,7 @@
   "output": "references/impl/product-capture.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "dfebdb7b-300a-5cdc-9044-4f81c3c1316c",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -84,10 +84,37 @@
         "Assertion, or POI requirements and never creates a `Verbatim.Gate` without an",
         "actual proposal and User approval exchange.",
         ""
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "846c448d-3559-50db-83af-e09fa69ecdaa",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "capture.introduction"
+          },
+          "slot": "link-0",
+          "caption": "`../capture.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "5c2c3edf-11bc-548b-8362-b49c6a74aa8b",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "inline-capture.introduction"
+          },
+          "slot": "link-1",
+          "caption": "`../inline-capture.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     },
     {
-      "id": "surface-boundary",
+      "id": "47f135a9-9f05-5a06-91d4-aac681f352f8",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -153,10 +180,11 @@
         "bypass shared contextualization, lineage lookup, evidence construction,",
         "Manifest linting, or landing.",
         ""
-      ]
+      ],
+      "label": "surface-boundary"
     },
     {
-      "id": "capture-bar",
+      "id": "6006653f-041a-5a94-9b3c-f3e4ed987283",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -205,10 +233,11 @@
         "Reviewed Gates require actual proposal and approval turns. Automatic workflow",
         "capture remains unreviewed rather than manufacturing approval.",
         ""
-      ]
+      ],
+      "label": "capture-bar"
     },
     {
-      "id": "slice-transaction",
+      "id": "c508d08d-2ac8-5d64-aef1-8e55b90c4690",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -278,10 +307,11 @@
         "6. report capture omissions or failures without pretending they invalidate",
         "   verified product work.",
         ""
-      ]
+      ],
+      "label": "slice-transaction"
     },
     {
-      "id": "final-audit",
+      "id": "61c1ef7b-6be5-5eb0-a6e2-5e8dd5ef2a8f",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -331,7 +361,8 @@
         "",
         "The audit exists to prevent meaningful loss and misgrounding, not to maximize",
         "annotation volume."
-      ]
+      ],
+      "label": "final-audit"
     }
   ],
   "shared": {

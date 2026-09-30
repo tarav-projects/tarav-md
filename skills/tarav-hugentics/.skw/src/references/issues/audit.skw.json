@@ -4,7 +4,7 @@
   "output": "references/issues/audit.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "3fab6385-5403-5f68-a70f-b85b668419a0",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -52,6 +52,13 @@
         "Do not bootstrap a missing Model, create a Capture.Manifest, mutate Diagram",
         "records, or advertise approval and landing commands. Audit findings may suggest",
         "a subsequent Parking or Maintenance run, but they do not authorize it."
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     }
   ],

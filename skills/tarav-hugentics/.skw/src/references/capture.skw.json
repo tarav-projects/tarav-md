@@ -4,7 +4,7 @@
   "output": "references/capture.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "846c448d-3559-50db-83af-e09fa69ecdaa",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -62,10 +62,27 @@
         "For any modifying route, also load {{skw:link-0}} and bracket each",
         "mutated repository with its scoped evidence commits.",
         ""
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "074b31d6-fb71-53a1-b52a-dfca8080b9df",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "commit-evidence.introduction"
+          },
+          "slot": "link-0",
+          "caption": "`commit-evidence.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     },
     {
-      "id": "shared-loop",
+      "id": "7c1213e6-24c4-55a6-a648-2bfd0853ffce",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -151,10 +168,11 @@
         "the compact wording is insufficient. Definition resolution findings are POIs,",
         "not capture blockers.",
         ""
-      ]
+      ],
+      "label": "shared-loop"
     },
     {
-      "id": "interactive-reviewed-capture",
+      "id": "0b7398a5-97ea-5730-af57-a4fa10206a50",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -301,10 +319,11 @@
         "for the landed supported records; its context already contains the approved proposal",
         "turns and supporting User turns.",
         ""
-      ]
+      ],
+      "label": "interactive-reviewed-capture"
     },
     {
-      "id": "capture-stances",
+      "id": "cf55d0b2-cd64-543f-ae5a-e992053b7ea3",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -349,10 +368,11 @@
         "These are conversational dispositions. They do not mutate the Diagram or",
         "change the evidentiary status of already captured records.",
         ""
-      ]
+      ],
+      "label": "capture-stances"
     },
     {
-      "id": "automatic-unreviewed-capture",
+      "id": "7e4bb270-2eb8-5757-b99c-39b0dd564611",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -414,10 +434,11 @@
         "landed through the unreviewed route remains unreviewed until a later review",
         "adds a passing Gate.",
         ""
-      ]
+      ],
+      "label": "automatic-unreviewed-capture"
     },
     {
-      "id": "read-only-audit",
+      "id": "e4221a64-673c-505b-917d-e0fc3833b17e",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -457,10 +478,11 @@
         "commands, create a Manifest, mutate Project configuration, or write Diagram",
         "records.",
         ""
-      ]
+      ],
+      "label": "read-only-audit"
     },
     {
-      "id": "landing-through-tarav-diagram",
+      "id": "e8c0e7c8-e29b-5482-9f2c-587fc89ece0a",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -620,7 +642,8 @@
         "Model or Lines so the centralized",
         "Assertion.Engine recomputes Gate standing from Chatlas evidence. Report the",
         "result without writing derived `passed` flags into Annotation records."
-      ]
+      ],
+      "label": "landing-through-tarav-diagram"
     }
   ],
   "shared": {

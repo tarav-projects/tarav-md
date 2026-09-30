@@ -4,7 +4,7 @@
   "output": "SKILL.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "23d0b884-f835-52da-8e38-e24846eb14a7",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -38,10 +38,11 @@
       ],
       "output": [
         "---"
-      ]
+      ],
+      "label": "introduction"
     },
     {
-      "id": "introduction-section",
+      "id": "ac0ffe0e-00fd-5ac3-92ea-9fba42c20e9e",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -89,10 +90,11 @@
         "[`../tarav-pkg/CONSTITUTION.md`](../tarav-pkg/CONSTITUTION.md). Capture must",
         "remain writable, evidence-linked, and nonblocking in the presence of POIs.",
         ""
-      ]
+      ],
+      "label": "introduction-section"
     },
     {
-      "id": "batchy-skill-contract",
+      "id": "f6ff186b-ce47-5140-97bd-82d8b8b4f383",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -135,10 +137,11 @@
         "- ask rather than guess when the requested route remains materially ambiguous;",
         "- flags select workflow behavior; they are not forwarded to the Tarav CLI.",
         ""
-      ]
+      ],
+      "label": "batchy-skill-contract"
     },
     {
-      "id": "command-surface",
+      "id": "68b47b6e-fa0d-5936-9beb-a8cb0c72e495",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -313,10 +316,11 @@
         "Existing requests retain their recorded surface when no selector is given.",
         "`--wiki` and `--model` are mutually exclusive and do not select a phase.",
         ""
-      ]
+      ],
+      "label": "command-surface"
     },
     {
-      "id": "routing",
+      "id": "54ab84cd-edf3-5ccc-8a56-58ed0c66ea2d",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -531,10 +535,132 @@
         "`::annotate`, together with reading commands such as `::narrate`, belong to a",
         "running Reading Club workflow. They are not initial Batchy.Skill calls.",
         ""
+      ],
+      "label": "routing",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.IncludesBlock",
+          "target": "7faeae93-57a9-52b5-8f34-7daaddceef64",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "skill.design-impact-link"
+          },
+          "slot": "link-0"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "b79f8683-cb46-5d55-913d-80dd423c7a46",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.introduction"
+          },
+          "slot": "link-1",
+          "caption": "`references/impl.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "4dc4c615-dd53-5d63-a60c-fe8f474e5410",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "ground.introduction"
+          },
+          "slot": "link-2",
+          "caption": "`references/ground.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "846c448d-3559-50db-83af-e09fa69ecdaa",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "capture.introduction"
+          },
+          "slot": "link-3",
+          "caption": "`references/capture.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "e5376d6e-e30c-5745-a278-463e37390876",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "wiki-capture.introduction"
+          },
+          "slot": "link-4",
+          "caption": "`references/wiki-capture.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "e4af15ad-8b28-5344-b389-0ab1a0ce9942",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "reading-club.introduction"
+          },
+          "slot": "link-5",
+          "caption": "`references/reading-club.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "7b81d96a-dd99-52c1-a4fc-a0cf15c664cb",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "issues.introduction"
+          },
+          "slot": "link-6",
+          "caption": "`references/issues.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "b79f8683-cb46-5d55-913d-80dd423c7a46",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.introduction"
+          },
+          "slot": "link-7",
+          "caption": "`references/impl.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "5c2c3edf-11bc-548b-8362-b49c6a74aa8b",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "inline-capture.introduction"
+          },
+          "slot": "link-8",
+          "caption": "`references/inline-capture.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "7b999e4a-55ef-5281-b062-495ea5552371",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.wiki.introduction"
+          },
+          "slot": "link-9",
+          "caption": "`references/impl/wiki.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "64afe1fc-2c46-5458-8b8c-bc436447ccb8",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "design-dialogue.introduction"
+          },
+          "slot": "link-10",
+          "caption": "`references/design-dialogue.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "074b31d6-fb71-53a1-b52a-dfca8080b9df",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "commit-evidence.introduction"
+          },
+          "slot": "link-11",
+          "caption": "`references/commit-evidence.md`"
+        }
       ]
     },
     {
-      "id": "boundary",
+      "id": "f33cd98c-033f-5493-b1bf-3eac97666ac2",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -601,16 +727,18 @@
         "The workflow's explicit User invocation is retained as one",
         "`Capture.Authorization.Gate`; affected editions reference that Gate. This",
         "records permission to write, not review of wording."
-      ]
+      ],
+      "label": "boundary"
     },
     {
-      "id": "design-impact-link",
+      "id": "7faeae93-57a9-52b5-8f34-7daaddceef64",
       "type": "Tarav.Skillware.SkillLink",
       "target": "design-impact.introduction",
-      "label": "`references/design-impact.md`",
+      "label": "design-impact-link",
       "output": [
         "[`references/design-impact.md`](references/design-impact.md)"
-      ]
+      ],
+      "caption": "`references/design-impact.md`"
     }
   ],
   "shared": {

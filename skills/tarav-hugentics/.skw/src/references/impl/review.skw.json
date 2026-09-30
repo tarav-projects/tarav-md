@@ -4,7 +4,7 @@
   "output": "references/impl/review.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "18128be8-871d-5c43-826d-015e024c5d83",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -48,10 +48,17 @@
         "This workflow is read-only. It writes neither the artifact nor the Diagram and",
         "does not execute the plan.",
         ""
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     },
     {
-      "id": "review-loop",
+      "id": "66d8b07c-edc4-50af-b909-59da48880881",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -104,10 +111,11 @@
         "Sample proportionally to risk: verify every load-bearing claim and avoid",
         "spending attention on incidental prose.",
         ""
-      ]
+      ],
+      "label": "review-loop"
     },
     {
-      "id": "boundaries",
+      "id": "97e9c373-87a0-5b49-8a56-ca8cdc963a0b",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -149,7 +157,8 @@
         "  paths are acceptable when they do not alter the product.",
         "- Findings cite the concrete evidence checked; the review's authority is",
         "  evidence, not confidence."
-      ]
+      ],
+      "label": "boundaries"
     }
   ],
   "shared": {

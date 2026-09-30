@@ -4,7 +4,7 @@
   "output": "references/review.md",
   "blocks": [
     {
-      "id": "content",
+      "id": "15904778-2c1d-588d-8c5f-91af4b07385c",
       "type": "Tarav.Skillware.LiteralBlock",
       "output": [
         "# Tarav Diagram Review",
@@ -86,7 +86,8 @@
         "A passing Gate makes its Line ship reviewed. Missing wording, token, role,",
         "ordering, or evidence produces POIs without deleting the record or blocking",
         "future work."
-      ]
+      ],
+      "label": "content"
     }
   ]
 }

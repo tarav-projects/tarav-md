@@ -83,3 +83,14 @@ policy remain open; illustrative `pois()` and `raise_()` calls are not claims
 about implemented APIs.
 <!-- tarav.breadcrumb 7d28f24f3c1a83ecfeae3e2cd778b6b5a9aed39493936b2beee4f3dfcb6fb913 -->
 <!-- tarav.breadcrumb b39c8a6102a3d6fbf1a0ddbe4c22b8f0e63efd7cb00499e7fb2622bed1e86d4b -->
+
+## Implemented foundation — 2026-09-30
+
+`tarav.l1.checks` now provides `Check`, `CheckProvider`, `CheckResult`, and
+`run_checks`. A Check can run alone; a result snapshots its data and POIs.
+Inspecting `result.pois()` emits nothing. The consumer may explicitly emit a
+POI to a collector or invoke the POI's `.error()` method. SKW supplies three
+reading checks through `SkwSkill.checks` and uses their results for its CLI
+POI report. See the [Checks code](../../../../tarav-py/src/tarav/l1/checks/__init__.py)
+and [SKW integration](../../../../tarav-py/src/tarav/l2/skw/reading_checks.py).
+<!-- tarav.breadcrumb 5922aa58ced6a537d3d235fbbdeafe6c947c6d2f859c67fc3299fe7ee9f82fd2 -->

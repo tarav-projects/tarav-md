@@ -4,7 +4,7 @@
   "output": "tarav-diagram.md",
   "blocks": [
     {
-      "id": "content",
+      "id": "1e34a842-ac37-57ef-9e15-4ed8bf157007",
       "type": "Tarav.Skillware.LiteralBlock",
       "output": [
         "# Tarav.Diagram",
@@ -908,7 +908,8 @@
         "These are implementation and further-design questions. They must preserve",
         "the grounded reasoning tape, plural agent-constructed Models, assessable",
         "continuity, and the distinction between semantic evolution and Bad Indexing."
-      ]
+      ],
+      "label": "content"
     }
   ]
 }

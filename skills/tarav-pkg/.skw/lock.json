@@ -4,22 +4,22 @@
   "documents": {
     ".skw/src/CONSTITUTION.skw.json": {
       "blocks": {},
-      "source_hash": "320765fec22c5cb2c1aa8fcd19935f3824f9ba8def3fd4b1c16e75f7fe24a078",
+      "source_hash": "92c2b8c6c8c7277ded8b4db443af6b63c3832df637e456cf1d6413a03206a4ae",
       "product_hash": "6b3cdb4de64775176f2c3deba42be3904a1669b7e1e071fc99b26f09d7453e0c"
     },
     ".skw/src/SKILL.skw.json": {
       "blocks": {},
-      "source_hash": "910f410327908673d668298b7c56f6cd32562dd18d4f6a13b8d13403fd05c2ca",
+      "source_hash": "7969a166fb84ccd60fca69b18ffa2439e2404acd0c54c0b0ae0d180c238a1181",
       "product_hash": "ffcf27f95eecfe11e0405913621322e5d51042945a64e3950f043a0ab684278b"
     },
     ".skw/src/USAGE-HISTORIES.skw.json": {
       "blocks": {},
-      "source_hash": "c736e31c553b809c43af9a01836a7d48d8afd0b2c5292f6305e2952b89881d07",
+      "source_hash": "c8ab1dfa979e324e3def7753db6d7dd2179098384a638346d9c85124b9f2eed2",
       "product_hash": "0444f0c515b4bcd4337317858099bc102669483f34b4f464de6a0bd447e3567d"
     },
     ".skw/src/references/attic.skw.json": {
       "blocks": {},
-      "source_hash": "0d3066531001a060f4bfe26cdca531ac78e13361e91332af43a62c8f92e79aa6",
+      "source_hash": "cf6bafd507fffbb00716e30328a316b6f8293a130c9414c958089877c7666d8f",
       "product_hash": "316435fe24add11b00159da328d9a64b0985e4a4bef90161faa50e15789f8f15"
     },
     ".skw/src/references/capture.skw.json": {
@@ -29,47 +29,47 @@
     },
     ".skw/src/references/constitutional-theory.skw.json": {
       "blocks": {},
-      "source_hash": "d40fc30795dcaa3bf4acf4882b36c1927608c320859dfe5574edb43ef370154a",
+      "source_hash": "007e0cb3146c507a806466c560315e90fa20b5c8b39c19607cdec119adb23566",
       "product_hash": "02acf58adc05703ae716fba4de0c356394399a18a84ef4801ce9e02b8b36eb79"
     },
     ".skw/src/references/context-poi-and-impact-map-design-digest.skw.json": {
       "blocks": {},
-      "source_hash": "85b5d6d9f0bf99958ec5ec54eff7dcd2cfa113d4401ea662402f146ec6644dc8",
+      "source_hash": "682ef67a8e94c230a2a4455a38b01fb1af3a28baf8e370143c83fab746dd720e",
       "product_hash": "b3a5160f1e024f9f19b359b52d6b21e41d3b2c6738a84f196d782af1aa00dd00"
     },
     ".skw/src/references/gates-and-deferred-review-design-digest.skw.json": {
       "blocks": {},
-      "source_hash": "b8b9b37c5ddda3c768f8768e1abe47c1a4b6f73369c6a4136c1b1d09a4f2422c",
+      "source_hash": "38f039bdb0fe0c31d0726c594bd048c4757af6defa3d26bacadb4e2384e6e001",
       "product_hash": "42c27dd32280b3e96ba3011fc19e7a975e0f670fb09f94df79cd36310253900f"
     },
     ".skw/src/references/legacy-skill-mine.skw.json": {
       "blocks": {},
-      "source_hash": "313df9fdce52a188c60aea6337420fd515d022d232287450bb7a61e01ef784e5",
+      "source_hash": "092c3bb8cb1598347c855a853683223aac6f64cb7599b1af2046335823daec16",
       "product_hash": "c5d9c58a4d1869f6340349a4a35d226bababce06bc811c261c951e3ac03a4f82"
     },
     ".skw/src/references/review.skw.json": {
       "blocks": {},
-      "source_hash": "132b864be0a4cf6cfb785a0e16beee36a942c0c43917ec8d38ee8bd9d790645f",
+      "source_hash": "3e3952fd30380379cf884846e094ed524cf7381ffa7164c61cb4c18e6ec38e17",
       "product_hash": "c4968419c5831d0fdd1c5e4f1da5cddb20a61c2d438ce6a7c2cc3b5545679c5f"
     },
     ".skw/src/tarav-archive.skw.json": {
       "blocks": {},
-      "source_hash": "005b521d1b414c0f2582c4ea1721641077b927b7e1a869fe74bfd7bfc676492d",
+      "source_hash": "efe15264e5e52e61b736f5451aa0d5b55559e9983db8872898f2d987fa00079e",
       "product_hash": "d1e68aa1ff66ef67f4a138ee328070d728c3038690fc3d9d34b68a02508bd172"
     },
     ".skw/src/tarav-bloberia.skw.json": {
       "blocks": {},
-      "source_hash": "f1d5ff7df4872f8934654746da3ad85025ab871898016b06be14d6bfb24297df",
+      "source_hash": "588299a204504717020c146c4264bdcc94a33ee2037554e65cf79456eceb3f48",
       "product_hash": "019cd742527ff0784d61c93f8dd896786032c11dcee445779b445fa52a140823"
     },
     ".skw/src/tarav-diagram.skw.json": {
       "blocks": {},
-      "source_hash": "be5fa634a9c1328907c9eb168a52db2b2ce9f25fc214b453e40e943a427e91f1",
+      "source_hash": "1c52cf5a17ad618248d4b41393311a483e15ff1a3f0177921482eabe14f8d0bb",
       "product_hash": "257e17b56c964859622c2b840866104b16fac1cc6babbdd7a4da56f93d786304"
     },
     ".skw/src/tarav-semantic-calculus.skw.json": {
       "blocks": {},
-      "source_hash": "c91d489092a8a30b75760789078d8ae485d343b7eb4302684068f83db1930bc2",
+      "source_hash": "4615823c175a7d58d22e5f459233b5fc8957c2517436280725ee8a1fa02427a3",
       "product_hash": "2606b226deb66b3bed1b894b683375749e42cc0c8abe3a640ff29d9106a4e3d6"
     }
   }

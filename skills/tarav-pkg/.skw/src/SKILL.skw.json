@@ -4,7 +4,7 @@
   "output": "SKILL.md",
   "blocks": [
     {
-      "id": "content",
+      "id": "4897dbf2-fcdf-5af7-ae62-a792d691e4fb",
       "type": "Tarav.Skillware.LiteralBlock",
       "output": [
         "---",
@@ -179,7 +179,8 @@
         "",
         "Without an explicit module, use this file as orientation, read the",
         "Constitution, and route to the smallest relevant current design surface."
-      ]
+      ],
+      "label": "content"
     }
   ]
 }

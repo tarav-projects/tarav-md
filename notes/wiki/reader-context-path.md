@@ -85,3 +85,23 @@ the precise subtype set and names remain to be designed. It refines the
 earlier illustrative `ReadingLink(..., mode="consult")` shape without
 changing the uniform block-declaration model.
 <!-- tarav.breadcrumb 5e002c69d5d2ea0299c90fe0ee0ff565bfd53328bc43515e6550f8fb30f20dc9 -->
+
+## Implemented structural slice — 2026-09-30
+
+Impl.Req 828 made SKW blocks `TaravEntity` instances with separate UUID Ships
+and local labels. Typed declarations now live on source blocks; the loading
+Record retains block bindings, route parents, and the entry root. The analyzer
+reports per-route state, intersection/union availability, requirement
+observations, diagnostics, and completeness. It does not assess whether a
+block's prose proves its declarations. See the
+[implementation request](../../../../tarav-py/notes/live/828-reading-path-checks-poi-impl-req.md)
+and [reading model](../../../../tarav-py/src/tarav/l1/skw/reading.py).
+<!-- tarav.breadcrumb 49e016172044428b4a1b0060224f2a735f4faf6a82fb1ed29dc5d463571f339b -->
+
+The maintained `tarav-hugentics` and `tarav-pkg` SKW depots were migrated with
+explicit per-document old-label-to-Ship maps. Historical generation
+annotations remain untouched; the mapping preserves their recipe fingerprints.
+The active source/product lock baselines were rebuilt after the identity-only
+source change. Generated anchors may change while authored block content is
+preserved.
+<!-- tarav.breadcrumb c5ce66086d77ae6e2386755f1ea74eeb17834f282f7f20c1236e35bf5fee9689 -->

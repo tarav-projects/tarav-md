@@ -4,7 +4,7 @@
   "output": "references/ground.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "4dc4c615-dd53-5d63-a60c-fe8f474e5410",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -62,10 +62,17 @@
         "before operating. Grounding is ungated and read-only toward the Diagram",
         "semantic database. It may create and maintain the session's View.",
         ""
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     },
     {
-      "id": "responsibility-boundary",
+      "id": "880404d6-c44e-511e-ae28-2f3489e83066",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -107,10 +114,11 @@
         "Agent, capture missing material, or resolve contradictions. It exposes context",
         "and POIs so the Agent and User can reason from them.",
         ""
-      ]
+      ],
+      "label": "responsibility-boundary"
     },
     {
-      "id": "session-view-convention",
+      "id": "38eb88c9-73a7-5d2b-8a44-35b1d94c0e0f",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -159,10 +167,11 @@
         "coordinate. The remaining fields stay an open consumer convention preserved",
         "and queryable through `about.json`.",
         ""
-      ]
+      ],
+      "label": "session-view-convention"
     },
     {
-      "id": "workflow",
+      "id": "2cc8dec2-d5c6-5206-8a1f-20cf9afa301b",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -264,10 +273,11 @@
         "Direct block-by-block Model navigation remains the fallback when View tooling",
         "is unavailable or insufficient.",
         ""
-      ]
+      ],
+      "label": "workflow"
     },
     {
-      "id": "completion-report",
+      "id": "fae5b80d-d139-55a3-8383-3f3c47f033d1",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -315,7 +325,8 @@
         "maintenance. Distinguish Diagram content from Agent inference. Missing Diagram",
         "coverage is a capture opportunity, not permission to invent context or mutate",
         "the Diagram during grounding."
-      ]
+      ],
+      "label": "completion-report"
     }
   ],
   "shared": {

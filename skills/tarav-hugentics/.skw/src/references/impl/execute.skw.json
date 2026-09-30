@@ -4,7 +4,7 @@
   "output": "references/impl/execute.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "827b1806-ffda-58f1-b365-77a7467b938e",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -80,19 +80,66 @@
         "",
         "Load this module for `--impl --execute` and as Develop's second phase. Also load",
         "{{skw:link-0}},",
-    "{{skw:link-1}}, and",
-    "{{skw:link-2}}. For repository bracketing and completion, load",
-    "{{skw:link-3}}.",
+        "{{skw:link-1}}, and",
+        "{{skw:link-2}}. For repository bracketing and completion, load",
+        "{{skw:link-3}}.",
         "",
         "Operate as the implementation executer: cold-load one live-note `Impl.Req`,",
         "recover its User-Touched context through `Impl.Req.Diagram`, and execute its",
         "`Execution.Plan` through verified vertical slices. When explicit Execute input",
         "does not resolve to an existing Impl.Req, perform Direct-Input Bootstrap first.",
         ""
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "dfebdb7b-300a-5cdc-9044-4f81c3c1316c",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.product-capture.introduction"
+          },
+          "slot": "link-0",
+          "caption": "`product-capture.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "569040dd-43e5-5cd3-8b19-0ccc9c4ba20f",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.general-practices.introduction"
+          },
+          "slot": "link-1",
+          "caption": "`general-practices.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "d45ce76d-6a44-55d1-b880-00922e4ca9d4",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.general-preferences.introduction"
+          },
+          "slot": "link-2",
+          "caption": "`general-preferences.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "074b31d6-fb71-53a1-b52a-dfca8080b9df",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "commit-evidence.introduction"
+          },
+          "slot": "link-3",
+          "caption": "`../commit-evidence.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     },
     {
-      "id": "direct-input-bootstrap",
+      "id": "c0e2762c-1199-54f8-ab68-4e205d2b5a07",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -165,10 +212,23 @@
         "request remains executable, but implementation capture remains explicitly",
         "unreconciled.",
         ""
+      ],
+      "label": "direct-input-bootstrap",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "846c448d-3559-50db-83af-e09fa69ecdaa",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "capture.introduction"
+          },
+          "slot": "link-0",
+          "caption": "`../capture.md`"
+        }
       ]
     },
     {
-      "id": "execution-realignment",
+      "id": "dfedac60-ed98-53b7-9620-d25a0c3a1106",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -225,10 +285,11 @@
         "do not store an unsupported Agent paraphrase or confuse authorization with",
         "wording review.",
         ""
-      ]
+      ],
+      "label": "execution-realignment"
     },
     {
-      "id": "git-checkpoint",
+      "id": "af936663-d5ff-5e18-8f61-b1c0a5cc495f",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -263,23 +324,24 @@
       "output": [
         "## Git Checkpoint",
         "",
-    "Before the first product edit in each repository, create the shared",
-    "evidence-commit start checkpoint:",
+        "Before the first product edit in each repository, create the shared",
+        "evidence-commit start checkpoint:",
         "",
-    "- declare only the files in this workflow's work scope;",
-    "- commit existing changes only inside that scope, or create an empty",
-    "  checkpoint when the scope is clean;",
+        "- declare only the files in this workflow's work scope;",
+        "- commit existing changes only inside that scope, or create an empty",
+        "  checkpoint when the scope is clean;",
         "- stop for unresolved conflicts, a non-Git target, or an impossible",
-    "  checkpoint; and",
-    "- preserve unrelated staged and unstaged changes outside the scope.",
+        "  checkpoint; and",
+        "- preserve unrelated staged and unstaged changes outside the scope.",
         "",
         "Project instructions or a narrower User instruction may override this",
         "workflow-owned checkpoint behavior.",
         ""
-      ]
+      ],
+      "label": "git-checkpoint"
     },
     {
-      "id": "per-slice-execution",
+      "id": "cc180ec6-86de-5970-a27d-6b6d00622989",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -334,10 +396,11 @@
         "work; report it as a retryable POI. Product verification failure does prevent",
         "the slice from being presented as complete.",
         ""
-      ]
+      ],
+      "label": "per-slice-execution"
     },
     {
-      "id": "deviation-handling",
+      "id": "9b49c6a2-f77e-5259-b594-083e6179cdfd",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -384,10 +447,11 @@
         "observations remain in `Impl.Log` unless another Diagram Annotation type and",
         "evidence policy explicitly owns them.",
         ""
-      ]
+      ],
+      "label": "deviation-handling"
     },
     {
-      "id": "completion",
+      "id": "9e07c5ab-9d2f-5909-bdfa-707314ffb447",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -430,10 +494,11 @@
         "- summarize the result, deviations, blockers, and deferred work;",
         "- close the Impl.Req Collection, check the Draft as an overlay, apply it once,",
         "  and retain the Capture.Receipt;",
-    "- report the associated Collection, Draft, and outstanding POIs; and",
-    "- after verification, create the scoped evidence completion commit for each",
-    "  repository through the shared commit-evidence workflow."
-      ]
+        "- report the associated Collection, Draft, and outstanding POIs; and",
+        "- after verification, create the scoped evidence completion commit for each",
+        "  repository through the shared commit-evidence workflow."
+      ],
+      "label": "completion"
     }
   ],
   "shared": {

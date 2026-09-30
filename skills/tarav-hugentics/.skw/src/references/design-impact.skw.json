@@ -4,7 +4,7 @@
   "output": "references/design-impact.md",
   "blocks": [
     {
-      "id": "introduction",
+      "id": "8e02d758-d671-5cfc-bafa-a44097900cb4",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -65,10 +65,27 @@
         "{{skw:link-0}}; for example, `--impl --design --impact` designs the",
         "implementation and `--impl --dev --impact` designs and executes it.",
         ""
+      ],
+      "label": "introduction",
+      "reading": [
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "b79f8683-cb46-5d55-913d-80dd423c7a46",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "impl.introduction"
+          },
+          "slot": "link-0",
+          "caption": "`impl.md`"
+        },
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
       ]
     },
     {
-      "id": "scope",
+      "id": "33fb25b2-46a4-580f-b612-7dd4e687b5ca",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -114,10 +131,11 @@
         "supporting discussion, not the entire destination Note as new design. Preserve",
         "User corrections and distinguish agreed principles from tentative proposals.",
         ""
-      ]
+      ],
+      "label": "scope"
     },
     {
-      "id": "assessment",
+      "id": "a8af950a-d6f9-5843-8eca-cb9d47d0c1c7",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -173,10 +191,11 @@
         "changes from optional improvements. It is valid to conclude that no",
         "implementation action is needed.",
         ""
-      ]
+      ],
+      "label": "assessment"
     },
     {
-      "id": "boundary",
+      "id": "9b9ab531-0873-52ce-9a92-9a83375b479c",
       "type": "Tarav.Skillware.AgentGenerationBlock",
       "prompt": [],
       "context": [
@@ -221,7 +240,8 @@
         "to that explicitly selected workflow. Its invocation already authorizes its",
         "ordinary next steps; no second trigger is required merely because the input",
         "came from impact assessment. The workflow, not `--impact`, owns those actions."
-      ]
+      ],
+      "label": "boundary"
     }
   ],
   "shared": {

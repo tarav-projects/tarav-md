@@ -4,7 +4,7 @@
   "output": "tarav-bloberia.md",
   "blocks": [
     {
-      "id": "content",
+      "id": "7d0eb2f4-e06f-52f2-94b0-d658b1b2e6e0",
       "type": "Tarav.Skillware.LiteralBlock",
       "output": [
         "# Tarav.Bloberia",
@@ -70,7 +70,8 @@
         "",
         "`write` initializes a missing root as a convenience. `query` without `--text`",
         "returns every record. The CLI emits JSON for reuse by Agent workflows."
-      ]
+      ],
+      "label": "content"
     }
   ]
 }
