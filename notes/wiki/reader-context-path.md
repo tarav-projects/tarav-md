@@ -105,3 +105,72 @@ The active source/product lock baselines were rebuilt after the identity-only
 source change. Generated anchors may change while authored block content is
 preserved.
 <!-- tarav.breadcrumb c5ce66086d77ae6e2386755f1ea74eeb17834f282f7f20c1236e35bf5fee9689 -->
+
+## Containment supplies content; links supply references — 2026-09-30
+
+The discussion simplified the content model: `contains` is sufficient;
+inlining need not be a separate declaration. A block declares which entities
+its content contains, with further qualification available when useful.
+When the contained entity is another SKW block, containment claims that
+loading the containing block also loads that block's content. Its annotations
+therefore participate recursively in the supplied reader context. This is
+declared content equivalence, not a rendering instruction or prose inference.
+<!-- tarav.breadcrumb bd60efd2348903d6ab12f2821e10f82d56c1b49c339fb5a3df5c29070f7deb27 -->
+
+Links are weaker: they expose a reference that the agent may choose to
+follow. Containment propagates the contained block's annotations, including
+its links, but reading-path analysis does not expand the linked target's
+annotations merely because that reference is available.
+<!-- tarav.breadcrumb 7ef2f2e6329c07d785b27e09a8d89c62d3598388836af223311d391b4431c755 -->
+
+```text
+A contains B contains C → A supplies B and C.
+A contains B links C    → A supplies B and a reference to C.
+A links B contains C   → A supplies only a reference to B.
+```
+
+This stopping rule belongs to reading-path analysis, not to the graph as a
+whole. Other analyses may follow links further for their own purposes.
+Structural checks consume the declarations; checking whether the actual
+content substantiates them remains a separate responsibility.
+<!-- tarav.breadcrumb 846885b3831df68e40b083ec2b0eaa8ea648d91b0b86190669bc430e5db0a235 -->
+
+This refines the earlier inline/expected-link discussion. In particular,
+the review of 828 must distinguish exposing B's link within A from assuming
+that the reader followed it and loaded C. The former follows from containment;
+the latter does not follow from link availability alone. This capture records
+the clarified design, not an implementation change or a new code verification.
+
+Evidence pending: the supporting User Turns are in the current Codex session
+`01a0d86c-9538-7be1-af96-014cd4203d61`, from “maybe we do not need inlines”
+through the confirmation that other analyses can follow links further.
+Chatlas refresh was denied write access to its derivation cache during this
+capture. Exact Turn attachments and Git closure remain pending; no Breadcrumb
+IDs or Turn hashes have been invented.
+
+## Containment and path accumulation
+
+Containment and reading order are separate relationships. If A contains C,
+and A precedes B on the reading path, C is available when B requires it.
+A does not need to contain B. The same requirement may be unmet when B is
+reached through another path that has not supplied C.
+<!-- tarav.breadcrumb 67f14f492dd67df48d4d7ad6bf66fd1a01ca9424a8c29a2919ba50af13c9f9c4 -->
+
+The implementation in
+[830](../../../../tarav-py/notes/live/830-reading-containment-impl-req.md)
+adds `Contains`, recursively expands contained block annotations, and keeps
+links as references without automatically advancing to their targets.
+Explicit reading routes remain separate. `IncludesBlock` specializes
+containment with rendering composition; plain containment does not render.
+Shared Checks and POI integration remains in place. Focused verification:
+62 tests passed; Ruff passed. See `tarav-py/src/tarav/l1/skw/reading.py`,
+`loading.py`, and `tests/test_skw_loading.py` for executable behavior.
+
+Evidence pending: the same session's later clarification beginning “If A
+contains C” and its confirmations support this distinction. Chatlas ledger
+access was denied writing the Normal Model lock; exact Turn Breadcrumbs and
+completion commits remain pending.
+
+Evidence recovery: permissions were restored and the supporting User Turns
+were resolved through Chatlas. The pending notices above retain the history
+of the original capture; Breadcrumb submission is now available.
