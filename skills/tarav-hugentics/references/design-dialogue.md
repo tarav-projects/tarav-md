@@ -1,0 +1,67 @@
+# Design Dialogue
+
+```text
+tarav-hugentics --design --dialogue --wiki [FOCUS]
+```
+
+Capture the relevant steps of a design conversation as a condensed dialogue.
+Discussion can happen freely before invocation; no special session mode is
+required. FOCUS optionally narrows the discussion to preserve.
+
+Load [`wiki-capture.md`](wiki-capture.md) for project resolution, Chatlas evidence selection,
+Breadcrumb submission and audit, and scoped Wiki Git closure. Apply those
+mechanics with the dialogue placement and writing rules below. This invocation
+authorizes one capture pass and its Wiki commit.
+Use [`commit-evidence.md`](commit-evidence.md) for the start checkpoint and evidence-bearing closure.
+
+## Placement
+
+Use `<wiki-root>/dialogs/<descriptive-topic>.md`. Inspect nearby filenames
+and relevant existing dialogs; reuse a named file when the discussion continues
+that topic, otherwise create one. Append a section headed
+`## YYYY-MM-DD — <discussion focus>`; add a time or distinguishing subtitle
+when helpful for multiple captures on the same day.
+
+Preserve earlier sections as the history of the exchange. A later correction
+can refer back to an earlier section without rewriting its historical position.
+Avoid duplicating an exchange already captured; append its new continuation.
+
+Update today's daily Note with a short account and a relative link to the
+dialog section. The dialog is this route's main destination. Further topical
+integration is optional when useful; it does not replace the dialog.
+
+## Writing the exchange
+
+Read the selected User Turns and associated assistant responses through
+Chatlas. Preserve the meaningful conversational sequence: the question or
+proposal, explanation, objection, refinement, and resulting understanding.
+Include only steps that actually occurred; this is not a required template.
+
+Use attributed paragraphs such as `User:` and `Agent:`. Condense repetitive
+turns and omit tool chatter. Paraphrases are not quotations; use quotation
+marks only for exact retained wording. Preserve disagreements, abandoned
+alternatives, corrections, and unresolved questions when they explain the
+reasoning. Do not invent consensus or turn an agent proposal into a user decision.
+
+Capture the reasoning expressed in the conversation, not inferred private
+reasoning. Distinguish descriptions of inspected implementation from proposals
+and preserve useful code or documentation references from the discussion.
+A captured description records what was understood at that time; it does not
+establish that the implementation remains unchanged.
+
+## Evidence and closure
+
+Use the Wiki's exact User-Turn Breadcrumb mechanics near the passages they
+ground. An exchange may be grouped with the User Turn that prompted or
+responded to it; retain Agent attribution for the assistant's contribution.
+A User-Turn attachment locates conversational context, not user endorsement
+of every associated statement. Read the actual assistant response before
+summarizing it; do not fabricate assistant-side markers for a User-Turn route.
+
+Submit and audit the changed Notes, inspect the condensed exchange against
+its source, and close with the ordinary scoped Wiki commit. Report the dialog
+and daily destinations, commit, and unresolved POIs concisely.
+
+This route captures a discussion. It does not automatically create an
+Impl.Req, change product code, or start implementation. The conversation may
+remain exploratory and can later supply context to another workflow.

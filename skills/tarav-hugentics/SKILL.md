@@ -1,12 +1,12 @@
 ---
 name: tarav-hugentics
-description: "Run Tarav's grounding, Project.Wiki capture, Product.Surface Breadcrumb capture, Model capture, Reading Club, Issue, Design Impact, and implementation workflows. USE WHEN the user wants Diagram-backed context, a User-Turn-grounded project wiki or product surface, Model capture, a Reading Project, Issue work, assessment of recent in-chat design's implementation impact, implementation design or execution, or invokes `tarav-hugentics --ground`, `--capture`, `--reading-club`, `--issues`, `--design --impact`, or `--impl`."
+description: "Run Tarav's grounding, Project.Wiki capture, Product.Surface Breadcrumb capture, Model capture, Reading Club, Issue, Design Dialogue, Design Impact, and implementation workflows. USE WHEN the user wants Diagram-backed context, a User-Turn-grounded project wiki or product surface, dialogue capture, Model capture, a Reading Project, Issue work, assessment of recent in-chat design's implementation impact, implementation design or execution, or invokes `tarav-hugentics --ground`, `--capture`, `--reading-club`, `--issues`, `--design --dialogue --wiki`, `--design --impact`, or `--impl`."
 ---
 
 # Tarav Hugentics
 
 `tarav-hugentics` is Tarav's public grounding, conversational capture, Reading
-Club, Design Impact, and implementation surface. It preserves the Hugentics alignment
+Club, Design Dialogue, Design Impact, and implementation surface. It preserves the Hugentics alignment
 workflows while using Chatlas and the Tarav.Diagram as its User-Touched
 indexing backend.
 
@@ -75,6 +75,10 @@ tarav-hugentics --issues --park [INPUT]
 
 tarav-hugentics --issues --audit [QUERY]
     Inspect relevant Issue.Blocks and their POIs without mutation.
+
+tarav-hugentics --design --dialogue --wiki [FOCUS]
+    Capture the discussion as a condensed dialogue in a named Wiki dialogs/
+    Note, appending a dated section with Breadcrumbs and a daily link.
 
 tarav-hugentics --design --impact [INPUT]
     Evaluate the implementation impact of recent design work in the current
@@ -157,6 +161,10 @@ Existing requests retain their recorded surface when no selector is given.
 `--wiki` and `--model` are mutually exclusive and do not select a phase.
 
 ## Routing
+
+`--design --dialogue --wiki` loads [`references/design-dialogue.md`](references/design-dialogue.md) and captures the
+conversation as a dialogue. Select this route before implementation routing.
+It does not create an Impl.Req or select an implementation phase.
 
 Before loading implementation phase or impact modules, select its knowledge
 surface. New implementation requests default to Wiki unless `--model` is explicit.

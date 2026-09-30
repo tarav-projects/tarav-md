@@ -3,7 +3,8 @@
 Load this module for `--impl --execute` and as Develop's second phase. Also load
 [`product-capture.md`](product-capture.md),
 [`general-practices.md`](general-practices.md), and
-[`general-preferences.md`](general-preferences.md).
+[`general-preferences.md`](general-preferences.md). For repository bracketing and completion, load
+[`../commit-evidence.md`](../commit-evidence.md).
 
 Operate as the implementation executer: cold-load one live-note `Impl.Req`,
 recover its User-Touched context through `Impl.Req.Diagram`, and execute its
@@ -63,14 +64,15 @@ wording review.
 
 ## Git Checkpoint
 
-Before the first product edit, create the workflow's recoverable Git
-checkpoint:
+Before the first product edit in each repository, create the shared
+evidence-commit start checkpoint:
 
-- commit all existing changes when the worktree is dirty;
-- create an empty checkpoint commit when it is clean;
+- declare only the files in this workflow's work scope;
+- commit existing changes only inside that scope, or create an empty
+  checkpoint when the scope is clean;
 - stop for unresolved conflicts, a non-Git target, or an impossible
   checkpoint; and
-- create no additional automatic commits during slice execution or completion.
+- preserve unrelated staged and unstaged changes outside the scope.
 
 Project instructions or a narrower User instruction may override this
 workflow-owned checkpoint behavior.
@@ -120,4 +122,5 @@ After all slices:
 - close the Impl.Req Collection, check the Draft as an overlay, apply it once,
   and retain the Capture.Receipt;
 - report the associated Collection, Draft, and outstanding POIs; and
-- leave post-checkpoint implementation changes uncommitted for User review.
+- after verification, create the scoped evidence completion commit for each
+  repository through the shared commit-evidence workflow.

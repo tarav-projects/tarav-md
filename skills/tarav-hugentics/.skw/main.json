@@ -5,7 +5,9 @@
   "sources": [
     ".skw/src/SKILL.skw.json",
     ".skw/src/references/capture.skw.json",
+    ".skw/src/references/commit-evidence.skw.json",
     ".skw/src/references/design-impact.skw.json",
+    ".skw/src/references/design-dialogue.skw.json",
     ".skw/src/references/ground.skw.json",
     ".skw/src/references/impl/design.skw.json",
     ".skw/src/references/impl/develop.skw.json",
@@ -29,7 +31,9 @@
   "files": [
     "SKILL.md",
     "references/capture.md",
+    "references/commit-evidence.md",
     "references/design-impact.md",
+    "references/design-dialogue.md",
     "references/ground.md",
     "references/impl.md",
     "references/impl/design.md",

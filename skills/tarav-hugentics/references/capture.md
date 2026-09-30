@@ -7,6 +7,8 @@ Ships, Ship editions, and Annotations into a Project's configured main
 Read [`../../tarav-pkg/tarav-diagram.md`](../../tarav-pkg/tarav-diagram.md)
 before operating. Use its current Ship and Annotation schemas, Capture.Manifest rules,
 named Renderers, Gates, and Assertion.Engine semantics.
+For any modifying route, also load [`commit-evidence.md`](commit-evidence.md) and bracket each
+mutated repository with its scoped evidence commits.
 
 ## Shared Loop
 

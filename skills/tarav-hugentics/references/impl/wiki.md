@@ -23,7 +23,8 @@ surface, or the note has conflicting surface declarations, ask before any
 mutation. Do not infer a migration or create replacement artifacts.
 
 Print a compact banner with phase, Wiki surface, input, and Alignment.Mode.
-Read [`general-practices.md`](general-practices.md) and [`general-preferences.md`](general-preferences.md) for product work.
+Read [`general-practices.md`](general-practices.md) and [`general-preferences.md`](general-preferences.md) for product work, and
+[`../commit-evidence.md`](../commit-evidence.md) for scoped repository bracketing.
 Do not load Model-backed phase modules, product-capture, or grounding routines.
 No Model, Collection, Diagram View, Diagram Draft, authorization Gate, or
 Model capture reconciliation is required or created by this route.
@@ -88,14 +89,13 @@ edits, capture, Chatlas refresh, commits, or product mutation.
 **Execute:** cold-read the existing note and current instructions before edits.
 Explicit Execute with direct input first creates the Wiki-backed live note;
 it does not bootstrap Diagram artifacts. Recheck the plan against current code.
-Before the first product edit, use the existing implementation checkpoint
-policy: commit existing product-repository changes (or an empty checkpoint
-when clean), unless project/user instructions override it. Stop for conflicts
-or an impossible checkpoint; do not create later automatic product commits.
+Before the first product edit, use the shared evidence-commit workflow to
+checkpoint only the declared work scope in each repository; an empty scoped
+checkpoint is valid. Stop for conflicts or an impossible checkpoint.
 Implement bounded slices, test each, and record outcomes in the live note.
 At a material scope mismatch, ask in Interactive mode; Autonomous mode still
 cannot expand authorization. Finish with verification, Product.Surface Breadcrumb
-capture below, and selective Wiki capture. Develop and Harvest inherit this
+capture below, the scoped evidence completion commit, and selective Wiki capture. Develop and Harvest inherit this
 requirement through their Execute phase; no extra capture flag is needed.
 
 **Develop:** Design, then cold-reload the resulting live note and Execute.
@@ -141,8 +141,8 @@ semantic placement, and rerun affected syntax/build checks after annotation.
 Record files, Breadcrumb IDs, audit results and any capture gaps in Impl.Log.
 If no position has justified support, record that outcome without inventing
 annotations. If mechanics fail, preserve the product and report the pending
-capture separately; do not claim completion. This grants no product commit
-authority beyond the existing implementation policy.
+capture separately; do not claim completion. Product commit authority remains
+bounded by the shared evidence-commit scope.
 
 ## Wiki capture and closure
 
@@ -150,8 +150,8 @@ For mutating phases, compose [`../wiki-capture.md`](../wiki-capture.md) for one 
 handoff/completion; intermediate agent coordination stays in the live note.
 The implementation invocation authorizes this scoped pass. Reuse its
 Project.Wiki selection, mandatory daily narrative, useful topical integration,
-Chatlas User-Turn grounding, Breadcrumb submission/audit, and Wiki-only Git closure.
-Do not treat a Wiki commit as permission to commit product files or live notes.
+Chatlas User-Turn grounding, Breadcrumb submission/audit, and scoped Wiki Git closure.
+The product and Wiki evidence commits keep separate declared file scopes.
 
 Capture relevant user decisions and discussion selectively. Implementation facts
 must also cite inspected code or test evidence; user authorization is not proof

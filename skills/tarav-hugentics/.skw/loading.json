@@ -102,6 +102,11 @@
           "target": "impl.wiki.introduction",
           "slot": "link-9",
           "label": "`references/impl/wiki.md`"
+        },
+        {
+          "target": "design-dialogue.introduction",
+          "slot": "link-10",
+          "label": "`references/design-dialogue.md`"
         }
       ]
     },
@@ -131,6 +136,13 @@
         {
           "target": "skill.batchy-skill-contract",
           "delivery": "inlined"
+        }
+      ],
+      "links": [
+        {
+          "target": "commit-evidence.introduction",
+          "slot": "link-0",
+          "label": "`commit-evidence.md`"
         }
       ]
     },
@@ -529,6 +541,11 @@
           "target": "impl.general-preferences.introduction",
           "slot": "link-2",
           "label": "`general-preferences.md`"
+        },
+        {
+          "target": "commit-evidence.introduction",
+          "slot": "link-3",
+          "label": "`../commit-evidence.md`"
         }
       ]
     },
@@ -1287,6 +1304,13 @@
           "target": "skill.batchy-skill-contract",
           "delivery": "inlined"
         }
+      ],
+      "links": [
+        {
+          "target": "commit-evidence.introduction",
+          "slot": "link-0",
+          "label": "`commit-evidence.md`"
+        }
       ]
     },
     {
@@ -1403,7 +1427,52 @@
           "target": "impl.general-preferences.introduction",
           "slot": "link-2",
           "label": "`general-preferences.md`"
+        },
+        {
+          "target": "commit-evidence.introduction",
+          "slot": "link-3",
+          "label": "`../commit-evidence.md`"
         }
+      ]
+    },
+    {
+      "id": "design-dialogue.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/design-dialogue.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": ["skill.routing"],
+      "links": [
+        {
+          "target": "wiki-capture.introduction",
+          "slot": "link-0",
+          "label": "`wiki-capture.md`"
+        },
+        {
+          "target": "commit-evidence.introduction",
+          "slot": "link-1",
+          "label": "`commit-evidence.md`"
+        }
+      ]
+    },
+    {
+      "id": "commit-evidence.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/commit-evidence.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "capture.introduction",
+        "impl.execute.introduction",
+        "wiki-capture.introduction",
+        "impl.wiki.introduction",
+        "design-dialogue.introduction"
       ]
     },
     {
