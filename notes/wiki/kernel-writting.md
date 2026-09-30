@@ -7,162 +7,153 @@
 ## Purpose
 
 Kernel.Writing is a discipline for expressing a topic through distinct,
-focused statements. A block concerns one topic; each line contributes one
-dimension of that topic. Lines aim for minimal overlap and independent
-revision. The purpose is useful conceptual structure, not merely turning
-paragraphs into bullets.
-<!-- tarav.breadcrumb a6f93a4fd9781f9107d683b7fecc192f51d30a46ade677d6b0befcc08a5abf34 -->
+focused statements. It makes ideas easier to understand, discuss and revise
+by separating their fundamental dimensions. Its subject is the organization
+of thought in writing, independently of the tools or medium used.
+<!-- tarav.breadcrumb 6ebdb0860129a15e12d443cc4c4db63003418eee117bff97e4f7c4c6bbade632 -->
+<!-- tarav.breadcrumb a2cb41fcb725b026c96dbd623dbbd2c1cb3404bd283961025b0eff6cd0817d0b -->
 
-For now, this discipline belongs in documentation and, potentially, skill
-instructions guiding capture and generation. It is not an enforced contract
-of the Lines classes. Code may later expose this documentation through object
-context; implementing that connection is deferred.
-<!-- tarav.breadcrumb fb3aaa90e144b565b427a6ed6c8d1a45b67fcb217b7f0a0ebd7e21ad3bc7f406 -->
+## One topic per block
 
-## The writing units
+A block is a group of statements about one named topic. Its heading establishes
+the shared subject: the lines should contribute to understanding that subject,
+not merely share a few keywords. A topic can be a concept, question, principle,
+decision or problem.
 
-The accepted primitive design separates two objects: a `Line(TaravEntity)`
-is an identifiable statement; a `Block(TaravEntity)` is an identifiable,
-named topic with an ordered collection of Lines. A line expresses one
-contribution but need not be understandable without context. Block membership
-supplies context without requiring a Model. These are design intentions,
-not a claim that the stale implementation has already been rebuilt.
-<!-- tarav.breadcrumb c4a56196af97a3b636fcf5ef71cbceee0165064628db375b305ad9eb7d6c84fb -->
+Naming the topic is part of the reasoning. If a block keeps shifting subjects,
+the writer may need to separate it into several blocks or reconsider what
+question it is answering.
 
-Grounding, approval, editions, scoring, and a particular storage backend are
-not prerequisites of those base types. Specialized types and integrations
-can add them. Models are applications of Lines, not the foundation on which
-Lines must depend; revisiting Models is separate work.
-<!-- tarav.breadcrumb c06a0d5f93659322a5f02d86390d6324689a58f382ae6dfa3d617c9609fe753e -->
-<!-- tarav.breadcrumb 65ed7ae121a9439607f35888af69b6537f60e9cd0f723462e0452db230f944de -->
+## One contribution per line
 
-## Atomicity and orthogonality
+A line expresses one useful contribution at the chosen level of discussion.
+It might define the topic, establish a boundary, state a condition, explain a
+consequence or distinguish it from something else. A line is a statement,
+not necessarily one physical row of text.
 
-“Atomic” is a writing aim: one line carries one useful contribution at the
-chosen level of discussion. “Orthogonal” means sibling lines contribute
-distinct dimensions with little redundancy. Together they make it easier
-to reconsider one statement without unnecessarily rewriting the others.
-Independence is an aim, not a guarantee that changing one line cannot affect
-the meaning or consistency of its neighbors.
-<!-- tarav.breadcrumb 0465b30916bdad56c30add6d6e61d1130ca2054b78cfc9e7010822534a424b11 -->
+Atomicity does not mean using the fewest possible words. It means avoiding
+several independently useful claims welded into one statement. Conditions,
+qualifications and exceptions that determine a claim's meaning belong with
+that claim.
+<!-- tarav.breadcrumb 684db16c282738e825ad9ec7e47425ecd32489e6f54e7eb0ad824b6a4a078cd1 -->
 
-Context dependence is compatible with this discipline. A line may rely on
-the topic named by its block or on previously introduced concepts. Repeating
-all that context on every line is not required. The accepted base design
-explicitly allows statements that are not self-contained.
-<!-- tarav.breadcrumb 09fd4b5cd63633dff17343bdedd7d882ec261acd2dd0589e56b6c704b8cc8e98 -->
+## Distinct dimensions, minimal redundancy
 
-### Practical guidance
+Lines aim to be orthogonal: each contributes a distinct dimension with as
+little unnecessary overlap as practical. Several paraphrases of the same
+point do not provide the same value as several different angles on a topic.
 
-The following is an editorial elaboration of the discipline, informed by the
-historical Kernel.Writing definition and examples listed below, rather than
-an additional schema or approved interface:
+The purpose is independent revision. Ideally, one statement can be amended,
+removed or challenged without rewriting its neighbors. This is an aim, not
+a guarantee: related ideas can have real dependencies, and changing one may
+require reconsidering others.
+<!-- tarav.breadcrumb c18b807df4c0d3f0e8b1547798699d244d4c5292f96c7a901cce270c9bbaef27 -->
 
-- Name the topic before organizing its statements. A heading should help the
-  reader understand the subject, not merely decorate the page.
-- Separate independently useful claims. Do not put unrelated decisions in
-  one bullet just because they arose in one sentence.
-- Keep conditions with the claims they qualify. Splitting “only when X” away
-  can change the meaning rather than improve atomicity.
-- Prefer direct language, but retain distinctions needed for sound judgment.
-  Shortness is not a substitute for coverage.
-- Remove redundant reformulations, not useful boundaries or exceptions.
-- Treat definitions, constraints, choices, examples and uncertainties as
-  different contributions; do not force them into a fixed mandatory template.
-- Use additional explanation where needed. A compact core need not carry
-  every example, argument or rejected alternative inline.
+## Shared context without unnecessary repetition
 
-### Example: separating contributions
+A statement need not explain itself in isolation. The heading, neighboring
+definitions and surrounding discussion can provide context. Repeating all
+that context on every line would obscure the distinct contribution of each.
 
-Illustrative authoring example, not a specification of an existing API:
+Independence therefore means separable contributions, not context-free prose.
+The reader should still be able to tell what each statement refers to.
+<!-- tarav.breadcrumb e3f4904ee841a7899ccbd3068ce919efe123fbb48de7d895bea1d49389254906 -->
 
-```md
-## CheckResult
+## Coverage before compression
 
-- A CheckResult describes one execution of a Check.
-- A CheckResult can provide POI instances for investigation.
-- Inspecting a CheckResult does not itself raise its POIs.
-```
+Concise writing removes what does not contribute; it does not discard an
+important distinction merely to shorten the text. Covering the fundamental
+angles of a topic matters more than achieving a particular line count.
 
-Each statement answers a different question: what the object represents,
-what it provides, and what inspection does not do. They share a topic without
-requiring one compound sentence. Compare a welded version:
+Completeness is relative to the purpose of the discussion. It does not require
+every detail, example or historical argument. Ask which omissions would
+materially change the reader's understanding or judgment.
 
-```md
-- A CheckResult describes a check execution and provides POIs, which agents
-  can inspect without raising them, making targeted investigations easier.
-```
+## Direct language, preserved meaning
 
-The second version joins representation, capability, behavior and rationale.
-It is not intrinsically wrong prose, but is less convenient when those
-dimensions need separate discussion or revision. Conversely, breaking a
-single conditional rule into disconnected fragments would make it worse.
+Prefer concrete statements to introductions about what the writer is about
+to say. Let the first substantive line contribute meaning rather than repeat
+the heading. Remove unnecessary words and ornamental transitions.
 
-## Capture and generation practice
+Do not remove uncertainty, scope or attribution for the sake of confidence
+or brevity. A possibility must not become a fact through compression. A
+proposal must not become an established decision. Clear expression makes
+these distinctions visible rather than concealing them.
 
-Kernel.Writing primarily guides the process producing the statements:
-choosing the topic, separating contributions and reducing unnecessary
-coupling before or during generation. Its present realization is guidance,
-not a parser deciding whether text is sufficiently atomic or a constructor
-rejecting imperfect statements.
-<!-- tarav.breadcrumb a541d5ea264daf252819254326b3c6c207ff1d53c675b5ea44f4250cdfd29c10 -->
+## Fundamentals and depth
 
-An author can use this lightweight sequence as a practical aid:
+The fundamental statements provide a compact account of the topic. Rationale,
+examples, exceptions and alternatives can follow as additional explanation
+when needed. A reader should be able to grasp the core without first reading
+every supporting argument.
 
-1. Read the material in its context and identify the topic being captured.
-2. Draft the distinct contributions, preserving qualifications and uncertainty.
-3. Split welded claims and remove repetition without losing useful dimensions.
-4. Read the block together: check whether its lines still express the intended
-   account and whether shared context is clear.
-5. Preserve relevant evidence through the chosen capture workflow; the writing
-   style itself does not establish support or truth.
+Depth is not less important merely because it is read later. Separating the
+core from its elaboration lets readers choose how far to investigate while
+keeping the essential qualifications visible where they matter.
 
-This sequence is suggested practice, not a new compulsory Tarav workflow.
-The older discipline also emphasized capture before polish and coverage over
-compression; those historical ideas explain why neat formatting should not
-become a prerequisite for retaining useful material.
+## Example: separating dimensions
 
-## Relationship to SKW skills
+Consider this invented description:
 
-The discussion returned to Kernel.Writing while considering the semantic
-entities that `skw.skills` can use, and identified Lines as the existing
-workflow to revisit. The desired foundation is reusable Lines primitives,
-not a writing format imposed on every SKW block.
-<!-- tarav.breadcrumb 6e4001b56839f21dca7270f545b8e1c8a5f1be9dfa52565c54d415fcc23ca060 -->
-<!-- tarav.breadcrumb d023449cc87998bd2f7aad462eeb21f44ba80bfc2df25545baefb2c04e6b433f -->
+> The neighborhood library lends books to residents for three weeks and lets
+> them renew once if nobody is waiting, while reference books stay inside.
 
-The conceptual separation is useful: a Lines Block organizes statements about
-a topic; an SKW block retains/presents output and can declare what entities
-that output provides or requires. A future integration could reference a
-whole Lines Block or a particular Line. That is a candidate application,
-not an implemented binding or a promise that mentioning a topic supplies
-every statement about it. See [Reader.Context.Path](reader-context-path.md)
-for the declaration-based availability design.
+The sentence is readable, but combines several independently revisable rules.
+The same material can be organized as:
 
-The structural reading checks consume declarations. Whether prose faithfully
-expresses a Line, whether Lines overlap, or whether an extraction preserves
-the source meaning are different questions. Kernel.Writing currently guides
-the author; it does not add those semantic checks to the present reading-path
-implementation. The shared [Checks workflow](checks-workflow.md) can support
-such work later without making it a prerequisite of the base objects.
+### Library borrowing
 
-## Historical lineage and present scope
+- Residents may borrow books from the library.
+- The ordinary loan period is three weeks.
+- A loan may be renewed once if nobody is waiting for the book.
+- Reference books must remain inside the library.
 
-The Attic investigation found the earlier discipline in Deposit
-`e1636df6-0910-40eb-bd64-0aee93b06db2`,
-`20260826T213706Z-tarav-skills-reboot`. Relevant historical locations within
-`material/skills/tarav-pkg/` are:
+Eligibility, duration, renewal and exclusion are separate dimensions. Changing
+the loan period does not require rewriting the renewal rule. The condition
+“if nobody is waiting” stays with renewal because it qualifies that permission.
+Splitting it into an unrelated line would weaken the account rather than
+improve its atomicity.
 
-- `design/102-design.md`: Kernel.Writing, Kernel.Block and its sections.
-- `appendix/Kernel.Writing-appendix.md`: writing versus organization.
-- `references/index-block-catalog.md`: atomic-line examples and failure modes.
-- `design/107-design.md`, Index.Line: block-supplied context and semantic
-  orthogonality without requiring standalone completeness.
+## Writing as a thinking process
 
-These are recovery pointers, not runtime dependencies or inherited policy.
-The old design included Fundamentals, Appendix and Meta sections, along with
-index-specific support and review machinery. This note does not reinstate
-those structures. The present decision is narrower: document the writing
-discipline and rebuild a minimal Lines base independently of Models.
-<!-- tarav.breadcrumb a9edde538da0b3a0674ec66a08e1ac82117f600a4a63dc7e1d6a859577474ba5 -->
-<!-- tarav.breadcrumb b990cd01efd39a91fc653e8b35397cc19e5d20a862d0a4dbe1dab26c0af8fa94 -->
+Kernel.Writing guides capture and composition, not just final formatting.
+Separating statements can reveal a hidden condition, a repeated argument,
+an unresolved disagreement or a topic that has not yet been clearly named.
+It can be used while a discussion develops or when organizing existing
+material afterward.
+<!-- tarav.breadcrumb 6d6c74f1cd2edd4f9ce279aebb16d46571a15e456a4dd0a06c1a148044068933 -->
+
+A practical authoring sequence is:
+
+1. Identify the topic and the purpose of describing it.
+2. Capture the useful contributions before polishing their wording.
+3. Separate claims that can be discussed or revised independently.
+4. Remove repetition while preserving conditions and uncertainty.
+5. Read the statements together to check their coverage and shared context.
+6. Add explanation where the concise account would otherwise mislead.
+
+This is guidance, not a compulsory sequence. Useful material need not arrive
+already well structured; improving its organization can happen later.
+
+## Questions for revision
+
+- Does the heading identify the topic these statements actually describe?
+- What distinct contribution does each line make?
+- Does any line combine claims that would be better discussed separately?
+- Do two lines merely repeat each other?
+- Would removing a condition change the meaning of its statement?
+- Is an important dimension missing because the text was compressed too far?
+- Can a reader recover the necessary shared context?
+- Would changing one line reveal a genuine dependency or only tangled prose?
+
+## Limits of the discipline
+
+Bullet formatting does not establish atomicity. Short statements are not
+automatically precise, and a neatly organized account is not necessarily true.
+The discipline helps expose ideas for examination; it does not replace that
+examination.
+
+Not every kind of writing benefits from this form. Narrative, persuasion and
+step-by-step explanation may depend on deliberate sequence and continuity.
+Use Kernel.Writing where distinct conceptual contributions improve the work,
+without forcing every passage into the same shape.
