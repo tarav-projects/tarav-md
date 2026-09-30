@@ -84,6 +84,29 @@ about implemented APIs.
 <!-- tarav.breadcrumb 7d28f24f3c1a83ecfeae3e2cd778b6b5a9aed39493936b2beee4f3dfcb6fb913 -->
 <!-- tarav.breadcrumb b39c8a6102a3d6fbf1a0ddbe4c22b8f0e63efd7cb00499e7fb2622bed1e86d4b -->
 
+## POI integration refinement — design
+
+Checks and POIs are the fundamental objects for audit integration. A
+CheckProvider is optional: its role is to expose checks from a subject, not
+to be a prerequisite for constructing and running a Check directly. The
+Check class provides an inspectable explanation of its produced CheckPOIs.
+The Checks and POI systems can co-evolve to fit the audit rather than forcing
+the audit into an unsuitable workflow.
+<!-- tarav.breadcrumb df023e7b391b95d9ab78a75220150b6e76aad224bd53d42ddec474a600cd3b34 -->
+<!-- tarav.breadcrumb 4a2fab9f4e4ed4fd06d9a4003295e12f6f02e43e5d27ee65147980499e81de1e -->
+
+The proposed `CheckPOI` belongs with Checks and inherits the general POI base.
+`NotificationPOI` covers visible operations such as appending a Breadcrumb
+location observation, without inventing a Check for that notification. POIs
+are neutral points of interest. Checks raise failure POIs by default, but
+that convention does not make every POI negative. See
+[POI semantics](poi-system.md#points-of-interest-not-inherently-problems).
+This refinement is not yet an implementation report.
+<!-- tarav.breadcrumb e4feaf5014aefd477b798ce4e1be461ec843b28b844cd0d7b292105ff006afdd -->
+<!-- tarav.breadcrumb 7d97e92fff9e958ab49d80eba5feadfee76389b99e0241da2992024c0a922ab8 -->
+<!-- tarav.breadcrumb bd34277c6e9b3d81519d6879f34aafa660b3bbb60f997c44dadffce0b5a84c40 -->
+<!-- tarav.breadcrumb 5c615d4bc8679f1717e53b898547adb84d9dc84a455b6ca3f65a1dae353c175e -->
+
 ## Implemented foundation — 2026-09-30
 
 `tarav.l1.checks` now provides `Check`, `CheckProvider`, `CheckResult`, and
