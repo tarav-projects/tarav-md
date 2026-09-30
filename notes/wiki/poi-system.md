@@ -56,6 +56,16 @@ providing that entry point.
 
 ## Recorded blessings and permitted resolutions
 
+### Minimal base and specialization ownership
+
+Keep the shared POI base almost empty for now. Check-coupled semantics belong
+on CheckPOI rather than becoming requirements for every point of interest.
+NotificationPOI belongs directly to the POI workflow for the moment. The
+foundation and Breadcrumb integration are planned in
+[request 832](../../../tarav-py/notes/live/832-neutral-pois-checks-and-breadcrumb-audits-impl-req.md).
+<!-- tarav.breadcrumb 84bbfb38d647a85ee4c734ebd6938623314d4a9f20ec89d7573484a91bf214df -->
+<!-- tarav.breadcrumb 32cd6269b37755e08862c845eeea1f83f41fe3854c6e23d8d6876897efe72123 -->
+
 A blessing is an agent action accepting the state as valid despite a raised
 POI. Blessing actions must be recorded so they can be scored. A blessed POI
 remains visible, marked as blessed rather than disappearing from the findings.
