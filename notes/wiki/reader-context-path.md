@@ -60,3 +60,28 @@ to be developed later. A successful structural check certifies connectivity
 of the declarations, not the truth of their semantic claims.
 <!-- tarav.breadcrumb 34dbcff63198cfd9675c93e0977587350c9047daa38406741a55742ff62792c9 -->
 
+## Entity identity and subtype semantics
+
+Reading targets require only `TaravEntity`; no reading-specific
+`SemanticEntity` type is needed. Content and entities can belong to other
+workflows. The reading-path system concerns itself with their declared
+presence and availability; it neither collects nor renders that content.
+This refines the earlier illustrative code, which introduced a separate
+semantic-entity type.
+<!-- tarav.breadcrumb b5cbb95595d14571bca64824ac67d78253f53f161ae9767fb8d0ee7a8068b77c -->
+
+Blocks themselves are TaravEntities. Their `id` values must be UUIDs, with
+separate free-text `label` values for readable presentation. The earlier
+example `id="scope"` conflated those roles and is not the intended identity
+contract. These are design requirements, not a claim that existing SKW
+blocks have already been migrated.
+<!-- tarav.breadcrumb 43206f78d3ec6e0246bb1495ed0e60fa3ae1e574cbcf237fca5030581fb07715 -->
+
+Prefer a base type plus semantic subtypes over a general type with mode
+strings for reading relationships. The Type Graph participates in the
+Diagram, so explicit subtypes make the meaning and available kinds of
+relationships more discoverable. This is a general modeling preference;
+the precise subtype set and names remain to be designed. It refines the
+earlier illustrative `ReadingLink(..., mode="consult")` shape without
+changing the uniform block-declaration model.
+<!-- tarav.breadcrumb 5e002c69d5d2ea0299c90fe0ee0ff565bfd53328bc43515e6550f8fb30f20dc9 -->
