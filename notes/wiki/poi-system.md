@@ -77,3 +77,20 @@ fixing the analyzed surface. The blessing system must preserve that distinction.
 These are design requirements; this capture does not assert a completed
 implementation or settle the blessing Record schema.
 <!-- tarav.breadcrumb a97b61b83a06129ee2e2dfb0f0fd18924c391330b1002ff8ef8dfd283936ca9f -->
+
+## Workflow-owned types and composable blessings
+
+The first migration pass should define POIs in the workflows producing them,
+subtyping the common POI base while preserving existing detection mechanics.
+Blessing semantics belong to a separate workflow with a BlessablePOI base,
+rather than becoming requirements for every POI.
+<!-- tarav.breadcrumb 9448bf2344fea72adb9c7b1ef065e889db2aa1fe0bc4f78b5a336e9b70b81cf6 -->
+
+A concrete workflow-owned POI may inherit both CheckPOI and BlessablePOI.
+The accepted example is StaleGenerationPOI(CheckPOI, BlessablePOI), owned by
+SKW: checking and blessing capabilities compose without changing its owner.
+This establishes a modeling pattern, not universal permission to bless every
+check outcome. [Request 833](../../../tarav-py/notes/live/833-workflow-owned-pois-and-blessings-impl-req.md)
+plans the follow-up migration after 832.
+<!-- tarav.breadcrumb 172e9cb5c36229dd35cea7f297a83f5576c86248cc93c198ee338bfde455211c -->
+<!-- tarav.breadcrumb 3040b3d79f5a9c762ba9fa6874319c76a5faca1b4c6d2c5b154bb752988f054c -->
