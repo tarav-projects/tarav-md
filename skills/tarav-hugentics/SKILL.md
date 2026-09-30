@@ -61,6 +61,10 @@ tarav-hugentics --capture --inline --audit <SURFACE>
     Audit one surface's Breadcrumb positions and typed attachments without
     mutation.
 
+tarav-hugentics --commit [PATH...]
+    Create evidence-backed Git commits for current changes without requiring a
+    Tarav Project.
+
 tarav-hugentics --reading-club [DOCUMENT]
     Start or resume an Agent-operated Reading.Project and coordinate its
     in-chat Present → Read → Discuss → Capture → Advance loop.
@@ -140,8 +144,10 @@ commit; the invocation authorizes that commit.
 
 Within `--capture --inline`, ordinary capture may mutate exactly one selected
 surface and must submit provisional markers through the `chatlas-context`
-Breadcrumb workflow. `--audit` is read-only and checks retained positions and
-typed attachments.
+Breadcrumb workflow using its supported native convention. Composing workflows
+reuse the same complete path for each Product.Surface they are authorized to
+modify. `--audit` is read-only and checks retained positions and typed
+attachments.
 
 Within `--impl`, `--auto` or `--autonomous` selects autonomous alignment at
 declared checkpoints. It does not change Diagram support requirements or turn
@@ -161,6 +167,9 @@ Existing requests retain their recorded surface when no selector is given.
 `--wiki` and `--model` are mutually exclusive and do not select a phase.
 
 ## Routing
+
+An explicit `--commit` loads [`references/commit-evidence.md`](references/commit-evidence.md) and stops ordinary Capture and
+implementation routing. It needs Git repositories, not a Tarav Project.
 
 `--design --dialogue --wiki` loads [`references/design-dialogue.md`](references/design-dialogue.md) and captures the
 conversation as a dialogue. Select this route before implementation routing.

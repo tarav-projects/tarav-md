@@ -88,9 +88,11 @@ Follow `Execution.Plan` order. For each vertical slice:
 4. Implement the minimum coherent change.
 5. Run the slice check and relevant existing tests.
 6. Review the diff for unintended scope.
-7. Run **Product.Landing.Capture** and **Slice.Close.Capture** against the Draft.
-8. Update slice status and consequential coordination facts in the live note.
-9. Report concise product, verification, capture, and POI status.
+7. For every Product.Surface actually implemented by the slice, run the shared
+   **Inlined Capture** workflow after that surface's content is final.
+8. Run **Slice.Close.Capture** against the Draft.
+9. Update slice status and consequential coordination facts in the live note.
+10. Report concise product, verification, capture, and POI status.
 
 Do not write all tests up front. Keep every slice independently observable and
 reviewable. Diagram capture failure does not invalidate successful product

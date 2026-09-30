@@ -10,13 +10,15 @@ without mutation. A later Agent may peek around resolved Turns and selectively
 digest them into richer context. Breadcrumbs are not themselves a digest,
 Diagram capture, grounding Assertion, approval claim, or completeness claim.
 
-Read the selected surface's project instructions first. The ordinary invocation
-authorizes one bounded edit of that surface. The audit invocation authorizes no
-mutation: do not edit the surface, update Chatlas, create Diagram records, or
-write a retained report. The first normative embedding specialization is
-Markdown. An Agent may audit another readable surface through its explicit
-native convention; when no convention is established, report that limitation
-instead of guessing.
+Read the selected surface's project instructions first. The ordinary standalone
+invocation authorizes one bounded edit of that surface. A composing workflow may
+invoke the same mechanics for each Product.Surface it is already authorized to
+modify. The audit invocation authorizes no mutation: do not edit the surface,
+update Chatlas, create Diagram records, or write a retained report.
+
+Embedding is surface-native. Python and Markdown are the supported
+specializations today. When the selected surface has no registered convention,
+report that limitation instead of guessing syntax.
 
 ## Routes
 
@@ -39,9 +41,29 @@ Inventory and assess existing Breadcrumbs in exactly one surface. Audit is
 read-only and stops after reporting its findings. It does not assess whether
 the surface has complete conversational coverage.
 
-## Markdown contract
+## Native surface contract
 
-Declare relevant sessions once near the top of the document:
+A provisional marker carries the derived eight-character session alias and an
+ordinary 16-character User-Turn hash prefix. Put it at the exact position
+materially contextualized by that Turn, using the surface's native comment
+syntax:
+
+```python
+# tarav.context 4571385e:dd358589d092f9dd
+```
+
+```md
+<!-- tarav.context 4571385e:dd358589d092f9dd -->
+```
+
+Never place markers inside strings, examples, fenced code, or other inactive
+syntax. Python markers are tokenizer-confirmed comments. Markdown markers attach
+to the immediately preceding Markdown block; consecutive markers attach to that
+same block.
+
+The alias is the first eight lowercase hexadecimal characters of the neutral
+Chatlas session identity. It is derived, never chosen or rebound. Markdown may
+retain one or more session declarations near the top of the document:
 
 ```md
 <!-- tarav.sessions
@@ -49,49 +71,26 @@ Declare relevant sessions once near the top of the document:
 -->
 ```
 
-Each declaration line retains three fields: the alias, the session's
-`<provider>:<native-session-id>`, and its full 64-character Chatlas identity
-hash after `@`.
+A declaration retains the alias, `<provider>:<native-session-id>`, and full
+identity hash. The identity hash is authoritative. Reuse a matching declaration
+and treat disagreement as a POI. For a surface without declarations, pass the
+exact provider and session ID to submission. One explicit session can resolve
+only markers carrying that session's alias.
 
-The alias is the first 8 lowercase hexadecimal characters of that identity
-hash. It is opaque and carries no semantics: it is derived, never chosen. The
-same session therefore resolves to the same alias in every surface without
-coordination, and the derivation is visible on the declaration line itself.
-
-The identity hash is authoritative. `<provider>:<native-session-id>` is a
-convenience pointer back to the raw provider artifact; a disagreement between
-the two is a POI rather than a silent preference.
-
-Reuse an existing declaration when it names the intended session. An alias
-cannot be rebound, because it is derived from what it points at. Do not consult
-Git or a separate registry by default.
-
-Attach provisional markers immediately after the Markdown block they
-contextualize:
-
-```md
-The theoretical front is established for the scope of the PhD.
-<!-- tarav.context 4571385e:dd358589d092f9dd -->
-```
-
-Consecutive provisional markers attach to that same preceding block. Once the
-surface content is final, submit all active markers exactly once:
-
-```bash
-tarav breadcrumbs submit chatlas-context --surface <SURFACE> --json
-```
-
-Submission replaces each marker with an opaque `tarav.breadcrumb <id>` label.
-Preserve ordinary Markdown as the authoritative surface.
+Submission replaces every active provisional marker with the corresponding
+opaque `tarav.breadcrumb <id>` label in the same native comment syntax. The
+ordinary Product.Surface remains authoritative.
 
 ## Capture workflow
 
-1. Read the selected Markdown surface and its current session declarations.
+1. Read the selected Product.Surface, its project instructions, and its supported
+   native embedding convention. Inspect existing session declarations where the
+   convention supports them.
 2. When the current chat is in scope, resolve and refresh it once through
    `tarav-chatlas-my-session-id`. Reuse its returned provider, native session
    ID, and neutral Chatlas identity; do not perform another update. Derive the
-   alias from that identity hash and write the declaration line when the
-   surface does not already declare the session.
+   alias from that identity hash. Reuse or add a declaration when supported;
+   otherwise retain the exact provider and session ID for submission.
 3. Discover candidate User Turns from each exact session with the compact
    timestamped ledger when their hashes are not already known:
 
@@ -106,9 +105,10 @@ Preserve ordinary Markdown as the authoritative surface.
    ```
 
    The ledger aids navigation; the Agent still decides semantic relevance.
-4. Group selected Turns by declared session. Resolve each ordered group through
+4. Group selected Turns by exact session. Resolve each ordered group through
    the shared Chatlas Query engine; Renderers never perform selection.
-5. Render each group with the named Markdown reference Renderer:
+5. Produce provisional markers in the surface's native comment syntax. For
+   Markdown, the named Renderer can produce the reference comments:
 
    ```bash
    tarav chatlas render \
@@ -120,14 +120,20 @@ Preserve ordinary Markdown as the authoritative surface.
    ```
 
    The Renderer derives the alias from the resolved session; it takes no
-   Renderer options.
+   Renderer options. For Python, use tokenizer-valid `# tarav.context` comments
+   carrying that same derived alias and selected Turn prefix.
 
-6. Insert the rendered provisional comments after their selected Markdown
-   blocks. Several comments may be distributed across the document; a Renderer
-   batch need not be inserted as one contiguous group.
-7. Once the surface content is final, run
-   `tarav breadcrumbs submit chatlas-context --surface <SURFACE> --json` exactly
-   once. Submission must
+6. Insert each provisional comment at the exact materially contextualized
+   position. Several markers may be distributed across the surface; a resolved
+   Turn group need not be inserted contiguously.
+7. Once the surface content is final, run this exactly once:
+
+   ```bash
+   tarav breadcrumbs submit chatlas-context --surface <SURFACE> \
+     [--provider <PROVIDER> --session-id <SESSION_ID>] --json
+   ```
+
+   Submission must
    retain each Breadcrumb, position observation, and typed Chatlas attachment
    before replacing its provisional marker.
 8. Run `tarav breadcrumbs audit chatlas-context --surface <SURFACE> --json`.
@@ -136,13 +142,16 @@ Preserve ordinary Markdown as the authoritative surface.
    Breadcrumbs plus unresolved POIs.
 
 Use 16 hexadecimal characters as the ordinary prefix length. Resolution is
-bounded by the declared session, so collisions are uncommon. If a prefix is
+bounded by the exact session, so collisions are uncommon. If a prefix is
 ambiguous, inspect only its matched candidates and lengthen that reference. If
 it is missing, report a nonblocking POI rather than guessing.
 
 The integration workflow uses Chatlas Query for exact resolution, a Renderer
-for provisional surface syntax, and the generic Breadcrumb transaction for
-retention and label replacement. It adds no alias registry, automatic
+or native convention for provisional surface syntax, and the generic Breadcrumb
+transaction for
+retention and label replacement. A composing workflow uses this complete path
+after it finishes each selected surface; it does not restate or fork the
+mechanics. Inlined Capture adds no alias registry, automatic
 Git-history audit, Diagram record, Assertion score, or generalized impact map.
 
 ## Audit contract
@@ -173,18 +182,18 @@ remains Agent work.
 3. Inspect every mechanical finding and the returned Breadcrumb entries.
    Continue past recoverable problems so one audit exposes the whole bounded
    surface.
-4. Inspect local placement according to the native convention. For Markdown,
-   a Breadcrumb attaches to the immediately preceding Markdown block and
-   consecutive Breadcrumbs attach to that same block. Report orphaned or
-   suspicious placements; do not repair them.
+4. Inspect local placement according to the native convention. Markdown labels
+   attach to the immediately preceding block; Python labels must be
+   tokenizer-confirmed comments at the intended code position. Report orphaned
+   or suspicious placements; do not repair them.
 5. Return one compact in-chat report and stop. Include the surface,
    specialization used, declaration count, Breadcrumb count, exact-resolution
    count, and POIs with useful source locations.
 
-For Markdown, recognize the declaration, provisional-marker, and Breadcrumb
-forms specified above. Provisional Turn prefixes ordinarily use 16 lowercase
-hexadecimal characters, but retained Breadcrumb labels always use their full
-opaque IDs.
+Recognize the native provisional-marker and Breadcrumb forms specified above,
+plus Markdown session declarations when present. Provisional Turn prefixes
+ordinarily use 16 lowercase hexadecimal characters, but retained Breadcrumb
+labels always use their full opaque IDs.
 Report at least these conditions when present:
 
 - malformed or conflicting session declarations;
@@ -194,11 +203,11 @@ Report at least these conditions when present:
 - malformed Breadcrumb labels;
 - missing or ambiguous observed positions;
 - missing, multiple, or invalid typed Chatlas-context attachments;
-- unavailable declared sessions;
+- unavailable source sessions;
 - missing or amended referenced Turns;
 - attachments resolving to an Agent rather than a User Turn;
-- Breadcrumbs placed inside inactive syntax, without a preceding block, or
-  attached to a block whose relevance is doubtful.
+- Breadcrumbs placed inside inactive syntax or at a position whose relevance is
+  doubtful.
 
 An unavailable target is a POI, not permission to update provider data or
 guess a replacement. A semantically questionable attachment is likewise a POI,

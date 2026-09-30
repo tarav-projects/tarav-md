@@ -3,8 +3,10 @@
 This internal module composes Tarav capture with mutating implementation
 workflows. It is not an independent implementation phase.
 
-Read [`../capture.md`](../capture.md) for current Chatlas references,
-Diagram.Draft mechanics, Object.Types, Gates, and Assertion.Engine behavior.
+Read [`../capture.md`](../capture.md) for current Chatlas references, Diagram.Draft mechanics,
+Object.Types, Gates, and Assertion.Engine behavior. Read [`../inline-capture.md`](../inline-capture.md) for the
+shared Product.Surface Breadcrumb workflow; this module consumes it rather than
+defining another landing path.
 Implementation capture runs that ordinary Capture workflow while fixing the
 organizational host to the request's one `Impl.Req.Collection`. Lines remain
 semantically attached to suitable Blocks in the Model.
@@ -78,20 +80,14 @@ slice into the Draft; do not land it yet.
 
 ### Product.Landing.Capture
 
-After implementation, annotate exact Product.Surface positions with
-provisional `tarav.context` comments when a Chatlas User Turn materially
-contextualizes the produced code or documentation. Use the host surface's
-native comment syntax and never place markers inside strings or examples.
+At the end of each slice, after checks and diff review, apply the shared
+Inlined Capture workflow to every Product.Surface actually implemented by that
+slice. Each file is one selected surface: place only materially justified
+User-Turn context, then submit, audit, and inspect semantic placement through
+the surface's native convention. Do not annotate planned but unimplemented
+surfaces, and never describe intended work as landed product state.
 
-Once a selected file's content is final, run `tarav breadcrumbs submit chatlas-context
---surface <FILE> --provider <PROVIDER> --session-id <SESSION_ID> --json`.
-Submission must retain the Breadcrumb identity, locator observation, and
-typed Chatlas attachment before it atomically replaces provisional comments
-with opaque `tarav.breadcrumb <id>` labels. Run `tarav breadcrumbs audit
-chatlas-context --surface <FILE> --json`, then inspect semantic placement.
-Never describe intended work as landed product state.
-
-When Breadcrumb mechanics are unavailable or a position has no justified
+When Inlined Capture mechanics are unavailable or a position has no justified
 User-Turn context, preserve the verified product, retain precise references in
 the live note, and surface the missing Product.Surface context as a POI for
 later reconciliation.

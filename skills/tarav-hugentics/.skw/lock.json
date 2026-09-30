@@ -6,8 +6,8 @@
       "blocks": {
         "command-surface": {
           "input_hash": "ef69871db9d184b33359efbdf40e4c671124a79ab1b4085e4da96b9057a5b019",
-          "output_hash": "53d253f64bf38daa696e35765a3567b4e3ad9838ee91e268388b57231c418488",
-          "generation": "b543111fe93d4774bce44909d595b652"
+          "output_hash": "0ada2cd036a8557d705f1ac4fd2e49241a471c2da6f5d789bae7df00b69ef8a7",
+          "generation": "a5e960b15d1c4a238c23cd668ac61ef3"
         },
         "boundary": {
           "input_hash": "96ec88949f9e17c635de642ab65baaee18e756ce691682279ce9b3a354b21e34",
@@ -15,9 +15,9 @@
           "generation": "46a6388a001f47aaa94f2c225abbd723"
         },
         "routing": {
-          "input_hash": "4f19956f07c2b3a5cc75ba4f4bb19662fbc3964afb834f30d53a397f1c872d30",
-          "output_hash": "497a61ae53d6d0195fca4eeafa79ec54a5fb04fc4e74493340d2084606306a71",
-          "generation": "0fa7dd54d9ed45cea2d491691b46dd80"
+          "input_hash": "771caaea6f0b42500f986695c89e970247586d24d66473b65ea66eabe3bf4827",
+          "output_hash": "dcb3a58a918d5cbba27279f55f42ce4748a1fb03aa0396d7247f300cb0304e6c",
+          "generation": "c1859b6e85594299a5a7d95e9af5f1d7"
         }
       },
       "contexts": {
@@ -25,12 +25,12 @@
         "introduction-section": "d4aebe6dc02239f6c7672b31822492f0fa0fc3fd9518924d8dbe6ff73969a1b4",
         "batchy-skill-contract": "d4aebe6dc02239f6c7672b31822492f0fa0fc3fd9518924d8dbe6ff73969a1b4",
         "command-surface": "d4aebe6dc02239f6c7672b31822492f0fa0fc3fd9518924d8dbe6ff73969a1b4",
-        "routing": "dd805710ae66c1ec2c3857f0508cea71dbc747520a338fbc555e5cd3a9a76241",
+        "routing": "a6bd023a927eb38b7e8e7bc25d5cd2032aabe1fcdbdc4016e2850ddbca6d8eda",
         "boundary": "d4aebe6dc02239f6c7672b31822492f0fa0fc3fd9518924d8dbe6ff73969a1b4"
       },
-      "source_hash": "44bd056ed13ae66e1822b69c019f7d3af8a3cc12d2d1109840b114c122c4fab9",
-      "product_hash": "1ae8531c558834d168382198037b4ad67cd4b44aaa5374b3823fca011df4e108",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "source_hash": "0bf1dc198d2406a60288cdd0a43fbb7d37109a84a72087df72f0a89a236d9d1f",
+      "product_hash": "56f8b7a6207df8eca8983a02c33deb37fe6eeac529a0f475145e5d2ead2cb611",
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/capture.skw.json": {
       "blocks": {},
@@ -45,19 +45,19 @@
       },
       "source_hash": "4063d918d67ec6ca610716cccbf382318fa05d232dcec74d17014305a9b78334",
       "product_hash": "7ccd5f5cc238af28767bc63767228b7b9f0c46cb2913c9551ccec41e19d9d8cc",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/design-impact.skw.json": {
       "blocks": {},
       "contexts": {
-        "introduction": "6d437070a0c74a6eadf73f942bb8d7eb88e1a77aeaa0cf3337c3e9d8d1e4d984",
+        "introduction": "65f8c8a4dc9fbbdea3e167fa99834b20c48ff3a4e1f891bd66bb874cdb161fb0",
         "scope": "92fba928053d4bdef71d71492b6346b220c2cc2ee3a57fe120d9b58440c20567",
         "assessment": "92fba928053d4bdef71d71492b6346b220c2cc2ee3a57fe120d9b58440c20567",
         "boundary": "92fba928053d4bdef71d71492b6346b220c2cc2ee3a57fe120d9b58440c20567"
       },
       "source_hash": "2136cddd49db0ee10fdf8fc91a5853c8b5b1eebb68afe8559db324e391b1e8b1",
       "product_hash": "2c317511f859583cbeeb9bc2afdd917d5bb62d93ed9f988ebba2e8083017a924",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/ground.skw.json": {
       "blocks": {},
@@ -70,34 +70,34 @@
       },
       "source_hash": "028bf2e1574a00c187cba386da9b6778cd1d8934a51423b5d4cf9bf3105ce776",
       "product_hash": "43e1baa1ca6c66bd250c15489b7c4ea9a883a3acfd09fca6802a825947c268b2",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/impl/design.skw.json": {
       "blocks": {},
       "contexts": {
-        "introduction": "daf86aeb3c9f0242f262d439980674ebc9c24220ed9105ffb88155ee4a324419",
+        "introduction": "3f0e74e6cda7f62f0410d111288a1a8b47b22816afbee77cd7de646818628353",
         "alignment-loop": "6dde61ead0122e36d1b4dbc0dbf9bac75b76299d309adc1333cac4f498855b40",
         "readiness-checkpoint": "6dde61ead0122e36d1b4dbc0dbf9bac75b76299d309adc1333cac4f498855b40",
-        "live-note-impl-req": "2889dcefed5247157675ef7b0f5244e75114415e940e32d6d477eb6c000de44c",
+        "live-note-impl-req": "bd5fd1da0a02423f4bfb274f0c991fced4539af4fa2908f95e93ca03da8cd1ee",
         "impl-req-diagram": "6dde61ead0122e36d1b4dbc0dbf9bac75b76299d309adc1333cac4f498855b40",
         "updating": "6dde61ead0122e36d1b4dbc0dbf9bac75b76299d309adc1333cac4f498855b40",
         "output": "6dde61ead0122e36d1b4dbc0dbf9bac75b76299d309adc1333cac4f498855b40"
       },
       "source_hash": "004e9b148bdbf85188ed1aa74d502a49e7187f8b5eaaf0b77e70f52e96286307",
       "product_hash": "08d43344e52c046db3b28db326a5e4cacd0b6dd218132bd5047d52be73b6f58a",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/impl/develop.skw.json": {
       "blocks": {},
       "contexts": {
         "introduction": "bf7da70606679ed323aa75dedece5af35c76ef4674c627a423b226aa5246b16c",
-        "workflow": "fe10eaddb898d567d2e7fdcb7770e5469cafc3fe34561786e675bb5187c90861",
+        "workflow": "d8eb50759b006d04e25a2372b03639a4ae9f00b4ddb364856eaa0a46d30c0c34",
         "boundary-contract": "bf7da70606679ed323aa75dedece5af35c76ef4674c627a423b226aa5246b16c",
         "completion": "bf7da70606679ed323aa75dedece5af35c76ef4674c627a423b226aa5246b16c"
       },
       "source_hash": "2f9674e78b40be90f7bdc80608add836ba59db0cb1f64fe43a269cf8e4ecc5f7",
       "product_hash": "9fcae16c29947338b22d52a0c0bfa94722e7837282d429c03b89715a6c01c42d",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/impl/example.skw.json": {
       "blocks": {},
@@ -106,12 +106,12 @@
       },
       "source_hash": "1aca3655ed45f10860d2d7e77527a544fbe9e95bb266b0a2aa8b0578b349e28b",
       "product_hash": "0f1cdf5e8362d4480a3ab38f0ca1f77c53a9865496b75d107b99b87d7008fb44",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/impl/execute.skw.json": {
       "blocks": {},
       "contexts": {
-        "introduction": "08e9f5048d736057c8bd05ff97c203fdd9f190cc99e6f101e338a03c678e6769",
+        "introduction": "aa50ae7370841e6a358a9d13663fa81ee8ac7485224413bd6080a521113d9072",
         "direct-input-bootstrap": "9720ab1510e71b6f0af7eb9a6ffcd3962dbd1311a0fa34dabf4bb1e7e5f85f5e",
         "execution-realignment": "eac2fe34d190668c29d442ca80aa29870555856d4b98d55b91c0f40ef5d69dba",
         "git-checkpoint": "eac2fe34d190668c29d442ca80aa29870555856d4b98d55b91c0f40ef5d69dba",
@@ -119,9 +119,9 @@
         "deviation-handling": "eac2fe34d190668c29d442ca80aa29870555856d4b98d55b91c0f40ef5d69dba",
         "completion": "eac2fe34d190668c29d442ca80aa29870555856d4b98d55b91c0f40ef5d69dba"
       },
-      "source_hash": "eababaa6b00e1394161dd31f5b245733f7972a14b89d0c790f66c95b6ba9e163",
-      "product_hash": "ecccbfcb41b06a675971b719f35430af71418e4de06280bdd2c5283ca2a32d2d",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "source_hash": "f01da5a6925d55bf4e997dbcb83cee96eb5d76f6837f2ad4613bd4f55bac419f",
+      "product_hash": "cb7f4b756254f5f4b4a11a50b051d12717db8d9d655a02d3f0e76ac5e45b7a78",
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/impl/general-practices.skw.json": {
       "blocks": {},
@@ -133,7 +133,7 @@
       },
       "source_hash": "93a05e1de3bc92d2aec7310ae1c7daf230da044e9ce4719b3c6cad04c14a94b6",
       "product_hash": "2ee286b66caa347faed8424811d57b261db1800cac590bb782c0d8078aef790d",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/impl/general-preferences.skw.json": {
       "blocks": {},
@@ -142,7 +142,7 @@
       },
       "source_hash": "1bbd15371ab40d13a26cbb703b740ba0266bea0c35d346f0ca50ae4ba76b7a92",
       "product_hash": "eb88d87373584cd5063b6acf50b27eff3e05f5be5cf7191078dba428fde6f6fc",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/impl/harvest.skw.json": {
       "blocks": {},
@@ -151,25 +151,25 @@
         "readiness-judgment": "ba218615466b460633f090d3f16b2bbfddaf5dfb9a8b7b96c6346ce968a823d2",
         "scan": "ba218615466b460633f090d3f16b2bbfddaf5dfb9a8b7b96c6346ce968a823d2",
         "candidate-checkpoint": "ba218615466b460633f090d3f16b2bbfddaf5dfb9a8b7b96c6346ce968a823d2",
-        "delegation": "bdad34e8b3496df133f37f55dd0511bb808ea924dec44d77ef7f00a0bf0dd186",
+        "delegation": "aefc21ce806b4033e6ba9da7d432d6a64b84012045107bb0bfe181a1ff64973f",
         "completion": "ba218615466b460633f090d3f16b2bbfddaf5dfb9a8b7b96c6346ce968a823d2"
       },
       "source_hash": "19294ff9bf2769e6ddf6a6d1f5b31ad7f36f192a65f7a93025e87ddcad4106fc",
       "product_hash": "45a15e3284ca8b3c828ee3191226b29037995b9d874cafcd1b91a4eb88eff402",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/impl/product-capture.skw.json": {
       "blocks": {},
       "contexts": {
-        "introduction": "fe9c39cd3f5673aa5879b29c74f9e1271ed9a2113d21ca8abdb78896dd4598a2",
+        "introduction": "5b56025024a080e16f256b22ca114eaf80a3ce4afe770d1b60fc1b1a284d9fcc",
         "surface-boundary": "dcccfb8a1aadc8d7d2a993575fc8ad96e23d288642058526def17f3a0a829548",
         "capture-bar": "dcccfb8a1aadc8d7d2a993575fc8ad96e23d288642058526def17f3a0a829548",
         "slice-transaction": "dcccfb8a1aadc8d7d2a993575fc8ad96e23d288642058526def17f3a0a829548",
         "final-audit": "dcccfb8a1aadc8d7d2a993575fc8ad96e23d288642058526def17f3a0a829548"
       },
-      "source_hash": "f2c88f9449e168a146223b4fe436f045cb2b404850f21703e76d717e98387a2f",
-      "product_hash": "cf6f60a6a24b9f3406449db4c4b4b26519276b2c69dc649fc6b3f66a59f0e418",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "source_hash": "9a63a55ebb89e98abeb4c134e31db83cf8daa8fce138be33827065acbd5ba637",
+      "product_hash": "6d5489e1b54101b2b2c580d42395151f5779af22593cf01adaa7d7553b34fea2",
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/impl/review.skw.json": {
       "blocks": {},
@@ -180,25 +180,25 @@
       },
       "source_hash": "166cbfaf532b5ff1c32bf4590f53781c48a98ee3cc75e1b639787119e949eea5",
       "product_hash": "97bf6a3467b34ebcfa2f9e18a1884242162c6c30fa44a9d974faa82fe27e8412",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/impl.skw.json": {
       "blocks": {
         "routing": {
-          "input_hash": "5f15d8db80659f8437287b43e6413ea4d1ea99e528136eb708c43e490431cf1e",
+          "input_hash": "3061aebabf40ba41a3f9b8c8d6ef306d2b0eb3e0b8608c513efc25df6a1050da",
           "output_hash": "6623245c0582a2e1f4356b9b58d457e8e78a109190584577e29881435ba6571d",
-          "generation": "45e33ba2550e4d22a02d1be38dfb595e"
+          "generation": "5f3ea70789de48208bcd977271e4529a"
         }
       },
       "contexts": {
         "introduction": "6fe0f3f3f70e76c3c48b675db9768827b04a530466ced345a27ff4356b81046a",
-        "input": "41ff231930871d3f6376deb0b1ccccfe0d121eba27fe6b1b3e534097a3004f7e",
-        "routing": "785c02e920d8817604f3030c208f1fcd694ff8bae780fba9371253c18ac1fb6b",
+        "input": "e7bf2f88a4b0f303e12ce94cf25893a6b065849ee4666be6a369aab8b8675970",
+        "routing": "f413a45b9bb4ae827eb235c93b3ed6903e3d9c50192a5b11a1d2a4d9dce49cd5",
         "shared-contract": "6fe0f3f3f70e76c3c48b675db9768827b04a530466ced345a27ff4356b81046a"
       },
       "source_hash": "5caa2c9f9f81f494ed6ed26761a4fa2503ea61b317c175ced92fe72f337efce0",
       "product_hash": "3e91769748772ed5656333937db24bf97e2f59dcbb251058a9d2bfe2a753a823",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/inline-capture.skw.json": {
       "blocks": {},
@@ -208,11 +208,12 @@
         "markdown-contract": "b79fcb6f527678680958576c8fa14316c6e27ccf747e45da533c020d41ad8225",
         "capture-workflow": "b79fcb6f527678680958576c8fa14316c6e27ccf747e45da533c020d41ad8225",
         "audit-contract": "b79fcb6f527678680958576c8fa14316c6e27ccf747e45da533c020d41ad8225",
-        "audit-workflow": "b79fcb6f527678680958576c8fa14316c6e27ccf747e45da533c020d41ad8225"
+        "audit-workflow": "b79fcb6f527678680958576c8fa14316c6e27ccf747e45da533c020d41ad8225",
+        "surface-contract": "b79fcb6f527678680958576c8fa14316c6e27ccf747e45da533c020d41ad8225"
       },
-      "source_hash": "4417e04273cb8ed9caf55ba0466fd48c02b9188b482c36a8a497c4fe6ff7d376",
-      "product_hash": "25a25878bae80039e6d7975aa58b59f67ae777fcb0160584bc7d82ca214db631",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "source_hash": "a44c86b1305b26fb41525212a06b3b15ab20d7e696e43befbbfdb04687ca132d",
+      "product_hash": "29ea9327cf84d23238eafc9511722805ecda1692faa184c3f0c3d1b6edb523a7",
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/issues/audit.skw.json": {
       "blocks": {},
@@ -221,7 +222,7 @@
       },
       "source_hash": "841566a42aa8bc5249cffc7c3fb81edfe8234c74fabc36603033b5a77fee5ad1",
       "product_hash": "dc925740a10d5261b5a02b042468db225e8038ccebee1016b64424a4f99460d3",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/issues/maintain.skw.json": {
       "blocks": {},
@@ -232,29 +233,29 @@
       },
       "source_hash": "8f8900705d8dc8b90c480e33dfd9081dc569cfb991fcb261682dd55235c3944a",
       "product_hash": "798724ba0be4a89e4b36da106a55b40a777f1ace6cc61cf216572bf34647c66e",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/issues/park.skw.json": {
       "blocks": {},
       "contexts": {
         "introduction": "bb6df2a90fe930f1b08991688573f6aeb1b3867bd24e7681142a925a62c16bab",
-        "workflow": "52ffa96ac0d840577ec92a6617becc372121f964e627508a3b3b35fe4bf5fa34"
+        "workflow": "5ef039a716f5298d5ea9605465ce4cf6722de25cba415826c87eb0cf7394d3dd"
       },
       "source_hash": "dbefd16cbe9710c01e91d7225822e1b2087016f5d0b817e8045cefe6cb731e99",
       "product_hash": "feaaef02567be1a2fc505932e826cf6cb42456d6b322ed7c63a1621b1903d605",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/issues.skw.json": {
       "blocks": {},
       "contexts": {
         "introduction": "cf69d074f6946211c51773e585aaefa723712c21aa775572a8088fca39be00a0",
-        "routing": "143c08886ff29b3cd5c04f28b39b03f6e87e0649eb64fed250d5e0c60291cc1d",
-        "shared-contract": "ced8d2e2258380bec713a515cc946e9059eb053cf45960e52dcc68ef5884ba58",
+        "routing": "75b4b7926173ac8465232963bc44c64bb53c6a52c4284e202d1d5ba4824977d0",
+        "shared-contract": "ce8c6f488c98ac05ee51fd513287455066e1f5fc65a4da7a91f0401da9ae2fa1",
         "presentation": "cf69d074f6946211c51773e585aaefa723712c21aa775572a8088fca39be00a0"
       },
       "source_hash": "2a23486bb8728069fd91bd16f113a20dacdf0e3e5529c1f6cdd9b6633b9ad0e8",
       "product_hash": "452777dcdc8177e41d614bb347ab78e4c77b458494c998708d2587d618d9a00c",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/reading-club.skw.json": {
       "blocks": {},
@@ -270,7 +271,7 @@
       },
       "source_hash": "817168e1ed57c0e84375fed6774ab832a6dea836850a46d836c5f1256fa4106d",
       "product_hash": "d3f7da167c8169e228a777e35e1c66a8846868e6a817ab18646b852a61744a50",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/wiki-capture.skw.json": {
       "blocks": {
@@ -293,25 +294,25 @@
       },
       "source_hash": "e4b2d4112d0709732c2ce2d86be2b7639ba9691685d4ba808a3b6332aa3f0c00",
       "product_hash": "6ba4ffeae94a72bc4fbcb3316286379cca2fad6087ebba04cda3734f0fd69430",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/impl/wiki.skw.json": {
       "blocks": {},
-      "source_hash": "28d5b46644884e7f37ae1ea0bbc221f09d658dcc203cf0cadc626cff2adc5043",
-      "product_hash": "7aaafc2eeee2d932d2fa4717a401094b91632df255de9da0ad3d3848099ef422",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "source_hash": "bd4524289d739254bc7d0d4d53720699639f8bab08c39ab79743055d5c7be7a7",
+      "product_hash": "62d09cacfbe647f0c8f454ed3f85a11f2192a89c01bd5dfaa06be66ec5f7201a",
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/design-dialogue.skw.json": {
       "blocks": {},
       "source_hash": "088dad76b94a41ac755fb2afb9201885cbf8623d534563687ea852202dd4f3e6",
       "product_hash": "1a9257a45064110abf24c3d3726ed4ae3f498a67390727c49edbb8557fa88d69",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     },
     ".skw/src/references/commit-evidence.skw.json": {
       "blocks": {},
-      "source_hash": "73b831b56744dab29147968037a2e74de4375406e0d014f817afe3a984d03405",
-      "product_hash": "a8f921d11cc724d5468f256f6127506e9bd8ac799fd65388835fcd65279e23a5",
-      "loading_hash": "46e71f5c2de7dce52fed4817e34a78720549052e54dda08cae6f0c03e9b932a5"
+      "source_hash": "7bcc4cf32b2b78a4367facddb28726751d109fe6df0c16643218b12cd542e535",
+      "product_hash": "426f1cd26d33b0072230849cfc6bffa123e1a4ce31ef104f3ad265026486d38c",
+      "loading_hash": "5f662342c31247fc0d42a2b9e04f4daf9c64e9ef46df40ff73c0fd63a67aee54"
     }
   }
 }

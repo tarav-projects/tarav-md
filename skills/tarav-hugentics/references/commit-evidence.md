@@ -1,14 +1,26 @@
 # Git Commit Evidence
 
-Use this module for Git commits owned by modifying Hugentics workflows.
-Read-only routes never commit. The workflow brackets each repository it
-mutates with a scoped start checkpoint and a scoped completion commit.
-Multi-repository work brackets each repository independently.
+Use this module for `tarav-hugentics --commit [PATH...]` and for Git commits
+owned by modifying Hugentics workflows. Read-only routes never commit.
+Multi-repository work commits each repository independently.
+
+## Routes
+
+The standalone `--commit` invocation authorizes one completion commit in each
+selected repository. It creates no artificial start checkpoint. Explicit paths
+select their owning repositories and exact worktree scope. Without paths, commit
+all current changes in repositories already established by the active task; when
+there is no such task scope, use the current Git repository. Do not recursively
+discover or absorb unrelated repositories.
+
+A modifying Hugentics workflow instead brackets every repository it mutates with
+a scoped start checkpoint and scoped completion commit. Its existing work scope
+controls both commits; the initial invocation supplies commit authorization.
 
 ## Scope
 
 The agent declares the exact repository-relative paths it is committing.
-Do not sweep the worktree or absorb unrelated edits. At the start, include
+Do not absorb edits outside the selected scope. At a workflow-owned start, include
 only pre-existing changes inside the declared work scope; use an empty
 checkpoint when that scope is clean. At completion, include only files the
 workflow actually changed. Broader commits require a separate User request.
@@ -61,6 +73,6 @@ tarav breadcrumbs register-commit --repo <repository> --commit <hash> --json
 tarav breadcrumbs audit chatlas-context --repo <repository> --commit <hash> --json
 ```
 
-Inspect the scoped diff and run the workflow's checks before the completion
-commit. Report the start and completion hashes, Breadcrumb audit result, and
-any honest evidence gaps.
+Inspect the scoped diff and run the relevant checks before every completion
+commit. Report each completion hash, Breadcrumb audit result, and honest evidence
+gap. Report a start hash only when a composing workflow created one.

@@ -107,6 +107,11 @@
           "target": "design-dialogue.introduction",
           "slot": "link-10",
           "label": "`references/design-dialogue.md`"
+        },
+        {
+          "target": "commit-evidence.introduction",
+          "slot": "link-11",
+          "label": "`references/commit-evidence.md`"
         }
       ]
     },
@@ -787,6 +792,11 @@
           "target": "capture.introduction",
           "slot": "link-0",
           "label": "`../capture.md`"
+        },
+        {
+          "target": "inline-capture.introduction",
+          "slot": "link-1",
+          "label": "`../inline-capture.md`"
         }
       ]
     },
@@ -992,7 +1002,7 @@
       }
     },
     {
-      "id": "inline-capture.markdown-contract",
+      "id": "inline-capture.surface-contract",
       "reference": {
         "type": "Tarav.Reference.StructuredFile",
         "locator": {
@@ -1432,6 +1442,11 @@
           "target": "commit-evidence.introduction",
           "slot": "link-3",
           "label": "`../commit-evidence.md`"
+        },
+        {
+          "target": "inline-capture.introduction",
+          "slot": "link-4",
+          "label": "`../inline-capture.md`"
         }
       ]
     },
@@ -1468,6 +1483,7 @@
         }
       },
       "parents": [
+        "skill.routing",
         "capture.introduction",
         "impl.execute.introduction",
         "wiki-capture.introduction",

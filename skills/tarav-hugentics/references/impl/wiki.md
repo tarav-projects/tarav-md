@@ -23,8 +23,9 @@ surface, or the note has conflicting surface declarations, ask before any
 mutation. Do not infer a migration or create replacement artifacts.
 
 Print a compact banner with phase, Wiki surface, input, and Alignment.Mode.
-Read [`general-practices.md`](general-practices.md) and [`general-preferences.md`](general-preferences.md) for product work, and
-[`../commit-evidence.md`](../commit-evidence.md) for scoped repository bracketing.
+Read [`general-practices.md`](general-practices.md) and [`general-preferences.md`](general-preferences.md) for product work,
+[`../commit-evidence.md`](../commit-evidence.md) for scoped repository bracketing, and [`../inline-capture.md`](../inline-capture.md) for
+Product.Surface Breadcrumb capture.
 Do not load Model-backed phase modules, product-capture, or grounding routines.
 No Model, Collection, Diagram View, Diagram Draft, authorization Gate, or
 Model capture reconciliation is required or created by this route.
@@ -67,10 +68,10 @@ requested and why. Carry the necessary bounded narrative and evidence in the
 note itself; neither copy the entire discussion nor require its reconstruction.
 
 During Design, attach exact supporting Chatlas User Turns as Breadcrumbs in
-the live note, even when the same turns also support Wiki passages. Use the
-Markdown marker, submission, and audit mechanics described below for product
-surfaces; the Impl.Req is an authorized Design output, not an implementation
-edit. Log evidence gaps rather than fabricate support. On later execution,
+the live note, even when the same turns also support Wiki passages. Apply the
+shared Inlined Capture workflow to that Markdown surface; the Impl.Req is an
+authorized Design output, not an implementation edit. Log evidence gaps rather
+than fabricate support. On later execution,
 preserve the original sessions and turns; a new session's invocation does not
 replace design evidence. Add later clarifications and observations distinctly.
 
@@ -92,10 +93,12 @@ it does not bootstrap Diagram artifacts. Recheck the plan against current code.
 Before the first product edit, use the shared evidence-commit workflow to
 checkpoint only the declared work scope in each repository; an empty scoped
 checkpoint is valid. Stop for conflicts or an impossible checkpoint.
-Implement bounded slices, test each, and record outcomes in the live note.
+Implement bounded slices and test each. At the end of every slice, apply the
+shared Inlined Capture workflow to each Product.Surface actually implemented by
+that slice, then record outcomes in the live note.
 At a material scope mismatch, ask in Interactive mode; Autonomous mode still
-cannot expand authorization. Finish with verification, Product.Surface Breadcrumb
-capture below, the scoped evidence completion commit, and selective Wiki capture. Develop and Harvest inherit this
+cannot expand authorization. Finish with verification, the scoped evidence
+completion commit, and selective Wiki capture. Develop and Harvest inherit this
 requirement through their Execute phase; no extra capture flag is needed.
 
 **Develop:** Design, then cold-reload the resulting live note and Execute.
@@ -112,37 +115,24 @@ writes in Review, or require the Model-backed design-impact module.
 `--impl --wiki --capture` selects Wiki capture within the chosen mutating phase;
 it is not another phase. Review remains read-only even when capture is requested.
 
-## Product.Surface Breadcrumb capture
+## Product.Surface Inlined Capture
 
-After implementation, inspect the changed code, tests, configuration and
-documentation for positions materially contextualized by exact Chatlas User
-Turns. Attach justified Breadcrumbs in those product files themselves; Wiki
-or Impl.Req references do not substitute for this step. Stay within the
-implemented scope; do not annotate every declaration or manufacture support.
-Design captures Breadcrumbs in its Impl.Req; it may identify candidate positions
-in implementation files but does not edit those files.
-Review remains read-only. This step does not load Model-backed capture.
+Use the shared Inlined Capture workflow as the single Product.Surface Breadcrumb
+path. At the end of each Execute slice, run its complete capture path separately
+on every code,
+test, configuration, or documentation surface actually implemented by that
+slice. Wiki or Impl.Req references do not substitute for this step. Stay within
+the implemented scope; do not annotate every declaration or manufacture support.
+Design captures the live-note surface only, and Review remains read-only.
 
-Reuse session resolution and refresh across Impl.Req, product, and Wiki capture
-within a pass. Evidence may come from earlier sessions: resolve each exact source
-session and keep its identity with its turns; never submit another session's
-turns under the current session. Resolve support before inserting provisional
-tarav.context markers. Use the surface's supported native comment convention,
-never strings or example payloads. For generated files, edit their authoritative
-source and rebuild rather than patching generated output. If no supported
-embedding convention exists, report that limitation instead of inventing syntax.
-
-Once each selected file's content is final, submit its provisional markers:
-`tarav breadcrumbs submit chatlas-context --surface <FILE> --provider <PROVIDER> --session-id <SESSION_ID> --json`.
-Submission must retain typed attachments and positions before replacing markers
-with opaque tarav.breadcrumb labels. Then run
-`tarav breadcrumbs audit chatlas-context --surface <FILE> --json`, inspect
-semantic placement, and rerun affected syntax/build checks after annotation.
-Record files, Breadcrumb IDs, audit results and any capture gaps in Impl.Log.
-If no position has justified support, record that outcome without inventing
+Reuse exact session resolution across Impl.Req, product, and Wiki capture within
+a pass. For generated files, capture on the authoritative source and rebuild.
+After Inlined Capture replaces provisional markers, rerun affected syntax or
+build checks and record files, Breadcrumb IDs, audits, and gaps in Impl.Log. If
+no position has justified support, record that outcome without inventing
 annotations. If mechanics fail, preserve the product and report the pending
-capture separately; do not claim completion. Product commit authority remains
-bounded by the shared evidence-commit scope.
+capture separately; do not claim capture completed. Product commit authority
+remains bounded by the shared evidence-commit scope.
 
 ## Wiki capture and closure
 
