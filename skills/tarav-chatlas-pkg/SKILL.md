@@ -73,7 +73,6 @@ compatibility surfaces.
 - `tarav-chatlas-my-session-id` resolves the running agent's own session.
 - `chatlas-session-continue` produces a continuation handoff from one exact
   maintained session.
-- `tarav-chatlas-retention-audit` checks provider-native raw retention.
 
 Historical command compendia and displaced implementations remain evidence,
 not current operational guidance.
