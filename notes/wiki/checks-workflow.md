@@ -56,3 +56,30 @@ and distinguishing execution failure from a completed check with no findings
 are proposed MVP details, not yet finalized schemas.
 <!-- tarav.breadcrumb 91edfb2ad3ad57d9db35f1c3d9968ed744b6bf1f068a1d87897390b6a04723a8 -->
 <!-- tarav.breadcrumb c067491fc24da4e56365c88701f65e07a6ada5fd99fbace9f17a5f914cff4ae0 -->
+
+## CheckResult as a POI provider
+
+A Check executes and produces a CheckResult. The result contains or can
+access everything needed to produce its POI instances, while retaining any
+additional data the Checks workflow needs for its own purposes. Model it as
+a POI provider. There must not be a parallel finding type duplicating POIs:
+the objects describing check findings are POIs themselves. "Finding" can
+remain a descriptive name for those POIs.
+<!-- tarav.breadcrumb 54e3ca427f15223cce5265810a9e4009c153fb93d4a32a50e3ba3d7791e58e8a -->
+
+POIs are a central communication surface for agents and carry the contextual
+information needed to investigate an occurrence. A CheckResult can remain
+lighter than that agent-facing representation. Producing a POI and raising
+it are distinct operations; the raising mechanics and semantics belong to
+the POI workflow. Checks integrate with that workflow rather than defining
+their own raising system.
+<!-- tarav.breadcrumb a4cbea50df393d0c57aa8c3ce0ad016d66ed1dad6a7e9d471fb61ff230cbe919 -->
+
+The resulting design is Check → CheckResult (POI provider) → POI instances
+→ raise through POI mechanics. The agent proposed a reusable `POIProvider`
+interface owned by the POI workflow, with results either retaining or
+constructing POIs when requested. Exact method names, storage, and raising
+policy remain open; illustrative `pois()` and `raise_()` calls are not claims
+about implemented APIs.
+<!-- tarav.breadcrumb 7d28f24f3c1a83ecfeae3e2cd778b6b5a9aed39493936b2beee4f3dfcb6fb913 -->
+<!-- tarav.breadcrumb b39c8a6102a3d6fbf1a0ddbe4c22b8f0e63efd7cb00499e7fb2622bed1e86d4b -->
