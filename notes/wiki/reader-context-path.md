@@ -174,3 +174,30 @@ completion commits remain pending.
 Evidence recovery: permissions were restored and the supporting User Turns
 were resolved through Chatlas. The pending notices above retain the history
 of the original capture; Breadcrumb submission is now available.
+
+## Content claims, reading dependencies and computed paths
+
+Use separate concepts rather than one ambiguous `reading` field:
+
+- `contains`: entities the block claims its output contains. This is a
+  content declaration, not a relationship owned exclusively by reading analysis.
+- `reading_deps`: what the reader needs to know to understand this block;
+  reading-path checks determine whether that context is available.
+
+The reading-path analyzer consumes content claims; it does not define their
+entire meaning. A combined `reader_context` or `reading_context` field was
+considered and rejected in favor of this separation.
+<!-- tarav.breadcrumb 14d04eb3d35e29c681aaf7cb9c2f11f19d7c7391120cde57269d599b010cd8dc -->
+
+Reading paths describe how context becomes available when a reader reaches a
+block. They can be computed from the block's position, including its file,
+preceding blocks and entry point. Explicit declarations can supplement that
+structure, but the concept does not require a registry, a `reading_paths`
+field, or a dedicated file merely to exist. This refines the earlier
+suggestion to rename `loading.json`: naming the concept is not a decision to
+retain that storage arrangement.
+<!-- tarav.breadcrumb 4c54afb27f6eac0b7fcd15bce2ecfbddcf4d6c808d243c55caa89990794e27e6 -->
+<!-- tarav.breadcrumb eaeb73e6a6d3e4db99b04dfa901662fe15a860be09ac63ad8bcca978af021ccc -->
+
+These are design decisions for the next revision, not a claim that the current
+`reading` record field and loading file have already been migrated.
