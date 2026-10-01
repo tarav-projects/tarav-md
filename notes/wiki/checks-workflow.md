@@ -2,6 +2,7 @@
 
 <!-- tarav.sessions
 6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
+1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
 -->
 
 ## Shared mechanics
@@ -118,7 +119,7 @@ POI report. See the [Checks code](../../../../tarav-py/src/tarav/l1/checks/__ini
 and [SKW integration](../../../../tarav-py/src/tarav/l2/skw/reading_checks.py).
 <!-- tarav.breadcrumb 5922aa58ced6a537d3d235fbbdeafe6c947c6d2f859c67fc3299fe7ee9f82fd2 -->
 
-## SituationCheck — design
+## SituationCheck
 
 SituationCheck is an optional Check specialization that evaluates only a
 situation supplied before execution. Any additional data required by evaluation
@@ -137,7 +138,18 @@ construction or other integrations between workflows.
 
 Retain the current iterable `obj.checks` property. Named selection is deferred.
 [Request 835](../../../tarav-py/notes/live/835-situation-checks-impl-req.md)
-plans the common mechanics and a bounded SKW freshness integration. This is a
-design capture, not a claim that SituationCheck has been implemented.
+implemented the common mechanics and a bounded SKW freshness integration.
 <!-- tarav.breadcrumb 14021d78efd3dbdfaeff4ada1639d5f7d911721889a2208074a314619ba6ff95 -->
 <!-- tarav.breadcrumb 5c45c5dcc0ddd05824736d0fbd49fa2ab7e2577702ec6c23ffa4c76514b68111 -->
+
+A Situation defines the scope of acceptance: changing any field may produce a
+new POI identity and require another blessing. Situation descriptions need not
+be minimal; extra fields may deliberately favor conservative resurfacing.
+Separate bound checks should represent independently assessable concerns.
+<!-- tarav.breadcrumb c2d9df1ece09957d2b8a6206869b15d41057dc2dc9f6c4c261545466c2dfdb03 -->
+
+`SituationCheck` snapshots and validates its input, exposes it through context,
+and rejects a returned `CheckPOI` whose situation differs. SKW now creates
+separate generation-input and tracked-context freshness checks before running
+them, so evaluation does not reread mutable external inputs.
+<!-- tarav.breadcrumb da3da29ce0211b9c054f99b7090f9b8f8e6ab9412554634f4d012ccea5a08ce2 -->
