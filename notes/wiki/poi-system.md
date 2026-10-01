@@ -163,3 +163,23 @@ Unsupported objects are not accepted merely because they can be stringified.
 [Request 834](../../../tarav-py/notes/live/834-situation-poi-identity-and-lite-records-impl-req.md)
 carries the implementation plan. This section records the new design, not a
 claim that the current implementation already follows it.
+
+### Situation identity implemented
+
+Request 834 implemented `LiteRecord` as the controlled, deterministic value
+contract for caller-declared situations. `IdentifiedPOI` now derives identity
+from its concrete class Ship and explicit situation; evidence and presentation
+remain outside identity, while producers include revision inputs when a changed
+surface must produce a new situation.
+<!-- tarav.breadcrumb 1025bc0dd5374da0251638f7123f905b80348fa839821ce2d417c664658e228d -->
+
+Repeated emissions of one situation remain distinct report occurrences. A
+collector addresses them by the stable situation identity plus a zero-based,
+evaluation-local emission index. The index is navigation data and does not
+participate in identity or blessing.
+<!-- tarav.breadcrumb 849ab6b37feb2cf4c16c9cf7476c9b0ba3df518bcc92f3a648f41031fc35578d -->
+
+Blessings now retain and validate the situation identity directly, with only
+`blessed` and `unblessed` standing. CLI inspection exposes occurrence indexes,
+and the implementation is documented and verified in Request 834.
+<!-- tarav.breadcrumb 8110cf98d0196230887cba7e9f457c767d3cfbe350ac8a68b2fa73062210b916 -->
