@@ -3,6 +3,7 @@
 <!-- tarav.sessions
 6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 5626cd5f = codex:01a0af61-72e2-7bd2-94a3-26529d6914ec @5626cd5f7db74c4f2e3838250516b5e300cc9387ac254eb65a0816a5f30555a1
+1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
 -->
 
 ## Detection and presentation
@@ -14,12 +15,13 @@ negativity, failure, or a required corrective action. This clarification
 broadens the problem-oriented examples elsewhere in this note.
 <!-- tarav.breadcrumb 8abe33d8f10332db0c5b33fc46c2b5db5158b467244a25704e3185c81fe780f3 -->
 
-The proposed base POI has two specializations: `CheckPOI`, coupled to a Check
-class that explains the check, and `NotificationPOI`, reporting an event or
+The base POI has two initial specializations: `CheckPOI`, coupled to the bound
+Check object that produced it, and `NotificationPOI`, reporting an event or
 operation worth making visible without requiring a Check. In Breadcrumb
 auditing, a stale position is the first case; appending a location observation
 is the second. `NotificationPOI` is the selected name, replacing the tentative
-`LogPOI`. This is design direction, not a claim that the migration has landed.
+`LogPOI`.
+<!-- tarav.breadcrumb 7690a9f80fa88f6a48be676f42d9762e7a5383f411e15450d725cb0e75875fea -->
 <!-- tarav.breadcrumb b415403c377459d6197ea71ba7f6f8f94834fce694ac1afeb9c66e1e0c6f47d4 -->
 <!-- tarav.breadcrumb d697c96ab0ef939098d62c1d6c34fd54ada553eea7e79dc01f455fea0593b944 -->
 
@@ -65,6 +67,27 @@ foundation and Breadcrumb integration are planned in
 [request 832](../../../tarav-py/notes/live/832-neutral-pois-checks-and-breadcrumb-audits-impl-req.md).
 <!-- tarav.breadcrumb 84bbfb38d647a85ee4c734ebd6938623314d4a9f20ec89d7573484a91bf214df -->
 <!-- tarav.breadcrumb 32cd6269b37755e08862c845eeea1f83f41fe3854c6e23d8d6876897efe72123 -->
+
+### Neutral foundation implemented
+
+Request 832 implemented the nearly empty `POI`, POI-owned
+`NotificationPOI`, and Checks-owned `CheckPOI`. Every `CheckPOI` retains its
+bound runtime `Check`; a completed `CheckResult` may therefore contain failure
+POIs without confusing validation outcome with execution failure. Breadcrumb
+file and commit audits now return one mixed POI stream: unresolved concerns are
+CheckPOIs, while successful opt-in position refreshes are NotificationPOIs and
+do not fail the audit.
+<!-- tarav.breadcrumb 25a3d8ca9b8349bad8b4be0da7110da7040c73c859f8ac201be9cedfb7a045c8 -->
+
+POI diagnostic payloads do not occupy the `context` attribute. The normal
+`TaravObject.context()` entry point remains callable and exposes diagnostic
+details and, for a `CheckPOI`, its exact bound Check through `obj_context`.
+<!-- tarav.breadcrumb ce67a9ca6579a653135e5c1873ca487a4bf48d575d50020541f07e4bb2c33137 -->
+
+The existing SKW `POICheck`/`POIInstance` finding model remains operational and
+will migrate separately. Request 832 changes only its import boundary; it does
+not reinterpret retained SKW finding Records.
+<!-- tarav.breadcrumb 76e537d68e30e31f947e22ace2124bc6087179a8b4fc5962e9264df8272432ee -->
 
 A blessing is an agent action accepting the state as valid despite a raised
 POI. Blessing actions must be recorded so they can be scored. A blessed POI
