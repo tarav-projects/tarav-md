@@ -117,3 +117,25 @@ check outcome. [Request 833](../../../tarav-py/notes/live/833-workflow-owned-poi
 plans the follow-up migration after 832.
 <!-- tarav.breadcrumb 172e9cb5c36229dd35cea7f297a83f5576c86248cc93c198ee338bfde455211c -->
 <!-- tarav.breadcrumb 3040b3d79f5a9c762ba9fa6874319c76a5faca1b4c6d2c5b154bb752988f054c -->
+
+### Workflow migration implemented
+
+[Request 833](../../../tarav-py/notes/live/833-workflow-owned-pois-and-blessings-impl-req.md)
+implemented the migration. POI now supplies neutral, identified, notification,
+and collection foundations. References, Navigation, Skills, SKW, Breadcrumbs,
+Archive, and provisional Diagram reporting use workflow-owned concrete POIs;
+the old kernel occurrence marker and parallel POI check/occurrence types were
+removed.
+<!-- tarav.breadcrumb 6f11b15dfaa36017af236e82a787c7a92dc12a05cc958ae93684d04868d34a70 -->
+
+Blessings are now an independent workflow. `BlessablePOI` is the capability:
+a concrete POI is blessable only when its class inherits it. The implementation
+does not retain an occurrence-level boolean or an old generic occurrence model.
+Check-owned behavior composes with blessability through multiple inheritance,
+while the concrete workflow remains the semantic owner.
+<!-- tarav.breadcrumb 6d32637f2a47a7fe9d66c98e0e4d27088aa24dc9307c51ea469f191aa037f896 -->
+
+Typed notifications now have shared delivery. They warn once by default or are
+captured explicitly without duplicate delivery. Archive uses this path for a
+skipped suspicious remote while preserving its ordinary artifact return value.
+<!-- tarav.breadcrumb 5791a5f84456453a1f4a41310b729a0023d8a6e12ec39a6b7f6c9004e87bf86c -->
