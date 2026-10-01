@@ -117,3 +117,27 @@ reading checks through `SkwSkill.checks` and uses their results for its CLI
 POI report. See the [Checks code](../../../../tarav-py/src/tarav/l1/checks/__init__.py)
 and [SKW integration](../../../../tarav-py/src/tarav/l2/skw/reading_checks.py).
 <!-- tarav.breadcrumb 5922aa58ced6a537d3d235fbbdeafe6c947c6d2f859c67fc3299fe7ee9f82fd2 -->
+
+## SituationCheck — design
+
+SituationCheck is an optional Check specialization that evaluates only a
+situation supplied before execution. Any additional data required by evaluation
+must first be captured in that situation. The flow is Situation → Check → POI:
+detection and POI identity share the same description, rather than independently
+selecting inputs that can disagree.
+<!-- tarav.breadcrumb d052cf7a461c9b5fb2e364074b90cda15e32eed9f24e4cfebf61f63b44574d66 -->
+
+Use a general Situation based on LiteRecord; a new situation class for every
+check is unnecessary. Specialized checks may define their own situation types
+when stronger constraints are useful. Objects can collect their situations and
+provide bound checks, but this organizational choice does not forbid direct
+construction or other integrations between workflows.
+<!-- tarav.breadcrumb 105eb9e025970cf720969a5045ae4bc5316345ecd30c7e129db70b2c8409bda2 -->
+<!-- tarav.breadcrumb 2737f2770664d8e4f40038a760395f7ce337445a88cea749aebfdc000e608983 -->
+
+Retain the current iterable `obj.checks` property. Named selection is deferred.
+[Request 835](../../../tarav-py/notes/live/835-situation-checks-impl-req.md)
+plans the common mechanics and a bounded SKW freshness integration. This is a
+design capture, not a claim that SituationCheck has been implemented.
+<!-- tarav.breadcrumb 14021d78efd3dbdfaeff4ada1639d5f7d911721889a2208074a314619ba6ff95 -->
+<!-- tarav.breadcrumb 5c45c5dcc0ddd05824736d0fbd49fa2ab7e2577702ec6c23ffa4c76514b68111 -->
