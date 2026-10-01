@@ -44,3 +44,29 @@ determine identity. Blessing is a consumer of that identity, not the reason
 for hiding additional equivalence heuristics inside the shared mechanism.
 <!-- tarav.breadcrumb bfe5490bf387811876101ca7343cf0c825db3cfc5b47d550ef12b59336ac5b66 -->
 <!-- tarav.breadcrumb 323a92d553b63b3ad4dba167f7093813119e4343c10c7faa006065426778f4e4 -->
+
+## Explicit mechanism, flexible construction
+
+“Caller-declared” does not require manually supplying a situation on every
+call. Types may provide well-defined state builders and simple defaults.
+Direct construction should remain available, especially when cases differ
+or the design is changing quickly. This clarifies the earlier call-site
+wording: the mechanism is explicit, not necessarily every invocation.
+<!-- tarav.breadcrumb 30136e5c5e63d990521c520c377a0c3904f5061c16a06163adeb3423bb95dfaf -->
+
+Regardless of how it is supplied, the hash is computed from a `StateRecord`,
+which is a `LiteRecord`. The application may constrain those records through
+interfaces and checks. Explicit input therefore does not mean unconstrained
+input; construction choices converge on the same inspectable hashing input.
+<!-- tarav.breadcrumb 2c8642133f7e791449e1863b6f89393095d36fb694f10966f76f84b6a3602bf6 -->
+
+The general LiteRecord can serve flexible cases; a specialized state type can
+provide homogeneous descriptions across multiple call sites. A POI type
+exposing its `StateType` was proposed as one example. This records a design
+option, not a claim that such an interface is already implemented.
+<!-- tarav.breadcrumb 93b71386e1986b5abed5752644e9c838c649ee2fb093f1c481fd4361d2c22b69 -->
+
+SKW generation inputs and context freshness were accepted as a good candidate
+for this pattern. The acceptance identifies an application to explore; it
+does not itself establish a completed SKW change.
+<!-- tarav.breadcrumb bee32953e3457dd67b18b6dcdf4b5470173da587e6bd75be721f961f86dadd03 -->
