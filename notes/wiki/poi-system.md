@@ -139,3 +139,27 @@ Typed notifications now have shared delivery. They warn once by default or are
 captured explicitly without duplicate delivery. Archive uses this path for a
 skipped suspicious remote while preserving its ordinary artifact return value.
 <!-- tarav.breadcrumb 5791a5f84456453a1f4a41310b729a0023d8a6e12ec39a6b7f6c9004e87bf86c -->
+
+### 2026-10-01 — Situation is the identity input
+
+The next design replaces the separate identity/state model described above.
+An identified POI is identified by its concrete class Ship and an explicit
+caller-supplied `situation`. Blessings are one application of that identity,
+not its definition. There is no second POI state under the same identity.
+Producers decide which inputs distinguish situations; prefer a concern
+resurfacing for reblessing over accidentally treating a new concern as blessed.
+<!-- tarav.breadcrumb 6b9ffe48e00b884a0d118ddc08674245a1312244a066e40a5d8d52b1a0cf1402 -->
+<!-- tarav.breadcrumb c31b79dbad097e4e61f431c619b366db77f0db20214f543ecd2c423bd088f930 -->
+
+A producer can represent recurring equivalent situations or intentionally
+fresh occurrences. The situation must be a LiteRecord: dictionary-shaped data
+whose accepted values have controlled serialization. Supported native values,
+such as dates and Tarav Types, need not be manually converted by callers.
+Unsupported objects are not accepted merely because they can be stringified.
+<!-- tarav.breadcrumb a3381fa6a0ac200a485612966357671e6eb9197eec87ac4a428550d82d6cc646 -->
+<!-- tarav.breadcrumb 06d3860c914cdcd1010bf2a4b15e43dd74e210d134de0bc7ea3a2be3d042b6d0 -->
+<!-- tarav.breadcrumb 367513415a77439aa627d488aedc9e3b3ddb937407f9b632492199b811a3ef94 -->
+
+[Request 834](../../../tarav-py/notes/live/834-situation-poi-identity-and-lite-records-impl-req.md)
+carries the implementation plan. This section records the new design, not a
+claim that the current implementation already follows it.
