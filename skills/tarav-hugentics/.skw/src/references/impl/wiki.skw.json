@@ -169,7 +169,13 @@
         "A verified implementation with pending Wiki capture must report both statuses."
       ],
       "label": "introduction",
-      "reading": [
+      "reading_deps": [
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
+      ],
+      "links": [
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
           "target": "e5376d6e-e30c-5745-a278-463e37390876",
@@ -219,10 +225,6 @@
           },
           "slot": "link-4",
           "caption": "`../inline-capture.md`"
-        },
-        {
-          "type": "Tarav.SKW.Reading.InlineDependency",
-          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
         }
       ]
     }

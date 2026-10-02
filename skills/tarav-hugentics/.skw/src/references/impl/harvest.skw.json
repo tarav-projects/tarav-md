@@ -47,7 +47,7 @@
         ""
       ],
       "label": "introduction",
-      "reading": [
+      "reading_deps": [
         {
           "type": "Tarav.SKW.Reading.InlineDependency",
           "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
@@ -255,7 +255,7 @@
         ""
       ],
       "label": "delegation",
-      "reading": [
+      "links": [
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
           "target": "ba708664-4a24-5178-b78b-be11a7cd83c3",

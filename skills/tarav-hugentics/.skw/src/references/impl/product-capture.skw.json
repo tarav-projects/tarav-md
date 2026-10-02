@@ -86,7 +86,13 @@
         ""
       ],
       "label": "introduction",
-      "reading": [
+      "reading_deps": [
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
+      ],
+      "links": [
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
           "target": "846c448d-3559-50db-83af-e09fa69ecdaa",
@@ -106,10 +112,6 @@
           },
           "slot": "link-1",
           "caption": "`../inline-capture.md`"
-        },
-        {
-          "type": "Tarav.SKW.Reading.InlineDependency",
-          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
         }
       ]
     },

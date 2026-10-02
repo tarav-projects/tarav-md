@@ -76,7 +76,7 @@
         "remain exploratory and can later supply context to another workflow."
       ],
       "label": "introduction",
-      "reading": [
+      "links": [
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
           "target": "e5376d6e-e30c-5745-a278-463e37390876",

@@ -537,7 +537,7 @@
         ""
       ],
       "label": "routing",
-      "reading": [
+      "contains": [
         {
           "type": "Tarav.SKW.Reading.IncludesBlock",
           "target": "7faeae93-57a9-52b5-8f34-7daaddceef64",
@@ -546,7 +546,9 @@
             "node": "skill.design-impact-link"
           },
           "slot": "link-0"
-        },
+        }
+      ],
+      "links": [
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
           "target": "b79f8683-cb46-5d55-913d-80dd423c7a46",

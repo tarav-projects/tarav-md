@@ -89,7 +89,13 @@
         ""
       ],
       "label": "introduction",
-      "reading": [
+      "reading_deps": [
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
+      ],
+      "links": [
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
           "target": "dfebdb7b-300a-5cdc-9044-4f81c3c1316c",
@@ -119,10 +125,6 @@
           },
           "slot": "link-2",
           "caption": "`general-preferences.md`"
-        },
-        {
-          "type": "Tarav.SKW.Reading.InlineDependency",
-          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
         }
       ]
     },
@@ -308,7 +310,7 @@
         ""
       ],
       "label": "live-note-impl-req",
-      "reading": [
+      "links": [
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
           "target": "953ceaea-f235-5d28-ab8a-cd277be5fde8",

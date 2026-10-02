@@ -64,7 +64,13 @@
         ""
       ],
       "label": "introduction",
-      "reading": [
+      "reading_deps": [
+        {
+          "type": "Tarav.SKW.Reading.InlineDependency",
+          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
+        }
+      ],
+      "links": [
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
           "target": "074b31d6-fb71-53a1-b52a-dfca8080b9df",
@@ -74,10 +80,6 @@
           },
           "slot": "link-0",
           "caption": "`commit-evidence.md`"
-        },
-        {
-          "type": "Tarav.SKW.Reading.InlineDependency",
-          "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
         }
       ]
     },

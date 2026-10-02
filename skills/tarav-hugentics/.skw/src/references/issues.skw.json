@@ -45,7 +45,7 @@
         ""
       ],
       "label": "introduction",
-      "reading": [
+      "reading_deps": [
         {
           "type": "Tarav.SKW.Reading.InlineDependency",
           "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
@@ -144,7 +144,7 @@
         ""
       ],
       "label": "routing",
-      "reading": [
+      "links": [
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
           "target": "f3f810d4-7c06-588a-a85f-0f3cf48c4fb3",
@@ -246,7 +246,7 @@
         ""
       ],
       "label": "shared-contract",
-      "reading": [
+      "links": [
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
           "target": "846c448d-3559-50db-83af-e09fa69ecdaa",

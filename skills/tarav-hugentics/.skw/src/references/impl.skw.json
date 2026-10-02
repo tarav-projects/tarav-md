@@ -46,7 +46,7 @@
         ""
       ],
       "label": "introduction",
-      "reading": [
+      "reading_deps": [
         {
           "type": "Tarav.SKW.Reading.InlineDependency",
           "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
@@ -139,7 +139,7 @@
         ""
       ],
       "label": "input",
-      "reading": [
+      "links": [
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
           "target": "8e02d758-d671-5cfc-bafa-a44097900cb4",
@@ -313,7 +313,7 @@
         ""
       ],
       "label": "routing",
-      "reading": [
+      "links": [
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
           "target": "788a9ad5-33a6-53c2-b823-bd0f78523811",
