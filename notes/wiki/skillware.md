@@ -87,11 +87,11 @@ the context CLI already implements selective expansion.
 
 ## Generation as source code
 
-Skillware (`skw`) is a proposed generation programming language: reusable,
-composable generation functions interpreted by an agent. A function has a
-name, arguments that may be typed, a body, and context. Arguments and bodies
-can contain arbitrary text. The purpose is to treat generation prompts as
-source code and give structured skills and surfaces supporting tooling.
+Skillware (`skw`) began as a proposed generation programming language:
+reusable, composable generation functions interpreted by an agent. The early
+model gave a function a name, typed arguments, a body, and context. The current
+document model keeps the source-code principle while replacing prompt arguments
+with a complete typed block and workflow annotations.
 <!-- tarav.breadcrumb a200222d60f72ab7748b119d84dbbac2bc4baac37f3a5ebd722a2350b4c12f83 -->
 <!-- tarav.breadcrumb 6d8e72bf7c9d2bf42e01c8fe53fb00cd75f5a3a644feeb52fe4fa483bd03bce8 -->
 
@@ -138,10 +138,11 @@ raised them.
 
 ## Independent MVP and overlapping workflows
 
-The MVP should be mostly independent of the old Index/Diagram integration and
-initially omit Tarav contextualization integration. Its starting capabilities
-are dependencies between generation blocks, typed prompt arguments, and basic
-linting.
+The early MVP was designed to remain mostly independent of the old
+Index/Diagram integration and initially omit Tarav contextualization
+integration. It proposed generation-block dependencies, typed prompt arguments,
+and basic linting. The neutral block substrate above supersedes its block and
+argument model while preserving that workflow independence.
 <!-- tarav.breadcrumb 12df00fd81ff7c07c745e39e8dca8493c0c319dc2c191e88e6ccbb8eff04c7bf -->
 
 A reference-based annotation workflow can independently connect existing
@@ -166,15 +167,16 @@ uncluttered; colocating them with products remains possible.
 <!-- tarav.breadcrumb b2a62735017e0fc001e2809cd1db6ecb9bb1d5f2ba5292f18dd49d637a5b9f78 -->
 
 Sources are named for their output by default: `explanation.skw.json` contains
-everything that generates `explanation.md`. The MVP manages whole documents,
-not partially adopted fragments. Literal blocks contain constant text copied
-into the product; generation blocks contain the parts supplied by an agent.
+everything that generates `explanation.md`. The implementation manages whole
+documents, not partially adopted fragments. All ordinary content uses neutral
+`SkwBlock` Records; a `GenerationAnnotation` declares when an agent-generation
+workflow participates.
 <!-- tarav.breadcrumb 4c2ba12c15ee0c09eb59777d40e26bcc9a3f81c36edf8095e953f01b7d839f2f -->
 <!-- tarav.breadcrumb 43f4b1e8038953ee364f879facf3b7698873ef943054f778179fec55c4a50038 -->
 
 Generated block content lives inside `explanation.skw.json` too. Generation
-fills or revises the generation blocks' output fields; the compiler produces
-the entire `explanation.md` from that source. The product is fully derived.
+fills or revises a block's `content`; the compiler produces the entire
+`explanation.md` from that source. The product is fully derived.
 Compilation is deterministic assembly of literals and retained generated
 content, with checks. A linter evaluates the `.skw.json` source.
 <!-- tarav.breadcrumb 67a801d6495fc89ea7a846341c9591c6f97e92f47c48dcb3e807696801e13814 -->
@@ -186,8 +188,8 @@ the source. Exact schemas and lock-update mechanics remain to be specified.
 <!-- tarav.breadcrumb 61b8fdb8a1f2db82f53e4d1eae113b4bd13b2f2fdc27a8b49f41ee548feeec3b -->
 <!-- tarav.breadcrumb 46bda22671cf877c063d7acdbfffbf6e6df9b4b73ca279b66963e5d8954d9666 -->
 
-CLI operations can replace preparation scripts and expose an expanded prompt
-directly to an agent without materializing `prompt.txt`. These transient
+CLI operations replace preparation scripts and expose the typed block's
+instructions and selected context directly to an agent. These transient
 interfaces do not require extra files in the product surface.
 <!-- tarav.breadcrumb 3f626c97b4cbc3437166232eb0770bb66404503fe863d05c13590168973bcd00 -->
 <!-- tarav.breadcrumb edcf67f9bd6dc15566b32c21202e0f3cdc60e9cd29d8ae7530c0cf4baff293d0 -->
@@ -417,9 +419,9 @@ discussion establishes the direction, not a finalized field schema or template.
 The user invoked Execute for [825](../../../tarav-py/notes/live/825-typed-skw-components-impl-req.md).
 [SKW Document](../../../tarav-py/src/tarav/l1/skw/document.py) now loads each
 nested block through the trusted Type registry and requires a `SkwBlock` subtype.
-Literal and agent-generation blocks have concrete Types; each retains `id` and
-current `output` in its source Record. Explicit `produce` updates retained
-output, while compile assembles it without running a producer. The skill-owned
+At that checkpoint, literal and agent-generation blocks had concrete Types;
+each retained `id` and current `output` in its source Record. Explicit
+`produce` updated retained output, while compile assembled it without running a producer. The skill-owned
 [SkillLink](../../../tarav-py/src/tarav/l1/skw/skills.py) declares one target,
 produces its escaped relative Markdown link, and reports stale output when that
 declaration changes. [Loading](../../../tarav-py/src/tarav/l1/skw/loading.py)
@@ -428,5 +430,7 @@ context. One Hugentics link uses this path. The 36 maintained skill documents
 were migrated; builds reproduced all their Markdown without text drift.
 Existing generation and context history was not rebased. The full product suite
 passed 1,381 tests, including trusted external subtype dispatch and the typed
-link behavior.
+link behavior. Implementation 836 later replaced that block taxonomy and
+`output` field with the neutral typed block substrate documented above;
+`SkillLink` remains a genuine specialized block subtype.
 <!-- tarav.breadcrumb 97dcd940ff0d11c69605334367cb3df25172c3196951cbabcdc3c8f6c2eda593 -->
