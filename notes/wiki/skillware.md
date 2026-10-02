@@ -5,6 +5,43 @@
 1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
 -->
 
+## Neutral typed block substrate
+
+The implemented SKW document model uses one neutral concrete `SkwBlock`:
+
+```text
+SkwBlock
+├── id
+├── label
+├── objects_index     optional locally named typed objects
+├── annotations       typed workflow-owned meanings
+└── content           retained block content
+```
+
+A block's content can be literal, agent-produced, code-produced, or assessed
+by another workflow. Generation is therefore a `GenerationAnnotation`, rather
+than a separate kind of block. Reading declarations are annotation subtypes as
+well. Consumers select only the annotation Types they understand, so several
+workflows can act on the same block without sharing one relationship
+vocabulary.
+<!-- tarav.context 1f561f5d:19bbdfd778ba3641 -->
+<!-- tarav.context 1f561f5d:b797b3be7d0a82e5 -->
+
+Every semantic value retained inside the block is typed. `objects_index`
+provides optional block-local names for reusable TaravObjects; those names are
+not Ships. An annotation may instead inline a typed object directly. A typed
+`ObjectIndexReference` resolves a local name against the containing block.
+The index owns local storage and addressing, while each annotation owns the
+meaning it assigns to an object.
+<!-- tarav.context 1f561f5d:b974c6c7f7064562 -->
+<!-- tarav.context 1f561f5d:0b1b0473a31afaa7 -->
+
+The SKW generation path gives an agent the complete block. It has no prompt
+placeholder language or argument-binding layer. `GenerationAnnotation` declares
+ordered instructions and context objects. Instruction freshness and declared
+context freshness are independent acceptance scopes.
+<!-- tarav.context 1f561f5d:60d4d034d5e0e584 -->
+
 ## Typed SKW depots and skill objects
 
 A skill should have an actionable Python object. The proposed common entry

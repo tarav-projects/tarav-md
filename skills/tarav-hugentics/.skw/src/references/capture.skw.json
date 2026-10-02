@@ -5,51 +5,9 @@
   "blocks": [
     {
       "id": "846c448d-3559-50db-83af-e09fa69ecdaa",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "capture.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/tarav-diagram.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "introduction",
+      "content": [
         "# Hugentics Capture",
         "",
         "This module runs the conversational workflow that develops and lands typed",
@@ -63,14 +21,36 @@
         "mutated repository with its scoped evidence commits.",
         ""
       ],
-      "label": "introduction",
-      "reading_deps": [
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "capture.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/tarav-diagram.md"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        },
         {
           "type": "Tarav.SKW.Reading.InlineDependency",
           "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
-        }
-      ],
-      "links": [
+        },
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
           "target": "074b31d6-fb71-53a1-b52a-dfca8080b9df",
@@ -85,38 +65,9 @@
     },
     {
       "id": "7c1213e6-24c4-55a6-a648-2bfd0853ffce",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "capture.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "shared-loop",
+      "content": [
         "## Shared Loop",
         "",
         "Every mode uses the same conceptual loop:",
@@ -171,42 +122,33 @@
         "not capture blockers.",
         ""
       ],
-      "label": "shared-loop"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "capture.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "0b7398a5-97ea-5730-af57-a4fa10206a50",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "capture.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "interactive-reviewed-capture",
+      "content": [
         "## Interactive Reviewed Capture",
         "",
         "`--capture` starts in `Capture.Stance::Review`.",
@@ -322,42 +264,33 @@
         "turns and supporting User turns.",
         ""
       ],
-      "label": "interactive-reviewed-capture"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "capture.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "cf55d0b2-cd64-543f-ae5a-e992053b7ea3",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "capture.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "capture-stances",
+      "content": [
         "## Capture Stances",
         "",
         "`::discuss` enters a sticky Discuss stance. Continue ordinary conversation,",
@@ -371,42 +304,33 @@
         "change the evidentiary status of already captured records.",
         ""
       ],
-      "label": "capture-stances"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "capture.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "7e4bb270-2eb8-5757-b99c-39b0dd564611",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "capture.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "automatic-unreviewed-capture",
+      "content": [
         "## Automatic Unreviewed Capture",
         "",
         "`--capture --auto` and `--capture --unreviewed` are the same route. The Agent",
@@ -437,42 +361,33 @@
         "adds a passing Gate.",
         ""
       ],
-      "label": "automatic-unreviewed-capture"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "capture.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "e4221a64-673c-505b-917d-e0fc3833b17e",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "capture.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "read-only-audit",
+      "content": [
         "## Read-Only Audit",
         "",
         "`--capture --audit` performs Contextualize and Map, presents the compact",
@@ -481,42 +396,33 @@
         "records.",
         ""
       ],
-      "label": "read-only-audit"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "capture.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "e8c0e7c8-e29b-5482-9f2c-587fc89ece0a",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "capture.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "landing-through-tarav-diagram",
+      "content": [
         "## Landing Through Tarav.Diagram",
         "",
         "Create no `Diagram.Draft` or `Capture.Manifest` during ordinary reviewed",
@@ -645,7 +551,27 @@
         "Assertion.Engine recomputes Gate standing from Chatlas evidence. Report the",
         "result without writing derived `passed` flags into Annotation records."
       ],
-      "label": "landing-through-tarav-diagram"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "capture.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
   "shared": {

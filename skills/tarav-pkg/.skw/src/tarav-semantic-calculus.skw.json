@@ -5,8 +5,9 @@
   "blocks": [
     {
       "id": "80e78167-c560-5473-a718-f7feb5896c2e",
-      "type": "Tarav.Skillware.LiteralBlock",
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "content",
+      "content": [
         "# Tarav Semantic Calculus",
         "",
         "This document describes Tarav's current candidate design for constructing,",
@@ -395,8 +396,7 @@
         "  `e22e51cc-bf92-4369-9b2c-36a6c990ffd2`",
         "- `Deferred.Assertion.Audit.And.Migration` —",
         "  `6f2f010d-ecc9-4832-aeb1-993bfb760425`"
-      ],
-      "label": "content"
+      ]
     }
   ]
 }

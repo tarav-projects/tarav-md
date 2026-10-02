@@ -5,8 +5,9 @@
   "blocks": [
     {
       "id": "074b31d6-fb71-53a1-b52a-dfca8080b9df",
-      "type": "Tarav.Skillware.LiteralBlock",
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "introduction",
+      "content": [
         "# Git Commit Evidence",
         "",
         "Use this module for `tarav-hugentics --commit [PATH...]` and for Git commits",
@@ -85,8 +86,7 @@
         "Inspect the scoped diff and run the relevant checks before every completion",
         "commit. Report each completion hash, Breadcrumb audit result, and honest evidence",
         "gap. Report a start hash only when a composing workflow created one."
-      ],
-      "label": "introduction"
+      ]
     }
   ]
 }

@@ -5,8 +5,9 @@
   "blocks": [
     {
       "id": "15904778-2c1d-588d-8c5f-91af4b07385c",
-      "type": "Tarav.Skillware.LiteralBlock",
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "content",
+      "content": [
         "# Tarav Diagram Review",
         "",
         "Use this module to review existing `User.Touched.Chatlas.Index` Block Lines",
@@ -86,8 +87,7 @@
         "A passing Gate makes its Line ship reviewed. Missing wording, token, role,",
         "ordering, or evidence produces POIs without deleting the record or blocking",
         "future work."
-      ],
-      "label": "content"
+      ]
     }
   ]
 }

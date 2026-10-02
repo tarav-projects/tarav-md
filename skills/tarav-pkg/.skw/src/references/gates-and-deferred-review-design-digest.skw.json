@@ -5,8 +5,9 @@
   "blocks": [
     {
       "id": "b853c694-3b89-593e-ac8e-da9f2a12f7c4",
-      "type": "Tarav.Skillware.LiteralBlock",
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "content",
+      "content": [
         "# Gates and Deferred Review",
         "",
         "## Status",
@@ -249,8 +250,7 @@
         "  type without creating conflicting policies?",
         "- How should a later review add Gate evidence when the original Line wording",
         "  should remain unchanged?"
-      ],
-      "label": "content"
+      ]
     }
   ]
 }

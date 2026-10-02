@@ -5,8 +5,9 @@
   "blocks": [
     {
       "id": "3ab3f886-0448-5f73-b76b-1a6238de7c65",
-      "type": "Tarav.Skillware.LiteralBlock",
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "content",
+      "content": [
         "# Legacy Tarav Skill Mine",
         "",
         "This module provides deliberate read-only access to Tarav skills displaced by",
@@ -45,8 +46,7 @@
         "When an old idea remains valuable, re-express it for the current system and",
         "copy or rewrite it into an appropriate active surface. Nothing becomes active",
         "by reference to its Attic location."
-      ],
-      "label": "content"
+      ]
     }
   ]
 }

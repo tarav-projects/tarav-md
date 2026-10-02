@@ -5,38 +5,9 @@
   "blocks": [
     {
       "id": "e4af15ad-8b28-5344-b389-0ab1a0ce9942",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "reading-club.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "introduction",
+      "content": [
         "# Hugentics Reading Club",
         "",
         "Load this module for `tarav-hugentics --reading-club [DOCUMENT]`.",
@@ -48,8 +19,26 @@
         "matching, chunking, discussion, and capture.",
         ""
       ],
-      "label": "introduction",
-      "reading_deps": [
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "reading-club.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        },
         {
           "type": "Tarav.SKW.Reading.InlineDependency",
           "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
@@ -58,38 +47,9 @@
     },
     {
       "id": "4c6e6b34-6ce3-5e93-a77c-b7df49acadbc",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "reading-club.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "boundaries",
+      "content": [
         "## Boundaries",
         "",
         "- The Club is a reading workspace, not a canonical document library, identity",
@@ -109,42 +69,33 @@
         "  material or discard uncaptured discussion.",
         ""
       ],
-      "label": "boundaries"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "reading-club.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "3b60237f-c3d4-5ae1-be76-647bab638423",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "reading-club.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "project-resolution",
+      "content": [
         "## Project resolution",
         "",
         "Use the read-only logistical CLI before opening a project:",
@@ -171,42 +122,33 @@
         "developing interpretation rather than article authority.",
         ""
       ],
-      "label": "project-resolution"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "reading-club.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "1d94d8b9-8463-531e-9dce-e0e05f1719de",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "reading-club.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "reading-loop",
+      "content": [
         "## Reading loop",
         "",
         "The natural loop is:",
@@ -232,42 +174,33 @@
         "or treat a chat chunk as more authoritative than the Markdown transcript.",
         ""
       ],
-      "label": "reading-loop"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "reading-club.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "fc0fd58f-5265-557e-9f85-2ea5565a4fc0",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "reading-club.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "reading-frames",
+      "content": [
         "## Reading Frames",
         "",
         "Reading commands have typed chat outputs. These are skill-level behavioral",
@@ -308,42 +241,33 @@
         "that Frame.",
         ""
       ],
-      "label": "reading-frames"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "reading-club.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "7535ac13-1db8-5330-9a33-8dc2d09b67dd",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "reading-club.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "chat-presentation",
+      "content": [
         "## Chat presentation",
         "",
         "Treat chat as a flexible reading interface over the project transcript. Keep",
@@ -389,42 +313,33 @@
         "that is readable and consistent within the current discussion.",
         ""
       ],
-      "label": "chat-presentation"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "reading-club.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "59a47ae6-001e-588c-9c72-4bd04bc13661",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "reading-club.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "runtime-commands",
+      "content": [
         "## Runtime commands",
         "",
         "- `::forward` — run an automatic annotation checkpoint over pending",
@@ -455,42 +370,33 @@
         "visibly before continuing.",
         ""
       ],
-      "label": "runtime-commands"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "reading-club.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "4967d8c0-028a-5c50-b658-8b38f7084a65",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "reading-club.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "capture",
+      "content": [
         "## Capture",
         "",
         "Capture is selective and Agent-operated. Preserve the User's corrections,",
@@ -516,7 +422,27 @@
         "checkpoint preserved, but its principal visible output is always the new",
         "`Reading.Source.Frame`."
       ],
-      "label": "capture"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "reading-club.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
   "shared": {

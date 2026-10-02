@@ -5,38 +5,9 @@
   "blocks": [
     {
       "id": "2e7f1b44-c79f-5b9a-89ab-80f81a9f36cd",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "harvest.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "introduction",
+      "content": [
         "# Implementation Harvest Workflow",
         "",
         "Load this module only for `--impl --harvest` or `--impl-harvest`.",
@@ -46,8 +17,26 @@
         "it does not design or edit by itself.",
         ""
       ],
-      "label": "introduction",
-      "reading_deps": [
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "harvest.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        },
         {
           "type": "Tarav.SKW.Reading.InlineDependency",
           "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
@@ -56,38 +45,9 @@
     },
     {
       "id": "703266a1-9c6e-5e55-a275-7b8f9c2978e6",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "harvest.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "readiness-judgment",
+      "content": [
         "## Readiness Judgment",
         "",
         "Readiness is a ranking rather than a mechanical classifier:",
@@ -102,42 +62,33 @@
         "When uncertain whether a User decision remains open, park the candidate.",
         ""
       ],
-      "label": "readiness-judgment"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "harvest.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "35ab1941-51ed-5b63-9fba-5f66036034a5",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "harvest.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "scan",
+      "content": [
         "## Scan",
         "",
         "Build candidates from the intersection of:",
@@ -149,42 +100,33 @@
         "the scope suitable for one live-note Impl.Req and one `Impl.Req.Collection`.",
         ""
       ],
-      "label": "scan"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "harvest.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "83c12868-35c2-5a0b-93d2-2c76a24c54d1",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "harvest.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "candidate-checkpoint",
+      "content": [
         "## Candidate Checkpoint",
         "",
         "In Interactive mode, present the best-ready candidate, why it ranks highest,",
@@ -195,55 +137,33 @@
         "parked set in the produced live note, and continue without a checkpoint.",
         ""
       ],
-      "label": "candidate-checkpoint"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "harvest.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "503a9ff2-ac6d-59b6-bcf3-8199ad83de96",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "harvest.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "develop.skw.json"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "delegation",
+      "content": [
         "## Delegation",
         "",
         "Pass the selected candidate and its exact User-Touched provenance to",
@@ -254,8 +174,32 @@
         "it is not silently discarded.",
         ""
       ],
-      "label": "delegation",
-      "links": [
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "harvest.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "develop.skw.json"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        },
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
           "target": "ba708664-4a24-5178-b78b-be11a7cd83c3",
@@ -270,44 +214,35 @@
     },
     {
       "id": "b1875eb0-9970-5398-a1d2-a962eaca00a3",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "harvest.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "completion",
+      "content": [
         "## Completion",
         "",
         "Report the selected candidate, why it was ready, the resulting Impl.Req path",
         "and Collection, the implemented result, and the parked candidates."
       ],
-      "label": "completion"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "harvest.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
   "shared": {

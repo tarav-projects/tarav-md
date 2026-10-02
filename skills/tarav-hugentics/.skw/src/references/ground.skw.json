@@ -5,51 +5,9 @@
   "blocks": [
     {
       "id": "4dc4c615-dd53-5d63-a60c-fe8f474e5410",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "ground.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/tarav-diagram.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "introduction",
+      "content": [
         "# Hugentics Grounding",
         "",
         "This module runs the active `tarav-hugentics --ground [FOCUS]` workflow. It",
@@ -63,8 +21,32 @@
         "semantic database. It may create and maintain the session's View.",
         ""
       ],
-      "label": "introduction",
-      "reading_deps": [
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "ground.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/tarav-diagram.md"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        },
         {
           "type": "Tarav.SKW.Reading.InlineDependency",
           "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
@@ -73,38 +55,9 @@
     },
     {
       "id": "880404d6-c44e-511e-ae28-2f3489e83066",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "ground.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "responsibility-boundary",
+      "content": [
         "## Responsibility Boundary",
         "",
         "> Tarav provides navigable context mechanics; the Agent decides what is",
@@ -115,42 +68,33 @@
         "and POIs so the Agent and User can reason from them.",
         ""
       ],
-      "label": "responsibility-boundary"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "ground.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "38eb88c9-73a7-5d2b-8a44-35b1d94c0e0f",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "ground.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "session-view-convention",
+      "content": [
         "## Session View Convention",
         "",
         "Grounding Views use these top-level `about.json` fields:",
@@ -168,42 +112,33 @@
         "and queryable through `about.json`.",
         ""
       ],
-      "label": "session-view-convention"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "ground.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "2cc8dec2-d5c6-5206-8a1f-20cf9afa301b",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "ground.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "workflow",
+      "content": [
         "## Workflow",
         "",
         "1. Resolve and refresh the current session with",
@@ -274,42 +209,33 @@
         "is unavailable or insufficient.",
         ""
       ],
-      "label": "workflow"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "ground.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "fae5b80d-d139-55a3-8383-3f3c47f033d1",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "ground.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "completion-report",
+      "content": [
         "## Completion Report",
         "",
         "Return a compact, continuation-oriented report containing only useful parts:",
@@ -326,7 +252,27 @@
         "coverage is a capture opportunity, not permission to invent context or mutate",
         "the Diagram during grounding."
       ],
-      "label": "completion-report"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "ground.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
   "shared": {

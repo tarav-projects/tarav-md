@@ -5,45 +5,34 @@
   "blocks": [
     {
       "id": "569040dd-43e5-5cd3-8b19-0ccc9c4ba20f",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "general-practices.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "introduction",
+      "content": [
         "# Implementation Practices",
         "",
         "Apply these practices while designing and executing implementation work.",
         ""
       ],
-      "label": "introduction",
-      "reading_deps": [
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "general-practices.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        },
         {
           "type": "Tarav.SKW.Reading.InlineDependency",
           "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
@@ -52,38 +41,9 @@
     },
     {
       "id": "c13f4cbf-32e6-5cab-b1aa-d0e8e15d02c3",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "general-practices.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "before-editing",
+      "content": [
         "## Before Editing",
         "",
         "- Read project and target-area instructions first.",
@@ -92,42 +52,33 @@
         "- Match established codebase patterns unless the accepted design changes them.",
         ""
       ],
-      "label": "before-editing"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "general-practices.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "947ffe13-e2b8-5794-86a9-9189c4d63d42",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "general-practices.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "writing-code",
+      "content": [
         "## Writing Code",
         "",
         "- Implement the minimum coherent change that satisfies the request.",
@@ -138,42 +89,33 @@
         "  or unrelated refactors unless the request requires them.",
         ""
       ],
-      "label": "writing-code"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "general-practices.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "4d611108-82ee-5066-83d4-92845f2461d8",
-      "type": "Tarav.Skillware.AgentGenerationBlock",
-      "prompt": [],
-      "context": [
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "general-practices.skw.json",
-              "pointer": "/shared/maintenance"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        },
-        {
-          "kind": "reference",
-          "reference": {
-            "type": "Tarav.Reference.StructuredFile",
-            "locator": {
-              "path": "../../../../../tarav-pkg/CONSTITUTION.md"
-            }
-          },
-          "roles": [
-            "maintenance",
-            "dependency"
-          ]
-        }
-      ],
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "feedback",
+      "content": [
         "## Feedback",
         "",
         "- Run the immediate feedback loop after each vertical slice.",
@@ -183,7 +125,27 @@
         "  revealed, not merely for the one incident.",
         ""
       ],
-      "label": "feedback"
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "general-practices.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
     }
   ],
   "shared": {

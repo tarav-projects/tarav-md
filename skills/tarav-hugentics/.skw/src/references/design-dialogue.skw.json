@@ -5,8 +5,9 @@
   "blocks": [
     {
       "id": "64afe1fc-2c46-5458-8b8c-bc436447ccb8",
-      "type": "Tarav.Skillware.LiteralBlock",
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "introduction",
+      "content": [
         "# Design Dialogue",
         "",
         "```text",
@@ -75,8 +76,7 @@
         "Impl.Req, change product code, or start implementation. The conversation may",
         "remain exploratory and can later supply context to another workflow."
       ],
-      "label": "introduction",
-      "links": [
+      "annotations": [
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
           "target": "e5376d6e-e30c-5745-a278-463e37390876",

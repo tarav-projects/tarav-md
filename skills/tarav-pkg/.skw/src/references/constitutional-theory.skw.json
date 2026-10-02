@@ -5,8 +5,9 @@
   "blocks": [
     {
       "id": "1dde7435-6f33-5883-9bd0-6cff04b2d761",
-      "type": "Tarav.Skillware.LiteralBlock",
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "content",
+      "content": [
         "# Constitutional Theory",
         "",
         "A constitution is a system's central alignment surface. It states fundamental principles and boundaries without attempting to contain all of the system's design truth.",
@@ -39,8 +40,7 @@
         "Applicability follows identity and context, not the mere occurrence of a name. Another surface may use the same name while explicitly disclaiming identity with the subject addressed by the constitution.",
         "",
         "Readers are responsible for resolving constitutional references through the constitution, the surrounding system, contextual meaning, and claims of identity. A constitution may depend on interpretation without reproducing the entire system inside itself."
-      ],
-      "label": "content"
+      ]
     }
   ]
 }

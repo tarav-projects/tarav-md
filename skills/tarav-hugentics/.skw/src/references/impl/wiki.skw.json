@@ -5,8 +5,9 @@
   "blocks": [
     {
       "id": "7b999e4a-55ef-5281-b062-495ea5552371",
-      "type": "Tarav.Skillware.LiteralBlock",
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "introduction",
+      "content": [
         "# Wiki-backed implementation",
         "",
         "Use this module by default for new implementation requests, for explicit",
@@ -168,14 +169,11 @@
         "if any, and unresolved gaps.",
         "A verified implementation with pending Wiki capture must report both statuses."
       ],
-      "label": "introduction",
-      "reading_deps": [
+      "annotations": [
         {
           "type": "Tarav.SKW.Reading.InlineDependency",
           "target": "f6ff186b-ce47-5140-97bd-82d8b8b4f383"
-        }
-      ],
-      "links": [
+        },
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
           "target": "e5376d6e-e30c-5745-a278-463e37390876",

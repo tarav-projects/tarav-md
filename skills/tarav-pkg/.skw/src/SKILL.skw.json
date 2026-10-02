@@ -5,8 +5,9 @@
   "blocks": [
     {
       "id": "4897dbf2-fcdf-5af7-ae62-a792d691e4fb",
-      "type": "Tarav.Skillware.LiteralBlock",
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "content",
+      "content": [
         "---",
         "name: tarav-pkg",
         "description: \"Tarav's constitutional and candidate big-picture design root. Use when working on Tarav itself or when a surface must align with Archive.Attic, Tarav.Archive, Tarav.Diagram, Tarav.Bloberia, Chatlas-backed evidence, contextualization, or the legacy Tarav skill mine.\"",
@@ -179,8 +180,7 @@
         "",
         "Without an explicit module, use this file as orientation, read the",
         "Constitution, and route to the smallest relevant current design surface."
-      ],
-      "label": "content"
+      ]
     }
   ]
 }

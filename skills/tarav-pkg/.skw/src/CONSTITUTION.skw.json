@@ -5,8 +5,9 @@
   "blocks": [
     {
       "id": "c551f217-5c89-5683-969c-0448262f9ac0",
-      "type": "Tarav.Skillware.LiteralBlock",
-      "output": [
+      "type": "Tarav.Skillware.Block",
+      "label": "content",
+      "content": [
         "# Tarav Constitution",
         "",
         "## Preamble",
@@ -240,8 +241,7 @@
         "A generation-context Annotation may link archived `User.Touched.Data` to an external `Product.Surface`. Its provenance claims are `Annotation.Assertions` and must be scored like other Assertions.",
         "",
         "Generation context must distinguish data presented to the agent from claims about what influenced the agent’s internal reasoning. Tarav makes contextual provenance inspectable without prescribing or claiming knowledge of that reasoning."
-      ],
-      "label": "content"
+      ]
     }
   ]
 }
