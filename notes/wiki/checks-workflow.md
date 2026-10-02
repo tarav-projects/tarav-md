@@ -153,3 +153,19 @@ and rejects a returned `CheckPOI` whose situation differs. SKW now creates
 separate generation-input and tracked-context freshness checks before running
 them, so evaluation does not reread mutable external inputs.
 <!-- tarav.breadcrumb da3da29ce0211b9c054f99b7090f9b8f8e6ab9412554634f4d012ccea5a08ce2 -->
+
+## Reference resolution Checks
+
+A declared Reference can expose an independently runnable Check without a
+freshness baseline. Successful resolution produces no failure POI. A broken or
+currently unavailable target produces a CheckPOI that retains the declaration,
+its owning coordinate, and the available failure reason. This keeps resolution
+visible when dependent freshness cannot construct its own situation.
+<!-- tarav.breadcrumb 3aa317a1b22789b5ee5fc19c65c8528d27e340883f1ccc13cd2fc419969d5246 -->
+<!-- tarav.breadcrumb 0ce78f0cbbc4e89bf5e218c068f5d5fe0cf00f6dd0322fbddae510f687b53c22 -->
+
+SKW implements this contract for typed generation-context References, including
+local object-index References and indexed objects that are themselves
+References. Loading types the declarations without following their targets;
+the bound Check and operations that consume context perform resolution. Existing
+reading and loading Checks retain ownership of their own graph edges.
