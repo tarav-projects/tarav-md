@@ -5,6 +5,23 @@
 1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
 -->
 
+## SKW Code and reader-facing products
+
+`skw.code` is the common workflow for developing instruction surfaces as
+typed, inspectable source. It owns neutral documents and blocks, workflow-owned
+annotations, reading declarations, and compilation. Specialized workflows such
+as `skw.skills` can add conventions and operations without making those
+conventions universal.
+<!-- tarav.breadcrumb 523d48e8728e6e09048da553a2245914cf71ab303c84816c0de86b85d98dc431 -->
+<!-- tarav.breadcrumb 23c2754e6eb59f11ead681988b9d9cb095b8f24be37dcce83ff479cfaadd5d07 -->
+
+The “code” is developer-side structure, not necessarily what the consuming
+agent reads. Compilation or rendering produces an ordinary surface—often plain
+instructions or text—and the reader interprets that product. The compiler
+concept remains inside `skw.code`; it is not a separate workflow.
+<!-- tarav.breadcrumb 4b5e244fe943e78db43ee36c5be2a6ffac69b42ce5bfa7c8669b6dbd009733c4 -->
+<!-- tarav.breadcrumb 23aa1e251759801a884ca29cdd94fb85cd87ef15a2b4c91169fcf81b0bb860c4 -->
+
 ## Neutral typed block substrate
 
 The implemented SKW document model uses one neutral concrete `SkwBlock`:
@@ -24,8 +41,8 @@ than a separate kind of block. Reading declarations are annotation subtypes as
 well. Consumers select only the annotation Types they understand, so several
 workflows can act on the same block without sharing one relationship
 vocabulary.
-<!-- tarav.context 1f561f5d:19bbdfd778ba3641 -->
-<!-- tarav.context 1f561f5d:b797b3be7d0a82e5 -->
+<!-- tarav.breadcrumb e195fddade738ec9bb5f28146f0d489d58dff0b2e85704df65a6b7122f120e84 -->
+<!-- tarav.breadcrumb 312ae6452b9c10c8018d1853611a35fe9ffdfc979a4a45997a70cb7270fe59d0 -->
 
 Every semantic value retained inside the block is typed. `objects_index`
 provides optional block-local names for reusable TaravObjects; those names are
@@ -33,14 +50,14 @@ not Ships. An annotation may instead inline a typed object directly. A typed
 `ObjectIndexReference` resolves a local name against the containing block.
 The index owns local storage and addressing, while each annotation owns the
 meaning it assigns to an object.
-<!-- tarav.context 1f561f5d:b974c6c7f7064562 -->
-<!-- tarav.context 1f561f5d:0b1b0473a31afaa7 -->
+<!-- tarav.breadcrumb 590131fc113853c66a10b3dabc3678ba783b9fb3a679cbd2736714ad8ac7f0f5 -->
+<!-- tarav.breadcrumb 076fb6c47b9e9fba75c14492da7c5848a3d4d7ef452e9ce1e405d6d23c75661d -->
 
 The SKW generation path gives an agent the complete block. It has no prompt
 placeholder language or argument-binding layer. `GenerationAnnotation` declares
 ordered instructions and context objects. Instruction freshness and declared
 context freshness are independent acceptance scopes.
-<!-- tarav.context 1f561f5d:60d4d034d5e0e584 -->
+<!-- tarav.breadcrumb 65a2f59a39ba8a2d1d8179d3151ccc3e9946d4ad2b9fa40bd1feb64daaf7fbbb -->
 
 ## Typed SKW depots and skill objects
 
