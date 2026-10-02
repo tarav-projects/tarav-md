@@ -160,6 +160,29 @@ commands, and skills are consumers of the library and should invoke the same
 workflow operations.
 <!-- tarav.breadcrumb 59fca4e0a689608465452887b506baa3dcafc6ee73f81bfa3eb7aec258211ed3 -->
 
+### Project packages as operational libraries
+
+A project package can serve as an operational interface for agent-written
+Python. The project owns bounded operations whose code precisely declares its
+formats, placement rules, mutations, and checks. The agent remains free to
+compose those operations into a new script for the task and to supply the
+semantic judgment the operation cannot encode.
+<!-- tarav.breadcrumb c93ec20584d6cf7a3b79ee853970fae450de898f157a0f0003bccb168258cdf7 -->
+
+The useful boundary is local and composable: an operation exposes typed inputs
+and ordinary Python values, performs one coherent project mutation, and returns
+structured results. When the operation can assess its result, it returns bound
+POIs directly to the caller so revision does not depend on parsing CLI output or
+remembering a separate audit command.
+<!-- tarav.breadcrumb 29780168987ad4a26e2ea82c378a091b76503fd367a87c015be13e5f5987ccd0 -->
+
+The learning path is part of this interface. Project instructions should point
+to one runnable example and the relevant source contracts, allowing progressive
+inspection without requiring an agent to reconstruct the whole package. This
+pattern does not require a generic operation engine or a Program lifecycle;
+those abstractions remain discoveries for workflows that demonstrate a need.
+<!-- tarav.breadcrumb 2e1a04bddd0cfdad85779e8768007cf92d869714630a1132b5ecedae419e923b -->
+
 ## Agent-directed context navigation
 
 Where context efficiency matters, Tarav should remain mechanically simple and
