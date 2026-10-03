@@ -53,8 +53,35 @@ name "live context". The CLI workflow subtypes its types to take part.
 <!-- tarav.breadcrumb 8cd458e77e8a0c426f2e427a6c97ca90bb29388a5da81d57b027984651e98130 -->
 <!-- tarav.breadcrumb 34397ad86bd561231be38dc5ce8889dd7580122be0ac80af0035c0d8fe715012 -->
 
-Design request: `tarav-py/notes/live/851-cli-model-live-help-and-invocation-registry-impl-req.md`.
+Design request: `tarav-py/notes/live/851-usage-registry-cli-model-and-live-help-impl-req.md`.
 Open there: whether Live Help is a workflow beside Context or a contribution
 to a command's existing reactive `context()`, and whether a rolling window is
 acceptable inside the Archive.
 <!-- tarav.breadcrumb fea332b561da109685c9fc4bcd7da73f279d41deb6511fa8966f5af1a1436e21 -->
+
+## Usage Registry
+
+User correction to the invocation registry above: it is not a CLI log but its
+own workflow that other workflows attach to. Its semantic is a place where you
+put your usage trace so Agents can discover fresh examples of how Tarav is
+being used. It is like a logging system with a specific meaning, which is why
+it is a workflow.
+<!-- tarav.breadcrumb d699c1851e82e4c2924e071440a5870192abd2a3fb344116028bfe536208c874 -->
+
+The registry does not care what is registered. Each workflow is responsible
+for knowing what to store so an Agent can see how it was used. The registry
+provides only the minimal shape, handles storage, and provides the query.
+<!-- tarav.breadcrumb f0c0aa22797d781adc7483eb03ee1cb790c9cb99f47aeaa2817a477267fda14e -->
+
+A trace can be left from inside any method, because Tarav's main interface is
+the library and the CLI is only a consumer. A CLI command is a good point for
+one, since a public command marks a typical or important path, but it is not
+the only one.
+<!-- tarav.breadcrumb 3a0d4d8d86a519410886ff3ff029a1c6ee457bddc90908475a2d4926969741a0 -->
+
+Each registering workflow may have a partition inside the registry. General
+metadata, such as the project and workflow of a call, lets Agents query back
+by those native Tarav objects; those queries are built in. Beyond them Agents
+send a general query: Tarav databases are by default sets of JSON records, so
+the model is to iterate the records and query their JSON.
+<!-- tarav.breadcrumb 4089a46c547c8145c6a20403639d58e92e7ccabf4551689c974d7b00e80b60b3 -->
