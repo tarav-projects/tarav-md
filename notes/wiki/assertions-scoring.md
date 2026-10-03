@@ -49,3 +49,24 @@ implemented this path in `tarav.l2.scoring.tribunals` and the existing
 ScoringRepository. Two different tribunal Types and case payloads use the same
 ranker in its tests; 61 focused tests passed at product commit `bd5be10`.
 <!-- tarav.breadcrumb f323afe8896d5439e0a8072c7307347d63e465238f38e60641a25d1929783a18 -->
+
+## Blessing Assertions
+
+A blessing is an attributed judgment that a still-detected POI situation can
+stand for now. Its stable `main` Assertion concerns acceptance of that exact
+blessing and situation; optional `grounds` exposes offered support as another
+question. Both can produce closed cases, while a blessing with no support can
+still be recorded and assessed as a weak case. A changed POI situation does not
+inherit the prior Assertion. Scoring stays with the scorer; a blessing's
+`score_vector()` navigates named results by Assertion identity and distinguishes
+unassessed, unscored, and scored. No score suppresses detection.
+<!-- tarav.breadcrumb cd9386fa5bdf266e06d017fbb0ea87a0305ddb1b5dee10d7aef769b3aee612e7 -->
+<!-- tarav.breadcrumb 23a585aa187d4135621104705cae64d9303f70b6002fb97a84c93b8f62235403 -->
+
+Request [847](../../../tarav-py/notes/live/847-blessing-assertions-and-score-view-impl-req.md)
+implemented this in `tarav.l1.blessings` and `tarav.l2.blessings`, with the
+shared Assertable capability in `tarav.l1.scoring`. The latter keeps the direct
+`BlessingRecord : Assertable` relationship within Tarav's import direction.
+The configured Python suite passed 154 tests in product commit `8c1fd6a`.
+Attention scheduling remains request 849.
+<!-- tarav.breadcrumb b65b4a93c1db6256b0d76f1b195c9e761d77e7b09143892564b12510a4d93da1 -->
