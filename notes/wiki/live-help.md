@@ -54,10 +54,14 @@ name "live context". The CLI workflow subtypes its types to take part.
 <!-- tarav.breadcrumb 34397ad86bd561231be38dc5ce8889dd7580122be0ac80af0035c0d8fe715012 -->
 
 Design request: `tarav-py/notes/live/851-usage-registry-cli-model-and-live-help-impl-req.md`.
-Open there: whether Live Help is a workflow beside Context or a contribution
-to a command's existing reactive `context()`, and whether a rolling window is
-acceptable inside the Archive.
 <!-- tarav.breadcrumb fea332b561da109685c9fc4bcd7da73f279d41deb6511fa8966f5af1a1436e21 -->
+
+The first implementation makes Live Help a separate workflow and retains recent
+usage in the Usage Registry's Archive partition. The day files inside its typed
+workflow folders are maintained with a seven-day default window. The CLI trace
+records option names and outcome but does not retain arbitrary argument values.
+This is the bounded starting behavior; later clients choose their own payloads.
+<!-- tarav.breadcrumb d5342ebc7c1c1d136c099d83811e196e771c61a21cf3ac976bc7a918ade9ebcc -->
 
 ## Usage Registry
 
@@ -85,3 +89,12 @@ by those native Tarav objects; those queries are built in. Beyond them Agents
 send a general query: Tarav databases are by default sets of JSON records, so
 the model is to iterate the records and query their JSON.
 <!-- tarav.breadcrumb 4089a46c547c8145c6a20403639d58e92e7ccabf4551689c974d7b00e80b60b3 -->
+
+The implementation exposes `record_usage()` to library callers, `tarav usage
+query` to shell callers, and recent traces in each command's `--help` section.
+The command tree is derived from argparse, with deterministic Ships for command
+paths. The implementation checks command metadata and surfaces missing help as
+POIs. Source: `tarav-py/src/tarav/l1/{usage,cli,live_help}/` and
+`tarav-py/src/tarav/l3/cli/cli.py`; verification: 52 focused tests passed.
+<!-- tarav.breadcrumb ee1bc214c3425f509955c22f39bc8435d666e66ccafa3cea32c69f29e6cadd57 -->
+<!-- tarav.breadcrumb 7645d4c33f7385a4d60c93e66542f1fad65448c66a2ae8c1a33b1aa4da7262c7 -->
