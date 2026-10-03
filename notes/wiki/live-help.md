@@ -123,3 +123,23 @@ at registration, there is no default, and a command without one raises a
 reminder POI.
 <!-- tarav.breadcrumb b2159796c9fabf9e92e9932136f086cb6eb4ebc62e326e8419a979525bc2eeca -->
 
+## Typed traces, rendered by their owner
+
+The emitter of a trace should not need to know its consumers, only the
+semantic that the trace will contextualize Agents. So a usage record is
+typed, and its type has a render method: the type's owner does the rendering.
+Help filters by type. A command's help shows recent traces recorded by the
+command line; a trace recorded inside a method describes how that method was
+called and belongs to that method's help, a later topic.
+<!-- tarav.breadcrumb 7e686dfe180afdf786e915a110a473a7ed183e2d2d4b900f4b7207d95332df56 -->
+
+Help must not print whatever blob is there. Without traces of the right type
+it shows none.
+<!-- tarav.breadcrumb ee5ade92b67c83ed823fc822ad2cb06ba46f867a7bd720c4abb11741072f2a05 -->
+
+A base type describes the base record of the usage registry and everybody can
+subtype it. The minimum viable product is the command line, deployed on at
+least a few Tarav commands before any other user exists. Design request:
+`tarav-py` note 855.
+<!-- tarav.breadcrumb 61783d267a791905ed3a16f451b59c4df6d2d67933b4bb9f6cf7d072fa3c3d57 -->
+
