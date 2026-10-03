@@ -243,3 +243,18 @@ text. Both share the common POI features, and more types will come as new
 functionality is discovered. Being tracked is a separate axis from these
 types.
 <!-- tarav.breadcrumb 8b3336827f9fbccf388c9f401345f53a11cb8da238a5e592047801db4967c302 -->
+
+### First tracking and board slice
+
+Request 854 added optional `TrackedPOI` records at a caller-selected root.
+An identified POI is tracked by its situation identity; completed evaluations
+of its exact declared scope can update detection and history. Absence from an
+incomplete run or another scope changes nothing. The pageable board filters by
+workflow, type, detection, disposition, and subject. It may join Blessings and
+other Decisions, but a Blessing never changes detection: a still-detected POI
+remains visible. The initial disposition view distinguishes blessed from
+unreviewed; broader attention policy is later work. See
+`tarav-py/src/tarav/l1/poi/tracking.py`, `tarav-py/src/tarav/l2/poi/board.py`,
+and `tarav-py/tests/decisions/`.
+<!-- tarav.breadcrumb 2bb73a07d0cbaea4b24a0b1086e966016ff1235491737c85db59122fd81d5250 -->
+<!-- tarav.breadcrumb b124ef563fb16387a160682d14c030280730d37f6d59a9de5be47ebbcbce7f28 -->

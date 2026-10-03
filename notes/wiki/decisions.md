@@ -3,10 +3,12 @@
 What we currently understand about Decisions: the recorded interventions that
 users and agents make in a Tarav system. The discussion arose while
 redesigning g70203 on Tarav; its project-side record is
-`g70203-project/g70203-md/notes/wiki/attention-and-decisions.md`. This is
-design direction, not a claim about implemented code.
+`g70203-project/g70203-md/notes/wiki/attention-and-decisions.md`. The design
+sections below preserve that discussion; the implementation snapshot is
+separate.
 
 <!-- tarav.sessions
+6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 64298cbc = claude-code:9da4cef5-68b7-4d17-8a06-1351ca51e82f @64298cbc8db2e7aa971e0828653c07bcb483cfed40931fdf87d5abe7ce1c60b3
 -->
 
@@ -78,3 +80,18 @@ decisions. That split should be quantitative.
   than define a new one.
 - Orders could still keep who decided and on what evidence, so a wrong order
   is traceable when its data is later found wrong.
+
+## First implementation slice
+
+Request 854 established `Decision` as the common attributed, Assertable
+record. `BlessingRecord` inherits it without changing its Type identity or
+stored schema: the retained `actor` is exposed as a `decider` accessor. `Order`
+and `ReportedAction` retain subjects and optional tracked-POI identities.
+Their generic main Assertion identifies the account, but no assessment case or
+attention schedule is prescribed yet. This implements the type relationship,
+not the broader claim that every Decision is already re-evaluated over time.
+See `tarav-py/src/tarav/l1/decisions/`,
+`tarav-py/src/tarav/l1/blessings/store.py`, and the tests in
+`tarav-py/tests/decisions/`.
+<!-- tarav.breadcrumb 811f8c971a059772c3d3e8f66d45841c393ee5c39f29a4daec25b00abff2aa03 -->
+<!-- tarav.breadcrumb 76922a6e4635f4259582009a60a23f8fd0bdaabc78e6142fb62da22eb731f43f -->
