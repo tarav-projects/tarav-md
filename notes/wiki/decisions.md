@@ -95,3 +95,28 @@ See `tarav-py/src/tarav/l1/decisions/`,
 `tarav-py/tests/decisions/`.
 <!-- tarav.breadcrumb 811f8c971a059772c3d3e8f66d45841c393ee5c39f29a4daec25b00abff2aa03 -->
 <!-- tarav.breadcrumb 76922a6e4635f4259582009a60a23f8fd0bdaabc78e6142fb62da22eb731f43f -->
+
+<!-- tarav.sessions
+5a029cbf = claude-code:8c55cc60-f28a-439f-a6a0-0521567e600e @5a029cbf49a299c9709013b8ccb3fc517b2fb56fed373d3da819b6ea842afa2f
+-->
+
+## Only designed types in the core — 2026-10-03
+
+Order and Reported action were discussed as hypothetical kinds of decision and
+were never explicitly designed, so they do not belong yet in a workflow as core
+as Decisions. They are to be deleted; nothing is implemented without a clear
+need or design, and other Decision types can be defined later.
+<!-- tarav.breadcrumb 664a8d75e709b365314195f2a394c1f55ea8846932a17947c0a64b7094260fe6 -->
+<!-- tarav.breadcrumb c2a672f617ded053ddab709735d8efaeacea7b1fdef75c6957ec0b2fd74f587d -->
+
+A Decision is a point in the ontology saying that the object exists. It is not
+forced to have storage, and the Decisions workflow does not handle storage.
+Where Decisions are kept is still to be designed and may depend on the workflow
+or the project. One store for all the Decisions of a project, linked to the
+Project workflow, is the first arrangement worth establishing; others can
+follow.
+<!-- tarav.breadcrumb ad60977b9d32c9d2398fafae6430ea5fc822f31c2fd83c82c3c3b62f46a150a2 -->
+<!-- tarav.breadcrumb d8976147f1ace06e6093b1049f4f1a351f9167a4ca3d96ce329fa6ae07dc301d -->
+
+Design only so far: see
+[856](../../../tarav-py/notes/live/856-remove-order-and-reported-action-impl-req.md).
