@@ -4,6 +4,7 @@
 6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 5626cd5f = codex:01a0af61-72e2-7bd2-94a3-26529d6914ec @5626cd5f7db74c4f2e3838250516b5e300cc9387ac254eb65a0816a5f30555a1
 33afe59c = codex:01a07228-313a-7ab3-b6e0-aedcb5216b3c @33afe59c2f13ac5d4b59e56f7a3761d3d91c1206a1b6287b0872036739b370fd
+1ae20f8c = codex:01a0ff32-0ec2-7b72-8850-fa795135f3c9 @1ae20f8c8159f12d2402ea702cf49c876ec46a72f71ce12423ae1dbdf2a91871
 -->
 
 ## Purpose
@@ -182,6 +183,19 @@ inspection without requiring an agent to reconstruct the whole package. This
 pattern does not require a generic operation engine or a Program lifecycle;
 those abstractions remain discoveries for workflows that demonstrate a need.
 <!-- tarav.breadcrumb 2e1a04bddd0cfdad85779e8768007cf92d869714630a1132b5ecedae419e923b -->
+
+### Unified Python runner
+
+`tarav run [--project [PATH]] -- <python arguments>` is the sole Python
+execution command. The words after `--` pass to Python unchanged, including
+scripts, `-c`, `-m`, and stdin `-`. Without `--project`, it runs in the installed
+Tarav environment. Bare `--project` discovers the nearest Project from the
+current directory upward and errors outside a Project; a path starts that
+search elsewhere. A selected Project supplies its interpreter and working
+directory. Scripts import library operations explicitly; the typed Project
+bootstrap remains a library API. See `tarav-py/notes/live/850-unified-run-cli-impl-req.md`.
+<!-- tarav.breadcrumb 14a6faa72462829f9895a88e253bc36b9b8dee41f5f8ca0fac7fe68efe02e2d2 -->
+<!-- tarav.breadcrumb aff25ca088155aaafb47e52f580d396a6d31167b4240d97938348acbd6752fde -->
 
 ## Agent-directed context navigation
 
