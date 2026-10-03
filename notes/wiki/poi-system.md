@@ -4,6 +4,7 @@
 6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 5626cd5f = codex:01a0af61-72e2-7bd2-94a3-26529d6914ec @5626cd5f7db74c4f2e3838250516b5e300cc9387ac254eb65a0816a5f30555a1
 1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
+1ae20f8c = codex:01a0ff32-0ec2-7b72-8850-fa795135f3c9 @1ae20f8c8159f12d2402ea702cf49c876ec46a72f71ce12423ae1dbdf2a91871
 -->
 
 ## Detection and presentation
@@ -183,3 +184,26 @@ Blessings now retain and validate the situation identity directly, with only
 `blessed` and `unblessed` standing. CLI inspection exposes occurrence indexes,
 and the implementation is documented and verified in Request 834.
 <!-- tarav.breadcrumb 8110cf98d0196230887cba7e9f457c767d3cfbe350ac8a68b2fa73062210b916 -->
+
+## Revisable blessing attention
+
+Detection remains authoritative about whether a POI still exists. A blessing
+accepts that exact situation for now, without erasing it. An attention view
+can defer a still-detected, reviewed POI, show when its next review is due,
+and always let an agent inspect or force review of deferred entries. A POI
+that no longer appears in the current evaluation has no attention schedule.
+<!-- tarav.breadcrumb def8b47d7f1b7b6abdb46cd0d9415fe63cd01134c686466e7394fe81c74968b2 -->
+<!-- tarav.breadcrumb ebad637d2356361702cbbe3752afde31622b0fb0f41527b259a63725274db309 -->
+
+Request [849](../../../tarav-py/notes/live/849-blessing-attention-and-reassessment-impl-req.md)
+implemented a separate pageable `attention_report` over a current collector,
+BlessingStore, and ScoringRepository. Its pilot policy defers a first or weakly
+assessed blessing briefly. A sufficiently sampled favorable *relative* score
+can extend that interval, and only separately scored reviews by distinct
+actors with explicitly disjoint source groups extend it further, within a cap.
+Score, coverage, review count, and due time remain separate signals; none is a
+truth verdict. The existing full POI report and binary standing remain intact.
+The product commit is `e419920`; 63 focused and 155 configured Python tests
+passed.
+<!-- tarav.breadcrumb d2354eb4a3b6665325f7580368a4850b862e520756f3f87e59528fbc112977ec -->
+<!-- tarav.breadcrumb 751d3074eb14ff66b15620e9c9e3d339752a020789def2d6dcd7bc98c5972453 -->
