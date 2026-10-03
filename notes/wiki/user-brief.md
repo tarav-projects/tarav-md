@@ -58,3 +58,18 @@ module: the route is read-only and leaves no record of the briefing; the
 budget is about 15 lines and under about 30; without a subject it briefs the
 most recent Agent message or POI. The User has not reviewed these defaults.
 <!-- tarav.breadcrumb 0cf7a86093dd70c5b9745f61141354d4d3a1ac9c0d835ead0c9c81b220269f29 -->
+
+## Topic generality
+
+User correction: the POI was only an example. The general semantic is to
+find the last thing discussed with the User about the topic, then explain the
+topic from first principles; "from first principles" is the important part.
+The topic is whatever the User asks to be briefed about. The skill must not
+treat a POI as a different kind of object. A POI is a typical case, and the
+Agent must understand what it is about to explain it correctly, like any
+other topic.
+<!-- tarav.breadcrumb 5b26ea9a0cd92df6cffd50c7f937799101eb0cdaac05578cde297e2b474957d4 -->
+
+The module now takes a `TOPIC`, adds an explicit "understand the topic
+yourself first" step, and names the POI only as an example.
+<!-- tarav.breadcrumb 7b37ced849e2a7eeb2c051e709468edfb60498569f51d119b05888a5f805f2ed -->
