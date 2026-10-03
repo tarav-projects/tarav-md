@@ -122,3 +122,25 @@ Implemented in request 856: both types are removed, `Decision` prescribes no
 concrete subtype, and `DecisionStore` holds only the types its caller
 registers. The earlier paragraphs describing the two types are history. See
 [856](../../../tarav-py/notes/live/856-remove-order-and-reported-action-impl-req.md).
+
+## The Project's Decision store — request 857
+
+Each Project has a storage solution for its Decisions, and everything that is
+a subtype of Decision has this place. Workflows may keep theirs elsewhere, but
+what is tracked as the Project's decisions is what is put in this store.
+<!-- tarav.breadcrumb 02351e02102a84c8d98d0dc14b907405dc4486094e4f349064e3870b87bdfa56 -->
+
+Blessings attached to a Project go there by default. The types differ and the
+location is shared; a general filter by Type, subtypes included, serves them
+all.
+<!-- tarav.breadcrumb c1f0261c96fb59b2b8d47a8a2916af700b9d6d94fa6f572bcd34294280f850d7 -->
+
+Implementation: `Project.decisions()` opens `ProjectDecisions`
+(`tarav-py/src/tarav/l2/project/decisions.py`) over `.tarav/decisions/`, one
+append-only file per Record. `snapshot(decision_type=...)` selects a Type and
+its subtypes through the registered Record types; an unregistered type is a
+finding. `blessings()` returns a `BlessingStore` over the same directory, so
+standing is computed as before. `DecisionStore` is gone from the Decisions
+workflow, which owns no storage, and `Project.poi_board()` reads this store.
+Existing blessing stores were not migrated. See
+[857](../../../tarav-py/notes/live/857-project-decision-store-impl-req.md).
