@@ -118,5 +118,7 @@ follow.
 <!-- tarav.breadcrumb ad60977b9d32c9d2398fafae6430ea5fc822f31c2fd83c82c3c3b62f46a150a2 -->
 <!-- tarav.breadcrumb d8976147f1ace06e6093b1049f4f1a351f9167a4ca3d96ce329fa6ae07dc301d -->
 
-Design only so far: see
+Implemented in request 856: both types are removed, `Decision` prescribes no
+concrete subtype, and `DecisionStore` holds only the types its caller
+registers. The earlier paragraphs describing the two types are history. See
 [856](../../../tarav-py/notes/live/856-remove-order-and-reported-action-impl-req.md).
