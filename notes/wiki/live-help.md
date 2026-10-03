@@ -2,6 +2,7 @@
 
 <!-- tarav.sessions
 f5845518 = claude-code:4ee3b84e-14fa-4aa9-9c6f-8d139954fe18 @f5845518e808c6cf0496f867fc656fdad9063980a184f7c3f15c54adf8fcb31f
+6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 -->
 
 ## Learning from live material
@@ -143,3 +144,18 @@ least a few Tarav commands before any other user exists. Design request:
 `tarav-py` note 855.
 <!-- tarav.breadcrumb 61783d267a791905ed3a16f451b59c4df6d2d67933b4bb9f6cf7d072fa3c3d57 -->
 
+For a given help provider, the query selects only that provider's expected
+trace Type. Untyped legacy rows and traces of other Types do not appear in
+its count or output; Live Help does not need to count what it skips. The
+provider owns the heading and Type selection, and the trace Type owns
+rendering. This keeps Live Help independent of CLI payload fields.
+<!-- tarav.breadcrumb 1e7c8595a0cbf7b38d9080bedd27cbcd736b0da444239b9fb4fa64ed06e60502 -->
+
+Request 855 implemented this in `tarav-py`: `UsageTrace` is the common Type,
+`CommandUse` is the CLI specialization, new registry writes are typed, and
+`tarav usage query --type` selects exact Types. Existing untyped rows remain
+available to an unfiltered registry query. Command descriptors now cover
+selected Breadcrumb and Chatlas commands; short text can remain verbatim.
+The configured Python suite passed 164 tests. The product code and request
+note are the operational source for the current API.
+<!-- tarav.breadcrumb dae8175da2f849ede9ab0546628a51baa64b75ed2facc7193cc36158d7ee420b -->
