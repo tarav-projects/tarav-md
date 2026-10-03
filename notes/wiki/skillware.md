@@ -22,6 +22,25 @@ concept remains inside `skw.code`; it is not a separate workflow.
 <!-- tarav.breadcrumb 4b5e244fe943e78db43ee36c5be2a6ffac69b42ce5bfa7c8669b6dbd009733c4 -->
 <!-- tarav.breadcrumb 23aa1e251759801a884ca29cdd94fb85cd87ef15a2b4c91169fcf81b0bb860c4 -->
 
+## Reading graph type family
+
+`ReadingGraph` is the common `skw.code` Type for static analysis of declared
+reader routes. `SkillReadingGraph` is its concrete Skill-owned specialization
+and retains package binding, rendering, inspection, and path analysis. The
+Project-owned `ProjectReadingGraph` is an abstract specialization point; it
+does not yet prescribe how AGENTS.md, Tarav context, or project skills declare
+an onboarding route.
+<!-- tarav.breadcrumb 8de9cbab08cbb2cbd2676f8e2e80239f8a9afe3f13eab3097054479ad180ba04 -->
+
+This is deliberately a graph of probable routes designed by surface authors,
+not a runtime trace or constraint on an agent. Agents may navigate elsewhere;
+the graph answers whether a declared route supplies the context that its blocks
+say a reader needs. See
+[Impl.Req 841](../../../../tarav-py/notes/live/841-reading-graph-specializations-impl-req.md)
+and the implemented
+[`ReadingGraph`](../../../../tarav-py/src/tarav/l1/skw/code/graph.py) family.
+<!-- tarav.breadcrumb fba8045d4f030c9b6ce54e104c0fdd2464c982584ffb5d5e0458248b2bdc1135 -->
+
 ## Neutral typed block substrate
 
 The implemented SKW document model uses one neutral concrete `SkwBlock`:
