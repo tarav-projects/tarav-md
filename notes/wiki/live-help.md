@@ -98,3 +98,28 @@ POIs. Source: `tarav-py/src/tarav/l1/{usage,cli,live_help}/` and
 `tarav-py/src/tarav/l3/cli/cli.py`; verification: 52 focused tests passed.
 <!-- tarav.breadcrumb ee1bc214c3425f509955c22f39bc8435d666e66ccafa3cea32c69f29e6cadd57 -->
 <!-- tarav.breadcrumb 7645d4c33f7385a4d60c93e66542f1fad65448c66a2ae8c1a33b1aa4da7262c7 -->
+
+## Usage descriptors
+
+A usage trace is not the whole command. The caller knows which parts of a
+call are informative yet economical: a path, not a long file. The trace need
+not be the exact arguments; it is an informative descriptor.
+<!-- tarav.breadcrumb bfcbbb1eef3fdf79b1b7d3fe0ef016de80271e1651f4a27351c761c0e3e50cc5 -->
+
+The registry does not know what a command is or how it wants to be expressed.
+It lets the caller say what to record about its command or method call, so
+Agents get it when they ask for help. Representing the call is the caller's
+responsibility, and no mechanics are imposed. A command that receives a whole
+file's content understands itself fully and can stand for it with its first
+and last characters and a hash, respecting everyone's space. The caller must
+not put random things there: the purpose is to inform an Agent how the
+command was used.
+<!-- tarav.breadcrumb dda8b782ae871e077cc15bf34b8474897f1144a968e0030edee62682490f2687 -->
+
+This is the same pattern as
+[caller-declared identity inputs](caller-declared-identity-inputs.md).
+Implemented in `tarav-py` note 853: a command declares a descriptor function
+at registration, there is no default, and a command without one raises a
+reminder POI.
+<!-- tarav.breadcrumb b2159796c9fabf9e92e9932136f086cb6eb4ebc62e326e8419a979525bc2eeca -->
+

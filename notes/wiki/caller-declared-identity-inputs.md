@@ -2,6 +2,7 @@
 
 <!-- tarav.sessions
 6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
+f5845518 = claude-code:4ee3b84e-14fa-4aa9-9c6f-8d139954fe18 @f5845518e808c6cf0496f867fc656fdad9063980a184f7c3f15c54adf8fcb31f
 -->
 
 ## Principle
@@ -70,3 +71,13 @@ SKW generation inputs and context freshness were accepted as a good candidate
 for this pattern. The acceptance identifies an application to explore; it
 does not itself establish a completed SKW change.
 <!-- tarav.breadcrumb bee32953e3457dd67b18b6dcdf4b5470173da587e6bd75be721f961f86dadd03 -->
+
+## The same pattern for usage traces
+
+The User described this as a common Tarav design pattern beyond POI identity.
+When a shared mechanism cannot know what describes a situation, the caller
+provides the description, in the least constrained interface as a JSON record
+of key-value pairs, and is expected to be clever and brief: for a file, a
+path and a content hash, not the content. The Usage Registry applies it to
+how a command or method was called. See [Live Help](live-help.md).
+<!-- tarav.breadcrumb 7dd018d66065f9829d19e20834d29b841461470b9167973446df2ce796f67101 -->
