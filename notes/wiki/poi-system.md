@@ -5,6 +5,7 @@
 5626cd5f = codex:01a0af61-72e2-7bd2-94a3-26529d6914ec @5626cd5f7db74c4f2e3838250516b5e300cc9387ac254eb65a0816a5f30555a1
 1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
 1ae20f8c = codex:01a0ff32-0ec2-7b72-8850-fa795135f3c9 @1ae20f8c8159f12d2402ea702cf49c876ec46a72f71ce12423ae1dbdf2a91871
+64298cbc = claude-code:9da4cef5-68b7-4d17-8a06-1351ca51e82f @64298cbc8db2e7aa971e0828653c07bcb483cfed40931fdf87d5abe7ce1c60b3
 -->
 
 ## Detection and presentation
@@ -207,3 +208,38 @@ The product commit is `e419920`; 63 focused and 155 configured Python tests
 passed.
 <!-- tarav.breadcrumb d2354eb4a3b6665325f7580368a4850b862e520756f3f87e59528fbc112977ec -->
 <!-- tarav.breadcrumb 751d3074eb14ff66b15620e9c9e3d339752a020789def2d6dcd7bc98c5972453 -->
+
+## Tracked POIs, the board, and attention
+
+From the g70203 redesign discussion; see also [Decisions](decisions.md).
+
+"Attention" names the workflow, or workflows, that rank and sort POIs. Many
+words mean nearly the same thing with different nuances; naming will settle
+with time.
+<!-- tarav.breadcrumb 55af6d704daecce1aedebfbed879df5c70f4e6c2121dad93fd2b0adafd552259 -->
+
+The engine produces POIs, events we record. Recorded POIs are like GitHub
+issues: explicit, and they need resolving — closed, ignored, and so on. Some
+are not under agent control (a check ran and failed); others are introduced by
+the agent. A board, like GitHub's, lets agents and any workflow see and filter
+POIs, for example the unresolved POIs of their own workflow. Blessings and
+other decisions attach to recorded POIs. A system that generates POIs and
+prompts the agent to resolve them is already a driving force; with evaluation
+and automatic scoring it starts to run by itself, as md-library begins to.
+<!-- tarav.breadcrumb cb2ffc8a73a7a6d61faddbb55a13585b27e25ea0277acafbc341b96f2f09be24 -->
+
+Not every POI is recorded; that is the workflow implementer's choice. Some are
+just notifications, for instance in the command line, and still use the POI
+system for contextualization, Diagram integration, and knowing which checker
+produced them. "Issue" was a candidate name for the recorded ones but
+suggests something wrong. The agent proposed **tracked POI** (tracking as a
+property, not a new noun) and the User chose it.
+<!-- tarav.breadcrumb 0ebb27abb363a0581d03a19a36113c454a35ae0ef4a67ecb713a1316f92a44da -->
+<!-- tarav.breadcrumb aba381da3ffc2a7c7eb8a774f5082103b98c9aadc4ba7b770bd7350c702903c7 -->
+
+POIs are typed and can express any axes we need. `CheckPOI` forces a companion
+Check class, so it is clear which check failed; `NotificationPOI` is raised
+text. Both share the common POI features, and more types will come as new
+functionality is discovered. Being tracked is a separate axis from these
+types.
+<!-- tarav.breadcrumb 8b3336827f9fbccf388c9f401345f53a11cb8da238a5e592047801db4967c302 -->

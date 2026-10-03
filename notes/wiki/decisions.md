@@ -1,0 +1,80 @@
+# Decisions
+
+What we currently understand about Decisions: the recorded interventions that
+users and agents make in a Tarav system. The discussion arose while
+redesigning g70203 on Tarav; its project-side record is
+`g70203-project/g70203-md/notes/wiki/attention-and-decisions.md`. This is
+design direction, not a claim about implemented code.
+
+<!-- tarav.sessions
+64298cbc = claude-code:9da4cef5-68b7-4d17-8a06-1351ca51e82f @64298cbc8db2e7aa971e0828653c07bcb483cfed40931fdf87d5abe7ce1c60b3
+-->
+
+## Decisions must never be permanent
+
+A system that asks the user to decide fails if a decision becomes permanent:
+if the user made a mistake, the problem never comes back. Detection is
+separated from decision. Every recorded decision is re-evaluated, at
+different priorities: a decided problem returns after about a month for a
+second opinion, and each reapproval extends the interval (say three months)
+up to a maximum of about a year.
+<!-- tarav.breadcrumb df6407488f7898ed3afffdfad645eaa0d41b72a8c9ce69965b6af0f0b8790734 -->
+
+## Blessing is one kind of Decision
+
+A blessing is the decision that suppresses a POI. Decisions are broader: the
+interventions we make to modify the system, which we collect and keep
+continuously asserting. Some decisions are only reported: an opportunity to
+encapsulate an action and capture it as a decision so it can be traced. Such a
+decision captures its own context, for example Git commits and the diffs they
+produce. Like the blessing implementation, a decision is assertable and can be
+hooked into automatic scoring.
+<!-- tarav.breadcrumb 3db06a8d811b205e62d1de8e5920a8d344dfa1b5b755efb2f8eb95b75a2c447b -->
+
+```text
+Decision: an intervention in the system, recorded and asserted over time
+├── Blessing: suppresses (defers) a still-detected POI
+├── Order: changes the data; its consequences are public
+└── Reported action: captured for tracing (context, commits, diffs)
+```
+
+## Orders and blessings are asymmetric
+
+An order's consequences live in the data itself, which is public and used by
+everyone else, so a wrong order has a greater chance of being discovered. A
+blessing instead recognizes a live POI and suppresses it. A decision that
+modified the data and caused a POI does not suppress that POI. Decisions with
+no live POI linked to them need their own priority policy, to be worked out
+later.
+<!-- tarav.breadcrumb faf4c55e9cf4c30f51a898d0d87353b1d903542f1db4c1d4286e8b9cedef3fe6 -->
+
+Decisions are typed. Because the harness is Python code, each situation can
+have its own type, handled differently by the scheduling system; if some
+decisions show up too early and do not matter, more workflows can modify the
+order. The present work defines the main scaffolding: the main decision
+vectors.
+<!-- tarav.breadcrumb 2cbd2b6de9da249f512bb928f0ea3a34dc7797d311be799107fa5d8bf649c9be -->
+
+## Decisions are not scores
+
+Scoring is the automatic, agent-evaluated path that assigns a number to each
+assertion. User intervention is treated like agent output: the user can be
+wrong, as an agent generating tokens can. Users are not scoring at the moment;
+a scoring system with users as judges is a different conversation.
+<!-- tarav.breadcrumb abe1fbe071902a8f5157441381ef3cd7a20402b7c8effbe3c855e03b8c6435e0 -->
+
+The system that orders reassessment and spends resources (user attention,
+agent tokens) may still give user decisions more authority than agent
+decisions. That split should be quantitative.
+<!-- tarav.breadcrumb 07d6fc4825d8f3d46ae57ee4d3aec1c01f353f70106fc3535277db75244bfc42 -->
+
+## Agent suggestions, not yet decided
+
+- Keep the base Decision almost empty, like the base POI; scheduling behaviour
+  lives in subtypes.
+- Record the decider (user or agent) on every Decision, as an input to the
+  attention policy's authority weighting.
+- A reported action could wrap the existing commit-evidence record rather
+  than define a new one.
+- Orders could still keep who decided and on what evidence, so a wrong order
+  is traceable when its data is later found wrong.
