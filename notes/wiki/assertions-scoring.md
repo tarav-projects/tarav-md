@@ -29,3 +29,23 @@ the existing Line Assertion identity and ranking adapter were preserved.
 `tests/scoring/test_assessment_cases.py` exercises label lookup, closed snapshots,
 distinct case payloads, failure modes, and Record round-trips; 47 focused
 scoring and architecture tests passed in `tarav-py` commit `230b98a`.
+
+## Pairwise tribunals
+
+A ranking case names its tribunal Type. The tribunal owns its population,
+comparison question, instructions, and optional admission check. The common
+ranker compares only two cases from the same tribunal, using their retained
+presentations and no external research. It accepts A, B, tie, or abstain and
+retains the exact prompt, judge, outcome, and rationale for inspection.
+<!-- tarav.breadcrumb 4bf188231e01daf06f6051091769c3848c2a28c98f3a94d3179dfcb9a2fae65d -->
+<!-- tarav.breadcrumb 6630cabff2d5722bae794f7211969dfed0cc4e0c39143e74e0db7d87b495af2b -->
+
+The first derived measure is relative win/tie support among judged pairs,
+accompanied by comparison and opponent counts, abstentions, and population
+coverage. One case has no relative score. Sparse or weak support may become
+scoring-owned POIs, but a low rank does not establish that an Assertion is
+false. Request [848](../../../tarav-py/notes/live/848-pairwise-tribunal-scoring-mvp-impl-req.md)
+implemented this path in `tarav.l2.scoring.tribunals` and the existing
+ScoringRepository. Two different tribunal Types and case payloads use the same
+ranker in its tests; 61 focused tests passed at product commit `bd5be10`.
+<!-- tarav.breadcrumb f323afe8896d5439e0a8072c7307347d63e465238f38e60641a25d1929783a18 -->
