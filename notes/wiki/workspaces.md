@@ -72,3 +72,15 @@ Design request: `tarav-py/notes/live/852-workspace-manifest-worktrees-and-projec
 The Agent recommended local clones over worktrees; the User chose worktrees
 with checks.
 <!-- tarav.breadcrumb b35e1d90b7c8b16f0002e6559094e8cc83388655452d8e57cf34a594450670cd -->
+
+## First implementation
+
+At the User's request, 852 implemented this workspace model in the Python
+library. The workspace manifest identifies one Workspace and pins each Git
+entry to an exact commit; a clone receives a fresh identity and branch. The
+setup record retains observations, while seed files retain the initial bytes
+needed to reset copied and new documents. `Project.workspaces()` is a view onto
+the independent depot, not a field in the Project marker. See
+`tarav-py/notes/live/852-workspace-manifest-worktrees-and-project-integration-impl-req.md`
+for the execution record and tests.
+<!-- tarav.breadcrumb 9259ac8a3a0c897e71906ec5888c9c21cbb491fb710536f8ccef096a3b70db3f -->
