@@ -2,16 +2,16 @@
 
 Load this module for `tarav-hugentics --capture --wiki`.
 
-This procedure belongs to `WikiWorkflow` in `tarav.wiki`. Use
+This procedure belongs to `WikiWorkflow` in `tarav.l1.wiki`. Use
 `Wiki.from_path(root)` for a folder Wiki or `Project.from_path(path).wiki()`
 for the project's conventional `notes/wiki/` root. Resolve documentation
 ownership first when project guidance routes to another project.
-Import Project from tarav.project; minimal TaravProject callers can use
-ProjectWiki(project).open() from tarav.project.wiki instead.
+Import Project from tarav.l2.project; minimal TaravProject callers can use
+ProjectWiki(project).open() from tarav.l2.project.wiki instead.
 `Wiki.get(path)` and `Wiki.daily(date)` address notes without creating
 files; `WikiNote.read()` and `write(text)` access their Markdown.
 All Wiki parsing uses `WikiNote.parse()`, backed by
-`tarav.surfaces.markdown`. Load [`commit-evidence.md`](commit-evidence.md) for scoped Git
+`tarav.l1.surfaces.markdown`. Load [`commit-evidence.md`](commit-evidence.md) for scoped Git
 bracketing and closure. Chatlas and Breadcrumbs retain their
 existing roles; selection and writing remain Agent-operated.
 

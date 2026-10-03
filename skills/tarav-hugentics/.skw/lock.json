@@ -196,8 +196,8 @@
         "routing": "6ed8cf063bbd959326dd3378533378817568b6489a270768e2600512d3515395",
         "shared-contract": "be6951555c4fc322cc2a63486e08270b4583882413f4dd5e7cba0e19cbfc83c3"
       },
-      "source_hash": "7170a26413cf393ff8e2d302d84172cf65f12f8723d71049dd907bcd27af0fd7",
-      "product_hash": "3e91769748772ed5656333937db24bf97e2f59dcbb251058a9d2bfe2a753a823",
+      "source_hash": "026231cf86df2e00cc05c746734e5367f706ee0d8f782b188f66c127c4e249af",
+      "product_hash": "113c3afde4ea60b435f30afcc89115627013f0b2d6da429505ea4840d6002438",
       "loading_hash": "922a56984611b3f20647449616769fc870ff7bc142f80f3789a2c4360aea502d"
     },
     ".skw/src/references/inline-capture.skw.json": {
@@ -292,14 +292,14 @@
         "capture-workflow": "5fda5c41a27f2faae505fad31b4ce403bad9b4db0f324568d99bdc5a782b70af",
         "audit": "5fda5c41a27f2faae505fad31b4ce403bad9b4db0f324568d99bdc5a782b70af"
       },
-      "source_hash": "83fe89cec074aedfa04e1287566b8094ce149a973c7a248e1f86cb7357989508",
-      "product_hash": "6ba4ffeae94a72bc4fbcb3316286379cca2fad6087ebba04cda3734f0fd69430",
+      "source_hash": "251874e3bb52f2135c9b348ded6e8894b0acccae82369440382ceab25f32a713",
+      "product_hash": "e29af5af2ad84d96436fc63bddb69727142a5d4917a422ce7159d7f5176f1e8b",
       "loading_hash": "922a56984611b3f20647449616769fc870ff7bc142f80f3789a2c4360aea502d"
     },
     ".skw/src/references/impl/wiki.skw.json": {
       "blocks": {},
-      "source_hash": "54e8033a2469df68d74e7f4527ecb32346bc76b74d723873a8b97321263e1c6e",
-      "product_hash": "62d09cacfbe647f0c8f454ed3f85a11f2192a89c01bd5dfaa06be66ec5f7201a",
+      "source_hash": "93f4bb563e9183efbfe16d99fb427951aacfa55a90e383957d5bbd902b1cf94f",
+      "product_hash": "f865453a846df47ecd8b87a6117c7a8f29b94ed4b2770194b4f6c8f5499543ec",
       "loading_hash": "922a56984611b3f20647449616769fc870ff7bc142f80f3789a2c4360aea502d"
     },
     ".skw/src/references/design-dialogue.skw.json": {

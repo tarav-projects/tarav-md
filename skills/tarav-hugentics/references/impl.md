@@ -81,7 +81,8 @@ Load only the selected module:
 - shared implementation capture: [`impl/product-capture.md`](impl/product-capture.md)
 
 Treat input as an `Impl.Req` when a path, note number, or supplied artifact
-resolves to a live note containing `Impl.Abstract`, `Impl.Req.Diagram`,
+resolves to a live note containing `Impl.Abstract`, `Impl.Req.Diagram` or
+`Impl.Req.Wiki`,
 `Execution.Plan`, and `Impl.Log`.
 
 An explicit Execute selector may receive direct implementation input. In that
