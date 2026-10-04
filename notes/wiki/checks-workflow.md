@@ -3,6 +3,7 @@
 <!-- tarav.sessions
 6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
+64298cbc = claude-code:9da4cef5-68b7-4d17-8a06-1351ca51e82f @64298cbc8db2e7aa971e0828653c07bcb483cfed40931fdf87d5abe7ce1c60b3
 -->
 
 ## Shared mechanics
@@ -169,3 +170,26 @@ local object-index References and indexed objects that are themselves
 References. Loading types the declarations without following their targets;
 the bound Check and operations that consume context perform resolution. Existing
 reading and loading Checks retain ownership of their own graph edges.
+
+## Project checks: one entry point
+
+A project's tests, in the general sense of checks over the whole project and
+not only its code, need one standard place to run, like the tests folder of a
+programming language. Linter, checker and test mean nearly the same thing
+here; the only semantic is that whatever is put behind the entry point runs
+when someone asks for the project's checks. This is Tarav-level, not specific
+to one project.
+<!-- tarav.breadcrumb 731023327b76c5795a10310b14a052f06988ef6ef5d54ff7caa8f265b59d160d -->
+<!-- tarav.breadcrumb 06e735d5e9d501945f9a448731cc25131f016c539ebaa11c439713d3492d02d8 -->
+
+The User chose the name "project checks", not "project tests": every Project
+class has a check method that subtypes implement using Tarav's existing Check
+and POI primitives. Request
+[858](../../../tarav-py/notes/live/858-project-checks-entry-point-impl-req.md)
+implemented `TaravProject.check()` (the base raises `NotImplementedError`),
+`check_report()`, and `tarav check --project [PATH] [--json]`, which runs
+`check()` inside the Project's harness so the Project's own Type is bound.
+Selection and cost profiles are not part of the contract yet. md-library and
+g70203 do not implement `check()` yet.
+<!-- tarav.breadcrumb a214e2894149433f5aca17627bc136be9458184e6cf69aedf76963d68cf860e8 -->
+<!-- tarav.breadcrumb 605949b03256233830c468abff2d030266009473e2dcbb57067263a10f4ec37e -->
