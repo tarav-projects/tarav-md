@@ -212,3 +212,30 @@ Project classes are candidates for Tarav to provide, and a root should list
 its children explicitly, since a root folder can contain a link to a place
 that is not its child.
 <!-- tarav.breadcrumb 0fb779cdfebd47ed43cb307c7a322614aa6309d7a36465cc0bfb82e4bc69abc6 -->
+
+## Root Projects implemented — 861 and 862
+
+The User asked for the requests to be executed.
+<!-- tarav.breadcrumb ac6f8afbd532d5561e2b91098c5695b61902a728110f00a0a0b90bc38a781feb -->
+
+[861](../../../tarav-py/notes/live/861-root-project-and-shared-harness-impl-req.md)
+added three things:
+
+- `RootProject` ([root.py](../../../tarav-py/src/tarav/l2/project/root.py),
+  `Tarav.Project.Root`), whose `checks()` are those of the children its marker
+  lists.
+- Child markers that use an ancestor's harness (`harness.project`).
+- A harness manifest that lists several trusted Project Types (`projects`),
+  started through `tarav.l3.project.launch`.
+
+A child with its own environment is reported as one result per POI type with
+its count.
+
+[862](../../../tarav-py/notes/live/862-taravangian-as-a-project-tree-impl-req.md)
+added general development types
+([dev.py](../../../tarav-py/src/tarav/l2/project/dev.py)):
+`PythonPackageProject`, whose check is the test suite, and `DocsProject`,
+whose checks are each skill's own checks and wiki Notes with unsubmitted
+markers. `taravangian-project` now runs as a root over `tarav-py` and
+`tarav-md`. md-library uses the same mechanism for its development root and
+its depots.
