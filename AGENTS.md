@@ -17,6 +17,14 @@ Use `tarav-pkg --attic` when conserving, investigating, recovering, or
 promoting disconnected Archive.Attic material. Its linked legacy-skill-mine
 module governs deliberate inspection of the displaced skill implementation.
 
+## Project harness
+
+This folder is a `Tarav.Project.Docs` child of the Taravangian root and uses
+the root's environment. `tarav check --project` runs each skill package's
+checks and reports wiki Notes that still carry provisional `tarav.context`
+markers.
+<!-- tarav.breadcrumb fbe2e8b2adea823af71ceb7d595003935b185f86883566abb71bacaac8c3be2d -->
+
 ## Surface Rules
 
 - `skills/tarav-pkg/` is Tarav's active constitutional and candidate

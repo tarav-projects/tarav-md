@@ -9,5 +9,12 @@
     "workspace": "index-2208"
   },
   "project_id": "f6660361-baf0-4681-8a29-4a57392fdc67",
-  "schema_version": 1
+  "schema_version": 1,
+  "type": {
+    "uuid": "b811ca80-597a-4d11-90f2-7bdb30f9fd19",
+    "label": "Tarav.Project.Docs"
+  },
+  "harness": {
+    "project": ".."
+  }
 }
