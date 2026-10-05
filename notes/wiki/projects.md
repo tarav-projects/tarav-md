@@ -147,3 +147,68 @@ inside an environment that has the product Type installed. The
 concrete Type in the bootstrap runtime, declared product paths, generated
 harness behavior, and a real isolated uv environment.
 <!-- tarav.breadcrumb acc3077a26189a46980b2820716297f4a47ccab541dc063ae3503a2ebdfb5f62 -->
+
+## Places, libraries and Project classes
+
+<!-- tarav.sessions
+5a029cbf = claude-code:8c55cc60-f28a-439f-a6a0-0521567e600e @5a029cbf49a299c9709013b8ccb3fc517b2fb56fed373d3da819b6ea842afa2f
+-->
+
+This section records a design discussion held while organising md-library. It
+does not claim any implementation.
+
+The User laid out what Tarav must be able to express: Tarav as a library,
+the harness used to develop Tarav, md-library as a library, the harness used
+to develop md-library, and the harness of each depot where md-library's
+pipeline runs. All of that work is done by humans and agents together, so each
+place of work wants a harness.
+<!-- tarav.breadcrumb 252778bad09c130896801e2b0b49aadac28f339fab7ef29d2b3d6c43798dde29 -->
+
+The Agent first proposed a separate object for the library and then a separate
+Harness object attached to a Project. The User considered renaming, since a
+Project should keep overlaying the folder-rooted project of an agent tool, and
+then settled it differently: Tarav does not model the Python library. A
+library is Python's concern, which is where code lives and how it is imported.
+A Tarav Project is an object inside a Python library, and one library can
+hold several Project objects. The Agent withdrew both proposals. "Harness"
+remains an ordinary word for what a Project gives its place.
+<!-- tarav.breadcrumb e50d8ac558fb44089651cc68cd507503c5f19eb61e8d0375e9881ce8176fbc38 -->
+<!-- tarav.breadcrumb 0ad29e402d83b93a916f80d9cae3fe5beb01ceb8d0d1da6e7cfaa4aafab8f9b2 -->
+
+What a harness means in a place, in the User's terms: running the project
+checks there runs the checks proper to that place, as a test suite would; and
+the place's `AGENTS.md` and skills tell agents how to use the code made for
+that place. A consumer place inherits checks, types and commands from the
+library it imports, and every Project keeps its own point of extension for
+code that belongs to no library.
+<!-- tarav.breadcrumb e3bf2f581ca3645eb824edec4b2cb1d277590697ca1c343c2291b39347e1b4da -->
+
+Where the code of a Project class sits is a packaging choice. A library may
+keep its development harness in the same code base, under a namespace such as
+`.dev`, or in a separate one; Tarav should not care. Tarav needs to know how
+to find the Project object that harnesses a folder, and the reading paths that
+contextualise agents must document it. A consumer should have no use for the
+development Project of the library it imports, even when that Project ships in
+the same package.
+<!-- tarav.breadcrumb b1001fbf8888025558d4d3b18013f4fae1eac33c1ebd42e62e1dea6a6d5047c4 -->
+
+A Project class defined by a library is a control point: a place that subtypes
+it runs the checks the library defined. md-library's depots are the first
+intended case.
+<!-- tarav.breadcrumb ccbea9715ce5d7c9d028640fb3b46207643ac013d51ff6c2e8ede7f3c9052b76 -->
+
+### Root Project over child Projects
+
+A development folder can be a small graph of Projects: a root Project whose
+checks are those of the Projects below it, with an implementation Project and
+a documentation Project as children, sharing one Python environment at the
+root. The User described this for md-library and confirmed that it is general:
+`taravangian-project` has the same layout and should get it as well.
+<!-- tarav.breadcrumb fdb73a4817b7df816c9c06ff3f2967fab8110a02ba401ba0e5caf21ce3fc96ac -->
+<!-- tarav.breadcrumb 1da500bbadea187155b25c88918ecb2277a3399dfd0183e7677cb0bd0ed57b33 -->
+
+The Agent noted two points that are not decided: the root and documentation
+Project classes are candidates for Tarav to provide, and a root should list
+its children explicitly, since a root folder can contain a link to a place
+that is not its child.
+<!-- tarav.breadcrumb 0fb779cdfebd47ed43cb307c7a322614aa6309d7a36465cc0bfb82e4bc69abc6 -->
