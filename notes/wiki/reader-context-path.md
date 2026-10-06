@@ -201,3 +201,15 @@ retain that storage arrangement.
 
 These are design decisions for the next revision, not a claim that the current
 `reading` record field and loading file have already been migrated.
+
+## Split fields implemented
+
+[831](../../../../tarav-py/notes/live/831-skw-content-and-reading-fields-impl-req.md)
+implements `contains`, `reading_deps` and separate `links` lists. A package
+without a loading file can compute bindings and reading paths from source
+block positions; optional explicit route files remain supported. Contains
+is no longer a ReadingDeclaration subtype. The maintained tarav-hugentics
+source records were migrated without changing their block IDs or output text.
+The old `reading` field requires explicit migration rather than silent fallback.
+<!-- tarav.breadcrumb 5b43341ad433bdb51b5a6ea6ac779df2d3df28c704c4f055558b4bea4c285d92 -->
+<!-- tarav.breadcrumb 9ebdbf3e39dd9dc09fd5d432ac70b56ef545701199e34dfb2ed279329e7d7a1f -->

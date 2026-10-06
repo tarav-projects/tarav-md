@@ -38,3 +38,25 @@ navigation and explicit record round-tripping. It is a plan, not an assertion
 that the legacy implementation has been replaced. The writing principles
 remain separately documented in [Kernel.Writing](kernel-writting.md).
 <!-- tarav.breadcrumb 83fc807f17943dd729ffa09e68d9e8b0fdd1171b159f70cd229cfb1b9f721d7e -->
+
+## Scope as an interpretive dependency
+
+A Line has exactly one scope. Scope identifies what the statement assumes
+exists for its content to have meaning; it is fundamental to the Line, not
+a relationship describing where the Line appears. Presentation, storage and
+collection relationships are external to this definition. The earlier
+discussion of placement is not an additional requirement of the base model.
+
+The accepted base is identity, text and a scope pointing to a `TaravEntity`,
+with specialization supplied by the Python type. Another Line may supply
+scope, so semantic decomposition can form a graph of interpretive dependencies.
+
+The proposed `line.context(type=LineScope)` exposes that semantic relationship
+through a specialized context object. `LineScope` names the requested context
+view, not a restriction that the scope target must have that type. See
+[typed context views](context-graph.md#typed-read-only-context-views).
+
+Capture evidence pending: these additions record the current discussion in
+session `01a0d86c-9538-7be1-af96-014cd4203d61`. Chatlas refresh was denied access
+to its cache on 2026-09-30; exact Turn attachments and Breadcrumb registration
+remain pending. This captures design, not implemented API behavior.

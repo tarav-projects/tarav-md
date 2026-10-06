@@ -408,3 +408,28 @@ The focused and full test suites passed, including fresh-import isolation and
 retained Context behavior. This placement separates the two uses of Context
 without changing its Record labels or stored data.
 <!-- tarav.breadcrumb 735d09239790a7a569d258a99ba7a5c228e8e38c7fe8abf168f4506c337b458a -->
+
+## Typed read-only context views
+
+The accepted design extends the shared context entry point with explicit
+typed selection. `.context()` returns the general view;
+`line.context(type=LineScope)` returns a context object specialized for the
+Line's interpretive scope. Workflows can define their own context types and
+the semantics those views expose without flattening them into one generic
+representation.
+
+An unsupported context type fails explicitly rather than silently returning
+the general view. Context retrieval is read-only. These are design contracts,
+not a claim that the typed selector is already implemented; dispatch and
+registration mechanics were not settled in this discussion.
+
+For Lines, the underlying scope identifies what the statement assumes for
+its meaning. The typed context view exposes that relationship. The scope
+target remains a `TaravEntity`, potentially another Line; the requested
+`LineScope` type describes the view rather than the target's class.
+
+Capture evidence pending: current-session discussion
+`01a0d86c-9538-7be1-af96-014cd4203d61`, including the user's explicit acceptance
+of general/default context, typed selection, unsupported-type failure and
+read-only operation. Chatlas refresh was blocked by cache filesystem
+permissions on 2026-09-30; exact Turn Breadcrumbs remain to be registered.

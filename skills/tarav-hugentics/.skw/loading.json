@@ -1086,6 +1086,49 @@
       ]
     },
     {
+      "id": "user-brief.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/user-brief.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.routing"
+      ]
+    },
+    {
+      "id": "user-brief.workflow",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/user-brief.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "user-brief.presentation",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/user-brief.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "user-brief.boundary",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/user-brief.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
       "id": "skill.design-impact-link",
       "reference": {
         "type": "Tarav.Reference.StructuredFile",

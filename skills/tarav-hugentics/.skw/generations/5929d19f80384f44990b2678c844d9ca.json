@@ -1,0 +1,50 @@
+{
+  "type": "Tarav.Skillware.Generation",
+  "schema_version": 1,
+  "id": "5929d19f80384f44990b2678c844d9ca",
+  "source": ".skw/src/references/user-brief.skw.json",
+  "block": "presentation",
+  "input_hash": "101729087f702b0c4d6093a4617159aa233945bb1b67c23459fee53796d1c092",
+  "status": "Recorded",
+  "instructions": [],
+  "previous_content": [
+    "## Presentation",
+    "",
+    "Present in this order:",
+    "",
+    "1. **What you already know**: each anchor with its date, the User's own words",
+    "   in short (quotation marks only for exact retained text), and a locator such",
+    "   as a Wiki Note, an Impl.Req number, or a short session id.",
+    "2. **What changed since**: what Agents built or decided on top of it, marking",
+    "   Agent-introduced concepts.",
+    "3. **The point**: what the subject means, explained from those anchors.",
+    "4. **Ask**: what the User needs to decide, if anything. Omit when nothing.",
+    "",
+    "Be economical. Aim for about 15 lines and stay under about 30 unless the User",
+    "asks for more. Prefer the User's vocabulary to internal identifiers; introduce",
+    "an identifier only when the User will need it. End with at most three",
+    "expansion handles, such as \"ask about X\".",
+    ""
+  ],
+  "chat": "claude-code:4ee3b84e-14fa-4aa9-9c6f-8d139954fe18",
+  "context": [
+    {
+      "declaration": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "user-brief.skw.json",
+          "pointer": "/shared/maintenance"
+        }
+      },
+      "content": {
+        "kind": "prompt",
+        "lines": [
+          "Maintain this section using the linked context. Preserve its workflow scope and read-only boundary."
+        ]
+      },
+      "fingerprint": "14cecb7fdfd8205c0d9b8829c4b7fe7f5eb5930563f16d457ba85fd7373f4586"
+    }
+  ],
+  "context_hash": "86e589ab01fdb16bbb1994a151dcde2e27388713e3d964b6ab37ce52a04b14b6",
+  "output_hash": "c07de1221e8a3b9417df5eeeda87b8c9a84ce17a77c27032592b0d4207e3b38e"
+}

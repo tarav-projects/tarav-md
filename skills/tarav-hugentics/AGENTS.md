@@ -24,8 +24,11 @@ recorded action, permitted only by the finding's class, stored under
 
 `.skw/loading.json` owns the declared consumer loading model. Nodes reference
 source blocks; most within-file parents default to the predecessor. Cross-file
-parents are explicit. Typed links, inlines, and consumer requirements belong to
-the source block's `reading` declarations. Block `id` is a UUID Ship; its
+parents are explicit. Block `contains` declares output content claims,
+`reading_deps` declares reader requirements, and `links` declares references.
+Reading paths can also be derived from document position without a loading
+file; this package retains one for its explicit cross-file routes.
+Block `id` is a UUID Ship; its
 separate `label` is the readable local selector. Keep the first metadata block
 as the entry root. Link slots such as `{{skw:link-0}}` compile from those
 declarations. Typed `SkillLink` blocks retain produced Markdown in `output` and

@@ -25,6 +25,7 @@
     ".skw/src/references/issues/park.skw.json",
     ".skw/src/references/issues.skw.json",
     ".skw/src/references/reading-club.skw.json",
+    ".skw/src/references/user-brief.skw.json",
     ".skw/src/references/wiki-capture.skw.json",
     ".skw/src/references/impl/wiki.skw.json"
   ],
@@ -51,6 +52,7 @@
     "references/issues/maintain.md",
     "references/issues/park.md",
     "references/reading-club.md",
+    "references/user-brief.md",
     "references/wiki-capture.md",
     "references/impl/wiki.md"
   ],
