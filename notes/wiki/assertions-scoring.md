@@ -2,6 +2,7 @@
 
 <!-- tarav.sessions
 1ae20f8c = codex:01a0ff32-0ec2-7b72-8850-fa795135f3c9 @1ae20f8c8159f12d2402ea702cf49c876ec46a72f71ce12423ae1dbdf2a91871
+6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 -->
 
 ## Assertable objects and closed cases
@@ -70,3 +71,74 @@ shared Assertable capability in `tarav.l1.scoring`. The latter keeps the direct
 The configured Python suite passed 154 tests in product commit `8c1fd6a`.
 Attention scheduling remains request 849.
 <!-- tarav.breadcrumb b65b4a93c1db6256b0d76f1b195c9e761d77e7b09143892564b12510a4d93da1 -->
+
+## Workflow roots and particular scoring methods — provisional capture
+
+Assertions and Scoring should have shallow base types. The working assessment
+and ranking implementation can subtype them without making its particular
+decisions universal. This leaves room for another scoring method beside
+Ranking. A score can be a typed, recomputable object derived from retained
+evidence; it need not be stored merely to be identifiable in code.
+<!-- tarav.context 6734aba0:434e3f65fc9c6be5 -->
+<!-- tarav.context 6734aba0:33c08d1be038423c -->
+
+Evidence pending Breadcrumb registration: session
+`codex:01a0d86c-9538-7be1-af96-014cd4203d61`, User Turns at
+`2026-10-06T14:48:03.492Z` (“we cannot handicap the ... abstract layer”),
+`14:57:36.476Z` (“we will have different ... scoring systems”), and
+`15:00:02.920Z` (“scorings can be recomputed”). Each timestamp is UTC on
+2026-10-06 and identifies one retained raw Chatlas turn; these are recovery
+locators, not registered Breadcrumbs.
+
+`RankingWorkflow` is a particular scoring workflow. In this case it can be a
+Python subtype of `ScoringWorkflow` as well as its child in the workflow tree,
+but that coincidence is not a rule for every workflow relationship. No common
+scoring operation needs to be invented while Ranking is the only implemented
+method. Ranking compares closed cases within a Tribunal; another scoring
+method may organize its own objects differently.
+<!-- tarav.context 6734aba0:3bbb5c37b31f548c -->
+<!-- tarav.context 6734aba0:a37ed4686d740bc3 -->
+
+Evidence pending Breadcrumb registration: same session, User Turns at
+`2026-10-06T15:31:39.746Z` (“we want them all be scoring workflows”) and
+`2026-10-06T15:34:47.306Z` (“we only have one implementation of any scoring
+mechanism that is the ranking”).
+
+## Tribunal as a singleton entity — provisional capture
+
+Tribunal belongs to Ranking, not general Scoring. A concrete Tribunal subtype
+represents one comparison question and owns its admission, instructions, and
+any case-specific requirements. An Assertion may produce different cases for
+different Tribunals. The shared ranking machinery should not prescribe a rich
+universal case schema simply because one Tribunal needs particular material.
+<!-- tarav.context 6734aba0:a37ed4686d740bc3 -->
+<!-- tarav.context 6734aba0:b0167f504889a33e -->
+
+Evidence pending Breadcrumb registration: same session, User Turns at
+`2026-10-06T15:34:47.306Z` (“we will have different ... tribunals”) and
+`2026-10-06T15:38:23.044Z` (“we don't want to standardize ... which data a
+case needs to bring”).
+
+The class representative `entity(MyTribunal)` and the singleton Tribunal
+object `MyTribunal()` are distinct Diagram entities with distinct identities.
+The Python class defines the operation; repeated construction yields the same
+identified Tribunal instance, whose identity is declared in code. This is the
+same deliberate distinction used for Workflow classes and Workflow objects.
+Whether the Tribunal object is retained on disk is a separate choice. Current
+`tribunal_type_id` fields identify the class and must not silently be treated
+as the new object's Ship.
+<!-- tarav.context 6734aba0:bba1c976c99de9c3 -->
+<!-- tarav.context 6734aba0:e3a12d122bc8c5ca -->
+
+Evidence pending Breadcrumb registration: same session, User Turns at
+`2026-10-06T15:41:05.480Z` (“we still have an identify for the class ...
+mediated by ... the entity of the class”) and `15:43:12.384Z` (“we are
+splitting the identifier ... class ... and instance”). The current field's
+meaning is also supported by
+`tarav-py/src/tarav/l2/scoring/ranking/tribunals.py` in the current worktree.
+
+Request [863](../../../tarav-py/notes/live/863-assertions-scoring-ranking-score-impl-req.md)
+is the implementation handoff. The worktree implementation passed 169 Python
+tests but remains uncommitted pending capture closure. The `tarav.context`
+references above use read-only Chatlas User-Turn hashes but still await
+Breadcrumb submission and audit.
