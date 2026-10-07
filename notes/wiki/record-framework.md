@@ -1,6 +1,7 @@
 # Tarav as a record framework
 
 <!-- tarav.sessions
+473c89a0 = codex:01a1176b-f14c-7fd0-a97c-b22279c3f8c8 @473c89a00e2367fb827193af74a6375c60a96b0be110f21df0aff49360ca972f
 6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 5626cd5f = codex:01a0af61-72e2-7bd2-94a3-26529d6914ec @5626cd5f7db74c4f2e3838250516b5e300cc9387ac254eb65a0816a5f30555a1
 1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
@@ -42,6 +43,19 @@ interface uses different ancestry. No `independent_representation` flag is
 needed: the declared interface ancestry already exposes the choice.
 <!-- tarav.breadcrumb f3132869b61d5cb6c7f4b068a85e9fb160d49601c476dad27ffaf954887845e1 -->
 <!-- tarav.breadcrumb c76f56834b9b306ee0d0b2305dc1843906f12a4345f2646e1201e6939a703258 -->
+
+## Bound object namespaces — 2026-10-07
+
+The User wants explicit paths such as `obj.records.to_record()` for related behavior on an object. This is an object API organization; Kernel remains the home of `TaravObject` and its Record projection, while the TaravRecords workflow owns storage and navigation. Different workflows may add members to one object namespace. Namespace classes may be defined outside the object classes that select them.
+<!-- tarav.breadcrumb 60844174f0fd130951ce56f84ddb58d577b063487aadca8b8e63a2e2e451db17 -->
+<!-- tarav.breadcrumb 79a1cfd77e8fd519a5fd955b861dd7f91e7f73177fe5fa9cd2255b51746c0a18 -->
+
+The simple pattern uses `NamespaceBase` to bind an object. Independent bases can choose `P = PX` and `P = PY`; a combined class chooses `P = PXY` where `PXY(PX, PY)`. An instance property binds `obj.p`. Class creation checks that the selected `P` subclasses each base contribution, since normal Python MRO would silently choose the first. The check does not merge namespaces automatically.
+<!-- tarav.breadcrumb 015955f35c5274e5a04c4f6ec4d7d29632cc5d9ebfc84d47224df34218b887d7 -->
+<!-- tarav.breadcrumb 4f0153cfc68cf7c7205589f19296d7a3004889b40b30a11cbe87a04f8b9b3a59 -->
+
+[Impl.Req 865](../../../tarav-py/notes/live/865-object-namespaces-and-composition-check-impl-req.md) implemented this in Kernel and added `TaravObject.Records` / `obj.records.to_record()` as the first Record path. Existing root Record calls remain because they are widely used; moving class-level loading and callers into the namespace needs a later bounded migration. The full Python suite passed with 175 tests.
+<!-- tarav.breadcrumb 80e3d48a50eb567034ff6d6ba1244fe639764a2439e5845812a6ec597962ba90 -->
 
 The predicate API distinguishes the two inheritance dimensions and their
 combination. `issubclass(B, A)` checks behavioral inheritance;
