@@ -78,3 +78,15 @@ Retention exists only to bound size, so it is expressed in size rather than time
 
 [Impl.Req 875](../../../tarav-py/notes/live/875-run-script-registry-impl-req.md) designs the first implementation. Its layout, metadata fields, write order, and the choice of the Project id as partition key are agent proposals made under the User's request to use common sense; a query command and lookup by name remain undecided.
 <!-- tarav.breadcrumb c9e8649e9ebd4358f156067404641e67cef2e8cadb64703719c6c18ae8726a8b -->
+
+<!-- tarav.sessions
+473c89a0 = codex:01a1176b-f14c-7fd0-a97c-b22279c3f8c8 @473c89a00e2367fb827193af74a6375c60a96b0be110f21df0aff49360ca972f
+-->
+
+## Import guard implementation
+
+The User invoked Execute for [Impl.Req 874](../../../tarav-py/notes/live/874-tarav-import-guard-and-bypass-entry-impl-req.md) after requiring a fresh read of this Wiki and the related User turns. In `tarav-py`, the root `tarav` import now requires an entry mark. The separate `tarav_bypass` package supplies that mark before importing Tarav; the installed `tarav` and `tarav-daemon` commands use its doors. `tarav run` passes the mark to child scripts. The error points users to `tarav run` and does not expose the mark or bypass mechanics. Tests and direct-import maintenance scripts use the explicit bypass; repositories outside `tarav-py` remain their maintainers' concern.
+<!-- tarav.breadcrumb 208613f4f0d7ffcfdc447a3d16c3aeb1298ea138a9d549bbbc6058848e362b1f -->
+
+The implementation is in product commit `4629dd90ad45e1ac35e9b2b915dae6a9304c9a05`. The committed tree passed 178 Python tests and Ruff; the shared worktree passed 188 tests and Ruff. The built wheel contains both packages, both `tarav run` forms imported Tarav, and the installed daemon restarted through the CLI and launchd. The root Project check ran 362 checks and reported 65 POIs from existing Project state. The package skill's import guidance is a separate `tarav-md` follow-up; it was not part of this `tarav-py` implementation.
+<!-- tarav.breadcrumb 60751154b6150079b6df7c41e5530cbdc86e6406945044a42648f25d41205e79 -->
