@@ -56,3 +56,10 @@ These points came from the agent during the discussion. The User has not confirm
 - Classifying the `agents` entry added to the Project marker on 2026-10-08: the main file name and the aliases would be data, and the two switches that turn the system prompt checks off would be settings that happen to be stored in the marker.
 
 One agent claim was retracted after the User's correction: that Tarav's configuration files would become settings templates. Those files are the data of objects that represent configuration, and declaring and validating their fields is the record system's job.
+
+## Implemented — 2026-10-08
+
+At the User's request the convention was implemented in `tarav-py/src/tarav/l1/settings/`. A Type extends `SettingsProvider` and declares a nested pydantic `SettingsInterface`, in the manner of `RecordInterface`; it includes another Type's partition only by listing it in `settings_include`. Objects read and write through `.settings`, values can be given as a `SettingsValues` object at construction or loaded from a file through the record registry, and unknown keys, unknown partitions and wrong value types raise `SettingsError`. An object's context gains a `settings` entry and a provider Type's context a `settings-template` entry. Reusable contract tests ship with the capability. [Impl.Req 878](../../../tarav-py/notes/live/878-settings-capability-impl-req.md) records the details.
+<!-- tarav.breadcrumb 42c27380cf61545077afb69037bd4904ebd0aaa27c78853c088678078b196cc0 -->
+
+The names, the choice to raise on mistakes, the per-value origin, and the first consumer are agent choices. The first consumer is the agents file object: its two prompt switches are now settings read from the Project marker, while its main file and aliases remain data. The User has not confirmed that classification.
