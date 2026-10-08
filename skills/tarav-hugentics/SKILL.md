@@ -1,11 +1,11 @@
 ---
 name: tarav-hugentics
-description: "Run Tarav's grounding, User Brief, Project.Wiki capture, Product.Surface Breadcrumb capture, Model capture, Reading Club, Issue, Design Dialogue, Design Impact, and implementation workflows. USE WHEN the user wants Diagram-backed context, a first-principles briefing linked to their past conversations, a User-Turn-grounded project wiki or product surface, dialogue capture, Model capture, a Reading Project, Issue work, assessment of recent in-chat design's implementation impact, implementation design or execution, or invokes `tarav-hugentics --ground`, `--user-brief` (`--brief`), `--capture`, `--reading-club`, `--issues`, `--design --dialogue --wiki`, `--design --impact`, or `--impl`."
+description: "Run Tarav's User Brief, Project.Wiki capture, Product.Surface Breadcrumb capture, Model capture, Reading Club, Issue, Design Dialogue, Design Impact, and implementation workflows. USE WHEN the user wants a first-principles briefing linked to their past conversations, a User-Turn-grounded project wiki or product surface, dialogue capture, Model capture, a Reading Project, Issue work, assessment of recent in-chat design's implementation impact, implementation design or execution, or invokes `tarav-hugentics --user-brief` (`--brief`), `--capture`, `--reading-club`, `--issues`, `--design --dialogue --wiki`, `--design --impact`, or `--impl`."
 ---
 
 # Tarav Hugentics
 
-`tarav-hugentics` is Tarav's public grounding, User Brief, conversational capture, Reading
+`tarav-hugentics` is Tarav's public User Brief, conversational capture, Reading
 Club, Design Dialogue, Design Impact, and implementation surface. It preserves the Hugentics alignment
 workflows while using Chatlas and the Tarav.Diagram as its User-Touched
 indexing backend.
@@ -27,10 +27,6 @@ Treat the skill call like a command line:
 ## Command Surface
 
 ```text
-tarav-hugentics --ground [FOCUS]
-    Build or resume the current session's Diagram.View and use it to
-    contextualize the collaboration through Agent-operated navigation.
-
 tarav-hugentics --user-brief [TOPIC]
 tarav-hugentics --brief [TOPIC]
     Brief the User on any topic: find what the User last discussed about it,
@@ -206,7 +202,6 @@ Bare `--design` does not select Design Impact. Standalone Design Impact does
 not compose with Capture; implementation routes retain their ordinary capture
 contract.
 
-Grounding routes load and follow [`references/ground.md`](references/ground.md).
 `--user-brief` and its shortcut `--brief` load and follow [`references/user-brief.md`](references/user-brief.md).
 User Brief is read-only and does not compose with Capture or implementation.
 Ordinary Capture routes load and follow [`references/capture.md`](references/capture.md).
@@ -222,13 +217,8 @@ Issue routes first load [`references/issues.md`](references/issues.md), which
 selects one Issue workflow without creating a separate Parking.Note object.
 Implementation routes first load
 [`references/impl.md`](references/impl.md), which selects exactly one
-implementation workflow module. Without an explicit route, infer capture or
-grounding, Issue, or implementation only when the conversational request is
-clear.
-
-Grounding is ungated and read-only toward the Diagram semantic database. It may
-create and maintain a `Diagram.View`; that View is a separate contextual WIP
-surface and never supplies approval, capture, or Diagram mutation.
+implementation workflow module. Without an explicit route, infer capture,
+Issue, or implementation only when the conversational request is clear.
 
 The runtime commands `::discuss`, `::review`, `::approve <token>`, `::land`,
 and `::land-all-approved` belong to the running Capture workflow. Reading

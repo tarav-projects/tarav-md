@@ -180,59 +180,6 @@
       }
     },
     {
-      "id": "ground.introduction",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/ground.skw.json",
-          "pointer": "/blocks/0"
-        }
-      },
-      "parents": [
-        "skill.routing"
-      ]
-    },
-    {
-      "id": "ground.responsibility-boundary",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/ground.skw.json",
-          "pointer": "/blocks/1"
-        }
-      }
-    },
-    {
-      "id": "ground.session-view-convention",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/ground.skw.json",
-          "pointer": "/blocks/2"
-        }
-      }
-    },
-    {
-      "id": "ground.workflow",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/ground.skw.json",
-          "pointer": "/blocks/3"
-        }
-      }
-    },
-    {
-      "id": "ground.completion-report",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/ground.skw.json",
-          "pointer": "/blocks/4"
-        }
-      }
-    },
-    {
       "id": "impl.design.introduction",
       "reference": {
         "type": "Tarav.Reference.StructuredFile",

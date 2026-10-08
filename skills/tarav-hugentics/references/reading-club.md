@@ -203,6 +203,14 @@ provisional `tarav.context` markers, run
 its content is final, then run `tarav breadcrumbs audit chatlas-context
 --surface <FILE> --json`.
 
+If submission cannot register, typically because a sandbox prevents writing
+to the Tarav data folder, leave the read-only trace. Keep the provisional
+`tarav.context` markers where they are and keep their session resolvable.
+Do not remove the markers or invent Breadcrumb labels, and report the
+registration as pending, not as done. A later session that can write runs the
+same `submit` and `audit` commands on the surface; nothing has to be guessed
+while the declaration is intact.
+
 After `::capture` or `::annotate`, report compactly what was preserved and do
 not move. Never advance as a side effect of capture unless the User sent
 `::forward`. At `::stop`, report the retained project and approximate position
