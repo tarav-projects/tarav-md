@@ -878,7 +878,7 @@ The Type Graph makes that structure discoverable. This extends its purpose
 beyond representing executable inheritance alone.
 <!-- tarav.breadcrumb ba570865c883642ef8f86d7b120319381894aa49a58395d129f5f6da859d01e7 -->
 
-### Record extensions move into `Records` — 2026-10-08
+## Record namespace extension migration — 2026-10-08
 
 The User then chose to migrate the extension mechanism itself. Each specializing Type now defines a nested `Records` subclass; its `validate_record()` and `record_example()` methods operate on the bound concrete Type. Namespace inheritance preserves the same `super()` relationship that the earlier classmethod overrides used. Maintained Object callers use `Type.records` or `obj.records`, and `TaravObject` no longer exposes the duplicate direct Record methods. `_record`, `_from_record()`, and `_to_record()` remain object state and protected hooks. The [Kernel implementation](../../../../tarav-py/src/tarav/l0/kernel/records.py), [architecture contract](../../../../tarav-py/ARCHITECTURE.md), and [Impl.Req 870](../../../../tarav-py/notes/live/870-record-namespace-extension-migration-impl-req.md) show the migration scope.
 <!-- tarav.breadcrumb e06f472c6ea125f022b4af881fcde79c0be19a4c00e6a382d72d8707478ddc0d -->
