@@ -78,3 +78,11 @@ Every Project has its own skill folders, sub-projects included; how they are pop
 
 [Impl.Req 873](../../../tarav-py/notes/live/873-project-skills-bootstrap-impl-req.md) designs the implementation on top of request 872. Its skill object, check names and the "resolves to the same directory" structure rule are agent proposals awaiting confirmation; nothing is implemented yet.
 <!-- tarav.breadcrumb 5c27b317fbdbd2fb89a53dc9b4f816d68764474bc4c9606369804e6e1f212061 -->
+
+### Implementation
+
+The 873 implementation adds [FolderSkill](../../../tarav-py/src/tarav/l1/skills/folder.py), `project.agents.skills` discovery, and typed checks for the fixed Tarav skill, configured Project skill, and Project/home folder structure. The folder comparison uses resolved directories, which accepts sibling links into one depot; this and unconditional checks are bounded implementation choices, not additional User decisions. The [tests](../../../tarav-py/tests/test_project_skills.py) cover declared names, Project and home discovery, missing and undeclared skills, and both valid link layouts. The shared worktree's full Python suite passed 183 tests and Ruff passed. The root Project check completed all 362 checks; its new skill checks found three undeclared Project package skills, with no missing Tarav skill or folder findings. The Project markers were left unchanged because adoption is outside 873.
+<!-- tarav.breadcrumb 987b86ca316c62348b7be1bb3b23a02d6220dd97c811a1801ca8b1158ee262ad -->
+
+Request 873 is committed as `2ea7d0b`. The scoped clean checkout passed 173 tests and Ruff; the commit includes the minimal Skills Workflow prerequisite while preserving unrelated worktree edits.
+<!-- tarav.breadcrumb 7a98fdeae6d7ef6cfd11bdeb7ff76b8933d5773cedd02b4044b17648f264bebf -->
