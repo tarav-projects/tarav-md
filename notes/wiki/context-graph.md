@@ -433,3 +433,19 @@ Capture evidence pending: current-session discussion
 of general/default context, typed selection, unsupported-type failure and
 read-only operation. Chatlas refresh was blocked by cache filesystem
 permissions on 2026-09-30; exact Turn Breadcrumbs remain to be registered.
+
+## Context queries from an identifier — 2026-10-08
+
+<!-- tarav.sessions
+abd0372d = claude-code:d82f1801-d3f2-4deb-9c95-297028a54b7a @abd0372dd06ffeef10c625e3f68354a234a91e4992b67406f075d93ccb20f4d4
+-->
+
+The User asked for one general entry point through which an agent that holds an identifier asks Tarav for its context, not a command for POIs only. It is the existing `.context` system reached from the command line: the CLI finds the identity, possibly through search, and lets the agent navigate. A surface that showed the identifier can recommend a qualified context suited to how the agent arrived there.
+<!-- tarav.breadcrumb 8082251a4b0a8c5de49c5fdbd1fe1cdf0cc3c6540c166441ed4351fcdab64e3b -->
+
+The request is a query object in the manner of Search. By default an identifier is looked up as the identity of something; the query system is typed and can grow. Scripts using `.context` and the CLI are two doors to the same mechanic. The qualifier is a context view type.
+<!-- tarav.breadcrumb 2131252c67edf1fd33fac7b4d94b2402d09b889a953a257d30a6a172dd474f0c -->
+<!-- tarav.breadcrumb 6ec59f22255177fea157f19cf9902b6163b6e56b02c37aee5f7ccbb519411982 -->
+
+Implemented in `tarav-py` commit `4289796`: `tarav.l1.context.query` holds `ContextQuery`, `IdentityContextQuery` and a `ContextQueryService` whose resolvers are Search engines and whose named views are `Context` subclasses; `tarav context --id <identifier> [--view <name>] [--path a/b]` is the adapter. Identifiers resolve for POIs reported by `tarav check --project` and for Tarav Types by name or Ship. Reusing Search for resolution and resolving Types were agent choices. [Impl.Req 876](../../../tarav-py/notes/live/876-context-command-and-reported-poi-impl-req.md) has the detail.
+<!-- tarav.breadcrumb 611aae0300ee556f16866b7baa05f96992f272a1c549cd4d7d49e28a7957462f -->

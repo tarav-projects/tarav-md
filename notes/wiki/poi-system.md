@@ -258,3 +258,21 @@ unreviewed; broader attention policy is later work. See
 and `tarav-py/tests/decisions/`.
 <!-- tarav.breadcrumb 2bb73a07d0cbaea4b24a0b1086e966016ff1235491737c85db59122fd81d5250 -->
 <!-- tarav.breadcrumb b124ef563fb16387a160682d14c030280730d37f6d59a9de5be47ebbcbce7f28 -->
+
+## Reported POIs and their context — 2026-10-08
+
+<!-- tarav.sessions
+abd0372d = claude-code:d82f1801-d3f2-4deb-9c95-297028a54b7a @abd0372dd06ffeef10c625e3f68354a234a91e4992b67406f075d93ccb20f4d4
+-->
+
+While reviewing the bootstrap POIs, the full record of a POI was only reachable by writing a script. The User took this as evidence that any presentation of data must give the agent a clear way to escalate to full context, because an agent should not act on limited context, and that guards may be added later. The expansion should be central instead of implemented by each surface, and the connection should itself be checkable, so that its absence is a POI.
+<!-- tarav.breadcrumb 2693f678cb96406b488dc5cc53479027f99300b4255c6dfdd009abbd3d37aa1c -->
+<!-- tarav.breadcrumb d67600570d36441519e1991e0b3d43e999597368f8c8051c024474e629fec3d0 -->
+
+The POI life cycle is: a POI is shown with its identifier and a short message, and the agent is told explicitly that before doing anything with any POI it must open its context, and how. That instruction is stated once per output, with the command, placeholders, an example and a pointer to help. Arguments are explicit key/value. The view is named for a POI that has been presented, not just "poi". The POIs currently reported on Tarav are not repaired; they are the test bench.
+<!-- tarav.breadcrumb e56c308512a66e8d242577a0b1b3fac11b303d3924d0f17c42556ac0b1d4ee57 -->
+<!-- tarav.breadcrumb 978b9c97f5aa6f5d3bfa9306221294af264b12c9ee4c888279e236133c1ad83d -->
+<!-- tarav.breadcrumb 9a060f83b08b95d5c9facee5c47a36ce405333050e8ae0e9e6eed0ffae9f9d2c -->
+
+Implemented in `tarav-py` commit `4289796`. `tarav check --project` retains what it reported under `~/.tarav/check-reports/`, and every report with POIs opens with the instruction and an example. `tarav context --id <poi-id> --view reported-poi` lists `poi-type`, `raised-by`, `finding`, `read-first` and `may-do`. A POI Type declares `read_first` and `may_do`; the seven bootstrap POI types do, as the worked example. Two checks run where the POI base Type is developed: a reminder for each POI Type without guidance (48 today, left in place) and a round trip from the advertised example to the view. The view name, the retention place and the omission of an earlier-actions entry were agent choices. [Impl.Req 876](../../../tarav-py/notes/live/876-context-command-and-reported-poi-impl-req.md) has the detail.
+<!-- tarav.breadcrumb 9fa116eb350f3a3a90b076b7567658a1bd59ee8e6b02febdc20c72b2b484f1e0 -->
