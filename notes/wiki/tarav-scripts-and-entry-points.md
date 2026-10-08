@@ -90,3 +90,8 @@ The User invoked Execute for [Impl.Req 874](../../../tarav-py/notes/live/874-tar
 
 The implementation is in product commit `4629dd90ad45e1ac35e9b2b915dae6a9304c9a05`. The committed tree passed 178 Python tests and Ruff; the shared worktree passed 188 tests and Ruff. The built wheel contains both packages, both `tarav run` forms imported Tarav, and the installed daemon restarted through the CLI and launchd. The root Project check ran 362 checks and reported 65 POIs from existing Project state. The package skill's import guidance is a separate `tarav-md` follow-up; it was not part of this `tarav-py` implementation.
 <!-- tarav.breadcrumb 60751154b6150079b6df7c41e5530cbdc86e6406945044a42648f25d41205e79 -->
+
+### Run script registry implemented — 2026-10-08
+
+The User asked for implementation to start. `tarav run` now retains what it executes under `~/.tarav/run-registry/`, in one folder per Project id plus `global`, with a 1 MB cut per entry and a 50 MB allocation per partition. The location and reading standard input fully before the child starts were the agent's recommendations, applied because the two open questions had not been answered. Code is in `tarav-py/src/tarav/l1/python_env/registry.py` and `src/tarav/l3/run.py`, with tests in `tests/cli/test_run_registry.py`; [Impl.Req 875](../../../tarav-py/notes/live/875-run-script-registry-impl-req.md) records verification and two small deviations.
+<!-- tarav.breadcrumb 1aa842827255e331ecbff11718a21643ed41cabd854fa7455c7aa653740bed8b -->
