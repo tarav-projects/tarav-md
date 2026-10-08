@@ -37,3 +37,5 @@ The following came from the agent during the discussion and were not confirmed b
 - Three kinds of trackable type: always tracked, with no way out in the constructor; tracked by default but overrulable; and trackable but off unless the caller opts in.
 - `BlessablePOI` already follows this pattern: a type opts into being blessable by extending it.
 - A wrong claim of being trackable could be detected from the store, because a type whose situations are not fixed points produces identities that never recur.
+
+See also [Settings capability](settings-capability.md), the convention for configuring capabilities.
