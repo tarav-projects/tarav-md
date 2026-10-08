@@ -69,6 +69,11 @@ The next bounded implementation lets `SomeType.records.from_record(record)` load
 <!-- tarav.breadcrumb 61f25d0f2895f29457880780e8af48d2e879215cd39632c60719ef6d0e2f7241 -->
 <!-- tarav.breadcrumb 5fa9cc048ac12c2861df4718766e59c65e0cd2c6071b57707b1504d895010e25 -->
 
+### Validation and examples through the class path
+
+`Type.records.validate_record(value)` and `Type.records.record_example()` now give class-bound Record validation and examples. Record projection and loading use the namespaced validation entry. Concrete Types still implement and extend the existing classmethods: many examples are specialized, and some validators rely on `super()`. The namespace delegates to those overrides, preserving behavior without migrating each Type's extension mechanism. The [Kernel implementation](../../../../tarav-py/src/tarav/l0/kernel/records.py), [focused tests](../../../../tarav-py/tests/kernel/test_object_namespaces.py), and [Impl.Req 868](../../../../tarav-py/notes/live/868-record-namespace-validation-and-examples-impl-req.md) show the bounded change.
+<!-- tarav.breadcrumb b3b4e90c231811ae6a80be215de46a11bc4f9d10206e3ccc6f44b324bf941eb4 -->
+
 The predicate API distinguishes the two inheritance dimensions and their
 combination. `issubclass(B, A)` checks behavioral inheritance;
 `issubrecord(B, A)` checks only whether `B.RecordInterface` inherits
