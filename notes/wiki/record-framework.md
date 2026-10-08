@@ -63,6 +63,12 @@ Namespaces are a common Tarav API style when a capability is used by sufficientl
 <!-- tarav.breadcrumb 66e331aefab5a8810aa427458dae8c92e7f7ed7af1c5ce6a7ac7a9461546eb9d -->
 <!-- tarav.breadcrumb 489f0748da4e288662f50834b5bdf10f22a5e1294c07c0dcffe01d65b1fe808e -->
 
+### Class-side Record namespace
+
+The next bounded implementation lets `SomeType.records.from_record(record)` load a concrete Object Type, paired with `obj.records.to_record()` for projecting an instance. `SomeType.Records` remains the selected namespace class; one descriptor binds its lowercase path to a class or instance. The established validation, exact Type check, construction hook, and supplied Record retention now run inside the namespace. The kernel TypeRegistry uses the class path. Existing direct `from_record()` and `to_record()` calls delegate while broader caller migration remains separate. See the [Kernel Record implementation](../../../../tarav-py/src/tarav/l0/kernel/records.py), [registry](../../../../tarav-py/src/tarav/l0/kernel/types.py), [focused tests](../../../../tarav-py/tests/kernel/test_object_namespaces.py), and [Impl.Req 867](../../../../tarav-py/notes/live/867-record-namespace-class-loading-impl-req.md).
+<!-- tarav.breadcrumb 61f25d0f2895f29457880780e8af48d2e879215cd39632c60719ef6d0e2f7241 -->
+<!-- tarav.breadcrumb 5fa9cc048ac12c2861df4718766e59c65e0cd2c6071b57707b1504d895010e25 -->
+
 The predicate API distinguishes the two inheritance dimensions and their
 combination. `issubclass(B, A)` checks behavioral inheritance;
 `issubrecord(B, A)` checks only whether `B.RecordInterface` inherits
