@@ -276,3 +276,18 @@ The POI life cycle is: a POI is shown with its identifier and a short message, a
 
 Implemented in `tarav-py` commit `4289796`. `tarav check --project` retains what it reported under `~/.tarav/check-reports/`, and every report with POIs opens with the instruction and an example. `tarav context --id <poi-id> --view reported-poi` lists `poi-type`, `raised-by`, `finding`, `read-first` and `may-do`. A POI Type declares `read_first` and `may_do`; the seven bootstrap POI types do, as the worked example. Two checks run where the POI base Type is developed: a reminder for each POI Type without guidance (48 today, left in place) and a round trip from the advertised example to the view. The view name, the retention place and the omission of an earlier-actions entry were agent choices. [Impl.Req 876](../../../tarav-py/notes/live/876-context-command-and-reported-poi-impl-req.md) has the detail.
 <!-- tarav.breadcrumb 9fa116eb350f3a3a90b076b7567658a1bd59ee8e6b02febdc20c72b2b484f1e0 -->
+
+## Atomic POI types — 2026-10-08
+
+Reading a reported POI through the context command, the User met a `code` field and asked what it was for. A search of the POI design sessions found no User turn asking for it: it came from the index linter of May 2026 as a rule label and was carried into the neutral POI base by request 832 without discussion. The User asked for it to be eliminated.
+<!-- tarav.breadcrumb 26fb5d73cc1cdc44ff4aea293e14b29eaecc70a5a76317e4200892d2e926ddbf -->
+<!-- tarav.breadcrumb a91da531e00ad680449290b95f80f10dcefc0375a26101cc77f0136b64d89bde -->
+
+The decision: POIs are atomic. Each POI type describes one situation and there is no further degeneracy inside a type; the field was an inherited linter habit duplicating the type system.
+<!-- tarav.breadcrumb c7aba3389e0880a5237de099536aae60c6ad587639957500693684c243042227 -->
+
+A family parent that is never raised may remain so related cases can be selected together, because in Tarav the typing system expresses semantics. The base type loses the argument, every multi-case type is split into one class per case, checks stop copying the code into the situation, and reports group by type instead of code.
+<!-- tarav.breadcrumb 0281a7a663e90194c0194f45cb95a56e229f5762b5d93baf76518e6c03d5e43c -->
+
+[Impl.Req 877](../../../tarav-py/notes/live/877-atomic-poi-types-impl-req.md) implemented it in `tarav-py` commit `9559db7`: fourteen families became 88 case types, and `tarav check` lost `--by code` and `--code`. Three older finding classes that subclass the bare `POI` (`BreadcrumbFinding`, `ReferenceFinding`, the Diagram `Finding`) still carry a code and are a follow-up. Guidance reminders rose from 48 to 93 on the Taravangian root because each atomic type without guidance is now reported separately.
+<!-- tarav.breadcrumb fe5f488b22795d4fa14c5101c5b0463306b0b85d6987f31c4efbce24d3dca7a2 -->
