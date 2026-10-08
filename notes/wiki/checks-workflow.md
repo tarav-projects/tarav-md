@@ -1,12 +1,22 @@
 # Checks, providers, and runners
 
 <!-- tarav.sessions
+473c89a0 = codex:01a1176b-f14c-7fd0-a97c-b22279c3f8c8 @473c89a00e2367fb827193af74a6375c60a96b0be110f21df0aff49360ca972f
 6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
 64298cbc = claude-code:9da4cef5-68b7-4d17-8a06-1351ca51e82f @64298cbc8db2e7aa971e0828653c07bcb483cfed40931fdf87d5abe7ce1c60b3
 -->
 
 ## Shared mechanics
+
+### Bound Checks namespace — 2026-10-07
+
+The User selected `project.checks.run()` and liked a shared Checks namespace on CheckProvider, so Projects, Workspaces, and other providers use the same path. A provider's `Checks.suite()` declares the bound suite without running it; `checks.run()` executes that suite. Independent contributors to one Checks namespace require an explicit combined suite; namespace inheritance alone does not merge their checks.
+<!-- tarav.breadcrumb ff5b0b1ced925dab86407678adee97a202917a64a7edffe1bd0864eed106758b -->
+
+The Python implementation moved concrete providers and maintained callers to the namespace. See [Impl.Req 866](../../../tarav-py/notes/live/866-project-capability-paths-impl-req.md).
+<!-- tarav.breadcrumb 75b5f7a7bdba2aef95d1fb8feb08a6e5badf3beae69e77db7f701189631426db -->
+
 
 Tarav should provide a workflow for defining and running checks, so each
 type or workflow does not need to build its own engine. The structural checks

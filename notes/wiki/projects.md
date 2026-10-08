@@ -1,10 +1,21 @@
 # Projects
 
 <!-- tarav.sessions
+473c89a0 = codex:01a1176b-f14c-7fd0-a97c-b22279c3f8c8 @473c89a00e2367fb827193af74a6375c60a96b0be110f21df0aff49360ca972f
 6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 -->
 
 ## Core and specialized integrations
+
+### Explicit capability paths — 2026-10-07
+
+The User chose `project.docs.wiki.daily(date)`, `project.models.ls()`, and `project.checks.run()` as the Project API shape. Top-level Project members should generally state concrete object meaning; shared or abstract capability operations should sit under semantic paths. `docs` groups documentation, `models` is a bound capability in its own right, and `checks` comes from the common CheckProvider contract.
+<!-- tarav.breadcrumb 2c873fc0f3954687f59e594feb44d03d18dc258e6b2fd6ccb75704617ef5fe22 -->
+<!-- tarav.breadcrumb fea17d25ee0a6e8ffa9d4bfac35933a21d26ba8e3765d4ae949c2218b0d15f37 -->
+
+The first implementation exposes `project.docs.wiki`, `project.models`, and `project.checks`; `checks.suite()` builds the runnable suite and `checks.run()` executes it. Named Model listing reads the Project marker, while `get()` and `main()` still require the disconnected Models backend. This access-path change does not itself restore Model resolution. See [Impl.Req 866](../../../tarav-py/notes/live/866-project-capability-paths-impl-req.md).
+<!-- tarav.breadcrumb dc892a154968a26462eba71f8d1fd2bb89117143e3b34f244064785f8d12367c -->
+
 
 The design separates a workflow's minimal functionality from specialized
 integrations. Loading Models for another consumer should not bring along
