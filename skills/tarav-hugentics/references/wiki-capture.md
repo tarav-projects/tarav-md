@@ -3,7 +3,7 @@
 Load this module for `tarav-hugentics --capture --wiki`.
 
 This procedure belongs to `WikiWorkflow` in `tarav.l1.wiki`. Use
-`Wiki.from_path(root)` for a folder Wiki or `Project.from_path(path).wiki()`
+`Wiki.from_path(root)` for a folder Wiki or `Project.from_path(path).docs.wiki`
 for the project's conventional `notes/wiki/` root. Resolve documentation
 ownership first when project guidance routes to another project.
 Import Project from tarav.l2.project; minimal TaravProject callers can use

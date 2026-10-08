@@ -282,8 +282,8 @@
       "blocks": {
         "introduction": {
           "input_hash": "101729087f702b0c4d6093a4617159aa233945bb1b67c23459fee53796d1c092",
-          "output_hash": "412eb4ff2141c029b0ac6109d0ef95f2b00f968b8a478ce2ef943259d1567c21",
-          "generation": "e10eabd518834af0b53cf6f319625259"
+          "output_hash": "32be314cab84eb87c5522b56328c2921a1a16cab9d8e7eb3dfa8c20085e9e1f1",
+          "generation": "94696369a8bc4c669a4f8578de013482"
         }
       },
       "contexts": {
@@ -297,14 +297,14 @@
         "capture-workflow": "5fda5c41a27f2faae505fad31b4ce403bad9b4db0f324568d99bdc5a782b70af",
         "audit": "5fda5c41a27f2faae505fad31b4ce403bad9b4db0f324568d99bdc5a782b70af"
       },
-      "source_hash": "251874e3bb52f2135c9b348ded6e8894b0acccae82369440382ceab25f32a713",
-      "product_hash": "e29af5af2ad84d96436fc63bddb69727142a5d4917a422ce7159d7f5176f1e8b",
+      "source_hash": "0219748211b9788f3fc6416a1826275bdb7363a4fe8256aa3ae57b4c47bc7fbe",
+      "product_hash": "e952684e9daf7b169b479dec20c27b60fd88823a1d5a7764de4ecbaac5af942a",
       "loading_hash": "fe5695418232c847e51f379eb01fd4f2e483b0a0899d4bab30a81c4797420cd2"
     },
     ".skw/src/references/impl/wiki.skw.json": {
       "blocks": {},
-      "source_hash": "93f4bb563e9183efbfe16d99fb427951aacfa55a90e383957d5bbd902b1cf94f",
-      "product_hash": "f865453a846df47ecd8b87a6117c7a8f29b94ed4b2770194b4f6c8f5499543ec",
+      "source_hash": "603ba916b633d5f79616677e71ed1673f5c83fdf93218980fe4eb8dd0f9daee4",
+      "product_hash": "fe713e863056bba1fb4ee4918f49500e6899187b5440717f74a916d7386b1c68",
       "loading_hash": "fe5695418232c847e51f379eb01fd4f2e483b0a0899d4bab30a81c4797420cd2"
     },
     ".skw/src/references/design-dialogue.skw.json": {

@@ -34,7 +34,7 @@ Model capture reconciliation is required or created by this route.
 
 Resolve the product project and its instructions. Resolve documentation
 ownership separately when project guidance assigns the Wiki elsewhere.
-Use Project.from_path(path).wiki() from tarav.l2.project, or an explicitly
+Use Project.from_path(path).docs.wiki from tarav.l2.project, or an explicitly
 selected folder Wiki. For a minimal TaravProject, use
 ProjectWiki(project).open() from tarav.l2.project.wiki.
 Read relevant Wiki notes and follow evidence links as needed; do not read or
