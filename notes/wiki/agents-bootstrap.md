@@ -55,7 +55,7 @@ Findings are typed check POIs produced by the existing Check machinery, and the 
 
 ## Implementation
 
-[Impl.Req 872](../../../tarav-py/notes/live/872-project-agents-bootstrap-impl-req.md) designs the first implementation in `tarav-py`. Its proposed carrier class, depot location and opt-out granularity are agent proposals awaiting the User's confirmation; nothing is implemented yet.
+[Impl.Req 872](../../../tarav-py/notes/live/872-project-agents-bootstrap-impl-req.md) delivered the first implementation in `tarav-py`: `TaravProject` exposes `project.agents.agents_md`; a code-owned [Tarav prompt](../../../tarav-py/src/tarav/l1/project/tarav-system-prompt.md) and Project-authored prompt compile from `.tarav/skillware/src/AGENTS.skw.json`; built-in checks report typed POIs for missing or stale sections, product drift, and invalid aliases. The User approved landing the first prompt draft in the [daily record](daily/2026-10-08.md#project-agents-bootstrap-draft-landed). Separate default-on prompt switches are an agent implementation choice, not a separately recorded User design decision.
 <!-- tarav.breadcrumb 0f7a73e0c6bcdc262a35856cb46dd12e77bee9679338ae1554c6bfcb1dbaf098 -->
 
 ## Skill availability
