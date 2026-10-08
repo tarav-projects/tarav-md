@@ -74,6 +74,8 @@ The next bounded implementation lets `SomeType.records.from_record(record)` load
 `Type.records.validate_record(value)` and `Type.records.record_example()` now give class-bound Record validation and examples. Record projection and loading use the namespaced validation entry. Concrete Types still implement and extend the existing classmethods: many examples are specialized, and some validators rely on `super()`. The namespace delegates to those overrides, preserving behavior without migrating each Type's extension mechanism. The [Kernel implementation](../../../../tarav-py/src/tarav/l0/kernel/records.py), [focused tests](../../../../tarav-py/tests/kernel/test_object_namespaces.py), and [Impl.Req 868](../../../../tarav-py/notes/live/868-record-namespace-validation-and-examples-impl-req.md) show the bounded change.
 <!-- tarav.breadcrumb b3b4e90c231811ae6a80be215de46a11bc4f9d10206e3ccc6f44b324bf941eb4 -->
 
+
+
 The predicate API distinguishes the two inheritance dimensions and their
 combination. `issubclass(B, A)` checks behavioral inheritance;
 `issubrecord(B, A)` checks only whether `B.RecordInterface` inherits
@@ -875,3 +877,9 @@ capabilities, contextual knowledge, and executable behavioral obligations.
 The Type Graph makes that structure discoverable. This extends its purpose
 beyond representing executable inheritance alone.
 <!-- tarav.breadcrumb ba570865c883642ef8f86d7b120319381894aa49a58395d129f5f6da859d01e7 -->
+
+### Record extensions move into `Records` — 2026-10-08
+
+The User then chose to migrate the extension mechanism itself. Each specializing Type now defines a nested `Records` subclass; its `validate_record()` and `record_example()` methods operate on the bound concrete Type. Namespace inheritance preserves the same `super()` relationship that the earlier classmethod overrides used. Maintained Object callers use `Type.records` or `obj.records`, and `TaravObject` no longer exposes the duplicate direct Record methods. `_record`, `_from_record()`, and `_to_record()` remain object state and protected hooks. The [Kernel implementation](../../../../tarav-py/src/tarav/l0/kernel/records.py), [architecture contract](../../../../tarav-py/ARCHITECTURE.md), and [Impl.Req 870](../../../../tarav-py/notes/live/870-record-namespace-extension-migration-impl-req.md) show the migration scope.
+<!-- tarav.breadcrumb e06f472c6ea125f022b4af881fcde79c0be19a4c00e6a382d72d8707478ddc0d -->
+<!-- tarav.breadcrumb c52f427a9b7407b5a6fe74daf54062c897c0ad62668c9db2049b059b7872eeec -->
