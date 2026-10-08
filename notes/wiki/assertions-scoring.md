@@ -79,8 +79,8 @@ and ranking implementation can subtype them without making its particular
 decisions universal. This leaves room for another scoring method beside
 Ranking. A score can be a typed, recomputable object derived from retained
 evidence; it need not be stored merely to be identifiable in code.
-<!-- tarav.context 6734aba0:434e3f65fc9c6be5 -->
-<!-- tarav.context 6734aba0:33c08d1be038423c -->
+<!-- tarav.breadcrumb 3fce7e286db89163f92a3905a788a0f34a46c17224ab09287376c1f8f4686ee0 -->
+<!-- tarav.breadcrumb 962896660d239af45dbf94cdaa6b37f9f922a8229848905911cdf5a0383c6b6e -->
 
 Evidence pending Breadcrumb registration: session
 `codex:01a0d86c-9538-7be1-af96-014cd4203d61`, User Turns at
@@ -96,8 +96,8 @@ but that coincidence is not a rule for every workflow relationship. No common
 scoring operation needs to be invented while Ranking is the only implemented
 method. Ranking compares closed cases within a Tribunal; another scoring
 method may organize its own objects differently.
-<!-- tarav.context 6734aba0:3bbb5c37b31f548c -->
-<!-- tarav.context 6734aba0:a37ed4686d740bc3 -->
+<!-- tarav.breadcrumb 72135afc0080cc3780a51fa9f5de67e8de39e19452f74e4504d56c77b403c8c7 -->
+<!-- tarav.breadcrumb d819385eecefcbc5f00d3249941268b5eebaffedf79a9e2d1eb61e13efdce6c5 -->
 
 Evidence pending Breadcrumb registration: same session, User Turns at
 `2026-10-06T15:31:39.746Z` (“we want them all be scoring workflows”) and
@@ -111,8 +111,8 @@ represents one comparison question and owns its admission, instructions, and
 any case-specific requirements. An Assertion may produce different cases for
 different Tribunals. The shared ranking machinery should not prescribe a rich
 universal case schema simply because one Tribunal needs particular material.
-<!-- tarav.context 6734aba0:a37ed4686d740bc3 -->
-<!-- tarav.context 6734aba0:b0167f504889a33e -->
+<!-- tarav.breadcrumb 4b4fd4a3f4b769f083f522b438b52aa72c5661ecfd23e789ccc1a1d821d8abc8 -->
+<!-- tarav.breadcrumb 722dd58e59c664fc9aa5ad7c3f0059d357a38d1ca08ba0601af494548218246a -->
 
 Evidence pending Breadcrumb registration: same session, User Turns at
 `2026-10-06T15:34:47.306Z` (“we will have different ... tribunals”) and
@@ -127,8 +127,8 @@ same deliberate distinction used for Workflow classes and Workflow objects.
 Whether the Tribunal object is retained on disk is a separate choice. Current
 `tribunal_type_id` fields identify the class and must not silently be treated
 as the new object's Ship.
-<!-- tarav.context 6734aba0:bba1c976c99de9c3 -->
-<!-- tarav.context 6734aba0:e3a12d122bc8c5ca -->
+<!-- tarav.breadcrumb cd349bcf2fb3ebe14206e5430f657bbe1c366e16f25ebe5581f14978db42ee74 -->
+<!-- tarav.breadcrumb a09487a1ee159ac198e4aadb76660d57196ec0819abee66944fc5e2393485912 -->
 
 Evidence pending Breadcrumb registration: same session, User Turns at
 `2026-10-06T15:41:05.480Z` (“we still have an identify for the class ...
