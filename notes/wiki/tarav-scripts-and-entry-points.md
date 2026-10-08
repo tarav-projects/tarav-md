@@ -60,3 +60,21 @@ The ideas below were explored in the same discussion. The User said explicitly t
 **Other ways through the guard.** A file checked at import time, a flag found in the argument vector, and other mechanisms were mentioned as possible additional ways to pass. Only the second entry point is being done now.
 <!-- tarav.breadcrumb b8d1e29da065aeb38881621f512f3b79c13fe6d01c832389514e380e7594e37c -->
 <!-- tarav.breadcrumb 856744ffebf775cc0bf0bd09767f7fdd0833a6a09cde2ef6bf80f7d739bfd394 -->
+
+## Other repositories and the import guard
+
+The repositories outside Tarav that import it directly are not Tarav's concern. When the guard is on they will see the error, and their maintainers resolve it there. [Impl.Req 874](../../../tarav-py/notes/live/874-tarav-import-guard-and-bypass-entry-impl-req.md) was narrowed to `tarav-py` accordingly.
+<!-- tarav.breadcrumb fe5ed5ae64b8b55acd08662397c35962ad29973916d085d18050b0856281bb6a -->
+
+## Run script registry
+
+This section continues the registry idea from the brainstorm above; the points here are now decided.
+
+With the import guard funnelling scripts toward `tarav run`, the registry is the other half. It is another registry like the help one, in its own folder. `tarav run` keeps the path of a script and copies the file, and also keeps source given as text or on standard input. It is deliberately simple, with at most some deduplication. It is partitioned at least by Project: a run with the `--project` flag goes under that Project's partition and a plain run under a global one. Metadata is chosen by common sense, such as the calling folder and the date, and will be refined by use.
+<!-- tarav.breadcrumb 63fb1aa418365b90767a71f8088bd6e61c80ea2402a44b9baf88b497f677e57b -->
+
+Retention exists only to bound size, so it is expressed in size rather than time: an allocation per partition, for example 50 MB, and a limit per entry of around 1 or 2 MB beyond which the copy is cut. The registry is best effort and not critical; its purpose is to increase contextualization power.
+<!-- tarav.breadcrumb fc58a479ac5aba8b499f3a0f494b3330de6ff216fc0c7c79809a02b77c890702 -->
+
+[Impl.Req 875](../../../tarav-py/notes/live/875-run-script-registry-impl-req.md) designs the first implementation. Its layout, metadata fields, write order, and the choice of the Project id as partition key are agent proposals made under the User's request to use common sense; a query command and lookup by name remain undecided.
+<!-- tarav.breadcrumb c9e8649e9ebd4358f156067404641e67cef2e8cadb64703719c6c18ae8726a8b -->
