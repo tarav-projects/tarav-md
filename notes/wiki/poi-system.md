@@ -291,3 +291,17 @@ A family parent that is never raised may remain so related cases can be selected
 
 [Impl.Req 877](../../../tarav-py/notes/live/877-atomic-poi-types-impl-req.md) implemented it in `tarav-py` commit `9559db7`: fourteen families became 88 case types, and `tarav check` lost `--by code` and `--code`. Three older finding classes that subclass the bare `POI` (`BreadcrumbFinding`, `ReferenceFinding`, the Diagram `Finding`) still carry a code and are a follow-up. Guidance reminders rose from 48 to 93 on the Taravangian root because each atomic type without guidance is now reported separately.
 <!-- tarav.breadcrumb fe5f488b22795d4fa14c5101c5b0463306b0b85d6987f31c4efbce24d3dca7a2 -->
+
+## Shared presentation and further POI integration — 2026-10-08
+
+<!-- tarav.sessions
+473c89a0 = codex:01a1176b-f14c-7fd0-a97c-b22279c3f8c8 @473c89a00e2367fb827193af74a6375c60a96b0be110f21df0aff49360ca972f
+-->
+
+The User accepted a common presentation path: a POI Type supplies one POI's meaning, selection fixes the page before rendering, and a named renderer lays out that page and tells the agent how to open full context. Surfaces select a renderer by name; the default and JSON-lines presentations support line, record, and context levels. The connection from a displayed identifier to context is itself checked.
+<!-- tarav.breadcrumb 943d1c7cf40bcfcb203dde81ffc3810e81d0210c1392557041410e3c3de58ca0 -->
+<!-- tarav.breadcrumb a73e6a566f612a4d20cfef20187a9e1190ec77a266369fa95607a2bbf62f0016 -->
+
+[Impl.Req 879](../../../tarav-py/notes/live/879-one-poi-system-and-rendering-impl-req.md) integrates `tarav check`, Skillware POI reports, and Breadcrumb audit output with that renderer contract. Breadcrumb and Reference resolution now use atomic identified POI families. A displayed identified POI is retained so its advertised `tarav context` path can open the reported occurrence. Chatlas query matches and low-level record observations were renamed as plain data, rather than treated as POIs. The Diagram's coded `Finding` remains: Capture Receipt records retain its `code` shape, so its conversion needs a separate typed-case and data-migration pass.
+<!-- tarav.breadcrumb 4278a7af9829e72ff7774c1caa7f4fc27acbd1fdcd132bbf39a76d063f798f4c -->
+<!-- tarav.breadcrumb 99eded3fcfc86cc66781292ca27db3a654925056a17116b1f10bb7d8d9404466 -->
