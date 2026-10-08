@@ -57,6 +57,12 @@ The simple pattern uses `NamespaceBase` to bind an object. Independent bases can
 [Impl.Req 865](../../../tarav-py/notes/live/865-object-namespaces-and-composition-check-impl-req.md) implemented this in Kernel and added `TaravObject.Records` / `obj.records.to_record()` as the first Record path. Existing root Record calls remain because they are widely used; moving class-level loading and callers into the namespace needs a later bounded migration. The full Python suite passed with 175 tests.
 <!-- tarav.breadcrumb 80e3d48a50eb567034ff6d6ba1244fe639764a2439e5845812a6ec597962ba90 -->
 
+### Namespace style heuristic
+
+Namespaces are a common Tarav API style when a capability is used by sufficiently heterogeneous subtypes, or when a large object benefits from clearer paths. `CheckProvider` illustrates the first case: extending it supplies `.checks`. `project.models` currently illustrates the second: it organizes Project's own API rather than marking an extension. These paths can look alike without implying the same ownership. Abstractness alone is not a reason to namespace a method; a central action such as `Check.run()` can remain direct. The readability gained from a qualified path should justify its extra API machinery.
+<!-- tarav.breadcrumb 66e331aefab5a8810aa427458dae8c92e7f7ed7af1c5ce6a7ac7a9461546eb9d -->
+<!-- tarav.breadcrumb 489f0748da4e288662f50834b5bdf10f22a5e1294c07c0dcffe01d65b1fe808e -->
+
 The predicate API distinguishes the two inheritance dimensions and their
 combination. `issubclass(B, A)` checks behavioral inheritance;
 `issubrecord(B, A)` checks only whether `B.RecordInterface` inherits
