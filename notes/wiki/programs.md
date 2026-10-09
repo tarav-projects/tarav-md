@@ -63,7 +63,9 @@ In the discussion recorded in [Operator Context, Directives and Harnessed
 Actions](operator-context.md), the User sees Programs and Harnessed Actions as
 the same nature: definitions, particular running instances, tracking, and POIs
 to work on. "Action" is the better name for the atomic unit; a Program might
-be a root with active Actions. Whether they merge is left for later.
+be a root with active Actions. Whether they merge is left for later. Actions
+now exist in code (`tarav.l1.actions`, request 891); the Program bootstrap is
+unchanged and the two are not yet related.
 <!-- tarav.breadcrumb 523913d55074e823e516085ec0dab78b588599c5eb0b001f8425c6a06aae8ad3 -->
 <!-- tarav.breadcrumb 5b6d366840ed0016fda2a9dd0a7a5135ac9dbcf79a071f88c88bedbe471c4dad -->
 

@@ -4,10 +4,61 @@
 abd0372d = claude-code:d82f1801-d3f2-4deb-9c95-297028a54b7a @abd0372dd06ffeef10c625e3f68354a234a91e4992b67406f075d93ccb20f4d4
 -->
 
-An open design discussion (2026-10-09). Nothing here is implemented. Passages
-marked "Agent proposal" were suggested by the agent and are not decided. The
-names are provisional: the User expects them to follow from which objects
-turn out to carry the most weight.
+The design of 2026-10-09. Passages marked "Agent proposal" or "Agent" were
+suggested by the agent and are not decided. The names are provisional: the
+User expects them to follow from which objects turn out to carry the most
+weight.
+
+## Current model (read this first)
+
+The discussion changed its own conclusions several times in one day. This
+section states where it ended; the User asked that the Wiki state the current
+design and not only append to the old one. The sections after it are the path
+that led here, and each says where it has been overtaken.
+<!-- tarav.breadcrumb 5dd288aa0c73682cbb141ad086fd2d5eec7359b9513861a503e5e632668cccd1 -->
+
+1. **A POI is only an event**: a situation was found and raised. It is worded
+   descriptively and says nothing about what to do.
+<!-- tarav.breadcrumb 54d21242642e665e2fc3416e2efa205b2244035a941f28fe7292e4cbc8f3ff22 -->
+<!-- tarav.breadcrumb 3c0839b2e58d5a70a728aa53a5813a5c827feba8e93ba88c3272602d5585812f -->
+2. **What follows a POI is an action.** An actionable POI spins one action.
+   That run is what persists and is worked on; it is what a tracked POI used
+   to be. It has several close paths: the situation is gone, it was dismissed
+   (what was called a blessing), or what it asked for was provided. See
+   [POI system](poi-system.md).
+<!-- tarav.breadcrumb 50d6b3493b971b669649c5a632031997ceabcf723e902039c420a102df44aaec -->
+<!-- tarav.breadcrumb f1b94bc2e319c52519b61e2081b343e44be5350d6c26fc1d89867a75046d14b1 -->
+3. **Actions are typed.** An Action Type is a definition and a run is an
+   instance, as a program and a process. The first concrete kind is the Step
+   action: an opening test, the work, close paths. Each action links to a
+   skill section; guidance about what to do lives there.
+<!-- tarav.breadcrumb 8279f72e640ac940129f1e89aae98658542c2bd45809d8fad956b8e5136e0223 -->
+<!-- tarav.breadcrumb 1160415612b251b41079255752fc6b8de3f333c3b54e92f1f5f4be4c87248d0a -->
+4. **The Operator Context is a place, not an object per session.** Agents put
+   typed input objects there for whatever consumer needs them. The consumer
+   takes them itself, so it can check and keep what it was given. Objects may
+   be edited; a consumer that cares keeps a hash.
+<!-- tarav.breadcrumb e4daa5264af4c53c5ce346b5a185044f94e0b851da9afa97b72e941f91dbd8ed -->
+<!-- tarav.breadcrumb 8e482dde4c1c74bd7feed2e6463909674f316ff422e49ad8cc17360373ee48c4 -->
+5. **Everything is central and tracked**, as Records in the Record Registry,
+   outside the Project's folder. POI tracking is to move out of the Project
+   too.
+<!-- tarav.breadcrumb 6ec9fe6072d4aeea4b4fd9d811a951e693d37e3ac969f1d7f1f7b55007c63a16 -->
+<!-- tarav.breadcrumb 4c43c70038342fbc4fb1e0bf8fbdf234a2af374f521d0a80cdda434fdc88d82d -->
+6. **No invariant about actions**: Tarav offers elemental primitives and
+   packaged bundles, and a bundle may require its parts.
+<!-- tarav.breadcrumb 511ffff50643f1f1c78968544da785ea7db0aa90b44fed182e7aa5b1396013bb -->
+<!-- tarav.breadcrumb bce0730b024fd8ca96e7026dcfae2028b9e3b02fafd851a8f819dc9f8937a663 -->
+
+Still open, discussed below and not settled: Directives and gating; surfaces
+that only certain actions may change; how Programs and Actions merge; a typed
+Message; typed subjects and precedent; grades of dismissal; other workflows'
+actions hooked to a POI and chains between actions.
+
+In code (`tarav-py`): request 891 built the Operator Context store, the Step
+action with a single closing test, and a blessing bundle. Request 892, designed
+and not executed, replaces that bundle with the POI resolution action and its
+close paths. The Project's POI tracking and blessings are unchanged.
 
 ## Where it started: what a POI should carry
 
@@ -158,18 +209,20 @@ Program or Action can be another. Define the context and its mechanics first,
 then see what else follows, perhaps by simulating usage.
 <!-- tarav.breadcrumb 65cc48ef180dee58212feec357fb0cdd24ccc4cdbf24a4fcf5100224d6d095a0 -->
 
-What the User fixed:
+What the User fixed at this point, of which two items were later changed:
 
 - It holds what the agent puts there for the code to contextualize.
 - It is linked to the session ID.
-- It is a JSON file somewhere in the Project's `.tarav/`, maintained by the
-  agent; every run can read it. It is the agent's typed input.
+- It is the agent's typed input, and every run can read it. *First stated as
+  a JSON file in the Project's `.tarav/`; later changed to objects in a
+  central, tracked place outside the Project.*
 - Workflows implement inside it whatever they need. A workflow can require
   the context to be well set up.
 - Standard checks follow, such as "this session has open actions".
 <!-- tarav.breadcrumb 14ce3760145a0b66987d4ea595e1619a105e9a8c5e757efaa1fac734d812e7c8 -->
 
-Refined by the User: it need not be a single file. It is better as a folder
+Refined by the User (itself overtaken by "objects per consumer" in the
+current model): it need not be a single file. It is better as a folder
 with a main record, described by a class. The Operator Context is itself a
 workflow, and other workflows integrate with it: they demand things from it
 or put things there themselves. The agent states what its workflows require;
@@ -222,6 +275,10 @@ Agent proposals, not decided:
   a separate thing.
 
 ## Simulated usage (Agent draft, for discussion)
+
+Overtaken: these were drafted for the session-wide context and for Directives,
+before Actions were designed. The first case, blessing, is now the dismissal
+close path of a POI's action. They are kept as the record of that stage.
 
 Three cases that exist today, written as they might go with an Operator
 Context. Each lists what the operator declares, what the code sees, what is
@@ -278,8 +335,10 @@ capture, a little for blessing, as much as wanted for implementation.
 
 ## Later the same day: the model changed, and Actions were designed
 
-This section supersedes the folder-per-session picture above where they
-differ. Passages marked "Agent" are the agent's.
+This is the stage the current model comes from. It supersedes the
+folder-per-session picture above where they differ. One part of it was
+overtaken in turn: the blessing root action became a close path of the POI's
+own action (see [POI system](poi-system.md)).
 
 ### Operator Context as a place for typed arguments
 
@@ -331,7 +390,8 @@ Project too.
 The action workflow is designed first and the Operator Context emerges from
 it. Blessing a POI is an action: a Type represents it, with state and
 validation. There is a blessing action that is the root of all actions that
-aim to bless.
+aim to bless. *(Later: blessing is a way to close the POI's action, not a root
+action.)*
 <!-- tarav.breadcrumb 7e6d19863d913c2f31448ae0882f0239f044910590e92a26471ff57eaa84b36d -->
 <!-- tarav.breadcrumb 74ffe11189a45aa46b3735fe0e064ff85594a4c4f915364eb4c17346d6668bfa -->
 

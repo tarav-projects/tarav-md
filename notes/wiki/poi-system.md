@@ -9,6 +9,33 @@
 abd0372d = claude-code:d82f1801-d3f2-4deb-9c95-297028a54b7a @abd0372dd06ffeef10c625e3f68354a234a91e4992b67406f075d93ccb20f4d4
 -->
 
+## Current design direction — 2026-10-09
+
+This note is a history: its sections were written as the design moved, and
+several describe mechanisms the design has since left. The User asked that
+the Wiki state the current design and not only append to it.
+<!-- tarav.breadcrumb 5a3d45aa9a03be55c284349393eb0d7627d186931662057663ff5227a80a67ea -->
+
+Where the design stands:
+
+- A POI is only the event that a situation was found. It carries the check,
+  the situation, the evidence and a descriptive message, and no instructions.
+- An actionable POI spins one action. That run is the persistent thing that
+  was called a tracked POI. It closes by one of several paths: the situation
+  is gone, it was dismissed, or what it asked for was provided.
+- A blessing is the dismissal path. The word may be dropped.
+- Guidance about what to do belongs to the action and its skill.
+
+The last section of this note, "A POI is an event; what follows it is an
+action", holds the discussion. What that makes of the earlier sections:
+
+| Section | Standing |
+| --- | --- |
+| Detection, navigation, situation identity, atomic types, reported POIs | Current. |
+| Recorded blessings; composable blessings; revisable blessing attention | The code works this way. As design, blessing becomes the dismissal close path of the POI's action. |
+| Tracked POIs, the board; POI tracking with status axes; record status changes only | The code works this way. As design, the tracking record becomes an action run, and its store moves out of the Project. |
+| Neutral POIs and the producer–reader gap | Current, except that "what to do" goes with the action and its skill, not into a context entry. |
+
 ## Detection and presentation
 
 ### Points of interest, not inherently problems
@@ -60,6 +87,9 @@ providing that entry point.
 <!-- tarav.breadcrumb 2e48db834bb596358c667bbbf669ec45043b36582e31ee5a065261c02cc60c56 -->
 
 ## Recorded blessings and permitted resolutions
+
+*As design, overtaken on 2026-10-09: blessing becomes the dismissal close path
+of the POI's action. This section still describes the code.*
 
 ### Minimal base and specialization ownership
 
@@ -309,6 +339,9 @@ The User accepted a common presentation path: a POI Type supplies one POI's mean
 
 ## POI tracking: records with status axes — 2026-10-08
 
+*As design, overtaken on 2026-10-09: the tracking record becomes an action
+run. This section still describes the code.*
+
 This section replaces the mechanics of "Tracked POIs, the board, and attention"
 above. That earlier text stays as the history of the first design.
 
@@ -501,8 +534,9 @@ Directions the User set:
   do" belongs to the skill that contextualizes the agent, not to the POI.
 <!-- tarav.breadcrumb 19846c92b781118e4eaab53e3f1265465912fde6b5b59ed31b1f41581c9e1855 -->
 <!-- tarav.breadcrumb 09c8c5868c097b3e1e11867078f5659df9e00fb50d2e1fbd6b289d702224d30c -->
-- `may_do` moves out of the POI and can be part of the context. The POI is
-  concerned with the triggered check and the situation. Precedent is another
+- `may_do` moves out of the POI. It was first to become part of the context;
+  later in the day its home became the POI's action and that action's skill.
+  The POI is concerned with the triggered check and the situation. Precedent is another
   contextualization workflow, and a skill can prime the agent on what to look
   for, even with its own typed Context view.
 <!-- tarav.breadcrumb 0f6799fa762b75d065cf2d563c634f8ac882a55747c385dfe7b18e9e5e5518a1 -->
@@ -534,4 +568,68 @@ Request 889 built the first of these directions on 2026-10-09: every POI has
 its favour, so the `.error()` named in [Checks workflow](checks-workflow.md)
 is the earlier name.
 <!-- tarav.breadcrumb 3d95d861eb7d695f4e7c4eef0e26fdcd4d4954da167fadd1c2abc6046b4d288a -->
+
+## A POI is an event; what follows it is an action — 2026-10-09
+
+A later turn of the same day's discussion. It replaces the idea, held for a
+few minutes, that a POI declares its own resolutions, and it changes what a
+tracked POI is. Nothing here is implemented. The Actions it builds on are in
+[Operator Context, Directives and Harnessed Actions](operator-context.md).
+
+### What a blessing means
+
+Reviewing the first Actions example, the User asked what blessing a POI such
+as "this file has a TODO" means: that it is done, that it is not really a
+TODO, that it is recorded elsewhere? A blessing answers a specific question,
+and the types should carry that semantic.
+<!-- tarav.breadcrumb 264fa41857a6f3a80df2d18e49bfd4d89a60810bae04630c03d262999f78b67e -->
+
+The same POI can be blessed by different kinds of blessing. What makes
+something a blessing is that the POI's claim is attenuated or dismissed; its
+original nature is an overrule of the check. It is not the only relationship
+one can have with a POI: a POI may be annotated, or may ask for something to
+be provided.
+<!-- tarav.breadcrumb 302d002af40f552fb2a6ae859a6f26c511d8f578f082226a96fd7aeb30e23038 -->
+
+The general frame is that a POI can be resolved, in several typed ways:
+because the situation was changed, because something the POI asks for was
+done, or because it was dismissed, which is the softest. Dismissal has grades,
+from no justification to a reason that must score well. The word "blessing"
+may not survive.
+<!-- tarav.breadcrumb 4475d3796feda6a3de78bcfe919c74db6e83c077c38decb3310f2152fc48c72f -->
+
+### The POI is only the event
+
+Too much responsibility was being put on the POI. A POI is the event that a
+situation happened and was raised. It can have consequences: it can activate
+an action. A blessing is a way to finish that action.
+<!-- tarav.breadcrumb 6c821818375582933e70f7c47a768214ebdcdbab98db543e0924040c1c1cbbde -->
+
+What used to be a tracked POI is not a POI: it is an action triggered when the
+POI is first raised, closed automatically when a later check no longer raises
+it. An action can have more than one close path, as a program has; dismissal
+is one. The design starts from scratch and need not keep earlier names. The
+guidance about what to do lives with the action and its skill, not in the POI.
+<!-- tarav.breadcrumb 58bd0fd530f8dc452be8474969267ab066dddd4e439e93e6ce45ce4f42f1bab9 -->
+
+One action per POI, for simplicity. Other workflows may hook their own,
+independent actions from outside when a kind of POI is raised, and an action
+may close when another closes, as a chain.
+<!-- tarav.breadcrumb a2447cd89c1e47729ab0d3096353506c33b1890828c6b642d04313b37af27592 -->
+
+The name for now is an actionable POI: a POI that also spins an action.
+Everything stays typed: situation, check, check POI, action. What is
+happening in a Project is asked as "which actions are active?". Closing is
+done by a loop that belongs to the Actions workflow: it asks each running
+action whether one of its close paths is met, and closes it if so. That is
+simpler than hooking into the checks.
+<!-- tarav.breadcrumb 2e49cb0920a57e6c4d4e044d2fa4621c81825e0fd9261dc3f11b154ebaeb8179 -->
+
+Agent proposals, not decided: keep the close path visible wherever runs are
+listed, so a dismissal never looks like a fix; a dismissed POI that is still
+raised does not reopen its run while its situation is unchanged; a situation
+that returns after it was gone opens a new run; other workflows' extra
+actions come from an explicit list consulted when a run opens, and
+dependencies between actions are checks that read run states, so no event
+system is needed.
 
