@@ -131,3 +131,23 @@ That trace is the existing provisional form: the session declaration and the pro
 Two related mechanics are easy to miss. Stale label positions after lines move are repaired by rerunning the audit with `--refresh-positions`; several sessions that day wrongly reported that no such operation existed. And a session first used by a later section can be declared in a block beside that section, as this section does, so earlier Breadcrumb lines do not shift.
 
 The `tarav-hugentics` modules for Inlined Capture, Wiki capture, Reading Club, Wiki-backed implementation and commit evidence now state this fallback.
+
+## TypeScript surfaces (draft) — 2026-10-08
+
+The Tarav Center extension had no Breadcrumbs in its TypeScript because no
+convention existed. The User asked the agent to draft one itself and to build
+it in an autonomous pass.
+<!-- tarav.breadcrumb d8eb66d7318b7bf8d7db72ee9c69901f1c5aab858918689ce34e2a6143e7c529 -->
+
+The convention is the agent's draft, not a User decision. TypeScript markers
+and labels are `//` line comments, `// tarav.context <alias>:<prefix>` and
+`// tarav.breadcrumb <id>`, on `.ts`, `.tsx`, `.mts` and `.cts` files.
+`TypeScriptNormalModel` in `tarav.l1.surfaces.typescript` finds comments with a
+small lexer that skips strings, template literals with nested expressions,
+regular expressions and block comments. Block comments never carry markers. A
+lexer diagnostic stops submission and audit, as Python's tokenizer
+diagnostics do. Like Python, a TypeScript file has no session declaration;
+submission takes `--provider` and `--session-id`. In `.tsx`, `//` inside JSX
+text would be read as a comment; that limit is recorded, not handled. See
+[Impl.Req 885](../../../tarav-py/notes/live/885-typescript-breadcrumb-convention-impl-req.md).
+The extension's four TypeScript files now carry seven Breadcrumbs.
