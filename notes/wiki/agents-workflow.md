@@ -60,3 +60,55 @@ Agent proposals, not decided: express what a provider can do by subtyping
 (a provider that can report its current session inherits that capability);
 report account and profile problems as POIs through checks; start with an
 inventory of the modules before reorganizing.
+
+## Inventory of `tarav.l1.agent` — 2026-10-09
+
+Made for request 887, after request 886, by reading the code: 78 Python
+files, about 18,800 lines. "Used by" counts imports. Nothing here was changed
+by the inventory.
+<!-- tarav.breadcrumb 72b03a8b9f6e6d5e5e60b230a6d2f0975b5c203998a6c9d9e671ea0bb3f20491 -->
+
+| Area | Modules | Lines | What it does | Used outside the package |
+| --- | --- | --- | --- | --- |
+| Model | `primitives.py` | 478 | `AgentConfig`, `SessionSource`, the run mixin and the capability Protocols (`RunCapable`, `PingCapable`, `ProfileCheckCapable`, `AccountStatusCapable`, `SessionDiscoveryCapable`) | Chatlas |
+| Configuration | `config.py`, `_config_entry.py`, `_config_models.py`, `profile_scope.py` | 1,313 | Loads `~/.tarav/config.json` and `~/.tarav/profiles/*.json` into agent configurations; validates profiles; chat provider specs | Chatlas |
+| Providers | `providers/specs.py`, `homes.py`, `registry.py` | 452 | Canonical provider families and their home layouts; builds the adapter for a configuration; resolves an agent for a run | Chatlas, Scoring, runtime |
+| Provider adapters | `providers/claude_code` (2,581), `codex` (1,712), `copilot_cli` (1,333) | 5,626 | Per provider: adapter (`agent.py`), native sessions, transcript extraction, account status; Claude Code and Codex also authentication methods and usage hooks | Chatlas (extractors), runtime (usage hooks) |
+| Sessions | `sessions.py`, `session_refs.py`, `session_utils.py`, `session_copy.py`, `providers/extraction.py`, `extractor_common.py` | 2,069 | Discovers provider-native sessions, their backing artifacts and transcripts; copies a session between homes | Chatlas |
+| Running | `run_runtime.py`, `run_prepare.py`, `ping.py`, `profile_check.py` | 487 | Builds and runs a provider command, the liveness ping, the read-only fitness check before a run | Scoring |
+| Accounts and authentication | `auth_registry.py`, `auth_method.py`, `auth_method_registry.py`, `capture.py`, `activation.py`, `materialization.py`, `rotation.py`, `account_paths.py`, `accounts_log.py` | 1,151 | The account store: capture credentials from a home, activate, push into homes, rotate; a secret-free event log | no |
+| Account status and usage | `account_status.py`, `account_status_report.py`, `account_usage_fallback.py`, `usage_registry.py` | 799 | Provider-neutral account status and usage limits; the all-homes drift report; the usage record registry | no |
+| Monitor | `monitor/` (16 files), `monitor_log.py` | 4,990 | The accounts monitor: loop, rendering, limits tracking, burst ratio, account rotation and auto-prime workflows | no (5 test files) |
+| Commands | `commands/` (8 files), `_cli_common.py` | 1,432 | `tarav agent list`, `accounts` (with `monitor`), `sessions`, `profiles`, `run`, `ping`, `profile-check` | runtime |
+
+Observations:
+
+- Every area is live: each module is imported by another or registered as a
+  command. No dead module was found by import.
+- Integration with the rest of Tarav is narrow. Chatlas imports
+  configuration, provider specs, session references and the extractors;
+  Scoring imports the registry and the run types; the runtime registers the
+  commands and two usage hooks.
+- The package predates the current philosophy: no declared workflow before
+  request 887, no registered Tarav Types, capabilities expressed as
+  Protocols and not by subtyping, errors raised as `CliError` and not
+  reported as POIs. Its commands already use keyed options only.
+- Maintained tests import the monitor and the ping directly; sessions,
+  accounts and running are not imported by any test.
+- After request 886 the home-spec mechanics for SQLite anchors
+  (`providers/specs.py`) have no provider that uses them.
+
+## Request 887: the workflow exists and answers the current session — 2026-10-09
+
+`tarav.l1.agent` now declares `AgentsWorkflow`, registered in the runtime.
+"Which session is the running agent in?" has a Python answer,
+`tarav.l1.agent.current_session.current_session()`. A provider adapter that
+can answer inherits `ReportsCurrentSession` and names the environment variable
+its harness sets; Claude Code and Codex do. Copilot does not, because it could
+not be established that its harness exposes a session ID. Chatlas commands ask
+this entry point and behave as before. Source:
+`tarav-py/src/tarav/l1/agent/{identity,workflow,current_session}.py`,
+`tarav-py/tests/test_agents_workflow.py`.
+<!-- tarav.breadcrumb fc19bfd0877a9d858e267a9842afddb59a6e5d91c15fd611ae623442520440f4 -->
+<!-- tarav.breadcrumb 78fb91ee589dfc8c8aec20682073e14039fbba9167ed5a87ac645fe73f23aa8c -->
+
