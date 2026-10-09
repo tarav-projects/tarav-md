@@ -162,6 +162,9 @@ uses the Diagram mechanics documented by this package.
   `Verbatim.Gate`s.
 - `tarav-pkg --constitutional-theory` — load the Constitution and the general
   constitutional-theory module.
+- `tarav-pkg --step-actions` — read
+  [references/step-actions.md](references/step-actions.md) for how to work a
+  Step action: place the input, start, work, close.
 - `tarav-pkg --attic` — read [references/attic.md](references/attic.md) for
   Archive.Attic semantics, Deposit workflow, and its boundaries with
   `Tarav.Archive` and `Diagram.Attic`. Load the linked legacy-skill-mine
