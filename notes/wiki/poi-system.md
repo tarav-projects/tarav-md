@@ -528,3 +528,10 @@ the process and therefore need an identity kept apart from description, have
 an attributed acceptance, and make absence meaningful only when the check ran
 completely.
 
+Request 889 built the first of these directions on 2026-10-09: every POI has
+`throw()`, which raises `POIError` carrying the POI
+(`tarav-py/src/tarav/l1/poi/primitives.py`). `CheckPOI.error()` was removed in
+its favour, so the `.error()` named in [Checks workflow](checks-workflow.md)
+is the earlier name.
+<!-- tarav.breadcrumb 3d95d861eb7d695f4e7c4eef0e26fdcd4d4954da167fadd1c2abc6046b4d288a -->
+
