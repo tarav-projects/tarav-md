@@ -97,7 +97,7 @@ A Namespace owns:
 - its support, evidence, addressing, and other semantic policies.
 
 Namespace type allowlists and policies guide normal writers and produce
-validation findings. They do not make the Diagram unwritable: a disallowed,
+validation POIs. They do not make the Diagram unwritable: a disallowed,
 incomplete, or unassessable record may still be retained while its state is
 surfaced as a POI.
 
@@ -479,7 +479,7 @@ Capture has no Gate-specific command path. A `Capture.Manifest` transports
 typed Ship updates and Annotation records without interpreting their
 semantics. The Namespace specializes each record from its `type`; the
 resulting Tarav class owns its
-schema, model location, Assertions, mechanical checks, and findings. Gate
+schema, model location, Assertions, mechanical checks, and POIs. Gate
 Annotations therefore travel through the ordinary Capture path without adding
 Gate commands or Gate branches to Capture.
 
@@ -525,7 +525,7 @@ tarav diagram render \
 Renderer discovery is mechanical through `diagram renderer list` and
 `diagram renderer show`. Native output is written to stdout; `--json` returns
 an envelope containing the Renderer name, target, media type, content, and
-findings.
+POIs.
 
 A Line Renderer projects the current Line state from the latest ordered
 edition in its Ship Record. It does not erase the lineage: `diagram ship show`

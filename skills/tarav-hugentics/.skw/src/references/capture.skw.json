@@ -83,7 +83,7 @@
         "   --session-id <id> --json`. This resolves or mechanically bootstraps the",
         "   Project's main Model. Report a new Model association when bootstrap occurs.",
         "   In audit mode, inspect the Project association first and stop with a",
-        "   missing-Model finding instead of allowing read-only audit to bootstrap one.",
+        "   missing-Model POI instead of allowing read-only audit to bootstrap one.",
         "3. Render the Model with `Kernel.Writing.Model` and inspect narrower Blocks or",
         "   Lines when needed. Read the Model context's Object.Type registry and use",
         "   full Type names; compact Type codes are rendering-only. Build an internal",
@@ -118,7 +118,7 @@
         "",
         "These summaries are low-friction capture guidance. The Object.Type registry",
         "links every Type to its addressable Definition.Block; inspect that Block when",
-        "the compact wording is insufficient. Definition resolution findings are POIs,",
+        "the compact wording is insufficient. Definition resolution POIs are signals,",
         "not capture blockers.",
         ""
       ],

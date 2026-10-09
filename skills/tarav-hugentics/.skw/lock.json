@@ -40,7 +40,7 @@
     ".skw/src/references/capture.skw.json": {
       "blocks": {},
       "contexts": {
-        "introduction": "9ac6d9c910d959e7b51768b5283d244f3c301249344814bc78b96ad758b03376",
+        "introduction": "7728be209343883856411cd531065e09857e360293683980bef16a9a88663d20",
         "shared-loop": "08d1f04805535e13556e601687da7350c22c7f71d2e0bfd6ef5f63807d01c694",
         "interactive-reviewed-capture": "08d1f04805535e13556e601687da7350c22c7f71d2e0bfd6ef5f63807d01c694",
         "capture-stances": "08d1f04805535e13556e601687da7350c22c7f71d2e0bfd6ef5f63807d01c694",
@@ -48,8 +48,8 @@
         "read-only-audit": "08d1f04805535e13556e601687da7350c22c7f71d2e0bfd6ef5f63807d01c694",
         "landing-through-tarav-diagram": "08d1f04805535e13556e601687da7350c22c7f71d2e0bfd6ef5f63807d01c694"
       },
-      "source_hash": "480b44cd3fb19d5158f17234d6326876f04532df1da2dc2c0a034da8bf43fdfc",
-      "product_hash": "7ccd5f5cc238af28767bc63767228b7b9f0c46cb2913c9551ccec41e19d9d8cc",
+      "source_hash": "cd2f0343eee91eed239e1e0e37d8364f7e324985e0a1628d0f72dd9917c9d571",
+      "product_hash": "366611d73145ff4c95854b0cd37049c9fd6282247536b9d1c08efb076f5a2178",
       "loading_hash": "246447a842be7e6bd7042bc2b91df4036dbe280c22e99a18bb2acf189812f202"
     },
     ".skw/src/references/design-impact.skw.json": {

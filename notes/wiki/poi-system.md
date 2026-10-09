@@ -6,6 +6,7 @@
 1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
 1ae20f8c = codex:01a0ff32-0ec2-7b72-8850-fa795135f3c9 @1ae20f8c8159f12d2402ea702cf49c876ec46a72f71ce12423ae1dbdf2a91871
 64298cbc = claude-code:9da4cef5-68b7-4d17-8a06-1351ca51e82f @64298cbc8db2e7aa971e0828653c07bcb483cfed40931fdf87d5abe7ce1c60b3
+abd0372d = claude-code:d82f1801-d3f2-4deb-9c95-297028a54b7a @abd0372dd06ffeef10c625e3f68354a234a91e4992b67406f075d93ccb20f4d4
 -->
 
 ## Detection and presentation
@@ -396,3 +397,22 @@ These were chosen by the agent, not decided by the User.
 Left for later: a manual disposition axis, a discussion thread on a record,
 links between records, a scoring axis, notifications when axes disagree, and
 retirement rules.
+## Diagram POIs and retained Drafts
+
+The Diagram now raises atomic identified POIs. Its 81 concrete cases sit under twelve
+family Types and the shared `Tarav.Diagram.POI` parent. Each case's Type and path
+define identity; the message and evidence explain the current observation.
+The family Types are grouping points and cannot be raised. Capture Receipts and
+Diagram command JSON retain `pois` with `type`, `path`, and `message` per row.
+Commands use the shared POI renderer and retain displayed POIs for Context.
+<!-- tarav.breadcrumb 067092b81400cc8b761a64dae4f2abaf10d8484cab766e9af8cc7591e84bbd12 -->
+<!-- tarav.breadcrumb 2666bd852678b24d93732c2bca25c9a3b556e3c9209848ca7866ac2cde6eb948 -->
+<!-- tarav.breadcrumb 434a6263ff7817a24cd10326c40dd3800ce7589e00bdb0c31ca8dedb48f2c7a4 -->
+
+Draft schema 2 holds those typed receipt rows. The explicit
+`tarav diagram draft migrate --to 2` operation maps version-1 rows; the reader
+does not translate them. Before migration, 53 Drafts held 13,347 coded rows in
+50 receipts. A dated sibling backup was made, the migration reported no unmapped
+rows, and all 53 Drafts and 13,347 rehydrated POIs loaded afterward. See
+[Impl.Req 881](../../../tarav-py/notes/live/881-diagram-poi-atomic-types-impl-req.md).
+<!-- tarav.breadcrumb 7999d9e48b0db92fcbd33b00ff26858facb673bfa7890518309bbbbb9ed50e66 -->
