@@ -50,6 +50,12 @@ Agents.
 - The Chatlas archive on this machine holds sessions of `claude-code` and
   `codex` only.
 
+Request 886 (2026-10-09) removed `gemini_cli`, `opencode`, `openclaw` and
+`pi` from the code; `claude_code`, `codex` and `copilot_cli` remain. Profiles
+of removed providers left in a user's `~/.tarav/profiles/` now make
+`tarav agent` commands fail until they are deleted.
+<!-- tarav.breadcrumb cf8f0d05dcc94f619dd9cdfe22c49028b44c78b609a08d255a50ea858b9eb054 -->
+
 Agent proposals, not decided: express what a provider can do by subtyping
 (a provider that can report its current session inherits that capability);
 report account and profile problems as POIs through checks; start with an
