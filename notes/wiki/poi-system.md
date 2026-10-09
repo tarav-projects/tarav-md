@@ -440,3 +440,24 @@ does not translate them. Before migration, 53 Drafts held 13,347 coded rows in
 rows, and all 53 Drafts and 13,347 rehydrated POIs loaded afterward. See
 [Impl.Req 881](../../../tarav-py/notes/live/881-diagram-poi-atomic-types-impl-req.md).
 <!-- tarav.breadcrumb 7999d9e48b0db92fcbd33b00ff26858facb673bfa7890518309bbbbb9ed50e66 -->
+
+## Check report filtering and batch Breadcrumb audits
+
+<!-- tarav.sessions
+473c89a0 = codex:01a1176b-f14c-7fd0-a97c-b22279c3f8c8 @473c89a00e2367fb827193af74a6375c60a96b0be110f21df0aff49360ca972f
+-->
+
+`tarav check --type NAME` selects POIs whose Type is `NAME` or descends from
+it. The report states how many POIs matched out of the full run; filtering
+changes presentation, while tracking, retention, and the command's exit status
+still reflect the entire run. `--check` remains a report filter by exact Check
+Type name. Group pagination applies after selection.
+<!-- tarav.breadcrumb 6bf9b64281e5913e114d30348e2d396b44c263ffae742a2810c2dd034d2f52e0 -->
+
+`tarav breadcrumbs audit chatlas-context` accepts repeated `--surface` paths
+or `--files-from` with one path per line. The command audits each selected file,
+returns a result for each, and can refresh uniquely located stale positions in
+one pass. A missing file is reported beside successful files. The manifest
+mechanic does not choose which User Turns are relevant to a surface; that
+judgment remains with the agent. See [Impl.Req 884](../../../tarav-py/notes/live/884-check-poi-filter-and-breadcrumb-batch-audit-impl-req.md).
+<!-- tarav.breadcrumb 94da2d7f8b1ff38498e670c267c7b0fb9809f2bd993f80e5122894754e21e55f -->
