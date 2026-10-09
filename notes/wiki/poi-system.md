@@ -474,3 +474,57 @@ typed receipt POIs, with no coded rows. [Impl.Req 881](../../../tarav-py/notes/l
 records the verification and the existing Project and Skillware POIs that are
 outside its repair scope.
 <!-- tarav.breadcrumb 256e980bf25b4e0264b31cadd62f99e08b0df54666a047eb8530e9f236955e5a -->
+
+## Neutral POIs and the producer–reader gap — 2026-10-09
+
+An open design discussion; nothing here is implemented. The full thread is in
+[Operator Context, Directives and Harnessed Actions](operator-context.md).
+
+The User looked for first-principle arguments for the current POI design,
+compared with Python's exception system.
+<!-- tarav.breadcrumb 0def7e3aa8e7057e0917313ff8471bfbec14a16870f7905b3d9a75eba25f4cc4 -->
+
+A POI connects above all to the code and the situation that produced it. It
+narrows the gap between producer and reader, making the producer's intention
+clear so the reader can judge. The producer cannot know the reader's goal and
+the design does not pretend to.
+<!-- tarav.breadcrumb c2b80891fb46668c0319a8d44122fa11f204fda2cd05a0b4ce327534bf2aa454 -->
+
+Directions the User set:
+
+- A general `.throw()` on POIs, raising the POI as an exception that carries
+  the whole POI. Today only `CheckPOI.error()` does this
+  (`tarav-py/src/tarav/l1/checks/__init__.py`), through `POIError`.
+<!-- tarav.breadcrumb 2e42c09421a1a80109cecfc9c8d93f11005a9418bf55fc1ae50a6811e38360fc -->
+<!-- tarav.breadcrumb f1457b7d3440906dae02124887d21afd9aa6b420021ee635467f07bb5e72dee4 -->
+- POI wording is descriptive, not imperative (`Workflow.Neutral`). "What to
+  do" belongs to the skill that contextualizes the agent, not to the POI.
+<!-- tarav.breadcrumb 19846c92b781118e4eaab53e3f1265465912fde6b5b59ed31b1f41581c9e1855 -->
+<!-- tarav.breadcrumb 09c8c5868c097b3e1e11867078f5659df9e00fb50d2e1fbd6b289d702224d30c -->
+- `may_do` moves out of the POI and can be part of the context. The POI is
+  concerned with the triggered check and the situation. Precedent is another
+  contextualization workflow, and a skill can prime the agent on what to look
+  for, even with its own typed Context view.
+<!-- tarav.breadcrumb 0f6799fa762b75d065cf2d563c634f8ac882a55747c385dfe7b18e9e5e5518a1 -->
+- Candidates, not decided: a typed Message that models guidance instead of
+  the POI; typed subjects beside the situation, so precedent on similar
+  subjects can be found.
+<!-- tarav.breadcrumb 330361530e4c21f30aaa19131c2e611d4c35ffe96c67b2772069e1c13b0f4910 -->
+<!-- tarav.breadcrumb 5c5fefb93f6588fe9c4ae77bd817fef5ca65460fe614d3535bf3bf4c534bc075 -->
+- Weak situations are found by maintenance while processing POIs.
+<!-- tarav.breadcrumb d749600056e2146395498f387e4bdd5fd8edf7b15a60475d2004d0121ee2c928 -->
+
+The User was unsure what it means for a check to have no identity, and whether
+some POIs are ill-typed and should be CheckPOIs. In code a Check's `identity`
+says which check this is across runs; `Check` returns `None` and
+`SituationCheck` derives it from its Type and situation. Agent reading, not
+decided: the identity-less checks are debt to convert explicitly, not a
+meaning to preserve.
+<!-- tarav.breadcrumb 89514a83ccf70085e11e9a67ca33baf41aca603e922cf58282d8c449f4cd7668 -->
+
+Agent's comparison with exceptions, as discussed: both let the class be the
+kind and carry no severity; POIs differ in that they do not interrupt, outlive
+the process and therefore need an identity kept apart from description, have
+an attributed acceptance, and make absence meaningful only when the check ran
+completely.
+

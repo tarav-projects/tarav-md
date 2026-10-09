@@ -52,3 +52,18 @@ Later, forking can express derivation from another Program. The discussion
 raised the distinction between subjects and Context, but did not establish a
 mandatory generic `subjects` field or a final attachment/forking schema.
 <!-- tarav.breadcrumb 86287d37389a6e53047c082b3c1d7f8030d7cc76aed570282b34339526377704 -->
+
+## Programs and Harnessed Actions — 2026-10-09
+
+<!-- tarav.sessions
+abd0372d = claude-code:d82f1801-d3f2-4deb-9c95-297028a54b7a @abd0372dd06ffeef10c625e3f68354a234a91e4992b67406f075d93ccb20f4d4
+-->
+
+In the discussion recorded in [Operator Context, Directives and Harnessed
+Actions](operator-context.md), the User sees Programs and Harnessed Actions as
+the same nature: definitions, particular running instances, tracking, and POIs
+to work on. "Action" is the better name for the atomic unit; a Program might
+be a root with active Actions. Whether they merge is left for later.
+<!-- tarav.breadcrumb 523913d55074e823e516085ec0dab78b588599c5eb0b001f8425c6a06aae8ad3 -->
+<!-- tarav.breadcrumb 5b6d366840ed0016fda2a9dd0a7a5135ac9dbcf79a071f88c88bedbe471c4dad -->
+
