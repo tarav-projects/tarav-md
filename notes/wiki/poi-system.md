@@ -461,3 +461,16 @@ one pass. A missing file is reported beside successful files. The manifest
 mechanic does not choose which User Turns are relevant to a surface; that
 judgment remains with the agent. See [Impl.Req 884](../../../tarav-py/notes/live/884-check-poi-filter-and-breadcrumb-batch-audit-impl-req.md).
 <!-- tarav.breadcrumb 94da2d7f8b1ff38498e670c267c7b0fb9809f2bd993f80e5122894754e21e55f -->
+
+## Diagram POI completion
+
+Request 881's follow-up covered the twelve Diagram POI families through their
+emitting methods. The separate `tarav diagram render` content command now
+retains its typed POIs and displays them through the shared POI renderer. Its
+`--renderer` still selects Diagram content; `--poi-renderer` and `--level`
+select POI presentation. The command's JSON output retains typed POI rows.
+The retained Draft migration remained intact: 53 version-2 Drafts and 13,347
+typed receipt POIs, with no coded rows. [Impl.Req 881](../../../tarav-py/notes/live/881-diagram-poi-atomic-types-impl-req.md)
+records the verification and the existing Project and Skillware POIs that are
+outside its repair scope.
+<!-- tarav.breadcrumb 256e980bf25b4e0264b31cadd62f99e08b0df54666a047eb8530e9f236955e5a -->
