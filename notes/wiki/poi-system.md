@@ -305,3 +305,94 @@ The User accepted a common presentation path: a POI Type supplies one POI's mean
 [Impl.Req 879](../../../tarav-py/notes/live/879-one-poi-system-and-rendering-impl-req.md) integrates `tarav check`, Skillware POI reports, and Breadcrumb audit output with that renderer contract. Breadcrumb and Reference resolution now use atomic identified POI families. A displayed identified POI is retained so its advertised `tarav context` path can open the reported occurrence. Chatlas query matches and low-level record observations were renamed as plain data, rather than treated as POIs. The Diagram's coded `Finding` remains: Capture Receipt records retain its `code` shape, so its conversion needs a separate typed-case and data-migration pass.
 <!-- tarav.breadcrumb 4278a7af9829e72ff7774c1caa7f4fc27acbd1fdcd132bbf39a76d063f798f4c -->
 <!-- tarav.breadcrumb 99eded3fcfc86cc66781292ca27db3a654925056a17116b1f10bb7d8d9404466 -->
+
+## POI tracking: records with status axes — 2026-10-08
+
+This section replaces the mechanics of "Tracked POIs, the board, and attention"
+above. That earlier text stays as the history of the first design.
+
+The User decided that tracking is a capability and that every check POI is
+tracked by default, because a check POI is defined by its situation. The
+trackable class has a setting that can disable a particular instance. POI
+tracking is its own workflow; the User does not love the name and kept it for
+now.
+<!-- tarav.breadcrumb 816354d3714ce24cfb00d547e35ca16a19c51a9f9847db2ffbd0f8416d0a3e57 -->
+
+The check run is where tracking integrates. A run starts from the beginning,
+so it gives the tracking system a new data point. It has to register the
+positive sign, a POI was raised, and the negative sign: the owning check
+finished and did not raise it, "the check passed". The User rejected the word
+"board" for this: it is a record system that tracks the state of POIs.
+<!-- tarav.breadcrumb 5fe3457a6a93fde37a08f10f8698b52288e8506318fde83bb4c02ceaaa2f8a5c -->
+
+Status is a vector, not one value. "Passed" is one status on one axis and does
+not prevent closing a POI or saying more about it. The store is a database of
+every POI ever tracked, like the issues of a GitHub repository: records stay,
+can be referenced, and can be discussed indefinitely.
+<!-- tarav.breadcrumb d9ad9ba945523e1671e7155d7a6cc8ec24e0812bc503c6a9e1e075026f0630cd -->
+
+Blessing is one of the axes. Workflows can add their own, several axes may
+speak about related things, and that overlap is accepted on purpose. The aim
+is a system flexible enough to express everything, to be formalized and
+simplified later. The earlier tracking code was inspiration only and could be
+redesigned from the ground up.
+<!-- tarav.breadcrumb b5049e5e5d6a1192e58cdb01f0ad2d5f15ddaa68091a9c41f62a946502bcf572 -->
+<!-- tarav.breadcrumb 75e6fd8732d1e841de3cf6d6bcc99405e56f358152bf724d7346e498cd18721c -->
+
+### Implemented
+
+[Impl.Req 883](../../../tarav-py/notes/live/883-poi-tracking-workflow-impl-req.md)
+built this in `tarav-py`, commit `0d524e2`.
+
+- `tarav.l1.poi_tracking` owns the workflow. `TrackablePOI` is the capability;
+  `CheckPOI` extends it. One `TrackRecord` per POI identity is kept in a
+  `TrackRecordStore`, and nothing deletes a record.
+- A record holds the POI snapshot, the owning check with its identity, and
+  `axes`. Each axis entry has its Type, owner workflow, value, the time since
+  it holds, and its own history of changes with what made each one. The
+  tracker stores and filters axes and does not interpret them. A workflow
+  adds one by subtyping `TrackAxis`.
+- `Check.identity` says which check this is across runs. A `SituationCheck`
+  derives it from its Type and situation; a plain `Check` returns nothing
+  unless it declares one.
+- `CheckRun.track(into=tracker)` turns each `CheckResult` into one data point.
+  A raised POI is `active`. A record whose owning check completed without
+  raising it is `passed`. A check that did not complete, did not run, or has
+  no identity gives no evidence, and the record reads `not-evaluated`.
+- The blessing axis lives in `tarav.l2.blessings.tracking` and reads the
+  unchanged blessing store. A read shows the current blessing without writing;
+  the next observation puts the change into the axis history.
+- A Project's records live in `.tarav/poi-tracking/`. `tarav check --project`
+  writes them and `--tracking skip` leaves them alone. `tarav poi tracking list
+  --project --axis observation=passed` filters, and `tarav context --id
+  <poi-id> --view tracked-poi` opens one record.
+- Tests: `tests/test_poi_tracking.py`, 10 tests; the suite passed 232 tests in
+  the shared worktree and 222 on the exact commit tree, and Ruff passed.
+<!-- tarav.breadcrumb 48116b70313445e807f3d6f75557e59cc7c304c85ac70eef6960481a3383b24a -->
+
+### What the first real run showed
+
+Two runs of `tarav check --project` on the root wrote 149 records for 151
+reported POIs. Only 14 of them belong to a check that states an identity
+(`Tarav.SKW.Check.ContextFreshness`). The other 135 come from four checks
+without one, so they can never read `passed`; when one stops being raised it
+will read `not-evaluated`. Giving those checks an identity is follow-up work.
+
+### Agent choices and open questions
+
+These were chosen by the agent, not decided by the User.
+
+- The per-instance switch works only for a POI Type that lists `TrackablePOI`
+  in `settings_include`, because the settings capability includes a parent's
+  settings only explicitly.
+- The record stores the last-active and last-evaluated times, so every check
+  run rewrites every evaluated record. In a Project under Git that leaves the
+  tree modified after each check.
+- The store is inside the Project, and a child Project checked through its
+  root is tracked in the root's store.
+- The machine-local check-report cache stays. It holds what a surface last
+  showed; the tracking store is durable Project state.
+
+Left for later: a manual disposition axis, a discussion thread on a record,
+links between records, a scoring axis, notifications when axes disagree, and
+retirement rules.
