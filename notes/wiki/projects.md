@@ -242,6 +242,28 @@ added three things:
 A child with its own environment is reported as one result per POI type with
 its count.
 
+## Global Project index — 882
+
+<!-- tarav.sessions
+1ecb7d18 = codex:01a11db9-9ffe-7390-a38b-7b12d4b07714 @1ecb7d185a8f713f39ddd88e8dd5b622aff55d59ec635ba0824227061124aac5
+-->
+
+The User wants a holistic enumeration of Projects, including ones whose folders
+have moved. Project commands and `tarav run --project` should notify Tarav of a
+Project's existence, and `tarav project list --global` should identify it by a
+stable ID.
+<!-- tarav.breadcrumb 5c7aa1327a1f60520c059bfd1994e133d8a582d247d2fba5c6b32b03b18968e6 -->
+
+[Impl.Req 882](../../../tarav-py/notes/live/882-global-project-index-impl-req.md)
+adds a machine-local index keyed by each marker's `project_id`. Explicit
+Project operations observe the marker on a best-effort basis. Global listing
+validates remembered locations and retains missing paths; an explicit root scan
+can find a moved Project again. Two live locations with one ID are shown as
+ambiguous. The marker remains the identity authority, and moving a Project
+cannot be detected until a command observes its new location or an explicit
+scan reaches it.
+<!-- tarav.breadcrumb 74f760c810597c184fdc636f22b16b2bf292bca1b19ba83a2434165fa918091c -->
+
 [862](../../../tarav-py/notes/live/862-taravangian-as-a-project-tree-impl-req.md)
 added general development types
 ([dev.py](../../../tarav-py/src/tarav/l2/project/dev.py)):
