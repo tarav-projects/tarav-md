@@ -397,6 +397,30 @@ These were chosen by the agent, not decided by the User.
 Left for later: a manual disposition axis, a discussion thread on a record,
 links between records, a scoring axis, notifications when axes disagree, and
 retirement rules.
+
+### Record status changes only — 2026-10-08
+
+The User rejected the rewrite on every run. Repeating a check whose POIs did
+not change must not touch the store: tracking records changes of state, not a
+refreshed timestamp, and it is append-only. A record keeps the moment each
+change was detected; the latest entry is the last change, not the latest run.
+<!-- tarav.breadcrumb 13aaea0e57f140884ec9d262cb9d7363f1b15e4027d449899ebb61b3659d3860 -->
+
+The User also asked to keep it simple, with zero smartness in the code and no
+event system. The tracker builds one explicit object per POI describing its
+current tracking situation, the status it assigns, in the same way a check
+declares a situation for POI identity. It hashes that object and compares the
+hash with the last recorded one. Equal hashes write nothing; a different hash
+appends one entry. The hashed object is stored beside its hash, so what was
+hashed stays explicit.
+<!-- tarav.breadcrumb d43f415e15e15cb3b2bd599a8ea5b6623b58446e94a732588c5ec2fe353f2127 -->
+
+Agent reading of the 883 code, not yet decided or built: the rewrite comes
+from the `last_active_at` and `last_evaluated_at` times, which would go; the
+per-axis histories would become one list of entries per record; the POI copy
+in a record would be refreshed only when an entry is appended, so a changed
+count in a message alone changes nothing. Blessing stays an axis inside the
+situation, so a new blessing enters the record at the next check run.
 ## Diagram POIs and retained Drafts
 
 The Diagram now raises atomic identified POIs. Its 81 concrete cases sit under twelve
