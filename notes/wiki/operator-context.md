@@ -55,10 +55,24 @@ that only certain actions may change; how Programs and Actions merge; a typed
 Message; typed subjects and precedent; grades of dismissal; other workflows'
 actions hooked to a POI and chains between actions.
 
-In code (`tarav-py`): request 891 built the Operator Context store, the Step
-action with a single closing test, and a blessing bundle. Request 892, designed
-and not executed, replaces that bundle with the POI resolution action and its
-close paths. The Project's POI tracking and blessings are unchanged.
+In code (`tarav-py`), after the requests the User asked to be prepared and
+executed:
+<!-- tarav.breadcrumb 06dea3bdea1234d42d29cd15811530569833129e00c61d7b93c44f1c74a65b03 -->
+
+- 891: the Operator Context store and the Step action.
+- 892: named exits on Step actions, the POI resolution action (`gone`,
+  `dismissed`), clear POIs. The blessing bundle of 891 is gone.
+- 893: POIs are elementary; `read_first` and `may_do` became descriptive
+  `context_notes` shown in the POI's context.
+- 894: a `CheckPOI` is actionable; `tarav check --project` hands its run to
+  the Actions workflow; POI tracking is removed; actions live in the central
+  Record Registry.
+- 895, first part: an action can be dismissed where its POI Type allows it,
+  and `tarav check` counts a dismissed finding as settled. The blessing code
+  remains, because Skillware packages and scored assessment still use it.
+
+How to work one is in the package skill module
+`tarav-pkg/references/step-actions.md`.
 
 ## Where it started: what a POI should carry
 

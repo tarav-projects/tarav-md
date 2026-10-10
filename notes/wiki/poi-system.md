@@ -32,9 +32,9 @@ action", holds the discussion. What that makes of the earlier sections:
 | Section | Standing |
 | --- | --- |
 | Detection, navigation, situation identity, atomic types, reported POIs | Current. |
-| Recorded blessings; composable blessings; revisable blessing attention | The code works this way. As design, blessing becomes the dismissal close path of the POI's action. |
-| Tracked POIs, the board; POI tracking with status axes; record status changes only | The code works this way. As design, the tracking record becomes an action run, and its store moves out of the Project. |
-| Neutral POIs and the producer–reader gap | Current, except that "what to do" goes with the action and its skill, not into a context entry. |
+| Recorded blessings; composable blessings; revisable blessing attention | The blessing code still exists, for Skillware packages and scored assessment. For Project POIs, dismissing the POI's action is in place beside it (request 895, first part). |
+| Tracked POIs, the board; POI tracking with status axes; record status changes only | History. The tracking code was removed by request 894: the record is now an action in the central registry, and its history is that registry's Git history. |
+| Neutral POIs and the producer–reader gap | Current. Request 893 removed the two fields; a Type's descriptive notes appear in the POI's context, and an action's skill says what to do. |
 
 ## Detection and presentation
 
@@ -89,7 +89,7 @@ providing that entry point.
 ## Recorded blessings and permitted resolutions
 
 *As design, overtaken on 2026-10-09: blessing becomes the dismissal close path
-of the POI's action. This section still describes the code.*
+of the POI's action. The blessing code still exists beside dismissal.*
 
 ### Minimal base and specialization ownership
 
@@ -339,8 +339,8 @@ The User accepted a common presentation path: a POI Type supplies one POI's mean
 
 ## POI tracking: records with status axes — 2026-10-08
 
-*As design, overtaken on 2026-10-09: the tracking record becomes an action
-run. This section still describes the code.*
+*Overtaken on 2026-10-09 and removed from the code by request 894: the
+tracking record became an action. This section is history.*
 
 This section replaces the mechanics of "Tracked POIs, the board, and attention"
 above. That earlier text stays as the history of the first design.
@@ -632,4 +632,33 @@ that returns after it was gone opens a new run; other workflows' extra
 actions come from an explicit list consulted when a run opens, and
 dependencies between actions are checks that read run states, so no event
 system is needed.
+
+### What was built from it — 2026-10-09
+
+The User asked for the requests to be prepared and executed.
+<!-- tarav.breadcrumb 1bf2b756ce759ada01608d441210978f80e293f842fac10408d8fd4d9222ea02 -->
+
+- [892](../../../tarav-py/notes/live/892-actionable-pois-and-resolution-action-impl-req.md):
+  exits on Step actions; the POI resolution action; `Check.subject_key`,
+  `Check.clear()` and `ClearPOI`. The instance of a POI's action is derived
+  from the POI's identity, and reopening shows in the registry's Git history.
+- [893](../../../tarav-py/notes/live/893-elementary-pois-guidance-to-context-impl-req.md):
+  `POI.context_notes`; the guidance check is gone, which took the root
+  Project from about 190 reported POIs to 54.
+- [894](../../../tarav-py/notes/live/894-project-pois-on-actions-impl-req.md):
+  `CheckPOI` is actionable; `tarav check --project --actions write|skip`;
+  `tarav action list --project`; `tarav context --id <poi id> --view poi-action`;
+  tracking removed. On the root Project 52 actions opened, and after the
+  agents file was compiled from its source the action of its drift POI closed
+  as `gone` with the signal printed.
+- [895](../../../tarav-py/notes/live/895-dismissal-replaces-blessings-impl-req.md),
+  first part: `DismissablePOI`; dismissal refused where the Type does not
+  allow it; a dismissed finding counts as settled.
+
+Agent choices made while building, not decided by the User: a check's stable
+key is called `subject_key`, because checks already use an attribute named
+`subject`; the caller passes the completed checks to the Actions workflow, and
+no clear POI is synthesized for every check; in a whole run a check Type that
+can name neither a subject nor an identity closes its absent actions; no real
+check declares a subject key yet; the blessing code was not removed.
 
