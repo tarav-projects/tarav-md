@@ -62,7 +62,8 @@ POI again lands on the same action. It has two exits:
 
 - `gone` is taken for you when the POI's check reports clear for the same
   subject. A situation that comes back reopens the same action.
-- `dismissed` is yours to take, with a reason. Place a
+- `dismissed` is yours to take, with a reason, when the POI's Type allows
+  dismissal; otherwise the attempt is refused and says so. Place a
   `Tarav.Actions.POI.DismissalInput` with a `reason` and close by that exit. A
   dismissed action stays closed while its POI is raised unchanged.
 <!-- tarav.breadcrumb 619cce68b94c2a79b76ef55c0bcf5214ace29cddab4587fdd37f0b761351de9f -->
