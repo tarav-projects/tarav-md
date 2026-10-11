@@ -22,18 +22,23 @@ Where the design stands (updated 2026-10-11):
   the situation, the evidence and a descriptive message, and no instructions.
 - An actionable POI spins one action. That run is the persistent thing that
   was called a tracked POI. Its identity comes from its Type and its POI.
-- A suite manages the action. The caller of a check run names the suite; the
-  suite closes the action as gone when it no longer produces the POI on the
-  same target.
+- A Project has a suite: its current set of checks, identified by the
+  Project. An action belongs to the Project whose suite produces its POI, and
+  closes as gone when a run of that suite no longer produces it. A container
+  Project goes through its children's suites. Only Projects have suites;
+  other checks are momentary.
 - Every closing leaves a typed record, and that Type decides whether the POI
   raised again reopens the action. A Blessing is one such record: the action
   is closed although the situation still exists.
-- Status is three axes: the situation, the action, the closing.
+- Status is three axes: the situation (present, absent, check failed), the
+  action, the closing.
+- Tarav commands print a readable summary by default and the full result
+  with `--json`, from one model.
 - Guidance about what to do belongs to the action and its skill.
 
-The last two sections of this note, "A POI is an event; what follows it is an
-action" and "Suites, closing records and the blessing as a closing", hold the
-discussion. What that makes of the earlier sections:
+The last three sections of this note, "A POI is an event; what follows it is
+an action", "Suites, closing records and the blessing as a closing" and "The
+suite is the Project's own set of checks", hold the discussion. What that makes of the earlier sections:
 
 | Section | Standing |
 | --- | --- |
@@ -43,6 +48,7 @@ discussion. What that makes of the earlier sections:
 | Tracked POIs, the board; POI tracking with status axes; record status changes only | History. The tracking code was removed by request 894: the record is now an action in the central registry, and its history is that registry's Git history. |
 | Neutral POIs and the producer–reader gap | Current. Request 893 removed the two fields; a Type's descriptive notes appear in the POI's context, and an action's skill says what to do. |
 | "What was built from it" (2026-10-09): dismissal, the subject key, clear results | Replaced on 2026-10-11 by blessing, suites and closing records. |
+| "Suites" and "What was built" of 2026-10-11 (request 896): a separate suite Type named by the caller, with a target | Replaced the same day by request 897: the suite is the Project's own check suite. The closing records and the Blessing stand. |
 
 ## Detection and presentation
 
@@ -762,3 +768,88 @@ Known limits:
   child alone, leaves them as they are.
 - Removing a check from a suite closes its actions as gone: "no longer
   detected" is not always "fixed".
+
+## The suite is the Project's own set of checks — 2026-10-11
+
+Request 896 gave an action one manager and one target: the Project a
+command started from. The root's run therefore owned the POIs of its
+children, and a run on a child alone closed nothing.
+<!-- tarav.breadcrumb 28cc66d7a46f018c3844b8088548a0b4929cc6c12a01161e69d1acf92e4534a9 -->
+
+A check must belong to something, because otherwise nothing can say whether
+it is no longer happening. The model is suite/check. If others want those
+checks managed, for instance container Projects, it is done from the suites.
+For now suites are attached only to Projects. Checks and POIs can be built
+from many objects; the suite is about what a Project records as an action,
+and a momentary check whose only footprint is printing needs none of it. The
+suite is an organization of a Project's action system, not something
+fundamental to POIs and checks. The question it answers: who can tell me
+whether this check disappeared?
+<!-- tarav.breadcrumb 40adf7563ff6aad2e1184ca6987c2a15433522380651f11254b437cfd7b1865b -->
+
+The suite is something a Project has, identified from its Project, like
+`<project>.suite`. It represents a set of checks. A check removed from the
+code is no longer in the suite, which is not very different from a check
+that is no longer triggered: the suite is where the current set of active
+checks is defined.
+<!-- tarav.breadcrumb 1969c23796410df9c305050ba60378034d629cb2717aba481ce788135433e7be -->
+
+A check that crashed is a result of the test, so the test is present. Some
+checks are always created and run ("AGENTS.md is present"); others are not
+explicitly defined and can occur once and never again ("a TODO on this
+line"), and those are the ones that can be missing from the suite. The two
+kinds are not tracked differently; they emerge. We run a suite, we have the
+results, and we resolve the status of checks and actions.
+<!-- tarav.breadcrumb 1282cfa031a1b19b1c8f53f428d066bb46f3c54e88f0d180a2afae603490e5af -->
+
+The existing `project.checks.suite()` is the suite: the place where actions
+go to resolve the current status of checks. The status must be clear when a
+check failed.
+<!-- tarav.breadcrumb 1aa8af12a056d3a0be9af3e7bfee95bd174a9acd03d86a10c17aff1526f559f5 -->
+
+### Command output
+
+Decided in the same session: Tarav commands render their output by default
+and `--json` dumps it. Rendering is only how the data is presented; there is
+one model for both, the command decides what to present, and the readable
+form is usually summarized while the JSON can hold all the details.
+<!-- tarav.breadcrumb b3902e470b94d09ab3b9710105691616d29e1c103d2bb176a815c173857add57 -->
+<!-- tarav.breadcrumb d03bc412dc84f2ac1acaa865216fc296081df911ba9b7b8679e3f05886f7e976 -->
+
+### What was built — 2026-10-11
+
+Request 897 in `tarav-py` (commit `d1398c7`), with the extension's request
+006 (`8dd2ddf`):
+
+- `CheckSuite` takes an `owner`; a run keeps the owner of each result
+  (`CheckRun.groups()`). `TaravProject.suite` is the Project's suite, and the
+  root nests each child's own suite.
+- `POIActions.resolve(check_run)` resolves each Project's actions from its
+  own results. `Tarav.Actions.Suite`, `ProjectsSuite` and `SkillwareSuite`
+  are removed; `tarav skw skills check` records no action.
+- The situation axis has `check failed`.
+- `tarav action` and `tarav operator-context` print a summary by default and
+  the full result with `--json`.
+- On this workspace the root's run reported 3 Projects and moved the 51 open
+  actions to `tarav-md`, the Project whose suite produces them; a run on
+  `tarav-md` alone then reported the same 51. Tests: 263 passed in the
+  shared worktree, 251 on a clean export.
+
+Agent choices in that work, not User decisions:
+
+- The owner is a plain description on the suite; the checks code gives it no
+  meaning. A nested suite without an owner belongs to the suite around it.
+- An action found under another Project is moved to the Project whose suite
+  produces its POI, in the normal run.
+- A failed check is matched to its actions by its Type, since a check such
+  as the TODO one has no stable instance between runs.
+- A child that runs in its own environment is one check of the root; its
+  actions are resolved by the child's own run.
+
+Known limits:
+
+- A Project removed from its container, or a check moved to another
+  Project, leaves actions that no run resolves until the POI is produced
+  again.
+- No real action has been closed by a child-alone run or blessed yet; both
+  are covered by tests only.

@@ -50,8 +50,15 @@ work one; the Action Type's own documentation says what its step is about.
    ```
 <!-- tarav.breadcrumb a5f7a5c63c1a3e708fb74a6fae7478b672d719bbfa0fbd6f2b3bde50b601fec7 -->
 
-`tarav action list [--state running|closed] [--exit ok|error] [--project <root>]`
-shows the runs, and `tarav action show --run <run id>` one full record.
+`tarav action list [--state running|closed] [--exit <name>] [--project [<folder>]]`
+shows the runs, and `tarav action show --run <run id>` one of them.
+
+These commands, and `tarav operator-context`, print a short readable summary
+by default. Add `--json` for the full result: every field of a record, every
+run of a listing. Both come from the same result, so use `--json` whenever
+you read the output with code or need a detail the summary leaves out.
+<!-- tarav.breadcrumb 5d6a8a196a06b7d850244282cfd1838f28e79f448c22d3a25184a8595ac606c5 -->
+<!-- tarav.breadcrumb 6fb6efb957cb82a76ad1589abc4edde26e0c08f697bebfd7839e1cef43e309fe -->
 
 ## The action that follows a POI
 
@@ -60,12 +67,17 @@ A POI is an event. A POI of an actionable Type also spins one action,
 POI again lands on the same action. It has two closing paths:
 <!-- tarav.breadcrumb 2085d9e86061e70a452c384d336b71b3f9af5ef90f1ef7d7d0013362476265cc -->
 
-- `gone` is not yours to take. A suite manages the action: the caller of a
-  check run names the suite the run belongs to (`tarav check --project` runs
-  the Projects suite on a Project), and when a later run of that suite on the
-  same target no longer produces the POI, the suite closes the action. A check
-  that crashed says nothing, and a partial run closes nothing. A situation
-  that comes back reopens the same action.
+- `gone` is not yours to take. Every Project has a suite: its current set of
+  checks. The action belongs to the Project whose suite produces its POI, and
+  it closes when a run of that suite (`tarav check --project`) no longer
+  produces the POI, whether the situation was fixed or the check was removed.
+  A run on a container Project goes through its children's suites, and a run
+  on a child alone resolves the same actions. A check that is present and
+  failed leaves the action open, with the situation `check failed`. A
+  situation that comes back reopens the same action. Checks run outside a
+  Project's suite, such as `tarav skw skills check`, record no action.
+<!-- tarav.breadcrumb 1c0f15ed4f14fdff5ecfd23b735b575f905900c32813546d5d8c920f0468f33e -->
+<!-- tarav.breadcrumb 827356ee59deac98b984e69d7c83e251352d93a68ff388f71b3d5de1fed75207 -->
 <!-- tarav.breadcrumb 027aadfc22137c980123791f69cc74cca493ef5c94ecf18a109720e87db9ffb9 -->
 <!-- tarav.breadcrumb 965c0a1dcf5be9688c87a38ac8315f2fe42cd6369b033e047efbf898cb96539b -->
 - `blessed` is yours to take when the POI's Type allows it: the action closes
@@ -82,14 +94,15 @@ tarav action close --run <action id> --exit blessed --context <input id>
 ```
 
 Every closing leaves a typed record on the action: `Tarav.Actions.POI.Gone`
-names the suite, and `Tarav.Blessings.Blessing` keeps who blessed, the reason,
+names the Project, and `Tarav.Blessings.Blessing` keeps who blessed, the reason,
 the support and the POI as it stood. A Blessing declares assertions that the
 scoring system can assess; no score is kept on it.
 <!-- tarav.breadcrumb 9642c5c017ef07b3bdf8795c0f0b7194f39a4c0207785491b90af22596f1307f -->
 <!-- tarav.breadcrumb 9c6fab8a87d0e8ade3bd27911d0b8c1aea8a8f111dd88258810b3c3becd03486 -->
 
 An action's status is three separate axes, shown by `tarav action list` and
-the `poi-action` view: the situation the suite last saw (`present`, `absent`),
+the `poi-action` view: the situation as the last run of the Project's suite
+says it (`present`, `absent`, `check failed`),
 the action (`open`, `closed`), and the closing (`gone`, `blessed`). So a
 blessing is never read as a fix: a blessed action usually has its situation
 present. `tarav action sweep` closes running actions whose loop-taken exit is
