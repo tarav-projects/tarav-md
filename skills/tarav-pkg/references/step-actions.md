@@ -57,25 +57,43 @@ shows the runs, and `tarav action show --run <run id>` one full record.
 
 A POI is an event. A POI of an actionable Type also spins one action,
 `Tarav.Actions.POI.Resolution`, and that action is what stays: raising the same
-POI again lands on the same action. It has two exits:
+POI again lands on the same action. It has two closing paths:
 <!-- tarav.breadcrumb 2085d9e86061e70a452c384d336b71b3f9af5ef90f1ef7d7d0013362476265cc -->
 
-- `gone` is taken for you when the POI's check reports clear for the same
-  subject. A situation that comes back reopens the same action.
-- `dismissed` is yours to take, with a reason, when the POI's Type allows
-  dismissal; otherwise the attempt is refused and says so. Place a
-  `Tarav.Actions.POI.DismissalInput` with a `reason` and close by that exit. A
-  dismissed action stays closed while its POI is raised unchanged.
+- `gone` is not yours to take. A suite manages the action: the caller of a
+  check run names the suite the run belongs to (`tarav check --project` runs
+  the Projects suite on a Project), and when a later run of that suite on the
+  same target no longer produces the POI, the suite closes the action. A check
+  that crashed says nothing, and a partial run closes nothing. A situation
+  that comes back reopens the same action.
+<!-- tarav.breadcrumb 027aadfc22137c980123791f69cc74cca493ef5c94ecf18a109720e87db9ffb9 -->
+<!-- tarav.breadcrumb 965c0a1dcf5be9688c87a38ac8315f2fe42cd6369b033e047efbf898cb96539b -->
+- `blessed` is yours to take when the POI's Type allows it: the action closes
+  although the situation still exists. It needs a reason, and can carry
+  `support`, a list of typed references to evidence. Otherwise the attempt is
+  refused and says so. The POI is still raised and reported; its action stays
+  closed.
 <!-- tarav.breadcrumb 619cce68b94c2a79b76ef55c0bcf5214ace29cddab4587fdd37f0b761351de9f -->
+<!-- tarav.breadcrumb bce1d3f2b6889a00adcfbe98b14ef0a59c19ecc5e341f7bedc7142bc063c4f79 -->
 
 ```bash
-tarav operator-context put --type Tarav.Actions.POI.DismissalInput --data '{"reason": "<why>"}'
-tarav action close --run <action id> --exit dismissed --context <input id>
+tarav operator-context put --type Tarav.Blessings.Input --data '{"reason": "<why>", "support": []}'
+tarav action close --run <action id> --exit blessed --context <input id>
 ```
 
-Listings show the exit each action closed by, so a dismissal is never read as
-a fix. `tarav action sweep` closes running actions whose loop-taken exit is
-met.
+Every closing leaves a typed record on the action: `Tarav.Actions.POI.Gone`
+names the suite, and `Tarav.Blessings.Blessing` keeps who blessed, the reason,
+the support and the POI as it stood. A Blessing declares assertions that the
+scoring system can assess; no score is kept on it.
+<!-- tarav.breadcrumb 9642c5c017ef07b3bdf8795c0f0b7194f39a4c0207785491b90af22596f1307f -->
+<!-- tarav.breadcrumb 9c6fab8a87d0e8ade3bd27911d0b8c1aea8a8f111dd88258810b3c3becd03486 -->
+
+An action's status is three separate axes, shown by `tarav action list` and
+the `poi-action` view: the situation the suite last saw (`present`, `absent`),
+the action (`open`, `closed`), and the closing (`gone`, `blessed`). So a
+blessing is never read as a fix: a blessed action usually has its situation
+present. `tarav action sweep` closes running actions whose loop-taken exit is
+met; it does not take a suite's exit.
 
 ## What to keep in mind
 

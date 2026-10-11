@@ -16,25 +16,33 @@ several describe mechanisms the design has since left. The User asked that
 the Wiki state the current design and not only append to it.
 <!-- tarav.breadcrumb 5a3d45aa9a03be55c284349393eb0d7627d186931662057663ff5227a80a67ea -->
 
-Where the design stands:
+Where the design stands (updated 2026-10-11):
 
 - A POI is only the event that a situation was found. It carries the check,
   the situation, the evidence and a descriptive message, and no instructions.
 - An actionable POI spins one action. That run is the persistent thing that
-  was called a tracked POI. It closes by one of several paths: the situation
-  is gone, it was dismissed, or what it asked for was provided.
-- A blessing is the dismissal path. The word may be dropped.
+  was called a tracked POI. Its identity comes from its Type and its POI.
+- A suite manages the action. The caller of a check run names the suite; the
+  suite closes the action as gone when it no longer produces the POI on the
+  same target.
+- Every closing leaves a typed record, and that Type decides whether the POI
+  raised again reopens the action. A Blessing is one such record: the action
+  is closed although the situation still exists.
+- Status is three axes: the situation, the action, the closing.
 - Guidance about what to do belongs to the action and its skill.
 
-The last section of this note, "A POI is an event; what follows it is an
-action", holds the discussion. What that makes of the earlier sections:
+The last two sections of this note, "A POI is an event; what follows it is an
+action" and "Suites, closing records and the blessing as a closing", hold the
+discussion. What that makes of the earlier sections:
 
 | Section | Standing |
 | --- | --- |
 | Detection, navigation, situation identity, atomic types, reported POIs | Current. |
-| Recorded blessings; composable blessings; revisable blessing attention | The blessing code still exists, for Skillware packages and scored assessment. For Project POIs, dismissing the POI's action is in place beside it (request 895, first part). |
+| Recorded blessings; composable blessings | History. The blessing store and its records were removed by request 896. A Blessing is now the closing record of a POI's action. |
+| Revisable blessing attention | Current in purpose, reduced: the attention view reads the Blessing of each action. Counting several independent reviews of one POI is gone, since an action has one current Blessing. |
 | Tracked POIs, the board; POI tracking with status axes; record status changes only | History. The tracking code was removed by request 894: the record is now an action in the central registry, and its history is that registry's Git history. |
 | Neutral POIs and the producer–reader gap | Current. Request 893 removed the two fields; a Type's descriptive notes appear in the POI's context, and an action's skill says what to do. |
+| "What was built from it" (2026-10-09): dismissal, the subject key, clear results | Replaced on 2026-10-11 by blessing, suites and closing records. |
 
 ## Detection and presentation
 
@@ -662,3 +670,95 @@ no clear POI is synthesized for every check; in a whole run a check Type that
 can name neither a subject nor an identity closes its absent actions; no real
 check declares a subject key yet; the blessing code was not removed.
 
+## Suites, closing records and the blessing as a closing — 2026-10-11
+
+Request 895 had put dismissal beside the blessing code without removing it.
+The User asked for blessings to be reimplemented with the new primitives.
+<!-- tarav.breadcrumb 38b7ff3ffc79cbce2ef74518d9728b0348a5516cdc595ec641e36c965b712e20 -->
+
+### A blessing is a closing
+
+An action is running, and a blessing is one way of closing it. It is not
+different in kind from other closings: the action defines how it can be
+closed. The POI can still appear; a blessed action is a suppressed one. The
+blessing is a record that can carry a reason and evidence, so it can be
+scored, and that is why it hooks into the assertion system. A Blessing is a
+type of closing constructor for a POI action.
+<!-- tarav.breadcrumb 08bd98d692d7468d41564142b10c4f349f3829d81f3568b5d56c971455e8d9b6 -->
+
+The agent had proposed a second action to score a blessing and withdrew it.
+The User stated the boundary: the scoring system is independent and assigns
+scores to declared assertions; scores attach to assertions; the Blessing,
+like any object, declares assertions. The chain Situation, SituationCheck,
+SituationPOI, SituationAction, SituationBlessing is one particular
+implementation, and others can come later. The word Blessing stays, defined
+mechanically: the action is closed even though the situation still exists.
+<!-- tarav.breadcrumb f018ec0008566f0ef8eed8d6e879a9584f0182aee669b1a06ae7d7fea4379b77 -->
+
+Closing an action produces a record of some Type; it is not a plain status.
+An action can close automatically and can have several closing paths. It
+can be reopened, and that can depend on how it was closed. Status is a
+vector with several axes.
+<!-- tarav.breadcrumb fc2cc01410bfa117e515f63c1923519cc9223eef49fc742e887cccf05da975c4 -->
+
+### Suites
+
+The agent had added, without approval, a per-check "subject key" to tell
+"the check looked again and found nothing" from "the check did not look".
+The User asked what it was, and replaced it with a suite: a suite targets
+checks run on targets and has a hardcoded UUID; its meaning is "if you run
+me, you are testing the same thing"; a situation has disappeared when the
+suite no longer detects it.
+<!-- tarav.breadcrumb 0472474d74fd41d64a1d1f776f9bdd9ed7fe90907abdf50728f43e53e335ad39 -->
+<!-- tarav.breadcrumb 61a31fbac2676a236d319560a40264d75d767b3919525284bfaca1d2dca19849 -->
+
+A suite can be very general, for instance one Projects suite: if it did not
+produce the POI, the action is closed. No finer scoping is needed, and the
+semantics are clear.
+<!-- tarav.breadcrumb b8b8780f3eb2038b1cd8d4aa6cb194137fc1ec992d227846d08421fb7a50bc6a -->
+
+A check does not carry a suite. The caller specifies it, and attaches it
+where documentation needs it. The suite is like the operating system: it
+knows all the actions that belong to it, and after a run it closes those the
+results allow. Identity is apart: the suite is who manages the action.
+<!-- tarav.breadcrumb 8e1841997a89b5950fc376673bb1d0c6209a48e5eec3b4301a8989c4ba3976f6 -->
+<!-- tarav.breadcrumb 9d82b4a307c3164a5097626a08284abe35dfb2e56c156cd23ac2f8b35c93a707 -->
+
+### What was built — 2026-10-11
+
+Request 896 in `tarav-py` (commit `7f74882`), with the extension's request
+005 (`4cd36d5`):
+
+- `tarav.l1.actions`: `Closing` records, `Exit.closing`, `axes(run)`.
+  `tarav.l1.actions.suites.Suite` with `settle()`; `ProjectsSuite` and
+  `SkillwareSuite`. `tarav check --project` settles the Projects suite.
+- `tarav.l1.actions.blessing`: `Blessing`, `BlessingInput` and the test of
+  that exit, in the Blessings workflow. `POIResolutionAction` has the paths
+  `gone` (by the suite) and `blessed` (by an operator).
+- Removed: the blessing store, its two record Types and its Skillware
+  commands, `ProjectDecisions.blessings()`, the subject key, clear results,
+  and the matching by check identity.
+- On the root Project, the 51 open actions were taken over by the Projects
+  suite. Tests: 259 passed in the shared worktree, 247 on a clean export.
+
+Agent choices in that work, not User decisions:
+
+- The managing suite is a Type of its own, `Tarav.Actions.Suite`. A
+  `CheckSuite` already existed in the checks workflow; it only composes
+  checks and was left as it is.
+- A check that did not complete leaves the actions it raised as they are,
+  and a run that is not the whole suite closes nothing.
+- A Blessing holds when its situation goes away and returns; the situation
+  axis records the absence.
+- A Blessing is Assertable and no longer a Decision.
+- The Blessing Types are defined beside the Actions code, because defining
+  them in the Blessings package made the two packages import each other.
+
+Known limits:
+
+- An action has one manager and one target. A Project's checks include those
+  of its skill packages and of its child Projects, so those POIs' actions are
+  managed by the Projects suite on the root; a Skillware run, or a run on a
+  child alone, leaves them as they are.
+- Removing a check from a suite closes its actions as gone: "no longer
+  detected" is not always "fixed".
