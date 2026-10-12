@@ -1,0 +1,185 @@
+{
+  "type": "Tarav.Skillware.SkillLoading",
+  "schema_version": 1,
+  "blocks": [
+    {
+      "id": "constitution.content",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.content"
+      ]
+    },
+    {
+      "id": "skill.content",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/SKILL.skw.json",
+          "pointer": "/blocks/0"
+        }
+      }
+    },
+    {
+      "id": "usage-histories.content",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/USAGE-HISTORIES.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.content"
+      ]
+    },
+    {
+      "id": "attic.content",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/attic.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.content"
+      ]
+    },
+    {
+      "id": "constitutional-theory.content",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/constitutional-theory.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.content"
+      ]
+    },
+    {
+      "id": "context-poi-and-impact-map-design-digest.content",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/context-poi-and-impact-map-design-digest.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.content"
+      ]
+    },
+    {
+      "id": "gates-and-deferred-review-design-digest.content",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/gates-and-deferred-review-design-digest.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.content"
+      ]
+    },
+    {
+      "id": "legacy-skill-mine.content",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/legacy-skill-mine.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "attic.content"
+      ]
+    },
+    {
+      "id": "review.content",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/review.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.content"
+      ]
+    },
+    {
+      "id": "step-actions.content",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/step-actions.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.content"
+      ]
+    },
+    {
+      "id": "tarav-archive.content",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/tarav-archive.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.content"
+      ]
+    },
+    {
+      "id": "tarav-bloberia.content",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/tarav-bloberia.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.content"
+      ]
+    },
+    {
+      "id": "tarav-diagram.content",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/tarav-diagram.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.content"
+      ]
+    },
+    {
+      "id": "tarav-semantic-calculus.content",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/tarav-semantic-calculus.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.content"
+      ]
+    }
+  ]
+}

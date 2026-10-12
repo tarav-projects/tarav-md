@@ -34,5 +34,6 @@
     "tarav-diagram.md",
     "tarav-semantic-calculus.md"
   ],
-  "dependencies": []
+  "dependencies": [],
+  "loading": ".skw/loading.json"
 }
