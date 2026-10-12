@@ -18,8 +18,16 @@ the Wiki state the current design and not only append to it.
 
 Where the design stands (updated 2026-10-11):
 
-- A POI is only the event that a situation was found. It carries the check,
-  the situation, the evidence and a descriptive message, and no instructions.
+- A POI is a flag between detecting and working: what a check returns. It
+  carries the check, the situation, the evidence and a descriptive message,
+  and no instructions. It is momentary and owns nothing; nothing stores a
+  POI that was printed.
+- A consumer decides what happens to a POI. Printing is how a person looks
+  at checks directly. The Project status escalates: what its checks raise
+  becomes actions. A running step keeps the POIs of its tests as the reason
+  it could not close. Actions are the unit of work.
+- What integrates several workflows, such as blessing or asking how an
+  action stands, is modeled on the Project. The status reads only actions.
 - An actionable POI spins one action. That run is the persistent thing that
   was called a tracked POI. Its identity comes from its Type and its POI.
 - An action is registered under a Project. Three pieces stay apart:
@@ -1042,4 +1050,108 @@ actions; `--all` ran 394 checks in 1 minute 38 and changed nothing.
 Left open: what the routine run should include is to be learned by use; a
 child Project in its own Python environment still runs everything as one
 check of the root.
+
+## The POI is a flag; the Project integrates — 2026-10-12
+
+### The output of the two commands
+
+The User called the output of `tarav status` a mess: it was the check report
+with one line about actions at the end. It was rebuilt to be about actions:
+what is open and where, what the run changed, and one line about the checks.
+`tarav check` got the same cleanup and stays about POIs.
+<!-- tarav.breadcrumb e4b64af6526d61c58f200a1c9c030afc438f8731e25666aee8f919341bf3fce5 -->
+<!-- tarav.breadcrumb a75d6353f044a756cc9db83a9e0f79b13e9c8508b81d14160ea678675e2b72a1 -->
+
+### From the hint to the fundamentals
+
+The status hint named a POI and a view. The User wanted the interface more
+action centric: POI actions are one type of action, what the status lists
+are open actions, and an id should find the object, whichever it is.
+<!-- tarav.breadcrumb 8ad448316be1fabc40a9655d733cd7ef29a06ee7ead3cc0fb8476ce4d9569f95 -->
+
+The agent proposed that the view belongs to the action. The User corrected
+it: the context workflow is independent and receives a contextualizer, such
+as a view; the status only promotes how the agent can go further. They then
+asked for fundamentals: should every POI that has an impact on the status
+produce an action, or not all of them.
+<!-- tarav.breadcrumb 96e03083d4a4bcd5820a7114fc11f029fc940f60b806f39ed18752417105fcca -->
+
+The consumer of the POIs matters. A linter can use the POI system without
+hooking into the Project's status, and there the POI may only be printed.
+The Project status is closely integrated with the Project's checks and
+actions, and its checks escalate to actions by design.
+<!-- tarav.breadcrumb 4a452a8872032966c1518bde2024fcd7a48d8ac2e0f54300fdff52b263f30971 -->
+
+The User then doubted printing as a path of its own: what is the point of a
+POI if not to demand action, and should all execution not go through
+actions, which are how agents are harnessed on specific steps.
+<!-- tarav.breadcrumb ab54d1503b8947d936c5a37e2ef5d66cda025a04cb914e09bdf1a8d22ddf9b37 -->
+
+### What was settled
+
+A POI is a flag, a notification. It can be escalated by starting an action.
+Actions can also start without a POI. Actions are the unit of work in Tarav.
+An action needs a place to be registered and a way to end, which a bare POI
+does not have. Printing is only how a person looks at checks directly.
+<!-- tarav.breadcrumb ef906be9ee813c88a523534b0b123a8853868335785d965ed774fb2e8888885b -->
+
+The User asked whether POIs are needed at all. The agent's answer, which the
+User accepted: the POI is the interface between detecting and working. It
+gives the action its identity; it keeps detection apart from work, so a
+check can run by itself; and inside a step it is the reason the step could
+not close. The store of reported POIs must go, at least for now: make a
+simple system first and test what is really needed. A POI is momentary and
+owns nothing.
+<!-- tarav.breadcrumb c19dfd88b6d2ceab1ece61fa613f90f448ec02f26b2c92f8e0724907d47951c6 -->
+
+`POI.throw()` stays, as conceptually clean. A Type can still declare
+capabilities: the caller triggers one, but an object says what it can do.
+<!-- tarav.breadcrumb 27ad4e6ea1bef201f85e7277fbbdfde307aff03fb7383f10e69a697dae946ba9 -->
+
+Complex things such as blessing and filtering are modeled only at the level
+of a Project or a similar system, because they integrate several workflows
+and primitives. Objects may hold parts of the integration, but it is managed
+by something larger and well defined: the Project, for now.
+<!-- tarav.breadcrumb 58ee3f9067631d4254e18d964f98e018250e986e072bdaeb4f2b0e0c477fc66b -->
+
+### What was built — 2026-10-12
+
+Request 900 in `tarav-py`
+(`notes/live/900-the-poi-is-a-flag-the-project-integrates-impl-req.md`).
+Names and details are the agent's.
+
+- Removed: `tarav.l1.poi.reporting` (the store of reported POIs, its view
+  and resolver, the hint POI listings printed), the round-trip contract
+  check, the `context` render level, the blessing attention report, the
+  blessing and standing in POI listings and `tarav skw skills
+  --blessing-status`, and `POIActions`, the reader of actions that belonged
+  to no Project.
+- `IdentifiedPOI.describe()` gives everything known about one POI as plain
+  data. An action keeps it in `event.source`, so what a POI's Type says is
+  read from the action (`tarav.l1.poi.primitives`, `tarav.l1.actions.pois`).
+- An action contributes its own Context and its Action Type adds what is
+  specific to it. `ActionResolver` finds an action by its id or by its POI's
+  id, so `tarav context --id <id>` opens it without a view
+  (`tarav.l1.actions`, `views.py`).
+- `project.actions` answers `of(poi)`, `standing(poi)` and `blessing(poi)`
+  (`tarav.l1.actions.project`).
+- `tarav status` is settled when every check that ran completed and no
+  action is open; its change lines carry action ids (`tarav.l3.status`).
+
+Two corrections to the agent's audit. The notification helpers it called
+unused are how `emit_notification` delivers, so they stay. The capability
+markers `ActionablePOI` and `BlessablePOI` stay where they are, as
+declarations.
+
+Evidence: `tests/cli/test_context_command.py` (an action found by its id and
+by its POI's id; a POI describes itself and stores nothing),
+`tests/test_actions_workflow.py`, `tests/test_poi_primitives.py`. On this
+workspace the action records were deleted and reopened, 51 again; the 250
+files of `~/.tarav/check-reports/` were deleted; `tarav context --id
+4e3b5daa-6888` opened an action with its `poi-type`, `raised-by` and
+`notes` entries.
+
+Left open: where the policy "this POI escalates" should live; an inbox for
+occurrences; forcing agents' work through actions, which belongs to the
+harness and not to the POI or check code.
 

@@ -107,7 +107,7 @@ scoring system can assess; no score is kept on it.
 <!-- tarav.breadcrumb 9c6fab8a87d0e8ade3bd27911d0b8c1aea8a8f111dd88258810b3c3becd03486 -->
 
 An action's status is three separate axes, shown by `tarav action list` and
-the `poi-action` view: the situation as the last run of the Project's checks
+`tarav context --id <action-id>`: the situation as the last run of the Project's checks
 says it (`present`, `absent`, `check failed`, `not run`),
 the action (`open`, `closed`), and the closing (`gone`, `blessed`). So a
 blessing is never read as a fix: a blessed action usually has its situation
