@@ -1,0 +1,11 @@
+{
+  "type": "Tarav.Skillware.Lock",
+  "schema_version": 1,
+  "documents": {
+    ".tarav/skillware/src/AGENTS.skw.json": {
+      "blocks": {},
+      "source_hash": "e3025230cd5fa2298eb6fefbe08149a510a71d5e91c7ab6a70a1d08868887350",
+      "product_hash": "310382a74e22045feacd8fa8d02ea0b91d70be7fd27a756512cf8b2b6454833c"
+    }
+  }
+}
