@@ -22,11 +22,16 @@ Where the design stands (updated 2026-10-11):
   the situation, the evidence and a descriptive message, and no instructions.
 - An actionable POI spins one action. That run is the persistent thing that
   was called a tracked POI. Its identity comes from its Type and its POI.
-- A Project has a suite: its current set of checks, identified by the
-  Project. An action belongs to the Project whose suite produces its POI, and
-  closes as gone when a run of that suite no longer produces it. A container
-  Project goes through its children's suites. Only Projects have suites;
-  other checks are momentary.
+- An action is registered under a Project. Three pieces stay apart:
+  `project.checks` only runs checks, `project.actions` only handles the
+  registered actions, and the Project composes them. The Project hands each
+  run of its checks to its actions; each Action Type decides what the
+  results mean for it. A POI action closes as gone when they no longer
+  produce its POI. A container Project asks each child to do the same for
+  itself. There is no suite concept beyond the plain set of checks; a run
+  that no Project hands over is momentary.
+- `tarav project status` runs that composition and is the command to repeat.
+  `tarav check` only runs the checks.
 - Every closing leaves a typed record, and that Type decides whether the POI
   raised again reopens the action. A Blessing is one such record: the action
   is closed although the situation still exists.
@@ -853,3 +858,83 @@ Known limits:
   again.
 - No real action has been closed by a child-alone run or blessed yet; both
   are covered by tests only.
+
+## The Project composes its checks and its actions — 2026-10-11
+
+After request 897 the User restated the model to align on it. The Project is
+the object the actions are attached to. Open actions are like open issues:
+typed, persistent across sessions, registered under a Project. An object
+such as a check or a POI is distinct from what is done with it. They doubted
+that the suite is needed as a concept: what is needed is that the machinery
+of the actions can tell whether a situation is happening now, and that
+something knows how to run the checks again in an equivalent context.
+<!-- tarav.breadcrumb b4a6a430ea9e0944c78b672b1a569d9dec6c745309fcc12574837097d463c5ac -->
+
+The agent's reading of the code as it stood: the Project was bypassed. The
+check code carried the Project's identity (an owner on suites, groups in a
+run) so that one function of the Actions code could do everything, and the
+command was the only place where checks and actions met.
+
+### What was decided
+
+Registering actions is something about the Project, and that is what makes
+the integration of checks, results and actions necessary. Objects may hold
+builders of other objects; another layer integrates them with larger
+systems. The Project runs a loop that gives the check results to every
+registered action, and each action does what it needs: ignore them, close
+itself, or change its status.
+<!-- tarav.breadcrumb 5aca0b1ff7ec0c0854bfe43af80ab1c8d045e6f91f8f8b4ced9a66d2c91a3769 -->
+
+Builders on objects are a modeling pattern to use when it fits, not a rule,
+and redundant paths are allowed.
+<!-- tarav.breadcrumb a4bf8b63cc62c4d345c80f5e1f9be2077759cb142009ab4382ee198c2009f258 -->
+
+`project.suite` is eliminated; a cache of a run, if ever needed, would go
+inside `project.checks`.
+<!-- tarav.breadcrumb 91bbe122cb716626a76de198d2a40af5117082389b0f36b413b8d08431af7b26 -->
+
+`project.checks` holds the checks of a Project, may run those of its
+subprojects, and only runs checks. Its results are passed to the action
+workflow to update any action and to start any action.
+<!-- tarav.breadcrumb 6f5689988db958969503368183dc776aa3387f06cceed899527d402982225eba -->
+
+The separation comes first and the ergonomics later, but one command is
+needed that an agent can run repeatedly. For now it is
+`tarav project status`.
+<!-- tarav.breadcrumb 17dbcbbda4926751dd2a652c72c083d77a7c4776e59d098cdd9891cca852ce7b -->
+<!-- tarav.breadcrumb e2dfe5d0b2e5a4bea6f6b8d9dfa218cc55d79b05d945d52279d480facb1ac490 -->
+
+### What was built — 2026-10-11
+
+Request 898 in `tarav-py`
+(`notes/live/898-the-project-composes-checks-and-actions-impl-req.md`).
+Names and details are the agent's.
+
+- Check code no longer carries a Project: `CheckSuite` has no owner and
+  `CheckRun` no groups. `CheckRun.report` takes a neutral `label` function
+  and `clean()` means no finding (`tarav.l1.checks`).
+- `Action.on_checks(run, update)` is what an Action Type does with a run of
+  its Project's checks; the base ignores it. `POIResolutionAction` holds the
+  POI rules, among them leaving an action whose check failed
+  (`tarav.l1.actions`, `tarav.l1.actions.pois`).
+- `ProjectActions`, reached as `project.actions`: `start` registers the
+  action of each POI not registered under the Project, `refresh` hands the
+  results to every registered action, `update` does both and records them
+  (`tarav.l1.actions.project`).
+- `project.status()` runs the Project's own checks, hands the results to its
+  actions, and asks each member Project to do the same
+  (`tarav.l1.project.base`, `status.py`; `RootProject.members()`).
+- `tarav project status --project` runs it; `tarav check --project` lost
+  `--actions` and only reports the checks (`tarav.l3.check`).
+- The exit taker `suite` is now `project`.
+
+Evidence: `tests/test_actions_workflow.py`, `tests/test_project_tree.py`
+(a real root with two children). On this workspace
+`tarav project status --project .` reported 51 actions raised in 3 Projects
+with nothing opened or closed, and the same for `tarav-md` alone, so the
+existing actions were taken over unchanged.
+
+Left open: a child in its own Python environment is still one check of the
+root, so the root's status does not update that child's actions; the loop
+visits closed actions too and may need a limit with a long history.
+

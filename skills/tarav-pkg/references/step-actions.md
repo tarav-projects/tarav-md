@@ -67,15 +67,16 @@ A POI is an event. A POI of an actionable Type also spins one action,
 POI again lands on the same action. It has two closing paths:
 <!-- tarav.breadcrumb 2085d9e86061e70a452c384d336b71b3f9af5ef90f1ef7d7d0013362476265cc -->
 
-- `gone` is not yours to take. Every Project has a suite: its current set of
-  checks. The action belongs to the Project whose suite produces its POI, and
-  it closes when a run of that suite (`tarav check --project`) no longer
-  produces the POI, whether the situation was fixed or the check was removed.
-  A run on a container Project goes through its children's suites, and a run
-  on a child alone resolves the same actions. A check that is present and
-  failed leaves the action open, with the situation `check failed`. A
-  situation that comes back reopens the same action. Checks run outside a
-  Project's suite, such as `tarav skw skills check`, record no action.
+- `gone` is not yours to take. The action is registered under the Project
+  whose checks produce its POI. `tarav project status --project` runs that
+  Project's checks and hands the results to its actions; the action closes
+  when they no longer produce the POI, whether the situation was fixed or the
+  check was removed. A container Project asks each child to do the same for
+  itself, and a run on a child alone updates the same actions. A check that
+  is present and failed leaves the action open, with the situation
+  `check failed`. A situation that comes back reopens the same action.
+  `tarav check --project` only runs the checks, and so does
+  `tarav skw skills check`: neither records an action.
 <!-- tarav.breadcrumb 1c0f15ed4f14fdff5ecfd23b735b575f905900c32813546d5d8c920f0468f33e -->
 <!-- tarav.breadcrumb 827356ee59deac98b984e69d7c83e251352d93a68ff388f71b3d5de1fed75207 -->
 <!-- tarav.breadcrumb 027aadfc22137c980123791f69cc74cca493ef5c94ecf18a109720e87db9ffb9 -->
@@ -101,12 +102,12 @@ scoring system can assess; no score is kept on it.
 <!-- tarav.breadcrumb 9c6fab8a87d0e8ade3bd27911d0b8c1aea8a8f111dd88258810b3c3becd03486 -->
 
 An action's status is three separate axes, shown by `tarav action list` and
-the `poi-action` view: the situation as the last run of the Project's suite
+the `poi-action` view: the situation as the last run of the Project's checks
 says it (`present`, `absent`, `check failed`),
 the action (`open`, `closed`), and the closing (`gone`, `blessed`). So a
 blessing is never read as a fix: a blessed action usually has its situation
 present. `tarav action sweep` closes running actions whose loop-taken exit is
-met; it does not take a suite's exit.
+met; it does not take a Project's exit.
 
 ## What to keep in mind
 
