@@ -24,14 +24,18 @@ Where the design stands (updated 2026-10-11):
   was called a tracked POI. Its identity comes from its Type and its POI.
 - An action is registered under a Project. Three pieces stay apart:
   `project.checks` only runs checks, `project.actions` only handles the
-  registered actions, and the Project composes them. The Project hands each
-  run of its checks to its actions; each Action Type decides what the
-  results mean for it. A POI action closes as gone when they no longer
-  produce its POI. A container Project asks each child to do the same for
-  itself. There is no suite concept beyond the plain set of checks; a run
-  that no Project hands over is momentary.
-- `tarav project status` runs that composition and is the command to repeat.
-  `tarav check` only runs the checks.
+  registered actions, and the Project composes them. The Project hands the
+  suite that ran to its actions; each Action Type decides what the results
+  mean for it. A container Project asks each child to do the same for
+  itself. A run that no Project hands over is momentary.
+- A suite is a detector. It is a class with an identity; it does not contain
+  checks but the code that runs them, because the checks cannot be listed
+  beforehand; and it holds the results of its one run. It can run whole or
+  filtered. An action keeps the suites above the check that raised its POI,
+  and closes as gone when the nearest of them that ran no longer reports it.
+- `tarav project status` runs the composition and is the command to repeat.
+  It leaves slow suites out, such as a Project's tests; `--all` runs
+  everything. `tarav check` only runs the checks.
 - Every closing leaves a typed record, and that Type decides whether the POI
   raised again reopens the action. A Blessing is one such record: the action
   is closed although the situation still exists.
@@ -937,4 +941,105 @@ existing actions were taken over unchanged.
 Left open: a child in its own Python environment is still one check of the
 root, so the root's status does not update that child's actions; the loop
 visits closed actions too and may need a limit with a long history.
+
+## Suites are detectors that hold their run — 2026-10-12
+
+The User tried `tarav project status` and it took very long: the check of
+the test suite ran the whole pytest suite of `tarav-py`, about a minute,
+every time.
+<!-- tarav.breadcrumb 9fa54892b789f8f43d769174bcaafa6f6edbf1e417d5f65b48cf4de96864f8f2 -->
+
+One POI per failing test is good. The problem is convenience: agents call
+the status constantly as the mechanical feedback about the Project, so it
+cannot be slow. Agents can focus on a subset; the full suite does not have
+to run all the time.
+<!-- tarav.breadcrumb d39dd02efe3ea6ce777d39736f1d71fea784e492e72f0abda69b17c36fcf53dd -->
+
+The difficulty was the closing rule. An action closed as gone when its POI
+was not in the results, so running only some checks would close the actions
+of everything left out. The agent proposed that a check result say which
+situations it covered.
+
+### What was decided
+
+That cannot work in general: the situations that disappeared cannot be
+listed. So the suite returns, as a compartment: it is known which suites ran
+completely, actions know which suites they belong to, and those that need to
+detect a missing POI look at complete suite runs. Suites are recursive and
+subsets of them can be run.
+<!-- tarav.breadcrumb a2d6f52fb3ac5cb7d24dd2e6f566ed37aff6c93d56056ebcc6386fb8fab187ea -->
+
+A suite has an identity, not a path, so moving it costs no migration. It can
+be run partially or completely, for instance filtered by check Type.
+<!-- tarav.breadcrumb be4f10f4c1206c2a13992d04f0a4d3174d28b07f8cca6a877c1235f364fce725 -->
+
+All the data lives on the suite, the run results included. Every suite is a
+class, as every check is, and it contains the method that runs the checks.
+<!-- tarav.breadcrumb 41e84333a885d63fffd01f4aad59335932b49b1cfe88ddd31e25cf9b7280fdbd -->
+
+One suite instance holds one run, or it is reset. A check only returns its
+result and does not care what is done with it. Fewer object Types is fine
+when clarity does not suffer. No history of runs.
+<!-- tarav.breadcrumb 3e3295032c2ebab493e4f01128bebd02b818fe2f97f44f890520cd61cd128723 -->
+
+A correction the User asked to state explicitly, of a mistake made earlier:
+a suite does not contain checks. The checks cannot be enumerated, because
+many depend on situations and situations cannot be enumerated. What a suite
+contains is code that runs the checks, and which ones run can change from
+run to run.
+<!-- tarav.breadcrumb e0b74aa8c33916560786dd05ae8331eedc46d16d850248e1211977107df6b8d2 -->
+
+The closing rule, in the User's words: the signal is gone when the detector
+is not detecting it any more.
+<!-- tarav.breadcrumb 46e4aa9e7f16eefaedca8d88a990d7996dd5414e5db332324158f0fa4ca128d0 -->
+
+For the tests: one bound suite per test file; any default to start with, as
+long as a flag runs everything; no selection inside pytest yet, only a
+filter on the whole pytest suite; a `PyTestSuite` base type. No legacy code:
+old data is deleted or migrated. The User chose to delete the existing
+action records and let them reopen.
+<!-- tarav.breadcrumb 3f05fb67b33bf4d2ba41df0a8545e15fbef889c922d77b880795a04f45edc61b -->
+<!-- tarav.breadcrumb 800b1f9c8e34937c32c114bc9447f87118c2a1388729fd9f90fe5cb73ca66c56 -->
+
+### What was built — 2026-10-12
+
+Request 899 in `tarav-py`
+(`notes/live/899-suites-are-detectors-that-hold-their-run-impl-req.md`).
+Names and details are the agent's.
+
+- `CheckSuite` took over the run and `CheckRun` is gone: `produce()` is the
+  code that yields checks, nested suites or ready results; `run(select=)`
+  runs it whole or filtered and returns the suite with its results, summary
+  and report. A subclass, or an instance with a `key`, has an `identity`; a
+  plain grouping has none and counts as part of the suite above it
+  (`tarav.l1.checks`).
+- A suite is `exhausted` when its own code ran to its end with nothing
+  refused, and `conclusive_for` a Type of check when its own checks of that
+  Type also completed. A nested suite with an identity answers for itself.
+- An action keeps the identified suites above its check in `event.suites`.
+  When its POI is not raised, the nearest of them that is in the run
+  decides, and the suite handed over does when none is: conclusive, the
+  action closes as gone; otherwise it stays, with the situation
+  `check failed` or `not run` (`tarav.l1.actions.pois`).
+- `PyTestSuite` runs pytest once and yields one `PyTestFileSuite` per test
+  file; it is not routine. `TestSuiteCheck` is gone
+  (`tarav.l2.project.dev`).
+- Both commands leave non-routine suites out and say which; `--all` runs
+  everything (`tarav.l3.check`).
+
+One refinement came from the tests, not from the discussion. With the rule
+as first written, one check that failed kept every action under the same
+suite. The agent kept the earlier precision: a suite answers per Type of
+check, so a failed check only holds the actions its own Type raised.
+
+Evidence: `tests/test_checks_workflow.py`, `tests/test_actions_workflow.py`
+(a detector that did not run, a suite no longer yielded, the routine run),
+`tests/test_project_dev.py` (pytest once, a suite per file). On this
+workspace the 52 old action records were deleted; the routine status took
+about 4 seconds, where the previous one took over a minute, and opened 51
+actions; `--all` ran 394 checks in 1 minute 38 and changed nothing.
+
+Left open: what the routine run should include is to be learned by use; a
+child Project in its own Python environment still runs everything as one
+check of the root.
 

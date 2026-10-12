@@ -5,6 +5,7 @@
 6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
 64298cbc = claude-code:9da4cef5-68b7-4d17-8a06-1351ca51e82f @64298cbc8db2e7aa971e0828653c07bcb483cfed40931fdf87d5abe7ce1c60b3
+abd0372d = claude-code:d82f1801-d3f2-4deb-9c95-297028a54b7a @abd0372dd06ffeef10c625e3f68354a234a91e4992b67406f075d93ccb20f4d4
 -->
 
 ## Shared mechanics
@@ -203,3 +204,13 @@ Selection and cost profiles are not part of the contract yet. md-library and
 g70203 do not implement `check()` yet.
 <!-- tarav.breadcrumb a214e2894149433f5aca17627bc136be9458184e6cf69aedf76963d68cf860e8 -->
 <!-- tarav.breadcrumb 605949b03256233830c468abff2d030266009473e2dcbb57067263a10f4ec37e -->
+
+## The suite holds its run — 2026-10-12
+
+`CheckRun` no longer exists. A suite is a class that holds the code that
+runs checks and the results of its one run; it can run filtered, and it has
+an identity. The reasons and the consequences for actions are in
+[POI visibility, navigation, and blessings](poi-system.md), section "Suites
+are detectors that hold their run".
+<!-- tarav.breadcrumb f626b0a4e9fa8030c7078e6e6e3579335a26da2f4840f1d54d4d7b8802d24b13 -->
+

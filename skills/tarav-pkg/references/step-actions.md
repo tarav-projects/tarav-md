@@ -69,13 +69,18 @@ POI again lands on the same action. It has two closing paths:
 
 - `gone` is not yours to take. The action is registered under the Project
   whose checks produce its POI. `tarav project status --project` runs that
-  Project's checks and hands the results to its actions; the action closes
-  when they no longer produce the POI, whether the situation was fixed or the
-  check was removed. A container Project asks each child to do the same for
-  itself, and a run on a child alone updates the same actions. A check that
-  is present and failed leaves the action open, with the situation
-  `check failed`. A situation that comes back reopens the same action.
-  `tarav check --project` only runs the checks, and so does
+  Project's checks and hands the results to its actions. A suite of checks
+  is a detector, and the signal is gone when a detector that ran no longer
+  detects it: the action closes when the suite above its check ran and did
+  not report the POI, whether the situation was fixed or the check was
+  removed. A container Project asks each child to do the same for itself,
+  and a run on a child alone updates the same actions. A situation that
+  comes back reopens the same action.
+- The status leaves slow suites out, such as a Project's tests, and says
+  which. Their actions stay as they are, with the situation `not run`; a
+  failed check leaves them with `check failed`. `--all` runs everything: use
+  it to see whether a test you fixed closes its action.
+- `tarav check --project` only runs the checks, and so does
   `tarav skw skills check`: neither records an action.
 <!-- tarav.breadcrumb 1c0f15ed4f14fdff5ecfd23b735b575f905900c32813546d5d8c920f0468f33e -->
 <!-- tarav.breadcrumb 827356ee59deac98b984e69d7c83e251352d93a68ff388f71b3d5de1fed75207 -->
@@ -103,7 +108,7 @@ scoring system can assess; no score is kept on it.
 
 An action's status is three separate axes, shown by `tarav action list` and
 the `poi-action` view: the situation as the last run of the Project's checks
-says it (`present`, `absent`, `check failed`),
+says it (`present`, `absent`, `check failed`, `not run`),
 the action (`open`, `closed`), and the closing (`gone`, `blessed`). So a
 blessing is never read as a fix: a blessed action usually has its situation
 present. `tarav action sweep` closes running actions whose loop-taken exit is
