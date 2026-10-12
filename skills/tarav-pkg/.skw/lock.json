@@ -9,8 +9,8 @@
     },
     ".skw/src/SKILL.skw.json": {
       "blocks": {},
-      "source_hash": "3ef58e515075b2dd6ffe953c0e2a5f1d0e4e5c9b8ea6e2318d9bc6bebb54ac8a",
-      "product_hash": "ca02550379c0afd1772c0da52a5545e176f2106674d34ee5d95ac04a1d9803f7"
+      "source_hash": "8007ce446850114c88df08fa3c8c569e4885d4253a176d242d065975c2c89eb3",
+      "product_hash": "1cbcc8306f8d25e3e28f2e6151ade8c648f8b4804153919a95cea02fcdcd4c64"
     },
     ".skw/src/USAGE-HISTORIES.skw.json": {
       "blocks": {},
@@ -71,6 +71,11 @@
       "blocks": {},
       "source_hash": "1a1afb11e7064f95ad0c6975f70eb18e6406da13a4c4b361f3134c2ab4e2fc45",
       "product_hash": "2606b226deb66b3bed1b894b683375749e42cc0c8abe3a640ff29d9106a4e3d6"
+    },
+    ".skw/src/references/step-actions.skw.json": {
+      "blocks": {},
+      "source_hash": "31545126253cd2d5842d22b4d7256fd2e152cedd3a74a41895d0d9c20d50fe86",
+      "product_hash": "a6f8f46b6de4b2ade8eca8a0515cfedb551566318a60b0c7ae3e521a6a025465"
     }
   }
 }
