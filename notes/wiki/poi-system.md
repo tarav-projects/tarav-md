@@ -33,7 +33,7 @@ Where the design stands (updated 2026-10-11):
   beforehand; and it holds the results of its one run. It can run whole or
   filtered. An action keeps the suites above the check that raised its POI,
   and closes as gone when the nearest of them that ran no longer reports it.
-- `tarav project status` runs the composition and is the command to repeat.
+- `tarav status --project` runs the composition and is the command to repeat.
   It leaves slow suites out, such as a Project's tests; `--all` runs
   everything. `tarav check` only runs the checks.
 - Every closing leaves a typed record, and that Type decides whether the POI

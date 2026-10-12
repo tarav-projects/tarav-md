@@ -68,7 +68,7 @@ POI again lands on the same action. It has two closing paths:
 <!-- tarav.breadcrumb 2085d9e86061e70a452c384d336b71b3f9af5ef90f1ef7d7d0013362476265cc -->
 
 - `gone` is not yours to take. The action is registered under the Project
-  whose checks produce its POI. `tarav project status --project` runs that
+  whose checks produce its POI. `tarav status --project` runs that
   Project's checks and hands the results to its actions. A suite of checks
   is a detector, and the signal is gone when a detector that ran no longer
   detects it: the action closes when the suite above its check ran and did
