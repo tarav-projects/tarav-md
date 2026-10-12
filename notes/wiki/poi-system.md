@@ -19,9 +19,12 @@ the Wiki state the current design and not only append to it.
 Where the design stands (updated 2026-10-11):
 
 - A POI is a flag between detecting and working: what a check returns. It
-  carries the check, the situation, the evidence and a descriptive message,
-  and no instructions. It is momentary and owns nothing; nothing stores a
-  POI that was printed.
+  is momentary and owns nothing; nothing stores a POI that was printed.
+- The model has three levels and no optional parts. A `POI` has a Type and a
+  message. A `SituationPOI` adds a situation, an object describing what was
+  found; each line of POIs decides what goes into it, and the Type plus the
+  situation is the identity. A specialization adds fields of its own Type.
+  There is no subject and no evidence at the base.
 - A consumer decides what happens to a POI. Printing is how a person looks
   at checks directly. The Project status escalates: what its checks raise
   becomes actions. A running step keeps the POIs of its tests as the reason
@@ -1154,4 +1157,88 @@ files of `~/.tarav/check-reports/` were deleted; `tarav context --id
 Left open: where the policy "this POI escalates" should live; an inbox for
 occurrences; forcing agents' work through actions, which belongs to the
 harness and not to the POI or check code.
+
+## A SituationPOI has only its situation — 2026-10-12
+
+### How it came up
+
+The Project status did not see a drift the agent had caused in the
+`tarav-pkg` skill: the checks that detect it ran only in the skill command.
+Once the skill package's suite ran all of them, fixing the drift made 28
+actions close and 28 open, although two things had changed. The cause is
+that the Skillware POIs keep the state of the package's files inside their
+situation.
+<!-- tarav.breadcrumb bc8fdf05c47a80ca983324ea02b7c96aee8fb3fd22e7c150b13033cc098aaa87 -->
+
+The agent proposed a POI in three parts: subject, state, evidence. The User
+did not recognise that as the POI model and asked for the current one from
+first principles.
+<!-- tarav.breadcrumb ed168feb879226e10d7133227e5416f96815ba74265bfed7b2303d92cd294724 -->
+
+The agent's second account described one line of POIs as if it were the
+model. The User asked to tell a particular implementation line from a
+general principle, and for a tree of the lines.
+<!-- tarav.breadcrumb e7f83c686260fc69dc0a1f03245d995b96e2f3d5549cb4556472f00e694e3e20 -->
+
+The tree showed that only three things are in the base classes. A situation
+that includes state, a check bound to a snapshot, and blessable Types are
+all choices of the Skillware line.
+
+### What was decided
+
+`IdentifiedPOI` is renamed `SituationPOI`. It only prescribes that the
+situation is a `LiteRecord`. More can be modeled inside a situation, but the
+fundamental philosophy does not care: an object describing the situation
+goes there, with no structure common to all POIs.
+<!-- tarav.breadcrumb e5dc12440f3a177a6e8f2612d36a17921096c1ae05e2d0454c728ee8d72821ba -->
+
+`subject` and `evidence` should not be in the base model without clear
+fundamentals.
+<!-- tarav.breadcrumb 0c2476864fd30da538fa92688a4b394760900e9a81039687b7eff797aedc4018 -->
+
+At the level of a `SituationPOI` only the situation is required, plus what
+comes from the base above it, the message. Specializations add other
+fields: POIs are subtypes, and the whole expressivity of the Python type
+system is available. What is wanted is a clear and simple model without
+ambiguities.
+<!-- tarav.breadcrumb 51e4ba75b9c4d14ceb94125590213ec1611c55c2cc1dc77c686c56164723ba29 -->
+
+The User asked whether `subject`, `evidence` and `coordinate` had been well
+defined. They had not: the only written statement was that evidence does not
+create a second identity axis; the other two had no definition, and a check
+POI filled `subject` and `evidence` with a copy of its `details`.
+<!-- tarav.breadcrumb a23c159baf293ee31263649a7825dfa35976fd71d55cde6fd4c80b69c648d930 -->
+
+On blessing the User noted that it does more than close an action: it can
+also suppress a POI from showing, and that they had no clear way to model
+it. The agent's reading, not yet confirmed: the Blessing is one fact, an
+accepted situation, with two readers in the same consumer, the action that
+stays closed and the presentation that does not list it as open.
+
+### What was built — 2026-10-12
+
+Request 901 in `tarav-py`
+(`notes/live/901-a-situation-poi-has-only-its-situation-impl-req.md`).
+
+- `POI(message)`; `SituationPOI(message, situation)`; nothing else at the
+  base (`tarav.l1.poi.primitives`). `CheckPOI` keeps `check`, `details` and
+  `failure` and copies nothing (`tarav.l1.checks`).
+- Lines where the old fields repeated the situation or the details dropped
+  them: Skillware, tribunal scores, Workspaces, Skillware generation.
+- Lines with real data declare it as a field: `error` on the records
+  provider error, `entry` on a skills status POI, `hints` on a reference
+  resolution POI, `positions` on an ambiguous Breadcrumb position, `project`
+  and `closed` on an action closed.
+- The Diagram line keeps a field named `evidence`, declared by that line:
+  its callers are in files other agents are changing.
+
+Evidence: `tests/test_poi_primitives.py` (a situation POI has a Type, a
+message and a situation and nothing else; a specialization's field is not
+part of the identity). On this workspace the action records were deleted
+and reopened: 58 actions with the same ids as before, so identities did not
+change.
+
+Left open, by decision: what the Skillware line puts in its situation, and
+with it the actions that end and restart on any edit of a package; how to
+model that a blessing also hides a POI.
 
