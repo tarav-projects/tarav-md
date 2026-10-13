@@ -1296,3 +1296,46 @@ Left open: every other Skillware Type keeps the package snapshot. The drift
 found in `tarav-hugentics/references/inline-capture.md` was left as it is,
 by instruction: text of request 885 that exists only in the compiled file.
 <!-- tarav.breadcrumb dc4dac6dbe020f6765c832352c71f4675219786c4a716d47837945eb61369e43 -->
+
+## A Skillware finding names its POI Type — 2026-10-13
+
+The User saw two names on one status row, `Tarav.SKW.POI.UnreachableBlock`
+and `unreachable-block`, and asked what the lowercase one was.
+<!-- tarav.breadcrumb 8f1642ab7184c83066e35031a36875c3153b70fe0324bd74898d710c06631666 -->
+
+It was the vocabulary of the Skillware analysis. The analysis lived in layer
+1 and the POI Types in layer 2, so the analysis named a finding with a
+string and a table translated it. The User called this stupid and asked for
+it to be eliminated.
+<!-- tarav.breadcrumb 933fec644d5f27e827a0d40736b4703deee73e064690fd74efd72652b0a5551c -->
+
+The agent proposed six points and the User started the implementation with
+them: the Types move beside the analysis; a finding holds the class; the
+table and the strings go; each Type's message is a literal sentence;
+command output shows the Type name; the Agents file check loses its table.
+<!-- tarav.breadcrumb ba81267b2892a01044eb1321ee67c1d9b34d9a5581add161e8da2fb0c05035c8 -->
+
+### What was built — 2026-10-13
+
+Request 903 in `tarav-py`
+(`notes/live/903-a-skillware-finding-names-its-poi-type-impl-req.md`).
+
+- `tarav.l1.skw.pois` holds `SkwPOI`, the atomic Types and `Finding(poi,
+  **data)`. Each Type states one literal `statement`; a message is the
+  statement, the place and the detail.
+- The analysis reports Types (`l1/skw/document.py`, `loading.py`,
+  `skills.py`; `l2/skw/skills.py`, `publication.py`). The checks in
+  `tarav.l2.skw` select and compare by Type.
+- `tarav skw document lint` and the loading context print `type` where they
+  printed `kind` or `code`.
+- Three Types nothing reported were deleted; four were added for strings
+  that had no Type.
+
+Evidence: `tests/test_skw_poi.py` (a finding refuses a string and the
+family Type; each Type has its own statement; a package's POIs and a
+document's lint carry no kind). On this workspace the open Skillware
+actions kept their identities and show the new sentences.
+
+Left open: the Agents file check still has twelve Types of its own and a
+table from Skillware Types to them; whether those Types are duplicates to
+delete is for the User. The Breadcrumb audit has a table of the same kind.

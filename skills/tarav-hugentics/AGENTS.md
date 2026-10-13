@@ -46,7 +46,7 @@ tarav skw skills context --block skill.routing --limit 2
 
 Package checks report loading-path findings as well as document checks. Three
 existing links to `tarav-pkg` remain unannotated external context and surface
-`unannotated-output-link`; they do not silently satisfy block requirements.
+`Tarav.SKW.POI.UnannotatedOutputLink`; they do not silently satisfy block requirements.
 The existing external package dependency remains declared. Adding cross-skill
 block bindings requires an explicit modeling step, not output-link inference.
 
