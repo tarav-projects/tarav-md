@@ -1336,6 +1336,14 @@ family Type; each Type has its own statement; a package's POIs and a
 document's lint carry no kind). On this workspace the open Skillware
 actions kept their identities and show the new sentences.
 
-Left open: the Agents file check still has twelve Types of its own and a
-table from Skillware Types to them; whether those Types are duplicates to
-delete is for the User. The Breadcrumb audit has a table of the same kind.
+The Agents file check had twelve Types of its own that mirrored the
+Skillware ones. The User chose to delete them: the check raises the
+Skillware Types themselves. The User asked for the same in the Breadcrumb
+audit, since the Type is already there and a second string is not needed: a
+concern of that audit now holds its POI Type and the table of strings is
+gone.
+<!-- tarav.breadcrumb 324a85a78dabc3f5f220e79dea82e48f6ce6176fefcdcc2a885d11c43f74c309 -->
+
+Left open: resolving a Breadcrumb and auditing one each have a Type for a
+missing and for an ambiguous position; the audit still chooses its Type
+from the resolution's.
