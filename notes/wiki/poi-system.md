@@ -1242,3 +1242,57 @@ Left open, by decision: what the Skillware line puts in its situation, and
 with it the actions that end and restart on any edit of a package; how to
 model that a blessing also hides a POI.
 
+
+## Product drift declares its own situation — 2026-10-13
+
+The User opened one product drift action and asked what its situation held.
+It held the place of the finding and the content hash of every file of the
+package, 51 of them. The snapshot was there so that an acceptance could not
+keep applying after later edits; the findings did not say what they depended
+on, so the whole package was taken.
+<!-- tarav.breadcrumb 0d80243481d84a2891708c7c64e9c7dd3769ad4a29881796073eeda15ab80bf5 -->
+<!-- tarav.breadcrumb d80645c7fef3955a0726602fa3c1fa1851054cce0026a83e8e9d2c38e8fb6123 -->
+
+The User stated what a situation is here: a blessing targets a situation;
+the situation is the declared state, the state that is blessed and that the
+POI represents. Product drift is a simple POI: the compiled file differs
+from what compiling produces.
+<!-- tarav.breadcrumb 3611c15085d73ce7dbd2c1bf7c7c89082753dd354623176820ced26141b827ce -->
+
+The agent had proposed to keep the state on the blessing instead; that was
+withdrawn. The state belongs in the situation; the fault of the snapshot is
+its scope.
+
+Three fields are sufficient: the product, the hash of the file on disk, and
+the hash of the text the source produces.
+<!-- tarav.breadcrumb e4eb4c9078c5ada81261c629254d2a68747ea9f91dbc8720fc2d196ec82277cb -->
+
+A heuristic from the User for defining a situation: see what the check
+actually uses.
+<!-- tarav.breadcrumb 1c6b3ff96b4445c74843a766ddac74935f1abaabbee8773e7404db44ff709a8b -->
+
+### What was built — 2026-10-13
+
+Request 902 in `tarav-py`
+(`notes/live/902-product-drift-declares-its-own-situation-impl-req.md`),
+for this Type only.
+<!-- tarav.breadcrumb 8a2598323da9c3d33641f84f59be3df143a2d19ce5ef2e70f42fd3809835ca4a -->
+
+- The drift finding of `Document.lint()` carries the product, the two
+  hashes and a count of the difference (`tarav.l1.skw.document`).
+- `SkwPOI.from_finding()` holds the general Skillware line, still the place
+  plus the package snapshot. `ProductDrift` overrides it with the three
+  fields, a message that names the file, and notes saying that either side
+  may be the newer one (`tarav.l2.skw.pois`).
+- The product is named by its full path: a package can be checked without a
+  Project, and the identity must be the same either way.
+
+Evidence: `tests/test_skw_poi.py` (an edit of another file of the package
+keeps the identity; an edit of the compiled file changes it; equal texts
+raise nothing). On this workspace the old action closed as gone and one
+opened with the new situation; a second run changed nothing.
+
+Left open: every other Skillware Type keeps the package snapshot. The drift
+found in `tarav-hugentics/references/inline-capture.md` was left as it is,
+by instruction: text of request 885 that exists only in the compiled file.
+<!-- tarav.breadcrumb dc4dac6dbe020f6765c832352c71f4675219786c4a716d47837945eb61369e43 -->
