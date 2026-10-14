@@ -159,13 +159,11 @@ Issue, or implementation routes. Its optional trailing value is a document,
 project slug, title fragment, or other practical navigation hint; Agents
 resolve equivalence from context rather than fingerprints.
 
-New implementation requests default to Wiki. `--wiki` is optional;
-`--model` explicitly selects Model-backed implementation. Examples:
-`--impl --wiki [INPUT]`, `--impl --wiki --design [INPUT]`,
-`--impl --wiki --execute <IMPL_REQ|INPUT>`, `--impl --wiki --develop [INPUT]`,
-and `--impl --wiki --review <IMPL_REQ>`.
-Existing requests retain their recorded surface when no selector is given.
-`--wiki` and `--model` are mutually exclusive and do not select a phase.
+Implementation contextualizes through the Project.Wiki; `--wiki` is optional
+and does not select a phase. Examples: `--impl --wiki [INPUT]`,
+`--impl --wiki --design [INPUT]`, `--impl --wiki --execute <IMPL_REQ|INPUT>`,
+`--impl --wiki --develop [INPUT]`, and `--impl --wiki --review <IMPL_REQ>`.
+The Model-backed route and its `--model` selector are parked.
 
 ## Routing
 
@@ -176,14 +174,11 @@ implementation routing. It needs Git repositories, not a Tarav Project.
 conversation as a dialogue. Select this route before implementation routing.
 It does not create an Impl.Req or select an implementation phase.
 
-Before loading implementation phase or impact modules, select its knowledge
-surface. New implementation requests default to Wiki unless `--model` is explicit.
-Resume the surface recorded by an existing Impl.Req; legacy notes with
-Impl.Req.Diagram remain Model-backed. Wiki selection, including the default,
-routes exclusively to [`references/impl/wiki.md`](references/impl/wiki.md). `--wiki` and `--model` conflict.
-That module exclusively owns Wiki-backed phases and impact assessment. Do not load the
-Model-backed implementation modules for that route. Conflicting surface
-selection requires clarification; never silently migrate a request.
+Implementation contextualizes through the Project.Wiki and routes exclusively
+to [`references/impl/wiki.md`](references/impl/wiki.md), which owns the phases
+and impact assessment. The Model-backed route is parked: `--model` and legacy
+notes carrying Impl.Req.Diagram require clarification before any mutation;
+never silently migrate a request.
 
 Do not reread a skill `references/` file that was already read completely and
 remains available in context. Reread it only if it changed, its contents were
@@ -228,35 +223,14 @@ running Reading Club workflow. They are not initial Batchy.Skill calls.
 
 ## Boundary
 
-The Model/Collection/Draft implementation requirements below apply only to
-the Model-backed route. Wiki-backed implementation instead follows its own
-live-note and Wiki capture contract; absent Model artifacts are not POIs there.
-
 This fresh skill does not use the legacy Markdown Index, Anchory, Agendix, or
 Chat.Index backpropagation mechanics. Those are Attic evidence. Current
 User-Touched index output is the target Diagram Namespace's typed Ship database
 and separate Annotation claims; implementation live notes remain separate
 Product.Surfaces.
 
-Implementation retains two deliberately different surfaces:
+Implementation follows the Wiki-backed live-note and Wiki capture contract.
+The former Model-backed implementation route, with its `Impl.Req.Collection`,
+`Diagram.Draft`, and implementation `Capture.Authorization.Gate`, is parked;
+absent Model artifacts are not POIs for implementation.
 
-- the live-note `Impl.Req` is the Agent's main coordination artifact and phase
-  boundary;
-- its `Impl.Req.Diagram` points to one `Impl.Req.Collection` and the durable
-  `Diagram.Draft` that accumulates supported User-Touched material relevant to
-  that implementation request.
-
-An implementation Line remains semantically attached to the most suitable
-existing Model Block when possible, while its edition is hosted by the
-`Impl.Req.Collection`. This preserves Model encapsulation without adding
-automatic implementation material to the Model's primary load surface.
-
-Implementation capture uses ordinary Capture semantics inside one writable
-Draft. It must resolve the same Namespace, Project.Model, current context,
-Object.Types, support, checks, and landing mechanics as `--capture`. The Draft
-is reconciled across slices and applied once at completion. A live note never
-substitutes for a missing Diagram target or Draft.
-
-The workflow's explicit User invocation is retained as one
-`Capture.Authorization.Gate`; affected editions reference that Gate. This
-records permission to write, not review of wording.

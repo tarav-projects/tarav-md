@@ -145,8 +145,7 @@
         }
       },
       "parents": [
-        "skill.routing",
-        "impl.input"
+        "skill.routing"
       ]
     },
     {
@@ -180,420 +179,6 @@
       }
     },
     {
-      "id": "impl.design.introduction",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/design.skw.json",
-          "pointer": "/blocks/0"
-        }
-      },
-      "parents": [
-        "impl.routing",
-        "impl.develop.workflow"
-      ]
-    },
-    {
-      "id": "impl.design.alignment-loop",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/design.skw.json",
-          "pointer": "/blocks/1"
-        }
-      }
-    },
-    {
-      "id": "impl.design.readiness-checkpoint",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/design.skw.json",
-          "pointer": "/blocks/2"
-        }
-      }
-    },
-    {
-      "id": "impl.design.live-note-impl-req",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/design.skw.json",
-          "pointer": "/blocks/3"
-        }
-      }
-    },
-    {
-      "id": "impl.design.impl-req-diagram",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/design.skw.json",
-          "pointer": "/blocks/4"
-        }
-      }
-    },
-    {
-      "id": "impl.design.updating",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/design.skw.json",
-          "pointer": "/blocks/5"
-        }
-      }
-    },
-    {
-      "id": "impl.design.output",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/design.skw.json",
-          "pointer": "/blocks/6"
-        }
-      }
-    },
-    {
-      "id": "impl.develop.introduction",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/develop.skw.json",
-          "pointer": "/blocks/0"
-        }
-      },
-      "parents": [
-        "impl.routing",
-        "impl.harvest.delegation"
-      ]
-    },
-    {
-      "id": "impl.develop.workflow",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/develop.skw.json",
-          "pointer": "/blocks/1"
-        }
-      }
-    },
-    {
-      "id": "impl.develop.boundary-contract",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/develop.skw.json",
-          "pointer": "/blocks/2"
-        }
-      }
-    },
-    {
-      "id": "impl.develop.completion",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/develop.skw.json",
-          "pointer": "/blocks/3"
-        }
-      }
-    },
-    {
-      "id": "impl.example.introduction",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/example.skw.json",
-          "pointer": "/blocks/0"
-        }
-      },
-      "parents": [
-        "impl.design.live-note-impl-req"
-      ]
-    },
-    {
-      "id": "impl.execute.introduction",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/execute.skw.json",
-          "pointer": "/blocks/0"
-        }
-      },
-      "parents": [
-        "impl.routing",
-        "impl.develop.workflow"
-      ]
-    },
-    {
-      "id": "impl.execute.direct-input-bootstrap",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/execute.skw.json",
-          "pointer": "/blocks/1"
-        }
-      }
-    },
-    {
-      "id": "impl.execute.execution-realignment",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/execute.skw.json",
-          "pointer": "/blocks/2"
-        }
-      }
-    },
-    {
-      "id": "impl.execute.git-checkpoint",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/execute.skw.json",
-          "pointer": "/blocks/3"
-        }
-      }
-    },
-    {
-      "id": "impl.execute.per-slice-execution",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/execute.skw.json",
-          "pointer": "/blocks/4"
-        }
-      }
-    },
-    {
-      "id": "impl.execute.deviation-handling",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/execute.skw.json",
-          "pointer": "/blocks/5"
-        }
-      }
-    },
-    {
-      "id": "impl.execute.completion",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/execute.skw.json",
-          "pointer": "/blocks/6"
-        }
-      }
-    },
-    {
-      "id": "impl.general-practices.introduction",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/general-practices.skw.json",
-          "pointer": "/blocks/0"
-        }
-      },
-      "parents": [
-        "impl.design.introduction",
-        "impl.execute.introduction"
-      ]
-    },
-    {
-      "id": "impl.general-practices.before-editing",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/general-practices.skw.json",
-          "pointer": "/blocks/1"
-        }
-      }
-    },
-    {
-      "id": "impl.general-practices.writing-code",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/general-practices.skw.json",
-          "pointer": "/blocks/2"
-        }
-      }
-    },
-    {
-      "id": "impl.general-practices.feedback",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/general-practices.skw.json",
-          "pointer": "/blocks/3"
-        }
-      }
-    },
-    {
-      "id": "impl.general-preferences.introduction",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/general-preferences.skw.json",
-          "pointer": "/blocks/0"
-        }
-      },
-      "parents": [
-        "impl.design.introduction",
-        "impl.execute.introduction"
-      ]
-    },
-    {
-      "id": "impl.harvest.introduction",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/harvest.skw.json",
-          "pointer": "/blocks/0"
-        }
-      },
-      "parents": [
-        "impl.routing"
-      ]
-    },
-    {
-      "id": "impl.harvest.readiness-judgment",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/harvest.skw.json",
-          "pointer": "/blocks/1"
-        }
-      }
-    },
-    {
-      "id": "impl.harvest.scan",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/harvest.skw.json",
-          "pointer": "/blocks/2"
-        }
-      }
-    },
-    {
-      "id": "impl.harvest.candidate-checkpoint",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/harvest.skw.json",
-          "pointer": "/blocks/3"
-        }
-      }
-    },
-    {
-      "id": "impl.harvest.delegation",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/harvest.skw.json",
-          "pointer": "/blocks/4"
-        }
-      }
-    },
-    {
-      "id": "impl.harvest.completion",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/harvest.skw.json",
-          "pointer": "/blocks/5"
-        }
-      }
-    },
-    {
-      "id": "impl.product-capture.introduction",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/product-capture.skw.json",
-          "pointer": "/blocks/0"
-        }
-      },
-      "parents": [
-        "impl.routing",
-        "impl.design.introduction",
-        "impl.execute.introduction"
-      ]
-    },
-    {
-      "id": "impl.product-capture.surface-boundary",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/product-capture.skw.json",
-          "pointer": "/blocks/1"
-        }
-      }
-    },
-    {
-      "id": "impl.product-capture.capture-bar",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/product-capture.skw.json",
-          "pointer": "/blocks/2"
-        }
-      }
-    },
-    {
-      "id": "impl.product-capture.slice-transaction",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/product-capture.skw.json",
-          "pointer": "/blocks/3"
-        }
-      }
-    },
-    {
-      "id": "impl.product-capture.final-audit",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/product-capture.skw.json",
-          "pointer": "/blocks/4"
-        }
-      }
-    },
-    {
-      "id": "impl.review.introduction",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/review.skw.json",
-          "pointer": "/blocks/0"
-        }
-      },
-      "parents": [
-        "impl.routing"
-      ]
-    },
-    {
-      "id": "impl.review.review-loop",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/review.skw.json",
-          "pointer": "/blocks/1"
-        }
-      }
-    },
-    {
-      "id": "impl.review.boundaries",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/review.skw.json",
-          "pointer": "/blocks/2"
-        }
-      }
-    },
-    {
       "id": "impl.introduction",
       "reference": {
         "type": "Tarav.Reference.StructuredFile",
@@ -623,16 +208,6 @@
         "locator": {
           "path": "src/references/impl.skw.json",
           "pointer": "/blocks/2"
-        }
-      }
-    },
-    {
-      "id": "impl.shared-contract",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl.skw.json",
-          "pointer": "/blocks/3"
         }
       }
     },
@@ -1002,6 +577,119 @@
       ]
     },
     {
+      "id": "impl.code-engineering.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/code-engineering.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "impl.wiki.introduction"
+      ]
+    },
+    {
+      "id": "impl.code-engineering.before-editing",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/code-engineering.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "impl.code-engineering.shaping-the-change",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/code-engineering.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "impl.code-engineering.vertical-slices",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/code-engineering.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "impl.code-engineering.writing-code",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/code-engineering.skw.json",
+          "pointer": "/blocks/4"
+        }
+      }
+    },
+    {
+      "id": "impl.code-engineering.slice-loop",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/code-engineering.skw.json",
+          "pointer": "/blocks/5"
+        }
+      }
+    },
+    {
+      "id": "impl.code-engineering.proof-by-work-kind",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/code-engineering.skw.json",
+          "pointer": "/blocks/6"
+        }
+      }
+    },
+    {
+      "id": "impl.code-engineering.proving-it-works",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/code-engineering.skw.json",
+          "pointer": "/blocks/7"
+        }
+      }
+    },
+    {
+      "id": "impl.code-engineering.tests",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/code-engineering.skw.json",
+          "pointer": "/blocks/8"
+        }
+      }
+    },
+    {
+      "id": "impl.code-engineering.when-fixes-fail",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/code-engineering.skw.json",
+          "pointer": "/blocks/9"
+        }
+      }
+    },
+    {
+      "id": "impl.code-engineering.reporting-evidence",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/code-engineering.skw.json",
+          "pointer": "/blocks/10"
+        }
+      }
+    },
+    {
       "id": "design-dialogue.introduction",
       "reference": {
         "type": "Tarav.Reference.StructuredFile",
@@ -1026,7 +714,6 @@
       "parents": [
         "skill.routing",
         "capture.introduction",
-        "impl.execute.introduction",
         "wiki-capture.introduction",
         "impl.wiki.introduction",
         "design-dialogue.introduction"
