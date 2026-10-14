@@ -25,7 +25,7 @@
         "",
         "## Constitution",
         "",
-        "Read {{skw:link-0}} completely before using any other",
+        "Read [CONSTITUTION.md](CONSTITUTION.md) completely before using any other",
         "guidance in this package. Every surface claiming to be part of Tarav must",
         "comply with it.",
         "",
@@ -103,18 +103,18 @@
         "Load only the design relevant to the work:",
         "",
         "- For artifact preservation, records, identity, locators, and references,",
-        "  read {{skw:link-1}}.",
+        "  read [tarav-archive.md](tarav-archive.md).",
         "- For the Chatlas-backed data train, grounded annotations, semantic lineages,",
-        "  capture manifests, and Models, read {{skw:link-2}}.",
+        "  capture manifests, and Models, read [tarav-diagram.md](tarav-diagram.md).",
         "- For the general semantic annotation system governing Semantic.Computations,",
         "  Ships, continuity, Assertion carry, scoring, and controls, read",
-        "  {{skw:link-3}}.",
+        "  [tarav-semantic-calculus.md](tarav-semantic-calculus.md).",
         "- For the global Agent-managed JSON registry and its Agent.Hint workflow, read",
-        "  {{skw:link-4}}.",
+        "  [tarav-bloberia.md](tarav-bloberia.md).",
         "- For behavioral situations used to develop and test candidate Tarav designs,",
-        "  read {{skw:link-5}}.",
+        "  read [USAGE-HISTORIES.md](USAGE-HISTORIES.md).",
         "- For the general theory governing the constitutional document, read",
-        "  {{skw:link-6}}.",
+        "  [references/constitutional-theory.md](references/constitutional-theory.md).",
         "",
         "These design documents are subordinate to the Constitution and remain WIP.",
         "They are candidate design truth, not constitutional amendments.",
@@ -143,10 +143,10 @@
         "The following surface preserves ongoing discussion for later review and",
         "capture. It is not approved or landed design truth:",
         "",
-        "- {{skw:link-7}}",
+        "- [Context, POIs, and Product-Surface Impact](references/context-poi-and-impact-map-design-digest.md)",
         "  — discussion digest from Chatlas session",
         "  `01a02f8b-8c36-7123-ba70-1a217b776e28`.",
-        "- {{skw:link-8}}",
+        "- [Gates and Deferred Review](references/gates-and-deferred-review-design-digest.md)",
         "  — discussion digest from Chatlas session",
         "  `01a02f8b-8c36-7123-ba70-1a217b776e28` covering reusable Gate Assertions,",
         "  deferred review, and Line-ship review standing.",
@@ -162,20 +162,20 @@
         "- `tarav-pkg --archive` — load the Constitution and Archive design.",
         "- `tarav-pkg --diagram` — load the Constitution and Diagram design.",
         "- `tarav-pkg --semantic-calculus` — load the Constitution and",
-        "  {{skw:link-9}}.",
+        "  [tarav-semantic-calculus.md](tarav-semantic-calculus.md).",
         "- `tarav-pkg --bloberia` — load the Constitution and Tarav.Bloberia design.",
         "- `tarav-pkg --usage-histories` — read",
-        "  {{skw:link-10}} and use its behavioral histories",
+        "  [USAGE-HISTORIES.md](USAGE-HISTORIES.md) and use its behavioral histories",
         "  to develop or test candidate designs.",
-        "- `tarav-pkg --review` — read {{skw:link-11}} and",
+        "- `tarav-pkg --review` — read [references/review.md](references/review.md) and",
         "  review existing Diagram Block Lines through mechanically auditable",
         "  `Verbatim.Gate`s.",
         "- `tarav-pkg --constitutional-theory` — load the Constitution and the general",
         "  constitutional-theory module.",
         "- `tarav-pkg --step-actions` — read",
-        "  {{skw:link-12}} for how to work a",
+        "  [references/step-actions.md](references/step-actions.md) for how to work a",
         "  Step action: place the input, start, work, close.",
-        "- `tarav-pkg --attic` — read {{skw:link-13}} for",
+        "- `tarav-pkg --attic` — read [references/attic.md](references/attic.md) for",
         "  Archive.Attic semantics, Deposit workflow, and its boundaries with",
         "  `Tarav.Archive` and `Diagram.Attic`. Load the linked legacy-skill-mine",
         "  module only when deliberately mining the displaced skill implementation.",
@@ -191,8 +191,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "constitution.content"
           },
-          "slot": "link-0",
-          "caption": "CONSTITUTION.md"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         },
         {
           "type": "Tarav.SKW.Reading.ConsultationLink",
@@ -201,8 +202,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "tarav-archive.content"
           },
-          "slot": "link-1",
-          "caption": "tarav-archive.md"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         },
         {
           "type": "Tarav.SKW.Reading.ConsultationLink",
@@ -211,8 +213,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "tarav-diagram.content"
           },
-          "slot": "link-2",
-          "caption": "tarav-diagram.md"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         },
         {
           "type": "Tarav.SKW.Reading.ConsultationLink",
@@ -221,8 +224,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "tarav-semantic-calculus.content"
           },
-          "slot": "link-3",
-          "caption": "tarav-semantic-calculus.md"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         },
         {
           "type": "Tarav.SKW.Reading.ConsultationLink",
@@ -231,8 +235,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "tarav-bloberia.content"
           },
-          "slot": "link-4",
-          "caption": "tarav-bloberia.md"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         },
         {
           "type": "Tarav.SKW.Reading.ConsultationLink",
@@ -241,8 +246,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "usage-histories.content"
           },
-          "slot": "link-5",
-          "caption": "USAGE-HISTORIES.md"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         },
         {
           "type": "Tarav.SKW.Reading.ConsultationLink",
@@ -251,8 +257,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "constitutional-theory.content"
           },
-          "slot": "link-6",
-          "caption": "references/constitutional-theory.md"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         },
         {
           "type": "Tarav.SKW.Reading.ConsultationLink",
@@ -261,8 +268,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "context-poi-and-impact-map-design-digest.content"
           },
-          "slot": "link-7",
-          "caption": "Context, POIs, and Product-Surface Impact"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         },
         {
           "type": "Tarav.SKW.Reading.ConsultationLink",
@@ -271,8 +279,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "gates-and-deferred-review-design-digest.content"
           },
-          "slot": "link-8",
-          "caption": "Gates and Deferred Review"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         },
         {
           "type": "Tarav.SKW.Reading.ConsultationLink",
@@ -281,8 +290,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "tarav-semantic-calculus.content"
           },
-          "slot": "link-9",
-          "caption": "tarav-semantic-calculus.md"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         },
         {
           "type": "Tarav.SKW.Reading.ConsultationLink",
@@ -291,8 +301,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "usage-histories.content"
           },
-          "slot": "link-10",
-          "caption": "USAGE-HISTORIES.md"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         },
         {
           "type": "Tarav.SKW.Reading.ConsultationLink",
@@ -301,8 +312,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "review.content"
           },
-          "slot": "link-11",
-          "caption": "references/review.md"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         },
         {
           "type": "Tarav.SKW.Reading.ConsultationLink",
@@ -311,8 +323,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "step-actions.content"
           },
-          "slot": "link-12",
-          "caption": "references/step-actions.md"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         },
         {
           "type": "Tarav.SKW.Reading.ConsultationLink",
@@ -321,8 +334,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "attic.content"
           },
-          "slot": "link-13",
-          "caption": "references/attic.md"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         }
       ]
     }

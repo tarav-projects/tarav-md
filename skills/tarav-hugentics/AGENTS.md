@@ -30,12 +30,16 @@ Reading paths can also be derived from document position without a loading
 file; this package retains one for its explicit cross-file routes.
 Block `id` is a UUID Ship; its
 separate `label` is the readable local selector. Keep the first metadata block
-as the entry root. Link slots such as `{{skw:link-0}}` compile from those
-declarations. Typed `SkillLink` blocks retain produced Markdown in `output` and
-declare their own target; refresh one explicitly with `tarav skw document
-produce --source SKILL.skw.json --block design-impact-link`. Other loading
-links remain declared primitives; do not replace their slots with authored
-Markdown links.
+as the entry root. A link is written in the block's text as ordinary Markdown
+and declared beside it; the reading graph uses only the declaration. A
+declaration with `"prose": {"type": "Tarav.SKW.Reading.MarkdownProse"}` is
+checked against the text and raises `Tarav.SKW.POI.MissingMarkdownLink` when the
+text lacks it; declare that part on every link you write. Typed `SkillLink`
+blocks retain produced Markdown in `output` and declare their own target;
+refresh one explicitly with `tarav skw document produce --source SKILL.skw.json
+--block design-impact-link`.
+<!-- tarav.breadcrumb 3385f03b3e0f05aeb740fd8ac4e85910dafaed4cee146a501335df5a93cc1b09 -->
+<!-- tarav.breadcrumb a2993b23b3ca374a042134feea7a1ec2e8af5bd1fe27457ca58740c083fe09ac -->
 <!-- tarav.breadcrumb 6e446d50cb88a1f233a3fb83938245072eaabd44d3e9cf18831abb192dcf97cc -->
 
 Inspect one block without dumping the whole graph:
@@ -44,11 +48,13 @@ Inspect one block without dumping the whole graph:
 tarav skw skills context --block skill.routing --limit 2
 ```
 
-Package checks report loading-path findings as well as document checks. Three
-existing links to `tarav-pkg` remain unannotated external context and surface
-`Tarav.SKW.POI.UnannotatedOutputLink`; they do not silently satisfy block requirements.
-The existing external package dependency remains declared. Adding cross-skill
+Package checks report loading-path findings as well as document checks. The
+links to `tarav-pkg` are written in the text without a declaration: a link can
+only declare a target inside the package, so the graph does not know them and
+they satisfy no block requirement. The external package dependency remains
+declared. Adding cross-skill
 block bindings requires an explicit modeling step, not output-link inference.
+<!-- tarav.breadcrumb 578b5d7f39e8d49ee7ee904fae75a7ecfda14820dcae4ee47c9748a2b6f7d92a -->
 
 `.skw/main.json` is the typed directory-record entry declaring the skill,
 its source/product files, and

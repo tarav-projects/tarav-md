@@ -57,7 +57,7 @@
         "   concern. Use the vocabulary allowed by `Issue.Block`; do not add a Resolve",
         "   Line merely to complete the workflow.",
         "5. Present the exact capture using the reviewed-capture header and fresh",
-        "   approval token from {{skw:link-0}}.",
+        "   approval token from [`../capture.md`](../capture.md).",
         "6. After approval and `::land`, compile and apply the ordinary",
         "   Capture.Manifest. The resulting open-Issue POI is expected.",
         "7. Report the Issue label, shortened ship UUID, landing result, and the compact",
@@ -104,8 +104,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "capture.introduction"
           },
-          "slot": "link-0",
-          "caption": "`../capture.md`"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         }
       ]
     }

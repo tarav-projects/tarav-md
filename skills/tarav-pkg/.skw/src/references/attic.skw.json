@@ -119,7 +119,7 @@
         "## Legacy Tarav skill mine",
         "",
         "When deliberately mining the skills displaced by the 2026-08-26 Tarav",
-        "reboot, read {{skw:link-0}}. Treat that material",
+        "reboot, read [legacy-skill-mine.md](legacy-skill-mine.md). Treat that material",
         "as candidate evidence, never inherited design truth."
       ],
       "annotations": [
@@ -130,8 +130,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "legacy-skill-mine.content"
           },
-          "slot": "link-0",
-          "caption": "legacy-skill-mine.md"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         }
       ]
     }

@@ -59,9 +59,9 @@
         "",
         "Load only the selected module:",
         "",
-        "- Parking: {{skw:link-0}}",
-        "- Maintenance: {{skw:link-1}}",
-        "- Audit: {{skw:link-2}}",
+        "- Parking: [`issues/park.md`](issues/park.md)",
+        "- Maintenance: [`issues/maintain.md`](issues/maintain.md)",
+        "- Audit: [`issues/audit.md`](issues/audit.md)",
         ""
       ],
       "annotations": [
@@ -109,8 +109,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "issues.park.introduction"
           },
-          "slot": "link-0",
-          "caption": "`issues/park.md`"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         },
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
@@ -119,8 +120,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "issues.maintain.introduction"
           },
-          "slot": "link-1",
-          "caption": "`issues/maintain.md`"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         },
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
@@ -129,8 +131,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "issues.audit.introduction"
           },
-          "slot": "link-2",
-          "caption": "`issues/audit.md`"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         }
       ]
     },
@@ -156,7 +159,7 @@
         "  guidance, not a mutation blocker.",
         "- Issue history remains in its Block and Line Ships after resolution.",
         "- Use the shared capture mechanics, Gates, Assertion.Engine, and landing",
-        "  contract from {{skw:link-0}}. Do not create Issue-specific Tarav",
+        "  contract from [`capture.md`](capture.md). Do not create Issue-specific Tarav",
         "  CLI actions when typed Ship capture already expresses the operation.",
         ""
       ],
@@ -193,8 +196,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "capture.introduction"
           },
-          "slot": "link-0",
-          "caption": "`capture.md`"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         }
       ]
     },

@@ -17,7 +17,7 @@
         "Read [`../../tarav-pkg/tarav-diagram.md`](../../tarav-pkg/tarav-diagram.md)",
         "before operating. Use its current Ship and Annotation schemas, Capture.Manifest rules,",
         "named Renderers, Gates, and Assertion.Engine semantics.",
-        "For any modifying route, also load {{skw:link-0}} and bracket each",
+        "For any modifying route, also load [`commit-evidence.md`](commit-evidence.md) and bracket each",
         "mutated repository with its scoped evidence commits.",
         ""
       ],
@@ -58,8 +58,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "commit-evidence.introduction"
           },
-          "slot": "link-0",
-          "caption": "`commit-evidence.md`"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         }
       ]
     },

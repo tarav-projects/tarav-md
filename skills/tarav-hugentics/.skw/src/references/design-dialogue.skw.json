@@ -18,11 +18,11 @@
         "Discussion can happen freely before invocation; no special session mode is",
         "required. FOCUS optionally narrows the discussion to preserve.",
         "",
-        "Load {{skw:link-0}} for project resolution, Chatlas evidence selection,",
+        "Load [`wiki-capture.md`](wiki-capture.md) for project resolution, Chatlas evidence selection,",
         "Breadcrumb submission and audit, and scoped Wiki Git closure. Apply those",
         "mechanics with the dialogue placement and writing rules below. This invocation",
         "authorizes one capture pass and its Wiki commit.",
-        "Use {{skw:link-1}} for the start checkpoint and evidence-bearing closure.",
+        "Use [`commit-evidence.md`](commit-evidence.md) for the start checkpoint and evidence-bearing closure.",
         "",
         "## Placement",
         "",
@@ -84,8 +84,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "wiki-capture.introduction"
           },
-          "slot": "link-0",
-          "caption": "`wiki-capture.md`"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         },
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
@@ -94,8 +95,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "commit-evidence.introduction"
           },
-          "slot": "link-1",
-          "caption": "`commit-evidence.md`"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         }
       ]
     }

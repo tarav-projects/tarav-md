@@ -20,7 +20,7 @@
         "This module supplies the shared assessment for `--impact`. Standalone",
         "`--design --impact` ends with a read-only report. Implementation routes use",
         "the resulting delta as direct input to the workflow selected by",
-        "{{skw:link-0}}; for example, `--impl --design --impact` designs the",
+        "[`impl.md`](impl.md); for example, `--impl --design --impact` designs the",
         "implementation and `--impl --dev --impact` designs and executes it.",
         ""
       ],
@@ -61,8 +61,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "impl.introduction"
           },
-          "slot": "link-0",
-          "caption": "`impl.md`"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         }
       ]
     },

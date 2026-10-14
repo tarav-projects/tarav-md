@@ -389,6 +389,38 @@ satisfy the requirements. These are design requirements, not a claim that the
 current package file-link checker implements this static loading model.
 <!-- tarav.breadcrumb e60c2ed8681dd988cc77812d4ee7078cc1630b067b655c4a1e4bea33430f2746 -->
 
+### Links are declared; a prose part checks the text (904)
+
+On 2026-10-14 the User settled how a link relates to the text of its block.
+A block declares that it holds a link; the SKW system trusts the declaration
+and does not read the prose. The maintainers care that the text really holds
+the link, and that is the concern of the link's own Type: a link Type can
+carry checks that read the prose and raise POIs, while the base checks
+nothing.
+<!-- tarav.breadcrumb ea58dff47f2e58be5e50c20231ce18b428f10271e73f1af407638bc619549829 -->
+
+This is one case of a wider rule: relations between blocks are declared, the
+system checks that the declarations fit together, and other mechanisms may
+later check or score the declarations against the text.
+<!-- tarav.breadcrumb 38e991854d466b095182d92a6715abd9caf893e38c506c2fa125108a29b0c9d5 -->
+<!-- tarav.breadcrumb c327258f0f093f561edcd726cb0e781c3dcad204a1018ea894fbd08b4124aed7 -->
+
+So a declaration no longer generates its link: the earlier `{{skw:link-N}}`
+slot and the parsing of every block for undeclared links were removed. The
+prose part is composed into the link rather than being a subtype of it, so
+how a link is read and how it is written stay separate. `SkillLink`, a
+block whose purpose is to be a link, stays as it is: blocks inside blocks
+are another way to build output and remain undecided.
+<!-- tarav.breadcrumb b3546af0a7916e1292c44330200f5a42465c3b8405bccadd933f0c8f0f9f9e41 -->
+<!-- tarav.breadcrumb bd1423ab12748f9ab2b745a15017398108729de4281f35b2b2544ea0ac1c9a11 -->
+
+Implemented by [request 904](../../../tarav-py/notes/live/904-a-link-is-declared-its-type-checks-the-prose-impl-req.md):
+[`MarkdownProse`](../../../tarav-py/src/tarav/l1/skw/code/reading.py) checks
+that the text holds a Markdown link to the declared target, and the check
+`Tarav.SKW.Check.LinkProse` raises `Tarav.SKW.POI.MissingMarkdownLink`. The
+65 slots of `tarav-hugentics` and `tarav-pkg` became literal links; every
+compiled file stayed the same.
+
 ### Context.Path as the predictable loading contract
 
 The Skill `Context.Path` is the ordered physical loading contract presented to

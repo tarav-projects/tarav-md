@@ -12,8 +12,8 @@
         "",
         "This document describes Tarav's current candidate design for constructing,",
         "evolving, and evaluating semantic annotations. It is subordinate to the",
-        "{{skw:link-0}}, complements",
-        "{{skw:link-1}}, and remains amendable.",
+        "[Tarav Constitution](CONSTITUTION.md), complements",
+        "[Tarav.Diagram](tarav-diagram.md), and remains amendable.",
         "",
         "## Purpose",
         "",
@@ -405,8 +405,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "constitution.content"
           },
-          "slot": "link-0",
-          "caption": "Tarav Constitution"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         },
         {
           "type": "Tarav.SKW.Reading.ConsultationLink",
@@ -415,8 +416,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "tarav-diagram.content"
           },
-          "slot": "link-1",
-          "caption": "Tarav.Diagram"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         }
       ]
     }

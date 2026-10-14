@@ -21,7 +21,7 @@
         "`Wiki.get(path)` and `Wiki.daily(date)` address notes without creating",
         "files; `WikiNote.read()` and `write(text)` access their Markdown.",
         "All Wiki parsing uses `WikiNote.parse()`, backed by",
-        "`tarav.l1.surfaces.markdown`. Load {{skw:link-0}} for scoped Git",
+        "`tarav.l1.surfaces.markdown`. Load [`commit-evidence.md`](commit-evidence.md) for scoped Git",
         "bracketing and closure. Chatlas and Breadcrumbs retain their",
         "existing roles; selection and writing remain Agent-operated.",
         "",
@@ -68,8 +68,9 @@
             "type": "Tarav.SKW.Reading.BlockEntry",
             "node": "commit-evidence.introduction"
           },
-          "slot": "link-0",
-          "caption": "`commit-evidence.md`"
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
         }
       ]
     },
