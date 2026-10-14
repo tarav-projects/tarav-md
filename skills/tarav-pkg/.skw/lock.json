@@ -87,8 +87,8 @@
     },
     ".skw/src/references/step-actions.skw.json": {
       "blocks": {},
-      "source_hash": "d13589daf82048530002a5702e66c3dcf5751424ef52be0973eb82af5716246b",
-      "product_hash": "a05e784e14aebdf6cc7d6c492b1027725cfe87ec9450129ffef38f69e820c0c2",
+      "source_hash": "af01bed16e887553e62a201b17e1e2eaf5ab329c39f06606442d4cc0c7f781d1",
+      "product_hash": "68a1b57e9700ee94ee58a8b0913d87e2e62bb411a29e259710dfec3b6c1a284a",
       "loading_hash": "17d4377cc05a58448d78ac182c9cb094ded65217efe01aa5fa829432e49c3f63"
     }
   }

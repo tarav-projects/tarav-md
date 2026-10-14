@@ -1347,3 +1347,45 @@ gone.
 Left open: resolving a Breadcrumb and auditing one each have a Type for a
 missing and for an ambiguous position; the audit still chooses its Type
 from the resolution's.
+
+## Actions keep a Git log — 2026-10-14
+
+### How it came up
+
+An `OutputChanged` action that a migration had caused raised a question
+about the action model: an action stays after it closes, so how it closed
+must be recorded, and what happened must be traceable later.
+<!-- tarav.breadcrumb f41e812b9a2774b3d2d2dd9594a7e849467c3f3d66b5f296b564f3edc290846a -->
+
+The User weighed two ways to run checks: on a commit, which records
+provenance, or on the working folder, which is decoupled from Git history.
+Neither is wrong; rerunning checks is always possible. Git is the store:
+no snapshots or diffs are kept.
+<!-- tarav.breadcrumb eedf47ab5d6d70fd6eae743914557adaa1cbb0aa691b850e1369f8d58d15d625 -->
+
+### What was decided
+
+Good to have, not a requirement. The checks see by themselves whether they
+ran on a committed state, at the level of the whole repository; actions
+record the best commit data they have, and agents are advised to keep the
+repositories clean.
+<!-- tarav.breadcrumb f2304a557757d4bfc6baf0fcaf9ce8e1d3564cfdf039e36d482ef7c795a1cd09 -->
+
+Check suites declare the repositories their checks read; the maintainers
+are responsible for that declaration. An action logs the Git state at every
+status change, and the first clean state since the last change, per
+repository.
+<!-- tarav.breadcrumb 5f9a03857341f4dfdc0382b0214045f498d376dea4e2a7d3e1b49b30b84251c3 -->
+<!-- tarav.breadcrumb 0fd97abbcd47e48cc127d7c8caeec514adcd2b8735656813bad652eff47fbfd3 -->
+
+### What was built — 2026-10-14
+
+Request [905](../../../tarav-py/notes/live/905-actions-keep-a-git-log-impl-req.md).
+A `CheckSuite` takes `repositories=`; when it runs it records each one's HEAD
+and whether it is clean, and every result carries the state of the nearest
+declaring suite. A Project's suites declare its root. The log is
+[`tarav.l1.actions.git`](../../../tarav-py/src/tarav/l1/actions/git.py): an
+action's `git` section holds `opened`, `reopened`, `closed` (with the exit)
+and `clean` entries; a blessing reads the repositories when it closes. The
+action's context has a `git` entry with the log and advice, and
+`tarav status` names the repositories that were not clean.

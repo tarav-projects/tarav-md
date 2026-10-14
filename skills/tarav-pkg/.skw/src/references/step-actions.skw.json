@@ -124,13 +124,23 @@
         "present. `tarav action sweep` closes running actions whose loop-taken exit is",
         "met; it does not take a Project's exit.",
         "",
+        "An action also keeps a Git log (the `git` entry of its context). The suites",
+        "above its checks declare the repositories those checks read, and each run",
+        "records their HEAD and whether they were clean. The action logs that state",
+        "at every change of its status, and per repository the first clean state",
+        "after it. What changed between two logged commits is a `git diff`. While the",
+        "last change has no clean entry, commit and run the checks again; nothing",
+        "depends on the log, but it is how the action can be traced back later.",
+        "",
         "## What to keep in mind",
         "",
         "- The tests are Checks. Read their POIs as you read any POI: open the context",
         "  before acting.",
         "- A run may continue in another session. Each session that works on it is",
         "  appended to the run.",
-        "- Not all work is an action. Use one where a Project or a Type asks for it."
+        "- Not all work is an action. Use one where a Project or a Type asks for it.",
+        "- Keep the repositories clean when you run the checks: commit, then run.",
+        "  `tarav status` names the ones that are not."
       ]
     }
   ]
