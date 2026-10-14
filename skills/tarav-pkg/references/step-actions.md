@@ -122,6 +122,36 @@ after it. What changed between two logged commits is a `git diff`. While the
 last change has no clean entry, commit and run the checks again; nothing
 depends on the log, but it is how the action can be traced back later.
 
+## Testing the action loop
+
+To work on actions with the User, set up test actions on purpose. They are
+real actions of the Project, on the live path: the registry, `tarav status`,
+the extension and the Git log. While `<project>/.tarav/tests/` exists, the
+Project's checks include the suite `Tarav.Test.Actions.Fixtures`: each
+`*.txt` file whose lines hold `TODO` raises one `Tarav.Test.Actions.MarkerPOI`,
+which can be blessed.
+
+```sh
+mkdir -p .tarav/tests && printf '*\n' > .tarav/tests/.gitignore
+printf 'TODO switch the hall lamp off\n' > .tarav/tests/hall.txt
+tarav status --project .
+```
+
+Scenarios, each followed by `tarav status --project .`:
+
+- Fix: remove the `TODO` line. The action closes as gone.
+- Change: edit the `TODO` line. That is another situation: the old action
+  closes as gone and a new one opens.
+- Bless: close it with a reason (above) while the line is still there; it
+  stays closed. Then remove the line: its situation becomes absent.
+- Git: commit the repository and run again; the action's `git` entry gains a
+  clean state.
+- End: delete `.tarav/tests/`. Its actions close as gone and stay in the
+  registry, like any action.
+
+The `.gitignore` of `*` keeps the fixtures out of Git, so they never make
+the repository dirty.
+
 ## What to keep in mind
 
 - The tests are Checks. Read their POIs as you read any POI: open the context

@@ -1389,3 +1389,26 @@ action's `git` section holds `opened`, `reopened`, `closed` (with the exit)
 and `clean` entries; a blessing reads the repositories when it closes. The
 action's context has a `git` entry with the log and advice, and
 `tarav status` names the repositories that were not clean.
+
+## Test actions on the live path — 2026-10-14
+
+To test work like the Git log of actions, the User proposed fixture files
+under `<project>/.tarav/tests/` whose presence makes a check open test
+actions, with different test actions for different workflows.
+<!-- tarav.breadcrumb 3b579390908bc33ca4c971c71426c13272dc6290455012b03e735c994a38745c -->
+
+They are real actions, the folder is kept out of Git when possible, and the
+mechanism belongs to Tarav itself; existing test workflows are reused when
+they fit. These tests are not always run: they are interactive tests that
+involve the User, on the real live path, without touching real actions.
+<!-- tarav.breadcrumb bf1c5ca5738063cbc618b2ee6a38cb664ceddbbe92718a750d3c4b55950d9467 -->
+<!-- tarav.breadcrumb b86210a15c1f28e0d7158dde463d1515659cd316c14c3d67d5d8f0a1255c6d94 -->
+<!-- tarav.breadcrumb 72039d1b2439590aef63d50fc24d30f6ad39acb2e2a6c8ff0bf558d63956a0f8 -->
+
+Built as request
+[906](../../../tarav-py/notes/live/906-test-actions-on-the-live-path-impl-req.md):
+while the folder exists, every Project's checks include
+`Tarav.Test.Actions.Fixtures`, which reuses the Actions test workflow's
+marker check on its `*.txt` files. The folder ignores itself with a
+`.gitignore` of `*`. The scenarios are in `tarav-pkg/references/step-actions.md`,
+section "Testing the action loop".
