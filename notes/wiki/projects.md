@@ -327,3 +327,26 @@ Projects are `Taravangian.TaravangianRootProject` (a package of the root),
 Projects were migrated: by the User's choice, the other workspaces wait for
 a later pass and do not load until then.
 
+## Every Project under ~/projects on its own harness — 910
+
+The User asked to migrate every other Project, with a configuration like
+Taravangian's, starting with a read-only check of all of `~/projects`.
+<!-- tarav.breadcrumb 725505541fb389dd0884700fbcb29fe80f25d3fc776d26abc4e5480efa18ca2f -->
+
+All Projects under `~/projects` become Tarav Projects shaped like
+Taravangian: Types are, by default, in each Project's own harness, so the
+children's classes leave the roots' packages; roots become Git repositories
+that conservatively track only obvious files; archival Projects are left
+alone; the migration is committed in every repository.
+<!-- tarav.breadcrumb b56f54d65216f18670e5606e9f3c419e3236ed234af4a105e02cceb8ee6ba9c7 -->
+
+Built as request
+[910](../../../tarav-py/notes/live/910-migrate-projects-to-own-harnesses-impl-req.md):
+72 Projects in 25 roots and singles. Children of scaffolded roots got
+`.tarav/harness/` packages installed by their root's environment; library
+roots (md-library, tankefactory) and product environments (telar, g70203)
+kept their Types where their owners put them, with `harness` in
+project.json. Every Project loads as its Type, and no root raises a
+project-files POI. md-library still uses the removed Blessing store, a
+separate break.
+
