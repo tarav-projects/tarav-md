@@ -202,12 +202,202 @@
       }
     },
     {
-      "id": "impl.routing",
+      "id": "impl.phase-selection",
       "reference": {
         "type": "Tarav.Reference.StructuredFile",
         "locator": {
           "path": "src/references/impl.skw.json",
           "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "impl.context-backend",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "impl.routing",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl.skw.json",
+          "pointer": "/blocks/4"
+        }
+      }
+    },
+    {
+      "id": "impl.phases.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/phases.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "impl.routing",
+        "skill.routing"
+      ]
+    },
+    {
+      "id": "impl.phases.design",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/phases.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "impl.phases.review",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/phases.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "impl.phases.execute",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/phases.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "impl.phases.develop-and-harvest",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/phases.skw.json",
+          "pointer": "/blocks/4"
+        }
+      }
+    },
+    {
+      "id": "impl.phases.impact-and-capture-input",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/phases.skw.json",
+          "pointer": "/blocks/5"
+        }
+      }
+    },
+    {
+      "id": "impl.phases.product-surface-inlined-capture",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/phases.skw.json",
+          "pointer": "/blocks/6"
+        }
+      }
+    },
+    {
+      "id": "impl.phases.completion",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/phases.skw.json",
+          "pointer": "/blocks/7"
+        }
+      }
+    },
+    {
+      "id": "impl.request.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/request.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "impl.phases.introduction"
+      ]
+    },
+    {
+      "id": "impl.request.location",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/request.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "impl.request.contents",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/request.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "impl.request.evidence",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/request.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "impl.context.wiki.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/context/wiki.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "impl.phases.introduction"
+      ]
+    },
+    {
+      "id": "impl.context.wiki.reading-context",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/context/wiki.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "impl.context.wiki.request-section",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/context/wiki.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "impl.context.wiki.capture-and-closure",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/impl/context/wiki.skw.json",
+          "pointer": "/blocks/3"
         }
       }
     },
@@ -221,7 +411,8 @@
         }
       },
       "parents": [
-        "skill.routing"
+        "skill.routing",
+        "impl.phases.introduction"
       ]
     },
     {
@@ -479,7 +670,8 @@
         }
       },
       "parents": [
-        "skill.routing"
+        "skill.routing",
+        "impl.context.wiki.capture-and-closure"
       ]
     },
     {
@@ -563,20 +755,6 @@
       }
     },
     {
-      "id": "impl.wiki.introduction",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/references/impl/wiki.skw.json",
-          "pointer": "/blocks/0"
-        }
-      },
-      "parents": [
-        "skill.routing",
-        "impl.routing"
-      ]
-    },
-    {
       "id": "impl.code-engineering.introduction",
       "reference": {
         "type": "Tarav.Reference.StructuredFile",
@@ -586,7 +764,7 @@
         }
       },
       "parents": [
-        "impl.wiki.introduction"
+        "impl.phases.introduction"
       ]
     },
     {
@@ -715,7 +893,7 @@
         "skill.routing",
         "capture.introduction",
         "wiki-capture.introduction",
-        "impl.wiki.introduction",
+        "impl.phases.introduction",
         "design-dialogue.introduction"
       ]
     },

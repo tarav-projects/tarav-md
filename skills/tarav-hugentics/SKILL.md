@@ -174,11 +174,11 @@ implementation routing. It needs Git repositories, not a Tarav Project.
 conversation as a dialogue. Select this route before implementation routing.
 It does not create an Impl.Req or select an implementation phase.
 
-Implementation contextualizes through the Project.Wiki and routes exclusively
-to [`references/impl/wiki.md`](references/impl/wiki.md), which owns the phases
-and impact assessment. The Model-backed route is parked: `--model` and legacy
-notes carrying Impl.Req.Diagram require clarification before any mutation;
-never silently migrate a request.
+Implementation phases live in
+[`references/impl/phases.md`](references/impl/phases.md) and read context from
+a context backend; the Project.Wiki is the only active one. The Model backend
+is parked: `--model` and legacy notes carrying Impl.Req.Diagram require
+clarification before any mutation; never silently migrate a request.
 
 Do not reread a skill `references/` file that was already read completely and
 remains available in context. Reread it only if it changed, its contents were

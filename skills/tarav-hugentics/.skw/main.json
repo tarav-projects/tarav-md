@@ -17,8 +17,10 @@
     ".skw/src/references/reading-club.skw.json",
     ".skw/src/references/user-brief.skw.json",
     ".skw/src/references/wiki-capture.skw.json",
-    ".skw/src/references/impl/wiki.skw.json",
-    ".skw/src/references/impl/code-engineering.skw.json"
+    ".skw/src/references/impl/code-engineering.skw.json",
+    ".skw/src/references/impl/phases.skw.json",
+    ".skw/src/references/impl/request.skw.json",
+    ".skw/src/references/impl/context/wiki.skw.json"
   ],
   "files": [
     "SKILL.md",
@@ -35,8 +37,10 @@
     "references/reading-club.md",
     "references/user-brief.md",
     "references/wiki-capture.md",
-    "references/impl/wiki.md",
-    "references/impl/code-engineering.md"
+    "references/impl/code-engineering.md",
+    "references/impl/phases.md",
+    "references/impl/request.md",
+    "references/impl/context/wiki.md"
   ],
   "dependencies": [
     {

@@ -10,10 +10,8 @@
       "content": [
         "# Implementation Workflow Router",
         "",
-        "This module routes `tarav-hugentics --impl` into the implementation workflow.",
-        "Implementation contextualizes through the Project.Wiki. The former",
-        "Model-backed route, which grounded requests in a Diagram Model, Collection, and",
-        "Draft, is parked; its modules remain in Git history.",
+        "This module routes `tarav-hugentics --impl` into one implementation phase. It",
+        "is an agent-operated workflow, not a Python runner.",
         ""
       ],
       "annotations": [
@@ -81,19 +79,95 @@
       ]
     },
     {
+      "id": "634d006c-281e-4449-9836-265027e5be9b",
+      "type": "Tarav.Skillware.Block",
+      "label": "phase-selection",
+      "content": [
+        "## Phase selection",
+        "",
+        "Keep the shortcuts `--design`, `--review`, `--execute`/`--exec`,",
+        "`--develop`/`--dev`, and `--harvest`. An explicit phase wins. Otherwise an",
+        "existing Impl.Req defaults to Execute and new actionable input defaults to",
+        "Design. Develop, Review, and Harvest require explicit selection. With no",
+        "actionable input, orient and stop. `--auto`/`--autonomous` selects autonomous",
+        "alignment, not broader execution authority. `--impact` selects input, not a",
+        "phase.",
+        "",
+        "Print a compact banner with phase, context backend, input, and Alignment.Mode.",
+        ""
+      ],
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "impl.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "80463573-58da-4e58-bda0-6bac9a7e2f4d",
+      "type": "Tarav.Skillware.Block",
+      "label": "context-backend",
+      "content": [
+        "## Context backend",
+        "",
+        "A context backend is where an implementation request reads its User-Touched",
+        "context and where it captures that context back. The Project.Wiki is the only",
+        "active backend. `--wiki` names it and is optional; notes record it as",
+        "`Knowledge.Surface: wiki`.",
+        "",
+        "The Model backend, which grounded requests in a Diagram Model, Collection, and",
+        "Draft, is parked; its modules remain in Git history. `--model`, a note",
+        "carrying `Impl.Req.Diagram`, or a note with conflicting backend declarations",
+        "requires clarification before any mutation. Never silently migrate a request",
+        "or create replacement artifacts.",
+        ""
+      ],
+      "annotations": [
+        {
+          "type": "Tarav.Skillware.GenerationAnnotation",
+          "instructions": [],
+          "context": [
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "impl.skw.json",
+                "pointer": "/shared/maintenance"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "c988ccc8-379f-5ca7-9b1f-78f420de3b98",
       "type": "Tarav.Skillware.Block",
       "label": "routing",
       "content": [
         "## Routing",
         "",
-        "Load [`impl/wiki.md`](impl/wiki.md) for every implementation route. It owns",
-        "phase selection, `--impact` input, the live-note contract, capture, and",
-        "evidence commits, and it loads the shared code-engineering module.",
-        "",
-        "`--model` and live notes carrying `Impl.Req.Diagram` belong to the parked",
-        "Model-backed route. Report that the route is parked and ask before any",
-        "mutation; never silently migrate a request or recreate Diagram artifacts.",
+        "Load [`impl/phases.md`](impl/phases.md) for the selected phase. It names the",
+        "request contract, code-engineering, and context backend modules it uses.",
         ""
       ],
       "annotations": [
@@ -117,17 +191,23 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "impl/wiki.skw.json"
+                "path": "impl/phases.skw.json"
+              }
+            },
+            {
+              "type": "Tarav.Reference.StructuredFile",
+              "locator": {
+                "path": "impl/context/wiki.skw.json"
               }
             }
           ]
         },
         {
           "type": "Tarav.SKW.Reading.ExpectedLink",
-          "target": "7b999e4a-55ef-5281-b062-495ea5552371",
+          "target": "f8d7cdb1-ccfe-4cc1-972b-bbb9481e68de",
           "entry": {
             "type": "Tarav.SKW.Reading.BlockEntry",
-            "node": "impl.wiki.introduction"
+            "node": "impl.phases.introduction"
           },
           "prose": {
             "type": "Tarav.SKW.Reading.MarkdownProse"

@@ -13,17 +13,40 @@ all current changes in repositories already established by the active task; when
 there is no such task scope, use the current Git repository. Do not recursively
 discover or absorb unrelated repositories.
 
-A modifying Hugentics workflow instead brackets every repository it mutates with
-a scoped start checkpoint and scoped completion commit. Its existing work scope
-controls both commits; the initial invocation supplies commit authorization.
+A modifying Hugentics workflow instead commits often in every repository it
+mutates: a start checkpoint before its first edit, a commit after every
+verified slice, and a completion commit. The initial invocation authorizes all
+of them, including the external work they absorb under the rules below.
 
 ## Scope
 
-The agent declares the exact repository-relative paths it is committing.
-Do not absorb edits outside the selected scope. At a workflow-owned start, include
-only pre-existing changes inside the declared work scope; use an empty
-checkpoint when that scope is clean. At completion, include only files the
-workflow actually changed. Broader commits require a separate User request.
+The agent declares the exact repository-relative paths it is committing. The
+workflow's own commits include only files it changed.
+
+External work is any uncommitted change the workflow did not make, whoever
+made it. Frequent commits matter more than its provenance:
+
+- **Start checkpoint.** Before the first edit, commit every pre-existing
+  change in the repository, inside or outside the work scope. Use an empty
+  checkpoint when the repository is clean.
+- **Stale external work.** At every slice boundary, when the repository holds
+  external work and its last commit is at least one hour old, commit that
+  external work.
+- **Slice commit.** After a slice's checks pass and its capture ran, commit the
+  files the slice changed.
+- **Completion.** Commit the remaining files the workflow changed.
+
+Commit external work as found, in its own commit apart from the workflow's
+files, with the `unknown-session` gap marker unless its discussion is
+identifiable. A file holding both external and own changes goes into the
+workflow's commit, and the workflow's log says so. Committing another
+session's work loses nothing: the commit is a snapshot, and later edits remain
+ordinary changes.
+
+Skip a commit only when the Git state prevents it: a merge or rebase in
+progress, unresolved conflicts, or an index lock that persists after retries.
+Record `skip: <reason>` in the workflow's log. Another agent's changes are
+never a reason to skip.
 
 ## Manifest and message
 
@@ -75,17 +98,17 @@ tarav breadcrumbs audit chatlas-context --repo <repository> --commit <hash> --js
 
 If the command fails before committing because evidence cannot be
 registered, typically because a sandbox prevents writing to the Tarav data
-folder, keep the manifest with its session block and provisional markers
-for a later attempt from an environment that can write, and report the
-commit as pending, not as done. Do not substitute a plain Git commit whose
-message carries provisional markers: `register-commit` recovers only
-messages that already hold registered Breadcrumb labels. The read-only
-trace left in the changed surfaces remains valid either way.
+folder, commit anyway: make a plain Git commit of the same paths whose message
+keeps the change groups but drops the session block and provisional markers,
+which `register-commit` cannot recover. Record the hash and the evidence gap
+in the workflow's log. Provenance in commit messages is best effort; a missing
+Breadcrumb never blocks a commit. The read-only trace left in the changed
+surfaces remains valid either way.
 
 Write the marker name only in marker lines. A manifest message that
 mentions `tarav.context` in ordinary prose is rejected as a malformed
 marker.
 
-Inspect the scoped diff and run the relevant checks before every completion
-commit. Report each completion hash, Breadcrumb audit result, and honest evidence
-gap. Report a start hash only when a composing workflow created one.
+Inspect the scoped diff and run the relevant checks before every commit of the
+workflow's own files. Report each commit hash, Breadcrumb audit result, and
+honest evidence gap.
