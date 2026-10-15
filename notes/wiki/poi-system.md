@@ -1383,8 +1383,8 @@ repository.
 Request [905](../../../tarav-py/notes/live/905-actions-keep-a-git-log-impl-req.md).
 A `CheckSuite` takes `repositories=`; when it runs it records each one's HEAD
 and whether it is clean, and every result carries the state of the nearest
-declaring suite. A Project's suites declare its root. The log is
-[`tarav.l1.actions.git`](../../../tarav-py/src/tarav/l1/actions/git.py): an
+declaring suite. A Project's suites declare its root. The log was
+`tarav.l1.actions.git` (folded into the tape on 2026-10-15, below): an
 action's `git` section holds `opened`, `reopened`, `closed` (with the exit)
 and `clean` entries; a blessing reads the repositories when it closes. The
 action's context has a `git` entry with the log and advice, and
@@ -1412,3 +1412,41 @@ while the folder exists, every Project's checks include
 marker check on its `*.txt` files. The folder ignores itself with a
 `.gitignore` of `*`. The scenarios are in `tarav-pkg/references/step-actions.md`,
 section "Testing the action loop".
+
+## An action has a tape — 2026-10-15
+
+### How it came up
+
+Testing on the live path, an action had reopened; the last time it closed it
+had a closing record. The User asked where that record is now, whether it
+is gone or only in Git, and how all this should be interfaced.
+<!-- tarav.breadcrumb 5506001bb316ff9f2e1809486f4d5de8f95770008c3727abce5d2340279c8236 -->
+
+Git is how history is kept and infrastructure must not be duplicated; still,
+some knowledge of the history of closing records would be nice, perhaps an
+append-only list beside the current record.
+<!-- tarav.breadcrumb 9251869092348cfbb9844c4024aa7815c563483dbc098a3f104f40e9305f27d2 -->
+
+### What was decided
+
+One log in the action, with different entry Types for different events, the
+closings included.
+<!-- tarav.breadcrumb dc55363d4cbf7a94061df0d8a22015a80fe500baa35262fa2e2cc07d5f311746 -->
+
+The operator's attempts are folded into it and the state is read from it. It
+is named `tape`: actions have a tape on which important events are recorded.
+<!-- tarav.breadcrumb cf33b8f7a75781c7150a5dc33e8377052608082b1b80b96a734eb10d4b16fe8d -->
+
+### What was built — 2026-10-15
+
+Request [907](../../../tarav-py/notes/live/907-an-action-has-a-tape-impl-req.md).
+[`tarav.l1.actions.tape`](../../../tarav-py/src/tarav/l1/actions/tape.py)
+defines the entries `Tarav.Actions.Tape.Opened`, `Closed` (exit and closing
+record), `Reopened`, `Clean` and `ClosingAttempt`. An action's state, exit,
+times and closing are read from its tape; the fields `closing`, `closings`
+and `git` are gone, and the Git log of 905 now lives in the status entries
+and `Clean` entries. Every registry record was migrated; the reopened action
+got back its earlier gone record from the registry history. The context
+entry `tape` replaces `closing`, `closings` and `git`, and the extension's
+action page shows a Tape section.
+<!-- tarav.breadcrumb dd9795f22a85a6904be1bbc5a7fcc1bbaba67023290c4852ae79d033ba01dc26 -->
