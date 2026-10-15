@@ -272,3 +272,58 @@ whose checks are each skill's own checks and wiki Notes with unsubmitted
 markers. `taravangian-project` now runs as a root over `tarav-py` and
 `tarav-md`. md-library uses the same mechanism for its development root and
 its depots.
+
+## A Project bootstraps from its project.json — 909
+
+<!-- tarav.sessions
+abd0372d = claude-code:d82f1801-d3f2-4deb-9c95-297028a54b7a @abd0372dd06ffeef10c625e3f68354a234a91e4992b67406f075d93ccb20f4d4
+-->
+
+The Projects of this workspace were of Tarav's generic Types. The User
+said that is not right: each Project must be of a unique Type, which may
+extend those but not be them.
+<!-- tarav.breadcrumb c4bc55018a56bba118d6f06e5b7514490cade031f0a8f3d3848e01ca394b93f2 -->
+
+Every Tarav Project has a code base, at least its harness; whether it shares
+a code base with the rest of the system is an organization decision. A
+Project configures where its harness and its environment are.
+<!-- tarav.breadcrumb 33f2d601ffbf957ff4f6e700ccbb62e915a33ff195c3461513d732cf99e61ad4 -->
+
+A child's Type is defined in its own Project's package, not in the root's.
+<!-- tarav.breadcrumb e5884f4c3794e757964affef29c7f870542b540b185611d22df1e41cac8e4af8 -->
+
+Asked why Project Types were listed in the environment's manifest and not
+in the marker, the User answered that there is no reason to split it: the
+marker is configuration, loading a Project is a bootstrapping act, and
+explicit configuration and paths are fine. The launcher needs an
+environment and a path to the Project Type, loaded from a package installed
+in that environment with ordinary uv.
+<!-- tarav.breadcrumb 8d7b29746dea9c01b9b149e3e7da4921bd2a5fe2db0ed5e8522ab4bdb99ea325 -->
+<!-- tarav.breadcrumb 4d4193686e7b415f16737f024c68b4604d2e720e08bd17eb6a6de0a294ddfc1d -->
+<!-- tarav.breadcrumb 6a5c4ee3fb680c592b0d4c7f61e7bde00fc024510769414b4d8c4ccfe1d8439c -->
+
+`"class": "agentos.project"` is legacy and goes; a pydantic model describes
+the marker and a check checks it. The marker being the whole Record was
+split: `project.json` is the Project Record with the Project workflow's own
+configuration, `harness` included, and `config.json` is where other
+workflows add theirs. The Record's type tag and `harness.type` are both
+kept. No legacy handling.
+<!-- tarav.breadcrumb c9e06af3577083f74eb3dfc7b667b94e0e1fe1e6376480b87e518954831ddd88 -->
+<!-- tarav.breadcrumb 862942cfadef3bc1dacefa598d475ac299695e9ae0ae93283615932b435b148d -->
+<!-- tarav.breadcrumb de508aaaa6fafed8c411f63c00af704b241206f7afb14f85d7d7ea9f740f86a6 -->
+<!-- tarav.breadcrumb d71c4c0a3fe7037fadbcefa3f5503b3d3bc109e6d7916197713764ba64c15f52 -->
+
+Built as request
+[909](../../../tarav-py/notes/live/909-project-bootstrap-from-project-json-impl-req.md).
+`project.json` has `harness: {environment, type}`; the launcher imports
+`harness.type` from that environment and loads the Record with it. The
+manifest's `projects` list and the `harness.project` ancestor indirection
+are gone. `config.json` sections (`agents`, `skills`, `diagram`) are owned
+and validated by their workflows, and `ProjectFilesCheck` reports what does
+not fit. The root is now a Git repository tracking an allowlist; its
+Projects are `Taravangian.TaravangianRootProject` (a package of the root),
+`Taravangian.TaravPyProject` (`tarav.l2.dev.project`) and
+`Taravangian.TaravMdProject` (a package of tarav-md). Only this workspace's
+Projects were migrated: by the User's choice, the other workspaces wait for
+a later pass and do not load until then.
+

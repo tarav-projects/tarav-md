@@ -1,23 +1,12 @@
 {
-  "class": "agentos.project",
-  "created_at": "2026-05-04T18:16:16Z",
-  "diagram": {
-    "main_model": "b7b78eab-e5c2-4610-9bf5-1b704a106f34"
-  },
-  "index": {
-    "library": "../index-library-2208",
-    "workspace": "index-2208"
+  "type": {
+    "uuid": "74e1832e-3d93-4fb8-b0b6-38a1b85c3d22",
+    "label": "Taravangian.TaravMdProject"
   },
   "project_id": "f6660361-baf0-4681-8a29-4a57392fdc67",
-  "schema_version": 1,
-  "type": {
-    "uuid": "b811ca80-597a-4d11-90f2-7bdb30f9fd19",
-    "label": "Tarav.Project.Docs"
-  },
+  "created_at": "2026-05-04T18:16:16Z",
   "harness": {
-    "project": ".."
-  },
-  "agents": {
-    "package_skill": "tarav-pkg"
+    "environment": "../.tarav/env",
+    "type": "tarav_md_harness.project:TaravMdProject"
   }
 }

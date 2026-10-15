@@ -1,0 +1,13 @@
+[build-system]
+requires = ["hatchling>=1.24.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tarav-md-harness"
+version = "0.1.0"
+description = "The Project Type of tarav-md, installed by the environment that runs it."
+requires-python = ">=3.12"
+dependencies = ["tarav"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tarav_md_harness"]
