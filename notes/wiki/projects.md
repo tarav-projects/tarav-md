@@ -350,3 +350,37 @@ project.json. Every Project loads as its Type, and no root raises a
 project-files POI. md-library still uses the removed Blessing store, a
 separate break.
 
+## The Tarav System Project — 911
+
+<!-- tarav.sessions
+abd0372d = claude-code:d82f1801-d3f2-4deb-9c95-297028a54b7a @abd0372dd06ffeef10c625e3f68354a234a91e4992b67406f075d93ccb20f4d4
+-->
+
+The User wanted a default Project for the whole machine: every Project
+under it without their knowing, a formal way to work on all of them as the
+migration of 910 did, starting minimal — information about the Projects, a
+list of active ones, basic operations, and checks of its own over them.
+<!-- tarav.breadcrumb 049dcb222b2e449d966177d0061d0a93cd4bd572b3cc745b96d5f0f80157e0d3 -->
+
+It is a Project with a repository, skills and documentation, the top of the
+user's Tarav system, `TaravSystemProject`, at `~/Documents/tarav/system/`,
+created by `tarav init --system`; its active list is manual. Installing
+Tarav itself is parked.
+<!-- tarav.breadcrumb 7a21fb2eb65954c30e812ef0cbbb78c040fb09884ce0ba71df96784d19c94913 -->
+<!-- tarav.breadcrumb 107dd4dec75939c31715e1adf71f67780d8289a956c557d00feba317d77e1463 -->
+
+A longer discussion considered making it the owner of all workflows and
+splitting a Project's roles (library, harness). The User settled it simply:
+a Project means a place, as in Claude or Codex; nothing new, just a new
+Project at `~/Documents/tarav/system/`.
+<!-- tarav.breadcrumb 56d5c72b4b542bf1088651a15a211dbb5b89434ea55eaada8898162d31b044db -->
+<!-- tarav.breadcrumb bc528a2f9cf95064701bff74e26d8dd7055a6941fe5cec8d9e835d7ef3794afd -->
+
+Built as request
+[911](../../../tarav-py/notes/live/911-tarav-system-project-impl-req.md):
+`TaravSystemProject` (`tarav.l2.project.system`) with its `active` list and
+one check per active Project that loads it through its own harness;
+`tarav init --system` creates the folder, its own Type, its environment and
+its repository. This machine's System Project exists, with one active
+Project to start with.
+
