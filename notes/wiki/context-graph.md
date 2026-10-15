@@ -449,3 +449,37 @@ The request is a query object in the manner of Search. By default an identifier 
 
 Implemented in `tarav-py` commit `4289796`: `tarav.l1.context.query` holds `ContextQuery`, `IdentityContextQuery` and a `ContextQueryService` whose resolvers are Search engines and whose named views are `Context` subclasses; `tarav context --id <identifier> [--view <name>] [--path a/b]` is the adapter. Identifiers resolve for POIs reported by `tarav check --project` and for Tarav Types by name or Ship. Reusing Search for resolution and resolving Types were agent choices. [Impl.Req 876](../../../tarav-py/notes/live/876-context-command-and-reported-poi-impl-req.md) has the detail.
 <!-- tarav.breadcrumb 611aae0300ee556f16866b7baa05f96992f272a1c549cd4d7d49e28a7957462f -->
+
+## The ObjectGroup view — 2026-10-15
+
+The extension's action page showed Workflow trees for three Types it picked
+by hand, the action's, the POI's and the check's. The User asked why those
+and not the check and other objects, and wanted it formalized: an object
+declares the objects related to it, in a context view the extension uses,
+with proper names and a model.
+<!-- tarav.breadcrumb 48150dee3ba2a02ee86f6f40e1ead038dce67497b80af91f1dce28e0ca223bef -->
+
+No method is added on top of objects: it is a Context workflow, reached as
+`obj.context(SomeView)`, still extended through inheritance. The object
+returns the whole chain, Situation → Check → POI → Action, peeking at the
+other objects as needed. "related" is too broad a word.
+<!-- tarav.breadcrumb 48ad4bb0b60628f58744751c48a3d8038e10cbe8eb0ca85ffb1a31b39c872a24 -->
+
+The User accepted the agent's model, in which each workflow contributes
+direct links for its own Types and the view follows them until nothing new
+appears, with the suites and closing records included and the Project left
+out, and named it `ObjectGroup` until a better name comes.
+<!-- tarav.breadcrumb 45bdca4b80ead9785b2966fecc33c571a610e14e2f55f8275f9bbeafaefc1ae1 -->
+
+Built as request
+[908](../../../tarav-py/notes/live/908-object-group-context-view-impl-req.md):
+[`tarav.l1.context.groups`](../../../tarav-py/src/tarav/l1/context/groups.py)
+holds `Member`, `Link`, `register_links` and the view; the POI, Checks and
+Actions workflows register their links through the runtime, and `tarav
+context --id <id> --view object-group` lists the group. A member that is not
+a live object is its Type and key, so a group never runs checks. The
+extension's Object group section replaces the Workflow trees. Ordering by
+link direction, with ties broken by role, Type, id and key, was an agent
+choice.
+<!-- tarav.breadcrumb 58cbd5cae59862946a7f4ab75f35a0ad00571592d9c6beff668d94be372ced2c -->
+
