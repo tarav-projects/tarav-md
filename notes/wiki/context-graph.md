@@ -3,6 +3,7 @@
 <!-- tarav.sessions
 6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 1f561f5d = codex:01a0b984-4664-7871-934a-89cf92595b64 @1f561f5d8db849a3a445b83a91a5e94acbb80927f9c332d45322ac70f8705a74
+473c89a0 = codex:01a1176b-f14c-7fd0-a97c-b22279c3f8c8 @473c89a00e2367fb827193af74a6375c60a96b0be110f21df0aff49360ca972f
 -->
 
 ## Progressive discovery
@@ -482,4 +483,46 @@ extension's Object group section replaces the Workflow trees. Ordering by
 link direction, with ties broken by role, Type, id and key, was an agent
 choice.
 <!-- tarav.breadcrumb 58cbd5cae59862946a7f4ab75f35a0ad00571592d9c6beff668d94be372ced2c -->
+
+## Callable namespace and partial Type models — 2026-10-15
+
+The User accepted a Context namespace with a named exploration operation and
+callable shorthand: `obj.context.explore(type=ObjectGroup)` and
+`obj.context(type=ObjectGroup)`. Both use the same `explore()` override.
+`SomeType.context.model` organizes the Type model under Context. Callable
+namespaces must preserve the earlier namespace decisions: stateless binding,
+normal inheritance and `super()`, external namespace classes, and explicit
+composition when independent bases contribute to one namespace. Callability
+is local to Context; NamespaceBase remains noncallable.
+<!-- tarav.context 473c89a0:8cf85c979321cdcf -->
+<!-- tarav.context 473c89a0:52d399e8d65f61fc -->
+
+The Type's existing Ship is its model root. Additional Ships are the model
+nodes; their current Type-relative paths are labels and lookup information.
+Relationships concern these identified subjects. Each node has its own
+Context for documentation, external annotations and supporting conversations.
+This is a Type model, not an instance model, and a root-only model is valid.
+Both the Type's class and outside workflows may contribute nodes without
+requiring edits to the class. Checking correspondence to code is useful later;
+the model need not enumerate every Python member.
+<!-- tarav.context 473c89a0:7ef12f9536d4a790 -->
+<!-- tarav.context 473c89a0:3fea6e90a968360c -->
+<!-- tarav.context 473c89a0:0dfbeaeb402e0305 -->
+
+[Request 911](../../../tarav-py/notes/live/911-callable-context-namespace-and-type-model-impl-req.md)
+implements the namespace on TaravType and introduces
+[`TypePath` and `TypeModel`](../../../tarav-py/src/tarav/l1/context/models.py).
+Agent implementation choices: an object's `.context.model` opens its Type's
+model; class declarations use `Context.model_nodes()`; a runtime-specific
+[`ContextService`](../../../tarav-py/src/tarav/l2/context/storage.py) registers
+external model providers and offers `put_model_node(Type, node)` for the default
+retained location. That writer keeps Archive's existing create-only policy.
+The model folder composes all sources with entries keyed by Ship. Matching
+declarations deduplicate; conflicting declarations and ambiguous path lookups
+are reported. Reads neither mint Ships nor create storage. These mechanics
+prepare identified subjects for contextual enrichment; an external-annotation
+workflow and code-path correspondence checks are not implemented here.
+The behavior is exercised by the
+[model tests](../../../tarav-py/tests/kernel/test_type_models.py) and
+[namespace tests](../../../tarav-py/tests/kernel/test_context_namespace.py).
 
