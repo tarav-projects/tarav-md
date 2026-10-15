@@ -526,3 +526,66 @@ The behavior is exercised by the
 [model tests](../../../tarav-py/tests/kernel/test_type_models.py) and
 [namespace tests](../../../tarav-py/tests/kernel/test_context_namespace.py).
 
+## Context as cumulative contextualization — 2026-10-15
+
+The User clarified that Context presents a graph through folder-like key/value
+entries. Both entries and values are typed; the Entry Type can communicate the
+relationship of a local step. Generic entries and grouping nodes remain valid,
+and the same value can be reached by paths expressing different relationships.
+A typed workflow-contribution node can explain the provenance of one branch.
+<!-- tarav.context 473c89a0:ba32e41d46ab46db -->
+<!-- tarav.context 473c89a0:5696389e9d36d4fc -->
+
+A view adds a qualification to the current context. Begin with a subject and
+accumulate typed qualifications; the result respects all of them. `.ls()` offers
+supported next contextualization steps. Opening an entry returns a further view
+or a direct node. Direct view selection and a corresponding entry use the same
+operation. Repeated relationships across views are allowed; contextualization
+may reveal material or narrow a selection.
+<!-- tarav.context 473c89a0:926997d41da95b26 -->
+<!-- tarav.context 473c89a0:9b167562b00b0279 -->
+
+The accepted interface is `obj.context(views=(SomeView, Request(...)))`, or
+`obj.context.explore(views=(...))`, applying views left to right. The returned
+folder base is ContextView; SomeType.Context remains the bound namespace class.
+ContextEntry, ContextExplorer, `.ls()` and `.open()` keep their names. The User
+delegated implementation choices under autonomous Develop.
+<!-- tarav.context 473c89a0:818e903fec5c70c5 -->
+<!-- tarav.context 473c89a0:4c4bb8bf8f117d07 -->
+<!-- tarav.context 473c89a0:3cae519d8e79ad5b -->
+
+[Request 912](../../../tarav-py/notes/live/912-cumulative-context-views-and-typed-steps-impl-req.md)
+implements this in [l1 Context](../../../tarav-py/src/tarav/l1/context/__init__.py).
+Implementation choices: ContextScope holds the subject and ordered active
+qualifications, exposed as `context_scope` to avoid domain-name collisions.
+Static view classes declare `accepts(scope)` and `for_context(current)`;
+parameterized ContextViewRequest objects declare `accepts(scope)` and
+`apply(current)`. Discovery and dispatch use the same compatibility hook.
+Views define supported combinations; unsupported requests fail explicitly.
+
+`ContextBuilder.add_view(name, views=(...))` offers a typed ContextViewEntry.
+Availability checks do not run view factories. Registered next-step
+contributions follow derived views; generic same-subject grouping folders
+inherit scope. Entering another subject starts a fresh scope while the explorer
+retains the route. TypeModel's accessor, `model` entry and explicit selection
+share its qualification. ObjectGroup and LineScope currently accept only
+unqualified inputs. See the
+[pipeline tests](../../../tarav-py/tests/kernel/test_context_views.py).
+
+Retained specialized ContextEntry Types and metadata survive write, reload,
+listing and explorer binding through ContextService.put_entry/write_entry.
+Scope and computed view steps are navigation-local; no persisted request schema
+was introduced. Named queries accept ordered view names; repeated CLI `--view`
+options use the same pipeline. Listings expose entry Types, and JSON exposes
+active qualifications and available next views. Ontology Ships and Record
+labels remain stable. The old Python Context view-class name and `type=` selector
+were removed. See the
+[retained-entry tests](../../../tarav-py/tests/kernel/test_context_entry_storage.py)
+and [CLI tests](../../../tarav-py/tests/cli/test_context_views.py).
+
+The User separately clarified that documentation representation was not
+designed. Earlier tutorial uses of a `documentation` key and FileReference
+were examples from existing mechanics; they establish no schema or standard
+key. The external-annotation workflow remains separate design work.
+<!-- tarav.context 473c89a0:4cc56a88bd2425f3 -->
+
