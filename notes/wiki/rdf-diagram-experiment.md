@@ -311,3 +311,34 @@ and [runnable example](../../../tarav-py/examples/object_context.py) show the
 public surface. Measured: 313 core tests and 13 real-process extension tests
 passed. This section supersedes the earlier direct `triplets()` API, while
 retaining that discussion as its design history.
+
+## External hooks as configured instances
+
+The User next requested an external ContextHook base class, so a contributor
+can bundle the dependencies and configuration needed to contribute. The
+discussion settled on explicitly constructing and registering an instance;
+the builder calls `hook.run(cxt)` on that same instance across builds.
+
+Target-class registration was considered and then withdrawn. The User's
+decision was: “the hook itself can do the checking and ignore what it wants
+to ignore”. Every registered hook therefore receives the shared context in
+registration order, and each implementation decides whether to return
+unchanged or contribute. Applicability can depend on type, identity,
+options, or workflow-owned state. The registry does not route by class.
+
+Implemented by [request 917](../../../tarav-py/notes/live/917-context-hook-instances-impl-req.md):
+the public `ContextHook` is an abstract Python interface with `run(cxt)`;
+registration requires a concrete instance. Free functions, classes and duck
+typed substitutes are rejected. The existing class/instance namespace hooks,
+registration snapshots, shared mutation and diagnostics remain intact.
+The guide and runnable example now use a configured hook instance. Measured:
+68 Context/CLI/architecture tests pass, including dependency/state and
+self-filtering cases; the installed-tool example retains its expected graph
+and SPARQL result.
+
+Conversational grounding is pending for codex session
+`01a1176b-f14c-7fd0-a97c-b22279c3f8c8`, neutral identity
+`473c89a00e2367fb827193af74a6375c60a96b0be110f21df0aff49360ca972f`.
+The exact-session Chatlas refresh cannot write its protected cache. The
+quotation is preserved from the current discussion; no older Turn was used
+as a substitute and no new Breadcrumb was fabricated.
