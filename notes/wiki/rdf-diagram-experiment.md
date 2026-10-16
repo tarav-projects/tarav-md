@@ -228,3 +228,44 @@ The User set implementation aside until the design principles are aligned.
 The agent noted that the engine can record which object contributed each
 triple, as an implementation detail of that ordinary code.
 <!-- tarav.breadcrumb c8e1afb2af2115e6547b4a7338aecce3b441e4d073dd72a7e2360f81b6321a43 -->
+
+## The context engine, and all of Tarav migrated
+
+All code for the code → graph step belongs to the Context workflow; all that
+it requires objects to implement goes in the `.context` namespace. The
+usage case the User set first: an object's context returns a navigable
+object holding the opened graph, which can be expanded and queried and
+grows by asking each visited object for its triplets.
+<!-- tarav.breadcrumb 434e6d62008e1c806295df3e8203d3148db463ec2d407c5f4d6a17a4828613e4 -->
+
+The User kept the default VERY basic: an object that does not override
+`triplets()` returns one triple saying it is of its type. The Explorer is a
+TaravObject, which only means it has something to say when asked for its
+context; being in the Diagram is not what an object does in general.
+History (back and forward) is in, simple and basic; it moves the cursor,
+and the graph only grows.
+<!-- tarav.breadcrumb fb5d03c5ea12f784b15a824ca0c9262c549ef039c6b408f43c753c5d204286bd -->
+<!-- tarav.breadcrumb ef54cc037661632a2bd8bbf2ba28b60f34bbbbadf93945ec2ee4744c2c16dd0a -->
+
+Rather than placing the engine beside the old Context, the User chose to
+migrate all of Tarav to it: every Type resets to the default triple, and
+each one's context is rebuilt later, as it is used. Nothing is reimplemented
+now; what is not implemented errors, which shows where to reimplement. The
+ObjectGroup is just a query now; `tarav context --id` finds the object and
+returns `.context()`; Context code in Actions and elsewhere is cut, kept in
+Git history.
+<!-- tarav.breadcrumb 2b9541f49348b977d84871c985a22eee65937d948561da3c8340f6676d7a0633 -->
+<!-- tarav.breadcrumb e72e6fe7919697c4100c8c006c670798c649c485d5b58579bffaa1d97f1b1901 -->
+
+Built as tarav-py [request 914](../../../tarav-py/notes/live/914-graph-context-model-impl-req.md)
+(commits `dd3bc9d`, `0ecb616`, `6fcce90`, `85818d7`): Kernel
+`TaravType.Context` is `triplets()` plus `__call__()`; `tarav.l1.context`
+holds `ContextExplorer` (`open`, `ls`, `follow`, `back`, `forward`, `query`
+over an RDFLib graph) and the identifier resolvers; the old views, models,
+ObjectGroup, retained storage, every Type's contribution and the `_future`
+experiment are deleted; `tarav context --view` fails explicitly; RDFLib is a
+core dependency. Measured: 291 tests pass, `tarav context --id Tarav.POI`
+prints its type edge to `Tarav.Class`. Left outside: the extension's Diagram
+explorer and object group now fail, and agents files embedding the old
+System Prompt report it stale.
+<!-- tarav.breadcrumb 52dafa7ca630e3558ec0ac5ba1bebc3d8ab3f0aec5bd7bd7affb5657e4863f3f -->
