@@ -1,0 +1,4 @@
+interface:
+  display_name: "chatlas-session-continue"
+  short_description: "Resume an exact prior Chatlas session"
+  default_prompt: "Use $chatlas-session-continue with an exact native session id or Chatlas identity hash to produce a continuation handoff from the current Tarav Chatlas Normal Model."

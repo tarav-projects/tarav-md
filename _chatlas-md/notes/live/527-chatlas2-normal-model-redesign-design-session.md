@@ -1,0 +1,210 @@
+# Chatlas2 Normal Model Redesign - design-session
+
+## Session.Abstract
+
+- **Intent:** Redesign Chatlas normalization from first principles around complete retained data, a simple chronological event tape, and a small reliable semantic promise.
+- **State:** Active design — the semantic floor, raw-version recognition boundary, Codex and Claude vertical slices, conformance corpus, durable references, transparent cache-first Normal Model provider, and the `Chat.Message`/`Chat.Turn` boundary are settled.
+- **Scope:** Chatlas2 system boundary, Normal Model floor, raw-model structural versioning and dispatch, event origin, `Chat.Message`, `Chat.Turn`, `Agent.Loaded.Context`, stateless durable references, disposable Normal Model caching, `Scan.Decode.Verify`, and progressive resolution.
+- **Predecessor:** `509-session-model-design-session.md` records the older, more ambitious model. It is prior design evidence, not inherited Chatlas2 truth.
+- **Landing:** This is a live Design.Session. Nothing here is promoted to the stable Chatlas Index by this capture.
+- **Next:** Implement and prove the compact `Chat.Turn` projection and `Scan.Decode.Verify` cached-reader path without constraining normalizers or deep-parsing provider semantics.
+
+## Design.Index
+
+### Chatlas2.System
+
+- [DF] `Chatlas2.System` is the parallel experimental system in which the new Chatlas model can mature without constraining current Chatlas. ^c20260814-12u
+- [CT] Chatlas2 may depend on current Chatlas code; current Chatlas must not depend on Chatlas2 code. ^c20260814-13u
+- [PR] Chatlas mechanics may be reused freely, while inherited semantic judgments are reviewed and may be redesigned or reimplemented. ^c20260814-14u
+- [DC] The existing lossless `Raw.Archive`, safe provider discovery and capture, and session identity primitives remain available to Chatlas2. ^c20260814-15u
+- [PR] Chatlas2 keeps its CPU implementation deliberately simple; agents may inspect the retained raw artifacts when they need resolution beyond the Normal Model. ^c20260815-16u
+
+****
+
+### Chatlas2.Normal.Model
+
+- [DF] `Chatlas2.Normal.Model` is a provider-neutral, loss-preserving chronological event tape with a deliberately shallow semantic floor. ^c20260814-16u
+- [DC] Normalization reviews every retained artifact or independently parseable fragment that may contain otherwise-lost session data; no primary artifact decides what survives. ^c20260814-17u
+- [CT] Deduplication fails toward retention: observations are collapsed only when they can be shown to describe the same event; uncertainty preserves both. ^c20260814-18u
+- [DC] An event's tape timetag is when the event starts; later observations may add data to that event without changing its start position. ^c20260814-19u
+- [PR] Data completeness has priority over total consistency; richer semantic resolution can be added later without discarding the retained event data. ^c20260814-20u
+
+### Normal.Model.Cache
+
+- [DF] `Normal.Model.Cache` is a disposable materialization of a completed compact `Chatlas2.Normal.Model` for efficient repeated reading. ^c20260816-72u
+- [DC] A `Raw.Normalizer` may use any internal strategy it needs to produce a complete Normal Model; cache and read-streaming mechanics do not constrain normalization. ^c20260816-74u
+- [DC] Streaming is a read-side property of a completed cached Normal Model, not a production requirement imposed on normalizers. ^c20260816-75u
+- [DC] The cache representation is one metadata record plus independently stream-readable line-delimited collections for events, `Chat.Message`, `Chat.Turn`, and `Agent.Loaded.Context`. ^c20260816-49u
+- [DC] The message collection retains parsed transcript content, while the turn collection stays compact by retaining the refs of its mostly opaque member events. ^c20260816-51u
+- [DC] A full turn read hydrates associated opaque information on demand through the turn's event refs instead of duplicating that information in the compact turn collection. ^c20260816-52u
+- [CT] Cache identity and freshness are determined from session identity, ordered source fingerprints, Normal Model schema, and producing commit. ^c20260816-77u
+- [PR] A Normal Model cache is disposable and non-authoritative; it can be rebuilt from the retained Raw Archive. ^c20260816-78u
+- [DC] Ordinary caches contain the compact default Normal Model; raw-attached diagnostic builds are not retained as ordinary caches. ^c20260816-29u
+- [DC] A bulk read never silently normalizes missing or stale caches. ^c20260816-30u
+- [CT] Cache creation is explicit, except that a narrowly scoped read of one exact session may build that session's cache. ^c20260816-31u
+- [DC] A multi-session workflow opens, consumes, and releases one Normal Model at a time instead of retaining a collection of loaded models. ^c20260816-32u
+- [DC] Read limits and top-K selection are applied while streaming cached collections so unrelated records need not be materialized. ^c20260816-33u
+- [CT] Read-side caching does not remove the first-build memory peak; the normalizer remains responsible for its own creation strategy. ^c20260816-34u
+- [DC] The canonical Normal Model provider is the default consumer boundary: it transparently validates and reuses a fresh cache or rebuilds a missing/stale one. ^c20260816-36u
+- [DC] Explicit refresh forces compact recomputation and cache replacement; raw-attached diagnostic computation bypasses the ordinary cache. ^c20260816-36u
+- [CT] Consumers request complete or stream-readable Normal Model content and own no cache validation or recomputation policy; Anchory is one ordinary complete-model consumer. ^c20260816-36u
+
+****
+
+### Scan.Decode.Verify
+
+- [DF] `Scan.Decode.Verify` is the JSONL read escalation that scans raw line text for candidates, decodes only candidate records, and verifies matches against the parsed object. ^c20260816-53u
+- [CT] A textual scan may admit false-positive candidates but must not exclude a record that could satisfy the promised query. ^c20260816-54u
+- [PR] Candidate selection escalates from literal byte or string search when sufficient, to compiled regular expressions for broader structural selection, to decoded object checks for semantic truth. ^c20260816-55u
+- [DC] The parsed record is authoritative for a match, and query limits apply only after parsed verification succeeds. ^c20260816-56u
+- [CT] When a complete textual candidate predicate cannot be constructed safely, the reader decodes every line rather than risking a false negative. ^c20260816-57u
+
+****
+
+### Raw.Evidence
+
+- [DF] Raw is optional normalizer-owned diagnostic material used to produce a Normal Fragment; it is omitted by default and imposes no complete-artifact inspection contract. ^c20260816-39u
+- [CT] Raw evidence is independent from the Normal Model's event identity, ordering, annotations, and reference standing. ^c20260816-61u
+
+****
+
+### Raw.Model.Recognition
+
+- [DF] `Raw.Model.Versioner` inspects raw structure and content, returns one stable Chatlas-assigned `Raw.Model.Version` or null, and performs no semantic normalization. ^c20260814-21u
+- [DF] `Raw.Model.Version` partitions raw fragments by compatible mapping structure so each supported `Raw.Normalizer` can keep its raw-to-normal mapping direct and simple. ^c20260815-59u
+- [DC] `Raw.Model.Version` identifiers are opaque arbitrary names; their spelling carries no ordering, compatibility, or succession semantics. ^c20260815-67u
+- [CT] Provider or CLI versions may inform recognition but never define `Raw.Model.Version` by themselves. ^c20260814-22u
+- [DC] A `Raw.Normalizer` declares exactly which `Raw.Model.Version` values it supports and runs only after successful version recognition. ^c20260814-23u
+- [DC] Recognition and normalization operate on the smallest independently parseable raw fragment, allowing one session to contain several raw model versions. ^c20260814-24u
+- [CT] Within one coherent Normal Model design lineage, evolution may preserve, extend, or refine existing `Raw.Model.Version` partitions when new mappings expose previously irrelevant raw differences. ^c20260815-60u
+- [RJ] Incremental Normal Model evolution does not introduce a raw-version axis unrelated to the existing compatible-mapping partition. ^c20260815-61u
+- [CT] A full Normal Model redesign may establish a new `Raw.Model.Version` partition because the applicable notion of compatible mapping has changed. ^c20260815-62u
+- [PR] A prior raw-version partition remains valid for the Normal Model design lineage that assigned it rather than becoming retroactively wrong. ^c20260815-63u
+- [CT] One `Raw.Model.Version` may include declared optional fields when important data remains at the same raw paths with the same meaning. ^c20260815-54u
+- [PR] Normalizer simplicity is versioning pressure: alternative raw path maps, schema-era checks, or substantial fallback branching usually indicate distinct `Raw.Model.Version` values. ^c20260815-55u
+- [CT] Normalizers for different `Raw.Model.Version` values may share readers, validators, and event-building machinery while keeping each version's raw-path mapping direct. ^c20260815-56u
+- [EX] Moving an important datum from raw path A to raw path B is evidence for a new `Raw.Model.Version` even when both adapters map it to the same Normal Model path A'. ^c20260815-57u
+- [PR] `Raw.Model.Versioner` implementations may expand recognition coverage without changing the structural meaning of an existing `Raw.Model.Version`. ^c20260815-58u
+- [DC] `Raw.Model.Version` is dispatch and provenance metadata; it does not participate in stable `Event.Address` or `Chat.Message.Address` identity. ^c20260815-64u
+- [DC] Normal Model metadata records the producing repository's last Git commit under the future-proof field name `commit`; no stronger reproducibility model is required initially. ^c20260814-26u
+
+****
+
+### Chatlas2.Event.Origin
+
+- [DF] `Chatlas2.Event.Origin` has two resolved structural types, `User.Event` and `Agent.Event`; `Unresolved.Event` is the preservation state when neither side can be asserted safely. ^c20260815-0u
+- [DC] `Agent.Event` deliberately collapses assistant, model, harness, tool, runtime, compaction, and context distinctions at the structural level. ^c20260815-1u
+- [CT] Origin is asserted only when the user-side or agent-side boundary can be established; otherwise the event remains unresolved rather than being guessed into a side. ^c20260815-2u
+- [DC] Chatlas2's main semantic promise is correct user-side versus agent-side classification whenever it claims that distinction. ^c20260815-3u
+
+****
+
+### Chat.Message
+
+- [DF] `Chat.Message` is an event or event grouping belonging to the primary user-agent message exchange, not everything the harness renders to the user. ^c20260815-4u
+- [DC] Every `User.Message` is represented over one or more `User.Event` members. ^c20260815-5u
+- [DC] Every `Agent.Message` is represented over one or more `Agent.Event` members. ^c20260815-6u
+- [DC] Chatlas2 always provides the complete `User.Message` and `Agent.Message` projection because these are the messages the user sees and reacts to. ^c20260815-7u
+- [DC] `Chat.Message` membership is modeled as an annotation or grouping over the event tape rather than as another canonical spine. ^c20260815-8u
+
+****
+
+### Chat.Turn
+
+- [DF] `Chat.Turn` is the side-resolved grouping of events associated with one user or agent conversational turn and is the semantic blob boundary for that turn's provider data. ^c20260816-42u
+- [DC] Every `Chat.Message` belongs to one containing `Chat.Turn`, and the message's member events are a subset of the turn's member events. ^c20260816-43u
+- [CT] A `Chat.Turn` may contain zero, one, or several `Chat.Message` groupings. ^c20260816-44u
+- [DC] Chatlas interprets the primary `Chat.Message` text while retaining the turn's other associated events and provider data opaquely rather than independently modeling their semantics. ^c20260816-45u
+- [CT] An event whose conversational-turn association cannot be established remains chronologically on the event tape without being guessed into a `Chat.Turn`. ^c20260816-46u
+- [DC] `Chat.Message.Hash` changes with the communicated message text, while `Chat.Turn.Hash` changes when any associated event or opaque payload changes. ^c20260816-47u
+- [DC] Grounding identifies communicated evidence through `Chat.Message.Ref`; a consumer may expand that message to its containing `Chat.Turn` when it needs the associated opaque information. ^c20260816-48u
+
+****
+
+### Chat.Message.Ref
+
+- [DF] `Chat.Message.Address` is a stable provider-derived logical message place, independent from message content and chronological presentation order. ^c20260815-46u
+- [DF] `Chat.Message.Hash` asserts the message side plus its ordered member `Event.Hash` values. ^c20260815-46u
+- [DF] `Chat.Message.Ref` is `{message_address, message_hash}` and resolves against the current message projection as `MATCHED`, `AMENDED`, or `MISSING`. ^c20260815-46u
+
+****
+
+### Chatlas2.Views
+
+- [DF] `Chatlas2.Views` is the public disposable read-projection route introduced under `tarav chatlas2 views`; it reads canonical Normal Model content rather than defining another model. ^c20260816-37u
+- [DC] Hugentic chat-grounding routes use Chatlas2 message-support or line-dossier records, while mixed readers continue to resolve existing current-Chatlas anchors during the experimental cutover. ^c20260816-41u
+
+****
+
+### Agent.Loaded.Context
+
+- [DF] `Agent.Loaded.Context` is the grouping of events that normalization determines were available to contextualize a specific generated `Agent.Event`. ^c20260815-17u
+- [DC] For a generated `Agent.Event`, its `Agent.Loaded.Context` answers which context was used for the corresponding LLM call. ^c20260815-18u
+- [DC] Membership asserts that an event was available to the LLM call; it does not assert that the agent noticed or used the event. ^c20260815-19u
+- [CT] Normalization constructs each context grouping from the provider transcript and evidence about how that provider forms its LLM calls. ^c20260815-20u
+- [PR] Context membership is conservative: an incomplete grouping is preferable to false-positive membership. ^c20260815-21u
+- [CT] A context grouping may contain most preceding events, but the model imposes no size or prefix constraint on it. ^c20260815-22u
+- [RJ] `Agent.Loaded.Context` does not introduce an `Agent.Execution` concept; it associates directly with the generated `Agent.Event`. ^c20260815-23u
+- [RJ] `Normal.Context.Blob` is not part of the model; `Agent.Loaded.Context` groups the minimally parsed events already retained on the tape. ^c20260815-24u
+
+****
+
+### Event.Ref
+
+- [DF] `Event.Address` is a stable, opaque, provider-derived logical event place; it excludes event content and chronological presentation position. ^c20260815-37u
+- [DF] `Event.Hash` is a digest assertion over an event's currently normalized content; it excludes address, annotations, native identifiers, and provenance. ^c20260815-38u
+- [DC] Event.Hash is deliberately computed from provider-neutral normalized event fields and excludes optional normalizer-collected raw evidence. ^c20260816-28u
+- [DF] `Event.Ref` is `{event_address, event_hash}`: it couples stable logical place with a current-state assertion and carries drift validation. ^c20260815-39u
+- [CT] Chatlas2 normalization is stateless: current raw artifacts produce the current Normal Model without maintaining normalized state across runs. ^c20260815-40u
+- [DF] `Event.Ref.Resolution` is Chatlas's comparison of a stored `Event.Ref` with the currently presented Normal Model. ^c20260815-41u
+- [DC] `Event.Ref.Resolution` is `MATCHED` when address and hash agree, `AMENDED` when the address exists with a different current hash, and `MISSING` when the address is absent. ^c20260815-42u
+- [DC] Chatlas presents the resolution standing; each consumer decides what policy to apply to it. ^c20260815-43u
+- [RJ] Chatlas2 does not retain earlier normalized event states merely to explain amendments; historical artifact debugging belongs to the Raw Archive's Git history. ^c20260815-44u
+
+****
+
+### Chatlas2.Progressive.Resolution
+
+- [DF] `Chatlas2.Progressive.Resolution` is the optional layer of classes, annotations, and groupings added over preserved events as reliable needs emerge. ^c20260814-27u
+- [FR] Event classes such as `user.message`, `user.interrupt`, and `agent.message` may be added when their resolution becomes useful and reliable. ^c20260815-9u
+- [PR] Later resolution enriches the event tape without replacing its retained data, chronological order, or origin assertions. ^c20260814-29u
+
+****
+
+## Session.Notes
+
+- Current Chatlas remains the raw-archive and session-recovery substrate while Chatlas2 matures.
+- Provider-native raw artifacts remain the inspection escape hatch when the Normal Model does not yet expose needed resolution.
+- The event tape is the completeness spine. `Chat.Message` and `Chat.Turn` are shallow guaranteed groupings over it; deeper classes, loaded contexts, forks, compactions, and other interpretations remain overlays.
+- Normalizers remain simple provider adapters; repeated-use efficiency belongs to a disposable cache hidden behind the canonical Normal Model provider.
+- Anchor records will be transformed operationally when Chatlas2 cuts over. Migration mechanics are written for the actual data at that moment, checked for completeness, and protected by the depot's Git history rather than maintained as a Chatlas2 subsystem.
+- Settled for the first two vertical slices: Codex uses record position and Claude uses native record UUID as the provider-derived logical place; same-address observations fold within one stateless normalization run.
+- Settled: `Chat.Message.Address`, `Chat.Message.Hash`, and `Chat.Message.Ref` use the same place-plus-state pattern without importing turn-level ambitions.
+- Settled provisionally for Claude: each assistant request receives only the nearest evidenced user/tool input from its parent chain; incomplete context is preferred to false membership.
+- Settled for Claude queued input: a human-origin `queued_command` attachment is a `User.Event` and user `Chat.Message` whose start time is the recorded queue timestamp; the mapping is shared by both recognized Claude raw families.
+- Settled for Claude prompt variants: accepted human suggestions, typed text-plus-image records, and non-meta legacy-shaped direct messages inside prompt-source-capable artifacts are user events/messages; ambiguous timed attachments and queue operations remain unresolved.
+- Open: extend the conformance corpus with each supported provider and `Raw.Model.Version` as compatible versioners and normalizers are added.
+- Settled for the first Views slice: `full` returns the unchanged complete model; `transcript`, `user`, and `events` stream their chronological cached collections and may be bounded during iteration. `replay` and `zip-transcript` remain deferred until a consumer supplies their actual requirements.
+
+## Session.Log
+
+- **2026-08-14:** Traced lost normalized turns to primary-artifact selection and chose all-artifact review, chronological union, and retention-biased deduplication.
+- **2026-08-14:** Settled the explicit `Raw.Model.Versioner` recognition and `Raw.Normalizer` dispatch boundary, plus the parallel Chatlas2 system direction.
+- **2026-08-15:** Reduced the semantic floor to user-side versus agent-side event origin and the `Chat.Message` projection; kept richer interpretation progressive.
+- **2026-08-15:** Captured 29 typed design lines through the autonomous Hugentics design-session route, grounded in Chatlas session `01a001c2-8fb1-72e0-8aa1-0bbc52c4b5e8`.
+- **2026-08-15:** Added the conservative `Agent.Loaded.Context` promise and retired the canonical context-blob and `Agent.Execution` directions.
+- **2026-08-15:** Settled stateless `Event.Ref` drift resolution against the current Normal Model and rejected cross-run normalized observation history.
+- **2026-08-15:** Finalized `Chat.Message` address/hash/ref identity; rejected a maintained anchor-migration subsystem in favor of a Git-backed operational transformation at cutover.
+- **2026-08-15:** Added the Claude `claude.transcript.v1` Versioner/Normalizer without expanding the Normal Model; all 11 Claude specimens and all 21 corpus captures pass the chronological tape, origin, message, reference, and conservative-context checks.
+- **2026-08-15:** Refined raw-version independence into a mapping-relative partition: incremental Normal Model evolution may preserve, extend, or split it, while a full redesign may establish a new partition; raw version is excluded from stable address identity.
+- **2026-08-15:** Rejected ordinal raw-version naming and captured opaque arbitrary identifiers whose spelling carries no succession semantics.
+- **2026-08-16:** Moved provider-native material out of Normal Events, made normalizer-owned raw evidence optional and default-off, and defined Event.Hash strictly over deliberately selected provider-neutral normalized event state.
+- **2026-08-16:** Kept normalization unconstrained, placed streaming on cached reads after model creation, and bounded multi-session memory through one-model-at-a-time consumption and read-time limits.
+- **2026-08-16:** Implemented and stressed the disposable four-file Normal Model cache, streaming bounded message reads, explicit cache inspection/build, and capacity-one Anchory model retention.
+- **2026-08-16:** Made the cache-backed Normal Model provider the transparent default, added explicit refresh and uncached diagnostic modes, and removed Anchory's cache loader and model slot.
+- **2026-08-16:** Closed the Claude queued-input gap by mapping human `queued_command` attachments into user events/messages and following loaded context at the original queue time.
+- **2026-08-16:** Audited the active Claude/Codex raw archive, recovered three missing Claude human-input shapes, and replaced Claude's default-agent fallback with explicit user, explicit agent, and unresolved origin resolution.
+- **2026-08-16:** Introduced `tarav chatlas2 views list|get` with the first `full`, `transcript`, `user`, and `events` projections; live Codex and Claude reads use the transparent Normal Model provider, while replay and zip-transcript remain deliberately deferred.
+- **2026-08-16:** Reconnected the first real workflow consumer: the Hugentic Design.Session specialization now reads Chatlas2 Views and uses Chatlas2 message refs/Anchory; the existing Views definition was manually re-grounded as `d20260816-18u`, and the consumer boundary was captured as `d20260816-19u`.
+- **2026-08-16:** Expanded the proven consumer boundary from Design.Session to every Hugentic chat-grounding route. Generic implementation provenance uses message-support records, line landings use v2 dossiers with independent support/gates/provenance, and mixed readers preserve existing `c…` anchors; the active design line is grounded as `d20260816-21u`.
+- **2026-08-16:** Promoted `Chat.Turn` from optional fuzzy resolution to the shallow semantic blob boundary around user/agent conversational turns, kept grounding on `Chat.Message.Ref`, split rich message caching from compact turn refs with on-demand hydration, and adopted `Scan.Decode.Verify` as the no-false-negative JSONL read escalation.
