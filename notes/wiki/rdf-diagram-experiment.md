@@ -60,7 +60,8 @@ These are implementation choices under the authorized experiment.
 The synthetic demo stores Conversation, UserTurn and Annotation Records through
 the normal workflow Registry, then contributes their loaded objects to RDF.
 Its explicit runtime expansion changes an unchanged Alice-message selection
-from one result to two. Python callers and the local HTTP/SVG UI use the same
+from one result to two. The first implementation used a local HTTP/SVG UI;
+that placement was corrected below. Python callers use the same
 explorer. The maintained test run passed 359 tests, including 23 experimental
 tests; the actual HTTP parsing/serialization path and UI JavaScript syntax
 were checked. A listening server and browser rendering could not be checked
@@ -70,3 +71,28 @@ for commands and measured evidence. Durable Breadcrumb registration is pending
 under that sandbox's protected data-depot permissions.
 <!-- tarav.context 473c89a0:8944495a171e5499 -->
 <!-- tarav.context 473c89a0:c4ecebaa9007be2e -->
+
+## Visual explorer belongs to Tarav Center
+
+The User challenged the HTTP server and asked why the experiment was not
+entirely hosted in the extension. The existing Center.Workflow shell is the
+appropriate visual host; the HTTP choice was the agent's unnecessary detour.
+<!-- tarav.context 473c89a0:944a943d7daaf1ba -->
+
+The corrected implementation adds **Diagram explorer (experimental)** to
+Tarav Center. Its left tree lists context steps, its center draws the graph
+and SPARQL results, and its right panel inspects represented objects. The
+extension owns its Python adapter and versioned JSON shapes. One `tarav run`
+child retains runtime objects, the growing graph and navigation history,
+communicating through stdin/stdout; the webviews use VS Code messages.
+The standalone HTTP package is removed from Tarav. These transport/layout
+details are agent implementation choices supporting the corrected placement.
+<!-- tarav.context 473c89a0:944a943d7daaf1ba -->
+
+Measured evidence: 353 maintained core tests pass after removing six HTTP
+tests; 12 extension tests pass, including the actual Python subprocess and
+renderer path. The unchanged Alice-message query produces one result before
+runtime loading and two afterward. Extension 0.1.3 packages successfully.
+Visual rendering in a VS Code window remains unverified. See extension
+[request 012](../../../vscode-tarav-center/notes/live/012-future-diagram-explorer-impl-req.md)
+and its [README](../../../vscode-tarav-center/README.md).
