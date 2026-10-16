@@ -73,3 +73,51 @@ and both IDs find it. Cherry-pick and rebase copy the ID with the content.
 
 Open: carrying tarav-change IDs in Tarav References; enabling the hooks in
 the other repositories; rewriting the citations the tarav-md purge left.
+
+## Append-only, with a witness outside the repository
+
+The file is why amend is acceptable: the change-id file must be
+append-only, so that surgery cutting history has to cut the file itself,
+which survives many modes of change. The User first proposed a global
+registry under `~/Documents/tarav` recording change-ids and their commits.
+<!-- tarav.breadcrumb 23614856bc9e34aefed535b557ff798afa57c449188b197db135e1efefcfa41f -->
+
+The User then weighed it: a registry knows which change-id matched which
+commit, but cannot find the new commit once the repository's ID was cut or
+amended; the file's strength is that it sits next to the edits it tracks.
+<!-- tarav.breadcrumb 0f0e6d03354b76e6d8b9e491985786c9b75da78c400577785bb0c5d0ea37eef6 -->
+
+The bar is best effort, not the last 5% of cases: whoever rewrites Git owns
+the consequences, and references carry other hints about their subject.
+Knowing when a loss happened is still worth having.
+<!-- tarav.breadcrumb e681af66c0d2dcbc78541533176c571942f1752aeee33f8b9fef50ed9268b43c -->
+
+The registry's role became a witness: it tracks the change-id file outside
+the repository and tests that it stays append-only, and the hook stops a
+commit that broke it, with an overrule (an environment variable) as a
+speedbump.
+<!-- tarav.breadcrumb f93b77414505f524da3a85adc4335c70b3db49aa82c01efbf0f96bae88d2a1c9 -->
+
+Every stop or overrule is recorded, sensed by the hook and handed to the
+Project as an Action. The hook contract was relaxed from "never blocks" to
+"stops, with an overrule flag", to give an agent the opportunity to respond
+and rethink what it is doing. Witness entries are Records per Project and
+branch under `~/Documents/tarav/git-changes/`, machine-local.
+<!-- tarav.breadcrumb 046e6ae8eb33578632a928d855e80fdaa75e9f0501fc5633928fa4de3dd2d963 -->
+
+### As built — tarav-py request 916
+
+A handler may raise `GitHookRefusal`; `tarav git hook` exits 75 and only
+that stops Git, while other failures and a missing `tarav` still let it
+continue. `TARAV_GIT_HOOKS_OVERRULE=<handler>` overrules a stop.
+`tarav.l1.git.witness` keeps a `Tarav.Git.Change.Witness` per Project
+(`project_id`) and branch and a `Tarav.Git.Change.Overrule` per overruled
+commit. tarav-change's `pre-commit` stops a commit whose `.tarav/changes`
+lost IDs the witness holds and registers a `Tarav.Git.Change.Removed`
+action; an overruled commit records itself and opens a
+`Tarav.Git.Change.Overruled` action, and the witness moves to the new file.
+The tarav-change check raises the same POIs between commits, so a
+`reset --hard` or a history rewrite shows up before the next commit.
+`ProjectActions.register` registers such actions without treating the
+results as a whole run of the Project's checks. Detached HEADs and Projects
+without a `project_id` are not witnessed.
