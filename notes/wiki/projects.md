@@ -384,3 +384,11 @@ one check per active Project that loads it through its own harness;
 its repository. This machine's System Project exists, with one active
 Project to start with.
 
+
+## Project Git hooks — 915
+
+A Project whose root is a Git repository selects Tarav Git hook handlers in
+the `git` section of its config; the hooks call the `tarav` CLI, never block
+Git, and the Project's checks keep them installed. The first handler is
+tarav-change; see [tarav-change](tarav-change.md).
+<!-- tarav.breadcrumb 7d4382f749210f888179f7dd85c0218bd0c9f4436ce929e27af7e5fa87ddff3e -->
