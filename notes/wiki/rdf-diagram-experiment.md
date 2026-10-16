@@ -269,3 +269,45 @@ prints its type edge to `Tarav.Class`. Left outside: the extension's Diagram
 explorer and object group now fail, and agents files embedding the old
 System Prompt report it stale.
 <!-- tarav.breadcrumb 52dafa7ca630e3558ec0ac5ba1bebc3d8ab3f0aec5bd7bd7affb5657e4863f3f -->
+
+## ObjectContext construction through ordered hooks
+
+The next discussion replaced the single `triplets()` hook with explicit
+construction: `cxt = obj.context.build()`, followed by `cxt.triplets`.
+The User wanted the complete ObjectContext returned so it can retain other
+data useful for debugging. There is no `.context.triplets()` convenience
+path. An object's contribution is assembled through class, instance, then
+external hooks; all receive and may mutate the same context, including its
+triples and construction options. External workflows can therefore enrich
+an object's context without changing its class.
+
+Class access stays uniform: `Document.context.build()` delegates to the
+context of `entity(Document)` (called `identity(Document)` in discussion).
+The User clarified that this runs TaravClass's class hooks, the particular
+class identity's instance hooks, then external hooks. It does not run the
+hooks intended for Document instances. The two contribution entry points
+are `_class_context_hook(cxt)` and `_obj_context_hook(cxt)`; inherited hooks
+compose with ordinary `super()` and the established explicit namespace
+composition for multiple inheritance. The builder calls each stage once.
+
+The User's ordering correction was: “class -> instance -> external”. The
+last clarification was: “the all hooks just recieve the same context
+object”. Source: current codex session
+`01a1176b-f14c-7fd0-a97c-b22279c3f8c8`, neutral identity
+`473c89a00e2367fb827193af74a6375c60a96b0be110f21df0aff49360ca972f`.
+Exact Turn grounding is pending: the sandbox blocked Chatlas refresh and
+the retained Normal Model ends before this discussion. These quotations
+are from the current conversation; no older Turn was substituted as support.
+
+Implemented in [request 916](../../../tarav-py/notes/live/916-object-context-builder-and-hooks-impl-req.md).
+Inspected implementation: ObjectContext holds subject, triplets, options,
+opaque hints and stage-run diagnostics; each runtime owns an ordered
+ContextBuilder registry. Hook failures retain a partial result in
+ContextBuildError. The Explorer retains completed contexts and validates
+their triples before extending its growing graph. Removing a triple during
+construction changes that contribution, without retracting facts already
+collected. The [developer guide](../../../tarav-py/src/tarav/l1/context/README.md)
+and [runnable example](../../../tarav-py/examples/object_context.py) show the
+public surface. Measured: 313 core tests and 13 real-process extension tests
+passed. This section supersedes the earlier direct `triplets()` API, while
+retaining that discussion as its design history.
