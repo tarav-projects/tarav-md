@@ -186,8 +186,8 @@
     },
     ".skw/src/references/commit-evidence.skw.json": {
       "blocks": {},
-      "source_hash": "f31eb3420aa71cc8218ba1902cadaf47ca073d9abb19427abaf0818f04e88c2e",
-      "product_hash": "4f890c7f9a48637d0d3805a5b00f68ccf0be86aaa0825df6cb48876b18e54fce",
+      "source_hash": "5b09ffbab2f8c0ab1a55d3d473106d644d7222d25b43eceb15f9479063315af2",
+      "product_hash": "365e6a5154a419bc3a289f3a2e34f75fabab8efe3ff4bb00494d40580e37bda9",
       "loading_hash": "a75223a36852564f3d16acc68e9db5b21b435a3bc0fb8ad33d05d033c9d75394"
     },
     ".skw/src/references/user-brief.skw.json": {
@@ -231,8 +231,8 @@
     },
     ".skw/src/references/impl/phases.skw.json": {
       "blocks": {},
-      "source_hash": "a9b39dce5302c316a0c6d7ba8fd1b4ef4c711e873824f49d6500f2cc413ad4b8",
-      "product_hash": "473a1133c7aabb08f9bca6eac57d699dcbc9c621ba735588dcd8863840f636df",
+      "source_hash": "be831ad7399e94792c1a45c6ff511451c8f3ade7c256f58579a7d65509dfe277",
+      "product_hash": "605cfb82084d41dd7f47bf108a8a60eaa82e6f6deb7c4515f920d3ebf2c67dcf",
       "loading_hash": "a75223a36852564f3d16acc68e9db5b21b435a3bc0fb8ad33d05d033c9d75394"
     },
     ".skw/src/references/impl/request.skw.json": {

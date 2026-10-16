@@ -26,9 +26,11 @@ workflow's own commits include only files it changed.
 External work is any uncommitted change the workflow did not make, whoever
 made it. Frequent commits matter more than its provenance:
 
-- **Start checkpoint.** Before the first edit, commit every pre-existing
-  change in the repository, inside or outside the work scope. Use an empty
-  checkpoint when the repository is clean.
+- **Start checkpoint.** Before the first edit, always make one in every
+  repository the workflow will mutate. Commit every pre-existing change, inside
+  or outside the work scope, including the workflow's own live note; when the
+  repository is clean, make an empty commit. A clean tree, a tree holding only
+  the note, or a commit made earlier in the session is never a reason to skip.
 - **Stale external work.** At every slice boundary, when the repository holds
   external work and its last commit is at least one hour old, commit that
   external work.

@@ -1,16 +1,16 @@
-# AGENTS.md
+# Chatlas design notes
 
 ## Purpose
 
-`tarav-chatlas-md` owns Chatlas design notes and markdown coordination — the design surface for Chatlas concepts and the provider-neutral Normal Model used by current Tarav workflows.
+Chatlas design notes and markdown coordination — the design surface for Chatlas concepts and the provider-neutral Normal Model used by current Tarav workflows. They were the separate repository `tarav-chatlas-md` until 2026-10-16, when it was digested into tarav-md with its history; the old repository is in `_DEPRECATED/`.
 
-Chatlas Python mechanics live at `tarav-py/src/tarav/chatlas/`.
+Chatlas Python mechanics live at `tarav-py/src/tarav/l1/chatlas/`. The Chatlas skills are in `skills/` beside the other tarav-md skills.
 
 ## Orientation
 
 - Load `tarav-pkg` and read its `CONSTITUTION.md`. Any surface claiming to be part of Tarav must comply with it.
 - Load `tarav-chatlas-pkg` for the Chatlas package index and concept blocks.
-- Design sessions live in `notes/live/*-design-session.md`.
+- Design sessions live in `notes/chatlas/live/*-design-session.md`.
 
 ## Harness Reference
 
