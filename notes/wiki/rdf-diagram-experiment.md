@@ -187,3 +187,44 @@ this object" view; and a falsifiable test comparing the graph's context for
 a real error with grep, `--help` and the Wiki.
 <!-- tarav.breadcrumb 83d1c8a4b99db5d91772af1409ee3ba22b2db3326eef775e1f6c6c42764a1717 -->
 <!-- tarav.breadcrumb 066b6a5d0bfc91d08596bae502edf2936431d6da324d49e44193fa7c2dd38c43 -->
+
+## The projection contract
+
+The User placed the contract in the `.context` namespace: it returns
+something that holds a graph, over which one summarizes and runs queries.
+The engine enlarges the graph as objects are opened, collecting more and
+more triples from the objects visited. Each object holds how to generate its
+context triples; the context engine filters, selects and keeps any cursor.
+<!-- tarav.breadcrumb b4bacfac3a50a8fb9f65d52aa29ab6ec855915deeef702ed245a63dfc8b7bcf1 -->
+
+Tarav code therefore splits into normal objects and their operations
+(Assertions, scoring, POIs, and so on) and the context system: the
+primitives and engine for the Diagram, how objects hook into it, and how
+the graph is manipulated.
+<!-- tarav.breadcrumb e14c177263c81bcae9ef8d2d20ab7bef8b8a8c8a666311cf5a850c4ee059f3be -->
+
+The hook is one method, `obj.context.triplets()`, the standard hook into the
+graph for all objects; the engine demands nothing more for now. Its meaning
+is what the object contributes about itself to the graph, not how it feeds
+other objects in. An object has no complex mechanism for understanding
+context: asked for its context, whatever it returns is its contribution,
+with any processing it likes, such as loading everything in a folder. The
+result need not be the same triples every time. All triples come from some
+object.
+<!-- tarav.breadcrumb 946351fbd140ada3ea55112c6b6b794668a959ff85efb220fdcadd9b38991d0b -->
+<!-- tarav.breadcrumb 3fde3fc6a28084f4d260230b7711abd2ce109c6f3f4059c3477cdef86356621e -->
+
+Everything else is ordinary code: how the context engine manipulates the
+graph and provides navigation, and the environment Tarav must provide to
+find and open an object from its ID. Tarav still needs a basic search system
+outside the graph. Workflows can go around checking all objects, so incoming
+edges do not require opening every pointing object; a RecordRegistry object
+can represent all recorded objects and know how to iterate them, but that is
+specialized functionality, not what its own `triplets()` returns.
+<!-- tarav.breadcrumb 34b7cdff7fde6502f03f234244a134ee59570231919e37d7f2062ba721801b23 -->
+<!-- tarav.breadcrumb 093761b8d8d805a27cb43c956b618bda2651e9a68a2e025b0c94df782d119331 -->
+
+The User set implementation aside until the design principles are aligned.
+The agent noted that the engine can record which object contributed each
+triple, as an implementation detail of that ordinary code.
+<!-- tarav.breadcrumb c8e1afb2af2115e6547b4a7338aecce3b441e4d073dd72a7e2360f81b6321a43 -->
