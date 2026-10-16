@@ -1,0 +1,6 @@
+# Reviewed gitleaks findings: false positives (test fixtures, content hashes,
+# internal workflow tokens). See the tarav-pkg --github module.
+a188ad5973f5535354865eddfd233782c67959fe:notes/live/611-agentos-pkg-grounding-campaign.md:generic-api-key:522
+a7f64f8c067519fc13bc164951de241fa7260036:skills/agentos-skillware/.skw/lock.json:generic-api-key:49
+8381bb0ce6a88b041916afefaf7abca2b9c2b922:skills/agentos-skillware/.skw/lock.json:generic-api-key:49
+06c7fbbb887bcfb964121b889aec0021ddbe78ce:skills/agentos-skillware/.skw/lock.json:generic-api-key:49

@@ -91,6 +91,19 @@
       ]
     },
     {
+      "id": "github.content",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/github.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.content"
+      ]
+    },
+    {
       "id": "legacy-skill-mine.content",
       "reference": {
         "type": "Tarav.Reference.StructuredFile",

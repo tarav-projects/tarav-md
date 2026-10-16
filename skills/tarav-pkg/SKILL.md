@@ -169,6 +169,10 @@ uses the Diagram mechanics documented by this package.
   Archive.Attic semantics, Deposit workflow, and its boundaries with
   `Tarav.Archive` and `Diagram.Attic`. Load the linked legacy-skill-mine
   module only when deliberately mining the displaced skill implementation.
+- `tarav-pkg --github` — read [references/github.md](references/github.md) for
+  the `tarav-projects` GitHub organization: source repositories on `main`,
+  `tarav-releases`, licensing and the scan before publishing.
+  <!-- tarav.breadcrumb ee604b3b60e3ccd524f08444c79d358d795eca4a45f9ebf8e6ae8b6f19c43c56 -->
 
 Without an explicit module, use this file as orientation, read the
 Constitution, and route to the smallest relevant current design surface.
