@@ -2,7 +2,7 @@
   "type": "Tarav.Skillware.Generation",
   "schema_version": 1,
   "id": "d0d409be7d4b4362b0cec34c8f561ba7",
-  "source": ".skw/src/references/wiki-capture.skw.json",
+  "source": "src/references/wiki-capture.skw.json",
   "block": "introduction",
   "input_hash": "a77636a65779bc2da6a5c98c9c4576437d923705982fba594166bc6a3e236a8b",
   "status": "Recorded",

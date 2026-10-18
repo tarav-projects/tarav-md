@@ -2,7 +2,7 @@
   "type": "Tarav.Skillware.Generation",
   "schema_version": 1,
   "id": "14cb74e3b4ea4de7972f1137cf200e12",
-  "source": ".skw/src/SKILL.skw.json",
+  "source": "src/SKILL.skw.json",
   "block": "boundary",
   "input_hash": "b01fd5521a33461019904f65fee909dcc3206547a2b51beb86070554d24ad27c",
   "status": "Recorded",

@@ -3,24 +3,24 @@
   "schema_version": 1,
   "entrypoint": "SKILL.md",
   "sources": [
-    ".skw/src/SKILL.skw.json",
-    ".skw/src/references/capture.skw.json",
-    ".skw/src/references/commit-evidence.skw.json",
-    ".skw/src/references/design-impact.skw.json",
-    ".skw/src/references/design-dialogue.skw.json",
-    ".skw/src/references/impl.skw.json",
-    ".skw/src/references/inline-capture.skw.json",
-    ".skw/src/references/issues/audit.skw.json",
-    ".skw/src/references/issues/maintain.skw.json",
-    ".skw/src/references/issues/park.skw.json",
-    ".skw/src/references/issues.skw.json",
-    ".skw/src/references/reading-club.skw.json",
-    ".skw/src/references/user-brief.skw.json",
-    ".skw/src/references/wiki-capture.skw.json",
-    ".skw/src/references/impl/code-engineering.skw.json",
-    ".skw/src/references/impl/phases.skw.json",
-    ".skw/src/references/impl/request.skw.json",
-    ".skw/src/references/impl/context/wiki.skw.json"
+    "src/SKILL.skw.json",
+    "src/references/capture.skw.json",
+    "src/references/commit-evidence.skw.json",
+    "src/references/design-impact.skw.json",
+    "src/references/design-dialogue.skw.json",
+    "src/references/impl.skw.json",
+    "src/references/inline-capture.skw.json",
+    "src/references/issues/audit.skw.json",
+    "src/references/issues/maintain.skw.json",
+    "src/references/issues/park.skw.json",
+    "src/references/issues.skw.json",
+    "src/references/reading-club.skw.json",
+    "src/references/user-brief.skw.json",
+    "src/references/wiki-capture.skw.json",
+    "src/references/impl/code-engineering.skw.json",
+    "src/references/impl/phases.skw.json",
+    "src/references/impl/request.skw.json",
+    "src/references/impl/context/wiki.skw.json"
   ],
   "files": [
     "SKILL.md",
@@ -52,5 +52,5 @@
       ]
     }
   ],
-  "loading": ".skw/loading.json"
+  "loading": "loading.json"
 }

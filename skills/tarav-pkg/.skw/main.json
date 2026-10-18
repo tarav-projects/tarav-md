@@ -3,21 +3,21 @@
   "schema_version": 1,
   "entrypoint": "SKILL.md",
   "sources": [
-    ".skw/src/CONSTITUTION.skw.json",
-    ".skw/src/SKILL.skw.json",
-    ".skw/src/USAGE-HISTORIES.skw.json",
-    ".skw/src/references/attic.skw.json",
-    ".skw/src/references/constitutional-theory.skw.json",
-    ".skw/src/references/context-poi-and-impact-map-design-digest.skw.json",
-    ".skw/src/references/gates-and-deferred-review-design-digest.skw.json",
-    ".skw/src/references/github.skw.json",
-    ".skw/src/references/legacy-skill-mine.skw.json",
-    ".skw/src/references/review.skw.json",
-    ".skw/src/references/step-actions.skw.json",
-    ".skw/src/tarav-archive.skw.json",
-    ".skw/src/tarav-bloberia.skw.json",
-    ".skw/src/tarav-diagram.skw.json",
-    ".skw/src/tarav-semantic-calculus.skw.json"
+    "src/CONSTITUTION.skw.json",
+    "src/SKILL.skw.json",
+    "src/USAGE-HISTORIES.skw.json",
+    "src/references/attic.skw.json",
+    "src/references/constitutional-theory.skw.json",
+    "src/references/context-poi-and-impact-map-design-digest.skw.json",
+    "src/references/gates-and-deferred-review-design-digest.skw.json",
+    "src/references/github.skw.json",
+    "src/references/legacy-skill-mine.skw.json",
+    "src/references/review.skw.json",
+    "src/references/step-actions.skw.json",
+    "src/tarav-archive.skw.json",
+    "src/tarav-bloberia.skw.json",
+    "src/tarav-diagram.skw.json",
+    "src/tarav-semantic-calculus.skw.json"
   ],
   "files": [
     "CONSTITUTION.md",
@@ -37,5 +37,5 @@
     "tarav-semantic-calculus.md"
   ],
   "dependencies": [],
-  "loading": ".skw/loading.json"
+  "loading": "loading.json"
 }

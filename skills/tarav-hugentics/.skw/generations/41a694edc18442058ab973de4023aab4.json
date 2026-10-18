@@ -2,7 +2,7 @@
   "type": "Tarav.Skillware.Generation",
   "schema_version": 1,
   "id": "41a694edc18442058ab973de4023aab4",
-  "source": ".skw/src/references/impl.skw.json",
+  "source": "src/references/impl.skw.json",
   "block": "routing",
   "input_hash": "5f15d8db80659f8437287b43e6413ea4d1ea99e528136eb708c43e490431cf1e",
   "status": "Recorded",
