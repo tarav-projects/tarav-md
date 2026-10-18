@@ -180,3 +180,12 @@ Designed in
 [923](../../../tarav-py/notes/live/923-normal-models-index-and-chatlas-pipeline-impl-req.md);
 open: matching by words or by substring, and whether agent messages are
 indexed.
+
+The interface is expressive, even allowing direct SQL queries: search matches
+words, full-text expressions or substrings, and any consumer can run read-only
+SQL over the index. The index keeps only what lookups need; the full records
+stay in the JSON cache. Implemented in 923: 338 MB for 10,146 chats, built in
+about half a minute; a search over every chat answers in tens of
+milliseconds.
+<!-- tarav.breadcrumb da7492bc6466 -->
+<!-- tarav.breadcrumb 4f6534f53ddc -->
