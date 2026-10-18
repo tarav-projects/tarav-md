@@ -148,3 +148,35 @@ Implemented in
 `tarav.l1.chatlas.search`, registered in the runtime's Search service.
 <!-- tarav.breadcrumb 54b97a3161be -->
 <!-- tarav.breadcrumb f73415abce38 -->
+
+## The Normal Models index and the pipeline — 923
+
+Chatlas produces and caches the Normal Models; an index on top of them gives
+fast and expressive search. It is named for what it holds, not for search,
+because other consumers can use it: `index/normal-models.sqlite` in the
+Chatlas root. The JSON Normal Model stays; the chain is generation → cache →
+SQL index.
+<!-- tarav.breadcrumb c84caa542bfe -->
+<!-- tarav.breadcrumb c525d38d0853 -->
+<!-- tarav.breadcrumb 647eb4b330d5 -->
+
+One freshness rule runs along the chain: the raw data declares its version,
+each cache file declares its own (a pass-through of the raw version it used),
+and so on; a stage is fresh while the version it recorded is still the one its
+input declares.
+<!-- tarav.breadcrumb ed07a895f4e9 -->
+<!-- tarav.breadcrumb 64b39a4527e2 -->
+
+The pipeline runs on demand and the consumer controls it. Search reads the
+index only; updating is on request, with different flags for different parts
+of the pipeline, which together run the whole update from the native provider
+folders to the index. Search may read what is stored without checks,
+configured like the rest of its query.
+<!-- tarav.breadcrumb 55dd83a8d086 -->
+<!-- tarav.breadcrumb 864991df25d4 -->
+<!-- tarav.breadcrumb 1a28b5e941e8 -->
+
+Designed in
+[923](../../../tarav-py/notes/live/923-normal-models-index-and-chatlas-pipeline-impl-req.md);
+open: matching by words or by substring, and whether agent messages are
+indexed.
