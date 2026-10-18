@@ -1,26 +1,41 @@
 ---
 name: tarav-pkg
-description: "Tarav's constitutional and candidate big-picture design root. Use when working on Tarav itself or when a surface must align with Archive.Attic, Tarav.Archive, Tarav.Diagram, Tarav.Bloberia, Chatlas-backed evidence, contextualization, or the legacy Tarav skill mine."
+description: "Tarav's constitutional and candidate big-picture design root. Use for constitutional audits of projects, when working on Tarav itself or when a surface must align with Archive.Attic, Tarav.Archive, Tarav.Diagram, Tarav.Bloberia, Chatlas-backed evidence, contextualization, or the legacy Tarav skill mine."
 ---
 
 # tarav-pkg
 
-Tarav is an `Agents.Harness` for strengthening user-agent collaboration by
-capturing `User.Touched.Data`, structuring it through supported annotations,
-and making that structure available for contextualization.
+<!-- tarav.sessions
+4720b13e = codex:01a02f8b-8c36-7123-ba70-1a217b776e28 @4720b13eeb5dc61cad2d999b24f45a78d9dcd776c77e0be98b68822e30fdb604
+473c89a0 = codex:01a1176b-f14c-7fd0-a97c-b22279c3f8c8 @473c89a00e2367fb827193af74a6375c60a96b0be110f21df0aff49360ca972f
+-->
 
-This is Tarav's fresh package root. Its small size is deliberate. Material is
-active only when it has been explicitly promoted here; older Tarav skills are
-legacy evidence, not inherited design truth.
+Tarav is an external harness for enhancing collaboration between Users and
+Agents. Its extensible Python library provides tools and workflows that can be
+integrated into wider systems and composed into harnesses for particular Projects.
+<!-- tarav.breadcrumb f4a6e0e1061e7a79da8a80a9e61b1c031a11223b6c9acd1eb8f2bc42514a7172 -->
 
-## Constitution
+A Project is a fundamental Tarav concept. Capture, contextualization, checks,
+and workflow coordination are capabilities Projects can select and extend.
+<!-- tarav.breadcrumb c458c653f431deda9e54a92227973c49d44a77a0f81833af8b51f04af9a6a20d -->
+
+Use this skill to load Tarav's constitutional boundaries and find the design
+guidance relevant to the current task. Material is active only when explicitly
+promoted into this package; candidate designs remain distinguishable from the
+Constitution and from implemented behavior.
+
+## Start here
 
 Read [CONSTITUTION.md](CONSTITUTION.md) completely before using any other
 guidance in this package. Every surface claiming to be part of Tarav must
 comply with it.
 
-The Constitution is amendable. A conflict requires discussion and alignment
+The Constitution is amendable. Surface conflicts for discussion and alignment
 through a change to the design, the Constitution, or both.
+
+## Reading and rereading
+
+Load only the module relevant to the current task.
 
 Do not reread a skill `references/` file that was already read completely and
 remains available in context. Reread it only if it changed, its contents were
@@ -149,6 +164,9 @@ automatic, audit, implementation-design, execution, and stance behavior
 uses the Diagram mechanics documented by this package.
 
 - `tarav-pkg --constitution` — load the Constitution.
+- `tarav-pkg --constitution --audit --project <path>` — scan that Project
+  for significant constitutional misalignments and report them in chat
+  using the audit instructions below.
 - `tarav-pkg --archive` — load the Constitution and Archive design.
 - `tarav-pkg --diagram` — load the Constitution and Diagram design.
 - `tarav-pkg --semantic-calculus` — load the Constitution and
@@ -176,3 +194,44 @@ uses the Diagram mechanics documented by this package.
 
 Without an explicit module, use this file as orientation, read the
 Constitution, and route to the smallest relevant current design surface.
+
+### Constitutional audit
+
+`--project <path>` selects the Project to inspect; if omitted, use the current
+directory. Resolve relative paths from the current directory.
+
+Read the Constitution and the selected Project's guidance. Scan its code,
+documentation, and tests for significant misalignments with constitutional
+statements. Follow relevant evidence far enough to explain each finding;
+distinguish current behavior from proposals and unresolved review notes.
+
+Present a concise report in chat. State which Project and areas you inspected.
+For each finding, cite the constitutional statement and the conflicting project
+evidence (file and location), explain the mismatch, and state any uncertainty.
+Prioritize consequential findings. If none are found, say so within the inspected
+coverage; do not claim exhaustive alignment.
+
+The audit only surfaces misalignments. Do not repair the Project, amend or
+question the Constitution, or decide which side should change. Do not create
+report files or persistent actions unless separately requested.
+
+## Review notes
+
+The following User notes are retained verbatim from before this revision.
+Section splitting and a separate rereading policy are addressed here; specialized
+SKW document Types remain a design question.
+
+[NOTE/TODOS
+  - Its skw i also a single block
+    - terrible
+  - I think we should also Type the skw files
+    - for instance, this one should be a SKILLSkwSrcFile (or whatever name)
+    - this way for instance, we can force the description to be its own special block
+  - In general this file is not a good SKILL.md
+    - What would be a good SKILL.md?
+]
+
+[NOTE
+  - I think this should be its own section
+  - I mean, the reread policy
+]

@@ -6,37 +6,93 @@
     {
       "id": "4897dbf2-fcdf-5af7-ae62-a792d691e4fb",
       "type": "Tarav.Skillware.Block",
-      "label": "content",
+      "label": "metadata",
       "content": [
         "---",
         "name: tarav-pkg",
-        "description: \"Tarav's constitutional and candidate big-picture design root. Use when working on Tarav itself or when a surface must align with Archive.Attic, Tarav.Archive, Tarav.Diagram, Tarav.Bloberia, Chatlas-backed evidence, contextualization, or the legacy Tarav skill mine.\"",
-        "---",
+        "description: \"Tarav's constitutional and candidate big-picture design root. Use for constitutional audits of projects, when working on Tarav itself or when a surface must align with Archive.Attic, Tarav.Archive, Tarav.Diagram, Tarav.Bloberia, Chatlas-backed evidence, contextualization, or the legacy Tarav skill mine.\"",
+        "---"
+      ]
+    },
+    {
+      "id": "73f60453-a8ca-4243-be9c-dbf612d3186e",
+      "type": "Tarav.Skillware.Block",
+      "label": "introduction",
+      "content": [
         "",
         "# tarav-pkg",
         "",
-        "Tarav is an `Agents.Harness` for strengthening user-agent collaboration by",
-        "capturing `User.Touched.Data`, structuring it through supported annotations,",
-        "and making that structure available for contextualization.",
+        "<!-- tarav.sessions",
+        "4720b13e = codex:01a02f8b-8c36-7123-ba70-1a217b776e28 @4720b13eeb5dc61cad2d999b24f45a78d9dcd776c77e0be98b68822e30fdb604",
+        "473c89a0 = codex:01a1176b-f14c-7fd0-a97c-b22279c3f8c8 @473c89a00e2367fb827193af74a6375c60a96b0be110f21df0aff49360ca972f",
+        "-->",
         "",
-        "This is Tarav's fresh package root. Its small size is deliberate. Material is",
-        "active only when it has been explicitly promoted here; older Tarav skills are",
-        "legacy evidence, not inherited design truth.",
+        "Tarav is an external harness for enhancing collaboration between Users and",
+        "Agents. Its extensible Python library provides tools and workflows that can be",
+        "integrated into wider systems and composed into harnesses for particular Projects.",
+        "<!-- tarav.breadcrumb f4a6e0e1061e7a79da8a80a9e61b1c031a11223b6c9acd1eb8f2bc42514a7172 -->",
         "",
-        "## Constitution",
+        "A Project is a fundamental Tarav concept. Capture, contextualization, checks,",
+        "and workflow coordination are capabilities Projects can select and extend.",
+        "<!-- tarav.breadcrumb c458c653f431deda9e54a92227973c49d44a77a0f81833af8b51f04af9a6a20d -->",
+        "",
+        "Use this skill to load Tarav's constitutional boundaries and find the design",
+        "guidance relevant to the current task. Material is active only when explicitly",
+        "promoted into this package; candidate designs remain distinguishable from the",
+        "Constitution and from implemented behavior.",
+        ""
+      ]
+    },
+    {
+      "id": "73206cb1-002a-4ef6-9ddc-5fd3117d45f3",
+      "type": "Tarav.Skillware.Block",
+      "label": "start-here",
+      "content": [
+        "## Start here",
         "",
         "Read [CONSTITUTION.md](CONSTITUTION.md) completely before using any other",
         "guidance in this package. Every surface claiming to be part of Tarav must",
         "comply with it.",
         "",
-        "The Constitution is amendable. A conflict requires discussion and alignment",
+        "The Constitution is amendable. Surface conflicts for discussion and alignment",
         "through a change to the design, the Constitution, or both.",
+        ""
+      ],
+      "annotations": [
+        {
+          "type": "Tarav.SKW.Reading.ExpectedLink",
+          "target": "c551f217-5c89-5683-969c-0448262f9ac0",
+          "entry": {
+            "type": "Tarav.SKW.Reading.BlockEntry",
+            "node": "constitution.content"
+          },
+          "prose": {
+            "type": "Tarav.SKW.Reading.MarkdownProse"
+          }
+        }
+      ]
+    },
+    {
+      "id": "84cd4fd4-c949-4601-9354-53fb64da6c75",
+      "type": "Tarav.Skillware.Block",
+      "label": "reading-and-rereading",
+      "content": [
+        "## Reading and rereading",
+        "",
+        "Load only the module relevant to the current task.",
         "",
         "Do not reread a skill `references/` file that was already read completely and",
         "remains available in context. Reread it only if it changed, its contents were",
         "lost or materially reduced through compaction, or a specific uncertainty",
         "requires it.",
-        "",
+        ""
+      ]
+    },
+    {
+      "id": "503312e5-f09f-4ab3-a044-0beadfc8f9dc",
+      "type": "Tarav.Skillware.Block",
+      "label": "implementation-principles",
+      "content": [
         "## Implementation principles",
         "",
         "Use these principles when designing, implementing, or reviewing Tarav.",
@@ -97,7 +153,14 @@
         "rationale and conversational evidence live in `tarav-md/notes/wiki/`, notably",
         "`diagram-workflows.md`, `context-graph.md`, and `tarav-harness.md`. Those",
         "repository surfaces are navigation hints, not required deployed skill files.",
-        "",
+        ""
+      ]
+    },
+    {
+      "id": "05a5a506-40b6-4066-b646-00aac77518e7",
+      "type": "Tarav.Skillware.Block",
+      "label": "current-candidate-design",
+      "content": [
         "## Current candidate design",
         "",
         "Load only the design relevant to the work:",
@@ -118,87 +181,9 @@
         "",
         "These design documents are subordinate to the Constitution and remain WIP.",
         "They are candidate design truth, not constitutional amendments.",
-        "",
-        "## Data root",
-        "",
-        "Durable Tarav data defaults to the physical depot `~/Documents/tarav/`.",
-        "Its child surfaces retain independent semantics and Git histories:",
-        "",
-        "```text",
-        "~/Documents/tarav/",
-        "├── archive/",
-        "├── attic/",
-        "├── chatlas/",
-        "├── diagram/",
-        "├── reading-club/",
-        "└── bloberia/",
-        "```",
-        "",
-        "The data root is not itself one repository or authority. Machine-local",
-        "configuration, caches, indexes, and operational logs remain under `~/.tarav/`.",
-        "External repositories registered by the Archive remain free to live elsewhere.",
-        "",
-        "## Unapproved design digests",
-        "",
-        "The following surface preserves ongoing discussion for later review and",
-        "capture. It is not approved or landed design truth:",
-        "",
-        "- [Context, POIs, and Product-Surface Impact](references/context-poi-and-impact-map-design-digest.md)",
-        "  — discussion digest from Chatlas session",
-        "  `01a02f8b-8c36-7123-ba70-1a217b776e28`.",
-        "- [Gates and Deferred Review](references/gates-and-deferred-review-design-digest.md)",
-        "  — discussion digest from Chatlas session",
-        "  `01a02f8b-8c36-7123-ba70-1a217b776e28` covering reusable Gate Assertions,",
-        "  deferred review, and Line-ship review standing.",
-        "",
-        "## Modules",
-        "",
-        "The public conversational capture and implementation workflows are",
-        "`tarav-hugentics --capture` and `tarav-hugentics --impl`. Their reviewed,",
-        "automatic, audit, implementation-design, execution, and stance behavior",
-        "uses the Diagram mechanics documented by this package.",
-        "",
-        "- `tarav-pkg --constitution` — load the Constitution.",
-        "- `tarav-pkg --archive` — load the Constitution and Archive design.",
-        "- `tarav-pkg --diagram` — load the Constitution and Diagram design.",
-        "- `tarav-pkg --semantic-calculus` — load the Constitution and",
-        "  [tarav-semantic-calculus.md](tarav-semantic-calculus.md).",
-        "- `tarav-pkg --bloberia` — load the Constitution and Tarav.Bloberia design.",
-        "- `tarav-pkg --usage-histories` — read",
-        "  [USAGE-HISTORIES.md](USAGE-HISTORIES.md) and use its behavioral histories",
-        "  to develop or test candidate designs.",
-        "- `tarav-pkg --review` — read [references/review.md](references/review.md) and",
-        "  review existing Diagram Block Lines through mechanically auditable",
-        "  `Verbatim.Gate`s.",
-        "- `tarav-pkg --constitutional-theory` — load the Constitution and the general",
-        "  constitutional-theory module.",
-        "- `tarav-pkg --step-actions` — read",
-        "  [references/step-actions.md](references/step-actions.md) for how to work a",
-        "  Step action: place the input, start, work, close.",
-        "- `tarav-pkg --attic` — read [references/attic.md](references/attic.md) for",
-        "  Archive.Attic semantics, Deposit workflow, and its boundaries with",
-        "  `Tarav.Archive` and `Diagram.Attic`. Load the linked legacy-skill-mine",
-        "  module only when deliberately mining the displaced skill implementation.",
-        "- `tarav-pkg --github` — read [references/github.md](references/github.md) for",
-        "  the `tarav-projects` GitHub organization: source repositories on `main`,",
-        "  `tarav-releases`, licensing and the scan before publishing.",
-        "  <!-- tarav.breadcrumb ee604b3b60e3ccd524f08444c79d358d795eca4a45f9ebf8e6ae8b6f19c43c56 -->",
-        "",
-        "Without an explicit module, use this file as orientation, read the",
-        "Constitution, and route to the smallest relevant current design surface."
+        ""
       ],
       "annotations": [
-        {
-          "type": "Tarav.SKW.Reading.ExpectedLink",
-          "target": "c551f217-5c89-5683-969c-0448262f9ac0",
-          "entry": {
-            "type": "Tarav.SKW.Reading.BlockEntry",
-            "node": "constitution.content"
-          },
-          "prose": {
-            "type": "Tarav.SKW.Reading.MarkdownProse"
-          }
-        },
         {
           "type": "Tarav.SKW.Reading.ConsultationLink",
           "target": "c3a821df-1778-5f71-ac77-2e341e1965bc",
@@ -264,7 +249,55 @@
           "prose": {
             "type": "Tarav.SKW.Reading.MarkdownProse"
           }
-        },
+        }
+      ]
+    },
+    {
+      "id": "b28e5c2c-92cb-4dd7-9938-6b37ceab91bc",
+      "type": "Tarav.Skillware.Block",
+      "label": "data-root",
+      "content": [
+        "## Data root",
+        "",
+        "Durable Tarav data defaults to the physical depot `~/Documents/tarav/`.",
+        "Its child surfaces retain independent semantics and Git histories:",
+        "",
+        "```text",
+        "~/Documents/tarav/",
+        "├── archive/",
+        "├── attic/",
+        "├── chatlas/",
+        "├── diagram/",
+        "├── reading-club/",
+        "└── bloberia/",
+        "```",
+        "",
+        "The data root is not itself one repository or authority. Machine-local",
+        "configuration, caches, indexes, and operational logs remain under `~/.tarav/`.",
+        "External repositories registered by the Archive remain free to live elsewhere.",
+        ""
+      ]
+    },
+    {
+      "id": "657a98f7-6e07-42b9-b3aa-75c11085e63e",
+      "type": "Tarav.Skillware.Block",
+      "label": "unapproved-design-digests",
+      "content": [
+        "## Unapproved design digests",
+        "",
+        "The following surface preserves ongoing discussion for later review and",
+        "capture. It is not approved or landed design truth:",
+        "",
+        "- [Context, POIs, and Product-Surface Impact](references/context-poi-and-impact-map-design-digest.md)",
+        "  — discussion digest from Chatlas session",
+        "  `01a02f8b-8c36-7123-ba70-1a217b776e28`.",
+        "- [Gates and Deferred Review](references/gates-and-deferred-review-design-digest.md)",
+        "  — discussion digest from Chatlas session",
+        "  `01a02f8b-8c36-7123-ba70-1a217b776e28` covering reusable Gate Assertions,",
+        "  deferred review, and Line-ship review standing.",
+        ""
+      ],
+      "annotations": [
         {
           "type": "Tarav.SKW.Reading.ConsultationLink",
           "target": "b96fd123-e15d-5c37-abf6-daae14913ab5",
@@ -286,7 +319,75 @@
           "prose": {
             "type": "Tarav.SKW.Reading.MarkdownProse"
           }
-        },
+        }
+      ]
+    },
+    {
+      "id": "72cbdfa9-d345-46df-945d-fea57dda8641",
+      "type": "Tarav.Skillware.Block",
+      "label": "modules",
+      "content": [
+        "## Modules",
+        "",
+        "The public conversational capture and implementation workflows are",
+        "`tarav-hugentics --capture` and `tarav-hugentics --impl`. Their reviewed,",
+        "automatic, audit, implementation-design, execution, and stance behavior",
+        "uses the Diagram mechanics documented by this package.",
+        "",
+        "- `tarav-pkg --constitution` — load the Constitution.",
+        "- `tarav-pkg --constitution --audit --project <path>` — scan that Project",
+        "  for significant constitutional misalignments and report them in chat",
+        "  using the audit instructions below.",
+        "- `tarav-pkg --archive` — load the Constitution and Archive design.",
+        "- `tarav-pkg --diagram` — load the Constitution and Diagram design.",
+        "- `tarav-pkg --semantic-calculus` — load the Constitution and",
+        "  [tarav-semantic-calculus.md](tarav-semantic-calculus.md).",
+        "- `tarav-pkg --bloberia` — load the Constitution and Tarav.Bloberia design.",
+        "- `tarav-pkg --usage-histories` — read",
+        "  [USAGE-HISTORIES.md](USAGE-HISTORIES.md) and use its behavioral histories",
+        "  to develop or test candidate designs.",
+        "- `tarav-pkg --review` — read [references/review.md](references/review.md) and",
+        "  review existing Diagram Block Lines through mechanically auditable",
+        "  `Verbatim.Gate`s.",
+        "- `tarav-pkg --constitutional-theory` — load the Constitution and the general",
+        "  constitutional-theory module.",
+        "- `tarav-pkg --step-actions` — read",
+        "  [references/step-actions.md](references/step-actions.md) for how to work a",
+        "  Step action: place the input, start, work, close.",
+        "- `tarav-pkg --attic` — read [references/attic.md](references/attic.md) for",
+        "  Archive.Attic semantics, Deposit workflow, and its boundaries with",
+        "  `Tarav.Archive` and `Diagram.Attic`. Load the linked legacy-skill-mine",
+        "  module only when deliberately mining the displaced skill implementation.",
+        "- `tarav-pkg --github` — read [references/github.md](references/github.md) for",
+        "  the `tarav-projects` GitHub organization: source repositories on `main`,",
+        "  `tarav-releases`, licensing and the scan before publishing.",
+        "  <!-- tarav.breadcrumb ee604b3b60e3ccd524f08444c79d358d795eca4a45f9ebf8e6ae8b6f19c43c56 -->",
+        "",
+        "Without an explicit module, use this file as orientation, read the",
+        "Constitution, and route to the smallest relevant current design surface.",
+        "",
+        "### Constitutional audit",
+        "",
+        "`--project <path>` selects the Project to inspect; if omitted, use the current",
+        "directory. Resolve relative paths from the current directory.",
+        "",
+        "Read the Constitution and the selected Project's guidance. Scan its code,",
+        "documentation, and tests for significant misalignments with constitutional",
+        "statements. Follow relevant evidence far enough to explain each finding;",
+        "distinguish current behavior from proposals and unresolved review notes.",
+        "",
+        "Present a concise report in chat. State which Project and areas you inspected.",
+        "For each finding, cite the constitutional statement and the conflicting project",
+        "evidence (file and location), explain the mismatch, and state any uncertainty.",
+        "Prioritize consequential findings. If none are found, say so within the inspected",
+        "coverage; do not claim exhaustive alignment.",
+        "",
+        "The audit only surfaces misalignments. Do not repair the Project, amend or",
+        "question the Constitution, or decide which side should change. Do not create",
+        "report files or persistent actions unless separately requested.",
+        ""
+      ],
+      "annotations": [
         {
           "type": "Tarav.SKW.Reading.ConsultationLink",
           "target": "80e78167-c560-5473-a718-f7feb5896c2e",
@@ -342,6 +443,33 @@
             "type": "Tarav.SKW.Reading.MarkdownProse"
           }
         }
+      ]
+    },
+    {
+      "id": "f68b02bb-125f-42be-a135-c8715e61c491",
+      "type": "Tarav.Skillware.Block",
+      "label": "review-notes",
+      "content": [
+        "## Review notes",
+        "",
+        "The following User notes are retained verbatim from before this revision.",
+        "Section splitting and a separate rereading policy are addressed here; specialized",
+        "SKW document Types remain a design question.",
+        "",
+        "[NOTE/TODOS",
+        "  - Its skw i also a single block",
+        "    - terrible",
+        "  - I think we should also Type the skw files",
+        "    - for instance, this one should be a SKILLSkwSrcFile (or whatever name)",
+        "    - this way for instance, we can force the description to be its own special block",
+        "  - In general this file is not a good SKILL.md",
+        "    - What would be a good SKILL.md?",
+        "]",
+        "",
+        "[NOTE",
+        "  - I think this should be its own section",
+        "  - I mean, the reread policy",
+        "]"
       ]
     }
   ]

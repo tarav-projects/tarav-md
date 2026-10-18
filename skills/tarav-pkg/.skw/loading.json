@@ -12,8 +12,178 @@
         }
       },
       "parents": [
-        "skill.content"
+        "skill.start-here"
       ]
+    },
+    {
+      "id": "constitution.preamble",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "constitution.purpose",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "constitution.projects",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "constitution.agent-harness-boundary",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/4"
+        }
+      }
+    },
+    {
+      "id": "constitution.mechanical-and-agentic-work",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/5"
+        }
+      }
+    },
+    {
+      "id": "constitution.user-context",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/6"
+        }
+      }
+    },
+    {
+      "id": "constitution.natural-workflows-and-extensibility",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/7"
+        }
+      }
+    },
+    {
+      "id": "constitution.session-goals",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/8"
+        }
+      }
+    },
+    {
+      "id": "constitution.mutation-and-validation",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/9"
+        }
+      }
+    },
+    {
+      "id": "constitution.poi-system",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/10"
+        }
+      }
+    },
+    {
+      "id": "constitution.capture-first",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/11"
+        }
+      }
+    },
+    {
+      "id": "constitution.logistical-extensions",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/12"
+        }
+      }
+    },
+    {
+      "id": "constitution.collaboration-loop",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/13"
+        }
+      }
+    },
+    {
+      "id": "constitution.tarav-archive",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/14"
+        }
+      }
+    },
+    {
+      "id": "constitution.tarav-diagram",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/15"
+        }
+      }
+    },
+    {
+      "id": "constitution.contextualization",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/16"
+        }
+      }
+    },
+    {
+      "id": "constitution.generation-context",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/17"
+        }
+      }
     },
     {
       "id": "skill.content",
@@ -22,6 +192,96 @@
         "locator": {
           "path": "src/SKILL.skw.json",
           "pointer": "/blocks/0"
+        }
+      }
+    },
+    {
+      "id": "skill.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/SKILL.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "skill.start-here",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/SKILL.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "skill.reading-and-rereading",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/SKILL.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "skill.implementation-principles",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/SKILL.skw.json",
+          "pointer": "/blocks/4"
+        }
+      }
+    },
+    {
+      "id": "skill.current-candidate-design",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/SKILL.skw.json",
+          "pointer": "/blocks/5"
+        }
+      }
+    },
+    {
+      "id": "skill.data-root",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/SKILL.skw.json",
+          "pointer": "/blocks/6"
+        }
+      }
+    },
+    {
+      "id": "skill.unapproved-design-digests",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/SKILL.skw.json",
+          "pointer": "/blocks/7"
+        }
+      }
+    },
+    {
+      "id": "skill.modules",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/SKILL.skw.json",
+          "pointer": "/blocks/8"
+        }
+      }
+    },
+    {
+      "id": "skill.review-notes",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/SKILL.skw.json",
+          "pointer": "/blocks/9"
         }
       }
     },
@@ -35,7 +295,7 @@
         }
       },
       "parents": [
-        "skill.content"
+        "skill.modules"
       ]
     },
     {
@@ -48,7 +308,7 @@
         }
       },
       "parents": [
-        "skill.content"
+        "skill.modules"
       ]
     },
     {
@@ -61,7 +321,7 @@
         }
       },
       "parents": [
-        "skill.content"
+        "skill.modules"
       ]
     },
     {
@@ -74,7 +334,7 @@
         }
       },
       "parents": [
-        "skill.content"
+        "skill.modules"
       ]
     },
     {
@@ -87,7 +347,7 @@
         }
       },
       "parents": [
-        "skill.content"
+        "skill.modules"
       ]
     },
     {
@@ -100,7 +360,7 @@
         }
       },
       "parents": [
-        "skill.content"
+        "skill.modules"
       ]
     },
     {
@@ -126,7 +386,7 @@
         }
       },
       "parents": [
-        "skill.content"
+        "skill.modules"
       ]
     },
     {
@@ -139,7 +399,7 @@
         }
       },
       "parents": [
-        "skill.content"
+        "skill.modules"
       ]
     },
     {
@@ -152,7 +412,7 @@
         }
       },
       "parents": [
-        "skill.content"
+        "skill.modules"
       ]
     },
     {
@@ -165,7 +425,7 @@
         }
       },
       "parents": [
-        "skill.content"
+        "skill.modules"
       ]
     },
     {
@@ -178,7 +438,7 @@
         }
       },
       "parents": [
-        "skill.content"
+        "skill.modules"
       ]
     },
     {
@@ -191,8 +451,18 @@
         }
       },
       "parents": [
-        "skill.content"
+        "skill.modules"
       ]
+    },
+    {
+      "id": "constitution.reference-contracts",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/CONSTITUTION.skw.json",
+          "pointer": "/blocks/18"
+        }
+      }
     }
   ]
 }
