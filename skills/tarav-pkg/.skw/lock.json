@@ -4,8 +4,8 @@
   "documents": {
     ".skw/src/CONSTITUTION.skw.json": {
       "blocks": {},
-      "source_hash": "038279b45a76cb3ac8b5ea0e458ae312a1a072704926940fcfc41bc0a2e57c8d",
-      "product_hash": "cd37373ba02daa5294fbf521a70c37cbc76cd12d2bef251c0a60006cae529968",
+      "source_hash": "904cc6e4ce44b87b1a99c9a346c024faea106e4afa49b15dd970c0962c6e85ec",
+      "product_hash": "67ea91794f723a65208885c0904b3bd2826afdd63b86d2078cf4b3c2e2909b3c",
       "loading_hash": "93af5bb1326528a427eb0ebbb09b56fa16e553415111adf3159ac2158d85dcdc"
     },
     ".skw/src/SKILL.skw.json": {

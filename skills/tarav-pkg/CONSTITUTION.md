@@ -5,16 +5,6 @@
 473c89a0 = codex:01a1176b-f14c-7fd0-a97c-b22279c3f8c8 @473c89a00e2367fb827193af74a6375c60a96b0be110f21df0aff49360ca972f
 -->
 
-[TODOS
-- This constitution is TOO diagram heavy. Its fine, but we most revisit it.
-- We should go back and find the chats where we discussed the constitution.
-And add breadcrumbs
-- The skw file of the constitution is a single block
-- lets at least split it by sections
-    - I mean, for avoiding this to happend on another files
-    - we might introduce a minimal block granularity on markdown files
-    - for instance, we can not have blocks encaptuling more than on l0 and l1 header sections
-]
 
 ## Preamble
 
@@ -40,7 +30,6 @@ Capture, including recording `User.Touched.Data`, annotation primitives, context
 <!-- tarav.breadcrumb 3d347443ec3e -->
 <!-- tarav.breadcrumb f8a6d1c8c52c -->
 
-[NOTE We need to expand this to add the harnessing part. ]
 
 ## Projects
 
@@ -141,10 +130,6 @@ Tarav data remains authoritative. Logistical extensions may index, cache, query,
 <!-- tarav.breadcrumb 287596d1a3ec -->
 
 ## Collaboration Loop
-[NOTE
-    Too specific for the constitution.
-    Consider delete/move.
-]
 
 Tarav is organized around a continuous collaboration loop:
 
@@ -163,24 +148,6 @@ user-agent collaboration
 ```
 
 ## Tarav.Archive
-[NOTE
-    This have happended to not be the case.
-    It is an aim... but it is not still there.
-    Again, what we are planing for Tarav is a set of workflows that provides an expectrum of capabilities.
-    The archive system will just be an evidence recolector system.
-    It will encaptulate that deam of tarav of progreive digestion.
-    We have the raw data, and we extract liter representation of it, so we can conserve it longer and cheaper.
-    WHICH, in turns, makes its references more stable.
-    I mean, we try to make the references robut not by forcing and dealing aroung immutability.
-    But with maintainable and recoverable systems.
-    For instance, the DOI system.
-    We issue an id, and the archive now have the freedom of maintaning the deeper links...
-    Including substitutes or a chain of representatives.
-    This way we can scale as necessary the detail chain.
-
-    Also, this is too specific for a CONSTITUTION.
-    Propuse move out.
-]
 
 The main responsibility of `Tarav.Archive` is to record `User.Touched.Data`.
 <!-- tarav.breadcrumb a8662815421f -->
@@ -230,9 +197,6 @@ Workflows may define specialized semantics and grounding requirements for the ma
 <!-- tarav.breadcrumb ad5919d18657 -->
 
 ## Contextualization
-[NOTE
-    Better generality, but we most revisit.
-]
 
 Tarav must provide extensible tooling and systems for selecting and presenting `Tarav.Diagram` content to collaborative user-agent sessions.
 
