@@ -12,13 +12,13 @@ The loading workflow should accept configuration that lets Types supply
 additional Record entry paths, such as project.json, alongside the idea of
 the loader's existing default entry files. The intended call uses a named
 configuration argument, illustrated as `load(path=path, profile=TaravProject)`.
-<!-- tarav.breadcrumb 2ee06ba02981e3b4a5d9ef347f004dc168617c8775f404999952d43ac3bffe2a -->
-<!-- tarav.breadcrumb d6d493895cd79692853153ec147e636a8e4a65b1d01c3bf6b0a1c5916c044316 -->
+<!-- tarav.breadcrumb 2ee06ba02981 -->
+<!-- tarav.breadcrumb d6d493895cd7 -->
 
 The user prefers named arguments generally, allowing at most one positional
 argument for the main subject. Loading configuration and existing features
 such as expected_type should remain distinct explicit options.
-<!-- tarav.breadcrumb 77b0512f51d5ffadb046210e5b3430ae7ed7fa09122693d5f6fe90da1a0ea0d2 -->
+<!-- tarav.breadcrumb 77b0512f51d5 -->
 
 ## Opt-in profile interface
 
@@ -26,7 +26,7 @@ LoadingProfile should be an interface Types can implement when they want to
 participate in configurable loading. It must not become a required part of
 all TaravObjects. The user agreed to keep the profile model simple rather than
 infer additional constraints merely because a class supplies configuration.
-<!-- tarav.breadcrumb c6a8e7222e7a206d62d9b811beddab0f9bcd3633de71b07541e5f8a6c94d0c36 -->
+<!-- tarav.breadcrumb c6a8e7222e7a -->
 
 The [implementation design](../../../tarav-py/notes/live/820-loading-profiles-impl-req.md)
 first proposed ordered entry paths as the contract, keeping trusted Type
@@ -46,4 +46,4 @@ order and DirectoryRecord guard. TaravProject opts in for
 `.tarav/project.json` and `project.json`, with correct root handling for both.
 The implementation and verification are recorded in the
 [820 note](../../../tarav-py/notes/live/820-loading-profiles-impl-req.md).
-<!-- tarav.breadcrumb ceae87674f0af9ca710d96f1d842188b636e89484a768b953d52278bbf65987d -->
+<!-- tarav.breadcrumb ceae87674f0a -->

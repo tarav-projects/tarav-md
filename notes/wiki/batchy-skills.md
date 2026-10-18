@@ -11,8 +11,8 @@ surface. The convention organizes invocation and configuration; it does not
 require an executable command-line parser or replace agent judgment. This note
 captures the Batchy design recovered from the former tarav-pkg index at the
 user's request. It does not automatically reinstate every historical rule.
-<!-- tarav.breadcrumb 6fc642ec8ed29245a5039fcefed141cbb5905b7860c30e2806e45c6bc12aa2cb -->
-<!-- tarav.breadcrumb 1e2ba88d448e9290297de095d0b1448f859793678d8d29371505264d775a4acd -->
+<!-- tarav.breadcrumb 6fc642ec8ed2 -->
+<!-- tarav.breadcrumb 1e2ba88d448e -->
 
 ## Configuration and routing
 
@@ -30,7 +30,7 @@ contributions compose independently of flag order; incompatible explicit
 contributions remain unresolved unless their composition is defined. Missing
 required data is not permission to guess. Natural-language invocation remains
 valid where the route permits semantic discovery.
-<!-- tarav.breadcrumb eb2194eeba241dd76daffe2019c43e3b71407e27efb68b7d8b86f56da7db29bb -->
+<!-- tarav.breadcrumb eb2194eeba24 -->
 
 For example, the current Hugentics call combines three dimensions:
 
@@ -47,7 +47,7 @@ Only the modules needed by that run should be loaded. The current
 [Wiki implementation module](../../skills/tarav-hugentics/references/impl/wiki.md)
 define the maintained behavior; the historical index explains the broader
 compositional design.
-<!-- tarav.breadcrumb dca72b7e31a3ee968f21fa9d0bfdd68d8d9ca3d7fd55db3e9bf57d97d5b3815a -->
+<!-- tarav.breadcrumb dca72b7e31a3 -->
 
 ## Making interpretation visible
 
@@ -58,7 +58,7 @@ inference. The banner informs the user; it is not an approval checkpoint.
 Routing can be tested using explicit calls or conversational situations and
 their expected destinations. Optional arguments, modules, and sections are
 introduced when useful, rather than required as empty scaffolding.
-<!-- tarav.breadcrumb 1a5863b5caaaea8eace8e418b586c779f4d23f346581c322d64e5c66dc1c524c -->
+<!-- tarav.breadcrumb 1a5863b5caaa -->
 
 ## Historical evidence
 
@@ -80,8 +80,8 @@ the useful design in the live Wiki; original Attic content remains historical
 evidence. Its old inline grounding labels were not independently revalidated
 during this inspection. The Breadcrumbs here link the current investigation
 and capture request, not blanket user approval of every historical convention.
-<!-- tarav.breadcrumb 12e6d114b6490c986fe963afded152baf1521cc2735bc1c18f60505727aff741 -->
-<!-- tarav.breadcrumb 8f1df811eab9a864a8077c2c019185ec06f7da5c06e1711027fbbfdf1458e18d -->
+<!-- tarav.breadcrumb 12e6d114b649 -->
+<!-- tarav.breadcrumb 8f1df811eab9 -->
 
 ## Batchy as a Skillware extension
 
@@ -91,13 +91,13 @@ live under `tarav.l<X>.skw.skills`; Batchy-specific components belong in
 `tarav.l<X>.batchy_skills`, not `skw.skills.batchy_skills`. Routing tables are
 motivating components of this extension; their exact schema remains open.
 This is a proposed organization, not an implemented package tree.
-<!-- tarav.breadcrumb 097b87839c87a6861b1b9ff8d645f9a7468bdba0805dc74a455d0af7a575bb72 -->
+<!-- tarav.breadcrumb 097b87839c87 -->
 
 The foundation is [typed SKW blocks with retained output](skillware.md#typed-surface-components-and-retained-output).
 `SkillLink` is a skill component directing an agent to a target, rather than a
 generic build dependency. Components may produce their output with deterministic
 templates instead of agents; every block still retains its current `output`
 in `.skw.json`. Batchy can build its own typed components on this foundation.
-<!-- tarav.breadcrumb 78263cadbf97ce3cbbee83a24f97c2559d0be4aac7d26ac154ce19db6ea1c9dd -->
-<!-- tarav.breadcrumb 449b55b20c95867f90d5e196e5da2fc2eff9a838bc31728cc7c27b8fb24111f8 -->
-<!-- tarav.breadcrumb 1a2904c300ffe03e2d5e7343a06aed44bde230ac76accd09bbde725a74f0ac62 -->
+<!-- tarav.breadcrumb 78263cadbf97 -->
+<!-- tarav.breadcrumb 449b55b20c95 -->
+<!-- tarav.breadcrumb 1a2904c300ff -->

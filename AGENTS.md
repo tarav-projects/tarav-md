@@ -23,7 +23,7 @@ This folder is a `Tarav.Project.Docs` child of the Taravangian root and uses
 the root's environment. `tarav check --project` runs each skill package's
 checks and reports wiki Notes that still carry provisional `tarav.context`
 markers.
-<!-- tarav.breadcrumb fbe2e8b2adea823af71ceb7d595003935b185f86883566abb71bacaac8c3be2d -->
+<!-- tarav.breadcrumb fbe2e8b2adea -->
 
 ## Surface Rules
 
@@ -32,7 +32,7 @@ markers.
 - Chatlas design lives here too: its notes in `notes/chatlas/` and its skills
   in `skills/` (`tarav-chatlas-pkg`, `tarav-chatlas-my-session-id`,
   `chatlas-*`). They were the repository `tarav-chatlas-md` until 2026-10-16.
-  <!-- tarav.breadcrumb a70b9bb432f72ebb4e26fbb7aabaa063ea810561099f4a0a1b226576c8224bad -->
+  <!-- tarav.breadcrumb a70b9bb432f7 -->
 - `notes/index/` and existing `notes/live/` material predate the reboot. Treat
   them as non-authoritative evidence until material is deliberately promoted
   into the fresh package.

@@ -14,7 +14,7 @@ running agents. Chatlas is more an archive, concerned with full transcripts,
 than the provider of a model of a running agent. Tarav also holds earlier code
 that configures and runs agents. "Give me the current session" should belong
 to a workflow, not only to a command.
-<!-- tarav.breadcrumb ba90f9a9cad6d9b61e4282de2f9a096a000eb4d2f66745a460f5120455ff237f -->
+<!-- tarav.breadcrumb ba90f9a9cad6 -->
 
 ## Direction
 
@@ -25,15 +25,15 @@ submodules per provider. `project.agents` is another workflow, a sub-workflow
 of the Project. The existing code is old but working: it is organized, made an
 explicit workflow, given clear integration points with the rest of Tarav and
 brought to the current philosophy. It is not removed.
-<!-- tarav.breadcrumb 1baabf25137502a4f0fb33db6a52c643db2378b98abf7177ae1110486ca37f98 -->
+<!-- tarav.breadcrumb 1baabf251375 -->
 
 Supported providers are reduced to Claude, Codex and Copilot. The others are
 noise at the moment and remain in Git history.
-<!-- tarav.breadcrumb dc33392987c3d1c59cb9395c7ba251605f58aa4edcf6d3adccf31cfa5f5e5577 -->
+<!-- tarav.breadcrumb dc33392987c3 -->
 
 The [Operator Context](operator-context.md) is its own workflow, not a part of
 Agents.
-<!-- tarav.breadcrumb 2dd774324718bcfd1d632bbc9b0de3ec3b9a20259b6c62f3e852c7594acfffb1 -->
+<!-- tarav.breadcrumb 2dd774324718 -->
 
 ## Current code (observed 2026-10-09)
 
@@ -54,7 +54,7 @@ Request 886 (2026-10-09) removed `gemini_cli`, `opencode`, `openclaw` and
 `pi` from the code; `claude_code`, `codex` and `copilot_cli` remain. Profiles
 of removed providers left in a user's `~/.tarav/profiles/` now make
 `tarav agent` commands fail until they are deleted.
-<!-- tarav.breadcrumb cf8f0d05dcc94f619dd9cdfe22c49028b44c78b609a08d255a50ea858b9eb054 -->
+<!-- tarav.breadcrumb cf8f0d05dcc9 -->
 
 Agent proposals, not decided: express what a provider can do by subtyping
 (a provider that can report its current session inherits that capability);
@@ -66,7 +66,7 @@ inventory of the modules before reorganizing.
 Made for request 887, after request 886, by reading the code: 78 Python
 files, about 18,800 lines. "Used by" counts imports. Nothing here was changed
 by the inventory.
-<!-- tarav.breadcrumb 72b03a8b9f6e6d5e5e60b230a6d2f0975b5c203998a6c9d9e671ea0bb3f20491 -->
+<!-- tarav.breadcrumb 72b03a8b9f6e -->
 
 | Area | Modules | Lines | What it does | Used outside the package |
 | --- | --- | --- | --- | --- |
@@ -109,6 +109,6 @@ not be established that its harness exposes a session ID. Chatlas commands ask
 this entry point and behave as before. Source:
 `tarav-py/src/tarav/l1/agent/{identity,workflow,current_session}.py`,
 `tarav-py/tests/test_agents_workflow.py`.
-<!-- tarav.breadcrumb fc19bfd0877a9d858e267a9842afddb59a6e5d91c15fd611ae623442520440f4 -->
-<!-- tarav.breadcrumb 78fb91ee589dfc8c8aec20682073e14039fbba9167ed5a87ac645fe73f23aa8c -->
+<!-- tarav.breadcrumb fc19bfd0877a -->
+<!-- tarav.breadcrumb 78fb91ee589d -->
 

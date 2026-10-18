@@ -10,8 +10,8 @@ Kernel.Writing is a discipline for expressing a topic through distinct,
 focused statements. It makes ideas easier to understand, discuss and revise
 by separating their fundamental dimensions. Its subject is the organization
 of thought in writing, independently of the tools or medium used.
-<!-- tarav.breadcrumb 6ebdb0860129a15e12d443cc4c4db63003418eee117bff97e4f7c4c6bbade632 -->
-<!-- tarav.breadcrumb a2cb41fcb725b026c96dbd623dbbd2c1cb3404bd283961025b0eff6cd0817d0b -->
+<!-- tarav.breadcrumb 6ebdb0860129 -->
+<!-- tarav.breadcrumb a2cb41fcb725 -->
 
 ## One topic per block
 
@@ -35,7 +35,7 @@ Atomicity does not mean using the fewest possible words. It means avoiding
 several independently useful claims welded into one statement. Conditions,
 qualifications and exceptions that determine a claim's meaning belong with
 that claim.
-<!-- tarav.breadcrumb 684db16c282738e825ad9ec7e47425ecd32489e6f54e7eb0ad824b6a4a078cd1 -->
+<!-- tarav.breadcrumb 684db16c2827 -->
 
 ## Distinct dimensions, minimal redundancy
 
@@ -47,7 +47,7 @@ The purpose is independent revision. Ideally, one statement can be amended,
 removed or challenged without rewriting its neighbors. This is an aim, not
 a guarantee: related ideas can have real dependencies, and changing one may
 require reconsidering others.
-<!-- tarav.breadcrumb c18b807df4c0d3f0e8b1547798699d244d4c5292f96c7a901cce270c9bbaef27 -->
+<!-- tarav.breadcrumb c18b807df4c0 -->
 
 ## Shared context without unnecessary repetition
 
@@ -57,7 +57,7 @@ that context on every line would obscure the distinct contribution of each.
 
 Independence therefore means separable contributions, not context-free prose.
 The reader should still be able to tell what each statement refers to.
-<!-- tarav.breadcrumb e3f4904ee841a7899ccbd3068ce919efe123fbb48de7d895bea1d49389254906 -->
+<!-- tarav.breadcrumb e3f4904ee841 -->
 
 ## Coverage before compression
 
@@ -121,7 +121,7 @@ Separating statements can reveal a hidden condition, a repeated argument,
 an unresolved disagreement or a topic that has not yet been clearly named.
 It can be used while a discussion develops or when organizing existing
 material afterward.
-<!-- tarav.breadcrumb 6d6c74f1cd2edd4f9ce279aebb16d46571a15e456a4dd0a06c1a148044068933 -->
+<!-- tarav.breadcrumb 6d6c74f1cd2e -->
 
 A practical authoring sequence is:
 

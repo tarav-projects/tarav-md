@@ -10,7 +10,7 @@ A commit hash names exact bytes. Rewriting history changes it: removing the
 leaked Chatlas exports from tarav-md's history on 2026-10-16 changed 488
 commit hashes and left notes in tarav-py, tarav-md and tarav-chatlas-md
 citing commits that no longer exist. The User decided this must be solved.
-<!-- tarav.breadcrumb 3e4b3f116028774aba744b1cb36ea495a9871d61b314f088db12207b28fd35bf -->
+<!-- tarav.breadcrumb 3e4b3f116028 -->
 
 ## The idea: Tarav-controlled markers in the repository
 
@@ -20,29 +20,29 @@ over time. When history changes, the commit where a given hash first
 appears can still be found, so the file is a Tarav-controlled mapping
 between commits and hashes; anyone who wants to track a commit adds a hash
 there and commits it.
-<!-- tarav.breadcrumb 3c24291dd4309b7cb94982af6c32590b673418052e810e1bcb0c2531ce77d682 -->
+<!-- tarav.breadcrumb 3c24291dd430 -->
 
 Gerrit's `Change-Id` is the proven precedent: a `commit-msg` hook adds a
 random ID trailer that survives amend and rebase, and the review server
 groups versions of one change by it.
-<!-- tarav.breadcrumb cb578562831150e75a9d9128cad14f631f453a1eecdda993bdf9d6758dcd1429 -->
+<!-- tarav.breadcrumb cb5785628311 -->
 
 ## Decisions
 
 - Tarav is an external harness, so a Project can require Tarav Git hooks;
   the hooks call the `tarav` CLI with the context Git gives and Tarav
   handles the rest internally.
-  <!-- tarav.breadcrumb 7d9e072bf99ca395fdd560575303d1994f28a800e19ea5d8e3285e21e402896d -->
+  <!-- tarav.breadcrumb 7d9e072bf99c -->
 - Both carriers: the ID is a commit trailer and a line in a tracked file.
   Hooks are not a guarantee, and that is accepted: more systems are added
   over time to make references reliable, and a tarav-change is one more
   kind of data a reference can carry. A missing `tarav` warns and lets the
   commit through. The hooks belong to the Project configuration, with
   checks that maintain them. The trailer key is lowercase `tarav-change`.
-  <!-- tarav.breadcrumb 7351fa761d9c563d1491c27cfdf275bf9dfbe50e870f27c7a453310b282362f5 -->
+  <!-- tarav.breadcrumb 7351fa761d9c -->
 - Two levels: a Git hook system for Projects, then tarav-change as its
   first application.
-  <!-- tarav.breadcrumb ca1119beb47289e89f5a23375a121a4b004028d59bf8e9afc7b08cad379dad62 -->
+  <!-- tarav.breadcrumb ca1119beb472 -->
 
 ## As built — tarav-py request 915
 
@@ -80,30 +80,30 @@ The file is why amend is acceptable: the change-id file must be
 append-only, so that surgery cutting history has to cut the file itself,
 which survives many modes of change. The User first proposed a global
 registry under `~/Documents/tarav` recording change-ids and their commits.
-<!-- tarav.breadcrumb 23614856bc9e34aefed535b557ff798afa57c449188b197db135e1efefcfa41f -->
+<!-- tarav.breadcrumb 23614856bc9e -->
 
 The User then weighed it: a registry knows which change-id matched which
 commit, but cannot find the new commit once the repository's ID was cut or
 amended; the file's strength is that it sits next to the edits it tracks.
-<!-- tarav.breadcrumb 0f0e6d03354b76e6d8b9e491985786c9b75da78c400577785bb0c5d0ea37eef6 -->
+<!-- tarav.breadcrumb 0f0e6d03354b -->
 
 The bar is best effort, not the last 5% of cases: whoever rewrites Git owns
 the consequences, and references carry other hints about their subject.
 Knowing when a loss happened is still worth having.
-<!-- tarav.breadcrumb e681af66c0d2dcbc78541533176c571942f1752aeee33f8b9fef50ed9268b43c -->
+<!-- tarav.breadcrumb e681af66c0d2 -->
 
 The registry's role became a witness: it tracks the change-id file outside
 the repository and tests that it stays append-only, and the hook stops a
 commit that broke it, with an overrule (an environment variable) as a
 speedbump.
-<!-- tarav.breadcrumb f93b77414505f524da3a85adc4335c70b3db49aa82c01efbf0f96bae88d2a1c9 -->
+<!-- tarav.breadcrumb f93b77414505 -->
 
 Every stop or overrule is recorded, sensed by the hook and handed to the
 Project as an Action. The hook contract was relaxed from "never blocks" to
 "stops, with an overrule flag", to give an agent the opportunity to respond
 and rethink what it is doing. Witness entries are Records per Project and
 branch under `~/Documents/tarav/git-changes/`, machine-local.
-<!-- tarav.breadcrumb 046e6ae8eb33578632a928d855e80fdaa75e9f0501fc5633928fa4de3dd2d963 -->
+<!-- tarav.breadcrumb 046e6ae8eb33 -->
 
 ### As built — tarav-py request 916
 

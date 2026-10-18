@@ -20,7 +20,7 @@ separated from decision. Every recorded decision is re-evaluated, at
 different priorities: a decided problem returns after about a month for a
 second opinion, and each reapproval extends the interval (say three months)
 up to a maximum of about a year.
-<!-- tarav.breadcrumb df6407488f7898ed3afffdfad645eaa0d41b72a8c9ce69965b6af0f0b8790734 -->
+<!-- tarav.breadcrumb df6407488f78 -->
 
 ## Blessing is one kind of Decision
 
@@ -31,7 +31,7 @@ encapsulate an action and capture it as a decision so it can be traced. Such a
 decision captures its own context, for example Git commits and the diffs they
 produce. Like the blessing implementation, a decision is assertable and can be
 hooked into automatic scoring.
-<!-- tarav.breadcrumb 3db06a8d811b205e62d1de8e5920a8d344dfa1b5b755efb2f8eb95b75a2c447b -->
+<!-- tarav.breadcrumb 3db06a8d811b -->
 
 ```text
 Decision: an intervention in the system, recorded and asserted over time
@@ -48,14 +48,14 @@ blessing instead recognizes a live POI and suppresses it. A decision that
 modified the data and caused a POI does not suppress that POI. Decisions with
 no live POI linked to them need their own priority policy, to be worked out
 later.
-<!-- tarav.breadcrumb faf4c55e9cf4c30f51a898d0d87353b1d903542f1db4c1d4286e8b9cedef3fe6 -->
+<!-- tarav.breadcrumb faf4c55e9cf4 -->
 
 Decisions are typed. Because the harness is Python code, each situation can
 have its own type, handled differently by the scheduling system; if some
 decisions show up too early and do not matter, more workflows can modify the
 order. The present work defines the main scaffolding: the main decision
 vectors.
-<!-- tarav.breadcrumb 2cbd2b6de9da249f512bb928f0ea3a34dc7797d311be799107fa5d8bf649c9be -->
+<!-- tarav.breadcrumb 2cbd2b6de9da -->
 
 ## Decisions are not scores
 
@@ -63,12 +63,12 @@ Scoring is the automatic, agent-evaluated path that assigns a number to each
 assertion. User intervention is treated like agent output: the user can be
 wrong, as an agent generating tokens can. Users are not scoring at the moment;
 a scoring system with users as judges is a different conversation.
-<!-- tarav.breadcrumb abe1fbe071902a8f5157441381ef3cd7a20402b7c8effbe3c855e03b8c6435e0 -->
+<!-- tarav.breadcrumb abe1fbe07190 -->
 
 The system that orders reassessment and spends resources (user attention,
 agent tokens) may still give user decisions more authority than agent
 decisions. That split should be quantitative.
-<!-- tarav.breadcrumb 07d6fc4825d8f3d46ae57ee4d3aec1c01f353f70106fc3535277db75244bfc42 -->
+<!-- tarav.breadcrumb 07d6fc4825d8 -->
 
 ## Agent suggestions, not yet decided
 
@@ -93,8 +93,8 @@ not the broader claim that every Decision is already re-evaluated over time.
 See `tarav-py/src/tarav/l1/decisions/`,
 `tarav-py/src/tarav/l1/blessings/store.py`, and the tests in
 `tarav-py/tests/decisions/`.
-<!-- tarav.breadcrumb 811f8c971a059772c3d3e8f66d45841c393ee5c39f29a4daec25b00abff2aa03 -->
-<!-- tarav.breadcrumb 76922a6e4635f4259582009a60a23f8fd0bdaabc78e6142fb62da22eb731f43f -->
+<!-- tarav.breadcrumb 811f8c971a05 -->
+<!-- tarav.breadcrumb 76922a6e4635 -->
 
 <!-- tarav.sessions
 5a029cbf = claude-code:8c55cc60-f28a-439f-a6a0-0521567e600e @5a029cbf49a299c9709013b8ccb3fc517b2fb56fed373d3da819b6ea842afa2f
@@ -106,8 +106,8 @@ Order and Reported action were discussed as hypothetical kinds of decision and
 were never explicitly designed, so they do not belong yet in a workflow as core
 as Decisions. They are to be deleted; nothing is implemented without a clear
 need or design, and other Decision types can be defined later.
-<!-- tarav.breadcrumb 664a8d75e709b365314195f2a394c1f55ea8846932a17947c0a64b7094260fe6 -->
-<!-- tarav.breadcrumb c2a672f617ded053ddab709735d8efaeacea7b1fdef75c6957ec0b2fd74f587d -->
+<!-- tarav.breadcrumb 664a8d75e709 -->
+<!-- tarav.breadcrumb c2a672f617de -->
 
 A Decision is a point in the ontology saying that the object exists. It is not
 forced to have storage, and the Decisions workflow does not handle storage.
@@ -115,8 +115,8 @@ Where Decisions are kept is still to be designed and may depend on the workflow
 or the project. One store for all the Decisions of a project, linked to the
 Project workflow, is the first arrangement worth establishing; others can
 follow.
-<!-- tarav.breadcrumb ad60977b9d32c9d2398fafae6430ea5fc822f31c2fd83c82c3c3b62f46a150a2 -->
-<!-- tarav.breadcrumb d8976147f1ace06e6093b1049f4f1a351f9167a4ca3d96ce329fa6ae07dc301d -->
+<!-- tarav.breadcrumb ad60977b9d32 -->
+<!-- tarav.breadcrumb d8976147f1ac -->
 
 Implemented in request 856: both types are removed, `Decision` prescribes no
 concrete subtype, and `DecisionStore` holds only the types its caller
@@ -128,12 +128,12 @@ registers. The earlier paragraphs describing the two types are history. See
 Each Project has a storage solution for its Decisions, and everything that is
 a subtype of Decision has this place. Workflows may keep theirs elsewhere, but
 what is tracked as the Project's decisions is what is put in this store.
-<!-- tarav.breadcrumb 02351e02102a84c8d98d0dc14b907405dc4486094e4f349064e3870b87bdfa56 -->
+<!-- tarav.breadcrumb 02351e02102a -->
 
 Blessings attached to a Project go there by default. The types differ and the
 location is shared; a general filter by Type, subtypes included, serves them
 all.
-<!-- tarav.breadcrumb c1f0261c96fb59b2b8d47a8a2916af700b9d6d94fa6f572bcd34294280f850d7 -->
+<!-- tarav.breadcrumb c1f0261c96fb -->
 
 Implementation: `Project.decisions()` opens `ProjectDecisions`
 (`tarav-py/src/tarav/l2/project/decisions.py`) over `.tarav/decisions/`, one

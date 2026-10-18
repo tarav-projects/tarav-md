@@ -4,27 +4,27 @@
   "documents": {
     ".skw/src/CONSTITUTION.skw.json": {
       "blocks": {},
-      "source_hash": "ceb580621038cd232682c1c3eff2f5e10bde15187dd5b4c4af414c7190e8d5ab",
-      "product_hash": "9893a19c4268f6a718103fdf047de0adbdfa97a18fa187055ea4cd31ecb3aee6",
-      "loading_hash": "f745dbd884042d1967701d9575924d04e5453ca9c3a7d5e905c222f502ee7a96"
+      "source_hash": "038279b45a76cb3ac8b5ea0e458ae312a1a072704926940fcfc41bc0a2e57c8d",
+      "product_hash": "cd37373ba02daa5294fbf521a70c37cbc76cd12d2bef251c0a60006cae529968",
+      "loading_hash": "93af5bb1326528a427eb0ebbb09b56fa16e553415111adf3159ac2158d85dcdc"
     },
     ".skw/src/SKILL.skw.json": {
       "blocks": {},
-      "source_hash": "6f7fee2ec10c4c66645e2cb8fb29faefce59db75287b74e36c47d250bbf44b85",
-      "product_hash": "e6093ef8799a3c399c6c8ad62c69646874dc21d40d18a5c5befb6c995efd0f42",
-      "loading_hash": "f745dbd884042d1967701d9575924d04e5453ca9c3a7d5e905c222f502ee7a96"
+      "source_hash": "5a6496bd1bfca823ab0561db24e803995d432afdd1a5c4e73be2607d52860f80",
+      "product_hash": "f05dff3afe5f15dbc712ee231d44ba1d57b47d5f1bfbc05afd30dd16c65f549e",
+      "loading_hash": "93af5bb1326528a427eb0ebbb09b56fa16e553415111adf3159ac2158d85dcdc"
     },
     ".skw/src/USAGE-HISTORIES.skw.json": {
       "blocks": {},
       "source_hash": "9e0514de629f83d4145aa5f47eee886bcbcba28a4ef36d1647cb8a12c3aaaeb8",
       "product_hash": "0444f0c515b4bcd4337317858099bc102669483f34b4f464de6a0bd447e3567d",
-      "loading_hash": "f745dbd884042d1967701d9575924d04e5453ca9c3a7d5e905c222f502ee7a96"
+      "loading_hash": "93af5bb1326528a427eb0ebbb09b56fa16e553415111adf3159ac2158d85dcdc"
     },
     ".skw/src/references/attic.skw.json": {
       "blocks": {},
       "source_hash": "a736a959e86347e87c9306bae876d7ca984ef565401d186c22e40dcc5831bcce",
       "product_hash": "316435fe24add11b00159da328d9a64b0985e4a4bef90161faa50e15789f8f15",
-      "loading_hash": "f745dbd884042d1967701d9575924d04e5453ca9c3a7d5e905c222f502ee7a96"
+      "loading_hash": "93af5bb1326528a427eb0ebbb09b56fa16e553415111adf3159ac2158d85dcdc"
     },
     ".skw/src/references/capture.skw.json": {
       "blocks": {},
@@ -35,67 +35,67 @@
       "blocks": {},
       "source_hash": "7eafa3288186ac10cd4b24f3215dfba8ad29e6d1199af4368bd6ab4c9eb1fec6",
       "product_hash": "02acf58adc05703ae716fba4de0c356394399a18a84ef4801ce9e02b8b36eb79",
-      "loading_hash": "f745dbd884042d1967701d9575924d04e5453ca9c3a7d5e905c222f502ee7a96"
+      "loading_hash": "93af5bb1326528a427eb0ebbb09b56fa16e553415111adf3159ac2158d85dcdc"
     },
     ".skw/src/references/context-poi-and-impact-map-design-digest.skw.json": {
       "blocks": {},
       "source_hash": "b065ed2941707c3a579cc0c0bea0166ca49fa12393e899bf1a4dd818b0adb618",
       "product_hash": "b3a5160f1e024f9f19b359b52d6b21e41d3b2c6738a84f196d782af1aa00dd00",
-      "loading_hash": "f745dbd884042d1967701d9575924d04e5453ca9c3a7d5e905c222f502ee7a96"
+      "loading_hash": "93af5bb1326528a427eb0ebbb09b56fa16e553415111adf3159ac2158d85dcdc"
     },
     ".skw/src/references/gates-and-deferred-review-design-digest.skw.json": {
       "blocks": {},
       "source_hash": "04f8b1d26523c5905d47ae64b790ff0d40ca77eb6e6820f0064e8e914aededcd",
       "product_hash": "42c27dd32280b3e96ba3011fc19e7a975e0f670fb09f94df79cd36310253900f",
-      "loading_hash": "f745dbd884042d1967701d9575924d04e5453ca9c3a7d5e905c222f502ee7a96"
+      "loading_hash": "93af5bb1326528a427eb0ebbb09b56fa16e553415111adf3159ac2158d85dcdc"
     },
     ".skw/src/references/legacy-skill-mine.skw.json": {
       "blocks": {},
       "source_hash": "27f5d468f1660a25a156154500234cfdc3b434a9c062955d1f954f88b90b4b33",
       "product_hash": "c5d9c58a4d1869f6340349a4a35d226bababce06bc811c261c951e3ac03a4f82",
-      "loading_hash": "f745dbd884042d1967701d9575924d04e5453ca9c3a7d5e905c222f502ee7a96"
+      "loading_hash": "93af5bb1326528a427eb0ebbb09b56fa16e553415111adf3159ac2158d85dcdc"
     },
     ".skw/src/references/review.skw.json": {
       "blocks": {},
       "source_hash": "d98edd954327539a5190d33e27d9a3bc84aefe66174c6af51d4fbdd197c5d452",
       "product_hash": "c4968419c5831d0fdd1c5e4f1da5cddb20a61c2d438ce6a7c2cc3b5545679c5f",
-      "loading_hash": "f745dbd884042d1967701d9575924d04e5453ca9c3a7d5e905c222f502ee7a96"
+      "loading_hash": "93af5bb1326528a427eb0ebbb09b56fa16e553415111adf3159ac2158d85dcdc"
     },
     ".skw/src/tarav-archive.skw.json": {
       "blocks": {},
       "source_hash": "420ba7a0376b9a53f3cb38f6a83832910bb17209e1039c12a695b77ede6aedab",
       "product_hash": "d1e68aa1ff66ef67f4a138ee328070d728c3038690fc3d9d34b68a02508bd172",
-      "loading_hash": "f745dbd884042d1967701d9575924d04e5453ca9c3a7d5e905c222f502ee7a96"
+      "loading_hash": "93af5bb1326528a427eb0ebbb09b56fa16e553415111adf3159ac2158d85dcdc"
     },
     ".skw/src/tarav-bloberia.skw.json": {
       "blocks": {},
       "source_hash": "22f533b3f90b9d5eea96bdffaf14cd5382cfcedaf43cea5207c191e07f1026c4",
       "product_hash": "019cd742527ff0784d61c93f8dd896786032c11dcee445779b445fa52a140823",
-      "loading_hash": "f745dbd884042d1967701d9575924d04e5453ca9c3a7d5e905c222f502ee7a96"
+      "loading_hash": "93af5bb1326528a427eb0ebbb09b56fa16e553415111adf3159ac2158d85dcdc"
     },
     ".skw/src/tarav-diagram.skw.json": {
       "blocks": {},
       "source_hash": "97c7f2ae1dda5a33ab7e474d3597cc82c553e010300bc96ab4e2eba9b614c1f2",
       "product_hash": "02a934b8824bda2bc45477fb18488013f2e5b80ba53f80698cb0978fa9f80f4e",
-      "loading_hash": "f745dbd884042d1967701d9575924d04e5453ca9c3a7d5e905c222f502ee7a96"
+      "loading_hash": "93af5bb1326528a427eb0ebbb09b56fa16e553415111adf3159ac2158d85dcdc"
     },
     ".skw/src/tarav-semantic-calculus.skw.json": {
       "blocks": {},
       "source_hash": "0cf924a799cce6b9d561be65ab1c6c3b6206f7be7e5097a4fd26b6aca8c94fa5",
       "product_hash": "2606b226deb66b3bed1b894b683375749e42cc0c8abe3a640ff29d9106a4e3d6",
-      "loading_hash": "f745dbd884042d1967701d9575924d04e5453ca9c3a7d5e905c222f502ee7a96"
+      "loading_hash": "93af5bb1326528a427eb0ebbb09b56fa16e553415111adf3159ac2158d85dcdc"
     },
     ".skw/src/references/step-actions.skw.json": {
       "blocks": {},
-      "source_hash": "04fce88c866fd1b3c50b46be5b4e91863897945818ed2d98927a17dbc2877471",
-      "product_hash": "806c814689a6607b4f41c32de1016ffb01fac8016fa5b4aa0c865cfca06fc017",
-      "loading_hash": "f745dbd884042d1967701d9575924d04e5453ca9c3a7d5e905c222f502ee7a96"
+      "source_hash": "8e10694e07fb25707ff56b5d8ea73ba50e77cf8245aa328b5911574776d5a291",
+      "product_hash": "7640d6c8f374e31f217afb9881816b1d1aaac116c48c53c69ef56e579c25fe49",
+      "loading_hash": "93af5bb1326528a427eb0ebbb09b56fa16e553415111adf3159ac2158d85dcdc"
     },
     ".skw/src/references/github.skw.json": {
       "blocks": {},
-      "source_hash": "3e0d85738f424cb59183dd802296a61032456fa5646b612113d2d8efd73c1dad",
-      "product_hash": "a30f2ba6ea942566418e6b67bae00f3912fafd068487056953acd1fadbfc1cc7",
-      "loading_hash": "f745dbd884042d1967701d9575924d04e5453ca9c3a7d5e905c222f502ee7a96"
+      "source_hash": "b046eef925a9469e17928d65708769bb01121d852043b569e05fd1388118e4f4",
+      "product_hash": "b3e1a5bfe4451cba2688d3a0c6c5c6c65c9d90c262deb7b7fc5978e5432afb5f",
+      "loading_hash": "93af5bb1326528a427eb0ebbb09b56fa16e553415111adf3159ac2158d85dcdc"
     }
   }
 }

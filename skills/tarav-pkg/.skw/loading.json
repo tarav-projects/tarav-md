@@ -176,16 +176,6 @@
       }
     },
     {
-      "id": "constitution.generation-context",
-      "reference": {
-        "type": "Tarav.Reference.StructuredFile",
-        "locator": {
-          "path": "src/CONSTITUTION.skw.json",
-          "pointer": "/blocks/17"
-        }
-      }
-    },
-    {
       "id": "skill.content",
       "reference": {
         "type": "Tarav.Reference.StructuredFile",
@@ -460,7 +450,7 @@
         "type": "Tarav.Reference.StructuredFile",
         "locator": {
           "path": "src/CONSTITUTION.skw.json",
-          "pointer": "/blocks/18"
+          "pointer": "/blocks/17"
         }
       }
     }

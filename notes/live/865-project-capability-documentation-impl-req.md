@@ -9,12 +9,12 @@
 Knowledge.Surface: wiki. Alignment.Mode: Interactive. Status: Complete. Phase: Develop (Execute).
 
 Update maintained Tarav Markdown documentation and the Hugentics skill's authored SKW source for the Project paths implemented by [Python Impl.Req 866](../../../tarav-py/notes/live/866-project-capability-paths-impl-req.md): `project.docs.wiki`, `project.models`, and `project.checks`.
-<!-- tarav.breadcrumb cf661731d7b38a2c9c8a5992b39d77852c4559888f4763e4dff6683334f5db05 -->
+<!-- tarav.breadcrumb cf661731d7b3 -->
 
 ## Design narrative
 
 The User selected semantic paths for Project documentation, models, and checks. `docs` groups documentation, `models` remains a bound capability, and `checks` is a shared provider namespace. Compiled skill Markdown is a product; its `.skw/src` JSON output is authoritative and must be recompiled after edits.
-<!-- tarav.breadcrumb 8a59581656342beec2cf8b1db817afb685b290622ed5d34597a7822b4b353eca -->
+<!-- tarav.breadcrumb 8a5958165634 -->
 
 ## Impl.Req.Wiki
 

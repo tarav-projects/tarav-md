@@ -9,8 +9,8 @@
 The Chatlas Normal Model aggregate is its own Tarav object. It can be
 materialized on demand and remain entirely derived and rebuildable; those
 storage mechanics do not transfer semantic ownership to a cache system.
-<!-- tarav.breadcrumb 673fdf452db8612d4555a729b348b896f66784591974b9745c104933cad7ac39 -->
-<!-- tarav.breadcrumb fc08b487e1d4ea8a9fc3a73fdc566cf5a14b4fc6da15ef8d2c96a57f8625113b -->
+<!-- tarav.breadcrumb 673fdf452db8 -->
+<!-- tarav.breadcrumb fc08b487e1d4 -->
 
 Its canonical serialization is a directory rooted at the Model identity:
 
@@ -27,8 +27,8 @@ normal-model/<identity>/
 metadata. The JSONL files serialize its typed semantic collections. The
 Normal Model module owns this shape, loading, validation, normalization, and
 materialization.
-<!-- tarav.breadcrumb 93f5c5c9538c9f4ba08b5973a1ea159266fbb4fa88acb1cf6e5e641dbc81cbd0 -->
-<!-- tarav.breadcrumb fa438431605ac80a062d8170db1976df17b288f73ceb99d5ab8c116cdb159ca5 -->
+<!-- tarav.breadcrumb 93f5c5c9538c -->
+<!-- tarav.breadcrumb fa438431605a -->
 
 ## Cache decoration
 
@@ -54,12 +54,12 @@ unowned auxiliary files. A missing or invalid `cache.json` makes freshness or
 reuse unavailable; it does not invalidate the Normal Model. Cache mechanics
 may stage the canonical representation, add `cache.json`, and atomically
 install the directory without becoming the representation's semantic owner.
-<!-- tarav.breadcrumb 923e021836acaca1072e4dd1bcf3a878e800dcd4935ccb48067aaf77c72546f1 -->
+<!-- tarav.breadcrumb 923e021836ac -->
 
 This arrangement keeps the Normal Model at the directory root. Cache state is
 an optional operational attachment rather than a wrapper object or semantic
 subtype.
-<!-- tarav.breadcrumb 07d513308f3e4d5a2c6de4bdfce58227ccdcca58f6d83a50bd36951dd79bc521 -->
+<!-- tarav.breadcrumb 07d513308f3e -->
 
 ## Session and representation navigation
 
@@ -70,14 +70,14 @@ subtype.
 ChatSession represents the session separately from its retained representations.
 The selected navigation direction is Chatlas → ChatSession → Model → Turn,
 with Messages and supporting Events available through deeper relationships.
-<!-- tarav.breadcrumb 79ee770daccaa67154ee53f94ad3db92dab6426db90d44715b82aa9be3b80b22 -->
+<!-- tarav.breadcrumb 79ee770dacca -->
 
 The user accepted the proposed shape `sessions.get(session_id).open()` followed
 by `session.model()`. The first implementation slice introduces ChatSession and
 its connection to the existing Normal Model; Turn/Message/Event navigation can
 follow progressively without redesigning their retained formats. This remains
 a design, coordinated in [823](../../../tarav-py/notes/live/823-chat-session-model-navigation-impl-req.md).
-<!-- tarav.breadcrumb 124748b606f82ba15e372082a04f9b3ab93f187629267b2d8c98c623707eef29 -->
+<!-- tarav.breadcrumb 124748b606f8 -->
 
 ## Session navigation implementation — 823
 
@@ -97,4 +97,4 @@ persisting a depot path. The [Session tests](../../../tarav-py/tests/chatlas_nor
 verify read-only navigation, Record dispatch, root isolation, real normalization,
 cache reuse, and explicit availability errors. Deeper collection navigation is
 still follow-up work; this implementation advances the earlier design status.
-<!-- tarav.breadcrumb ef7ede98c40e3abe1826256f8ec8da9ab5cd6fec7217950f8a8e0386d5a0699d -->
+<!-- tarav.breadcrumb ef7ede98c40e -->

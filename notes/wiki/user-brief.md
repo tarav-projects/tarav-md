@@ -11,13 +11,13 @@ partial. When an Agent surfaces a POI or reports a state, it tends to speak in
 situation-specific detail without the context needed to follow it. The User
 needs a way to ask for an explanation from first principles with sufficient
 context.
-<!-- tarav.breadcrumb 39c0715942a141b8df200345a99975ffc45d09a05da7019ad2e39f048fb93976 -->
+<!-- tarav.breadcrumb 39c0715942a1 -->
 
 Sufficient context means the Agent links what it is talking about to actual
 conversations the User has had. It need not surface the chats themselves;
 following Breadcrumbs is enough. The link brings the User naturally to the
 problem and the point. The presentation should be economical in characters.
-<!-- tarav.breadcrumb ede9b7f588c704769956f38c253acbe86b832daf79749fec228d55274fb698c5 -->
+<!-- tarav.breadcrumb ede9b7f588c7 -->
 
 ## Relation to grounding
 
@@ -25,7 +25,7 @@ Agent proposal, accepted by the User: grounding (`--ground`) builds context
 for the Agent; User Brief builds context for the User. It reuses the same
 Breadcrumb and Chatlas lookups in the other direction, so it lives as a
 module of `tarav-hugentics` and not as a separate skill.
-<!-- tarav.breadcrumb a2a891b87939fc559915015f084be943ff0ce31838e709e3e62b0a89f28d9aae -->
+<!-- tarav.breadcrumb a2a891b87939 -->
 
 ## Workflow
 
@@ -39,25 +39,25 @@ Agent proposal, accepted by the User without changes:
 4. Present in a fixed order: what the User already knows, what changed since,
    the point, and what is being asked of the User.
 5. Keep a character budget and offer details on request.
-<!-- tarav.breadcrumb 0a16696abdd3e76d3e3b7a0bdf15a68f9dd99c8c44126185981db2ad225de661 -->
+<!-- tarav.breadcrumb 0a16696abdd3 -->
 
 ## Name
 
 The User named the route `--user-brief` to emphasize that the briefing is
 directed to the User. `--brief` is its shortcut.
-<!-- tarav.breadcrumb de517236e5848e289ea5b04c7b1e0ba278fef216f1754bcc9db7078f6eae82f4 -->
+<!-- tarav.breadcrumb de517236e584 -->
 
 ## Implementation
 
 `skills/tarav-hugentics/references/user-brief.md`, authored in
 `.skw/src/references/user-brief.skw.json` and routed from `SKILL.md`.
-<!-- tarav.breadcrumb fb87ce16cbf2862d2da6eff9b6132a879ab36661eb4c2c7d0e53857f09598740 -->
+<!-- tarav.breadcrumb fb87ce16cbf2 -->
 
 The questions the Agent left open were settled by Agent default in the first
 module: the route is read-only and leaves no record of the briefing; the
 budget is about 15 lines and under about 30; without a subject it briefs the
 most recent Agent message or POI. The User has not reviewed these defaults.
-<!-- tarav.breadcrumb 0cf7a86093dd70c5b9745f61141354d4d3a1ac9c0d835ead0c9c81b220269f29 -->
+<!-- tarav.breadcrumb 0cf7a86093dd -->
 
 ## Topic generality
 
@@ -68,8 +68,8 @@ The topic is whatever the User asks to be briefed about. The skill must not
 treat a POI as a different kind of object. A POI is a typical case, and the
 Agent must understand what it is about to explain it correctly, like any
 other topic.
-<!-- tarav.breadcrumb 5b26ea9a0cd92df6cffd50c7f937799101eb0cdaac05578cde297e2b474957d4 -->
+<!-- tarav.breadcrumb 5b26ea9a0cd9 -->
 
 The module now takes a `TOPIC`, adds an explicit "understand the topic
 yourself first" step, and names the POI only as an example.
-<!-- tarav.breadcrumb 7b37ced849e2a7eeb2c051e709468edfb60498569f51d119b05888a5f805f2ed -->
+<!-- tarav.breadcrumb 7b37ced849e2 -->

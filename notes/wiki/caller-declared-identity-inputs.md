@@ -13,7 +13,7 @@ should not bury heuristics about which facts matter inside its implementation.
 The caller is responsible for the description; shared code handles its
 serialization and hashing. This is a general design pattern, not only a POI
 identity rule.
-<!-- tarav.breadcrumb 5b788275a9436aca5210d282fedb406cd3972532884ede77c85de2fa86f8b231 -->
+<!-- tarav.breadcrumb 5b788275a943 -->
 
 ## Responsibility stays visible
 
@@ -22,13 +22,13 @@ differences distinguish situations and which do not. An explicit LiteRecord
 places that decision at the call site, where the producer knows the use case.
 The heuristic is not eliminated; it is exposed as the construction of the
 situation description instead of being hidden in generic machinery.
-<!-- tarav.breadcrumb 84a9fda3121af498571bc6c9b146001812f84f1fc325daded05eb8b300afd058 -->
+<!-- tarav.breadcrumb 84a9fda3121a -->
 
 Simple defaults remain useful. They do not transfer responsibility for
 describing the situation away from the caller or require the common mechanism
 to infer its meaning. The goal is simple mechanics with visible identity
 inputs, not a smarter system for guessing equivalence.
-<!-- tarav.breadcrumb 168bd44bcf4e290143aee6d90e5c7c4213c7b99c2a1c0107cd9a2e34262c8b1b -->
+<!-- tarav.breadcrumb 168bd44bcf4e -->
 
 ## LiteRecord boundary
 
@@ -36,15 +36,15 @@ LiteRecord gates accepted values through supported serialization. A caller may
 provide supported native types, such as dates or Tarav Types, without manually
 converting them. This separates how a value is represented from the caller's
 decision that the value belongs in the situation description.
-<!-- tarav.breadcrumb 56d8b67045739b297594dc64080f23f018d77902dd9109fa094939f257607ba6 -->
-<!-- tarav.breadcrumb c34e3bb0914f9c634d0a2552b5dfe74e2fd88f07be7817a37613b3cac8382648 -->
+<!-- tarav.breadcrumb 56d8b6704573 -->
+<!-- tarav.breadcrumb c34e3bb0914f -->
 
 The [POI situation-identity design](poi-system.md#2026-10-01--situation-is-the-identity-input)
 is one application: its concrete class Ship and caller-declared situation
 determine identity. Blessing is a consumer of that identity, not the reason
 for hiding additional equivalence heuristics inside the shared mechanism.
-<!-- tarav.breadcrumb bfe5490bf387811876101ca7343cf0c825db3cfc5b47d550ef12b59336ac5b66 -->
-<!-- tarav.breadcrumb 323a92d553b63b3ad4dba167f7093813119e4343c10c7faa006065426778f4e4 -->
+<!-- tarav.breadcrumb bfe5490bf387 -->
+<!-- tarav.breadcrumb 323a92d553b6 -->
 
 ## Explicit mechanism, flexible construction
 
@@ -53,24 +53,24 @@ call. Types may provide well-defined state builders and simple defaults.
 Direct construction should remain available, especially when cases differ
 or the design is changing quickly. This clarifies the earlier call-site
 wording: the mechanism is explicit, not necessarily every invocation.
-<!-- tarav.breadcrumb 30136e5c5e63d990521c520c377a0c3904f5061c16a06163adeb3423bb95dfaf -->
+<!-- tarav.breadcrumb 30136e5c5e63 -->
 
 Regardless of how it is supplied, the hash is computed from a `StateRecord`,
 which is a `LiteRecord`. The application may constrain those records through
 interfaces and checks. Explicit input therefore does not mean unconstrained
 input; construction choices converge on the same inspectable hashing input.
-<!-- tarav.breadcrumb 2c8642133f7e791449e1863b6f89393095d36fb694f10966f76f84b6a3602bf6 -->
+<!-- tarav.breadcrumb 2c8642133f7e -->
 
 The general LiteRecord can serve flexible cases; a specialized state type can
 provide homogeneous descriptions across multiple call sites. A POI type
 exposing its `StateType` was proposed as one example. This records a design
 option, not a claim that such an interface is already implemented.
-<!-- tarav.breadcrumb 93b71386e1986b5abed5752644e9c838c649ee2fb093f1c481fd4361d2c22b69 -->
+<!-- tarav.breadcrumb 93b71386e198 -->
 
 SKW generation inputs and context freshness were accepted as a good candidate
 for this pattern. The acceptance identifies an application to explore; it
 does not itself establish a completed SKW change.
-<!-- tarav.breadcrumb bee32953e3457dd67b18b6dcdf4b5470173da587e6bd75be721f961f86dadd03 -->
+<!-- tarav.breadcrumb bee32953e345 -->
 
 ## The same pattern for usage traces
 
@@ -80,4 +80,4 @@ provides the description, in the least constrained interface as a JSON record
 of key-value pairs, and is expected to be clever and brief: for a file, a
 path and a content hash, not the content. The Usage Registry applies it to
 how a command or method was called. See [Live Help](live-help.md).
-<!-- tarav.breadcrumb 7dd018d66065f9829d19e20834d29b841461470b9167973446df2ce796f67101 -->
+<!-- tarav.breadcrumb 7dd018d66065 -->

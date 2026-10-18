@@ -11,8 +11,8 @@ An Assertable object can expose several labeled, identified Assertions through
 `.assertions`. A label is a durable route to an Assertion, while list order is
 only presentation. Each Assertion identifies an exact subject and can produce
 more than one typed assessment case for different scoring questions.
-<!-- tarav.breadcrumb cd25ccfe7f857ba247e45af7dab414a3301d05c95ad723ee29cfe3595d123310 -->
-<!-- tarav.breadcrumb e5b08612e1eabc76590e88d2c2fbbc0f4525fd5d4dac36a49d1e88e29d70d069 -->
+<!-- tarav.breadcrumb cd25ccfe7f85 -->
+<!-- tarav.breadcrumb e5b08612e1ea -->
 
 A case is a closed scoring packet: it retains an Assertion reference, a question,
 and the material presented to the scorer. Case payloads are owned by their
@@ -20,7 +20,7 @@ producer and consumer; Tarav does not impose one universal evidence schema.
 The scorer judges only the supplied packet. A producer may report that a case
 Type is unsupported or that a supported case lacks enough material; those are
 different conditions. Scoring results remain separate from Assertion identity.
-<!-- tarav.breadcrumb 85c84972b98773bf8f7505b529b2e2c0d1022ecf52035435a11d0e7809f84ca2 -->
+<!-- tarav.breadcrumb 85c84972b987 -->
 
 Request [846](../../../tarav-py/notes/live/846-assertable-assessment-cases-impl-req.md)
 implemented this foundation in `tarav.l2.scoring.assertions`. Its Line-owned
@@ -38,8 +38,8 @@ comparison question, instructions, and optional admission check. The common
 ranker compares only two cases from the same tribunal, using their retained
 presentations and no external research. It accepts A, B, tie, or abstain and
 retains the exact prompt, judge, outcome, and rationale for inspection.
-<!-- tarav.breadcrumb 4bf188231e01daf06f6051091769c3848c2a28c98f3a94d3179dfcb9a2fae65d -->
-<!-- tarav.breadcrumb 6630cabff2d5722bae794f7211969dfed0cc4e0c39143e74e0db7d87b495af2b -->
+<!-- tarav.breadcrumb 4bf188231e01 -->
+<!-- tarav.breadcrumb 6630cabff2d5 -->
 
 The first derived measure is relative win/tie support among judged pairs,
 accompanied by comparison and opponent counts, abstentions, and population
@@ -49,7 +49,7 @@ false. Request [848](../../../tarav-py/notes/live/848-pairwise-tribunal-scoring-
 implemented this path in `tarav.l2.scoring.tribunals` and the existing
 ScoringRepository. Two different tribunal Types and case payloads use the same
 ranker in its tests; 61 focused tests passed at product commit `bd5be10`.
-<!-- tarav.breadcrumb f323afe8896d5439e0a8072c7307347d63e465238f38e60641a25d1929783a18 -->
+<!-- tarav.breadcrumb f323afe8896d -->
 
 ## Blessing Assertions
 
@@ -61,8 +61,8 @@ still be recorded and assessed as a weak case. A changed POI situation does not
 inherit the prior Assertion. Scoring stays with the scorer; a blessing's
 `score_vector()` navigates named results by Assertion identity and distinguishes
 unassessed, unscored, and scored. No score suppresses detection.
-<!-- tarav.breadcrumb cd9386fa5bdf266e06d017fbb0ea87a0305ddb1b5dee10d7aef769b3aee612e7 -->
-<!-- tarav.breadcrumb 23a585aa187d4135621104705cae64d9303f70b6002fb97a84c93b8f62235403 -->
+<!-- tarav.breadcrumb cd9386fa5bdf -->
+<!-- tarav.breadcrumb 23a585aa187d -->
 
 Request [847](../../../tarav-py/notes/live/847-blessing-assertions-and-score-view-impl-req.md)
 implemented this in `tarav.l1.blessings` and `tarav.l2.blessings`, with the
@@ -70,7 +70,7 @@ shared Assertable capability in `tarav.l1.scoring`. The latter keeps the direct
 `BlessingRecord : Assertable` relationship within Tarav's import direction.
 The configured Python suite passed 154 tests in product commit `8c1fd6a`.
 Attention scheduling remains request 849.
-<!-- tarav.breadcrumb b65b4a93c1db6256b0d76f1b195c9e761d77e7b09143892564b12510a4d93da1 -->
+<!-- tarav.breadcrumb b65b4a93c1db -->
 
 ## Workflow roots and particular scoring methods — provisional capture
 
@@ -79,8 +79,8 @@ and ranking implementation can subtype them without making its particular
 decisions universal. This leaves room for another scoring method beside
 Ranking. A score can be a typed, recomputable object derived from retained
 evidence; it need not be stored merely to be identifiable in code.
-<!-- tarav.breadcrumb 3fce7e286db89163f92a3905a788a0f34a46c17224ab09287376c1f8f4686ee0 -->
-<!-- tarav.breadcrumb 962896660d239af45dbf94cdaa6b37f9f922a8229848905911cdf5a0383c6b6e -->
+<!-- tarav.breadcrumb 3fce7e286db8 -->
+<!-- tarav.breadcrumb 962896660d23 -->
 
 Evidence pending Breadcrumb registration: session
 `codex:01a0d86c-9538-7be1-af96-014cd4203d61`, User Turns at
@@ -96,8 +96,8 @@ but that coincidence is not a rule for every workflow relationship. No common
 scoring operation needs to be invented while Ranking is the only implemented
 method. Ranking compares closed cases within a Tribunal; another scoring
 method may organize its own objects differently.
-<!-- tarav.breadcrumb 72135afc0080cc3780a51fa9f5de67e8de39e19452f74e4504d56c77b403c8c7 -->
-<!-- tarav.breadcrumb d819385eecefcbc5f00d3249941268b5eebaffedf79a9e2d1eb61e13efdce6c5 -->
+<!-- tarav.breadcrumb 72135afc0080 -->
+<!-- tarav.breadcrumb d819385eecef -->
 
 Evidence pending Breadcrumb registration: same session, User Turns at
 `2026-10-06T15:31:39.746Z` (“we want them all be scoring workflows”) and
@@ -111,8 +111,8 @@ represents one comparison question and owns its admission, instructions, and
 any case-specific requirements. An Assertion may produce different cases for
 different Tribunals. The shared ranking machinery should not prescribe a rich
 universal case schema simply because one Tribunal needs particular material.
-<!-- tarav.breadcrumb 4b4fd4a3f4b769f083f522b438b52aa72c5661ecfd23e789ccc1a1d821d8abc8 -->
-<!-- tarav.breadcrumb 722dd58e59c664fc9aa5ad7c3f0059d357a38d1ca08ba0601af494548218246a -->
+<!-- tarav.breadcrumb 4b4fd4a3f4b7 -->
+<!-- tarav.breadcrumb 722dd58e59c6 -->
 
 Evidence pending Breadcrumb registration: same session, User Turns at
 `2026-10-06T15:34:47.306Z` (“we will have different ... tribunals”) and
@@ -127,8 +127,8 @@ same deliberate distinction used for Workflow classes and Workflow objects.
 Whether the Tribunal object is retained on disk is a separate choice. Current
 `tribunal_type_id` fields identify the class and must not silently be treated
 as the new object's Ship.
-<!-- tarav.breadcrumb cd349bcf2fb3ebe14206e5430f657bbe1c366e16f25ebe5581f14978db42ee74 -->
-<!-- tarav.breadcrumb a09487a1ee159ac198e4aadb76660d57196ec0819abee66944fc5e2393485912 -->
+<!-- tarav.breadcrumb cd349bcf2fb3 -->
+<!-- tarav.breadcrumb a09487a1ee15 -->
 
 Evidence pending Breadcrumb registration: same session, User Turns at
 `2026-10-06T15:41:05.480Z` (“we still have an identify for the class ...
