@@ -29,7 +29,7 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+                "path": "../../../../../../skills/tarav-pkg/CONSTITUTION.md"
               }
             }
           ]
@@ -71,7 +71,7 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+                "path": "../../../../../../skills/tarav-pkg/CONSTITUTION.md"
               }
             }
           ]
@@ -111,7 +111,7 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+                "path": "../../../../../../skills/tarav-pkg/CONSTITUTION.md"
               }
             }
           ]
@@ -152,7 +152,7 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+                "path": "../../../../../../skills/tarav-pkg/CONSTITUTION.md"
               }
             }
           ]
@@ -185,7 +185,7 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../tarav-pkg/CONSTITUTION.md"
+                "path": "../../../../../../skills/tarav-pkg/CONSTITUTION.md"
               }
             },
             {

@@ -35,7 +35,7 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+                "path": "../../../../../../../skills/tarav-pkg/CONSTITUTION.md"
               }
             }
           ]
@@ -75,7 +75,7 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+                "path": "../../../../../../../skills/tarav-pkg/CONSTITUTION.md"
               }
             }
           ]
@@ -121,13 +121,13 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+                "path": "../../../../../../../skills/tarav-pkg/CONSTITUTION.md"
               }
             },
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../../references/pstack/skills/principle-foundational-thinking/SKILL.md"
+                "path": "../../../../../../../references/pstack/skills/principle-foundational-thinking/SKILL.md"
               },
               "hints": {
                 "origin": "pstack",
@@ -139,7 +139,7 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../../references/pstack/skills/principle-model-the-domain/SKILL.md"
+                "path": "../../../../../../../references/pstack/skills/principle-model-the-domain/SKILL.md"
               },
               "hints": {
                 "origin": "pstack",
@@ -151,7 +151,7 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../../references/pstack/skills/principle-subtract-before-you-add/SKILL.md"
+                "path": "../../../../../../../references/pstack/skills/principle-subtract-before-you-add/SKILL.md"
               },
               "hints": {
                 "origin": "pstack",
@@ -163,7 +163,7 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../../references/pstack/skills/principle-boundary-discipline/SKILL.md"
+                "path": "../../../../../../../references/pstack/skills/principle-boundary-discipline/SKILL.md"
               },
               "hints": {
                 "origin": "pstack",
@@ -219,13 +219,13 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+                "path": "../../../../../../../skills/tarav-pkg/CONSTITUTION.md"
               }
             },
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../../references/pstack/skills/principle-sequence-verifiable-units/SKILL.md"
+                "path": "../../../../../../../references/pstack/skills/principle-sequence-verifiable-units/SKILL.md"
               },
               "hints": {
                 "origin": "pstack",
@@ -279,13 +279,13 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+                "path": "../../../../../../../skills/tarav-pkg/CONSTITUTION.md"
               }
             },
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../../references/pstack/skills/principle-laziness-protocol/SKILL.md"
+                "path": "../../../../../../../references/pstack/skills/principle-laziness-protocol/SKILL.md"
               },
               "hints": {
                 "origin": "pstack",
@@ -297,7 +297,7 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../../references/pstack/skills/principle-migrate-callers-then-delete-legacy-apis/SKILL.md"
+                "path": "../../../../../../../references/pstack/skills/principle-migrate-callers-then-delete-legacy-apis/SKILL.md"
               },
               "hints": {
                 "origin": "pstack",
@@ -347,7 +347,7 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+                "path": "../../../../../../../skills/tarav-pkg/CONSTITUTION.md"
               }
             }
           ]
@@ -391,13 +391,13 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+                "path": "../../../../../../../skills/tarav-pkg/CONSTITUTION.md"
               }
             },
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../../references/pstack/skills/principle-fix-root-causes/SKILL.md"
+                "path": "../../../../../../../references/pstack/skills/principle-fix-root-causes/SKILL.md"
               },
               "hints": {
                 "origin": "pstack",
@@ -409,7 +409,7 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../../references/pstack/skills/tdd/SKILL.md"
+                "path": "../../../../../../../references/pstack/skills/tdd/SKILL.md"
               },
               "hints": {
                 "origin": "pstack",
@@ -421,7 +421,7 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../../references/pstack/skills/principle-explain-the-number/SKILL.md"
+                "path": "../../../../../../../references/pstack/skills/principle-explain-the-number/SKILL.md"
               },
               "hints": {
                 "origin": "pstack",
@@ -466,13 +466,13 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+                "path": "../../../../../../../skills/tarav-pkg/CONSTITUTION.md"
               }
             },
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../../references/pstack/skills/principle-prove-it-works/SKILL.md"
+                "path": "../../../../../../../references/pstack/skills/principle-prove-it-works/SKILL.md"
               },
               "hints": {
                 "origin": "pstack",
@@ -521,13 +521,13 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+                "path": "../../../../../../../skills/tarav-pkg/CONSTITUTION.md"
               }
             },
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../../references/pstack/skills/principle-test-behavior-not-implementation/SKILL.md"
+                "path": "../../../../../../../references/pstack/skills/principle-test-behavior-not-implementation/SKILL.md"
               },
               "hints": {
                 "origin": "pstack",
@@ -539,7 +539,7 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../../references/pstack/skills/tdd/SKILL.md"
+                "path": "../../../../../../../references/pstack/skills/tdd/SKILL.md"
               },
               "hints": {
                 "origin": "pstack",
@@ -583,13 +583,13 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+                "path": "../../../../../../../skills/tarav-pkg/CONSTITUTION.md"
               }
             },
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../../references/pstack/skills/principle-attack-the-premise/SKILL.md"
+                "path": "../../../../../../../references/pstack/skills/principle-attack-the-premise/SKILL.md"
               },
               "hints": {
                 "origin": "pstack",
@@ -601,7 +601,7 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../../references/pstack/skills/principle-encode-lessons-in-structure/SKILL.md"
+                "path": "../../../../../../../references/pstack/skills/principle-encode-lessons-in-structure/SKILL.md"
               },
               "hints": {
                 "origin": "pstack",
@@ -642,13 +642,13 @@
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../tarav-pkg/CONSTITUTION.md"
+                "path": "../../../../../../../skills/tarav-pkg/CONSTITUTION.md"
               }
             },
             {
               "type": "Tarav.Reference.StructuredFile",
               "locator": {
-                "path": "../../../../../../references/pstack/skills/tdd/SKILL.md"
+                "path": "../../../../../../../references/pstack/skills/tdd/SKILL.md"
               },
               "hints": {
                 "origin": "pstack",

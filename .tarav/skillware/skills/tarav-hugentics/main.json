@@ -1,6 +1,8 @@
 {
   "type": "Tarav.Skillware.SkillPackage",
   "schema_version": 1,
+  "skill_id": "5a101100-6de7-42e0-9bb1-089cfaa8230e",
+  "product": "skills/tarav-hugentics",
   "entrypoint": "SKILL.md",
   "sources": [
     "src/SKILL.skw.json",

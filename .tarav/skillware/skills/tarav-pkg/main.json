@@ -1,6 +1,8 @@
 {
   "type": "Tarav.Skillware.SkillPackage",
   "schema_version": 1,
+  "skill_id": "4836ba9a-e42b-41b9-995b-948b6cf131c4",
+  "product": "skills/tarav-pkg",
   "entrypoint": "SKILL.md",
   "sources": [
     "src/CONSTITUTION.skw.json",
