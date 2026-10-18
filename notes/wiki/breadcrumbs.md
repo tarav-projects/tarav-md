@@ -151,3 +151,45 @@ submission takes `--provider` and `--session-id`. In `.tsx`, `//` inside JSX
 text would be read as a comment; that limit is recorded, not handled. See
 [Impl.Req 885](../../../tarav-py/notes/live/885-typescript-breadcrumb-convention-impl-req.md).
 The extension's four TypeScript files now carry seven Breadcrumbs.
+
+## Short labels — 2026-10-18
+
+<!-- tarav.sessions
+abd0372d = claude-code:d82f1801-d3f2-4deb-9c95-297028a54b7a @abd0372dd06ffeef10c625e3f68354a234a91e4992b67406f075d93ccb20f4d4
+-->
+
+Surfaces now carry the first 12 characters of a Breadcrumb's ID, as in
+`tarav.breadcrumb 51335b338b37`; the registry keeps the full 64. A label names
+the one registered ID it starts with. A label matching several IDs is an error
+that lists them, and Tarav never picks one: "no automatic disambiguation"
+concerns markers already registered. Tarav, not the Agent, writes labels at
+submission.
+<!-- tarav.breadcrumb 3662dcc770a1 -->
+
+Drawing a new random ID whenever its first 12 characters are taken was
+proposed and declined: a collision is unlikely (about 1 in 17 million at
+5,736 Breadcrumbs) and narrow in effect, so submission simply reports one.
+After choosing the intended Breadcrumb, an Agent or User lengthens its label
+one character at a time until it is unique. Full 64-character labels remain
+valid as the longest prefix.
+<!-- tarav.breadcrumb 2933dddf1a4e -->
+
+The User asked for every existing marker to be migrated, in all 29 places
+that carried them, each Git repository with a checkpoint of the work found
+there and a migration commit: 4,264 labels in 621 files. Commit messages keep
+their full labels (history is not rewritten), and their evidence envelopes
+keep full IDs; message labels map to envelope IDs by prefix. Resolution checks
+that an observed line contains the 12-character label, which every valid
+label of that Breadcrumb contains, so the migration needed no new
+observations. See [Impl.Req 918](../../../tarav-py/notes/live/918-short-breadcrumb-prefixes-impl-req.md).
+<!-- tarav.breadcrumb c86a4fbe2f89 -->
+<!-- tarav.breadcrumb a2785dcc025d -->
+
+Audits were the migration's bottleneck, and the User asked whether that was a
+design flaw. Profiling one audit (170 labels, 93 seconds) put 90 seconds in
+rebuilding Chatlas Normal Models from raw provider files: the chatlas-context
+audit calls `compute_normal_model`, bypassing Chatlas's fresh-checked cache
+(5.1 s rebuild against 1.8 s cached load, 0.08 s to open), and a batch audit
+rebuilds the same sessions for every file. Using the cache and sharing models
+across one command are the proposed fixes, not yet made.
+<!-- tarav.breadcrumb 9bee380a3bbb -->
