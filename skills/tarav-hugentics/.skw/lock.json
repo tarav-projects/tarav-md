@@ -93,8 +93,8 @@
         "audit-workflow": "897405604d57632f31ca57d28529d9f81b1822dfa9abe6de8c3ad5407bd64790",
         "surface-contract": "897405604d57632f31ca57d28529d9f81b1822dfa9abe6de8c3ad5407bd64790"
       },
-      "source_hash": "55ae58ba99d2a2591fea3344c1a53a8f39c18862819dfa5a5f3bfff51f81c033",
-      "product_hash": "4e3315dd67a8eba84531276375e57d819f3d1c370bcbd3728748a19f5ddfcaa5",
+      "source_hash": "5542a6106efa34548532efc2faf63749fc2b25dc03a86089b3bf7c534012c9f3",
+      "product_hash": "ac40ab9f13629ef301bed3e2ec62b20b88efa8069658fe00a415bc835a986f70",
       "loading_hash": "a75223a36852564f3d16acc68e9db5b21b435a3bc0fb8ad33d05d033c9d75394"
     },
     ".skw/src/references/issues/audit.skw.json": {
@@ -174,8 +174,8 @@
         "capture-workflow": "5fda5c41a27f2faae505fad31b4ce403bad9b4db0f324568d99bdc5a782b70af",
         "audit": "5fda5c41a27f2faae505fad31b4ce403bad9b4db0f324568d99bdc5a782b70af"
       },
-      "source_hash": "347b7901b1648ea0a2064e42af3e6a170a93bc79f94c1216daa4519da5675195",
-      "product_hash": "7368a8194a9141024bc2aa47214bc8f0fd222e3b5def0b0d76a26bced6824688",
+      "source_hash": "ea93b12b07f24a5b1c23568411785b2abb420d4e4e0b1367ab9e0183bb34046a",
+      "product_hash": "e1b5c48231d2ce879ebcc5baf90180827b6d0d593a4e911c3b1e7983f5af9f98",
       "loading_hash": "a75223a36852564f3d16acc68e9db5b21b435a3bc0fb8ad33d05d033c9d75394"
     },
     ".skw/src/references/design-dialogue.skw.json": {

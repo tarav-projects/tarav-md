@@ -201,7 +201,8 @@ Consecutive references attach to the same preceding Markdown block. Before
 Git closure, submit each changed Note through `tarav breadcrumbs submit chatlas-context`.
 Submission creates a stable Breadcrumb directory, appends its file-position
 observation, stores the typed Chatlas Turn attachment, and replaces the
-provisional comment with `<!-- tarav.breadcrumb <id> -->`.
+provisional comment with `<!-- tarav.breadcrumb <prefix> -->`, the first 12
+characters of the Breadcrumb's ID.
 
 Preserve ordinary Markdown as the authoritative Note content. Breadcrumb
 attachments establish addressed conversational grounding; they do not
