@@ -131,3 +131,20 @@ all 10,180 indexed rows now carry a `raw_version`, and the depot no longer
 tracks `normal-model/` in Git.
 <!-- tarav.breadcrumb 10d1eae421f5 -->
 <!-- tarav.breadcrumb 4ec272724dde -->
+
+## Searching across chats — 920
+
+Tarav's Search workflow does not know about Chatlas. The Chatlas workflow
+provides a search engine for its own data, because Chatlas is the one that
+knows how to search its database. The interface is minimal, with simple
+queries for now.
+<!-- tarav.breadcrumb 20e980c50f0b -->
+
+A search can be split by construction: messages only, or turns. The caller
+decides; turns are the default, and a session without a cached Model is built
+when searched. Stale caches are searched as stored and their hits say so.
+Implemented in
+[920](../../../tarav-py/notes/live/920-chatlas-search-engine-impl-req.md) as
+`tarav.l1.chatlas.search`, registered in the runtime's Search service.
+<!-- tarav.breadcrumb 54b97a3161be -->
+<!-- tarav.breadcrumb f73415abce38 -->
