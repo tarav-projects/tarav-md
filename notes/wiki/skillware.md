@@ -1,4 +1,25 @@
 # Skillware
+
+## Specialized document Types — idea for later design
+
+<!-- tarav.sessions
+473c89a0 = codex:01a1176b-f14c-7fd0-a97c-b22279c3f8c8 @473c89a00e2367fb827193af74a6375c60a96b0be110f21df0aff49360ca972f
+-->
+
+Explore specialized SKW document Types that express the structure of the
+document being authored. A skill document is the motivating example: its
+description could be a dedicated, separately editable block, with metadata
+distinguished from instruction sections. The Type could check the structural
+requirements appropriate to that kind of document.
+<!-- tarav.breadcrumb e03c125a4aec -->
+
+This is a captured design idea, not an implemented contract. The exact Type
+name, required metadata, block Types, and enforcement rules remain open. A
+minimal metadata contract with flexible instruction sections was suggested;
+it has not been settled as a schema. This concerns SKW modeling, not additional
+constitutional requirements.
+<!-- tarav.breadcrumb d49d5f0e5c3f -->
+
 <!-- tarav.sessions
 6734aba0 = codex:01a0d86c-9538-7be1-af96-014cd4203d61 @6734aba0b9204f614baf3987604865fa85146495877841244ad7fe1efce4104b
 5626cd5f = codex:01a0af61-72e2-7bd2-94a3-26529d6914ec @5626cd5f7db74c4f2e3838250516b5e300cc9387ac254eb65a0816a5f30555a1
