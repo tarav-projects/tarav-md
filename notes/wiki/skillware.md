@@ -4,6 +4,7 @@
 
 <!-- tarav.sessions
 473c89a0 = codex:01a1176b-f14c-7fd0-a97c-b22279c3f8c8 @473c89a00e2367fb827193af74a6375c60a96b0be110f21df0aff49360ca972f
+abd0372d = claude-code:d82f1801-d3f2-4deb-9c95-297028a54b7a @abd0372dd06ffeef10c625e3f68354a234a91e4992b67406f075d93ccb20f4d4
 -->
 
 Explore specialized SKW document Types that express the structure of the
@@ -523,3 +524,36 @@ link behavior. Implementation 836 later replaced that block taxonomy and
 `output` field with the neutral typed block substrate documented above;
 `SkillLink` remains a genuine specialized block subtype.
 <!-- tarav.breadcrumb 97dcd940ff0d -->
+
+## Skill identity and Project-held depots (924)
+
+A skill gets an identity of its own but stays a skill: it is not a Project and
+has no action registry. It is important enough to carry a `.tarav/` folder whose
+`skill.json` marks it, as `.tarav/project.json` marks a Project. That is the
+whole rule; the `.tarav/` folder itself marks nothing.
+<!-- tarav.breadcrumb 54865a1ad396 -->
+<!-- tarav.breadcrumb 570c25ee3eea -->
+<!-- tarav.breadcrumb f2fd5329f882 -->
+<!-- tarav.breadcrumb 4a17e548d3cd -->
+
+A skill always belongs to a Project. Because a skill is something that gets
+copied and published, its folder keeps only the product and `.tarav/skill.json`;
+the depot that builds it moves up into the Project, at
+`.tarav/skillware/skills/<name>/`, beside the Project's own agents-file source.
+Distance between source and product costs nothing, since checks already catch
+edits made outside the sources. The depot's `main.json` names the skill by
+`skill_id` and its folder by `product`; the owner is the Project whose depot
+builds the skill; a deployed copy carries the marker and stays the same skill.
+<!-- tarav.breadcrumb b621dd79e124 -->
+<!-- tarav.breadcrumb 9ecf1f7aaded -->
+<!-- tarav.breadcrumb a44d37df38c5 -->
+
+In tarav-py (request 924): `SkillMarker` (`tarav.l1.skills.marker`) is the
+Record of `.tarav/skill.json`; `load_skill(folder)` finds the depot through the
+nearest Project marker; skw POIs name a skill by its UUID and an agents file by
+its Project's; `tarav skw skills --skill <folder>` selects a skill. Sources are
+named relative to their depot, products relative to the skill folder, and a
+reference path inside a source still resolves from that source file, so the
+move rewrote the references that leave the depot. The four live skill depots
+(tarav-hugentics, tarav-pkg, miacad-pkg, md-library-transcript-developer) moved
+and rebuilt byte-identically. Markers exist only for skills built by a depot.
