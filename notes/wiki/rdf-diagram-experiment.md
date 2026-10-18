@@ -342,3 +342,59 @@ Conversational grounding is pending for codex session
 The exact-session Chatlas refresh cannot write its protected cache. The
 quotation is preserved from the current discussion; no older Turn was used
 as a substitute and no new Breadcrumb was fabricated.
+
+## Discovering Tarav through its graph
+
+<!-- tarav.sessions
+70c6a1bb = codex:01a14701-3013-7260-87b8-01ee30e64454 @70c6a1bb0295ba16d25b874e624decc291c1aa70c23ee355038c2a0cb72e953c
+-->
+
+The User clarified that an incomplete connection to Tarav.Archive is not the
+main question at this stage. Current references concentrate on Chatlas
+transcripts. Any Tarav subsystem, including an Archive workflow, can be
+represented by Tarav objects and classes; their Context namespace lets their
+own hooks or external contributors supply triples. This couples Python's
+expressivity with a graph through which an agent can discover both the harness
+and the world it describes.
+<!-- tarav.breadcrumb 976f2fd9935e -->
+
+The graph can describe Tarav code itself, in the same way it can describe an
+external document. When an agent encounters an unfamiliar path or object, it
+can ask what the system knows about it, follow typed relationships, and then
+open the relevant source code or documentation. A known operation, such as
+getting and displaying an object's documentation, can also have a direct
+Python path. There is no exclusive assignment of a relationship to code or
+graph: code supplies operations and graph contributions, while the graph
+communicates semantics and lets agents find relationships they did not know
+to ask for directly. Exploration must lead back from graph objects to their
+code and resources.
+<!-- tarav.breadcrumb a3bc51cd1387 -->
+<!-- tarav.breadcrumb 18036892fa9f -->
+
+A documentation relationship illustrates the distinction. The graph can
+identify the relationship's predicate and expose what that predicate means.
+An edge can lead to a documentation object that points to a resource; the
+graph need not contain the document text. An object's Type may itself supply
+the documentation relation. A documentation workflow could offer an entry
+point to such resources for any object, while code provides the operation
+that opens or renders one. The exact documentation workflow and representation
+remain to be designed.
+<!-- tarav.breadcrumb f7b2fd004761 -->
+<!-- tarav.breadcrumb 0e217f92e2b9 -->
+
+The User proposed another usage case: a script or operation involving several
+Types and objects could be recorded or annotated with relationships to them.
+An agent searching for a usage example could query those relationships, open
+the example, discover further objects, and repeat this research cycle. A
+future recorder or contextualizer might derive some contributions from code
+or records and expose them through Context hooks. This is a proposed workflow,
+not a claim that automatic extraction or global example search exists now.
+<!-- tarav.breadcrumb 44aa792a6f30 -->
+
+The User then withdrew the initial framing of a rule for deciding which part
+of Tarav should implement each thing. Write useful code as code; use the graph
+as an available semantic and discovery capability, including for descriptions
+of that code. The code and graph can be traversed repeatedly in either
+direction as agents investigate the system.
+<!-- tarav.breadcrumb 6681c1e6a09c -->
+<!-- tarav.breadcrumb 4d0d1ae6fb00 -->
