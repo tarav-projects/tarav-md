@@ -98,3 +98,36 @@ verify read-only navigation, Record dispatch, root isolation, real normalization
 cache reuse, and explicit availability errors. Deeper collection navigation is
 still follow-up work; this implementation advances the earlier design status.
 <!-- tarav.breadcrumb ef7ede98c40e -->
+
+## Cache freshness from the raw data — 919
+
+<!-- tarav.sessions
+3537df0a = claude-code:2bff854f-66a0-4e8c-8f96-9078af34c479 @3537df0a6015d884a94e9594478f971cb92e38df63776b87b5eea38741740d8a
+-->
+
+Cache validation is only about whether the raw data changed. Each cached
+artifact is paired with the `raw_version` of the raw data it used: a hash of
+the transcript sources' paths, sizes and modification times, which the capture
+side writes into the Session Index row. Code evolution is outside the
+validation workflow; invalidating after a normalizer change is the
+maintainers' responsibility, not the code's. The earlier cache key also
+carried the tarav-py Git HEAD, so every commit made every cached Model stale.
+<!-- tarav.breadcrumb 0884213d7e7e -->
+<!-- tarav.breadcrumb 948b67aabef3 -->
+
+Parts are cached and judged separately. `cache.json` records the version each
+part (`main`, `events`, `messages`, `turns`, `loaded_contexts`) was built
+from. Some consumers, such as search, use what is cached; others request a
+brand new Model.
+<!-- tarav.breadcrumb 913b6c3bed3d -->
+
+The library and the public surfaces have separate jobs. The library gives all
+access with full information: `NormalModelCache` returns what is stored with a
+fresh or stale flag per part and never builds on its own. The CLI and other
+public surfaces choose a safe path, building when a part they need is missing
+or stale. Implemented in
+[919](../../../tarav-py/notes/live/919-chatlas-raw-version-cache-impl-req.md):
+all 10,180 indexed rows now carry a `raw_version`, and the depot no longer
+tracks `normal-model/` in Git.
+<!-- tarav.breadcrumb 10d1eae421f5 -->
+<!-- tarav.breadcrumb 4ec272724dde -->
