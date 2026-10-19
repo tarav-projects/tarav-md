@@ -24,12 +24,13 @@ accessor names remain implementation choices.
 
 ## Default discussion and current model
 
-The proposed default layout has a Project root with two typed branches:
-Discussion and Model. Discussion stores and indexes conversation and reasoning;
+The default layout has a Project root with three typed sibling branches:
+Discussion, Model, and Archive. Discussion stores conversation and reasoning;
 its content carries no obligation to implement it or align another surface
 with it. Model aims to represent the Project's current design and can carry
 alignment and maintenance obligations. Model here is a typed Block within
 the notebook.
+<!-- tarav.breadcrumb 18a9929cf7d1 -->
 <!-- tarav.breadcrumb 215d0f2ea689 -->
 
 Lines explain a Block's intended reading; its Type supplies code for assertions,
@@ -45,10 +46,12 @@ capture.
 The first intended use is an Archive Block containing recovered legacy
 design discussions. Its Lines establish the historical context inherited by
 the recovered Blocks; inclusion does not claim that the material is current
-design. Whether Archive is nested beneath Discussion remains open for use
-to inform. Candidate sources include the old Diagram stores, Archive.Attic
+design. The first implementation places Archive beside Discussion and Model;
+the arrangement can evolve through later design and use. Candidate sources
+include the old Diagram stores, Archive.Attic
 repositories, and historical Markdown indexes and their Git histories.
 <!-- tarav.breadcrumb c954c91f710c -->
+<!-- tarav.breadcrumb b484181f85e1 -->
 
 Start by selecting the most recent suitable recovered state. “Current archive”
 means the selected archive snapshot, not a claim of present applicability.
@@ -58,6 +61,68 @@ not require a Block-specific version system.
 <!-- tarav.breadcrumb 74db021699d7 -->
 <!-- tarav.breadcrumb 3bf8feada293 -->
 
-These sections capture agreed design and proposed implementation scope. They
-do not claim that Notebook storage, Project partitions, or recovery imports
-have been implemented by this Wiki capture.
+## Implemented first use — request 931
+
+[Request 931](../../../tarav-py/notes/live/931-line-notebook-impl-req.md) implements
+the bounded storage, Project layout, and first import. The Python
+[Notebook](../../../tarav-py/src/tarav/l1/notebook/__init__.py) uses the
+Notebook Workflow partition of the existing Record Registry. Each Line or
+Block is one JSON Record keyed by Ship. The
+[Project binding](../../../tarav-py/src/tarav/l2/project/notebook.py) selects a
+ProjectBlock; explicit create() seeds its explanatory Lines and three typed
+sibling Blocks once. Existing layouts and edits are loaded without regeneration.
+<!-- tarav.breadcrumb 0a93a5eb1c22 -->
+<!-- tarav.breadcrumb 89bee5b1a16a -->
+
+Run Python through Tarav and initialize the current runtime before using the
+default store. A minimal example from the umbrella Project is:
+
+```python
+from pathlib import Path
+from tarav.l3.runtime import get_runtime
+from tarav.l2.project import Project
+
+get_runtime()
+project = Project.from_path(Path("/Users/pereiro/projects/taravangian-project"))
+book = project.notebook()
+root = book.root
+archive = book.archive
+for item in archive.contents:
+    print(type(item).__name__, item.id)
+```
+
+Notebook.save(obj) writes one Record. Notebook.save_tree(block) writes its
+contained tree. Notebook.load(ship) resolves the connected context with shared
+object identity. Notebook.commit(message) explicitly records changes in Git.
+The [storage and layout tests](../../../tarav-py/tests/test_project_notebook.py)
+and [storage tests](../../../tarav-py/tests/test_notebook.py) verify reload,
+identity continuity, mixed contents, and preservation of edits. This first
+implementation adds no alignment engine, editing protections, move operations,
+or general Lineage API.
+<!-- tarav.breadcrumb a158c6f2a488 -->
+<!-- tarav.breadcrumb c1476bc6d5e0 -->
+
+The [bounded recovery script](../../../tarav-py/scripts/import_legacy_notebook.py)
+imported 1,581 legacy Lines, 269 legacy Blocks, and nine former Model groupings
+as ordinary Blocks. It selected the latest explicit editions in the two
+retained Diagram stores and preserved text and Ships. Former labels became
+ordinary Lines. The live Tarav root Project's notebook now has 2,149 Records
+including explanatory and label Lines. Original namespace, ship, annotation,
+and richer edition data were copied alongside the conversion; the 38 former
+Collection records remain there as raw source.
+<!-- tarav.breadcrumb 5f3ab7cb0427 -->
+<!-- tarav.breadcrumb b246defca8b1 -->
+
+The local partition is
+`~/Documents/tarav/records/92338514-6f87-4dad-8a41-3148020f90d4`.
+Its import report is
+`imports/ee7c5865-2209-516f-8be2-361eea2d8f18/report.json`.
+The data commit is `a14e4955`. Reopening the Project root verified all 1,581
+legacy texts and Block links, all 1,859 selected source hashes, and reachability
+of all 2,149 Records. The
+[recovery tests](../../../tarav-py/tests/test_notebook_recovery.py) cover
+latest-edition selection, source retention, fresh-process execution, and
+refusal to overwrite a later notebook edit. Older Markdown indexes, Git
+histories, and unfinished Drafts were not part of this selected first import.
+<!-- tarav.breadcrumb 49908ac5c359 -->
+<!-- tarav.breadcrumb 6d8bb0536f55 -->
