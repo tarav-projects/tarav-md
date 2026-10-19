@@ -39,8 +39,9 @@ separate `label` is the readable local selector. Keep the first metadata block
 as the entry root. A link is written in the block's text as ordinary Markdown
 and declared beside it; the reading graph uses only the declaration. A
 declaration with `"prose": {"type": "Tarav.SKW.Reading.MarkdownProse"}` is
-checked against the text and raises `Tarav.SKW.POI.MissingMarkdownLink` when the
-text lacks it; declare that part on every link you write. Typed `SkillLink`
+checked against the text and raises
+`Tarav.SKW.LinkProse.MissingMarkdownLink.POI` when the text lacks it; declare
+that part on every link you write. Typed `SkillLink`
 blocks retain produced Markdown in `output` and declare their own target;
 refresh one explicitly with `tarav skw document produce --source SKILL.skw.json
 --depot .tarav/skillware/skills/tarav-hugentics --block design-impact-link`.
