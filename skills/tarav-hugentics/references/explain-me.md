@@ -1,13 +1,12 @@
-# User Brief
+# Explain Me
 
 ```text
-tarav-hugentics --user-brief [TOPIC]
-tarav-hugentics --brief [TOPIC]
+tarav-hugentics --explain-me [TOPIC]
 ```
 
-Brief the User on a topic: find what the User last discussed about it, then
-explain it from first principles. `--brief` is a shortcut for `--user-brief`.
-Without TOPIC, brief what the most recent Agent message is about.
+Explain a topic to the User: find what the User last discussed about it, then
+explain it from first principles.
+Without TOPIC, explain what the most recent Agent message is about.
 
 The topic can be anything the User asks about: a component, a design
 decision, an Agent report, a finding. No kind of topic is special. A POI is
@@ -16,7 +15,7 @@ the Agent must understand what it is about before it can explain it.
 
 Agents implement most of the system, so the User's knowledge of it is
 partial. Agent reports tend to carry situation-specific detail without the
-context needed to read them. Grounding contextualizes the Agent; User Brief
+context needed to read them. Grounding contextualizes the Agent; Explain Me
 contextualizes the User by linking the topic to conversations the User
 already had.
 
@@ -65,8 +64,8 @@ expansion handles, such as "ask about X".
 
 ## Boundary
 
-User Brief is read-only. It writes nothing to the Wiki, Diagram, Breadcrumbs,
-or Git. When a briefing deserves retention, the User can follow it with
+Explain Me is read-only. It writes nothing to the Wiki, Diagram, Breadcrumbs,
+or Git. When an explanation deserves retention, the User can follow it with
 `--capture --wiki` or `--design --dialogue --wiki`.
 
 A cited User Turn locates context; it does not claim the User endorsed later

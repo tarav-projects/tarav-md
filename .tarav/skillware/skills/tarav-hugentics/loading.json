@@ -898,11 +898,11 @@
       ]
     },
     {
-      "id": "user-brief.introduction",
+      "id": "explain-me.introduction",
       "reference": {
         "type": "Tarav.Reference.StructuredFile",
         "locator": {
-          "path": "src/references/user-brief.skw.json",
+          "path": "src/references/explain-me.skw.json",
           "pointer": "/blocks/0"
         }
       },
@@ -911,31 +911,31 @@
       ]
     },
     {
-      "id": "user-brief.workflow",
+      "id": "explain-me.workflow",
       "reference": {
         "type": "Tarav.Reference.StructuredFile",
         "locator": {
-          "path": "src/references/user-brief.skw.json",
+          "path": "src/references/explain-me.skw.json",
           "pointer": "/blocks/1"
         }
       }
     },
     {
-      "id": "user-brief.presentation",
+      "id": "explain-me.presentation",
       "reference": {
         "type": "Tarav.Reference.StructuredFile",
         "locator": {
-          "path": "src/references/user-brief.skw.json",
+          "path": "src/references/explain-me.skw.json",
           "pointer": "/blocks/2"
         }
       }
     },
     {
-      "id": "user-brief.boundary",
+      "id": "explain-me.boundary",
       "reference": {
         "type": "Tarav.Reference.StructuredFile",
         "locator": {
-          "path": "src/references/user-brief.skw.json",
+          "path": "src/references/explain-me.skw.json",
           "pointer": "/blocks/3"
         }
       }
