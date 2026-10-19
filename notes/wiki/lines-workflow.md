@@ -15,11 +15,14 @@ to follow every relationship in the larger Diagram.
 <!-- tarav.breadcrumb 358d9c218118 -->
 <!-- tarav.breadcrumb 79848a7aaa8f -->
 
-A Block is an identified Line context with a human-readable topic. It can hold
-Lines and child Blocks in explicit order. Child Blocks inherit their parents'
-context. A Block need not represent a concept: it may organize a discussion,
+A Block is an identified Line context whose Lines confer its meaning. It holds
+Lines and nested Blocks in one ordered `contents` collection, which readers
+can filter by type. It has no predefined topic field. Nested Blocks inherit
+their parents' context. A Block may organize a discussion,
 chronology, specification, or another kind of thought. The Python subtype
 supplies its Type; the base Lines workflow has no Model layer.
+<!-- tarav.breadcrumb 55142de7ad34 -->
+<!-- tarav.breadcrumb 48af2e700a07 -->
 <!-- tarav.breadcrumb c4fea6c08254 -->
 <!-- tarav.breadcrumb bea08276330b -->
 
