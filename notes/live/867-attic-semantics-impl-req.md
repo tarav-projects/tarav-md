@@ -81,3 +81,6 @@ source of schema truth. Product changes belong to the Python companion.
   note (prior discussion preserved). Source text/product match after compilation.
 - Python slice commit: `9f333d1b2db4601a720496a4360c5410b11dba5b`.
 - No pending evidence or product gap remains in this documentation scope.
+- Product slice commit: `40a151c2a3263c917ddf07d1d9636713c282131c`; Wiki
+  capture commit: `f3fc14cc7c0d4c1acef3dfa89cd99f2a24adca19`. All slices and
+  scoped capture are complete; the following commit closes this request log.
