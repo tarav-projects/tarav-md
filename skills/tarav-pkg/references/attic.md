@@ -1,55 +1,47 @@
 # Archive.Attic
 
-`Archive.Attic` is Tarav's cheapest conservation surface. It preserves
-displaced material that may deserve later investigation without first
-requiring Archive registration, stable references, typing, normalization, or
-complete organization.
+`Archive.Attic` cheaply conserves material displaced from active development.
+Put it aside without dropping it, then revisit it when useful: investigate,
+extract value, recover selected material, or deliberately remove it. Material
+may remain here indefinitely. Conservation needs no Archive registration,
+normalization, payload typing, inventory, or completeness proof.
+<!-- tarav.breadcrumb 7edefca4d918 -->
 
-Archive.Attic is part of Tarav's progressive-commitment path:
+## Opaque contents and self-declared metadata
 
-```text
-Need to save it now
-    -> Archive.Attic
+Contents are opaque to Attic. A deposit manifest is the depositor's short
+orientation note about what was stored and why. It is self-declared: Attic
+cannot establish that its descriptions, source locations, completeness,
+recoverability, or disconnected status are true.
+<!-- tarav.breadcrumb fe68c2dfe0cd -->
 
-Need stable Artifact identity and references
-    -> Tarav.Archive
-
-Need typed semantic addressability and auditing
-    -> Diagram.Attic
-
-Need intentional contextual structure
-    -> Diagram.Model
-```
-
-Material may remain in Archive.Attic indefinitely. Progression is optional
-and does not require deleting or deduplicating the earlier material.
+Metadata maintenance may list immediate deposit directories and read their
+`deposit.json` files. It must not open, traverse, hash, index, normalize,
+interpret, or require the existence of declared material. Checking the format
+of a description does not assess its quality or truth. Supplemental hints are
+opaque too. A passing check certifies only the metadata format checked.
+<!-- tarav.breadcrumb e29d264ba3b1 -->
 
 ## Boundary
 
-Archive.Attic is not `Tarav.Archive`:
+- Depositing material does not register it as an `Archive.Artifact`.
+- A deposit UUID identifies a conservation event for traceability, not an
+  `Archive.Artifact.ID` or a stable `Archive.Reference`.
+- Live systems must not depend on deposited contents or an Attic path remaining
+  available. Nothing in Attic is a live source of truth.
+- The Attic workflow's metadata maintenance is the bounded exception: it reads
+  deposit declarations for maintenance, never to feed payloads to live systems.
+- Agents may cite deposit UUIDs in discussion and recovery work. That handle
+  does not add Archive identity, availability, or content guarantees.
 
-- Attic material is not an `Archive.Artifact` merely because it was deposited.
-- An Attic UUID identifies a Deposit for traceability; it is not an
-  `Archive.Artifact.ID` or stable `Archive.Reference`.
-- No Tarav runtime, project, command, or automation may depend on an Attic
-  path or Deposit remaining available.
-- Attic material is not a live source of truth.
-- `Diagram.Attic` material must be grounded in `Tarav.Archive`; an
-  Archive.Attic Deposit is not valid Diagram evidence.
+Register selected material with `Tarav.Archive` when Artifact identity and
+typed references become useful. Explicit recovery can instead copy it into an
+appropriate live location. There is no required promotion ladder, migration,
+or obligation to extract all value before continuing other development.
 
-Agents may cite a Deposit UUID in chats, notes, and recovery work so later
-Agents can find the same conservation event. That trace handle adds
-addressability without adding Archive guarantees.
+## Deposit format
 
-## Deposit
-
-The default Attic root is:
-
-```text
-~/Documents/tarav/attic/
-```
-
-A Deposit has a UUID and a human-readable physical directory:
+The default root is `~/Documents/tarav/attic/`:
 
 ```text
 deposits/
@@ -58,53 +50,102 @@ deposits/
     └── material/
 ```
 
-`deposit.json` is a short Agent orientation note, not an Archive Record or
-Manifest. New Deposits should minimally retain:
+Use a descriptive directory label. The version-1 manifest is a small JSON
+document, separate from Tarav's ordinary object Records:
 
 ```json
 {
   "class": "tarav.attic.deposit",
   "schema_version": 1,
   "uuid": "<uuid>",
-  "deposited_at": "<UTC timestamp>",
+  "deposited_at": "<UTC ISO timestamp>",
   "sources": ["<former source path>"],
   "material": "material",
-  "reason": "<why the material was conserved>",
+  "reason": "<what was stored and why it was displaced>",
   "dependency_status": "disconnected"
 }
 ```
 
-Optional hints such as source Git state may be added when readily available.
-Older Deposits may retain earlier manifest shapes; Agents should interpret
-them directly rather than require migration before investigation.
+All fields above are required for the current format. `uuid` must parse as a
+UUID; `deposited_at` must include a zero UTC offset; `sources` is a nonempty
+list of nonblank strings; `reason` is nonblank. `material` is a nonblank local
+relative path, such as `material` or `material/skills`, without parent
+traversal. The declared path is not dereferenced. `schema_version` is integer
+1, and `class` and `dependency_status` have the literal values shown.
 
-## Deposit workflow
+Optional hints, including readily available source Git state, are allowed.
+Record them as declarations rather than promises of automatic verification.
+Older manifests can produce format findings. Agents may inspect them directly;
+checks never rewrite them, require migration before investigation, or block
+preservation because metadata is incomplete.
 
-1. Resolve the exact source, scope, and destination.
-2. Create a Deposit UUID and timestamped directory.
-3. Move or copy the material while preserving its discovered structure.
-4. Write the short Deposit manifest.
-5. Verify proportionally that the intended material arrived. Archive.Attic
-   does not require exhaustive hashing or inventory before conservation.
-6. Ensure live systems are disconnected from the Attic path.
+## Agent deposit procedure
 
-Capture comes before cleanup. Do not silently normalize, deduplicate,
-reorganize, or delete deposited material merely to improve its shape.
+1. Resolve the exact source, scope, and destination. Identify active consumers
+   before displacing material; arrange to disconnect them from the deposit.
+2. Generate a UUID and UTC timestamp. Create a descriptive directory under
+   `deposits/`; prefer an atomic move for a complete tree when practical.
+3. Move or copy the material as found, preserving discovered structure,
+   repositories, and uncommitted work. Avoid content cleanup during deposit.
+4. Write `deposit.json`, explaining what is stored, where it came from, and why
+   it was displaced. Declare `disconnected` after addressing known consumers.
+5. Verify the move or copy proportionally as its operator. Attic's checks do
+   not perform that verification or certify the resulting declaration.
+6. Run the metadata checks afterward and address useful findings. If
+   conservation is urgent, preserve first and finish metadata later.
 
-## Investigation and recovery
+Never silently normalize, deduplicate, reorganize, or delete retained contents
+to improve their shape. Missing metadata is a maintenance signal, not a reason
+to lose material.
+<!-- tarav.breadcrumb 8bfe1605db1f -->
 
-- Read the Deposit manifest before inspecting its material.
-- Access Deposits only through deliberate human or Agent investigation.
-- Copy material out for analysis or recovery rather than editing the Deposit
-  in place.
-- Promote selected material explicitly into an appropriate live,
-  `Tarav.Archive`, or `Tarav.Diagram` surface. Those surfaces must not retain a
-  dependency on the Attic path.
-- Deleting a Deposit requires explicit user approval after checking its exact
-  scope and recoverability.
+## Python workflow and System maintenance
 
-If removing an Attic path would break a working system, that system is
-incorrectly depending on Archive.Attic.
+`tarav.l1.attic.AtticWorkflow` is an Archive child with its own workflow
+identity. `AtticWorkflow.open()` returns the default depot without creating
+files; an explicit root selects another depot. `attic.deposits()` lists
+immediate deposit handlers; `deposit.read_manifest()` parses one declaration.
+The path handlers' ordinary Tarav Records do not register payload Artifacts or
+turn the deposit UUID into an Entity promise.
+
+Run Python through `tarav run -- script.py`:
+
+```python
+from tarav.l1.attic import AtticWorkflow
+
+attic = AtticWorkflow.open()
+result = attic.checks.run()
+for poi in result.pois():
+    print(poi.message)
+```
+
+The suite reports missing, unreadable, or invalid manifests, duplicate UUIDs
+among valid declarations, and an unreadable deposit listing. It reads each
+immediate manifest once per run. A missing, unused depot stays absent.
+
+`TaravSystemProject` composes this suite. Use
+`tarav status --project ~/Documents/tarav/system` for routine maintenance;
+`tarav check --project ~/Documents/tarav/system` only reports checks.
+Status registers findings as ordinary Attic-owned resolution actions. Inspect
+an action before acting. A subsequent complete run closes its action when
+the detector no longer reports that situation. Failed or refused discovery
+does not establish that earlier deposit findings disappeared.
+<!-- tarav.breadcrumb eafabf1e418f -->
+
+## Investigation, recovery, and removal
+
+- Read a deposit's manifest before deliberately investigating its material.
+- Copy material out for analysis or recovery rather than editing retained
+  contents in place. Any new live or Archive surface must stand independently
+  of its former Attic path.
+- Metadata can be explicitly repaired without altering opaque contents. Do
+  not silently rewrite historical declarations merely to satisfy a check.
+- Delete a deposit only with explicit user approval after checking its exact
+  scope and recoverability. Passing format checks do not authorize deletion.
+
+If removing deposited material would break a working system, that system is
+incorrectly depending on Attic. The manifest's `disconnected` declaration is
+not proof that such a dependency is absent.
 
 ## Legacy Tarav skill mine
 

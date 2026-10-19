@@ -22,8 +22,8 @@
     },
     "src/references/attic.skw.json": {
       "blocks": {},
-      "source_hash": "a736a959e86347e87c9306bae876d7ca984ef565401d186c22e40dcc5831bcce",
-      "product_hash": "316435fe24add11b00159da328d9a64b0985e4a4bef90161faa50e15789f8f15",
+      "source_hash": "358072e7537449bc4cd2a1d6f9ff9be9544afddc118423678a782828d25767d1",
+      "product_hash": "30ad04cb1138e489a236c9cb830da4666628512defc69f878e3042c6678a8db2",
       "loading_hash": "247627276505e5919c6942504bf9521c76cba39b9061f3468eae2e20e612198c"
     },
     "src/references/capture.skw.json": {
