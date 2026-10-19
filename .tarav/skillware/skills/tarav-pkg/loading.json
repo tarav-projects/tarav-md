@@ -367,6 +367,19 @@
       ]
     },
     {
+      "id": "monologs.content",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/monologs.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.modules"
+      ]
+    },
+    {
       "id": "review.content",
       "reference": {
         "type": "Tarav.Reference.StructuredFile",

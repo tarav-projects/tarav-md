@@ -1,0 +1,89 @@
+# Monologs
+
+Monologs are voice recordings of the User thinking aloud: design reasoning,
+asides, everyday life. They are `User.Touched.Data`. Capture comes first: every
+recording is kept as it came from the phone, and its transcripts are derived
+representations of it, never replacements.
+
+## Locations
+
+| Where | What |
+|---|---|
+| Phone (Pixel, `adb`) | The recorder app writes `/sdcard/Recordings/*.m4a`, named by date and time in Italian: `17 ott alle ore 11_17.m4a`. |
+| Studio, Syl's workspace | `/Users/Shared/syl_pereiro/monologs/`: the uploaded recordings, so Syl can work with them. Reach it with `ssh studio-syl`. |
+| Studio, xtt-readings | Syl's private depot `/Users/Shared/xtt-readings-private/syl_pereiro`. Readings live at `readings/<sha256 of the audio>/<workflow-id>/`. The client is `/opt/homebrew/bin/xtt-readings`; it is not on `PATH` in a non-login SSH shell. |
+| Local data root | `~/Documents/tarav/monologs/<name>/`: `<name>.m4a`, `readings/` and `transcript.md`. |
+
+`<name>` is the recording's file name without `.m4a`. File names contain
+spaces: quote every path.
+
+## `--process`
+
+Bring every new recording from the phone to a curated transcript. A recording
+is new when `~/Documents/tarav/monologs/<name>/` does not exist yet.
+
+1. **Find.** `adb devices -l` must list the phone as `device`. List
+   `/sdcard/Recordings/*.m4a` and select the new recordings. Report them
+   (name, size) before moving on.
+2. **Pull.** `adb pull` each new recording into a fresh staging directory.
+   Never delete or modify anything on the phone.
+3. **Upload.** `scp` the recordings to Syl's `monologs/`. Compare SHA-256 on
+   both sides; stop on a mismatch.
+4. **Submit.** From Syl's `monologs/`:
+   `xtt-readings submit --depot <depot> <files>`. The depot's default battery
+   (`quick`) runs `qwen3-asr.transcribe`, `parakeet.transcribe` and
+   `sortformer.diarize`. Watch `xtt-readings status --depot <depot>` until
+   nothing is pending, and look at any failure with `xtt-readings failures`.
+5. **Check coverage.** Compare each transcript with the audio's duration
+   (`afinfo`). Known gaps:
+   - qwen3-asr stops when its output reaches 8192 tokens
+     (`generation_tokens` in `transcript.json`): about 40 minutes of fluent
+     speech. Its last segment then ends well before the audio does.
+   - parakeet sometimes answers Spanish speech in English. Its timestamps stay
+     usable; its text does not.
+
+   For a gap, queue `mlx-whisper.transcribe` for that recording with an inbox
+   order: copy the audio into `<depot>/inbox/<folder>/` and write
+   `<depot>/inbox/<folder>.order.json`:
+
+   ```json
+   {
+     "schema": "xtt-readings.order.v1",
+     "source": {"type": "folder", "path": "<folder>"},
+     "workflows": ["mlx-whisper.transcribe"]
+   }
+   ```
+
+   The reading lands beside the others, under the same SHA-256.
+6. **Download.** For each recording create `~/Documents/tarav/monologs/<name>/`,
+   copy `<name>.m4a` into it, and `rsync` `<depot>/readings/<sha256>/` into its
+   `readings/`.
+7. **Curate.** Write `<name>/transcript.md` from all the readings. Follow
+   the transcript conventions below.
+8. **Report.** List the new folders, any gap and how it was filled, and the
+   passages left uncertain. Remove the staging directory.
+
+### Transcript conventions
+
+- Header: the recording's date, time, duration, language and speaker count; the
+  readings used and which one is the base; then the corrections made.
+- Base text: qwen3-asr. Where it is cut off, use mlx-whisper. Check the base
+  against the other transcripts, and take the better reading where they
+  disagree.
+- Timestamps `[mm:ss]` at paragraph starts, from parakeet's sentences or
+  mlx-whisper's segments. Say so when they are approximate.
+- Trim stutters and repeated words; otherwise keep the speaker's wording and
+  language. Never summarize.
+- `[?]` marks a passage every reading garbles. `[word]` marks an editorial
+  correction. `*( … )*` condenses an aside: shops, streets, dogs, family.
+- Fix known mishearings and list them in the header: "Taraf", "Tara" →
+  Tarav; "chatla" → Chatlas; "teler" → telar; "Cloud Code" → Claude Code;
+  "la gente" → "el agente" / "los agentes" where the speaker means AI agents.
+  Mark interpretations as such, such as "chip" read as *ship*, the Ship of
+  Theseus identity.
+- Section headings (`##`) for long recordings, following the speaker's own
+  topics.
+- Do not use gendered pronouns for the speaker or for people the speaker
+  mentions.
+- A recording without speech gets a transcript that says so.
+
