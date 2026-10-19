@@ -53,3 +53,20 @@ separately as their use cases are developed.
 [Implementation request 929](../../../tarav-py/notes/live/929-recursive-lines-blocks-impl-req.md)
 records the executed redesign. [Kernel Writing](kernel-writting.md) discusses
 the writing style that motivates focused Lines.
+
+## Notebook and general history
+
+The next design places persistent storage and Project notebook partitions in
+a separate [Line Notebook workflow](line-notebook.md). Project-root Blocks
+can provide typed Discussion and Model branches: Discussion holds reasoning
+without an implementation obligation; Model aims to stay current. The
+recursive Lines primitives continue to supply the bounded authoring contexts.
+<!-- tarav.breadcrumb 2547b40a4bfd -->
+
+History is a general concern for identified objects. The User deferred a
+Notebook-specific Block-version design in favor of a future
+[Lineage workflow](lineage.md), potentially supporting Git-backed and
+explicitly stored histories. The first recovery can import a selected recent
+archive state and use Git for subsequent changes.
+<!-- tarav.breadcrumb c067d4db88ac -->
+<!-- tarav.breadcrumb 003b5639a2b9 -->
