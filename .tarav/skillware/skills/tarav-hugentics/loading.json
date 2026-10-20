@@ -894,7 +894,8 @@
         "capture.introduction",
         "wiki-capture.introduction",
         "impl.phases.introduction",
-        "design-dialogue.introduction"
+        "design-dialogue.introduction",
+        "notebook-capture.introduction"
       ]
     },
     {
@@ -961,7 +962,8 @@
         }
       },
       "parents": [
-        "skill.routing"
+        "skill.routing",
+        "notebook-capture.introduction"
       ]
     },
     {
@@ -990,6 +992,112 @@
         "type": "Tarav.Reference.StructuredFile",
         "locator": {
           "path": "src/references/ground.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "notebook-capture.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/notebook-capture.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.routing"
+      ]
+    },
+    {
+      "id": "notebook-capture.prepare-the-target",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/notebook-capture.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "notebook-capture.discuss-review-and-change-focus",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/notebook-capture.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "notebook-capture.stage-with-the-notebook-api",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/notebook-capture.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
+    },
+    {
+      "id": "notebook-capture.land-approved-content-and-inspect",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/notebook-capture.skw.json",
+          "pointer": "/blocks/4"
+        }
+      }
+    },
+    {
+      "id": "notebook-capture.audit-and-unreviewed-capture",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/notebook-capture.skw.json",
+          "pointer": "/blocks/5"
+        }
+      }
+    },
+    {
+      "id": "kernel-writing.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/kernel-writing.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "notebook-capture.introduction"
+      ]
+    },
+    {
+      "id": "kernel-writing.writing-principles",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/kernel-writing.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "kernel-writing.worked-examples",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/kernel-writing.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "kernel-writing.before-presenting-a-proposal",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/kernel-writing.skw.json",
           "pointer": "/blocks/3"
         }
       }

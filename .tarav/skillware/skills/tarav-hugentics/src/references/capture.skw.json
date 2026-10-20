@@ -10,6 +10,11 @@
       "content": [
         "# Hugentics Capture",
         "",
+        "This legacy Diagram-backed route is unavailable in the current runtime.",
+        "Stop without running its retired commands. For the maintained Notebook",
+        "workflow, use --capture --notebook; do not silently redirect the target.",
+        "The remaining text is historical workflow guidance.",
+        "",
         "This module runs the conversational workflow that develops and lands typed",
         "Ships, Ship editions, and Annotations into a Project's configured main",
         "`Diagram.Model` in `User.Touched.Chatlas.Index`.",

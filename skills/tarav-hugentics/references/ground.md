@@ -111,6 +111,6 @@ Breadcrumbs, actions or session repository. Report missing storage, missing
 Model, empty or sparse coverage, unresolved identities and query errors
 honestly; do not populate the model or silently search every Project. It does
 not compose with mutating Hugentics routes. The retired Diagram Model-backed
-capture/implementation routes remain parked; Notebook ModelBlock is distinct.
+backend remains parked; --capture --notebook has its own module.
 <!-- tarav.breadcrumb ccfc10f461df -->
 

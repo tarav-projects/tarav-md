@@ -1,6 +1,6 @@
 ---
 name: tarav-hugentics
-description: "Run Tarav's Notebook grounding, Explain Me, Project.Wiki capture, Product.Surface Breadcrumb capture, Model capture, Reading Club, Issue, Design Dialogue, Design Impact, and implementation workflows. USE WHEN the user wants a first-principles briefing linked to their past conversations, a User-Turn-grounded project wiki or product surface, dialogue capture, Model capture, a Reading Project, Issue work, assessment of recent in-chat design's implementation impact, implementation design or execution, or invokes `tarav-hugentics --ground --notebook`, `--explain-me`, `--capture`, `--reading-club`, `--issues`, `--design --dialogue --wiki`, `--design --impact`, or `--impl`."
+description: "Run Tarav's Notebook grounding, Explain Me, Project.Wiki capture, Product.Surface Breadcrumb capture, Notebook capture, Reading Club, Issue, Design Dialogue, Design Impact, and implementation workflows. USE WHEN the user wants a first-principles briefing linked to their past conversations, a User-Turn-grounded project wiki or product surface, dialogue capture, Notebook capture, a Reading Project, Issue work, assessment of recent in-chat design's implementation impact, implementation design or execution, or invokes `tarav-hugentics --ground --notebook`, `--explain-me`, `--capture`, `--reading-club`, `--issues`, `--design --dialogue --wiki`, `--design --impact`, or `--impl`."
 ---
 
 # Tarav Hugentics
@@ -35,6 +35,14 @@ tarav-hugentics --ground [HINT]
 tarav-hugentics --explain-me [TOPIC]
     Explain any topic to the User: find what the User last discussed about it,
     then explain it from first principles. Read-only.
+
+tarav-hugentics --capture --notebook [FOCUS]
+    [--project PATH] [--branch model|discussion|archive|project | --block SHIP]
+tarav-hugentics --capture --notebook --audit [FOCUS]
+tarav-hugentics --capture --notebook --auto [FOCUS]
+tarav-hugentics --capture --notebook --unreviewed [FOCUS]
+    Capture into the inferred Project Notebook Model by default. Interactive
+    review separates token approval from landing; --audit is read-only.
 
 tarav-hugentics --capture [PROMPT]
     Interactive reviewed capture. Initial stance: Review.
@@ -208,7 +216,13 @@ compose with Capture or implementation. Infer the Project from the task and cwd.
 
 `--explain-me` loads and follows [`references/explain-me.md`](references/explain-me.md).
 Explain Me is read-only and does not compose with Capture or implementation.
-Ordinary Capture routes load and follow [`references/capture.md`](references/capture.md).
+`--capture --notebook` loads [Notebook capture](references/notebook-capture.md).
+It defaults to the inferred Project's ModelBlock and supports explicit scope,
+discussion, exact review and landing. Wiki, inline and implementation remain
+distinct routes. Bare legacy Diagram capture is unavailable in the current CLI.
+<!-- tarav.breadcrumb ff73751775ac -->
+
+Legacy Capture routes load and follow [`references/capture.md`](references/capture.md).
 `--capture --wiki`, including its `--target` and `--audit` routes, instead
 loads and follows [`references/wiki-capture.md`](references/wiki-capture.md).
 It edits Project.Wiki Markdown only in the ordinary non-audit route and never
@@ -246,4 +260,7 @@ absent Model artifacts are not POIs for implementation.
 Notebook grounding reads the new recursive Lines Blocks through Context.
 Its ModelBlock default does not reactivate the parked Model-backed capture
 or implementation backend.
+
+Notebook capture uses current Lines/Notebook support and review APIs.
+It is separate from the retired Diagram Model capture backend.
 
