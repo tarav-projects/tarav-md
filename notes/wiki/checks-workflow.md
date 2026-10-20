@@ -214,3 +214,23 @@ an identity. The reasons and the consequences for actions are in
 are detectors that hold their run".
 <!-- tarav.breadcrumb f626b0a4e9fa -->
 
+## Named completion checkpoints — 2026-10-20
+
+A suite may finish while one conditional producer never scanned for its Checks.
+For dynamic findings, the User wants named checkpoints placed after the scan
+and returned by the suite run. The checkpoint is the local assertion that the
+suite reached that producer; zero generated Checks has meaning only when this
+assertion is present. An absent POI can take an Action's `gone` path only when
+the checkpoint responsible for that Check Type was reached and its executed
+Checks completed. A skipped scan leaves the Action open as `not run`.
+<!-- tarav.breadcrumb ac4d808fc231 -->
+<!-- tarav.breadcrumb 989482cffd36 -->
+
+In [request 938](../../../tarav-py/notes/live/938-suite-checkpoints-impl-req.md),
+`CheckSuite` declares the Check Types certified by each named checkpoint and
+its producer yields `SuiteCheckpoint(name)` after the scan. The run records
+which names it reached. The Action event retains the relevant checkpoint; the
+current suite declaration also governs an already-open Action whose event was
+created before that declaration. Focused tests cover a skipped scan, a failed
+Check, an empty completed scan, reset, and sibling suite isolation.
+
