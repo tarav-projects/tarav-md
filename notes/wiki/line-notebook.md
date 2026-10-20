@@ -220,3 +220,93 @@ a few mechanical checks. Semantic Assertion evaluation and scoring integration
 are explicitly deferred. This is a design handoff; those capabilities have
 not been implemented by this capture pass.
 <!-- tarav.breadcrumb bb0f9e4b889d -->
+
+## Implemented support and review capture — request 934
+
+The User authorized execution of
+[request 934](../../../tarav-py/notes/live/934-notebook-support-review-impl-req.md).
+The Python implementation now provides independent
+[support records](../../../tarav-py/src/tarav/l1/grounding/__init__.py) and
+[verbatim review records](../../../tarav-py/src/tarav/l1/review/__init__.py),
+composed into NotebookLine, ReviewedLine, SupportedBlock and ReviewedBlock
+Types. Base Lines remain unchanged. Existing imported records are not retyped
+or given invented evidence.
+<!-- tarav.breadcrumb e938c0e93df6 -->
+
+[NotebookCapture](../../../tarav-py/src/tarav/l2/notebook_capture.py) is the
+Python-first capture interface. Selecting it does not create storage;
+its explicit create initializes the Grounding and Review Record Registry
+partitions. It can capture a Notebook Line, attach a SupportSet, render a
+proposal, record a review, inspect evidence, and check review completion.
+Evidence records are inserted separately and retain the subject state they
+concern. Approval is not substituted for substantive support.
+<!-- tarav.breadcrumb 36d84282dbba -->
+<!-- tarav.breadcrumb ba443f1b05ef -->
+
+From a Tarav-started Python script, with an existing Project notebook and
+already resolved ChatlasTurnReference objects:
+
+```python
+from tarav.l1.grounding import SupportMember
+from tarav.l2.notebook_capture import NotebookCapture
+
+binding = project.notebook()
+capture = NotebookCapture(binding.notebook).create()
+line = capture.capture(
+    binding.model, "The supported design statement.",
+    members=[SupportMember(user_turn_ref)], producer=producer_turn_ref,
+    reviewed=True,
+)
+proposal_text = capture.propose_review(
+    [line], destination=line.scope, token=unique_review_token,
+)
+# Present proposal_text; obtain the real proposal and User approval references.
+review = capture.record_review(
+    [line], destination=line.scope, token=unique_review_token,
+    proposal=proposal_turn_ref, approval=approval_turn_ref,
+)
+capture.complete_review(review)
+report = capture.inspect(line)
+```
+
+The references and token in that example are inputs obtained from the actual
+conversation. Proposal rendering needs no fabricated future approval reference.
+Capture persists incomplete content; completion checks cannot report success
+for a failed review. Agent-maintained capture uses reviewed=False in a scope
+without an inherited review requirement, and still requires support.
+The returned report describes mechanical support/review
+problems, not semantic scores.
+<!-- tarav.breadcrumb adadd47cf70d -->
+<!-- tarav.breadcrumb 1c08242ad734 -->
+
+Subject state includes the Line's wording and concrete Type, plus direct Lines
+in its Block and ancestor contexts. Attachments do not affect this fingerprint.
+This first policy is conservative: a context Line edit, including a sibling
+addition, can stale existing evidence. For a batch, establish the final Block
+contents before attaching support. Proposals include target-state digests;
+unchanged wording under a different context cannot acquire approval through
+an older proposal. New evidence can satisfy the current-state requirement
+while older records remain inspectable. Git history remains the simple Line's
+history mechanism; no LineTrace or semantic carry engine was introduced.
+<!-- tarav.breadcrumb afc888b0a772 -->
+<!-- tarav.breadcrumb a2b7aa681cee -->
+
+[NotebookEvidenceSuite](../../../tarav-py/src/tarav/l2/notebook_checks.py) is
+composed into the featured Project's checks. Atomic Situation Chains report
+missing, stale, invalid or unavailable support/review, and inaccessible existing
+notebooks. Block and Line Types combine requirements; descendants cannot
+silently weaken them. Unavailable evidence makes checks incomplete and cannot
+settle earlier unresolved findings. Valid new review evidence closes the
+corresponding MissingReview action through the normal gone path.
+<!-- tarav.breadcrumb 68deb7b32511 -->
+<!-- tarav.breadcrumb 164dadc08eea -->
+
+The [capture tests](../../../tarav-py/tests/test_notebook_evidence.py) exercise
+actual Chatlas reference resolution over fixed Normal Model fixtures, retained
+evidence, invalid review protocols, bounded multi-Line changes and changed
+context. The [Project tests](../../../tarav-py/tests/test_notebook_evidence_checks.py)
+exercise action closure, unavailable evidence, explicit source authorization,
+inherited requirements and read-only behavior. Semantic Assertions, scoring,
+alignment with code, a new capture skill route and extension UI remain deferred.
+<!-- tarav.breadcrumb db91a40c82c4 -->
+<!-- tarav.breadcrumb 8d1ca9c52f24 -->
