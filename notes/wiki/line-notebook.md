@@ -126,3 +126,61 @@ refusal to overwrite a later notebook edit. Older Markdown indexes, Git
 histories, and unfinished Drafts were not part of this selected first import.
 <!-- tarav.breadcrumb 49908ac5c359 -->
 <!-- tarav.breadcrumb 6d8bb0536f55 -->
+
+## Context-based grounding
+
+Grounding finds Blocks that speak to the current conversation. An optional
+hint focuses that task; it need not be a Block name. The default source is the
+inferred Project's complete Model subtree, which aims to contain the current
+model of the system. Discussion and Archive can be selected explicitly while
+retaining their respective conversational and historical meaning.
+<!-- tarav.breadcrumb 40eee331eedf -->
+<!-- tarav.breadcrumb 3aa182b94d8f -->
+
+Lines contribute typed and structural triplets through Context hooks. Query
+execution belongs to Context, using its existing SPARQL SELECT/ASK engine;
+Notebook remains the persisted home for objects. Agent judgment determines
+relevance and how much to read. Collecting the Model makes its contents
+available to query; it does not mean the agent has read or endorsed each Line.
+<!-- tarav.breadcrumb faf571d4d914 -->
+<!-- tarav.breadcrumb 5d4f4f5bb5a8 -->
+
+[Request 933](../../../tarav-py/notes/live/933-notebook-context-grounding-impl-req.md)
+implements [Lines hooks and collection](../../../tarav-py/src/tarav/l1/lines/context.py),
+[Project selection](../../../tarav-py/src/tarav/l2/notebook.py), and the
+[Notebook CLI](../../../tarav-py/src/tarav/l3/notebook/commands.py).
+The collected graph includes every Block and Line in the selected subtree,
+plus ancestors and their direct Lines. Ancestor sibling targets may appear
+as edges, but their contexts and text are not collected. Lines use the IRI
+prefix `urn:tarav:lines:` with `text`, `scope`, `parent` and `contains`;
+RDF ordinal membership predicates preserve mixed content order.
+<!-- tarav.breadcrumb af6cb83e28f2 -->
+<!-- tarav.breadcrumb af4e86d1b3fd -->
+
+The installed commands run through the selected Project's declared harness:
+
+```sh
+tarav notebook ls --project /absolute/project/path --json
+tarav notebook read --project /absolute/project/path --id BLOCK_OR_LINE_SHIP --json
+tarav notebook query --project /absolute/project/path --sparql 'ASK { ?s ?p ?o }' --json
+```
+
+Each command defaults to Model. `--branch discussion`, `archive` or `project`
+selects another branch; `--block SHIP` selects a particular subtree. Reads
+return ordered direct contents and ancestor Lines. Known stored Ships also
+resolve through `tarav context --id`. Missing storage or coverage is reported
+without creating a Notebook or broadening the search. The
+[integration tests](../../../tarav-py/tests/test_notebook_context.py) cover
+scope, read-only storage, CLI queries, identity lookup and custom Project Types
+available only through their declared environment.
+<!-- tarav.breadcrumb fd44d7c9728b -->
+
+[Request 868](../live/868-notebook-grounding-skill-impl-req.md) restores
+[`tarav-hugentics --ground --notebook [HINT]`](../../skills/tarav-hugentics/references/ground.md)
+and the equivalent bare `--ground` route. Its module guides Project inference,
+map inspection, Context queries, scoped reads and explicit branch expansion.
+This new ModelBlock route leaves the retired Model-backed capture and
+implementation backend parked. The read-only live rehearsal found only the
+umbrella Project Model's seed explanatory Line; substantive grounding remains
+to be exercised after there is useful Model content.
+<!-- tarav.breadcrumb c86272c43710 -->
