@@ -346,3 +346,61 @@ and existing evidence/action tests verify these boundaries. The focused run
 passed 94 tests, plus 3 recovery tests. A live read preserved all 5,126 files
 in the existing store. Scoring and general Ship lineage remain deferred.
 <!-- tarav.breadcrumb 238a29ac8161 -->
+
+
+## Reviewed Notebook capture skill — requests 869 and 939
+
+The User requested a capture path targeting Notebook, with the inferred
+Project's ModelBlock as its default. Preparation reads that target's existing
+Blocks and ancestor context before proposing additions or amendments. Explicit
+Project, branch or Block selection can target another part of the notebook.
+This route is separate from Wiki/inline capture and the retired Diagram Model
+backend. The implemented invocation is `tarav-hugentics --capture --notebook`.
+<!-- tarav.breadcrumb f8d021a17494 -->
+<!-- tarav.breadcrumb 86c87c46ecca -->
+
+Focus and interaction mode remain independent. The Agent can discuss a Block,
+present exact wording for token review, return to discussion, or move to the
+next Block after approval. `::discuss` holds until `::review`. `::approve TOKEN`
+accepts the presented proposal without writing it; approved items can wait for
+`::land` or `::land-all-approved`. A changed semantic proposal needs a fresh
+token. Substantive User-turn support remains distinct from verbatim approval.
+<!-- tarav.breadcrumb 56271e477598 -->
+<!-- tarav.breadcrumb 8af5606291ae -->
+
+The User also requested explicit writing guidance for the capture Agent.
+The recovered Kernel Writing craft emphasizes focused contributions, sibling
+orthogonality at the chosen resolution, direct wording, meaningful
+qualifications, coverage over compression and useful future signal. The
+[writing guide](../../skills/tarav-hugentics/references/kernel-writing.md)
+includes worked examples and a short proposal checklist. It allows meaning to
+depend on Block ancestry and order to matter for logs/arguments; it adds no
+topic field, compulsory sections or concept-only Block restriction.
+<!-- tarav.breadcrumb 30529b4eecbd -->
+
+Implementation: [NotebookDraft](../../../tarav-py/src/tarav/l2/notebook_draft.py)
+stages new recursive Blocks, Lines and amendments through Notebook.draft().
+Its temporary plan preserves actual Ships, operations, source/context
+baselines and exact presentation across tool calls. Staging writes no live
+candidate records. Landing checks the actual proposal/approval and fresh
+source/context before applying the change through current support/review
+mechanics. Amendments preserve Ship and concrete Type; plain historical Lines
+are not migrated. Independent new child Blocks can land sequentially, while
+changed local meaning requires a fresh proposal. This supplies bounded
+preflight rather than transactional batches or general lineage.
+<!-- tarav.breadcrumb 4f41a74a98d1 -->
+
+The [capture guide](../../skills/tarav-hugentics/references/notebook-capture.md)
+documents targeting, interaction, real Python staging/landing, support,
+read-only audit and the existing supported/unreviewed route. Its two compiled
+Python examples were executed against isolated Project and Normal Model
+fixtures. Nine draft tests and 79 focused combined tests passed; full Project
+status completed 1,298 checks and all 58 test-file runs with zero test POIs.
+No live Model capture was performed. The deployed skill copy matches the
+compiled products and the active depot links them. Package generation still
+reports freshness findings, including two neighboring Issue contexts made
+stale by the changed capture guidance; no scoring, LineTrace or legacy Index
+runtime was restored. See [skill request 869](../live/869-notebook-capture-skill-impl-req.md)
+and [Python request 939](../../../tarav-py/notes/live/939-notebook-reviewed-capture-impl-req.md)
+for the measured checks and remaining findings.
+<!-- tarav.breadcrumb 51d7d69c7438 -->
