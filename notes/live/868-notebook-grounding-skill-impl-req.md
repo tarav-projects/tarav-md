@@ -16,7 +16,7 @@ Block name. This is agent-operated, read-only contextualization.
 
 Knowledge.Surface: wiki
 Alignment.Mode: Interactive
-Status: executing; Python dependency [933](../../../tarav-py/notes/live/933-notebook-context-grounding-impl-req.md) is verified.
+Status: complete; Python dependency [933](../../../tarav-py/notes/live/933-notebook-context-grounding-impl-req.md) is verified.
 
 ## Design
 
@@ -93,5 +93,24 @@ topic and mandatory daily Note with exact supporting User Turns.
   Model succeeds. Its only content is the seed explanatory Line (one Block,
   19 collected triplets, one ancestor). No substantive relevance claim can be
   tested against this sparse Model; no Notebook content was added to hide it.
-- Remaining: capture the accepted design and implemented usage in the Notebook
-  Wiki topic and daily Note, run closing status, and record completion.
+
+## Completion
+
+- Skill slice commit: 76c1b803ebc2b9f665673579d6ded0cc29a047bc; its evidence
+  audit passed. Installed consumer entry points are ready for later grounding
+  sessions; sparse live Model coverage is the explicit limit of this rehearsal.
+- Captured the accepted design and implementation in
+  [line-notebook.md](../wiki/line-notebook.md#context-based-grounding) and
+  [the daily narrative](../wiki/daily/2026-10-19.md#notebook-grounding-through-context).
+  Eight new topic Breadcrumbs and four daily Breadcrumbs were submitted;
+  both complete Note audits pass with no POIs. The scoped capture commit is
+  01bc984ad8089f033e4b5083d6c5d4f64ff29a43.
+- Closing umbrella status completed 1,163 checks, zero incomplete, zero new
+  actions, and eight prior skill actions closed as gone. The 68 remaining
+  inherited POIs include 55 skill freshness/output findings and unrelated
+  Project/Git/fixture or Wiki findings. No new grounding-module loading,
+  compilation, link, dependency or reading-path findings were introduced.
+- Product verification and scoped Wiki capture are complete. Metadata/source
+  JSON has no native inline convention; captured product Markdown labels are
+  retained in authoritative SKW content and survive compilation. No capture
+  registration remains pending for this implementation.
