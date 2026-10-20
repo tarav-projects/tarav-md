@@ -1,0 +1,57 @@
+{
+  "type": "Tarav.Skillware.Generation",
+  "schema_version": 1,
+  "id": "3896409708d9471d9da86a8f6054733c",
+  "source": "src/references/ground.skw.json",
+  "block": "resolve-and-inspect",
+  "input_hash": "101729087f702b0c4d6093a4617159aa233945bb1b67c23459fee53796d1c092",
+  "status": "Recorded",
+  "instructions": [],
+  "previous_content": [
+    "## Resolve and inspect",
+    "",
+    "1. Identify the conversation's current concepts, claims, tensions and questions.",
+    "   Use the hint to focus that frame. If no conversation is available, say that",
+    "   the pass is grounded only in the supplied hint.",
+    "2. Infer the active Project from the foreground task, explicit Project mentions,",
+    "   and working directory. The skill's own repository is not automatically the",
+    "   target. Resolve materially ambiguous Projects with the User.",
+    "3. Discover the installed command with `tarav notebook --help` and its relevant",
+    "   subcommand help. Start with:",
+    "",
+    "   ```sh",
+    "   tarav notebook ls --project /absolute/project/path --json",
+    "   ```",
+    "",
+    "   Without --project the command infers the nearest Project from cwd. It runs",
+    "   through that Project's declared harness, preserving its actual Type. `ls`",
+    "   returns scope identity, graph size, the Lines IRI prefix, and a compact map",
+    "   of all Blocks in the selected subtree. Previews come from direct Lines;",
+    "   there is no mandatory Block name or topic field.",
+    "4. Inspect this map before deciding whether a query is useful. Types, Line",
+    "   wording and ancestry provide relevance clues. For a small model, reading",
+    "   the relevant Blocks directly may be cheaper than preparing a query.",
+    ""
+  ],
+  "chat": "codex:01a15483-94e8-7fe0-86ad-ddd83e2bae52",
+  "context": [
+    {
+      "declaration": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "ground.skw.json",
+          "pointer": "/shared/maintenance"
+        }
+      },
+      "content": {
+        "kind": "prompt",
+        "lines": [
+          "Maintain the read-only Notebook grounding workflow against installed tarav notebook help and the current Lines/Context API."
+        ]
+      },
+      "fingerprint": "cab69b87cc9cb8111d4070a123ba45469e5c12c96a31bd85bdd85734fc194910"
+    }
+  ],
+  "context_hash": "9462c10470495ad94e30557df951e558af21b74dfbdaae33f2ca1d6f688be7d2",
+  "output_hash": "5edb8223952638befde522d9284243bdd1c2cdd691ef1a7bbb1f776cafaac9a5"
+}

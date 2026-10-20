@@ -1,11 +1,11 @@
 ---
 name: tarav-hugentics
-description: "Run Tarav's Explain Me, Project.Wiki capture, Product.Surface Breadcrumb capture, Model capture, Reading Club, Issue, Design Dialogue, Design Impact, and implementation workflows. USE WHEN the user wants a first-principles briefing linked to their past conversations, a User-Turn-grounded project wiki or product surface, dialogue capture, Model capture, a Reading Project, Issue work, assessment of recent in-chat design's implementation impact, implementation design or execution, or invokes `tarav-hugentics --explain-me`, `--capture`, `--reading-club`, `--issues`, `--design --dialogue --wiki`, `--design --impact`, or `--impl`."
+description: "Run Tarav's Notebook grounding, Explain Me, Project.Wiki capture, Product.Surface Breadcrumb capture, Model capture, Reading Club, Issue, Design Dialogue, Design Impact, and implementation workflows. USE WHEN the user wants a first-principles briefing linked to their past conversations, a User-Turn-grounded project wiki or product surface, dialogue capture, Model capture, a Reading Project, Issue work, assessment of recent in-chat design's implementation impact, implementation design or execution, or invokes `tarav-hugentics --ground --notebook`, `--explain-me`, `--capture`, `--reading-club`, `--issues`, `--design --dialogue --wiki`, `--design --impact`, or `--impl`."
 ---
 
 # Tarav Hugentics
 
-`tarav-hugentics` is Tarav's public Explain Me, conversational capture, Reading
+`tarav-hugentics` is Tarav's public Notebook grounding, Explain Me, conversational capture, Reading
 Club, Design Dialogue, Design Impact, and implementation surface. It preserves the Hugentics alignment
 workflows while using Chatlas and the Tarav.Diagram as its User-Touched
 indexing backend.
@@ -27,6 +27,11 @@ Treat the skill call like a command line:
 ## Command Surface
 
 ```text
+tarav-hugentics --ground --notebook [HINT]
+tarav-hugentics --ground [HINT]
+    Find Blocks relevant to the current conversation, starting at the inferred
+    Project's complete Notebook Model subtree through Context. Read-only.
+
 tarav-hugentics --explain-me [TOPIC]
     Explain any topic to the User: find what the User last discussed about it,
     then explain it from first principles. Read-only.
@@ -196,6 +201,11 @@ Bare `--design` does not select Design Impact. Standalone Design Impact does
 not compose with Capture; implementation routes retain their ordinary capture
 contract.
 
+`--ground`, optionally qualified by `--notebook`, loads and follows
+[`references/ground.md`](references/ground.md). It is read-only and does not
+compose with Capture or implementation. Infer the Project from the task and cwd.
+<!-- tarav.breadcrumb 2c482dc7754e -->
+
 `--explain-me` loads and follows [`references/explain-me.md`](references/explain-me.md).
 Explain Me is read-only and does not compose with Capture or implementation.
 Ordinary Capture routes load and follow [`references/capture.md`](references/capture.md).
@@ -232,4 +242,8 @@ Implementation follows the Wiki-backed live-note and Wiki capture contract.
 The former Model-backed implementation route, with its `Impl.Req.Collection`,
 `Diagram.Draft`, and implementation `Capture.Authorization.Gate`, is parked;
 absent Model artifacts are not POIs for implementation.
+
+Notebook grounding reads the new recursive Lines Blocks through Context.
+Its ModelBlock default does not reactivate the parked Model-backed capture
+or implementation backend.
 

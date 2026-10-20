@@ -1,0 +1,56 @@
+{
+  "type": "Tarav.Skillware.Generation",
+  "schema_version": 1,
+  "id": "d1aba2a23d1f442f9ac3fe7d80d3cc6c",
+  "source": "src/references/ground.skw.json",
+  "block": "introduction",
+  "input_hash": "101729087f702b0c4d6093a4617159aa233945bb1b67c23459fee53796d1c092",
+  "status": "Recorded",
+  "instructions": [],
+  "previous_content": [
+    "# Notebook grounding",
+    "",
+    "```text",
+    "tarav-hugentics --ground --notebook [HINT]",
+    "tarav-hugentics --ground [HINT]",
+    "```",
+    "",
+    "Ground the agent in Blocks relevant to the current conversation. HINT focuses",
+    "that work; it need not be an exact name, and it does not replace the visible",
+    "conversation. Bare --ground selects the Notebook backend. These are skill",
+    "selectors, not flags to forward to the CLI.",
+    "",
+    "<!-- tarav.sessions",
+    "0f5bad01 = codex:01a15483-94e8-7fe0-86ad-ddd83e2bae52 @0f5bad0131260477b4cf3d712a95871496c3db92d67eaa7910243e312f7b552a",
+    "-->",
+    "",
+    "The default source is the inferred Project's complete ModelBlock subtree,",
+    "which aims to express its current model of the system. The Context graph",
+    "collects every Block and Line in that subtree plus ancestor context; collection",
+    "does not mean that the agent has read or endorsed every Line.",
+    "<!-- tarav.context 0f5bad01:1dd3d255feb85811 -->",
+    "<!-- tarav.context 0f5bad01:6e91c37f32c2a854 -->",
+    ""
+  ],
+  "chat": "codex:01a15483-94e8-7fe0-86ad-ddd83e2bae52",
+  "context": [
+    {
+      "declaration": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "ground.skw.json",
+          "pointer": "/shared/maintenance"
+        }
+      },
+      "content": {
+        "kind": "prompt",
+        "lines": [
+          "Maintain the read-only Notebook grounding workflow against installed tarav notebook help and the current Lines/Context API."
+        ]
+      },
+      "fingerprint": "cab69b87cc9cb8111d4070a123ba45469e5c12c96a31bd85bdd85734fc194910"
+    }
+  ],
+  "context_hash": "9462c10470495ad94e30557df951e558af21b74dfbdaae33f2ca1d6f688be7d2",
+  "output_hash": "04483b3ff5c920e4c8ea4f46bacb0224b6c7126877b78f2d0e0115c9551fb004"
+}

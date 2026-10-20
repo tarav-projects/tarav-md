@@ -1,0 +1,79 @@
+{
+  "type": "Tarav.Skillware.Generation",
+  "schema_version": 1,
+  "id": "89dbe95f76564a5798d74a059ad2d638",
+  "source": "src/references/ground.skw.json",
+  "block": "query-and-read",
+  "input_hash": "101729087f702b0c4d6093a4617159aa233945bb1b67c23459fee53796d1c092",
+  "status": "Recorded",
+  "instructions": [],
+  "previous_content": [
+    "## Query and read",
+    "",
+    "Lines contribute facts through Context hooks. Query execution is the existing",
+    "Context Explorer's SPARQL SELECT/ASK engine; Notebook supplies persisted",
+    "objects. There is no separate Notebook search language or text-search index.",
+    "<!-- tarav.context 0f5bad01:ef37ab956a5f9840 -->",
+    "",
+    "The prefix is `lines: <urn:tarav:lines:>`:",
+    "",
+    "- `lines:text`: Line to literal text;",
+    "- `lines:scope`: Line to its one authoring Block;",
+    "- `lines:parent`: Block to its parent;",
+    "- `lines:contains`: Block to a direct Line or child Block;",
+    "- RDF `_1`, `_2`, ... membership predicates retain mixed content order;",
+    "- inherited `rdf:type` identifies the concrete Type.",
+    "",
+    "Derive concrete search terms and relationships from the conversation. For",
+    "example, replace MODEL_SHIP with the `scope.id` returned by `ls`, and replace",
+    "\"cache\" with a useful term before running:",
+    "",
+    "```sh",
+    "tarav notebook query --project /absolute/project/path --sparql '",
+    "PREFIX lines: <urn:tarav:lines:>",
+    "SELECT ?block ?line ?text WHERE {",
+    "  ?line lines:scope ?block; lines:text ?text .",
+    "  ?block lines:parent* <urn:uuid:MODEL_SHIP> .",
+    "  FILTER(CONTAINS(LCASE(STR(?text)), \"cache\"))",
+    "} LIMIT 20' --json",
+    "```",
+    "",
+    "The parent path confines this example to the selected subtree: ancestor Lines",
+    "are available as context, but their presence does not make them model content.",
+    "Search terms produce leads. The agent judges relevance by reading the Blocks.",
+    "Every invocation collects a fresh graph; there is no retained session View.",
+    "",
+    "```sh",
+    "tarav notebook read --project /absolute/project/path --id BLOCK_OR_LINE_SHIP --json",
+    "```",
+    "",
+    "A read returns the owning Block, ordered direct contents and ancestor direct",
+    "Lines. Read relevant child Blocks explicitly and preserve each Line's scope.",
+    "Do not interpret a Line through arbitrary additional graph relationships.",
+    "Object values in query rows carry Ships and Types; use those identities for",
+    "further reads and citations. Known stored identities also open through",
+    "`tarav context --id SHIP` in an environment that knows their Types.",
+    ""
+  ],
+  "chat": "codex:01a15483-94e8-7fe0-86ad-ddd83e2bae52",
+  "context": [
+    {
+      "declaration": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "ground.skw.json",
+          "pointer": "/shared/maintenance"
+        }
+      },
+      "content": {
+        "kind": "prompt",
+        "lines": [
+          "Maintain the read-only Notebook grounding workflow against installed tarav notebook help and the current Lines/Context API."
+        ]
+      },
+      "fingerprint": "cab69b87cc9cb8111d4070a123ba45469e5c12c96a31bd85bdd85734fc194910"
+    }
+  ],
+  "context_hash": "9462c10470495ad94e30557df951e558af21b74dfbdaae33f2ca1d6f688be7d2",
+  "output_hash": "233db1e9db3c9f859cda1cf4927091ef500b1797a80edfe081d41da5d99ec210"
+}

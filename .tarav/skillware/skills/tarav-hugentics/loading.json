@@ -950,6 +950,49 @@
         }
       },
       "parents": []
+    },
+    {
+      "id": "ground.introduction",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/ground.skw.json",
+          "pointer": "/blocks/0"
+        }
+      },
+      "parents": [
+        "skill.routing"
+      ]
+    },
+    {
+      "id": "ground.resolve-and-inspect",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/ground.skw.json",
+          "pointer": "/blocks/1"
+        }
+      }
+    },
+    {
+      "id": "ground.query-and-read",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/ground.skw.json",
+          "pointer": "/blocks/2"
+        }
+      }
+    },
+    {
+      "id": "ground.scope-and-conclusion",
+      "reference": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "src/references/ground.skw.json",
+          "pointer": "/blocks/3"
+        }
+      }
     }
   ]
 }

@@ -1,0 +1,56 @@
+{
+  "type": "Tarav.Skillware.Generation",
+  "schema_version": 1,
+  "id": "00bea1a9326d4f81b22f77397f6ad050",
+  "source": "src/references/ground.skw.json",
+  "block": "scope-and-conclusion",
+  "input_hash": "101729087f702b0c4d6093a4617159aa233945bb1b67c23459fee53796d1c092",
+  "status": "Recorded",
+  "instructions": [],
+  "previous_content": [
+    "## Scope and conclusion",
+    "",
+    "Start at Model by default. When the User requests Discussion or Archive, or",
+    "when the task justifies deliberate additional context, select it explicitly:",
+    "`--branch discussion`, `--branch archive`, or `--branch project` on the same",
+    "commands. State the expansion. `--block SHIP` selects a particular subtree",
+    "under this Project; it is mutually exclusive with --branch. Retain discussion",
+    "and historical context when using those branches; inclusion does not make",
+    "material current or an implementation commitment.",
+    "",
+    "Return a compact continuation-oriented explanation: the relevant Blocks and",
+    "Ships, what their Lines contribute to this conversation, material tensions or",
+    "missing coverage, and whether further reading is needed. Separate retrieved",
+    "material from agent inference. A match is not proof of truth or approval.",
+    "",
+    "Grounding is read-only. It creates no Notebook, Project state, captured Lines,",
+    "Breadcrumbs, actions or session repository. Report missing storage, missing",
+    "Model, empty or sparse coverage, unresolved identities and query errors",
+    "honestly; do not populate the model or silently search every Project. It does",
+    "not compose with mutating Hugentics routes. The retired Diagram Model-backed",
+    "capture/implementation routes remain parked; Notebook ModelBlock is distinct.",
+    "<!-- tarav.context 0f5bad01:4a12c26851350095 -->",
+    ""
+  ],
+  "chat": "codex:01a15483-94e8-7fe0-86ad-ddd83e2bae52",
+  "context": [
+    {
+      "declaration": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "ground.skw.json",
+          "pointer": "/shared/maintenance"
+        }
+      },
+      "content": {
+        "kind": "prompt",
+        "lines": [
+          "Maintain the read-only Notebook grounding workflow against installed tarav notebook help and the current Lines/Context API."
+        ]
+      },
+      "fingerprint": "cab69b87cc9cb8111d4070a123ba45469e5c12c96a31bd85bdd85734fc194910"
+    }
+  ],
+  "context_hash": "9462c10470495ad94e30557df951e558af21b74dfbdaae33f2ca1d6f688be7d2",
+  "output_hash": "bcc1c508aee69589ee360bbc0e21334a6696afb8d2255881a4db39f8a816b0de"
+}

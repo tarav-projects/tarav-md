@@ -22,7 +22,8 @@
     "src/references/impl/code-engineering.skw.json",
     "src/references/impl/phases.skw.json",
     "src/references/impl/request.skw.json",
-    "src/references/impl/context/wiki.skw.json"
+    "src/references/impl/context/wiki.skw.json",
+    "src/references/ground.skw.json"
   ],
   "files": [
     "SKILL.md",
@@ -42,7 +43,8 @@
     "references/impl/code-engineering.md",
     "references/impl/phases.md",
     "references/impl/request.md",
-    "references/impl/context/wiki.md"
+    "references/impl/context/wiki.md",
+    "references/ground.md"
   ],
   "dependencies": [
     {
