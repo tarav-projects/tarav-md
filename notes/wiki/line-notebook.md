@@ -184,3 +184,39 @@ implementation backend parked. The read-only live rehearsal found only the
 umbrella Project Model's seed explanatory Line; substantive grounding remains
 to be exercised after there is useful Model content.
 <!-- tarav.breadcrumb c86272c43710 -->
+
+## Notebook capture: support and review
+
+The Notebook Model is the concrete use case for rebuilding capture. Small base
+Types define reusable support and review capabilities; Notebook Line and Block
+Types compose them. Every newly captured Notebook Line should trace to
+User-touched evidence, normally specific Chatlas User turns, or another
+explicitly authorized surface. Its content summarizes material already in
+that discussion. The evidence relationship is explicit and remains a claim
+whose semantic adequacy can later be assessed.
+<!-- tarav.breadcrumb d66a41457150 -->
+
+Support and review are independent. Agent-maintained parts require support
+without requiring review of their verbatim wording. A User-reviewed core
+additionally records explicit approval of the presented Block or change,
+using proposal/approval chat references and the token protocol. This allows
+the core to evolve through direct User interaction while other supported
+material can be maintained faster. Approval evidence does not automatically
+constitute substantive support.
+<!-- tarav.breadcrumb b1e41a455654 -->
+<!-- tarav.breadcrumb 3f9d570fcaa1 -->
+
+A simple Line still has a stable Ship and mutable content, with previous states
+in Git. Its Type can invalidate assessments or require renewed review after
+an edit. A LineTrace is an optional more sophisticated evolution mechanism;
+it is not necessary for every Line. Evidence for an older state must remain
+distinguishable from evidence about the current wording and context.
+<!-- tarav.breadcrumb 95789849fe31 -->
+
+[Implementation request 934](../../../tarav-py/notes/live/934-notebook-support-review-impl-req.md)
+specifies the next Python implementation: support sets, exact evidence links,
+review records, state-sensitive attachment, capture/inspection operations and
+a few mechanical checks. Semantic Assertion evaluation and scoring integration
+are explicitly deferred. This is a design handoff; those capabilities have
+not been implemented by this capture pass.
+<!-- tarav.breadcrumb bb0f9e4b889d -->
