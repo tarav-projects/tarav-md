@@ -85,7 +85,6 @@ from tarav.l2.project import Project
 get_runtime()
 project = Project.from_path(Path("/Users/pereiro/projects/taravangian-project"))
 book = project.notebook()
-root = book.root
 archive = book.archive
 for item in archive.contents:
     print(type(item).__name__, item.id)
@@ -247,27 +246,22 @@ From a Tarav-started Python script, with an existing Project notebook and
 already resolved ChatlasTurnReference objects:
 
 ```python
-from tarav.l1.grounding import SupportMember
-from tarav.l2.notebook_capture import NotebookCapture
-
-binding = project.notebook()
-capture = NotebookCapture(binding.notebook).create()
-line = capture.capture(
-    binding.model, "The supported design statement.",
-    members=[SupportMember(user_turn_ref)], producer=producer_turn_ref,
-    reviewed=True,
+book = project.notebook().create()
+model = book.model
+line = model.capture(
+    "The supported design statement.",
+    root=user_turn_ref, producer=producer_turn_ref, reviewed=True,
 )
-proposal_text = capture.propose_review(
-    [line], destination=line.scope, token=unique_review_token,
-)
+proposal_text = model.propose_review([line], token=unique_review_token)
 # Present proposal_text; obtain the real proposal and User approval references.
-review = capture.record_review(
-    [line], destination=line.scope, token=unique_review_token,
+review = model.record_review(
+    [line], token=unique_review_token,
     proposal=proposal_turn_ref, approval=approval_turn_ref,
 )
-capture.complete_review(review)
-report = capture.inspect(line)
+model.complete_review(review)
+report = model.inspect(line)
 ```
+<!-- tarav.breadcrumb 31da614fc262 -->
 
 The references and token in that example are inputs obtained from the actual
 conversation. Proposal rendering needs no fabricated future approval reference.
@@ -310,3 +304,45 @@ inherited requirements and read-only behavior. Semantic Assertions, scoring,
 alignment with code, a new capture skill route and extension UI remain deferred.
 <!-- tarav.breadcrumb db91a40c82c4 -->
 <!-- tarav.breadcrumb 8d1ca9c52f24 -->
+
+
+## Typed Notebook integration — request 937
+
+The discussion identifies Notebook as the object responsible for coordinating
+the workflows around Lines. A Notebook is itself a typed recursive Block;
+global, Project and nested notebooks can organize the same primitives. Its
+Types can specialize checks and evidence behavior. Lines remain small, while
+support, exact review and Project status retain their distinct responsibilities.
+<!-- tarav.breadcrumb 41f0114793f7 -->
+
+[Request 937](../../../tarav-py/notes/live/937-typed-notebook-integrator-impl-req.md)
+implements this through [l2 Notebook](../../../tarav-py/src/tarav/l2/notebook.py).
+Project.notebook() now returns the actual ProjectBlock, whose Discussion,
+Model and Archive children are also Notebooks. The l1 Notebook remains the
+storage transport, exposed as book.storage. The examples above use this new
+API. Context collection moved to l2.notebook_context; its CLI and graph
+contracts remain intact. Existing record Ships, concrete Type names and parent
+links are preserved. Newly created Project notebooks share a deterministic
+TaravNotebook root; opening an existing notebook never reparents it.
+<!-- tarav.breadcrumb d9d7e4d1eff6 -->
+
+The standard capture/support entry point accepts one User-turn root plus
+optional conversational neighborhood per SupportSet. Additional calls can
+attach further sets to the same Line. This composes the existing general
+Grounding records, rather than limiting that general schema. Capture remains
+nonblocking: missing or wrong-role roots can be retained and then reported.
+Support and verbatim review remain independent; review completion requires
+real proposal/approval evidence. Notebook operations stay within their subtree.
+<!-- tarav.breadcrumb 3f8ea4d30568 -->
+<!-- tarav.breadcrumb 428238b3167c -->
+
+Each Notebook checks its local Lines and composes its nearest child notebooks'
+suites, including subtype extensions. Ancestor requirements still apply, and
+each Line is evaluated once. Project access checks load existing storage and
+compose this suite; the Project continues to own actions/status. Existing seed
+and archive Lines acquire no invented support or new retrospective policy.
+The [integration tests](../../../tarav-py/tests/test_notebook_integrator.py)
+and existing evidence/action tests verify these boundaries. The focused run
+passed 94 tests, plus 3 recovery tests. A live read preserved all 5,126 files
+in the existing store. Scoring and general Ship lineage remain deferred.
+<!-- tarav.breadcrumb 238a29ac8161 -->
