@@ -75,8 +75,8 @@
     },
     "src/tarav-diagram.skw.json": {
       "blocks": {},
-      "source_hash": "97c7f2ae1dda5a33ab7e474d3597cc82c553e010300bc96ab4e2eba9b614c1f2",
-      "product_hash": "02a934b8824bda2bc45477fb18488013f2e5b80ba53f80698cb0978fa9f80f4e",
+      "source_hash": "a8c5ba9aa42b9203c4bdfce8337a1184c7b647dc60a26e37aed1a3b1d587ea13",
+      "product_hash": "2b003203443b19078b878d2caeaf9bae56e6845aed8e2e461b25090c31ca9959",
       "loading_hash": "247627276505e5919c6942504bf9521c76cba39b9061f3468eae2e20e612198c"
     },
     "src/tarav-semantic-calculus.skw.json": {
