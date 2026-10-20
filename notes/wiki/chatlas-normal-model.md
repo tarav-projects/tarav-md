@@ -189,3 +189,49 @@ about half a minute; a search over every chat answers in tens of
 milliseconds.
 <!-- tarav.breadcrumb da7492bc6466 -->
 <!-- tarav.breadcrumb 4f6534f53ddc -->
+
+## Native Codex voice transcripts — 935
+
+<!-- tarav.sessions
+0f5bad01 = codex:01a15483-94e8-7fe0-86ad-ddd83e2bae52 @0f5bad0131260477b4cf3d712a95871496c3db92d67eaa7910243e312f7b552a
+-->
+
+The User requested recovery of a spoken passage and investigation of why
+Chatlas Query could not find it, then selected Develop to update the
+normalizer. The raw voice text had been captured; native voice projection
+into Messages and Turns was missing. Tests protect the corrected behavior,
+without retaining the broken implementation or adding a compatibility layer.
+<!-- tarav.breadcrumb e7d9d4033dd1 -->
+<!-- tarav.breadcrumb 8f90c34c1d85 -->
+<!-- tarav.breadcrumb eb9daea2cffe -->
+
+Implemented in [request 935](../../../tarav-py/notes/live/935-codex-voice-normalization-impl-req.md).
+The [Codex normalizer](../../../tarav-py/src/tarav/l1/chatlas/normal_model/codex.py)
+now projects `realtime_item` / `transcript_segment` records with string text
+and User or Assistant roles into the existing User/Agent Events and Messages.
+Text is preserved verbatim, and the existing Turn assembly, Query, typed
+references, and SQL index consume the result. Voice lifecycle metadata and
+malformed/unknown-speaker segments are not fabricated Messages. Recording
+speech does not establish Agent.Loaded.Context consumption relationships.
+The [voice tests](../../../tarav-py/tests/chatlas_normal_model/test_codex_voice.py)
+exercise normalization through cache, Query and index, speaker grouping,
+provenance, exclusion cases, and amendment hashes.
+<!-- tarav.breadcrumb 71c32225cff3 -->
+
+This exact session's derived cache and index were rebuilt with the existing
+ChatlasStages `all` policy. All 32 voice segments in the inspected active
+rollout (15 User and 17 Assistant) are present. The recovered 3,435-character
+User passage matches the raw text exactly and resolves through ordinary Query
+as Turn `dff422f65430f52a`; raw transcript bytes were unchanged. Existing cache
+freshness remains based on raw input, so other previously built session
+models require an explicit rebuild to receive the corrected projection.
+<!-- tarav.breadcrumb 903f4f36879d -->
+
+The recovery inspection also exposed an independent source-merging limit:
+115 of 177 voice segments in the older retained rollout are absent by exact
+text from the merged Model. A concrete older User voice Event and a different
+record in another rollout receive the same address (native session scope
+plus record index); pipeline reconciliation replaces the former. Both raw
+sources remain retained. This change does not redefine source authority,
+fork identity, or Event addressing; the measured collision and affected
+counts are recorded in request 935 for separate design and repair.
