@@ -14,7 +14,7 @@ the current Notebook support/review APIs. Design the request, then execute it.
 
 Knowledge.Surface: wiki
 Alignment.Mode: Interactive
-Status: executing
+Status: complete
 
 ## Design
 
@@ -84,7 +84,7 @@ dependencies or instructions to restore old mechanics.
    consumer artifact. Keep the entrypoint compact and conditional references
    discoverable. Test the documented recipe against isolated data, not the
    user's live Model. Remove no unrelated routes.
-3. **Pending — Closure.** Validate skill packaging/deployment, source lint,
+3. **Verified — Closure.** Validate skill packaging/deployment, source lint,
    links and installed artifacts; run relevant Project checks. Capture new
    Breadcrumbs, topic/daily Wiki and evidence commits, reporting older
    unavailable sources rather than retargeting them.
@@ -138,3 +138,21 @@ dependencies or instructions to restore old mechanics.
   same labels. Renamed those task-owned draft copies out of their observed
   locations, then the normal refresh recorded each compiled product's unique
   position. No evidence attachment was replaced or source Turn fabricated.
+- Skill slice commit: 1c23bdfd84220021e9c154de84ebb694e479667f. Its commit
+  Breadcrumb audit passes, as does Python slice commit
+  95ec466a8900b579c3ac87cbd550cddcfc24ec47. Compiled router, both new guides,
+  legacy-route guard, grounding guide and this request audit cleanly.
+- Scoped Wiki capture completed in notes/wiki/line-notebook.md and
+  notes/wiki/daily/2026-10-20.md, commit
+  de6fc20f76d421af77277178404b7c1b18e65fbe. New references resolve. Whole-Note
+  audits preserve older TurnUnavailable findings (25 topical, 3 daily); no
+  attachment was changed to substitute a different Turn.
+- Final non-test status after capture: 1,240 completed checks, zero incomplete,
+  67 remaining findings, no action changes. This complements the full 1,298
+  check run with 58 passing test-file runs. Packaging artifact generation and
+  deployed-byte checks succeeded; build/deploy finding exit codes remain
+  nonzero for the explicitly retained freshness/output findings.
+- All three planned steps are complete. The requested route is available in
+  the active linked skill depot for a later real capture session. This task
+  implemented the feature; its evidence fixtures did not assert real User
+  approvals or populate the live Project Model.
