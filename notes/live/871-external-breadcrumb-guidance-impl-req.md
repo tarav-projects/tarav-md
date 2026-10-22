@@ -6,7 +6,7 @@ ec6cf584 = codex:01a1563b-2992-7c62-8a38-05c1cc75b1fe @ec6cf5849bb6c4e66f011b015
 
 ## Impl.Abstract
 
-Knowledge.Surface: wiki. Alignment.Mode: Interactive. Status: developing.
+Knowledge.Surface: wiki. Alignment.Mode: Interactive. Status: completed.
 Document the User's selected embedded/external Breadcrumb placement and JSON
 read-only policy. This replaces the JSON writing convention introduced in 941.
 <!-- tarav.breadcrumb b1c69f0ac173 -->
@@ -35,3 +35,11 @@ Wiki: notes/wiki/breadcrumbs.md and daily/2026-10-22.md. Product companion:
   label lines without modifying source bytes. The updated guidance documents
   the two modes, JSON write rejection, fragment resolution, read-only inspection
   and explicit relocation. Topical and daily capture preserve this decision.
+- Verification: guidance compilation has no findings; four external source
+  anchors were registered without changing its SHA-256. Nineteen product,
+  request, source and Wiki surfaces audit clean. The product's full run passed
+  all 64 pytest file suites; subsequent routine checks closed the two new POI
+  description findings. Existing unrelated project findings remain.
+- The shared daily capture was retained by concurrent commit ebc03aa. Final
+  scoped closure includes the authoritative source, four generation Records,
+  lock/product, this request, topical Wiki and final daily verification.
