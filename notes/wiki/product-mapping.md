@@ -48,7 +48,7 @@ restrict on-demand targets. A workflow may map HEAD, chosen historical commits,
 or every commit if needed. Review stability remains a separate consumer policy.
 <!-- tarav.breadcrumb 02d3d3f1c0e3 -->
 
-## Implementation and historical exercise — 2026-10-22
+## Initial whole-repository exercise — superseded
 
 The User requested implementation against tarav-py and a historical run at
 roughly ten-commit intervals through the current product state.
@@ -83,3 +83,27 @@ installed CLI independently audited all 127 states. The Records retain 30,935
 Agent decisions, including 2,344 conservative replacements of edited candidate
 ranges. The run report records the actual evidence; these counts do not imply
 that the User reviewed the product.
+
+## Project-owned scope correction — 2026-10-22
+
+The User rejected the whole-repository selection and restricted tarav-py's
+mapping to committed .py files beneath src/ and tests/. File scope is ordinary
+workflow configuration owned by the Project, not a Python-specific rule in the
+generic mapper. The `product_mapping` section of the Project's
+`.tarav/config.json` selects `include: ["src/*.py", "tests/*.py"]` and no
+additional exclusions. The patterns include nested paths.
+<!-- tarav.breadcrumb d22503ea4d77 -->
+<!-- tarav.breadcrumb 8c281dba74c0 -->
+<!-- tarav.breadcrumb 984fecb900de -->
+
+The manager, CLI and historical runner share the Project configuration adapter.
+Map records retain the effective filters so changing configuration cannot
+reinterpret past coverage. The rejected broad run remains preserved separately;
+the active historical run and its report are rebuilt with the narrowed scope.
+See [request 947](../../../tarav-py/notes/live/947-product-mapping-project-scope-impl-req.md).
+
+The rebuilt historical run through `04981e43` contains 127 maps. Its final
+historical state contains 553 files and 1,184 chunks, with zero skipped surfaces.
+Every map passed the installed CLI's exact-byte audit, and an independent Git
+tree enumeration matched the final src/tests Python file set exactly. The
+completion catch-up map is recorded separately in the workflow registry.
