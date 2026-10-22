@@ -74,3 +74,35 @@ the horizon is unavailable. The [guide](../../../tarav-py/src/tarav/l1/product_r
 and [behavioral tests](../../../tarav-py/tests/test_product_review.py) provide the
 operating path and verification. Implementing the workflow does not itself
 review any real product batch.
+
+## Existing subjects and bounded batches
+
+The User refined the organization boundary: every batch attaches under an
+existing UUID, while the base batch stays product agnostic. For Tarav, that
+attachment is to a class's Type identity. Selected classes can have batches;
+there is no requirement to create one for every class. This reuses the codebase's
+semantic structure rather than building another class or subject hierarchy.
+<!-- tarav.breadcrumb a271ec766f36 -->
+<!-- tarav.breadcrumb 9bd1c1956c26 -->
+
+The User also requested a maximum number of chunks per batch and delegated the
+choice of a sensible default. Implementation policy selects eight chunks,
+configurable through Project `product_review.max_chunks`. This is a count bound,
+not a promise about bytes: Product Mapping permits chunks to grow.
+<!-- tarav.breadcrumb b4b6d4835f4c -->
+
+[Request 954](../../../tarav-py/notes/live/954-review-batch-class-subjects-impl-req.md)
+adds a required generic `Batch.subject` UUID and pins it into each revision's
+review presentation. The [ClassBatch specialization](../../../tarav-py/src/tarav/l2/product_review/subjects.py)
+resolves its TypeShip to the existing TaravClass, whose bases, Workflow and
+Context remain the source of organization. Workflow class identity is distinct
+from the Workflow entity's own UUID. Several small batches can share a class.
+Subjects stay fixed for a batch; retirement and replacement preserve earlier
+reviews when a subject grouping changes.
+
+Creation, revision and completion enforce the current size limit. Reducing
+configuration can make an existing batch oversized; its normal review Action
+then requests regrouping, preserving identity and historical completion evidence.
+No automatic splitting, map regeneration or mandatory Notebook creation is
+introduced. The [Python/CLI tests](../../../tarav-py/tests/test_product_review.py)
+exercise generic subjects, class attachment, exact limits and Action reopening.
