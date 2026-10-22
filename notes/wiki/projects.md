@@ -430,3 +430,16 @@ DocsProject. [Manager tests](../../../tarav-py/tests/test_project_managers.py)
 exercise overrides of all four managers, custom action storage, direct checks,
 child loops and SKW binding. These are implementation facts, not additional
 User decisions or a new universal hook protocol.
+
+## Project Type enumeration and PathRegistry — 948
+
+<!-- tarav.sessions
+0f5bad01 = codex:01a15483-94e8-7fe0-86ad-ddd83e2bae52 @0f5bad0131260477b4cf3d712a95871496c3db92d67eaa7910243e312f7b552a
+-->
+
+The User chose Project ownership of a PathRegistry: structure is computed,
+while agents and users maintain path identities through ordinary Project
+Actions. Type enumeration stays a separate Project capability using existing
+registration. See [PathRegistry](path-registry.md) for the design and implemented
+`project.types` and `project.paths` managers.
+<!-- tarav.breadcrumb d844c058eb92 -->
