@@ -37,3 +37,7 @@ Keep User decisions distinct from measured implementation and Agent policy.
 - Product slice e581a6fc. Measured verification: 40 focused review/Record/
   architecture checks passed, plus the shared-partition regression. All changed
   Notes submitted/audited clean. Full Python Project --all is running separately.
+- Full Python Project --all subsequently finished: 87 completed checks and all
+  66 pytest file suites passed. The expected completeness signal and three
+  existing security/synthetic-marker findings remain. Wiki closure 6bd2164a;
+  final verification is retained in the product request's Impl.Log.
