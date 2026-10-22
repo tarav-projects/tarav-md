@@ -34,14 +34,14 @@ implements the first Python surface:
 - `project.paths` manages explicit enrollment, storage at `.tarav/paths.json`,
   computation and checks. An absent registry stays absent on reads and checks.
 - JSONView has a stable owning Type/name identity. Path entries have independent
-  Ships, declared positions, active state and attachment Ships. Documentation can
-  use the `PathDocumentation` Line subtype; its authoring Block and storage remain
-  independent of the attachment.
+  Ships, declared positions and active state. Request 948 originally also stored
+  attachment Ships and defined `PathDocumentation`; request 950 removes those
+  responsibilities, following the User's clarification below.
 - Paths are RFC 6901 pointers into the finite View JSON: for example,
   `/properties/text` in a schema. Recursive JSON Schema references remain literal
   references; this implementation does not expand them into an object graph.
 - Maintenance explicitly enrolls, adds, reassigns, retires or accepts structure.
-  Reassigning a path retains its Ship and attachments. Checks never infer a
+  Reassigning a path retains its Ship. Checks never infer a
   semantic rename or rewrite the registry.
 
 These implementation facts are described in the
@@ -61,3 +61,28 @@ declare themselves partial: neither that probe nor introspection proves a
 complete description of arbitrary runtime attributes.
 
 See also [Projects](projects.md) and [Record framework](record-framework.md).
+
+## Identity ownership — request 950
+
+The User clarified that PathRegistry provides and tracks schema and path
+identities. The registry identifies a schema, rather than an instance, and
+positions inside that schema. Documentation is one use case for those Ships;
+other workflows own their relationships to the Ships. PathRegistry need not
+contain or know about those relationships.
+<!-- tarav.breadcrumb c6e2922b7812 -->
+
+The User requested this separation and authorized execution of the follow-up
+implementation request.
+<!-- tarav.breadcrumb 9a3dd836251e -->
+<!-- tarav.breadcrumb 40e5303f46fd -->
+
+[Request 950](../../../tarav-py/notes/live/950-path-registry-identity-boundary-impl-req.md)
+removes attachment fields, `attach()` and the registry-owned documentation Line
+Type. It retains existing schema/path Type Ships, explicit identity maintenance,
+Project checks, storage and Git history. The
+[consumer association test](../../../tarav-py/tests/test_path_registry.py)
+uses a regular Line and a separately held mapping keyed by Path Ship: rename and
+save/load preserve the reference, while no consumer data enters the registry.
+The [architecture test](../../../tarav-py/tests/test_architecture.py) also checks
+that the registry no longer imports Lines. No new documentation workflow is
+defined by this change.
