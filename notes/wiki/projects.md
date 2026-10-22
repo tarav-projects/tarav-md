@@ -392,3 +392,41 @@ the `git` section of its config; the hooks call the `tarav` CLI, never block
 Git, and the Project's checks keep them installed. The first handler is
 tarav-change; see [tarav-change](tarav-change.md).
 <!-- tarav.breadcrumb 7d4382f74921 -->
+
+## Project-owned integration managers — 940
+
+<!-- tarav.sessions
+ec6cf584 = codex:01a1563b-2992-7c62-8a38-05c1cc75b1fe @ec6cf5849bb6c4e66f011b015415da94eeb1a17634872aa4fb9e25d8e065ab53
+-->
+
+The User chose ActionManager, ChecksManager, SkwManager and RecordsManager
+as integration objects belonging to a Project Class. They separate Project
+integration from workflow primitives' core functionality. Other Project Classes
+can inherit and extend those managers and their integrations.
+<!-- tarav.breadcrumb 781c59f439d7 -->
+<!-- tarav.breadcrumb 83d7890c83e8 -->
+
+The User clarified that loops belong to managers too: a loop is one integration
+among the capabilities the managers connect. There is no separate Project-loop
+layer. Actions and POIs remain general concepts; the current check-related
+Situation Chain is a useful particular integration to refine now.
+<!-- tarav.breadcrumb 647f2b5ae451 -->
+<!-- tarav.breadcrumb 7e72a946b863 -->
+
+The User invoked Develop to create the managers and move existing Project
+integration into them.
+<!-- tarav.breadcrumb dc17e41766f3 -->
+
+[940](../../../tarav-py/notes/live/940-project-integration-managers-impl-req.md)
+implements class-selected `Actions`, `Checks`, `Skw` and `Records`, exposed
+through `project.actions`, `project.checks`, `project.skw` and `project.records`.
+The [ActionManager](../../../tarav-py/src/tarav/l1/project/actions.py) owns the
+existing status loop; Project.status delegates to it and child loops enter
+through their own action managers. Checks remain independently runnable.
+RecordsManager keeps the existing class/object Record API and selects registry
+access for integrations. The base SkwManager binds Documents; its featured
+specialization handles skill-depot discovery and checks formerly held by
+DocsProject. [Manager tests](../../../tarav-py/tests/test_project_managers.py)
+exercise overrides of all four managers, custom action storage, direct checks,
+child loops and SKW binding. These are implementation facts, not additional
+User decisions or a new universal hook protocol.
