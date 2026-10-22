@@ -91,3 +91,41 @@ object; the commitment is not simply a fixed physical location.
 <!-- tarav.breadcrumb 84b85de4bb8c -->
 <!-- tarav.breadcrumb f24b00b98d4f -->
 <!-- tarav.breadcrumb f0d66cfe2920 -->
+
+## Typed registry boundary — 2026-10-22
+
+<!-- tarav.sessions
+0f5bad01 = codex:01a15483-94e8-7fe0-86ad-ddd83e2bae52 @0f5bad0131260477b4cf3d712a95871496c3db92d67eaa7910243e312f7b552a
+-->
+
+The User narrowed the first Archive implementation to a registry returning typed
+DOI objects. The DOI Type states the continuity and maintenance contract.
+Locators describe known ways to reach the resource; compact recognition hints
+help maintainers and consumers assess candidate identity. Consumers own access
+and interpretation. Registry lookup itself does not retrieve the external
+resource, pick a replacement or automatically repair its location. Multiple
+locations may describe the same resource; maintainers explicitly declare updates.
+<!-- tarav.breadcrumb 8af98748aef3 -->
+<!-- tarav.breadcrumb 975f9e10897d -->
+
+Artifact immutability describes Archive's maintenance authority. Archive does not
+own the shape of external resources or mutate them; their owners may change them
+while a typed DOI continues tracking their identity. DOI Records, schemas,
+locators and hints are Archive-owned and amendable. A repository DOI may identify
+the continuing repository across checkouts, whereas a stricter contract can
+identify a particular state. Consumers can retain observations of the registry
+information and decide how to respond to subsequent changes.
+<!-- tarav.breadcrumb e65b0f30ce3f -->
+
+The User requested a simple replacement of the old Archive implementation after
+inspection, retaining useful ideas and preserving any displaced data losslessly
+in the Attic. Retired code should leave the active codebase rather than remain as
+compatibility infrastructure. Artifact hosting and general recovery are deferred.
+<!-- tarav.breadcrumb 390c3674dbdb -->
+<!-- tarav.breadcrumb 4cb9c9ddeb13 -->
+
+The resulting design requests are [Python 942](../../../tarav-py/notes/live/942-archive-doi-registry-impl-req.md)
+and [Markdown 870](../live/870-archive-doi-contracts-impl-req.md). Their implementation
+has not started. Inspection of the active default Archive and Record Registry
+roots found shared Record Archive data and no old artifact registration records;
+that data remains in place. Exact inventory scope and counts are retained in 942.
