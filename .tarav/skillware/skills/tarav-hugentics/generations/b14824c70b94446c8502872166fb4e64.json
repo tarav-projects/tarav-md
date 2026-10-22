@@ -1,0 +1,111 @@
+{
+  "type": "Tarav.Skillware.Generation",
+  "schema_version": 1,
+  "id": "b14824c70b94446c8502872166fb4e64",
+  "source": "src/references/inline-capture.skw.json",
+  "block": "surface-contract",
+  "input_hash": "101729087f702b0c4d6093a4617159aa233945bb1b67c23459fee53796d1c092",
+  "status": "Recorded",
+  "instructions": [],
+  "previous_content": [
+    "## Native surface contract",
+    "",
+    "A provisional marker carries the derived eight-character session alias and an",
+    "ordinary 16-character User-Turn hash prefix. Put it at the exact position",
+    "materially contextualized by that Turn, using native comments or JSON metadata:",
+    "",
+    "```python",
+    "# tarav.context 4571385e:dd358589d092f9dd",
+    "```",
+    "",
+    "```md",
+    "<!-- tarav.context 4571385e:dd358589d092f9dd -->",
+    "```",
+    "",
+    "```ts",
+    "// tarav.context 4571385e:dd358589d092f9dd",
+    "```",
+    "",
+    "TOML uses `# tarav.context <alias>:<prefix>` comments. Basic, literal and",
+    "multiline strings are inactive, including any `#` text inside them.",
+    "JSON uses an explicit `tarav.breadcrumbs` array of strings in an object",
+    "whose application schema permits metadata, for example:",
+    "",
+    "```json",
+    "{\"tarav.breadcrumbs\": [\"tarav.context 4571385e:dd358589d092f9dd\"]}",
+    "```",
+    "",
+    "Each metadata string is replaced with its opaque label string. Nested",
+    "metadata objects and compact arrays are supported; ordinary JSON strings",
+    "are inactive. Do not add fields to a closed schema or edit generated JSON",
+    "as its source of truth. Both formats are parsed before submission.",
+    "Outside explicit JSON metadata, never place markers inside strings, examples, fenced code, or other inactive",
+    "syntax. Python markers are tokenizer-confirmed comments. TypeScript markers",
+    "are `//` line comments confirmed by a small lexer that skips strings, template",
+    "literals, regular expressions and block comments; block comments never carry",
+    "markers. Markdown markers attach",
+    "to the immediately preceding Markdown block; consecutive markers attach to that",
+    "same block.",
+    "",
+    "The alias is the first eight lowercase hexadecimal characters of the neutral",
+    "Chatlas session identity. It is derived, never chosen or rebound. Markdown may",
+    "retain one or more session declarations near the top of the document:",
+    "",
+    "```md",
+    "<!-- tarav.sessions",
+    "4571385e = codex:01a06bed-b554-7770-86e3-cce2e5729994 @4571385eb2c5457a615e836d943acad00147fda45a10dbad26848faf81e2bfe1",
+    "-->",
+    "```",
+    "",
+    "A declaration retains the alias, `<provider>:<native-session-id>`, and full",
+    "identity hash. The identity hash is authoritative. Reuse a matching declaration",
+    "and treat disagreement as a POI. For a surface without declarations, pass the",
+    "exact provider and session ID to submission. One explicit session can resolve",
+    "only markers carrying that session's alias.",
+    "",
+    "Submission replaces every active provisional marker with the corresponding",
+    "opaque `tarav.breadcrumb <prefix>` label in the same native embedding:",
+    "the first 12 characters of the Breadcrumb's 64-character ID, which the",
+    "registry keeps. The ordinary Product.Surface remains authoritative.",
+    "",
+    "A label names the one registered ID it starts with. A label matching several",
+    "IDs is an error that lists them; Tarav never picks one, whatever the retained",
+    "positions or attachments suggest. Submission reports such a collision rather",
+    "than writing it. After choosing the intended Breadcrumb, lengthen its label",
+    "one character at a time (13, 14, 15, ...) until it is unique. Full",
+    "64-character labels remain valid.",
+    "<!-- tarav.breadcrumb 3796ae36306e -->",
+    ""
+  ],
+  "chat": "codex:01a1563b-2992-7c62-8a38-05c1cc75b1fe",
+  "context": [
+    {
+      "declaration": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "inline-capture.skw.json",
+          "pointer": "/shared/maintenance"
+        }
+      },
+      "content": {
+        "kind": "prompt",
+        "lines": [
+          "Maintain this section using the linked context. Preserve its workflow scope and authorization boundaries."
+        ]
+      },
+      "fingerprint": "d7c4268852e85f63977189ef040d73d26511f6ec1932d974274038b1e7b0c26b"
+    },
+    {
+      "declaration": {
+        "type": "Tarav.Reference.StructuredFile",
+        "locator": {
+          "path": "../../../../../../skills/tarav-pkg/CONSTITUTION.md"
+        }
+      },
+      "content": "# Tarav Constitution\n\n<!-- tarav.sessions\n4720b13e = codex:01a02f8b-8c36-7123-ba70-1a217b776e28 @4720b13eeb5dc61cad2d999b24f45a78d9dcd776c77e0be98b68822e30fdb604\n473c89a0 = codex:01a1176b-f14c-7fd0-a97c-b22279c3f8c8 @473c89a00e2367fb827193af74a6375c60a96b0be110f21df0aff49360ca972f\n-->\n\n\n## Preamble\n\nThis document is the Constitution of Tarav.\n\nIt states the fundamental principles and boundaries of the Tarav system. Any surface claiming to be part of Tarav must comply with this Constitution.\n<!-- tarav.breadcrumb c3bd772ca1ca -->\n\nThe Constitution is intentionally general, incomplete, and amendable. It does not contain all Tarav design truth or require a single implementation.\n<!-- tarav.breadcrumb ecd16660e190 -->\n\nWhen a Tarav design conflicts with the Constitution, the conflict must be surfaced. It can be resolved by changing the design, amending the Constitution, or changing both.\n<!-- tarav.breadcrumb 1c3656d59617 -->\n\n## Purpose\n\nTarav is an external `Agents.Harness` intended to enhance collaboration between Users and Agents. It provides tools and workflows addressing recurring problems in that collaboration.\n\nConcretely, Tarav is an extensible Python library. Its capabilities can be integrated into a wider system and composed into specialized harnesses for particular Projects.\n<!-- tarav.breadcrumb 529226730418 -->\n\nCapture, including recording `User.Touched.Data`, annotation primitives, contextualization, checks, and workflow coordination are concrete capabilities through which Tarav supports collaboration. They can evolve while remaining consistent with this purpose.\n<!-- tarav.breadcrumb 3d347443ec3e -->\n<!-- tarav.breadcrumb f8a6d1c8c52c -->\n\n\n## Projects\n\nA `Project` is a fundamental Tarav concept. Tarav's capabilities can be selected, extended, and combined to build a harness for a particular Project.\n<!-- tarav.breadcrumb 8178981fa771 -->\n\n## Agent Harness Boundary\n\nAn Agent is a harness around an LLM. Tarav is an `Agents.Harness`: a harness around Agents that supports collaboration between those Agents and Users.\n<!-- tarav.breadcrumb e1afd7dc0934 -->\n\nTarav may provide mechanisms for launching or operating Agents, but agent execution is not its defining responsibility.\n<!-- tarav.breadcrumb 7353b15ca16e -->\n\nTarav supports the contextualization of agent reasoning; it does not prescribe the internal reasoning of an Agent.\n<!-- tarav.breadcrumb e0644e75d73d -->\n\n## Mechanical and Agentic Work\n\nTarav must use deliberately simple, bounded code to perform work that can be specified reliably and to provide data, context, and signals to flexible Agents.\n\nTarav should mechanize as much of the common case as practical without encoding complex or brittle solutions merely to avoid Agent involvement.\n<!-- tarav.breadcrumb 193b02b6c8d2 -->\n\nAmbiguous, interpretive, open-ended, and long-tail work should be routed to Agents.\n\nAgent fallback is an intended part of Tarav architecture, not a failure of mechanical automation.\n<!-- tarav.breadcrumb 49fa142669d1 -->\n\n## User Context\n\nTarav is biased toward enriching agent context with `User.Touched.Data`. It must help agents work as fully contextualized on the user as possible.\n\nThis grounding does not claim that `User.Touched.Data` is authoritative or correct. Tarav does not prescribe how an agent reasons from that context.\n<!-- tarav.breadcrumb e638ee17754d -->\n\n## Natural Workflows and Extensibility\n\nTarav must fit `User.Natural.Workflows` rather than require users to adopt one prescribed Tarav workflow.\n\nTarav must be flexible and designed for extension so users, agents, and implementations can adapt it to their natural collaboration patterns.\n<!-- tarav.breadcrumb c0c3c12db0f2 -->\n\nExtensions may introduce different mechanisms and workflows, but any surface claiming to be part of Tarav remains bound by this Constitution.\n\n## Session Goals\n\nTarav-supported user-agent sessions may pursue both the user’s immediate objective and the capture and enrichment of `User.Touched.Data`.\n\nThe user controls the foreground workflow. Tarav must not stop or redirect product development to require Diagram enrichment.\n<!-- tarav.breadcrumb 177f4e2677c5 -->\n\nWhen the user chooses development, the session develops. Enrichment may occur organically without obstructing that work. When the user chooses capture, curation, or enrichment, the session pursues that work directly.\n\nTarav must provide primitives that make collecting, annotating, and curating `User.Touched.Data` cheap and organic within `User.Natural.Workflows`.\n<!-- tarav.breadcrumb bfab21d025fb -->\n\nCompleteness measures may guide enrichment and surface opportunities, but they must not gate work or impose a globally complete Diagram.\n\n## Mutation and Validation\n\nTarav must be evolvable and migration-friendly. Its code, schemas, and data are amendable. For product surfaces, committed Git history together with retained work conversations is sufficient change evidence by default. Additional documentation or tracking may be added when useful, but exhaustive change explanations must not become a prerequisite for evolution.\n<!-- tarav.breadcrumb 823eddb6a42f -->\n<!-- tarav.breadcrumb a1e213b405af -->\n\nThe nonblocking validation commitment for capturing user data is stated in Capture First below.\n\nUsers, agents, and other consumers are the primary mutators of Tarav state.\n\n## Checks and Findings\n\nTarav must provide extensible checking capabilities that help users and agents assess a Project’s state and surface findings with enough context to act on them.\n\nSpecific workflows define what gets checked, when checks run, and how findings are represented. A finding does not itself dictate the response; users, agents, and other consumers decide how to interpret and act on it.\n<!-- tarav.breadcrumb 69c072923d44 -->\n\n## Capture First\n\nTarav prioritizes recording `User.Touched.Data`. When data may contain or preserve `User.Touched.Data`, capture must occur before concerns about completeness, formatting, annotation quality, or other POIs are resolved.\n<!-- tarav.breadcrumb 88630183a7af -->\n\nTarav capture must favor recoverable overcapture over irrecoverable failure to record touched data.\n<!-- tarav.breadcrumb 627d3007ee2b -->\n\nValidation must not block the capture of user data. Tarav considers this data highly valuable. When a capture path fails, the system must provide a simpler fallback, including retaining raw data for later processing. Capture comes first; validation and organization can follow.\n<!-- tarav.breadcrumb 45e1f418f101 -->\n<!-- tarav.breadcrumb 96e54d858b65 -->\n\nOnce data enters Tarav, it may be curated, annotated, amended, enriched, and scored over time.\n\nTarav is not a general repository for Agent-generated summaries or content. Agent-generated data is not archived merely because it was generated; it may be archived when touched, deliberately selected, or captured as a safety margin against losing touched data.\n\n## Logistical Extensions\n\nTarav must support integration with databases, query systems, and other logistical extensions that improve performance and access over Tarav data.\n\nTarav data remains authoritative. Logistical extensions may index, cache, query, or project that data, but they do not displace its authority.\n<!-- tarav.breadcrumb 287596d1a3ec -->\n\n## Collaboration Loop\n\nTarav is organized around a continuous collaboration loop:\n\n```text\nuser-agent collaboration\n          ↓ captures\n       Touched.Data\n          ↓ recorded by\n      Tarav.Archive\n          ↓ structured by\n      Tarav.Diagram\n          ↓ selected through\n     Contextualization\n          ↓ enriches\n  user-agent collaboration\n```\n\n## Tarav.Archive\n\nThe main responsibility of `Tarav.Archive` is to record `User.Touched.Data`.\n<!-- tarav.breadcrumb a8662815421f -->\n\n`Tarav.Archive` registers `Archive.Artifact`s and retains `Archive.Record`s about them.\n\nAn `Archive.Artifact` is the actual data identified by the Archive. An Artifact may be retained by the Archive, located elsewhere, or temporarily unavailable.\n\nAn `Archive.Record` is retained data associated with one Artifact. Records may preserve Archive bureaucracy, identity information, current and historical locations, observations, descriptions, fingerprints, and other hints about that Artifact.\n\n`Tarav.Archive` records Artifacts and Records without regard to their origin, purpose, or meaning. Tarav must use the Archive to record `User.Touched.Data`; the Archive itself does not recognize or distinguish that data from anything else it records.\n<!-- tarav.breadcrumb 73beb42996d3 -->\n\nThe Archive does not interpret the internal semantic structure of Artifacts. Consumers construct organization and meaning from Archive Artifacts and Records.\n\nArchive Records do not need to agree. The Archive preserves attributed claims and observations without endorsing their correctness or meaning.\n\nArchive treats external Artifacts as outside its mutation authority: it does not own or change their shape. Their owners may evolve them while a typed DOI continues identifying the same resource under its declared contract. A strict exact-state contract still distinguishes changed states. Archive-owned DOI Records and their schemas, locations, annotations and recognition hints are amendable; maintenance must preserve the declared identity commitment.\n<!-- tarav.breadcrumb 843ff542a6db -->\n<!-- tarav.breadcrumb 1278026470b5 -->\n\nThe Archive provides typed references whose contracts consumers must be able to inspect. A reference to an amendable Record follows its declared contract. The Archive must never silently provide a different Artifact in place of the identified Artifact. If it offers a substitute or another representation, it must make the substitution and its relationship to the requested Artifact explicit.\n<!-- tarav.breadcrumb 461b2a55511f -->\n<!-- tarav.breadcrumb cd281677c0ea -->\n\nThe Archive must help consumers locate Artifacts. When an Artifact is unavailable, the Archive must expose its retained location history, fingerprints, External Descriptors, and other available hints.\n\nArchive Record coverage may be progressive and demand-driven. Tarav must permit Records to be enriched over time and must not require complete Record coverage as a precondition for capture, reference, or use.\n\nArchive Records must favor representations cheap enough to retain broadly. Records have greater retention priority than the Artifacts they describe. When preservation tradeoffs are unavoidable, the Archive should discard an Artifact before its associated Records, while strongly prioritizing preservation of `User.Touched.Data`.\n\nConsumers may register Artifacts as `External.Descriptors` of other Artifacts. An External Descriptors Record contains attributed references to other Artifacts declared to be useful descriptions, representations, or recovery hints for its target Artifact.\n\nThe Archive preserves External Descriptor references without endorsing their correctness or meaning. Each External Descriptor remains an ordinary Artifact with its own identity, locations, Records, and possible External Descriptors.\n\nThe Archive does not provide a general semantic relationship graph. Relationships beyond its bounded External Descriptor references, and the assessment of those relationships, belong to consumers such as `Tarav.Diagram`.\n\n`Tarav.Archive` makes no commitment to downstream readers about Record formatting or which context a Record contains. Its responsibility is preservation, not presentation; readers are responsible for interpreting what it preserves.\n<!-- tarav.breadcrumb 779ab9387f69 -->\n\n## Tarav.Diagram\n\nTarav must provide an extensible Diagram capability for users and agents to express, navigate, and query semantic relationships. The Diagram is a place where users and agents can write ideas, observations, hypotheses, plans, and relationships, including relationships between runtime objects.\n<!-- tarav.breadcrumb 1ab6e69980db -->\n\nWorkflows may define specialized semantics and grounding requirements for the material they place there. Relationships about `User.Touched.Data` are one application of this capability. Inclusion in the Diagram does not itself imply truth, validation, or grounding in archived evidence; Archive links and Assertion scores are not universal requirements for Diagram content.\n<!-- tarav.breadcrumb ad5919d18657 -->\n\n## Contextualization\n\nTarav must provide extensible tooling and systems for selecting and presenting `Tarav.Diagram` content to collaborative user-agent sessions.\n\nContext may begin with compact Ship editions or Annotations, but Tarav must preserve a navigable path from each contextualized Record to its linked supporting data.\n\nAgents and other consumers must be able to expand that path on demand and inspect progressively deeper supporting context.\n<!-- tarav.breadcrumb a6d682f872ea -->\n\n\n## Reference Contracts\n\nTarav references are typed. Their Types declare the contract under which data is identified and resolved. Some contracts permit maintenance such as schema changes; others commit to exact bytes.\n\nReferences must never silently deliver data that violates their declared contract. They must provide a way to check for changes relevant to that contract. Hashes and retained hints can support these checks.\n<!-- tarav.breadcrumb 2c09edaf5ab9 -->\n<!-- tarav.breadcrumb 4b3b5219ff55 -->\n",
+      "fingerprint": "97ad2a33de0a73a3234facc462bc41edc56704c0b1a23a6994910d6acb9c70c3"
+    }
+  ],
+  "context_hash": "e20157d5f284b69cd357e54561244c24b220525758d59bea6c0426eb286f2466",
+  "output_hash": "c1e85101f9346c250ee2339f137001485a0612b7a9d2f7eaed424353272ece05"
+}

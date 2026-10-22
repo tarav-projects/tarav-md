@@ -216,3 +216,33 @@ These embedding choices are implementation decisions, not additional User design
 New Chatlas-context attachments retain exact cited Turn evidence before replacing
 markers. This protects their targets when later normalization changes grouping;
 see [Chatlas recovery](chatlas-normal-model.md#exact-cited-turns-and-rollout-collisions--941).
+
+## External placement and JSON read-only — 2026-10-22
+
+The User reconsidered the JSON writing convention above and declined a shared
+Record metadata namespace because its benefits did not justify the complexity.
+The selected model has two placement modes of the same Breadcrumb: embedded
+labels in writable surfaces, and external anchors that leave the source untouched.
+JSON is read-only for the Breadcrumb workflow.
+<!-- tarav.breadcrumb f2d5f2d3b88c -->
+<!-- tarav.breadcrumb 8129d9949d99 -->
+
+This supersedes the earlier JSON submission convention. Embedded Markdown,
+Python, TypeScript and TOML continue to use native comments. Existing JSON
+labels remain inspectable; the workflow does not automatically remove them.
+
+An external observation stores a file, line and exact selected fragment of that
+line. Resolution checks the observed line and searches the same file if needed.
+A unique matching line resolves; several matching lines are ambiguous. Missing
+content or an unavailable file reports an external anchor missing, preserving
+the Breadcrumb identity, attachments and previous observations. The maintainer
+supplies a replacement location and selection explicitly.
+<!-- tarav.breadcrumb 6d0b27c38066 -->
+
+[Python implementation](../../../tarav-py/notes/live/943-external-breadcrumb-placement-impl-req.md)
+adds `BreadcrumbStore.create_external`, external file audits, Chatlas-context
+submission with `--placement external --line --fragment --turn-hash-prefix`,
+and `tarav breadcrumbs relocate`. Default reads never update observations;
+an audit's explicit position refresh may record a uniquely relocated line.
+The [capture guidance](../../skills/tarav-hugentics/references/inline-capture.md)
+describes the operating steps. Its JSON source is itself captured externally.

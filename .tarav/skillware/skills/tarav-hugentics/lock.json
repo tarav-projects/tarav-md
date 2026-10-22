@@ -92,23 +92,23 @@
       "blocks": {
         "introduction": {
           "input_hash": "101729087f702b0c4d6093a4617159aa233945bb1b67c23459fee53796d1c092",
-          "output_hash": "13ca6f02c7eb6866b7f11b8a6afb706f13ed9a733074247eb94bc26897cec795",
-          "generation": "41d696814a3f4bc483b8702777bb1158"
+          "output_hash": "edc5d3c8944a1c02e2ea6f10fed70b50d290a577c0944b11df1b65c065d81659",
+          "generation": "c56f8c5a0e9a4fb9839e8e69ac5dd680"
         },
         "surface-contract": {
           "input_hash": "101729087f702b0c4d6093a4617159aa233945bb1b67c23459fee53796d1c092",
-          "output_hash": "1e6393a230c2aad3b822486c7f341d2e68aa7c6207aaa1b877c7ac260f8ef3f8",
-          "generation": "a078515fef37441a8a1273ed523d06aa"
+          "output_hash": "c1e85101f9346c250ee2339f137001485a0612b7a9d2f7eaed424353272ece05",
+          "generation": "b14824c70b94446c8502872166fb4e64"
         },
         "capture-workflow": {
           "input_hash": "101729087f702b0c4d6093a4617159aa233945bb1b67c23459fee53796d1c092",
-          "output_hash": "835b47420714ebfb0289c1dfe9af8e40bc5b95f65dd83ebb86cde4590723166e",
-          "generation": "c152c53aa3984d3297021d8d3a632e7f"
+          "output_hash": "77ddbad58e1d02cf59288c222f0aa0e98ca81d351e67e646c59113537d8e4276",
+          "generation": "230bd196ae5e4a9da864f0b6c4d5514a"
         },
         "audit-workflow": {
           "input_hash": "101729087f702b0c4d6093a4617159aa233945bb1b67c23459fee53796d1c092",
-          "output_hash": "4cb5be0e617631f2b22b3283a9aa4868a78098c4248cb108501220a728f8a5b5",
-          "generation": "adc2d92d6ca641f2a7d880519fae17d1"
+          "output_hash": "3dce0301709f678c06210e3e9aa5f55eb0fc07cba3493fa5eee2118d19d432b1",
+          "generation": "c2d10af902804171a449277cbd5be505"
         }
       },
       "contexts": {
@@ -120,8 +120,8 @@
         "audit-workflow": "e20157d5f284b69cd357e54561244c24b220525758d59bea6c0426eb286f2466",
         "surface-contract": "e20157d5f284b69cd357e54561244c24b220525758d59bea6c0426eb286f2466"
       },
-      "source_hash": "b9d747402cfe0bf3d14ae08fe84e20516149c8a30dad96aab9b32194d401e40f",
-      "product_hash": "09ecaff5aa3e46629fbb79b0a72b2552cc6eff85997ecdc6bd080aa5e0970adb",
+      "source_hash": "6596b0fedb85123c839363cab3c441007c401547d41a0fae1f0ab3faaf4c69e4",
+      "product_hash": "608f5ea1a7d86c6ad745458d541b3af25eef63a5c495dcdbcc466f6717f9dabd",
       "loading_hash": "4b758624a4d16f6117d46f0fb12211edbc6df512b578d9345b835c4e59478ea7"
     },
     "src/references/issues/audit.skw.json": {
