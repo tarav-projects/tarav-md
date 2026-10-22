@@ -8,7 +8,7 @@
 
 Document Project-local Attics, their `_ATTIC` default, configurable location and
 Project check integration. Preserve the same opaque conservation semantics as
-the general Attic. Status: implemented; final verification running.
+the general Attic. Status: complete.
 <!-- tarav.breadcrumb 6bff37869ee9 -->
 
 Knowledge.Surface: wiki. Alignment.Mode: Interactive.
@@ -54,3 +54,10 @@ Exact supporting User Turns are declared above. Capture pending.
   Both submitted and audited with zero findings across the bounded capture pass.
 - Python request 944 records 103 passing focused tests, editable installation,
   live local metadata verification, and the intact local Attic adoption.
+- Documentation/capture slice committed as `ee565ae`; commit evidence audit
+  passes. Final skill checks pass; all 19 implemented/capture surfaces pass
+  Breadcrumb audits. Completion updates record the broad-check outcome.
+- Root full verification completed 1,343 checks with zero Attic findings. One
+  Git-hook test failed in that full run and passed on focused rerun with all
+  feature tests (12 passed). Existing broad Project findings remain explicit
+  in Python request 944; the full run is not represented as green.
