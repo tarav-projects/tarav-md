@@ -86,3 +86,8 @@ save/load preserve the reference, while no consumer data enters the registry.
 The [architecture test](../../../tarav-py/tests/test_architecture.py) also checks
 that the registry no longer imports Lines. No new documentation workflow is
 defined by this change.
+
+The subsequent [LabelFormats](label-formats.md) implementation shares the JSON
+Pointer validation rule with PathRegistry. Path Ships still identify schema
+positions independently of their current text; the shared Label vocabulary does
+not add attachment storage to this registry.
