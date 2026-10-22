@@ -194,3 +194,17 @@ Verification passed all 64 pytest suites in the full Python Project run, with
 82 completed checks and none incomplete. The first real implementation commit
 updated the migrated witness correctly. All 15 captured surfaces audited clean.
 Five unrelated Project findings remained; their details are in request 943.
+
+## Notebook adoption — request 945
+
+The User next requested Notebook adoption. Its specialized state consumer now
+uses the existing repository DOI reference and explicit Git verification before
+reconstructing bounded Line context. The registry remains declarative; this
+consumer owns Git access. Notebook, Grounding and Review have distinct repository
+identities and share System Project action ownership by default.
+<!-- tarav.breadcrumb 25f30d6c311f -->
+
+The live migration preserved all 30 state digests and both review presentations,
+committed the three repositories and verified their independent witnesses.
+See [Notebook context recording](line-notebook.md#repository-doi-context-recording--request-945)
+and [request 945](../../../tarav-py/notes/live/945-notebook-repository-references-impl-req.md).

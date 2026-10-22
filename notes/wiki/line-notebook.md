@@ -404,3 +404,32 @@ runtime was restored. See [skill request 869](../live/869-notebook-capture-skill
 and [Python request 939](../../../tarav-py/notes/live/939-notebook-reviewed-capture-impl-req.md)
 for the measured checks and remaining findings.
 <!-- tarav.breadcrumb 51d7d69c7438 -->
+
+## Repository DOI context recording — request 945
+
+The User requested Notebook adoption of the repository DOI and Change-ID
+infrastructure. Context remains reconstructed from Git; each state reference now
+names the repository DOI, exact commit/tree, optional Change-ID and Line-record
+path. A maintained locator can change without rewriting the evidence reference.
+<!-- tarav.breadcrumb 72e3ec1b37ee -->
+
+`l2.notebook_references.NotebookStateReference` is the explicit Git consumer.
+It asks the repository resolver for the original commit or one unambiguous
+matching-tree Change-ID candidate, then reads the Line and its authoring ancestry
+from that verified state. The old path-based reader was removed. Support,
+review roles, tokens and current-state comparison keep their existing semantics.
+
+Explicit capture checkpoints bind/install tarav-change on Notebook, Grounding
+and Review stores, with System Project ownership by default and an explicit
+owner override. Support/review writes commit their evidence and the Notebook
+links. Read-only inspection never installs hooks, provisions storage or commits.
+Commits select only records and repository metadata, preserving unrelated paths.
+
+The live migration translated 30 references in 15 SupportSets and two
+ReviewFrames. All prior SubjectState digests and review presentations remained
+identical. Original current records were hash-verified into Attic; all three
+repositories committed their migration and their witnesses matched. Historical
+commits without Change-IDs retain exact commit/tree coordinates.
+See [request 945](../../../tarav-py/notes/live/945-notebook-repository-references-impl-req.md)
+for verification and [repository references](archive-doi-registry.md#repository-references-and-change-id--2026-10-22)
+for the underlying resolution contract.
