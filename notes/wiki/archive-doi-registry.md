@@ -129,3 +129,35 @@ and [Markdown 870](../live/870-archive-doi-contracts-impl-req.md). Their impleme
 has not started. Inspection of the active default Archive and Record Registry
 roots found shared Record Archive data and no old artifact registration records;
 that data remains in place. Exact inventory scope and counts are retained in 942.
+
+## Registry implementation and independent locator checks — 2026-10-22
+
+The User requested execution of request 942 and added that Archive should check
+broken links and surface its own actions in the System Project. This maintenance
+path is separate from reading DOI information and does not perform resolution
+on behalf of consumers or automatically change locator declarations.
+<!-- tarav.breadcrumb c10ed2fed2ae -->
+
+Implemented in `tarav.l1.archive`: DOI and RepositoryDOI declare identity
+contracts; LocalLocator/RemoteLocator carry reachability information;
+RepositoryHints retains at most ten commit hashes. The registry uses its
+standard RecordMap partition, supports explicit register/read/update/list,
+and returns typed DOI objects through DOIReference. Its CLI is now
+`tarav archive init|register|show|list|update|repository`. General Record Archive
+and Attic retain their own storage and identities. The old registration,
+materialization and artifact-fetching code and migration utilities were retired.
+
+`ArchiveLocatorSuite` is composed into `TaravSystemProject.Checks`. Local path
+absence and HTTP 404/410 produce missing-locator findings. Other transport or
+access errors are distinguished as unreachable. HTTP probes use HEAD, a
+three-second timeout, no response-body download and no redirect following.
+Other hosts, unsupported protocols, authentication and unsupported HEAD replies
+remain unassessed. Archive-owned actions use the ordinary System Project
+lifecycle; incomplete checks do not assert that an earlier finding disappeared.
+
+Verification recorded in [942](../../../tarav-py/notes/live/942-archive-doi-registry-impl-req.md):
+72 focused integration tests passed, including opening an action, retaining it
+through unassessed checks and closing it on recovery. The installed CLI smoke
+passed against an absent-resource fixture. Constitution and candidate Archive
+sources were rebuilt through SKW. The full Project run also exposed unrelated
+Chatlas/Kernel test findings, tracked separately in the request log.

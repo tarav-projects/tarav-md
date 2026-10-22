@@ -86,3 +86,8 @@ part of this companion request. Execute it before request 942's Python replaceme
 - Compile/lint passed for both sources; the tarav-pkg skill check reported zero
   findings. Six new source Breadcrumbs resolved without findings. The generated
   Constitution's other sections and shared Archive child capabilities remain.
+- The source/product changes were retained by concurrent checkpoint
+  `0bb5ce5d33fedc21d6b1456b53e02a41c462ee49`; this request's verified result
+  was committed at `397e544fcec3f58dd32ccebb41e09a82f6c38730`. Its commit
+  evidence audit passed. Completion Wiki additions were submitted and audited
+  without findings; the final skill check again reported zero findings.
