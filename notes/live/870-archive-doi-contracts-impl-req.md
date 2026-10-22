@@ -6,7 +6,7 @@
 
 ## Impl.Abstract
 
-Status: ready for implementation; design only. Knowledge.Surface: wiki.
+Status: implemented and verified. Knowledge.Surface: wiki.
 
 Clarify Archive's maintenance boundary in the Constitution and align the Archive
 candidate design with the minimal typed DOI registry. This is the Markdown-owned
@@ -54,14 +54,14 @@ Breadcrumb workflow. Do not present a proposed code schema as verbatim User revi
 
 ## Execution.Plan
 
-- [ ] Documentation change: edit the constitutional Archive block through SKW,
+- [x] Documentation change: edit the constitutional Archive block through SKW,
   preserving unrelated constitutional content. Check: compiled diff expresses
   maintenance authority and typed identity contracts, without weakening strict
   references or authorizing artifact mutation.
-- [ ] Documentation change: replace the candidate Archive description with the
+- [x] Documentation change: replace the candidate Archive description with the
   registry scope, typed DOI semantics, locators/hints, and consumer boundary.
   Check: source/product rebuild, SKW checks and generated-product diff.
-- [ ] Capture/verification: attach justified source Breadcrumbs, run skill checks
+- [x] Capture/verification: attach justified source Breadcrumbs, run skill checks
   and capture the actual implemented outcome to Wiki. Check: Breadcrumb audit and
   focused generated-product consistency checks; report observed results.
 
@@ -77,3 +77,12 @@ part of this companion request. Execute it before request 942's Python replaceme
   and daily Wiki additions were also submitted and audited successfully.
   Relative links resolve; the Markdown diff whitespace check passes.
 - Companion ready for execution; no authoritative source or product changed.
+- Executed alongside request 942: updated the constitutional Archive paragraph
+  and replaced the candidate description with typed DOI registry semantics.
+  Added the explicitly requested independent locator-check boundary.
+- Imported source blocks have no agent-generation declarations; prepare refused
+  them as expected. Edited retained content without invented generation history,
+  submitted native JSON metadata Breadcrumbs, then compiled both products.
+- Compile/lint passed for both sources; the tarav-pkg skill check reported zero
+  findings. Six new source Breadcrumbs resolved without findings. The generated
+  Constitution's other sections and shared Archive child capabilities remain.
