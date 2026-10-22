@@ -266,3 +266,10 @@ tape, two with the pre-voice normalizer loaded once from Git. The historical
 normalizer is not shipped. Four other previously cited Turn boundaries affected
 by the corrected merge were preserved from the exact prior validated projection.
 The original three affected surfaces audit with zero POIs after recovery.
+
+The full Project check also exposed a Notebook consumer that queried only current
+Turns before resolving its evidence references. It now uses the same exact-reference
+result and Event chronology for source/producer/approval order. Eleven referenced
+Notebook Turns were retained from their exact previous projection; no support or
+review claims were retargeted. Regression tests verify both continued support
+resolution and rejection of an approval preceding its proposal.
