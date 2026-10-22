@@ -433,3 +433,9 @@ commits without Change-IDs retain exact commit/tree coordinates.
 See [request 945](../../../tarav-py/notes/live/945-notebook-repository-references-impl-req.md)
 for verification and [repository references](archive-doi-registry.md#repository-references-and-change-id--2026-10-22)
 for the underlying resolution contract.
+
+Final verification: all 65 pytest suites passed, with 84 checks completed and
+none incomplete. A test-fixture isolation defect found during the first full
+run was corrected and its action closed on recheck. Existing Gitleaks and
+synthetic marker findings remain separate. New implementation evidence audits
+cleanly; twelve older unavailable chat links in this Note are preserved as found.
