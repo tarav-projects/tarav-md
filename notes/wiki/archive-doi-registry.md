@@ -161,3 +161,9 @@ through unassessed checks and closing it on recovery. The installed CLI smoke
 passed against an absent-resource fixture. Constitution and candidate Archive
 sources were rebuilt through SKW. The full Project run also exposed unrelated
 Chatlas/Kernel test findings, tracked separately in the request log.
+
+The final full Project recheck completed 80 checks with no incomplete checks;
+all 62 pytest suites passed. The earlier test findings disappeared. Only the
+existing Gitleaks flag and two synthetic test-marker findings remain. New
+implementation evidence links audited cleanly; ten older Architecture links
+still report unavailable/amended Chatlas turns and were preserved as found.
