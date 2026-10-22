@@ -91,3 +91,7 @@ The subsequent [LabelFormats](label-formats.md) implementation shares the JSON
 Pointer validation rule with PathRegistry. Path Ships still identify schema
 positions independently of their current text; the shared Label vocabulary does
 not add attachment storage to this registry.
+
+[Path Notebook](path-notebook.md) now supplies typed schema/path note Blocks in
+the existing Project Notebook. Those Blocks own their Lines and inherit schema
+and parent-path context. PathRegistry remains the identity provider.
