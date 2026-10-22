@@ -165,7 +165,7 @@ The Archive does not interpret the internal semantic structure of Artifacts. Con
 
 Archive Records do not need to agree. The Archive preserves attributed claims and observations without endorsing their correctness or meaning.
 
-Archive Artifacts are immutable signal. A changed Artifact is another Artifact. Archive Records describing an Artifact are amendable: locations, annotations, fingerprints, and other information may evolve while the Record continues to describe the same Artifact.
+Archive treats external Artifacts as outside its mutation authority: it does not own or change their shape. Their owners may evolve them while a typed DOI continues identifying the same resource under its declared contract. A strict exact-state contract still distinguishes changed states. Archive-owned DOI Records and their schemas, locations, annotations and recognition hints are amendable; maintenance must preserve the declared identity commitment.
 <!-- tarav.breadcrumb 843ff542a6db -->
 <!-- tarav.breadcrumb 1278026470b5 -->
 

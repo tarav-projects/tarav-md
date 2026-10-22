@@ -4,8 +4,8 @@
   "documents": {
     "src/CONSTITUTION.skw.json": {
       "blocks": {},
-      "source_hash": "904cc6e4ce44b87b1a99c9a346c024faea106e4afa49b15dd970c0962c6e85ec",
-      "product_hash": "67ea91794f723a65208885c0904b3bd2826afdd63b86d2078cf4b3c2e2909b3c",
+      "source_hash": "a413b7ba9abec5199e429bb828c6b70076532ba6e8ee265a52adac1988b93b85",
+      "product_hash": "34854f6d7b737f2d7561e97bc6c36746c67f15d3653b69b14ed8166d5cc69295",
       "loading_hash": "247627276505e5919c6942504bf9521c76cba39b9061f3468eae2e20e612198c"
     },
     "src/SKILL.skw.json": {
@@ -63,8 +63,8 @@
     },
     "src/tarav-archive.skw.json": {
       "blocks": {},
-      "source_hash": "420ba7a0376b9a53f3cb38f6a83832910bb17209e1039c12a695b77ede6aedab",
-      "product_hash": "d1e68aa1ff66ef67f4a138ee328070d728c3038690fc3d9d34b68a02508bd172",
+      "source_hash": "a3a0f06f240742e652538b193218c9f73d70da83c5842dad2e588adf45738819",
+      "product_hash": "2e326db4a85574fc9ade884b496e0aa48905a725ec8ab52fa77db88cc5dad0c8",
       "loading_hash": "247627276505e5919c6942504bf9521c76cba39b9061f3468eae2e20e612198c"
     },
     "src/tarav-bloberia.skw.json": {
