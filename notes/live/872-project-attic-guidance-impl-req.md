@@ -8,7 +8,7 @@
 
 Document Project-local Attics, their `_ATTIC` default, configurable location and
 Project check integration. Preserve the same opaque conservation semantics as
-the general Attic. Status: designed, awaiting Python implementation.
+the general Attic. Status: implemented; final verification running.
 <!-- tarav.breadcrumb 6bff37869ee9 -->
 
 Knowledge.Surface: wiki. Alignment.Mode: Interactive.
@@ -45,3 +45,12 @@ Exact supporting User Turns are declared above. Capture pending.
 
 - Start checkpoint: `b35d0ab`; Python and root checkpoints recorded in request 944.
 - No unresolved user decisions. Python behavior is a dependency of documentation.
+- Documented default selection, config, checks, status ownership and the shared
+  deposit convention in the authoritative Attic SKW source; skill build passes.
+  Generated operator guidance was rebuilt. JSON source uses an external
+  Breadcrumb, so registration did not write into its content.
+- Topical capture: `notes/wiki/attic.md`, Project-local Attics.
+  Daily capture: `notes/wiki/daily/2026-10-22.md`, Project-local Attics.
+  Both submitted and audited with zero findings across the bounded capture pass.
+- Python request 944 records 103 passing focused tests, editable installation,
+  live local metadata verification, and the intact local Attic adoption.

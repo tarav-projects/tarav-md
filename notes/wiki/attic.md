@@ -45,3 +45,29 @@ Agent operations and the version-1 declaration format live in
 The current deposit metadata was left untouched: the new checks flag two older
 formats for deliberate maintenance rather than silently migrating them.
 <!-- tarav.breadcrumb 54e37f690440 -->
+
+## Project-local Attics
+
+The User wants Projects to declare their own Attic folder so retired material
+can stay beside the Project. The default is `<project>/_ATTIC`; a configured
+folder is an alternative location for the same conservation workflow. Project
+checks include the local Attic's metadata checks. The general Tarav Attic remains
+available independently. Retired Projects inside a deposit are historical
+material, not active child Projects.
+<!-- tarav.breadcrumb 7bd28e7af9ba -->
+<!-- tarav.breadcrumb 374b2d1a57ee -->
+
+The featured `Project.attic()` now selects `_ATTIC` or `attic.path` from
+`.tarav/config.json`. It returns the existing Attic handler without provisioning.
+The integration lives in `tarav.l2.project.attic`; focused tests in
+`tarav-py/tests/test_project_attic.py` cover selection, invalid config, child
+aggregation and resolution action closure. These are implementation observations;
+see [request 944](../../../tarav-py/notes/live/944-project-attic-impl-req.md).
+
+The umbrella's former `_DEPRECATED` tree was conserved intact in its local
+`_ATTIC/deposits/20261022T174331Z-retired-projects/material/`, preserving nine
+retired trees and their repository internals. Deposit UUID:
+`78570498-efeb-44de-b785-5c38d82bf1d8`. The operator compared hashes and sizes for
+12,633 files before and after the move; that verification is separate from
+Attic metadata checks.
+<!-- tarav.breadcrumb 56595ea00bc8 -->
