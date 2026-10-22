@@ -17,8 +17,8 @@ modify. The audit invocation authorizes no mutation: do not edit the surface,
 update Chatlas, create Diagram records, or write a retained report.
 
 Embedding is surface-native. Python, TypeScript (`.ts`, `.tsx`, `.mts`,
-`.cts`; a draft convention) and Markdown are the supported specializations
-today. When the selected surface has no registered convention,
+`.cts`; a draft convention), Markdown, JSON and TOML are supported.
+When the selected surface has no registered convention,
 report that limitation instead of guessing syntax.
 
 ## Routes
@@ -46,8 +46,7 @@ the surface has complete conversational coverage.
 
 A provisional marker carries the derived eight-character session alias and an
 ordinary 16-character User-Turn hash prefix. Put it at the exact position
-materially contextualized by that Turn, using the surface's native comment
-syntax:
+materially contextualized by that Turn, using native comments or JSON metadata:
 
 ```python
 # tarav.context 4571385e:dd358589d092f9dd
@@ -61,7 +60,20 @@ syntax:
 // tarav.context 4571385e:dd358589d092f9dd
 ```
 
-Never place markers inside strings, examples, fenced code, or other inactive
+TOML uses `# tarav.context <alias>:<prefix>` comments. Basic, literal and
+multiline strings are inactive, including any `#` text inside them.
+JSON uses an explicit `tarav.breadcrumbs` array of strings in an object
+whose application schema permits metadata, for example:
+
+```json
+{"tarav.breadcrumbs": ["tarav.context 4571385e:dd358589d092f9dd"]}
+```
+
+Each metadata string is replaced with its opaque label string. Nested
+metadata objects and compact arrays are supported; ordinary JSON strings
+are inactive. Do not add fields to a closed schema or edit generated JSON
+as its source of truth. Both formats are parsed before submission.
+Outside explicit JSON metadata, never place markers inside strings, examples, fenced code, or other inactive
 syntax. Python markers are tokenizer-confirmed comments. TypeScript markers
 are `//` line comments confirmed by a small lexer that skips strings, template
 literals, regular expressions and block comments; block comments never carry
@@ -86,7 +98,7 @@ exact provider and session ID to submission. One explicit session can resolve
 only markers carrying that session's alias.
 
 Submission replaces every active provisional marker with the corresponding
-opaque `tarav.breadcrumb <prefix>` label in the same native comment syntax:
+opaque `tarav.breadcrumb <prefix>` label in the same native embedding:
 the first 12 characters of the Breadcrumb's 64-character ID, which the
 registry keeps. The ordinary Product.Surface remains authoritative.
 
@@ -139,7 +151,8 @@ one character at a time (13, 14, 15, ...) until it is unique. Full
    The Renderer derives the alias from the resolved session; it takes no
    Renderer options. For Python, use tokenizer-valid `# tarav.context` comments
    carrying that same derived alias and selected Turn prefix; for TypeScript,
-   `// tarav.context` line comments.
+   `// tarav.context` line comments. TOML uses `#` comments; JSON uses the
+   explicit metadata array described above.
 
 6. Insert each provisional comment at the exact materially contextualized
    position. Several markers may be distributed across the surface; a resolved
@@ -153,7 +166,9 @@ one character at a time (13, 14, 15, ...) until it is unique. Full
 
    Submission must
    retain each Breadcrumb, position observation, and typed Chatlas attachment
-   before replacing its provisional marker.
+   before replacing its provisional marker. Exact cited Turns, Messages and
+   supporting Events are retained as validated Chatlas snapshots so later
+   normalization changes cannot silently replace the cited material.
 8. Run `tarav breadcrumbs audit chatlas-context --surface <SURFACE> --json`.
    Use its mechanical findings for label positions, typed attachments, and
    referenced User Turns. Then inspect semantic placement and report the new
@@ -218,8 +233,9 @@ remains Agent work.
    Continue past recoverable problems so one audit exposes the whole bounded
    surface.
 4. Inspect local placement according to the native convention. Markdown labels
-   attach to the immediately preceding block; Python and TypeScript labels
-   must be confirmed comments at the intended code position. Report orphaned
+   attach to the immediately preceding block; Python, TypeScript and TOML labels
+   must be confirmed comments. JSON labels must belong to explicit metadata
+   arrays at schema-permitted positions. Report orphaned
    or suspicious placements; do not repair them.
 5. Return one compact in-chat report and stop. Include the surface,
    specialization used, declaration count, Breadcrumb count, exact-resolution

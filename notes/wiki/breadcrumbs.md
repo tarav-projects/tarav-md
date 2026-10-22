@@ -193,3 +193,26 @@ audit calls `compute_normal_model`, bypassing Chatlas's fresh-checked cache
 rebuilds the same sessions for every file. Using the cache and sharing models
 across one command are the proposed fixes, not yet made.
 <!-- tarav.breadcrumb 9bee380a3bbb -->
+
+## JSON and TOML surfaces — 2026-10-22
+
+<!-- tarav.sessions
+ec6cf584 = codex:01a1563b-2992-7c62-8a38-05c1cc75b1fe @ec6cf5849bb6c4e66f011b015415da94eeb1a17634872aa4fb9e25d8e065ab53
+-->
+
+The User explicitly requested JSON/TOML capture after the manager refactor
+reported those formats as unsupported.
+<!-- tarav.breadcrumb ceac340b5a6f -->
+
+Implemented in [request 941](../../../tarav-py/notes/live/941-breadcrumb-data-surfaces-and-chatlas-reference-recovery-impl-req.md):
+TOML uses native `#` comments; JSON uses a `tarav.breadcrumbs` array of strings
+at a schema-permitted object position. Submit replaces each provisional string
+with its opaque label and preserves the surrounding text. Nested metadata and
+several strings on one line work. Ordinary strings are inactive, including TOML
+multiline strings containing apparent comments. Both formats use the ordinary
+submit, resolve and audit paths and reject invalid native syntax before writes.
+These embedding choices are implementation decisions, not additional User design.
+
+New Chatlas-context attachments retain exact cited Turn evidence before replacing
+markers. This protects their targets when later normalization changes grouping;
+see [Chatlas recovery](chatlas-normal-model.md#exact-cited-turns-and-rollout-collisions--941).

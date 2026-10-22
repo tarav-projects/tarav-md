@@ -235,3 +235,34 @@ plus record index); pipeline reconciliation replaces the former. Both raw
 sources remain retained. This change does not redefine source authority,
 fork identity, or Event addressing; the measured collision and affected
 counts are recorded in request 935 for separate design and repair.
+
+## Exact cited Turns and rollout collisions — 941
+
+<!-- tarav.sessions
+ec6cf584 = codex:01a1563b-2992-7c62-8a38-05c1cc75b1fe @ec6cf5849bb6c4e66f011b015415da94eeb1a17634872aa4fb9e25d8e065ab53
+-->
+
+The User requested investigation and repair of the twelve older chat references
+reported during the manager refactor.
+<!-- tarav.breadcrumb 9c68f01d6637 -->
+<!-- tarav.breadcrumb 68f5d3454be0 -->
+
+[Request 941](../../../tarav-py/notes/live/941-breadcrumb-data-surfaces-and-chatlas-reference-recovery-impl-req.md)
+fixes the measured merge problem above: different payloads at a reused native
+Event address remain separate deterministic variants; exact copied Events merge
+their source observations. Messages and loaded contexts follow the corresponding
+variant. The current aggregate now retains all the observed payload variants.
+
+Exact cited Turns are separately retained as immutable, validated snapshots in
+the Chatlas Record Registry partition. They carry the Turn, Messages, supporting
+Events, raw-source observations and producer commit. The original three-coordinate
+reference stays pinned; resolution explicitly reports `retained-snapshot` when
+using that representation. Capture retains this evidence before registering
+new Breadcrumb attachments. The current aggregate remains replaceable.
+
+All nine exact Turns backing the twelve reported labels were reconstructed from
+retained raw without retargeting labels: seven with current normalization of one
+tape, two with the pre-voice normalizer loaded once from Git. The historical
+normalizer is not shipped. Four other previously cited Turn boundaries affected
+by the corrected merge were preserved from the exact prior validated projection.
+The original three affected surfaces audit with zero POIs after recovery.
