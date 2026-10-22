@@ -121,3 +121,29 @@ The tarav-change check raises the same POIs between commits, so a
 `ProjectActions.register` registers such actions without treating the
 results as a whole run of the Project's checks. Detached HEADs and Projects
 without a `project_id` are not witnessed.
+
+## Repository identity and owner — 2026-10-22
+
+<!-- tarav.sessions
+0f5bad01 = codex:01a15483-94e8-7fe0-86ad-ddd83e2bae52 @0f5bad0131260477b4cf3d712a95871496c3db92d67eaa7910243e312f7b552a
+-->
+
+The User requested Change-ID integration in Archive repository references.
+Witness identity is now repository DOI plus branch, replacing the earlier
+Project-keyed schema. Project ownership separately routes refusal/overrule
+actions. Detached HEAD remains unwitnessed.
+<!-- tarav.breadcrumb 5f88ce8ab459 -->
+
+`tarav git hooks install --repo PATH --owner-project PATH --handler tarav-change`
+registers or binds a repository and installs hooks without making it a Project.
+Existing Projects can use `--project`. Configuration retains the repository DOI,
+registry and optional owner; missing binding produces a finding. No legacy
+identity fallback is retained. `OwnedRepositorySuite` discovers owned external
+repositories through Archive and rechecks them so actions can close on recovery.
+Inaccessible local repositories prevent falsely complete discovery scans.
+
+The live tarav-py baseline migrated with original bytes conserved in Attic.
+Repository references carry exact commit/tree and optional Change-ID; recovery
+requires one unambiguous candidate matching the captured tree.
+See [Archive references](archive-doi-registry.md#repository-references-and-change-id--2026-10-22)
+and [request 943](../../../tarav-py/notes/live/943-repository-doi-change-references-impl-req.md).

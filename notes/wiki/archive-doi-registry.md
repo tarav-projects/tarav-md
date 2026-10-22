@@ -167,3 +167,30 @@ all 62 pytest suites passed. The earlier test findings disappeared. Only the
 existing Gitleaks flag and two synthetic test-marker findings remain. New
 implementation evidence links audited cleanly; ten older Architecture links
 still report unavailable/amended Chatlas turns and were preserved as found.
+
+## Repository references and Change-ID — 2026-10-22
+
+The User requested repository-specialized Archive references integrated with
+tarav-change before Notebook adopts them. Repository identity and action
+ownership are independent: multiple repositories may belong to one Project.
+<!-- tarav.breadcrumb fc2cd350d770 -->
+
+`RepositoryReference` retains a registry, repository DOI, exact commit and tree,
+plus optional Change-ID and relative file path. Its lookup returns the maintained
+declaration and coordinates without accessing Git. The explicit consumer in
+`tarav.l2.git.archive` captures from a declared local repository and resolves
+locally: use the original commit, or find Change-ID candidates and accept exactly
+one with the captured tree. Mismatches and ambiguity remain failures. Original
+coordinates are never rewritten. The full tree includes `.tarav/changes`.
+
+Witnesses now use repository DOI and branch; Project is ownership metadata.
+The existing tarav-py witness migrated explicitly, preserving original bytes
+in Attic. Ordinary repositories can install hooks with `--repo` and
+`--owner-project`; the owner's checks revisit bound external repositories.
+See [request 943](../../../tarav-py/notes/live/943-repository-doi-change-references-impl-req.md)
+and [tarav-change](tarav-change.md#repository-identity-and-owner--2026-10-22).
+
+Verification passed all 64 pytest suites in the full Python Project run, with
+82 completed checks and none incomplete. The first real implementation commit
+updated the migrated witness correctly. All 15 captured surfaces audited clean.
+Five unrelated Project findings remained; their details are in request 943.
