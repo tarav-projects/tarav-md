@@ -69,3 +69,47 @@ unchanged and the two are not yet related.
 <!-- tarav.breadcrumb 523913d55074 -->
 <!-- tarav.breadcrumb 5b6d366840ed -->
 
+## Project-defined checked Programs — 2026-10-23
+
+<!-- tarav.sessions
+ec6cf584 = codex:01a1563b-2992-7c62-8a38-05c1cc75b1fe @ec6cf5849bb6c4e66f011b015415da94eeb1a17634872aa4fb9e25d8e065ab53
+-->
+
+The User chose a Program as an ordinary Tarav class in a Project's trusted
+Python code. The shared base supplies execution and storage tooling; concrete
+classes define States, Actions and their allowed connections. Python logic can
+build connections and select available choices without requiring every Program
+to implement a state-dispatch tree. An external script loader is unnecessary.
+The Iterante history remains evidence, rather than a runtime to restore.
+<!-- tarav.breadcrumb e8f916eefd03 -->
+<!-- tarav.breadcrumb feaa5f105c8e -->
+<!-- tarav.breadcrumb f3fd4bc0e0a8 -->
+
+A State produces checks. A StateAction adds its prompt and prerequisites and
+uses that same destination State to check arrival. Successful completion closes
+the action and issues a fresh State token. Contextualized Project status reruns
+the State's checks to detect subsequent drift: the token expresses the State
+the agent is responsible for maintaining, rather than an unconditional claim
+about the product. Arrival and maintenance therefore share their conditions.
+<!-- tarav.breadcrumb 3709084ebb16 -->
+<!-- tarav.breadcrumb e676573e8f8f -->
+<!-- tarav.breadcrumb 9f52b6ed381c -->
+<!-- tarav.breadcrumb 676441e72af5 -->
+
+The User requested an implementation request and execution together. The chosen
+scope keeps Program runs and their data outside the Project and exposes overall
+executions and active StateActions through the existing Action registry.
+Project Monitor reorganization is deferred; this work concerns Programs.
+<!-- tarav.breadcrumb 0b8238bb9c27 -->
+<!-- tarav.breadcrumb 7fb81ef4bd35 -->
+
+Implementation observation: [request 955](../../../tarav-py/notes/live/955-project-program-runtime-impl-req.md)
+adds graph declarations, JSON run data, checked start/choose/step, current-token
+validation, cycle arrivals, terminal closure and explicit Action projection
+recovery. `Project.programs` selects owned registered classes; `tarav program`
+uses the normal Project harness. `tarav status --program-token` adds a per-run
+coherence check. Runs retain action snapshots as the recovery authority; current
+trusted class code supplies checks. The [operating guide](../../../tarav-py/src/tarav/l1/programs/README.md)
+records commands and limits. These mechanics refine the earlier bootstrap;
+they do not establish a universal subject/forking schema.
+
