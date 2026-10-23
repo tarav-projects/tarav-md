@@ -6,7 +6,7 @@
 
 ## Impl.Abstract
 
-Knowledge.Surface: wiki. Status: designing. Develop / Autonomous. Capture the
+Knowledge.Surface: wiki. Status: executing. Develop / Autonomous. Capture the
 accepted thin Typesense product integration, Studio-only engine deployment and
 machine-neutral CLI. Search only the stored Normal Model files.
 <!-- tarav.breadcrumb d060cb46f991 -->
@@ -36,3 +36,12 @@ session and exact User Turns, submit and audit each changed surface.
 ## Impl.Log
 
 - Markdown start checkpoint a26b3f91. Exact supporting User Turns resolved.
+- Concurrent checkpoint d90be81 absorbed this request as external work; preserved.
+  Capturing only Typesense discussion and measured implementation facts; live
+  deployment remains explicitly pending the operator's Ansible check/apply.
+- Added the required live Kernel.Writing POC to the topical Note: completion
+  needs actual Typesense results, dates and exact source verification. Wiki
+  Breadcrumb submissions/audits passed, including the later POC User Turn.
+  The daily capture was conserved by the concurrent Program Wiki commit a936ba6.
+  Isolated tests: 668 passed; current shared Typesense/routing/architecture
+  verification: 94 passed. No live engine result is claimed yet.
