@@ -113,3 +113,40 @@ trusted class code supplies checks. The [operating guide](../../../tarav-py/src/
 records commands and limits. These mechanics refine the earlier bootstrap;
 they do not establish a universal subject/forking schema.
 
+## Programs as Action graphs — 2026-10-23
+
+The later discussion replaces the explicit State abstraction above. The User
+wants all execution positions represented as Actions: NodeActions occupy nodes,
+and EdgeActions traverse connections. A Program defines the graph and a run
+records its active Action occurrences. The existing Action publication and
+registry machinery should expose both roles.
+<!-- tarav.breadcrumb a7724223cee5 -->
+<!-- tarav.breadcrumb f7f39d4edaf8 -->
+
+The Program owns its checks and their use. The User rejects mandatory check
+ownership by a node or edge, and fixed meanings for acceptance checks. Check
+classes may be reused across Actions as the Program author chooses. Therefore
+the earlier automatic reuse of destination-State checks and source-State
+validation is superseded as an engine rule; such reuse can remain a particular
+Program's policy.
+<!-- tarav.breadcrumb d373572af2c5 -->
+<!-- tarav.breadcrumb 7b4861d9a7c2 -->
+
+The mandatory mechanics stay small: a token identifies the current Action
+occurrence, and a genuine node token cannot authorize an edge that node does
+not permit. Moving onto an edge changes the active Action and its check
+context; moving to its destination changes it again. The User requested a
+new implementation request and execution of this revised design.
+<!-- tarav.breadcrumb 07bb77dcb4e7 -->
+<!-- tarav.breadcrumb 2c3a072da71c -->
+
+Implementation observation: [request 958](../../../tarav-py/notes/live/958-program-action-graph-impl-req.md)
+removes State/StateAction/StateReached and uses explicit three-part Transition
+declarations. The Program selects checks through enter/status/complete slots;
+none has built-in product validation semantics. Runs store an active collection
+with occurrence tokens, independent of the source-node/edge distinction.
+Terminal nodes are Actions completed explicitly. Real harness tests exercise
+edge-specific checks and isolation between active occurrences, including two
+in one run. The [guide](../../../tarav-py/src/tarav/l1/programs/README.md) explains
+the measured API, token consumption and retained storage/recovery limits.
+
