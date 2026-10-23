@@ -6,7 +6,7 @@
 
 ## Impl.Abstract
 
-Knowledge.Surface: wiki. Status: executing. Capture the accepted global CLI router
+Knowledge.Surface: wiki. Status: complete. Capture the accepted global CLI router
 discussion and implementation outcome. The User authorized designing and
 executing an implementation request. Run profiles, the SSH subsystem and vector
 storage are deferred; routing can invoke SSH directly for now.
@@ -47,3 +47,11 @@ submit Breadcrumbs and audit; do not invent evidence or rewrite adjacent topics.
 - Python verification: 88 focused checks passed; real installed CLI routed a
   read-only printf call through SSH to the Studio, preserving argument values.
   Wiki diff whitespace check passed. Full Project status is running.
+- Wiki request checkpoint 07ee644e and scoped Wiki capture commit 5bf22c01
+  completed with zero commit-audit POIs. Python feature commit 1faaccad is also
+  committed and audited. Both requests' surface audits resolve all attachments.
+- Full root status --all completed all 1,350 checks, including 69 pytest file
+  checks with zero test POIs. No skipped or incomplete suites. The 67 existing
+  maintenance findings caused exit 1; no new or reopened action was produced.
+  Detailed result is retained at /tmp/cli-router-root-status.json and in Python
+  request 956's log. No unresolved implementation or Wiki capture gap remains.
