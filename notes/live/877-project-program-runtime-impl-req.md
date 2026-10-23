@@ -37,3 +37,8 @@ design as history and distinguish execution observations from User decisions.
   Preserved earlier dated proposals. Both Notes carry User-Turn Breadcrumbs;
   submission and refreshed-position audits passed. Product request 955 and the
   operating guide describe measured mechanics separately from User decisions.
+- Final root status --all completed all 1,347 checks, including 66 configured
+  pytest file checks without test failures. It retains 67 maintenance findings;
+  unsubmitted Wiki markers belong to other Notes. This capture's topical Note,
+  daily Note and request audit clean. Python request 955 records the final
+  test-discovery addition and boundary verification.
