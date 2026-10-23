@@ -35,3 +35,8 @@ implementation observations distinct from supported User decisions.
   explicit later correction. Both Notes submitted and audited clean; the
   product guide and request 958 carry measured implementation details.
   The daily Note also retains concurrent Typesense capture, preserved as found.
+- Wiki capture committed as a936ba6f; commit Breadcrumb audit passed. Full root
+  status completed all 1,351 checks, including 70 pytest file checks without
+  pytest findings. Existing 67 maintenance POIs remain outside this task;
+  this capture's Notes and request audit clean. Product request 958 retains
+  the complete verification and commit evidence.
