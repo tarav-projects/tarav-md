@@ -6,7 +6,7 @@
 
 ## Impl.Abstract
 
-Knowledge.Surface: wiki. Status: executing. Develop / Autonomous. Capture the
+Knowledge.Surface: wiki. Status: captured; live POC pending. Develop / Autonomous. Capture the
 accepted thin Typesense product integration, Studio-only engine deployment and
 machine-neutral CLI. Search only the stored Normal Model files.
 <!-- tarav.breadcrumb d060cb46f991 -->
@@ -29,7 +29,7 @@ session and exact User Turns, submit and audit each changed surface.
 
 ## Execution.Plan
 
-- [ ] Documentation: capture scope, ownership and observed implementation facts,
+- [x] Documentation: capture scope, ownership and observed implementation facts,
   distinguish deployment readiness from a live verified service; scoped evidence
   commit and Project checks. No whole-Wiki reconciliation.
 
@@ -45,3 +45,7 @@ session and exact User Turns, submit and audit each changed surface.
   The daily capture was conserved by the concurrent Program Wiki commit a936ba6.
   Isolated tests: 668 passed; current shared Typesense/routing/architecture
   verification: 94 passed. No live engine result is claimed yet.
+- Wiki capture commit 862683d0 and its Breadcrumb audit passed, and the Markdown
+  source was pushed to GitHub successfully. The actual operator apply and live
+  Kernel.Writing test remain open in Python request 957, to be captured when
+  measured. Daily capture was included in the prior concurrent Wiki commit.
